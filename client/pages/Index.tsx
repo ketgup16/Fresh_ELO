@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronRight, ChevronDown, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal } from "lucide-react";
+import { ChevronRight, ChevronDown, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye } from "lucide-react";
 
 interface Campaign {
   id: string;
@@ -156,6 +156,7 @@ const mockCampaigns: Campaign[] = [
 export default function Index() {
   const [campaigns, setCampaigns] = useState(mockCampaigns);
   const [selectedTab, setSelectedTab] = useState<"onsite" | "archive">("onsite");
+  const [showPopover, setShowPopover] = useState(false);
 
   const toggleExpand = (id: string) => {
     setCampaigns(campaigns.map(c => 
@@ -346,13 +347,66 @@ export default function Index() {
                     <th className="p-2 text-left w-12">
                       <input type="checkbox" className="w-5 h-5 rounded border-[#909196]" />
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32]">
-                      <div className="flex items-center gap-1">
+                    <th className="p-2 text-left font-bold text-[#2E2F32] relative">
+                      <div
+                        className="flex items-center gap-1 cursor-pointer"
+                        onClick={() => setShowPopover(!showPopover)}
+                      >
                         Campaign/Ad group/Creative
                         <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
                           <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3ZM8 13L12 9H4L8 13Z" fill="#2E2F32"/>
                         </svg>
                       </div>
+
+                      {/* Popover */}
+                      {showPopover && (
+                        <div className="absolute top-full left-0 mt-2 w-[432px] bg-white rounded shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50">
+                          {/* Nubbin (Arrow) */}
+                          <svg className="absolute -top-2 left-6" width="16" height="8" viewBox="0 0 16 8" fill="none">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M8 0L16 8H0L8 0Z" fill="white"/>
+                          </svg>
+
+                          <div className="p-4">
+                            {/* Header */}
+                            <div className="flex items-start justify-between mb-3">
+                              <h3 className="text-lg font-bold text-[#2E2F32]">
+                                Campaign recommendations
+                              </h3>
+                              <div className="flex items-center gap-1 px-2 py-1 bg-[#E9F1FE] rounded">
+                                <Eye className="w-4 h-4 text-[#002E99]" />
+                                <span className="text-xs text-[#002E99]">Awareness</span>
+                              </div>
+                            </div>
+
+                            {/* Divider */}
+                            <div className="h-px bg-[#E3E4E5] mb-4"></div>
+
+                            {/* Content */}
+                            <div className="mb-4">
+                              <div className="mb-3">
+                                <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
+                                <div className="flex items-end gap-1">
+                                  <span className="text-base font-bold text-[#2A8703]">14-16%</span>
+                                  <span className="text-base font-bold text-[#2E2F32]">Potential increase in reach</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Actions */}
+                            <div className="flex items-center justify-end gap-4">
+                              <button
+                                className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                onClick={() => setShowPopover(false)}
+                              >
+                                Dismiss
+                              </button>
+                              <button className="px-4 h-8 text-sm font-bold text-[#2E2F32] bg-white border border-[#2E2F32] rounded-full hover:bg-gray-50">
+                                View recommendations
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </th>
                     <th className="p-2 text-left font-bold text-[#2E2F32]">
                       <div className="flex items-center gap-1">
