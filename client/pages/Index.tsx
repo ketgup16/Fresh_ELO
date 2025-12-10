@@ -369,9 +369,9 @@ export default function Index() {
                     <th className="p-2 text-left w-12">
                       <input type="checkbox" className="w-5 h-5 rounded border-[#909196]" />
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32] relative">
+                    <th className="p-2 text-left font-bold text-[#2E2F32] relative min-w-[280px]">
                       <div
-                        className="flex items-center gap-1 cursor-pointer"
+                        className="flex items-center gap-1 cursor-pointer whitespace-nowrap"
                         onClick={() => setShowPopover(!showPopover)}
                       >
                         Campaign/Ad group/Creative
@@ -430,55 +430,57 @@ export default function Index() {
                         </div>
                       )}
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32]">
-                      <div className="flex items-center gap-1">
+                    <th className="p-2 text-left font-bold text-[#2E2F32] min-w-[120px]">
+                      <div className="flex items-center gap-1 whitespace-nowrap">
                         Status
                         <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
                           <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3ZM8 13L12 9H4L8 13Z" fill="#2E2F32"/>
                         </svg>
                       </div>
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32]">
-                      <div className="flex items-center gap-1">
+                    <th className="p-2 text-left font-bold text-[#2E2F32] min-w-[160px]">
+                      <div className="flex items-center gap-1 whitespace-nowrap">
                         Recommendations
                         <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
                           <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3ZM8 13L12 9H4L8 13Z" fill="#2E2F32"/>
                         </svg>
                       </div>
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32]">
-                      <div className="flex items-center gap-1">
+                    <th className="p-2 text-left font-bold text-[#2E2F32] min-w-[130px]">
+                      <div className="flex items-center gap-1 whitespace-nowrap">
                         Total budget
                         <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
                           <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3ZM8 13L12 9H4L8 13Z" fill="#2E2F32"/>
                         </svg>
                       </div>
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32]">
-                      <div className="flex items-center gap-1">
+                    <th className="p-2 text-left font-bold text-[#2E2F32] min-w-[170px]">
+                      <div className="flex items-center gap-1 whitespace-nowrap">
                         Targeting Strategy
                         <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
                           <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3ZM8 13L12 9H4L8 13Z" fill="#2E2F32"/>
                         </svg>
                       </div>
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32] border-l border-[#BABBBE]">
-                      <div className="flex items-center gap-1">
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-l border-[#BABBBE] min-w-[130px]">
+                      <div className="flex items-center gap-1 whitespace-nowrap">
                         Impressions
                         <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
                           <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3ZM8 13L12 9H4L8 13Z" fill="#2E2F32"/>
                         </svg>
                       </div>
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32]">
-                      <div className="flex items-center gap-1">
+                    <th className="p-2 text-left font-bold text-[#2E2F32] min-w-[100px]">
+                      <div className="flex items-center gap-1 whitespace-nowrap">
                         Pacing
                         <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
                           <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3ZM8 13L12 9H4L8 13Z" fill="#2E2F32"/>
                         </svg>
                       </div>
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32]">Actions</th>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] min-w-[100px]">
+                      <div className="whitespace-nowrap">Actions</div>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
