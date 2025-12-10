@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronRight, ChevronDown, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye } from "lucide-react";
 
 interface Campaign {
