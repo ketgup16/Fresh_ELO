@@ -157,6 +157,23 @@ export default function Index() {
   const [campaigns, setCampaigns] = useState(mockCampaigns);
   const [selectedTab, setSelectedTab] = useState<"onsite" | "archive">("onsite");
   const [showPopover, setShowPopover] = useState(false);
+  const popoverRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
+        setShowPopover(false);
+      }
+    };
+
+    if (showPopover) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showPopover]);
 
   const toggleExpand = (id: string) => {
     setCampaigns(campaigns.map(c => 
