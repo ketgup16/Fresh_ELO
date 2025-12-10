@@ -634,8 +634,72 @@ export default function Index() {
                             </div>
                           </td>
                           <td className="p-2">{getStatusBadge(child.status)}</td>
-                          <td className="p-2 text-[#2E2F32]">
-                            {child.recommendations > 0 ? child.recommendations : "-"}
+                          <td className="p-2 text-[#2E2F32] relative">
+                            {child.recommendations > 0 ? (
+                              <>
+                                <button
+                                  className="text-[#2E2F32] hover:underline cursor-pointer"
+                                  onClick={() => setShowRecommendationPopover(showRecommendationPopover === child.id ? null : child.id)}
+                                >
+                                  {child.recommendations}
+                                </button>
+
+                                {/* Recommendation Popover */}
+                                {showRecommendationPopover === child.id && (
+                                  <div
+                                    ref={recPopoverRef}
+                                    className="absolute top-full left-0 mt-2 w-[432px] bg-white rounded shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50"
+                                  >
+                                    {/* Nubbin (Arrow) */}
+                                    <svg className="absolute -top-2 left-6" width="16" height="8" viewBox="0 0 16 8" fill="none">
+                                      <path fillRule="evenodd" clipRule="evenodd" d="M8 0L16 8H0L8 0Z" fill="white"/>
+                                    </svg>
+
+                                    <div className="p-4">
+                                      {/* Header */}
+                                      <div className="flex items-start justify-between mb-3">
+                                        <h3 className="text-lg font-bold text-[#2E2F32]">
+                                          Campaign recommendations
+                                        </h3>
+                                        <div className="flex items-center gap-1 px-2 py-1 bg-[#E9F1FE] rounded">
+                                          <Eye className="w-4 h-4 text-[#002E99]" />
+                                          <span className="text-xs text-[#002E99]">Awareness</span>
+                                        </div>
+                                      </div>
+
+                                      {/* Divider */}
+                                      <div className="h-px bg-[#E3E4E5] mb-4"></div>
+
+                                      {/* Content */}
+                                      <div className="mb-4">
+                                        <div className="mb-3">
+                                          <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
+                                          <div className="flex items-end gap-1">
+                                            <span className="text-base font-bold text-[#2A8703]">14-16%</span>
+                                            <span className="text-base font-bold text-[#2E2F32]">Potential increase in reach</span>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      {/* Actions */}
+                                      <div className="flex items-center justify-end gap-4">
+                                        <button
+                                          className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                          onClick={() => setShowRecommendationPopover(null)}
+                                        >
+                                          Dismiss
+                                        </button>
+                                        <button className="px-4 h-8 text-sm font-bold text-[#2E2F32] bg-white border border-[#2E2F32] rounded-full hover:bg-gray-50">
+                                          View recommendations
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                              </>
+                            ) : (
+                              "-"
+                            )}
                           </td>
                           <td className="p-2 text-[#2E2F32]">{child.totalBudget || "-"}</td>
                           <td className="p-2 text-[#2E2F32]">{child.targetingStrategy || "-"}</td>
