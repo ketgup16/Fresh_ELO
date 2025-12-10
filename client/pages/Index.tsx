@@ -377,7 +377,7 @@ export default function Index() {
 
                       {/* Popover */}
                       {showPopover && (
-                        <div className="absolute top-full left-0 mt-2 w-[432px] bg-white rounded shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50">
+                        <div ref={popoverRef} className="absolute top-full left-0 mt-2 w-[432px] bg-white rounded shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50">
                           {/* Nubbin (Arrow) */}
                           <svg className="absolute -top-2 left-6" width="16" height="8" viewBox="0 0 16 8" fill="none">
                             <path fillRule="evenodd" clipRule="evenodd" d="M8 0L16 8H0L8 0Z" fill="white"/>
