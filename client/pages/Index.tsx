@@ -375,8 +375,8 @@ export default function Index() {
                   onClick={() => setSelectedTab("onsite")}
                   className={`px-0 py-3 text-sm relative ${
                     selectedTab === "onsite"
-                      ? "font-bold text-[#0053E2] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:bg-[#0053E2] after:rounded-t"
-                      : "font-normal text-black hover:bg-gray-50"
+                      ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:bg-[#0053E2] after:rounded-t"
+                      : "font-normal text-[#2E2F32] hover:bg-gray-50"
                   }`}
                 >
                   Onsite auction
@@ -385,8 +385,8 @@ export default function Index() {
                   onClick={() => setSelectedTab("archive")}
                   className={`ml-6 px-0 py-3 text-sm relative ${
                     selectedTab === "archive"
-                      ? "font-bold text-[#0053E2] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:bg-[#0053E2] after:rounded-t"
-                      : "font-normal text-black hover:bg-gray-50"
+                      ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:bg-[#0053E2] after:rounded-t"
+                      : "font-normal text-[#2E2F32] hover:bg-gray-50"
                   }`}
                 >
                   Archive
