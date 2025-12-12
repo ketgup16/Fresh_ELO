@@ -864,98 +864,129 @@ export default function Index() {
 
           {/* Content */}
           <div className="flex-1 overflow-y-auto p-6">
-            {/* Campaign Info */}
-            {selectedCampaign && (
-              <div className="mb-6">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-bold text-[#2E2F32]">Campaign</span>
-                  <div className="flex items-center gap-1 px-2 py-1 bg-[#E9F1FE] rounded">
-                    <Eye className="w-4 h-4 text-[#002E99]" />
-                    <span className="text-xs text-[#002E99]">Awareness</span>
-                  </div>
+            {showDetailView ? (
+              <>
+                {/* Breadcrumb */}
+                <div className="flex items-center gap-2 mb-5">
+                  <button
+                    onClick={backToList}
+                    className="text-sm text-[#515357] underline hover:no-underline"
+                  >
+                    Recommendations
+                  </button>
+                  <span className="text-sm text-[#515357]">/</span>
+                  <span className="text-sm text-[#2E2F32]">Recommendation details</span>
                 </div>
-                <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1">
-                  {selectedCampaign.name}
-                </a>
-              </div>
-            )}
 
-            <div className="h-px bg-[#E3E4E5] mb-6"></div>
+                {/* Recommendation Detail */}
+                <div className="flex flex-col gap-5">
+                  {/* Impact Statement */}
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-end gap-1">
+                      <span className="text-base font-bold text-[#2A8703]">15k-18k</span>
+                      <span className="text-base font-bold text-[#2E2F32]">Potential increase in reach</span>
+                    </div>
+                    <p className="text-base text-[#2E2F32]">by adding 15 keywords</p>
+                  </div>
 
-            {/* Campaign Level Recommendations */}
-            <div className="mb-6">
-              <div className="flex items-center gap-1 mb-4">
-                <span className="text-base font-bold text-[#2E2F32]">Campaign level recommendations</span>
-                <span className="text-base text-[#2E2F32]">(1)</span>
-              </div>
+                  <div className="h-px bg-[#E3E4E5]"></div>
 
-              <div className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
-                <div className="flex items-start gap-3">
-                  <input type="checkbox" className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black" />
-                  <div className="flex-1">
-                    <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
-                      Campaign name goes here
+                  {/* Campaign Info */}
+                  <div className="flex flex-col gap-1">
+                    <span className="text-sm font-bold text-[#2E2F32]">Campaign</span>
+                    <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1">
+                      H&H_FY25_Always On_North Atlantic_Blackstone_Display_In-Market_50839
                     </a>
+                  </div>
 
-                    <div className="mb-4">
-                      <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
-                      <div className="flex items-end gap-1">
-                        <span className="text-sm font-bold text-[#2A8703]">14-16%</span>
-                        <span className="text-sm font-bold text-[#2E2F32]">Potential increase in reach</span>
+                  {/* Ad Group Info */}
+                  <div className="flex flex-col gap-1">
+                    <span className="text-sm font-bold text-[#2E2F32]">Ad group</span>
+                    <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1">
+                      Walmart|Display|Auction|Cross Device|Behavioral Targeting|Past Purchasers of Tapatio
+                    </a>
+                  </div>
+
+                  {/* Recommended Keywords */}
+                  <div className="border border-[#E3E4E5] rounded-lg">
+                    <div className="p-4 border-b border-[#E3E4E5]">
+                      <div className="flex flex-col gap-2">
+                        <span className="text-sm font-bold text-[#2E2F32]">Recommended keywords</span>
+                        <p className={`text-sm text-[#515357] ${keywordsExpanded ? '' : 'line-clamp-4'}`}>
+                          Coca-Cola freestyle machine, Coke vending machine, Coca-Cola sponsorship deals, Coke tasting event, Coca-Cola heritage tour, Coke glassware, Coca-Cola recipe pairing, Coke float dessert, Coca-Cola ice cream soda, Coke recipe hacks, Coca-Cola themed café, Coke and popcorn combo, Coca-Cola holiday truck tour, Coke art installation, Coca-Cola fan club, Coke TikTok challenge, Coca-Cola merch giveaway
+                        </p>
+                        <button
+                          onClick={() => setKeywordsExpanded(!keywordsExpanded)}
+                          className="text-sm text-[#2E2F32] underline hover:no-underline self-start"
+                        >
+                          {keywordsExpanded ? 'View less' : 'View more'}
+                        </button>
                       </div>
                     </div>
-
-                    <div className="mb-4">
-                      <p className="text-sm text-[#515357] mb-2">Affected ad groups</p>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-2 py-1 text-xs text-[#515357] bg-[#E3E4E5] rounded">Ad group name....</span>
-                        <span className="px-2 py-1 text-xs text-[#515357] bg-[#E3E4E5] rounded">Ad group name....</span>
-                        <span className="px-2 py-1 text-xs text-[#515357] bg-[#E3E4E5] rounded">Ad group name....</span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-end gap-4">
-                      <button className="text-sm text-[#2E2F32] underline hover:no-underline">
-                        Dismiss
-                      </button>
-                      <button className="text-sm text-[#2E2F32] underline hover:no-underline">
-                        View details
-                      </button>
+                    <div className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50">
+                      <span className="text-sm font-bold text-[#2E2F32]">Current</span>
+                      <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
                     </div>
                   </div>
+
+                  {/* Why we recommend this */}
+                  <div className="flex flex-col gap-1">
+                    <span className="text-sm font-bold text-[#2E2F32]">Why we recommend this</span>
+                    <p className="text-sm text-[#2E2F32]">
+                      Based on your campaign performance, we've identified that adding keywords could significantly increase your reach. Similar campaigns saw an average 12% increase in impressions while maintaining conversion quality. This recommendation uses machine learning to find users with similar characteristics to your best-performing audience segments.
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </>
+            ) : (
+              <>
+                {/* Campaign Info */}
+                {selectedCampaign && (
+                  <div className="mb-6">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-bold text-[#2E2F32]">Campaign</span>
+                      <div className="flex items-center gap-1 px-2 py-1 bg-[#E9F1FE] rounded">
+                        <Eye className="w-4 h-4 text-[#002E99]" />
+                        <span className="text-xs text-[#002E99]">Awareness</span>
+                      </div>
+                    </div>
+                    <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1">
+                      {selectedCampaign.name}
+                    </a>
+                  </div>
+                )}
 
-            <div className="h-px bg-[#E3E4E5] mb-6"></div>
+                <div className="h-px bg-[#E3E4E5] mb-6"></div>
 
-            {/* Ad Group Recommendations */}
-            <div>
-              <div className="flex items-center gap-1 mb-4">
-                <span className="text-base font-bold text-[#2E2F32]">Ad group recommendations</span>
-                <span className="text-base text-[#2E2F32]">(3)</span>
-              </div>
+                {/* Campaign Level Recommendations */}
+                <div className="mb-6">
+                  <div className="flex items-center gap-1 mb-4">
+                    <span className="text-base font-bold text-[#2E2F32]">Campaign level recommendations</span>
+                    <span className="text-base text-[#2E2F32]">(1)</span>
+                  </div>
 
-              <div className="space-y-4">
-                {[1, 2, 3].map((item) => (
-                  <div key={item} className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
+                  <div className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
                     <div className="flex items-start gap-3">
                       <input type="checkbox" className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black" />
                       <div className="flex-1">
                         <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
-                          Ad group 0{item} name goes here
+                          Campaign name goes here
                         </a>
 
                         <div className="mb-4">
-                          <div className="flex items-start gap-3">
-                            <input type="radio" name={`rec-${item}`} className="mt-0.5 w-5 h-5" />
-                            <div className="flex-1">
-                              <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
-                              <div className="flex items-end gap-1">
-                                <span className="text-sm font-bold text-[#2A8703]">14-16%</span>
-                                <span className="text-sm font-bold text-[#2E2F32]">Potential increase in reach</span>
-                              </div>
-                            </div>
+                          <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
+                          <div className="flex items-end gap-1">
+                            <span className="text-sm font-bold text-[#2A8703]">14-16%</span>
+                            <span className="text-sm font-bold text-[#2E2F32]">Potential increase in reach</span>
+                          </div>
+                        </div>
+
+                        <div className="mb-4">
+                          <p className="text-sm text-[#515357] mb-2">Affected ad groups</p>
+                          <div className="flex flex-wrap gap-2">
+                            <span className="px-2 py-1 text-xs text-[#515357] bg-[#E3E4E5] rounded">Ad group name....</span>
+                            <span className="px-2 py-1 text-xs text-[#515357] bg-[#E3E4E5] rounded">Ad group name....</span>
+                            <span className="px-2 py-1 text-xs text-[#515357] bg-[#E3E4E5] rounded">Ad group name....</span>
                           </div>
                         </div>
 
@@ -963,16 +994,63 @@ export default function Index() {
                           <button className="text-sm text-[#2E2F32] underline hover:no-underline">
                             Dismiss
                           </button>
-                          <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                          <button onClick={showDetails} className="text-sm text-[#2E2F32] underline hover:no-underline">
                             View details
                           </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
+
+                <div className="h-px bg-[#E3E4E5] mb-6"></div>
+
+                {/* Ad Group Recommendations */}
+                <div>
+                  <div className="flex items-center gap-1 mb-4">
+                    <span className="text-base font-bold text-[#2E2F32]">Ad group recommendations</span>
+                    <span className="text-base text-[#2E2F32]">(3)</span>
+                  </div>
+
+                  <div className="space-y-4">
+                    {[1, 2, 3].map((item) => (
+                      <div key={item} className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
+                        <div className="flex items-start gap-3">
+                          <input type="checkbox" className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black" />
+                          <div className="flex-1">
+                            <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
+                              Ad group 0{item} name goes here
+                            </a>
+
+                            <div className="mb-4">
+                              <div className="flex items-start gap-3">
+                                <input type="radio" name={`rec-${item}`} className="mt-0.5 w-5 h-5" />
+                                <div className="flex-1">
+                                  <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
+                                  <div className="flex items-end gap-1">
+                                    <span className="text-sm font-bold text-[#2A8703]">14-16%</span>
+                                    <span className="text-sm font-bold text-[#2E2F32]">Potential increase in reach</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center justify-end gap-4">
+                              <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                                Dismiss
+                              </button>
+                              <button onClick={showDetails} className="text-sm text-[#2E2F32] underline hover:no-underline">
+                                View details
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="h-px bg-[#E3E4E5]"></div>
@@ -986,7 +1064,7 @@ export default function Index() {
               Close
             </button>
             <button className="h-8 px-4 bg-[#0053E2] text-white text-sm font-bold rounded-full hover:bg-[#0046c7] transition-colors">
-              Apply selected
+              {showDetailView ? 'Apply recommendation' : 'Apply selected'}
             </button>
           </div>
         </div>
