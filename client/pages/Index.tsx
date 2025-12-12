@@ -165,6 +165,7 @@ export default function Index() {
   const [showDetailView, setShowDetailView] = useState(false);
   const [keywordsExpanded, setKeywordsExpanded] = useState(false);
   const [showApplyAlert, setShowApplyAlert] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
   const recPopoverRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -214,22 +215,30 @@ export default function Index() {
       setSelectedCampaign(null);
       setShowDetailView(false);
       setShowApplyAlert(false);
+      setShowConfirmation(false);
     }, 300);
   };
 
   const showDetails = () => {
     setShowDetailView(true);
     setShowApplyAlert(false);
+    setShowConfirmation(false);
   };
 
   const backToList = () => {
     setShowDetailView(false);
     setShowApplyAlert(false);
+    setShowConfirmation(false);
   };
 
   const handleApplyClick = () => {
     if (showDetailView) {
-      setShowApplyAlert(true);
+      if (!showApplyAlert) {
+        setShowApplyAlert(true);
+      } else {
+        setShowApplyAlert(false);
+        setShowConfirmation(true);
+      }
     }
   };
 
@@ -1086,12 +1095,22 @@ export default function Index() {
               >
                 Close
               </button>
-              <button
-                onClick={handleApplyClick}
-                className="h-8 px-4 bg-[#0053E2] text-white text-sm font-bold rounded-full hover:bg-[#0046c7] transition-colors"
-              >
-                {showDetailView ? 'Apply recommendation' : 'Apply selected'}
-              </button>
+              {showConfirmation && showDetailView ? (
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="10" fill="#2A8703"/>
+                    <path d="M6 10L8.5 12.5L14 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span className="text-sm font-bold text-[#2A8703]">Recommendation applied</span>
+                </div>
+              ) : (
+                <button
+                  onClick={handleApplyClick}
+                  className="h-8 px-4 bg-[#0053E2] text-white text-sm font-bold rounded-full hover:bg-[#0046c7] transition-colors"
+                >
+                  {showDetailView ? 'Apply recommendation' : 'Apply selected'}
+                </button>
+              )}
             </div>
           </div>
         </div>
