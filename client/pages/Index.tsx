@@ -880,7 +880,7 @@ export default function Index() {
 
               <div className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
                 <div className="flex items-start gap-3">
-                  <input type="checkbox" className="mt-0.5 w-5 h-5 rounded border-[#909196]" />
+                  <input type="checkbox" className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black" />
                   <div className="flex-1">
                     <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
                       Campaign name goes here
