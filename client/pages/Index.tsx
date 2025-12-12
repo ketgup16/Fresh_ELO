@@ -457,7 +457,10 @@ export default function Index() {
                               >
                                 Dismiss
                               </button>
-                              <button className="px-4 h-8 text-sm font-bold text-[#2E2F32] bg-white border border-[#2E2F32] rounded-full hover:bg-gray-50">
+                              <button
+                                onClick={() => openPanel(null)}
+                                className="px-4 h-8 text-sm font-bold text-[#2E2F32] bg-white border border-[#2E2F32] rounded-full hover:bg-gray-50"
+                              >
                                 View recommendations
                               </button>
                             </div>
