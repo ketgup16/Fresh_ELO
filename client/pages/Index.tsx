@@ -989,7 +989,7 @@ export default function Index() {
                       <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
                       <div className="flex-1">
                         <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
-                          Campaign name goes here
+                          Coca Cola Summer Campaign
                         </a>
 
                         <div className="mb-4">
