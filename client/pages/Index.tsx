@@ -160,6 +160,7 @@ export default function Index() {
   const [showRecommendationPopover, setShowRecommendationPopover] = useState<string | null>(null);
   const [showPanel, setShowPanel] = useState(false);
   const [panelClosing, setPanelClosing] = useState(false);
+  const [panelOpening, setPanelOpening] = useState(false);
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
   const recPopoverRef = useRef<HTMLDivElement>(null);
@@ -184,10 +185,21 @@ export default function Index() {
     };
   }, [showPopover, showRecommendationPopover]);
 
+  useEffect(() => {
+    if (showPanel && !panelClosing) {
+      setPanelOpening(true);
+      const timer = setTimeout(() => {
+        setPanelOpening(false);
+      }, 10);
+      return () => clearTimeout(timer);
+    }
+  }, [showPanel, panelClosing]);
+
   const openPanel = (campaign: Campaign | null) => {
     setSelectedCampaign(campaign);
     setShowPanel(true);
     setPanelClosing(false);
+    setPanelOpening(true);
     setShowRecommendationPopover(null);
   };
 
@@ -810,7 +822,7 @@ export default function Index() {
         <div
           ref={panelRef}
           className={`fixed top-0 right-0 h-full w-[420px] bg-white shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 flex flex-col transition-transform duration-300 ${
-            panelClosing ? "translate-x-full" : "translate-x-0"
+            panelClosing || panelOpening ? "translate-x-full" : "translate-x-0"
           }`}
         >
           {/* Header */}
