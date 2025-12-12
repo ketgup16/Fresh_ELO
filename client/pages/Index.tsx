@@ -600,7 +600,10 @@ export default function Index() {
                                       >
                                         Dismiss
                                       </button>
-                                      <button className="px-4 h-8 text-sm font-bold text-[#2E2F32] bg-white border border-[#2E2F32] rounded-full hover:bg-gray-50">
+                                      <button
+                                        className="px-4 h-8 text-sm font-bold text-[#2E2F32] bg-white border border-[#2E2F32] rounded-full hover:bg-gray-50"
+                                        onClick={() => openPanel(campaign)}
+                                      >
                                         View recommendations
                                       </button>
                                     </div>
@@ -711,9 +714,12 @@ export default function Index() {
                                         >
                                           Dismiss
                                         </button>
-                                        <button className="px-4 h-8 text-sm font-bold text-[#2E2F32] bg-white border border-[#2E2F32] rounded-full hover:bg-gray-50">
-                                          View recommendations
-                                        </button>
+                                        <button
+                                        className="px-4 h-8 text-sm font-bold text-[#2E2F32] bg-white border border-[#2E2F32] rounded-full hover:bg-gray-50"
+                                        onClick={() => openPanel(campaign)}
+                                      >
+                                        View recommendations
+                                      </button>
                                       </div>
                                     </div>
                                   </div>
@@ -785,6 +791,178 @@ export default function Index() {
           </div>
         </main>
       </div>
+
+      {/* Scrim Overlay */}
+      {showPanel && (
+        <div
+          className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 ${
+            panelClosing ? "opacity-0" : "opacity-100"
+          }`}
+          onClick={closePanel}
+        />
+      )}
+
+      {/* Recommendations Panel */}
+      {showPanel && selectedCampaign && (
+        <div
+          ref={panelRef}
+          className={`fixed top-0 right-0 h-full w-[420px] bg-white shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 flex flex-col transition-transform duration-300 ${
+            panelClosing ? "translate-x-full" : "translate-x-0"
+          }`}
+        >
+          {/* Header */}
+          <div className="flex items-start justify-between p-6 pb-4">
+            <h2 className="text-xl font-bold text-[#2E2F32]">Recommendations</h2>
+            <button
+              onClick={closePanel}
+              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+            >
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289Z"
+                  fill="#2E2F32"
+                />
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z"
+                  fill="#2E2F32"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div className="h-px bg-[#E3E4E5]"></div>
+
+          {/* Content */}
+          <div className="flex-1 overflow-y-auto p-6">
+            {/* Campaign Info */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-bold text-[#2E2F32]">Campaign</span>
+                <div className="flex items-center gap-1 px-2 py-1 bg-[#E9F1FE] rounded">
+                  <Eye className="w-4 h-4 text-[#002E99]" />
+                  <span className="text-xs text-[#002E99]">Awareness</span>
+                </div>
+              </div>
+              <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1">
+                {selectedCampaign.name}
+              </a>
+            </div>
+
+            <div className="h-px bg-[#E3E4E5] mb-6"></div>
+
+            {/* Campaign Level Recommendations */}
+            <div className="mb-6">
+              <div className="flex items-center gap-1 mb-4">
+                <span className="text-base font-bold text-[#2E2F32]">Campaign level recommendations</span>
+                <span className="text-base text-[#2E2F32]">(1)</span>
+              </div>
+
+              <div className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
+                <div className="flex items-start gap-3">
+                  <input type="checkbox" className="mt-0.5 w-5 h-5 rounded border-[#909196]" />
+                  <div className="flex-1">
+                    <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
+                      Campaign name goes here
+                    </a>
+
+                    <div className="mb-4">
+                      <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
+                      <div className="flex items-end gap-1">
+                        <span className="text-sm font-bold text-[#2A8703]">14-16%</span>
+                        <span className="text-sm font-bold text-[#2E2F32]">Potential increase in reach</span>
+                      </div>
+                    </div>
+
+                    <div className="mb-4">
+                      <p className="text-sm text-[#515357] mb-2">Affected ad groups</p>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-2 py-1 text-xs text-[#515357] bg-[#E3E4E5] rounded">Ad group name....</span>
+                        <span className="px-2 py-1 text-xs text-[#515357] bg-[#E3E4E5] rounded">Ad group name....</span>
+                        <span className="px-2 py-1 text-xs text-[#515357] bg-[#E3E4E5] rounded">Ad group name....</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-end gap-4">
+                      <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                        Dismiss
+                      </button>
+                      <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                        View details
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="h-px bg-[#E3E4E5] mb-6"></div>
+
+            {/* Ad Group Recommendations */}
+            <div>
+              <div className="flex items-center gap-1 mb-4">
+                <span className="text-base font-bold text-[#2E2F32]">Ad group recommendations</span>
+                <span className="text-base text-[#2E2F32]">(3)</span>
+              </div>
+
+              <div className="space-y-4">
+                {[1, 2, 3].map((item) => (
+                  <div key={item} className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
+                    <div className="flex items-start gap-3">
+                      <input type="checkbox" className="mt-0.5 w-5 h-5 rounded border-[#909196]" />
+                      <div className="flex-1">
+                        <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
+                          Ad group 0{item} name goes here
+                        </a>
+
+                        <div className="mb-4">
+                          <div className="flex items-start gap-3">
+                            <input type="radio" name={`rec-${item}`} className="mt-0.5 w-5 h-5" />
+                            <div className="flex-1">
+                              <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
+                              <div className="flex items-end gap-1">
+                                <span className="text-sm font-bold text-[#2A8703]">14-16%</span>
+                                <span className="text-sm font-bold text-[#2E2F32]">Potential increase in reach</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-end gap-4">
+                          <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                            Dismiss
+                          </button>
+                          <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                            View details
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="h-px bg-[#E3E4E5]"></div>
+
+          {/* Footer Actions */}
+          <div className="p-6 flex items-center justify-end gap-4">
+            <button
+              onClick={closePanel}
+              className="text-sm text-[#2E2F32] underline hover:no-underline"
+            >
+              Close
+            </button>
+            <button className="h-8 px-4 bg-[#BABBBE] text-white text-sm font-bold rounded-full cursor-not-allowed">
+              Apply selected
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
