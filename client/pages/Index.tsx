@@ -162,6 +162,8 @@ export default function Index() {
   const [panelClosing, setPanelClosing] = useState(false);
   const [panelOpening, setPanelOpening] = useState(false);
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+  const [showDetailView, setShowDetailView] = useState(false);
+  const [keywordsExpanded, setKeywordsExpanded] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
   const recPopoverRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -209,7 +211,16 @@ export default function Index() {
       setShowPanel(false);
       setPanelClosing(false);
       setSelectedCampaign(null);
+      setShowDetailView(false);
     }, 300);
+  };
+
+  const showDetails = () => {
+    setShowDetailView(true);
+  };
+
+  const backToList = () => {
+    setShowDetailView(false);
   };
 
   const toggleExpand = (id: string) => {
