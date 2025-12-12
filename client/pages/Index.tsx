@@ -974,7 +974,7 @@ export default function Index() {
             >
               Close
             </button>
-            <button className="h-8 px-4 bg-[#BABBBE] text-white text-sm font-bold rounded-full cursor-not-allowed">
+            <button className="h-8 px-4 bg-[#0053E2] text-white text-sm font-bold rounded-full hover:bg-[#0046c7] transition-colors">
               Apply selected
             </button>
           </div>
