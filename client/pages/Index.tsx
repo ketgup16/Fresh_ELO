@@ -184,7 +184,7 @@ export default function Index() {
     };
   }, [showPopover, showRecommendationPopover]);
 
-  const openPanel = (campaign: Campaign) => {
+  const openPanel = (campaign: Campaign | null) => {
     setSelectedCampaign(campaign);
     setShowPanel(true);
     setPanelClosing(false);
@@ -321,7 +321,10 @@ export default function Index() {
           <div className="px-6 pt-8 pb-4">
             <div className="flex items-center justify-between mb-4">
               <h1 className="text-2xl font-bold text-[#2E2F32]">Display campaigns</h1>
-              <button className="h-8 px-4 bg-[#0053E2] text-white text-sm font-bold rounded-full hover:bg-[#0046c7] transition-colors">
+              <button
+                onClick={() => openPanel(null)}
+                className="h-8 px-4 bg-[#0053E2] text-white text-sm font-bold rounded-full hover:bg-[#0046c7] transition-colors"
+              >
                 Create campaign
               </button>
             </div>
@@ -803,7 +806,7 @@ export default function Index() {
       )}
 
       {/* Recommendations Panel */}
-      {showPanel && selectedCampaign && (
+      {showPanel && (
         <div
           ref={panelRef}
           className={`fixed top-0 right-0 h-full w-[420px] bg-white shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 flex flex-col transition-transform duration-300 ${
@@ -839,18 +842,20 @@ export default function Index() {
           {/* Content */}
           <div className="flex-1 overflow-y-auto p-6">
             {/* Campaign Info */}
-            <div className="mb-6">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-bold text-[#2E2F32]">Campaign</span>
-                <div className="flex items-center gap-1 px-2 py-1 bg-[#E9F1FE] rounded">
-                  <Eye className="w-4 h-4 text-[#002E99]" />
-                  <span className="text-xs text-[#002E99]">Awareness</span>
+            {selectedCampaign && (
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-bold text-[#2E2F32]">Campaign</span>
+                  <div className="flex items-center gap-1 px-2 py-1 bg-[#E9F1FE] rounded">
+                    <Eye className="w-4 h-4 text-[#002E99]" />
+                    <span className="text-xs text-[#002E99]">Awareness</span>
+                  </div>
                 </div>
+                <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1">
+                  {selectedCampaign.name}
+                </a>
               </div>
-              <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1">
-                {selectedCampaign.name}
-              </a>
-            </div>
+            )}
 
             <div className="h-px bg-[#E3E4E5] mb-6"></div>
 
