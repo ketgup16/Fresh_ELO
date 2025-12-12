@@ -1070,7 +1070,9 @@ export default function Index() {
             {showApplyAlert && showDetailView && (
               <div className="flex items-start gap-2 p-2 px-3 border border-[#FFC220] bg-[#FFF9E6] rounded">
                 <svg className="w-4 h-4 flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M8 1.5L1.5 13H14.5L8 1.5ZM7.25 6.5V9.5H8.75V6.5H7.25ZM7.25 10.5V12H8.75V10.5H7.25Z" fill="#662B0D"/>
+                  <path d="M8.86602 2.5C8.48112 1.83333 7.51887 1.83333 7.13397 2.5L1.33974 12.5C0.954843 13.1667 1.43597 14 2.20577 14H13.7942C14.564 14 15.0451 13.1667 14.6603 12.5L8.86602 2.5Z" fill="#662B0D"/>
+                  <path d="M8 5.5V9.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                  <circle cx="8" cy="11.5" r="0.75" fill="white"/>
                 </svg>
                 <p className="text-sm text-[#662B0D] flex-1">
                   Applying this recommendation will reconfigure your ad group and disable any other recommendations that affect the same ad group.
