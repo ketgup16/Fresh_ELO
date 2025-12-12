@@ -164,6 +164,7 @@ export default function Index() {
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
   const [showDetailView, setShowDetailView] = useState(false);
   const [keywordsExpanded, setKeywordsExpanded] = useState(false);
+  const [showApplyAlert, setShowApplyAlert] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
   const recPopoverRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -212,15 +213,24 @@ export default function Index() {
       setPanelClosing(false);
       setSelectedCampaign(null);
       setShowDetailView(false);
+      setShowApplyAlert(false);
     }, 300);
   };
 
   const showDetails = () => {
     setShowDetailView(true);
+    setShowApplyAlert(false);
   };
 
   const backToList = () => {
     setShowDetailView(false);
+    setShowApplyAlert(false);
+  };
+
+  const handleApplyClick = () => {
+    if (showDetailView) {
+      setShowApplyAlert(true);
+    }
   };
 
   const toggleExpand = (id: string) => {
@@ -1056,16 +1066,31 @@ export default function Index() {
           <div className="h-px bg-[#E3E4E5]"></div>
 
           {/* Footer Actions */}
-          <div className="p-6 flex items-center justify-end gap-4">
-            <button
-              onClick={closePanel}
-              className="text-sm text-[#2E2F32] underline hover:no-underline"
-            >
-              Close
-            </button>
-            <button className="h-8 px-4 bg-[#0053E2] text-white text-sm font-bold rounded-full hover:bg-[#0046c7] transition-colors">
-              {showDetailView ? 'Apply recommendation' : 'Apply selected'}
-            </button>
+          <div className="p-6 flex flex-col gap-4">
+            {showApplyAlert && showDetailView && (
+              <div className="flex items-start gap-2 p-2 px-3 border border-[#FFC220] bg-[#FFF9E6] rounded">
+                <svg className="w-4 h-4 flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M8 1.5L1.5 13H14.5L8 1.5ZM7.25 6.5V9.5H8.75V6.5H7.25ZM7.25 10.5V12H8.75V10.5H7.25Z" fill="#662B0D"/>
+                </svg>
+                <p className="text-sm text-[#662B0D] flex-1">
+                  Applying this recommendation will reconfigure your ad group and disable any other recommendations that affect the same ad group.
+                </p>
+              </div>
+            )}
+            <div className="flex items-center justify-end gap-4">
+              <button
+                onClick={closePanel}
+                className="text-sm text-[#2E2F32] underline hover:no-underline"
+              >
+                Close
+              </button>
+              <button
+                onClick={handleApplyClick}
+                className="h-8 px-4 bg-[#0053E2] text-white text-sm font-bold rounded-full hover:bg-[#0046c7] transition-colors"
+              >
+                {showDetailView ? 'Apply recommendation' : 'Apply selected'}
+              </button>
+            </div>
           </div>
         </div>
       )}
