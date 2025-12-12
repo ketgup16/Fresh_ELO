@@ -333,10 +333,7 @@ export default function Index() {
           <div className="px-6 pt-8 pb-4">
             <div className="flex items-center justify-between mb-4">
               <h1 className="text-2xl font-bold text-[#2E2F32]">Display campaigns</h1>
-              <button
-                onClick={() => openPanel(null)}
-                className="h-8 px-4 bg-[#0053E2] text-white text-sm font-bold rounded-full hover:bg-[#0046c7] transition-colors"
-              >
+              <button className="h-8 px-4 bg-[#0053E2] text-white text-sm font-bold rounded-full hover:bg-[#0046c7] transition-colors">
                 Create campaign
               </button>
             </div>
