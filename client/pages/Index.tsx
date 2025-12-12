@@ -158,8 +158,12 @@ export default function Index() {
   const [selectedTab, setSelectedTab] = useState<"onsite" | "archive">("onsite");
   const [showPopover, setShowPopover] = useState(false);
   const [showRecommendationPopover, setShowRecommendationPopover] = useState<string | null>(null);
+  const [showPanel, setShowPanel] = useState(false);
+  const [panelClosing, setPanelClosing] = useState(false);
+  const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
   const recPopoverRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -179,6 +183,22 @@ export default function Index() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showPopover, showRecommendationPopover]);
+
+  const openPanel = (campaign: Campaign) => {
+    setSelectedCampaign(campaign);
+    setShowPanel(true);
+    setPanelClosing(false);
+    setShowRecommendationPopover(null);
+  };
+
+  const closePanel = () => {
+    setPanelClosing(true);
+    setTimeout(() => {
+      setShowPanel(false);
+      setPanelClosing(false);
+      setSelectedCampaign(null);
+    }, 300);
+  };
 
   const toggleExpand = (id: string) => {
     setCampaigns(campaigns.map(c => 
