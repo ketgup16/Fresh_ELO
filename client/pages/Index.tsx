@@ -1028,7 +1028,7 @@ export default function Index() {
                 <div>
                   <div className="flex items-center gap-1 mb-4">
                     <span className="text-base font-bold text-[#2E2F32]">Ad group recommendations</span>
-                    <span className="text-base text-[#2E2F32]">(3)</span>
+                    <span className="text-base text-[#2E2F32]">(2)</span>
                   </div>
 
                   <div className="space-y-4">
