@@ -631,7 +631,7 @@ export default function Index() {
                                       <div className="mb-3">
                                         <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
                                         <div className="flex items-end gap-1">
-                                          <span className="text-base font-bold text-[#2A8703]">14-16%</span>
+                                          <span className="text-base font-bold text-[#2A8703]">10-24%</span>
                                           <span className="text-base font-bold text-[#2E2F32]">Potential increase in reach</span>
                                         </div>
                                       </div>
