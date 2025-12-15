@@ -449,49 +449,6 @@ export default function Index() {
                           <svg className="absolute -top-2 left-6" width="16" height="8" viewBox="0 0 16 8" fill="none">
                             <path fillRule="evenodd" clipRule="evenodd" d="M8 0L16 8H0L8 0Z" fill="white"/>
                           </svg>
-
-                          <div className="p-4">
-                            {/* Header */}
-                            <div className="flex items-start justify-between mb-3">
-                              <h3 className="text-lg font-bold text-[#2E2F32]">
-                                Campaign recommendations
-                              </h3>
-                              <div className="flex items-center gap-1 px-2 py-1 bg-[#E9F1FE] rounded">
-                                <Eye className="w-4 h-4 text-[#002E99]" />
-                                <span className="text-xs text-[#002E99]">Awareness</span>
-                              </div>
-                            </div>
-
-                            {/* Divider */}
-                            <div className="h-px bg-[#E3E4E5] mb-4"></div>
-
-                            {/* Content */}
-                            <div className="mb-4">
-                              <div className="mb-3">
-                                <p className="text-sm text-[#2E2F32] mb-2">Optimize bidding strategy</p>
-                                <div className="flex items-end gap-1">
-                                  <span className="text-base font-bold text-[#2A8703]">25-30%</span>
-                                  <span className="text-base font-bold text-[#2E2F32]">Potential cost savings</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Actions */}
-                            <div className="flex items-center justify-end gap-4">
-                              <button
-                                className="text-sm text-[#2E2F32] underline hover:no-underline"
-                                onClick={() => setShowPopover(false)}
-                              >
-                                Dismiss
-                              </button>
-                              <button
-                                onClick={() => openPanel(null)}
-                                className="px-4 h-8 text-sm font-bold text-[#2E2F32] bg-white border border-[#2E2F32] rounded-full hover:bg-gray-50"
-                              >
-                                View recommendations
-                              </button>
-                            </div>
-                          </div>
                         </div>
                       )}
                     </th>
