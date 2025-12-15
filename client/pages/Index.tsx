@@ -764,10 +764,22 @@ export default function Index() {
                                       {/* Content */}
                                       <div className="mb-4">
                                         <div className="mb-3">
-                                          <p className="text-sm text-[#2E2F32] mb-2">Add 8 new ad creatives</p>
+                                          <p className="text-sm text-[#2E2F32] mb-2">
+                                            {childIdx === 0 && "Add 8 new ad creatives"}
+                                            {childIdx === 1 && "Update video thumbnails"}
+                                            {childIdx > 1 && "Refresh ad copy"}
+                                          </p>
                                           <div className="flex items-end gap-1">
-                                            <span className="text-base font-bold text-[#2A8703]">12-18%</span>
-                                            <span className="text-base font-bold text-[#2E2F32]">Potential increase in engagement</span>
+                                            <span className="text-base font-bold text-[#2A8703]">
+                                              {childIdx === 0 && "12-18%"}
+                                              {childIdx === 1 && "8-14%"}
+                                              {childIdx > 1 && "6-10%"}
+                                            </span>
+                                            <span className="text-base font-bold text-[#2E2F32]">
+                                              {childIdx === 0 && "Potential increase in engagement"}
+                                              {childIdx === 1 && "Potential increase in CTR"}
+                                              {childIdx > 1 && "Potential increase in relevance"}
+                                            </span>
                                           </div>
                                         </div>
                                       </div>
