@@ -583,8 +583,12 @@ export default function Index() {
                         onMouseDown={(e) => handleResizeStart(e, 'pacing', columnWidths.pacing)}
                       />
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32] min-w-[100px]">
+                    <th className="p-2 text-left font-bold text-[#2E2F32] relative group" style={{ width: columnWidths.actions }}>
                       <div className="whitespace-nowrap">Actions</div>
+                      <div
+                        className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20"
+                        onMouseDown={(e) => handleResizeStart(e, 'actions', columnWidths.actions)}
+                      />
                     </th>
                   </tr>
                 </thead>
