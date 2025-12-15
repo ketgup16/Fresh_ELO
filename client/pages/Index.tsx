@@ -710,26 +710,26 @@ export default function Index() {
                                       <div className="h-px bg-[#E3E4E5] mb-4"></div>
 
                                       {/* Content */}
-                                      <div className="mb-4">
-                                        <div className="mb-3">
-                                          <p className="text-sm text-[#2E2F32] mb-2">
-                                            {childIdx === 0 && "Add 8 new ad creatives"}
-                                            {childIdx === 1 && "Update video thumbnails"}
-                                            {childIdx > 1 && "Refresh ad copy"}
-                                          </p>
-                                          <div className="flex items-end gap-1">
-                                            <span className="text-base font-bold text-[#2A8703]">
-                                              {childIdx === 0 && "12-18%"}
-                                              {childIdx === 1 && "8-14%"}
-                                              {childIdx > 1 && "6-10%"}
-                                            </span>
-                                            <span className="text-base font-bold text-[#2E2F32]">
-                                              {childIdx === 0 && "Potential increase in engagement"}
-                                              {childIdx === 1 && "Potential increase in CTR"}
-                                              {childIdx > 1 && "Potential increase in relevance"}
-                                            </span>
-                                          </div>
-                                        </div>
+                                      <div className="mb-4 space-y-4">
+                                        {Array.from({ length: child.recommendations }).map((_, recIdx) => {
+                                          const recommendations = [
+                                            { text: "Add 8 new ad creatives", percent: "12-18%", impact: "Potential increase in engagement" },
+                                            { text: "Update video thumbnails", percent: "8-14%", impact: "Potential increase in CTR" },
+                                            { text: "Refresh ad copy", percent: "6-10%", impact: "Potential increase in relevance" },
+                                            { text: "Test new CTA buttons", percent: "10-15%", impact: "Potential increase in clicks" },
+                                            { text: "Add captions to videos", percent: "5-8%", impact: "Potential increase in watch time" },
+                                          ];
+                                          const rec = recommendations[recIdx % recommendations.length];
+                                          return (
+                                            <div key={recIdx} className="pb-4 border-b border-[#E3E4E5] last:border-0 last:pb-0">
+                                              <p className="text-sm text-[#2E2F32] mb-2">{rec.text}</p>
+                                              <div className="flex items-end gap-1">
+                                                <span className="text-base font-bold text-[#2A8703]">{rec.percent}</span>
+                                                <span className="text-base font-bold text-[#2E2F32]">{rec.impact}</span>
+                                              </div>
+                                            </div>
+                                          );
+                                        })}
                                       </div>
 
                                       {/* Actions */}
