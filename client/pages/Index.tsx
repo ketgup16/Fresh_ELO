@@ -594,10 +594,10 @@ export default function Index() {
                           {campaign.recommendations > 0 ? (
                             <>
                               <button
-                                className="text-[#2E2F32] hover:underline cursor-pointer"
+                                className="inline-flex px-2 py-1 bg-[#FDE7F3] text-[#8C1E64] text-xs rounded cursor-pointer hover:bg-[#FCD4EC] transition-colors"
                                 onClick={() => setShowRecommendationPopover(showRecommendationPopover === campaign.id ? null : campaign.id)}
                               >
-                                {campaign.recommendations}
+                                {campaign.recommendations} recommendation{campaign.recommendations !== 1 ? 's' : ''}
                               </button>
 
                               {/* Recommendation Popover */}
@@ -708,10 +708,10 @@ export default function Index() {
                             {child.recommendations > 0 ? (
                               <>
                                 <button
-                                  className="text-[#2E2F32] hover:underline cursor-pointer"
+                                  className="inline-flex px-2 py-1 bg-[#FDE7F3] text-[#8C1E64] text-xs rounded cursor-pointer hover:bg-[#FCD4EC] transition-colors"
                                   onClick={() => setShowRecommendationPopover(showRecommendationPopover === child.id ? null : child.id)}
                                 >
-                                  {child.recommendations}
+                                  {child.recommendations} recommendation{child.recommendations !== 1 ? 's' : ''}
                                 </button>
 
                                 {/* Recommendation Popover */}
