@@ -759,8 +759,8 @@ export default function Index() {
                               </span>
                             </div>
                           </td>
-                          <td className="p-2">{getStatusBadge(child.status)}</td>
-                          <td className="p-2 text-[#2E2F32] relative">
+                          <td className="p-2" style={{ width: columnWidths.status }}>{getStatusBadge(child.status)}</td>
+                          <td className="p-2 text-[#2E2F32] relative" style={{ width: columnWidths.recommendations }}>
                             {child.recommendations > 0 ? (
                               <>
                                 <button
