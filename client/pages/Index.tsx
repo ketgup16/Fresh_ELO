@@ -170,6 +170,57 @@ export default function Index() {
   const recPopoverRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
+  // Column widths state
+  const [columnWidths, setColumnWidths] = useState({
+    checkbox: 48,
+    campaign: 280,
+    status: 120,
+    recommendations: 160,
+    totalBudget: 130,
+    targetingStrategy: 170,
+    impressions: 130,
+    pacing: 100,
+    actions: 100
+  });
+  const [resizingColumn, setResizingColumn] = useState<string | null>(null);
+  const [startX, setStartX] = useState(0);
+  const [startWidth, setStartWidth] = useState(0);
+
+  const handleResizeStart = (e: React.MouseEvent, column: string, currentWidth: number) => {
+    e.preventDefault();
+    setResizingColumn(column);
+    setStartX(e.clientX);
+    setStartWidth(currentWidth);
+  };
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!resizingColumn) return;
+
+      const diff = e.clientX - startX;
+      const newWidth = Math.max(50, startWidth + diff);
+
+      setColumnWidths(prev => ({
+        ...prev,
+        [resizingColumn]: newWidth
+      }));
+    };
+
+    const handleMouseUp = () => {
+      setResizingColumn(null);
+    };
+
+    if (resizingColumn) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [resizingColumn, startX, startWidth]);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
