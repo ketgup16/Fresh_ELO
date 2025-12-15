@@ -479,8 +479,12 @@ export default function Index() {
               <table className="w-full text-sm">
                 <thead className="bg-[#F8F8F8]">
                   <tr>
-                    <th className="p-2 text-left w-12">
+                    <th className="p-2 text-left relative group" style={{ width: columnWidths.checkbox }}>
                       <input type="checkbox" className="w-5 h-5 rounded border-[#909196] accent-black" />
+                      <div
+                        className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20"
+                        onMouseDown={(e) => handleResizeStart(e, 'checkbox', columnWidths.checkbox)}
+                      />
                     </th>
                     <th className="p-2 text-left font-bold text-[#2E2F32] relative min-w-[280px]">
                       <div
