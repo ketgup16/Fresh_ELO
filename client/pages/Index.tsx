@@ -468,10 +468,10 @@ export default function Index() {
                             {/* Content */}
                             <div className="mb-4">
                               <div className="mb-3">
-                                <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
+                                <p className="text-sm text-[#2E2F32] mb-2">Optimize bidding strategy</p>
                                 <div className="flex items-end gap-1">
-                                  <span className="text-base font-bold text-[#2A8703]">14-16%</span>
-                                  <span className="text-base font-bold text-[#2E2F32]">Potential increase in reach</span>
+                                  <span className="text-base font-bold text-[#2A8703]">25-30%</span>
+                                  <span className="text-base font-bold text-[#2E2F32]">Potential cost savings</span>
                                 </div>
                               </div>
                             </div>
@@ -629,10 +629,10 @@ export default function Index() {
                                     {/* Content */}
                                     <div className="mb-4">
                                       <div className="mb-3">
-                                        <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
+                                        <p className="text-sm text-[#2E2F32] mb-2">Increase budget by $5,000</p>
                                         <div className="flex items-end gap-1">
-                                          <span className="text-base font-bold text-[#2A8703]">10-24%</span>
-                                          <span className="text-base font-bold text-[#2E2F32]">Potential increase in reach</span>
+                                          <span className="text-base font-bold text-[#2A8703]">18-22%</span>
+                                          <span className="text-base font-bold text-[#2E2F32]">Potential increase in conversions</span>
                                         </div>
                                       </div>
                                     </div>
@@ -743,10 +743,10 @@ export default function Index() {
                                       {/* Content */}
                                       <div className="mb-4">
                                         <div className="mb-3">
-                                          <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
+                                          <p className="text-sm text-[#2E2F32] mb-2">Add 8 new ad creatives</p>
                                           <div className="flex items-end gap-1">
-                                            <span className="text-base font-bold text-[#2A8703]">14-16%</span>
-                                            <span className="text-base font-bold text-[#2E2F32]">Potential increase in reach</span>
+                                            <span className="text-base font-bold text-[#2A8703]">12-18%</span>
+                                            <span className="text-base font-bold text-[#2E2F32]">Potential increase in engagement</span>
                                           </div>
                                         </div>
                                       </div>
