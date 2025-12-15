@@ -1032,7 +1032,7 @@ export default function Index() {
                   </div>
 
                   <div className="space-y-4">
-                    {[1, 2, 3].map((item) => (
+                    {[1, 2].map((item) => (
                       <div key={item} className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
                         <div className="flex items-start gap-3">
                           <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
