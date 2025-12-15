@@ -584,35 +584,26 @@ export default function Index() {
                                     <div className="h-px bg-[#E3E4E5] mb-4"></div>
 
                                     {/* Content */}
-                                    <div className="mb-4">
-                                      <div className="mb-3">
-                                        <p className="text-sm text-[#2E2F32] mb-2">
-                                          {idx === 0 && "Add 15 keywords"}
-                                          {idx === 1 && "Increase budget by $5,000"}
-                                          {idx === 2 && "Optimize ad schedule"}
-                                          {idx === 3 && "Add negative keywords"}
-                                          {idx === 4 && "Expand audience targeting"}
-                                          {idx > 4 && "Review campaign performance"}
-                                        </p>
-                                        <div className="flex items-end gap-1">
-                                          <span className="text-base font-bold text-[#2A8703]">
-                                            {idx === 0 && "10-24%"}
-                                            {idx === 1 && "18-22%"}
-                                            {idx === 2 && "12-16%"}
-                                            {idx === 3 && "8-12%"}
-                                            {idx === 4 && "15-20%"}
-                                            {idx > 4 && "5-10%"}
-                                          </span>
-                                          <span className="text-base font-bold text-[#2E2F32]">
-                                            {idx === 0 && "Potential increase in reach"}
-                                            {idx === 1 && "Potential increase in conversions"}
-                                            {idx === 2 && "Potential cost savings"}
-                                            {idx === 3 && "Reduction in wasted spend"}
-                                            {idx === 4 && "Potential increase in impressions"}
-                                            {idx > 4 && "Potential improvement"}
-                                          </span>
-                                        </div>
-                                      </div>
+                                    <div className="mb-4 space-y-4">
+                                      {Array.from({ length: campaign.recommendations }).map((_, recIdx) => {
+                                        const recommendations = [
+                                          { text: "Add 15 keywords", percent: "10-24%", impact: "Potential increase in reach" },
+                                          { text: "Increase budget by $5,000", percent: "18-22%", impact: "Potential increase in conversions" },
+                                          { text: "Optimize ad schedule", percent: "12-16%", impact: "Potential cost savings" },
+                                          { text: "Add negative keywords", percent: "8-12%", impact: "Reduction in wasted spend" },
+                                          { text: "Expand audience targeting", percent: "15-20%", impact: "Potential increase in impressions" },
+                                        ];
+                                        const rec = recommendations[recIdx % recommendations.length];
+                                        return (
+                                          <div key={recIdx} className="pb-4 border-b border-[#E3E4E5] last:border-0 last:pb-0">
+                                            <p className="text-sm text-[#2E2F32] mb-2">{rec.text}</p>
+                                            <div className="flex items-end gap-1">
+                                              <span className="text-base font-bold text-[#2A8703]">{rec.percent}</span>
+                                              <span className="text-base font-bold text-[#2E2F32]">{rec.impact}</span>
+                                            </div>
+                                          </div>
+                                        );
+                                      })}
                                     </div>
 
                                     {/* Actions */}
