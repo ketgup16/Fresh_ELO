@@ -683,7 +683,7 @@ export default function Index() {
                         </td>
                       </tr>
                       {campaign.expanded && campaign.children?.map((child) => (
-                        <tr key={child.id} className="border-b border-[#E3E4E5] bg-white hover:bg-gray-50">
+                        <tr key={child.id} className="border-b border-[#E3E4E5] bg-white hover:bg-[#F0F5FF]">
                           <td className="p-2"></td>
                           <td className="p-2 pl-12">
                             <div className="flex items-center gap-2">
