@@ -842,17 +842,17 @@ export default function Index() {
                               "-"
                             )}
                           </td>
-                          <td className="p-2 text-[#2E2F32]">{child.totalBudget || "-"}</td>
-                          <td className="p-2 text-[#2E2F32]">{child.targetingStrategy || "-"}</td>
-                          <td className="p-2 text-[#2E2F32] border-l border-[#E3E4E5]">{child.impressions || "-"}</td>
-                          <td className="p-2">
+                          <td className="p-2 text-[#2E2F32]" style={{ width: columnWidths.totalBudget }}>{child.totalBudget || "-"}</td>
+                          <td className="p-2 text-[#2E2F32]" style={{ width: columnWidths.targetingStrategy }}>{child.targetingStrategy || "-"}</td>
+                          <td className="p-2 text-[#2E2F32] border-l border-[#E3E4E5]" style={{ width: columnWidths.impressions }}>{child.impressions || "-"}</td>
+                          <td className="p-2" style={{ width: columnWidths.pacing }}>
                             {child.pacing ? (
                               <span className={child.pacing.color}>{child.pacing.value}</span>
                             ) : (
                               "-"
                             )}
                           </td>
-                          <td className="p-2">
+                          <td className="p-2" style={{ width: columnWidths.actions }}>
                             <button className="p-2 hover:bg-gray-100 rounded-full">
                               <MoreHorizontal className="w-4 h-4" />
                             </button>
