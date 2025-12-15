@@ -716,23 +716,23 @@ export default function Index() {
                             "-"
                           )}
                         </td>
-                        <td className="p-2 text-[#2E2F32]">
+                        <td className="p-2 text-[#2E2F32]" style={{ width: columnWidths.totalBudget }}>
                           {campaign.totalBudget || "-"}
                         </td>
-                        <td className="p-2 text-[#2E2F32]">
+                        <td className="p-2 text-[#2E2F32]" style={{ width: columnWidths.targetingStrategy }}>
                           {campaign.targetingStrategy || "-"}
                         </td>
-                        <td className="p-2 text-[#2E2F32] border-l border-[#E3E4E5]">
+                        <td className="p-2 text-[#2E2F32] border-l border-[#E3E4E5]" style={{ width: columnWidths.impressions }}>
                           {campaign.impressions || "-"}
                         </td>
-                        <td className="p-2">
+                        <td className="p-2" style={{ width: columnWidths.pacing }}>
                           {campaign.pacing ? (
                             <span className={campaign.pacing.color}>{campaign.pacing.value}</span>
                           ) : (
                             "-"
                           )}
                         </td>
-                        <td className="p-2">
+                        <td className="p-2" style={{ width: columnWidths.actions }}>
                           <button className="p-2 hover:bg-gray-100 rounded-full">
                             <MoreHorizontal className="w-4 h-4" />
                           </button>
@@ -740,8 +740,8 @@ export default function Index() {
                       </tr>
                       {campaign.expanded && campaign.children?.map((child, childIdx) => (
                         <tr key={child.id} className="border-b border-[#E3E4E5] bg-white hover:bg-[#F0F5FF]">
-                          <td className="p-2"></td>
-                          <td className="p-2 pl-12">
+                          <td className="p-2" style={{ width: columnWidths.checkbox }}></td>
+                          <td className="p-2 pl-12" style={{ width: columnWidths.campaign }}>
                             <div className="flex items-center gap-2">
                               {child.type === "creative" && child.name.includes("video") && (
                                 <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
