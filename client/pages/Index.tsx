@@ -551,7 +551,7 @@ export default function Index() {
                 <tbody>
                   {campaigns.map((campaign, idx) => (
                     <>
-                      <tr key={campaign.id} className="border-b border-[#E3E4E5] hover:bg-gray-50">
+                      <tr key={campaign.id} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
                         <td className="p-2">
                           <input type="checkbox" className="w-5 h-5 rounded border-[#909196] accent-black" />
                         </td>
