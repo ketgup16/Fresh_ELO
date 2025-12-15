@@ -596,10 +596,10 @@ export default function Index() {
                   {campaigns.map((campaign, idx) => (
                     <>
                       <tr key={campaign.id} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
-                        <td className="p-2">
+                        <td className="p-2" style={{ width: columnWidths.checkbox }}>
                           <input type="checkbox" className="w-5 h-5 rounded border-[#909196] accent-black" />
                         </td>
-                        <td className="p-2">
+                        <td className="p-2" style={{ width: columnWidths.campaign }}>
                           <div className="flex items-start gap-1">
                             {campaign.children && campaign.children.length > 0 && (
                               <button
@@ -631,10 +631,10 @@ export default function Index() {
                             </div>
                           </div>
                         </td>
-                        <td className="p-2">
+                        <td className="p-2" style={{ width: columnWidths.status }}>
                           {getStatusBadge(campaign.status)}
                         </td>
-                        <td className="p-2 text-[#2E2F32] relative">
+                        <td className="p-2 text-[#2E2F32] relative" style={{ width: columnWidths.recommendations }}>
                           {campaign.recommendations > 0 ? (
                             <>
                               <button
