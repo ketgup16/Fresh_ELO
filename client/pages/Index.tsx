@@ -486,7 +486,7 @@ export default function Index() {
                         onMouseDown={(e) => handleResizeStart(e, 'checkbox', columnWidths.checkbox)}
                       />
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32] relative min-w-[280px]">
+                    <th className="p-2 text-left font-bold text-[#2E2F32] relative group" style={{ width: columnWidths.campaign }}>
                       <div
                         className="flex items-center gap-1 cursor-pointer whitespace-nowrap"
                         onClick={() => setShowPopover(!showPopover)}
@@ -506,6 +506,10 @@ export default function Index() {
                           </svg>
                         </div>
                       )}
+                      <div
+                        className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20"
+                        onMouseDown={(e) => handleResizeStart(e, 'campaign', columnWidths.campaign)}
+                      />
                     </th>
                     <th className="p-2 text-left font-bold text-[#2E2F32] min-w-[120px]">
                       <div className="flex items-center gap-1 whitespace-nowrap">
