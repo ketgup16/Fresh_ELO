@@ -1028,22 +1028,53 @@ export default function Index() {
                 <div>
                   <div className="flex items-center gap-1 mb-4">
                     <span className="text-base font-bold text-[#2E2F32]">Ad group recommendations</span>
-                    <span className="text-base text-[#2E2F32]">(2)</span>
+                    <span className="text-base text-[#2E2F32]">(3)</span>
                   </div>
 
                   <div className="space-y-4">
-                    {[1, 2].map((item) => (
-                      <div key={item} className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
-                        <div className="flex items-start gap-3">
-                          <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
-                          <div className="flex-1">
-                            <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
-                              Ad group 0{item} name goes here
-                            </a>
+                    {/* Ad group 01 - single recommendation */}
+                    <div className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
+                      <div className="flex items-start gap-3">
+                        <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
+                        <div className="flex-1">
+                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
+                            Ad group 01 name goes here
+                          </a>
 
-                            <div className="mb-4">
-                              <div className="flex items-start gap-3">
-                                <input type="radio" name={`rec-${item}`} className="mt-0.5 w-5 h-5" />
+                          <div className="mb-4">
+                            <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
+                            <div className="flex items-end gap-1">
+                              <span className="text-sm font-bold text-[#2A8703]">14-16%</span>
+                              <span className="text-sm font-bold text-[#2E2F32]">Potential increase in reach</span>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-end gap-4">
+                            <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                              Dismiss
+                            </button>
+                            <button onClick={showDetails} className="text-sm text-[#2E2F32] underline hover:no-underline">
+                              View details
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Ad group 02 - multiple recommendations with radio buttons */}
+                    <div className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
+                      <div className="flex items-start gap-3">
+                        <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
+                        <div className="flex-1">
+                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
+                            Ad group 02 name goes here
+                          </a>
+
+                          <div className="space-y-4">
+                            {/* First recommendation option */}
+                            <div>
+                              <div className="flex items-start gap-3 mb-4">
+                                <input type="radio" name="rec-adgroup-02" className="mt-0.5 w-5 h-5" />
                                 <div className="flex-1">
                                   <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
                                   <div className="flex items-end gap-1">
@@ -1052,20 +1083,41 @@ export default function Index() {
                                   </div>
                                 </div>
                               </div>
+                              <div className="flex items-center justify-end gap-4">
+                                <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                                  Dismiss
+                                </button>
+                                <button onClick={showDetails} className="text-sm text-[#2E2F32] underline hover:no-underline">
+                                  View details
+                                </button>
+                              </div>
                             </div>
 
-                            <div className="flex items-center justify-end gap-4">
-                              <button className="text-sm text-[#2E2F32] underline hover:no-underline">
-                                Dismiss
-                              </button>
-                              <button onClick={showDetails} className="text-sm text-[#2E2F32] underline hover:no-underline">
-                                View details
-                              </button>
+                            {/* Second recommendation option */}
+                            <div>
+                              <div className="flex items-start gap-3 mb-4">
+                                <input type="radio" name="rec-adgroup-02" className="mt-0.5 w-5 h-5" />
+                                <div className="flex-1">
+                                  <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
+                                  <div className="flex items-end gap-1">
+                                    <span className="text-sm font-bold text-[#2A8703]">14-16%</span>
+                                    <span className="text-sm font-bold text-[#2E2F32]">Potential increase in reach</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-end gap-4">
+                                <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                                  Dismiss
+                                </button>
+                                <button onClick={showDetails} className="text-sm text-[#2E2F32] underline hover:no-underline">
+                                  View details
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    ))}
+                    </div>
                   </div>
                 </div>
               </>
