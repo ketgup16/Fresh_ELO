@@ -1382,6 +1382,9 @@ export default function Index() {
   // Filter state
   const [statusFilter, setStatusFilter] = useState<string>('All statuses');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [showAllFiltersPopover, setShowAllFiltersPopover] = useState(false);
+  const [searchScope, setSearchScope] = useState<string>('SKU');
+  const allFiltersPopoverRef = useRef<HTMLDivElement>(null);
 
   // Selected recommendations state
   const [selectedRecommendations, setSelectedRecommendations] = useState<{[key: string]: number}>({});
