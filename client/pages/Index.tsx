@@ -2030,7 +2030,7 @@ export default function Index() {
                     }`}
                     onClick={handleOpenLiveFilter}
                   >
-                    <span className="text-sm text-[#2E2F32]">Live</span>
+                    <span className="text-sm text-[#2E2F32]">Pace</span>
                     <span className="text-sm text-[#2E2F32]">({showLiveFilterPopover ? tempLivePacingFilter.length : livePacingFilter.length})</span>
                     <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
                   </button>
@@ -2046,7 +2046,7 @@ export default function Index() {
 
                       {/* Header */}
                       <div className="flex items-center justify-between p-3 pb-2">
-                        <h3 className="text-lg font-bold text-[#2E2F32]">Live Pacing Options</h3>
+                        <h3 className="text-lg font-bold text-[#2E2F32]">Pace Options</h3>
                         <button
                           onClick={() => setShowLiveFilterPopover(false)}
                           className="p-0.5 hover:bg-gray-100 rounded-full transition-colors"
