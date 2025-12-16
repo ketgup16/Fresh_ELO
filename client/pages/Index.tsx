@@ -665,7 +665,7 @@ export default function Index() {
                   </tr>
                 </thead>
                 <tbody>
-                  {campaigns.map((campaign, idx) => (
+                  {getSortedCampaigns().map((campaign, idx) => (
                     <>
                       <tr key={campaign.id} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
                         <td className="p-2" style={{ width: columnWidths.checkbox }}>
