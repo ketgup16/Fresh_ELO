@@ -1504,7 +1504,7 @@ export default function Index() {
                               "-"
                             )}
                           </td>
-                          <td className="p-2 sticky right-0 bg-white group-hover:bg-[#F0F5FF] z-10" style={{ width: columnWidths.actions }}>
+                          <td className="p-2 sticky right-0 bg-white group-hover:bg-[#F0F5FF] z-10 shadow-[-2px_0_4px_-2px_rgba(0,0,0,0.1)]" style={{ width: columnWidths.actions }}>
                             <button className="p-2 hover:bg-gray-100 rounded-full">
                               <MoreHorizontal className="w-4 h-4" />
                             </button>
