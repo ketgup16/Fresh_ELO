@@ -1877,39 +1877,146 @@ export default function Index() {
           {/* Data Table Container */}
           <div className="mx-6 mb-6 rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col flex-1">
             {/* Table Controls */}
-            <div className="flex items-center justify-end gap-4 p-4 border-b border-[#E3E4E5] bg-white">
-              <div className="relative">
-                <select
-                  className="w-[143px] h-10 px-3 pr-8 text-sm border border-[#909196] rounded appearance-none bg-white"
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
-                >
-                  <option>All statuses</option>
-                  <option>Live</option>
-                  <option>Scheduled</option>
-                  <option>Paused</option>
-                  <option>Completed</option>
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" />
-              </div>
-
-              <div className="relative w-[354px]">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <div className="flex items-center justify-end gap-2 p-4 border-b border-[#E3E4E5] bg-white">
+              {/* Search Bar */}
+              <div className="flex items-center gap-2 flex-1 min-w-[360px] max-w-[600px] px-3 h-10 border border-[#909196] rounded-full bg-white">
+                <Search className="w-4 h-4 text-[#2E2F32]" />
+                <span className="text-sm text-[#515357]">Search by</span>
+                <button className="flex items-center gap-1 text-sm font-bold text-[#2E2F32] hover:bg-gray-100 px-1 rounded">
+                  {searchScope}
+                  <ChevronDown className="w-4 h-4" />
+                </button>
                 <input
                   type="text"
-                  placeholder="Search campaign name/ID"
-                  className="w-full h-10 pl-10 pr-4 text-sm border border-[#909196] rounded"
+                  placeholder=""
+                  className="flex-1 text-sm border-none outline-none bg-transparent"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
 
-              <button className="p-2 hover:bg-gray-100 rounded-full">
-                <Settings className="w-6 h-6" />
-              </button>
-              <button className="p-2 hover:bg-gray-100 rounded-full">
-                <Download className="w-6 h-6" />
-              </button>
+              {/* Filter Buttons */}
+              <div className="flex items-center gap-2 relative">
+                {/* All Filters Button */}
+                <button
+                  className="flex items-center h-8 px-2 border border-[#909196] rounded-full bg-white hover:bg-gray-50 transition-colors"
+                  onClick={() => setShowAllFiltersPopover(!showAllFiltersPopover)}
+                >
+                  <Sliders className="w-4 h-4 text-[#2E2F32]" />
+                </button>
+
+                {/* Live Filter Button */}
+                <button className="flex items-center gap-1 h-8 px-2 pl-1 border border-[#909196] rounded-full bg-white hover:bg-gray-50 transition-colors">
+                  <span className="text-sm text-[#2E2F32]">Live</span>
+                  <span className="text-sm text-[#2E2F32]">(2)</span>
+                  <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+                </button>
+
+                {/* Completed Toggle Button */}
+                <button className="flex items-center h-8 px-2 pl-1 border border-[#909196] rounded-full bg-white hover:bg-gray-50 transition-colors">
+                  <span className="text-sm text-[#2E2F32]">Completed</span>
+                </button>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2">
+                <button className="flex items-center justify-center w-8 h-8 border border-[#909196] rounded-full hover:bg-gray-50 transition-colors">
+                  <Settings className="w-4 h-4 text-[#2E2F32]" />
+                </button>
+                <button className="flex items-center justify-center w-8 h-8 border border-[#909196] rounded-full hover:bg-gray-50 transition-colors">
+                  <Download className="w-4 h-4 text-[#2E2F32]" />
+                </button>
+              </div>
+
+              {/* All Filters Popover */}
+              {showAllFiltersPopover && (
+                <div
+                  ref={allFiltersPopoverRef}
+                  className="absolute right-0 top-full mt-2 w-[191px] bg-white rounded border border-[#D5D6D8] shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50"
+                >
+                  {/* Nubbin (Arrow) */}
+                  <div className="absolute -top-[9px] right-[70px] w-4 h-4 bg-white border-t border-l border-[#D5D6D8] transform rotate-45"></div>
+
+                  {/* Header */}
+                  <div className="flex items-center justify-between p-4 pb-3">
+                    <h3 className="text-lg font-bold text-[#2E2F32]">All Filters</h3>
+                    <button
+                      onClick={() => setShowAllFiltersPopover(false)}
+                      className="p-0.5 hover:bg-gray-100 rounded-full transition-colors"
+                    >
+                      <X className="w-6 h-6 text-[#2E2F32]" />
+                    </button>
+                  </div>
+
+                  {/* Filter Options */}
+                  <div className="px-4 pb-3 space-y-3">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        className="w-6 h-6 rounded border-2 border-[#909196] accent-black"
+                        checked={statusFilter === 'All statuses'}
+                        onChange={() => setStatusFilter('All statuses')}
+                      />
+                      <span className="text-sm text-[#2E2F32]">All Statuses</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        className="w-6 h-6 rounded border-2 border-[#909196] accent-black"
+                        checked={statusFilter === 'Live'}
+                        onChange={() => setStatusFilter('Live')}
+                      />
+                      <span className="text-sm text-[#2E2F32]">Live</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        className="w-6 h-6 rounded border-2 border-[#909196] accent-black"
+                        checked={statusFilter === 'Scheduled'}
+                        onChange={() => setStatusFilter('Scheduled')}
+                      />
+                      <span className="text-sm text-[#2E2F32]">Scheduled</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        className="w-6 h-6 rounded border-2 border-[#909196] accent-black"
+                        checked={statusFilter === 'Paused'}
+                        onChange={() => setStatusFilter('Paused')}
+                      />
+                      <span className="text-sm text-[#2E2F32]">Paused</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        className="w-6 h-6 rounded border-2 border-[#909196] accent-black"
+                        checked={statusFilter === 'Completed'}
+                        onChange={() => setStatusFilter('Completed')}
+                      />
+                      <span className="text-sm text-[#2E2F32]">Complete</span>
+                    </label>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="h-px bg-[#E3E4E5]"></div>
+
+                  {/* Footer Buttons */}
+                  <div className="flex items-center justify-end gap-4 p-2 pr-4">
+                    <button
+                      className="text-sm text-[#2E2F32] underline hover:no-underline"
+                      onClick={() => setStatusFilter('All statuses')}
+                    >
+                      Clear All
+                    </button>
+                    <button
+                      className="px-4 h-8 text-sm font-bold text-white bg-[#0053E2] rounded-full hover:bg-[#0046c7] transition-colors"
+                      onClick={() => setShowAllFiltersPopover(false)}
+                    >
+                      Apply
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Table */}
