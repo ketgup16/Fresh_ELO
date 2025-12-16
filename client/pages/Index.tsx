@@ -585,23 +585,11 @@ export default function Index() {
                     <th className="p-2 text-left font-bold text-[#2E2F32] relative group" style={{ width: columnWidths.campaign }}>
                       <div
                         className="flex items-center gap-1 cursor-pointer whitespace-nowrap"
-                        onClick={() => setShowPopover(!showPopover)}
+                        onClick={() => handleSort('campaign')}
                       >
                         Campaign/Ad group/Creative
-                        <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                          <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3ZM8 13L12 9H4L8 13Z" fill="#2E2F32"/>
-                        </svg>
+                        {renderSortIcon('campaign')}
                       </div>
-
-                      {/* Popover */}
-                      {showPopover && (
-                        <div ref={popoverRef} className="absolute top-full left-0 mt-2 w-[432px] bg-white rounded shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50">
-                          {/* Nubbin (Arrow) */}
-                          <svg className="absolute -top-2 left-6" width="16" height="8" viewBox="0 0 16 8" fill="none">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M8 0L16 8H0L8 0Z" fill="white"/>
-                          </svg>
-                        </div>
-                      )}
                       <div
                         className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20"
                         onMouseDown={(e) => handleResizeStart(e, 'campaign', columnWidths.campaign)}
