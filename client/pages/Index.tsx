@@ -2026,10 +2026,10 @@ export default function Index() {
                 {/* Live Filter Button with Popover */}
                 <div className="relative">
                   <button
-                    className={`flex items-center gap-1 h-8 pl-3 pr-2 border-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
+                    className={`flex items-center gap-1 h-8 pl-3 pr-2 border rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
                       livePacingFilter.length > 0 || showLiveFilterPopover
                         ? 'border-[#0053E2] bg-[#E9F1FE]'
-                        : 'border-[#909196] bg-white hover:bg-gray-50'
+                        : 'border-[rgba(46,47,50,1)] bg-white hover:bg-gray-50'
                     }`}
                     onClick={handleOpenLiveFilter}
                   >
