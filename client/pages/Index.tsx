@@ -1143,7 +1143,7 @@ export default function Index() {
               <table className="w-full text-sm relative">
                 <thead className="bg-[#F8F8F8]">
                   <tr>
-                    <th className="p-2 text-left relative group sticky left-0 bg-[#F8F8F8] z-10" style={{ width: columnWidths.checkbox }}>
+                    <th className="p-2 text-left relative group sticky left-0 bg-[#F8F8F8] z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.1)]" style={{ width: columnWidths.checkbox }}>
                       <input type="checkbox" className="w-5 h-5 rounded border-[#909196] accent-black" />
                       <div
                         className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20"
