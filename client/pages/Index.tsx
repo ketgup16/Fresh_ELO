@@ -1606,6 +1606,13 @@ export default function Index() {
     setCurrentPage(1);
   }, [statusFilter, searchQuery]);
 
+  // Set indeterminate state for select all checkbox
+  useEffect(() => {
+    if (selectAllCheckboxRef.current) {
+      selectAllCheckboxRef.current.indeterminate = isSomeSelected();
+    }
+  }, [selectedRows]);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
