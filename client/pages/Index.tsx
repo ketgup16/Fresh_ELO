@@ -1228,7 +1228,7 @@ export default function Index() {
                         onMouseDown={(e) => handleResizeStart(e, 'targetingStrategy', columnWidths.targetingStrategy)}
                       />
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32] border-l border-[#BABBBE] relative group" style={{ width: columnWidths.impressions }}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] relative group" style={{ width: columnWidths.impressions }}>
                       <div className="flex items-center gap-1 whitespace-nowrap cursor-pointer" onClick={() => handleSort('impressions')}>
                         Impressions
                         {renderSortIcon('impressions')}
