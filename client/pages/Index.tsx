@@ -2015,7 +2015,12 @@ export default function Index() {
                             ? 'bg-[#FFF9E6]'
                             : 'bg-white'
                         }`} style={{ width: columnWidths.checkbox }}>
-                          <input type="checkbox" className="w-5 h-5 rounded border-[#909196] accent-black" />
+                          <input
+                            type="checkbox"
+                            className="w-5 h-5 rounded border-[#909196] accent-black"
+                            checked={selectedRows.has(campaign.id)}
+                            onChange={(e) => handleSelectRow(campaign.id, e.target.checked)}
+                          />
                         </td>
                         <td className="p-2" style={{ width: columnWidths.campaign }}>
                           <div className="flex items-start gap-1">
