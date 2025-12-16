@@ -1906,7 +1906,7 @@ export default function Index() {
               <div className="flex items-center gap-2 relative">
                 {/* All Filters Button */}
                 <button
-                  className={`flex items-center h-8 px-2 border-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
+                  className={`flex items-center justify-center h-8 w-8 px-1.5 border rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
                     showAllFiltersPopover
                       ? 'border-[#0053E2] bg-[#E9F1FE]'
                       : 'border-[#909196] bg-white hover:bg-gray-50'
@@ -1919,16 +1919,13 @@ export default function Index() {
                 {/* Live Filter Button with Popover */}
                 <div className="relative">
                   <button
-                    className={`flex items-center gap-1 h-8 px-2 border-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
+                    className={`flex items-center gap-1 h-8 pl-3 pr-2 border-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
                       liveFilterSelected || showLiveFilterPopover
                         ? 'border-[#0053E2] bg-[#E9F1FE]'
                         : 'border-[#909196] bg-white hover:bg-gray-50'
                     }`}
                     onClick={() => setShowLiveFilterPopover(!showLiveFilterPopover)}
                   >
-                    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                      <rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-                    </svg>
                     <span className="text-sm text-[#2E2F32]">Live</span>
                     <span className="text-sm text-[#2E2F32]">(2)</span>
                     <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
