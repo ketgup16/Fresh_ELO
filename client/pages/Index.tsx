@@ -1380,7 +1380,8 @@ export default function Index() {
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
 
   // Filter state
-  const [statusFilter, setStatusFilter] = useState<string>('All statuses');
+  const [statusFilter, setStatusFilter] = useState<string[]>([]);
+  const [tempStatusFilter, setTempStatusFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showAllFiltersPopover, setShowAllFiltersPopover] = useState(false);
   const [searchScope, setSearchScope] = useState<string>('SKU');
