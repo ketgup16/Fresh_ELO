@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronRight, ChevronDown, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye } from "lucide-react";
+import { ChevronRight, ChevronDown, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X } from "lucide-react";
 
 interface Campaign {
   id: string;
