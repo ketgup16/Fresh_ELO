@@ -1937,7 +1937,7 @@ export default function Index() {
                   </tr>
                 </thead>
                 <tbody>
-                  {getSortedCampaigns().map((campaign, idx) => (
+                  {getPaginatedCampaigns().map((campaign, idx) => (
                     <>
                       <tr key={campaign.id} className={`border-b border-[#E3E4E5] hover:bg-[#F0F5FF] group ${
                         searchQuery.trim() && (campaign.name.toLowerCase().includes(searchQuery.toLowerCase()) || campaign.id.toLowerCase().includes(searchQuery.toLowerCase()))
