@@ -1140,7 +1140,7 @@ export default function Index() {
 
             {/* Table */}
             <div className="overflow-x-auto bg-white flex-1">
-              <table className="w-full text-sm relative">
+              <table className="text-sm relative" style={{ minWidth: '1218px' }}>
                 <thead className="bg-[#F8F8F8]">
                   <tr>
                     <th className="p-2 text-left relative group sticky left-0 bg-[#F8F8F8] z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.1)]" style={{ width: columnWidths.checkbox }}>
