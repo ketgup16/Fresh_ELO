@@ -644,9 +644,9 @@ export default function Index() {
         </div>
       </header>
 
-      <div className="flex">
+      <div className="flex h-[calc(100vh-54px)]">
         {/* Sidebar */}
-        <aside className="w-[52px] border-r border-[#E3E4E5] bg-white flex flex-col items-center py-1.5 gap-0">
+        <aside className="w-[52px] border-r border-[#E3E4E5] bg-white flex flex-col items-center py-1.5 gap-0 h-auto self-stretch">
           <button className="w-10 h-10 flex items-center justify-center rounded hover:bg-gray-100">
             <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
               <path fillRule="evenodd" clipRule="evenodd" d="M8.24935 1.06655L8.32298 1.11831L14.823 6.61831C15.0338 6.79668 15.0601 7.11217 14.8817 7.32297C14.7231 7.51035 14.4563 7.55194 14.2509 7.4336L14.177 7.38169L14 7.231L14 14.5C14 14.7455 13.8231 14.9496 13.5899 14.9919L13.5 15H9.50001C9.25455 15 9.0504 14.8231 9.00807 14.5899L9.00001 14.5V12C9.00001 11.4477 8.55229 11 8.00001 11C7.48717 11 7.0645 11.386 7.00674 11.8834L7.00001 12V14.5C7.00001 14.7455 6.82314 14.9496 6.58989 14.9919L6.50001 15H2.50001C2.25455 15 2.0504 14.8231 2.00807 14.5899L2.00001 14.5L2 7.23L1.82298 7.38169C1.6356 7.54025 1.36551 7.53709 1.18252 7.38638L1.11832 7.32297C0.959765 7.13559 0.96292 6.8655 1.11363 6.68251L1.17704 6.61831L7.67704 1.11831C7.84016 0.980282 8.06964 0.963029 8.24935 1.06655ZM8.00001 2.154L2.98892 6.39477L3.00001 6.5V14H6.00001V12C6.00001 10.9456 6.81589 10.0818 7.85075 10.0055L8.00001 10C9.05437 10 9.91818 10.8159 9.99452 11.8507L10 12V14H13V6.5C13 6.4639 13.0038 6.4287 13.0111 6.39477L8.00001 2.154Z" fill="#2E2F32"/>
@@ -665,7 +665,7 @@ export default function Index() {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1">
+        <main className="flex-1 h-auto self-stretch flex flex-col">
           {/* Page Header */}
           <div className="px-6 pt-8 pb-4">
             <div className="flex items-center justify-between mb-4">
@@ -703,7 +703,7 @@ export default function Index() {
           </div>
 
           {/* Data Table Container */}
-          <div className="mx-6 rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] overflow-hidden">
+          <div className="mx-6 mb-6 rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col flex-1">
             {/* Table Controls */}
             <div className="flex items-center justify-end gap-4 p-4 border-b border-[#E3E4E5] bg-white">
               <div className="relative">
