@@ -596,11 +596,9 @@ export default function Index() {
                       />
                     </th>
                     <th className="p-2 text-left font-bold text-[#2E2F32] relative group" style={{ width: columnWidths.status }}>
-                      <div className="flex items-center gap-1 whitespace-nowrap">
+                      <div className="flex items-center gap-1 whitespace-nowrap cursor-pointer" onClick={() => handleSort('status')}>
                         Status
-                        <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                          <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3ZM8 13L12 9H4L8 13Z" fill="#2E2F32"/>
-                        </svg>
+                        {renderSortIcon('status')}
                       </div>
                       <div
                         className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20"
