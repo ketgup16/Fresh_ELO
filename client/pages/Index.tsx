@@ -1420,57 +1420,83 @@ export default function Index() {
     }
 
     // Then sort if a column is selected
-    if (!sortColumn) return filtered;
+    let sorted = filtered;
+    if (sortColumn) {
+      sorted = [...filtered].sort((a, b) => {
+        let aValue: any;
+        let bValue: any;
 
-    const sorted = [...filtered].sort((a, b) => {
-      let aValue: any;
-      let bValue: any;
+        switch (sortColumn) {
+          case 'campaign':
+            aValue = a.name?.toLowerCase() || '';
+            bValue = b.name?.toLowerCase() || '';
+            break;
+          case 'status':
+            aValue = a.status?.toLowerCase() || '';
+            bValue = b.status?.toLowerCase() || '';
+            break;
+          case 'recommendations':
+            aValue = a.recommendations || 0;
+            bValue = b.recommendations || 0;
+            break;
+          case 'totalBudget':
+            aValue = parseFloat(a.totalBudget?.replace(/[$,]/g, '') || '0');
+            bValue = parseFloat(b.totalBudget?.replace(/[$,]/g, '') || '0');
+            break;
+          case 'targetingStrategy':
+            aValue = a.targetingStrategy?.toLowerCase() || '';
+            bValue = b.targetingStrategy?.toLowerCase() || '';
+            break;
+          case 'impressions':
+            aValue = parseFloat(a.impressions?.replace(/,/g, '') || '0');
+            bValue = parseFloat(b.impressions?.replace(/,/g, '') || '0');
+            break;
+          case 'pacing':
+            aValue = parseFloat(a.pacing?.value?.replace(/%/g, '') || '0');
+            bValue = parseFloat(b.pacing?.value?.replace(/%/g, '') || '0');
+            break;
+          default:
+            return 0;
+        }
 
-      switch (sortColumn) {
-        case 'campaign':
-          aValue = a.name?.toLowerCase() || '';
-          bValue = b.name?.toLowerCase() || '';
-          break;
-        case 'status':
-          aValue = a.status?.toLowerCase() || '';
-          bValue = b.status?.toLowerCase() || '';
-          break;
-        case 'recommendations':
-          aValue = a.recommendations || 0;
-          bValue = b.recommendations || 0;
-          break;
-        case 'totalBudget':
-          aValue = parseFloat(a.totalBudget?.replace(/[$,]/g, '') || '0');
-          bValue = parseFloat(b.totalBudget?.replace(/[$,]/g, '') || '0');
-          break;
-        case 'targetingStrategy':
-          aValue = a.targetingStrategy?.toLowerCase() || '';
-          bValue = b.targetingStrategy?.toLowerCase() || '';
-          break;
-        case 'impressions':
-          aValue = parseFloat(a.impressions?.replace(/,/g, '') || '0');
-          bValue = parseFloat(b.impressions?.replace(/,/g, '') || '0');
-          break;
-        case 'pacing':
-          aValue = parseFloat(a.pacing?.value?.replace(/%/g, '') || '0');
-          bValue = parseFloat(b.pacing?.value?.replace(/%/g, '') || '0');
-          break;
-        default:
-          return 0;
-      }
-
-      if (typeof aValue === 'string') {
-        return sortDirection === 'asc'
-          ? aValue.localeCompare(bValue)
-          : bValue.localeCompare(aValue);
-      } else {
-        return sortDirection === 'asc'
-          ? aValue - bValue
-          : bValue - aValue;
-      }
-    });
+        if (typeof aValue === 'string') {
+          return sortDirection === 'asc'
+            ? aValue.localeCompare(bValue)
+            : bValue.localeCompare(aValue);
+        } else {
+          return sortDirection === 'asc'
+            ? aValue - bValue
+            : bValue - aValue;
+        }
+      });
+    }
 
     return sorted;
+  };
+
+  const getPaginatedCampaigns = () => {
+    const sorted = getSortedCampaigns();
+    const startIndex = (currentPage - 1) * resultsPerPage;
+    const endIndex = startIndex + resultsPerPage;
+    return sorted.slice(startIndex, endIndex);
+  };
+
+  const getTotalPages = () => {
+    const sorted = getSortedCampaigns();
+    return Math.ceil(sorted.length / resultsPerPage);
+  };
+
+  const handleNextPage = () => {
+    const totalPages = getTotalPages();
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
   const renderSortIcon = (column: string) => {
