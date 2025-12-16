@@ -390,9 +390,26 @@ export default function Index() {
   };
 
   const toggleExpand = (id: string) => {
-    setCampaigns(campaigns.map(c => 
+    setCampaigns(campaigns.map(c =>
       c.id === id ? { ...c, expanded: !c.expanded } : c
     ));
+  };
+
+  const handleDismissRecommendation = (campaignId: string, isChild: boolean = false) => {
+    setCampaigns(campaigns.map(campaign => {
+      if (campaign.id === campaignId && !isChild) {
+        // Decrement campaign recommendation
+        return { ...campaign, recommendations: Math.max(0, campaign.recommendations - 1) };
+      } else if (campaign.children) {
+        // Check if dismiss is for a child
+        const updatedChildren = campaign.children.map(child =>
+          child.id === campaignId ? { ...child, recommendations: Math.max(0, child.recommendations - 1) } : child
+        );
+        return { ...campaign, children: updatedChildren };
+      }
+      return campaign;
+    }));
+    setShowRecommendationPopover(null);
   };
 
   const getStatusBadge = (status: Campaign["status"]) => {
