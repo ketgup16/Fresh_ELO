@@ -2050,9 +2050,8 @@ export default function Index() {
                     <div className="h-px bg-[#E3E4E5]"></div>
 
                     {/* Content */}
-                    <div className="flex-1 overflow-y-auto p-4">
+                    <div className="flex-1 overflow-y-auto self-stretch p-4">
                       <div className="mb-3">
-                        <div className="text-sm font-bold text-[#2E2F32] mb-3">Group label</div>
                         <div className="space-y-3">
                           <label className="flex items-start gap-2 cursor-pointer">
                             <input
