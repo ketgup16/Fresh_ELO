@@ -2018,14 +2018,20 @@ export default function Index() {
                 <>
                   {/* Scrim/Backdrop */}
                   <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-40"
+                    className="fixed inset-0 bg-black bg-opacity-50 z-40 animate-[fadeIn_0.3s_ease-out]"
                     onClick={() => setShowAllFiltersPopover(false)}
+                    style={{
+                      animation: 'fadeIn 0.3s ease-out'
+                    }}
                   ></div>
 
                   {/* Side Panel */}
                   <div
                     ref={allFiltersPopoverRef}
-                    className="fixed right-0 top-0 h-full w-[320px] bg-white shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 flex flex-col"
+                    className="fixed right-0 top-0 h-full w-[320px] bg-white shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 flex flex-col transition-transform duration-300 ease-out"
+                    style={{
+                      animation: 'slideInRight 0.3s ease-out'
+                    }}
                   >
                     {/* Header */}
                     <div className="flex items-start gap-2 p-4">
