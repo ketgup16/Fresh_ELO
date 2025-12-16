@@ -1384,7 +1384,11 @@ export default function Index() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showAllFiltersPopover, setShowAllFiltersPopover] = useState(false);
   const [searchScope, setSearchScope] = useState<string>('SKU');
+  const [showLiveFilterPopover, setShowLiveFilterPopover] = useState(false);
+  const [liveFilterSelected, setLiveFilterSelected] = useState(false);
+  const [completedFilterSelected, setCompletedFilterSelected] = useState(false);
   const allFiltersPopoverRef = useRef<HTMLDivElement>(null);
+  const liveFilterPopoverRef = useRef<HTMLDivElement>(null);
 
   // Selected recommendations state
   const [selectedRecommendations, setSelectedRecommendations] = useState<{[key: string]: number}>({});
