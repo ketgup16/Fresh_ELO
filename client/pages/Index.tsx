@@ -1113,6 +1113,10 @@ export default function Index() {
               <div className="relative">
                 <select className="w-[143px] h-10 px-3 pr-8 text-sm border border-[#909196] rounded appearance-none bg-white">
                   <option>All statuses</option>
+                  <option>Live</option>
+                  <option>Scheduled</option>
+                  <option>Paused</option>
+                  <option>Completed</option>
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" />
               </div>
