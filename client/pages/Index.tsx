@@ -1787,6 +1787,30 @@ export default function Index() {
     setShowAllFiltersPopover(false);
   };
 
+  const handleOpenLiveFilter = () => {
+    setTempLivePacingFilter([...livePacingFilter]);
+    setShowLiveFilterPopover(true);
+  };
+
+  const handleToggleLivePacingFilter = (option: string) => {
+    setTempLivePacingFilter(prev => {
+      if (prev.includes(option)) {
+        return prev.filter(o => o !== option);
+      } else {
+        return [...prev, option];
+      }
+    });
+  };
+
+  const handleClearLivePacingFilter = () => {
+    setTempLivePacingFilter([]);
+  };
+
+  const handleApplyLivePacingFilter = () => {
+    setLivePacingFilter([...tempLivePacingFilter]);
+    setShowLiveFilterPopover(false);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
