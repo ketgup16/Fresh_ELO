@@ -2324,34 +2324,53 @@ export default function Index() {
             {/* Pagination */}
             <div className="flex items-center justify-between px-4 py-4 border-t border-[#E3E4E5] bg-white">
               <div className="flex items-center gap-2 text-sm text-[#2E2F32]">
-                <span>Results per page: 50</span>
-                <ChevronDown className="w-4 h-4" />
+                <span>Results per page: {resultsPerPage}</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-[#2E2F32]">
-                <button className="p-1 hover:bg-gray-100 rounded">
+                <button
+                  className={`p-1 rounded ${currentPage === 1 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-gray-100'}`}
+                  onClick={() => setCurrentPage(1)}
+                  disabled={currentPage === 1}
+                  title="First page"
+                >
                   <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M3.64645 7.64645C3.4662 7.82669 3.45234 8.1103 3.60485 8.30645L3.64645 8.35355L8.14645 12.8536C8.34171 13.0488 8.65829 13.0488 8.85355 12.8536C9.0338 12.6733 9.04766 12.3897 8.89515 12.1936L8.85355 12.1464L4.7075 8L8.85355 3.85355C9.0338 3.67331 9.04766 3.3897 8.89515 3.19355L8.85355 3.14645C8.67331 2.9662 8.3897 2.95234 8.19355 3.10485L8.14645 3.14645L3.64645 7.64645Z" fill="#BABBBE"/>
-                    <path fillRule="evenodd" clipRule="evenodd" d="M7.14645 7.64645C6.9662 7.82669 6.95234 8.1103 7.10485 8.30645L7.14645 8.35355L11.6464 12.8536C11.8417 13.0488 12.1583 13.0488 12.3536 12.8536C12.5338 12.6733 12.5477 12.3897 12.3951 12.1936L12.3536 12.1464L8.2075 8L12.3536 3.85355C12.5338 3.67331 12.5477 3.3897 12.3951 3.19355L12.3536 3.14645C12.1733 2.9662 11.8897 2.95234 11.6936 3.10485L11.6464 3.14645L7.14645 7.64645Z" fill="#BABBBE"/>
+                    <path fillRule="evenodd" clipRule="evenodd" d="M3.64645 7.64645C3.4662 7.82669 3.45234 8.1103 3.60485 8.30645L3.64645 8.35355L8.14645 12.8536C8.34171 13.0488 8.65829 13.0488 8.85355 12.8536C9.0338 12.6733 9.04766 12.3897 8.89515 12.1936L8.85355 12.1464L4.7075 8L8.85355 3.85355C9.0338 3.67331 9.04766 3.3897 8.89515 3.19355L8.85355 3.14645C8.67331 2.9662 8.3897 2.95234 8.19355 3.10485L8.14645 3.14645L3.64645 7.64645Z" fill={currentPage === 1 ? '#BABBBE' : '#2E2F32'}/>
+                    <path fillRule="evenodd" clipRule="evenodd" d="M7.14645 7.64645C6.9662 7.82669 6.95234 8.1103 7.10485 8.30645L7.14645 8.35355L11.6464 12.8536C11.8417 13.0488 12.1583 13.0488 12.3536 12.8536C12.5338 12.6733 12.5477 12.3897 12.3951 12.1936L12.3536 12.1464L8.2075 8L12.3536 3.85355C12.5338 3.67331 12.5477 3.3897 12.3951 3.19355L12.3536 3.14645C12.1733 2.9662 11.8897 2.95234 11.6936 3.10485L11.6464 3.14645L7.14645 7.64645Z" fill={currentPage === 1 ? '#BABBBE' : '#2E2F32'}/>
                   </svg>
                 </button>
-                <button className="p-1 hover:bg-gray-100 rounded">
+                <button
+                  className={`p-1 rounded ${currentPage === 1 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-gray-100'}`}
+                  onClick={handlePreviousPage}
+                  disabled={currentPage === 1}
+                  title="Previous page"
+                >
                   <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M5.39645 7.64645C5.2162 7.82669 5.20234 8.1103 5.35485 8.30645L5.39645 8.35355L9.89645 12.8536C10.0917 13.0488 10.4083 13.0488 10.6036 12.8536C10.7838 12.6733 10.7977 12.3897 10.6451 12.1936L10.6036 12.1464L6.4575 8L10.6036 3.85355C10.7838 3.67331 10.7977 3.3897 10.6451 3.19355L10.6036 3.14645C10.4233 2.9662 10.1397 2.95234 9.94355 3.10485L9.89645 3.14645L5.39645 7.64645Z" fill="#BABBBE"/>
+                    <path fillRule="evenodd" clipRule="evenodd" d="M5.39645 7.64645C5.2162 7.82669 5.20234 8.1103 5.35485 8.30645L5.39645 8.35355L9.89645 12.8536C10.0917 13.0488 10.4083 13.0488 10.6036 12.8536C10.7838 12.6733 10.7977 12.3897 10.6451 12.1936L10.6036 12.1464L6.4575 8L10.6036 3.85355C10.7838 3.67331 10.7977 3.3897 10.6451 3.19355L10.6036 3.14645C10.4233 2.9662 10.1397 2.95234 9.94355 3.10485L9.89645 3.14645L5.39645 7.64645Z" fill={currentPage === 1 ? '#BABBBE' : '#2E2F32'}/>
                   </svg>
                 </button>
                 <span>Page</span>
                 <div className="w-7 h-6 flex items-center justify-center border border-[#74767C] rounded text-center">
-                  1
+                  {currentPage}
                 </div>
-                <span>of 10</span>
-                <button className="p-1 hover:bg-gray-100 rounded">
+                <span>of {getTotalPages()}</span>
+                <button
+                  className={`p-1 rounded ${currentPage >= getTotalPages() ? 'opacity-40 cursor-not-allowed' : 'hover:bg-gray-100'}`}
+                  onClick={handleNextPage}
+                  disabled={currentPage >= getTotalPages()}
+                  title="Next page"
+                >
                   <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M10.6036 7.64645C10.7838 7.82669 10.7977 8.1103 10.6451 8.30645L10.6036 8.35355L6.10355 12.8536C5.90829 13.0488 5.59171 13.0488 5.39645 12.8536C5.2162 12.6733 5.20234 12.3897 5.35485 12.1936L5.39645 12.1464L9.5425 8L5.39645 3.85355C5.2162 3.67331 5.20234 3.3897 5.35485 3.19355L5.39645 3.14645C5.57669 2.9662 5.8603 2.95234 6.05645 3.10485L6.10355 3.14645L10.6036 7.64645Z" fill="#2E2F32"/>
+                    <path fillRule="evenodd" clipRule="evenodd" d="M10.6036 7.64645C10.7838 7.82669 10.7977 8.1103 10.6451 8.30645L10.6036 8.35355L6.10355 12.8536C5.90829 13.0488 5.59171 13.0488 5.39645 12.8536C5.2162 12.6733 5.20234 12.3897 5.35485 12.1936L5.39645 12.1464L9.5425 8L5.39645 3.85355C5.2162 3.67331 5.20234 3.3897 5.35485 3.19355L5.39645 3.14645C5.57669 2.9662 5.8603 2.95234 6.05645 3.10485L6.10355 3.14645L10.6036 7.64645Z" fill={currentPage >= getTotalPages() ? '#BABBBE' : '#2E2F32'}/>
                   </svg>
                 </button>
-                <button className="p-1 hover:bg-gray-100 rounded">
+                <button
+                  className={`p-1 rounded ${currentPage >= getTotalPages() ? 'opacity-40 cursor-not-allowed' : 'hover:bg-gray-100'}`}
+                  onClick={() => setCurrentPage(getTotalPages())}
+                  disabled={currentPage >= getTotalPages()}
+                  title="Last page"
+                >
                   <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M8.85355 7.64645C9.0338 7.82669 9.04766 8.1103 8.89515 8.30645L8.85355 8.35355L4.35355 12.8536C4.15829 13.0488 3.84171 13.0488 3.64645 12.8536C3.4662 12.6733 3.45234 12.3897 3.60485 12.1936L3.64645 12.1464L7.7925 8L3.64645 3.85355C3.4662 3.67331 3.45234 3.3897 3.60485 3.19355L3.64645 3.14645C3.82669 2.9662 4.1103 2.95234 4.30645 3.10485L4.35355 3.14645L8.85355 7.64645Z" fill="#2E2F32"/>
+                    <path fillRule="evenodd" clipRule="evenodd" d="M8.85355 7.64645C9.0338 7.82669 9.04766 8.1103 8.89515 8.30645L8.85355 8.35355L4.35355 12.8536C4.15829 13.0488 3.84171 13.0488 3.64645 12.8536C3.4662 12.6733 3.45234 12.3897 3.60485 12.1936L3.64645 12.1464L7.7925 8L3.64645 3.85355C3.4662 3.67331 3.45234 3.3897 3.60485 3.19355L3.64645 3.14645C3.82669 2.9662 4.1103 2.95234 4.30645 3.10485L4.35355 3.14645L8.85355 7.64645Z" fill={currentPage >= getTotalPages() ? '#BABBBE' : '#2E2F32'}/>
                     <path fillRule="evenodd" clipRule="evenodd" d="M12.3536 7.64645C12.5338 7.82669 12.5477 8.1103 12.3951 8.30645L12.3536 8.35355L7.85355 12.8536C7.65829 13.0488 7.34171 13.0488 7.14645 12.8536C6.9662 12.6733 6.95234 12.3897 7.10485 12.1936L7.14645 12.1464L11.2925 8L7.14645 3.85355C6.9662 3.67331 6.95234 3.3897 7.10485 3.19355L7.14645 3.14645C7.32669 2.9662 7.6103 2.95234 7.80645 3.10485L7.85355 3.14645L12.3536 7.64645Z" fill="#2E2F32"/>
                   </svg>
                 </button>
