@@ -1958,7 +1958,7 @@ export default function Index() {
             {/* Table Controls */}
             <div className="flex items-center justify-end gap-2 p-4 border-b border-[#E3E4E5] bg-white">
               {/* Search Bar */}
-              <div className="flex items-center gap-2 flex-1 min-w-[360px] max-w-[600px] px-3 h-8 border border-[#909196] rounded-full bg-white relative">
+              <div className="flex items-center gap-2 flex-1 min-w-[360px] max-w-[600px] px-3 h-8 border border-[rgba(46,47,50,1)] rounded-full bg-white relative">
                 <Search className="w-4 h-4 text-[#2E2F32]" />
                 <span className="text-sm text-[#515357]">Search by</span>
                 <div className="relative">
@@ -2013,7 +2013,7 @@ export default function Index() {
                   className={`flex items-center justify-center h-8 w-8 px-1.5 border rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
                     showAllFiltersPopover
                       ? 'border-[#0053E2] bg-[#E9F1FE]'
-                      : 'border-[#909196] bg-white hover:bg-gray-50'
+                      : 'border-[rgba(46,47,50,1)] bg-white hover:bg-gray-50'
                   }`}
                   onClick={handleOpenAllFilters}
                 >
@@ -2101,10 +2101,10 @@ export default function Index() {
 
                 {/* Completed Toggle Button */}
                 <button
-                  className={`flex items-center gap-1 h-8 px-3 border-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
+                  className={`flex items-center gap-1 h-8 px-3 border rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
                     completedFilterSelected
                       ? 'border-[#0053E2] bg-[#E9F1FE]'
-                      : 'border-[#909196] bg-white hover:bg-gray-50'
+                      : 'border-[rgba(46,47,50,1)] bg-white hover:bg-gray-50'
                   }`}
                   onClick={() => setCompletedFilterSelected(!completedFilterSelected)}
                 >
@@ -2114,10 +2114,10 @@ export default function Index() {
 
               {/* Action Buttons */}
               <div className="flex items-center gap-2">
-                <button className="flex items-center justify-center w-8 h-8 border border-[#909196] rounded-full hover:bg-gray-50 transition-colors">
+                <button className="flex items-center justify-center w-8 h-8 border border-[rgba(46,47,50,1)] rounded-full hover:bg-gray-50 transition-colors">
                   <Settings className="w-4 h-4 text-[#2E2F32]" />
                 </button>
-                <button className="flex items-center justify-center w-8 h-8 border border-[#909196] rounded-full hover:bg-gray-50 transition-colors">
+                <button className="flex items-center justify-center w-8 h-8 border border-[rgba(46,47,50,1)] rounded-full hover:bg-gray-50 transition-colors">
                   <Download className="w-4 h-4 text-[#2E2F32]" />
                 </button>
               </div>
