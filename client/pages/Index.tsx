@@ -398,12 +398,12 @@ export default function Index() {
   const handleDismissRecommendation = (campaignId: string, isChild: boolean = false) => {
     setCampaigns(campaigns.map(campaign => {
       if (campaign.id === campaignId && !isChild) {
-        // Decrement campaign recommendation
-        return { ...campaign, recommendations: Math.max(0, campaign.recommendations - 1) };
+        // Remove campaign recommendation tag completely
+        return { ...campaign, recommendations: 0 };
       } else if (campaign.children) {
         // Check if dismiss is for a child
         const updatedChildren = campaign.children.map(child =>
-          child.id === campaignId ? { ...child, recommendations: Math.max(0, child.recommendations - 1) } : child
+          child.id === campaignId ? { ...child, recommendations: 0 } : child
         );
         return { ...campaign, children: updatedChildren };
       }
