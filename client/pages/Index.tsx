@@ -726,6 +726,7 @@ export default function Index() {
 
   // Filter state
   const [statusFilter, setStatusFilter] = useState<string>('All statuses');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   const handleResizeStart = (e: React.MouseEvent, column: string, currentWidth: number) => {
     e.preventDefault();
@@ -751,6 +752,14 @@ export default function Index() {
     let filtered = campaigns;
     if (statusFilter !== 'All statuses') {
       filtered = campaigns.filter(campaign => campaign.status === statusFilter);
+    }
+
+    // Then filter by search query
+    if (searchQuery.trim()) {
+      filtered = filtered.filter(campaign =>
+        campaign.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        campaign.id.toLowerCase().includes(searchQuery.toLowerCase())
+      );
     }
 
     // Then sort if a column is selected
@@ -1141,6 +1150,8 @@ export default function Index() {
                   type="text"
                   placeholder="Search campaign name/ID"
                   className="w-full h-10 pl-10 pr-4 text-sm border border-[#909196] rounded"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
 
@@ -1245,7 +1256,11 @@ export default function Index() {
                 <tbody>
                   {getSortedCampaigns().map((campaign, idx) => (
                     <>
-                      <tr key={campaign.id} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF] group">
+                      <tr key={campaign.id} className={`border-b border-[#E3E4E5] hover:bg-[#F0F5FF] group ${
+                        searchQuery.trim() && (campaign.name.toLowerCase().includes(searchQuery.toLowerCase()) || campaign.id.toLowerCase().includes(searchQuery.toLowerCase()))
+                          ? 'bg-[#FFF9E6]'
+                          : ''
+                      }`}>
                         <td className="p-2 sticky left-0 bg-white group-hover:bg-[#F0F5FF] z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.1)]" style={{ width: columnWidths.checkbox }}>
                           <input type="checkbox" className="w-5 h-5 rounded border-[#909196] accent-black" />
                         </td>
