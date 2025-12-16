@@ -1424,6 +1424,11 @@ export default function Index() {
       filtered = campaigns.filter(campaign => statusFilter.includes(campaign.status));
     }
 
+    // Then filter by Completed toggle
+    if (completedFilterSelected) {
+      filtered = filtered.filter(campaign => campaign.status === 'Completed');
+    }
+
     // Then filter by live pacing (on track / at risk)
     if (livePacingFilter.length > 0) {
       filtered = filtered.filter(campaign => {
