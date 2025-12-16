@@ -1232,7 +1232,7 @@ export default function Index() {
                   {getSortedCampaigns().map((campaign, idx) => (
                     <>
                       <tr key={campaign.id} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
-                        <td className="p-2" style={{ width: columnWidths.checkbox }}>
+                        <td className="p-2 sticky left-0 bg-white z-10" style={{ width: columnWidths.checkbox }}>
                           <input type="checkbox" className="w-5 h-5 rounded border-[#909196] accent-black" />
                         </td>
                         <td className="p-2" style={{ width: columnWidths.campaign }}>
