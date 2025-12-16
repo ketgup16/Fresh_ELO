@@ -1882,11 +1882,11 @@ export default function Index() {
           </div>
 
           {/* Data Table Container */}
-          <div className="mx-6 mb-6 rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col flex-1">
+          <div className="mx-3 mb-6 rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col flex-1">
             {/* Table Controls */}
             <div className="flex items-center justify-end gap-2 p-4 border-b border-[#E3E4E5] bg-white">
               {/* Search Bar */}
-              <div className="flex items-center gap-2 flex-1 min-w-[360px] max-w-[600px] px-3 h-10 border border-[#909196] rounded-full bg-white">
+              <div className="flex items-center gap-2 flex-1 min-w-[360px] max-w-[600px] px-3 h-8 border border-[#909196] rounded-full bg-white">
                 <Search className="w-4 h-4 text-[#2E2F32]" />
                 <span className="text-sm text-[#515357]">Search by</span>
                 <button className="flex items-center gap-1 text-sm font-bold text-[#2E2F32] hover:bg-gray-100 px-1 rounded">
