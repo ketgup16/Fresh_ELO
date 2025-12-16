@@ -1384,7 +1384,7 @@ export default function Index() {
                       </tr>
                       {campaign.expanded && campaign.children?.map((child, childIdx) => (
                         <tr key={child.id} className="border-b border-[#E3E4E5] bg-white hover:bg-[#F0F5FF]">
-                          <td className="p-2" style={{ width: columnWidths.checkbox }}></td>
+                          <td className="p-2 sticky left-0 bg-white z-10" style={{ width: columnWidths.checkbox }}></td>
                           <td className="p-2 pl-12" style={{ width: columnWidths.campaign }}>
                             <div className="flex items-center gap-2">
                               {child.type === "creative" && child.name.includes("video") && (
