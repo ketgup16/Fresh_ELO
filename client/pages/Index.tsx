@@ -724,6 +724,9 @@ export default function Index() {
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
 
+  // Filter state
+  const [statusFilter, setStatusFilter] = useState<string>('All statuses');
+
   const handleResizeStart = (e: React.MouseEvent, column: string, currentWidth: number) => {
     e.preventDefault();
     e.stopPropagation();
@@ -744,9 +747,16 @@ export default function Index() {
   };
 
   const getSortedCampaigns = () => {
-    if (!sortColumn) return campaigns;
+    // First filter by status
+    let filtered = campaigns;
+    if (statusFilter !== 'All statuses') {
+      filtered = campaigns.filter(campaign => campaign.status === statusFilter);
+    }
 
-    const sorted = [...campaigns].sort((a, b) => {
+    // Then sort if a column is selected
+    if (!sortColumn) return filtered;
+
+    const sorted = [...filtered].sort((a, b) => {
       let aValue: any;
       let bValue: any;
 
@@ -1111,7 +1121,11 @@ export default function Index() {
             {/* Table Controls */}
             <div className="flex items-center justify-end gap-4 p-4 border-b border-[#E3E4E5] bg-white">
               <div className="relative">
-                <select className="w-[143px] h-10 px-3 pr-8 text-sm border border-[#909196] rounded appearance-none bg-white">
+                <select
+                  className="w-[143px] h-10 px-3 pr-8 text-sm border border-[#909196] rounded appearance-none bg-white"
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                >
                   <option>All statuses</option>
                   <option>Live</option>
                   <option>Scheduled</option>
