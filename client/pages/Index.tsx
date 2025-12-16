@@ -1432,7 +1432,7 @@ export default function Index() {
         if (livePacingFilter.includes('on-track') && pacingColor === 'text-[#2A8703]') {
           return true;
         }
-        if (livePacingFilter.includes('at-risk') && pacingColor === 'text-[#FFC220]') {
+        if (livePacingFilter.includes('at-risk') && pacingColor === 'text-[#995213]') {
           return true;
         }
         return false;
@@ -1989,7 +1989,7 @@ export default function Index() {
                     onClick={handleOpenLiveFilter}
                   >
                     <span className="text-sm text-[#2E2F32]">Live</span>
-                    <span className="text-sm text-[#2E2F32]">({livePacingFilter.length})</span>
+                    <span className="text-sm text-[#2E2F32]">({showLiveFilterPopover ? tempLivePacingFilter.length : livePacingFilter.length})</span>
                     <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
                   </button>
 
@@ -2031,7 +2031,7 @@ export default function Index() {
                             checked={tempLivePacingFilter.includes('at-risk')}
                             onChange={() => handleToggleLivePacingFilter('at-risk')}
                           />
-                          <span className="text-sm text-[#FFC220]">At risk</span>
+                          <span className="text-sm text-[#995213]">At risk</span>
                         </label>
                       </div>
 
