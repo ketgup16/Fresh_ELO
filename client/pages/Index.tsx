@@ -2020,17 +2020,19 @@ export default function Index() {
                           <input
                             type="checkbox"
                             className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                            checked={false}
+                            checked={tempLivePacingFilter.includes('on-track')}
+                            onChange={() => handleToggleLivePacingFilter('on-track')}
                           />
-                          <span className="text-sm text-[#2E2F32]">On track</span>
+                          <span className="text-sm text-[#2A8703]">On track</span>
                         </label>
                         <label className="flex items-start gap-2 cursor-pointer">
                           <input
                             type="checkbox"
                             className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                            checked={false}
+                            checked={tempLivePacingFilter.includes('at-risk')}
+                            onChange={() => handleToggleLivePacingFilter('at-risk')}
                           />
-                          <span className="text-sm text-[#2E2F32]">At risk</span>
+                          <span className="text-sm text-[#FFC220]">At risk</span>
                         </label>
                       </div>
 
@@ -2041,13 +2043,13 @@ export default function Index() {
                       <div className="flex items-center justify-end gap-4 p-2 pr-3">
                         <button
                           className="text-sm text-[#2E2F32] underline hover:no-underline"
-                          onClick={() => setShowLiveFilterPopover(false)}
+                          onClick={handleClearLivePacingFilter}
                         >
                           Clear All
                         </button>
                         <button
                           className="px-4 h-8 text-sm font-bold text-white bg-[#0053E2] rounded-full hover:bg-[#0046c7] transition-colors"
-                          onClick={() => setShowLiveFilterPopover(false)}
+                          onClick={handleApplyLivePacingFilter}
                         >
                           Apply
                         </button>
