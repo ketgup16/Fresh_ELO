@@ -1655,16 +1655,19 @@ export default function Index() {
       if (liveFilterPopoverRef.current && !liveFilterPopoverRef.current.contains(event.target as Node)) {
         setShowLiveFilterPopover(false);
       }
+      if (searchScopeDropdownRef.current && !searchScopeDropdownRef.current.contains(event.target as Node)) {
+        setShowSearchScopeDropdown(false);
+      }
     };
 
-    if (showPopover || showRecommendationPopover || showLiveFilterPopover) {
+    if (showPopover || showRecommendationPopover || showLiveFilterPopover || showSearchScopeDropdown) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showPopover, showRecommendationPopover, showLiveFilterPopover]);
+  }, [showPopover, showRecommendationPopover, showLiveFilterPopover, showSearchScopeDropdown]);
 
   useEffect(() => {
     if (showPanel && !panelClosing) {
