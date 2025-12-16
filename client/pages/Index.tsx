@@ -2417,10 +2417,13 @@ export default function Index() {
                           {campaign.recommendations > 0 ? (
                             <>
                               <button
-                                className="inline-flex items-center px-2 py-1 bg-[#FDE7F3] text-[#8C1E64] text-xs font-normal rounded cursor-pointer hover:bg-[#FCD4EC] focus:bg-[#FCD4EC] focus:outline-none focus:ring-2 focus:ring-[#8C1E64] focus:ring-opacity-50 active:bg-[#FCBFE0] transition-all"
+                                className="inline-flex items-center gap-1 px-2 py-1 bg-[#FDE7F3] text-[#8C1E64] text-xs font-normal rounded cursor-pointer hover:bg-[#FCD4EC] focus:bg-[#FCD4EC] focus:outline-none focus:ring-2 focus:ring-[#8C1E64] focus:ring-opacity-50 active:bg-[#FCBFE0] transition-all"
                                 onClick={(e) => handleRecommendationClick(e, campaign.id)}
                               >
                                 {campaign.recommendations} recommendation{campaign.recommendations === 1 ? '' : 's'}
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M4.5 2.25L8.25 6L4.5 9.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
                               </button>
 
                               {/* Recommendation Popover */}
