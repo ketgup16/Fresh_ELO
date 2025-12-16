@@ -2061,10 +2061,13 @@ export default function Index() {
                           {campaign.recommendations > 0 ? (
                             <>
                               <button
-                                className="inline-flex px-2 py-1 bg-[#FDE7F3] text-[#8C1E64] text-xs rounded cursor-pointer hover:bg-[#FCD4EC] transition-colors"
+                                className="inline-flex items-center gap-2 px-2 py-1 bg-[#FDE7F3] text-[#8C1E64] text-xs font-normal rounded cursor-pointer hover:bg-[#FCD4EC] focus:bg-[#FCD4EC] focus:outline-none focus:ring-2 focus:ring-[#8C1E64] focus:ring-opacity-50 active:bg-[#FCBFE0] transition-all"
                                 onClick={(e) => handleRecommendationClick(e, campaign.id)}
                               >
-                                {campaign.recommendations} recommendation{campaign.recommendations === 1 ? '' : 's'}
+                                <span>{campaign.recommendations} recommendation{campaign.recommendations === 1 ? '' : 's'}</span>
+                                <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                                  <path fillRule="evenodd" clipRule="evenodd" d="M3.64645 3.64645C3.84171 3.45118 4.15829 3.45118 4.35355 3.64645L8 7.29289L11.6464 3.64645C11.8417 3.45118 12.1583 3.45118 12.3536 3.64645C12.5488 3.84171 12.5488 4.15829 12.3536 4.35355L8.70711 8L12.3536 11.6464C12.5488 11.8417 12.5488 12.1583 12.3536 12.3536C12.1583 12.5488 11.8417 12.5488 11.6464 12.3536L8 8.70711L4.35355 12.3536C4.15829 12.5488 3.84171 12.5488 3.64645 12.3536C3.45118 12.1583 3.45118 11.8417 3.64645 11.6464L7.29289 8L3.64645 4.35355C3.45118 4.15829 3.45118 3.84171 3.64645 3.64645Z" fill="currentColor"/>
+                                </svg>
                               </button>
 
                               {/* Recommendation Popover */}
