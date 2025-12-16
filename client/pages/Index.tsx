@@ -1353,6 +1353,7 @@ export default function Index() {
   const popoverRef = useRef<HTMLDivElement>(null);
   const recPopoverRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const selectAllCheckboxRef = useRef<HTMLInputElement>(null);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
