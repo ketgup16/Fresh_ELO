@@ -1223,7 +1223,7 @@ export default function Index() {
                         onMouseDown={(e) => handleResizeStart(e, 'pacing', columnWidths.pacing)}
                       />
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32] relative group sticky right-0 bg-[#F8F8F8] z-10" style={{ width: columnWidths.actions }}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] relative group sticky right-0 bg-[#F8F8F8] z-10 shadow-[-2px_0_4px_-2px_rgba(0,0,0,0.1)]" style={{ width: columnWidths.actions }}>
                       <div className="whitespace-nowrap">Actions</div>
                     </th>
                   </tr>
