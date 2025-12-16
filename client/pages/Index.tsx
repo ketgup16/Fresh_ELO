@@ -691,6 +691,7 @@ export default function Index() {
   const [selectedTab, setSelectedTab] = useState<"onsite" | "archive">("onsite");
   const [showPopover, setShowPopover] = useState(false);
   const [showRecommendationPopover, setShowRecommendationPopover] = useState<string | null>(null);
+  const [popoverOpenAbove, setPopoverOpenAbove] = useState(false);
   const [showPanel, setShowPanel] = useState(false);
   const [panelClosing, setPanelClosing] = useState(false);
   const [panelOpening, setPanelOpening] = useState(false);
