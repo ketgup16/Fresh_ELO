@@ -1774,6 +1774,7 @@ export default function Index() {
 
   const handleOpenAllFilters = () => {
     setTempStatusFilter([...statusFilter]);
+    setTempLivePacingFilter([...livePacingFilter]);
     setShowAllFiltersPopover(true);
   };
 
@@ -1789,10 +1790,12 @@ export default function Index() {
 
   const handleClearAllFilters = () => {
     setTempStatusFilter([]);
+    setTempLivePacingFilter([]);
   };
 
   const handleApplyFilters = () => {
     setStatusFilter([...tempStatusFilter]);
+    setLivePacingFilter([...tempLivePacingFilter]);
     setShowAllFiltersPopover(false);
   };
 
