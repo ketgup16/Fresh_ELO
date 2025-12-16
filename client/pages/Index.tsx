@@ -1425,6 +1425,21 @@ export default function Index() {
       filtered = campaigns.filter(campaign => statusFilter.includes(campaign.status));
     }
 
+    // Then filter by live pacing (on track / at risk)
+    if (livePacingFilter.length > 0) {
+      filtered = filtered.filter(campaign => {
+        if (!campaign.pacing) return false;
+        const pacingColor = campaign.pacing.color;
+        if (livePacingFilter.includes('on-track') && pacingColor === 'text-[#2A8703]') {
+          return true;
+        }
+        if (livePacingFilter.includes('at-risk') && pacingColor === 'text-[#FFC220]') {
+          return true;
+        }
+        return false;
+      });
+    }
+
     // Then filter by search query
     if (searchQuery.trim()) {
       filtered = filtered.filter(campaign =>
