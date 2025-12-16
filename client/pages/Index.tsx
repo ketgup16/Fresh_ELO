@@ -1166,9 +1166,9 @@ export default function Index() {
             {/* Table */}
             <div className="overflow-x-auto bg-white flex-1">
               <table className="w-full text-sm relative" style={{ minWidth: '1218px' }}>
-                <thead className="bg-[#F8F8F8]">
+                <thead className="bg-[#F8F8F8] sticky top-0 z-20">
                   <tr>
-                    <th className="p-2 text-left relative group sticky left-0 bg-[#F8F8F8] z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.1)]" style={{ width: columnWidths.checkbox }}>
+                    <th className="p-2 text-left relative group sticky left-0 bg-[#F8F8F8] z-30 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.1)]" style={{ width: columnWidths.checkbox }}>
                       <input type="checkbox" className="w-5 h-5 rounded border-[#909196] accent-black" />
                       <div
                         className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20"
@@ -1248,7 +1248,7 @@ export default function Index() {
                         onMouseDown={(e) => handleResizeStart(e, 'pacing', columnWidths.pacing)}
                       />
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32] relative group sticky right-0 bg-[#F8F8F8] z-10 shadow-[-2px_0_4px_-2px_rgba(0,0,0,0.1)]" style={{ width: columnWidths.actions }}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] relative group sticky right-0 bg-[#F8F8F8] z-30 shadow-[-2px_0_4px_-2px_rgba(0,0,0,0.1)]" style={{ width: columnWidths.actions }}>
                       <div className="whitespace-nowrap">Actions</div>
                     </th>
                   </tr>
