@@ -1967,7 +1967,7 @@ export default function Index() {
 
                 {/* Completed Toggle Button */}
                 <button
-                  className={`flex items-center h-8 px-2 pl-1 border-2 rounded-full transition-all ${
+                  className={`flex items-center gap-1 h-8 px-3 border-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
                     completedFilterSelected
                       ? 'border-[#0053E2] bg-[#E9F1FE]'
                       : 'border-[#909196] bg-white hover:bg-gray-50'
