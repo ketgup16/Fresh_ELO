@@ -731,7 +731,7 @@ export default function Index() {
             </div>
 
             {/* Table */}
-            <div className="overflow-x-auto bg-white">
+            <div className="overflow-auto bg-white flex-1">
               <table className="w-full text-sm">
                 <thead className="bg-[#F8F8F8]">
                   <tr>
