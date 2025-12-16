@@ -1631,16 +1631,19 @@ export default function Index() {
       if (allFiltersPopoverRef.current && !allFiltersPopoverRef.current.contains(event.target as Node)) {
         setShowAllFiltersPopover(false);
       }
+      if (liveFilterPopoverRef.current && !liveFilterPopoverRef.current.contains(event.target as Node)) {
+        setShowLiveFilterPopover(false);
+      }
     };
 
-    if (showPopover || showRecommendationPopover || showAllFiltersPopover) {
+    if (showPopover || showRecommendationPopover || showAllFiltersPopover || showLiveFilterPopover) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showPopover, showRecommendationPopover, showAllFiltersPopover]);
+  }, [showPopover, showRecommendationPopover, showAllFiltersPopover, showLiveFilterPopover]);
 
   useEffect(() => {
     if (showPanel && !panelClosing) {
