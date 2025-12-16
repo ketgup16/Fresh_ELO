@@ -1502,6 +1502,50 @@ export default function Index() {
     }
   };
 
+  const handleSelectAll = (checked: boolean) => {
+    const currentPageCampaigns = getPaginatedCampaigns();
+    const newSelectedRows = new Set(selectedRows);
+
+    if (checked) {
+      // Add all current page campaign IDs to selected rows
+      currentPageCampaigns.forEach(campaign => {
+        newSelectedRows.add(campaign.id);
+      });
+    } else {
+      // Remove all current page campaign IDs from selected rows
+      currentPageCampaigns.forEach(campaign => {
+        newSelectedRows.delete(campaign.id);
+      });
+    }
+
+    setSelectedRows(newSelectedRows);
+  };
+
+  const handleSelectRow = (campaignId: string, checked: boolean) => {
+    const newSelectedRows = new Set(selectedRows);
+
+    if (checked) {
+      newSelectedRows.add(campaignId);
+    } else {
+      newSelectedRows.delete(campaignId);
+    }
+
+    setSelectedRows(newSelectedRows);
+  };
+
+  const isAllSelected = () => {
+    const currentPageCampaigns = getPaginatedCampaigns();
+    if (currentPageCampaigns.length === 0) return false;
+    return currentPageCampaigns.every(campaign => selectedRows.has(campaign.id));
+  };
+
+  const isSomeSelected = () => {
+    const currentPageCampaigns = getPaginatedCampaigns();
+    if (currentPageCampaigns.length === 0) return false;
+    const selectedCount = currentPageCampaigns.filter(campaign => selectedRows.has(campaign.id)).length;
+    return selectedCount > 0 && selectedCount < currentPageCampaigns.length;
+  };
+
   const renderSortIcon = (column: string) => {
     if (sortColumn !== column) {
       return (
