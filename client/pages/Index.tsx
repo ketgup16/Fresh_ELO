@@ -2082,17 +2082,8 @@ export default function Index() {
                             <input
                               type="checkbox"
                               className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                              checked={statusFilter === 'All statuses'}
-                              onChange={() => setStatusFilter('All statuses')}
-                            />
-                            <span className="text-sm text-[#2E2F32]">All Statues</span>
-                          </label>
-                          <label className="flex items-start gap-2 cursor-pointer">
-                            <input
-                              type="checkbox"
-                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                              checked={statusFilter === 'Live'}
-                              onChange={() => setStatusFilter('Live')}
+                              checked={tempStatusFilter.includes('Live')}
+                              onChange={() => handleToggleStatusFilter('Live')}
                             />
                             <span className="text-sm text-[#2E2F32]">Live</span>
                           </label>
@@ -2100,8 +2091,8 @@ export default function Index() {
                             <input
                               type="checkbox"
                               className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                              checked={statusFilter === 'Scheduled'}
-                              onChange={() => setStatusFilter('Scheduled')}
+                              checked={tempStatusFilter.includes('Scheduled')}
+                              onChange={() => handleToggleStatusFilter('Scheduled')}
                             />
                             <span className="text-sm text-[#2E2F32]">Scheduled</span>
                           </label>
@@ -2109,8 +2100,8 @@ export default function Index() {
                             <input
                               type="checkbox"
                               className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                              checked={statusFilter === 'Paused'}
-                              onChange={() => setStatusFilter('Paused')}
+                              checked={tempStatusFilter.includes('Paused')}
+                              onChange={() => handleToggleStatusFilter('Paused')}
                             />
                             <span className="text-sm text-[#2E2F32]">Paused</span>
                           </label>
@@ -2118,8 +2109,8 @@ export default function Index() {
                             <input
                               type="checkbox"
                               className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                              checked={statusFilter === 'Completed'}
-                              onChange={() => setStatusFilter('Completed')}
+                              checked={tempStatusFilter.includes('Completed')}
+                              onChange={() => handleToggleStatusFilter('Completed')}
                             />
                             <span className="text-sm text-[#2E2F32]">Complete</span>
                           </label>
@@ -2135,13 +2126,13 @@ export default function Index() {
                       <div className="flex items-center justify-end gap-4">
                         <button
                           className="text-sm text-[#2E2F32] underline hover:no-underline"
-                          onClick={() => setStatusFilter('All statuses')}
+                          onClick={handleClearAllFilters}
                         >
                           Clear All
                         </button>
                         <button
                           className="px-4 h-8 text-sm font-bold text-white bg-[#0053E2] rounded-full hover:bg-[#0046c7] transition-colors"
-                          onClick={() => setShowAllFiltersPopover(false)}
+                          onClick={handleApplyFilters}
                         >
                           Apply
                         </button>
