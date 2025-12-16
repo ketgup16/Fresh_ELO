@@ -1624,16 +1624,19 @@ export default function Index() {
       if (recPopoverRef.current && !recPopoverRef.current.contains(event.target as Node)) {
         setShowRecommendationPopover(null);
       }
+      if (allFiltersPopoverRef.current && !allFiltersPopoverRef.current.contains(event.target as Node)) {
+        setShowAllFiltersPopover(false);
+      }
     };
 
-    if (showPopover || showRecommendationPopover) {
+    if (showPopover || showRecommendationPopover || showAllFiltersPopover) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showPopover, showRecommendationPopover]);
+  }, [showPopover, showRecommendationPopover, showAllFiltersPopover]);
 
   useEffect(() => {
     if (showPanel && !panelClosing) {
