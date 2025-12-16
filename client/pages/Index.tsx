@@ -1384,13 +1384,15 @@ export default function Index() {
   const [tempStatusFilter, setTempStatusFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showAllFiltersPopover, setShowAllFiltersPopover] = useState(false);
-  const [searchScope, setSearchScope] = useState<string>('SKU');
+  const [searchScope, setSearchScope] = useState<string>('Campaign name');
+  const [showSearchScopeDropdown, setShowSearchScopeDropdown] = useState(false);
   const [showLiveFilterPopover, setShowLiveFilterPopover] = useState(false);
   const [livePacingFilter, setLivePacingFilter] = useState<string[]>([]);
   const [tempLivePacingFilter, setTempLivePacingFilter] = useState<string[]>([]);
   const [completedFilterSelected, setCompletedFilterSelected] = useState(false);
   const allFiltersPopoverRef = useRef<HTMLDivElement>(null);
   const liveFilterPopoverRef = useRef<HTMLDivElement>(null);
+  const searchScopeDropdownRef = useRef<HTMLDivElement>(null);
 
   // Selected recommendations state
   const [selectedRecommendations, setSelectedRecommendations] = useState<{[key: string]: number}>({});
