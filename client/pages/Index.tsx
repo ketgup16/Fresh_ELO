@@ -1912,7 +1912,13 @@ export default function Index() {
                 <thead className="bg-[#F8F8F8] sticky top-0 z-20">
                   <tr>
                     <th className="p-2 text-left relative group sticky left-0 bg-[#F8F8F8] z-30 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.1)]" style={{ width: columnWidths.checkbox }}>
-                      <input type="checkbox" className="w-5 h-5 rounded border-[#909196] accent-black" />
+                      <input
+                        ref={selectAllCheckboxRef}
+                        type="checkbox"
+                        className="w-5 h-5 rounded border-[#909196] accent-black"
+                        checked={isAllSelected()}
+                        onChange={(e) => handleSelectAll(e.target.checked)}
+                      />
                       <div
                         className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20"
                         onMouseDown={(e) => handleResizeStart(e, 'checkbox', columnWidths.checkbox)}
