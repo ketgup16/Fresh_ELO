@@ -2016,97 +2016,112 @@ export default function Index() {
                 </button>
               </div>
 
-              {/* All Filters Popover */}
+              {/* All Filters Panel */}
               {showAllFiltersPopover && (
-                <div
-                  ref={allFiltersPopoverRef}
-                  className="absolute right-0 top-full mt-2 w-[230px] bg-white rounded border border-[#D5D6D8] shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50"
-                >
-                  {/* Nubbin (Arrow) */}
-                  <div className="absolute -top-[9px] right-[70px] w-4 h-4 bg-white border-t border-l border-[#D5D6D8] transform rotate-45"></div>
+                <>
+                  {/* Scrim/Backdrop */}
+                  <div
+                    className="fixed inset-0 bg-black bg-opacity-50 z-40"
+                    onClick={() => setShowAllFiltersPopover(false)}
+                  ></div>
 
-                  {/* Header */}
-                  <div className="flex items-center justify-between p-4 pb-3">
-                    <h3 className="text-lg font-bold text-[#2E2F32]">All Filters</h3>
-                    <button
-                      onClick={() => setShowAllFiltersPopover(false)}
-                      className="p-0.5 hover:bg-gray-100 rounded-full transition-colors"
-                    >
-                      <X className="w-6 h-6 text-[#2E2F32]" />
-                    </button>
-                  </div>
+                  {/* Side Panel */}
+                  <div
+                    ref={allFiltersPopoverRef}
+                    className="fixed right-0 top-0 h-full w-[320px] bg-white shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 flex flex-col"
+                  >
+                    {/* Header */}
+                    <div className="flex items-start gap-2 p-4">
+                      <div className="flex-1">
+                        <h3 className="text-[20px] font-bold text-[#2E2F32] leading-7">All Filters</h3>
+                      </div>
+                      <button
+                        onClick={() => setShowAllFiltersPopover(false)}
+                        className="p-2 hover:bg-gray-100 rounded-full transition-colors -mt-1 -mr-1"
+                      >
+                        <X className="w-6 h-6 text-[#2E2F32]" />
+                      </button>
+                    </div>
 
-                  {/* Filter Options */}
-                  <div className="px-4 pb-3">
-                    <div className="text-sm font-bold text-[#2E2F32] mb-3">Group label</div>
-                    <div className="space-y-2">
-                      <label className="flex items-start gap-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                          checked={statusFilter === 'All statuses'}
-                          onChange={() => setStatusFilter('All statuses')}
-                        />
-                        <span className="text-sm text-[#2E2F32]">All Statues</span>
-                      </label>
-                      <label className="flex items-start gap-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                          checked={statusFilter === 'Live'}
-                          onChange={() => setStatusFilter('Live')}
-                        />
-                        <span className="text-sm text-[#2E2F32]">Live</span>
-                      </label>
-                      <label className="flex items-start gap-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                          checked={statusFilter === 'Scheduled'}
-                          onChange={() => setStatusFilter('Scheduled')}
-                        />
-                        <span className="text-sm text-[#2E2F32]">Scheduled</span>
-                      </label>
-                      <label className="flex items-start gap-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                          checked={statusFilter === 'Paused'}
-                          onChange={() => setStatusFilter('Paused')}
-                        />
-                        <span className="text-sm text-[#2E2F32]">Paused</span>
-                      </label>
-                      <label className="flex items-start gap-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                          checked={statusFilter === 'Completed'}
-                          onChange={() => setStatusFilter('Completed')}
-                        />
-                        <span className="text-sm text-[#2E2F32]">Complete</span>
-                      </label>
+                    {/* Divider */}
+                    <div className="h-px bg-[#E3E4E5]"></div>
+
+                    {/* Content */}
+                    <div className="flex-1 overflow-y-auto p-4">
+                      <div className="mb-3">
+                        <div className="text-sm font-bold text-[#2E2F32] mb-3">Group label</div>
+                        <div className="space-y-3">
+                          <label className="flex items-start gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
+                              checked={statusFilter === 'All statuses'}
+                              onChange={() => setStatusFilter('All statuses')}
+                            />
+                            <span className="text-sm text-[#2E2F32]">All Statues</span>
+                          </label>
+                          <label className="flex items-start gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
+                              checked={statusFilter === 'Live'}
+                              onChange={() => setStatusFilter('Live')}
+                            />
+                            <span className="text-sm text-[#2E2F32]">Live</span>
+                          </label>
+                          <label className="flex items-start gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
+                              checked={statusFilter === 'Scheduled'}
+                              onChange={() => setStatusFilter('Scheduled')}
+                            />
+                            <span className="text-sm text-[#2E2F32]">Scheduled</span>
+                          </label>
+                          <label className="flex items-start gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
+                              checked={statusFilter === 'Paused'}
+                              onChange={() => setStatusFilter('Paused')}
+                            />
+                            <span className="text-sm text-[#2E2F32]">Paused</span>
+                          </label>
+                          <label className="flex items-start gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
+                              checked={statusFilter === 'Completed'}
+                              onChange={() => setStatusFilter('Completed')}
+                            />
+                            <span className="text-sm text-[#2E2F32]">Complete</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="h-px bg-[#E3E4E5]"></div>
+
+                    {/* Footer */}
+                    <div className="p-4">
+                      <div className="flex items-center justify-end gap-4">
+                        <button
+                          className="text-sm text-[#2E2F32] underline hover:no-underline"
+                          onClick={() => setStatusFilter('All statuses')}
+                        >
+                          Clear All
+                        </button>
+                        <button
+                          className="px-4 h-8 text-sm font-bold text-white bg-[#0053E2] rounded-full hover:bg-[#0046c7] transition-colors"
+                          onClick={() => setShowAllFiltersPopover(false)}
+                        >
+                          Apply
+                        </button>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Divider */}
-                  <div className="h-px bg-[#E3E4E5]"></div>
-
-                  {/* Footer Buttons */}
-                  <div className="flex items-center justify-end gap-4 p-2 pr-4">
-                    <button
-                      className="text-sm text-[#2E2F32] underline hover:no-underline"
-                      onClick={() => setStatusFilter('All statuses')}
-                    >
-                      Clear All
-                    </button>
-                    <button
-                      className="px-4 h-8 text-sm font-bold text-white bg-[#0053E2] rounded-full hover:bg-[#0046c7] transition-colors"
-                      onClick={() => setShowAllFiltersPopover(false)}
-                    >
-                      Apply
-                    </button>
-                  </div>
-                </div>
+                </>
               )}
             </div>
 
