@@ -1746,6 +1746,30 @@ export default function Index() {
     );
   };
 
+  const handleOpenAllFilters = () => {
+    setTempStatusFilter([...statusFilter]);
+    setShowAllFiltersPopover(true);
+  };
+
+  const handleToggleStatusFilter = (status: string) => {
+    setTempStatusFilter(prev => {
+      if (prev.includes(status)) {
+        return prev.filter(s => s !== status);
+      } else {
+        return [...prev, status];
+      }
+    });
+  };
+
+  const handleClearAllFilters = () => {
+    setTempStatusFilter([]);
+  };
+
+  const handleApplyFilters = () => {
+    setStatusFilter([...tempStatusFilter]);
+    setShowAllFiltersPopover(false);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
