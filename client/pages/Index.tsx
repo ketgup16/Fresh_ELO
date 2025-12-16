@@ -786,7 +786,7 @@ export default function Index() {
                                     <div className="flex items-center justify-end gap-4">
                                       <button
                                         className="text-sm text-[#2E2F32] underline hover:no-underline"
-                                        onClick={() => setShowRecommendationPopover(null)}
+                                        onClick={() => handleDismissRecommendation(campaign.id)}
                                       >
                                         Dismiss
                                       </button>
