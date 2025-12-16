@@ -44,7 +44,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$213,443.33",
     targetingStrategy: "Contextual targeting",
     impressions: "3,200,332",
-    pacing: { value: "123%", color: "text-[#FFC220]" },
+    pacing: { value: "123%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -147,7 +147,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$192,032.22",
     targetingStrategy: "3,412,009",
     impressions: "3,412,009",
-    pacing: { value: "89%", color: "text-[#FFC220]" },
+    pacing: { value: "89%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -186,7 +186,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$75,500.00",
     targetingStrategy: "Run of site",
     impressions: "1,800,000",
-    pacing: { value: "110%", color: "text-[#FFC220]" },
+    pacing: { value: "110%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -225,7 +225,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$50,000.00",
     targetingStrategy: "Run of site",
     impressions: "900,000",
-    pacing: { value: "85%", color: "text-[#FFC220]" },
+    pacing: { value: "85%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -238,7 +238,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$180,000.00",
     targetingStrategy: "Contextual targeting",
     impressions: "3,800,000",
-    pacing: { value: "112%", color: "text-[#FFC220]" },
+    pacing: { value: "112%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -329,7 +329,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$200,000.00",
     targetingStrategy: "Behavioral targeting",
     impressions: "4,100,000",
-    pacing: { value: "111%", color: "text-[#FFC220]" },
+    pacing: { value: "111%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -368,7 +368,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$88,000.00",
     targetingStrategy: "Run of site",
     impressions: "1,400,000",
-    pacing: { value: "92%", color: "text-[#FFC220]" },
+    pacing: { value: "92%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -394,7 +394,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$145,000.00",
     targetingStrategy: "Behavioral targeting",
     impressions: "3,200,000",
-    pacing: { value: "114%", color: "text-[#FFC220]" },
+    pacing: { value: "114%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -472,7 +472,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$280,000.00",
     targetingStrategy: "Behavioral targeting",
     impressions: "5,800,000",
-    pacing: { value: "116%", color: "text-[#FFC220]" },
+    pacing: { value: "116%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -498,7 +498,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$48,000.00",
     targetingStrategy: "Run of site",
     impressions: "750,000",
-    pacing: { value: "94%", color: "text-[#FFC220]" },
+    pacing: { value: "94%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -524,7 +524,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$105,000.00",
     targetingStrategy: "Contextual targeting",
     impressions: "2,200,000",
-    pacing: { value: "88%", color: "text-[#FFC220]" },
+    pacing: { value: "88%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -550,7 +550,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$225,000.00",
     targetingStrategy: "Contextual targeting",
     impressions: "4,700,000",
-    pacing: { value: "112%", color: "text-[#FFC220]" },
+    pacing: { value: "112%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -615,7 +615,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$118,000.00",
     targetingStrategy: "Contextual targeting",
     impressions: "2,450,000",
-    pacing: { value: "113%", color: "text-[#FFC220]" },
+    pacing: { value: "113%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -641,7 +641,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$195,000.00",
     targetingStrategy: "Contextual targeting",
     impressions: "4,000,000",
-    pacing: { value: "111%", color: "text-[#FFC220]" },
+    pacing: { value: "111%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -706,7 +706,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$185,000.00",
     targetingStrategy: "Contextual targeting",
     impressions: "3,800,000",
-    pacing: { value: "111%", color: "text-[#FFC220]" },
+    pacing: { value: "111%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -758,7 +758,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$128,000.00",
     targetingStrategy: "Behavioral targeting",
     impressions: "2,650,000",
-    pacing: { value: "112%", color: "text-[#FFC220]" },
+    pacing: { value: "112%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -771,7 +771,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$95,000.00",
     targetingStrategy: "Run of site",
     impressions: "1,850,000",
-    pacing: { value: "91%", color: "text-[#FFC220]" },
+    pacing: { value: "91%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -888,7 +888,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$225,000.00",
     targetingStrategy: "Behavioral targeting",
     impressions: "4,650,000",
-    pacing: { value: "114%", color: "text-[#FFC220]" },
+    pacing: { value: "114%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -914,7 +914,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$54,000.00",
     targetingStrategy: "Contextual targeting",
     impressions: "1,050,000",
-    pacing: { value: "87%", color: "text-[#FFC220]" },
+    pacing: { value: "87%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -940,7 +940,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$285,000.00",
     targetingStrategy: "Contextual targeting",
     impressions: "5,950,000",
-    pacing: { value: "111%", color: "text-[#FFC220]" },
+    pacing: { value: "111%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -979,7 +979,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$205,000.00",
     targetingStrategy: "Contextual targeting",
     impressions: "4,250,000",
-    pacing: { value: "113%", color: "text-[#FFC220]" },
+    pacing: { value: "113%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -1057,7 +1057,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$245,000.00",
     targetingStrategy: "Contextual targeting",
     impressions: "5,150,000",
-    pacing: { value: "112%", color: "text-[#FFC220]" },
+    pacing: { value: "112%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -1070,7 +1070,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$68,000.00",
     targetingStrategy: "Behavioral targeting",
     impressions: "1,350,000",
-    pacing: { value: "89%", color: "text-[#FFC220]" },
+    pacing: { value: "89%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -1148,7 +1148,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$148,000.00",
     targetingStrategy: "Behavioral targeting",
     impressions: "3,050,000",
-    pacing: { value: "111%", color: "text-[#FFC220]" },
+    pacing: { value: "111%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -1161,7 +1161,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$195,000.00",
     targetingStrategy: "Run of site",
     impressions: "4,050,000",
-    pacing: { value: "113%", color: "text-[#FFC220]" },
+    pacing: { value: "113%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -1239,7 +1239,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$42,000.00",
     targetingStrategy: "Run of site",
     impressions: "850,000",
-    pacing: { value: "86%", color: "text-[#FFC220]" },
+    pacing: { value: "86%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
@@ -1291,7 +1291,7 @@ const mockCampaigns: Campaign[] = [
     totalBudget: "$155,000.00",
     targetingStrategy: "Contextual targeting",
     impressions: "3,250,000",
-    pacing: { value: "114%", color: "text-[#FFC220]" },
+    pacing: { value: "114%", color: "text-[#995213]" },
     expanded: false,
     children: []
   },
