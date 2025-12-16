@@ -1361,7 +1361,7 @@ export default function Index() {
 
   // Column widths state
   const [columnWidths, setColumnWidths] = useState({
-    checkbox: 48,
+    checkbox: 56,
     campaign: 280,
     status: 120,
     recommendations: 160,
