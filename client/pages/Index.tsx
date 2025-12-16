@@ -1409,7 +1409,7 @@ export default function Index() {
                               <>
                                 <button
                                   className="inline-flex px-2 py-1 bg-[#FDE7F3] text-[#8C1E64] text-xs rounded cursor-pointer hover:bg-[#FCD4EC] transition-colors"
-                                  onClick={() => setShowRecommendationPopover(showRecommendationPopover === child.id ? null : child.id)}
+                                  onClick={(e) => handleRecommendationClick(e, child.id)}
                                 >
                                   {child.recommendations} recommendation{child.recommendations === 1 ? '' : 's'}
                                 </button>
@@ -1418,12 +1418,20 @@ export default function Index() {
                                 {showRecommendationPopover === child.id && (
                                   <div
                                     ref={recPopoverRef}
-                                    className="absolute top-full left-0 mt-2 w-[432px] bg-white rounded shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50"
+                                    className={`absolute left-0 w-[432px] bg-white rounded shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 ${
+                                      popoverOpenAbove ? 'bottom-full mb-2' : 'top-full mt-2'
+                                    }`}
                                   >
                                     {/* Nubbin (Arrow) */}
-                                    <svg className="absolute -top-2 left-6" width="16" height="8" viewBox="0 0 16 8" fill="none">
-                                      <path fillRule="evenodd" clipRule="evenodd" d="M8 0L16 8H0L8 0Z" fill="white"/>
-                                    </svg>
+                                    {popoverOpenAbove ? (
+                                      <svg className="absolute -bottom-2 left-6" width="16" height="8" viewBox="0 0 16 8" fill="none">
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M8 8L0 0H16L8 8Z" fill="white"/>
+                                      </svg>
+                                    ) : (
+                                      <svg className="absolute -top-2 left-6" width="16" height="8" viewBox="0 0 16 8" fill="none">
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M8 0L16 8H0L8 0Z" fill="white"/>
+                                      </svg>
+                                    )}
 
                                     <div className="p-4">
                                       {/* Header */}
