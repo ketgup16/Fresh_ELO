@@ -929,6 +929,19 @@ export default function Index() {
     ));
   };
 
+  const handleRecommendationClick = (e: React.MouseEvent, campaignId: string) => {
+    const button = e.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const spaceBelow = viewportHeight - rect.bottom;
+    const popoverHeight = 400; // Approximate height of the popover
+
+    // Open above if there's not enough space below
+    const shouldOpenAbove = spaceBelow < popoverHeight;
+    setPopoverOpenAbove(shouldOpenAbove);
+    setShowRecommendationPopover(showRecommendationPopover === campaignId ? null : campaignId);
+  };
+
   const handleDismissRecommendation = (campaignId: string, isChild: boolean = false) => {
     setCampaigns(campaigns.map(campaign => {
       if (campaign.id === campaignId && !isChild) {
