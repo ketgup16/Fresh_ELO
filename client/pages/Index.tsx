@@ -1515,9 +1515,9 @@ export default function Index() {
 
                                     <div className="p-4">
                                       {/* Header */}
-                                      <div className="flex items-start justify-between mb-3">
+                                      <div className="flex items-start justify-between mb-1">
                                         <h3 className="text-lg font-bold text-[#2E2F32]">
-                                          Campaign recommendations
+                                          Recommendations
                                         </h3>
                                         <div className="flex items-center gap-1 px-2 py-1 bg-[#E9F1FE] rounded">
                                           <Eye className="w-4 h-4 text-[#002E99]" />
@@ -1526,45 +1526,85 @@ export default function Index() {
                                       </div>
 
                                       {/* Divider */}
-                                      <div className="h-px bg-[#E3E4E5] mb-4"></div>
+                                      <div className="h-px bg-[#E3E4E5] my-4"></div>
 
-                                      {/* Content */}
-                                      <div className="mb-4 space-y-4">
+                                      {/* Recommendations with radio buttons */}
+                                      <div className="space-y-0">
                                         {Array.from({ length: child.recommendations }).map((_, recIdx) => {
                                           const recommendations = [
-                                            { text: "Add 8 new ad creatives", percent: "12-18%", impact: "Potential increase in engagement" },
+                                            { text: "Add 15 keywords", percent: "14k-16k", impact: "Potential increase in reach" },
                                             { text: "Update video thumbnails", percent: "8-14%", impact: "Potential increase in CTR" },
                                             { text: "Refresh ad copy", percent: "6-10%", impact: "Potential increase in relevance" },
                                             { text: "Test new CTA buttons", percent: "10-15%", impact: "Potential increase in clicks" },
                                             { text: "Add captions to videos", percent: "5-8%", impact: "Potential increase in watch time" },
                                           ];
                                           const rec = recommendations[recIdx % recommendations.length];
+                                          const isSelected = selectedRecommendations[child.id] === recIdx;
+
                                           return (
-                                            <div key={recIdx} className="pb-4 border-b border-[#E3E4E5] last:border-0 last:pb-0">
-                                              <p className="text-sm text-[#2E2F32] mb-2">{rec.text}</p>
-                                              <div className="flex items-end gap-1">
-                                                <span className="text-base font-bold text-[#2A8703]">{rec.percent}</span>
-                                                <span className="text-base font-bold text-[#2E2F32]">{rec.impact}</span>
+                                            <div key={recIdx}>
+                                              <div className="flex items-start gap-3 py-2.5">
+                                                {/* Radio button */}
+                                                <button
+                                                  onClick={() => setSelectedRecommendations({...selectedRecommendations, [child.id]: recIdx})}
+                                                  className="mt-0.5"
+                                                >
+                                                  <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                                                    isSelected
+                                                      ? 'border-[#2E2F32] bg-[#2E2F32]'
+                                                      : 'border-[#2E2F32] bg-white'
+                                                  }`}>
+                                                    {isSelected && (
+                                                      <div className="w-2 h-2 rounded-full bg-white"></div>
+                                                    )}
+                                                  </div>
+                                                </button>
+
+                                                {/* Content */}
+                                                <div className="flex-1">
+                                                  <p className="text-sm text-[#2E2F32] mb-1">{rec.text}</p>
+                                                  <div className="flex items-end gap-1 mb-2">
+                                                    <span className="text-base font-bold text-[#2A8703]">{rec.percent}</span>
+                                                    <span className="text-base font-bold text-[#2E2F32]">{rec.impact}</span>
+                                                  </div>
+
+                                                  {/* Action links */}
+                                                  <div className="flex items-center justify-end gap-4">
+                                                    <button
+                                                      className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                                      onClick={() => handleDismissRecommendation(child.id, true)}
+                                                    >
+                                                      Dismiss
+                                                    </button>
+                                                    <button
+                                                      className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                                      onClick={() => openPanel(campaign)}
+                                                    >
+                                                      View details
+                                                    </button>
+                                                  </div>
+                                                </div>
                                               </div>
+
+                                              {recIdx < child.recommendations - 1 && (
+                                                <div className="h-px bg-[#E3E4E5]"></div>
+                                              )}
                                             </div>
                                           );
                                         })}
                                       </div>
 
-                                      {/* Actions */}
-                                      <div className="flex items-center justify-end gap-4">
+                                      {/* Divider */}
+                                      <div className="h-px bg-[#E3E4E5] my-4"></div>
+
+                                      {/* Apply button */}
+                                      <div className="flex justify-end">
                                         <button
-                                          className="text-sm text-[#2E2F32] underline hover:no-underline"
-                                          onClick={() => handleDismissRecommendation(child.id, true)}
+                                          className="px-4 h-8 text-sm font-bold text-[#2E2F32] bg-white border border-[#2E2F32] rounded-full hover:bg-gray-50"
+                                          onClick={() => openPanel(campaign)}
                                         >
-                                          Dismiss
+                                          Apply selected
                                         </button>
-                                        <button
-                                        className="px-4 h-8 text-sm font-bold text-[#2E2F32] bg-white border border-[#2E2F32] rounded-full hover:bg-gray-50"
-                                        onClick={() => openPanel(campaign)}
-                                      >
-                                        View recommendations
-                                      </button>
                                       </div>
                                     </div>
                                   </div>
