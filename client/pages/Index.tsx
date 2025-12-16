@@ -186,11 +186,107 @@ export default function Index() {
   const [startX, setStartX] = useState(0);
   const [startWidth, setStartWidth] = useState(0);
 
+  // Sorting state
+  const [sortColumn, setSortColumn] = useState<string | null>(null);
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+
   const handleResizeStart = (e: React.MouseEvent, column: string, currentWidth: number) => {
     e.preventDefault();
+    e.stopPropagation();
     setResizingColumn(column);
     setStartX(e.clientX);
     setStartWidth(currentWidth);
+  };
+
+  const handleSort = (column: string) => {
+    if (sortColumn === column) {
+      // Toggle direction if same column
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      // New column, default to ascending
+      setSortColumn(column);
+      setSortDirection('asc');
+    }
+  };
+
+  const getSortedCampaigns = () => {
+    if (!sortColumn) return campaigns;
+
+    const sorted = [...campaigns].sort((a, b) => {
+      let aValue: any;
+      let bValue: any;
+
+      switch (sortColumn) {
+        case 'campaign':
+          aValue = a.name?.toLowerCase() || '';
+          bValue = b.name?.toLowerCase() || '';
+          break;
+        case 'status':
+          aValue = a.status?.toLowerCase() || '';
+          bValue = b.status?.toLowerCase() || '';
+          break;
+        case 'recommendations':
+          aValue = a.recommendations || 0;
+          bValue = b.recommendations || 0;
+          break;
+        case 'totalBudget':
+          aValue = parseFloat(a.totalBudget?.replace(/[$,]/g, '') || '0');
+          bValue = parseFloat(b.totalBudget?.replace(/[$,]/g, '') || '0');
+          break;
+        case 'targetingStrategy':
+          aValue = a.targetingStrategy?.toLowerCase() || '';
+          bValue = b.targetingStrategy?.toLowerCase() || '';
+          break;
+        case 'impressions':
+          aValue = parseFloat(a.impressions?.replace(/,/g, '') || '0');
+          bValue = parseFloat(b.impressions?.replace(/,/g, '') || '0');
+          break;
+        case 'pacing':
+          aValue = parseFloat(a.pacing?.value?.replace(/%/g, '') || '0');
+          bValue = parseFloat(b.pacing?.value?.replace(/%/g, '') || '0');
+          break;
+        default:
+          return 0;
+      }
+
+      if (typeof aValue === 'string') {
+        return sortDirection === 'asc'
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      } else {
+        return sortDirection === 'asc'
+          ? aValue - bValue
+          : bValue - aValue;
+      }
+    });
+
+    return sorted;
+  };
+
+  const renderSortIcon = (column: string) => {
+    if (sortColumn !== column) {
+      return (
+        <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+          <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3ZM8 13L12 9H4L8 13Z" fill="#2E2F32"/>
+        </svg>
+      );
+    }
+
+    if (sortDirection === 'asc') {
+      return (
+        <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+          <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3Z" fill="#0053E2"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M8 13L12 9H4L8 13Z" fill="#BABBBE"/>
+        </svg>
+      );
+    } else {
+      return (
+        <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+          <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3Z" fill="#BABBBE"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M8 13L12 9H4L8 13Z" fill="#0053E2"/>
+        </svg>
+      );
+    }
   };
 
   useEffect(() => {
