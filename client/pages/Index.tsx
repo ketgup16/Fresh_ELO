@@ -856,7 +856,7 @@ export default function Index() {
                                   className="inline-flex px-2 py-1 bg-[#FDE7F3] text-[#8C1E64] text-xs rounded cursor-pointer hover:bg-[#FCD4EC] transition-colors"
                                   onClick={() => setShowRecommendationPopover(showRecommendationPopover === child.id ? null : child.id)}
                                 >
-                                  {child.recommendations} recommendation
+                                  {child.recommendations} recommendation{child.recommendations === 1 ? '' : 's'}
                                 </button>
 
                                 {/* Recommendation Popover */}
