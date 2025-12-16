@@ -728,6 +728,9 @@ export default function Index() {
   const [statusFilter, setStatusFilter] = useState<string>('All statuses');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
+  // Selected recommendations state
+  const [selectedRecommendations, setSelectedRecommendations] = useState<{[key: string]: number}>({});
+
   const handleResizeStart = (e: React.MouseEvent, column: string, currentWidth: number) => {
     e.preventDefault();
     e.stopPropagation();
