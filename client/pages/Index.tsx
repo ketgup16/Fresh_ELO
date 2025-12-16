@@ -2203,6 +2203,31 @@ export default function Index() {
                           </label>
                         </div>
                       </div>
+
+                      {/* Pace Filter Section */}
+                      <div className="mb-3 mt-6">
+                        <div className="text-sm font-bold text-[#2E2F32] mb-3">Pace</div>
+                        <div className="space-y-3">
+                          <label className="flex items-start gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
+                              checked={tempLivePacingFilter.includes('on-track')}
+                              onChange={() => handleToggleLivePacingFilter('on-track')}
+                            />
+                            <span className="text-sm text-[#2A8703]">On track</span>
+                          </label>
+                          <label className="flex items-start gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
+                              checked={tempLivePacingFilter.includes('at-risk')}
+                              onChange={() => handleToggleLivePacingFilter('at-risk')}
+                            />
+                            <span className="text-sm text-[#995213]">At risk</span>
+                          </label>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Divider */}
