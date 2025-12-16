@@ -1906,7 +1906,7 @@ export default function Index() {
               <div className="flex items-center gap-2 relative">
                 {/* All Filters Button */}
                 <button
-                  className={`flex items-center h-8 px-2 border-2 rounded-full transition-all ${
+                  className={`flex items-center h-8 px-2 border-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
                     showAllFiltersPopover
                       ? 'border-[#0053E2] bg-[#E9F1FE]'
                       : 'border-[#909196] bg-white hover:bg-gray-50'
@@ -1919,7 +1919,7 @@ export default function Index() {
                 {/* Live Filter Button with Popover */}
                 <div className="relative">
                   <button
-                    className={`flex items-center gap-1 h-8 px-2 border-2 rounded-full transition-all ${
+                    className={`flex items-center gap-1 h-8 px-2 border-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
                       liveFilterSelected || showLiveFilterPopover
                         ? 'border-[#0053E2] bg-[#E9F1FE]'
                         : 'border-[#909196] bg-white hover:bg-gray-50'
