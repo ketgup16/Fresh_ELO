@@ -1388,7 +1388,6 @@ export default function Index() {
   const [showLiveFilterPopover, setShowLiveFilterPopover] = useState(false);
   const [livePacingFilter, setLivePacingFilter] = useState<string[]>([]);
   const [tempLivePacingFilter, setTempLivePacingFilter] = useState<string[]>([]);
-  const [liveFilterSelected, setLiveFilterSelected] = useState(false);
   const [completedFilterSelected, setCompletedFilterSelected] = useState(false);
   const allFiltersPopoverRef = useRef<HTMLDivElement>(null);
   const liveFilterPopoverRef = useRef<HTMLDivElement>(null);
