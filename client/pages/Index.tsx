@@ -1419,8 +1419,8 @@ export default function Index() {
   const getSortedCampaigns = () => {
     // First filter by status
     let filtered = campaigns;
-    if (statusFilter !== 'All statuses') {
-      filtered = campaigns.filter(campaign => campaign.status === statusFilter);
+    if (statusFilter.length > 0) {
+      filtered = campaigns.filter(campaign => statusFilter.includes(campaign.status));
     }
 
     // Then filter by search query
