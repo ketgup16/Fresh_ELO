@@ -1933,7 +1933,7 @@ export default function Index() {
                       ? 'border-[#0053E2] bg-[#E9F1FE]'
                       : 'border-[#909196] bg-white hover:bg-gray-50'
                   }`}
-                  onClick={() => setShowAllFiltersPopover(!showAllFiltersPopover)}
+                  onClick={handleOpenAllFilters}
                 >
                   <Sliders className="w-4 h-4 text-[#2E2F32]" />
                 </button>
