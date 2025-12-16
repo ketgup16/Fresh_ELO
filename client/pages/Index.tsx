@@ -1628,22 +1628,19 @@ export default function Index() {
       if (recPopoverRef.current && !recPopoverRef.current.contains(event.target as Node)) {
         setShowRecommendationPopover(null);
       }
-      if (allFiltersPopoverRef.current && !allFiltersPopoverRef.current.contains(event.target as Node)) {
-        setShowAllFiltersPopover(false);
-      }
       if (liveFilterPopoverRef.current && !liveFilterPopoverRef.current.contains(event.target as Node)) {
         setShowLiveFilterPopover(false);
       }
     };
 
-    if (showPopover || showRecommendationPopover || showAllFiltersPopover || showLiveFilterPopover) {
+    if (showPopover || showRecommendationPopover || showLiveFilterPopover) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showPopover, showRecommendationPopover, showAllFiltersPopover, showLiveFilterPopover]);
+  }, [showPopover, showRecommendationPopover, showLiveFilterPopover]);
 
   useEffect(() => {
     if (showPanel && !panelClosing) {
