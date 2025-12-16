@@ -1919,13 +1919,16 @@ export default function Index() {
                 {/* Live Filter Button with Popover */}
                 <div className="relative">
                   <button
-                    className={`flex items-center gap-1 h-8 px-2 pl-1 border-2 rounded-full transition-all ${
+                    className={`flex items-center gap-1 h-8 px-2 border-2 rounded-full transition-all ${
                       liveFilterSelected || showLiveFilterPopover
                         ? 'border-[#0053E2] bg-[#E9F1FE]'
                         : 'border-[#909196] bg-white hover:bg-gray-50'
                     }`}
                     onClick={() => setShowLiveFilterPopover(!showLiveFilterPopover)}
                   >
+                    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                      <rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                    </svg>
                     <span className="text-sm text-[#2E2F32]">Live</span>
                     <span className="text-sm text-[#2E2F32]">(2)</span>
                     <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
