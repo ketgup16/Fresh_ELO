@@ -1399,7 +1399,7 @@ export default function Index() {
                         <td className="p-2 text-[#2E2F32]" style={{ width: columnWidths.targetingStrategy }}>
                           {campaign.targetingStrategy || "-"}
                         </td>
-                        <td className="p-2 text-[#2E2F32] border-l border-[#E3E4E5]" style={{ width: columnWidths.impressions }}>
+                        <td className="p-2 text-[#2E2F32]" style={{ width: columnWidths.impressions }}>
                           {campaign.impressions || "-"}
                         </td>
                         <td className="p-2" style={{ width: columnWidths.pacing }}>
@@ -1533,7 +1533,7 @@ export default function Index() {
                           </td>
                           <td className="p-2 text-[#2E2F32]" style={{ width: columnWidths.totalBudget }}>{child.totalBudget || "-"}</td>
                           <td className="p-2 text-[#2E2F32]" style={{ width: columnWidths.targetingStrategy }}>{child.targetingStrategy || "-"}</td>
-                          <td className="p-2 text-[#2E2F32] border-l border-[#E3E4E5]" style={{ width: columnWidths.impressions }}>{child.impressions || "-"}</td>
+                          <td className="p-2 text-[#2E2F32]" style={{ width: columnWidths.impressions }}>{child.impressions || "-"}</td>
                           <td className="p-2" style={{ width: columnWidths.pacing }}>
                             {child.pacing ? (
                               <span className={child.pacing.color}>{child.pacing.value}</span>
