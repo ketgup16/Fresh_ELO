@@ -2015,7 +2015,7 @@ export default function Index() {
                 <button
                   className={`flex items-center justify-center h-8 w-8 px-1.5 border rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
                     showAllFiltersPopover
-                      ? 'border-[#0053E2] bg-[#E9F1FE]'
+                      ? 'border-2 border-[#0053E2] bg-[#E9F1FE]'
                       : 'border-[rgba(46,47,50,1)] bg-white hover:bg-gray-50'
                   }`}
                   onClick={handleOpenAllFilters}
@@ -2035,7 +2035,7 @@ export default function Index() {
                   <button
                     className={`flex items-center gap-1 h-8 pl-3 pr-2 border rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
                       livePacingFilter.length > 0 || showLiveFilterPopover
-                        ? 'border-[#0053E2] bg-[#E9F1FE]'
+                        ? 'border-2 border-[#0053E2] bg-[#E9F1FE]'
                         : 'border-[rgba(46,47,50,1)] bg-white hover:bg-gray-50'
                     }`}
                     onClick={handleOpenLiveFilter}
@@ -2113,7 +2113,7 @@ export default function Index() {
                 <button
                   className={`flex items-center gap-1 h-8 px-3 border rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
                     completedFilterSelected
-                      ? 'border-[#0053E2] bg-[#E9F1FE]'
+                      ? 'border-2 border-[#0053E2] bg-[#E9F1FE]'
                       : 'border-[rgba(46,47,50,1)] bg-white hover:bg-gray-50'
                   }`}
                   onClick={() => setCompletedFilterSelected(!completedFilterSelected)}
