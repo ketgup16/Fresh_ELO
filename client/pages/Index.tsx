@@ -1385,6 +1385,9 @@ export default function Index() {
   // Selected recommendations state
   const [selectedRecommendations, setSelectedRecommendations] = useState<{[key: string]: number}>({});
 
+  // Selected rows state
+  const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
+
   const handleResizeStart = (e: React.MouseEvent, column: string, currentWidth: number) => {
     e.preventDefault();
     e.stopPropagation();
