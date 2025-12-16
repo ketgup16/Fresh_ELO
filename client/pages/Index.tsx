@@ -1906,21 +1906,71 @@ export default function Index() {
               <div className="flex items-center gap-2 relative">
                 {/* All Filters Button */}
                 <button
-                  className="flex items-center h-8 px-2 border border-[#909196] rounded-full bg-white hover:bg-gray-50 transition-colors"
+                  className={`flex items-center h-8 px-2 border-2 rounded-full transition-all ${
+                    showAllFiltersPopover
+                      ? 'border-[#0053E2] bg-[#E9F1FE]'
+                      : 'border-[#909196] bg-white hover:bg-gray-50'
+                  }`}
                   onClick={() => setShowAllFiltersPopover(!showAllFiltersPopover)}
                 >
                   <Sliders className="w-4 h-4 text-[#2E2F32]" />
                 </button>
 
-                {/* Live Filter Button */}
-                <button className="flex items-center gap-1 h-8 px-2 pl-1 border border-[#909196] rounded-full bg-white hover:bg-gray-50 transition-colors">
-                  <span className="text-sm text-[#2E2F32]">Live</span>
-                  <span className="text-sm text-[#2E2F32]">(2)</span>
-                  <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
-                </button>
+                {/* Live Filter Button with Popover */}
+                <div className="relative">
+                  <button
+                    className={`flex items-center gap-1 h-8 px-2 pl-1 border-2 rounded-full transition-all ${
+                      liveFilterSelected || showLiveFilterPopover
+                        ? 'border-[#0053E2] bg-[#E9F1FE]'
+                        : 'border-[#909196] bg-white hover:bg-gray-50'
+                    }`}
+                    onClick={() => setShowLiveFilterPopover(!showLiveFilterPopover)}
+                  >
+                    <span className="text-sm text-[#2E2F32]">Live</span>
+                    <span className="text-sm text-[#2E2F32]">(2)</span>
+                    <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+                  </button>
+
+                  {/* Live Filter Popover */}
+                  {showLiveFilterPopover && (
+                    <div
+                      ref={liveFilterPopoverRef}
+                      className="absolute left-0 top-full mt-2 w-[160px] bg-white rounded border border-[#D5D6D8] shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50"
+                    >
+                      {/* Nubbin (Arrow) */}
+                      <div className="absolute -top-[9px] left-4 w-4 h-4 bg-white border-t border-l border-[#D5D6D8] transform rotate-45"></div>
+
+                      <div className="p-3 space-y-2">
+                        <label className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded">
+                          <input
+                            type="checkbox"
+                            className="w-5 h-5 rounded border-2 border-[#909196] accent-black"
+                            checked={true}
+                          />
+                          <span className="text-sm text-[#2E2F32]">Option 1</span>
+                        </label>
+                        <label className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded">
+                          <input
+                            type="checkbox"
+                            className="w-5 h-5 rounded border-2 border-[#909196] accent-black"
+                            checked={true}
+                          />
+                          <span className="text-sm text-[#2E2F32]">Option 2</span>
+                        </label>
+                      </div>
+                    </div>
+                  )}
+                </div>
 
                 {/* Completed Toggle Button */}
-                <button className="flex items-center h-8 px-2 pl-1 border border-[#909196] rounded-full bg-white hover:bg-gray-50 transition-colors">
+                <button
+                  className={`flex items-center h-8 px-2 pl-1 border-2 rounded-full transition-all ${
+                    completedFilterSelected
+                      ? 'border-[#0053E2] bg-[#E9F1FE]'
+                      : 'border-[#909196] bg-white hover:bg-gray-50'
+                  }`}
+                  onClick={() => setCompletedFilterSelected(!completedFilterSelected)}
+                >
                   <span className="text-sm text-[#2E2F32]">Completed</span>
                 </button>
               </div>
