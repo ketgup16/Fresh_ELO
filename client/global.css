@@ -133,16 +133,10 @@
 /* Everyday Sans UI Font */
 @font-face {
   font-family: 'Everyday Sans UI';
-  src: local('Arial'), local('Helvetica'), local('sans-serif');
-  font-weight: 400;
+  src: url('https://cdn.builder.io/o/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F43c5a8e1e3d345ca97f388b1cc881aac?alt=media&token=c5b000cb-35e4-4fdd-8604-da74b13c9828&apiKey=02297b1ff48d4a2f8e4d9ed415c47ecf') format('truetype');
+  font-weight: 100 900;
   font-style: normal;
-}
-
-@font-face {
-  font-family: 'Everyday Sans UI';
-  src: local('Arial Bold'), local('Helvetica Bold'), local('sans-serif');
-  font-weight: 700;
-  font-style: normal;
+  font-display: swap;
 }
 
 /* Animations */
