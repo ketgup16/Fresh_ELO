@@ -2007,6 +2007,15 @@ export default function Index() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="p-0.5 hover:bg-gray-100 rounded-full transition-colors"
+                    aria-label="Clear search"
+                  >
+                    <X className="w-4 h-4 text-[#2E2F32]" />
+                  </button>
+                )}
               </div>
 
               {/* Filter Buttons */}
