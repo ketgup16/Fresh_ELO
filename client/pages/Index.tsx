@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronRight, ChevronDown, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X } from "lucide-react";
+import { ChevronRight, ChevronDown, ChevronUp, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X, Home, Megaphone, Gauge, BarChart3, Briefcase, Video, CloudUpload, ArrowRight } from "lucide-react";
 
 interface Campaign {
   id: string;
@@ -1400,6 +1400,10 @@ export default function Index() {
   // Selected rows state
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
 
+  // Sidebar state
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
+  const [activeMenuItem, setActiveMenuItem] = useState('home');
+
   const handleResizeStart = (e: React.MouseEvent, column: string, currentWidth: number) => {
     e.preventDefault();
     e.stopPropagation();
@@ -1900,21 +1904,88 @@ export default function Index() {
 
       <div className="flex h-[calc(100vh-54px)]">
         {/* Sidebar */}
-        <aside className="w-[52px] border-r border-[#E3E4E5] bg-white flex flex-col items-center py-1.5 gap-0 h-auto self-stretch">
-          <button className="w-10 h-10 flex items-center justify-center rounded hover:bg-gray-100">
-            <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-              <path fillRule="evenodd" clipRule="evenodd" d="M8.24935 1.06655L8.32298 1.11831L14.823 6.61831C15.0338 6.79668 15.0601 7.11217 14.8817 7.32297C14.7231 7.51035 14.4563 7.55194 14.2509 7.4336L14.177 7.38169L14 7.231L14 14.5C14 14.7455 13.8231 14.9496 13.5899 14.9919L13.5 15H9.50001C9.25455 15 9.0504 14.8231 9.00807 14.5899L9.00001 14.5V12C9.00001 11.4477 8.55229 11 8.00001 11C7.48717 11 7.0645 11.386 7.00674 11.8834L7.00001 12V14.5C7.00001 14.7455 6.82314 14.9496 6.58989 14.9919L6.50001 15H2.50001C2.25455 15 2.0504 14.8231 2.00807 14.5899L2.00001 14.5L2 7.23L1.82298 7.38169C1.6356 7.54025 1.36551 7.53709 1.18252 7.38638L1.11832 7.32297C0.959765 7.13559 0.96292 6.8655 1.11363 6.68251L1.17704 6.61831L7.67704 1.11831C7.84016 0.980282 8.06964 0.963029 8.24935 1.06655ZM8.00001 2.154L2.98892 6.39477L3.00001 6.5V14H6.00001V12C6.00001 10.9456 6.81589 10.0818 7.85075 10.0055L8.00001 10C9.05437 10 9.91818 10.8159 9.99452 11.8507L10 12V14H13V6.5C13 6.4639 13.0038 6.4287 13.0111 6.39477L8.00001 2.154Z" fill="#2E2F32"/>
-            </svg>
-          </button>
-          <button className="w-10 h-10 flex items-center justify-center rounded bg-transparent">
-            <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-              <path fillRule="evenodd" clipRule="evenodd" d="M13.5 1.85177C13.5 1.25526 12.9016 0.844293 12.3449 1.05843L6.40716 3.34216H4C2.34315 3.34216 1 4.68531 1 6.34216C1 7.93946 2.24832 9.2452 3.82259 9.337L4.01633 10.0766L4.98761 13.7015C5.23776 14.6351 6.19736 15.1891 7.13092 14.9389C8.06448 14.6888 8.6185 13.7292 8.36836 12.7956L7.56202 9.78634L12.3449 11.6259C12.9016 11.84 13.5 11.4291 13.5 10.8326V8.46414C14.3739 8.15526 15 7.32183 15 6.34217C15 5.36251 14.3739 4.52908 13.5 4.2202V1.85177ZM6.3906 9.34216H4.85769L4.98334 9.82182L5.95354 13.4427C6.06075 13.8428 6.472 14.0802 6.8721 13.973C7.2722 13.8658 7.50964 13.4546 7.40244 13.0545L6.44009 9.46297L6.3906 9.34216ZM4.5 4.34216H6V8.34216H4.5V4.34216ZM13.5 7.34226C13.8036 7.11421 14 6.75112 14 6.34217C14 5.93322 13.8036 5.57013 13.5 5.34208V7.34226ZM7 4.18556L12.5 2.07018V10.6141L7 8.49876V4.18556ZM3.5 4.40517C2.63739 4.62719 2 5.41024 2 6.34216C2 7.27408 2.63739 8.05713 3.5 8.27915V4.40517Z" fill="#0053E2"/>
-            </svg>
-          </button>
-          <button className="w-10 h-10 flex items-center justify-center rounded hover:bg-gray-100">
-            <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-              <path d="M2.5 2.5H13.5V4H2.5V2.5ZM2.5 6H13.5V7.5H2.5V6ZM2.5 9.5H13.5V11H2.5V9.5ZM2.5 13H13.5V14.5H2.5V13Z" fill="#2E2F32"/>
-            </svg>
+        <aside className={`${sidebarExpanded ? 'w-[260px]' : 'w-16'} border-r border-[#E3E4E5] bg-white flex flex-col justify-between py-1.5 h-auto self-stretch transition-all duration-300`}>
+          <div className="flex flex-col gap-0">
+            {/* Home */}
+            <button
+              onClick={() => setActiveMenuItem('home')}
+              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'home' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Home"
+            >
+              <Home className={`w-4 h-4 ${activeMenuItem === 'home' ? 'text-[#0053E2] fill-[#0053E2]' : 'text-[#2E2F32]'}`} />
+              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'home' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Home</span>}
+            </button>
+
+            {/* Campaign management */}
+            <button
+              onClick={() => setActiveMenuItem('campaign-management')}
+              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'campaign-management' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Campaign management"
+            >
+              <Megaphone className={`w-4 h-4 ${activeMenuItem === 'campaign-management' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'campaign-management' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaign management</span>}
+            </button>
+
+            {/* Experiments */}
+            <button
+              onClick={() => setActiveMenuItem('experiments')}
+              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'experiments' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Experiments"
+            >
+              <Gauge className={`w-4 h-4 ${activeMenuItem === 'experiments' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'experiments' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Experiments</span>}
+            </button>
+
+            {/* Reports */}
+            <button
+              onClick={() => setActiveMenuItem('reports')}
+              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'reports' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Reports"
+            >
+              <BarChart3 className={`w-4 h-4 ${activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Reports</span>}
+            </button>
+
+            {/* Tools */}
+            <button
+              onClick={() => setActiveMenuItem('tools')}
+              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'tools' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Tools"
+            >
+              <Briefcase className={`w-4 h-4 ${activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Tools</span>}
+            </button>
+
+            {/* Video manager */}
+            <button
+              onClick={() => setActiveMenuItem('video-manager')}
+              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'video-manager' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Video manager"
+            >
+              <Video className={`w-4 h-4 ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Video manager</span>}
+            </button>
+
+            {/* Bulk operations */}
+            <button
+              onClick={() => setActiveMenuItem('bulk-operations')}
+              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'bulk-operations' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Bulk operations"
+            >
+              <CloudUpload className={`w-4 h-4 ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Bulk operations</span>}
+            </button>
+          </div>
+
+          {/* Toggle button */}
+          <button
+            onClick={() => setSidebarExpanded(!sidebarExpanded)}
+            className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded hover:bg-gray-100 transition-colors`}
+            aria-label={sidebarExpanded ? 'Collapse sidebar' : 'Expand sidebar'}
+            aria-expanded={sidebarExpanded}
+          >
+            <ArrowRight className="w-4 h-4 text-[#2E2F32]" />
+            {sidebarExpanded && <span className="text-sm text-[#2E2F32]">Lock</span>}
           </button>
         </aside>
 
