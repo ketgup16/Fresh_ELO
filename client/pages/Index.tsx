@@ -1917,61 +1917,24 @@ export default function Index() {
               <span className={`text-sm whitespace-nowrap transition-opacity duration-100 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'dashboard' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Dashboard</span>
             </button>
 
-            {/* Campaign management group */}
-            <div className="flex flex-col gap-0">
-              <button
-                onClick={() => {
-                  if (sidebarExpanded) {
-                    setExpandedMenuGroups(prev =>
-                      prev.includes('campaign-management')
-                        ? prev.filter(g => g !== 'campaign-management')
-                        : [...prev, 'campaign-management']
-                    );
-                  }
-                  setActiveMenuItem('campaign-management');
-                }}
-                className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem.startsWith('campaign-') ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
-                aria-label="Campaign management"
-              >
-                <Megaphone className={`w-4 h-4 ${activeMenuItem.startsWith('campaign-') ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-                <span className={`text-sm whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem.startsWith('campaign-') ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaign management</span>
-              </button>
-              {sidebarExpanded && expandedMenuGroups.includes('campaign-management') && (
-                <>
-                  <button
-                    onClick={() => setActiveMenuItem('campaign-all-campaigns')}
-                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
-                  >
-                    <div className="w-10 h-7 flex items-center justify-center">
-                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
-                        <circle cx="20" cy="14" r={activeMenuItem === 'campaign-all-campaigns' ? '3' : '2.5'} fill={activeMenuItem === 'campaign-all-campaigns' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaign-all-campaigns' ? 'none' : '#2E2F32'} />
-                      </svg>
-                    </div>
-                    <span className={`text-sm flex-1 whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'campaign-all-campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>All campaigns</span>
-                  </button>
-                  <button
-                    onClick={() => setActiveMenuItem('campaign-all-keywords')}
-                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
-                  >
-                    <div className="w-10 h-7 flex items-center justify-center">
-                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
-                        <circle cx="20" cy="14" r={activeMenuItem === 'campaign-all-keywords' ? '3' : '2.5'} fill={activeMenuItem === 'campaign-all-keywords' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaign-all-keywords' ? 'none' : '#2E2F32'} />
-                      </svg>
-                    </div>
-                    <span className={`text-sm flex-1 whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'campaign-all-keywords' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>All keywords</span>
-                  </button>
-                </>
-              )}
-            </div>
-
-            {/* Experiments */}
+            {/* Campaigns */}
             <button
-              onClick={() => setActiveMenuItem('experiments')}
-              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'experiments' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Experiments"
+              onClick={() => setActiveMenuItem('campaigns')}
+              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'campaigns' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Campaigns"
             >
-              <Gauge className={`w-4 h-4 ${activeMenuItem === 'experiments' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              <span className={`text-sm whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'experiments' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Experiments</span>
+              <Megaphone className={`w-4 h-4 ${activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+              <span className={`text-sm whitespace-nowrap transition-opacity duration-100 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaigns</span>
+            </button>
+
+            {/* Performance */}
+            <button
+              onClick={() => setActiveMenuItem('performance')}
+              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'performance' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Performance"
+            >
+              <BarChart3 className={`w-4 h-4 ${activeMenuItem === 'performance' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+              <span className={`text-sm whitespace-nowrap transition-opacity duration-100 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'performance' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Performance</span>
             </button>
 
             {/* Reports group */}
