@@ -1914,7 +1914,7 @@ export default function Index() {
               aria-label="Home"
             >
               <Home className={`w-4 h-4 ${activeMenuItem === 'home' ? 'text-[#0053E2] fill-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'home' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Home</span>}
+              <span className={`text-sm whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'home' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Home</span>
             </button>
 
             {/* Campaign management group */}
@@ -1934,7 +1934,7 @@ export default function Index() {
                 aria-label="Campaign management"
               >
                 <Megaphone className={`w-4 h-4 ${activeMenuItem.startsWith('campaign-') ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-                {sidebarExpanded && <span className={`text-sm ${activeMenuItem.startsWith('campaign-') ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaign management</span>}
+                <span className={`text-sm whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem.startsWith('campaign-') ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaign management</span>
               </button>
               {sidebarExpanded && expandedMenuGroups.includes('campaign-management') && (
                 <>
@@ -1971,7 +1971,7 @@ export default function Index() {
               aria-label="Experiments"
             >
               <Gauge className={`w-4 h-4 ${activeMenuItem === 'experiments' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'experiments' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Experiments</span>}
+              <span className={`text-sm whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'experiments' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Experiments</span>
             </button>
 
             {/* Reports group */}
@@ -1991,7 +1991,7 @@ export default function Index() {
                 aria-label="Reports"
               >
                 <BarChart3 className={`w-4 h-4 ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-                {sidebarExpanded && <span className={`text-sm ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Reports</span>}
+                <span className={`text-sm whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Reports</span>
               </button>
               {sidebarExpanded && expandedMenuGroups.includes('reports') && (
                 <>
@@ -2060,7 +2060,7 @@ export default function Index() {
                 aria-label="Tools"
               >
                 <Briefcase className={`w-4 h-4 ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-                {sidebarExpanded && <span className={`text-sm ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Tools</span>}
+                <span className={`text-sm whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Tools</span>
               </button>
               {sidebarExpanded && expandedMenuGroups.includes('tools') && (
                 <>
@@ -2097,7 +2097,7 @@ export default function Index() {
               aria-label="Video manager"
             >
               <Video className={`w-4 h-4 ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Video manager</span>}
+              <span className={`text-sm whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Video manager</span>
             </button>
 
             {/* Bulk operations */}
@@ -2107,7 +2107,7 @@ export default function Index() {
               aria-label="Bulk operations"
             >
               <CloudUpload className={`w-4 h-4 ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Bulk operations</span>}
+              <span className={`text-sm whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Bulk operations</span>
             </button>
           </div>
 
@@ -2123,7 +2123,7 @@ export default function Index() {
             ) : (
               <ArrowRight className="w-4 h-4 text-[#2E2F32]" />
             )}
-            {sidebarExpanded && <span className="text-sm text-[#2E2F32]">Lock</span>}
+            <span className={`text-sm whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} text-[#2E2F32]`}>Lock</span>
           </button>
         </aside>
 
