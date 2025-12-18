@@ -2106,7 +2106,16 @@ export default function Index() {
 
           {/* Toggle button */}
           <button
-            onClick={() => setSidebarExpanded(!sidebarExpanded)}
+            onClick={() => {
+              if (sidebarExpanded) {
+                setSidebarExpanded(false);
+              } else {
+                setSidebarExpanded(true);
+                if (sidebarWidth < 220) {
+                  setSidebarWidth(260);
+                }
+              }
+            }}
             className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded hover:bg-gray-100 transition-colors`}
             aria-label={sidebarExpanded ? 'Collapse sidebar' : 'Expand sidebar'}
             aria-expanded={sidebarExpanded}
