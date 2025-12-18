@@ -2123,6 +2123,19 @@ export default function Index() {
             )}
             {sidebarExpanded && <span className="text-sm text-[#2E2F32]">Lock</span>}
           </button>
+
+          {/* Resize handle */}
+          {sidebarExpanded && (
+            <div
+              className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                setIsResizingSidebar(true);
+                setSidebarResizeStartX(e.clientX);
+                setSidebarResizeStartWidth(sidebarWidth);
+              }}
+            />
+          )}
         </aside>
 
         {/* Main Content */}
