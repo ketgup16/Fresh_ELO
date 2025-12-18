@@ -1907,14 +1907,14 @@ export default function Index() {
         {/* Sidebar */}
         <aside className={`${sidebarExpanded ? 'w-[260px]' : 'w-16'} border-r border-[#E3E4E5] bg-white flex flex-col justify-between py-1.5 h-auto self-stretch transition-[width] duration-300 overflow-hidden`}>
           <div className="flex flex-col gap-0">
-            {/* Home */}
+            {/* Dashboard */}
             <button
-              onClick={() => setActiveMenuItem('home')}
-              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'home' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Home"
+              onClick={() => setActiveMenuItem('dashboard')}
+              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'dashboard' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Dashboard"
             >
-              <Home className={`w-4 h-4 ${activeMenuItem === 'home' ? 'text-[#0053E2] fill-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              <span className={`text-sm whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'home' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Home</span>
+              <Home className={`w-4 h-4 ${activeMenuItem === 'dashboard' ? 'text-[#0053E2] fill-[#0053E2]' : 'text-[#2E2F32]'}`} />
+              <span className={`text-sm whitespace-nowrap transition-opacity duration-100 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'dashboard' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Dashboard</span>
             </button>
 
             {/* Campaign management group */}
