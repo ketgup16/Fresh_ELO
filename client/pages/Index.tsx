@@ -2159,8 +2159,8 @@ export default function Index() {
                 setSidebarExpanded(false);
               } else {
                 setSidebarExpanded(true);
-                if (sidebarWidth < 240) {
-                  setSidebarWidth(260);
+                if (sidebarWidth < 220) {
+                  setSidebarWidth(220);
                 }
               }
             }}
