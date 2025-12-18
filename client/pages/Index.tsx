@@ -1918,7 +1918,11 @@ export default function Index() {
               className="flex items-center gap-1 text-xs hover:bg-gray-100 px-2 py-1 rounded transition-colors"
             >
               <span className="text-[#2E2F32]">Display</span>
-              <ChevronDown className="w-4 h-4" />
+              {mediaSolutionsOpen ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
             </button>
 
             {mediaSolutionsOpen && (
