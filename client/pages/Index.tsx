@@ -1905,7 +1905,7 @@ export default function Index() {
 
       <div className="flex h-[calc(100vh-54px)]">
         {/* Sidebar */}
-        <aside className={`${sidebarExpanded ? 'w-[260px]' : 'w-16'} border-r border-[#E3E4E5] bg-white flex flex-col justify-between py-1.5 h-auto self-stretch transition-[width] duration-300 overflow-hidden`}>
+        <aside className={`${sidebarExpanded ? 'w-[260px]' : 'w-16'} border-r border-[#E3E4E5] bg-white flex flex-col justify-between py-1.5 h-auto self-stretch overflow-hidden`} style={{ transition: 'width 250ms ease-in-out 100ms' }}>
           <div className="flex flex-col gap-0">
             {/* Home */}
             <button
