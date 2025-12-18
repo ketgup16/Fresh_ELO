@@ -1641,6 +1641,37 @@ export default function Index() {
     };
   }, [resizingColumn, startX, startWidth]);
 
+  // Sidebar resize effect
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isResizingSidebar) return;
+
+      const diff = e.clientX - sidebarResizeStartX;
+      const newWidth = Math.max(64, Math.min(600, sidebarResizeStartWidth + diff));
+
+      setSidebarWidth(newWidth);
+      if (newWidth < 200 && sidebarExpanded) {
+        setSidebarExpanded(false);
+      } else if (newWidth >= 200 && !sidebarExpanded) {
+        setSidebarExpanded(true);
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsResizingSidebar(false);
+    };
+
+    if (isResizingSidebar) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isResizingSidebar, sidebarResizeStartX, sidebarResizeStartWidth, sidebarExpanded]);
+
   // Reset to page 1 when filters or search changes
   useEffect(() => {
     setCurrentPage(1);
