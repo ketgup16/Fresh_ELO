@@ -1947,7 +1947,7 @@ export default function Index() {
                         <circle cx="20" cy="14" r={activeMenuItem === 'campaign-all-campaigns' ? '3' : '2.5'} fill={activeMenuItem === 'campaign-all-campaigns' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaign-all-campaigns' ? 'none' : '#2E2F32'} />
                       </svg>
                     </div>
-                    <span className={`text-sm flex-1 ${activeMenuItem === 'campaign-all-campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>All campaigns</span>
+                    <span className={`text-sm flex-1 whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'campaign-all-campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>All campaigns</span>
                   </button>
                   <button
                     onClick={() => setActiveMenuItem('campaign-all-keywords')}
@@ -1958,7 +1958,7 @@ export default function Index() {
                         <circle cx="20" cy="14" r={activeMenuItem === 'campaign-all-keywords' ? '3' : '2.5'} fill={activeMenuItem === 'campaign-all-keywords' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaign-all-keywords' ? 'none' : '#2E2F32'} />
                       </svg>
                     </div>
-                    <span className={`text-sm flex-1 ${activeMenuItem === 'campaign-all-keywords' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>All keywords</span>
+                    <span className={`text-sm flex-1 whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'campaign-all-keywords' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>All keywords</span>
                   </button>
                 </>
               )}
@@ -2004,7 +2004,7 @@ export default function Index() {
                         <circle cx="20" cy="14" r={activeMenuItem === 'reports-advertiser' ? '3' : '2.5'} fill={activeMenuItem === 'reports-advertiser' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-advertiser' ? 'none' : '#2E2F32'} />
                       </svg>
                     </div>
-                    <span className={`text-sm flex-1 ${activeMenuItem === 'reports-advertiser' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Advertiser</span>
+                    <span className={`text-sm flex-1 whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'reports-advertiser' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Advertiser</span>
                   </button>
                   <button
                     onClick={() => setActiveMenuItem('reports-item-health')}
@@ -2015,7 +2015,7 @@ export default function Index() {
                         <circle cx="20" cy="14" r={activeMenuItem === 'reports-item-health' ? '3' : '2.5'} fill={activeMenuItem === 'reports-item-health' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-item-health' ? 'none' : '#2E2F32'} />
                       </svg>
                     </div>
-                    <span className={`text-sm flex-1 ${activeMenuItem === 'reports-item-health' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Item health</span>
+                    <span className={`text-sm flex-1 whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'reports-item-health' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Item health</span>
                   </button>
                   <button
                     onClick={() => setActiveMenuItem('reports-on-demand')}
@@ -2026,7 +2026,7 @@ export default function Index() {
                         <circle cx="20" cy="14" r={activeMenuItem === 'reports-on-demand' ? '3' : '2.5'} fill={activeMenuItem === 'reports-on-demand' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-on-demand' ? 'none' : '#2E2F32'} />
                       </svg>
                     </div>
-                    <span className={`text-sm flex-1 ${activeMenuItem === 'reports-on-demand' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>On-demand</span>
+                    <span className={`text-sm flex-1 whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'reports-on-demand' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>On-demand</span>
                   </button>
                   <button
                     onClick={() => setActiveMenuItem('reports-custom')}
@@ -2037,7 +2037,7 @@ export default function Index() {
                         <circle cx="20" cy="14" r={activeMenuItem === 'reports-custom' ? '3' : '2.5'} fill={activeMenuItem === 'reports-custom' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-custom' ? 'none' : '#2E2F32'} />
                       </svg>
                     </div>
-                    <span className={`text-sm flex-1 ${activeMenuItem === 'reports-custom' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Custom</span>
+                    <span className={`text-sm flex-1 whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'reports-custom' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Custom</span>
                   </button>
                 </>
               )}
@@ -2073,7 +2073,7 @@ export default function Index() {
                         <circle cx="20" cy="14" r={activeMenuItem === 'tools-keywords-planner' ? '3' : '2.5'} fill={activeMenuItem === 'tools-keywords-planner' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'tools-keywords-planner' ? 'none' : '#2E2F32'} />
                       </svg>
                     </div>
-                    <span className={`text-sm flex-1 ${activeMenuItem === 'tools-keywords-planner' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Keywords planner</span>
+                    <span className={`text-sm flex-1 whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'tools-keywords-planner' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Keywords planner</span>
                   </button>
                   <button
                     onClick={() => setActiveMenuItem('tools-rules')}
@@ -2084,7 +2084,7 @@ export default function Index() {
                         <circle cx="20" cy="14" r={activeMenuItem === 'tools-rules' ? '3' : '2.5'} fill={activeMenuItem === 'tools-rules' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'tools-rules' ? 'none' : '#2E2F32'} />
                       </svg>
                     </div>
-                    <span className={`text-sm flex-1 ${activeMenuItem === 'tools-rules' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Rules</span>
+                    <span className={`text-sm flex-1 whitespace-nowrap transition-opacity duration-150 ${sidebarExpanded ? 'opacity-100' : 'opacity-0'} ${activeMenuItem === 'tools-rules' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Rules</span>
                   </button>
                 </>
               )}
