@@ -1947,15 +1947,63 @@ export default function Index() {
               {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem === 'dashboard' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Dashboard</span>}
             </button>
 
-            {/* Campaigns */}
-            <button
-              onClick={() => setActiveMenuItem('campaigns')}
-              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'campaigns' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Campaigns"
-            >
-              <Megaphone className={`w-4 h-4 ${activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaigns</span>}
-            </button>
+            {/* Campaigns group */}
+            <div className="flex flex-col gap-0">
+              <button
+                onClick={() => {
+                  if (sidebarExpanded) {
+                    setExpandedMenuGroups(prev =>
+                      prev.includes('campaigns')
+                        ? prev.filter(g => g !== 'campaigns')
+                        : [...prev, 'campaigns']
+                    );
+                  }
+                  setActiveMenuItem('campaigns');
+                }}
+                className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem.startsWith('campaigns-') || activeMenuItem === 'campaigns' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+                aria-label="Campaigns"
+              >
+                <Megaphone className={`w-4 h-4 ${activeMenuItem.startsWith('campaigns-') || activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+                {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem.startsWith('campaigns-') || activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaigns</span>}
+              </button>
+              {sidebarExpanded && expandedMenuGroups.includes('campaigns') && (
+                <>
+                  <button
+                    onClick={() => setActiveMenuItem('campaigns-active')}
+                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-10 h-7 flex items-center justify-center">
+                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
+                        <circle cx="20" cy="14" r={activeMenuItem === 'campaigns-active' ? '3' : '2.5'} fill={activeMenuItem === 'campaigns-active' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaigns-active' ? 'none' : '#2E2F32'} />
+                      </svg>
+                    </div>
+                    <span className={`text-sm flex-1 truncate ${activeMenuItem === 'campaigns-active' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Active</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveMenuItem('campaigns-draft')}
+                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-10 h-7 flex items-center justify-center">
+                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
+                        <circle cx="20" cy="14" r={activeMenuItem === 'campaigns-draft' ? '3' : '2.5'} fill={activeMenuItem === 'campaigns-draft' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaigns-draft' ? 'none' : '#2E2F32'} />
+                      </svg>
+                    </div>
+                    <span className={`text-sm flex-1 truncate ${activeMenuItem === 'campaigns-draft' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Draft</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveMenuItem('campaigns-archived')}
+                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-10 h-7 flex items-center justify-center">
+                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
+                        <circle cx="20" cy="14" r={activeMenuItem === 'campaigns-archived' ? '3' : '2.5'} fill={activeMenuItem === 'campaigns-archived' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaigns-archived' ? 'none' : '#2E2F32'} />
+                      </svg>
+                    </div>
+                    <span className={`text-sm flex-1 truncate ${activeMenuItem === 'campaigns-archived' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Archived</span>
+                  </button>
+                </>
+              )}
+            </div>
 
             {/* Performance */}
             <button
