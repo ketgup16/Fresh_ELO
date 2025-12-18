@@ -2041,7 +2041,11 @@ export default function Index() {
                     onClick={() => setShowSearchScopeDropdown(!showSearchScopeDropdown)}
                   >
                     {searchScope}
-                    <ChevronDown className="w-4 h-4" />
+                    {showSearchScopeDropdown ? (
+                      <ChevronUp className="w-4 h-4" />
+                    ) : (
+                      <ChevronDown className="w-4 h-4" />
+                    )}
                   </button>
 
                   {/* Search Scope Dropdown */}
@@ -2122,7 +2126,11 @@ export default function Index() {
                   >
                     <span className="text-sm text-[#2E2F32]">Pace</span>
                     <span className="text-sm text-[#2E2F32]">({showLiveFilterPopover ? tempLivePacingFilter.length : livePacingFilter.length})</span>
-                    <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+                    {showLiveFilterPopover ? (
+                      <ChevronUp className="w-4 h-4 text-[#2E2F32]" />
+                    ) : (
+                      <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+                    )}
                   </button>
 
                   {/* Live Filter Popover */}
