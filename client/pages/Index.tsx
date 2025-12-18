@@ -1954,7 +1954,7 @@ export default function Index() {
                 aria-label="Reports"
               >
                 <BarChart3 className={`w-4 h-4 ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-                {sidebarExpanded && <span className={`text-sm ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Reports</span>}
+                <span className={`text-sm whitespace-nowrap transition-opacity duration-200 ${sidebarExpanded ? 'opacity-100 delay-150' : 'opacity-0'} ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Reports</span>
               </button>
               {sidebarExpanded && expandedMenuGroups.includes('reports') && (
                 <>
@@ -2023,7 +2023,7 @@ export default function Index() {
                 aria-label="Tools"
               >
                 <Briefcase className={`w-4 h-4 ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-                {sidebarExpanded && <span className={`text-sm ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Tools</span>}
+                <span className={`text-sm whitespace-nowrap transition-opacity duration-200 ${sidebarExpanded ? 'opacity-100 delay-150' : 'opacity-0'} ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Tools</span>
               </button>
               {sidebarExpanded && expandedMenuGroups.includes('tools') && (
                 <>
