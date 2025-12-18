@@ -1647,14 +1647,9 @@ export default function Index() {
       if (!isResizingSidebar) return;
 
       const diff = e.clientX - sidebarResizeStartX;
-      const newWidth = Math.max(64, Math.min(600, sidebarResizeStartWidth + diff));
+      const newWidth = Math.max(220, Math.min(600, sidebarResizeStartWidth + diff));
 
       setSidebarWidth(newWidth);
-      if (newWidth < 200 && sidebarExpanded) {
-        setSidebarExpanded(false);
-      } else if (newWidth >= 200 && !sidebarExpanded) {
-        setSidebarExpanded(true);
-      }
     };
 
     const handleMouseUp = () => {
@@ -1670,7 +1665,7 @@ export default function Index() {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isResizingSidebar, sidebarResizeStartX, sidebarResizeStartWidth, sidebarExpanded]);
+  }, [isResizingSidebar, sidebarResizeStartX, sidebarResizeStartWidth]);
 
   // Reset to page 1 when filters or search changes
   useEffect(() => {
