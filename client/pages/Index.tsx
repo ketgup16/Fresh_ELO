@@ -1944,7 +1944,7 @@ export default function Index() {
               aria-label="Dashboard"
             >
               <Home className={`w-4 h-4 ${activeMenuItem === 'dashboard' ? 'text-[#0053E2] fill-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'dashboard' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Dashboard</span>}
+              {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem === 'dashboard' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Dashboard</span>}
             </button>
 
             {/* Campaigns */}
@@ -1954,7 +1954,7 @@ export default function Index() {
               aria-label="Campaigns"
             >
               <Megaphone className={`w-4 h-4 ${activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaigns</span>}
+              {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaigns</span>}
             </button>
 
             {/* Performance */}
@@ -1964,7 +1964,7 @@ export default function Index() {
               aria-label="Performance"
             >
               <BarChart3 className={`w-4 h-4 ${activeMenuItem === 'performance' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'performance' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Performance</span>}
+              {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem === 'performance' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Performance</span>}
             </button>
 
             {/* Reports group */}
@@ -1984,7 +1984,7 @@ export default function Index() {
                 aria-label="Reports"
               >
                 <BarChart3 className={`w-4 h-4 ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-                {sidebarExpanded && <span className={`text-sm ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Reports</span>}
+                {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Reports</span>}
               </button>
               {sidebarExpanded && expandedMenuGroups.includes('reports') && (
                 <>
@@ -2053,7 +2053,7 @@ export default function Index() {
                 aria-label="Tools"
               >
                 <Briefcase className={`w-4 h-4 ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-                {sidebarExpanded && <span className={`text-sm ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Tools</span>}
+                {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Tools</span>}
               </button>
               {sidebarExpanded && expandedMenuGroups.includes('tools') && (
                 <>
@@ -2090,7 +2090,7 @@ export default function Index() {
               aria-label="Video manager"
             >
               <Video className={`w-4 h-4 ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Video manager</span>}
+              {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Video manager</span>}
             </button>
 
             {/* Bulk operations */}
@@ -2100,7 +2100,7 @@ export default function Index() {
               aria-label="Bulk operations"
             >
               <CloudUpload className={`w-4 h-4 ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Bulk operations</span>}
+              {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Bulk operations</span>}
             </button>
           </div>
 
@@ -2125,7 +2125,7 @@ export default function Index() {
             ) : (
               <ArrowRight className="w-4 h-4 text-[#2E2F32]" />
             )}
-            {sidebarExpanded && <span className="text-sm text-[#2E2F32]">Lock</span>}
+            {sidebarExpanded && <span className="text-sm truncate text-[#2E2F32]">Lock</span>}
           </button>
 
           {/* Resize handle */}
