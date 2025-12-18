@@ -1403,6 +1403,7 @@ export default function Index() {
   // Sidebar state
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
   const [activeMenuItem, setActiveMenuItem] = useState('home');
+  const [expandedMenuGroups, setExpandedMenuGroups] = useState<string[]>([]);
 
   const handleResizeStart = (e: React.MouseEvent, column: string, currentWidth: number) => {
     e.preventDefault();
