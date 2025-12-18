@@ -1917,15 +1917,52 @@ export default function Index() {
               {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'home' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Home</span>}
             </button>
 
-            {/* Campaign management */}
-            <button
-              onClick={() => setActiveMenuItem('campaign-management')}
-              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'campaign-management' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Campaign management"
-            >
-              <Megaphone className={`w-4 h-4 ${activeMenuItem === 'campaign-management' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'campaign-management' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaign management</span>}
-            </button>
+            {/* Campaign management group */}
+            <div className="flex flex-col gap-0">
+              <button
+                onClick={() => {
+                  if (sidebarExpanded) {
+                    setExpandedMenuGroups(prev =>
+                      prev.includes('campaign-management')
+                        ? prev.filter(g => g !== 'campaign-management')
+                        : [...prev, 'campaign-management']
+                    );
+                  }
+                  setActiveMenuItem('campaign-management');
+                }}
+                className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem.startsWith('campaign-') ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+                aria-label="Campaign management"
+              >
+                <Megaphone className={`w-4 h-4 ${activeMenuItem.startsWith('campaign-') ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+                {sidebarExpanded && <span className={`text-sm ${activeMenuItem.startsWith('campaign-') ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaign management</span>}
+              </button>
+              {sidebarExpanded && expandedMenuGroups.includes('campaign-management') && (
+                <>
+                  <button
+                    onClick={() => setActiveMenuItem('campaign-all-campaigns')}
+                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-10 h-7 flex items-center justify-center">
+                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
+                        <circle cx="20" cy="14" r={activeMenuItem === 'campaign-all-campaigns' ? '3' : '2.5'} fill={activeMenuItem === 'campaign-all-campaigns' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaign-all-campaigns' ? 'none' : '#2E2F32'} />
+                      </svg>
+                    </div>
+                    <span className={`text-sm flex-1 ${activeMenuItem === 'campaign-all-campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>All campaigns</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveMenuItem('campaign-all-keywords')}
+                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-10 h-7 flex items-center justify-center">
+                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
+                        <circle cx="20" cy="14" r={activeMenuItem === 'campaign-all-keywords' ? '3' : '2.5'} fill={activeMenuItem === 'campaign-all-keywords' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaign-all-keywords' ? 'none' : '#2E2F32'} />
+                      </svg>
+                    </div>
+                    <span className={`text-sm flex-1 ${activeMenuItem === 'campaign-all-keywords' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>All keywords</span>
+                  </button>
+                </>
+              )}
+            </div>
 
             {/* Experiments */}
             <button
@@ -1937,25 +1974,121 @@ export default function Index() {
               {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'experiments' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Experiments</span>}
             </button>
 
-            {/* Reports */}
-            <button
-              onClick={() => setActiveMenuItem('reports')}
-              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'reports' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Reports"
-            >
-              <BarChart3 className={`w-4 h-4 ${activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Reports</span>}
-            </button>
+            {/* Reports group */}
+            <div className="flex flex-col gap-0">
+              <button
+                onClick={() => {
+                  if (sidebarExpanded) {
+                    setExpandedMenuGroups(prev =>
+                      prev.includes('reports')
+                        ? prev.filter(g => g !== 'reports')
+                        : [...prev, 'reports']
+                    );
+                  }
+                  setActiveMenuItem('reports');
+                }}
+                className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+                aria-label="Reports"
+              >
+                <BarChart3 className={`w-4 h-4 ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+                {sidebarExpanded && <span className={`text-sm ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Reports</span>}
+              </button>
+              {sidebarExpanded && expandedMenuGroups.includes('reports') && (
+                <>
+                  <button
+                    onClick={() => setActiveMenuItem('reports-advertiser')}
+                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-10 h-7 flex items-center justify-center">
+                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
+                        <circle cx="20" cy="14" r={activeMenuItem === 'reports-advertiser' ? '3' : '2.5'} fill={activeMenuItem === 'reports-advertiser' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-advertiser' ? 'none' : '#2E2F32'} />
+                      </svg>
+                    </div>
+                    <span className={`text-sm flex-1 ${activeMenuItem === 'reports-advertiser' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Advertiser</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveMenuItem('reports-item-health')}
+                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-10 h-7 flex items-center justify-center">
+                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
+                        <circle cx="20" cy="14" r={activeMenuItem === 'reports-item-health' ? '3' : '2.5'} fill={activeMenuItem === 'reports-item-health' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-item-health' ? 'none' : '#2E2F32'} />
+                      </svg>
+                    </div>
+                    <span className={`text-sm flex-1 ${activeMenuItem === 'reports-item-health' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Item health</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveMenuItem('reports-on-demand')}
+                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-10 h-7 flex items-center justify-center">
+                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
+                        <circle cx="20" cy="14" r={activeMenuItem === 'reports-on-demand' ? '3' : '2.5'} fill={activeMenuItem === 'reports-on-demand' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-on-demand' ? 'none' : '#2E2F32'} />
+                      </svg>
+                    </div>
+                    <span className={`text-sm flex-1 ${activeMenuItem === 'reports-on-demand' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>On-demand</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveMenuItem('reports-custom')}
+                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-10 h-7 flex items-center justify-center">
+                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
+                        <circle cx="20" cy="14" r={activeMenuItem === 'reports-custom' ? '3' : '2.5'} fill={activeMenuItem === 'reports-custom' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-custom' ? 'none' : '#2E2F32'} />
+                      </svg>
+                    </div>
+                    <span className={`text-sm flex-1 ${activeMenuItem === 'reports-custom' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Custom</span>
+                  </button>
+                </>
+              )}
+            </div>
 
-            {/* Tools */}
-            <button
-              onClick={() => setActiveMenuItem('tools')}
-              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'tools' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Tools"
-            >
-              <Briefcase className={`w-4 h-4 ${activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Tools</span>}
-            </button>
+            {/* Tools group */}
+            <div className="flex flex-col gap-0">
+              <button
+                onClick={() => {
+                  if (sidebarExpanded) {
+                    setExpandedMenuGroups(prev =>
+                      prev.includes('tools')
+                        ? prev.filter(g => g !== 'tools')
+                        : [...prev, 'tools']
+                    );
+                  }
+                  setActiveMenuItem('tools');
+                }}
+                className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+                aria-label="Tools"
+              >
+                <Briefcase className={`w-4 h-4 ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+                {sidebarExpanded && <span className={`text-sm ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Tools</span>}
+              </button>
+              {sidebarExpanded && expandedMenuGroups.includes('tools') && (
+                <>
+                  <button
+                    onClick={() => setActiveMenuItem('tools-keywords-planner')}
+                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-10 h-7 flex items-center justify-center">
+                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
+                        <circle cx="20" cy="14" r={activeMenuItem === 'tools-keywords-planner' ? '3' : '2.5'} fill={activeMenuItem === 'tools-keywords-planner' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'tools-keywords-planner' ? 'none' : '#2E2F32'} />
+                      </svg>
+                    </div>
+                    <span className={`text-sm flex-1 ${activeMenuItem === 'tools-keywords-planner' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Keywords planner</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveMenuItem('tools-rules')}
+                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="w-10 h-7 flex items-center justify-center">
+                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
+                        <circle cx="20" cy="14" r={activeMenuItem === 'tools-rules' ? '3' : '2.5'} fill={activeMenuItem === 'tools-rules' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'tools-rules' ? 'none' : '#2E2F32'} />
+                      </svg>
+                    </div>
+                    <span className={`text-sm flex-1 ${activeMenuItem === 'tools-rules' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Rules</span>
+                  </button>
+                </>
+              )}
+            </div>
 
             {/* Video manager */}
             <button
