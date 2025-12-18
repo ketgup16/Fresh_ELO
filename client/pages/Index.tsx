@@ -1647,7 +1647,7 @@ export default function Index() {
       if (!isResizingSidebar) return;
 
       const diff = e.clientX - sidebarResizeStartX;
-      const newWidth = Math.max(220, Math.min(600, sidebarResizeStartWidth + diff));
+      const newWidth = Math.max(240, Math.min(600, sidebarResizeStartWidth + diff));
 
       setSidebarWidth(newWidth);
     };
