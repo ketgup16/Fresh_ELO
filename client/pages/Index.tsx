@@ -1914,7 +1914,7 @@ export default function Index() {
               aria-label="Dashboard"
             >
               <Home className={`w-4 h-4 ${activeMenuItem === 'dashboard' ? 'text-[#0053E2] fill-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'dashboard' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Dashboard</span>}
+              <span className={`text-sm whitespace-nowrap transition-opacity duration-200 ${sidebarExpanded ? 'opacity-100 delay-150' : 'opacity-0'} ${activeMenuItem === 'dashboard' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Dashboard</span>
             </button>
 
             {/* Campaigns */}
@@ -1924,7 +1924,7 @@ export default function Index() {
               aria-label="Campaigns"
             >
               <Megaphone className={`w-4 h-4 ${activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaigns</span>}
+              <span className={`text-sm whitespace-nowrap transition-opacity duration-200 ${sidebarExpanded ? 'opacity-100 delay-150' : 'opacity-0'} ${activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaigns</span>
             </button>
 
             {/* Performance */}
@@ -1934,7 +1934,7 @@ export default function Index() {
               aria-label="Performance"
             >
               <BarChart3 className={`w-4 h-4 ${activeMenuItem === 'performance' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'performance' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Performance</span>}
+              <span className={`text-sm whitespace-nowrap transition-opacity duration-200 ${sidebarExpanded ? 'opacity-100 delay-150' : 'opacity-0'} ${activeMenuItem === 'performance' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Performance</span>
             </button>
 
             {/* Reports group */}
@@ -2060,7 +2060,7 @@ export default function Index() {
               aria-label="Video manager"
             >
               <Video className={`w-4 h-4 ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Video manager</span>}
+              <span className={`text-sm whitespace-nowrap transition-opacity duration-200 ${sidebarExpanded ? 'opacity-100 delay-150' : 'opacity-0'} ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Video manager</span>
             </button>
 
             {/* Bulk operations */}
@@ -2070,7 +2070,7 @@ export default function Index() {
               aria-label="Bulk operations"
             >
               <CloudUpload className={`w-4 h-4 ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Bulk operations</span>}
+              <span className={`text-sm whitespace-nowrap transition-opacity duration-200 ${sidebarExpanded ? 'opacity-100 delay-150' : 'opacity-0'} ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Bulk operations</span>
             </button>
           </div>
 
@@ -2086,7 +2086,7 @@ export default function Index() {
             ) : (
               <ArrowRight className="w-4 h-4 text-[#2E2F32]" />
             )}
-            {sidebarExpanded && <span className="text-sm text-[#2E2F32]">Lock</span>}
+            <span className={`text-sm whitespace-nowrap transition-opacity duration-200 ${sidebarExpanded ? 'opacity-100 delay-150' : 'opacity-0'} text-[#2E2F32]`}>Lock</span>
           </button>
         </aside>
 
