@@ -2131,13 +2131,14 @@ export default function Index() {
           {/* Resize handle */}
           {sidebarExpanded && (
             <div
-              className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20"
+              className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] transition-colors bg-transparent"
               onMouseDown={(e) => {
                 e.preventDefault();
                 setIsResizingSidebar(true);
                 setSidebarResizeStartX(e.clientX);
                 setSidebarResizeStartWidth(sidebarWidth);
               }}
+              style={{ zIndex: 10 }}
             />
           )}
         </aside>
