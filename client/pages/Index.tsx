@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronRight, ChevronDown, ChevronUp, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X, Home, Megaphone, Gauge, BarChart3, Briefcase, Video, CloudUpload, ArrowRight } from "lucide-react";
+import { ChevronRight, ChevronDown, ChevronUp, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X, Home, Megaphone, Gauge, BarChart3, Briefcase, Video, CloudUpload, ArrowRight, ArrowLeft } from "lucide-react";
 
 interface Campaign {
   id: string;
@@ -2118,7 +2118,11 @@ export default function Index() {
             aria-label={sidebarExpanded ? 'Collapse sidebar' : 'Expand sidebar'}
             aria-expanded={sidebarExpanded}
           >
-            <ArrowRight className="w-4 h-4 text-[#2E2F32]" />
+            {sidebarExpanded ? (
+              <ArrowLeft className="w-4 h-4 text-[#2E2F32]" />
+            ) : (
+              <ArrowRight className="w-4 h-4 text-[#2E2F32]" />
+            )}
             {sidebarExpanded && <span className="text-sm text-[#2E2F32]">Lock</span>}
           </button>
         </aside>
