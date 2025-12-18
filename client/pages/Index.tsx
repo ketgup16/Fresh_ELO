@@ -1402,8 +1402,8 @@ export default function Index() {
 
   // Sidebar state
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
-  const [activeMenuItem, setActiveMenuItem] = useState('campaign-management');
-  const [expandedMenuGroups, setExpandedMenuGroups] = useState<string[]>(['campaign-management']);
+  const [activeMenuItem, setActiveMenuItem] = useState('campaigns');
+  const [expandedMenuGroups, setExpandedMenuGroups] = useState<string[]>([]);
 
   const handleResizeStart = (e: React.MouseEvent, column: string, currentWidth: number) => {
     e.preventDefault();
