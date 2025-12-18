@@ -1404,7 +1404,7 @@ export default function Index() {
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
   const [activeMenuItem, setActiveMenuItem] = useState('campaigns');
   const [expandedMenuGroups, setExpandedMenuGroups] = useState<string[]>([]);
-  const [sidebarWidth, setSidebarWidth] = useState(260);
+  const [sidebarWidth, setSidebarWidth] = useState(220);
   const [isResizingSidebar, setIsResizingSidebar] = useState(false);
   const [sidebarResizeStartX, setSidebarResizeStartX] = useState(0);
   const [sidebarResizeStartWidth, setSidebarResizeStartWidth] = useState(0);
