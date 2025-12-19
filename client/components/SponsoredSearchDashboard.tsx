@@ -1,9 +1,10 @@
 import { ChevronDown, ArrowDown } from "lucide-react";
 import CampaignChart from "./CampaignChart";
+import MartyAssistant from "./MartyAssistant";
 
 export default function SponsoredSearchDashboard() {
   return (
-    <div className="flex flex-col gap-6 p-6 bg-[#F8F8F8] overflow-y-auto">
+    <div className="flex flex-col gap-6 p-6 bg-[#F8F8F8] overflow-y-auto relative">
       {/* Page Header */}
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
@@ -452,6 +453,9 @@ export default function SponsoredSearchDashboard() {
         <span>and</span>
         <a href="#" className="underline hover:no-underline">Terms</a>
       </div>
+
+      {/* Marty Assistant */}
+      <MartyAssistant />
     </div>
   );
 }
