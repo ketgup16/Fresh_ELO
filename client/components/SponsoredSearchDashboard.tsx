@@ -218,8 +218,8 @@ export default function SponsoredSearchDashboard() {
             </div>
           </div>
           <div className="h-px bg-[#E3E4E5]"></div>
-          <div className="flex items-center justify-end gap-4">
-            <button className="text-sm text-[#2E2F32] underline hover:no-underline">See details</button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
+            <button className="text-sm text-[#2E2F32] underline hover:no-underline text-center sm:text-left">See details</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Update 10 campaigns</button>
           </div>
         </div>
@@ -252,8 +252,8 @@ export default function SponsoredSearchDashboard() {
             </div>
           </div>
           <div className="h-px bg-[#E3E4E5]"></div>
-          <div className="flex items-center justify-end gap-4">
-            <button className="text-sm text-[#2E2F32] underline hover:no-underline">See details</button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
+            <button className="text-sm text-[#2E2F32] underline hover:no-underline text-center sm:text-left">See details</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Update 24 campaigns</button>
           </div>
         </div>
@@ -289,8 +289,8 @@ export default function SponsoredSearchDashboard() {
             </div>
           </div>
           <div className="h-px bg-[#E3E4E5]"></div>
-          <div className="flex items-center justify-end gap-4">
-            <button className="text-sm text-[#2E2F32] underline hover:no-underline">See details</button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
+            <button className="text-sm text-[#2E2F32] underline hover:no-underline text-center sm:text-left">See details</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Update 4 campaigns</button>
           </div>
         </div>
@@ -319,8 +319,8 @@ export default function SponsoredSearchDashboard() {
             </div>
           </div>
           <div className="h-px bg-[#E3E4E5]"></div>
-          <div className="flex items-center justify-end gap-4">
-            <button className="text-sm text-[#2E2F32] underline hover:no-underline">Create campaign</button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
+            <button className="text-sm text-[#2E2F32] underline hover:no-underline text-center sm:text-left">Create campaign</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Add to existing campaigns</button>
           </div>
         </div>
