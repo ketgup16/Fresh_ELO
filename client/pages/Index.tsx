@@ -2347,7 +2347,7 @@ export default function Index() {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 h-auto self-stretch flex flex-col overflow-hidden">
+        <main className="flex-1 h-auto self-stretch flex flex-col">
           {selectedMediaSolution === 'Sponsored Search' ? (
             <SponsoredSearchDashboard />
           ) : (
