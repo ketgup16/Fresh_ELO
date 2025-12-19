@@ -69,7 +69,7 @@ export default function CampaignChart() {
       {/* Chart Container */}
       <div className="relative w-full h-[180px] bg-white pr-4 pl-16 pt-4 overflow-hidden">
         {/* Y-Axis Labels */}
-        <div className="absolute left-0 top-4 h-[140px] flex flex-col justify-between py-1">
+        <div className="absolute left-4 top-4 h-[140px] flex flex-col justify-between py-1">
           {yAxisLabels.map((label, index) => (
             <div key={index} className="text-xs text-[#2E2F32] text-right pr-2">
               {label}
