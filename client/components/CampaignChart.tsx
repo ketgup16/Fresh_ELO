@@ -53,9 +53,9 @@ export default function CampaignChart() {
   return (
     <div className="flex flex-col items-start w-full bg-white">
       {/* Chart Container */}
-      <div className="relative w-full h-[200px] bg-white px-4">
+      <div className="relative w-full h-[180px] bg-white px-4 pt-4 overflow-hidden">
         {/* Grid Background */}
-        <div className="absolute inset-0 w-full h-[160px]">
+        <div className="absolute inset-0 w-full h-full top-4">
           <svg className="w-full h-full" preserveAspectRatio="none">
             <defs>
               <pattern id="grid" width="80" height="20" patternUnits="userSpaceOnUse">
@@ -67,39 +67,39 @@ export default function CampaignChart() {
         </div>
 
         {/* Chart SVG */}
-        <svg 
-          className="absolute w-full h-auto flex-grow-0"
-          style={{ left: 0, top: '20px' }}
+        <svg
+          className="absolute w-full"
+          style={{ left: 0, top: '24px', height: '140px' }}
           viewBox={`0 0 ${chartWidth} ${chartHeight}`}
           preserveAspectRatio="none"
-          fill="none" 
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* Purple Line - Impressions */}
-          <path 
+          <path
             d={impressionsPath}
-            stroke="#993EF4" 
-            strokeWidth="3" 
+            stroke="#993EF4"
+            strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
-          
+
           {/* Cyan Line - Clicks */}
-          <path 
+          <path
             d={clicksPath}
-            stroke="#4DBDF5" 
-            strokeWidth="3" 
+            stroke="#4DBDF5"
+            strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
-          
+
           {/* Blue Line - Cost per click */}
-          <path 
+          <path
             d={cpcPath}
-            stroke="#0053E2" 
-            strokeWidth="3" 
+            stroke="#0053E2"
+            strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
@@ -108,7 +108,7 @@ export default function CampaignChart() {
       </div>
 
       {/* X-Axis Labels */}
-      <div className="flex justify-between items-center w-full h-6 text-xs text-[#2E2F32] text-center px-4 pb-4">
+      <div className="flex justify-between items-center w-full text-xs text-[#2E2F32] text-center px-4 py-2">
         {xAxisLabels.map((label, index) => (
           <div key={index} className="flex-shrink-0 w-[72px]">
             {label}
