@@ -260,10 +260,10 @@ export default function SponsoredSearchDashboard() {
       {/* Top Campaigns */}
       <h2 className="text-[32px] font-bold text-[#2E2F32] leading-10">Top campaigns</h2>
 
-      <div className="flex items-start self-stretch">
+      <div className="flex items-start self-stretch overflow-x-auto">
         {/* Campaign Column */}
-        <div className="flex flex-col w-[280px] max-w-[450px] items-start">
-          <div className="flex flex-col items-start flex-1 self-stretch">
+        <div className="flex w-[280px] max-w-[450px] items-start">
+          <div className="flex flex-col items-start flex-1">
             <div className="flex h-[52px] px-4 items-center gap-1 self-stretch border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
               <div className="flex h-5 items-center gap-1">
                 <div className="text-sm font-bold text-[#2E2F32] leading-5">Campaign</div>
@@ -271,22 +271,22 @@ export default function SponsoredSearchDashboard() {
               </div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline">Cool Beans, Hot Days (Summer 2025)</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline cursor-pointer hover:no-underline">Cool Beans, Hot Days (Summer 2025)</div>
               </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 w-[280px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline overflow-hidden text-ellipsis whitespace-nowrap">Decaf, Not Defeated (Evergreen)</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer hover:no-underline">Decaf, Not Defeated (Evergreen)</div>
               </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 w-[280px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline overflow-hidden text-ellipsis whitespace-nowrap">Press, Sip, Reign, K-Cups (Evergreen)</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer hover:no-underline">Press, Sip, Reign, K-Cups (Evergreen)</div>
               </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 w-[280px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
           </div>
         </div>
@@ -296,27 +296,27 @@ export default function SponsoredSearchDashboard() {
           <div className="flex flex-col items-start flex-1">
             <div className="flex h-[52px] px-4 items-center gap-1 self-stretch border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
               <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">ROAS</div>
+                <div className="text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">ROAS</div>
                 <div className="flex w-6 h-6 items-center"></div>
               </div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$7.68</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$7.68</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$10.52</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$10.52</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$6.78</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$6.78</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
           </div>
         </div>
@@ -326,27 +326,27 @@ export default function SponsoredSearchDashboard() {
           <div className="flex flex-col items-start flex-1">
             <div className="flex h-[52px] px-4 items-center gap-1 self-stretch border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
               <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">CPC</div>
+                <div className="text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">CPC</div>
                 <div className="flex w-6 h-6 items-center"></div>
               </div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$1.09</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$1.09</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$0.78</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$0.78</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$1.32</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$1.32</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
           </div>
         </div>
@@ -356,27 +356,27 @@ export default function SponsoredSearchDashboard() {
           <div className="flex flex-col items-start flex-1">
             <div className="flex h-[52px] px-4 items-center gap-1 self-stretch border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
               <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">CTR</div>
+                <div className="text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">CTR</div>
                 <div className="flex w-6 h-6 items-center"></div>
               </div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">2.37%</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">2.37%</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">0.60%</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">0.60%</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">0.78%</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">0.78%</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
           </div>
         </div>
@@ -386,27 +386,27 @@ export default function SponsoredSearchDashboard() {
           <div className="flex flex-col items-start flex-1">
             <div className="flex h-[52px] px-4 items-center gap-1 self-stretch border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
               <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">CVR</div>
+                <div className="text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">CVR</div>
                 <div className="flex w-6 h-6 items-center"></div>
               </div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">57.48%</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">57.48%</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">63.92%</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">63.92%</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">44.67%</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">44.67%</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
           </div>
         </div>
@@ -416,31 +416,31 @@ export default function SponsoredSearchDashboard() {
           <div className="flex flex-col items-start flex-1">
             <div className="flex h-[52px] px-4 items-center gap-1 self-stretch border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
               <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">Spend</div>
+                <div className="text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">Spend</div>
                 <div className="flex items-center">
-                  <div className="flex p-1 justify-center items-center rounded-full bg-transparent">
+                  <button className="flex p-1 justify-center items-center rounded-full bg-transparent hover:bg-gray-100 transition-colors">
                     <ArrowDown className="w-4 h-4 text-[#2E2F32]" />
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$1.09</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$1.09</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$0.78</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$0.78</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
             <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$1.32</div>
+              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$1.32</div>
               </div>
-              <div className="absolute inset-0 w-[177px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
+              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
             </div>
           </div>
         </div>
