@@ -1338,6 +1338,7 @@ const mockCampaigns: Campaign[] = [
 ];
 
 export default function Index() {
+  const navigate = useNavigate();
   const [campaigns, setCampaigns] = useState(mockCampaigns);
   const [selectedTab, setSelectedTab] = useState<"onsite" | "archive">("onsite");
   const [showPopover, setShowPopover] = useState(false);
