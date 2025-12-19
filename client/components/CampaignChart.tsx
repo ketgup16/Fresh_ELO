@@ -50,12 +50,35 @@ export default function CampaignChart() {
   const clicksPath = createPathData('clicks', minClicks, maxClicks);
   const cpcPath = createPathData('cpc', minCpc, maxCpc);
 
+  // Y-axis labels for impressions
+  const formatNumber = (num: number) => {
+    if (num >= 1000000) {
+      return `${(num / 1000000).toFixed(1)}M`;
+    }
+    return num.toLocaleString();
+  };
+
+  const yAxisTicks = 5;
+  const yAxisLabels = Array.from({ length: yAxisTicks }, (_, i) => {
+    const value = minImpressions + ((maxImpressions - minImpressions) * i / (yAxisTicks - 1));
+    return formatNumber(value);
+  }).reverse();
+
   return (
     <div className="flex flex-col items-start w-full bg-white">
       {/* Chart Container */}
-      <div className="relative w-full h-[180px] bg-white px-4 pt-4 overflow-hidden">
+      <div className="relative w-full h-[180px] bg-white pr-4 pl-12 pt-4 overflow-hidden">
+        {/* Y-Axis Labels */}
+        <div className="absolute left-0 top-4 h-[140px] flex flex-col justify-between py-1">
+          {yAxisLabels.map((label, index) => (
+            <div key={index} className="text-xs text-[#2E2F32] text-right pr-2">
+              {label}
+            </div>
+          ))}
+        </div>
+
         {/* Grid Background */}
-        <div className="absolute inset-0 w-full h-full top-4">
+        <div className="absolute left-12 right-4 top-4 h-full">
           <svg className="w-full h-full" preserveAspectRatio="none">
             <defs>
               <pattern id="grid" width="80" height="20" patternUnits="userSpaceOnUse">
@@ -68,8 +91,8 @@ export default function CampaignChart() {
 
         {/* Chart SVG */}
         <svg
-          className="absolute w-full"
-          style={{ left: 0, top: '24px', height: '140px' }}
+          className="absolute"
+          style={{ left: '48px', top: '24px', height: '140px', right: '16px', width: 'calc(100% - 64px)' }}
           viewBox={`0 0 ${chartWidth} ${chartHeight}`}
           preserveAspectRatio="none"
           fill="none"
@@ -108,7 +131,7 @@ export default function CampaignChart() {
       </div>
 
       {/* X-Axis Labels */}
-      <div className="flex justify-between items-center w-full text-xs text-[#2E2F32] text-center px-4 py-2">
+      <div className="flex justify-between items-center w-full text-xs text-[#2E2F32] text-center pl-12 pr-4 py-2">
         {xAxisLabels.map((label, index) => (
           <div key={index} className="flex-shrink-0 w-[72px]">
             {label}
