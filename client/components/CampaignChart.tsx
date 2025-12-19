@@ -55,7 +55,7 @@ export default function CampaignChart() {
       </div>
 
       {/* X-Axis Labels */}
-      <div className="flex justify-between items-center w-full h-6 text-xs text-[#2E2F32] text-center">
+      <div className="flex justify-between items-center w-full h-6 text-xs text-[#2E2F32] text-center px-4 pb-4">
         {xAxisLabels.map((label, index) => (
           <div key={index} className="flex-shrink-0 w-[72px]">
             {label}
