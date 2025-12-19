@@ -1,4 +1,5 @@
 import { ChevronDown } from "lucide-react";
+import CampaignChart from "./CampaignChart";
 
 export default function SponsoredSearchDashboard() {
   return (
@@ -108,10 +109,8 @@ export default function SponsoredSearchDashboard() {
 
           <div className="h-px bg-[#E3E4E5]"></div>
 
-          {/* Chart Area - Placeholder for now */}
-          <div className="h-60 bg-white p-4 flex items-center justify-center text-gray-400">
-            <div className="text-sm">Chart visualization area</div>
-          </div>
+          {/* Campaign Chart */}
+          <CampaignChart />
         </div>
       </div>
 

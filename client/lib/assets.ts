@@ -6,6 +6,7 @@
 export const assets = {
   dashboard: {
     screenshot: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc3a06f6f42ec4f12933aad1327cc0377',
+    chart: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff5cdb3639c9b4824903691b17827989a',
   },
   
   icons: {
