@@ -2348,10 +2348,6 @@ export default function Index() {
 
         {/* Main Content */}
         <main className="flex-1 h-auto self-stretch flex flex-col">
-          {selectedMediaSolution === 'Sponsored Search' ? (
-            <SponsoredSearchDashboard />
-          ) : (
-            <>
           {/* Page Header */}
           <div className="px-6 pt-8 pb-4">
             <div className="flex items-center justify-between mb-4">
@@ -3256,8 +3252,6 @@ export default function Index() {
               </div>
             </div>
           </div>
-            </>
-          )}
         </main>
       </div>
 
