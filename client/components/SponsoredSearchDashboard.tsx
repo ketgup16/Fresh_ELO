@@ -4,7 +4,7 @@ import MartyAssistant from "./MartyAssistant";
 
 export default function SponsoredSearchDashboard() {
   return (
-    <div className="flex flex-col gap-6 p-6 bg-[#F8F8F8] overflow-y-auto relative">
+    <div className="flex flex-col gap-[25px] p-6 bg-[#F8F8F8] overflow-y-auto relative">
       {/* Page Header */}
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
@@ -33,86 +33,101 @@ export default function SponsoredSearchDashboard() {
       </div>
 
       {/* Chart */}
-      <div className="rounded-xl shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] overflow-hidden">
-        {/* Ribbon with Metrics */}
-        <div className="bg-white">
-          <div className="flex items-center justify-between p-4">
-            <h2 className="text-2xl font-bold text-[#2E2F32]">All campaigns</h2>
-            <div className="flex items-center gap-2">
-              <button className="h-8 px-3 border border-[#909196] rounded-full bg-white text-sm text-[#2E2F32] flex items-center gap-1">
-                14 day attribution
-                <ChevronDown className="w-4 h-4" />
+      <div className="flex flex-col items-start gap-[-1px] self-stretch rounded-xl shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] bg-white">
+        {/* Header with Filters */}
+        <div className="flex flex-col items-start gap-4 self-stretch p-4">
+          <div className="flex items-center gap-2 self-stretch">
+            <h2 className="flex-1 text-2xl font-bold text-[#2E2F32] leading-9">All campaigns</h2>
+            <div className="flex items-start gap-2">
+              <button className="flex h-8 px-3 justify-center items-center gap-2 rounded-full border border-[#909196] bg-white hover:bg-gray-50 transition-colors">
+                <span className="text-sm text-[#2E2F32] leading-5">14 day attribution</span>
+                <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
               </button>
-              <button className="h-8 px-3 border border-[#909196] rounded-full bg-white text-sm text-[#2E2F32] flex items-center gap-1">
-                Jan 1 – Mar 30, 2025
-                <ChevronDown className="w-4 h-4" />
+              <button className="flex h-8 px-3 justify-center items-center gap-2 rounded-full border border-[#909196] bg-white hover:bg-gray-50 transition-colors">
+                <span className="text-sm text-[#2E2F32] leading-5">Jan 1 – Mar 30, 2025</span>
+                <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
               </button>
             </div>
           </div>
-
-          {/* Metrics Row */}
-          <div className="flex items-start gap-3 px-4 pb-4">
-            <div className="flex-1 flex flex-col gap-4">
-              <div className="h-2 rounded-b-full bg-[#993EF4] w-full"></div>
-              <div>
-                <div className="flex items-center gap-1 mb-1">
-                  <span className="text-sm text-[#2E2F32]">Impressions</span>
-                  <ChevronDown className="w-4 h-4" />
-                </div>
-                <div className="text-2xl font-bold text-[#2E2F32]">18,689,154</div>
-              </div>
-            </div>
-            <div className="w-px h-24 bg-[#E3E4E5]"></div>
-            <div className="flex-1 flex flex-col gap-4">
-              <div className="h-2 rounded-b-full bg-[#4DBDF5] w-full"></div>
-              <div>
-                <div className="flex items-center gap-1 mb-1">
-                  <span className="text-sm text-[#2E2F32]">Clicks</span>
-                  <ChevronDown className="w-4 h-4" />
-                </div>
-                <div className="text-2xl font-bold text-[#2E2F32]">148,782</div>
-              </div>
-            </div>
-            <div className="w-px h-24 bg-[#E3E4E5]"></div>
-            <div className="flex-1 flex flex-col gap-4">
-              <div className="h-2 rounded-b-full bg-[#0053E2] w-full"></div>
-              <div>
-                <div className="flex items-center gap-1 mb-1">
-                  <span className="text-sm text-[#2E2F32]">Cost per click</span>
-                  <ChevronDown className="w-4 h-4" />
-                </div>
-                <div className="text-2xl font-bold text-[#2E2F32]">$1.36</div>
-              </div>
-            </div>
-            <div className="w-px h-24 bg-[#E3E4E5]"></div>
-            <div className="flex-1 flex flex-col gap-4">
-              <div className="h-2 rounded-b-full w-full"></div>
-              <div>
-                <div className="flex items-center gap-1 mb-1">
-                  <span className="text-sm text-[#2E2F32]">Click through</span>
-                  <ChevronDown className="w-4 h-4" />
-                </div>
-                <div className="text-2xl font-bold text-[#2E2F32]">0.84%</div>
-              </div>
-            </div>
-            <div className="w-px h-24 bg-[#E3E4E5]"></div>
-            <div className="flex-1 flex flex-col gap-4">
-              <div className="h-2 rounded-b-full w-full"></div>
-              <div>
-                <div className="flex items-center gap-1 mb-1">
-                  <span className="text-sm text-[#2E2F32]">Ad spend</span>
-                  <ChevronDown className="w-4 h-4" />
-                </div>
-                <div className="text-2xl font-bold text-[#2E2F32]">$195,607</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="h-px bg-[#E3E4E5]"></div>
-
-          {/* Campaign Chart */}
-          <CampaignChart />
         </div>
+
+        {/* Metrics Ribbon */}
+        <div className="flex items-start gap-[11.5px] self-stretch px-4">
+          {/* Impressions */}
+          <div className="flex flex-col items-start gap-4 flex-1 self-stretch">
+            <div className="h-2 self-stretch rounded-b-full bg-[#993EF4]"></div>
+            <div className="flex flex-col justify-center items-start self-stretch">
+              <div className="flex h-6 items-center gap-1">
+                <span className="text-sm text-[#2E2F32] leading-5">Impressions</span>
+                <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+              </div>
+              <div className="text-2xl font-bold text-[#2E2F32] leading-9">18,689,154</div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="w-px h-[103px] bg-[#E3E4E5]"></div>
+
+          {/* Clicks */}
+          <div className="flex flex-col items-start gap-4 flex-1 self-stretch">
+            <div className="h-2 self-stretch rounded-b-full bg-[#4DBDF5]"></div>
+            <div className="flex flex-col justify-center items-start self-stretch">
+              <div className="flex h-6 items-center gap-1">
+                <span className="text-sm text-[#2E2F32] leading-5">Clicks</span>
+                <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+              </div>
+              <div className="text-2xl font-bold text-[#2E2F32] leading-9">148,782</div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="w-px h-[103px] bg-[#E3E4E5]"></div>
+
+          {/* Cost per click */}
+          <div className="flex flex-col items-start gap-4 flex-1 self-stretch">
+            <div className="h-2 self-stretch rounded-b-full bg-[#0053E2]"></div>
+            <div className="flex flex-col justify-center items-start self-stretch">
+              <div className="flex h-6 items-center gap-1">
+                <span className="text-sm text-[#2E2F32] leading-5">Cost per click</span>
+                <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+              </div>
+              <div className="text-2xl font-bold text-[#2E2F32] leading-9">$1.36</div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="w-px h-[103px] bg-[#E3E4E5]"></div>
+
+          {/* Click through */}
+          <div className="flex flex-col items-start gap-4 flex-1 self-stretch">
+            <div className="h-2 self-stretch rounded-b-full"></div>
+            <div className="flex flex-col justify-center items-start self-stretch">
+              <div className="flex h-6 items-center gap-1">
+                <span className="text-sm text-[#2E2F32] leading-5">Click through</span>
+                <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+              </div>
+              <div className="text-2xl font-bold text-[#2E2F32] leading-9">0.84%</div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="w-px h-[103px] bg-[#E3E4E5]"></div>
+
+          {/* Ad spend */}
+          <div className="flex flex-col items-start gap-4 flex-1 self-stretch">
+            <div className="h-2 self-stretch rounded-b-full"></div>
+            <div className="flex flex-col justify-center items-start self-stretch">
+              <div className="flex h-6 items-center gap-1">
+                <span className="text-sm text-[#2E2F32] leading-5">Ad spend</span>
+                <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+              </div>
+              <div className="text-2xl font-bold text-[#2E2F32] leading-9">$195,607</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Campaign Chart */}
+        <CampaignChart />
       </div>
 
       {/* Recommendations */}
