@@ -5,9 +5,9 @@ export default function CampaignChart() {
   ];
 
   return (
-    <div className="flex flex-col items-start self-stretch bg-white">
+    <div className="flex flex-col items-start w-full bg-white">
       {/* Chart Container */}
-      <div className="relative w-full h-[200px] bg-white">
+      <div className="relative w-full h-[200px] bg-white px-4">
         {/* Grid Image */}
         <img 
           src="https://api.builder.io/api/v1/image/assets/TEMP/81b7b1657f9f681a918db6e56aad2847554a3c2e?width=2334" 
