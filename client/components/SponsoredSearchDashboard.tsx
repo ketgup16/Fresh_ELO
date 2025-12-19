@@ -1,8 +1,63 @@
-import { ChevronDown, ArrowDown } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown, ArrowDown, ArrowUp } from "lucide-react";
 import CampaignChart from "./CampaignChart";
 import MartyAssistant from "./MartyAssistant";
 
+interface Campaign {
+  name: string;
+  roas: string;
+  cpc: string;
+  ctr: string;
+  cvr: string;
+  spend: number;
+}
+
 export default function SponsoredSearchDashboard() {
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
+
+  const initialCampaigns: Campaign[] = [
+    {
+      name: "Cool Beans, Hot Days (Summer 2025)",
+      roas: "$7.68",
+      cpc: "$1.09",
+      ctr: "2.37%",
+      cvr: "57.48%",
+      spend: 1.09
+    },
+    {
+      name: "Decaf, Not Defeated (Evergreen)",
+      roas: "$10.52",
+      cpc: "$0.78",
+      ctr: "0.60%",
+      cvr: "63.92%",
+      spend: 0.78
+    },
+    {
+      name: "Press, Sip, Reign, K-Cups (Evergreen)",
+      roas: "$6.78",
+      cpc: "$1.32",
+      ctr: "0.78%",
+      cvr: "44.67%",
+      spend: 1.32
+    }
+  ];
+
+  const [campaigns, setCampaigns] = useState<Campaign[]>(initialCampaigns);
+
+  const handleSort = () => {
+    const newDirection = sortDirection === 'desc' ? 'asc' : 'desc';
+    setSortDirection(newDirection);
+
+    const sorted = [...campaigns].sort((a, b) => {
+      if (newDirection === 'desc') {
+        return b.spend - a.spend;
+      } else {
+        return a.spend - b.spend;
+      }
+    });
+
+    setCampaigns(sorted);
+  };
   return (
     <div className="flex flex-col gap-[25px] p-6 bg-[#F8F8F8] overflow-y-auto relative">
       {/* Page Header */}
@@ -284,24 +339,14 @@ export default function SponsoredSearchDashboard() {
                 <div className="flex w-6 h-6 items-center"></div>
               </div>
             </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline cursor-pointer hover:no-underline">Cool Beans, Hot Days (Summer 2025)</div>
+            {campaigns.map((campaign, index) => (
+              <div key={index} className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
+                <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                  <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer hover:no-underline">{campaign.name}</div>
+                </div>
+                <div className="absolute inset-0 w-[280px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
               </div>
-              <div className="absolute inset-0 w-[280px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer hover:no-underline">Decaf, Not Defeated (Evergreen)</div>
-              </div>
-              <div className="absolute inset-0 w-[280px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer hover:no-underline">Press, Sip, Reign, K-Cups (Evergreen)</div>
-              </div>
-              <div className="absolute inset-0 w-[280px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -314,24 +359,14 @@ export default function SponsoredSearchDashboard() {
                 <div className="flex w-6 h-6 items-center"></div>
               </div>
             </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$7.68</div>
+            {campaigns.map((campaign, index) => (
+              <div key={index} className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
+                <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                  <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">{campaign.roas}</div>
+                </div>
+                <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
               </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$10.52</div>
-              </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$6.78</div>
-              </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -344,24 +379,14 @@ export default function SponsoredSearchDashboard() {
                 <div className="flex w-6 h-6 items-center"></div>
               </div>
             </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$1.09</div>
+            {campaigns.map((campaign, index) => (
+              <div key={index} className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
+                <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                  <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">{campaign.cpc}</div>
+                </div>
+                <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
               </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$0.78</div>
-              </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$1.32</div>
-              </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -374,24 +399,14 @@ export default function SponsoredSearchDashboard() {
                 <div className="flex w-6 h-6 items-center"></div>
               </div>
             </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">2.37%</div>
+            {campaigns.map((campaign, index) => (
+              <div key={index} className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
+                <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                  <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">{campaign.ctr}</div>
+                </div>
+                <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
               </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">0.60%</div>
-              </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">0.78%</div>
-              </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -404,24 +419,14 @@ export default function SponsoredSearchDashboard() {
                 <div className="flex w-6 h-6 items-center"></div>
               </div>
             </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">57.48%</div>
+            {campaigns.map((campaign, index) => (
+              <div key={index} className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
+                <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                  <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">{campaign.cvr}</div>
+                </div>
+                <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
               </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">63.92%</div>
-              </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">44.67%</div>
-              </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -432,30 +437,27 @@ export default function SponsoredSearchDashboard() {
               <div className="flex h-5 items-center gap-1 flex-1">
                 <div className="text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">Spend</div>
                 <div className="flex items-center">
-                  <button className="flex p-1 justify-center items-center rounded-full bg-transparent hover:bg-gray-100 transition-colors">
-                    <ArrowDown className="w-4 h-4 text-[#2E2F32]" />
+                  <button
+                    onClick={handleSort}
+                    className="flex p-1 justify-center items-center rounded-full bg-transparent hover:bg-gray-100 transition-colors"
+                  >
+                    {sortDirection === 'desc' ? (
+                      <ArrowUp className="w-4 h-4 text-[#2E2F32]" />
+                    ) : (
+                      <ArrowDown className="w-4 h-4 text-[#2E2F32]" />
+                    )}
                   </button>
                 </div>
               </div>
             </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$1.09</div>
+            {campaigns.map((campaign, index) => (
+              <div key={index} className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
+                <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
+                  <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">${campaign.spend.toFixed(2)}</div>
+                </div>
+                <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
               </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$0.78</div>
-              </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
-            <div className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-              <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">$1.32</div>
-              </div>
-              <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
