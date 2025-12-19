@@ -1,13 +1,13 @@
 export default function CampaignChart() {
   const xAxisLabels = [
-    'Dec 30', 'Jan 6', 'Jan 6', '13', '20', '27', 'Feb 3', '10', 
+    'Dec 30', 'Jan 6', 'Jan 6', '13', '20', '27', 'Feb 3', '10',
     '17', '24', 'Mar 3', '10', '17', '24', '31'
   ];
 
   return (
-    <div className="relative h-60 bg-white">
+    <div className="flex flex-col items-start self-stretch bg-white">
       {/* Chart Container */}
-      <div className="relative w-full h-[200px]">
+      <div className="relative w-full h-[200px] bg-white">
         {/* Grid Lines */}
         <svg 
           className="absolute inset-0 w-full h-full"

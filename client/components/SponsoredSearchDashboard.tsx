@@ -258,53 +258,112 @@ export default function SponsoredSearchDashboard() {
 
       {/* Top Campaigns */}
       <h2 className="text-[32px] font-bold text-[#2E2F32] leading-10">Top campaigns</h2>
-      
+
       <div className="bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] overflow-hidden">
-        <table className="w-full">
-          <thead>
-            <tr className="bg-[#F8F8F8] border-t border-b border-[#E3E4E5]">
-              <th className="text-left px-4 py-4 text-sm font-bold text-[#2E2F32]">Campaign</th>
-              <th className="text-left px-4 py-4 text-sm font-bold text-[#2E2F32]">ROAS</th>
-              <th className="text-left px-4 py-4 text-sm font-bold text-[#2E2F32]">CPC</th>
-              <th className="text-left px-4 py-4 text-sm font-bold text-[#2E2F32]">CTR</th>
-              <th className="text-left px-4 py-4 text-sm font-bold text-[#2E2F32]">CVR</th>
-              <th className="text-left px-4 py-4 text-sm font-bold text-[#2E2F32]">
-                <div className="flex items-center gap-1">
-                  Spend
+        <div className="flex">
+          {/* Campaign Column */}
+          <div className="flex flex-col w-[280px] max-w-[450px]">
+            <div className="flex h-[52px] px-4 items-center gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+              <div className="text-sm font-bold text-[#2E2F32] leading-5">Campaign</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline cursor-pointer hover:no-underline">Cool Beans, Hot Days (Summer 2025)</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline cursor-pointer hover:no-underline truncate">Decaf, Not Defeated (Evergreen)</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline cursor-pointer hover:no-underline truncate">Press, Sip, Reign, K-Cups (Evergreen)</div>
+            </div>
+          </div>
+
+          {/* ROAS Column */}
+          <div className="flex flex-col flex-1 max-w-[450px]">
+            <div className="flex h-[52px] px-4 items-center gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+              <div className="flex-1 text-sm font-bold text-[#2E2F32] leading-5 truncate">ROAS</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">$7.68</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">$10.52</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">$6.78</div>
+            </div>
+          </div>
+
+          {/* CPC Column */}
+          <div className="flex flex-col flex-1 max-w-[450px]">
+            <div className="flex h-[52px] px-4 items-center gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+              <div className="flex-1 text-sm font-bold text-[#2E2F32] leading-5 truncate">CPC</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">$1.09</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">$0.78</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">$1.32</div>
+            </div>
+          </div>
+
+          {/* CTR Column */}
+          <div className="flex flex-col flex-1 max-w-[450px]">
+            <div className="flex h-[52px] px-4 items-center gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+              <div className="flex-1 text-sm font-bold text-[#2E2F32] leading-5 truncate">CTR</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">2.37%</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">0.60%</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">0.78%</div>
+            </div>
+          </div>
+
+          {/* CVR Column */}
+          <div className="flex flex-col flex-1 max-w-[450px]">
+            <div className="flex h-[52px] px-4 items-center gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+              <div className="flex-1 text-sm font-bold text-[#2E2F32] leading-5 truncate">CVR</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">57.48%</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">63.92%</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">44.67%</div>
+            </div>
+          </div>
+
+          {/* Spend Column */}
+          <div className="flex flex-col flex-1 max-w-[450px]">
+            <div className="flex h-[52px] px-4 items-center gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+              <div className="flex-1 text-sm font-bold text-[#2E2F32] leading-5 truncate">Spend</div>
+              <div className="flex items-center">
+                <button className="flex p-1 justify-center items-center rounded-full bg-transparent">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 4V12M8 12L11 9M8 12L5 9" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M3 1L13 6L3 15V1Z" fill="#2E2F32" transform="rotate(90 8 8)"/>
                   </svg>
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-b border-[#E3E4E5]">
-              <td className="px-4 py-4 text-sm text-[#2E2F32] underline cursor-pointer hover:no-underline">Cool Beans, Hot Days (Summer 2025)</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">$7.68</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">$1.09</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">2.37%</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">57.48%</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">$1.09</td>
-            </tr>
-            <tr className="border-b border-[#E3E4E5]">
-              <td className="px-4 py-4 text-sm text-[#2E2F32] underline cursor-pointer hover:no-underline">Decaf, Not Defeated (Evergreen)</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">$10.52</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">$0.78</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">0.60%</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">63.92%</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">$0.78</td>
-            </tr>
-            <tr className="border-b border-[#E3E4E5]">
-              <td className="px-4 py-4 text-sm text-[#2E2F32] underline cursor-pointer hover:no-underline">Press, Sip, Reign, K-Cups (Evergreen)</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">$6.78</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">$1.32</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">0.78%</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">44.67%</td>
-              <td className="px-4 py-4 text-sm text-[#2E2F32]">$1.32</td>
-            </tr>
-          </tbody>
-        </table>
+                </button>
+              </div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">$1.09</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">$0.78</div>
+            </div>
+            <div className="flex h-[52px] px-4 items-center border-b border-[#E3E4E5] bg-white">
+              <div className="flex-1 text-sm text-[#2E2F32] leading-5 truncate">$1.32</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Footer */}
