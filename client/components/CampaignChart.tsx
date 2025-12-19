@@ -1,5 +1,3 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
-
 export default function CampaignChart() {
   const chartData = [
     { date: 'Dec 30', impressions: 15234000, clicks: 121000, cpc: 1.42 },
@@ -18,60 +16,104 @@ export default function CampaignChart() {
     { date: 'Mar 31', impressions: 18689154, clicks: 148782, cpc: 1.36 }
   ];
 
+  const xAxisLabels = [
+    'Dec 30', 'Jan 6', 'Jan 13', '20', '27', 'Feb 3', '10',
+    '17', '24', 'Mar 3', '10', '17', '24', '31'
+  ];
+
+  // Calculate normalized values for visualization
+  const maxImpressions = Math.max(...chartData.map(d => d.impressions));
+  const minImpressions = Math.min(...chartData.map(d => d.impressions));
+  const maxClicks = Math.max(...chartData.map(d => d.clicks));
+  const minClicks = Math.min(...chartData.map(d => d.clicks));
+  const maxCpc = Math.max(...chartData.map(d => d.cpc));
+  const minCpc = Math.min(...chartData.map(d => d.cpc));
+
+  const chartHeight = 163;
+  const chartWidth = 1167;
+  const pointSpacing = chartWidth / (chartData.length - 1);
+
+  const normalizeValue = (value: number, min: number, max: number, invert = true) => {
+    const normalized = (value - min) / (max - min);
+    return invert ? chartHeight - (normalized * chartHeight * 0.8) : normalized * chartHeight * 0.8;
+  };
+
+  const createPathData = (dataKey: 'impressions' | 'clicks' | 'cpc', min: number, max: number) => {
+    return chartData.map((point, index) => {
+      const x = index * pointSpacing;
+      const y = normalizeValue(point[dataKey], min, max);
+      return index === 0 ? `M${x} ${y}` : `L${x} ${y}`;
+    }).join(' ');
+  };
+
+  const impressionsPath = createPathData('impressions', minImpressions, maxImpressions);
+  const clicksPath = createPathData('clicks', minClicks, maxClicks);
+  const cpcPath = createPathData('cpc', minCpc, maxCpc);
+
   return (
     <div className="flex flex-col items-start w-full bg-white">
       {/* Chart Container */}
-      <div className="w-full h-[200px] bg-white px-4 pt-4 pb-2">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart
-            data={chartData}
-            margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
-          >
-            <CartesianGrid 
-              strokeDasharray="0" 
-              stroke="#E3E4E5" 
-              vertical={false}
-            />
-            <XAxis 
-              dataKey="date" 
-              tick={{ fontSize: 12, fill: '#2E2F32' }}
-              axisLine={false}
-              tickLine={false}
-              dy={10}
-            />
-            <YAxis hide />
-            
-            {/* Impressions - Purple */}
-            <Line 
-              type="monotone" 
-              dataKey="impressions" 
-              stroke="#993EF4" 
-              strokeWidth={3}
-              dot={false}
-              activeDot={false}
-            />
-            
-            {/* Clicks - Cyan */}
-            <Line 
-              type="monotone" 
-              dataKey="clicks" 
-              stroke="#4DBDF5" 
-              strokeWidth={3}
-              dot={false}
-              activeDot={false}
-            />
-            
-            {/* CPC - Blue (scaled up for visibility) */}
-            <Line 
-              type="monotone" 
-              dataKey={(data) => data.cpc * 100000} 
-              stroke="#0053E2" 
-              strokeWidth={3}
-              dot={false}
-              activeDot={false}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+      <div className="relative w-full h-[200px] bg-white px-4">
+        {/* Grid Background */}
+        <div className="absolute inset-0 w-full h-[160px]">
+          <svg className="w-full h-full" preserveAspectRatio="none">
+            <defs>
+              <pattern id="grid" width="80" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 80 0 L 0 0 0 20" fill="none" stroke="#E3E4E5" strokeWidth="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+        </div>
+
+        {/* Chart SVG */}
+        <svg 
+          className="absolute w-full h-auto flex-grow-0"
+          style={{ left: 0, top: '20px' }}
+          viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+          preserveAspectRatio="none"
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Purple Line - Impressions */}
+          <path 
+            d={impressionsPath}
+            stroke="#993EF4" 
+            strokeWidth="3" 
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+          
+          {/* Cyan Line - Clicks */}
+          <path 
+            d={clicksPath}
+            stroke="#4DBDF5" 
+            strokeWidth="3" 
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+          
+          {/* Blue Line - Cost per click */}
+          <path 
+            d={cpcPath}
+            stroke="#0053E2" 
+            strokeWidth="3" 
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+        </svg>
+      </div>
+
+      {/* X-Axis Labels */}
+      <div className="flex justify-between items-center w-full h-6 text-xs text-[#2E2F32] text-center px-4 pb-4">
+        {xAxisLabels.map((label, index) => (
+          <div key={index} className="flex-shrink-0 w-[72px]">
+            {label}
+          </div>
+        ))}
       </div>
     </div>
   );
