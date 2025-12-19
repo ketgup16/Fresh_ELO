@@ -9,19 +9,19 @@ export default function CampaignChart() {
       {/* Chart Container */}
       <div className="relative w-full h-[200px] bg-white px-4">
         {/* Grid Image */}
-        <img 
-          src="https://api.builder.io/api/v1/image/assets/TEMP/81b7b1657f9f681a918db6e56aad2847554a3c2e?width=2334" 
-          className="absolute inset-0 w-full h-full object-cover"
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/81b7b1657f9f681a918db6e56aad2847554a3c2e?width=2334"
+          className="absolute inset-0 w-full h-[160px] object-cover"
           alt="Grid"
         />
 
         {/* Chart SVG */}
-        <svg 
-          className="absolute w-full h-full"
+        <svg
+          className="absolute w-full h-auto flex-grow-0"
           style={{ left: 0, top: '20px' }}
-          viewBox="0 0 1167 163" 
+          viewBox="0 0 1167 163"
           preserveAspectRatio="none"
-          fill="none" 
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* Cyan Line - Clicks */}
