@@ -1939,8 +1939,7 @@ export default function Index() {
                     <div className="grid grid-cols-2 gap-2 mb-4">
                       <button
                         onClick={() => {
-                          setSelectedMediaSolution('Sponsored Search');
-                          setMediaSolutionsOpen(false);
+                          navigate('/sponsored-search');
                         }}
                         className="flex flex-col items-center justify-center p-3 rounded border border-[#E3E4E5] hover:border-[#0053E2] transition-colors min-h-[100px]"
                       >
