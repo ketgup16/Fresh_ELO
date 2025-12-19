@@ -30,11 +30,15 @@ const App = () => (
 );
 
 const rootElement = document.getElementById("root")!;
-let root = (rootElement as any)._reactRoot;
 
-if (!root) {
-  root = createRoot(rootElement);
-  (rootElement as any)._reactRoot = root;
+// Use a module-level variable to cache the root
+let rootInstance: ReturnType<typeof createRoot> | null = null;
+
+function getRoot() {
+  if (!rootInstance) {
+    rootInstance = createRoot(rootElement);
+  }
+  return rootInstance;
 }
 
-root.render(<App />);
+getRoot().render(<App />);
