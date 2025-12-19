@@ -1,6 +1,49 @@
 import { FileText, Maximize2, Minus } from "lucide-react";
+import { useState } from "react";
 
 export default function MartyAssistant() {
+  const [isOpen, setIsOpen] = useState(true);
+
+  if (!isOpen) {
+    return (
+      <button 
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-4 right-4 z-50 flex w-[145px] h-[58px] p-0.5 justify-end items-center gap-2 rounded-full shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] bg-white hover:shadow-[0_-2px_4px_0_rgba(0,0,0,0.15),0_4px_6px_2px_rgba(0,0,0,0.20)] transition-shadow"
+      >
+        {/* Gradient Border Effect */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#993EF4] via-[#4DBDF5] to-[#00D0CD] opacity-0 hover:opacity-100 transition-opacity" style={{ padding: '2px' }}>
+          <div className="w-full h-full bg-white rounded-full"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative flex items-center gap-2 flex-1 rounded-full px-1">
+          {/* Marty Orb */}
+          <div className="flex w-[38px] h-[38px] justify-center items-center rounded-full bg-white flex-shrink-0">
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clipPath="url(#clip0_marty_fab)">
+                <rect width="38" height="38" rx="19" fill="white"/>
+                <circle cx="19" cy="19" r="15" fill="url(#gradient_marty_fab)"/>
+              </g>
+              <defs>
+                <linearGradient id="gradient_marty_fab" x1="4" y1="4" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#993EF4"/>
+                  <stop offset="50%" stopColor="#4DBDF5"/>
+                  <stop offset="100%" stopColor="#00D0CD"/>
+                </linearGradient>
+                <clipPath id="clip0_marty_fab">
+                  <rect width="38" height="38" rx="19" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          
+          {/* Text */}
+          <div className="text-[#2E2F32] text-right text-base font-bold leading-6 pr-3">Ask Marty</div>
+        </div>
+      </button>
+    );
+  }
+
   return (
     <div className="fixed bottom-4 right-4 z-50 w-[425px] h-[652px] rounded-t-xl border border-[#E3E4E5] shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] bg-white">
       {/* Navbar */}
@@ -11,12 +54,14 @@ export default function MartyAssistant() {
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clipPath="url(#clip0_marty)">
                 <rect width="24" height="24" rx="12" fill="white"/>
-                <path d="M-0.144531 11.9995C-0.144531 5.29252 5.29252 -0.144531 11.9995 -0.144531C18.7064 -0.144531 24.1435 5.29252 24.1435 11.9995C24.1435 18.7064 18.7064 24.1435 11.9995 24.1435C5.29252 24.1435 -0.144531 18.7064 -0.144531 11.9995Z" fill="url(#pattern0_marty)"/>
+                <circle cx="12" cy="12" r="9.5" fill="url(#gradient_marty)"/>
               </g>
               <defs>
-                <pattern id="pattern0_marty" patternContentUnits="objectBoundingBox" width="1" height="1">
-                  <circle cx="0.5" cy="0.5" r="0.4" fill="#993EF4"/>
-                </pattern>
+                <linearGradient id="gradient_marty" x1="2.5" y1="2.5" x2="21.5" y2="21.5" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#993EF4"/>
+                  <stop offset="50%" stopColor="#4DBDF5"/>
+                  <stop offset="100%" stopColor="#00D0CD"/>
+                </linearGradient>
                 <clipPath id="clip0_marty">
                   <rect width="24" height="24" rx="12" fill="white"/>
                 </clipPath>
@@ -43,12 +88,17 @@ export default function MartyAssistant() {
           </div>
 
           {/* Expand Icon */}
-          <Maximize2 className="w-6 h-6 text-[#2E2F32]" strokeWidth={1.5} />
+          <button className="hover:bg-gray-100 rounded p-0.5 transition-colors">
+            <Maximize2 className="w-6 h-6 text-[#2E2F32]" strokeWidth={1.5} />
+          </button>
 
           {/* Minimize Icon */}
-          <div className="flex w-6 h-6 justify-center items-center bg-white">
+          <button 
+            onClick={() => setIsOpen(false)}
+            className="flex w-6 h-6 justify-center items-center bg-white hover:bg-gray-100 rounded p-0.5 transition-colors"
+          >
             <Minus className="w-6 h-6 text-[#2E2F32]" strokeWidth={1.5} />
-          </div>
+          </button>
         </div>
       </div>
 
