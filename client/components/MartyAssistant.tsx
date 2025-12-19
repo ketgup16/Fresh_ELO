@@ -4,7 +4,7 @@ import { useState } from "react";
 type ViewState = "welcome" | "thinking" | "campaign-form";
 
 export default function MartyAssistant() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [viewState, setViewState] = useState<ViewState>("welcome");
   const [dailyBudget, setDailyBudget] = useState("");
 
@@ -62,7 +62,7 @@ export default function MartyAssistant() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 w-[425px] h-[652px] rounded-t-xl border border-[#E3E4E5] shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] bg-white flex flex-col">
+    <div className="fixed bottom-0 right-4 z-50 w-[425px] h-[652px] rounded-t-xl border border-[#E3E4E5] shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] bg-white flex flex-col">
       {/* Navbar */}
       <div className="flex w-full h-[60px] px-4 py-3 justify-between items-center rounded-t-2xl border-b border-[#E3E4E5] bg-white flex-shrink-0">
         {viewState === "welcome" ? (
