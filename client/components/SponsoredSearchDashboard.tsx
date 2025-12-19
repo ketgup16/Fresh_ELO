@@ -258,9 +258,9 @@ export default function SponsoredSearchDashboard() {
       </div>
 
       {/* Top Campaigns */}
-      <h2 className="text-[32px] font-bold text-[#2E2F32] leading-10">Top campaigns</h2>
+      <h2 className="text-[32px] font-bold text-[#2E2F32] leading-10 mt-0.5">Top campaigns</h2>
 
-      <div className="flex items-start self-stretch overflow-x-auto">
+      <div className="flex items-start self-stretch">
         {/* Campaign Column */}
         <div className="flex w-[280px] max-w-[450px] items-start">
           <div className="flex flex-col items-start flex-1">
