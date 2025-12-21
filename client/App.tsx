@@ -33,14 +33,9 @@ const App = () => (
 
 const rootElement = document.getElementById("root")!;
 
-// Use a module-level variable to cache the root
-let rootInstance: ReturnType<typeof createRoot> | null = null;
-
-function getRoot() {
-  if (!rootInstance) {
-    rootInstance = createRoot(rootElement);
-  }
-  return rootInstance;
+// Store the root on the DOM element to persist across HMR
+if (!(rootElement as any)._reactRoot) {
+  (rootElement as any)._reactRoot = createRoot(rootElement);
 }
 
-getRoot().render(<App />);
+(rootElement as any)._reactRoot.render(<App />);
