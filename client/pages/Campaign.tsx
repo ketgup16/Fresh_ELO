@@ -100,7 +100,7 @@ export default function Campaign() {
         </div>
 
         {/* Campaign Form Content */}
-        <div className="max-w-5xl mx-auto px-6 py-6 pr-[457px] space-y-6">
+        <div className="px-6 py-6 pr-[457px] space-y-6">
           {/* General Information Card */}
           <div className="bg-white rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold text-[#2E2F32] mb-4">General information</h2>
