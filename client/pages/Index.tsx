@@ -2455,7 +2455,7 @@ export default function Index() {
                 {/* All Filters Button */}
                 <button
                   className={`flex items-center justify-center h-8 w-8 px-1.5 border rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-[#0053E2] focus:ring-opacity-50 ${
-                    showAllFiltersPopover
+                    showAllFiltersPopover || statusFilter.length > 0 || livePacingFilter.length > 0 || completedFilterSelected || searchQuery.trim()
                       ? 'border-2 border-[#0053E2] bg-[#E9F1FE]'
                       : 'border-[rgba(46,47,50,1)] bg-white hover:bg-gray-50'
                   }`}
