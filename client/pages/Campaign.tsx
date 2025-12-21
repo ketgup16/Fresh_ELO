@@ -123,44 +123,73 @@ export default function Campaign() {
 
           {/* Targeting Card */}
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold text-[#2E2F32] mb-4">Targeting</h2>
-            <div className="mb-4">
-              <h3 className="text-sm font-bold text-[#515357] mb-3">Select campaign type:</h3>
-              <div className="grid grid-cols-3 gap-4">
-                <div className="p-4 border-2 border-[#0071DC] rounded bg-white">
-                  <div className="text-xs font-bold text-[#515357] mb-2">Sponsored Products</div>
-                  <div className="text-sm text-[#515357]">Get your items included in relevant results when customers search Walmart's site and app.</div>
-                </div>
-                <div className="p-4 border border-[#E3E4E5] rounded bg-white">
-                  <div className="text-xs font-bold text-[#515357] mb-2">Sponsored Brands</div>
-                  <div className="text-sm text-[#515357]">This premium ad sends your brand and products to the top of relevant results when customers search our site & app.</div>
-                </div>
-                <div className="p-4 border border-[#E3E4E5] rounded bg-white">
-                  <div className="text-xs font-bold text-[#515357] mb-2">Sponsored Videos</div>
-                  <div className="text-sm text-[#515357]">Have your ads show up in the premium video ad slot.</div>
-                </div>
+            <h2 className="text-xl font-semibold text-[#2E2F32] mb-6">Targeting</h2>
+            <div className="mb-8">
+              <h3 className="text-sm font-bold text-[#514E4E] mb-4">Select campaign type:</h3>
+              <div className="grid grid-cols-3 gap-6">
+                <button className="flex flex-col items-start gap-2 p-4 border-2 border-[#0071DC] rounded bg-white hover:bg-gray-50 transition-colors text-left">
+                  <div className="text-xs font-bold text-[#515357] leading-4">Sponsored Products</div>
+                  <div className="text-sm text-[#515357] leading-5">Get your items included in relevant results when customers search Walmart's site and app.</div>
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/c5b57bc2b91e6a8f0e62286eae055339338c4bb1?width=356"
+                    alt="Sponsored Products visualization"
+                    className="w-full mt-auto"
+                  />
+                </button>
+                <button className="flex flex-col items-start gap-2 p-4 border border-[#E3E4E5] rounded bg-white hover:border-[#0071DC] hover:bg-gray-50 transition-colors text-left">
+                  <div className="text-xs font-bold text-[#515357] leading-4">Sponsored Brands</div>
+                  <div className="text-sm text-[#515357] leading-5">This premium ad sends your brand and products to the top of relevant results when customers search our site & app.</div>
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/85e89aade983508656e9c7c9a3bd236c6915436a?width=356"
+                    alt="Sponsored Brands visualization"
+                    className="w-full mt-auto"
+                  />
+                </button>
+                <button className="flex flex-col items-start gap-2 p-4 border border-[#E3E4E5] rounded bg-white hover:border-[#0071DC] hover:bg-gray-50 transition-colors text-left">
+                  <div className="text-xs font-bold text-[#515357] leading-4">Sponsored Videos</div>
+                  <div className="text-sm text-[#515357] leading-5">Have your ads show up in the premium video ad slot.</div>
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/ecea83be9b6216faab31c9c24be64ec60efa728c?width=356"
+                    alt="Sponsored Videos visualization"
+                    className="w-full mt-auto"
+                  />
+                </button>
               </div>
             </div>
             <div>
-              <h3 className="text-sm font-bold text-[#515357] mb-3">Select targeting tactic:</h3>
-              <div className="space-y-3">
+              <h3 className="text-sm font-bold text-[#514E4E] mb-4">Select targeting tactic:</h3>
+              <div className="space-y-6">
                 <div>
-                  <label className="flex items-center">
-                    <input type="radio" name="targeting" className="mr-3" defaultChecked />
-                    <span className="font-bold text-sm text-[#2E2F32]">Smart performance</span>
+                  <label className="flex items-start cursor-pointer">
+                    <div className="relative flex items-center mt-0.5">
+                      <input type="radio" name="targeting" className="sr-only peer" defaultChecked />
+                      <div className="w-5 h-5 rounded-full border border-[#2E2F32] flex items-center justify-center peer-checked:bg-white">
+                        <div className="w-3 h-3 rounded-full bg-transparent peer-checked:bg-[#2E2F32] hidden peer-checked:block"></div>
+                      </div>
+                    </div>
+                    <div className="ml-3 flex-1">
+                      <div className="font-bold text-sm text-[#2E2F32] leading-5">Smart performance</div>
+                      <div className="text-xs text-[#515357] leading-4 mt-2">
+                        Launch a Sponsored Products campaign quickly and easily. Let Walmart's algorithm select relevant keywords for you. Then set cost-per-click bids for individual items or groups of items. Ads can serve in all Sponsored Products placements.
+                      </div>
+                    </div>
                   </label>
-                  <div className="ml-8 text-xs text-[#515357] mt-1">
-                    Launch a Sponsored Products campaign quickly and easily. Let Walmart's algorithm select relevant keywords for you.
-                  </div>
                 </div>
                 <div>
-                  <label className="flex items-center">
-                    <input type="radio" name="targeting" className="mr-3" />
-                    <span className="text-sm text-[#2E2F32]">Manual</span>
+                  <label className="flex items-start cursor-pointer">
+                    <div className="relative flex items-center mt-0.5">
+                      <input type="radio" name="targeting" className="sr-only peer" />
+                      <div className="w-5 h-5 rounded-full border border-[#2E2F32] flex items-center justify-center peer-checked:bg-white">
+                        <div className="w-3 h-3 rounded-full bg-transparent peer-checked:bg-[#2E2F32] hidden peer-checked:block"></div>
+                      </div>
+                    </div>
+                    <div className="ml-3 flex-1">
+                      <div className="text-sm text-[#2E2F32] leading-5">Manual</div>
+                      <div className="text-xs text-[#515357] leading-4 mt-2">
+                        Launch a Sponsored Products or Sponsored Brands campaign with more control. Choose your own keywords and set cost-per-click bids for each. Ads can appear on search pages and item pages.
+                      </div>
+                    </div>
                   </label>
-                  <div className="ml-8 text-xs text-[#515357] mt-1">
-                    Launch a Sponsored Products or Sponsored Brands campaign with more control.
-                  </div>
                 </div>
               </div>
             </div>
