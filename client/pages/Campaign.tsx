@@ -160,11 +160,11 @@ export default function Campaign() {
               <h3 className="text-sm font-bold text-[#514E4E] mb-4">Select targeting tactic:</h3>
               <div className="space-y-6">
                 <div>
-                  <label className="flex items-start cursor-pointer">
+                  <label className="flex items-start cursor-pointer group">
+                    <input type="radio" name="targeting" className="sr-only" defaultChecked />
                     <div className="relative flex items-center mt-0.5">
-                      <input type="radio" name="targeting" className="sr-only peer" defaultChecked />
-                      <div className="w-5 h-5 rounded-full border border-[#2E2F32] flex items-center justify-center peer-checked:bg-white">
-                        <div className="w-3 h-3 rounded-full bg-transparent peer-checked:bg-[#2E2F32] hidden peer-checked:block"></div>
+                      <div className="w-5 h-5 rounded-full border border-[#2E2F32] bg-white flex items-center justify-center">
+                        <div className="w-3 h-3 rounded-full bg-[#2E2F32]"></div>
                       </div>
                     </div>
                     <div className="ml-3 flex-1">
@@ -176,11 +176,11 @@ export default function Campaign() {
                   </label>
                 </div>
                 <div>
-                  <label className="flex items-start cursor-pointer">
+                  <label className="flex items-start cursor-pointer group">
+                    <input type="radio" name="targeting" className="sr-only" />
                     <div className="relative flex items-center mt-0.5">
-                      <input type="radio" name="targeting" className="sr-only peer" />
-                      <div className="w-5 h-5 rounded-full border border-[#2E2F32] flex items-center justify-center peer-checked:bg-white">
-                        <div className="w-3 h-3 rounded-full bg-transparent peer-checked:bg-[#2E2F32] hidden peer-checked:block"></div>
+                      <div className="w-5 h-5 rounded-full border border-[#2E2F32] bg-white flex items-center justify-center">
+                        <div className="w-3 h-3 rounded-full bg-transparent"></div>
                       </div>
                     </div>
                     <div className="ml-3 flex-1">
