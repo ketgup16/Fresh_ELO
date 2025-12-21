@@ -1,9 +1,11 @@
 import { FileText, Maximize2, Minus, ArrowLeft, Calendar } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type ViewState = "welcome" | "thinking" | "campaign-form";
 
 export default function MartyAssistant() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [viewState, setViewState] = useState<ViewState>("welcome");
   const [dailyBudget, setDailyBudget] = useState("");
@@ -316,11 +318,12 @@ export default function MartyAssistant() {
             <button className="flex h-10 px-6 justify-center items-center gap-2 rounded-full border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
               <div className="text-[#2E2F32] text-base font-bold leading-6">Save and review</div>
             </button>
-            <button 
+            <button
               disabled={!dailyBudget}
+              onClick={() => navigate('/campaign')}
               className={`flex h-10 px-6 justify-center items-center gap-2 rounded-full transition-colors ${
-                dailyBudget 
-                  ? 'bg-[#0053E2] hover:bg-[#0046c7]' 
+                dailyBudget
+                  ? 'bg-[#0053E2] hover:bg-[#0046c7]'
                   : 'bg-[#E3E4E5]'
               }`}
             >
