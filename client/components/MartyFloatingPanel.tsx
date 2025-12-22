@@ -3,6 +3,7 @@ import { FileText, Maximize2, Minus } from "lucide-react";
 
 export default function MartyFloatingPanel() {
   const [isMinimized, setIsMinimized] = useState(false);
+  const [showHelpContent, setShowHelpContent] = useState(false);
 
   // Minimized "Ask Marty" button
   if (isMinimized) {
