@@ -116,8 +116,8 @@ export default function MartyFloatingPanel({
           <button className="w-6 h-6 flex justify-center items-center">
             <Maximize2 className="w-6 h-6" />
           </button>
-          <button 
-            onClick={() => setIsMinimized(true)}
+          <button
+            onClick={handleMinimize}
             className="w-6 h-6 flex justify-center items-center hover:bg-gray-100 rounded transition-colors"
           >
             <Minus className="w-6 h-6" />
