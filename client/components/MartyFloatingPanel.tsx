@@ -114,18 +114,40 @@ export default function MartyFloatingPanel() {
             I have added your selections and <span className="font-bold">your campaign is ready to launch.</span> You can still take a moment to review your campaign and make and final changes. When you're ready, click the <span className="font-bold">"Launch campaign"</span> button in the top-right corner.
           </div>
 
-          {/* Prompt Suggestions */}
-          <div className="flex flex-col gap-2">
-            <button className="flex max-w-full px-4 py-2 justify-center items-center text-center gap-2 rounded-full border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
-              <div className="text-[#2E2F32] text-sm font-bold leading-5">What can Marty help me do on this page?</div>
-            </button>
-            <button className="flex max-w-full px-4 py-2 justify-center items-center text-center gap-2 rounded-full border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
-              <div className="text-[#2E2F32] text-sm font-bold leading-5">How do I set up a Sponsored Products campaign?</div>
-            </button>
-            <button className="flex max-w-full px-4 py-2 justify-center items-center text-center gap-2 rounded-full border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
-              <div className="text-[#2E2F32] text-sm font-bold leading-5">Which items do you recommend I advertise?</div>
-            </button>
-          </div>
+          {/* Conditional Content */}
+          {!showHelpContent ? (
+            /* Prompt Suggestions */
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={() => setShowHelpContent(true)}
+                className="flex max-w-full px-4 py-2 justify-center items-center text-center gap-2 rounded-full border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors"
+              >
+                <div className="text-[#2E2F32] text-sm font-bold leading-5">What can Marty help me do on this page?</div>
+              </button>
+              <button className="flex max-w-full px-4 py-2 justify-center items-center text-center gap-2 rounded-full border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
+                <div className="text-[#2E2F32] text-sm font-bold leading-5">How do I set up a Sponsored Products campaign?</div>
+              </button>
+              <button className="flex max-w-full px-4 py-2 justify-center items-center text-center gap-2 rounded-full border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
+                <div className="text-[#2E2F32] text-sm font-bold leading-5">Which items do you recommend I advertise?</div>
+              </button>
+            </div>
+          ) : (
+            /* Help Content with Bullet Points */
+            <div className="flex flex-col gap-3">
+              <p className="text-[#2E2F32] text-sm leading-5">
+                I can help you with various tasks on this page. Here's what I can do:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-[#2E2F32] text-sm leading-5">
+                <li>Review and edit your campaign settings</li>
+                <li>Adjust your budget and bidding strategy</li>
+                <li>Add or remove products from your campaign</li>
+                <li>Set up targeting options and keywords</li>
+                <li>Schedule your campaign start and end dates</li>
+                <li>Preview how your ads will appear</li>
+                <li>Answer questions about campaign optimization</li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
 
