@@ -1384,6 +1384,9 @@ export default function Index() {
 
   // Filter state
   const [statusFilter, setStatusFilter] = useState<string[]>([]);
+
+  // Marty panel state
+  const [showMartyPanel] = useState(true);
   const [tempStatusFilter, setTempStatusFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showAllFiltersPopover, setShowAllFiltersPopover] = useState(false);
