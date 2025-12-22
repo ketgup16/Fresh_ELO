@@ -100,7 +100,12 @@ export default function SponsoredSearchSidebar() {
           return (
             <button
               key={item.id}
-              onClick={() => setActiveItem(item.id)}
+              onClick={() => {
+                setActiveItem(item.id);
+                if (item.path) {
+                  navigate(item.path);
+                }
+              }}
               className={`flex h-9 px-3 justify-center items-center rounded ${
                 isActive ? 'bg-white' : 'bg-white hover:bg-gray-50'
               } transition-colors`}
