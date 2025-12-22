@@ -9,7 +9,7 @@ const HomeIcon = ({ isActive }: { isActive: boolean }) => (
   </svg>
 );
 
-const MegaphoneIcon = () => (
+const MegaphoneIcon = ({ isActive }: { isActive: boolean }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
@@ -20,7 +20,7 @@ const MegaphoneIcon = () => (
   </svg>
 );
 
-const ToolboxIcon = () => (
+const ToolboxIcon = ({ isActive }: { isActive: boolean }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
@@ -31,7 +31,7 @@ const ToolboxIcon = () => (
   </svg>
 );
 
-const DocumentIcon = () => (
+const DocumentIcon = ({ isActive }: { isActive: boolean }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
@@ -42,7 +42,7 @@ const DocumentIcon = () => (
   </svg>
 );
 
-const VideoIcon = () => (
+const VideoIcon = ({ isActive }: { isActive: boolean }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
@@ -53,7 +53,7 @@ const VideoIcon = () => (
   </svg>
 );
 
-const ServicesIcon = () => (
+const ServicesIcon = ({ isActive }: { isActive: boolean }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="2" y="2" width="5" height="5" rx="1" fill="#2E2F32" />
     <rect x="9" y="2" width="5" height="5" rx="1" fill="#2E2F32" />
