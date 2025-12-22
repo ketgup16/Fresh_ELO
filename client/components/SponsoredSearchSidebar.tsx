@@ -75,11 +75,12 @@ const ArrowRightIcon = () => (
 );
 
 export default function SponsoredSearchSidebar() {
+  const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState('home');
 
   const menuItems = [
-    { id: 'home', label: 'Home', Icon: HomeIcon },
-    { id: 'campaign-management', label: 'Campaign Management', Icon: MegaphoneIcon },
+    { id: 'home', label: 'Home', Icon: HomeIcon, path: '/' },
+    { id: 'campaign-management', label: 'Campaign Management', Icon: MegaphoneIcon, path: '/all-campaigns' },
     { id: 'tools', label: 'Tools', Icon: ToolboxIcon },
     { id: 'reports', label: 'Reports', Icon: DocumentIcon },
     { id: 'video-manager', label: 'Video manager', Icon: VideoIcon },
