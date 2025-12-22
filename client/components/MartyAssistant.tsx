@@ -219,10 +219,8 @@ export default function MartyAssistant() {
             <div className="flex flex-col items-start gap-1 self-stretch">
               <label className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">Daily budget</label>
               <div className="flex h-10 items-center gap-2 self-stretch rounded border border-[#E3E4E5] px-3">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 1V15M8 1C6.5 1 5 1.5 5 3C5 4.5 6.5 5 8 5M8 1C9.5 1 11 1.5 11 3C11 4.5 9.5 5 8 5M8 5V11M8 11C6.5 11 5 11.5 5 13C5 14.5 6.5 15 8 15M8 11C9.5 11 11 11.5 11 13C11 14.5 9.5 15 8 15" stroke="#74767C" strokeWidth="1.5" />
-                </svg>
-                <input 
+                <span className="text-[#74767C] text-base font-medium">$</span>
+                <input
                   type="text"
                   value={dailyBudget}
                   onChange={(e) => setDailyBudget(e.target.value)}
