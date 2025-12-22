@@ -2,13 +2,14 @@ import { useState } from "react";
 import { ChevronDown, Bell, HelpCircle, User, MessageSquare } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 
 export default function Campaign() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
 
   return (
-    <div className="min-h-screen bg-[#F8F8F8] flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
       <header className="h-[54px] border-b border-[#E3E4E5] flex items-center justify-between px-6 bg-white">
         <div className="flex items-center gap-5">
