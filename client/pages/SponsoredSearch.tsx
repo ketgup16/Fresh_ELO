@@ -3,10 +3,12 @@ import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search } from "lucide-r
 import { useNavigate } from "react-router-dom";
 import SponsoredSearchDashboard from "../components/SponsoredSearchDashboard";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
+import MartyFloatingPanel from "../components/MartyFloatingPanel";
 
 export default function SponsoredSearch() {
   const navigate = useNavigate();
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
+  const [showMartyPanel] = useState(true);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
