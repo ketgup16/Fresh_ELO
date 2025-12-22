@@ -7,6 +7,7 @@ import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 export default function Campaign() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
+  const [isMartyMinimized, setIsMartyMinimized] = useState(false);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
