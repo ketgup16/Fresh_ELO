@@ -75,10 +75,12 @@ export default function Campaign() {
         </div>
       </header>
 
-      {/* Main Content */}
-      <div className="flex-1 overflow-y-auto">
-        {/* Page Header */}
-        <div className="bg-white border-b border-[#E3E4E5] px-6 py-6">
+      {/* Main Layout */}
+      <div className="flex h-[calc(100vh-54px)]">
+        <SponsoredSearchSidebar />
+        <div className="flex-1 overflow-y-auto bg-[#F8F8F8]">
+          {/* Page Header */}
+          <div className="bg-white border-b border-[#E3E4E5] px-6 py-6">
           <div className="flex items-center gap-1 text-sm mb-2">
             <span className="text-[#2E2F32] underline cursor-pointer">Campaigns</span>
             <span className="text-[#2E2F32]">/</span>
@@ -200,6 +202,7 @@ export default function Campaign() {
           <div className="bg-white rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold text-[#2E2F32]">Scheduling & Budget</h2>
           </div>
+        </div>
         </div>
       </div>
 
