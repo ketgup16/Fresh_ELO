@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import SponsoredSearch from "./pages/SponsoredSearch";
 import Campaign from "./pages/Campaign";
+import AllCampaigns from "./pages/AllCampaigns";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
