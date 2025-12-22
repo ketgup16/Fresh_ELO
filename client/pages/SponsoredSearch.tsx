@@ -230,6 +230,9 @@ export default function SponsoredSearch() {
           <SponsoredSearchDashboard />
         </main>
       </div>
+
+      {/* Marty Floating Panel */}
+      {showMartyPanel && <MartyFloatingPanel />}
     </div>
   );
 }
