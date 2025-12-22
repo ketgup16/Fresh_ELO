@@ -1,6 +1,58 @@
+import { useState } from "react";
 import { FileText, Maximize2, Minus } from "lucide-react";
 
 export default function MartyFloatingPanel() {
+  const [isMinimized, setIsMinimized] = useState(false);
+
+  // Minimized "Ask Marty" button
+  if (isMinimized) {
+    return (
+      <div className="fixed bottom-8 right-8 z-50">
+        <button
+          onClick={() => setIsMinimized(false)}
+          className="inline-flex p-0.5 justify-end items-center gap-2 rounded-full shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] relative overflow-hidden group"
+        >
+          {/* Gradient Border Background */}
+          <div 
+            className="absolute inset-0 rounded-full"
+            style={{
+              background: 'linear-gradient(134deg, #993EF4 10.5%, #4DBDF5 71.77%, #00D0CD 102.41%)'
+            }}
+          />
+          
+          {/* Content */}
+          <div className="flex py-2 pl-2 pr-4 items-center gap-2 rounded-full bg-white relative z-10">
+            {/* Marty Orb */}
+            <div className="flex w-[38px] h-[38px] justify-center items-center rounded-full bg-white overflow-hidden flex-shrink-0">
+              <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clipPath="url(#clip0_marty_orb)">
+                  <rect width="38" height="38" rx="19" fill="white"/>
+                  <circle cx="19" cy="19" r="14.5" fill="url(#gradient_marty_orb)"/>
+                </g>
+                <defs>
+                  <linearGradient id="gradient_marty_orb" x1="4.5" y1="4.5" x2="33.5" y2="33.5" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#993EF4"/>
+                    <stop offset="50%" stopColor="#4DBDF5"/>
+                    <stop offset="100%" stopColor="#00D0CD"/>
+                  </linearGradient>
+                  <clipPath id="clip0_marty_orb">
+                    <rect width="38" height="38" rx="19" fill="white"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+            
+            {/* Text */}
+            <div className="text-[#2E2F32] text-right font-bold text-base leading-6">
+              Ask Marty
+            </div>
+          </div>
+        </button>
+      </div>
+    );
+  }
+
+  // Full Panel
   return (
     <div className="fixed bottom-0 right-4 z-50 w-[425px] h-[652px] rounded-t-xl border border-[#E3E4E5] shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] bg-white flex flex-col">
       {/* Navbar */}
@@ -37,14 +89,17 @@ export default function MartyFloatingPanel() {
         </div>
 
         <div className="flex justify-end items-center gap-4">
-          <button className="w-6 h-6 flex justify-center items-center">
+          <button className="w-6 h-6 flex justify-center items-center relative">
             <FileText className="w-6 h-6" />
             <div className="absolute -top-0.5 -right-0.5 w-[7px] h-[7px] rounded-full bg-[#EA1100] border-[1.5px] border-white"></div>
           </button>
           <button className="w-6 h-6 flex justify-center items-center">
             <Maximize2 className="w-6 h-6" />
           </button>
-          <button className="w-6 h-6 flex justify-center items-center">
+          <button 
+            onClick={() => setIsMinimized(true)}
+            className="w-6 h-6 flex justify-center items-center hover:bg-gray-100 rounded transition-colors"
+          >
             <Minus className="w-6 h-6" />
           </button>
         </div>
