@@ -3583,6 +3583,9 @@ export default function Index() {
           </div>
         </div>
       )}
+
+      {/* Marty Floating Panel */}
+      {showMartyPanel && <MartyFloatingPanel />}
     </div>
   );
 }
