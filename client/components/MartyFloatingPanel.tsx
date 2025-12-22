@@ -1,9 +1,28 @@
 import { useState } from "react";
 import { FileText, Maximize2, Minus } from "lucide-react";
 
-export default function MartyFloatingPanel() {
-  const [isMinimized, setIsMinimized] = useState(false);
+interface MartyFloatingPanelProps {
+  isMinimized?: boolean;
+  onMinimizedChange?: (minimized: boolean) => void;
+}
+
+export default function MartyFloatingPanel({
+  isMinimized = false,
+  onMinimizedChange
+}: MartyFloatingPanelProps) {
   const [showHelpContent, setShowHelpContent] = useState(false);
+
+  const handleMinimize = () => {
+    if (onMinimizedChange) {
+      onMinimizedChange(true);
+    }
+  };
+
+  const handleExpand = () => {
+    if (onMinimizedChange) {
+      onMinimizedChange(false);
+    }
+  };
 
   // Minimized "Ask Marty" button
   if (isMinimized) {
