@@ -1387,6 +1387,7 @@ export default function Index() {
 
   // Marty panel state
   const [showMartyPanel] = useState(true);
+  const [isMartyMinimized, setIsMartyMinimized] = useState(false);
   const [tempStatusFilter, setTempStatusFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showAllFiltersPopover, setShowAllFiltersPopover] = useState(false);
@@ -3585,7 +3586,12 @@ export default function Index() {
       )}
 
       {/* Marty Floating Panel */}
-      {showMartyPanel && <MartyFloatingPanel />}
+      {showMartyPanel && (
+        <MartyFloatingPanel
+          isMinimized={isMartyMinimized}
+          onMinimizedChange={setIsMartyMinimized}
+        />
+      )}
     </div>
   );
 }

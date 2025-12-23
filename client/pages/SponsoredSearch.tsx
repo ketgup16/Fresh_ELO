@@ -9,6 +9,7 @@ export default function SponsoredSearch() {
   const navigate = useNavigate();
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [showMartyPanel] = useState(true);
+  const [isMartyMinimized, setIsMartyMinimized] = useState(false);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -232,7 +233,12 @@ export default function SponsoredSearch() {
       </div>
 
       {/* Marty Floating Panel */}
-      {showMartyPanel && <MartyFloatingPanel />}
+      {showMartyPanel && (
+        <MartyFloatingPanel
+          isMinimized={isMartyMinimized}
+          onMinimizedChange={setIsMartyMinimized}
+        />
+      )}
     </div>
   );
 }
