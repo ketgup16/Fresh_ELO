@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, Bell, HelpCircle, User, MessageSquare } from "lucide-react";
+import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
@@ -8,6 +8,8 @@ export default function Campaign() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
   const [isMartyMinimized, setIsMartyMinimized] = useState(false);
+  const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
