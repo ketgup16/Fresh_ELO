@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface MartyFloatingPanelProps {
   isMinimized?: boolean;
@@ -11,6 +12,7 @@ export default function MartyFloatingPanel({
   isMinimized = false,
   onMinimizedChange
 }: MartyFloatingPanelProps) {
+  const navigate = useNavigate();
   const [viewState, setViewState] = useState<ViewState>('welcome');
   const [campaignData, setCampaignData] = useState({
     campaignType: 'Sponsored Products Automatic',
@@ -50,6 +52,7 @@ export default function MartyFloatingPanel({
 
   const handleSaveAndReview = () => {
     setViewState('campaignReady');
+    navigate('/campaign');
   };
 
   const isLaunchEnabled = campaignData.dailyBudget.trim() !== '';
