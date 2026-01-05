@@ -5,7 +5,7 @@ interface MartyFloatingPanelProps {
   onMinimizedChange?: (minimized: boolean) => void;
 }
 
-type ViewState = 'welcome' | 'thinking' | 'campaignForm';
+type ViewState = 'welcome' | 'thinking' | 'campaignForm' | 'campaignReady';
 
 export default function MartyFloatingPanel({
   isMinimized = false,
@@ -46,6 +46,10 @@ export default function MartyFloatingPanel({
       startDate: '10/01/2025',
       dailyBudget: ''
     });
+  };
+
+  const handleSaveAndReview = () => {
+    setViewState('campaignReady');
   };
 
   const isLaunchEnabled = campaignData.dailyBudget.trim() !== '';
@@ -400,7 +404,10 @@ export default function MartyFloatingPanel({
             </div>
             <div className="flex px-4 py-4 flex-col justify-center items-end gap-3 self-stretch border-t border-[#E3E4E5] bg-white">
               <div className="flex items-center gap-4">
-                <button className="flex h-10 px-6 py-0 justify-center items-center gap-2 rounded-full border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
+                <button
+                  onClick={handleSaveAndReview}
+                  className="flex h-10 px-6 py-0 justify-center items-center gap-2 rounded-full border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors"
+                >
                   <div className="text-[#2E2F32] font-bold text-base leading-6">
                     Save and review
                   </div>
