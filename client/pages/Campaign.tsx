@@ -105,7 +105,7 @@ export default function Campaign() {
                           navigate('/');
                           setMediaSolutionsOpen(false);
                         }}
-                        className="flex flex-col items-center justify-center p-3 rounded border border-[#E3E4E5] hover:border-[#0053E2] transition-colors min-h-[100px]"
+                        className={`flex flex-col items-center justify-center p-3 rounded border ${selectedMediaSolution === 'Display Advertising' ? 'border-[#0053E2] bg-[#E9F1FE]' : 'border-[#E3E4E5]'} hover:border-[#0053E2] transition-colors min-h-[100px]`}
                       >
                         <div className="w-12 h-12 mb-2">
                           <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
