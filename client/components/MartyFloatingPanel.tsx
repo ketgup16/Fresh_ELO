@@ -1,14 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface MartyFloatingPanelProps {
   isMinimized?: boolean;
   onMinimizedChange?: (minimized: boolean) => void;
 }
 
+type ViewState = 'welcome' | 'thinking' | 'campaignForm';
+
 export default function MartyFloatingPanel({
   isMinimized = false,
   onMinimizedChange
 }: MartyFloatingPanelProps) {
+  const [viewState, setViewState] = useState<ViewState>('welcome');
+  const [campaignData, setCampaignData] = useState({
+    campaignType: 'Sponsored Products Automatic',
+    campaignName: 'Free Rein Coffee Campaign Fall 2025',
+    startDate: '10/01/2025',
+    dailyBudget: ''
+  });
+
   const handleMinimize = () => {
     if (onMinimizedChange) {
       onMinimizedChange(true);
@@ -20,6 +30,25 @@ export default function MartyFloatingPanel({
       onMinimizedChange(false);
     }
   };
+
+  const handleCreateCampaign = () => {
+    setViewState('thinking');
+    setTimeout(() => {
+      setViewState('campaignForm');
+    }, 300);
+  };
+
+  const handleBack = () => {
+    setViewState('welcome');
+    setCampaignData({
+      campaignType: 'Sponsored Products Automatic',
+      campaignName: 'Free Rein Coffee Campaign Fall 2025',
+      startDate: '10/01/2025',
+      dailyBudget: ''
+    });
+  };
+
+  const isLaunchEnabled = campaignData.dailyBudget.trim() !== '';
 
   // Minimized "Ask Marty" button
   if (isMinimized) {
@@ -71,35 +100,49 @@ export default function MartyFloatingPanel({
 
   // Full Panel - New Figma Design
   return (
-    <div className="fixed bottom-0 right-4 z-50 w-[425px] h-[752px] rounded-t-2xl shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] bg-white flex flex-col">
+    <div className="fixed bottom-0 right-4 z-50 w-[425px] h-[752px] rounded-t-2xl shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] bg-white flex flex-col border border-[#E3E4E5]">
       {/* Navbar */}
-      <div className="flex w-full h-14 px-4 py-3 justify-between items-center rounded-t-2xl border-b border-[#E3E4E5] bg-white flex-shrink-0">
-        <div className="flex h-9 items-center gap-1.5 bg-white">
-          {/* Marty Orb */}
-          <div className="flex w-6 h-6 justify-center items-center rounded-full relative">
-            <div className="absolute w-14 h-14 -left-4 -top-4">
-              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="28" cy="28" r="28" fill="url(#gradient_marty_glow)"/>
-                <defs>
-                  <linearGradient id="gradient_marty_glow" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stopColor="#993EF4" stopOpacity="0.3"/>
-                    <stop offset="50%" stopColor="#4DBDF5" stopOpacity="0.2"/>
-                    <stop offset="100%" stopColor="#00D0CD" stopOpacity="0.1"/>
-                  </linearGradient>
-                </defs>
+      <div className="flex w-full h-[60px] px-4 py-3 justify-between items-center rounded-t-2xl border-b border-[#E3E4E5] bg-white flex-shrink-0">
+        {viewState === 'campaignForm' ? (
+          <div className="flex h-9 items-center gap-3">
+            <button onClick={handleBack} className="w-6 h-6 flex items-center justify-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M12 5L5 12L12 19" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
+            </button>
+            <div className="flex pb-0.5 justify-center items-center">
+              <div className="text-[#2E2F32] font-bold text-lg leading-6">Create campaign</div>
             </div>
           </div>
-          
-          <div className="flex px-1.5 pb-0.5 justify-center items-center gap-2.5">
-            <div className="text-[#2E2F32] font-bold text-lg leading-6">Marty</div>
+        ) : (
+          <div className="flex h-9 items-center gap-1.5 bg-white">
+            {/* Marty Orb */}
+            <div className="flex w-6 h-6 justify-center items-center rounded-full relative">
+              <div className="absolute w-14 h-14 -left-4 -top-4">
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="28" cy="28" r="28" fill="url(#gradient_marty_glow)"/>
+                  <defs>
+                    <linearGradient id="gradient_marty_glow" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="#993EF4" stopOpacity="0.3"/>
+                      <stop offset="50%" stopColor="#4DBDF5" stopOpacity="0.2"/>
+                      <stop offset="100%" stopColor="#00D0CD" stopOpacity="0.1"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            
+            <div className="flex px-1.5 pb-0.5 justify-center items-center gap-2.5">
+              <div className="text-[#2E2F32] font-bold text-lg leading-6">Marty</div>
+            </div>
+            
+            {/* Beta Tag */}
+            <div className="flex px-2 py-1 items-start gap-1 rounded border border-[#515357] bg-white">
+              <span className="text-[#515357] text-xs leading-4">Beta</span>
+            </div>
           </div>
-          
-          {/* Beta Tag */}
-          <div className="flex px-2 py-1 items-start gap-1 rounded border border-[#515357] bg-white">
-            <span className="text-[#515357] text-xs leading-4">Beta</span>
-          </div>
-        </div>
+        )}
 
         <div className="flex justify-end items-center gap-4">
           {/* Files Icon with Notification */}
@@ -136,13 +179,59 @@ export default function MartyFloatingPanel({
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex w-full max-w-[760px] px-4 py-4 flex-col items-end gap-6 flex-1 bg-white overflow-y-auto">
-        <div className="flex flex-col items-start gap-6 self-stretch bg-white">
-          {/* Welcome Section */}
-          <div className="flex flex-col items-start gap-4 self-stretch bg-white">
-            <h1 
-              className="self-stretch font-bold text-2xl leading-8"
+      {/* Content - Changes based on viewState */}
+      {viewState === 'welcome' && (
+        <div className="flex w-full max-w-[760px] px-4 py-4 flex-col items-end gap-6 flex-1 bg-white overflow-y-auto">
+          <div className="flex flex-col items-start gap-6 self-stretch bg-white">
+            {/* Welcome Section */}
+            <div className="flex flex-col items-start gap-4 self-stretch bg-white">
+              <h1 
+                className="self-stretch font-bold text-2xl leading-8"
+                style={{
+                  background: 'linear-gradient(134deg, #993EF4 10.5%, #3F7FCF 71.77%, #00AD9F 102.41%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+              >
+                Hi, Gabriela
+              </h1>
+              <p className="self-stretch text-[#2E2F32] text-sm leading-5">
+                I'm your smart assistant, here to help you launch campaigns, get insights and find answers. What can I help you with today?
+              </p>
+            </div>
+
+            {/* Prompt Suggestions */}
+            <div className="flex w-full flex-col items-start gap-2 bg-white">
+              <button 
+                onClick={handleCreateCampaign}
+                className="flex max-w-[318px] max-h-14 px-4 py-2 justify-center items-center content-center gap-2 flex-wrap rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors"
+              >
+                <span className="text-[#2E2F32] text-sm font-bold leading-5">Create campaign</span>
+              </button>
+              <button className="flex max-w-[318px] max-h-14 px-4 py-2 justify-center items-center content-center gap-2 flex-wrap rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
+                <span className="text-[#2E2F32] text-sm font-bold leading-5">Help & FAQs</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {viewState === 'thinking' && (
+        <div className="flex w-full px-4 flex-col items-start gap-6 flex-1 bg-white overflow-y-auto">
+          {/* User Message */}
+          <div className="flex w-full pt-6 pl-20 flex-col items-end gap-1">
+            <div className="flex max-w-[608px] px-4 py-2 flex-col items-start gap-2 rounded-lg bg-[#F1F1F2]">
+              <div className="self-stretch text-[#2E2F32] text-sm leading-5">
+                Create a campaign
+              </div>
+            </div>
+          </div>
+
+          {/* Thinking Animation */}
+          <div className="flex w-full h-8 min-w-full px-0 py-1 items-center gap-1.5 bg-white">
+            <div 
+              className="text-sm leading-5"
               style={{
                 background: 'linear-gradient(134deg, #993EF4 10.5%, #3F7FCF 71.77%, #00AD9F 102.41%)',
                 backgroundClip: 'text',
@@ -150,45 +239,238 @@ export default function MartyFloatingPanel({
                 WebkitTextFillColor: 'transparent'
               }}
             >
-              Hi, Gabriela
-            </h1>
-            <p className="self-stretch text-[#2E2F32] text-sm leading-5">
-              I'm your smart assistant, here to help you launch campaigns, get insights and find answers. What can I help you with today?
-            </p>
+              Thinking…
+            </div>
+          </div>
+        </div>
+      )}
+
+      {viewState === 'campaignForm' && (
+        <div className="flex w-full h-[692px] flex-col items-start flex-shrink-0 overflow-y-auto">
+          <div className="flex px-4 py-4 flex-col items-center gap-4 flex-1 self-stretch">
+            {/* Campaign Type */}
+            <div className="flex flex-col items-start gap-1 self-stretch">
+              <div className="flex pb-1 items-center gap-1 self-stretch">
+                <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
+                  Campaign type
+                </div>
+              </div>
+              <div className="flex h-10 pl-3 items-center gap-2 self-stretch rounded-lg border border-[#E3E4E5] bg-white">
+                <div className="flex h-6 py-0.5 justify-center items-center flex-1">
+                  <div className="w-full text-[#2E2F32] text-sm leading-5">
+                    {campaignData.campaignType}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Campaign Name */}
+            <div className="flex flex-col items-start gap-1 self-stretch">
+              <div className="flex pb-1 items-center gap-1 self-stretch">
+                <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
+                  Campaign name
+                </div>
+              </div>
+              <div className="flex h-10 px-3 py-2 items-center gap-2 self-stretch rounded-lg border border-[#E3E4E5] bg-white">
+                <div className="flex h-6 py-0.5 justify-center items-center flex-1">
+                  <input
+                    type="text"
+                    value={campaignData.campaignName}
+                    onChange={(e) => setCampaignData({...campaignData, campaignName: e.target.value})}
+                    className="w-full text-[#2E2F32] text-sm leading-5 outline-none"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Start Date */}
+            <div className="flex flex-col items-start gap-1 self-stretch">
+              <div className="self-stretch text-[#2E2F32] text-xs font-bold leading-4">
+                Start date (mm/dd/yyyy)
+              </div>
+              <div className="flex h-10 px-3 py-0 pr-1 items-center gap-3 self-stretch rounded-lg border border-[#E3E4E5] bg-white">
+                <div className="flex-1 text-[#2E2F32] text-sm leading-5">
+                  {campaignData.startDate}
+                </div>
+                <button className="flex p-2 flex-col items-start rounded-full border border-transparent bg-transparent">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="4" width="10" height="10" rx="1" stroke="#2E2F32" strokeWidth="1.5"/>
+                    <path d="M3 6H13" stroke="#2E2F32" strokeWidth="1.5"/>
+                    <path d="M5 2V4" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                    <path d="M11 2V4" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Daily Budget */}
+            <div className="flex flex-col items-start gap-1 self-stretch">
+              <div className="flex pb-1 items-center gap-1 self-stretch">
+                <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
+                  Daily budget
+                </div>
+              </div>
+              <div className="flex h-10 px-3 py-2 items-center gap-2 self-stretch rounded-lg border border-[#E3E4E5] bg-white">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 2.5V13.5" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M6.5 4.5H10C10.8284 4.5 11.5 5.17157 11.5 6C11.5 6.82843 10.8284 7.5 10 7.5H7C6.17157 7.5 5.5 8.17157 5.5 9C5.5 9.82843 6.17157 10.5 7 10.5H10.5" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+                <div className="flex h-6 py-0.5 justify-center items-center flex-1">
+                  <input
+                    type="text"
+                    value={campaignData.dailyBudget}
+                    onChange={(e) => setCampaignData({...campaignData, dailyBudget: e.target.value})}
+                    className="w-full text-[#2E2F32] text-sm leading-5 outline-none"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Items Section */}
+            <div className="flex flex-col items-start gap-4 self-stretch">
+              <div className="flex flex-col justify-center items-start self-stretch">
+                <div className="self-stretch text-[#2E2F32] text-xs font-bold leading-4">
+                  Items
+                </div>
+                <div className="self-stretch text-[#74767C] text-sm leading-5">
+                  Your recommended items
+                </div>
+              </div>
+
+              <div className="flex flex-col items-start gap-2.5 self-stretch">
+                <div className="flex items-center gap-3 self-stretch">
+                  <div className="flex h-[69px] p-2 flex-col justify-center items-center gap-2 flex-1 aspect-square rounded-lg border border-[#E3E4E5] bg-white">
+                    <div className="flex h-[53px] justify-center items-center flex-shrink-0 self-stretch aspect-square">
+                      <img className="w-[53px] h-[53px]" src="https://api.builder.io/api/v1/image/assets/TEMP/b6b4cdf9361b1ac23ec99887ba61e7a25ca3b0ca?width=106" alt="" />
+                    </div>
+                  </div>
+                  <div className="flex h-[69px] p-2 flex-col justify-center items-center gap-2 flex-1 aspect-square rounded-lg border border-[#E3E4E5] bg-white">
+                    <div className="flex h-[53px] justify-center items-center flex-shrink-0 self-stretch aspect-square">
+                      <img className="w-[53px] h-[53px]" src="https://api.builder.io/api/v1/image/assets/TEMP/2a290bc40ba4ec7f8f862e2a3a3faad72e8d3d18?width=106" alt="" />
+                    </div>
+                  </div>
+                  <div className="flex h-[69px] p-2 flex-col justify-center items-center gap-2 flex-1 aspect-square rounded-lg border border-[#E3E4E5] bg-white">
+                    <div className="flex h-[53px] justify-center items-center flex-shrink-0 self-stretch aspect-square">
+                      <img className="w-[53px] h-[53px]" src="https://api.builder.io/api/v1/image/assets/TEMP/4af3fdb6e6f24421ca5071fdbd5ba9c3bcc9bde3?width=106" alt="" />
+                    </div>
+                  </div>
+                  <div className="flex h-[69px] p-2 flex-col justify-center items-center gap-2 flex-1 aspect-square rounded-lg border border-[#E3E4E5] bg-white">
+                    <div className="flex h-[53px] justify-center items-center flex-shrink-0 self-stretch aspect-square">
+                      <img className="w-[53px] h-[53px]" src="https://api.builder.io/api/v1/image/assets/TEMP/58079636d483927c7a6b8c0fd5f2a2c348acd83e?width=106" alt="" />
+                    </div>
+                  </div>
+                  <div className="h-[69px] flex-1 aspect-square rounded-lg border border-[#E3E4E5] bg-white relative">
+                    <div className="w-[53px] h-6 text-[#74767C] text-center font-bold text-base leading-6 absolute left-2 top-2.5">
+                      +16
+                    </div>
+                    <button className="inline-flex h-8 justify-center items-center gap-2 absolute left-1.5 top-7 w-[60px]">
+                      <div className="text-[#2E2F32] text-sm leading-5 underline">
+                        View/edit
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Settings Accordion */}
+            <div className="flex items-center gap-3 self-stretch bg-white">
+              <div className="flex flex-col justify-center items-start gap-1 flex-1">
+                <div className="flex items-center self-stretch">
+                  <div className="text-[#2E2F32] font-bold text-base leading-6">
+                    Additional settings
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 9L12 15L18 9" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </div>
           </div>
 
-          {/* Prompt Suggestions */}
-          <div className="flex w-full flex-col items-start gap-2 bg-white">
-            <button className="flex max-w-[318px] max-h-14 px-4 py-2 justify-center items-center content-center gap-2 flex-wrap rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
-              <span className="text-[#2E2F32] text-sm font-bold leading-5">Create campaign</span>
+          {/* Footer Section */}
+          <div className="flex flex-col items-start gap-3 self-stretch">
+            <div className="flex h-6 pt-2 justify-center items-center gap-2.5 self-stretch">
+              <div className="flex-1 text-[#74767C] text-center text-xs leading-4">
+                Click "Save and review" to view item list and all campaign creation options
+              </div>
+            </div>
+            <div className="flex px-4 py-4 flex-col justify-center items-end gap-3 self-stretch border-t border-[#E3E4E5] bg-white">
+              <div className="flex items-center gap-4">
+                <button className="flex h-10 px-6 py-0 justify-center items-center gap-2 rounded-full border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
+                  <div className="text-[#2E2F32] font-bold text-base leading-6">
+                    Save and review
+                  </div>
+                </button>
+                <button 
+                  disabled={!isLaunchEnabled}
+                  className={`flex h-10 px-6 py-0 justify-center items-center gap-2 rounded-full ${
+                    isLaunchEnabled 
+                      ? 'bg-[#0071DC] hover:bg-[#0060B8]' 
+                      : 'bg-[#E3E4E5]'
+                  } transition-colors`}
+                >
+                  <div className={`font-bold text-base leading-6 ${
+                    isLaunchEnabled ? 'text-white' : 'text-white'
+                  }`}>
+                    Launch campaign
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Footer - Only show on welcome view */}
+      {viewState === 'welcome' && (
+        <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white">
+          {/* Input Field */}
+          <div className="flex max-w-[760px] max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
+            <div className="flex flex-col justify-center flex-1 self-stretch text-[#2E2F32] text-sm leading-5">
+              Lorem ipsum dolor sit amet?
+            </div>
+            <button className="flex p-2 flex-col items-start rounded-full border border-transparent bg-[#0071DC]">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 3L8 13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M3 8L8 3L13 8" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </button>
-            <button className="flex max-w-[318px] max-h-14 px-4 py-2 justify-center items-center content-center gap-2 flex-wrap rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
-              <span className="text-[#2E2F32] text-sm font-bold leading-5">Help & FAQs</span>
+          </div>
+
+          {/* Disclaimer */}
+          <div className="w-full text-[#74767C] text-center text-xs leading-4">
+            I'm powered by AI and can make mistakes. Don't share sensitive info. <span className="underline cursor-pointer">Disclaimer</span>
+          </div>
+        </div>
+      )}
+
+      {/* Footer for thinking state */}
+      {viewState === 'thinking' && (
+        <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white">
+          {/* Input Field */}
+          <div className="flex max-w-[760px] max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
+            <div className="flex flex-col justify-center flex-1 self-stretch text-[#74767C] text-sm leading-5">
+              How can I help?
+            </div>
+            <button className="flex p-2 w-8 h-8 flex-col justify-center items-center rounded-full bg-[#E3E4E5]">
+              <div className="flex w-[15px] h-[15px] p-[18px_16px] justify-center items-center gap-1 flex-shrink-0 aspect-square">
+                <div className="flex w-[15px] h-[15px] justify-center items-center flex-shrink-0">
+                  <div className="w-3 h-3 flex-shrink-0 rounded-[2px] bg-white"></div>
+                </div>
+              </div>
             </button>
           </div>
-        </div>
-      </div>
 
-      {/* Footer */}
-      <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white">
-        {/* Input Field */}
-        <div className="flex max-w-[760px] max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
-          <div className="flex flex-col justify-center flex-1 self-stretch text-[#2E2F32] text-sm leading-5">
-            Lorem ipsum dolor sit amet?
+          {/* Disclaimer */}
+          <div className="w-full text-[#74767C] text-center text-xs leading-4">
+            I'm powered by AI and can make mistakes. Don't share sensitive info. <span className="underline cursor-pointer">Disclaimer</span>
           </div>
-          <button className="flex p-2 flex-col items-start rounded-full border border-transparent bg-[#0071DC]">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 3L8 13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-              <path d="M3 8L8 3L13 8" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
         </div>
-
-        {/* Disclaimer */}
-        <div className="w-full text-[#74767C] text-center text-xs leading-4">
-          I'm powered by AI and can make mistakes. Don't share sensitive info. <span className="underline cursor-pointer">Disclaimer</span>
-        </div>
-      </div>
+      )}
     </div>
   );
 }
