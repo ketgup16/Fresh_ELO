@@ -432,6 +432,61 @@ export default function MartyFloatingPanel({
         </div>
       )}
 
+      {viewState === 'campaignReady' && (
+        <div className="flex w-full h-[692px] flex-col items-start flex-shrink-0 overflow-y-auto">
+          <div className="flex pb-80 flex-col items-center flex-1 self-stretch overflow-y-auto">
+            <div className="flex w-full flex-col items-center gap-4">
+              {/* System Message */}
+              <div className="flex px-4 pt-4 flex-col items-start gap-6 self-stretch bg-white">
+                <div className="flex w-full flex-col items-start gap-1 bg-white">
+                  <div className="flex flex-col items-start gap-2 self-stretch">
+                    <div className="self-stretch text-[#2E2F32] text-sm leading-5">
+                      I have added your selections and <span className="font-bold">your campaign is ready to launch.</span> You can still take a moment to review your campaign and make and final changes. When you're ready, click the<span className="font-bold"> "Launch campaign"</span> button in the top-right corner.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Prompt Suggestions */}
+              <div className="flex w-full flex-col items-start gap-2 bg-white px-4">
+                <button className="flex max-w-[393px] max-h-14 px-4 py-2 justify-center items-center content-center gap-2 flex-wrap rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
+                  <span className="text-[#2E2F32] text-sm font-bold leading-5">What can Marty help me do on this page?</span>
+                </button>
+                <button className="flex max-w-[393px] max-h-14 px-4 py-2 justify-center items-center content-center gap-2 flex-wrap rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
+                  <span className="text-[#2E2F32] text-sm font-bold leading-5">How do I set up a Sponsored Products campaign?</span>
+                </button>
+                <button className="flex max-w-[393px] max-h-14 px-4 py-2 justify-center items-center content-center gap-2 flex-wrap rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
+                  <span className="text-[#2E2F32] text-sm font-bold leading-5">Which items do you recommend I advertise?</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Section */}
+          <div className="flex flex-col items-start gap-3 self-stretch border-t border-[#E3E4E5] bg-white">
+            <div className="flex px-4 py-4 flex-col items-center gap-3 self-stretch bg-white">
+              {/* Input Field */}
+              <div className="flex max-w-[760px] max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
+                <div className="flex flex-col justify-center flex-1 self-stretch text-[#74767C] text-sm leading-5">
+                  How can I help?
+                </div>
+                <button disabled className="flex p-2 flex-col items-start rounded-full border border-transparent bg-[#BABBBE]">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 3L8 13" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round"/>
+                    <path d="M3 8L8 3L13 8" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+
+              {/* Disclaimer */}
+              <div className="w-full text-[#74767C] text-center text-xs leading-4">
+                I'm powered by AI and can make mistakes. Don't share sensitive info. <span className="underline cursor-pointer">Disclaimer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Footer - Only show on welcome view */}
       {viewState === 'welcome' && (
         <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white">
