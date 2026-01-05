@@ -35,7 +35,7 @@ export default function MartyFloatingPanel({
     setViewState('thinking');
     setTimeout(() => {
       setViewState('campaignForm');
-    }, 300);
+    }, 900);
   };
 
   const handleBack = () => {
