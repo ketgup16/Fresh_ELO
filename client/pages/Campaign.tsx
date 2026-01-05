@@ -66,7 +66,7 @@ export default function Campaign() {
               onClick={() => setMediaSolutionsOpen(!mediaSolutionsOpen)}
               className="flex items-center gap-1 text-xs hover:bg-gray-100 px-2 py-1 rounded transition-colors"
             >
-              <span className="text-[#2E2F32]">Sponsored Search</span>
+              <span className="text-[#2E2F32]">{selectedMediaSolution === 'Display Advertising' ? 'Display' : selectedMediaSolution === 'Sponsored Search' ? 'Sponsored Search' : selectedMediaSolution === 'Shop Builder' ? 'Shop Builder' : selectedMediaSolution === 'Store Ads' ? 'Store Ads' : 'Unified Reports'}</span>
               {mediaSolutionsOpen ? (
                 <ChevronUp className="w-4 h-4" />
               ) : (
@@ -121,7 +121,10 @@ export default function Campaign() {
                       </button>
 
                       <button
-                        onClick={() => setMediaSolutionsOpen(false)}
+                        onClick={() => {
+                          setSelectedMediaSolution('Shop Builder');
+                          setMediaSolutionsOpen(false);
+                        }}
                         className="flex flex-col items-center justify-center p-3 rounded border border-[#E3E4E5] hover:border-[#0053E2] transition-colors min-h-[100px]"
                       >
                         <div className="w-12 h-12 mb-2">
@@ -143,7 +146,10 @@ export default function Campaign() {
                       </button>
 
                       <button
-                        onClick={() => setMediaSolutionsOpen(false)}
+                        onClick={() => {
+                          setSelectedMediaSolution('Store Ads');
+                          setMediaSolutionsOpen(false);
+                        }}
                         className="flex flex-col items-center justify-center p-3 rounded border border-[#E3E4E5] hover:border-[#0053E2] transition-colors min-h-[100px]"
                       >
                         <div className="w-12 h-12 mb-2">
@@ -157,7 +163,10 @@ export default function Campaign() {
                       </button>
 
                       <button
-                        onClick={() => setMediaSolutionsOpen(false)}
+                        onClick={() => {
+                          setSelectedMediaSolution('Unified Reports');
+                          setMediaSolutionsOpen(false);
+                        }}
                         className="flex flex-col items-center justify-center p-3 rounded border border-[#E3E4E5] hover:border-[#0053E2] transition-colors min-h-[100px] col-span-2"
                       >
                         <div className="w-12 h-12 mb-2">
