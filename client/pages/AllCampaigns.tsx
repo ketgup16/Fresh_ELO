@@ -14,7 +14,7 @@ export default function AllCampaigns() {
   return (
     <div className="min-h-screen bg-[#F6F6F6] flex flex-col">
       {/* Header */}
-      <header className="h-[54px] border-b border-[#E3E4E5] flex items-center justify-between px-6">
+      <header className="h-[54px] border-b border-[#E3E4E5] flex items-center justify-between px-6 bg-white">
         <div className="flex items-center gap-5">
           {/* App Switcher */}
           <button className="w-6 h-6 p-1 rounded-full hover:bg-gray-100">
