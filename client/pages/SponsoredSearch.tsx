@@ -8,6 +8,7 @@ import MartyFloatingPanel from "../components/MartyFloatingPanel";
 export default function SponsoredSearch() {
   const navigate = useNavigate();
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
   const [showMartyPanel] = useState(true);
   const [isMartyMinimized, setIsMartyMinimized] = useState(false);
 
@@ -66,7 +67,7 @@ export default function SponsoredSearch() {
               onClick={() => setMediaSolutionsOpen(!mediaSolutionsOpen)}
               className="flex items-center gap-1 text-xs hover:bg-gray-100 px-2 py-1 rounded transition-colors"
             >
-              <span className="text-[#2E2F32]">Sponsored Search</span>
+              <span className="text-[#2E2F32]">{selectedMediaSolution === 'Display Advertising' ? 'Display' : selectedMediaSolution === 'Sponsored Search' ? 'Sponsored Search' : selectedMediaSolution === 'Shop Builder' ? 'Shop Builder' : selectedMediaSolution === 'Store Ads' ? 'Store Ads' : 'Unified Reports'}</span>
               {mediaSolutionsOpen ? (
                 <ChevronUp className="w-4 h-4" />
               ) : (
@@ -102,7 +103,7 @@ export default function SponsoredSearch() {
                           navigate('/');
                           setMediaSolutionsOpen(false);
                         }}
-                        className="flex flex-col items-center justify-center p-3 rounded border border-[#E3E4E5] hover:border-[#0053E2] transition-colors min-h-[100px]"
+                        className={`flex flex-col items-center justify-center p-3 rounded border ${selectedMediaSolution === 'Display Advertising' ? 'border-[#0053E2] bg-[#E9F1FE]' : 'border-[#E3E4E5]'} hover:border-[#0053E2] transition-colors min-h-[100px]`}
                       >
                         <div className="w-12 h-12 mb-2">
                           <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -118,7 +119,10 @@ export default function SponsoredSearch() {
                       </button>
 
                       <button
-                        onClick={() => setMediaSolutionsOpen(false)}
+                        onClick={() => {
+                          setSelectedMediaSolution('Shop Builder');
+                          setMediaSolutionsOpen(false);
+                        }}
                         className="flex flex-col items-center justify-center p-3 rounded border border-[#E3E4E5] hover:border-[#0053E2] transition-colors min-h-[100px]"
                       >
                         <div className="w-12 h-12 mb-2">
@@ -140,7 +144,10 @@ export default function SponsoredSearch() {
                       </button>
 
                       <button
-                        onClick={() => setMediaSolutionsOpen(false)}
+                        onClick={() => {
+                          setSelectedMediaSolution('Store Ads');
+                          setMediaSolutionsOpen(false);
+                        }}
                         className="flex flex-col items-center justify-center p-3 rounded border border-[#E3E4E5] hover:border-[#0053E2] transition-colors min-h-[100px]"
                       >
                         <div className="w-12 h-12 mb-2">
@@ -154,7 +161,10 @@ export default function SponsoredSearch() {
                       </button>
 
                       <button
-                        onClick={() => setMediaSolutionsOpen(false)}
+                        onClick={() => {
+                          setSelectedMediaSolution('Unified Reports');
+                          setMediaSolutionsOpen(false);
+                        }}
                         className="flex flex-col items-center justify-center p-3 rounded border border-[#E3E4E5] hover:border-[#0053E2] transition-colors min-h-[100px] col-span-2"
                       >
                         <div className="w-12 h-12 mb-2">
