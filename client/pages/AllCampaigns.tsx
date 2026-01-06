@@ -4,6 +4,40 @@ import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 
+interface Alert {
+  type: 'learning-paused' | 'out-of-budget';
+  message: string;
+  targetColumn?: 'biddingStrategy' | 'totalBudget';
+}
+
+interface Recommendation {
+  type: 'update-roas';
+  message: string;
+  suggestedValue: string;
+  targetColumn?: 'biddingStrategy';
+}
+
+interface Campaign {
+  id: string;
+  name: string;
+  status: string;
+  totalBudget: string;
+  hasWarning: boolean;
+  hasBolt: boolean;
+  hasAlertIcon: boolean;
+  hasRecIcon: boolean;
+  dailyBudget: string;
+  biddingStrategy: string;
+  biddingTarget: string;
+  biddingIcon: boolean;
+  biddingStatus: string;
+  biddingStatusDate: string;
+  avgCPC: string;
+  spend: string;
+  alerts?: Alert[];
+  recommendations?: Recommendation[];
+}
+
 export default function AllCampaigns() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
@@ -11,8 +45,9 @@ export default function AllCampaigns() {
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
 
-  const campaigns = [
+  const [campaigns, setCampaigns] = useState<Campaign[]>([
     {
+      id: "camp-001",
       name: "Walmart|Sponsored Product|Cross Device|Auto|All Postions KCMasterpieceFY2020|3747|...",
       status: "Live",
       totalBudget: "$12,500",
@@ -27,9 +62,22 @@ export default function AllCampaigns() {
       biddingStatus: "Learning paused",
       biddingStatusDate: "Since 01/05/2025",
       avgCPC: "$0.70",
-      spend: "$5,612.56"
+      spend: "$5,612.56",
+      alerts: [
+        {
+          type: 'learning-paused',
+          message: 'Target ROAS learning paused',
+          targetColumn: 'biddingStrategy'
+        },
+        {
+          type: 'out-of-budget',
+          message: 'Campaign out-of-budget',
+          targetColumn: 'totalBudget'
+        }
+      ]
     },
     {
+      id: "camp-002",
       name: "BRANDAMP_01_CLX_N2960_Clo rox Scentiva Product Launch FY20",
       status: "Live",
       totalBudget: "$18,750",
@@ -44,9 +92,17 @@ export default function AllCampaigns() {
       biddingStatus: "Optimizing",
       biddingStatusDate: "Since 01/05/2025",
       avgCPC: "$0.70",
-      spend: "$5,04017"
+      spend: "$5,04017",
+      alerts: [
+        {
+          type: 'out-of-budget',
+          message: 'Campaign out-of-budget',
+          targetColumn: 'totalBudget'
+        }
+      ]
     },
     {
+      id: "camp-003",
       name: "Walmart|Sponsored Product|Cross Device|Auto|All Postionsl Clorox_SpyVax39182846I44",
       status: "Live",
       totalBudget: "$22,300",
@@ -64,6 +120,7 @@ export default function AllCampaigns() {
       spend: "$5,000.00"
     },
     {
+      id: "camp-004",
       name: "Walmart|Sponsored Product|Cross Device|Keyword |Slots 3,5,6,12|CLX Scentiva",
       status: "Proposal",
       totalBudget: "$15,600",
@@ -78,9 +135,18 @@ export default function AllCampaigns() {
       biddingStatus: "Learning",
       biddingStatusDate: "Since 01/05/2025",
       avgCPC: "$0.98",
-      spend: "$462.99"
+      spend: "$462.99",
+      recommendations: [
+        {
+          type: 'update-roas',
+          message: 'Update ROAS target',
+          suggestedValue: '2.50',
+          targetColumn: 'biddingStrategy'
+        }
+      ]
     },
     {
+      id: "camp-005",
       name: "Online Grocery |Clorox Toilet",
       status: "Live",
       totalBudget: "$27,800",
@@ -98,6 +164,7 @@ export default function AllCampaigns() {
       spend: "$462.99"
     },
     {
+      id: "camp-006",
       name: "Walmart|Sponsored Product|Cross Device|Auto|All Postionsl Clorox_Burt'sRees|MakeGood...",
       status: "Live",
       totalBudget: "$9,900",
@@ -112,9 +179,18 @@ export default function AllCampaigns() {
       biddingStatus: "Learning",
       biddingStatusDate: "Since 01/06/2025",
       avgCPC: "$0.87",
-      spend: "$5,04017"
+      spend: "$5,04017",
+      recommendations: [
+        {
+          type: 'update-roas',
+          message: 'Update ROAS target',
+          suggestedValue: '2.50',
+          targetColumn: 'biddingStrategy'
+        }
+      ]
     },
     {
+      id: "camp-007",
       name: "BRANDAMP_01_CLX_N2960_Clo rox Scentiva Product Launch FY20",
       status: "Live",
       totalBudget: "$24,400",
@@ -132,6 +208,7 @@ export default function AllCampaigns() {
       spend: "$462.99"
     },
     {
+      id: "camp-008",
       name: "Walmart|Sponsored Product|Cross Device|Auto|All Postionsl",
       status: "Live",
       totalBudget: "$7,200",
@@ -146,9 +223,17 @@ export default function AllCampaigns() {
       biddingStatus: "Optimizing",
       biddingStatusDate: "Since 01/05/2025",
       avgCPC: "$0.87",
-      spend: "$5,04017"
+      spend: "$5,04017",
+      recommendations: [
+        {
+          type: 'update-roas',
+          message: 'Update ROAS target',
+          suggestedValue: '2.50',
+          targetColumn: 'biddingStrategy'
+        }
+      ]
     }
-  ];
+  ]);
 
   return (
     <div className="min-h-screen bg-[#F6F6F6] flex flex-col">
