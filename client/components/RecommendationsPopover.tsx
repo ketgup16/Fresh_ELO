@@ -136,12 +136,12 @@ export default function RecommendationsPopover({
                 {/* Content */}
                 <div className="flex-1 flex items-start justify-between">
                   <div className="text-[14px] text-[#2E2F32] leading-[20px] font-['Everyday_Sans_UI']">
-                    <span className="font-bold">Recommendation: </span>
+                    <span className="font-extrabold">Recommendation: </span>
                     <span className="font-normal">{rec.message}</span>
                   </div>
                   <button
                     onClick={() => onViewRecommendation(rec.type)}
-                    className="text-[14px] text-[#2E2F32] underline hover:no-underline leading-[20px] font-['Everyday_Sans_UI'] font-normal flex-shrink-0 ml-1"
+                    className="text-[14px] text-[#2E2F32] leading-[20px] font-['Everyday_Sans_UI'] font-normal flex-shrink-0 ml-1"
                   >
                     View
                   </button>
