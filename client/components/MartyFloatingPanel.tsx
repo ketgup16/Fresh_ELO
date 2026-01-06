@@ -14,6 +14,7 @@ export default function MartyFloatingPanel({
 }: MartyFloatingPanelProps) {
   const navigate = useNavigate();
   const [viewState, setViewState] = useState<ViewState>('welcome');
+  const [helpMessage, setHelpMessage] = useState<string>('');
   const [campaignData, setCampaignData] = useState({
     campaignType: 'Sponsored Products Automatic',
     campaignName: 'Free Rein Coffee Campaign Fall 2025',
