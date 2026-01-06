@@ -98,12 +98,12 @@ export default function RecommendationsPopover({
                 {/* Content */}
                 <div className="flex-1 flex items-start justify-between">
                   <div className="text-[14px] text-[#2E2F32] leading-[20px] font-['Everyday_Sans_UI']">
-                    <span className="font-bold">Alert: </span>
+                    <span className="font-extrabold">Alert: </span>
                     <span className="font-normal">{alert.message}</span>
                   </div>
                   <button
                     onClick={() => onViewRecommendation(alert.type)}
-                    className="text-[14px] text-[#2E2F32] underline hover:no-underline leading-[20px] font-['Everyday_Sans_UI'] font-normal flex-shrink-0 ml-1"
+                    className="text-[14px] text-[#2E2F32] leading-[20px] font-['Everyday_Sans_UI'] font-normal flex-shrink-0 ml-1"
                   >
                     View
                   </button>
