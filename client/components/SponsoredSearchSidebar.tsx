@@ -84,10 +84,11 @@ export default function SponsoredSearchSidebar() {
   const menuItems = [
     { id: 'home', label: 'Home', Icon: HomeIcon, path: '/' },
     { id: 'campaign-management', label: 'Campaign Management', Icon: MegaphoneIcon, path: '/all-campaigns' },
+    { id: 'performance', label: 'Performance', Icon: SpeedometerIcon },
+    { id: 'reports', label: 'Reports', Icon: AnalyticsIcon },
     { id: 'tools', label: 'Tools', Icon: ToolboxIcon },
-    { id: 'reports', label: 'Reports', Icon: DocumentIcon },
-    { id: 'video-manager', label: 'Video manager', Icon: VideoIcon },
-    { id: 'services', label: 'Services', Icon: ServicesIcon },
+    { id: 'video-manager', label: 'Video manager', Icon: VideoArrowUpIcon },
+    { id: 'bulk-operations', label: 'Bulk operations', Icon: CloudUploadIcon },
   ];
 
   return (
