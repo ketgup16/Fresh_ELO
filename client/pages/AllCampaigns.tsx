@@ -86,6 +86,14 @@ export default function AllCampaigns() {
           message: 'Campaign out-of-budget',
           targetColumn: 'totalBudget'
         }
+      ],
+      recommendations: [
+        {
+          type: 'update-roas',
+          message: 'Update ROAS target',
+          suggestedValue: '2.50',
+          targetColumn: 'biddingStrategy'
+        }
       ]
     },
     {
