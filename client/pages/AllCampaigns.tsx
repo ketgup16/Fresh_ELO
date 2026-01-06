@@ -620,7 +620,7 @@ export default function AllCampaigns() {
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Total budget</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
                           <div className="flex items-center gap-1">
                             {campaign.hasWarning && (
                               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
@@ -646,7 +646,7 @@ export default function AllCampaigns() {
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Daily budget</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
                           <span className="text-sm text-[#2E2F32]">{campaign.dailyBudget}</span>
                         </div>
                       ))}
@@ -697,7 +697,7 @@ export default function AllCampaigns() {
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Average CPC</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
                           <span className="text-sm text-[#2E2F32]">{campaign.avgCPC}</span>
                         </div>
                       ))}
@@ -709,7 +709,7 @@ export default function AllCampaigns() {
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Spend</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
                           <span className="text-sm text-[#2E2F32]">{campaign.spend}</span>
                         </div>
                       ))}
