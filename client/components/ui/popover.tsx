@@ -14,9 +14,14 @@ const PopoverArrow = React.forwardRef<
   <PopoverPrimitive.Arrow
     ref={ref}
     {...props}
-    className={cn("fill-white [&>svg]:drop-shadow-sm", props.className)}
+    className={cn("fill-white", props.className)}
+    style={{
+      ...props.style,
+      filter: 'drop-shadow(0 1px 1px rgba(186, 187, 190, 0.5))'
+    }}
   />
 ));
+PopoverArrow.displayName = "PopoverArrow";
 
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
