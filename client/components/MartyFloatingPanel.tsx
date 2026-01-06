@@ -123,27 +123,31 @@ export default function MartyFloatingPanel({
             </div>
           </div>
         ) : (
-          <div className="flex h-9 items-center gap-1.5 bg-white">
+          <div className="flex items-center gap-1.5 bg-white">
             {/* Marty Orb */}
-            <div className="flex w-6 h-6 justify-center items-center rounded-full relative">
-              <div className="absolute w-14 h-14 -left-4 -top-4">
-                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="28" cy="28" r="28" fill="url(#gradient_marty_glow)"/>
-                  <defs>
-                    <linearGradient id="gradient_marty_glow" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
-                      <stop offset="0%" stopColor="#993EF4" stopOpacity="0.3"/>
-                      <stop offset="50%" stopColor="#4DBDF5" stopOpacity="0.2"/>
-                      <stop offset="100%" stopColor="#00D0CD" stopOpacity="0.1"/>
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
+            <div className="flex w-6 h-6 justify-center items-center rounded-full">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clipPath="url(#clip0_marty)">
+                  <rect width="24" height="24" rx="12" fill="white"/>
+                  <circle cx="12" cy="12" r="9.5" fill="url(#gradient_marty)"/>
+                </g>
+                <defs>
+                  <linearGradient id="gradient_marty" x1="2.5" y1="2.5" x2="21.5" y2="21.5" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#993EF4"/>
+                    <stop offset="50%" stopColor="#4DBDF5"/>
+                    <stop offset="100%" stopColor="#00D0CD"/>
+                  </linearGradient>
+                  <clipPath id="clip0_marty">
+                    <rect width="24" height="24" rx="12" fill="white"/>
+                  </clipPath>
+                </defs>
+              </svg>
             </div>
-            
-            <div className="flex px-1.5 pb-0.5 justify-center items-center gap-2.5">
+
+            <div className="flex pr-1.5 justify-center items-center">
               <div className="text-[#2E2F32] font-bold text-lg leading-6">Marty</div>
             </div>
-            
+
             {/* Beta Tag */}
             <div className="flex px-2 py-1 items-start gap-1 rounded border border-[#515357] bg-white">
               <span className="text-[#515357] text-xs leading-4">Beta</span>
@@ -152,36 +156,34 @@ export default function MartyFloatingPanel({
         )}
 
         <div className="flex justify-end items-center gap-4">
-          {/* Files Icon with Notification */}
-          <button className="flex w-6 h-6 justify-center items-center gap-2.5 bg-white relative">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 19.5V4C2 3.44772 2.44772 3 3 3H7.08579C7.351 3 7.60536 3.10536 7.79289 3.29289L10.2071 5.70711C10.3946 5.89464 10.649 6 10.9142 6H21.5C22.0523 6 22.5 6.44772 22.5 7V19.5C22.5 20.0523 22.0523 20.5 21.5 20.5H3C2.44772 20.5 2 20.0523 2 19.5Z" stroke="#2E2F32" strokeWidth="1.5"/>
-              <path d="M2 9H22.5" stroke="#2E2F32" strokeWidth="1.5"/>
-            </svg>
-            <svg className="absolute -right-0.5 top-0.5" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="5" cy="5" r="4.25" fill="#EA1100" stroke="white" strokeWidth="1.5"/>
-            </svg>
+          {/* Reports Icon with Notification */}
+          <button className="flex w-6 h-6 justify-center items-center relative hover:bg-gray-100 rounded transition-colors">
+            <img
+              src="https://api.builder.io/api/v1/image/assets/TEMP/1835b749ef39843ef58643bf8eaf007c6cbe63ff?width=24"
+              alt="Reports"
+              className="w-6 h-6"
+            />
           </button>
 
           {/* Expand Icon */}
-          <button className="w-6 h-6 bg-white">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="24" height="24" fill="white"/>
-              <path d="M14 4H20V10" stroke="#2E2F32" strokeWidth="1.5"/>
-              <path d="M14 10L20 4" stroke="#2E2F32" strokeWidth="1.5"/>
-              <path d="M10 20L4 20L4 14" stroke="#2E2F32" strokeWidth="1.5"/>
-              <path d="M10 14L4 20" stroke="#2E2F32" strokeWidth="1.5"/>
-            </svg>
+          <button className="flex w-6 h-6 justify-center items-center hover:bg-gray-100 rounded transition-colors">
+            <img
+              src="https://api.builder.io/api/v1/image/assets/TEMP/4b9543883bac0cc8b18c7c87ebc16153e09ba6ae?width=24"
+              alt="Expand"
+              className="w-6 h-6"
+            />
           </button>
 
           {/* Minimize Icon */}
           <button
             onClick={handleMinimize}
-            className="flex w-6 h-6 justify-center items-center bg-white hover:bg-gray-100 rounded transition-colors"
+            className="flex w-6 h-6 justify-center items-center hover:bg-gray-100 rounded transition-colors"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="5" y="11" width="14" height="2" fill="#2E2F32"/>
-            </svg>
+            <img
+              src="https://api.builder.io/api/v1/image/assets/TEMP/e7b3a2f3ac0042faea6b580042a0890da69e644e?width=24"
+              alt="Minimize"
+              className="w-6 h-6"
+            />
           </button>
         </div>
       </div>

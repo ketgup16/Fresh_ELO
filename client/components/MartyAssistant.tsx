@@ -68,34 +68,34 @@ export default function MartyAssistant() {
       {/* Navbar */}
       <div className="flex w-full h-[60px] px-4 py-3 justify-between items-center rounded-t-2xl border-b border-[#E3E4E5] bg-white flex-shrink-0">
         {viewState === "welcome" ? (
-          <div className="flex h-9 items-center gap-1.5">
+          <div className="flex items-center gap-1.5">
             {/* Marty Orb */}
-            <div className="flex w-6 h-6 justify-center items-center rounded-full bg-white">
+            <div className="flex w-6 h-6 justify-center items-center rounded-full">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clipPath="url(#clip0_marty)">
+                <g clipPath="url(#clip0_marty_assistant)">
                   <rect width="24" height="24" rx="12" fill="white"/>
-                  <circle cx="12" cy="12" r="9.5" fill="url(#gradient_marty)"/>
+                  <circle cx="12" cy="12" r="9.5" fill="url(#gradient_marty_assistant)"/>
                 </g>
                 <defs>
-                  <linearGradient id="gradient_marty" x1="2.5" y1="2.5" x2="21.5" y2="21.5" gradientUnits="userSpaceOnUse">
+                  <linearGradient id="gradient_marty_assistant" x1="2.5" y1="2.5" x2="21.5" y2="21.5" gradientUnits="userSpaceOnUse">
                     <stop offset="0%" stopColor="#993EF4"/>
                     <stop offset="50%" stopColor="#4DBDF5"/>
                     <stop offset="100%" stopColor="#00D0CD"/>
                   </linearGradient>
-                  <clipPath id="clip0_marty">
+                  <clipPath id="clip0_marty_assistant">
                     <rect width="24" height="24" rx="12" fill="white"/>
                   </clipPath>
                 </defs>
               </svg>
             </div>
-            
-            <div className="flex justify-center items-center gap-2.5">
-              <div className="text-[#2E2F32] font-bold text-xl leading-7">Marty</div>
+
+            <div className="flex pr-1.5 justify-center items-center">
+              <div className="text-[#2E2F32] font-bold text-lg leading-6">Marty</div>
             </div>
-            
+
             {/* Beta Tag */}
             <div className="flex px-2 py-1 items-start gap-1 rounded border border-[#515357] bg-white">
-              <div className="text-[#515357] text-xs leading-4">Beta</div>
+              <span className="text-[#515357] text-xs leading-4">Beta</span>
             </div>
           </div>
         ) : (
@@ -104,7 +104,7 @@ export default function MartyAssistant() {
               <ArrowLeft className="w-6 h-6 text-[#2E2F32]" strokeWidth={1.5} />
             </button>
             <div className="flex justify-center items-center gap-2.5">
-              <div className="text-[#2E2F32] font-bold text-xl leading-7">Create campaign</div>
+              <div className="text-[#2E2F32] font-bold text-lg leading-6">Create campaign</div>
             </div>
           </div>
         )}
@@ -112,22 +112,33 @@ export default function MartyAssistant() {
         {/* Actions */}
         <div className="flex justify-end items-center gap-4">
           {/* Reports Icon with Notification */}
-          <div className="relative flex w-6 h-6 justify-center items-center bg-white">
-            <FileText className="w-6 h-6 text-[#2E2F32]" strokeWidth={1.5} />
-            <div className="absolute -top-0.5 -right-0.5 w-[7px] h-[7px] rounded-full bg-[#EA1100] border border-white" style={{ borderWidth: '1.5px' }}></div>
-          </div>
+          <button className="flex w-6 h-6 justify-center items-center relative hover:bg-gray-100 rounded transition-colors">
+            <img
+              src="https://api.builder.io/api/v1/image/assets/TEMP/1835b749ef39843ef58643bf8eaf007c6cbe63ff?width=24"
+              alt="Reports"
+              className="w-6 h-6"
+            />
+          </button>
 
           {/* Expand Icon */}
-          <button className="hover:bg-gray-100 rounded p-0.5 transition-colors">
-            <Maximize2 className="w-6 h-6 text-[#2E2F32]" strokeWidth={1.5} />
+          <button className="flex w-6 h-6 justify-center items-center hover:bg-gray-100 rounded transition-colors">
+            <img
+              src="https://api.builder.io/api/v1/image/assets/TEMP/4b9543883bac0cc8b18c7c87ebc16153e09ba6ae?width=24"
+              alt="Expand"
+              className="w-6 h-6"
+            />
           </button>
 
           {/* Minimize Icon */}
-          <button 
+          <button
             onClick={() => setIsOpen(false)}
-            className="flex w-6 h-6 justify-center items-center bg-white hover:bg-gray-100 rounded p-0.5 transition-colors"
+            className="flex w-6 h-6 justify-center items-center hover:bg-gray-100 rounded transition-colors"
           >
-            <Minus className="w-6 h-6 text-[#2E2F32]" strokeWidth={1.5} />
+            <img
+              src="https://api.builder.io/api/v1/image/assets/TEMP/e7b3a2f3ac0042faea6b580042a0890da69e644e?width=24"
+              alt="Minimize"
+              className="w-6 h-6"
+            />
           </button>
         </div>
       </div>
