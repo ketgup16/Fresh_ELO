@@ -308,105 +308,369 @@ export default function AllCampaigns() {
 
           {/* Data Table */}
           <div className="px-6 py-7">
-            <div className="bg-white rounded-lg shadow-md">
+            <div className="bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
               {/* Table Header */}
-              <div className="px-4 py-6 border-b border-[#E3E4E5]">
-                <h2 className="text-xl font-bold text-[#000]">Manage your campaigns (450)</h2>
-                <p className="text-sm text-[#515357] mt-2">
-                  Analyze performance metrics and make updates to your campaigns. <span className="underline text-[#2E2F32]">Learn more.</span>
-                </p>
-                <div className="flex items-center gap-4 mt-4">
-                  <Download className="w-6 h-6 text-[#001E60]" />
-                  <SettingsIcon className="w-6 h-6 text-[#001E60]" />
+              <div className="flex items-center justify-between px-6 py-6">
+                <div className="flex-1">
+                  <h2 className="text-[20px] font-bold text-[#000] leading-7 mb-1">
+                    Manage your campaigns (450)
+                  </h2>
+                  <p className="text-sm text-[#515357] leading-5">
+                    Analyze performance metrics and make updates to your campaigns.{' '}
+                    <span className="underline text-[#2E2F32] cursor-pointer hover:no-underline">Learn more.</span>
+                  </p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <button className="w-6 h-6 flex items-center justify-center hover:bg-gray-100 rounded transition-colors">
+                    <SettingsIcon className="w-5 h-5 text-[#2E2F32]" />
+                  </button>
+                  <button className="w-6 h-6 flex items-center justify-center hover:bg-gray-100 rounded transition-colors">
+                    <Download className="w-5 h-5 text-[#2E2F32]" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Search and Filter Toolbar */}
+              <div className="flex flex-col px-4 py-4 gap-4">
+                <div className="flex items-center justify-end gap-2">
+                  {/* Scoped Search Bar */}
+                  <div className="flex flex-1 min-w-[375px] items-center gap-2 px-3 h-10 rounded-full border border-[#909196] bg-white">
+                    <div className="flex items-center py-2">
+                      <Search className="w-4 h-4 text-[#2E2F32]" />
+                    </div>
+                    <div className="flex items-center gap-1 flex-1">
+                      <span className="text-sm text-[#515357]">Search by</span>
+                      <button className="flex items-center gap-1 px-0 py-1 bg-white">
+                        <span className="text-sm font-bold text-[#2E2F32]">SKU</span>
+                        <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Filter Buttons */}
+                  <div className="flex items-center gap-2">
+                    <button className="flex items-center gap-2 h-8 px-3 rounded-full border border-[#909196] bg-white hover:bg-gray-50 transition-colors">
+                      <span className="text-sm text-[#2E2F32]">Filter label</span>
+                      <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+                    </button>
+                    <button className="flex items-center gap-2 h-8 px-3 rounded-full border border-[#909196] bg-white hover:bg-gray-50 transition-colors">
+                      <span className="text-sm text-[#2E2F32]">Filter label</span>
+                      <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+                    </button>
+                    <button className="flex items-center gap-2 h-8 px-3 rounded-full border border-[#909196] bg-white hover:bg-gray-50 transition-colors">
+                      <span className="text-sm text-[#2E2F32]">Filter label</span>
+                      <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+                    </button>
+                    <button className="flex items-center gap-2 h-8 px-3 rounded-full border border-[#909196] bg-white hover:bg-gray-50 transition-colors">
+                      <span className="text-sm text-[#2E2F32]">More filters</span>
+                      <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+                    </button>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex items-center gap-2">
+                    <button className="w-8 h-8 flex items-center justify-center rounded-full border border-[#909196] bg-white hover:bg-gray-50 transition-colors">
+                      <Download className="w-4 h-4 text-[#2E2F32]" />
+                    </button>
+                    <button className="w-8 h-8 flex items-center justify-center rounded-full border border-[#909196] bg-white hover:bg-gray-50 transition-colors">
+                      <SettingsIcon className="w-[13px] h-[14px] text-[#2E2F32]" />
+                    </button>
+                  </div>
                 </div>
               </div>
 
               {/* Table Content */}
               <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-[#F8F8F8]">
-                    <tr>
-                      <th className="px-4 py-4 text-left">
-                        <input type="checkbox" className="w-4 h-4" />
-                      </th>
-                      <th className="px-4 py-4 text-left text-base font-bold text-[#2E2F32]">Campaign name</th>
-                      <th className="px-4 py-4 text-left text-base font-bold text-[#2E2F32]">Campaign status</th>
-                      <th className="px-4 py-4 text-left text-base font-bold text-[#2E2F32]">Campaign type</th>
-                      <th className="px-4 py-4 text-left text-base font-bold text-[#2E2F32]">Review status</th>
-                      <th className="px-4 py-4 text-left text-base font-bold text-[#2E2F32] border-b border-dashed border-[#000]">Total budget</th>
-                      <th className="px-4 py-4 text-left text-base font-bold text-[#2E2F32] border-b border-dashed border-[#000]">Daily budget</th>
-                      <th className="px-4 py-4 text-right text-base font-bold text-[#2E2F32]">Missed clicks</th>
-                      <th className="px-4 py-4 text-right text-base font-bold text-[#2E2F32]">Missed impressions</th>
-                      <th className="px-4 py-4 text-center text-base font-bold text-[#2E2F32]">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* Sample Row 1 */}
-                    <tr className="border-b border-[#E3E4E5] bg-[#F2F8FD]">
-                      <td className="px-4 py-4">
-                        <input type="checkbox" className="w-4 h-4" />
-                      </td>
-                      <td className="px-4 py-4">
-                        <a href="#" className="text-sm text-[#0071DC] underline">
-                          Walmart|Sponsored Product|Cross Device|Auto|All Postions KCMasterpieceFY2020|3747|...
-                        </a>
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="flex flex-col gap-1">
-                          <span className="inline-block px-2 py-1 text-xs bg-[#EAF3E6] text-[#1D5F02] rounded w-fit">Live</span>
-                          <span className="inline-block px-2 py-1 text-xs bg-[#FDE9E8] text-[#A20C00] rounded w-fit">Out-of-budget</span>
+                <div className="flex">
+                  {/* Checkbox Column */}
+                  <div className="flex flex-col flex-shrink-0">
+                    {/* Header */}
+                    <div className="flex items-center justify-center h-[52px] px-3 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="p-0.5">
+                        <input
+                          type="checkbox"
+                          className="w-6 h-6 rounded border-2 border-[#909196] bg-white cursor-pointer"
+                        />
+                      </div>
+                    </div>
+                    {/* Rows */}
+                    {Array.from({ length: 10 }).map((_, idx) => (
+                      <div key={idx} className="flex items-center justify-center h-[52px] px-3 border-b border-[#E3E4E5] bg-white">
+                        <div className="p-0.5">
+                          <input
+                            type="checkbox"
+                            className="w-6 h-6 rounded border-2 border-[#909196] bg-white cursor-pointer"
+                          />
                         </div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <span className="text-sm text-[#2E2F32]">Sponsored products<br />(Automatic)</span>
-                      </td>
-                      <td className="px-4 py-4">
-                        <span className="text-sm text-[#2E2F32]">-</span>
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="flex items-center gap-1">
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <circle cx="8" cy="8" r="7" stroke="#A20C00" strokeWidth="2" fill="none"/>
-                            <path d="M8 4V8L11 11" stroke="#A20C00" strokeWidth="2"/>
-                          </svg>
-                          <span className="text-sm text-[#2E2F32]">$12,500</span>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <span className="text-sm text-[#2E2F32]">$450</span>
-                      </td>
-                      <td className="px-4 py-4 text-right">
-                        <span className="text-sm text-[#2E2F32]">764,158 - 856,243</span>
-                      </td>
-                      <td className="px-4 py-4 text-right">
-                        <span className="text-sm text-[#2E2F32]">561,142-652,431</span>
-                      </td>
-                      <td className="px-4 py-4 text-center">
-                        <button className="text-[#2E2F32]">•••</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                      </div>
+                    ))}
+                  </div>
 
-              {/* Pagination */}
-              <div className="flex items-center justify-end gap-4 px-4 py-4 border-t border-[#E3E4E5]">
-                <div className="flex items-center gap-1">
-                  <span className="text-sm">Results per page: 50</span>
-                  <ChevronDown className="w-4 h-4" />
-                </div>
-                <div className="flex items-center gap-2">
-                  <button className="p-1 text-[#BABBBE]">««</button>
-                  <button className="p-1 text-[#BABBBE]">‹</button>
-                  <span className="text-sm">Page</span>
-                  <input
-                    type="text"
-                    defaultValue="1"
-                    className="w-7 h-6 px-1 text-center text-sm border border-[#74767C] rounded"
-                  />
-                  <span className="text-sm">of 10</span>
-                  <button className="p-1">›</button>
-                  <button className="p-1">»</button>
+                  {/* Data Columns */}
+                  <div className="flex flex-1 overflow-x-auto">
+                    {/* Column 1 */}
+                    <div className="flex flex-col min-w-[120px] flex-1">
+                      {/* Header */}
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
+                        <div className="flex items-center">
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
+                          </button>
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      {/* Rows */}
+                      {Array.from({ length: 10 }).map((_, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                            Data
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Column 2 */}
+                    <div className="flex flex-col min-w-[120px] flex-1">
+                      {/* Header */}
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
+                        <div className="flex items-center">
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
+                          </button>
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      {/* Rows */}
+                      {Array.from({ length: 10 }).map((_, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                            Data
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Column 3 */}
+                    <div className="flex flex-col min-w-[120px] flex-1">
+                      {/* Header */}
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
+                        <div className="flex items-center">
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
+                          </button>
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      {/* Rows */}
+                      {Array.from({ length: 10 }).map((_, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                            Data
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Column 4 */}
+                    <div className="flex flex-col min-w-[120px] flex-1">
+                      {/* Header */}
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
+                        <div className="flex items-center">
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
+                          </button>
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      {/* Rows */}
+                      {Array.from({ length: 10 }).map((_, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                            Data
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Column 5 */}
+                    <div className="flex flex-col min-w-[120px] flex-1">
+                      {/* Header */}
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
+                        <div className="flex items-center">
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
+                          </button>
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      {/* Rows */}
+                      {Array.from({ length: 10 }).map((_, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                            Data
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Column 6 */}
+                    <div className="flex flex-col min-w-[120px] flex-1">
+                      {/* Header */}
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
+                        <div className="flex items-center">
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
+                          </button>
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      {/* Rows */}
+                      {Array.from({ length: 10 }).map((_, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                            Data
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Column 7 */}
+                    <div className="flex flex-col min-w-[120px] flex-1">
+                      {/* Header */}
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
+                        <div className="flex items-center">
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
+                          </button>
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      {/* Rows */}
+                      {Array.from({ length: 10 }).map((_, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                            Data
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Column 8 */}
+                    <div className="flex flex-col min-w-[120px] flex-1">
+                      {/* Header */}
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
+                        <div className="flex items-center">
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
+                          </button>
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      {/* Rows */}
+                      {Array.from({ length: 10 }).map((_, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                            Data
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Column 9 */}
+                    <div className="flex flex-col min-w-[120px] flex-1">
+                      {/* Header */}
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
+                        <div className="flex items-center">
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
+                          </button>
+                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      {/* Rows */}
+                      {Array.from({ length: 10 }).map((_, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                            Data
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Actions Column - Right Aligned */}
+                  <div className="flex flex-col flex-shrink-0 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
+                    {/* Header */}
+                    <div className="flex items-center h-[52px] px-4 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <span className="text-sm font-bold text-[#2E2F32] leading-5">Actions</span>
+                    </div>
+                    {/* Rows */}
+                    {Array.from({ length: 10 }).map((_, idx) => (
+                      <div key={idx} className="flex items-center justify-center h-[52px] px-2.5 border-b border-[#E3E4E5] bg-white">
+                        <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M9 3.5C9 4.05228 8.55228 4.5 8 4.5C7.44772 4.5 7 4.05228 7 3.5C7 2.94772 7.44772 2.5 8 2.5C8.55228 2.5 9 2.94772 9 3.5Z" fill="#2E2F32"/>
+                            <path d="M9 8C9 8.55228 8.55228 9 8 9C7.44772 9 7 8.55228 7 8C7 7.44772 7.44772 7 8 7C8.55228 7 9 7.44772 9 8Z" fill="#2E2F32"/>
+                            <path d="M9 12.5C9 13.0523 8.55228 13.5 8 13.5C7.44772 13.5 7 13.0523 7 12.5C7 11.9477 7.44772 11.5 8 11.5C8.55228 11.5 9 11.9477 9 12.5Z" fill="#2E2F32"/>
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
