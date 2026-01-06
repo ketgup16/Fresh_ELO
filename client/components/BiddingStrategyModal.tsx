@@ -81,10 +81,7 @@ export default function BiddingStrategyModal({
             Bidding strategy
           </DialogTitle>
           <p className="text-sm text-[#2E2F32] leading-5 mt-1">
-            Choose the strategy that best suits your business goals.{" "}
-            <span className="underline cursor-pointer hover:no-underline">
-              Learn more
-            </span>
+            Choose the strategy that best suits your business goals. <span className="underline cursor-pointer">Learn more</span>
           </p>
         </DialogHeader>
 
