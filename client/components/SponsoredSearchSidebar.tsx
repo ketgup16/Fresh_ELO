@@ -91,44 +91,91 @@ export default function SponsoredSearchSidebar() {
     { id: 'bulk-operations', label: 'Bulk operations', Icon: CloudUploadIcon },
   ];
 
+  const handleToggle = () => {
+    if (sidebarExpanded) {
+      setSidebarExpanded(false);
+    } else {
+      setSidebarExpanded(true);
+      if (sidebarWidth < 220) {
+        setSidebarWidth(220);
+      }
+    }
+  };
+
   return (
     <aside
-      className="border-r border-[#E3E4E5] bg-white flex flex-col justify-between h-full"
-      style={{ width: '64px' }}
+      className="border-r border-[#E3E4E5] bg-white flex flex-col justify-between py-1.5 h-auto self-stretch overflow-hidden relative"
+      style={{
+        width: sidebarExpanded ? `${sidebarWidth}px` : '64px',
+        transition: isResizingSidebar ? 'none' : 'width 300ms ease-in-out'
+      }}
     >
-      <div className="flex flex-col items-start gap-1 p-3">
+      {/* Menu items section */}
+      <div className="flex flex-col gap-0 px-3">
         {menuItems.map((item) => {
-          const isActive = activeItem === item.id;
+          const isActive = activeMenuItem === item.id;
           const IconComponent = item.Icon;
 
           return (
             <button
               key={item.id}
               onClick={() => {
-                setActiveItem(item.id);
+                setActiveMenuItem(item.id);
                 if (item.path) {
                   navigate(item.path);
                 }
               }}
-              className={`flex h-9 px-3 justify-center items-center rounded ${
-                isActive ? 'bg-white' : 'bg-white hover:bg-gray-50'
+              className={`flex items-center ${
+                sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'
+              } h-9 rounded ${
+                isActive && sidebarExpanded ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'
               } transition-colors`}
               aria-label={item.label}
             >
               <IconComponent isActive={isActive} />
+              {sidebarExpanded && (
+                <span className={`text-sm truncate ${isActive ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>
+                  {item.label}
+                </span>
+              )}
             </button>
           );
         })}
       </div>
 
-      <div className="p-3">
+      {/* Toggle button at bottom */}
+      <div className="px-3">
         <button
-          className="flex p-[10px] items-center rounded bg-white hover:bg-gray-50 transition-colors"
-          aria-label="Expand menu"
+          onClick={handleToggle}
+          className={`flex items-center ${
+            sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'
+          } h-9 rounded hover:bg-gray-100 transition-colors`}
+          aria-label={sidebarExpanded ? 'Collapse sidebar' : 'Expand sidebar'}
+          aria-expanded={sidebarExpanded}
         >
-          <ArrowRightIcon />
+          {sidebarExpanded ? (
+            <>
+              <ArrowLeftIcon />
+              <span className="text-sm truncate text-[#2E2F32]">Lock</span>
+            </>
+          ) : (
+            <ArrowRightLineIcon />
+          )}
         </button>
       </div>
+
+      {/* Resize handle (only when expanded) */}
+      {sidebarExpanded && (
+        <div
+          className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] transition-colors bg-transparent"
+          onMouseDown={(e) => {
+            e.preventDefault();
+            setIsResizingSidebar(true);
+            setSidebarResizeStartX(e.clientX);
+            setSidebarResizeStartWidth(sidebarWidth);
+          }}
+        />
+      )}
     </aside>
   );
 }
