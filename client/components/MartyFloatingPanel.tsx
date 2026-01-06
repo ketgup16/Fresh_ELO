@@ -99,8 +99,7 @@ export default function MartyFloatingPanel({
 
             {/* Text - Changes on hover */}
             <div className="text-[#2E2F32] text-right text-base leading-6 whitespace-nowrap flex items-center">
-              <span className="inline-block max-w-0 opacity-0 group-hover:max-w-[150px] group-hover:opacity-100 font-normal overflow-hidden transition-all duration-200 ease-out">Have a question? </span>
-              <span className="inline-block max-w-0 opacity-0 group-hover:max-w-[10px] group-hover:opacity-100 overflow-hidden transition-all duration-200 ease-out"> </span>
+              <span className="inline-block max-w-0 opacity-0 group-hover:max-w-[150px] group-hover:opacity-100 font-normal overflow-hidden transition-all duration-200 ease-out">Have a question?  </span>
               <span className="font-bold">Ask Marty</span>
             </div>
           </div>
