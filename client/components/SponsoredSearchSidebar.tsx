@@ -188,7 +188,7 @@ export default function SponsoredSearchSidebar() {
       </div>
 
       {/* Toggle button at bottom */}
-      <div className="px-3">
+      <div>
         <button
           onClick={handleToggle}
           className={`flex items-center ${
