@@ -585,8 +585,8 @@ export default function AllCampaigns() {
                               </svg>
                             )}
                             {campaign.hasBolt && (
-                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
-                                <path d="M8.5 2L4 9H8L7.5 14L12 7H8L8.5 2Z" fill="#74767C"/>
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                                <path d="M8.36914 6.10059L8.25391 6.69629H15.1279L10.8525 10.9072L6.63184 15.0645L7.63086 9.89941L7.74609 9.30371H0.870117L9.36719 0.93457L8.36914 6.10059Z" stroke="#8C1E64"/>
                               </svg>
                             )}
                             <span className="text-sm text-[#2E2F32]">{campaign.totalBudget}</span>
@@ -616,9 +616,10 @@ export default function AllCampaigns() {
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
                           <div className="flex items-start gap-1">
                             {campaign.biddingIcon && (
-                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0 mt-0.5">
-                                <circle cx="8" cy="8" r="6.5" stroke="#74767C" strokeWidth="1" fill="none"/>
-                                <path d="M8 5V8.5L10.5 10.5" stroke="#74767C" strokeWidth="1" strokeLinecap="round"/>
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 mt-0.5">
+                                <circle cx="8" cy="8" r="7" stroke="#A20C00" strokeWidth="1.5" fill="none"/>
+                                <path d="M8 4.5V8.5" stroke="#A20C00" strokeWidth="1.5" strokeLinecap="round"/>
+                                <circle cx="8" cy="11" r="0.75" fill="#A20C00"/>
                               </svg>
                             )}
                             <div className="flex flex-col">
