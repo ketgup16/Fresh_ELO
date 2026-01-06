@@ -321,8 +321,7 @@ export default function MartyFloatingPanel({
               </div>
               <div className="flex h-10 px-3 py-2 items-center gap-2 self-stretch rounded-lg border border-[#E3E4E5] bg-white">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex">
-                  <path d="M9 2.5V13.5" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round"/>
-                  <path d="M6.5 4.5H10C10.8284 4.5 11.5 5.17157 11.5 6C11.5 6.82843 10.8284 7.5 10 7.5H7C6.17157 7.5 5.5 8.17157 5.5 9C5.5 9.82843 6.17157 10.5 7 10.5H10.5" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M8.5 2V14M5.5 4.5H9.5C10.3284 4.5 11 5.17157 11 6C11 6.82843 10.3284 7.5 9.5 7.5H6.5C5.67157 7.5 5 8.17157 5 9C5 9.82843 5.67157 10.5 6.5 10.5H10.5" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
                 <div className="flex h-6 py-0.5 justify-center items-center flex-1">
                   <input
