@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Calendar, Filter, Download, Settings as SettingsIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
@@ -44,6 +44,16 @@ export default function AllCampaigns() {
   const [isMartyMinimized, setIsMartyMinimized] = useState(false);
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
+
+  // Recommendations & Modal State
+  const [recommendationsOpen, setRecommendationsOpen] = useState(false);
+  const [selectedCampaignId, setSelectedCampaignId] = useState<string | null>(null);
+  const [biddingModalOpen, setBiddingModalOpen] = useState(false);
+  const [recommendedRoasValue, setRecommendedRoasValue] = useState<string | undefined>();
+
+  // Refs for scrolling
+  const biddingStrategyColumnRef = useRef<HTMLDivElement>(null);
+  const tableContainerRef = useRef<HTMLDivElement>(null);
 
   const [campaigns, setCampaigns] = useState<Campaign[]>([
     {
@@ -234,6 +244,69 @@ export default function AllCampaigns() {
       ]
     }
   ]);
+
+  // Handler: Icon Click
+  const handleIconClick = (campaignId: string) => {
+    setSelectedCampaignId(campaignId);
+    setRecommendationsOpen(true);
+  };
+
+  // Handler: View Recommendation
+  const handleViewRecommendation = (type: string) => {
+    if (!selectedCampaignId) return;
+
+    setRecommendationsOpen(false);
+
+    const campaign = campaigns.find((c) => c.id === selectedCampaignId);
+    if (!campaign) return;
+
+    // Find the recommendation or alert
+    const rec = campaign.recommendations?.find((r) => r.type === type);
+    const alert = campaign.alerts?.find((a) => a.type === type);
+
+    const targetColumn = rec?.targetColumn || alert?.targetColumn;
+
+    // Scroll to target column
+    if (targetColumn === 'biddingStrategy' && biddingStrategyColumnRef.current) {
+      biddingStrategyColumnRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center',
+      });
+    }
+
+    // Set recommended value if it's a recommendation
+    setRecommendedRoasValue(rec?.suggestedValue);
+
+    // Open modal after a short delay to allow scroll to complete
+    setTimeout(() => {
+      setBiddingModalOpen(true);
+    }, 300);
+  };
+
+  // Handler: Save ROAS
+  const handleSaveRoas = (newValue: string) => {
+    if (!selectedCampaignId) return;
+
+    // Update campaigns array
+    setCampaigns((prevCampaigns) =>
+      prevCampaigns.map((c) =>
+        c.id === selectedCampaignId
+          ? {
+              ...c,
+              biddingTarget: `(set at ${newValue})`,
+              // Remove recommendation after applying
+              recommendations: c.recommendations?.filter(
+                (r) => r.type !== 'update-roas'
+              ),
+            }
+          : c
+      )
+    );
+
+    setBiddingModalOpen(false);
+    setRecommendedRoasValue(undefined);
+  };
 
   return (
     <div className="min-h-screen bg-[#F6F6F6] flex flex-col">
