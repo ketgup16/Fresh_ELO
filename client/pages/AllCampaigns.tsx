@@ -3,6 +3,8 @@ import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Calendar, Filte
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
+import RecommendationsPopover from "../components/RecommendationsPopover";
+import BiddingStrategyModal from "../components/BiddingStrategyModal";
 
 interface Alert {
   type: 'learning-paused' | 'out-of-budget';
@@ -904,6 +906,27 @@ export default function AllCampaigns() {
           </div>
         </div>
       </div>
+
+      {/* Recommendations Popover */}
+      {selectedCampaignId && (
+        <RecommendationsPopover
+          open={recommendationsOpen}
+          onOpenChange={setRecommendationsOpen}
+          campaignData={campaigns.find((c) => c.id === selectedCampaignId)!}
+          onViewRecommendation={handleViewRecommendation}
+        />
+      )}
+
+      {/* Bidding Strategy Modal */}
+      {selectedCampaignId && (
+        <BiddingStrategyModal
+          open={biddingModalOpen}
+          onOpenChange={setBiddingModalOpen}
+          campaignData={campaigns.find((c) => c.id === selectedCampaignId)!}
+          recommendedValue={recommendedRoasValue}
+          onSave={handleSaveRoas}
+        />
+      )}
 
       {/* Marty Floating Panel */}
       {showMartyPanel && (
