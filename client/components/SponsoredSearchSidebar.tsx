@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const HomeIcon = ({ isActive }: { isActive: boolean }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +76,15 @@ const ArrowRightIcon = () => (
 
 export default function SponsoredSearchSidebar() {
   const navigate = useNavigate();
-  const [activeItem, setActiveItem] = useState('home');
+  const location = useLocation();
+
+  // Sidebar state management
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
+  const [sidebarWidth, setSidebarWidth] = useState(220);
+  const [isResizingSidebar, setIsResizingSidebar] = useState(false);
+  const [sidebarResizeStartX, setSidebarResizeStartX] = useState(0);
+  const [sidebarResizeStartWidth, setSidebarResizeStartWidth] = useState(0);
+  const [activeMenuItem, setActiveMenuItem] = useState('home');
 
   const menuItems = [
     { id: 'home', label: 'Home', Icon: HomeIcon, path: '/' },
