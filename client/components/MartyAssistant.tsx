@@ -27,7 +27,7 @@ export default function MartyAssistant() {
     return (
       <button 
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 right-4 z-50 flex w-[145px] h-[58px] p-0.5 justify-end items-center gap-2 rounded-full shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] bg-white hover:shadow-[0_-2px_4px_0_rgba(0,0,0,0.15),0_4px_6px_2px_rgba(0,0,0,0.20)] transition-shadow"
+        className="fixed bottom-4 right-4 z-30 flex w-[145px] h-[58px] p-0.5 justify-end items-center gap-2 rounded-full shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] bg-white hover:shadow-[0_-2px_4px_0_rgba(0,0,0,0.15),0_4px_6px_2px_rgba(0,0,0,0.20)] transition-shadow"
       >
         {/* Gradient Border Effect */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#993EF4] via-[#4DBDF5] to-[#00D0CD] opacity-0 hover:opacity-100 transition-opacity" style={{ padding: '2px' }}>
@@ -64,7 +64,7 @@ export default function MartyAssistant() {
   }
 
   return (
-    <div className="fixed bottom-0 right-4 z-50 w-[425px] h-[652px] rounded-t-xl border border-[#E3E4E5] shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] bg-white flex flex-col">
+    <div className="fixed bottom-0 right-4 z-30 w-[425px] h-[652px] rounded-t-xl border border-[#E3E4E5] shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] bg-white flex flex-col">
       {/* Navbar */}
       <div className="flex w-full h-[60px] px-4 py-3 justify-between items-center rounded-t-2xl border-b border-[#E3E4E5] bg-white flex-shrink-0">
         {viewState === "welcome" ? (
