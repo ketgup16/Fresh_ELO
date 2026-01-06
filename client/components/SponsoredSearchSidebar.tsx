@@ -91,6 +91,27 @@ export default function SponsoredSearchSidebar() {
     { id: 'bulk-operations', label: 'Bulk operations', Icon: CloudUploadIcon },
   ];
 
+  // Set active menu item based on current route
+  useEffect(() => {
+    const pathname = location.pathname;
+
+    if (pathname === '/' || pathname === '/sponsored-search') {
+      setActiveMenuItem('home');
+    } else if (pathname.includes('/all-campaigns') || pathname.includes('/campaign')) {
+      setActiveMenuItem('campaign-management');
+    } else if (pathname.includes('/performance')) {
+      setActiveMenuItem('performance');
+    } else if (pathname.includes('/reports')) {
+      setActiveMenuItem('reports');
+    } else if (pathname.includes('/tools')) {
+      setActiveMenuItem('tools');
+    } else if (pathname.includes('/video')) {
+      setActiveMenuItem('video-manager');
+    } else if (pathname.includes('/bulk')) {
+      setActiveMenuItem('bulk-operations');
+    }
+  }, [location.pathname]);
+
   // Handle resize functionality
   useEffect(() => {
     if (!isResizingSidebar) return;
