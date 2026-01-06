@@ -54,12 +54,12 @@ export default function RecommendationsPopover({
         <PopoverArrow className="fill-white stroke-[#BABBBE] stroke-1" width={16} height={8} />
 
         {/* Header */}
-        <div className="flex flex-col gap-1 mb-6">
-          <h3 className="text-[24px] font-bold text-[#2E2F32] leading-[36px] font-['Everyday_Sans_UI']">
+        <div className="flex flex-col gap-1 mb-4">
+          <h3 className="text-[20px] font-bold text-[#2E2F32] leading-[28px] font-['Everyday_Sans_UI']">
             Recommendations
           </h3>
           <p className="text-[14px] font-normal text-[#2E2F32] leading-[20px] font-['Everyday_Sans_UI']">
-            Scroll through this campaign to review and apply recommendations
+            Click below or scroll to review and apply recommendations
           </p>
         </div>
 
