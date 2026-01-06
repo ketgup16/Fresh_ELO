@@ -507,7 +507,7 @@ export default function MartyFloatingPanel({
       {viewState === 'welcome' && (
         <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white">
           {/* Input Field */}
-          <div className="flex max-w-[760px] max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
+          <div className="flex justify-start max-w-[760px] max-h-44 px-4 py-3 items-center gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
             <input
               type="text"
               value={userMessage}
