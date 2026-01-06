@@ -7,31 +7,7 @@ const Popover = PopoverPrimitive.Root;
 
 const PopoverTrigger = PopoverPrimitive.Trigger;
 
-// Custom styled arrow with border
-const PopoverArrow = React.forwardRef<
-  React.ElementRef<typeof PopoverPrimitive.Arrow>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Arrow>
->((props, ref) => (
-  <div className="relative">
-    {/* Border arrow - slightly larger and gray */}
-    <PopoverPrimitive.Arrow
-      ref={ref}
-      {...props}
-      width={props.width || 10}
-      height={(props.height || 5) + 1}
-      className={cn("fill-[#BABBBE]", props.className)}
-      style={{ ...props.style, zIndex: 1 }}
-    />
-    {/* White arrow on top */}
-    <PopoverPrimitive.Arrow
-      width={props.width || 10}
-      height={props.height || 5}
-      className={cn("fill-white absolute", props.className)}
-      style={{ ...props.style, top: 1, zIndex: 2 }}
-    />
-  </div>
-));
-PopoverArrow.displayName = "PopoverArrow";
+const PopoverArrow = PopoverPrimitive.Arrow;
 
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
