@@ -920,16 +920,6 @@ export default function AllCampaigns() {
         </div>
       </div>
 
-      {/* Recommendations Popover */}
-      {selectedCampaignId && (
-        <RecommendationsPopover
-          open={recommendationsOpen}
-          onOpenChange={setRecommendationsOpen}
-          campaignData={campaigns.find((c) => c.id === selectedCampaignId)!}
-          onViewRecommendation={handleViewRecommendation}
-        />
-      )}
-
       {/* Bidding Strategy Modal */}
       {selectedCampaignId && (
         <BiddingStrategyModal
