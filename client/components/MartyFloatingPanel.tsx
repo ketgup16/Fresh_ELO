@@ -65,18 +65,18 @@ export default function MartyFloatingPanel({
       <div className="fixed bottom-8 right-8 z-30">
         <button
           onClick={handleExpand}
-          className="inline-flex p-0.5 justify-end items-center gap-2 rounded-full shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] relative overflow-hidden group"
+          className="inline-flex p-0.5 justify-end items-center gap-2 rounded-full shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] relative overflow-hidden group transition-all duration-300 ease-in-out"
         >
           {/* Gradient Border Background */}
-          <div 
+          <div
             className="absolute inset-0 rounded-full"
             style={{
               background: 'linear-gradient(134deg, #993EF4 10.5%, #4DBDF5 71.77%, #00D0CD 102.41%)'
             }}
           />
-          
+
           {/* Content */}
-          <div className="flex py-2 pl-2 pr-4 items-center gap-2 rounded-full bg-white relative z-10">
+          <div className="flex py-2 pl-2 pr-4 items-center gap-2 rounded-full bg-white relative z-10 transition-all duration-300 ease-in-out">
             {/* Marty Orb */}
             <div className="flex w-[38px] h-[38px] justify-center items-center rounded-full bg-white overflow-hidden flex-shrink-0">
               <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,10 +96,11 @@ export default function MartyFloatingPanel({
                 </defs>
               </svg>
             </div>
-            
-            {/* Text */}
-            <div className="text-[#2E2F32] text-right font-bold text-base leading-6">
-              Ask Marty
+
+            {/* Text - Changes on hover */}
+            <div className="text-[#2E2F32] text-right text-base leading-6 whitespace-nowrap overflow-hidden transition-all duration-300 ease-in-out">
+              <span className="hidden group-hover:inline font-normal">Have a question? </span>
+              <span className="font-bold">Ask Marty</span>
             </div>
           </div>
         </button>
