@@ -677,7 +677,7 @@ export default function AllCampaigns() {
               </div>
 
               {/* Table Content */}
-              <div className="overflow-x-auto">
+              <div ref={tableContainerRef} className="overflow-x-auto">
                 <div className="flex">
                   {/* Checkbox Column */}
                   <div className="flex flex-col flex-shrink-0">
@@ -818,7 +818,7 @@ export default function AllCampaigns() {
                     </div>
 
                     {/* Bidding Strategy Column */}
-                    <div className="flex flex-col min-w-[140px]">
+                    <div ref={biddingStrategyColumnRef} className="flex flex-col min-w-[140px]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Bidding strategy</span>
                       </div>
