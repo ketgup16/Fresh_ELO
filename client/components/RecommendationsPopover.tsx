@@ -46,7 +46,7 @@ export default function RecommendationsPopover({
     <Popover open={open} onOpenChange={onOpenChange}>
       {trigger && <PopoverTrigger asChild>{trigger}</PopoverTrigger>}
       <PopoverContent
-        className="w-[447px] p-6 bg-white rounded-lg border border-[#BABBBE] shadow-[0_5px_10px_rgba(0,0,0,0.15),0_-1px_4px_rgba(0,0,0,0.10)]"
+        className="w-[447px] p-6 bg-white rounded border border-[#BABBBE] shadow-[0_5px_10px_rgba(0,0,0,0.15),0_-1px_4px_rgba(0,0,0,0.10)]"
         align="start"
         sideOffset={8}
       >
