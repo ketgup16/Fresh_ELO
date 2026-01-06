@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from "./ui/popover";
 
 interface Alert {
   type: 'learning-paused' | 'out-of-budget';
