@@ -7,30 +7,29 @@ const Popover = PopoverPrimitive.Root;
 
 const PopoverTrigger = PopoverPrimitive.Trigger;
 
+// Custom styled arrow with border
 const PopoverArrow = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Arrow>,
   React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Arrow>
 >((props, ref) => (
-  <svg
-    ref={ref as any}
-    width={props.width || 10}
-    height={props.height || 5}
-    viewBox="0 0 30 10"
-    preserveAspectRatio="none"
-    style={{
-      position: 'absolute',
-      pointerEvents: 'none',
-      ...props.style
-    }}
-    className={cn(props.className)}
-  >
-    <polygon
-      points="0,10 15,0 30,10"
-      fill="white"
-      stroke="#BABBBE"
-      strokeWidth="1"
+  <div className="relative">
+    {/* Border arrow - slightly larger and gray */}
+    <PopoverPrimitive.Arrow
+      ref={ref}
+      {...props}
+      width={props.width || 10}
+      height={(props.height || 5) + 1}
+      className={cn("fill-[#BABBBE]", props.className)}
+      style={{ ...props.style, zIndex: 1 }}
     />
-  </svg>
+    {/* White arrow on top */}
+    <PopoverPrimitive.Arrow
+      width={props.width || 10}
+      height={props.height || 5}
+      className={cn("fill-white absolute", props.className)}
+      style={{ ...props.style, top: 1, zIndex: 2 }}
+    />
+  </div>
 ));
 PopoverArrow.displayName = "PopoverArrow";
 
