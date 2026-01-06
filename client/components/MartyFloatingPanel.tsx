@@ -515,10 +515,15 @@ export default function MartyFloatingPanel({
               placeholder="How can I help?"
               className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C]"
             />
-            <button className="flex p-2 flex-col items-start rounded-full border border-transparent bg-[#0071DC]">
+            <button
+              disabled={!userMessage.trim()}
+              className={`flex p-2 flex-col items-start rounded-full border border-transparent ${
+                userMessage.trim() ? 'bg-[#0071DC]' : 'bg-[#BABBBE]'
+              }`}
+            >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 3L8 13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                <path d="M3 8L8 3L13 8" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M8 3L8 13" stroke={userMessage.trim() ? "white" : "#74767C"} strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M3 8L8 3L13 8" stroke={userMessage.trim() ? "white" : "#74767C"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
           </div>
