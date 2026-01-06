@@ -52,20 +52,9 @@ export default function RecommendationsPopover({
       >
         {/* Arrow/Nub pointing to icon - matches Figma design */}
         <PopoverArrow
-          className="fill-white"
+          className="fill-white [&>polygon]:stroke-[#BABBBE] [&>polygon]:stroke-[1px]"
           width={14}
           height={7}
-          style={{
-            filter: 'drop-shadow(0 -1px 1px rgba(0, 0, 0, 0.1))'
-          }}
-        />
-        <PopoverArrow
-          className="fill-none stroke-[#BABBBE]"
-          width={14}
-          height={7}
-          style={{
-            strokeWidth: 1
-          }}
         />
 
         {/* Header */}
