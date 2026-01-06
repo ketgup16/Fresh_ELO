@@ -50,6 +50,9 @@ export default function RecommendationsPopover({
         align="start"
         sideOffset={8}
       >
+        {/* Arrow/Nub pointing to icon */}
+        <PopoverArrow className="fill-white stroke-[#BABBBE] stroke-1" width={16} height={8} />
+
         {/* Header */}
         <div className="flex flex-col gap-1 mb-6">
           <h3 className="text-[24px] font-bold text-[#2E2F32] leading-[36px] font-['Everyday_Sans_UI']">
