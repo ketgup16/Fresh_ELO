@@ -1,4 +1,4 @@
-import { FileText, Maximize2, Minus, ArrowLeft, Calendar } from "lucide-react";
+import { ArrowLeft, Calendar } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
