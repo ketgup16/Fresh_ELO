@@ -18,6 +18,8 @@ export default function AllCampaigns() {
       totalBudget: "$12,500",
       hasWarning: true,
       hasBolt: false,
+      hasAlertIcon: true,
+      hasRecIcon: false,
       dailyBudget: "$450",
       biddingStrategy: "Target ROAS",
       biddingTarget: "(set at $25)",
@@ -33,6 +35,8 @@ export default function AllCampaigns() {
       totalBudget: "$18,750",
       hasWarning: false,
       hasBolt: false,
+      hasAlertIcon: true,
+      hasRecIcon: false,
       dailyBudget: "$350",
       biddingStrategy: "Target ROAS",
       biddingTarget: "(set at 275)",
@@ -48,6 +52,8 @@ export default function AllCampaigns() {
       totalBudget: "$22,300",
       hasWarning: false,
       hasBolt: true,
+      hasAlertIcon: false,
+      hasRecIcon: false,
       dailyBudget: "$140",
       biddingStrategy: "Target ROAS",
       biddingTarget: "(set at 410)",
@@ -63,6 +69,8 @@ export default function AllCampaigns() {
       totalBudget: "$15,600",
       hasWarning: false,
       hasBolt: true,
+      hasAlertIcon: false,
+      hasRecIcon: true,
       dailyBudget: "$300",
       biddingStrategy: "Target ROAS",
       biddingTarget: "(set at 375)",
@@ -78,6 +86,8 @@ export default function AllCampaigns() {
       totalBudget: "$27,800",
       hasWarning: false,
       hasBolt: true,
+      hasAlertIcon: false,
+      hasRecIcon: false,
       dailyBudget: "$480",
       biddingStrategy: "Target ROAS",
       biddingTarget: "(set at 4.00)",
@@ -93,6 +103,8 @@ export default function AllCampaigns() {
       totalBudget: "$9,900",
       hasWarning: false,
       hasBolt: false,
+      hasAlertIcon: false,
+      hasRecIcon: true,
       dailyBudget: "$150",
       biddingStrategy: "Target ROAS",
       biddingTarget: "(set at 3.50)",
@@ -108,6 +120,8 @@ export default function AllCampaigns() {
       totalBudget: "$24,400",
       hasWarning: false,
       hasBolt: false,
+      hasAlertIcon: false,
+      hasRecIcon: false,
       dailyBudget: "$220",
       biddingStrategy: "Target ROAS",
       biddingTarget: "(set at 4.50)",
@@ -123,6 +137,8 @@ export default function AllCampaigns() {
       totalBudget: "$7,200",
       hasWarning: false,
       hasBolt: false,
+      hasAlertIcon: false,
+      hasRecIcon: true,
       dailyBudget: "$150",
       biddingStrategy: "Target ROAS",
       biddingTarget: "(set at 4.50)",
@@ -525,6 +541,35 @@ export default function AllCampaigns() {
                             className="w-6 h-6 rounded border-2 border-[#909196] bg-white cursor-pointer"
                           />
                         </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Icon Column */}
+                  <div className="flex flex-col flex-shrink-0 w-[48px]">
+                    {/* Header */}
+                    <div className="flex items-center justify-center h-[52px] border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      {/* Empty header for icon column */}
+                    </div>
+                    {/* Rows */}
+                    {campaigns.map((campaign, idx) => (
+                      <div key={idx} className="flex items-center justify-center h-[52px] border-b border-[#E3E4E5] bg-white">
+                        {campaign.hasAlertIcon && (
+                          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[#F8D2D3]">
+                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[18px] h-[18px]">
+                              <path d="M10.1322 5.0656C10.4529 5.0656 10.7178 5.30386 10.7598 5.61299L10.7656 5.69893V12.2104C10.7656 12.5602 10.482 12.8438 10.1322 12.8438C9.81161 12.8438 9.54663 12.6055 9.50469 12.2964L9.49891 12.2104V5.69893C9.49891 5.34915 9.78246 5.0656 10.1322 5.0656Z" fill="#A20C00"/>
+                              <path d="M10.1322 15.1989C10.482 15.1989 10.7656 14.9153 10.7656 14.5655C10.7656 14.2158 10.482 13.9322 10.1322 13.9322C9.78246 13.9322 9.49891 14.2158 9.49891 14.5655C9.49891 14.9153 9.78246 15.1989 10.1322 15.1989Z" fill="#A20C00"/>
+                              <path fillRule="evenodd" clipRule="evenodd" d="M18.9989 10.1322C18.9989 5.23534 15.0291 1.26562 10.1322 1.26562C5.23534 1.26562 1.26562 5.23534 1.26562 10.1322C1.26562 15.0291 5.23534 18.9989 10.1322 18.9989C15.0291 18.9989 18.9989 15.0291 18.9989 10.1322ZM2.53228 10.1322C2.53228 5.9349 5.9349 2.53228 10.1322 2.53228C14.3296 2.53228 17.7322 5.9349 17.7322 10.1322C17.7322 14.3296 14.3296 17.7322 10.1322 17.7322C5.9349 17.7322 2.53228 14.3296 2.53228 10.1322Z" fill="#A20C00"/>
+                            </svg>
+                          </div>
+                        )}
+                        {campaign.hasRecIcon && (
+                          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[#FCE9F5]">
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[14px] h-[14px]">
+                              <path d="M8.42285 6.55273L8.32324 7.1543H13.6016L7.39648 14.2852L8.10938 9.98438L8.20898 9.38281H2.93164L9.13477 2.25293L8.42285 6.55273Z" stroke="#661648" strokeWidth="1.03333"/>
+                            </svg>
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
