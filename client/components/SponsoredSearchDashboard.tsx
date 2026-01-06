@@ -469,8 +469,6 @@ export default function SponsoredSearchDashboard() {
         <a href="#" className="underline hover:no-underline">Terms</a>
       </div>
 
-      {/* Marty Assistant */}
-      <MartyAssistant />
     </div>
   );
 }
