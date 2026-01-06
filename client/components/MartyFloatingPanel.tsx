@@ -508,9 +508,13 @@ export default function MartyFloatingPanel({
         <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white">
           {/* Input Field */}
           <div className="flex max-w-[760px] max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
-            <div className="flex flex-col justify-center flex-1 self-stretch text-[#2E2F32] text-sm leading-5">
-              Lorem ipsum dolor sit amet?
-            </div>
+            <input
+              type="text"
+              value={userMessage}
+              onChange={(e) => setUserMessage(e.target.value)}
+              placeholder="How can I help?"
+              className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C]"
+            />
             <button className="flex p-2 flex-col items-start rounded-full border border-transparent bg-[#0071DC]">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8 3L8 13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
