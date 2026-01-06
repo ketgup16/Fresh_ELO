@@ -11,15 +11,26 @@ const PopoverArrow = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Arrow>,
   React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Arrow>
 >((props, ref) => (
-  <PopoverPrimitive.Arrow
-    ref={ref}
-    {...props}
-    className={cn("fill-white", props.className)}
+  <svg
+    ref={ref as any}
+    width={props.width || 10}
+    height={props.height || 5}
+    viewBox="0 0 30 10"
+    preserveAspectRatio="none"
     style={{
-      ...props.style,
-      filter: 'drop-shadow(0 1px 1px rgba(186, 187, 190, 0.5))'
+      position: 'absolute',
+      pointerEvents: 'none',
+      ...props.style
     }}
-  />
+    className={cn(props.className)}
+  >
+    <polygon
+      points="0,10 15,0 30,10"
+      fill="white"
+      stroke="#BABBBE"
+      strokeWidth="1"
+    />
+  </svg>
 ));
 PopoverArrow.displayName = "PopoverArrow";
 
