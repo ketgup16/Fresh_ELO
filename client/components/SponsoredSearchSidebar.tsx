@@ -91,6 +91,29 @@ export default function SponsoredSearchSidebar() {
     { id: 'bulk-operations', label: 'Bulk operations', Icon: CloudUploadIcon },
   ];
 
+  // Handle resize functionality
+  useEffect(() => {
+    if (!isResizingSidebar) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const delta = e.clientX - sidebarResizeStartX;
+      const newWidth = Math.max(64, Math.min(400, sidebarResizeStartWidth + delta));
+      setSidebarWidth(newWidth);
+    };
+
+    const handleMouseUp = () => {
+      setIsResizingSidebar(false);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isResizingSidebar, sidebarResizeStartX, sidebarResizeStartWidth]);
+
   const handleToggle = () => {
     if (sidebarExpanded) {
       setSidebarExpanded(false);
