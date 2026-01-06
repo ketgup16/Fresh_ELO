@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, ArrowDown, ArrowUp } from "lucide-react";
 import CampaignChart from "./CampaignChart";
-import MartyAssistant from "./MartyAssistant";
 
 interface Campaign {
   name: string;
