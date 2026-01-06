@@ -11,6 +11,129 @@ export default function AllCampaigns() {
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
 
+  const campaigns = [
+    {
+      name: "Walmart|Sponsored Product|Cross Device|Auto|All Postions KCMasterpieceFY2020|3747|...",
+      status: "Live",
+      totalBudget: "$12,500",
+      hasWarning: true,
+      hasBolt: false,
+      dailyBudget: "$450",
+      biddingStrategy: "Target ROAS",
+      biddingTarget: "(set at $25)",
+      biddingIcon: true,
+      biddingStatus: "Learning paused",
+      biddingStatusDate: "Since 01/05/2025",
+      avgCPC: "$0.70",
+      spend: "$5,612.56"
+    },
+    {
+      name: "BRANDAMP_01_CLX_N2960_Clo rox Scentiva Product Launch FY20",
+      status: "Live",
+      totalBudget: "$18,750",
+      hasWarning: false,
+      hasBolt: false,
+      dailyBudget: "$350",
+      biddingStrategy: "Target ROAS",
+      biddingTarget: "(set at 275)",
+      biddingIcon: true,
+      biddingStatus: "Optimizing",
+      biddingStatusDate: "Since 01/05/2025",
+      avgCPC: "$0.70",
+      spend: "$5,04017"
+    },
+    {
+      name: "Walmart|Sponsored Product|Cross Device|Auto|All Postionsl Clorox_SpyVax39182846I44",
+      status: "Live",
+      totalBudget: "$22,300",
+      hasWarning: false,
+      hasBolt: true,
+      dailyBudget: "$140",
+      biddingStrategy: "Target ROAS",
+      biddingTarget: "(set at 410)",
+      biddingIcon: true,
+      biddingStatus: "Optimizing",
+      biddingStatusDate: "Since 01/05/2025",
+      avgCPC: "$0.98",
+      spend: "$5,000.00"
+    },
+    {
+      name: "Walmart|Sponsored Product|Cross Device|Keyword |Slots 3,5,6,12|CLX Scentiva",
+      status: "Proposal",
+      totalBudget: "$15,600",
+      hasWarning: false,
+      hasBolt: true,
+      dailyBudget: "$300",
+      biddingStrategy: "Target ROAS",
+      biddingTarget: "(set at 375)",
+      biddingIcon: true,
+      biddingStatus: "Learning",
+      biddingStatusDate: "Since 01/05/2025",
+      avgCPC: "$0.98",
+      spend: "$462.99"
+    },
+    {
+      name: "Online Grocery |Clorox Toilet",
+      status: "Live",
+      totalBudget: "$27,800",
+      hasWarning: false,
+      hasBolt: true,
+      dailyBudget: "$480",
+      biddingStrategy: "Target ROAS",
+      biddingTarget: "(set at 4.00)",
+      biddingIcon: true,
+      biddingStatus: "Learning",
+      biddingStatusDate: "Since 01/05/2025",
+      avgCPC: "$1.00",
+      spend: "$462.99"
+    },
+    {
+      name: "Walmart|Sponsored Product|Cross Device|Auto|All Postionsl Clorox_Burt'sRees|MakeGood...",
+      status: "Live",
+      totalBudget: "$9,900",
+      hasWarning: false,
+      hasBolt: false,
+      dailyBudget: "$150",
+      biddingStrategy: "Target ROAS",
+      biddingTarget: "(set at 3.50)",
+      biddingIcon: false,
+      biddingStatus: "Learning",
+      biddingStatusDate: "Since 01/06/2025",
+      avgCPC: "$0.87",
+      spend: "$5,04017"
+    },
+    {
+      name: "BRANDAMP_01_CLX_N2960_Clo rox Scentiva Product Launch FY20",
+      status: "Live",
+      totalBudget: "$24,400",
+      hasWarning: false,
+      hasBolt: false,
+      dailyBudget: "$220",
+      biddingStrategy: "Target ROAS",
+      biddingTarget: "(set at 4.50)",
+      biddingIcon: false,
+      biddingStatus: "Optimizing",
+      biddingStatusDate: "Since 01/25/2025",
+      avgCPC: "$1.00",
+      spend: "$462.99"
+    },
+    {
+      name: "Walmart|Sponsored Product|Cross Device|Auto|All Postionsl",
+      status: "Live",
+      totalBudget: "$7,200",
+      hasWarning: false,
+      hasBolt: false,
+      dailyBudget: "$150",
+      biddingStrategy: "Target ROAS",
+      biddingTarget: "(set at 4.50)",
+      biddingIcon: false,
+      biddingStatus: "Optimizing",
+      biddingStatusDate: "Since 01/05/2025",
+      avgCPC: "$0.87",
+      spend: "$5,04017"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-[#F6F6F6] flex flex-col">
       {/* Header */}
