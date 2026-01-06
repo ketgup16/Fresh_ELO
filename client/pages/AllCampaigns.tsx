@@ -394,7 +394,7 @@ export default function AllCampaigns() {
                       </div>
                     </div>
                     {/* Rows */}
-                    {Array.from({ length: 10 }).map((_, idx) => (
+                    {campaigns.map((_, idx) => (
                       <div key={idx} className="flex items-center justify-center h-[52px] px-3 border-b border-[#E3E4E5] bg-white">
                         <div className="p-0.5">
                           <input
@@ -408,245 +408,140 @@ export default function AllCampaigns() {
 
                   {/* Data Columns */}
                   <div className="flex flex-1 overflow-x-auto">
-                    {/* Column 1 */}
-                    <div className="flex flex-col min-w-[120px] flex-1">
-                      {/* Header */}
+                    {/* Campaign Name Column */}
+                    <div className="flex flex-col min-w-[280px] flex-1">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
-                        <div className="flex items-center">
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
-                          </button>
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </button>
-                        </div>
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign name</span>
+                        <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                            <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </button>
                       </div>
-                      {/* Rows */}
-                      {Array.from({ length: 10 }).map((_, idx) => (
+                      {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
                           <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
-                            Data
+                            {campaign.name}
                           </a>
                         </div>
                       ))}
                     </div>
 
-                    {/* Column 2 */}
-                    <div className="flex flex-col min-w-[120px] flex-1">
-                      {/* Header */}
+                    {/* Campaign Status Column */}
+                    <div className="flex flex-col min-w-[140px]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
-                        <div className="flex items-center">
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
-                          </button>
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </button>
-                        </div>
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign status</span>
                       </div>
-                      {/* Rows */}
-                      {Array.from({ length: 10 }).map((_, idx) => (
+                      {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
-                            Data
-                          </a>
+                          <span className={`inline-block px-2 py-0.5 text-xs rounded ${
+                            campaign.status === 'Live'
+                              ? 'bg-[#EAF3E6] text-[#1D5F02]'
+                              : 'bg-[#FFF4E5] text-[#74767C]'
+                          }`}>
+                            {campaign.status}
+                          </span>
                         </div>
                       ))}
                     </div>
 
-                    {/* Column 3 */}
-                    <div className="flex flex-col min-w-[120px] flex-1">
-                      {/* Header */}
+                    {/* Total Budget Column */}
+                    <div className="flex flex-col min-w-[120px]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
-                        <div className="flex items-center">
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
-                          </button>
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </button>
-                        </div>
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Total budget</span>
                       </div>
-                      {/* Rows */}
-                      {Array.from({ length: 10 }).map((_, idx) => (
+                      {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
-                            Data
-                          </a>
+                          <div className="flex items-center gap-1">
+                            {campaign.hasWarning && (
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
+                                <circle cx="8" cy="8" r="7" stroke="#A20C00" strokeWidth="1.5" fill="none"/>
+                                <path d="M8 4.5V8.5" stroke="#A20C00" strokeWidth="1.5" strokeLinecap="round"/>
+                                <circle cx="8" cy="11" r="0.75" fill="#A20C00"/>
+                              </svg>
+                            )}
+                            {campaign.hasBolt && (
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
+                                <path d="M8.5 2L4 9H8L7.5 14L12 7H8L8.5 2Z" fill="#74767C"/>
+                              </svg>
+                            )}
+                            <span className="text-sm text-[#2E2F32]">{campaign.totalBudget}</span>
+                          </div>
                         </div>
                       ))}
                     </div>
 
-                    {/* Column 4 */}
-                    <div className="flex flex-col min-w-[120px] flex-1">
-                      {/* Header */}
+                    {/* Daily Budget Column */}
+                    <div className="flex flex-col min-w-[100px]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
-                        <div className="flex items-center">
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
-                          </button>
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </button>
-                        </div>
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Daily budget</span>
                       </div>
-                      {/* Rows */}
-                      {Array.from({ length: 10 }).map((_, idx) => (
+                      {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
-                            Data
-                          </a>
+                          <span className="text-sm text-[#2E2F32]">{campaign.dailyBudget}</span>
                         </div>
                       ))}
                     </div>
 
-                    {/* Column 5 */}
-                    <div className="flex flex-col min-w-[120px] flex-1">
-                      {/* Header */}
+                    {/* Bidding Strategy Column */}
+                    <div className="flex flex-col min-w-[140px]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
-                        <div className="flex items-center">
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
-                          </button>
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </button>
-                        </div>
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Bidding strategy</span>
                       </div>
-                      {/* Rows */}
-                      {Array.from({ length: 10 }).map((_, idx) => (
+                      {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
-                            Data
-                          </a>
+                          <div className="flex items-start gap-1">
+                            {campaign.biddingIcon && (
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0 mt-0.5">
+                                <circle cx="8" cy="8" r="6.5" stroke="#74767C" strokeWidth="1" fill="none"/>
+                                <path d="M8 5V8.5L10.5 10.5" stroke="#74767C" strokeWidth="1" strokeLinecap="round"/>
+                              </svg>
+                            )}
+                            <div className="flex flex-col">
+                              <span className="text-sm text-[#2E2F32]">{campaign.biddingStrategy}</span>
+                              <span className="text-xs text-[#74767C]">{campaign.biddingTarget}</span>
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>
 
-                    {/* Column 6 */}
-                    <div className="flex flex-col min-w-[120px] flex-1">
-                      {/* Header */}
+                    {/* Bidding Status Column */}
+                    <div className="flex flex-col min-w-[140px]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
-                        <div className="flex items-center">
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
-                          </button>
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </button>
-                        </div>
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Bidding status</span>
                       </div>
-                      {/* Rows */}
-                      {Array.from({ length: 10 }).map((_, idx) => (
+                      {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
-                            Data
-                          </a>
+                          <div className="flex flex-col">
+                            <span className="text-sm text-[#2E2F32]">{campaign.biddingStatus}</span>
+                            <span className="text-xs text-[#74767C]">{campaign.biddingStatusDate}</span>
+                          </div>
                         </div>
                       ))}
                     </div>
 
-                    {/* Column 7 */}
-                    <div className="flex flex-col min-w-[120px] flex-1">
-                      {/* Header */}
+                    {/* Average CPC Column */}
+                    <div className="flex flex-col min-w-[100px]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
-                        <div className="flex items-center">
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
-                          </button>
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </button>
-                        </div>
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Average CPC</span>
                       </div>
-                      {/* Rows */}
-                      {Array.from({ length: 10 }).map((_, idx) => (
+                      {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
-                            Data
-                          </a>
+                          <span className="text-sm text-[#2E2F32]">{campaign.avgCPC}</span>
                         </div>
                       ))}
                     </div>
 
-                    {/* Column 8 */}
-                    <div className="flex flex-col min-w-[120px] flex-1">
-                      {/* Header */}
+                    {/* Spend Column */}
+                    <div className="flex flex-col min-w-[120px]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
-                        <div className="flex items-center">
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
-                          </button>
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </button>
-                        </div>
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Spend</span>
                       </div>
-                      {/* Rows */}
-                      {Array.from({ length: 10 }).map((_, idx) => (
+                      {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
-                            Data
-                          </a>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Column 9 */}
-                    <div className="flex flex-col min-w-[120px] flex-1">
-                      {/* Header */}
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Label</span>
-                        <div className="flex items-center">
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <HelpCircle className="w-4 h-4 text-[#2E2F32]" />
-                          </button>
-                          <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                              <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-                              <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                      {/* Rows */}
-                      {Array.from({ length: 10 }).map((_, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
-                            Data
-                          </a>
+                          <span className="text-sm text-[#2E2F32]">{campaign.spend}</span>
                         </div>
                       ))}
                     </div>
@@ -654,12 +549,10 @@ export default function AllCampaigns() {
 
                   {/* Actions Column - Right Aligned */}
                   <div className="flex flex-col flex-shrink-0 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-                    {/* Header */}
                     <div className="flex items-center h-[52px] px-4 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                       <span className="text-sm font-bold text-[#2E2F32] leading-5">Actions</span>
                     </div>
-                    {/* Rows */}
-                    {Array.from({ length: 10 }).map((_, idx) => (
+                    {campaigns.map((_, idx) => (
                       <div key={idx} className="flex items-center justify-center h-[52px] px-2.5 border-b border-[#E3E4E5] bg-white">
                         <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
