@@ -20,8 +20,11 @@ interface ItemHealthData {
 }
 
 export default function ItemHealth() {
+  const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
   const [isMartyMinimized, setIsMartyMinimized] = useState(false);
+  const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
 
   const itemHealthData: ItemHealthData[] = [
     {
