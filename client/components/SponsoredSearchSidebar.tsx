@@ -74,12 +74,16 @@ export default function SponsoredSearchSidebar() {
   const location = useLocation();
 
   // Sidebar state management
-  const [sidebarExpanded, setSidebarExpanded] = useState(false);
+  const [sidebarLocked, setSidebarLocked] = useState(false);
+  const [sidebarHovered, setSidebarHovered] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(220);
   const [isResizingSidebar, setIsResizingSidebar] = useState(false);
   const [sidebarResizeStartX, setSidebarResizeStartX] = useState(0);
   const [sidebarResizeStartWidth, setSidebarResizeStartWidth] = useState(0);
   const [activeMenuItem, setActiveMenuItem] = useState('home');
+
+  // Sidebar is expanded if either locked or hovered
+  const sidebarExpanded = sidebarLocked || sidebarHovered;
 
   const menuItems = [
     { id: 'home', label: 'Home', Icon: HomeIcon, path: '/sponsored-search' },
@@ -136,10 +140,10 @@ export default function SponsoredSearchSidebar() {
   }, [isResizingSidebar, sidebarResizeStartX, sidebarResizeStartWidth]);
 
   const handleToggle = () => {
-    if (sidebarExpanded) {
-      setSidebarExpanded(false);
+    if (sidebarLocked) {
+      setSidebarLocked(false);
     } else {
-      setSidebarExpanded(true);
+      setSidebarLocked(true);
       if (sidebarWidth < 220) {
         setSidebarWidth(220);
       }
@@ -153,6 +157,8 @@ export default function SponsoredSearchSidebar() {
         width: sidebarExpanded ? `${sidebarWidth}px` : '64px',
         transition: isResizingSidebar ? 'none' : 'width 300ms ease-in-out'
       }}
+      onMouseEnter={() => setSidebarHovered(true)}
+      onMouseLeave={() => setSidebarHovered(false)}
     >
       {/* Menu items section */}
       <div className="flex flex-col gap-1">
@@ -194,8 +200,8 @@ export default function SponsoredSearchSidebar() {
           className={`flex items-center ${
             sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'
           } h-9 rounded hover:bg-gray-100 transition-colors`}
-          aria-label={sidebarExpanded ? 'Collapse sidebar' : 'Expand sidebar'}
-          aria-expanded={sidebarExpanded}
+          aria-label={sidebarLocked ? 'Unlock sidebar' : 'Lock sidebar open'}
+          aria-expanded={sidebarLocked}
         >
           {sidebarExpanded ? (
             <>
