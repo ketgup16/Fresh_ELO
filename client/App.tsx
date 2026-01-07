@@ -26,6 +26,7 @@ const App = () => (
           <Route path="/sponsored-search" element={<SponsoredSearch />} />
           <Route path="/campaign" element={<Campaign />} />
           <Route path="/all-campaigns" element={<AllCampaigns />} />
+          <Route path="/reports/item-health" element={<ItemHealth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
