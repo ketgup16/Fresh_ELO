@@ -1023,33 +1023,31 @@ export default function AllCampaigns() {
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Bidding strategy</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <div className="flex items-start gap-1">
-                            {campaign.biddingIcon && (
-                              <button
-                                onClick={() => {
-                                  setSelectedCampaignId(campaign.id);
-                                  setBiddingModalOpen(true);
-                                  setRecommendedRoasValue(campaign.recommendedRoasTarget !== '-' ? campaign.recommendedRoasTarget : undefined);
-                                }}
-                                className="flex-shrink-0 mt-0.5 cursor-pointer hover:opacity-80 transition-opacity"
-                              >
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <circle cx="8" cy="8" r="7" stroke="#A20C00" strokeWidth="1.5" fill="none"/>
-                                  <path d="M8 4.5V8.5" stroke="#A20C00" strokeWidth="1.5" strokeLinecap="round"/>
-                                  <circle cx="8" cy="11" r="0.75" fill="#A20C00"/>
-                                </svg>
-                              </button>
-                            )}
-                            {campaign.hasBolt && !campaign.biddingIcon && (
-                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 mt-0.5">
-                                <path d="M8.15234 6.33984L8.05566 6.9209H13.1641L7.1582 13.8223L7.84863 9.66016L7.94434 9.0791H2.83594L8.84082 2.17676L8.15234 6.33984Z" stroke="#661648"/>
+                        <div key={idx} className="flex items-center h-[52px] pl-[34px] pr-4 border-b border-[#E3E4E5] bg-white relative">
+                          {campaign.biddingIcon && (
+                            <button
+                              onClick={() => {
+                                setSelectedCampaignId(campaign.id);
+                                setBiddingModalOpen(true);
+                                setRecommendedRoasValue(campaign.recommendedRoasTarget !== '-' ? campaign.recommendedRoasTarget : undefined);
+                              }}
+                              className="absolute left-4 top-1/2 -translate-y-1/2 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+                            >
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="8" cy="8" r="7" stroke="#A20C00" strokeWidth="1.5" fill="none"/>
+                                <path d="M8 4.5V8.5" stroke="#A20C00" strokeWidth="1.5" strokeLinecap="round"/>
+                                <circle cx="8" cy="11" r="0.75" fill="#A20C00"/>
                               </svg>
-                            )}
-                            <div className="flex flex-col">
-                              <span className="text-sm text-[#2E2F32]">{campaign.biddingStrategy}</span>
-                              <span className="text-xs text-[#74767C]">{campaign.biddingTarget}</span>
-                            </div>
+                            </button>
+                          )}
+                          {campaign.hasBolt && !campaign.biddingIcon && (
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute left-4 top-1/2 -translate-y-1/2 flex-shrink-0">
+                              <path d="M8.15234 6.33984L8.05566 6.9209H13.1641L7.1582 13.8223L7.84863 9.66016L7.94434 9.0791H2.83594L8.84082 2.17676L8.15234 6.33984Z" stroke="#661648"/>
+                            </svg>
+                          )}
+                          <div className="flex flex-col">
+                            <span className="text-sm text-[#2E2F32]">{campaign.biddingStrategy}</span>
+                            <span className="text-xs text-[#74767C]">{campaign.biddingTarget}</span>
                           </div>
                         </div>
                       ))}
