@@ -81,41 +81,50 @@ export default function AllCampaigns() {
   const [campaigns, setCampaigns] = useState<Campaign[]>([
     {
       id: "camp-001",
-      name: "Walmart|Sponsored Product|Cross Device|Auto|All Postions KCMasterpieceFY2020|3747|...",
+      name: "SP - GTV - HiSense - New SKUs - Category - Auto",
       status: "Live",
-      totalBudget: "$12,500",
+      startDate: "10/08/2025",
+      endDate: "No end date",
+      totalBudget: "-",
+      suggestedTotalBudget: "-",
       hasWarning: true,
       hasBolt: false,
       hasAlertIcon: true,
       hasRecIcon: false,
-      dailyBudget: "$450",
-      biddingStrategy: "Target ROAS",
-      biddingTarget: "(set at $25)",
-      biddingIcon: true,
-      biddingStatus: "Learning paused",
+      dailyBudget: "$150",
+      suggestedDailyBudget: "-",
+      biddingStrategy: "Fixed",
+      biddingTarget: "",
+      roasTarget: "-",
+      recommendedRoasTarget: "-",
+      biddingIcon: false,
+      biddingStatus: "Out-of-budget",
       biddingStatusDate: "Since 01/05/2025",
-      avgCPC: "$0.70",
-      spend: "$5,612.56",
+      campaignType: "Sponsored Products (Auto)",
+      avgCapOutTime: "08:00am PST",
+      estMissedImpressions: "422460 - 571565",
+      estMissedClicks: "2747 - 3721",
+      campaignReviewStatus: "-",
+      roas: "47.84",
+      avgCPC: "$0.65",
+      spend: "$3,800",
+      totalAttributedSales: "$181,810.95",
+      impressions: "680,052",
+      clicks: "5,803",
+      ctr: "0.85%",
+      totalProductDetailPageViews: "5,321",
+      totalAddToCart: "2,822",
+      conversionRate: "16.35%",
+      orders: "949",
+      unitsSold: "1,067",
       alerts: [
-        {
-          type: 'learning-paused',
-          message: 'Target ROAS learning paused',
-          targetColumn: 'biddingStrategy'
-        },
         {
           type: 'out-of-budget',
           message: 'Campaign out-of-budget',
           targetColumn: 'totalBudget'
         }
       ],
-      recommendations: [
-        {
-          type: 'update-roas',
-          message: 'Update ROAS target',
-          suggestedValue: '2.50',
-          targetColumn: 'biddingStrategy'
-        }
-      ]
+      recommendations: []
     },
     {
       id: "camp-002",
