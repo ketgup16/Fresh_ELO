@@ -86,20 +86,20 @@ export default function BiddingStrategyModal({
           <div className="px-6 pt-6 pb-0">
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
-                <h2 className="text-[20px] font-bold text-[#2E2F32] leading-7">
+                <DialogPrimitive.Title className="text-[20px] font-bold text-[#2E2F32] leading-7">
                   Bidding strategy
-                </h2>
+                </DialogPrimitive.Title>
                 <DialogPrimitive.Close className="rounded-sm opacity-70 hover:opacity-100 transition-opacity">
                   <X className="h-4 w-4" />
                   <span className="sr-only">Close</span>
                 </DialogPrimitive.Close>
               </div>
-              <p className="text-sm text-[#2E2F32] leading-5">
+              <DialogPrimitive.Description className="text-sm text-[#2E2F32] leading-5">
                 Choose the strategy that best suits your business goals.{" "}
                 <span className="text-[#2E2F32] underline cursor-pointer hover:no-underline">
                   Learn more
                 </span>
-              </p>
+              </DialogPrimitive.Description>
             </div>
           </div>
 
