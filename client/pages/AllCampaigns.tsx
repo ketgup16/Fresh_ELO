@@ -1032,6 +1032,11 @@ export default function AllCampaigns() {
                                 <circle cx="8" cy="11" r="0.75" fill="#A20C00"/>
                               </svg>
                             )}
+                            {campaign.hasBolt && !campaign.biddingIcon && (
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 mt-0.5">
+                                <path d="M8.15234 6.33984L8.05566 6.9209H13.1641L7.1582 13.8223L7.84863 9.66016L7.94434 9.0791H2.83594L8.84082 2.17676L8.15234 6.33984Z" stroke="#661648"/>
+                              </svg>
+                            )}
                             <div className="flex flex-col">
                               <span className="text-sm text-[#2E2F32]">{campaign.biddingStrategy}</span>
                               <span className="text-xs text-[#74767C]">{campaign.biddingTarget}</span>
