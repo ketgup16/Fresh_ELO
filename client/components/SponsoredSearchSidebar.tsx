@@ -217,17 +217,22 @@ export default function SponsoredSearchSidebar() {
                   }
                 }}
                 className={`flex items-center ${
-                  sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'
+                  sidebarExpanded ? 'gap-3 px-3 w-full justify-between' : 'justify-center w-10 mx-auto'
                 } h-9 rounded ${
                   shouldShowAsActive && sidebarExpanded ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'
                 } transition-colors`}
                 aria-label={item.label}
               >
-                <IconComponent isActive={shouldShowAsActive} />
-                {sidebarExpanded && (
-                  <span className={`text-sm truncate ${shouldShowAsActive ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>
-                    {item.label}
-                  </span>
+                <div className="flex items-center gap-3">
+                  <IconComponent isActive={shouldShowAsActive} />
+                  {sidebarExpanded && (
+                    <span className={`text-sm truncate ${shouldShowAsActive ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>
+                      {item.label}
+                    </span>
+                  )}
+                </div>
+                {sidebarExpanded && hasSubmenu && (
+                  <ChevronDownIcon />
                 )}
               </button>
 
