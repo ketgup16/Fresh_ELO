@@ -1079,6 +1079,258 @@ export default function AllCampaigns() {
                         </div>
                       ))}
                     </div>
+
+                    {/* Start Date Column */}
+                    <div className="flex flex-col min-w-[120px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Start date</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.startDate}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* End Date Column */}
+                    <div className="flex flex-col min-w-[120px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">End date</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.endDate}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Suggested Total Budget Column */}
+                    <div className="flex flex-col min-w-[150px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Sugg. total budget</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.suggestedTotalBudget}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Suggested Daily Budget Column */}
+                    <div className="flex flex-col min-w-[150px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Sugg. daily budget</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.suggestedDailyBudget}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* ROAS Target Column */}
+                    <div className="flex flex-col min-w-[120px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">ROAS target</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.roasTarget}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Recommended ROAS Target Column */}
+                    <div className="flex flex-col min-w-[180px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Recommended ROAS target</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.recommendedRoasTarget}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Campaign Type Column */}
+                    <div className="flex flex-col min-w-[200px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign type</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.campaignType}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Avg. Cap-out Time Column */}
+                    <div className="flex flex-col min-w-[140px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Avg. cap-out time</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.avgCapOutTime}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Est. Missed Impressions Column */}
+                    <div className="flex flex-col min-w-[180px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Est. missed impressions</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.estMissedImpressions}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Est. Missed Clicks Column */}
+                    <div className="flex flex-col min-w-[160px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Est. missed clicks</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.estMissedClicks}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Campaign Review Status Column */}
+                    <div className="flex flex-col min-w-[180px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign review status</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.campaignReviewStatus}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* ROAS Column */}
+                    <div className="flex flex-col min-w-[100px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">ROAS</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.roas}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Total Attributed Sales Column */}
+                    <div className="flex flex-col min-w-[180px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Total attributed sales</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.totalAttributedSales}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Impressions Column */}
+                    <div className="flex flex-col min-w-[120px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Impressions</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.impressions}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Clicks Column */}
+                    <div className="flex flex-col min-w-[100px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Clicks</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.clicks}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* CTR Column */}
+                    <div className="flex flex-col min-w-[80px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">CTR</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.ctr}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Total Product Detail Page Views Column */}
+                    <div className="flex flex-col min-w-[220px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Total product detail page views</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.totalProductDetailPageViews}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Total Add to Cart Column */}
+                    <div className="flex flex-col min-w-[150px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Total add to cart</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.totalAddToCart}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Conversion Rate Column */}
+                    <div className="flex flex-col min-w-[140px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Conversion rate</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.conversionRate}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Orders Column */}
+                    <div className="flex flex-col min-w-[100px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Orders</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.orders}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Units Sold Column */}
+                    <div className="flex flex-col min-w-[100px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Units sold</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.unitsSold}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
                   {/* Actions Column - Right Aligned */}
