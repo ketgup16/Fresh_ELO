@@ -96,7 +96,7 @@ export default function AllCampaigns() {
       biddingStrategy: "Target ROAS",
       biddingTarget: "(set at 3.25)",
       roasTarget: "3.25",
-      recommendedRoasTarget: "-",
+      recommendedRoasTarget: "2.50",
       biddingIcon: true,
       biddingStatus: "Learning paused",
       biddingStatusDate: "Since 01/05/2025",
