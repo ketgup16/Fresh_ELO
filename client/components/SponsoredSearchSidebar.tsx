@@ -82,7 +82,7 @@ export default function SponsoredSearchSidebar() {
   const [activeMenuItem, setActiveMenuItem] = useState('home');
 
   const menuItems = [
-    { id: 'home', label: 'Home', Icon: HomeIcon, path: '/' },
+    { id: 'home', label: 'Home', Icon: HomeIcon, path: '/sponsored-search' },
     { id: 'campaign-management', label: 'Campaign Management', Icon: MegaphoneIcon, path: '/all-campaigns' },
     { id: 'performance', label: 'Performance', Icon: SpeedometerIcon },
     { id: 'reports', label: 'Reports', Icon: AnalyticsIcon },
