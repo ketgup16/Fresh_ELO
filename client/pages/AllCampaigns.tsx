@@ -1026,11 +1026,20 @@ export default function AllCampaigns() {
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
                           <div className="flex items-start gap-1">
                             {campaign.biddingIcon && (
-                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 mt-0.5">
-                                <circle cx="8" cy="8" r="7" stroke="#A20C00" strokeWidth="1.5" fill="none"/>
-                                <path d="M8 4.5V8.5" stroke="#A20C00" strokeWidth="1.5" strokeLinecap="round"/>
-                                <circle cx="8" cy="11" r="0.75" fill="#A20C00"/>
-                              </svg>
+                              <button
+                                onClick={() => {
+                                  setSelectedCampaignId(campaign.id);
+                                  setBiddingModalOpen(true);
+                                  setRecommendedRoasValue(campaign.recommendedRoasTarget !== '-' ? campaign.recommendedRoasTarget : undefined);
+                                }}
+                                className="flex-shrink-0 mt-0.5 cursor-pointer hover:opacity-80 transition-opacity"
+                              >
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <circle cx="8" cy="8" r="7" stroke="#A20C00" strokeWidth="1.5" fill="none"/>
+                                  <path d="M8 4.5V8.5" stroke="#A20C00" strokeWidth="1.5" strokeLinecap="round"/>
+                                  <circle cx="8" cy="11" r="0.75" fill="#A20C00"/>
+                                </svg>
+                              </button>
                             )}
                             {campaign.hasBolt && !campaign.biddingIcon && (
                               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0 mt-0.5">
