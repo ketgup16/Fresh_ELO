@@ -87,8 +87,16 @@ export default function SponsoredSearchSidebar() {
 
   const menuItems = [
     { id: 'home', label: 'Home', Icon: HomeIcon, path: '/sponsored-search' },
-    { id: 'campaign-management', label: 'Campaign Management', Icon: MegaphoneIcon, path: '/all-campaigns' },
-    { id: 'performance', label: 'Performance', Icon: SpeedometerIcon },
+    {
+      id: 'campaign-management',
+      label: 'Campaign management',
+      Icon: MegaphoneIcon,
+      submenuItems: [
+        { id: 'all-campaigns', label: 'All campaigns', path: '/all-campaigns' },
+        { id: 'all-keywords', label: 'All keywords', path: '/all-keywords' },
+      ]
+    },
+    { id: 'experiments', label: 'Experiments', Icon: SpeedometerIcon },
     { id: 'reports', label: 'Reports', Icon: AnalyticsIcon },
     { id: 'tools', label: 'Tools', Icon: ToolboxIcon },
     { id: 'video-manager', label: 'Video manager', Icon: VideoArrowUpIcon },
@@ -101,10 +109,14 @@ export default function SponsoredSearchSidebar() {
 
     if (pathname === '/' || pathname === '/sponsored-search') {
       setActiveMenuItem('home');
-    } else if (pathname.includes('/all-campaigns') || pathname.includes('/campaign')) {
+    } else if (pathname.includes('/all-campaigns')) {
+      setActiveMenuItem('all-campaigns');
+    } else if (pathname.includes('/all-keywords')) {
+      setActiveMenuItem('all-keywords');
+    } else if (pathname.includes('/campaign')) {
       setActiveMenuItem('campaign-management');
-    } else if (pathname.includes('/performance')) {
-      setActiveMenuItem('performance');
+    } else if (pathname.includes('/experiment')) {
+      setActiveMenuItem('experiments');
     } else if (pathname.includes('/reports')) {
       setActiveMenuItem('reports');
     } else if (pathname.includes('/tools')) {
@@ -165,30 +177,63 @@ export default function SponsoredSearchSidebar() {
         {menuItems.map((item) => {
           const isActive = activeMenuItem === item.id;
           const IconComponent = item.Icon;
+          const hasSubmenu = item.submenuItems && item.submenuItems.length > 0;
+          const isSubmenuActive = hasSubmenu && item.submenuItems.some(sub => activeMenuItem === sub.id);
+          const shouldShowAsActive = isActive || isSubmenuActive;
 
           return (
-            <button
-              key={item.id}
-              onClick={() => {
-                setActiveMenuItem(item.id);
-                if (item.path) {
-                  navigate(item.path);
-                }
-              }}
-              className={`flex items-center ${
-                sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'
-              } h-9 rounded ${
-                isActive && sidebarExpanded ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'
-              } transition-colors`}
-              aria-label={item.label}
-            >
-              <IconComponent isActive={isActive} />
-              {sidebarExpanded && (
-                <span className={`text-sm truncate ${isActive ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>
-                  {item.label}
-                </span>
+            <div key={item.id}>
+              <button
+                onClick={() => {
+                  if (!hasSubmenu) {
+                    setActiveMenuItem(item.id);
+                    if (item.path) {
+                      navigate(item.path);
+                    }
+                  }
+                }}
+                className={`flex items-center ${
+                  sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'
+                } h-9 rounded ${
+                  shouldShowAsActive && sidebarExpanded ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'
+                } transition-colors`}
+                aria-label={item.label}
+              >
+                <IconComponent isActive={shouldShowAsActive} />
+                {sidebarExpanded && (
+                  <span className={`text-sm truncate ${shouldShowAsActive ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>
+                    {item.label}
+                  </span>
+                )}
+              </button>
+
+              {/* Submenu items */}
+              {hasSubmenu && sidebarExpanded && (
+                <div className="flex flex-col gap-1 mt-1">
+                  {item.submenuItems.map((subItem) => {
+                    const isSubActive = activeMenuItem === subItem.id;
+                    return (
+                      <button
+                        key={subItem.id}
+                        onClick={() => {
+                          setActiveMenuItem(subItem.id);
+                          if (subItem.path) {
+                            navigate(subItem.path);
+                          }
+                        }}
+                        className="flex items-center gap-3 pl-12 pr-3 w-full h-9 rounded hover:bg-gray-100 transition-colors"
+                        aria-label={subItem.label}
+                      >
+                        <span className="text-xs text-[#2E2F32]">○</span>
+                        <span className="text-sm truncate text-[#2E2F32]">
+                          {subItem.label}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
               )}
-            </button>
+            </div>
           );
         })}
       </div>
