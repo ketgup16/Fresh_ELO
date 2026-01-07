@@ -97,8 +97,26 @@ export default function SponsoredSearchSidebar() {
       ]
     },
     { id: 'experiments', label: 'Experiments', Icon: SpeedometerIcon },
-    { id: 'reports', label: 'Reports', Icon: AnalyticsIcon },
-    { id: 'tools', label: 'Tools', Icon: ToolboxIcon },
+    {
+      id: 'tools',
+      label: 'Tools',
+      Icon: ToolboxIcon,
+      submenuItems: [
+        { id: 'keywords-planner', label: 'Keywords Planner', path: '/keywords-planner' },
+        { id: 'rules', label: 'Rules', path: '/rules' },
+      ]
+    },
+    {
+      id: 'reports',
+      label: 'Reports',
+      Icon: AnalyticsIcon,
+      submenuItems: [
+        { id: 'advertiser', label: 'Advertiser', path: '/reports/advertiser' },
+        { id: 'item-health', label: 'Item Health', path: '/reports/item-health' },
+        { id: 'on-demand', label: 'On-demand', path: '/reports/on-demand' },
+        { id: 'custom', label: 'Custom', path: '/reports/custom' },
+      ]
+    },
     { id: 'video-manager', label: 'Video manager', Icon: VideoArrowUpIcon },
     { id: 'bulk-operations', label: 'Bulk operations', Icon: CloudUploadIcon },
   ];
