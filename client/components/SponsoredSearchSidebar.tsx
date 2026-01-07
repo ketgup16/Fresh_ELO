@@ -137,14 +137,20 @@ export default function SponsoredSearchSidebar() {
       setActiveMenuItem('all-campaigns');
     } else if (pathname.includes('/all-keywords')) {
       setActiveMenuItem('all-keywords');
-    } else if (pathname.includes('/campaign')) {
-      setActiveMenuItem('campaign-management');
+    } else if (pathname.includes('/keywords-planner')) {
+      setActiveMenuItem('keywords-planner');
+    } else if (pathname.includes('/rules')) {
+      setActiveMenuItem('rules');
+    } else if (pathname.includes('/reports/advertiser')) {
+      setActiveMenuItem('advertiser');
+    } else if (pathname.includes('/reports/item-health')) {
+      setActiveMenuItem('item-health');
+    } else if (pathname.includes('/reports/on-demand')) {
+      setActiveMenuItem('on-demand');
+    } else if (pathname.includes('/reports/custom')) {
+      setActiveMenuItem('custom');
     } else if (pathname.includes('/experiment')) {
       setActiveMenuItem('experiments');
-    } else if (pathname.includes('/reports')) {
-      setActiveMenuItem('reports');
-    } else if (pathname.includes('/tools')) {
-      setActiveMenuItem('tools');
     } else if (pathname.includes('/video')) {
       setActiveMenuItem('video-manager');
     } else if (pathname.includes('/bulk')) {
