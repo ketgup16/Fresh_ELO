@@ -737,9 +737,9 @@ export default function Campaign() {
                         return (
                           <div key={idx} className="flex items-center gap-3 px-4 py-2 border-b border-[#E3E4E5]">
                             <input type="checkbox" className="w-4 h-4 rounded border border-black" />
-                            <div className="flex items-start gap-2 w-10">
-                              <div className="w-6 h-6 bg-gray-200 rounded flex-shrink-0"></div>
-                              <div className="text-xs text-[#2E2F32] leading-tight break-words w-full">{item}</div>
+                            <div className="flex items-start gap-2 w-16">
+                              <div className="w-8 h-8 bg-gray-200 rounded flex-shrink-0"></div>
+                              <div className="text-xs text-[#2E2F32] leading-tight break-words max-w-[32px]">{item}</div>
                             </div>
                             <span className="text-xs text-[#2E2F32] w-16 text-right">{ids[idx]}</span>
                             <span className="text-xs text-[#2E2F32] w-16 text-right">$3.91</span>
