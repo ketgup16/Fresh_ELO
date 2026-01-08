@@ -433,11 +433,12 @@ export default function MartyFloatingPanel({
                     Save and review
                   </div>
                 </button>
-                <button 
+                <button
+                  onClick={handleLaunchCampaign}
                   disabled={!isLaunchEnabled}
                   className={`flex h-10 px-6 py-0 justify-center items-center gap-2 rounded-full ${
-                    isLaunchEnabled 
-                      ? 'bg-[#0071DC] hover:bg-[#0060B8]' 
+                    isLaunchEnabled
+                      ? 'bg-[#0071DC] hover:bg-[#0060B8]'
                       : 'bg-[#E3E4E5]'
                   } transition-colors`}
                 >
