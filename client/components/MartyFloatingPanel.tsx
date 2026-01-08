@@ -510,8 +510,8 @@ export default function MartyFloatingPanel({
       )}
 
       {viewState === 'campaignScheduled' && (
-        <div className="flex w-full h-[692px] flex-col items-start flex-shrink-0 overflow-y-auto">
-          <div className="flex px-4 py-4 flex-col items-center gap-4 flex-1 self-stretch">
+        <div className="flex w-full h-[692px] flex-col items-start flex-shrink-0">
+          <div className="flex px-4 py-4 flex-col items-start gap-6 flex-1 self-stretch overflow-y-auto">
             {/* User Message */}
             <div className="flex w-full pl-20 flex-col items-end gap-1">
               <div className="flex max-w-[608px] px-4 py-2 flex-col items-start gap-2 rounded-lg bg-[#F1F1F2]">
@@ -587,8 +587,9 @@ export default function MartyFloatingPanel({
           </div>
 
           {/* Footer Section */}
-          <div className="flex flex-col items-start gap-3 self-stretch border-t border-[#E3E4E5] bg-white">
-            <div className="flex px-4 py-4 flex-col items-center gap-3 self-stretch bg-white">
+          <div className="flex flex-col items-start gap-3 self-stretch">
+            <div className="flex flex-col items-start gap-3 self-stretch border-t border-[#E3E4E5] bg-white">
+              <div className="flex px-4 py-4 flex-col items-center gap-3 self-stretch bg-white">
               {/* Input Field */}
               <div className="flex max-w-[760px] max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
                 <div className="flex flex-col justify-center flex-1 self-stretch text-[#74767C] text-sm leading-5">
@@ -605,6 +606,7 @@ export default function MartyFloatingPanel({
               {/* Disclaimer */}
               <div className="w-full text-[#74767C] text-center text-xs leading-4">
                 I'm powered by AI and can make mistakes. Don't share sensitive info. <span className="underline cursor-pointer">Disclaimer</span>
+              </div>
               </div>
             </div>
           </div>
