@@ -508,11 +508,11 @@ export default function Campaign() {
                   </div>
 
                   {/* Platform Row */}
-                  <div className="flex items-center gap-6">
-                    <span className="text-sm font-semibold text-[#2E2F32] leading-5 w-16">Platform</span>
-                    <div className="flex gap-6 flex-1">
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm font-semibold text-[#2E2F32] leading-5 w-16 flex-shrink-0">Platform</span>
+                    <div className="flex gap-4 flex-1">
                       {/* Desktop Field */}
-                      <div className="flex flex-col flex-1">
+                      <div className="flex flex-col flex-1 min-w-0">
                         <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Desktop</label>
                         <div className="relative">
                           <input
@@ -525,7 +525,7 @@ export default function Campaign() {
                       </div>
 
                       {/* App Field */}
-                      <div className="flex flex-col flex-1">
+                      <div className="flex flex-col flex-1 min-w-0">
                         <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">App</label>
                         <div className="relative">
                           <input
@@ -538,7 +538,7 @@ export default function Campaign() {
                       </div>
 
                       {/* Mobile Field */}
-                      <div className="flex flex-col flex-1">
+                      <div className="flex flex-col flex-1 min-w-0">
                         <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Mobile</label>
                         <div className="relative">
                           <input
@@ -554,7 +554,7 @@ export default function Campaign() {
                 </div>
 
                 {/* Help Text Section */}
-                <div className="flex gap-4 w-[205px] items-start flex-shrink-0">
+                <div className="flex gap-4 w-[180px] items-start flex-shrink-0">
                   <div className="w-px h-48 bg-[#E3E4E5] flex-shrink-0"></div>
                   <p className="text-sm text-[#515357] leading-5 flex-1">
                     Bid multipliers increase your bid by a preset percentage when your ads are eligible to serve in premium placements
