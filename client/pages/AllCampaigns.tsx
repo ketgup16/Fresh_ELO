@@ -444,6 +444,35 @@ export default function AllCampaigns() {
     }
   ]);
 
+  // Sort campaigns: alerts first, then recommendations, then others
+  // Only show icons on top rows that have alerts/recommendations
+  const campaigns = useMemo(() => {
+    return [...campaignsData]
+      .sort((a, b) => {
+        const aHasAlerts = (a.alerts?.length || 0) > 0;
+        const bHasAlerts = (b.alerts?.length || 0) > 0;
+        const aHasRecs = (a.recommendations?.length || 0) > 0;
+        const bHasRecs = (b.recommendations?.length || 0) > 0;
+
+        // Alerts first
+        if (aHasAlerts && !bHasAlerts) return -1;
+        if (!aHasAlerts && bHasAlerts) return 1;
+
+        // Then recommendations (if both don't have alerts)
+        if (!aHasAlerts && !bHasAlerts) {
+          if (aHasRecs && !bHasRecs) return -1;
+          if (!aHasRecs && bHasRecs) return 1;
+        }
+
+        return 0;
+      })
+      .map((campaign) => ({
+        ...campaign,
+        hasAlertIcon: (campaign.alerts?.length || 0) > 0,
+        hasRecIcon: (campaign.recommendations?.length || 0) > 0 && (campaign.alerts?.length || 0) === 0,
+      }));
+  }, [campaignsData]);
+
   // Handler: Icon Click
   const handleIconClick = (campaignId: string) => {
     setSelectedCampaignId(campaignId);
