@@ -709,7 +709,7 @@ export default function Campaign() {
                     {/* Column Headers */}
                     <div className="flex items-center gap-3 px-4 py-3 border-b border-[#E3E4E5] bg-white">
                       <div className="w-4"></div>
-                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 w-12">Item Name</span>
+                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 w-16">Item Name</span>
                       <span className="text-xs font-semibold text-[#2E2F32] leading-4 w-16 text-right">Item Id</span>
                       <span className="text-[10px] font-semibold text-[#2E2F32] leading-3 flex items-center gap-0.5 w-16">
                         Sugg.Bid
