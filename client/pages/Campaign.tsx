@@ -359,9 +359,74 @@ export default function Campaign() {
             </div>
           </div>
 
-          {/* Placeholder for additional sections */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold text-[#2E2F32]">Scheduling & Budget</h2>
+          {/* Scheduling & Budget Card */}
+          <div className="bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
+            {/* Header */}
+            <div className="px-6 py-6">
+              <h2 className="text-[20px] font-semibold text-[#2E2F32] leading-7">Scheduling & budget</h2>
+            </div>
+
+            {/* Content */}
+            <div className="px-6 pb-6">
+              <div className="flex flex-col gap-6">
+                {/* Fields Row */}
+                <div className="flex gap-6">
+                  {/* Start Date Field */}
+                  <div className="flex flex-col w-[296px]">
+                    <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Start date</label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        placeholder="Select a date"
+                        className="w-full h-10 px-3 rounded border border-[#909196] bg-white text-sm text-[#74767C] placeholder:text-[#74767C] leading-5"
+                      />
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7.50018 4.51758H16.5002V1.51758H18.0002V4.51758H21.0002C21.8286 4.51758 22.5002 5.18915 22.5002 6.01758V10.5176H1.50018V6.01758C1.50018 5.18915 2.17176 4.51758 3.00018 4.51758H6.00018V1.51758H7.50018V4.51758ZM21.0002 6.01758H3.00018V9.01758H21.0002V6.01758Z" fill="black"/>
+                          <path d="M1.5 20.2676V12.7676H3V20.2676C3 20.6818 3.33579 21.0176 3.75 21.0176H20.25C20.6642 21.0176 21 20.6818 21 20.2676V12.7676H22.5V20.2676C22.5 21.5102 21.4926 22.5176 20.25 22.5176H3.75C2.50736 22.5176 1.5 21.5102 1.5 20.2676Z" fill="black"/>
+                          <path d="M18.0002 13.5176H13.5002V18.0176H18.0002V13.5176Z" fill="black"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Daily Budget Field */}
+                  <div className="flex flex-col w-[296px]">
+                    <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Daily budget</label>
+                    <div className="relative">
+                      <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.68235 3.82195C9.41732 3.70103 9.13832 3.61385 8.85188 3.56235L8.74606 3.54332V2H7.24606V3.57348L7.14407 3.59503C6.90114 3.64637 6.66402 3.72251 6.43646 3.82232C5.98458 4.01688 5.591 4.3272 5.29678 4.72149C5.01596 5.11384 4.86799 5.58706 4.87601 6.06943L4.87611 6.07556C4.86744 6.35448 4.91812 6.63206 5.0251 6.88982C5.13203 7.1475 5.29246 7.37953 5.49588 7.57026L5.49856 7.5725C5.99054 7.98376 6.5736 8.2716 7.19923 8.41209L7.20292 8.41292L8.1972 8.66718L8.19856 8.6675C8.47801 8.7324 8.75096 8.82255 9.0141 8.93672L9.01605 8.9375C9.22299 9.01955 9.40907 9.14663 9.56078 9.3095L9.56645 9.31559C9.69526 9.47316 9.76565 9.67051 9.76606 9.8741L9.76606 9.8759C9.76319 10.1147 9.68181 10.3459 9.53449 10.5338L9.53266 10.5362C9.3725 10.731 9.16395 10.8804 8.92794 10.9693L8.92423 10.9707C8.3417 11.17 7.70942 11.1698 7.12695 10.9703L7.12517 10.9697C6.87513 10.88 6.65342 10.7254 6.48269 10.5219L6.47941 10.518C6.31298 10.3029 6.21673 10.0417 6.20356 9.77H4.64356C4.64253 10.3027 4.79859 10.8239 5.09228 11.2682L5.09356 11.27C5.38753 11.6822 5.79291 12.002 6.26215 12.192L6.26352 12.1925C6.54459 12.2987 6.83684 12.3722 7.13443 12.4118L7.24606 12.4266V14H8.74606V12.4415L8.85537 12.4249C9.18606 12.3749 9.50947 12.2843 9.81829 12.1551C10.2734 11.966 10.666 11.6518 10.95 11.2491L10.9511 11.2475C11.2149 10.8485 11.3509 10.3787 11.3411 9.90049L11.341 9.8945C11.3499 9.55372 11.2778 9.21487 11.1309 8.9071C10.9918 8.62072 10.7956 8.36583 10.5543 8.15815C10.3068 7.95197 10.0282 7.7845 9.72981 7.66298L9.72857 7.6625C9.41184 7.54123 9.08484 7.4487 8.75154 7.38603L8.74046 7.38394L8.00002 7.17584L7.99606 7.175C7.81554 7.13655 7.63836 7.0841 7.46601 7.01833L7.46357 7.0175C7.2961 6.96097 7.13554 6.88577 6.9849 6.79333L6.98217 6.79165C6.84469 6.70248 6.72754 6.58506 6.63856 6.4475C6.54725 6.30671 6.49788 6.14194 6.49605 5.9745C6.49238 5.7662 6.55709 5.56248 6.68021 5.39454L6.68682 5.38553C6.8381 5.21279 7.03027 5.08062 7.24541 5.00025C7.51442 4.89665 7.80139 4.84574 8.08943 4.85019L8.09356 4.85C8.49967 4.83135 8.797 4.8834 9.13646 5.10653L9.20575 5.15142C9.34682 5.25094 9.46455 5.37999 9.5509 5.5295C9.6377 5.67976 9.69065 5.84716 9.70606 6.02L11.2061 6.02C11.2023 5.5524 11.0556 5.09689 10.7859 4.71484C10.5076 4.32224 10.1266 4.01372 9.68477 3.82302L9.68235 3.82195Z" fill="black"/>
+                        </svg>
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="Enter budget"
+                        className="w-full h-10 pl-11 pr-3 rounded border border-[#909196] bg-white text-sm text-[#74767C] placeholder:text-[#74767C] leading-5"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Help Text */}
+                  <div className="flex gap-4 w-[296px] items-start">
+                    <div className="w-px h-full bg-[#E3E4E5] flex-shrink-0"></div>
+                    <p className="text-sm text-[#515357] leading-5 flex-1">
+                      If your campaign spends all of the daily budget, ads will stop serving. If there is budget remaining, it will roll over.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Additional Settings Accordion */}
+                <div className="flex justify-between items-center pt-4 border-t border-[#E3E4E5]">
+                  <span className="text-sm font-semibold text-[#2E2F32] leading-5">Additional settings (optional)</span>
+                  <button className="p-0 hover:opacity-70 transition-opacity">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M4.71967 8.09467C4.99003 7.82431 5.41546 7.80351 5.70967 8.03228L5.78033 8.09467L12 14.3137L18.2197 8.09467C18.49 7.82431 18.9155 7.80351 19.2097 8.03228L19.2803 8.09467C19.5507 8.36503 19.5715 8.79046 19.3427 9.08467L19.2803 9.15533L12.5303 15.9053C12.26 16.1757 11.8345 16.1965 11.5403 15.9677L11.4697 15.9053L4.71967 9.15533C4.42678 8.86244 4.42678 8.38756 4.71967 8.09467Z" fill="black"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         </div>
