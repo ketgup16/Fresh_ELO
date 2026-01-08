@@ -78,7 +78,7 @@ export default function AllCampaigns() {
   const biddingStrategyColumnRef = useRef<HTMLDivElement>(null);
   const tableContainerRef = useRef<HTMLDivElement>(null);
 
-  const [campaigns, setCampaigns] = useState<Campaign[]>([
+  const [campaignsData, setCampaignsData] = useState<Campaign[]>([
     {
       id: "camp-001",
       name: "SP - GTV - HiSense - New SKUs - Category - Auto",
