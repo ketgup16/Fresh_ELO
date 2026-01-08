@@ -447,30 +447,33 @@ export default function AllCampaigns() {
   // Sort campaigns: alerts first, then recommendations, then others
   // Only show icons on top rows that have alerts/recommendations
   const campaigns = useMemo(() => {
-    return [...campaignsData]
-      .sort((a, b) => {
-        const aHasAlerts = (a.alerts?.length || 0) > 0;
-        const bHasAlerts = (b.alerts?.length || 0) > 0;
-        const aHasRecs = (a.recommendations?.length || 0) > 0;
-        const bHasRecs = (b.recommendations?.length || 0) > 0;
+    const sorted = [...campaignsData].map((campaign, originalIndex) => ({
+      ...campaign,
+      originalIndex,
+      hasAlerts: (campaign.alerts?.length || 0) > 0,
+      hasRecs: (campaign.recommendations?.length || 0) > 0,
+    }));
 
-        // Alerts first
-        if (aHasAlerts && !bHasAlerts) return -1;
-        if (!aHasAlerts && bHasAlerts) return 1;
+    sorted.sort((a, b) => {
+      // Priority 1: Alerts first
+      if (a.hasAlerts && !b.hasAlerts) return -1;
+      if (!a.hasAlerts && b.hasAlerts) return 1;
 
-        // Then recommendations (if both don't have alerts)
-        if (!aHasAlerts && !bHasAlerts) {
-          if (aHasRecs && !bHasRecs) return -1;
-          if (!aHasRecs && bHasRecs) return 1;
-        }
+      // Priority 2: Recommendations second (if neither has alerts)
+      if (!a.hasAlerts && !b.hasAlerts) {
+        if (a.hasRecs && !b.hasRecs) return -1;
+        if (!a.hasRecs && b.hasRecs) return 1;
+      }
 
-        return 0;
-      })
-      .map((campaign) => ({
-        ...campaign,
-        hasAlertIcon: (campaign.alerts?.length || 0) > 0,
-        hasRecIcon: (campaign.recommendations?.length || 0) > 0 && (campaign.alerts?.length || 0) === 0,
-      }));
+      // Priority 3: Maintain original order within same group
+      return a.originalIndex - b.originalIndex;
+    });
+
+    return sorted.map((campaign) => ({
+      ...campaign,
+      hasAlertIcon: campaign.hasAlerts,
+      hasRecIcon: campaign.hasRecs && !campaign.hasAlerts,
+    }));
   }, [campaignsData]);
 
   // Handler: Icon Click
