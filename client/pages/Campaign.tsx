@@ -663,7 +663,7 @@ export default function Campaign() {
                     <div className="flex items-center px-3 py-3 border-b border-[#E3E4E5] bg-white">
                       <span className="text-xs font-semibold text-[#2E2F32] leading-4 ml-2">Item Name</span>
                       <span className="text-xs font-semibold text-[#2E2F32] leading-4 ml-auto mr-12">Item Id</span>
-                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 flex items-center gap-1">
+                      <span className="text-[10px] font-semibold text-[#2E2F32] leading-3 flex items-center gap-0.5">
                         Sugg.Bid
                         <svg width="14" height="14" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M6.55515 6.20147H7.6181V10.1875H6.55515V6.20147Z" fill="black"/>
@@ -711,7 +711,7 @@ export default function Campaign() {
                       <div className="w-4"></div>
                       <span className="text-xs font-semibold text-[#2E2F32] leading-4 flex-1">Item Name</span>
                       <span className="text-xs font-semibold text-[#2E2F32] leading-4 w-16 text-right">Item Id</span>
-                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 flex items-center gap-1 w-16">
+                      <span className="text-[10px] font-semibold text-[#2E2F32] leading-3 flex items-center gap-0.5 w-16">
                         Sugg.Bid
                         <svg width="14" height="14" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M6.55515 6.20147H7.6181V10.1875H6.55515V6.20147Z" fill="black"/>
