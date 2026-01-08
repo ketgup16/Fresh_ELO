@@ -510,9 +510,8 @@ export default function MartyFloatingPanel({
       )}
 
       {viewState === 'campaignScheduled' && (
-        <div className="flex w-full h-[480px] flex-col items-start flex-shrink-0">
-          {/* Chat panel content */}
-          <div className="flex w-full max-w-[760px] px-4 py-4 flex-col items-start gap-6 flex-1 bg-white overflow-y-auto">
+        <div className="flex w-full h-[692px] flex-col items-start flex-shrink-0 overflow-y-auto">
+          <div className="flex px-4 py-4 flex-col items-center gap-4 flex-1 self-stretch">
             {/* User Message */}
             <div className="flex w-full pl-20 flex-col items-end gap-1">
               <div className="flex max-w-[608px] px-4 py-2 flex-col items-start gap-2 rounded-lg bg-[#F1F1F2]">
