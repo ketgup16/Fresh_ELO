@@ -627,6 +627,145 @@ export default function Campaign() {
                 </div>
               </div>
             </div>
+
+            {/* Item list Card */}
+            <div className="bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] h-[628px] flex flex-col">
+              {/* Header */}
+              <div className="px-6 py-6 border-b border-[#E3E4E5]">
+                <h3 className="text-lg font-semibold text-[#2E2F32] leading-[25px]">Item list</h3>
+              </div>
+
+              {/* Tag */}
+              <div className="px-6 pt-3">
+                <div className="inline-flex px-2 py-1 bg-[#E9F1FE] rounded-sm">
+                  <span className="text-xs text-[#002E99] leading-4">Adgroup name: SpookySoaps</span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex-1 px-6 pb-6 overflow-hidden">
+                <div className="border border-[#E3E4E5] rounded h-full flex">
+                  {/* Left Panel - Suggested Items */}
+                  <div className="w-[378px] flex flex-col border-r border-[#E3E4E5]">
+                    {/* Header */}
+                    <div className="flex items-center justify-between px-3 py-3 bg-[#F8F8F8] border-b border-[#E3E4E5]">
+                      <div className="flex items-center gap-1">
+                        <span className="text-xs font-semibold text-[#2E2F32] leading-4">Suggested Items (50)</span>
+                        <svg width="14" height="14" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.55515 6.20147H7.6181V10.1875H6.55515V6.20147Z" fill="black"/>
+                          <path d="M7.08594 5.58141C7.52622 5.58141 7.88315 5.22449 7.88315 4.7842C7.88315 4.34391 7.52622 3.98699 7.08594 3.98699C6.64565 3.98699 6.28872 4.34391 6.28872 4.7842C6.28872 5.22449 6.64565 5.58141 7.08594 5.58141Z" fill="black"/>
+                          <path d="M7.08628 13.2878C10.5107 13.2878 13.2868 10.5117 13.2868 7.08726C13.2868 3.66279 10.5107 0.886719 7.08628 0.886719C3.66182 0.886719 0.885742 3.66279 0.885742 7.08726C0.885742 10.5117 3.66182 13.2878 7.08628 13.2878ZM7.08628 12.402C4.15103 12.402 1.77153 10.0225 1.77153 7.08726C1.77153 4.152 4.15103 1.77251 7.08628 1.77251C10.0215 1.77251 12.401 4.152 12.401 7.08726C12.401 10.0225 10.0215 12.402 7.08628 12.402Z" fill="black"/>
+                        </svg>
+                      </div>
+                    </div>
+
+                    {/* Column Headers */}
+                    <div className="flex items-center px-3 py-3 border-b border-[#E3E4E5] bg-white">
+                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 ml-2">Item Name</span>
+                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 ml-auto mr-12">Item Id</span>
+                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 flex items-center gap-1">
+                        Sugg.Bid
+                        <svg width="14" height="14" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.55515 6.20147H7.6181V10.1875H6.55515V6.20147Z" fill="black"/>
+                          <path d="M7.08594 5.58141C7.52622 5.58141 7.88315 5.22449 7.88315 4.7842C7.88315 4.34391 7.52622 3.98699 7.08594 3.98699C6.64565 3.98699 6.28872 4.34391 6.28872 4.7842C6.28872 5.22449 6.64565 5.58141 7.08594 5.58141Z" fill="black"/>
+                          <path d="M7.08628 13.2878C10.5107 13.2878 13.2868 10.5117 13.2868 7.08726C13.2868 3.66279 10.5107 0.886719 7.08628 0.886719C3.66182 0.886719 0.885742 3.66279 0.885742 7.08726C0.885742 10.5117 3.66182 13.2878 7.08628 13.2878ZM7.08628 12.402C4.15103 12.402 1.77153 10.0225 1.77153 7.08726C1.77153 4.152 4.15103 1.77251 7.08628 1.77251C10.0215 1.77251 12.401 4.152 12.401 7.08726C12.401 10.0225 10.0215 12.402 7.08628 12.402Z" fill="black"/>
+                        </svg>
+                      </span>
+                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 ml-4">Add</span>
+                    </div>
+
+                    {/* Items List */}
+                    <div className="flex-1 overflow-y-auto">
+                      {['Clorox blue', 'Clorox liquid', 'Clorox gel', 'Clorox spray', 'Clorox laundry', 'Clorox mist', 'Clorox wands', 'Clorox 360', 'Clorox pen', 'Clorox aloe'].map((item, idx) => {
+                        const ids = ['15242283', '18775208', '34571821', '15234651', '18754261', '15246821', '12352075', '17252975', '16251829', '15242283'];
+                        const prices = ['$2.56', '$3.91', '$3.91', '$2.56', '$3.91', '$3.91', '$2.56', '$3.91', '$3.91', '$3.91'];
+                        return (
+                          <div key={idx} className="flex items-center px-3 py-2 border-b border-[#E3E4E5] hover:bg-gray-50">
+                            <div className="w-8 h-8 bg-gray-200 rounded flex-shrink-0"></div>
+                            <span className="text-xs text-[#2E2F32] ml-3 flex-1">{item}</span>
+                            <span className="text-xs text-[#2E2F32] w-16 text-right">{ids[idx]}</span>
+                            <span className="text-xs text-[#2E2F32] w-12 text-right">{prices[idx]}</span>
+                            <button className="text-xs text-[#2E2F32] underline ml-4 hover:no-underline">Add</button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Right Panel - Added Items */}
+                  <div className="flex-1 flex flex-col">
+                    {/* Header */}
+                    <div className="flex items-center justify-between px-4 py-3 bg-[#F8F8F8] border-b border-[#E3E4E5]">
+                      <div className="flex items-center gap-1">
+                        <span className="text-xs font-semibold text-[#2E2F32] leading-4">Added Items (3/200)</span>
+                        <svg width="14" height="14" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.55515 6.20147H7.6181V10.1875H6.55515V6.20147Z" fill="black"/>
+                          <path d="M7.08594 5.58141C7.52622 5.58141 7.88315 5.22449 7.88315 4.7842C7.88315 4.34391 7.52622 3.98699 7.08594 3.98699C6.64565 3.98699 6.28872 4.34391 6.28872 4.7842C6.28872 5.22449 6.64565 5.58141 7.08594 5.58141Z" fill="black"/>
+                          <path d="M7.08628 13.2878C10.5107 13.2878 13.2868 10.5117 13.2868 7.08726C13.2868 3.66279 10.5107 0.886719 7.08628 0.886719C3.66182 0.886719 0.885742 3.66279 0.885742 7.08726C0.885742 10.5117 3.66182 13.2878 7.08628 13.2878ZM7.08628 12.402C4.15103 12.402 1.77153 10.0225 1.77153 7.08726C1.77153 4.152 4.15103 1.77251 7.08628 1.77251C10.0215 1.77251 12.401 4.152 12.401 7.08726C12.401 10.0225 10.0215 12.402 7.08628 12.402Z" fill="black"/>
+                        </svg>
+                      </div>
+                    </div>
+
+                    {/* Column Headers */}
+                    <div className="flex items-center gap-4 px-4 py-3 border-b border-[#E3E4E5] bg-white">
+                      <div className="w-4"></div>
+                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 flex-1">Item Name</span>
+                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 w-16 text-right">Item Id</span>
+                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 flex items-center gap-1 w-16">
+                        Sugg.Bid
+                        <svg width="14" height="14" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.55515 6.20147H7.6181V10.1875H6.55515V6.20147Z" fill="black"/>
+                          <path d="M7.08594 5.58141C7.52622 5.58141 7.88315 5.22449 7.88315 4.7842C7.88315 4.34391 7.52622 3.98699 7.08594 3.98699C6.64565 3.98699 6.28872 4.34391 6.28872 4.7842C6.28872 5.22449 6.64565 5.58141 7.08594 5.58141Z" fill="black"/>
+                          <path d="M7.08628 13.2878C10.5107 13.2878 13.2868 10.5117 13.2868 7.08726C13.2868 3.66279 10.5107 0.886719 7.08628 0.886719C3.66182 0.886719 0.885742 3.66279 0.885742 7.08726C0.885742 10.5117 3.66182 13.2878 7.08628 13.2878ZM7.08628 12.402C4.15103 12.402 1.77153 10.0225 1.77153 7.08726C1.77153 4.152 4.15103 1.77251 7.08628 1.77251C10.0215 1.77251 12.401 4.152 12.401 7.08726C12.401 10.0225 10.0215 12.402 7.08628 12.402Z" fill="black"/>
+                        </svg>
+                      </span>
+                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 flex items-center gap-1 w-14">
+                        Bid
+                        <svg width="14" height="14" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.55515 6.20147H7.6181V10.1875H6.55515V6.20147Z" fill="black"/>
+                          <path d="M7.08594 5.58141C7.52622 5.58141 7.88315 5.22449 7.88315 4.7842C7.88315 4.34391 7.52622 3.98699 7.08594 3.98699C6.64565 3.98699 6.28872 4.34391 6.28872 4.7842C6.28872 5.22449 6.64565 5.58141 7.08594 5.58141Z" fill="black"/>
+                          <path d="M7.08628 13.2878C10.5107 13.2878 13.2868 10.5117 13.2868 7.08726C13.2868 3.66279 10.5107 0.886719 7.08628 0.886719C3.66182 0.886719 0.885742 3.66279 0.885742 7.08726C0.885742 10.5117 3.66182 13.2878 7.08628 13.2878ZM7.08628 12.402C4.15103 12.402 1.77153 10.0225 1.77153 7.08726C1.77153 4.152 4.15103 1.77251 7.08628 1.77251C10.0215 1.77251 12.401 4.152 12.401 7.08726C12.401 10.0225 10.0215 12.402 7.08628 12.402Z" fill="black"/>
+                        </svg>
+                      </span>
+                      <span className="text-xs font-semibold text-[#2E2F32] leading-4 w-12">Status</span>
+                    </div>
+
+                    {/* Added Items List */}
+                    <div className="flex-1 overflow-y-auto">
+                      {['Clorox wipes', 'Clorox tilex', 'Clorox tabs'].map((item, idx) => {
+                        const ids = ['13246752', '18972432', '18265631'];
+                        return (
+                          <div key={idx} className="flex items-center gap-4 px-4 py-2 border-b border-[#E3E4E5]">
+                            <input type="checkbox" className="w-4 h-4 rounded border border-black" />
+                            <div className="flex items-center gap-2 flex-1">
+                              <div className="w-8 h-8 bg-gray-200 rounded flex-shrink-0"></div>
+                              <span className="text-xs text-[#2E2F32]">{item}</span>
+                            </div>
+                            <span className="text-xs text-[#2E2F32] w-16 text-right">{ids[idx]}</span>
+                            <span className="text-xs text-[#2E2F32] w-16 text-right">$3.91</span>
+                            <div className="w-14">
+                              <div className="relative h-[18px] w-14">
+                                <input
+                                  type="text"
+                                  defaultValue="3.91"
+                                  className="w-full h-full pl-2 pr-1 text-xs border border-[#C7C8CB] rounded bg-white"
+                                />
+                                <span className="absolute left-1 top-0.5 text-xs text-[#515357]">$</span>
+                              </div>
+                            </div>
+                            <div className="w-12">
+                              <div className="w-10 h-4 bg-[#0053E2] rounded-full relative">
+                                <div className="absolute right-0.5 top-0.5 w-[14px] h-[12px] bg-white rounded-full"></div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         </div>
