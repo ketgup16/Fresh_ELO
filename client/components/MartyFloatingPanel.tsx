@@ -57,6 +57,10 @@ export default function MartyFloatingPanel({
     navigate('/campaign');
   };
 
+  const handleLaunchCampaign = () => {
+    setViewState('campaignScheduled');
+  };
+
   const isLaunchEnabled = campaignData.dailyBudget.trim() !== '';
 
   // Minimized "Ask Marty" button
