@@ -428,6 +428,143 @@ export default function Campaign() {
               </div>
             </div>
           </div>
+
+          {/* Big Multiplier Card */}
+          <div className="bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
+            {/* Header */}
+            <div className="flex justify-between items-center px-6 py-6">
+              <h2 className="text-[20px] font-semibold text-[#2E2F32] leading-7">Big Multiplier</h2>
+              <button className="p-0 hover:opacity-70 transition-opacity">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.5652 6.99897L21 16.2124L19.8695 17.25L12 8.65402L4.13049 17.25L3 16.2124L11.4348 6.99897C11.58 6.84033 11.7851 6.75 12 6.75C12.2149 6.75 12.42 6.84033 12.5652 6.99897Z" fill="black"/>
+                </svg>
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="px-6 pb-6">
+              <div className="flex gap-4">
+                {/* Fields Section */}
+                <div className="flex flex-col gap-5 flex-1">
+                  {/* Placement Row */}
+                  <div className="flex items-center gap-6">
+                    <span className="text-sm font-semibold text-[#2E2F32] leading-5 w-16">Placement</span>
+                    <div className="flex gap-6">
+                      {/* Buy-Box Field */}
+                      <div className="flex flex-col w-[296px]">
+                        <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Buy-Box</label>
+                        <div className="relative">
+                          <input
+                            type="text"
+                            placeholder="Select a date"
+                            className="w-full h-10 px-3 pr-8 rounded border border-[#909196] bg-white text-sm text-[#74767C] placeholder:text-[#74767C] leading-5"
+                          />
+                          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-[#2E2F32] pointer-events-none">%</span>
+                        </div>
+                      </div>
+
+                      {/* Search Ingrid Field */}
+                      <div className="flex flex-col w-[296px]">
+                        <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Search Ingrid</label>
+                        <div className="relative">
+                          <input
+                            type="text"
+                            placeholder="Select a date"
+                            className="w-full h-10 px-3 pr-8 rounded border border-[#909196] bg-white text-sm text-[#74767C] placeholder:text-[#74767C] leading-5"
+                          />
+                          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-[#2E2F32] pointer-events-none">%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Second Placement Row */}
+                  <div className="flex gap-6 ml-[88px]">
+                    {/* Home page Field */}
+                    <div className="flex flex-col w-[296px]">
+                      <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Home page</label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          placeholder="Select a date"
+                          className="w-full h-10 px-3 pr-8 rounded border border-[#909196] bg-white text-sm text-[#74767C] placeholder:text-[#74767C] leading-5"
+                        />
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-[#2E2F32] pointer-events-none">%</span>
+                      </div>
+                    </div>
+
+                    {/* Stock up Field */}
+                    <div className="flex flex-col w-[296px]">
+                      <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Stock up</label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          placeholder="Select a date"
+                          className="w-full h-10 px-3 pr-8 rounded border border-[#909196] bg-white text-sm text-[#74767C] placeholder:text-[#74767C] leading-5"
+                        />
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-[#2E2F32] pointer-events-none">%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Platform Row */}
+                  <div className="flex items-center gap-6">
+                    <span className="text-sm font-semibold text-[#2E2F32] leading-5 w-16">Platform</span>
+                    <div className="flex gap-6 flex-1">
+                      {/* Desktop Field */}
+                      <div className="flex flex-col flex-1">
+                        <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Desktop</label>
+                        <div className="relative">
+                          <input
+                            type="text"
+                            placeholder="Select a date"
+                            className="w-full h-10 px-3 pr-8 rounded border border-[#909196] bg-white text-sm text-[#74767C] placeholder:text-[#74767C] leading-5"
+                          />
+                          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-[#2E2F32] pointer-events-none">%</span>
+                        </div>
+                      </div>
+
+                      {/* App Field */}
+                      <div className="flex flex-col flex-1">
+                        <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">App</label>
+                        <div className="relative">
+                          <input
+                            type="text"
+                            placeholder="Select a date"
+                            className="w-full h-10 px-3 pr-8 rounded border border-[#909196] bg-white text-sm text-[#74767C] placeholder:text-[#74767C] leading-5"
+                          />
+                          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-[#2E2F32] pointer-events-none">%</span>
+                        </div>
+                      </div>
+
+                      {/* Mobile Field */}
+                      <div className="flex flex-col flex-1">
+                        <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Mobile</label>
+                        <div className="relative">
+                          <input
+                            type="text"
+                            placeholder="Select a date"
+                            className="w-full h-10 px-3 pr-8 rounded border border-[#909196] bg-white text-sm text-[#74767C] placeholder:text-[#74767C] leading-5"
+                          />
+                          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-[#2E2F32] pointer-events-none">%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Help Text Section */}
+                <div className="flex gap-4 w-[205px] items-start flex-shrink-0">
+                  <div className="w-px h-48 bg-[#E3E4E5] flex-shrink-0"></div>
+                  <p className="text-sm text-[#515357] leading-5 flex-1">
+                    Bid multipliers increase your bid by a preset percentage when your ads are eligible to serve in premium placements
+                    <br /><br />
+                    They help you compete for Buy-Box, Search Ingrid, Home Page, Stock Up on desktop, app and mobile web
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         </div>
       </div>
