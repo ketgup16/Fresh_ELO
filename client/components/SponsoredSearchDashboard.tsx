@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, ArrowDown, ArrowUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import CampaignChart from "./CampaignChart";
 
 interface Campaign {
@@ -12,6 +13,7 @@ interface Campaign {
 }
 
 export default function SponsoredSearchDashboard() {
+  const navigate = useNavigate();
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
   const initialCampaigns: Campaign[] = [
@@ -63,7 +65,10 @@ export default function SponsoredSearchDashboard() {
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
           <h1 className="text-[32px] font-bold text-[#2E2F32] leading-10">Hi, Gabriela</h1>
-          <button className="h-10 px-6 bg-[#0053E2] text-white text-base font-bold rounded-full hover:bg-[#0046c7] transition-colors">
+          <button
+            onClick={() => navigate('/campaign')}
+            className="h-10 px-6 bg-[#0053E2] text-white text-base font-bold rounded-full hover:bg-[#0046c7] transition-colors"
+          >
             Create campaign
           </button>
         </div>

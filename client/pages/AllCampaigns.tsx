@@ -796,7 +796,10 @@ export default function AllCampaigns() {
                 <span className="text-sm">View draft campaigns</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
-              <button className="px-6 h-10 rounded-full bg-[#0071DC] text-white font-bold">
+              <button
+                onClick={() => navigate('/campaign')}
+                className="px-6 h-10 rounded-full bg-[#0071DC] text-white font-bold"
+              >
                 Create campaign
               </button>
             </div>
