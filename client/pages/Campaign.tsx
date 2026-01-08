@@ -447,11 +447,11 @@ export default function Campaign() {
                 {/* Fields Section */}
                 <div className="flex flex-col gap-5 flex-1">
                   {/* Placement Row */}
-                  <div className="flex items-center gap-6">
-                    <span className="text-sm font-semibold text-[#2E2F32] leading-5 w-16">Placement</span>
-                    <div className="flex gap-6">
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm font-semibold text-[#2E2F32] leading-5 w-16 flex-shrink-0">Placement</span>
+                    <div className="flex gap-4 flex-1">
                       {/* Buy-Box Field */}
-                      <div className="flex flex-col w-[296px]">
+                      <div className="flex flex-col flex-1 min-w-0">
                         <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Buy-Box</label>
                         <div className="relative">
                           <input
@@ -464,7 +464,7 @@ export default function Campaign() {
                       </div>
 
                       {/* Search Ingrid Field */}
-                      <div className="flex flex-col w-[296px]">
+                      <div className="flex flex-col flex-1 min-w-0">
                         <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Search Ingrid</label>
                         <div className="relative">
                           <input
@@ -479,9 +479,9 @@ export default function Campaign() {
                   </div>
 
                   {/* Second Placement Row */}
-                  <div className="flex gap-6 ml-[88px]">
+                  <div className="flex gap-4 pl-20">
                     {/* Home page Field */}
-                    <div className="flex flex-col w-[296px]">
+                    <div className="flex flex-col flex-1 min-w-0">
                       <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Home page</label>
                       <div className="relative">
                         <input
@@ -494,7 +494,7 @@ export default function Campaign() {
                     </div>
 
                     {/* Stock up Field */}
-                    <div className="flex flex-col w-[296px]">
+                    <div className="flex flex-col flex-1 min-w-0">
                       <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Stock up</label>
                       <div className="relative">
                         <input
