@@ -517,7 +517,7 @@ export default function AllCampaigns() {
     if (!selectedCampaignId) return;
 
     // Update campaigns array
-    setCampaigns((prevCampaigns) =>
+    setCampaignsData((prevCampaigns) =>
       prevCampaigns.map((c) =>
         c.id === selectedCampaignId
           ? {
