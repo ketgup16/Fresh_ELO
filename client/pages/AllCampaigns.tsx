@@ -119,12 +119,24 @@ export default function AllCampaigns() {
       unitsSold: "1,067",
       alerts: [
         {
+          type: 'learning-paused',
+          message: 'Learning paused',
+          targetColumn: 'biddingStrategy'
+        },
+        {
           type: 'out-of-budget',
           message: 'Campaign out-of-budget',
           targetColumn: 'totalBudget'
         }
       ],
-      recommendations: []
+      recommendations: [
+        {
+          type: 'update-roas',
+          message: 'Update ROAS target',
+          suggestedValue: '2.50',
+          targetColumn: 'biddingStrategy'
+        }
+      ]
     },
     {
       id: "camp-002",
