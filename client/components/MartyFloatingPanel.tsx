@@ -6,7 +6,7 @@ interface MartyFloatingPanelProps {
   onMinimizedChange?: (minimized: boolean) => void;
 }
 
-type ViewState = 'welcome' | 'thinking' | 'campaignForm' | 'campaignReady';
+type ViewState = 'welcome' | 'thinking' | 'campaignForm' | 'campaignReady' | 'campaignScheduled';
 
 export default function MartyFloatingPanel({
   isMinimized = false,
