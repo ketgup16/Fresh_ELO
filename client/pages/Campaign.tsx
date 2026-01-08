@@ -565,6 +565,69 @@ export default function Campaign() {
               </div>
             </div>
           </div>
+
+          {/* Create and manage ad groups Section */}
+          <div className="flex flex-col gap-6 pt-4">
+            {/* Title */}
+            <div className="flex flex-col gap-4">
+              <h2 className="text-2xl font-extrabold text-[#2E2F32] leading-8">Create and manage ad groups</h2>
+              <p className="text-sm text-[#515357] leading-5">
+                An Ad group is a group of ads sharing the same set of keywords and products. Consider grouping products that fall within the same category and price point roange. You can edit your campaign after launch to create additional ad groups in campaign manager.
+              </p>
+            </div>
+
+            {/* Manage ad groups Card */}
+            <div className="bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] h-[290px] flex flex-col">
+              {/* Header */}
+              <div className="flex justify-between items-center px-6 py-6">
+                <h3 className="text-base font-semibold text-[#2E2F32] leading-6">Manage ad groups</h3>
+                <button className="p-0 hover:opacity-70 transition-opacity">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M15.9053 11.4697C16.1757 11.74 16.1965 12.1655 15.9677 12.4597L15.9053 12.5303L9.15533 19.2803C8.86244 19.5732 8.38756 19.5732 8.09467 19.2803C7.82431 19.01 7.80351 18.5845 8.03228 18.2903L8.09467 18.2197L14.3137 12L8.09467 5.78033C7.82431 5.50997 7.80351 5.08454 8.03228 4.79033L8.09467 4.71967C8.36503 4.44931 8.79046 4.42851 9.08467 4.65728L9.15533 4.71967L15.9053 11.4697Z" fill="black"/>
+                  </svg>
+                </button>
+              </div>
+
+              {/* Content */}
+              <div className="flex-1 px-6 flex flex-col justify-between">
+                <p className="text-sm text-[#2E2F32] leading-5">
+                  Please setup a new adgroup below to add to this campaign.
+                </p>
+
+                {/* Divider and Button */}
+                <div className="flex flex-col">
+                  <div className="h-px bg-[#E3E4E5] mb-6"></div>
+                  <div className="flex justify-end pb-6">
+                    <button className="inline-flex items-center gap-2 h-8 px-4 rounded-full bg-[#BABBBE] cursor-not-allowed" disabled>
+                      <div className="w-3.5 h-3.5 bg-[#E3E4E5] rounded-sm"></div>
+                      <span className="text-sm font-bold text-white leading-5">Create new ad group</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Ad group details Card */}
+            <div className="bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
+              {/* Header */}
+              <div className="px-6 py-6">
+                <h3 className="text-[20px] font-semibold text-[#2E2F32] leading-7">Ad group details</h3>
+              </div>
+
+              {/* Content */}
+              <div className="px-6 pb-6">
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Ad group name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter ad group name"
+                    className="w-full h-10 px-3 rounded border border-[#909196] bg-white text-sm text-[#74767C] placeholder:text-[#74767C] leading-5"
+                  />
+                  <div className="text-xs text-[#74767C] text-right leading-4">10/253</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         </div>
       </div>
