@@ -303,31 +303,42 @@ export default function SponsoredSearchDashboard() {
 
         {/* Card 4 */}
         <div className="bg-white rounded-xl border-4 border-white shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] p-6 flex flex-col gap-4">
-          <div className="flex items-center gap-3">
-            <div className="p-1 rounded-full bg-[#F5D5E9] flex items-center justify-center flex-shrink-0">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8.15234 6.33984L8.05566 6.9209H13.1641L7.1582 13.8223L7.84863 9.66016L7.94434 9.0791H2.83594L8.84082 2.17676L8.15234 6.33984Z" stroke="#661648"/>
-              </svg>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="p-1 rounded-full bg-[#EBD5F7] flex items-center justify-center flex-shrink-0">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.15234 6.33984L8.05566 6.9209H13.1641L7.1582 13.8223L7.84863 9.66016L7.94434 9.0791H2.83594L8.84082 2.17676L8.15234 6.33984Z" stroke="#993EF4"/>
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-[#2E2F32]">Advertise these high quality items</h3>
             </div>
-            <h3 className="text-lg font-bold text-[#2E2F32]">Advertise recently added items</h3>
+            <span className="text-xs text-[#74767C]">Updated Oct 10, 2025</span>
           </div>
-          <p className="text-base text-[#2E2F32]">
-            I found 12 items you're not advertising that have the potential to drive sales with a Sponsored Search Smart Performance campaign.
+          <p className="text-sm text-[#2E2F32]">
+            We found items that you're not advertising that have the potential to drive sales in a Sponsored Products automatic campaign. <span className="underline cursor-pointer hover:no-underline">Learn more</span>
           </p>
-          <div className="flex items-center gap-3 flex-wrap">
+          <div className="flex items-center gap-8 flex-wrap">
             <div>
-              <div className="text-xs text-[#2E2F32] mb-1">Items</div>
-              <div className="text-lg font-bold text-[#2E2F32]">12</div>
+              <div className="text-xs text-[#2E2F32] mb-1">Number of items</div>
+              <div className="text-lg font-bold text-[#2E2F32]">1,000</div>
             </div>
             <div>
-              <div className="text-xs text-[#2A8703] mb-1">Est. sales increase</div>
-              <div className="text-lg font-bold text-[#2A8703]">$24-30k</div>
+              <div className="text-xs text-[#2A8703] mb-1">Average listing quality</div>
+              <div className="text-lg font-bold text-[#2A8703]">88.5%</div>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <img src="https://api.builder.io/api/v1/image/assets/TEMP/c04ef675f842aa0f2c9c1a3292268267f5cd2203?width=96" alt="Product" className="w-12 h-12 object-cover" />
+              <img src="https://api.builder.io/api/v1/image/assets/TEMP/e3b58a71f6bde1765cd30f82d152e9bf0db3400c?width=96" alt="Product" className="w-12 h-12 object-cover" />
+              <img src="https://api.builder.io/api/v1/image/assets/TEMP/7e3d5aa0b2caeacb2e0dd9a07394026e5d0244bc?width=96" alt="Product" className="w-12 h-12 object-cover" />
+              <img src="https://api.builder.io/api/v1/image/assets/TEMP/bb319b37f89c1feb714d0e5ad392bd7062c7edef?width=96" alt="Product" className="w-12 h-12 object-cover" />
+              <img src="https://api.builder.io/api/v1/image/assets/TEMP/fa81303645e82b1387b2f225cd10e485d3c956fe?width=52" alt="Product" className="w-[26px] h-12 object-cover" />
             </div>
           </div>
           <div className="h-px bg-[#E3E4E5]"></div>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
-            <button className="text-sm text-[#2E2F32] underline hover:no-underline text-center sm:text-left">Create campaign</button>
-            <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Add to existing campaigns</button>
+            <button className="text-sm text-[#2E2F32] underline hover:no-underline text-center sm:text-left">Request report</button>
+            <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Create new campaign</button>
+            <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Add items to existing campaign</button>
           </div>
         </div>
       </div>
