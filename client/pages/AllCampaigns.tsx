@@ -1044,7 +1044,7 @@ export default function AllCampaigns() {
                             )}
                             {campaign.hasBolt && (
                               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                                <path d="M8.36914 6.10059L8.25391 6.69629H15.1279L10.8525 10.9072L6.63184 15.0645L7.63086 9.89941L7.74609 9.30371H0.870117L9.36719 0.93457L8.36914 6.10059Z" stroke="#8C1E64"/>
+                                <path d="M8.15234 6.33984L8.05566 6.9209H13.1641L7.1582 13.8223L7.84863 9.66016L7.94434 9.0791H2.83594L8.84082 2.17676L8.15234 6.33984Z" stroke="#661648"/>
                               </svg>
                             )}
                             <span className="text-sm text-[#2E2F32]">{campaign.totalBudget}</span>
