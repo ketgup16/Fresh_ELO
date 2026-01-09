@@ -3,11 +3,12 @@ import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search } from "lucide-r
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export default function Campaign() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useState(false);
+  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
 

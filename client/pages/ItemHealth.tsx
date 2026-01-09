@@ -3,6 +3,7 @@ import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search } from "lucide-r
 import { useNavigate } from "react-router-dom";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface ItemHealthData {
   itemImage: string;
@@ -22,7 +23,7 @@ interface ItemHealthData {
 export default function ItemHealth() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useState(false);
+  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
 

@@ -5,6 +5,7 @@ import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import RecommendationsPopover from "../components/RecommendationsPopover";
 import BiddingStrategyModal from "../components/BiddingStrategyModal";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface Alert {
   type: 'learning-paused' | 'out-of-budget';
@@ -64,7 +65,7 @@ interface Campaign {
 export default function AllCampaigns() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useState(false);
+  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
 

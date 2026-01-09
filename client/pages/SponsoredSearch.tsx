@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import SponsoredSearchDashboard from "../components/SponsoredSearchDashboard";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export default function SponsoredSearch() {
   const navigate = useNavigate();
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useState(false);
+  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
