@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronRight, ChevronDown, ChevronUp, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X, Home, Megaphone, Gauge, BarChart3, Briefcase, Video, CloudUpload, ArrowRight, ArrowLeft } from "lucide-react";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface Campaign {
   id: string;
@@ -1387,7 +1388,7 @@ export default function Index() {
 
   // Marty panel state
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useState(false);
+  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
   const [tempStatusFilter, setTempStatusFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showAllFiltersPopover, setShowAllFiltersPopover] = useState(false);
