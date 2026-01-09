@@ -305,9 +305,9 @@ export default function SponsoredSearchDashboard() {
         <div className="bg-white rounded-xl border-4 border-white shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] p-6 flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="p-1 rounded-full bg-[#EBD5F7] flex items-center justify-center flex-shrink-0">
+              <div className="p-1 rounded-full bg-[#F5D5E9] flex items-center justify-center flex-shrink-0">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8.15234 6.33984L8.05566 6.9209H13.1641L7.1582 13.8223L7.84863 9.66016L7.94434 9.0791H2.83594L8.84082 2.17676L8.15234 6.33984Z" stroke="#993EF4"/>
+                  <path d="M8.15234 6.33984L8.05566 6.9209H13.1641L7.1582 13.8223L7.84863 9.66016L7.94434 9.0791H2.83594L8.84082 2.17676L8.15234 6.33984Z" stroke="#661648"/>
                 </svg>
               </div>
               <h3 className="text-lg font-bold text-[#2E2F32]">Advertise these high quality items</h3>
