@@ -544,6 +544,53 @@ export default function AllCampaigns() {
     setRecommendedRoasValue(undefined);
   };
 
+  // Checkbox handlers
+  const handleSelectAll = (checked: boolean) => {
+    const newSelectedRows = new Set(selectedRows);
+
+    if (checked) {
+      campaigns.forEach(campaign => {
+        newSelectedRows.add(campaign.id);
+      });
+    } else {
+      campaigns.forEach(campaign => {
+        newSelectedRows.delete(campaign.id);
+      });
+    }
+
+    setSelectedRows(newSelectedRows);
+  };
+
+  const handleSelectRow = (campaignId: string, checked: boolean) => {
+    const newSelectedRows = new Set(selectedRows);
+
+    if (checked) {
+      newSelectedRows.add(campaignId);
+    } else {
+      newSelectedRows.delete(campaignId);
+    }
+
+    setSelectedRows(newSelectedRows);
+  };
+
+  const isAllSelected = () => {
+    if (campaigns.length === 0) return false;
+    return campaigns.every(campaign => selectedRows.has(campaign.id));
+  };
+
+  const isSomeSelected = () => {
+    if (campaigns.length === 0) return false;
+    const selectedCount = campaigns.filter(campaign => selectedRows.has(campaign.id)).length;
+    return selectedCount > 0 && selectedCount < campaigns.length;
+  };
+
+  // Set indeterminate state for select all checkbox
+  useEffect(() => {
+    if (selectAllCheckboxRef.current) {
+      selectAllCheckboxRef.current.indeterminate = isSomeSelected();
+    }
+  }, [selectedRows]);
+
   return (
     <div className="min-h-screen bg-[#F6F6F6] flex flex-col">
       {/* Header */}
