@@ -346,114 +346,28 @@ export default function SponsoredSearchDashboard() {
       {/* Top Campaigns */}
       <h2 className="text-[32px] font-bold text-[#2E2F32] leading-10 mt-0.5">Top campaigns</h2>
 
-      <div className="flex items-start self-stretch">
-        {/* Campaign Column */}
-        <div className="flex w-[280px] max-w-[450px] items-start">
-          <div className="flex flex-col items-start flex-1">
-            <div className="flex h-[52px] px-4 items-center gap-1 self-stretch border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-              <div className="flex h-5 items-center gap-1">
-                <div className="text-sm font-bold text-[#2E2F32] leading-5">Campaign</div>
-                <div className="flex w-6 h-6 items-center"></div>
-              </div>
-            </div>
-            {campaigns.map((campaign, index) => (
-              <div key={index} className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-                <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                  <div className="flex-1 text-sm text-[#2E2F32] leading-5 underline overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer hover:no-underline">{campaign.name}</div>
-                </div>
-                <div className="absolute inset-0 w-[280px] border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ROAS Column */}
-        <div className="flex max-w-[450px] items-start flex-1">
-          <div className="flex flex-col items-start flex-1">
-            <div className="flex h-[52px] px-4 items-center gap-1 self-stretch border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">ROAS</div>
-                <div className="flex w-6 h-6 items-center"></div>
-              </div>
-            </div>
-            {campaigns.map((campaign, index) => (
-              <div key={index} className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-                <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                  <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">{campaign.roas}</div>
-                </div>
-                <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* CPC Column */}
-        <div className="flex max-w-[450px] items-start flex-1">
-          <div className="flex flex-col items-start flex-1">
-            <div className="flex h-[52px] px-4 items-center gap-1 self-stretch border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">CPC</div>
-                <div className="flex w-6 h-6 items-center"></div>
-              </div>
-            </div>
-            {campaigns.map((campaign, index) => (
-              <div key={index} className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-                <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                  <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">{campaign.cpc}</div>
-                </div>
-                <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* CTR Column */}
-        <div className="flex max-w-[450px] items-start flex-1">
-          <div className="flex flex-col items-start flex-1">
-            <div className="flex h-[52px] px-4 items-center gap-1 self-stretch border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">CTR</div>
-                <div className="flex w-6 h-6 items-center"></div>
-              </div>
-            </div>
-            {campaigns.map((campaign, index) => (
-              <div key={index} className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-                <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                  <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">{campaign.ctr}</div>
-                </div>
-                <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* CVR Column */}
-        <div className="flex max-w-[450px] items-start flex-1">
-          <div className="flex flex-col items-start flex-1">
-            <div className="flex h-[52px] px-4 items-center gap-1 self-stretch border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">CVR</div>
-                <div className="flex w-6 h-6 items-center"></div>
-              </div>
-            </div>
-            {campaigns.map((campaign, index) => (
-              <div key={index} className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-                <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                  <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">{campaign.cvr}</div>
-                </div>
-                <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Spend Column */}
-        <div className="flex max-w-[450px] items-start flex-1">
-          <div className="flex flex-col items-start flex-1">
-            <div className="flex h-[52px] px-4 items-center gap-1 self-stretch border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-              <div className="flex h-5 items-center gap-1 flex-1">
-                <div className="text-sm font-bold text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">Spend</div>
-                <div className="flex items-center">
+      <div className="overflow-x-auto bg-white rounded-xl shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
+        <table className="w-full text-sm">
+          <thead className="bg-[#F8F8F8] sticky top-0 z-10">
+            <tr>
+              <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                Campaign
+              </th>
+              <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                ROAS
+              </th>
+              <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                CPC
+              </th>
+              <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                CTR
+              </th>
+              <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                CVR
+              </th>
+              <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                <div className="flex items-center gap-2">
+                  <span>Spend</span>
                   <button
                     onClick={handleSort}
                     className="flex p-1 justify-center items-center rounded-full bg-transparent hover:bg-gray-100 transition-colors"
@@ -465,18 +379,26 @@ export default function SponsoredSearchDashboard() {
                     )}
                   </button>
                 </div>
-              </div>
-            </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
             {campaigns.map((campaign, index) => (
-              <div key={index} className="flex h-[52px] max-w-[450px] px-4 items-center gap-2 self-stretch relative">
-                <div className="flex h-5 items-center gap-1 flex-1 relative z-10">
-                  <div className="text-sm text-[#2E2F32] leading-5 overflow-hidden text-ellipsis whitespace-nowrap">${campaign.spend.toFixed(2)}</div>
-                </div>
-                <div className="absolute inset-0 border-b border-[#E3E4E5] bg-white pointer-events-none"></div>
-              </div>
+              <tr key={index} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
+                <td className="p-4">
+                  <div className="text-[#2E2F32] underline hover:no-underline cursor-pointer">
+                    {campaign.name}
+                  </div>
+                </td>
+                <td className="p-4 text-[#2E2F32]">{campaign.roas}</td>
+                <td className="p-4 text-[#2E2F32]">{campaign.cpc}</td>
+                <td className="p-4 text-[#2E2F32]">{campaign.ctr}</td>
+                <td className="p-4 text-[#2E2F32]">{campaign.cvr}</td>
+                <td className="p-4 text-[#2E2F32]">${campaign.spend.toFixed(2)}</td>
+              </tr>
             ))}
-          </div>
-        </div>
+          </tbody>
+        </table>
       </div>
 
       {/* Footer */}
