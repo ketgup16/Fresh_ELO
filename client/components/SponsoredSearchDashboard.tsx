@@ -14,6 +14,7 @@ interface Campaign {
 
 export default function SponsoredSearchDashboard() {
   const navigate = useNavigate();
+  const [sortColumn, setSortColumn] = useState<string | null>('spend');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
   const initialCampaigns: Campaign[] = [
@@ -45,19 +46,62 @@ export default function SponsoredSearchDashboard() {
 
   const [campaigns, setCampaigns] = useState<Campaign[]>(initialCampaigns);
 
-  const handleSort = () => {
-    const newDirection = sortDirection === 'desc' ? 'asc' : 'desc';
+  const handleSort = (column: string) => {
+    const newDirection = sortColumn === column && sortDirection === 'desc' ? 'asc' : 'desc';
+    setSortColumn(column);
     setSortDirection(newDirection);
 
     const sorted = [...campaigns].sort((a, b) => {
-      if (newDirection === 'desc') {
-        return b.spend - a.spend;
+      let aVal: any = a[column as keyof Campaign];
+      let bVal: any = b[column as keyof Campaign];
+
+      // Convert string values to numbers for proper comparison
+      if (column === 'spend') {
+        // spend is already a number
+      } else if (column === 'name') {
+        // string comparison
+        aVal = aVal.toLowerCase();
+        bVal = bVal.toLowerCase();
       } else {
-        return a.spend - b.spend;
+        // Remove $ and % symbols for numeric comparison
+        aVal = parseFloat(aVal.replace(/[$%]/g, ''));
+        bVal = parseFloat(bVal.replace(/[$%]/g, ''));
+      }
+
+      if (newDirection === 'desc') {
+        return bVal > aVal ? 1 : -1;
+      } else {
+        return aVal > bVal ? 1 : -1;
       }
     });
 
     setCampaigns(sorted);
+  };
+
+  const renderSortIcon = (column: string) => {
+    if (sortColumn !== column) {
+      return (
+        <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+          <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3ZM8 13L12 9H4L8 13Z" fill="#2E2F32"/>
+        </svg>
+      );
+    }
+
+    if (sortDirection === 'asc') {
+      return (
+        <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+          <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3Z" fill="#0053E2"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M8 13L12 9H4L8 13Z" fill="#BABBBE"/>
+        </svg>
+      );
+    } else {
+      return (
+        <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+          <path fillRule="evenodd" clipRule="evenodd" d="M8 3L4 7H12L8 3Z" fill="#BABBBE"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M8 13L12 9H4L8 13Z" fill="#0053E2"/>
+        </svg>
+      );
+    }
   };
   return (
     <div className="flex flex-col gap-[25px] p-6 bg-[#F8F8F8] overflow-y-auto relative">
