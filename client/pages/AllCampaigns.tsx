@@ -929,14 +929,6 @@ export default function AllCampaigns() {
                     <span className="underline text-[#2E2F32] cursor-pointer hover:no-underline">Learn more.</span>
                   </p>
                 </div>
-                <div className="flex items-center gap-4">
-                  <button className="w-6 h-6 flex items-center justify-center hover:bg-gray-100 rounded transition-colors">
-                    <SettingsIcon className="w-5 h-5 text-[#2E2F32]" />
-                  </button>
-                  <button className="w-6 h-6 flex items-center justify-center hover:bg-gray-100 rounded transition-colors">
-                    <Download className="w-5 h-5 text-[#2E2F32]" />
-                  </button>
-                </div>
               </div>
 
               {/* Table Controls */}
