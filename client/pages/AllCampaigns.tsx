@@ -1,5 +1,5 @@
 import { useState, useRef, useMemo, useEffect } from "react";
-import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Calendar, Filter, Download, Settings as SettingsIcon } from "lucide-react";
+import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Calendar, Filter, Download, Settings as SettingsIcon, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
