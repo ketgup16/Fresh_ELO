@@ -130,30 +130,26 @@ export default function MartyFloatingPanel({
             </div>
           </div>
         ) : (
-          <div className="flex items-center gap-1.5 bg-white">
+          <div className="flex h-9 items-center gap-1.5 bg-white">
             {/* Marty Orb */}
             <div className="flex w-6 h-6 justify-center items-center rounded-full">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clipPath="url(#clip0_marty)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                <g clipPath="url(#clip0_30894_25263)">
                   <rect width="24" height="24" rx="12" fill="white"/>
-                  <circle cx="12" cy="12" r="9.5" fill="url(#gradient_marty)"/>
+                  <path d="M-0.144531 12.0004C-0.144531 5.2935 5.29252 -0.143555 11.9995 -0.143555C18.7064 -0.143555 24.1435 5.2935 24.1435 12.0004C24.1435 18.7074 18.7064 24.1444 11.9995 24.1444C5.29252 24.1444 -0.144531 18.7074 -0.144531 12.0004Z" fill="url(#pattern0_30894_25263)"/>
                 </g>
                 <defs>
-                  <linearGradient id="gradient_marty" x1="2.5" y1="2.5" x2="21.5" y2="21.5" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stopColor="#993EF4"/>
-                    <stop offset="50%" stopColor="#4DBDF5"/>
-                    <stop offset="100%" stopColor="#00D0CD"/>
-                  </linearGradient>
-                  <clipPath id="clip0_marty">
+                  <pattern id="pattern0_30894_25263" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlinkHref="#image0_30894_25263" transform="scale(0.000911577)"/>
+                  </pattern>
+                  <clipPath id="clip0_30894_25263">
                     <rect width="24" height="24" rx="12" fill="white"/>
                   </clipPath>
                 </defs>
               </svg>
             </div>
 
-            <div className="flex pr-1.5 justify-center items-center">
-              <div className="text-[#2E2F32] font-bold text-lg leading-6">Dario Amodei</div>
-            </div>
+            <div className="text-[#2E2F32] font-bold text-xl leading-[140%]">Marty</div>
 
             {/* Beta Tag */}
             <div className="flex px-2 py-1 items-start gap-1 rounded border border-[#515357] bg-white">
@@ -166,16 +162,27 @@ export default function MartyFloatingPanel({
           {/* Reports Icon with Notification */}
           <button className="flex w-6 h-6 justify-center items-center relative hover:bg-gray-100 rounded transition-colors">
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/1835b749ef39843ef58643bf8eaf007c6cbe63ff?width=24"
+              src="https://api.builder.io/api/v1/image/assets/TEMP/a366a3c1df1c4dccfcd08b05d2cff307b55586da?width=48"
               alt="Reports"
               className="w-6 h-6"
             />
+            {/* Notification Dot */}
+            <svg
+              className="absolute -right-0.5 top-0.5"
+              width="7"
+              height="7"
+              viewBox="0 0 7 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="3.5" cy="3.5" r="4.25" fill="#EA1100" stroke="white" strokeWidth="1.5"/>
+            </svg>
           </button>
 
           {/* Expand Icon */}
           <button className="flex w-6 h-6 justify-center items-center hover:bg-gray-100 rounded transition-colors">
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/4b9543883bac0cc8b18c7c87ebc16153e09ba6ae?width=24"
+              src="https://api.builder.io/api/v1/image/assets/TEMP/4b9543883bac0cc8b18c7c87ebc16153e09ba6ae?width=48"
               alt="Expand"
               className="w-6 h-6"
             />
@@ -187,7 +194,7 @@ export default function MartyFloatingPanel({
             className="flex w-6 h-6 justify-center items-center hover:bg-gray-100 rounded transition-colors"
           >
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/e7b3a2f3ac0042faea6b580042a0890da69e644e?width=24"
+              src="https://api.builder.io/api/v1/image/assets/TEMP/e7b3a2f3ac0042faea6b580042a0890da69e644e?width=48"
               alt="Minimize"
               className="w-6 h-6"
             />
