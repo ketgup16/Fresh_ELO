@@ -152,7 +152,7 @@ export default function MartyFloatingPanel({
             </div>
 
             <div className="flex pr-1.5 justify-center items-center">
-              <div className="text-[#2E2F32] font-bold text-lg leading-6">Marty</div>
+              <div className="text-[#2E2F32] font-bold text-lg leading-6">Dario Amodei</div>
             </div>
 
             {/* Beta Tag */}
