@@ -75,6 +75,10 @@ export default function AllCampaigns() {
   const [biddingModalOpen, setBiddingModalOpen] = useState(false);
   const [recommendedRoasValue, setRecommendedRoasValue] = useState<string | undefined>();
 
+  // Selected rows state
+  const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
+  const selectAllCheckboxRef = useRef<HTMLInputElement>(null);
+
   // Refs for scrolling
   const biddingStrategyColumnRef = useRef<HTMLDivElement>(null);
   const tableContainerRef = useRef<HTMLDivElement>(null);
