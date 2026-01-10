@@ -131,18 +131,20 @@ export default function MartyFloatingPanel({
           </div>
         ) : (
           <div className="flex h-9 items-center gap-1.5 bg-white">
-            {/* Marty Orb */}
+            {/* Marty Orb - Original Gradient */}
             <div className="flex w-6 h-6 justify-center items-center rounded-full">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                <g clipPath="url(#clip0_30894_25263)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clipPath="url(#clip0_marty)">
                   <rect width="24" height="24" rx="12" fill="white"/>
-                  <path d="M-0.144531 12.0004C-0.144531 5.2935 5.29252 -0.143555 11.9995 -0.143555C18.7064 -0.143555 24.1435 5.2935 24.1435 12.0004C24.1435 18.7074 18.7064 24.1444 11.9995 24.1444C5.29252 24.1444 -0.144531 18.7074 -0.144531 12.0004Z" fill="url(#pattern0_30894_25263)"/>
+                  <circle cx="12" cy="12" r="9.5" fill="url(#gradient_marty)"/>
                 </g>
                 <defs>
-                  <pattern id="pattern0_30894_25263" patternContentUnits="objectBoundingBox" width="1" height="1">
-                    <use xlinkHref="#image0_30894_25263" transform="scale(0.000911577)"/>
-                  </pattern>
-                  <clipPath id="clip0_30894_25263">
+                  <linearGradient id="gradient_marty" x1="2.5" y1="2.5" x2="21.5" y2="21.5" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#993EF4"/>
+                    <stop offset="50%" stopColor="#4DBDF5"/>
+                    <stop offset="100%" stopColor="#00D0CD"/>
+                  </linearGradient>
+                  <clipPath id="clip0_marty">
                     <rect width="24" height="24" rx="12" fill="white"/>
                   </clipPath>
                 </defs>
