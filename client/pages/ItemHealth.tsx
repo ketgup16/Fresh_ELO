@@ -377,20 +377,47 @@ export default function ItemHealth() {
               </a>
             </div>
 
-            {/* Filters */}
-            <div className="flex items-center gap-4 mb-6">
-              <button className="flex items-center gap-2 px-4 h-10 border border-[#74767C] rounded bg-white">
-                <span className="text-sm text-[#2E2F32]">Item Status (2)</span>
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              <button className="flex items-center gap-2 px-4 h-10 border border-[#74767C] rounded bg-white">
-                <span className="text-sm text-[#2E2F32]">All Campaigns (13)</span>
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              <button className="flex items-center gap-2 px-4 h-10 border border-[#74767C] rounded bg-white">
-                <span className="text-sm text-[#2E2F32]">All Ad Groups (13)</span>
-                <ChevronDown className="w-4 h-4" />
-              </button>
+            {/* Table Controls */}
+            <div className="flex items-center justify-end gap-2 p-4 border-b border-[#E3E4E5] bg-white mb-6">
+              {/* Search Bar */}
+              <div className="flex items-center gap-2 flex-1 min-w-[360px] max-w-[600px] px-3 h-8 border border-[rgba(46,47,50,1)] rounded-full bg-white">
+                <Search className="w-4 h-4 text-[#2E2F32]" />
+                <span className="text-sm text-[#515357]">Search by</span>
+                <button className="flex items-center gap-1 text-sm font-bold text-[#2E2F32] hover:bg-gray-100 px-1 rounded">
+                  Item ID
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                <input
+                  type="text"
+                  placeholder=""
+                  className="flex-1 text-sm border-none outline-none bg-transparent"
+                />
+              </div>
+
+              {/* Filter Buttons */}
+              <div className="flex items-center gap-2">
+                {/* All Filters Button */}
+                <button className="flex items-center justify-center h-8 w-8 px-1.5 border border-[rgba(46,47,50,1)] rounded-full bg-white hover:bg-gray-50 transition-all">
+                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="2" y1="5" x2="5.5" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <circle cx="7.5" cy="5" r="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                    <line x1="9.5" y1="5" x2="14" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="2" y1="11" x2="9.5" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <circle cx="11.5" cy="11" r="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                    <line x1="13.5" y1="11" x2="14" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </button>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2">
+                <button className="flex items-center justify-center w-8 h-8 border border-[rgba(46,47,50,1)] rounded-full hover:bg-gray-50 transition-colors">
+                  <SettingsIcon className="w-4 h-4 text-[#2E2F32]" />
+                </button>
+                <button className="flex items-center justify-center w-8 h-8 border border-[rgba(46,47,50,1)] rounded-full hover:bg-gray-50 transition-colors">
+                  <Download className="w-4 h-4 text-[#2E2F32]" />
+                </button>
+              </div>
             </div>
 
             {/* Table */}
