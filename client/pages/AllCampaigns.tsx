@@ -941,18 +941,62 @@ export default function AllCampaigns() {
               {/* Table Controls */}
               <div className="flex items-center justify-end gap-2 p-4 border-b border-[#E3E4E5] bg-white">
                 {/* Search Bar */}
-                <div className="flex items-center gap-2 flex-1 min-w-[360px] max-w-[600px] px-3 h-8 border border-[rgba(46,47,50,1)] rounded-full bg-white">
+                <div className="flex items-center gap-2 flex-1 min-w-[360px] max-w-[600px] px-3 h-8 border border-[rgba(46,47,50,1)] rounded-full bg-white relative">
                   <Search className="w-4 h-4 text-[#2E2F32]" />
                   <span className="text-sm text-[#515357]">Search by</span>
-                  <button className="flex items-center gap-1 text-sm font-bold text-[#2E2F32] hover:bg-gray-100 px-1 rounded">
-                    Campaign name
-                    <ChevronDown className="w-4 h-4" />
-                  </button>
+                  <div className="relative" ref={searchScopeDropdownRef}>
+                    <button
+                      className="flex items-center gap-1 text-sm font-bold text-[#2E2F32] hover:bg-gray-100 px-1 rounded"
+                      onClick={() => setShowSearchScopeDropdown(!showSearchScopeDropdown)}
+                    >
+                      {searchScope}
+                      {showSearchScopeDropdown ? (
+                        <ChevronUp className="w-4 h-4" />
+                      ) : (
+                        <ChevronDown className="w-4 h-4" />
+                      )}
+                    </button>
+
+                    {/* Search Scope Dropdown */}
+                    {showSearchScopeDropdown && (
+                      <div className="absolute left-0 top-full mt-1 w-[160px] bg-white rounded border border-[#D5D6D8] shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 py-1">
+                        <button
+                          className="w-full text-left px-3 py-2 text-sm text-[#2E2F32] hover:bg-gray-100 transition-colors"
+                          onClick={() => {
+                            setSearchScope('Campaign name');
+                            setShowSearchScopeDropdown(false);
+                          }}
+                        >
+                          Campaign name
+                        </button>
+                        <button
+                          className="w-full text-left px-3 py-2 text-sm text-[#2E2F32] hover:bg-gray-100 transition-colors"
+                          onClick={() => {
+                            setSearchScope('ID');
+                            setShowSearchScopeDropdown(false);
+                          }}
+                        >
+                          ID
+                        </button>
+                      </div>
+                    )}
+                  </div>
                   <input
                     type="text"
                     placeholder=""
                     className="flex-1 text-sm border-none outline-none bg-transparent"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery('')}
+                      className="p-0.5 hover:bg-gray-100 rounded-full transition-colors"
+                      aria-label="Clear search"
+                    >
+                      <X className="w-4 h-4 text-[#2E2F32]" />
+                    </button>
+                  )}
                 </div>
 
                 {/* Filter Buttons */}
