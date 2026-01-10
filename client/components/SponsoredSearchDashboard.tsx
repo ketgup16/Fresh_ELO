@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ArrowDown, ArrowUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CampaignChart from "./CampaignChart";
 
