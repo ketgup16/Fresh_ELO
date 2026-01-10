@@ -849,7 +849,7 @@ export default function AllKeywords() {
         <div className="flex-1 overflow-y-auto">
           {/* Page Header */}
           <div className="bg-white shadow-sm px-6 py-6">
-            <h1 className="text-[28px] font-bold text-[#2E2F32] mb-2">All Campaigns</h1>
+            <h1 className="text-[28px] font-bold text-[#2E2F32] mb-2">All Keywords</h1>
             
             {/* Filters */}
             <div className="flex items-center gap-4 mt-6">
@@ -922,10 +922,10 @@ export default function AllKeywords() {
               <div className="flex items-center justify-between px-6 py-6">
                 <div className="flex-1">
                   <h2 className="text-[20px] font-bold text-[#000] leading-7 mb-1">
-                    Manage your campaigns (450)
+                    Manage your keywords (450)
                   </h2>
                   <p className="text-sm text-[#515357] leading-5">
-                    Analyze performance metrics and make updates to your campaigns.{' '}
+                    Analyze performance metrics and make updates to your keywords.{' '}
                     <span className="underline text-[#2E2F32] cursor-pointer hover:no-underline">Learn more.</span>
                   </p>
                 </div>
