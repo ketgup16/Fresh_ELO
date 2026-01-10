@@ -892,7 +892,7 @@ export default function AllKeywords() {
             <div className="flex items-center gap-4 mt-4">
               <div className="flex-1 flex items-center border border-[#909196] rounded overflow-hidden bg-white">
                 <div className="flex items-center px-3 border-r border-[#909196]">
-                  <span className="text-sm text-[#2E2F32]">Campaign name</span>
+                  <span className="text-sm text-[#2E2F32]">Keyword</span>
                   <ChevronDown className="w-4 h-4 ml-3" />
                 </div>
                 <input
@@ -903,14 +903,14 @@ export default function AllKeywords() {
                 />
               </div>
               <button className="flex items-center gap-2 px-4 h-10 border border-[#74767C] rounded bg-white">
-                <span className="text-sm">View draft campaigns</span>
+                <span className="text-sm">View draft keywords</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
               <button
                 onClick={() => navigate('/campaign')}
                 className="px-6 h-10 rounded-full bg-[#0071DC] text-white font-bold"
               >
-                Create campaign
+                Add keywords
               </button>
             </div>
           </div>
