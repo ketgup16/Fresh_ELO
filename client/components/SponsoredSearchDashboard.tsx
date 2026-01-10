@@ -395,33 +395,39 @@ export default function SponsoredSearchDashboard() {
           <thead className="bg-[#F8F8F8] sticky top-0 z-10">
             <tr>
               <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                Campaign
+                <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('name')}>
+                  Campaign
+                  {renderSortIcon('name')}
+                </div>
               </th>
               <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                ROAS
+                <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('roas')}>
+                  ROAS
+                  {renderSortIcon('roas')}
+                </div>
               </th>
               <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                CPC
+                <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('cpc')}>
+                  CPC
+                  {renderSortIcon('cpc')}
+                </div>
               </th>
               <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                CTR
+                <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('ctr')}>
+                  CTR
+                  {renderSortIcon('ctr')}
+                </div>
               </th>
               <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                CVR
+                <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('cvr')}>
+                  CVR
+                  {renderSortIcon('cvr')}
+                </div>
               </th>
               <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                <div className="flex items-center gap-2">
-                  <span>Spend</span>
-                  <button
-                    onClick={handleSort}
-                    className="flex p-1 justify-center items-center rounded-full bg-transparent hover:bg-gray-100 transition-colors"
-                  >
-                    {sortDirection === 'desc' ? (
-                      <ArrowUp className="w-4 h-4 text-[#2E2F32]" />
-                    ) : (
-                      <ArrowDown className="w-4 h-4 text-[#2E2F32]" />
-                    )}
-                  </button>
+                <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('spend')}>
+                  Spend
+                  {renderSortIcon('spend')}
                 </div>
               </th>
             </tr>
