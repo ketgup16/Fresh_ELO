@@ -394,27 +394,78 @@ export default function ItemHealth() {
             </div>
 
             {/* Table */}
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-[#F8F8F8] border-t border-b border-[#E3E4E5]">
-                    <th className="px-4 py-3 text-left text-xs font-bold text-[#2E2F32]">Item Image</th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-[#2E2F32]">Item ID</th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-[#2E2F32]">Campaign ID</th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-[#2E2F32]">Ad Group ID</th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-[#2E2F32]">Primary Variant</th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-[#2E2F32]">Item Status</th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-[#2E2F32]">Product Detail Page Views Today</th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-[#2E2F32]">Product Detail Page Views in Last 7 Days</th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-[#2E2F32]">Item Available Today</th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-[#2E2F32]">Item Available in Last 7 Days</th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-[#2E2F32]">Buy Box Win Rate Today</th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-[#2E2F32]">Buy Box Win Rate in Last 7 Days</th>
+            <div className="overflow-x-auto bg-white">
+              <table className="w-full text-sm">
+                <thead className="bg-[#F8F8F8] sticky top-0 z-10">
+                  <tr>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 whitespace-nowrap">Item Image</div>
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('itemId')}>
+                        Item ID
+                        {renderSortIcon('itemId')}
+                      </div>
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 whitespace-nowrap">Campaign ID</div>
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 whitespace-nowrap">Ad Group ID</div>
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('primaryVariant')}>
+                        Primary Variant
+                        {renderSortIcon('primaryVariant')}
+                      </div>
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('itemStatus')}>
+                        Item Status
+                        {renderSortIcon('itemStatus')}
+                      </div>
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('productDetailPageViewsToday')}>
+                        Product Detail Page Views Today
+                        {renderSortIcon('productDetailPageViewsToday')}
+                      </div>
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('productDetailPageViewsLast7Days')}>
+                        Product Detail Page Views in Last 7 Days
+                        {renderSortIcon('productDetailPageViewsLast7Days')}
+                      </div>
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('itemAvailableToday')}>
+                        Item Available Today
+                        {renderSortIcon('itemAvailableToday')}
+                      </div>
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('itemAvailableLast7Days')}>
+                        Item Available in Last 7 Days
+                        {renderSortIcon('itemAvailableLast7Days')}
+                      </div>
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('buyBoxWinRateToday')}>
+                        Buy Box Win Rate Today
+                        {renderSortIcon('buyBoxWinRateToday')}
+                      </div>
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('buyBoxWinRateLast7Days')}>
+                        Buy Box Win Rate in Last 7 Days
+                        {renderSortIcon('buyBoxWinRateLast7Days')}
+                      </div>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {itemHealthData.map((item, idx) => (
-                    <tr key={idx} className="border-b border-[#E3E4E5] hover:bg-gray-50">
+                    <tr key={idx} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
                       <td className="px-4 py-3">
                         <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center text-2xl">
                           {item.itemImage}
