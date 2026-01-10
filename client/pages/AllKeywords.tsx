@@ -62,7 +62,7 @@ interface Campaign {
   recommendations?: Recommendation[];
 }
 
-export default function AllCampaigns() {
+export default function AllKeywords() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
   const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
@@ -80,7 +80,7 @@ export default function AllCampaigns() {
   const selectAllCheckboxRef = useRef<HTMLInputElement>(null);
 
   // Search state
-  const [searchScope, setSearchScope] = useState<string>('Campaign name');
+  const [searchScope, setSearchScope] = useState<string>('Keyword');
   const [showSearchScopeDropdown, setShowSearchScopeDropdown] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const searchScopeDropdownRef = useRef<HTMLDivElement>(null);
