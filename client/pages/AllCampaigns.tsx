@@ -597,6 +597,25 @@ export default function AllCampaigns() {
     }
   }, [selectedRows]);
 
+  // Handle click outside for search scope dropdown
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        searchScopeDropdownRef.current &&
+        !searchScopeDropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowSearchScopeDropdown(false);
+      }
+    }
+
+    if (showSearchScopeDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [showSearchScopeDropdown]);
+
   return (
     <div className="min-h-screen bg-[#F6F6F6] flex flex-col">
       {/* Header */}
