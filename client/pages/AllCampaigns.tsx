@@ -80,9 +80,9 @@ export default function AllCampaigns() {
   const selectAllCheckboxRef = useRef<HTMLInputElement>(null);
 
   // Search state
-  const [searchScope, setSearchScope] = useState('Campaign name');
-  const [showSearchScopeDropdown, setShowSearchScopeDropdown] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchScope, setSearchScope] = useState<string>('Campaign name');
+  const [showSearchScopeDropdown, setShowSearchScopeDropdown] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const searchScopeDropdownRef = useRef<HTMLDivElement>(null);
 
   // Refs for scrolling
