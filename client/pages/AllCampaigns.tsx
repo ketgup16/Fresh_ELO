@@ -79,6 +79,12 @@ export default function AllCampaigns() {
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
   const selectAllCheckboxRef = useRef<HTMLInputElement>(null);
 
+  // Search state
+  const [searchScope, setSearchScope] = useState('Campaign name');
+  const [showSearchScopeDropdown, setShowSearchScopeDropdown] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchScopeDropdownRef = useRef<HTMLDivElement>(null);
+
   // Refs for scrolling
   const biddingStrategyColumnRef = useRef<HTMLDivElement>(null);
   const tableContainerRef = useRef<HTMLDivElement>(null);
