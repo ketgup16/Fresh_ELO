@@ -899,6 +899,8 @@ export default function AllCampaigns() {
                   type="text"
                   placeholder="Search"
                   className="flex-1 px-3 h-10 text-sm outline-none"
+                  value=""
+                  onChange={() => {}}
                 />
               </div>
               <button className="flex items-center gap-2 px-4 h-10 border border-[#74767C] rounded bg-white">
