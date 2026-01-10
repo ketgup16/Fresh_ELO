@@ -956,11 +956,11 @@ export default function AllKeywords() {
                         <button
                           className="w-full text-left px-3 py-2 text-sm text-[#2E2F32] hover:bg-gray-100 transition-colors"
                           onClick={() => {
-                            setSearchScope('Campaign name');
+                            setSearchScope('Keyword');
                             setShowSearchScopeDropdown(false);
                           }}
                         >
-                          Campaign name
+                          Keyword
                         </button>
                         <button
                           className="w-full text-left px-3 py-2 text-sm text-[#2E2F32] hover:bg-gray-100 transition-colors"
