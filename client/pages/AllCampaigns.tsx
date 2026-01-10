@@ -986,7 +986,7 @@ export default function AllCampaigns() {
                     type="text"
                     placeholder=""
                     className="flex-1 text-sm border-none outline-none bg-transparent"
-                    value={searchQuery}
+                    value={searchQuery || ''}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                   {searchQuery && (
