@@ -1097,10 +1097,10 @@ export default function AllKeywords() {
 
                   {/* Data Columns */}
                   <div className="flex flex-1 overflow-x-auto">
-                    {/* Campaign Name Column */}
+                    {/* Keyword Column */}
                     <div className="flex flex-col min-w-[280px] flex-1">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign name</span>
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Keyword</span>
                         <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
