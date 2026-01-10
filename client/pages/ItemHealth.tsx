@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search } from "lucide-react";
+import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Settings as SettingsIcon, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
