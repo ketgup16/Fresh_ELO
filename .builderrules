@@ -1,3 +1,3 @@
 Always use icons from "icons" folder
 
-Always use existing components from the "components" folder when creating new pages, check to see if it exisits or are similar in nature and replace components that are already in use. 
+Always use existing components from the "ui" folder when creating new pages, check to see if it exisits or are similar in nature and replace components that are already in use. 
