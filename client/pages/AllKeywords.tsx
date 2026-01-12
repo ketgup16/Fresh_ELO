@@ -1072,21 +1072,21 @@ export default function AllKeywords() {
                   {/* Checkbox Column */}
                   <div className="flex flex-col flex-shrink-0">
                     {/* Header */}
-                    <div className="flex items-center justify-center h-[52px] px-3 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                    <div className="flex items-center justify-center h-[44px] px-3 border-b border-[#E3E4E5] bg-[#FAFAFA]">
                       <input
                         ref={selectAllCheckboxRef}
                         type="checkbox"
-                        className="w-5 h-5 rounded border-[#909196] accent-black cursor-pointer"
+                        className="w-4 h-4 rounded border-[#909196] accent-black cursor-pointer"
                         checked={isAllSelected()}
                         onChange={(e) => handleSelectAll(e.target.checked)}
                       />
                     </div>
                     {/* Rows */}
                     {keywords.map((keyword, idx) => (
-                      <div key={idx} className="flex items-center justify-center h-[52px] px-3 border-b border-[#E3E4E5] bg-white">
+                      <div key={idx} className="flex items-center justify-center h-[44px] px-3 border-b border-[#E3E4E5] bg-white">
                         <input
                           type="checkbox"
-                          className="w-5 h-5 rounded border-[#909196] accent-black cursor-pointer"
+                          className="w-4 h-4 rounded border-[#909196] accent-black cursor-pointer"
                           checked={selectedRows.has(keyword.id)}
                           onChange={(e) => handleSelectRow(keyword.id, e.target.checked)}
                         />
