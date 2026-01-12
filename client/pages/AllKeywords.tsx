@@ -3,53 +3,26 @@ import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Calendar, Filte
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
-import RecommendationsPopover from "../components/RecommendationsPopover";
-import BiddingStrategyModal from "../components/BiddingStrategyModal";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
-interface Alert {
-  type: 'learning-paused' | 'out-of-budget';
-  message: string;
-  targetColumn?: 'biddingStrategy' | 'totalBudget';
-}
-
-interface Recommendation {
-  type: 'update-roas';
-  message: string;
-  suggestedValue: string;
-  targetColumn?: 'biddingStrategy';
-}
-
-interface Campaign {
+interface Keyword {
   id: string;
-  name: string;
+  keywordId: string;
+  keyword: string;
   status: string;
-  startDate: string;
-  endDate: string;
-  totalBudget: string;
-  suggestedTotalBudget: string;
-  hasWarning: boolean;
-  hasBolt: boolean;
-  hasAlertIcon: boolean;
-  hasRecIcon: boolean;
-  dailyBudget: string;
-  suggestedDailyBudget: string;
-  biddingStrategy: string;
-  biddingTarget: string;
-  roasTarget: string;
-  recommendedRoasTarget: string;
-  biddingIcon: boolean;
-  biddingStatus: string;
-  biddingStatusDate: string;
-  campaignType: string;
-  avgCapOutTime: string;
-  estMissedImpressions: string;
-  estMissedClicks: string;
-  campaignReviewStatus: string;
-  roas: string;
-  avgCPC: string;
-  spend: string;
+  matchType: string;
+  suggestedBid: string;
+  bid: string;
+  campaignName: string;
+  campaignId: string;
+  campaignStatus: string;
+  adGroupName: string;
+  adGroupId: string;
+  adGroupStatus: string;
   totalAttributedSales: string;
+  roas: string;
+  adSpend: string;
+  averageCPC: string;
   impressions: string;
   clicks: string;
   ctr: string;
@@ -58,8 +31,6 @@ interface Campaign {
   conversionRate: string;
   orders: string;
   unitsSold: string;
-  alerts?: Alert[];
-  recommendations?: Recommendation[];
 }
 
 export default function AllKeywords() {
@@ -68,12 +39,6 @@ export default function AllKeywords() {
   const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
-
-  // Recommendations & Modal State
-  const [recommendationsOpen, setRecommendationsOpen] = useState(false);
-  const [selectedCampaignId, setSelectedCampaignId] = useState<string | null>(null);
-  const [biddingModalOpen, setBiddingModalOpen] = useState(false);
-  const [recommendedRoasValue, setRecommendedRoasValue] = useState<string | undefined>();
 
   // Selected rows state
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
@@ -86,508 +51,591 @@ export default function AllKeywords() {
   const searchScopeDropdownRef = useRef<HTMLDivElement>(null);
 
   // Refs for scrolling
-  const biddingStrategyColumnRef = useRef<HTMLDivElement>(null);
   const tableContainerRef = useRef<HTMLDivElement>(null);
 
-  const [campaignsData, setCampaignsData] = useState<Campaign[]>([
+  const [keywordsData] = useState<Keyword[]>([
     {
-      id: "camp-001",
-      name: "SP - GTV - HiSense - New SKUs - Category - Auto",
-      status: "Live",
-      startDate: "10/08/2025",
-      endDate: "No end date",
-      totalBudget: "$12,500",
-      suggestedTotalBudget: "-",
-      hasWarning: true,
-      hasBolt: false,
-      hasAlertIcon: true,
-      hasRecIcon: false,
-      dailyBudget: "$150",
-      suggestedDailyBudget: "-",
-      biddingStrategy: "Target ROAS",
-      biddingTarget: "(set at 3.25)",
-      roasTarget: "3.25",
-      recommendedRoasTarget: "2.50",
-      biddingIcon: true,
-      biddingStatus: "Learning paused",
-      biddingStatusDate: "Since 01/05/2025",
-      campaignType: "Sponsored Products (Auto)",
-      avgCapOutTime: "08:00am PST",
-      estMissedImpressions: "422460 - 571565",
-      estMissedClicks: "2747 - 3721",
-      campaignReviewStatus: "-",
-      roas: "47.84",
-      avgCPC: "$0.65",
-      spend: "$3,800",
-      totalAttributedSales: "$181,810.95",
-      impressions: "680,052",
-      clicks: "5,803",
-      ctr: "0.85%",
-      totalProductDetailPageViews: "5,321",
-      totalAddToCart: "2,822",
-      conversionRate: "16.35%",
-      orders: "949",
-      unitsSold: "1,067",
-      alerts: [
-        {
-          type: 'learning-paused',
-          message: 'Learning paused',
-          targetColumn: 'biddingStrategy'
-        },
-        {
-          type: 'out-of-budget',
-          message: 'Campaign out-of-budget',
-          targetColumn: 'totalBudget'
-        }
-      ],
-      recommendations: [
-        {
-          type: 'update-roas',
-          message: 'Update ROAS target',
-          suggestedValue: '2.50',
-          targetColumn: 'biddingStrategy'
-        }
-      ]
+      id: "kw-001",
+      keywordId: "112156132",
+      keyword: "br30 led light bulbs",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$1.22",
+      bid: "$3.00",
+      campaignName: "GV_LEDBulb",
+      campaignId: "4024073",
+      campaignStatus: "Paused",
+      adGroupName: "LEDBulb",
+      adGroupId: "4733520",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
     },
     {
-      id: "camp-002",
-      name: "SP - GTV - Hisense - Auto 2025 - All Products",
-      status: "Live",
-      startDate: "06/11/2025",
-      endDate: "No end date",
-      totalBudget: "$18,750",
-      suggestedTotalBudget: "-",
-      hasWarning: false,
-      hasBolt: false,
-      hasAlertIcon: true,
-      hasRecIcon: false,
-      dailyBudget: "$50",
-      suggestedDailyBudget: "-",
-      biddingStrategy: "Target ROAS",
-      biddingTarget: "(set at 2.75)",
-      roasTarget: "2.75",
-      recommendedRoasTarget: "2.50",
-      biddingIcon: true,
-      biddingStatus: "Optimizing",
-      biddingStatusDate: "Since 01/05/2025",
-      campaignType: "Sponsored Products (Auto)",
-      avgCapOutTime: "09:00am PST",
-      estMissedImpressions: "1919114 - 2596447",
-      estMissedClicks: "3231 - 4368",
-      campaignReviewStatus: "-",
-      roas: "24.75",
-      avgCPC: "$0.68",
-      spend: "$2,097.37",
-      totalAttributedSales: "$51,904.76",
-      impressions: "1,518,277",
-      clicks: "3,084",
-      ctr: "0.20%",
-      totalProductDetailPageViews: "3,769",
-      totalAddToCart: "848",
-      conversionRate: "7.20%",
-      orders: "222",
-      unitsSold: "233",
-      alerts: [
-        {
-          type: 'out-of-budget',
-          message: 'Campaign out-of-budget',
-          targetColumn: 'totalBudget'
-        }
-      ]
+      id: "kw-002",
+      keywordId: "112156131",
+      keyword: "flood light bulbs",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$0.69",
+      bid: "$1.50",
+      campaignName: "GV_LEDBulb",
+      campaignId: "4024073",
+      campaignStatus: "Paused",
+      adGroupName: "LEDBulb",
+      adGroupId: "4733520",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
     },
     {
-      id: "camp-003",
-      name: "SP - GTV - Philips - Auto 2025 - All Products",
-      status: "Live",
-      startDate: "06/11/2025",
-      endDate: "No end date",
-      totalBudget: "$22,300",
-      suggestedTotalBudget: "-",
-      hasWarning: false,
-      hasBolt: true,
-      hasAlertIcon: false,
-      hasRecIcon: false,
-      dailyBudget: "$100",
-      suggestedDailyBudget: "-",
-      biddingStrategy: "Target ROAS",
-      biddingTarget: "(set at 4.10)",
-      roasTarget: "4.10",
-      recommendedRoasTarget: "-",
-      biddingIcon: false,
-      biddingStatus: "Optimizing",
-      biddingStatusDate: "Since 01/05/2025",
-      campaignType: "Sponsored Products (Auto)",
-      avgCapOutTime: "07:00am PST",
-      estMissedImpressions: "3829208 - 5180689",
-      estMissedClicks: "5530 - 7477",
-      campaignReviewStatus: "-",
-      roas: "23.04",
-      avgCPC: "$0.67",
-      spend: "$3,182.84",
-      totalAttributedSales: "$73,342.94",
-      impressions: "2,937,982",
-      clicks: "4,732",
-      ctr: "0.16%",
-      totalProductDetailPageViews: "4,143",
-      totalAddToCart: "1,120",
-      conversionRate: "4.67%",
-      orders: "221",
-      unitsSold: "238"
+      id: "kw-003",
+      keywordId: "112155357",
+      keyword: "cappuccino mix",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$0.98",
+      bid: "$2.00",
+      campaignName: "GV_CappuccinoMix",
+      campaignId: "4024056",
+      campaignStatus: "Paused",
+      adGroupName: "CappuccinoMix",
+      adGroupId: "4733500",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
     },
     {
-      id: "camp-004",
-      name: "SP - GTV - TCL - Q Series 55in - Category - Auto",
-      status: "Live",
-      startDate: "10/14/2025",
-      endDate: "No end date",
-      totalBudget: "$15,600",
-      suggestedTotalBudget: "-",
-      hasWarning: false,
-      hasBolt: true,
-      hasAlertIcon: false,
-      hasRecIcon: true,
-      dailyBudget: "$50",
-      suggestedDailyBudget: "-",
-      biddingStrategy: "Target ROAS",
-      biddingTarget: "(set at 3.75)",
-      roasTarget: "3.75",
-      recommendedRoasTarget: "-",
-      biddingIcon: false,
-      biddingStatus: "Learning",
-      biddingStatusDate: "Since 01/05/2025",
-      campaignType: "Sponsored Products (Auto)",
-      avgCapOutTime: "09:00am PST",
-      estMissedImpressions: "386173 - 522470",
-      estMissedClicks: "819 - 1110",
-      campaignReviewStatus: "-",
-      roas: "12.25",
-      avgCPC: "$1.54",
-      spend: "$3,763.20",
-      totalAttributedSales: "$46,114.60",
-      impressions: "786,749",
-      clicks: "2,439",
-      ctr: "0.31%",
-      totalProductDetailPageViews: "2,302",
-      totalAddToCart: "478",
-      conversionRate: "6.77%",
-      orders: "165",
-      unitsSold: "189",
-      recommendations: [
-        {
-          type: 'update-roas',
-          message: 'Update ROAS target',
-          suggestedValue: '2.50',
-          targetColumn: 'biddingStrategy'
-        }
-      ]
+      id: "kw-004",
+      keywordId: "112154872",
+      keyword: "cold pack",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$0.97",
+      bid: "$2.00",
+      campaignName: "Equate_GelPak",
+      campaignId: "4023982",
+      campaignStatus: "Paused",
+      adGroupName: "GelPak",
+      adGroupId: "4733425",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
     },
     {
-      id: "camp-005",
-      name: "SP  - GTV - TCL - Q Series 65in - Category - Auto",
-      status: "Live",
-      startDate: "10/14/2025",
-      endDate: "No end date",
-      totalBudget: "$27,800",
-      suggestedTotalBudget: "-",
-      hasWarning: false,
-      hasBolt: true,
-      hasAlertIcon: false,
-      hasRecIcon: false,
-      dailyBudget: "$50",
-      suggestedDailyBudget: "-",
-      biddingStrategy: "Target ROAS",
-      biddingTarget: "(set at 4.50)",
-      roasTarget: "4.50",
-      recommendedRoasTarget: "-",
-      biddingIcon: false,
-      biddingStatus: "Learning",
-      biddingStatusDate: "Since 01/05/2025",
-      campaignType: "Sponsored Products (Auto)",
-      avgCapOutTime: "08:00am PST",
-      estMissedImpressions: "482528 - 652831",
-      estMissedClicks: "828 - 1117",
-      campaignReviewStatus: "-",
-      roas: "10.72",
-      avgCPC: "$1.51",
-      spend: "$2,544.44",
-      totalAttributedSales: "$27,281.10",
-      impressions: "939,683",
-      clicks: "1,689",
-      ctr: "0.18%",
-      totalProductDetailPageViews: "1,672",
-      totalAddToCart: "299",
-      conversionRate: "4.38%",
-      orders: "74",
-      unitsSold: "83"
+      id: "kw-005",
+      keywordId: "112154871",
+      keyword: "ice pack",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$0.50",
+      bid: "$2.00",
+      campaignName: "Equate_GelPak",
+      campaignId: "4023982",
+      campaignStatus: "Paused",
+      adGroupName: "GelPak",
+      adGroupId: "4733425",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
     },
     {
-      id: "camp-006",
-      name: "SBA - Onn. Q2 - 4K Plus Launch - Category",
-      status: "Live",
-      startDate: "05/29/2025",
-      endDate: "No end date",
-      totalBudget: "$9,900",
-      suggestedTotalBudget: "-",
-      hasWarning: false,
-      hasBolt: false,
-      hasAlertIcon: false,
-      hasRecIcon: true,
-      dailyBudget: "$50",
-      suggestedDailyBudget: "-",
-      biddingStrategy: "Target ROAS",
-      biddingTarget: "(set at 3.50)",
-      roasTarget: "3.50",
-      recommendedRoasTarget: "-",
-      biddingIcon: false,
-      biddingStatus: "Learning",
-      biddingStatusDate: "Since 01/06/2025",
-      campaignType: "Sponsored Brands",
-      avgCapOutTime: "11:00am PST",
-      estMissedImpressions: "182676 - 247151",
-      estMissedClicks: "1620 - 2191",
-      campaignReviewStatus: "Approved",
-      roas: "10.69",
-      avgCPC: "$1.03",
-      spend: "$1,689.45",
-      totalAttributedSales: "$18,054.63",
-      impressions: "167,514",
-      clicks: "1,644",
-      ctr: "0.98%",
-      totalProductDetailPageViews: "1,812",
-      totalAddToCart: "651",
-      conversionRate: "17.27%",
-      orders: "284",
-      unitsSold: "663",
-      recommendations: [
-        {
-          type: 'update-roas',
-          message: 'Update ROAS target',
-          suggestedValue: '2.50',
-          targetColumn: 'biddingStrategy'
-        }
-      ]
+      id: "kw-006",
+      keywordId: "112154471",
+      keyword: "jumbo shrimp",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$0.41",
+      bid: "$2.00",
+      campaignName: "GV_Red Shrimp",
+      campaignId: "4023978",
+      campaignStatus: "Paused",
+      adGroupName: "RedShrimp 32 OZ",
+      adGroupId: "4733497",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
     },
     {
-      id: "camp-007",
-      name: "SBA - Q2 2025 GTV - Custom Image - TCL - BRANDED",
-      status: "Live",
-      startDate: "07/03/2025",
-      endDate: "No end date",
-      totalBudget: "$24,400",
-      suggestedTotalBudget: "-",
-      hasWarning: false,
-      hasBolt: false,
-      hasAlertIcon: false,
-      hasRecIcon: false,
-      dailyBudget: "$50",
-      suggestedDailyBudget: "-",
-      biddingStrategy: "Target ROAS",
-      biddingTarget: "(set at 4.40)",
-      roasTarget: "4.40",
-      recommendedRoasTarget: "-",
-      biddingIcon: false,
-      biddingStatus: "Optimizing",
-      biddingStatusDate: "Since 01/05/2025",
-      campaignType: "Sponsored Brands",
-      avgCapOutTime: "07:00am PST",
-      estMissedImpressions: "238988 - 323334",
-      estMissedClicks: "1641 - 2221",
-      campaignReviewStatus: "Approved",
-      roas: "10.59",
-      avgCPC: "$2.24",
-      spend: "$2,450",
-      totalAttributedSales: "$25,936.38",
-      impressions: "148,604",
-      clicks: "1,095",
-      ctr: "0.74%",
-      totalProductDetailPageViews: "965",
-      totalAddToCart: "198",
-      conversionRate: "7.40%",
-      orders: "81",
-      unitsSold: "92"
+      id: "kw-007",
+      keywordId: "112154396",
+      keyword: "shrimp tail off",
+      status: "Disabled",
+      matchType: "broad",
+      suggestedBid: "$1.91",
+      bid: "$2.00",
+      campaignName: "GV_Red Shrimp",
+      campaignId: "4023978",
+      campaignStatus: "Paused",
+      adGroupName: "RedShrimp",
+      adGroupId: "4733420",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
     },
     {
-      id: "camp-008",
-      name: "SP - GTV - HiSense - 55in - Category - Auto",
-      status: "Live",
-      startDate: "10/15/2025",
-      endDate: "No end date",
-      totalBudget: "$7,200",
-      suggestedTotalBudget: "-",
-      hasWarning: false,
-      hasBolt: false,
-      hasAlertIcon: false,
-      hasRecIcon: true,
-      dailyBudget: "$50",
-      suggestedDailyBudget: "-",
-      biddingStrategy: "Target ROAS",
-      biddingTarget: "(set at 2.90)",
-      roasTarget: "2.90",
-      recommendedRoasTarget: "-",
-      biddingIcon: false,
-      biddingStatus: "Optimizing",
-      biddingStatusDate: "Since 01/05/2025",
-      campaignType: "Sponsored Products (Auto)",
-      avgCapOutTime: "12:00pm PST",
-      estMissedImpressions: "221064 - 299087",
-      estMissedClicks: "468 - 632",
-      campaignReviewStatus: "-",
-      roas: "10.23",
-      avgCPC: "$1.15",
-      spend: "$699.38",
-      totalAttributedSales: "$7,157",
-      impressions: "271,761",
-      clicks: "610",
-      ctr: "0.22%",
-      totalProductDetailPageViews: "666",
-      totalAddToCart: "167",
-      conversionRate: "5.41%",
-      orders: "33",
-      unitsSold: "35",
-      recommendations: [
-        {
-          type: 'update-roas',
-          message: 'Update ROAS target',
-          suggestedValue: '2.50',
-          targetColumn: 'biddingStrategy'
-        }
-      ]
+      id: "kw-008",
+      keywordId: "112051297",
+      keyword: "led flood light bulb daylight",
+      status: "Disabled",
+      matchType: "broad",
+      suggestedBid: "$0.30",
+      bid: "$0.75",
+      campaignName: "GV_LEDBulb",
+      campaignId: "4024073",
+      campaignStatus: "Paused",
+      adGroupName: "LEDBulb",
+      adGroupId: "4733520",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
+    },
+    {
+      id: "kw-009",
+      keywordId: "112051296",
+      keyword: "led flood light bulb",
+      status: "Disabled",
+      matchType: "broad",
+      suggestedBid: "$0.87",
+      bid: "$1.50",
+      campaignName: "GV_LEDBulb",
+      campaignId: "4024073",
+      campaignStatus: "Paused",
+      adGroupName: "LEDBulb",
+      adGroupId: "4733520",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
+    },
+    {
+      id: "kw-010",
+      keywordId: "112051194",
+      keyword: "french vanilla cappuccino liquid",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$2.04",
+      bid: "$2.08",
+      campaignName: "GV_CappuccinoMix",
+      campaignId: "4024056",
+      campaignStatus: "Paused",
+      adGroupName: "CappuccinoMix",
+      adGroupId: "4733500",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
+    },
+    {
+      id: "kw-011",
+      keywordId: "112051193",
+      keyword: "french vanilla cappuccino",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$0.97",
+      bid: "$3.00",
+      campaignName: "GV_CappuccinoMix",
+      campaignId: "4024056",
+      campaignStatus: "Paused",
+      adGroupName: "CappuccinoMix",
+      adGroupId: "4733500",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
+    },
+    {
+      id: "kw-012",
+      keywordId: "112051192",
+      keyword: "french vanilla cappuccino mix",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$1.01",
+      bid: "$3.00",
+      campaignName: "GV_CappuccinoMix",
+      campaignId: "4024056",
+      campaignStatus: "Paused",
+      adGroupName: "CappuccinoMix",
+      adGroupId: "4733500",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
+    },
+    {
+      id: "kw-013",
+      keywordId: "112051163",
+      keyword: "frozen shrimp",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$0.51",
+      bid: "$0.46",
+      campaignName: "GV_Red Shrimp",
+      campaignId: "4023978",
+      campaignStatus: "Paused",
+      adGroupName: "RedShrimp 32 OZ",
+      adGroupId: "4733497",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
+    },
+    {
+      id: "kw-014",
+      keywordId: "112051162",
+      keyword: "easy peel shrimp",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$3.00",
+      bid: "$3.00",
+      campaignName: "GV_Red Shrimp",
+      campaignId: "4023978",
+      campaignStatus: "Paused",
+      adGroupName: "RedShrimp 32 OZ",
+      adGroupId: "4733497",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
+    },
+    {
+      id: "kw-015",
+      keywordId: "112050940",
+      keyword: "gel pack for injury",
+      status: "Disabled",
+      matchType: "broad",
+      suggestedBid: "$0.97",
+      bid: "$0.69",
+      campaignName: "Equate_GelPak",
+      campaignId: "4023982",
+      campaignStatus: "Paused",
+      adGroupName: "GelPak",
+      adGroupId: "4733425",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
+    },
+    {
+      id: "kw-016",
+      keywordId: "110865922",
+      keyword: "t-mobile iphone",
+      status: "Enabled",
+      matchType: "exact",
+      suggestedBid: "$2.70",
+      bid: "$2.00",
+      campaignName: "TMobile Test Campaign 1",
+      campaignId: "3973132",
+      campaignStatus: "Paused",
+      adGroupName: "TMobile Test Campaign",
+      adGroupId: "4672126",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
+    },
+    {
+      id: "kw-017",
+      keywordId: "110865921",
+      keyword: "t-mobile iphone",
+      status: "Enabled",
+      matchType: "phrase",
+      suggestedBid: "$0.30",
+      bid: "$2.00",
+      campaignName: "TMobile Test Campaign 1",
+      campaignId: "3973132",
+      campaignStatus: "Paused",
+      adGroupName: "TMobile Test Campaign",
+      adGroupId: "4672126",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
+    },
+    {
+      id: "kw-018",
+      keywordId: "110865920",
+      keyword: "t-mobile iphone",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$1.50",
+      bid: "$2.00",
+      campaignName: "TMobile Test Campaign 1",
+      campaignId: "3973132",
+      campaignStatus: "Paused",
+      adGroupName: "TMobile Test Campaign",
+      adGroupId: "4672126",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
+    },
+    {
+      id: "kw-019",
+      keywordId: "73371435",
+      keyword: "egg 18 count",
+      status: "Disabled",
+      matchType: "exact",
+      suggestedBid: "$1.13",
+      bid: "$0.41",
+      campaignName: "KWB_CampaignUnification_NEW",
+      campaignId: "1431055",
+      campaignStatus: "Paused",
+      adGroupName: "test2",
+      adGroupId: "3022309",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
+    },
+    {
+      id: "kw-020",
+      keywordId: "59915184",
+      keyword: "noosa yogurt",
+      status: "Enabled",
+      matchType: "broad",
+      suggestedBid: "$0.74",
+      bid: "$1.62",
+      campaignName: "KBC Campaign New 1",
+      campaignId: "1833735",
+      campaignStatus: "Paused",
+      adGroupName: "AG1",
+      adGroupId: "1208433",
+      adGroupStatus: "Enabled",
+      totalAttributedSales: "-",
+      roas: "-",
+      adSpend: "-",
+      averageCPC: "-",
+      impressions: "-",
+      clicks: "-",
+      ctr: "-",
+      totalProductDetailPageViews: "-",
+      totalAddToCart: "-",
+      conversionRate: "-",
+      orders: "-",
+      unitsSold: "-"
     }
   ]);
 
-  // Sort campaigns: alerts first, then recommendations, then others
-  // Only show icons on top rows that have alerts/recommendations
-  const campaigns = useMemo(() => {
-    const sorted = [...campaignsData].map((campaign, originalIndex) => ({
-      ...campaign,
-      originalIndex,
-      hasAlerts: (campaign.alerts?.length || 0) > 0,
-      hasRecs: (campaign.recommendations?.length || 0) > 0,
-    }));
-
-    sorted.sort((a, b) => {
-      // Priority 1: Alerts first
-      if (a.hasAlerts && !b.hasAlerts) return -1;
-      if (!a.hasAlerts && b.hasAlerts) return 1;
-
-      // Priority 2: Recommendations second (if neither has alerts)
-      if (!a.hasAlerts && !b.hasAlerts) {
-        if (a.hasRecs && !b.hasRecs) return -1;
-        if (!a.hasRecs && b.hasRecs) return 1;
-      }
-
-      // Priority 3: Maintain original order within same group
-      return a.originalIndex - b.originalIndex;
-    });
-
-    return sorted.map((campaign) => ({
-      ...campaign,
-      hasAlertIcon: campaign.hasAlerts,
-      hasRecIcon: campaign.hasRecs && !campaign.hasAlerts,
-    }));
-  }, [campaignsData]);
-
-  // Handler: Icon Click
-  const handleIconClick = (campaignId: string) => {
-    setSelectedCampaignId(campaignId);
-    setRecommendationsOpen(true);
-  };
-
-  // Handler: View Recommendation
-  const handleViewRecommendation = (type: string) => {
-    if (!selectedCampaignId) return;
-
-    setRecommendationsOpen(false);
-
-    const campaign = campaigns.find((c) => c.id === selectedCampaignId);
-    if (!campaign) return;
-
-    // Find the recommendation or alert
-    const rec = campaign.recommendations?.find((r) => r.type === type);
-    const alert = campaign.alerts?.find((a) => a.type === type);
-
-    const targetColumn = rec?.targetColumn || alert?.targetColumn;
-
-    // Scroll to target column
-    if (targetColumn === 'biddingStrategy' && biddingStrategyColumnRef.current) {
-      biddingStrategyColumnRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center',
-      });
-    }
-
-    // Set recommended value if it's a recommendation
-    setRecommendedRoasValue(rec?.suggestedValue);
-
-    // Open modal after a short delay to allow scroll to complete
-    setTimeout(() => {
-      setBiddingModalOpen(true);
-    }, 300);
-  };
-
-  // Handler: Save ROAS
-  const handleSaveRoas = (newValue: string) => {
-    if (!selectedCampaignId) return;
-
-    // Update campaigns array
-    setCampaignsData((prevCampaigns) =>
-      prevCampaigns.map((c) =>
-        c.id === selectedCampaignId
-          ? {
-              ...c,
-              biddingTarget: `(set at ${newValue})`,
-              // Remove recommendation after applying
-              recommendations: c.recommendations?.filter(
-                (r) => r.type !== 'update-roas'
-              ),
-            }
-          : c
-      )
-    );
-
-    setBiddingModalOpen(false);
-    setRecommendedRoasValue(undefined);
-  };
+  const keywords = useMemo(() => keywordsData, [keywordsData]);
 
   // Checkbox handlers
   const handleSelectAll = (checked: boolean) => {
     const newSelectedRows = new Set(selectedRows);
 
     if (checked) {
-      campaigns.forEach(campaign => {
-        newSelectedRows.add(campaign.id);
+      keywords.forEach(keyword => {
+        newSelectedRows.add(keyword.id);
       });
     } else {
-      campaigns.forEach(campaign => {
-        newSelectedRows.delete(campaign.id);
+      keywords.forEach(keyword => {
+        newSelectedRows.delete(keyword.id);
       });
     }
 
     setSelectedRows(newSelectedRows);
   };
 
-  const handleSelectRow = (campaignId: string, checked: boolean) => {
+  const handleSelectRow = (keywordId: string, checked: boolean) => {
     const newSelectedRows = new Set(selectedRows);
 
     if (checked) {
-      newSelectedRows.add(campaignId);
+      newSelectedRows.add(keywordId);
     } else {
-      newSelectedRows.delete(campaignId);
+      newSelectedRows.delete(keywordId);
     }
 
     setSelectedRows(newSelectedRows);
   };
 
   const isAllSelected = () => {
-    if (campaigns.length === 0) return false;
-    return campaigns.every(campaign => selectedRows.has(campaign.id));
+    if (keywords.length === 0) return false;
+    return keywords.every(keyword => selectedRows.has(keyword.id));
   };
 
   const isSomeSelected = () => {
-    if (campaigns.length === 0) return false;
-    const selectedCount = campaigns.filter(campaign => selectedRows.has(campaign.id)).length;
-    return selectedCount > 0 && selectedCount < campaigns.length;
+    if (keywords.length === 0) return false;
+    const selectedCount = keywords.filter(keyword => selectedRows.has(keyword.id)).length;
+    return selectedCount > 0 && selectedCount < keywords.length;
   };
 
   // Set indeterminate state for select all checkbox
@@ -1034,63 +1082,14 @@ export default function AllKeywords() {
                       />
                     </div>
                     {/* Rows */}
-                    {campaigns.map((campaign, idx) => (
+                    {keywords.map((keyword, idx) => (
                       <div key={idx} className="flex items-center justify-center h-[52px] px-3 border-b border-[#E3E4E5] bg-white">
                         <input
                           type="checkbox"
                           className="w-5 h-5 rounded border-[#909196] accent-black cursor-pointer"
-                          checked={selectedRows.has(campaign.id)}
-                          onChange={(e) => handleSelectRow(campaign.id, e.target.checked)}
+                          checked={selectedRows.has(keyword.id)}
+                          onChange={(e) => handleSelectRow(keyword.id, e.target.checked)}
                         />
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Icon Column */}
-                  <div className="flex flex-col flex-shrink-0 w-[48px]">
-                    {/* Header */}
-                    <div className="flex items-center justify-center h-[52px] border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                      {/* Empty header for icon column */}
-                    </div>
-                    {/* Rows */}
-                    {campaigns.map((campaign, idx) => (
-                      <div key={campaign.id} className="flex items-center justify-center h-[52px] border-b border-[#E3E4E5] bg-white">
-                        {(campaign.hasAlertIcon || campaign.hasRecIcon) && (
-                          <RecommendationsPopover
-                            open={recommendationsOpen && selectedCampaignId === campaign.id}
-                            onOpenChange={(open) => {
-                              setRecommendationsOpen(open);
-                              if (!open) {
-                                setSelectedCampaignId(null);
-                              }
-                            }}
-                            campaignData={campaign}
-                            onViewRecommendation={handleViewRecommendation}
-                            trigger={
-                              <button
-                                onClick={() => handleIconClick(campaign.id)}
-                                className="flex items-center justify-center w-6 h-6 rounded-full hover:opacity-80 transition-opacity cursor-pointer"
-                              >
-                                {campaign.hasAlertIcon && (
-                                  <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[#F8D2D3]">
-                                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[18px] h-[18px]">
-                                      <path d="M10.1322 5.0656C10.4529 5.0656 10.7178 5.30386 10.7598 5.61299L10.7656 5.69893V12.2104C10.7656 12.5602 10.482 12.8438 10.1322 12.8438C9.81161 12.8438 9.54663 12.6055 9.50469 12.2964L9.49891 12.2104V5.69893C9.49891 5.34915 9.78246 5.0656 10.1322 5.0656Z" fill="#A20C00"/>
-                                      <path d="M10.1322 15.1989C10.482 15.1989 10.7656 14.9153 10.7656 14.5655C10.7656 14.2158 10.482 13.9322 10.1322 13.9322C9.78246 13.9322 9.49891 14.2158 9.49891 14.5655C9.49891 14.9153 9.78246 15.1989 10.1322 15.1989Z" fill="#A20C00"/>
-                                      <path fillRule="evenodd" clipRule="evenodd" d="M18.9989 10.1322C18.9989 5.23534 15.0291 1.26562 10.1322 1.26562C5.23534 1.26562 1.26562 5.23534 1.26562 10.1322C1.26562 15.0291 5.23534 18.9989 10.1322 18.9989C15.0291 18.9989 18.9989 15.0291 18.9989 10.1322ZM2.53228 10.1322C2.53228 5.9349 5.9349 2.53228 10.1322 2.53228C14.3296 2.53228 17.7322 5.9349 17.7322 10.1322C17.7322 14.3296 14.3296 17.7322 10.1322 17.7322C5.9349 17.7322 2.53228 14.3296 2.53228 10.1322Z" fill="#A20C00"/>
-                                    </svg>
-                                  </div>
-                                )}
-                                {campaign.hasRecIcon && (
-                                  <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[#FCE9F5]">
-                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[14px] h-[14px]">
-                                      <path d="M8.42285 6.55273L8.32324 7.1543H13.6016L7.39648 14.2852L8.10938 9.98438L8.20898 9.38281H2.93164L9.13477 2.25293L8.42285 6.55273Z" stroke="#661648" strokeWidth="1.03333"/>
-                                    </svg>
-                                  </div>
-                                )}
-                              </button>
-                            }
-                          />
-                        )}
                       </div>
                     ))}
                   </div>
@@ -1098,7 +1097,7 @@ export default function AllKeywords() {
                   {/* Data Columns */}
                   <div className="flex flex-1 overflow-x-auto">
                     {/* Keyword Column */}
-                    <div className="flex flex-col min-w-[280px] flex-1">
+                    <div className="flex flex-col min-w-[300px] flex-1">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Keyword</span>
                         <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
@@ -1108,274 +1107,97 @@ export default function AllKeywords() {
                           </svg>
                         </button>
                       </div>
-                      {campaigns.map((campaign, idx) => (
+                      {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
                           <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
-                            {campaign.name}
+                            {keyword.keyword}
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Status Column */}
+                    <div className="flex flex-col min-w-[120px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Status</span>
+                      </div>
+                      {keywords.map((keyword, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className={`inline-block px-2 py-0.5 text-xs rounded ${
+                            keyword.status === 'Enabled'
+                              ? 'bg-[#EAF3E6] text-[#1D5F02]'
+                              : 'bg-[#FFF4E5] text-[#74767C]'
+                          }`}>
+                            {keyword.status}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Match Type Column */}
+                    <div className="flex flex-col min-w-[120px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Match type</span>
+                      </div>
+                      {keywords.map((keyword, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32] capitalize">{keyword.matchType}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Suggested Bid Column */}
+                    <div className="flex flex-col min-w-[130px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Suggested bid</span>
+                      </div>
+                      {keywords.map((keyword, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{keyword.suggestedBid}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Bid Column */}
+                    <div className="flex flex-col min-w-[100px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Bid</span>
+                      </div>
+                      {keywords.map((keyword, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{keyword.bid}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Campaign Name Column */}
+                    <div className="flex flex-col min-w-[220px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign name</span>
+                      </div>
+                      {keywords.map((keyword, idx) => (
+                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                            {keyword.campaignName}
                           </a>
                         </div>
                       ))}
                     </div>
 
                     {/* Campaign Status Column */}
-                    <div className="flex flex-col min-w-[140px]">
+                    <div className="flex flex-col min-w-[150px]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign status</span>
                       </div>
-                      {campaigns.map((campaign, idx) => (
+                      {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
                           <span className={`inline-block px-2 py-0.5 text-xs rounded ${
-                            campaign.status === 'Live'
+                            keyword.campaignStatus === 'Live'
                               ? 'bg-[#EAF3E6] text-[#1D5F02]'
                               : 'bg-[#FFF4E5] text-[#74767C]'
                           }`}>
-                            {campaign.status}
+                            {keyword.campaignStatus}
                           </span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Total Budget Column */}
-                    <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Total budget</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <div className="flex items-center gap-1">
-                            {campaign.hasWarning && (
-                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
-                                <circle cx="8" cy="8" r="7" stroke="#A20C00" strokeWidth="1.5" fill="none"/>
-                                <path d="M8 4.5V8.5" stroke="#A20C00" strokeWidth="1.5" strokeLinecap="round"/>
-                                <circle cx="8" cy="11" r="0.75" fill="#A20C00"/>
-                              </svg>
-                            )}
-                            {campaign.hasBolt && (
-                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                                <path d="M8.15234 6.33984L8.05566 6.9209H13.1641L7.1582 13.8223L7.84863 9.66016L7.94434 9.0791H2.83594L8.84082 2.17676L8.15234 6.33984Z" stroke="#661648"/>
-                              </svg>
-                            )}
-                            <span className="text-sm text-[#2E2F32]">{campaign.totalBudget}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Daily Budget Column */}
-                    <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Daily budget</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.dailyBudget}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Bidding Strategy Column */}
-                    <div ref={biddingStrategyColumnRef} className="flex flex-col min-w-[140px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Bidding strategy</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] pl-[34px] pr-4 border-b border-[#E3E4E5] bg-white relative">
-                          {campaign.biddingIcon && (
-                            <button
-                              onClick={() => {
-                                setSelectedCampaignId(campaign.id);
-                                setBiddingModalOpen(true);
-                                setRecommendedRoasValue(campaign.recommendedRoasTarget !== '-' ? campaign.recommendedRoasTarget : undefined);
-                              }}
-                              className="absolute left-4 top-1/2 -translate-y-1/2 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
-                            >
-                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="8" cy="8" r="7" stroke="#A20C00" strokeWidth="1.5" fill="none"/>
-                                <path d="M8 4.5V8.5" stroke="#A20C00" strokeWidth="1.5" strokeLinecap="round"/>
-                                <circle cx="8" cy="11" r="0.75" fill="#A20C00"/>
-                              </svg>
-                            </button>
-                          )}
-                          {campaign.hasBolt && !campaign.biddingIcon && (
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute left-4 top-1/2 -translate-y-1/2 flex-shrink-0">
-                              <path d="M8.15234 6.33984L8.05566 6.9209H13.1641L7.1582 13.8223L7.84863 9.66016L7.94434 9.0791H2.83594L8.84082 2.17676L8.15234 6.33984Z" stroke="#661648"/>
-                            </svg>
-                          )}
-                          <div className="flex flex-col">
-                            <span className="text-sm text-[#2E2F32]">{campaign.biddingStrategy}</span>
-                            <span className="text-xs text-[#74767C]">{campaign.biddingTarget}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Bidding Status Column */}
-                    <div className="flex flex-col min-w-[140px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Bidding status</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <div className="flex flex-col">
-                            <span className="text-sm text-[#2E2F32]">{campaign.biddingStatus}</span>
-                            <span className="text-xs text-[#74767C]">{campaign.biddingStatusDate}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Average CPC Column */}
-                    <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Average CPC</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.avgCPC}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Spend Column */}
-                    <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Spend</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.spend}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Start Date Column */}
-                    <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Start date</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.startDate}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* End Date Column */}
-                    <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">End date</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.endDate}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Suggested Total Budget Column */}
-                    <div className="flex flex-col min-w-[150px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Sugg. total budget</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.suggestedTotalBudget}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Suggested Daily Budget Column */}
-                    <div className="flex flex-col min-w-[150px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Sugg. daily budget</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.suggestedDailyBudget}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* ROAS Target Column */}
-                    <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">ROAS target</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.roasTarget}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Recommended ROAS Target Column */}
-                    <div className="flex flex-col min-w-[180px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Recommended ROAS target</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.recommendedRoasTarget}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Campaign Type Column */}
-                    <div className="flex flex-col min-w-[200px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign type</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.campaignType}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Avg. Cap-out Time Column */}
-                    <div className="flex flex-col min-w-[140px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Avg. cap-out time</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.avgCapOutTime}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Est. Missed Impressions Column */}
-                    <div className="flex flex-col min-w-[180px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Est. missed impressions</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.estMissedImpressions}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Est. Missed Clicks Column */}
-                    <div className="flex flex-col min-w-[160px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Est. missed clicks</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.estMissedClicks}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Campaign Review Status Column */}
-                    <div className="flex flex-col min-w-[180px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign review status</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.campaignReviewStatus}</span>
                         </div>
                       ))}
                     </div>
@@ -1385,9 +1207,33 @@ export default function AllKeywords() {
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">ROAS</span>
                       </div>
-                      {campaigns.map((campaign, idx) => (
+                      {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.roas}</span>
+                          <span className="text-sm text-[#2E2F32]">{keyword.roas}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Average CPC Column */}
+                    <div className="flex flex-col min-w-[120px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Average CPC</span>
+                      </div>
+                      {keywords.map((keyword, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{keyword.averageCPC}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Ad Spend Column */}
+                    <div className="flex flex-col min-w-[120px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Ad spend</span>
+                      </div>
+                      {keywords.map((keyword, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{keyword.adSpend}</span>
                         </div>
                       ))}
                     </div>
@@ -1397,9 +1243,9 @@ export default function AllKeywords() {
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Total attributed sales</span>
                       </div>
-                      {campaigns.map((campaign, idx) => (
+                      {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.totalAttributedSales}</span>
+                          <span className="text-sm text-[#2E2F32]">{keyword.totalAttributedSales}</span>
                         </div>
                       ))}
                     </div>
@@ -1409,9 +1255,9 @@ export default function AllKeywords() {
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Impressions</span>
                       </div>
-                      {campaigns.map((campaign, idx) => (
+                      {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.impressions}</span>
+                          <span className="text-sm text-[#2E2F32]">{keyword.impressions}</span>
                         </div>
                       ))}
                     </div>
@@ -1421,9 +1267,9 @@ export default function AllKeywords() {
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Clicks</span>
                       </div>
-                      {campaigns.map((campaign, idx) => (
+                      {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.clicks}</span>
+                          <span className="text-sm text-[#2E2F32]">{keyword.clicks}</span>
                         </div>
                       ))}
                     </div>
@@ -1433,33 +1279,9 @@ export default function AllKeywords() {
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">CTR</span>
                       </div>
-                      {campaigns.map((campaign, idx) => (
+                      {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.ctr}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Total Product Detail Page Views Column */}
-                    <div className="flex flex-col min-w-[220px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Total product detail page views</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.totalProductDetailPageViews}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Total Add to Cart Column */}
-                    <div className="flex flex-col min-w-[150px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Total add to cart</span>
-                      </div>
-                      {campaigns.map((campaign, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.totalAddToCart}</span>
+                          <span className="text-sm text-[#2E2F32]">{keyword.ctr}</span>
                         </div>
                       ))}
                     </div>
@@ -1469,9 +1291,9 @@ export default function AllKeywords() {
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Conversion rate</span>
                       </div>
-                      {campaigns.map((campaign, idx) => (
+                      {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.conversionRate}</span>
+                          <span className="text-sm text-[#2E2F32]">{keyword.conversionRate}</span>
                         </div>
                       ))}
                     </div>
@@ -1481,9 +1303,9 @@ export default function AllKeywords() {
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Orders</span>
                       </div>
-                      {campaigns.map((campaign, idx) => (
+                      {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.orders}</span>
+                          <span className="text-sm text-[#2E2F32]">{keyword.orders}</span>
                         </div>
                       ))}
                     </div>
@@ -1493,30 +1315,12 @@ export default function AllKeywords() {
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Units sold</span>
                       </div>
-                      {campaigns.map((campaign, idx) => (
+                      {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.unitsSold}</span>
+                          <span className="text-sm text-[#2E2F32]">{keyword.unitsSold}</span>
                         </div>
                       ))}
                     </div>
-                  </div>
-
-                  {/* Actions Column - Right Aligned */}
-                  <div className="flex flex-col flex-shrink-0 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-                    <div className="flex items-center h-[52px] px-4 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                      <span className="text-sm font-bold text-[#2E2F32] leading-5">Actions</span>
-                    </div>
-                    {campaigns.map((_, idx) => (
-                      <div key={idx} className="flex items-center justify-center h-[52px] px-2.5 border-b border-[#E3E4E5] bg-white">
-                        <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M9 3.5C9 4.05228 8.55228 4.5 8 4.5C7.44772 4.5 7 4.05228 7 3.5C7 2.94772 7.44772 2.5 8 2.5C8.55228 2.5 9 2.94772 9 3.5Z" fill="#2E2F32"/>
-                            <path d="M9 8C9 8.55228 8.55228 9 8 9C7.44772 9 7 8.55228 7 8C7 7.44772 7.44772 7 8 7C8.55228 7 9 7.44772 9 8Z" fill="#2E2F32"/>
-                            <path d="M9 12.5C9 13.0523 8.55228 13.5 8 13.5C7.44772 13.5 7 13.0523 7 12.5C7 11.9477 7.44772 11.5 8 11.5C8.55228 11.5 9 11.9477 9 12.5Z" fill="#2E2F32"/>
-                          </svg>
-                        </button>
-                      </div>
-                    ))}
                   </div>
                 </div>
               </div>
@@ -1525,22 +1329,11 @@ export default function AllKeywords() {
         </div>
       </div>
 
-      {/* Bidding Strategy Modal */}
-      {selectedCampaignId && (
-        <BiddingStrategyModal
-          open={biddingModalOpen}
-          onOpenChange={setBiddingModalOpen}
-          campaignData={campaigns.find((c) => c.id === selectedCampaignId)!}
-          recommendedValue={recommendedRoasValue}
-          onSave={handleSaveRoas}
-        />
-      )}
-
-      {/* Marty Floating Panel */}
       {showMartyPanel && (
         <MartyFloatingPanel
           isMinimized={isMartyMinimized}
-          onMinimizedChange={setIsMartyMinimized}
+          onMinimize={() => setIsMartyMinimized(true)}
+          onExpand={() => setIsMartyMinimized(false)}
         />
       )}
     </div>
