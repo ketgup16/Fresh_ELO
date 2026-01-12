@@ -64,9 +64,10 @@ export default function Campaign() {
 
         <div className="flex items-center gap-2">
           <div className="relative">
-            <button
+            <Button
+              variant="ghost"
               onClick={() => setMediaSolutionsOpen(!mediaSolutionsOpen)}
-              className="flex items-center gap-1 text-xs hover:bg-gray-100 px-2 py-1 rounded transition-colors"
+              className="flex items-center gap-1 h-auto text-xs hover:bg-gray-100 px-2 py-1 rounded"
             >
               <span className="text-[#2E2F32]">{selectedMediaSolution === 'Display Advertising' ? 'Display' : selectedMediaSolution === 'Sponsored Search' ? 'Sponsored Search' : selectedMediaSolution === 'Shop Builder' ? 'Shop Builder' : selectedMediaSolution === 'Store Ads' ? 'Store Ads' : 'Unified Reports'}</span>
               {mediaSolutionsOpen ? (
@@ -74,7 +75,7 @@ export default function Campaign() {
               ) : (
                 <ChevronDown className="w-4 h-4" />
               )}
-            </button>
+            </Button>
 
             {mediaSolutionsOpen && (
               <>
