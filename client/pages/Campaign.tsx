@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { Button } from "../components/ui/button";
 
 export default function Campaign() {
   const navigate = useNavigate();
@@ -251,15 +252,15 @@ export default function Campaign() {
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-[#2E2F32]">Campaign creation</h1>
             <div className="flex gap-4">
-              <button className="px-6 h-10 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] font-bold hover:bg-gray-50 transition-colors">
+              <Button variant="outline" className="px-6 h-10 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] font-bold hover:bg-gray-50">
                 Delete
-              </button>
-              <button className="px-6 h-10 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] font-bold hover:bg-gray-50 transition-colors">
+              </Button>
+              <Button variant="outline" className="px-6 h-10 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] font-bold hover:bg-gray-50">
                 Save
-              </button>
-              <button className="px-6 h-10 rounded-full bg-[#0053E2] text-white font-bold hover:bg-[#0046c7] transition-colors">
+              </Button>
+              <Button className="px-6 h-10 rounded-full bg-[#0053E2] text-white font-bold hover:bg-[#0046c7]">
                 Launch campaign
-              </button>
+              </Button>
             </div>
           </div>
         </div>
