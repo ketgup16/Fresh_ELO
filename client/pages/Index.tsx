@@ -2131,36 +2131,30 @@ export default function Index() {
                 <>
                   <button
                     onClick={() => setActiveMenuItem('campaigns-active')}
-                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
                   >
-                    <div className="w-10 h-7 flex items-center justify-center">
-                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
-                        <circle cx="20" cy="14" r={activeMenuItem === 'campaigns-active' ? '3' : '2.5'} fill={activeMenuItem === 'campaigns-active' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaigns-active' ? 'none' : '#2E2F32'} />
-                      </svg>
-                    </div>
-                    <span className={`text-sm flex-1 truncate ${activeMenuItem === 'campaigns-active' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Active</span>
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
+                      <circle cx="4" cy="4" r={activeMenuItem === 'campaigns-active' ? '3' : '2.5'} fill={activeMenuItem === 'campaigns-active' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaigns-active' ? 'none' : '#2E2F32'} />
+                    </svg>
+                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'campaigns-active' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Active</span>
                   </button>
                   <button
                     onClick={() => setActiveMenuItem('campaigns-draft')}
-                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
                   >
-                    <div className="w-10 h-7 flex items-center justify-center">
-                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
-                        <circle cx="20" cy="14" r={activeMenuItem === 'campaigns-draft' ? '3' : '2.5'} fill={activeMenuItem === 'campaigns-draft' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaigns-draft' ? 'none' : '#2E2F32'} />
-                      </svg>
-                    </div>
-                    <span className={`text-sm flex-1 truncate ${activeMenuItem === 'campaigns-draft' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Draft</span>
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
+                      <circle cx="4" cy="4" r={activeMenuItem === 'campaigns-draft' ? '3' : '2.5'} fill={activeMenuItem === 'campaigns-draft' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaigns-draft' ? 'none' : '#2E2F32'} />
+                    </svg>
+                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'campaigns-draft' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Draft</span>
                   </button>
                   <button
                     onClick={() => setActiveMenuItem('campaigns-archived')}
-                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
                   >
-                    <div className="w-10 h-7 flex items-center justify-center">
-                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
-                        <circle cx="20" cy="14" r={activeMenuItem === 'campaigns-archived' ? '3' : '2.5'} fill={activeMenuItem === 'campaigns-archived' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaigns-archived' ? 'none' : '#2E2F32'} />
-                      </svg>
-                    </div>
-                    <span className={`text-sm flex-1 truncate ${activeMenuItem === 'campaigns-archived' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Archived</span>
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
+                      <circle cx="4" cy="4" r={activeMenuItem === 'campaigns-archived' ? '3' : '2.5'} fill={activeMenuItem === 'campaigns-archived' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaigns-archived' ? 'none' : '#2E2F32'} />
+                    </svg>
+                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'campaigns-archived' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Archived</span>
                   </button>
                 </>
               )}
@@ -2199,47 +2193,39 @@ export default function Index() {
                 <>
                   <button
                     onClick={() => setActiveMenuItem('reports-advertiser')}
-                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
                   >
-                    <div className="w-10 h-7 flex items-center justify-center">
-                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
-                        <circle cx="20" cy="14" r={activeMenuItem === 'reports-advertiser' ? '3' : '2.5'} fill={activeMenuItem === 'reports-advertiser' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-advertiser' ? 'none' : '#2E2F32'} />
-                      </svg>
-                    </div>
-                    <span className={`text-sm flex-1 truncate ${activeMenuItem === 'reports-advertiser' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Advertiser</span>
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
+                      <circle cx="4" cy="4" r={activeMenuItem === 'reports-advertiser' ? '3' : '2.5'} fill={activeMenuItem === 'reports-advertiser' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-advertiser' ? 'none' : '#2E2F32'} />
+                    </svg>
+                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'reports-advertiser' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Advertiser</span>
                   </button>
                   <button
                     onClick={() => setActiveMenuItem('reports-item-health')}
-                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
                   >
-                    <div className="w-10 h-7 flex items-center justify-center">
-                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
-                        <circle cx="20" cy="14" r={activeMenuItem === 'reports-item-health' ? '3' : '2.5'} fill={activeMenuItem === 'reports-item-health' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-item-health' ? 'none' : '#2E2F32'} />
-                      </svg>
-                    </div>
-                    <span className={`text-sm flex-1 truncate ${activeMenuItem === 'reports-item-health' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Item health</span>
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
+                      <circle cx="4" cy="4" r={activeMenuItem === 'reports-item-health' ? '3' : '2.5'} fill={activeMenuItem === 'reports-item-health' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-item-health' ? 'none' : '#2E2F32'} />
+                    </svg>
+                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'reports-item-health' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Item health</span>
                   </button>
                   <button
                     onClick={() => setActiveMenuItem('reports-on-demand')}
-                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
                   >
-                    <div className="w-10 h-7 flex items-center justify-center">
-                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
-                        <circle cx="20" cy="14" r={activeMenuItem === 'reports-on-demand' ? '3' : '2.5'} fill={activeMenuItem === 'reports-on-demand' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-on-demand' ? 'none' : '#2E2F32'} />
-                      </svg>
-                    </div>
-                    <span className={`text-sm flex-1 truncate ${activeMenuItem === 'reports-on-demand' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>On-demand</span>
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
+                      <circle cx="4" cy="4" r={activeMenuItem === 'reports-on-demand' ? '3' : '2.5'} fill={activeMenuItem === 'reports-on-demand' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-on-demand' ? 'none' : '#2E2F32'} />
+                    </svg>
+                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'reports-on-demand' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>On-demand</span>
                   </button>
                   <button
                     onClick={() => setActiveMenuItem('reports-custom')}
-                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
                   >
-                    <div className="w-10 h-7 flex items-center justify-center">
-                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
-                        <circle cx="20" cy="14" r={activeMenuItem === 'reports-custom' ? '3' : '2.5'} fill={activeMenuItem === 'reports-custom' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-custom' ? 'none' : '#2E2F32'} />
-                      </svg>
-                    </div>
-                    <span className={`text-sm flex-1 truncate ${activeMenuItem === 'reports-custom' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Custom</span>
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
+                      <circle cx="4" cy="4" r={activeMenuItem === 'reports-custom' ? '3' : '2.5'} fill={activeMenuItem === 'reports-custom' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-custom' ? 'none' : '#2E2F32'} />
+                    </svg>
+                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'reports-custom' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Custom</span>
                   </button>
                 </>
               )}
@@ -2268,25 +2254,21 @@ export default function Index() {
                 <>
                   <button
                     onClick={() => setActiveMenuItem('tools-keywords-planner')}
-                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
                   >
-                    <div className="w-10 h-7 flex items-center justify-center">
-                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
-                        <circle cx="20" cy="14" r={activeMenuItem === 'tools-keywords-planner' ? '3' : '2.5'} fill={activeMenuItem === 'tools-keywords-planner' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'tools-keywords-planner' ? 'none' : '#2E2F32'} />
-                      </svg>
-                    </div>
-                    <span className={`text-sm flex-1 truncate ${activeMenuItem === 'tools-keywords-planner' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Keywords planner</span>
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
+                      <circle cx="4" cy="4" r={activeMenuItem === 'tools-keywords-planner' ? '3' : '2.5'} fill={activeMenuItem === 'tools-keywords-planner' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'tools-keywords-planner' ? 'none' : '#2E2F32'} />
+                    </svg>
+                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'tools-keywords-planner' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Keywords planner</span>
                   </button>
                   <button
                     onClick={() => setActiveMenuItem('tools-rules')}
-                    className="flex items-center pr-3 h-7 hover:bg-gray-100 transition-colors"
+                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
                   >
-                    <div className="w-10 h-7 flex items-center justify-center">
-                      <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="w-10 h-7">
-                        <circle cx="20" cy="14" r={activeMenuItem === 'tools-rules' ? '3' : '2.5'} fill={activeMenuItem === 'tools-rules' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'tools-rules' ? 'none' : '#2E2F32'} />
-                      </svg>
-                    </div>
-                    <span className={`text-sm flex-1 truncate ${activeMenuItem === 'tools-rules' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Rules</span>
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
+                      <circle cx="4" cy="4" r={activeMenuItem === 'tools-rules' ? '3' : '2.5'} fill={activeMenuItem === 'tools-rules' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'tools-rules' ? 'none' : '#2E2F32'} />
+                    </svg>
+                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'tools-rules' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Rules</span>
                   </button>
                 </>
               )}
