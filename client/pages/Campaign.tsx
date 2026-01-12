@@ -5,6 +5,9 @@ import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Button } from "../components/ui/button";
+import SponsoredProductsCard from "../components/icons/SponsoredProductsCard";
+import SponsoredBrandsCard from "../components/icons/SponsoredBrandsCard";
+import SponsoredVideosCard from "../components/icons/SponsoredVideosCard";
 
 export default function Campaign() {
   const navigate = useNavigate();
