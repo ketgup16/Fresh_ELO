@@ -19,7 +19,7 @@ export default function Campaign() {
       <header className="h-[54px] border-b border-[#E3E4E5] flex items-center justify-between px-6">
         <div className="flex items-center gap-5">
           {/* App Switcher */}
-          <button className="w-6 h-6 p-1 rounded-full hover:bg-gray-100">
+          <Button variant="ghost" size="icon" className="w-6 h-6 p-1 rounded-full hover:bg-gray-100">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <rect x="0" y="0" width="2" height="2" fill="#2E2F32"/>
               <rect x="0" y="5" width="2" height="2" fill="#2E2F32"/>
@@ -31,7 +31,7 @@ export default function Campaign() {
               <rect x="10" y="5" width="2" height="2" fill="#2E2F32"/>
               <rect x="10" y="10" width="2" height="2" fill="#2E2F32"/>
             </svg>
-          </button>
+          </Button>
 
           {/* Logo */}
           <div className="h-[14px]">
@@ -224,16 +224,16 @@ export default function Campaign() {
           </div>
           <div className="w-px h-[22px] bg-gray-300"></div>
           <div className="flex items-center gap-1">
-            <button className="relative p-1 rounded-full hover:bg-gray-100">
+            <Button variant="ghost" size="icon" className="relative p-1 h-auto w-auto rounded-full hover:bg-gray-100">
               <Bell className="w-4 h-4" />
               <span className="absolute top-0 right-0 w-1.5 h-1.5 bg-red-600 rounded-full"></span>
-            </button>
-            <button className="p-1 rounded hover:bg-gray-100">
+            </Button>
+            <Button variant="ghost" size="icon" className="p-1 h-auto w-auto rounded hover:bg-gray-100">
               <HelpCircle className="w-4 h-4" />
-            </button>
-            <button className="p-1 rounded hover:bg-gray-100">
+            </Button>
+            <Button variant="ghost" size="icon" className="p-1 h-auto w-auto rounded hover:bg-gray-100">
               <User className="w-4 h-4" />
-            </button>
+            </Button>
           </div>
         </div>
       </header>
