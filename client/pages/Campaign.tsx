@@ -300,29 +300,23 @@ export default function Campaign() {
                 <Button variant="outline" className="flex flex-col items-start gap-2 p-4 h-auto border-2 border-[#0071DC] rounded bg-white hover:bg-gray-50 text-left">
                   <div className="text-xs font-bold text-[#515357] leading-4">Sponsored Products</div>
                   <div className="text-sm text-[#515357] leading-5">Get your items included in relevant results when customers search Walmart's site and app.</div>
-                  <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/c5b57bc2b91e6a8f0e62286eae055339338c4bb1?width=356"
-                    alt="Sponsored Products visualization"
-                    className="w-full mt-auto"
-                  />
+                  <div className="w-full mt-auto">
+                    <SponsoredProductsCard />
+                  </div>
                 </Button>
                 <Button variant="outline" className="flex flex-col items-start gap-2 p-4 h-auto border border-[#E3E4E5] rounded bg-white hover:border-[#0071DC] hover:bg-gray-50 text-left">
                   <div className="text-xs font-bold text-[#515357] leading-4">Sponsored Brands</div>
                   <div className="text-sm text-[#515357] leading-5">This premium ad sends your brand and products to the top of relevant results when customers search our site & app.</div>
-                  <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/85e89aade983508656e9c7c9a3bd236c6915436a?width=356"
-                    alt="Sponsored Brands visualization"
-                    className="w-full mt-auto"
-                  />
+                  <div className="w-full mt-auto">
+                    <SponsoredBrandsCard />
+                  </div>
                 </Button>
                 <Button variant="outline" className="flex flex-col items-start gap-2 p-4 h-auto border border-[#E3E4E5] rounded bg-white hover:border-[#0071DC] hover:bg-gray-50 text-left">
                   <div className="text-xs font-bold text-[#515357] leading-4">Sponsored Videos</div>
                   <div className="text-sm text-[#515357] leading-5">Have your ads show up in the premium video ad slot.</div>
-                  <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/ecea83be9b6216faab31c9c24be64ec60efa728c?width=356"
-                    alt="Sponsored Videos visualization"
-                    className="w-full mt-auto"
-                  />
+                  <div className="w-full mt-auto">
+                    <SponsoredVideosCard />
+                  </div>
                 </Button>
               </div>
             </div>
