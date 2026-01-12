@@ -1098,18 +1098,18 @@ export default function AllKeywords() {
                   <div className="flex flex-1 overflow-x-auto">
                     {/* Keyword Column */}
                     <div className="flex flex-col min-w-[300px] flex-1">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Keyword</span>
-                        <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M8 3L8 13" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-                            <path d="M5 10L8 13L11 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <div className="flex items-center h-[44px] px-4 gap-1 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                        <span className="text-[13px] font-semibold text-[#2E2F32]">Keyword</span>
+                        <button className="p-1 hover:bg-gray-200 transition-colors">
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <path d="M6 2L6 10" stroke="#74767C" strokeWidth="1.2" strokeLinecap="round"/>
+                            <path d="M4 8L6 10L8 8" stroke="#74767C" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg>
                         </button>
                       </div>
                       {keywords.map((keyword, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                        <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <a href="#" className="text-[13px] text-[#0071DC] underline hover:no-underline truncate">
                             {keyword.keyword}
                           </a>
                         </div>
@@ -1118,16 +1118,12 @@ export default function AllKeywords() {
 
                     {/* Status Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Status</span>
+                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                        <span className="text-[13px] font-semibold text-[#2E2F32]">Status</span>
                       </div>
                       {keywords.map((keyword, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className={`inline-block px-2 py-0.5 text-xs rounded ${
-                            keyword.status === 'Enabled'
-                              ? 'bg-[#EAF3E6] text-[#1D5F02]'
-                              : 'bg-[#FFF4E5] text-[#74767C]'
-                          }`}>
+                        <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-[13px] text-[#2E2F32]">
                             {keyword.status}
                           </span>
                         </div>
@@ -1136,48 +1132,48 @@ export default function AllKeywords() {
 
                     {/* Match Type Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Match type</span>
+                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                        <span className="text-[13px] font-semibold text-[#2E2F32]">Match type</span>
                       </div>
                       {keywords.map((keyword, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32] capitalize">{keyword.matchType}</span>
+                        <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-[13px] text-[#2E2F32] capitalize">{keyword.matchType}</span>
                         </div>
                       ))}
                     </div>
 
                     {/* Suggested Bid Column */}
                     <div className="flex flex-col min-w-[130px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Suggested bid</span>
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                        <span className="text-[13px] font-semibold text-[#2E2F32]">Suggested bid</span>
                       </div>
                       {keywords.map((keyword, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{keyword.suggestedBid}</span>
+                        <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-[13px] text-[#2E2F32]">{keyword.suggestedBid}</span>
                         </div>
                       ))}
                     </div>
 
                     {/* Bid Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Bid</span>
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                        <span className="text-[13px] font-semibold text-[#2E2F32]">Bid</span>
                       </div>
                       {keywords.map((keyword, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{keyword.bid}</span>
+                        <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-[13px] text-[#2E2F32]">{keyword.bid}</span>
                         </div>
                       ))}
                     </div>
 
                     {/* Campaign Name Column */}
                     <div className="flex flex-col min-w-[220px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign name</span>
+                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                        <span className="text-[13px] font-semibold text-[#2E2F32]">Campaign name</span>
                       </div>
                       {keywords.map((keyword, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                        <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <a href="#" className="text-[13px] text-[#0071DC] underline hover:no-underline truncate">
                             {keyword.campaignName}
                           </a>
                         </div>
@@ -1186,16 +1182,12 @@ export default function AllKeywords() {
 
                     {/* Campaign Status Column */}
                     <div className="flex flex-col min-w-[150px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign status</span>
+                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                        <span className="text-[13px] font-semibold text-[#2E2F32]">Campaign status</span>
                       </div>
                       {keywords.map((keyword, idx) => (
-                        <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className={`inline-block px-2 py-0.5 text-xs rounded ${
-                            keyword.campaignStatus === 'Live'
-                              ? 'bg-[#EAF3E6] text-[#1D5F02]'
-                              : 'bg-[#FFF4E5] text-[#74767C]'
-                          }`}>
+                        <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-[13px] text-[#2E2F32]">
                             {keyword.campaignStatus}
                           </span>
                         </div>
@@ -1204,36 +1196,36 @@ export default function AllKeywords() {
 
                     {/* ROAS Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">ROAS</span>
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                        <span className="text-[13px] font-semibold text-[#2E2F32]">ROAS</span>
                       </div>
                       {keywords.map((keyword, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{keyword.roas}</span>
+                        <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-[13px] text-[#2E2F32]">{keyword.roas}</span>
                         </div>
                       ))}
                     </div>
 
                     {/* Average CPC Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Average CPC</span>
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                        <span className="text-[13px] font-semibold text-[#2E2F32]">Average CPC</span>
                       </div>
                       {keywords.map((keyword, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{keyword.averageCPC}</span>
+                        <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-[13px] text-[#2E2F32]">{keyword.averageCPC}</span>
                         </div>
                       ))}
                     </div>
 
                     {/* Ad Spend Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Ad spend</span>
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                        <span className="text-[13px] font-semibold text-[#2E2F32]">Ad spend</span>
                       </div>
                       {keywords.map((keyword, idx) => (
-                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{keyword.adSpend}</span>
+                        <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-[13px] text-[#2E2F32]">{keyword.adSpend}</span>
                         </div>
                       ))}
                     </div>
