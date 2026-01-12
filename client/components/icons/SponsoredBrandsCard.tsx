@@ -1,6 +1,6 @@
 export default function SponsoredBrandsCard() {
   return (
-    <svg width="240" height="155" viewBox="0 0 240 155" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <svg width="240" height="155" viewBox="0 0 240 155" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" preserveAspectRatio="none">
       <rect width="240" height="155" rx="10" fill="#FFF"/>
       <rect width="326" height="22" fill="#0053E2"/>
       <rect x="124" y="106" width="50" height="59" rx="6" fill="#F8F8F8"/>
