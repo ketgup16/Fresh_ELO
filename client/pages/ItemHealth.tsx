@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { Button } from "../components/ui/button";
 
 interface ItemHealthData {
   itemImage: string;
@@ -352,9 +353,9 @@ export default function ItemHealth() {
             {/* Header Section */}
             <div className="flex items-center justify-between mb-4">
               <h1 className="text-[28px] font-bold text-[#2E2F32]">Item Health</h1>
-              <button className="px-4 h-10 border border-[#74767C] rounded text-sm text-[#2E2F32] hover:bg-gray-50">
+              <Button variant="secondary" className="px-4 h-10">
                 Export to CSV
-              </button>
+              </Button>
             </div>
 
             {/* Date Range Info */}
