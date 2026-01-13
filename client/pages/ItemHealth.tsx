@@ -5,12 +5,18 @@ import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Button } from "../components/ui/button";
+import CleaningSpray from "../components/icons/CleaningSpray";
+import DishSoap from "../components/icons/DishSoap";
+import PaperTowels from "../components/icons/PaperTowels";
+import LaundryDetergent from "../components/icons/LaundryDetergent";
+import Sponge from "../components/icons/Sponge";
 
 interface ItemHealthData {
-  itemImage: string;
+  itemImage: React.ReactNode;
   itemId: string;
   campaignIds: string[];
   adGroupIds: string[];
+  olq: string;
   primaryVariant: string;
   itemStatus: string;
   productDetailPageViewsToday: number;
@@ -67,10 +73,11 @@ export default function ItemHealth() {
 
   const itemHealthData: ItemHealthData[] = [
     {
-      itemImage: "📦",
+      itemImage: <CleaningSpray />,
       itemId: "1750942750",
       campaignIds: ["432081"],
       adGroupIds: ["580546"],
+      olq: "92.5%",
       primaryVariant: "1750942750",
       itemStatus: "Published",
       productDetailPageViewsToday: 4956,
@@ -81,10 +88,11 @@ export default function ItemHealth() {
       buyBoxWinRateLast7Days: "96.66%"
     },
     {
-      itemImage: "📦",
+      itemImage: <DishSoap />,
       itemId: "875633804",
       campaignIds: ["3920037"],
       adGroupIds: ["4934907"],
+      olq: "88.3%",
       primaryVariant: "875633804",
       itemStatus: "Published",
       productDetailPageViewsToday: 4543,
@@ -95,10 +103,11 @@ export default function ItemHealth() {
       buyBoxWinRateLast7Days: "99.98%"
     },
     {
-      itemImage: "📦",
+      itemImage: <PaperTowels />,
       itemId: "1566660392",
       campaignIds: ["4001729", "4345285", "3920926", "3225492"],
       adGroupIds: ["4834896", "4706485", "3692926", "3387680"],
+      olq: "95.7%",
       primaryVariant: "1566660392",
       itemStatus: "Published",
       productDetailPageViewsToday: 3275,
@@ -109,10 +118,11 @@ export default function ItemHealth() {
       buyBoxWinRateLast7Days: "98.48%"
     },
     {
-      itemImage: "📦",
+      itemImage: <LaundryDetergent />,
       itemId: "3452723904",
       campaignIds: ["4001729", "3920926", "3225492"],
       adGroupIds: ["4834896", "4706485", "3692214"],
+      olq: "91.2%",
       primaryVariant: "3452723904",
       itemStatus: "Published",
       productDetailPageViewsToday: 2331,
@@ -123,10 +133,11 @@ export default function ItemHealth() {
       buyBoxWinRateLast7Days: "99.95%"
     },
     {
-      itemImage: "📦",
+      itemImage: <Sponge />,
       itemId: "1403322750",
       campaignIds: ["4345285", "4001729", "4706485"],
       adGroupIds: ["4834896", "4706485"],
+      olq: "87.9%",
       primaryVariant: "1403322750",
       itemStatus: "zoom us Published",
       productDetailPageViewsToday: 2352,
@@ -442,6 +453,12 @@ export default function ItemHealth() {
                       <div className="flex items-center gap-1 whitespace-nowrap">Ad Group ID</div>
                     </th>
                     <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('olq')}>
+                        OLQ
+                        {renderSortIcon('olq')}
+                      </div>
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
                       <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('primaryVariant')}>
                         Primary Variant
                         {renderSortIcon('primaryVariant')}
@@ -495,7 +512,7 @@ export default function ItemHealth() {
                   {itemHealthData.map((item, idx) => (
                     <tr key={idx} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
                       <td className="px-4 py-3">
-                        <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center text-2xl">
+                        <div className="w-12 h-12 rounded flex items-center justify-center">
                           {item.itemImage}
                         </div>
                       </td>
@@ -520,6 +537,7 @@ export default function ItemHealth() {
                           ))}
                         </div>
                       </td>
+                      <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.olq}</td>
                       <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.primaryVariant}</td>
                       <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.itemStatus}</td>
                       <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.productDetailPageViewsToday.toLocaleString()}</td>
