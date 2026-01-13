@@ -1633,6 +1633,20 @@ export default function Index() {
   // Selected recommendations state
   const [selectedRecommendations, setSelectedRecommendations] = useState<{[key: string]: number}>({});
 
+  // Checked recommendations state (for checkboxes)
+  const [checkedRecommendations, setCheckedRecommendations] = useState<Set<string>>(new Set());
+
+  const toggleRecommendationCheck = (campaignId: string, recIdx: number) => {
+    const key = `${campaignId}-${recIdx}`;
+    const newChecked = new Set(checkedRecommendations);
+    if (newChecked.has(key)) {
+      newChecked.delete(key);
+    } else {
+      newChecked.add(key);
+    }
+    setCheckedRecommendations(newChecked);
+  };
+
   // Selected rows state
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
 
