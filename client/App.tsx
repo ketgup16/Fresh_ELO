@@ -11,6 +11,7 @@ import SponsoredSearch from "./pages/SponsoredSearch";
 import Campaign from "./pages/Campaign";
 import AllCampaigns from "./pages/AllCampaigns";
 import AllKeywords from "./pages/AllKeywords";
+import KeywordsPlanner from "./pages/KeywordsPlanner";
 import ItemHealth from "./pages/ItemHealth";
 import NotFound from "./pages/NotFound";
 
