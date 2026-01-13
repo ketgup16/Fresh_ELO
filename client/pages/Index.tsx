@@ -3210,7 +3210,10 @@ export default function Index() {
                                                   </button>
                                                   <button
                                                     className="text-sm text-[#2E2F32] underline hover:no-underline"
-                                                    onClick={() => openPanel(campaign)}
+                                                    onClick={(e) => {
+                                                      e.stopPropagation();
+                                                      openPanelWithDetails(campaign);
+                                                    }}
                                                   >
                                                     View details
                                                   </button>
