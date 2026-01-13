@@ -1853,6 +1853,17 @@ export default function Index() {
     }
   };
 
+  // Switch campaigns data based on selected tab
+  useEffect(() => {
+    if (selectedTab === "archive") {
+      setCampaigns(archivedCampaigns);
+    } else {
+      setCampaigns(mockCampaigns);
+    }
+    // Reset selections when switching tabs
+    setSelectedRows(new Set());
+  }, [selectedTab]);
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!resizingColumn) return;
