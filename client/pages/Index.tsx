@@ -3417,7 +3417,10 @@ export default function Index() {
                                       <div className="flex justify-end">
                                         <button
                                           className="px-4 h-8 text-sm font-bold text-[#2E2F32] bg-white border border-[#2E2F32] rounded-full hover:bg-gray-50"
-                                          onClick={() => openPanel(campaign)}
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            openPanelWithDetails(campaign);
+                                          }}
                                         >
                                           Apply selected
                                         </button>
