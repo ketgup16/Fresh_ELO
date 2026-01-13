@@ -2607,43 +2607,47 @@ export default function Index() {
 
         {/* Main Content */}
         <main className="flex-1 h-auto self-stretch flex flex-col">
-          {/* Page Header */}
-          <div className="px-6 pt-8 pb-4">
-            <div className="flex items-center justify-between mb-4">
-              <h1 className="text-2xl font-bold text-[#2E2F32]">Display Advertising</h1>
-              <button className="h-8 px-4 bg-[#0053E2] text-white text-sm font-bold rounded-full hover:bg-[#0046c7] transition-colors">
-                Create campaign
-              </button>
-            </div>
+          {activeMenuItem === 'dashboard' ? (
+            <DisplayDashboard />
+          ) : (
+            <>
+              {/* Page Header */}
+              <div className="px-6 pt-8 pb-4">
+                <div className="flex items-center justify-between mb-4">
+                  <h1 className="text-2xl font-bold text-[#2E2F32]">Display Advertising</h1>
+                  <button className="h-8 px-4 bg-[#0053E2] text-white text-sm font-bold rounded-full hover:bg-[#0046c7] transition-colors">
+                    Create campaign
+                  </button>
+                </div>
 
-            {/* Tabs */}
-            <div className="border-b border-[#E3E4E5]">
-              <div className="flex gap-0">
-                <button
-                  onClick={() => setSelectedTab("onsite")}
-                  className={`px-0 py-3 text-sm relative ${
-                    selectedTab === "onsite"
-                      ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:bg-[#0053E2] after:rounded-t"
-                      : "font-normal text-[#2E2F32] hover:bg-gray-50"
-                  }`}
-                >
-                  Onsite auction
-                </button>
-                <button
-                  onClick={() => setSelectedTab("archive")}
-                  className={`ml-6 px-0 py-3 text-sm relative ${
-                    selectedTab === "archive"
-                      ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:bg-[#0053E2] after:rounded-t"
-                      : "font-normal text-[#2E2F32] hover:bg-gray-50"
-                  }`}
-                >
-                  Archive
-                </button>
+                {/* Tabs */}
+                <div className="border-b border-[#E3E4E5]">
+                  <div className="flex gap-0">
+                    <button
+                      onClick={() => setSelectedTab("onsite")}
+                      className={`px-0 py-3 text-sm relative ${
+                        selectedTab === "onsite"
+                          ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:bg-[#0053E2] after:rounded-t"
+                          : "font-normal text-[#2E2F32] hover:bg-gray-50"
+                      }`}
+                    >
+                      Onsite auction
+                    </button>
+                    <button
+                      onClick={() => setSelectedTab("archive")}
+                      className={`ml-6 px-0 py-3 text-sm relative ${
+                        selectedTab === "archive"
+                          ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:bg-[#0053E2] after:rounded-t"
+                          : "font-normal text-[#2E2F32] hover:bg-gray-50"
+                      }`}
+                    >
+                      Archive
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          {/* Data Table Container */}
+              {/* Data Table Container */}
           <div className="mx-3 mb-6 rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col flex-1">
             {/* Table Controls */}
             <div className="flex items-center justify-end gap-2 p-4 border-b border-[#E3E4E5] bg-white">
@@ -3513,6 +3517,8 @@ export default function Index() {
               </div>
             </div>
           </div>
+            </>
+          )}
         </main>
       </div>
 
