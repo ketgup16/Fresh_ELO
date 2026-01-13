@@ -13,6 +13,8 @@ import Sponge from "../components/icons/Sponge";
 
 interface ItemHealthData {
   itemImage: React.ReactNode;
+  hasAlertIcon?: boolean;
+  hasRecIcon?: boolean;
   itemId: string;
   campaignIds: string[];
   adGroupIds: string[];
@@ -74,6 +76,7 @@ export default function ItemHealth() {
   const itemHealthData: ItemHealthData[] = [
     {
       itemImage: <CleaningSpray />,
+      hasAlertIcon: true,
       itemId: "1750942750",
       campaignIds: ["432081"],
       adGroupIds: ["580546"],
@@ -89,6 +92,7 @@ export default function ItemHealth() {
     },
     {
       itemImage: <DishSoap />,
+      hasAlertIcon: true,
       itemId: "875633804",
       campaignIds: ["3920037"],
       adGroupIds: ["4934907"],
@@ -104,6 +108,7 @@ export default function ItemHealth() {
     },
     {
       itemImage: <PaperTowels />,
+      hasRecIcon: true,
       itemId: "1566660392",
       campaignIds: ["4001729", "4345285", "3920926", "3225492"],
       adGroupIds: ["4834896", "4706485", "3692926", "3387680"],
@@ -119,6 +124,7 @@ export default function ItemHealth() {
     },
     {
       itemImage: <LaundryDetergent />,
+      hasRecIcon: true,
       itemId: "3452723904",
       campaignIds: ["4001729", "3920926", "3225492"],
       adGroupIds: ["4834896", "4706485", "3692214"],
@@ -134,6 +140,7 @@ export default function ItemHealth() {
     },
     {
       itemImage: <Sponge />,
+      hasRecIcon: true,
       itemId: "1403322750",
       campaignIds: ["4345285", "4001729", "4706485"],
       adGroupIds: ["4834896", "4706485"],
@@ -440,6 +447,9 @@ export default function ItemHealth() {
                     <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
                       <div className="flex items-center gap-1 whitespace-nowrap">Item Image</div>
                     </th>
+                    <th className="p-4 text-center font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-16">
+                      {/* Alerts/Notifications column */}
+                    </th>
                     <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
                       <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('itemId')}>
                         Item ID
@@ -514,6 +524,26 @@ export default function ItemHealth() {
                       <td className="px-4 py-3">
                         <div className="w-12 h-12 rounded flex items-center justify-center">
                           {item.itemImage}
+                        </div>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center justify-center">
+                          {item.hasAlertIcon && (
+                            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[#F8D2D3]">
+                              <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[18px] h-[18px]">
+                                <path d="M10.1322 5.0656C10.4529 5.0656 10.7178 5.30386 10.7598 5.61299L10.7656 5.69893V12.2104C10.7656 12.5602 10.482 12.8438 10.1322 12.8438C9.81161 12.8438 9.54663 12.6055 9.50469 12.2964L9.49891 12.2104V5.69893C9.49891 5.34915 9.78246 5.0656 10.1322 5.0656Z" fill="#A20C00"/>
+                                <path d="M10.1322 15.1989C10.482 15.1989 10.7656 14.9153 10.7656 14.5655C10.7656 14.2158 10.482 13.9322 10.1322 13.9322C9.78246 13.9322 9.49891 14.2158 9.49891 14.5655C9.49891 14.9153 9.78246 15.1989 10.1322 15.1989Z" fill="#A20C00"/>
+                                <path fillRule="evenodd" clipRule="evenodd" d="M18.9989 10.1322C18.9989 5.23534 15.0291 1.26562 10.1322 1.26562C5.23534 1.26562 1.26562 5.23534 1.26562 10.1322C1.26562 15.0291 5.23534 18.9989 10.1322 18.9989C15.0291 18.9989 18.9989 15.0291 18.9989 10.1322ZM2.53228 10.1322C2.53228 5.9349 5.9349 2.53228 10.1322 2.53228C14.3296 2.53228 17.7322 5.9349 17.7322 10.1322C17.7322 14.3296 14.3296 17.7322 10.1322 17.7322C5.9349 17.7322 2.53228 14.3296 2.53228 10.1322Z" fill="#A20C00"/>
+                              </svg>
+                            </div>
+                          )}
+                          {item.hasRecIcon && (
+                            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[#FCE9F5]">
+                              <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[14px] h-[14px]">
+                                <path d="M8.42285 6.55273L8.32324 7.1543H13.6016L7.39648 14.2852L8.10938 9.98438L8.20898 9.38281H2.93164L9.13477 2.25293L8.42285 6.55273Z" stroke="#661648" strokeWidth="1.03333"/>
+                              </svg>
+                            </div>
+                          )}
                         </div>
                       </td>
                       <td className="px-4 py-3 text-sm text-[#2E2F32] underline cursor-pointer hover:no-underline">
