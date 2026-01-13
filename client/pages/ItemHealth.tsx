@@ -444,11 +444,11 @@ export default function ItemHealth() {
               <table className="w-full text-sm">
                 <thead className="bg-[#F8F8F8] sticky top-0 z-10">
                   <tr>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 whitespace-nowrap">Item Image</div>
-                    </th>
                     <th className="p-4 text-center font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-16">
                       {/* Alerts/Notifications column */}
+                    </th>
+                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
+                      <div className="flex items-center gap-1 whitespace-nowrap">Item Image</div>
                     </th>
                     <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
                       <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('itemId')}>
@@ -522,11 +522,6 @@ export default function ItemHealth() {
                   {itemHealthData.map((item, idx) => (
                     <tr key={idx} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
                       <td className="px-4 py-3">
-                        <div className="w-12 h-12 rounded flex items-center justify-center">
-                          {item.itemImage}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3">
                         <div className="flex items-center justify-center">
                           {item.hasAlertIcon && (
                             <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[#F8D2D3]">
@@ -544,6 +539,11 @@ export default function ItemHealth() {
                               </svg>
                             </div>
                           )}
+                        </div>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="w-12 h-12 rounded flex items-center justify-center">
+                          {item.itemImage}
                         </div>
                       </td>
                       <td className="px-4 py-3 text-sm text-[#2E2F32] underline cursor-pointer hover:no-underline">
