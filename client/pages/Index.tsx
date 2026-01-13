@@ -1987,6 +1987,18 @@ export default function Index() {
     setShowRecommendationPopover(null);
   };
 
+  const openPanelWithDetails = (campaign: Campaign) => {
+    setSelectedCampaign(campaign);
+    setShowPanel(true);
+    setPanelClosing(false);
+    setPanelOpening(true);
+    setShowRecommendationPopover(null);
+    // Use setTimeout to ensure panel opens before switching to detail view
+    setTimeout(() => {
+      setShowDetailView(true);
+    }, 50);
+  };
+
   const closePanel = () => {
     setPanelClosing(true);
     setTimeout(() => {
