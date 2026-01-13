@@ -353,7 +353,7 @@ export default function ItemHealth() {
             {/* Header Section */}
             <div className="flex items-center justify-between mb-4">
               <h1 className="text-[28px] font-bold text-[#2E2F32]">Item Health</h1>
-              <Button variant="secondary" className="px-4 h-10">
+              <Button variant="secondary" className="h-10 px-4 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] font-bold hover:bg-gray-50">
                 Export to CSV
               </Button>
             </div>
