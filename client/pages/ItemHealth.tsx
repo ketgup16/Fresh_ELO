@@ -532,13 +532,6 @@ export default function ItemHealth() {
                               </svg>
                             </div>
                           )}
-                          {item.hasRecIcon && (
-                            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[#FCE9F5]">
-                              <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[14px] h-[14px]">
-                                <path d="M8.42285 6.55273L8.32324 7.1543H13.6016L7.39648 14.2852L8.10938 9.98438L8.20898 9.38281H2.93164L9.13477 2.25293L8.42285 6.55273Z" stroke="#661648" strokeWidth="1.03333"/>
-                              </svg>
-                            </div>
-                          )}
                         </div>
                       </td>
                       <td className="px-4 py-3">
