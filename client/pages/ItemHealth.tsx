@@ -108,7 +108,6 @@ export default function ItemHealth() {
     },
     {
       itemImage: <PaperTowels />,
-      hasRecIcon: true,
       itemId: "1566660392",
       campaignIds: ["4001729", "4345285", "3920926", "3225492"],
       adGroupIds: ["4834896", "4706485", "3692926", "3387680"],
@@ -124,7 +123,6 @@ export default function ItemHealth() {
     },
     {
       itemImage: <LaundryDetergent />,
-      hasRecIcon: true,
       itemId: "3452723904",
       campaignIds: ["4001729", "3920926", "3225492"],
       adGroupIds: ["4834896", "4706485", "3692214"],
@@ -140,7 +138,6 @@ export default function ItemHealth() {
     },
     {
       itemImage: <Sponge />,
-      hasRecIcon: true,
       itemId: "1403322750",
       campaignIds: ["4345285", "4001729", "4706485"],
       adGroupIds: ["4834896", "4706485"],
