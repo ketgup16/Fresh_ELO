@@ -3352,28 +3352,23 @@ export default function Index() {
                                             { text: "Add captions to videos", percent: "5-8%", impact: "Potential increase in watch time" },
                                           ];
                                           const rec = recommendations[recIdx % recommendations.length];
-                                          const isSelected = selectedRecommendations[child.id] === recIdx;
+                                          const checkKey = `${child.id}-${recIdx}`;
+                                          const isChecked = checkedRecommendations.has(checkKey);
 
                                           return (
                                             <div key={recIdx}>
                                               <div className="flex items-start gap-3 py-2.5">
-                                                {/* Radio button - only show if multiple recommendations */}
-                                                {child.recommendations > 1 && (
-                                                  <button
-                                                    onClick={() => setSelectedRecommendations({...selectedRecommendations, [child.id]: recIdx})}
-                                                    className="mt-0.5"
-                                                  >
-                                                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                                                      isSelected
-                                                        ? 'border-[#2E2F32] bg-[#2E2F32]'
-                                                        : 'border-[#2E2F32] bg-white'
-                                                    }`}>
-                                                      {isSelected && (
-                                                        <div className="w-2 h-2 rounded-full bg-white"></div>
-                                                      )}
-                                                    </div>
-                                                  </button>
-                                                )}
+                                                {/* Checkbox */}
+                                                <input
+                                                  type="checkbox"
+                                                  checked={isChecked}
+                                                  onChange={(e) => {
+                                                    e.stopPropagation();
+                                                    toggleRecommendationCheck(child.id, recIdx);
+                                                  }}
+                                                  onClick={(e) => e.stopPropagation()}
+                                                  className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer"
+                                                />
 
                                                 {/* Content */}
                                                 <div className="flex-1">
