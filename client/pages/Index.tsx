@@ -2051,9 +2051,14 @@ export default function Index() {
       Paused: "bg-[#EFEBF2] text-[#452358]",
       Completed: "bg-[#E3E4E5] text-[#515357]"
     };
+
+    // Show "Archived" for all campaigns in archive tab
+    const displayStatus = selectedTab === "archive" ? "Archived" : status;
+    const styleClass = selectedTab === "archive" ? styles.Completed : styles[status];
+
     return (
-      <span className={`inline-flex px-2 py-1 rounded-sm text-xs font-normal ${styles[status]}`}>
-        {status}
+      <span className={`inline-flex px-2 py-1 rounded-sm text-xs font-normal ${styleClass}`}>
+        {displayStatus}
       </span>
     );
   };
