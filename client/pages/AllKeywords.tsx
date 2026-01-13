@@ -938,17 +938,65 @@ export default function AllKeywords() {
 
             {/* Search Bar */}
             <div className="flex items-center gap-4 mt-4">
-              <div className="flex-1 flex items-center border border-[#909196] rounded overflow-hidden bg-white">
-                <div className="flex items-center px-3 border-r border-[#909196]">
-                  <span className="text-sm text-[#2E2F32]">Keyword</span>
-                  <ChevronDown className="w-4 h-4 ml-3" />
+              <div className="flex items-center gap-2 flex-1 px-3 h-10 border border-[rgba(46,47,50,1)] rounded-full bg-white relative">
+                <Search className="w-4 h-4 text-[#2E2F32]" />
+                <span className="text-sm text-[#515357]">Search by</span>
+                <div className="relative">
+                  <button
+                    className="flex items-center gap-1 text-sm font-bold text-[#2E2F32] hover:bg-gray-100 px-1 rounded"
+                    onClick={() => setShowSearchScopeDropdown(!showSearchScopeDropdown)}
+                  >
+                    {searchScope}
+                    {showSearchScopeDropdown ? (
+                      <ChevronUp className="w-4 h-4" />
+                    ) : (
+                      <ChevronDown className="w-4 h-4" />
+                    )}
+                  </button>
+
+                  {/* Search Scope Dropdown */}
+                  {showSearchScopeDropdown && (
+                    <div
+                      ref={searchScopeDropdownRef}
+                      className="absolute left-0 top-full mt-1 w-[160px] bg-white rounded border border-[#D5D6D8] shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 py-1"
+                    >
+                      <button
+                        className="w-full text-left px-3 py-2 text-sm text-[#2E2F32] hover:bg-gray-100 transition-colors"
+                        onClick={() => {
+                          setSearchScope('Keyword');
+                          setShowSearchScopeDropdown(false);
+                        }}
+                      >
+                        Keyword
+                      </button>
+                      <button
+                        className="w-full text-left px-3 py-2 text-sm text-[#2E2F32] hover:bg-gray-100 transition-colors"
+                        onClick={() => {
+                          setSearchScope('ID');
+                          setShowSearchScopeDropdown(false);
+                        }}
+                      >
+                        ID
+                      </button>
+                    </div>
+                  )}
                 </div>
                 <input
                   type="text"
-                  placeholder="Search"
-                  className="flex-1 px-3 h-10 text-sm outline-none"
-                  defaultValue=""
+                  placeholder=""
+                  className="flex-1 text-sm border-none outline-none bg-transparent"
+                  value={searchQuery || ''}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="p-0.5 hover:bg-gray-100 rounded-full transition-colors"
+                    aria-label="Clear search"
+                  >
+                    <X className="w-4 h-4 text-[#2E2F32]" />
+                  </button>
+                )}
               </div>
               <button className="flex items-center gap-2 px-4 h-10 border border-[#74767C] rounded bg-white">
                 <span className="text-sm">View draft keywords</span>
