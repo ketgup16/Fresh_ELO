@@ -1,0 +1,129 @@
+import { useState } from "react";
+import { Bell, HelpCircle, User, ChevronDown } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+
+export default function KeywordsPlanner() {
+  const navigate = useNavigate();
+  const [showMartyPanel] = useState(true);
+  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
+  const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
+
+  const mediaSolutions = [
+    'Sponsored Search',
+    'Onsite',
+    'Offsite',
+    'In-store',
+  ];
+
+  return (
+    <div className="flex h-screen bg-white overflow-hidden">
+      <SponsoredSearchSidebar />
+
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Header */}
+        <div className="h-14 bg-[#0071DC] flex items-center justify-between px-6 flex-shrink-0">
+          {/* Left section */}
+          <div className="flex items-center gap-6">
+            {/* Walmart logo */}
+            <svg width="116" height="26" viewBox="0 0 116 26" fill="none" className="flex-shrink-0">
+              <path d="M12.9999 0.333344L16.4166 10.8333L27.6666 10.8333L18.6249 17.5L22.0416 28L12.9999 21.3333L3.95825 28L7.37492 17.5L-1.66675 10.8333L9.58325 10.8333L12.9999 0.333344Z" fill="#FFC220"/>
+              <text x="32" y="20" fill="white" style={{ fontFamily: 'Bogle, Arial, sans-serif', fontSize: '20px', fontWeight: 'bold' }}>Walmart</text>
+            </svg>
+
+            {/* Media Solutions Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setMediaSolutionsOpen(!mediaSolutionsOpen)}
+                className="flex items-center gap-2 text-white hover:bg-white/10 px-3 py-1.5 rounded transition-colors"
+              >
+                <span className="font-medium">{selectedMediaSolution}</span>
+                <ChevronDown className="w-4 h-4" />
+              </button>
+
+              {mediaSolutionsOpen && (
+                <div className="absolute top-full left-0 mt-1 bg-white rounded shadow-lg py-1 min-w-[200px] z-50">
+                  {mediaSolutions.map((solution) => (
+                    <button
+                      key={solution}
+                      onClick={() => {
+                        setSelectedMediaSolution(solution);
+                        setMediaSolutionsOpen(false);
+                      }}
+                      className="w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-900"
+                    >
+                      {solution}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Right section */}
+          <div className="flex items-center gap-4">
+            <button className="text-white hover:bg-white/10 p-2 rounded transition-colors">
+              <Bell className="w-5 h-5" />
+            </button>
+            <button className="text-white hover:bg-white/10 p-2 rounded transition-colors">
+              <HelpCircle className="w-5 h-5" />
+            </button>
+            <button className="text-white hover:bg-white/10 p-2 rounded transition-colors">
+              <User className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 overflow-auto bg-gray-50">
+          <div className="max-w-7xl mx-auto p-8">
+            <div className="mb-6">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Keywords Planner</h1>
+              <p className="text-gray-600">
+                Plan and discover new keywords for your campaigns
+              </p>
+            </div>
+
+            {/* Placeholder content */}
+            <div className="bg-white rounded-lg shadow p-8 text-center">
+              <div className="max-w-md mx-auto">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg 
+                    className="w-8 h-8 text-blue-600" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" 
+                    />
+                  </svg>
+                </div>
+                <h2 className="text-xl font-semibold text-gray-900 mb-2">
+                  Keywords Planner
+                </h2>
+                <p className="text-gray-600 mb-6">
+                  This feature is coming soon. Use the Keywords Planner to discover new keyword opportunities and plan your keyword strategy.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Marty Floating Panel */}
+      {showMartyPanel && (
+        <MartyFloatingPanel
+          isMinimized={isMartyMinimized}
+          onToggleMinimize={() => setIsMartyMinimized(!isMartyMinimized)}
+        />
+      )}
+    </div>
+  );
+}
