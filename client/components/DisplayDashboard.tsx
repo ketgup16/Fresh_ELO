@@ -530,15 +530,16 @@ export default function DisplayDashboard() {
             <div className="px-6 pb-6">
               {/* Filter */}
               <div className="mb-6 relative">
-                <button 
+                <Button
                   onClick={() => setBuyerTypeOpen(!buyerTypeOpen)}
-                  className="h-8 px-3 pr-2 border border-[#909196] rounded-full bg-white flex items-center gap-2 text-sm text-[#2E2F32] hover:bg-gray-50 transition-colors"
+                  variant="outline"
+                  className="h-8 px-3 pr-2 border-[#909196] rounded-full bg-white gap-2 text-sm text-[#2E2F32] hover:bg-gray-50"
                 >
                   Type: {buyerType}
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform ${buyerTypeOpen ? 'rotate-180' : ''}`}>
                     <path d="M8.37683 11.334L14 5.19175L13.2463 4.5L8 10.2307L2.75366 4.5L2 5.19175L7.62317 11.334C7.71999 11.4398 7.85671 11.5 8 11.5C8.14329 11.5 8.28 11.4398 8.37683 11.334Z" fill="#2E2F32"/>
                   </svg>
-                </button>
+                </Button>
               </div>
 
               {/* Donut Chart and Legend */}
