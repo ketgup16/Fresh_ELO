@@ -13,42 +13,42 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
     {
       id: "1",
       name: "H&H_FY25_Always On_North Atlantic_Blackstone_Display_In-Market_50839",
-      adGroups: 2,
-      recommendations: 4,
-      impact: "14k-16k",
-      description: "Potential increase in reach"
+      adGroups: 3,
+      recommendations: 5,
+      impact: "850k-1.2M",
+      description: "Potential increase in impressions"
     },
     {
       id: "2",
-      name: "Campaign name goes here",
-      adGroups: 2,
-      recommendations: 4,
-      impact: "14k-16k",
-      description: "Potential increase in reach"
+      name: "Electronics_Q1_Spring_Sale_Display_Retargeting_Desktop_Mobile",
+      adGroups: 4,
+      recommendations: 6,
+      impact: "0.5%-0.8%",
+      description: "Potential increase in CTR"
     },
     {
       id: "3",
-      name: "Campaign name goes here",
+      name: "Grocery_Essentials_FY25_Evergreen_Display_Contextual_Targeting",
       adGroups: 2,
-      recommendations: 4,
-      impact: "14k-16k",
-      description: "Potential increase in reach"
+      recommendations: 3,
+      impact: "425k-580k",
+      description: "Potential increase in impressions"
     },
     {
       id: "4",
-      name: "Campaign name goes here",
-      adGroups: 2,
-      recommendations: 4,
-      impact: "14k-16k",
-      description: "Potential increase in reach"
+      name: "Fashion_Spring_Collection_Display_Audience_Expansion_Video",
+      adGroups: 5,
+      recommendations: 7,
+      impact: "1.2%-1.5%",
+      description: "Potential increase in engagement rate"
     },
     {
       id: "5",
-      name: "Campaign name goes here",
-      adGroups: 2,
+      name: "Home_Garden_Seasonal_Display_Placement_Optimization",
+      adGroups: 3,
       recommendations: 4,
-      impact: "14k-16k",
-      description: "Potential increase in reach"
+      impact: "320k-450k",
+      description: "Potential increase in impressions"
     }
   ];
 
