@@ -23,8 +23,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
       name: "Electronics_Q1_Spring_Sale_Display_Retargeting_Desktop_Mobile",
       adGroups: 4,
       recommendations: 6,
-      impact: "0.5%-0.8%",
-      description: "Potential increase in CTR"
+      impact: "620k-890k",
+      description: "Potential increase in impressions"
     },
     {
       id: "3",
@@ -39,8 +39,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
       name: "Fashion_Spring_Collection_Display_Audience_Expansion_Video",
       adGroups: 5,
       recommendations: 7,
-      impact: "1.2%-1.5%",
-      description: "Potential increase in engagement rate"
+      impact: "1.1M-1.5M",
+      description: "Potential increase in impressions"
     },
     {
       id: "5",
