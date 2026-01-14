@@ -2369,242 +2369,68 @@ export default function Index() {
 
       <div className="flex h-[calc(100vh-54px)]">
         {/* Sidebar */}
-        <aside className="border-r border-[#E3E4E5] bg-white flex flex-col justify-between py-1.5 h-auto self-stretch overflow-hidden relative" style={{ width: sidebarExpanded ? `${sidebarWidth}px` : '64px', transition: isResizingSidebar ? 'none' : 'width 300ms ease-in-out' }}>
-          <div className="flex flex-col gap-0">
+        <aside className="border-r border-[#E3E4E5] bg-white flex flex-col justify-between p-1.5 h-auto self-stretch overflow-hidden" style={{ width: '64px' }}>
+          <div className="flex flex-col gap-1.5">
             {/* Dashboard */}
             <button
               onClick={() => setActiveMenuItem('dashboard')}
-              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'dashboard' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+              className={`flex items-center justify-center w-10 h-10 rounded ${activeMenuItem === 'dashboard' ? 'bg-[#E6F1FC]' : 'hover:bg-gray-100'} transition-colors`}
               aria-label="Dashboard"
+              title="Dashboard"
             >
-              <Home className={`w-4 h-4 ${activeMenuItem === 'dashboard' ? 'text-[#0053E2] fill-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem === 'dashboard' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Dashboard</span>}
+              <Home className={`w-4 h-4 ${activeMenuItem === 'dashboard' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
             </button>
-
-            {/* Campaigns group */}
-            <div className="flex flex-col gap-0">
-              <button
-                onClick={() => {
-                  if (sidebarExpanded) {
-                    setExpandedMenuGroups(prev =>
-                      prev.includes('campaigns')
-                        ? prev.filter(g => g !== 'campaigns')
-                        : [...prev, 'campaigns']
-                    );
-                  }
-                  setActiveMenuItem('campaigns');
-                }}
-                className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem.startsWith('campaigns-') || activeMenuItem === 'campaigns' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
-                aria-label="Campaigns"
-              >
-                <Megaphone className={`w-4 h-4 ${activeMenuItem.startsWith('campaigns-') || activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-                {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem.startsWith('campaigns-') || activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Campaigns</span>}
-              </button>
-              {sidebarExpanded && expandedMenuGroups.includes('campaigns') && (
-                <>
-                  <button
-                    onClick={() => setActiveMenuItem('campaigns-active')}
-                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
-                  >
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
-                      <circle cx="4" cy="4" r={activeMenuItem === 'campaigns-active' ? '3' : '2.5'} fill={activeMenuItem === 'campaigns-active' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaigns-active' ? 'none' : '#2E2F32'} />
-                    </svg>
-                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'campaigns-active' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Active</span>
-                  </button>
-                  <button
-                    onClick={() => setActiveMenuItem('campaigns-draft')}
-                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
-                  >
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
-                      <circle cx="4" cy="4" r={activeMenuItem === 'campaigns-draft' ? '3' : '2.5'} fill={activeMenuItem === 'campaigns-draft' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaigns-draft' ? 'none' : '#2E2F32'} />
-                    </svg>
-                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'campaigns-draft' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Draft</span>
-                  </button>
-                  <button
-                    onClick={() => setActiveMenuItem('campaigns-archived')}
-                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
-                  >
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
-                      <circle cx="4" cy="4" r={activeMenuItem === 'campaigns-archived' ? '3' : '2.5'} fill={activeMenuItem === 'campaigns-archived' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'campaigns-archived' ? 'none' : '#2E2F32'} />
-                    </svg>
-                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'campaigns-archived' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Archived</span>
-                  </button>
-                </>
-              )}
-            </div>
 
             {/* Performance */}
             <button
               onClick={() => setActiveMenuItem('performance')}
-              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'performance' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
+              className={`flex items-center justify-center w-10 h-10 rounded ${activeMenuItem === 'performance' ? 'bg-[#E6F1FC]' : 'hover:bg-gray-100'} transition-colors`}
               aria-label="Performance"
+              title="Performance"
             >
-              <BarChart3 className={`w-4 h-4 ${activeMenuItem === 'performance' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem === 'performance' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Performance</span>}
+              <Reports className={`${activeMenuItem === 'performance' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} size={16} />
             </button>
 
-            {/* Reports group */}
-            <div className="flex flex-col gap-0">
-              <button
-                onClick={() => {
-                  if (sidebarExpanded) {
-                    setExpandedMenuGroups(prev =>
-                      prev.includes('reports')
-                        ? prev.filter(g => g !== 'reports')
-                        : [...prev, 'reports']
-                    );
-                  }
-                  setActiveMenuItem('reports');
-                }}
-                className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
-                aria-label="Reports"
-              >
-                <BarChart3 className={`w-4 h-4 ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-                {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem.startsWith('reports-') || activeMenuItem === 'reports' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Reports</span>}
-              </button>
-              {sidebarExpanded && expandedMenuGroups.includes('reports') && (
-                <>
-                  <button
-                    onClick={() => setActiveMenuItem('reports-advertiser')}
-                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
-                  >
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
-                      <circle cx="4" cy="4" r={activeMenuItem === 'reports-advertiser' ? '3' : '2.5'} fill={activeMenuItem === 'reports-advertiser' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-advertiser' ? 'none' : '#2E2F32'} />
-                    </svg>
-                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'reports-advertiser' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Advertiser</span>
-                  </button>
-                  <button
-                    onClick={() => setActiveMenuItem('reports-item-health')}
-                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
-                  >
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
-                      <circle cx="4" cy="4" r={activeMenuItem === 'reports-item-health' ? '3' : '2.5'} fill={activeMenuItem === 'reports-item-health' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-item-health' ? 'none' : '#2E2F32'} />
-                    </svg>
-                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'reports-item-health' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Item health</span>
-                  </button>
-                  <button
-                    onClick={() => setActiveMenuItem('reports-on-demand')}
-                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
-                  >
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
-                      <circle cx="4" cy="4" r={activeMenuItem === 'reports-on-demand' ? '3' : '2.5'} fill={activeMenuItem === 'reports-on-demand' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-on-demand' ? 'none' : '#2E2F32'} />
-                    </svg>
-                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'reports-on-demand' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>On-demand</span>
-                  </button>
-                  <button
-                    onClick={() => setActiveMenuItem('reports-custom')}
-                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
-                  >
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
-                      <circle cx="4" cy="4" r={activeMenuItem === 'reports-custom' ? '3' : '2.5'} fill={activeMenuItem === 'reports-custom' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'reports-custom' ? 'none' : '#2E2F32'} />
-                    </svg>
-                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'reports-custom' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Custom</span>
-                  </button>
-                </>
-              )}
-            </div>
-
-            {/* Tools group */}
-            <div className="flex flex-col gap-0">
-              <button
-                onClick={() => {
-                  if (sidebarExpanded) {
-                    setExpandedMenuGroups(prev =>
-                      prev.includes('tools')
-                        ? prev.filter(g => g !== 'tools')
-                        : [...prev, 'tools']
-                    );
-                  }
-                  setActiveMenuItem('tools');
-                }}
-                className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
-                aria-label="Tools"
-              >
-                <Briefcase className={`w-4 h-4 ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-                {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem.startsWith('tools-') || activeMenuItem === 'tools' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Tools</span>}
-              </button>
-              {sidebarExpanded && expandedMenuGroups.includes('tools') && (
-                <>
-                  <button
-                    onClick={() => setActiveMenuItem('tools-keywords-planner')}
-                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
-                  >
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
-                      <circle cx="4" cy="4" r={activeMenuItem === 'tools-keywords-planner' ? '3' : '2.5'} fill={activeMenuItem === 'tools-keywords-planner' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'tools-keywords-planner' ? 'none' : '#2E2F32'} />
-                    </svg>
-                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'tools-keywords-planner' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Keywords planner</span>
-                  </button>
-                  <button
-                    onClick={() => setActiveMenuItem('tools-rules')}
-                    className="flex items-center gap-2 pl-3 pr-3 h-7 hover:bg-gray-100 transition-colors"
-                  >
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="flex-shrink-0">
-                      <circle cx="4" cy="4" r={activeMenuItem === 'tools-rules' ? '3' : '2.5'} fill={activeMenuItem === 'tools-rules' ? '#0053E2' : 'none'} stroke={activeMenuItem === 'tools-rules' ? 'none' : '#2E2F32'} />
-                    </svg>
-                    <span className={`text-sm flex-1 truncate text-left ${activeMenuItem === 'tools-rules' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Rules</span>
-                  </button>
-                </>
-              )}
-            </div>
-
-            {/* Video manager */}
+            {/* Campaigns */}
             <button
-              onClick={() => setActiveMenuItem('video-manager')}
-              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'video-manager' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Video manager"
+              onClick={() => setActiveMenuItem('campaigns')}
+              className={`flex items-center justify-center w-10 h-10 rounded ${activeMenuItem === 'campaigns' ? 'bg-[#E6F1FC]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Campaigns"
+              title="Campaigns"
             >
-              <Video className={`w-4 h-4 ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem === 'video-manager' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Video manager</span>}
+              <Megaphone className={`w-4 h-4 ${activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
             </button>
 
-            {/* Bulk operations */}
+            {/* Asset Library */}
             <button
-              onClick={() => setActiveMenuItem('bulk-operations')}
-              className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded ${activeMenuItem === 'bulk-operations' ? 'bg-[#E9F1FE]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Bulk operations"
+              onClick={() => setActiveMenuItem('asset-library')}
+              className={`flex items-center justify-center w-10 h-10 rounded ${activeMenuItem === 'asset-library' ? 'bg-[#E6F1FC]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Asset Library"
+              title="Asset Library"
             >
-              <CloudUpload className={`w-4 h-4 ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-              {sidebarExpanded && <span className={`text-sm truncate ${activeMenuItem === 'bulk-operations' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>Bulk operations</span>}
+              <Users className={`w-4 h-4 ${activeMenuItem === 'asset-library' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
+            </button>
+
+            {/* Creative Hub */}
+            <button
+              onClick={() => setActiveMenuItem('creative-hub')}
+              className={`flex items-center justify-center w-10 h-10 rounded ${activeMenuItem === 'creative-hub' ? 'bg-[#E6F1FC]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Creative Hub"
+              title="Creative Hub"
+            >
+              <ImageIcon className={`${activeMenuItem === 'creative-hub' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} size={16} />
+            </button>
+
+            {/* Measurement Console */}
+            <button
+              onClick={() => setActiveMenuItem('measurement-console')}
+              className={`flex items-center justify-center w-10 h-10 rounded ${activeMenuItem === 'measurement-console' ? 'bg-[#E6F1FC]' : 'hover:bg-gray-100'} transition-colors`}
+              aria-label="Measurement Console"
+              title="Measurement Console"
+            >
+              <MeasurementConsole className={`${activeMenuItem === 'measurement-console' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} size={16} />
             </button>
           </div>
-
-          {/* Toggle button */}
-          <button
-            onClick={() => {
-              if (sidebarExpanded) {
-                setSidebarExpanded(false);
-              } else {
-                setSidebarExpanded(true);
-                if (sidebarWidth < 220) {
-                  setSidebarWidth(220);
-                }
-              }
-            }}
-            className={`flex items-center ${sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'} h-9 rounded hover:bg-gray-100 transition-colors`}
-            aria-label={sidebarExpanded ? 'Collapse sidebar' : 'Expand sidebar'}
-            aria-expanded={sidebarExpanded}
-          >
-            {sidebarExpanded ? (
-              <ArrowLeft className="w-4 h-4 text-[#2E2F32]" />
-            ) : (
-              <ArrowRight className="w-4 h-4 text-[#2E2F32]" />
-            )}
-            {sidebarExpanded && <span className="text-sm truncate text-[#2E2F32]">Lock</span>}
-          </button>
-
-          {/* Resize handle */}
-          {sidebarExpanded && (
-            <div
-              className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] transition-colors bg-transparent"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                setIsResizingSidebar(true);
-                setSidebarResizeStartX(e.clientX);
-                setSidebarResizeStartWidth(sidebarWidth);
-              }}
-              style={{ zIndex: 10 }}
-            />
-          )}
         </aside>
 
         {/* Main Content */}
