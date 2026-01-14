@@ -103,12 +103,13 @@ export default function DisplayDashboard() {
                 </div>
               </div>
               <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end">
-                <button
+                <Button
                   onClick={() => setRecommendationsPanelOpen(true)}
-                  className="h-8 px-4 text-sm font-bold text-[#2E2F32] border border-[#2E2F32] rounded-full hover:bg-gray-50 transition-colors"
+                  variant="outline"
+                  className="h-8 px-4 text-sm font-bold text-[#2E2F32] border-[#2E2F32] rounded-full hover:bg-gray-50"
                 >
                   View recommendations
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -151,12 +152,13 @@ export default function DisplayDashboard() {
                 </div>
               </div>
               <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end">
-                <button
+                <Button
                   onClick={() => setRecommendationsPanelOpen(true)}
-                  className="h-8 px-4 text-sm font-bold text-[#2E2F32] border border-[#2E2F32] rounded-full hover:bg-gray-50 transition-colors"
+                  variant="outline"
+                  className="h-8 px-4 text-sm font-bold text-[#2E2F32] border-[#2E2F32] rounded-full hover:bg-gray-50"
                 >
                   View recommendations
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -198,12 +200,13 @@ export default function DisplayDashboard() {
                 </div>
               </div>
               <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end">
-                <button
+                <Button
                   onClick={() => setRecommendationsPanelOpen(true)}
-                  className="h-8 px-4 text-sm font-bold text-[#2E2F32] border border-[#2E2F32] rounded-full hover:bg-gray-50 transition-colors"
+                  variant="outline"
+                  className="h-8 px-4 text-sm font-bold text-[#2E2F32] border-[#2E2F32] rounded-full hover:bg-gray-50"
                 >
                   View recommendations
-                </button>
+                </Button>
               </div>
             </div>
           </div>
