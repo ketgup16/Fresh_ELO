@@ -115,7 +115,7 @@ export default function DisplayDashboard() {
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
               <div className="px-6 pt-3 pb-4">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-base font-bold text-[#2E2F32]">Increase your engagement</h3>
+                  <h3 className="text-base font-bold text-[#2E2F32]">Improve creative performance</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#EFEBF2] text-xs text-[#452358]">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path fillRule="evenodd" clipRule="evenodd" d="M10.1071 3.21526L13.3214 0.000976562V2.67955H16L12.7857 5.89384H10.8606L8.33418 8.42422C8.12017 8.6285 7.78106 8.62062 7.57677 8.4066C7.39518 8.21636 7.38124 7.92729 7.53069 7.72192L7.59439 7.64919L10.1071 5.13251V3.21526ZM11.1786 3.68127L12.25 2.59412V3.75101H13.3927L12.3191 4.82244H11.1786V3.68127Z" fill="#452358"/>
@@ -127,25 +127,25 @@ export default function DisplayDashboard() {
                 </div>
                 <div className="mb-4">
                   <div className="flex items-end gap-1 mb-2 flex-wrap">
-                    <span className="text-base font-bold text-[#2A8703]">15k-21k</span>
-                    <span className="text-base font-bold text-[#2E2F32]">Potential increase in clicks</span>
+                    <span className="text-base font-bold text-[#2A8703]">0.8%-1.2%</span>
+                    <span className="text-base font-bold text-[#2E2F32]">Potential increase in CTR</span>
                   </div>
                   <p className="text-sm text-[#2E2F32]">
-                    You could see an increase in clicks by applying recommendations to campaigns and ad groups.
+                    Test new ad formats and refresh creative assets to improve click-through rates and engagement.
                   </p>
                 </div>
                 <div className="flex gap-8">
                   <div className="flex-1">
                     <div className="text-xs text-[#515357] mb-1">Campaigns</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">5</div>
+                    <div className="text-sm font-bold text-[#2E2F32]">4</div>
                   </div>
                   <div className="flex-1">
                     <div className="text-xs text-[#515357] mb-1">Ad groups</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">8</div>
+                    <div className="text-sm font-bold text-[#2E2F32]">11</div>
                   </div>
                   <div className="flex-1">
                     <div className="text-xs text-[#515357] mb-1">Recommendations</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">12</div>
+                    <div className="text-sm font-bold text-[#2E2F32]">14</div>
                   </div>
                 </div>
               </div>
