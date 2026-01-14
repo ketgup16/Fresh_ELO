@@ -67,7 +67,7 @@ export default function DisplayDashboard() {
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
               <div className="px-6 py-4">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-base font-bold text-[#2E2F32]">Expand audience targeting</h3>
+                  <h3 className="text-sm font-bold text-[#2E2F32]">Maximize your reach</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#E6F1FC] text-xs text-[#002E99]">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M8 4.5C5.43756 4.5 3.74541 6.3442 2.82186 7.77447L2 7.22553C2.97848 5.71021 4.92776 3.5 8 3.5C11.0722 3.5 13.0215 5.71021 14 7.22553L13.1781 7.77447C12.2546 6.3442 10.5624 4.5 8 4.5Z" fill="#002E99"/>
@@ -83,7 +83,7 @@ export default function DisplayDashboard() {
                     <span className="text-base font-bold text-[#2E2F32]">Potential increase in impressions</span>
                   </div>
                   <p className="text-sm text-[#2E2F32]">
-                    Expand your reach by adding new audience segments and increasing bids on high-performing placements.
+                    You could see an increase in impressions by applying recommendations to campaigns and ad groups.
                   </p>
                 </div>
                 <div className="flex gap-8">
@@ -115,7 +115,7 @@ export default function DisplayDashboard() {
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
               <div className="px-6 py-4">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-base font-bold text-[#2E2F32]">Improve creative performance</h3>
+                  <h3 className="text-base font-bold text-[#2E2F32]">Increase your engagement</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#EFEBF2] text-xs text-[#452358]">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path fillRule="evenodd" clipRule="evenodd" d="M10.1071 3.21526L13.3214 0.000976562V2.67955H16L12.7857 5.89384H10.8606L8.33418 8.42422C8.12017 8.6285 7.78106 8.62062 7.57677 8.4066C7.39518 8.21636 7.38124 7.92729 7.53069 7.72192L7.59439 7.64919L10.1071 5.13251V3.21526ZM11.1786 3.68127L12.25 2.59412V3.75101H13.3927L12.3191 4.82244H11.1786V3.68127Z" fill="#452358"/>
@@ -128,10 +128,10 @@ export default function DisplayDashboard() {
                 <div className="mb-4">
                   <div className="flex items-end gap-1 mb-2 flex-wrap">
                     <span className="text-base font-bold text-[#2A8703]">0.8%-1.2%</span>
-                    <span className="text-base font-bold text-[#2E2F32]">Potential increase in CTR</span>
+                    <span className="text-base font-bold text-[#2E2F32]">Potential increase in clicks</span>
                   </div>
                   <p className="text-sm text-[#2E2F32]">
-                    Test new ad formats and refresh creative assets to improve click-through rates and engagement.
+                    You could see an increase in clicks by applying recommendations to campaigns and ad groups.
                   </p>
                 </div>
                 <div className="flex gap-8">
@@ -163,7 +163,7 @@ export default function DisplayDashboard() {
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
               <div className="px-6 py-4">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-base font-bold text-[#2E2F32]">Optimize for conversions</h3>
+                  <h3 className="text-base font-bold text-[#2E2F32]">Drive more conversions</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#FEF0E6] text-xs text-[#AF2F00]">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M8.8 6.1C8.89634 6.1657 8.97687 6.25162 9.0357 6.35197C9.09453 6.45233 9.13017 6.56457 9.14 6.68048H10.14C10.1411 6.3697 10.0468 6.06606 9.87 5.81049C9.67968 5.552 9.42438 5.34846 9.13 5.22049C8.9326 5.11511 8.72009 5.0409 8.5 5.00049V3.50049H7.5V5.05049C7.31399 5.08593 7.13277 5.14298 6.96 5.22049C6.65714 5.34819 6.39451 5.55554 6.2 5.8205C6.00835 6.08059 5.90973 6.39757 5.92 6.72049C5.91327 6.90675 5.94637 7.09229 6.01707 7.26474C6.08777 7.43719 6.19446 7.59256 6.33 7.72049C6.65899 7.99681 7.05023 8.18899 7.47 8.28049L8.13 8.45049C8.31835 8.49391 8.50243 8.55416 8.68 8.63049C8.81839 8.68361 8.9419 8.76938 9.04 8.88049C9.1342 8.9842 9.1844 9.12045 9.18 9.26048C9.1826 9.41707 9.12944 9.56949 9.03 9.69049C8.92023 9.82046 8.77911 9.92027 8.62 9.98048C8.42912 10.056 8.22527 10.0934 8.02 10.0905C7.81592 10.0898 7.61329 10.056 7.42 9.99049C7.25139 9.92772 7.10284 9.82061 6.99 9.68048C6.8769 9.53724 6.81057 9.36269 6.8 9.18048H5.8C5.79464 9.53675 5.89941 9.886 6.1 10.1805C6.29132 10.4613 6.56329 10.6775 6.88 10.8005C7.08792 10.8865 7.30661 10.9437 7.53 10.9705V12.5205H8.53V11.0005C8.77392 10.9683 9.0126 10.9044 9.24 10.8105C9.54656 10.6842 9.81036 10.4724 10 10.2005C10.1768 9.93421 10.2676 9.62004 10.26 9.30049C10.2643 9.07591 10.2164 8.85338 10.12 8.65048C10.0284 8.45998 9.89509 8.29253 9.73 8.16049C9.56723 8.02712 9.38515 7.91922 9.19 7.84048C8.98352 7.75112 8.76929 7.68084 8.55 7.63049L8 7.45049L7.64 7.35049C7.52949 7.30523 7.42252 7.25174 7.32 7.19049C7.22954 7.13309 7.15137 7.05831 7.09 6.97049C7.03668 6.87231 7.00916 6.7622 7.01 6.65048C7.00691 6.50936 7.05285 6.37153 7.14 6.26048C7.23391 6.14013 7.35817 6.04695 7.5 5.99049C7.67871 5.92222 7.86871 5.88828 8.06 5.89049C8.32245 5.88231 8.58098 5.95568 8.8 6.10049Z" fill="#AF2F00"/>
@@ -175,10 +175,10 @@ export default function DisplayDashboard() {
                 <div className="mb-4">
                   <div className="flex items-end gap-1 mb-2 flex-wrap">
                     <span className="text-base font-bold text-[#2A8703]">15%-18%</span>
-                    <span className="text-base font-bold text-[#2E2F32]">Potential increase in conversion rate</span>
+                    <span className="text-base font-bold text-[#2E2F32]">Potential increase in transactions</span>
                   </div>
                   <p className="text-sm text-[#2E2F32]">
-                    Implement retargeting strategies and optimize bidding to drive more conversions from qualified traffic.
+                    You could see an increase in impressions by applying recommendations to campaigns and ad groups.
                   </p>
                 </div>
                 <div className="flex gap-8">
