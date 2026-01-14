@@ -65,7 +65,7 @@ export default function DisplayDashboard() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Card 1 - Maximize your reach */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
-              <div className="px-6 pt-3 pb-4">
+              <div className="px-6 py-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-base font-bold text-[#2E2F32]">Expand audience targeting</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#E6F1FC] text-xs text-[#002E99]">
@@ -113,7 +113,7 @@ export default function DisplayDashboard() {
 
             {/* Card 2 - Increase your engagement */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
-              <div className="px-6 pt-3 pb-4">
+              <div className="px-6 py-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-base font-bold text-[#2E2F32]">Improve creative performance</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#EFEBF2] text-xs text-[#452358]">
@@ -161,7 +161,7 @@ export default function DisplayDashboard() {
 
             {/* Card 3 - Drive more conversions */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
-              <div className="px-6 pt-3 pb-4">
+              <div className="px-6 py-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-base font-bold text-[#2E2F32]">Optimize for conversions</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#FEF0E6] text-xs text-[#AF2F00]">
