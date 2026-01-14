@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronRight, ChevronDown, ChevronUp, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X, Home, Megaphone, Gauge, BarChart3, Briefcase, Video, CloudUpload, ArrowRight, ArrowLeft } from "lucide-react";
+import { ChevronRight, ChevronDown, ChevronUp, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X, Home, Megaphone, Users } from "lucide-react";
+import Reports from "../components/icons/Reports";
+import MeasurementConsole from "../components/icons/MeasurementConsole";
+import ImageIcon from "../components/icons/ImageIcon";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import DisplayDashboard from "../components/DisplayDashboard";
 import { useLocalStorage } from "../hooks/useLocalStorage";
@@ -1652,9 +1655,8 @@ export default function Index() {
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
 
   // Sidebar state
-  const [sidebarExpanded, setSidebarExpanded] = useState(true);
-  const [activeMenuItem, setActiveMenuItem] = useState('campaigns');
-  const [expandedMenuGroups, setExpandedMenuGroups] = useState<string[]>([]);
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
+  const [activeMenuItem, setActiveMenuItem] = useState('dashboard');
   const [sidebarWidth, setSidebarWidth] = useState(220);
   const [isResizingSidebar, setIsResizingSidebar] = useState(false);
   const [sidebarResizeStartX, setSidebarResizeStartX] = useState(0);
