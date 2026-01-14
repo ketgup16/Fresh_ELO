@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import RecommendationsPanel from './RecommendationsPanel';
+import { Button } from '@/components/ui/button';
 
 export default function DisplayDashboard() {
   const [activeRecommendationTab, setActiveRecommendationTab] = useState('active');
