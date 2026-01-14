@@ -2981,7 +2981,7 @@ export default function Index() {
                                         const isChecked = checkedRecommendations.has(checkKey);
 
                                         return (
-                                          <div key={recIdx}>
+                                          <div key={checkKey}>
                                             <div className="flex items-start gap-3 py-2.5">
                                               {/* Checkbox */}
                                               <input
@@ -3162,7 +3162,7 @@ export default function Index() {
                                           const isChecked = checkedRecommendations.has(checkKey);
 
                                           return (
-                                            <div key={recIdx}>
+                                            <div key={checkKey}>
                                               <div className="flex items-start gap-3 py-2.5">
                                                 {/* Checkbox */}
                                                 <input
