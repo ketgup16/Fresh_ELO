@@ -1,5 +1,8 @@
 import { X, Eye } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroupItem } from "@/components/ui/radio-group";
 
 interface RecommendationsPanelProps {
   isOpen: boolean;
@@ -136,13 +139,15 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               Recommendations
             </h2>
           </div>
-          <button
+          <Button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-gray-100 transition-colors border border-transparent"
+            variant="ghost"
+            size="icon"
+            className="rounded-full h-10 w-10"
             aria-label="Close"
           >
-            <X className="w-6 h-6 text-[#2E2F32]" />
-          </button>
+            <X className="w-6 h-6" />
+          </Button>
         </div>
 
         {/* Divider */}
@@ -193,24 +198,26 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                   {/* Card CTAs */}
                   <div className="flex items-center justify-end gap-4">
-                    <button 
-                      className="h-8 text-sm text-[#2E2F32] underline hover:no-underline"
+                    <Button 
+                      variant="link"
+                      className="h-8 text-sm text-[#2E2F32] p-0"
                       onClick={(e) => {
                         e.preventDefault();
                         // Handle dismiss
                       }}
                     >
                       Dismiss
-                    </button>
-                    <button 
-                      className="h-8 text-sm text-[#2E2F32] underline hover:no-underline"
+                    </Button>
+                    <Button 
+                      variant="link"
+                      className="h-8 text-sm text-[#2E2F32] p-0"
                       onClick={(e) => {
                         e.preventDefault();
                         handleViewRecommendations(rec.id, rec.name);
                       }}
                     >
                       View recommendations
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -219,12 +226,13 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             <div className="flex flex-col gap-4">
               {/* Breadcrumb */}
               <div className="flex items-center gap-2 flex-wrap text-sm">
-                <button
+                <Button
+                  variant="link"
                   onClick={handleBackToList}
-                  className="text-[#515357] underline hover:no-underline"
+                  className="h-auto p-0 text-[#515357]"
                 >
                   Main
-                </button>
+                </Button>
                 <span className="text-[#515357]">/</span>
                 <span className="text-[#2E2F32]">Campaign name...</span>
               </div>
@@ -264,11 +272,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                     >
                       {/* Checkbox */}
                       <div className="flex items-start pt-0.5">
-                        <input
-                          type="checkbox"
+                        <Checkbox
                           checked={selectedRecommendations.has(rec.id)}
-                          onChange={() => handleToggleRecommendation(rec.id)}
-                          className="w-6 h-6 rounded border-2 border-[#2E2F32] bg-white cursor-pointer"
+                          onCheckedChange={() => handleToggleRecommendation(rec.id)}
+                          className="w-6 h-6 rounded border-2 data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32]"
                         />
                       </div>
 
@@ -302,12 +309,12 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                         {/* Card CTA */}
                         <div className="flex items-center justify-end gap-4">
-                          <button className="h-8 text-sm text-[#2E2F32] underline hover:no-underline">
+                          <Button variant="link" className="h-8 text-sm text-[#2E2F32] p-0">
                             Dismiss
-                          </button>
-                          <button className="h-8 text-sm text-[#2E2F32] underline hover:no-underline">
+                          </Button>
+                          <Button variant="link" className="h-8 text-sm text-[#2E2F32] p-0">
                             View details
-                          </button>
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -330,11 +337,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                     >
                       {/* Checkbox */}
                       <div className="flex items-start pt-0.5">
-                        <input
-                          type="checkbox"
+                        <Checkbox
                           checked={selectedRecommendations.has(rec.id)}
-                          onChange={() => handleToggleRecommendation(rec.id)}
-                          className="w-6 h-6 rounded border-2 border-[#2E2F32] bg-white cursor-pointer"
+                          onCheckedChange={() => handleToggleRecommendation(rec.id)}
+                          className="w-6 h-6 rounded border-2 data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32]"
                         />
                       </div>
 
@@ -356,7 +362,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                               <div key={optionIdx} className="flex flex-col gap-2.5">
                                 <div className="flex items-start gap-3">
                                   <div className="flex items-start pt-0.5">
-                                    <div className="w-6 h-6 rounded-full border-2 border-[#2E2F32] bg-white" />
+                                    <RadioGroupItem 
+                                      value={`${rec.id}-${optionIdx}`}
+                                      className="w-6 h-6 border-2 border-[#2E2F32]"
+                                    />
                                   </div>
                                   <div className="flex-1 flex flex-col gap-1">
                                     <div className="text-sm text-[#2E2F32]">{rec.title}</div>
@@ -369,12 +378,12 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                                 {/* Card CTA */}
                                 <div className="flex items-center justify-end gap-4">
-                                  <button className="h-8 text-sm text-[#2E2F32] underline hover:no-underline">
+                                  <Button variant="link" className="h-8 text-sm text-[#2E2F32] p-0">
                                     Dismiss
-                                  </button>
-                                  <button className="h-8 text-sm text-[#2E2F32] underline hover:no-underline">
+                                  </Button>
+                                  <Button variant="link" className="h-8 text-sm text-[#2E2F32] p-0">
                                     View details
-                                  </button>
+                                  </Button>
                                 </div>
                               </div>
                             ))}
@@ -392,12 +401,12 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                             {/* Card CTA */}
                             <div className="flex items-center justify-end gap-4">
-                              <button className="h-8 text-sm text-[#2E2F32] underline hover:no-underline">
+                              <Button variant="link" className="h-8 text-sm text-[#2E2F32] p-0">
                                 Dismiss
-                              </button>
-                              <button className="h-8 text-sm text-[#2E2F32] underline hover:no-underline">
+                              </Button>
+                              <Button variant="link" className="h-8 text-sm text-[#2E2F32] p-0">
                                 View details
-                              </button>
+                              </Button>
                             </div>
                           </div>
                         )}
@@ -415,15 +424,16 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           <>
             <div className="h-px bg-[#E3E4E5]" />
             <div className="flex items-center justify-end gap-4 px-6 py-6">
-              <button 
+              <Button 
+                variant="link"
                 onClick={handleBackToList}
-                className="h-8 text-sm text-[#2E2F32] underline hover:no-underline"
+                className="h-8 text-sm text-[#2E2F32] p-0"
               >
                 Cancel
-              </button>
-              <button className="h-8 px-4 text-sm font-bold text-white bg-[#0071CE] rounded-full hover:bg-[#004F9A] transition-colors">
+              </Button>
+              <Button className="h-8 px-4 text-sm font-bold bg-[#0071CE] hover:bg-[#004F9A]">
                 Apply selected
-              </button>
+              </Button>
             </div>
           </>
         )}
