@@ -101,7 +101,7 @@ export default function DisplayDashboard() {
                   </div>
                 </div>
               </div>
-              <div className="border-t border-[#E3E4E5] px-6 py-2 flex items-center justify-end">
+              <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end">
                 <button
                   onClick={() => setRecommendationsPanelOpen(true)}
                   className="h-8 px-4 text-sm font-bold text-[#2E2F32] border border-[#2E2F32] rounded-full hover:bg-gray-50 transition-colors"
@@ -149,7 +149,7 @@ export default function DisplayDashboard() {
                   </div>
                 </div>
               </div>
-              <div className="border-t border-[#E3E4E5] px-6 py-2 flex items-center justify-end">
+              <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end">
                 <button
                   onClick={() => setRecommendationsPanelOpen(true)}
                   className="h-8 px-4 text-sm font-bold text-[#2E2F32] border border-[#2E2F32] rounded-full hover:bg-gray-50 transition-colors"
@@ -196,7 +196,7 @@ export default function DisplayDashboard() {
                   </div>
                 </div>
               </div>
-              <div className="border-t border-[#E3E4E5] px-6 py-2 flex items-center justify-end">
+              <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end">
                 <button
                   onClick={() => setRecommendationsPanelOpen(true)}
                   className="h-8 px-4 text-sm font-bold text-[#2E2F32] border border-[#2E2F32] rounded-full hover:bg-gray-50 transition-colors"
