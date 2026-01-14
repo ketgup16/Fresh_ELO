@@ -67,7 +67,7 @@ export default function DisplayDashboard() {
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
               <div className="px-6 pt-3 pb-4">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-base font-bold text-[#2E2F32]">Maximize your reach</h3>
+                  <h3 className="text-base font-bold text-[#2E2F32]">Expand audience targeting</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#E6F1FC] text-xs text-[#002E99]">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M8 4.5C5.43756 4.5 3.74541 6.3442 2.82186 7.77447L2 7.22553C2.97848 5.71021 4.92776 3.5 8 3.5C11.0722 3.5 13.0215 5.71021 14 7.22553L13.1781 7.77447C12.2546 6.3442 10.5624 4.5 8 4.5Z" fill="#002E99"/>
@@ -79,25 +79,25 @@ export default function DisplayDashboard() {
                 </div>
                 <div className="mb-4">
                   <div className="flex items-end gap-1 mb-2 flex-wrap">
-                    <span className="text-base font-bold text-[#2A8703]">45k-48k</span>
+                    <span className="text-base font-bold text-[#2A8703]">2.5M-3.2M</span>
                     <span className="text-base font-bold text-[#2E2F32]">Potential increase in impressions</span>
                   </div>
                   <p className="text-sm text-[#2E2F32]">
-                    You could see an increase in impressions by applying recommendations to campaigns and ad groups.
+                    Expand your reach by adding new audience segments and increasing bids on high-performing placements.
                   </p>
                 </div>
                 <div className="flex gap-8">
                   <div className="flex-1">
                     <div className="text-xs text-[#515357] mb-1">Campaigns</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">5</div>
+                    <div className="text-sm font-bold text-[#2E2F32]">7</div>
                   </div>
                   <div className="flex-1">
                     <div className="text-xs text-[#515357] mb-1">Ad groups</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">8</div>
+                    <div className="text-sm font-bold text-[#2E2F32]">15</div>
                   </div>
                   <div className="flex-1">
                     <div className="text-xs text-[#515357] mb-1">Recommendations</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">12</div>
+                    <div className="text-sm font-bold text-[#2E2F32]">18</div>
                   </div>
                 </div>
               </div>
