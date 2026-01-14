@@ -666,6 +666,13 @@ export default function DisplayDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Recommendations Panel */}
+      <RecommendationsPanel
+        isOpen={recommendationsPanelOpen}
+        onClose={() => setRecommendationsPanelOpen(false)}
+        campaignGoal="Awareness"
+      />
     </div>
   );
 }
