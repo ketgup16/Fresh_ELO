@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import RecommendationsPanel from './RecommendationsPanel';
 
 export default function DisplayDashboard() {
   const [activeRecommendationTab, setActiveRecommendationTab] = useState('active');
   const [topPerformingTab, setTopPerformingTab] = useState('campaigns');
   const [buyerType, setBuyerType] = useState('Overall');
   const [buyerTypeOpen, setBuyerTypeOpen] = useState(false);
+  const [recommendationsPanelOpen, setRecommendationsPanelOpen] = useState(false);
 
   return (
     <div className="flex-1 overflow-y-auto bg-[#F8F8F8]">
