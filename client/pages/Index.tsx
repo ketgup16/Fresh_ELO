@@ -1655,12 +1655,7 @@ export default function Index() {
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
 
   // Sidebar state
-  const [sidebarExpanded, setSidebarExpanded] = useState(false);
   const [activeMenuItem, setActiveMenuItem] = useState('dashboard');
-  const [sidebarWidth, setSidebarWidth] = useState(220);
-  const [isResizingSidebar, setIsResizingSidebar] = useState(false);
-  const [sidebarResizeStartX, setSidebarResizeStartX] = useState(0);
-  const [sidebarResizeStartWidth, setSidebarResizeStartWidth] = useState(0);
 
   // Media solutions dropdown state
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
