@@ -1909,31 +1909,6 @@ export default function Index() {
     };
   }, [resizingColumn, startX, startWidth]);
 
-  // Sidebar resize effect
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isResizingSidebar) return;
-
-      const diff = e.clientX - sidebarResizeStartX;
-      const newWidth = Math.max(240, Math.min(600, sidebarResizeStartWidth + diff));
-
-      setSidebarWidth(newWidth);
-    };
-
-    const handleMouseUp = () => {
-      setIsResizingSidebar(false);
-    };
-
-    if (isResizingSidebar) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-    }
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [isResizingSidebar, sidebarResizeStartX, sidebarResizeStartWidth]);
 
   // Reset to page 1 when filters or search changes
   useEffect(() => {
