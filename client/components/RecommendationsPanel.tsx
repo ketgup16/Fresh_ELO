@@ -553,19 +553,24 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             /* Campaign Detail View */
             <div className="flex flex-col gap-4">
               {/* Breadcrumb */}
-              <div className="flex items-center gap-2 flex-wrap text-sm">
+              <div className="flex items-center gap-2 text-sm overflow-hidden">
                 <a
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
                     handleBackToList();
                   }}
-                  className="text-[#515357] underline hover:no-underline"
+                  className="text-[#515357] underline hover:no-underline whitespace-nowrap flex-shrink-0"
                 >
                   Main
                 </a>
-                <span className="text-[#515357]">/</span>
-                <span className="text-[#2E2F32] truncate">Campaign name...</span>
+                <span className="text-[#515357] flex-shrink-0">/</span>
+                <span
+                  className="text-[#2E2F32] truncate max-w-[280px]"
+                  title={selectedCampaign?.name}
+                >
+                  {selectedCampaign?.name}
+                </span>
               </div>
 
               {/* Campaign Info */}
