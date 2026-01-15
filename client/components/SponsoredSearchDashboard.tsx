@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CampaignChart from "./CampaignChart";
+import DateRangeFilterDropdown from "./DateRangeFilterDropdown";
+import AttributionFilterDropdown from "./AttributionFilterDropdown";
 
 interface Campaign {
   name: string;
