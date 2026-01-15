@@ -2337,69 +2337,10 @@ export default function Index() {
 
       <div className="flex h-[calc(100vh-54px)]">
         {/* Sidebar */}
-        <aside className="border-r border-[#E3E4E5] bg-white flex flex-col justify-between p-1.5 h-auto self-stretch overflow-hidden" style={{ width: '64px' }}>
-          <div className="flex flex-col gap-1.5">
-            {/* Dashboard */}
-            <button
-              onClick={() => setActiveMenuItem('dashboard')}
-              className={`flex items-center justify-center w-10 h-10 rounded ${activeMenuItem === 'dashboard' ? 'bg-[#E6F1FC]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Dashboard"
-              title="Dashboard"
-            >
-              <Home className={`w-4 h-4 ${activeMenuItem === 'dashboard' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-            </button>
-
-            {/* Performance */}
-            <button
-              onClick={() => setActiveMenuItem('performance')}
-              className={`flex items-center justify-center w-10 h-10 rounded ${activeMenuItem === 'performance' ? 'bg-[#E6F1FC]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Performance"
-              title="Performance"
-            >
-              <Reports className={`${activeMenuItem === 'performance' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} size={16} />
-            </button>
-
-            {/* Campaigns */}
-            <button
-              onClick={() => setActiveMenuItem('campaigns')}
-              className={`flex items-center justify-center w-10 h-10 rounded ${activeMenuItem === 'campaigns' ? 'bg-[#E6F1FC]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Campaigns"
-              title="Campaigns"
-            >
-              <Megaphone className={`w-4 h-4 ${activeMenuItem === 'campaigns' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-            </button>
-
-            {/* Asset Library */}
-            <button
-              onClick={() => setActiveMenuItem('asset-library')}
-              className={`flex items-center justify-center w-10 h-10 rounded ${activeMenuItem === 'asset-library' ? 'bg-[#E6F1FC]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Asset Library"
-              title="Asset Library"
-            >
-              <Users className={`w-4 h-4 ${activeMenuItem === 'asset-library' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-            </button>
-
-            {/* Creative Hub */}
-            <button
-              onClick={() => setActiveMenuItem('creative-hub')}
-              className={`flex items-center justify-center w-10 h-10 rounded ${activeMenuItem === 'creative-hub' ? 'bg-[#E6F1FC]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Creative Hub"
-              title="Creative Hub"
-            >
-              <ImageIcon className={`${activeMenuItem === 'creative-hub' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} size={16} />
-            </button>
-
-            {/* Measurement Console */}
-            <button
-              onClick={() => setActiveMenuItem('measurement-console')}
-              className={`flex items-center justify-center w-10 h-10 rounded ${activeMenuItem === 'measurement-console' ? 'bg-[#E6F1FC]' : 'hover:bg-gray-100'} transition-colors`}
-              aria-label="Measurement Console"
-              title="Measurement Console"
-            >
-              <MeasurementConsole className={`${activeMenuItem === 'measurement-console' ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} size={16} />
-            </button>
-          </div>
-        </aside>
+        <DisplayAdvertisingSidebar
+          activeMenuItem={activeMenuItem}
+          onMenuItemClick={setActiveMenuItem}
+        />
 
         {/* Main Content */}
         <main className="flex-1 h-auto self-stretch flex flex-col">
