@@ -436,11 +436,11 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
               {/* Title */}
               <div className="flex flex-col gap-2">
+                <div className="text-base text-[#2E2F32]">{selectedRecommendation.title}</div>
                 <div className="flex items-end gap-1 flex-wrap">
                   <span className="text-base font-bold text-[#2A8703]">{selectedRecommendation.impact}</span>
                   <span className="text-base font-bold text-[#2E2F32]">{selectedRecommendation.message}</span>
                 </div>
-                <div className="text-base text-[#2E2F32]">{selectedRecommendation.title}</div>
               </div>
 
               {/* Alert */}
