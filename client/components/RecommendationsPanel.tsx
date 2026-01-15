@@ -24,6 +24,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   const [viewMode, setViewMode] = useState<"list" | "detail">("list");
   const [selectedCampaign, setSelectedCampaign] = useState<string | null>(null);
   const [selectedRecommendations, setSelectedRecommendations] = useState<Set<string>>(new Set());
+  const [selectedRadioOptions, setSelectedRadioOptions] = useState<Record<string, string>>({});
 
   if (!isOpen) return null;
 
