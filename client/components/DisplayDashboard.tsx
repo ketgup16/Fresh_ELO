@@ -62,9 +62,10 @@ export default function DisplayDashboard() {
             </div>
           </div>
 
-          {/* Opportunity Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Card 1 - Maximize your reach */}
+          {/* Conditional Content - Cards or Table */}
+          {activeRecommendationTab === 'active' && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Card 1 - Maximize your reach */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5]">
               <div className="px-6 py-4 flex-1">
                 <div className="flex items-center justify-between mb-4">
@@ -210,6 +211,115 @@ export default function DisplayDashboard() {
               </div>
             </div>
           </div>
+          )}
+
+          {/* Applied Recommendations Table */}
+          {activeRecommendationTab === 'applied' && (
+            <div className="flex flex-col gap-2">
+              {/* Table */}
+              <div className="border border-[#E3E4E5] rounded-lg overflow-hidden">
+                <table className="w-full text-sm">
+                  <thead className="bg-[#F8F8F8]">
+                    <tr className="border-t border-b border-[#E3E4E5]">
+                      <th className="px-4 py-3 text-left font-bold text-[#2E2F32] text-sm">Recommendation</th>
+                      <th className="px-4 py-3 text-left font-bold text-[#2E2F32] text-sm">Type</th>
+                      <th className="px-4 py-3 text-left font-bold text-[#2E2F32] text-sm">Date applied</th>
+                      <th className="px-4 py-3 text-left font-bold text-[#2E2F32] text-sm">Impact</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* Row 1 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Reallocate budget across ad groups</span>
+                          <span className="text-xs text-[#515357]">Campaign name 01</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">Budget</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">01/20/2026</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Impressions</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2A8703"/>
+                            </svg>
+                            <span className="text-sm">35k</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    {/* Row 2 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Add 15 keywords</span>
+                          <span className="text-xs text-[#515357]">Campaign name 02</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">Targeting</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">01/20/2026</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Clicks</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2A8703"/>
+                            </svg>
+                            <span className="text-sm">2.5%</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    {/* Row 3 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Add 7 categories</span>
+                          <span className="text-xs text-[#515357]">Campaign name 02</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">Targeting</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">01/20/2026</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Transactions</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2A8703"/>
+                            </svg>
+                            <span className="text-sm">15%</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* View more link */}
+              <div className="flex justify-end">
+                <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                  View more
+                </a>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Filters */}
