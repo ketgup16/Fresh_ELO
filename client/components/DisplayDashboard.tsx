@@ -950,7 +950,7 @@ export default function DisplayDashboard() {
 
       {/* View More Modal */}
       <Dialog open={viewMoreModalOpen} onOpenChange={setViewMoreModalOpen}>
-        <DialogContent className="max-w-[1340px] max-h-[90vh] overflow-y-auto bg-white">
+        <DialogContent className="max-w-[1072px] max-h-[90vh] overflow-y-auto bg-white">
           <DialogHeader>
             <DialogTitle className="text-lg font-bold text-[#2E2F32]">
               Applied & dismissed recommendations
