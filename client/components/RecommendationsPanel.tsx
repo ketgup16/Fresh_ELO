@@ -604,10 +604,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                           <div className="flex-1 flex flex-col gap-4">
                             <div className="flex flex-col gap-2.5">
                               <div className="flex flex-col gap-1">
-                                <div className="text-sm text-[#2E2F32]">{rec.title}</div>
+                                <div className="text-sm font-bold text-[#2E2F32]">{rec.title}</div>
                                 <div className="flex items-end gap-1 flex-wrap">
                                   <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
-                                  <span className="text-sm font-bold text-[#2E2F32]">{rec.message}</span>
+                                  <span className="text-sm text-[#2E2F32]">{rec.message}</span>
                                 </div>
                               </div>
 
@@ -692,10 +692,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                           <div className="flex flex-col gap-2.5">
                             <div className="flex flex-col gap-1">
-                              <div className="text-sm text-[#2E2F32]">{rec.title}</div>
+                              <div className="text-sm font-bold text-[#2E2F32]">{rec.title}</div>
                               <div className="flex items-end gap-1 flex-wrap">
                                 <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
-                                <span className="text-sm font-bold text-[#2E2F32]">{rec.message}</span>
+                                <span className="text-sm text-[#2E2F32]">{rec.message}</span>
                               </div>
                             </div>
 
