@@ -10,6 +10,13 @@ interface RecommendationsPanelProps {
   campaignGoal?: string;
 }
 
+interface RecommendationOption {
+  id: string;
+  title: string;
+  impact: string;
+  message: string;
+}
+
 interface RecommendationItem {
   id: string;
   type: "campaign" | "adgroup";
@@ -18,6 +25,7 @@ interface RecommendationItem {
   message: string;
   affectedAdGroups?: string[];
   hasMultipleOptions?: boolean;
+  options?: RecommendationOption[];
   campaign?: string;
   adGroup?: string;
   keywords?: string;
