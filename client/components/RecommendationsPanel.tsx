@@ -639,9 +639,11 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                       </div>
 
                       {campaignLevelRecs.map((rec) => (
-                        <div 
+                        <div
                           key={rec.id}
-                          className="flex items-start gap-3 p-4 rounded-lg border border-[#E3E4E5] bg-white"
+                          className={`flex items-start gap-3 p-4 rounded-lg border ${
+                            selectedRecommendations.has(rec.id) ? 'border-[#2E2F32]' : 'border-[#E3E4E5]'
+                          } bg-white`}
                         >
                           {/* Checkbox */}
                           <div className="flex items-start pt-0.5">
