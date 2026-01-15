@@ -118,6 +118,32 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           adGroup: "Display|Premium_Sites|Desktop",
           keywords: "",
           whyRecommend: "Your current ad group is limited to standard display formats. Enabling responsive display ads would allow your ads to dynamically adjust to available ad spaces across the Google Display Network, potentially reaching 40% more inventory."
+        },
+        {
+          id: "rec-1-4",
+          type: "adgroup",
+          title: "Add 15 keywords",
+          impact: "14k-16k",
+          message: "Potential increase in reach",
+          campaign: "CocaCola_Summer_Always_On_Display_Contextual_National_Premium_Sites",
+          adGroup: "Display|Premium_Sites|Beverage_Context_Mobile",
+          hasMultipleOptions: true,
+          options: [
+            {
+              id: "option-1",
+              title: "Add 15 keywords",
+              impact: "14k-16k",
+              message: "Potential increase in reach"
+            },
+            {
+              id: "option-2",
+              title: "Add 15 keywords",
+              impact: "14k-16k",
+              message: "Potential increase in reach"
+            }
+          ],
+          keywords: "",
+          whyRecommend: "Multiple targeting options are available for this ad group to increase reach."
         }
       ]
     },
