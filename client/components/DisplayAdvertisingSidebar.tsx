@@ -204,14 +204,7 @@ export default function DisplayAdvertisingSidebar({
                 title={!sidebarExpanded ? item.label : undefined}
               >
                 <div className="flex items-center gap-3">
-                  {IconComponent === Reports ? (
-                    <Reports
-                      className={shouldShowAsActive ? 'text-[#0053E2]' : 'text-[#2E2F32]'}
-                      size={16}
-                    />
-                  ) : (
-                    <IconComponent className={`w-4 h-4 ${shouldShowAsActive ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`} />
-                  )}
+                  <IconComponent isActive={shouldShowAsActive} />
                   {sidebarExpanded && (
                     <span className={`text-sm truncate ${shouldShowAsActive ? 'text-[#0053E2]' : 'text-[#2E2F32]'}`}>
                       {item.label}
