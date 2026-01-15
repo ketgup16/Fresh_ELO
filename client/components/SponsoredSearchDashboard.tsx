@@ -19,6 +19,13 @@ export default function SponsoredSearchDashboard() {
   const [sortColumn, setSortColumn] = useState<string | null>('spend');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
+  // Date range filter state
+  const [startDate, setStartDate] = useState<Date>(new Date(2025, 7, 1)); // Aug 1, 2025
+  const [endDate, setEndDate] = useState<Date>(new Date(2025, 7, 8)); // Aug 8, 2025
+
+  // Attribution filter state
+  const [attribution, setAttribution] = useState<string>("14 days attribution");
+
   const initialCampaigns: Campaign[] = [
     {
       name: "Cool Beans, Hot Days (Summer 2025)",
