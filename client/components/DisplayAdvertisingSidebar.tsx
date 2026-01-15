@@ -142,9 +142,8 @@ export default function DisplayAdvertisingSidebar({
                 title={!sidebarExpanded ? item.label : undefined}
               >
                 <div className="flex items-center gap-3">
-                  {typeof IconComponent === 'function' && 
-                    (IconComponent === Reports || IconComponent === MeasurementConsole || IconComponent === ImageIcon) ? (
-                    <IconComponent
+                  {IconComponent === Reports ? (
+                    <Reports
                       className={shouldShowAsActive ? 'text-[#0053E2]' : 'text-[#2E2F32]'}
                       size={16}
                     />
