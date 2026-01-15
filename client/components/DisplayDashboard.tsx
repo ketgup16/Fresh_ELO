@@ -489,7 +489,7 @@ export default function DisplayDashboard() {
                   </div>
 
                   {/* Chart SVG */}
-                  <svg className="w-full h-full" viewBox="0 0 584 288" fill="none" preserveAspectRatio="none">
+                  <svg className="w-full h-full pl-[5px]" viewBox="0 0 584 288" fill="none" preserveAspectRatio="none">
                     <defs>
                       <clipPath id="clip0_chart">
                         <path d="M0 0H584V288H0V0Z" fill="white"/>
