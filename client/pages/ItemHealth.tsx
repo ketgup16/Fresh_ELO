@@ -366,73 +366,62 @@ export default function ItemHealth() {
           {/* Page Content */}
           <div className="bg-white p-6">
             {/* Header Section */}
-            <div className="flex items-center justify-between mb-4">
-              <h1 className="text-[28px] font-bold text-[#2E2F32]">Item Health</h1>
-              <Button variant="secondary" className="h-10 px-4 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] text-base font-bold hover:bg-gray-50">
+            <div className="flex items-center justify-between mb-6">
+              <h1 className="text-[32px] font-normal text-[#2E2F32]">Item Health</h1>
+              <button className="h-10 px-6 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] text-sm font-normal hover:bg-gray-50 transition-colors">
                 Export to CSV
-              </Button>
+              </button>
             </div>
 
-            {/* Date Range Info */}
-            <div className="mb-4">
-              <p className="text-sm text-[#2E2F32]">
-                <strong>Item Health on as of live date, date range: 12/30/2025 - 1/6/2025</strong>
-              </p>
-              <p className="text-sm text-[#2E2F32]">
-                *'Report only shows enabled items that have been live for at least 3 days
-              </p>
-              <p className="text-sm text-[#2E2F32]">
-                **The start below is from Walmart internally
-              </p>
-            </div>
-
-            {/* Link */}
-            <div className="mb-4">
-              <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline">
+            {/* Date Range Info and Link */}
+            <div className="flex items-start justify-between mb-6">
+              <div className="flex flex-col gap-0.5">
+                <p className="text-sm text-[#2E2F32]">
+                  Item's health on as of the date, date range: 01/06/2026 - 01/13/2026
+                </p>
+                <p className="text-sm text-[#2E2F32]">
+                  *Report only shows enabled items that have been live for at least 3 days
+                </p>
+                <p className="text-sm text-[#2E2F32]">
+                  **The data below is from Walmart.com only
+                </p>
+              </div>
+              <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline whitespace-nowrap ml-4">
                 Need to improve your item health? Refer to our recommended actions guide sheet
               </a>
             </div>
 
-            {/* Table Controls */}
-            <div className="flex items-center justify-end gap-2 p-4 border-b border-[#E3E4E5] bg-white mb-6">
-              {/* Search Bar */}
-              <div className="flex items-center gap-2 flex-1 min-w-[360px] max-w-[600px] px-3 h-8 border border-[rgba(46,47,50,1)] rounded-full bg-white">
-                <Search className="w-4 h-4 text-[#2E2F32]" />
-                <span className="text-sm text-[#515357]">Search by</span>
-                <button className="flex items-center gap-1 text-sm font-bold text-[#2E2F32] hover:bg-gray-100 px-1 rounded">
-                  Item ID
-                  <ChevronDown className="w-4 h-4" />
+            {/* Filters and Search */}
+            <div className="flex items-center gap-3 mb-6 bg-[#F6F6F6] p-4 rounded-lg">
+              {/* Filter Dropdowns */}
+              <div className="relative">
+                <button className="h-10 px-4 bg-white border border-[#BABBBE] rounded text-sm text-[#2E2F32] flex items-center gap-2 hover:bg-gray-50 transition-colors min-w-[140px]">
+                  Item Status (2)
+                  <ChevronDown className="w-4 h-4 ml-auto" />
                 </button>
+              </div>
+
+              <div className="relative">
+                <button className="h-10 px-4 bg-white border border-[#BABBBE] rounded text-sm text-[#2E2F32] flex items-center gap-2 hover:bg-gray-50 transition-colors min-w-[160px]">
+                  All Campaigns (3)
+                  <ChevronDown className="w-4 h-4 ml-auto" />
+                </button>
+              </div>
+
+              <div className="relative">
+                <button className="h-10 px-4 bg-white border border-[#BABBBE] rounded text-sm text-[#2E2F32] flex items-center gap-2 hover:bg-gray-50 transition-colors min-w-[160px]">
+                  All Ad Groups (3)
+                  <ChevronDown className="w-4 h-4 ml-auto" />
+                </button>
+              </div>
+
+              {/* Search Bar */}
+              <div className="flex-1 flex items-center gap-2 h-10 px-4 bg-white border border-[#BABBBE] rounded">
                 <input
                   type="text"
-                  placeholder=""
-                  className="flex-1 text-sm border-none outline-none bg-transparent"
+                  placeholder="Search for item ID or primary variant ID"
+                  className="flex-1 text-sm text-[#2E2F32] border-none outline-none bg-transparent placeholder:text-[#909196]"
                 />
-              </div>
-
-              {/* Filter Buttons */}
-              <div className="flex items-center gap-2">
-                {/* All Filters Button */}
-                <button className="flex items-center justify-center h-8 w-8 px-1.5 border border-[rgba(46,47,50,1)] rounded-full bg-white hover:bg-gray-50 transition-all">
-                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="2" y1="5" x2="5.5" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                    <circle cx="7.5" cy="5" r="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-                    <line x1="9.5" y1="5" x2="14" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                    <line x1="2" y1="11" x2="9.5" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                    <circle cx="11.5" cy="11" r="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-                    <line x1="13.5" y1="11" x2="14" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                  </svg>
-                </button>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex items-center gap-2">
-                <button className="flex items-center justify-center w-8 h-8 border border-[rgba(46,47,50,1)] rounded-full hover:bg-gray-50 transition-colors">
-                  <SettingsIcon className="w-4 h-4 text-[#2E2F32]" />
-                </button>
-                <button className="flex items-center justify-center w-8 h-8 border border-[rgba(46,47,50,1)] rounded-full hover:bg-gray-50 transition-colors">
-                  <Download className="w-4 h-4 text-[#2E2F32]" />
-                </button>
               </div>
             </div>
 
