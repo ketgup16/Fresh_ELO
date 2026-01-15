@@ -20,7 +20,6 @@ interface ItemHealthData {
   adGroupIds: string[];
   olq: string;
   primaryVariant: string;
-  itemStatus: string;
   productDetailPageViewsToday: number;
   productDetailPageViewsLast7Days: number;
   itemAvailableToday: string;
@@ -82,7 +81,6 @@ export default function ItemHealth() {
       adGroupIds: ["580546"],
       olq: "92.5%",
       primaryVariant: "1750942750",
-      itemStatus: "Published",
       productDetailPageViewsToday: 4956,
       productDetailPageViewsLast7Days: 51124,
       itemAvailableToday: "96.74%",
@@ -98,7 +96,6 @@ export default function ItemHealth() {
       adGroupIds: ["4934907"],
       olq: "88.3%",
       primaryVariant: "875633804",
-      itemStatus: "Published",
       productDetailPageViewsToday: 4543,
       productDetailPageViewsLast7Days: 57267,
       itemAvailableToday: "99.68%",
@@ -113,7 +110,6 @@ export default function ItemHealth() {
       adGroupIds: ["4834896", "4706485", "3692926", "3387680"],
       olq: "95.7%",
       primaryVariant: "1566660392",
-      itemStatus: "Published",
       productDetailPageViewsToday: 3275,
       productDetailPageViewsLast7Days: 40379,
       itemAvailableToday: "99.68%",
@@ -128,7 +124,6 @@ export default function ItemHealth() {
       adGroupIds: ["4834896", "4706485", "3692214"],
       olq: "91.2%",
       primaryVariant: "3452723904",
-      itemStatus: "Published",
       productDetailPageViewsToday: 2331,
       productDetailPageViewsLast7Days: 30360,
       itemAvailableToday: "100%",
@@ -143,7 +138,6 @@ export default function ItemHealth() {
       adGroupIds: ["4834896", "4706485"],
       olq: "87.9%",
       primaryVariant: "1403322750",
-      itemStatus: "zoom us Published",
       productDetailPageViewsToday: 2352,
       productDetailPageViewsLast7Days: 30353,
       itemAvailableToday: "99.49%",
@@ -460,12 +454,6 @@ export default function ItemHealth() {
                         {renderSortIcon('primaryVariant')}
                       </div>
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
-                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('itemStatus')}>
-                        Item Status
-                        {renderSortIcon('itemStatus')}
-                      </div>
-                    </th>
                     <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[120px]">
                       <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('productDetailPageViewsToday')}>
                         Product Detail Page Views Today
@@ -548,7 +536,6 @@ export default function ItemHealth() {
                       </td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32] border-b border-dashed border-[#909196]">{item.olq}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.primaryVariant}</td>
-                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.itemStatus}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsToday.toLocaleString()}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsLast7Days.toLocaleString()}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.itemAvailableToday}</td>
