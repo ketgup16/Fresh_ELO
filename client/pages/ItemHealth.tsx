@@ -367,22 +367,17 @@ export default function ItemHealth() {
               </button>
             </div>
 
-            {/* Date Range Info and Link */}
-            <div className="flex items-start justify-between mb-6">
-              <div className="flex flex-col gap-0.5">
-                <p className="text-sm text-[#2E2F32]">
-                  Item's health on as of the date, date range: 01/06/2026 - 01/13/2026
-                </p>
-                <p className="text-sm text-[#2E2F32]">
-                  *Report only shows enabled items that have been live for at least 3 days
-                </p>
-                <p className="text-sm text-[#2E2F32]">
-                  **The data below is from Walmart.com only
-                </p>
-              </div>
-              <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline whitespace-nowrap ml-4">
-                Need to improve your item health? Refer to our recommended actions guide sheet
-              </a>
+            {/* Date Range Info */}
+            <div className="flex flex-col gap-0.5 mb-6">
+              <p className="text-sm text-[#2E2F32]">
+                Item's health on as of the date, date range: 01/06/2026 - 01/13/2026
+              </p>
+              <p className="text-sm text-[#2E2F32]">
+                *Report only shows enabled items that have been live for at least 3 days
+              </p>
+              <p className="text-sm text-[#2E2F32]">
+                **The data below is from Walmart.com only
+              </p>
             </div>
 
             {/* Filters and Search */}
