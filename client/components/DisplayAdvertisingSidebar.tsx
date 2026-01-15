@@ -121,7 +121,7 @@ export default function DisplayAdvertisingSidebar({
       onMouseLeave={() => setSidebarHovered(false)}
     >
       {/* Menu items section */}
-      <div className="flex flex-col gap-0">
+      <div className="flex flex-col gap-1">
         {menuItems.map((item) => {
           const isActive = activeMenuItem === item.id || (item.id === 'campaigns' && activeMenuItem.startsWith('campaigns'));
           const IconComponent = item.Icon;
