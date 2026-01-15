@@ -751,7 +751,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               >
                 Cancel
               </a>
-              <Button className="h-8 px-4 text-sm font-bold bg-[#0071CE] hover:bg-[#004F9A] rounded-full">
+              <Button className="h-8 px-4 text-sm font-bold bg-[#0053E2] hover:bg-[#0046c7] text-white rounded-full">
                 Apply selected
               </Button>
             </div>
@@ -779,7 +779,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               >
                 Cancel
               </a>
-              <Button className="h-8 px-4 text-sm font-bold bg-[#0071CE] hover:bg-[#004F9A] rounded-full">
+              <Button className="h-8 px-4 text-sm font-bold bg-[#0053E2] hover:bg-[#0046c7] text-white rounded-full">
                 Apply recommendation
               </Button>
             </div>
