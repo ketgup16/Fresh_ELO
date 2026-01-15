@@ -322,7 +322,15 @@ export default function DisplayDashboard() {
 
               {/* View more link */}
               <div className="flex justify-end">
-                <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                <a
+                  href="#"
+                  className="text-sm text-[#2E2F32] underline hover:no-underline"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setModalTab('applied');
+                    setViewMoreModalOpen(true);
+                  }}
+                >
                   View more
                 </a>
               </div>
@@ -448,7 +456,15 @@ export default function DisplayDashboard() {
 
               {/* View more link */}
               <div className="flex justify-end">
-                <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                <a
+                  href="#"
+                  className="text-sm text-[#2E2F32] underline hover:no-underline"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setModalTab('dismissed');
+                    setViewMoreModalOpen(true);
+                  }}
+                >
                   View more
                 </a>
               </div>
