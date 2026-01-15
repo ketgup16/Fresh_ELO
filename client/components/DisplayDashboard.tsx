@@ -164,7 +164,7 @@ export default function DisplayDashboard() {
 
             {/* Card 3 - Drive more conversions */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5]">
-              <div className="px-6 py-4">
+              <div className="px-6 py-4 flex-1">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-base font-bold text-[#2E2F32]">Drive more conversions</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#FEF0E6] text-xs text-[#AF2F00]">
