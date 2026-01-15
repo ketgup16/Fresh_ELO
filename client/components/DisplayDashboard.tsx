@@ -947,6 +947,427 @@ export default function DisplayDashboard() {
         onClose={() => setRecommendationsPanelOpen(false)}
         campaignGoal="Awareness"
       />
+
+      {/* View More Modal */}
+      <Dialog open={viewMoreModalOpen} onOpenChange={setViewMoreModalOpen}>
+        <DialogContent className="max-w-[1340px] max-h-[90vh] overflow-y-auto bg-white">
+          <DialogHeader>
+            <DialogTitle className="text-lg font-bold text-[#2E2F32]">
+              Applied & dismissed recommendations
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="flex flex-col gap-4">
+            {/* Tabs */}
+            <div className="border-b border-[#E3E4E5]">
+              <div className="flex gap-0">
+                <button
+                  onClick={() => setModalTab('applied')}
+                  className={`px-3 pb-2 pt-4 text-sm relative ${
+                    modalTab === 'applied'
+                      ? 'font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0053E2] after:rounded-t'
+                      : 'font-normal text-[#2E2F32]'
+                  }`}
+                >
+                  Applied (8)
+                </button>
+                <button
+                  onClick={() => setModalTab('dismissed')}
+                  className={`px-3 pb-2 pt-4 text-sm relative ${
+                    modalTab === 'dismissed'
+                      ? 'font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0053E2] after:rounded-t'
+                      : 'font-normal text-[#2E2F32]'
+                  }`}
+                >
+                  Dismissed (4)
+                </button>
+              </div>
+            </div>
+
+            {/* Applied Recommendations Table */}
+            {modalTab === 'applied' && (
+              <div className="border border-[#E3E4E5] rounded-lg overflow-hidden">
+                <table className="w-full text-sm">
+                  <thead className="bg-[#F8F8F8]">
+                    <tr className="border-t border-b border-[#E3E4E5]">
+                      <th className="px-4 py-3 text-left font-bold text-[#2E2F32] text-sm">Recommendation</th>
+                      <th className="px-4 py-3 text-left font-bold text-[#2E2F32] text-sm">Type</th>
+                      <th className="px-4 py-3 text-left font-bold text-[#2E2F32] text-sm">Date applied</th>
+                      <th className="px-4 py-3 text-left font-bold text-[#2E2F32] text-sm">Impact</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* Row 1 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Reallocate budget across ad groups</span>
+                          <span className="text-xs text-[#515357]">Campaign name 01</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">Budget</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">01/20/2026</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Impressions</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2A8703"/>
+                            </svg>
+                            <span className="text-sm">35k</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    {/* Row 2 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Add 15 keywords</span>
+                          <span className="text-xs text-[#515357]">Campaign name 02</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">Targeting</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">01/20/2026</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Clicks</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2A8703"/>
+                            </svg>
+                            <span className="text-sm">2.5%</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    {/* Row 3 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Add 7 categories</span>
+                          <span className="text-xs text-[#515357]">Campaign name 02</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">Targeting</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">01/20/2026</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Transactions</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2A8703"/>
+                            </svg>
+                            <span className="text-sm">15%</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    {/* Row 4 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Extent campaign duration</span>
+                          <span className="text-xs text-[#515357]">Campaign name 03</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">Date</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">01/20/2026</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Impressions</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2A8703"/>
+                            </svg>
+                            <span className="text-sm">13k</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    {/* Row 5 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Reallocate budget across ad groups</span>
+                          <span className="text-xs text-[#515357]">Campaign name 01</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32] underline">Data</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">01/20/2026</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Impressions</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2A8703"/>
+                            </svg>
+                            <span className="text-sm">100%</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    {/* Row 6 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Add 15 keywords</span>
+                          <span className="text-xs text-[#515357]">Campaign name 02</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32] underline">Data</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">01/20/2026</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Impressions</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2A8703"/>
+                            </svg>
+                            <span className="text-sm">100%</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    {/* Row 7 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Add 7 categories</span>
+                          <span className="text-xs text-[#515357]">Campaign name 02</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32] underline">Data</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">01/20/2026</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Transactions</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2A8703"/>
+                            </svg>
+                            <span className="text-sm">100%</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    {/* Row 8 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Extent campaign duration</span>
+                          <span className="text-xs text-[#515357]">Campaign name 03</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32] underline">Data</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">01/20/2026</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Transactions</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2A8703"/>
+                            </svg>
+                            <span className="text-sm">100%</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* Dismissed Recommendations Table */}
+            {modalTab === 'dismissed' && (
+              <div className="border border-[#E3E4E5] rounded-lg overflow-hidden">
+                <table className="w-full text-sm">
+                  <thead className="bg-[#F8F8F8]">
+                    <tr className="border-t border-b border-[#E3E4E5]">
+                      <th className="px-4 py-3 text-left font-bold text-[#2E2F32] text-sm">Recommendation</th>
+                      <th className="px-4 py-3 text-left font-bold text-[#2E2F32] text-sm">Type</th>
+                      <th className="px-4 py-3 text-left font-bold text-[#2E2F32] text-sm">Impact</th>
+                      <th className="px-4 py-3 text-right font-bold text-[#2E2F32] text-sm">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* Row 1 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Reallocate budget across ad groups</span>
+                          <span className="text-xs text-[#515357]">Campaign name 01</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">Budget</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Impressions</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2E2F32"/>
+                            </svg>
+                            <span className="text-sm">27k–35k</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2 text-right">
+                        <a href="#" className="inline-flex items-center gap-2 text-sm text-[#2E2F32] underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.00003 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8.00003 2C5.8279 2 3.92536 3.15424 2.8723 4.88282L4.50003 4.88281L4.50004 5.88281L1.50001 5.88284C1.3674 5.88284 1.24022 5.83016 1.14645 5.73639C1.05268 5.64262 1 5.51544 1 5.38283L1.00003 2.49901L2.00003 2.49902L2.00001 4.39245C3.2249 2.3596 5.45369 1 8.00003 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8.00003 15C4.13404 15 1.00003 11.866 1.00003 8L2.00003 8.00007C2.00007 11.3137 4.68634 14 8.00003 14Z" fill="#2E2F32"/>
+                            <path d="M8.05862 4H7.05862V8.8297L10.8617 10.4596L11.2556 9.54043L8.05862 8.1703V4Z" fill="#2E2F32"/>
+                          </svg>
+                          Restore
+                        </a>
+                      </td>
+                    </tr>
+
+                    {/* Row 2 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Add 15 keywords</span>
+                          <span className="text-xs text-[#515357]">Campaign name 02</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">Targeting</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Clicks</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2E2F32"/>
+                            </svg>
+                            <span className="text-sm">2.1%–2.5%</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2 text-right">
+                        <a href="#" className="inline-flex items-center gap-2 text-sm text-[#2E2F32] underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.00003 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8.00003 2C5.8279 2 3.92536 3.15424 2.8723 4.88282L4.50003 4.88281L4.50004 5.88281L1.50001 5.88284C1.3674 5.88284 1.24022 5.83016 1.14645 5.73639C1.05268 5.64262 1 5.51544 1 5.38283L1.00003 2.49901L2.00003 2.49902L2.00001 4.39245C3.2249 2.3596 5.45369 1 8.00003 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8.00003 15C4.13404 15 1.00003 11.866 1.00003 8L2.00003 8.00007C2.00007 11.3137 4.68634 14 8.00003 14Z" fill="#2E2F32"/>
+                            <path d="M8.05862 4H7.05862V8.8297L10.8617 10.4596L11.2556 9.54043L8.05862 8.1703V4Z" fill="#2E2F32"/>
+                          </svg>
+                          Restore
+                        </a>
+                      </td>
+                    </tr>
+
+                    {/* Row 3 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Add 7 categories</span>
+                          <span className="text-xs text-[#515357]">Campaign name 02</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">Targeting</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Transactions</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2E2F32"/>
+                            </svg>
+                            <span className="text-sm">13%–15%</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2 text-right">
+                        <a href="#" className="inline-flex items-center gap-2 text-sm text-[#2E2F32] underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.00003 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8.00003 2C5.8279 2 3.92536 3.15424 2.8723 4.88282L4.50003 4.88281L4.50004 5.88281L1.50001 5.88284C1.3674 5.88284 1.24022 5.83016 1.14645 5.73639C1.05268 5.64262 1 5.51544 1 5.38283L1.00003 2.49901L2.00003 2.49902L2.00001 4.39245C3.2249 2.3596 5.45369 1 8.00003 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8.00003 15C4.13404 15 1.00003 11.866 1.00003 8L2.00003 8.00007C2.00007 11.3137 4.68634 14 8.00003 14Z" fill="#2E2F32"/>
+                            <path d="M8.05862 4H7.05862V8.8297L10.8617 10.4596L11.2556 9.54043L8.05862 8.1703V4Z" fill="#2E2F32"/>
+                          </svg>
+                          Restore
+                        </a>
+                      </td>
+                    </tr>
+
+                    {/* Row 4 */}
+                    <tr className="border-b border-[#E3E4E5]">
+                      <td className="px-4 py-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-sm text-[#2E2F32]">Extent campaign duration</span>
+                          <span className="text-xs text-[#515357]">Campaign name 03</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">
+                        <span className="text-sm text-[#2E2F32]">Date</span>
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm text-[#2E2F32]">Impressions</span>
+                          <div className="flex items-center text-[#2A8703]">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M8.35359 1.14645C8.15833 0.951184 7.84175 0.951184 7.64648 1.14645L3.14648 5.64645L3.85359 6.35355L7.50003 2.70711V15H8.50003V2.7071L12.1465 6.35355L12.8536 5.64645L8.35359 1.14645Z" fill="#2E2F32"/>
+                            </svg>
+                            <span className="text-sm">13k–15k</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2 text-right">
+                        <a href="#" className="inline-flex items-center gap-2 text-sm text-[#2E2F32] underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.00003 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8.00003 2C5.8279 2 3.92536 3.15424 2.8723 4.88282L4.50003 4.88281L4.50004 5.88281L1.50001 5.88284C1.3674 5.88284 1.24022 5.83016 1.14645 5.73639C1.05268 5.64262 1 5.51544 1 5.38283L1.00003 2.49901L2.00003 2.49902L2.00001 4.39245C3.2249 2.3596 5.45369 1 8.00003 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8.00003 15C4.13404 15 1.00003 11.866 1.00003 8L2.00003 8.00007C2.00007 11.3137 4.68634 14 8.00003 14Z" fill="#2E2F32"/>
+                            <path d="M8.05862 4H7.05862V8.8297L10.8617 10.4596L11.2556 9.54043L8.05862 8.1703V4Z" fill="#2E2F32"/>
+                          </svg>
+                          Restore
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
