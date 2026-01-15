@@ -507,7 +507,7 @@ export default function ItemHealth() {
                 <tbody>
                   {itemHealthData.map((item, idx) => (
                     <tr key={idx} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
-                      <td className="px-4 py-3">
+                      <td className="px-2 py-2">
                         <div className="flex items-center justify-center">
                           {item.hasAlertIcon && (
                             <div className="flex items-center justify-center w-6 h-6 rounded-full bg-[#F8D2D3]">
@@ -520,15 +520,15 @@ export default function ItemHealth() {
                           )}
                         </div>
                       </td>
-                      <td className="px-4 py-3">
+                      <td className="px-2 py-2">
                         <div className="w-12 h-12 rounded flex items-center justify-center">
                           {item.itemImage}
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-sm text-[#2E2F32] underline cursor-pointer hover:no-underline">
+                      <td className="px-2 py-2 text-sm text-[#2E2F32] underline cursor-pointer hover:no-underline">
                         {item.itemId}
                       </td>
-                      <td className="px-4 py-3">
+                      <td className="px-2 py-2">
                         <div className="flex flex-col gap-1">
                           {item.campaignIds.map((id, i) => (
                             <span key={i} className="text-sm text-[#2E2F32] underline cursor-pointer hover:no-underline">
@@ -537,7 +537,7 @@ export default function ItemHealth() {
                           ))}
                         </div>
                       </td>
-                      <td className="px-4 py-3">
+                      <td className="px-2 py-2">
                         <div className="flex flex-col gap-1">
                           {item.adGroupIds.map((id, i) => (
                             <span key={i} className="text-sm text-[#2E2F32] underline cursor-pointer hover:no-underline">
@@ -546,15 +546,15 @@ export default function ItemHealth() {
                           ))}
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.olq}</td>
-                      <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.primaryVariant}</td>
-                      <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.itemStatus}</td>
-                      <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.productDetailPageViewsToday.toLocaleString()}</td>
-                      <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.productDetailPageViewsLast7Days.toLocaleString()}</td>
-                      <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.itemAvailableToday}</td>
-                      <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.itemAvailableLast7Days}</td>
-                      <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.buyBoxWinRateToday}</td>
-                      <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.buyBoxWinRateLast7Days}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.olq}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.primaryVariant}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.itemStatus}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsToday.toLocaleString()}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsLast7Days.toLocaleString()}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.itemAvailableToday}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.itemAvailableLast7Days}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.buyBoxWinRateToday}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.buyBoxWinRateLast7Days}</td>
                     </tr>
                   ))}
                 </tbody>
