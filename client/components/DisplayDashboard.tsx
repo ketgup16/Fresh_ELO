@@ -57,7 +57,7 @@ export default function DisplayDashboard() {
                     : 'font-normal text-[#2E2F32]'
                 }`}
               >
-                Dismissed (0)
+                Dismissed (4)
               </button>
             </div>
           </div>
