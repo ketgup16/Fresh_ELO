@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import SponsoredSearchDashboard from "../components/SponsoredSearchDashboard";
