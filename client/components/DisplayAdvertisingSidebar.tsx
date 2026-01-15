@@ -180,7 +180,7 @@ export default function DisplayAdvertisingSidebar({
 
               {/* Submenu items for Campaigns */}
               {isCampaigns && campaignsExpanded && sidebarExpanded && (
-                <div className="flex flex-col gap-0">
+                <div className="flex flex-col gap-1">
                   {item.submenuItems.map((subItem) => {
                     const isSubActive = activeMenuItem === subItem.id;
                     return (
