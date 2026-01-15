@@ -408,30 +408,42 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             /* Recommendation Detail View */
             <div className="flex flex-col gap-4">
               {/* Breadcrumb */}
-              <div className="flex items-center gap-2 flex-wrap text-sm">
+              <div className="flex items-center gap-2 text-sm overflow-hidden">
                 <a
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
                     handleBackToList();
                   }}
-                  className="text-[#515357] underline hover:no-underline"
+                  className="text-[#515357] underline hover:no-underline whitespace-nowrap flex-shrink-0"
                 >
                   Main
                 </a>
-                <span className="text-[#515357]">/</span>
+                <span className="text-[#515357] flex-shrink-0">/</span>
                 <a
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
                     handleBackToDetail();
                   }}
-                  className="text-[#515357] underline hover:no-underline truncate max-w-[120px]"
+                  className="text-[#515357] underline hover:no-underline truncate max-w-[140px]"
+                  title={selectedCampaign?.name}
                 >
-                  Campaign name...
+                  {selectedCampaign?.name}
                 </a>
-                <span className="text-[#515357]">/</span>
-                <span className="text-[#2E2F32]">Recommendation details</span>
+                {selectedRecommendation.adGroup && (
+                  <>
+                    <span className="text-[#515357] flex-shrink-0">/</span>
+                    <span
+                      className="text-[#515357] truncate max-w-[100px]"
+                      title={selectedRecommendation.adGroup}
+                    >
+                      {selectedRecommendation.adGroup}
+                    </span>
+                  </>
+                )}
+                <span className="text-[#515357] flex-shrink-0">/</span>
+                <span className="text-[#2E2F32] whitespace-nowrap flex-shrink-0">Recommendation details</span>
               </div>
 
               {/* Title */}
