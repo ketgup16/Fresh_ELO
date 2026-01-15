@@ -157,3 +157,67 @@
     opacity: 1;
   }
 }
+
+/* Walmart Connect Snackbar Styling for Sonner */
+[data-sonner-toaster] {
+  --normal-bg: #2E2F32 !important;
+  --normal-text: #ffffff !important;
+  --normal-border: transparent !important;
+}
+
+[data-sonner-toast] {
+  background: #2E2F32 !important;
+  border: none !important;
+  color: white !important;
+  box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.10), 0 5px 10px 3px rgba(0, 0, 0, 0.15) !important;
+  padding: 8px !important;
+  border-radius: 4px !important;
+  min-height: 52px !important;
+  display: flex !important;
+  align-items: center !important;
+  font-size: 14px !important;
+  font-family: 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif !important;
+  max-width: 317px !important;
+  width: auto !important;
+}
+
+[data-sonner-toast] [data-content] {
+  color: white !important;
+  flex: 1 !important;
+}
+
+[data-sonner-toast] [data-title] {
+  color: white !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.43 !important;
+}
+
+[data-sonner-toast] [data-button] {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+}
+
+[data-sonner-toast] [data-close-button] {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  width: 48px !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px !important;
+  border-radius: 0 !important;
+  transition: background-color 0.2s !important;
+}
+
+[data-sonner-toast] [data-close-button]:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-sonner-toast] [data-close-button] svg {
+  width: 16px !important;
+  height: 16px !important;
+}
