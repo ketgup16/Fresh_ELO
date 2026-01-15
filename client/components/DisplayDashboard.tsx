@@ -47,7 +47,7 @@ export default function DisplayDashboard() {
                     : 'font-normal text-[#2E2F32]'
                 }`}
               >
-                Applied (0)
+                Applied (8)
               </button>
               <button
                 onClick={() => setActiveRecommendationTab('dismissed')}
