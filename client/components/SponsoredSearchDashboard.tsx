@@ -128,19 +128,18 @@ export default function SponsoredSearchDashboard() {
 
         {/* Filters */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 px-3 py-2 border border-[#909196] rounded bg-white">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="4" width="12" height="2" rx="1" fill="#2E2F32"/>
-              <rect x="2" y="7" width="12" height="2" rx="1" fill="#2E2F32"/>
-              <rect x="2" y="10" width="12" height="2" rx="1" fill="#2E2F32"/>
-            </svg>
-            <span className="text-sm text-[#2E2F32]">Aug 1, 2025 – Aug 8, 2025</span>
-            <ChevronDown className="w-4 h-4" />
-          </div>
-          <div className="flex items-center gap-2 px-3 py-2 border border-[#909196] rounded bg-white">
-            <span className="text-sm text-[#2E2F32]">14 days attribution</span>
-            <ChevronDown className="w-4 h-4" />
-          </div>
+          <DateRangeFilterDropdown
+            startDate={startDate}
+            endDate={endDate}
+            onApply={(start, end) => {
+              setStartDate(start);
+              setEndDate(end);
+            }}
+          />
+          <AttributionFilterDropdown
+            value={attribution}
+            onApply={(value) => setAttribution(value)}
+          />
         </div>
       </div>
 
