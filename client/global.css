@@ -170,7 +170,7 @@
   border: none !important;
   color: white !important;
   box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.10), 0 5px 10px 3px rgba(0, 0, 0, 0.15) !important;
-  padding: 8px !important;
+  padding: 0 !important;
   border-radius: 4px !important;
   min-height: 52px !important;
   display: flex !important;
@@ -179,11 +179,14 @@
   font-family: 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif !important;
   max-width: 317px !important;
   width: auto !important;
+  gap: 0 !important;
 }
 
 [data-sonner-toast] [data-content] {
   color: white !important;
   flex: 1 !important;
+  padding: 8px !important;
+  padding-right: 0 !important;
 }
 
 [data-sonner-toast] [data-title] {
@@ -204,13 +207,18 @@
   border: none !important;
   color: white !important;
   width: 48px !important;
-  height: auto !important;
+  min-width: 48px !important;
+  height: 100% !important;
+  min-height: 52px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   padding: 8px !important;
+  margin: 0 !important;
   border-radius: 0 !important;
   transition: background-color 0.2s !important;
+  flex-shrink: 0 !important;
+  order: 2 !important;
 }
 
 [data-sonner-toast] [data-close-button]:hover {
