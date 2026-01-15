@@ -648,7 +648,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                             <Checkbox
                               checked={selectedRecommendations.has(rec.id)}
                               onCheckedChange={() => handleToggleRecommendation(rec.id)}
-                              className="w-6 h-6 rounded border-2 data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32]"
+                              className="w-6 h-6 rounded border-2 border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32] data-[state=unchecked]:bg-white"
                             />
                           </div>
 
@@ -741,7 +741,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                             className={`w-6 h-6 rounded border-2 ${
                               isDisabled
                                 ? 'border-[#BABBBE] bg-[#F4F5F5] opacity-50 cursor-not-allowed'
-                                : 'data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32]'
+                                : 'border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32] data-[state=unchecked]:bg-white'
                             }`}
                           />
                         </div>
@@ -779,7 +779,12 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                       <div className="flex items-start pt-0.5">
                                         <RadioGroupItem
                                           value={option.id}
-                                          className="w-6 h-6 border-2 border-[#2E2F32] data-[state=checked]:bg-[#2E2F32]"
+                                          disabled={isDisabled}
+                                          className={`w-6 h-6 border-2 rounded-full ${
+                                            isDisabled
+                                              ? 'border-[#BABBBE] bg-[#F4F5F5] opacity-50 cursor-not-allowed'
+                                              : 'border-[#2E2F32] data-[state=checked]:border-[#2E2F32]'
+                                          }`}
                                         />
                                       </div>
 
