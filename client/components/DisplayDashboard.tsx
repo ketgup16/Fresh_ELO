@@ -199,7 +199,7 @@ export default function DisplayDashboard() {
                   </div>
                 </div>
               </div>
-              <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end">
+              <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end h-[65px]">
                 <Button
                   onClick={() => setRecommendationsPanelOpen(true)}
                   variant="outline"
