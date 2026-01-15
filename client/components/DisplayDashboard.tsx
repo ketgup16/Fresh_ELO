@@ -37,7 +37,7 @@ export default function DisplayDashboard() {
                     : 'font-normal text-[#2E2F32]'
                 }`}
               >
-                Active recommendations
+                Active recommendations (20)
               </button>
               <button
                 onClick={() => setActiveRecommendationTab('applied')}
