@@ -431,17 +431,6 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 >
                   {selectedCampaign?.name}
                 </a>
-                {selectedRecommendation.adGroup && (
-                  <>
-                    <span className="text-[#515357] flex-shrink-0">/</span>
-                    <span
-                      className="text-[#515357] truncate max-w-[100px]"
-                      title={selectedRecommendation.adGroup}
-                    >
-                      {selectedRecommendation.adGroup}
-                    </span>
-                  </>
-                )}
                 <span className="text-[#515357] flex-shrink-0">/</span>
                 <span className="text-[#2E2F32] whitespace-nowrap flex-shrink-0">Recommendation details</span>
               </div>
