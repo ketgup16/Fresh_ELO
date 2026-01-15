@@ -719,7 +719,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                     {adGroupRecs.map((rec) => {
                       // Check if this ad group conflicts with a selected campaign recommendation
-                      const conflictingRec = campaignRecs.find(campaignRec =>
+                      const conflictingRec = campaignLevelRecs.find(campaignRec =>
                         selectedRecommendations.has(campaignRec.id) &&
                         campaignRec.affectedAdGroups?.includes(rec.adGroup || '')
                       );
