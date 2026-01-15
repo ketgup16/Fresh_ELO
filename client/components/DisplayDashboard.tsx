@@ -20,7 +20,7 @@ export default function DisplayDashboard() {
 
       <div className="px-6 pb-6 flex flex-col gap-6">
         {/* Campaign Optimization Opportunities */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 bg-white rounded-xl shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] p-6">
           <div className="flex flex-col gap-1">
             <h2 className="text-lg font-bold text-[#2E2F32]">Campaign optimization opportunities</h2>
             <p className="text-sm text-[#2E2F32]">Discover opportunities to improve your campaign performance.</p>
