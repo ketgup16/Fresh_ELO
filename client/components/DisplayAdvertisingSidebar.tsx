@@ -55,11 +55,11 @@ export default function DisplayAdvertisingSidebar({
         { id: 'campaigns-archived', label: 'Archived' },
       ]
     },
-    { id: 'performance', label: 'Performance', Icon: Reports },
-    { id: 'reports', label: 'Reports', Icon: Reports },
-    { id: 'tools', label: 'Tools', Icon: Users },
-    { id: 'video-manager', label: 'Video manager', Icon: ImageIcon },
-    { id: 'bulk-operations', label: 'Bulk operations', Icon: ImageIcon },
+    { id: 'performance', label: 'Performance', Icon: ChartColumn },
+    { id: 'reports', label: 'Reports', Icon: ChartColumn },
+    { id: 'tools', label: 'Tools', Icon: Briefcase },
+    { id: 'video-manager', label: 'Video manager', Icon: Video },
+    { id: 'bulk-operations', label: 'Bulk operations', Icon: CloudUpload },
   ];
 
   // Handle resize functionality
