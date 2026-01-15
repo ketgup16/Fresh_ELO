@@ -423,7 +423,7 @@ export default function DisplayDashboard() {
               <h3 className="text-lg font-bold text-[#2E2F32] mb-1">Performance summary</h3>
               <p className="text-sm text-[#2E2F32] mb-6">A short description of this card.</p>
             </div>
-            <div className="px-6 pb-6">
+            <div className="px-6 pb-6 mb-6">
               {/* Chart Legend */}
               <div className="flex items-center gap-4 mb-6 flex-wrap">
                 <div className="flex items-center gap-2">
