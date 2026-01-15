@@ -448,7 +448,7 @@ export default function ItemHealth() {
                     <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
                       <div className="flex items-center gap-1">Ad Group ID</div>
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[80px]">
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] min-w-[100px]">
                       <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('olq')}>
                         OLQ
                         {renderSortIcon('olq')}
@@ -546,7 +546,7 @@ export default function ItemHealth() {
                           ))}
                         </div>
                       </td>
-                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.olq}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32] border-b border-dashed border-[#909196]">{item.olq}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.primaryVariant}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.itemStatus}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsToday.toLocaleString()}</td>
