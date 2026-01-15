@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import RecommendationsPanel from './RecommendationsPanel';
 import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 export default function DisplayDashboard() {
   const [activeRecommendationTab, setActiveRecommendationTab] = useState('active');
@@ -8,6 +14,8 @@ export default function DisplayDashboard() {
   const [buyerType, setBuyerType] = useState('Overall');
   const [buyerTypeOpen, setBuyerTypeOpen] = useState(false);
   const [recommendationsPanelOpen, setRecommendationsPanelOpen] = useState(false);
+  const [viewMoreModalOpen, setViewMoreModalOpen] = useState(false);
+  const [modalTab, setModalTab] = useState<'applied' | 'dismissed'>('applied');
 
   return (
     <div className="flex-1 overflow-y-auto bg-[#F8F8F8]">
