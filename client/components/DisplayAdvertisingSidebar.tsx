@@ -94,22 +94,22 @@ export default function DisplayAdvertisingSidebar({
   const sidebarExpanded = sidebarLocked || sidebarHovered;
 
   const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', Icon: Home },
+    { id: 'dashboard', label: 'Dashboard', Icon: HomeIcon },
     {
       id: 'campaigns',
       label: 'Campaigns',
-      Icon: Megaphone,
+      Icon: MegaphoneIcon,
       submenuItems: [
         { id: 'campaigns-active', label: 'Active' },
         { id: 'campaigns-draft', label: 'Draft' },
         { id: 'campaigns-archived', label: 'Archived' },
       ]
     },
-    { id: 'performance', label: 'Performance', Icon: ChartColumn },
-    { id: 'reports', label: 'Reports', Icon: ChartColumn },
-    { id: 'tools', label: 'Tools', Icon: Briefcase },
-    { id: 'video-manager', label: 'Video manager', Icon: Video },
-    { id: 'bulk-operations', label: 'Bulk operations', Icon: CloudUpload },
+    { id: 'performance', label: 'Performance', Icon: AnalyticsIcon },
+    { id: 'reports', label: 'Reports', Icon: AnalyticsIcon },
+    { id: 'tools', label: 'Tools', Icon: ToolboxIcon },
+    { id: 'video-manager', label: 'Video manager', Icon: VideoArrowUpIcon },
+    { id: 'bulk-operations', label: 'Bulk operations', Icon: CloudUploadIcon },
   ];
 
   // Handle resize functionality
