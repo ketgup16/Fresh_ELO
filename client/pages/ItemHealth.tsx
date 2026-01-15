@@ -430,74 +430,74 @@ export default function ItemHealth() {
               <table className="w-full text-sm">
                 <thead className="bg-[#F8F8F8] sticky top-0 z-10">
                   <tr>
-                    <th className="p-4 text-center font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-16">
+                    <th className="p-2 text-center font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-16">
                       {/* Alerts/Notifications column */}
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 whitespace-nowrap">Item Image</div>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
+                      <div className="flex items-center gap-1">Item Image</div>
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('itemId')}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
+                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('itemId')}>
                         Item ID
                         {renderSortIcon('itemId')}
                       </div>
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 whitespace-nowrap">Campaign ID</div>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
+                      <div className="flex items-center gap-1">Campaign ID</div>
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 whitespace-nowrap">Ad Group ID</div>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
+                      <div className="flex items-center gap-1">Ad Group ID</div>
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('olq')}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[80px]">
+                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('olq')}>
                         OLQ
                         {renderSortIcon('olq')}
                       </div>
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('primaryVariant')}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
+                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('primaryVariant')}>
                         Primary Variant
                         {renderSortIcon('primaryVariant')}
                       </div>
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('itemStatus')}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
+                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('itemStatus')}>
                         Item Status
                         {renderSortIcon('itemStatus')}
                       </div>
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('productDetailPageViewsToday')}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[120px]">
+                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('productDetailPageViewsToday')}>
                         Product Detail Page Views Today
                         {renderSortIcon('productDetailPageViewsToday')}
                       </div>
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('productDetailPageViewsLast7Days')}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[120px]">
+                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('productDetailPageViewsLast7Days')}>
                         Product Detail Page Views in Last 7 Days
                         {renderSortIcon('productDetailPageViewsLast7Days')}
                       </div>
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('itemAvailableToday')}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
+                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('itemAvailableToday')}>
                         Item Available Today
                         {renderSortIcon('itemAvailableToday')}
                       </div>
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('itemAvailableLast7Days')}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
+                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('itemAvailableLast7Days')}>
                         Item Available in Last 7 Days
                         {renderSortIcon('itemAvailableLast7Days')}
                       </div>
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('buyBoxWinRateToday')}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
+                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('buyBoxWinRateToday')}>
                         Buy Box Win Rate Today
                         {renderSortIcon('buyBoxWinRateToday')}
                       </div>
                     </th>
-                    <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5]">
-                      <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('buyBoxWinRateLast7Days')}>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
+                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('buyBoxWinRateLast7Days')}>
                         Buy Box Win Rate in Last 7 Days
                         {renderSortIcon('buyBoxWinRateLast7Days')}
                       </div>
