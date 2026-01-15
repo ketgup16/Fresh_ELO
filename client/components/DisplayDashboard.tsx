@@ -66,7 +66,7 @@ export default function DisplayDashboard() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Card 1 - Maximize your reach */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5]">
-              <div className="px-6 py-4">
+              <div className="px-6 py-4 flex-1">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-sm font-bold text-[#2E2F32]">Maximize your reach</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#E6F1FC] text-xs text-[#002E99]">
