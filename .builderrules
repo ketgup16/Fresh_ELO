@@ -1,10 +1,10 @@
 
 When we create new pages: 
 
-- Always use icons from "icons" folder
+- Always use icons from "client/components/icons" folder
 
-- Always use existing components from the "ui" folder when creating new pages, check to see if it exisits or are similar in nature and replace components that are already in use. 
+- Always use existing components from the "client/components/ui" folder when creating new pages, check to see if it exisits or are similar in nature and replace components that are already in use. 
 
-- Always upload new icon assets into the "icons" folder.
+- Always upload new icon assets into the "client/components/icons" folder.
 
 - Modals always have scrim behind it
