@@ -705,7 +705,15 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                       <span className="text-base text-[#2E2F32]">({adGroupRecs.length})</span>
                     </div>
 
-                    {adGroupRecs.map((rec) => (
+                    {adGroupRecs.map((rec) => {
+                      // Check if this ad group conflicts with a selected campaign recommendation
+                      const conflictingRec = campaignRecs.find(campaignRec =>
+                        selectedRecommendations.has(campaignRec.id) &&
+                        campaignRec.affectedAdGroups?.includes(rec.adGroup || '')
+                      );
+                      const isDisabled = !!conflictingRec;
+
+                      return (
                       <div
                         key={rec.id}
                         className={`flex items-start gap-3 p-4 rounded-lg border ${
@@ -716,8 +724,13 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                         <div className="flex items-start pt-0.5">
                           <Checkbox
                             checked={selectedRecommendations.has(rec.id)}
-                            onCheckedChange={() => handleToggleRecommendation(rec.id)}
-                            className="w-6 h-6 rounded border-2 data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32]"
+                            onCheckedChange={() => !isDisabled && handleToggleRecommendation(rec.id)}
+                            disabled={isDisabled}
+                            className={`w-6 h-6 rounded border-2 ${
+                              isDisabled
+                                ? 'border-[#BABBBE] bg-[#F4F5F5] opacity-50 cursor-not-allowed'
+                                : 'data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32]'
+                            }`}
                           />
                         </div>
 
@@ -726,7 +739,9 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                           {/* Ad Group Name Link */}
                           <a
                             href="#"
-                            className="text-sm text-[#2E2F32] underline hover:no-underline break-words"
+                            className={`text-sm underline hover:no-underline break-words ${
+                              isDisabled ? 'text-[#BABBBE] cursor-not-allowed' : 'text-[#2E2F32]'
+                            }`}
                             onClick={(e) => e.preventDefault()}
                           >
                             {rec.adGroup}
@@ -758,10 +773,16 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                                       {/* Option Content */}
                                       <div className="flex-1 flex flex-col gap-1">
-                                        <div className="text-sm font-bold text-[#2E2F32]">{option.title}</div>
+                                        <div className={`text-sm font-bold ${
+                                          isDisabled ? 'text-[#BABBBE]' : 'text-[#2E2F32]'
+                                        }`}>{option.title}</div>
                                         <div className="flex items-end gap-1 flex-wrap">
-                                          <span className="text-sm font-bold text-[#2A8703]">{option.impact}</span>
-                                          <span className="text-sm text-[#2E2F32]">{option.message}</span>
+                                          <span className={`text-sm font-bold ${
+                                            isDisabled ? 'text-[#BABBBE]' : 'text-[#2A8703]'
+                                          }`}>{option.impact}</span>
+                                          <span className={`text-sm ${
+                                            isDisabled ? 'text-[#BABBBE]' : 'text-[#2E2F32]'
+                                          }`}>{option.message}</span>
                                         </div>
                                       </div>
                                     </div>
@@ -797,12 +818,35 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                           ) : (
                             <div className="flex flex-col gap-2.5">
                               <div className="flex flex-col gap-1">
-                                <div className="text-sm font-bold text-[#2E2F32]">{rec.title}</div>
+                                <div className={`text-sm font-bold ${
+                                  isDisabled ? 'text-[#BABBBE]' : 'text-[#2E2F32]'
+                                }`}>{rec.title}</div>
                                 <div className="flex items-end gap-1 flex-wrap">
-                                  <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
-                                  <span className="text-sm text-[#2E2F32]">{rec.message}</span>
+                                  <span className={`text-sm font-bold ${
+                                    isDisabled ? 'text-[#BABBBE]' : 'text-[#2A8703]'
+                                  }`}>{rec.impact}</span>
+                                  <span className={`text-sm ${
+                                    isDisabled ? 'text-[#BABBBE]' : 'text-[#2E2F32]'
+                                  }`}>{rec.message}</span>
                                 </div>
                               </div>
+
+                              {/* Warning banner for conflicts */}
+                              {isDisabled && conflictingRec && (
+                                <div className="w-full flex items-center gap-2 p-2 pr-3 rounded border border-[#AF2F00] bg-[#FEF0E6] relative">
+                                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#AF2F00] rounded-l" />
+                                  <div className="flex items-start gap-2 ml-1 flex-1">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0 mt-0.5">
+                                      <path d="M7.31919 6.1336L7.53104 9.96179H8.47554L8.67857 6.1336H7.31919Z" fill="#2E2F32"/>
+                                      <path d="M7.46925 11.799C7.61048 11.9196 7.78703 11.98 7.99888 11.98C8.20484 11.98 8.37845 11.9196 8.51968 11.799C8.6668 11.6723 8.74036 11.4973 8.74036 11.2741C8.74036 11.0629 8.6668 10.8909 8.51968 10.7582C8.37845 10.6255 8.20484 10.5591 7.99888 10.5591C7.78703 10.5591 7.61048 10.6255 7.46925 10.7582C7.32802 10.8909 7.2574 11.0629 7.2574 11.2741C7.2574 11.4973 7.32802 11.6723 7.46925 11.799Z" fill="#2E2F32"/>
+                                      <path d="M8.85545 2.01169C8.48238 1.32944 7.51762 1.32944 7.14455 2.01169L1.12482 13.0205C0.761943 13.6841 1.2337 14.5 1.98026 14.5H14.0197C14.7663 14.5 15.2381 13.6841 14.8752 13.0205L8.85545 2.01169ZM1.98026 13.5044L8 2.49562L14.0197 13.5044H1.98026Z" fill="#2E2F32"/>
+                                    </svg>
+                                    <p className="text-sm text-[#662B0D] flex-1">
+                                      Conflicting recommendation selected. Deselect the other one to choose this option. <span className="font-bold">Conflicting with</span>: {conflictingRec.title}
+                                    </p>
+                                  </div>
+                                </div>
+                              )}
 
                               {/* Card CTA */}
                               <div className="flex items-center justify-end gap-4">
@@ -828,7 +872,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                           )}
                         </div>
                       </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>
