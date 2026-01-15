@@ -227,13 +227,16 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             <div className="flex flex-col gap-4">
               {/* Breadcrumb */}
               <div className="flex items-center gap-2 flex-wrap text-sm">
-                <Button
-                  variant="link"
-                  onClick={handleBackToList}
-                  className="h-auto p-0 text-[#515357]"
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleBackToList();
+                  }}
+                  className="text-[#515357] underline hover:no-underline"
                 >
                   Main
-                </Button>
+                </a>
                 <span className="text-[#515357]">/</span>
                 <span className="text-[#2E2F32]">Campaign name...</span>
               </div>
