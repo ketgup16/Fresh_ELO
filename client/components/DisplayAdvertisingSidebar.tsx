@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Home, Megaphone, Users } from 'lucide-react';
+import { Home, Megaphone, ChartColumn, Briefcase, Video, CloudUpload } from 'lucide-react';
 import Reports from './icons/Reports';
-import MeasurementConsole from './icons/MeasurementConsole';
-import ImageIcon from './icons/ImageIcon';
 
 const ArrowRightLineIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
