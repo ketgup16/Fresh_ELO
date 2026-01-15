@@ -706,9 +706,11 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                     </div>
 
                     {adGroupRecs.map((rec) => (
-                      <div 
+                      <div
                         key={rec.id}
-                        className="flex items-start gap-3 p-4 rounded-lg border border-[#E3E4E5] bg-white"
+                        className={`flex items-start gap-3 p-4 rounded-lg border ${
+                          selectedRecommendations.has(rec.id) ? 'border-[#2E2F32]' : 'border-[#E3E4E5]'
+                        } bg-white`}
                       >
                         {/* Checkbox */}
                         <div className="flex items-start pt-0.5">
@@ -722,7 +724,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                         {/* Content */}
                         <div className="flex-1 flex flex-col gap-4">
                           {/* Ad Group Name Link */}
-                          <a 
+                          <a
                             href="#"
                             className="text-sm text-[#2E2F32] underline hover:no-underline break-words"
                             onClick={(e) => e.preventDefault()}
@@ -730,36 +732,101 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                             {rec.adGroup}
                           </a>
 
-                          <div className="flex flex-col gap-2.5">
-                            <div className="flex flex-col gap-1">
-                              <div className="text-sm font-bold text-[#2E2F32]">{rec.title}</div>
-                              <div className="flex items-end gap-1 flex-wrap">
-                                <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
-                                <span className="text-sm text-[#2E2F32]">{rec.message}</span>
+                          {/* Multiple Options or Single Recommendation */}
+                          {rec.hasMultipleOptions && rec.options ? (
+                            <div className="flex flex-col gap-4">
+                              {rec.options.map((option, idx) => (
+                                <div key={option.id}>
+                                  <div className="flex flex-col gap-2.5">
+                                    <div className="flex items-start gap-3">
+                                      {/* Radio Button */}
+                                      <div className="flex items-start pt-0.5">
+                                        <RadioGroup
+                                          value={selectedRadioOptions[rec.id] || rec.options![0].id}
+                                          onValueChange={(value) => {
+                                            setSelectedRadioOptions({
+                                              ...selectedRadioOptions,
+                                              [rec.id]: value
+                                            });
+                                          }}
+                                        >
+                                          <RadioGroupItem
+                                            value={option.id}
+                                            className="w-6 h-6 border-2 border-[#2E2F32] data-[state=checked]:bg-[#2E2F32]"
+                                          />
+                                        </RadioGroup>
+                                      </div>
+
+                                      {/* Option Content */}
+                                      <div className="flex-1 flex flex-col gap-1">
+                                        <div className="text-sm font-bold text-[#2E2F32]">{option.title}</div>
+                                        <div className="flex items-end gap-1 flex-wrap">
+                                          <span className="text-sm font-bold text-[#2A8703]">{option.impact}</span>
+                                          <span className="text-sm text-[#2E2F32]">{option.message}</span>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    {/* Card CTA for this option */}
+                                    <div className="flex items-center justify-end gap-4">
+                                      <a
+                                        href="#"
+                                        className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                        onClick={(e) => e.preventDefault()}
+                                      >
+                                        Dismiss
+                                      </a>
+                                      <a
+                                        href="#"
+                                        className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          handleViewRecommendationDetail(rec);
+                                        }}
+                                      >
+                                        View details
+                                      </a>
+                                    </div>
+                                  </div>
+                                  {/* Divider between options (not after last one) */}
+                                  {idx < rec.options.length - 1 && (
+                                    <div className="h-px bg-[#E3E4E5] my-4" />
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="flex flex-col gap-2.5">
+                              <div className="flex flex-col gap-1">
+                                <div className="text-sm font-bold text-[#2E2F32]">{rec.title}</div>
+                                <div className="flex items-end gap-1 flex-wrap">
+                                  <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
+                                  <span className="text-sm text-[#2E2F32]">{rec.message}</span>
+                                </div>
+                              </div>
+
+                              {/* Card CTA */}
+                              <div className="flex items-center justify-end gap-4">
+                                <a
+                                  href="#"
+                                  className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                  onClick={(e) => e.preventDefault()}
+                                >
+                                  Dismiss
+                                </a>
+                                <a
+                                  href="#"
+                                  className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    handleViewRecommendationDetail(rec);
+                                  }}
+                                >
+                                  View details
+                                </a>
                               </div>
                             </div>
-
-                            {/* Card CTA */}
-                            <div className="flex items-center justify-end gap-4">
-                              <a
-                                href="#"
-                                className="text-sm text-[#2E2F32] underline hover:no-underline"
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                Dismiss
-                              </a>
-                              <a
-                                href="#"
-                                className="text-sm text-[#2E2F32] underline hover:no-underline"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  handleViewRecommendationDetail(rec);
-                                }}
-                              >
-                                View details
-                              </a>
-                            </div>
-                          </div>
+                          )}
                         </div>
                       </div>
                     ))}
