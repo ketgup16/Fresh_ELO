@@ -220,7 +220,7 @@ export default function DisplayAdvertisingSidebar({
 
               {/* Submenu items for Campaigns */}
               {isCampaigns && campaignsExpanded && sidebarExpanded && (
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1 mt-1">
                   {item.submenuItems.map((subItem) => {
                     const isSubActive = activeMenuItem === subItem.id;
                     return (
@@ -230,13 +230,11 @@ export default function DisplayAdvertisingSidebar({
                           navigate('/display-advertising/campaigns');
                           onMenuItemClick(subItem.id);
                         }}
-                        className="flex items-center gap-2 pl-3 pr-3 w-full h-7 hover:bg-gray-100 transition-colors"
+                        className="flex items-center gap-3 pl-12 pr-3 w-full h-9 rounded hover:bg-gray-100 transition-colors"
                         aria-label={subItem.label}
                       >
-                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                          <circle cx="4" cy="4" r="2.5" fill="none" stroke="#2E2F32" />
-                        </svg>
-                        <span className="text-sm truncate text-[#2E2F32] flex-1 text-left">
+                        <span className="text-xs text-[#2E2F32]">○</span>
+                        <span className="text-sm truncate text-[#2E2F32]">
                           {subItem.label}
                         </span>
                       </button>
