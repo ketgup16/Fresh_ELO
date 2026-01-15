@@ -112,7 +112,7 @@ export default function DisplayAdvertisingSidebar({
 
   return (
     <aside
-      className="border-r border-[#E3E4E5] bg-white flex flex-col justify-between p-1.5 h-auto self-stretch overflow-hidden relative"
+      className="border-r border-[#E3E4E5] bg-white flex flex-col justify-between p-3 h-auto self-stretch overflow-hidden relative"
       style={{
         width: sidebarExpanded ? `${sidebarWidth}px` : '64px',
         transition: isResizingSidebar ? 'none' : 'width 300ms ease-in-out'
