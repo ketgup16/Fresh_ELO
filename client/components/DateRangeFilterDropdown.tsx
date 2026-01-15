@@ -201,16 +201,16 @@ export default function DateRangeFilterDropdown({
             </div>
 
             {/* Action buttons */}
-            <div className="flex justify-end gap-2 pt-2 border-t border-[#E3E4E5]">
+            <div className="flex justify-end gap-3 pt-4">
               <button
                 onClick={handleCancel}
-                className="px-4 py-2 text-sm font-bold text-[#2E2F32] border border-[#909196] rounded-full hover:bg-gray-50 transition-colors"
+                className="px-6 py-2 text-sm text-[#2E2F32] hover:underline transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleApply}
-                className="px-4 py-2 text-sm font-bold text-white bg-[#0053E2] rounded-full hover:bg-[#0046c7] transition-colors"
+                className="px-6 py-2 text-sm font-bold text-white bg-[#0053E2] rounded-full hover:bg-[#0046c7] transition-colors"
               >
                 Apply
               </button>
