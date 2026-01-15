@@ -342,7 +342,6 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   const handleApplyRecommendations = () => {
     setIsApplied(true);
     toast("Recommendation applied successfully", {
-      duration: 3000,
       closeButton: true,
     });
   };
