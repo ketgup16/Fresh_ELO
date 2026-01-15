@@ -167,28 +167,38 @@ export default function DateRangeFilterDropdown({
             </div>
 
             {/* Calendar */}
-            <Calendar
-              mode="range"
-              selected={{
-                from: tempStartDate,
-                to: tempEndDate,
-              }}
-              onSelect={(range) => {
-                if (range?.from) setTempStartDate(range.from);
-                if (range?.to) setTempEndDate(range.to);
-                setSelectedRange("custom");
-              }}
-              numberOfMonths={2}
-              className="border-t border-[#E3E4E5] pt-4"
-            />
+            <div className="border-t border-[#E3E4E5] pt-4">
+              <Calendar
+                mode="range"
+                selected={{
+                  from: tempStartDate,
+                  to: tempEndDate,
+                }}
+                onSelect={(range) => {
+                  if (range?.from) setTempStartDate(range.from);
+                  if (range?.to) setTempEndDate(range.to);
+                  setSelectedRange("custom");
+                }}
+                numberOfMonths={2}
+              />
 
-            {/* Apply to today link */}
-            <button
-              onClick={handleApplyToday}
-              className="text-sm text-[#0053E2] underline hover:no-underline text-left"
-            >
-              Apply to today
-            </button>
+              {/* Timezone and Apply to today */}
+              <div className="flex items-center justify-between pt-4 border-t border-[#E3E4E5]">
+                <div className="flex items-center gap-2 text-xs text-[#74767C]">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15Z" stroke="#74767C" strokeWidth="1.2" fill="none"/>
+                    <path d="M8 4V8L11 10" stroke="#74767C" strokeWidth="1.2" strokeLinecap="round"/>
+                  </svg>
+                  <span>Pacific Standard Time</span>
+                </div>
+                <button
+                  onClick={handleApplyToday}
+                  className="text-sm text-[#0053E2] underline hover:no-underline"
+                >
+                  Jump to today
+                </button>
+              </div>
+            </div>
 
             {/* Action buttons */}
             <div className="flex justify-end gap-2 pt-2 border-t border-[#E3E4E5]">
