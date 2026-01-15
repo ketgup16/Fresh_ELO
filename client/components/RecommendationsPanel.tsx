@@ -423,12 +423,20 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                             {/* Card CTA */}
                             <div className="flex items-center justify-end gap-4">
-                              <Button variant="link" className="h-8 text-sm text-[#2E2F32] p-0">
+                              <a
+                                href="#"
+                                className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                onClick={(e) => e.preventDefault()}
+                              >
                                 Dismiss
-                              </Button>
-                              <Button variant="link" className="h-8 text-sm text-[#2E2F32] p-0">
+                              </a>
+                              <a
+                                href="#"
+                                className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                onClick={(e) => e.preventDefault()}
+                              >
                                 View details
-                              </Button>
+                              </a>
                             </div>
                           </div>
                         )}
