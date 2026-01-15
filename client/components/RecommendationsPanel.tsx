@@ -358,37 +358,42 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                         {rec.hasMultipleOptions ? (
                           // Multiple options with radio buttons
-                          <div className="flex flex-col gap-4">
-                            {[1, 2].map((optionIdx) => (
-                              <div key={optionIdx} className="flex flex-col gap-2.5">
-                                <div className="flex items-start gap-3">
-                                  <div className="flex items-start pt-0.5">
-                                    <RadioGroupItem 
-                                      value={`${rec.id}-${optionIdx}`}
-                                      className="w-6 h-6 border-2 border-[#2E2F32]"
-                                    />
-                                  </div>
-                                  <div className="flex-1 flex flex-col gap-1">
-                                    <div className="text-sm text-[#2E2F32]">{rec.title}</div>
-                                    <div className="flex items-end gap-1 flex-wrap">
-                                      <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
-                                      <span className="text-sm font-bold text-[#2E2F32]">{rec.message}</span>
+                          <RadioGroup
+                            value={selectedRadioOptions[rec.id] || ''}
+                            onValueChange={(value) => setSelectedRadioOptions(prev => ({ ...prev, [rec.id]: value }))}
+                          >
+                            <div className="flex flex-col gap-4">
+                              {[1, 2].map((optionIdx) => (
+                                <div key={optionIdx} className="flex flex-col gap-2.5">
+                                  <div className="flex items-start gap-3">
+                                    <div className="flex items-start pt-0.5">
+                                      <RadioGroupItem
+                                        value={`${rec.id}-${optionIdx}`}
+                                        className="w-6 h-6 border-2 border-[#2E2F32]"
+                                      />
+                                    </div>
+                                    <div className="flex-1 flex flex-col gap-1">
+                                      <div className="text-sm text-[#2E2F32]">{rec.title}</div>
+                                      <div className="flex items-end gap-1 flex-wrap">
+                                        <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
+                                        <span className="text-sm font-bold text-[#2E2F32]">{rec.message}</span>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
 
-                                {/* Card CTA */}
-                                <div className="flex items-center justify-end gap-4">
-                                  <Button variant="link" className="h-8 text-sm text-[#2E2F32] p-0">
-                                    Dismiss
-                                  </Button>
-                                  <Button variant="link" className="h-8 text-sm text-[#2E2F32] p-0">
-                                    View details
-                                  </Button>
+                                  {/* Card CTA */}
+                                  <div className="flex items-center justify-end gap-4">
+                                    <Button variant="link" className="h-8 text-sm text-[#2E2F32] p-0">
+                                      Dismiss
+                                    </Button>
+                                    <Button variant="link" className="h-8 text-sm text-[#2E2F32] p-0">
+                                      View details
+                                    </Button>
+                                  </div>
                                 </div>
-                              </div>
-                            ))}
-                          </div>
+                              ))}
+                            </div>
+                          </RadioGroup>
                         ) : (
                           // Single option
                           <div className="flex flex-col gap-2.5">
