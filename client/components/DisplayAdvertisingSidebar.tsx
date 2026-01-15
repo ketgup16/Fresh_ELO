@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Home, Megaphone, ChartColumn, Briefcase, Video, CloudUpload } from 'lucide-react';
 import Reports from './icons/Reports';
 
@@ -29,6 +30,8 @@ export default function DisplayAdvertisingSidebar({
   activeMenuItem,
   onMenuItemClick,
 }: DisplayAdvertisingSidebarProps) {
+  const navigate = useNavigate();
+
   // Sidebar state management
   const [sidebarLocked, setSidebarLocked] = useState(false);
   const [sidebarHovered, setSidebarHovered] = useState(false);
@@ -97,7 +100,13 @@ export default function DisplayAdvertisingSidebar({
   };
 
   const handleCampaignsToggle = () => {
-    if (!sidebarExpanded) return;
+    // If sidebar is collapsed, navigate to campaigns page
+    if (!sidebarExpanded) {
+      navigate('/display-advertising/campaigns');
+      onMenuItemClick('campaigns');
+      return;
+    }
+    // If sidebar is expanded, just toggle the submenu
     setCampaignsExpanded(!campaignsExpanded);
   };
 
@@ -127,10 +136,16 @@ export default function DisplayAdvertisingSidebar({
                 onClick={() => {
                   if (isCampaigns) {
                     handleCampaignsToggle();
+                    // If expanded, don't navigate, just toggle submenu
                     if (sidebarExpanded) return;
-                  }
-                  if (!hasSubmenu || !sidebarExpanded) {
+                  } else {
+                    // For other items, update state and navigate if applicable
                     onMenuItemClick(item.id);
+
+                    // Navigate to home/dashboard when clicking dashboard
+                    if (item.id === 'dashboard') {
+                      navigate('/');
+                    }
                   }
                 }}
                 className={`flex items-center ${
@@ -171,7 +186,10 @@ export default function DisplayAdvertisingSidebar({
                     return (
                       <button
                         key={subItem.id}
-                        onClick={() => onMenuItemClick(subItem.id)}
+                        onClick={() => {
+                          navigate('/display-advertising/campaigns');
+                          onMenuItemClick(subItem.id);
+                        }}
                         className="flex items-center gap-2 pl-3 pr-3 w-full h-7 hover:bg-gray-100 transition-colors"
                         aria-label={subItem.label}
                       >
