@@ -734,27 +734,26 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                           {/* Multiple Options or Single Recommendation */}
                           {rec.hasMultipleOptions && rec.options ? (
-                            <div className="flex flex-col gap-4">
+                            <RadioGroup
+                              value={selectedRadioOptions[rec.id] || rec.options[0].id}
+                              onValueChange={(value) => {
+                                setSelectedRadioOptions({
+                                  ...selectedRadioOptions,
+                                  [rec.id]: value
+                                });
+                              }}
+                              className="flex flex-col gap-4"
+                            >
                               {rec.options.map((option, idx) => (
                                 <div key={option.id}>
                                   <div className="flex flex-col gap-2.5">
                                     <div className="flex items-start gap-3">
                                       {/* Radio Button */}
                                       <div className="flex items-start pt-0.5">
-                                        <RadioGroup
-                                          value={selectedRadioOptions[rec.id] || rec.options![0].id}
-                                          onValueChange={(value) => {
-                                            setSelectedRadioOptions({
-                                              ...selectedRadioOptions,
-                                              [rec.id]: value
-                                            });
-                                          }}
-                                        >
-                                          <RadioGroupItem
-                                            value={option.id}
-                                            className="w-6 h-6 border-2 border-[#2E2F32] data-[state=checked]:bg-[#2E2F32]"
-                                          />
-                                        </RadioGroup>
+                                        <RadioGroupItem
+                                          value={option.id}
+                                          className="w-6 h-6 border-2 border-[#2E2F32] data-[state=checked]:bg-[#2E2F32]"
+                                        />
                                       </div>
 
                                       {/* Option Content */}
@@ -794,7 +793,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                   )}
                                 </div>
                               ))}
-                            </div>
+                            </RadioGroup>
                           ) : (
                             <div className="flex flex-col gap-2.5">
                               <div className="flex flex-col gap-1">
