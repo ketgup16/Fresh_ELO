@@ -1,4 +1,4 @@
-import { X, Eye, ChevronDown, CheckCircle } from "lucide-react";
+import { X, Eye, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
