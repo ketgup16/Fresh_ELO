@@ -132,8 +132,8 @@ export default function DateRangeFilterDropdown({
           <div className="flex flex-col gap-4 p-4">
             {/* Date inputs */}
             <div className="flex gap-4">
-              <div className="flex flex-col gap-1">
-                <label className="text-xs text-[#74767C]">Start date</label>
+              <div className="flex flex-col gap-1 flex-1">
+                <label className="text-xs font-bold text-[#2E2F32]">Start date</label>
                 <input
                   type="text"
                   value={tempStartDate ? format(tempStartDate, "MM/dd/yyyy") : ""}
@@ -144,12 +144,12 @@ export default function DateRangeFilterDropdown({
                       setSelectedRange("custom");
                     }
                   }}
-                  className="px-3 py-2 text-sm border border-[#909196] rounded focus:outline-none focus:ring-2 focus:ring-[#0053E2]"
+                  className="px-3 py-2 text-sm border border-[#909196] rounded focus:outline-none focus:ring-2 focus:ring-[#0053E2] bg-white"
                   placeholder="01/01/2026"
                 />
               </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-xs text-[#74767C]">End date</label>
+              <div className="flex flex-col gap-1 flex-1">
+                <label className="text-xs font-bold text-[#2E2F32]">End date</label>
                 <input
                   type="text"
                   value={tempEndDate ? format(tempEndDate, "MM/dd/yyyy") : ""}
@@ -160,7 +160,7 @@ export default function DateRangeFilterDropdown({
                       setSelectedRange("custom");
                     }
                   }}
-                  className="px-3 py-2 text-sm border border-[#909196] rounded focus:outline-none focus:ring-2 focus:ring-[#0053E2]"
+                  className="px-3 py-2 text-sm border border-[#909196] rounded focus:outline-none focus:ring-2 focus:ring-[#0053E2] bg-white"
                   placeholder="05/15/2026"
                 />
               </div>
