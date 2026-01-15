@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronRight, ChevronDown, ChevronUp, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X, Home, Megaphone, Users } from "lucide-react";
-import Reports from "../components/icons/Reports";
-import MeasurementConsole from "../components/icons/MeasurementConsole";
-import ImageIcon from "../components/icons/ImageIcon";
+import { ChevronRight, ChevronDown, ChevronUp, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X } from "lucide-react";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import DisplayDashboard from "../components/DisplayDashboard";
+import DisplayAdvertisingSidebar from "../components/DisplayAdvertisingSidebar";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface Campaign {
