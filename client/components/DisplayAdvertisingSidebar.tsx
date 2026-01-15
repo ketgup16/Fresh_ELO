@@ -47,31 +47,19 @@ export default function DisplayAdvertisingSidebar({
 
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', Icon: Home },
-    { id: 'performance', label: 'Performance', Icon: Reports },
     {
       id: 'campaigns',
       label: 'Campaigns',
       Icon: Megaphone,
       submenuItems: [
-        { id: 'campaigns-active', label: 'Active', icon: '○' },
-        { id: 'campaigns-draft', label: 'Draft', icon: '○' },
-        { id: 'campaigns-archived', label: 'Archived', icon: '○' },
+        { id: 'campaigns-active', label: 'Active' },
+        { id: 'campaigns-draft', label: 'Draft' },
+        { id: 'campaigns-archived', label: 'Archived' },
       ]
     },
-    {
-      id: 'reports',
-      label: 'Reports',
-      Icon: Reports,
-      submenuItems: []
-    },
-    {
-      id: 'tools',
-      label: 'Tools',
-      Icon: Users,
-      submenuItems: []
-    },
-    { id: 'asset-library', label: 'Asset library', Icon: Users },
-    { id: 'creative-hub', label: 'Creative Hub', Icon: ImageIcon },
+    { id: 'performance', label: 'Performance', Icon: Reports },
+    { id: 'reports', label: 'Reports', Icon: Reports },
+    { id: 'tools', label: 'Tools', Icon: Users },
     { id: 'video-manager', label: 'Video manager', Icon: ImageIcon },
     { id: 'bulk-operations', label: 'Bulk operations', Icon: ImageIcon },
   ];
