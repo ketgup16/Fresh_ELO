@@ -454,13 +454,16 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           <>
             <div className="h-px bg-[#E3E4E5]" />
             <div className="flex items-center justify-end gap-4 px-6 py-6">
-              <Button 
-                variant="link"
-                onClick={handleBackToList}
-                className="h-8 text-sm text-[#2E2F32] p-0"
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleBackToList();
+                }}
+                className="text-sm text-[#2E2F32] underline hover:no-underline"
               >
                 Cancel
-              </Button>
+              </a>
               <Button className="h-8 px-4 text-sm font-bold bg-[#0071CE] hover:bg-[#004F9A]">
                 Apply selected
               </Button>
