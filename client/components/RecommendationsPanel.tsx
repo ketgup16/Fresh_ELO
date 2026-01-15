@@ -1,8 +1,9 @@
-import { X, Eye, ChevronDown } from "lucide-react";
+import { X, Eye, ChevronDown, CheckCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { toast } from "sonner";
 
 interface RecommendationsPanelProps {
   isOpen: boolean;
@@ -54,6 +55,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   const [selectedRadioOptions, setSelectedRadioOptions] = useState<Record<string, string>>({});
   const [keywordsExpanded, setKeywordsExpanded] = useState(false);
   const [currentExpanded, setCurrentExpanded] = useState(false);
+  const [isApplied, setIsApplied] = useState(false);
 
   // Reset to list view whenever the panel opens
   useEffect(() => {
@@ -64,6 +66,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
       setSelectedRecommendations(new Set());
       setKeywordsExpanded(false);
       setCurrentExpanded(false);
+      setIsApplied(false);
     }
   }, [isOpen]);
 
@@ -312,11 +315,13 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
     setSelectedCampaign(null);
     setSelectedRecommendations(new Set());
     setSelectedRecommendation(null);
+    setIsApplied(false);
   };
 
   const handleBackToDetail = () => {
     setViewMode("detail");
     setSelectedRecommendation(null);
+    setIsApplied(false);
   };
 
   const handleViewRecommendationDetail = (recommendation: RecommendationItem) => {
@@ -332,6 +337,13 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
       newSelected.add(recId);
     }
     setSelectedRecommendations(newSelected);
+  };
+
+  const handleApplyRecommendations = () => {
+    setIsApplied(true);
+    toast.success("Recommendation applied successfully", {
+      duration: 3000,
+    });
   };
 
   const campaignLevelRecs = selectedCampaign?.detailedRecommendations.filter(r => r.type === "campaign") || [];
@@ -885,49 +897,97 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         {viewMode === "detail" && (
           <>
             <div className="h-px bg-[#E3E4E5]" />
-            <div className="flex items-center justify-end gap-4 px-6 py-6">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleBackToList();
-                }}
-                className="text-sm text-[#2E2F32] underline hover:no-underline"
-              >
-                Cancel
-              </a>
-              <Button className="h-8 px-4 text-sm font-bold bg-[#0053E2] hover:bg-[#0046c7] text-white rounded-full">
-                Apply selected
-              </Button>
-            </div>
+            {isApplied ? (
+              <div className="flex items-center justify-end gap-4 px-6 py-3">
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleBackToList();
+                  }}
+                  className="text-sm text-[#2E2F32] underline hover:no-underline"
+                >
+                  Cancel
+                </a>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#2A8703] fill-[#2A8703]" />
+                  <span className="text-sm text-[#2A8703]">
+                    Recommendation applied
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center justify-end gap-4 px-6 py-6">
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleBackToList();
+                  }}
+                  className="text-sm text-[#2E2F32] underline hover:no-underline"
+                >
+                  Cancel
+                </a>
+                <Button
+                  onClick={handleApplyRecommendations}
+                  className="h-8 px-4 text-sm font-bold bg-[#0053E2] hover:bg-[#0046c7] text-white rounded-full"
+                >
+                  Apply selected
+                </Button>
+              </div>
+            )}
           </>
         )}
 
         {viewMode === "recommendation-detail" && (
           <>
             <div className="h-px bg-[#E3E4E5]" />
-            <div className="flex items-center justify-end gap-4 px-6 py-6">
-              <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                className="text-sm text-[#2E2F32] underline hover:no-underline"
-              >
-                Dismiss
-              </a>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleBackToDetail();
-                }}
-                className="text-sm text-[#2E2F32] underline hover:no-underline"
-              >
-                Cancel
-              </a>
-              <Button className="h-8 px-4 text-sm font-bold bg-[#0053E2] hover:bg-[#0046c7] text-white rounded-full">
-                Apply recommendation
-              </Button>
-            </div>
+            {isApplied ? (
+              <div className="flex items-center justify-end gap-4 px-6 py-3">
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleBackToList();
+                  }}
+                  className="text-sm text-[#2E2F32] underline hover:no-underline"
+                >
+                  Cancel
+                </a>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#2A8703] fill-[#2A8703]" />
+                  <span className="text-sm text-[#2A8703]">
+                    Recommendation applied
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center justify-end gap-4 px-6 py-6">
+                <a
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
+                  className="text-sm text-[#2E2F32] underline hover:no-underline"
+                >
+                  Dismiss
+                </a>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleBackToDetail();
+                  }}
+                  className="text-sm text-[#2E2F32] underline hover:no-underline"
+                >
+                  Cancel
+                </a>
+                <Button
+                  onClick={handleApplyRecommendations}
+                  className="h-8 px-4 text-sm font-bold bg-[#0053E2] hover:bg-[#0046c7] text-white rounded-full"
+                >
+                  Apply recommendation
+                </Button>
+              </div>
+            )}
           </>
         )}
       </div>
