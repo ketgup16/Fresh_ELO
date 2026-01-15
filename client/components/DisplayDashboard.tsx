@@ -957,7 +957,7 @@ export default function DisplayDashboard() {
             </DialogTitle>
           </DialogHeader>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 min-h-[600px]">
             {/* Tabs */}
             <div className="border-b border-[#E3E4E5]">
               <div className="flex gap-0">
