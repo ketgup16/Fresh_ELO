@@ -56,6 +56,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   const [keywordsExpanded, setKeywordsExpanded] = useState(false);
   const [currentExpanded, setCurrentExpanded] = useState(false);
   const [isApplied, setIsApplied] = useState(false);
+  const [appliedRecommendations, setAppliedRecommendations] = useState<Set<string>>(new Set());
 
   // Reset to list view whenever the panel opens
   useEffect(() => {
@@ -67,6 +68,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
       setKeywordsExpanded(false);
       setCurrentExpanded(false);
       setIsApplied(false);
+      setAppliedRecommendations(new Set());
     }
   }, [isOpen]);
 
@@ -341,6 +343,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
   const handleApplyRecommendations = () => {
     setIsApplied(true);
+    // Mark all selected recommendations as applied
+    setAppliedRecommendations(new Set([...appliedRecommendations, ...selectedRecommendations]));
     toast("Recommendation applied successfully", {
       closeButton: true,
     });
