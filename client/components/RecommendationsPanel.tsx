@@ -916,8 +916,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 >
                   Cancel
                 </a>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-[#2A8703] fill-[#2A8703]" />
+                <div className="flex h-8 items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                    <path d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15ZM6.92421 10.9243C6.6899 11.1586 6.31 11.1586 6.07568 10.9243L4.07568 8.92426L4.92421 8.07573L6.49995 9.65147L11.0757 5.07573L11.9242 5.92426L6.92421 10.9243Z" fill="#2A8703"/>
+                  </svg>
                   <span className="text-sm text-[#2A8703]">
                     Recommendation applied
                   </span>
@@ -961,8 +963,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 >
                   Cancel
                 </a>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-[#2A8703] fill-[#2A8703]" />
+                <div className="flex h-8 items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                    <path d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15ZM6.92421 10.9243C6.6899 11.1586 6.31 11.1586 6.07568 10.9243L4.07568 8.92426L4.92421 8.07573L6.49995 9.65147L11.0757 5.07573L11.9242 5.92426L6.92421 10.9243Z" fill="#2A8703"/>
+                  </svg>
                   <span className="text-sm text-[#2A8703]">
                     Recommendation applied
                   </span>
