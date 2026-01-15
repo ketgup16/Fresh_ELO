@@ -47,6 +47,18 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   const [keywordsExpanded, setKeywordsExpanded] = useState(false);
   const [currentExpanded, setCurrentExpanded] = useState(false);
 
+  // Reset to list view whenever the panel opens
+  useEffect(() => {
+    if (isOpen) {
+      setViewMode("list");
+      setSelectedCampaign(null);
+      setSelectedRecommendation(null);
+      setSelectedRecommendations(new Set());
+      setKeywordsExpanded(false);
+      setCurrentExpanded(false);
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   // Realistic display advertising campaigns with detailed recommendations
