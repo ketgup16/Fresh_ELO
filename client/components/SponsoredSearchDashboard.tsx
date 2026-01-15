@@ -145,21 +145,9 @@ export default function SponsoredSearchDashboard() {
 
       {/* Chart */}
       <div className="flex flex-col items-start gap-[-1px] self-stretch rounded-xl shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] bg-white">
-        {/* Header with Filters */}
+        {/* Header */}
         <div className="flex flex-col items-start gap-4 self-stretch p-4">
-          <div className="flex items-center gap-2 self-stretch">
-            <h2 className="flex-1 text-2xl font-bold text-[#2E2F32] leading-9">All campaigns</h2>
-            <div className="flex items-start gap-2">
-              <button className="flex h-8 px-3 justify-center items-center gap-2 rounded-full border border-[#909196] bg-white hover:bg-gray-50 transition-colors">
-                <span className="text-sm text-[#2E2F32] leading-5">14 day attribution</span>
-                <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
-              </button>
-              <button className="flex h-8 px-3 justify-center items-center gap-2 rounded-full border border-[#909196] bg-white hover:bg-gray-50 transition-colors">
-                <span className="text-sm text-[#2E2F32] leading-5">Jan 1 – Mar 30, 2025</span>
-                <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
-              </button>
-            </div>
-          </div>
+          <h2 className="text-2xl font-bold text-[#2E2F32] leading-9">All campaigns</h2>
         </div>
 
         {/* Metrics Ribbon */}
