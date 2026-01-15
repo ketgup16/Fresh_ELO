@@ -2801,7 +2801,7 @@ export default function DisplayAdvertisingCampaigns() {
                 </thead>
                 <tbody>
                   {getPaginatedCampaigns().map((campaign, idx) => (
-                    <React.Fragment key={campaign.id}>
+                    <Fragment key={campaign.id}>
                       <tr key={campaign.id} className={`border-b border-[#E3E4E5] hover:bg-[#F0F5FF] group ${
                         searchQuery.trim() && (campaign.name.toLowerCase().includes(searchQuery.toLowerCase()) || campaign.id.toLowerCase().includes(searchQuery.toLowerCase()))
                           ? 'bg-[#FFF9E6]'
@@ -3188,7 +3188,7 @@ export default function DisplayAdvertisingCampaigns() {
                           </td>
                         </tr>
                       ))}
-                    </React.Fragment>
+                    </Fragment>
                   ))}
                 </tbody>
               </table>
