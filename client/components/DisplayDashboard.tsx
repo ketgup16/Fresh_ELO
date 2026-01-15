@@ -443,7 +443,7 @@ export default function DisplayDashboard() {
               {/* Chart Container */}
               <div className="relative h-[320px] pl-10 pr-16">
                 {/* Y-axis labels (left) */}
-                <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-right text-xs text-[#2E2F32] pb-4 w-10">
+                <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-right text-xs text-[#2E2F32] pr-3 pb-4 w-10">
                   <span>$50K</span>
                   <span>$45K</span>
                   <span>$40K</span>
