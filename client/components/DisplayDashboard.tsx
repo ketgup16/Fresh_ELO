@@ -65,7 +65,7 @@ export default function DisplayDashboard() {
           {/* Opportunity Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Card 1 - Maximize your reach */}
-            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
+            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5]">
               <div className="px-6 py-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-sm font-bold text-[#2E2F32]">Maximize your reach</h3>
@@ -114,7 +114,7 @@ export default function DisplayDashboard() {
             </div>
 
             {/* Card 2 - Increase your engagement */}
-            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
+            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5]">
               <div className="px-6 py-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-base font-bold text-[#2E2F32]">Increase your engagement</h3>
@@ -163,7 +163,7 @@ export default function DisplayDashboard() {
             </div>
 
             {/* Card 3 - Drive more conversions */}
-            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
+            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5]">
               <div className="px-6 py-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-base font-bold text-[#2E2F32]">Drive more conversions</h3>
