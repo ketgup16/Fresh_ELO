@@ -109,18 +109,18 @@ export default function DateRangeFilterDropdown({
           <ChevronDown className="w-4 h-4" />
         </button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
+      <PopoverContent className="w-auto p-0 max-w-4xl" align="start">
         <div className="flex">
           {/* Left sidebar with quick select options */}
-          <div className="flex flex-col gap-1 p-4 border-r border-[#E3E4E5] bg-[#F8F8F8]">
+          <div className="flex flex-col gap-1 p-3 border-r border-[#E3E4E5] bg-[#F8F8F8] min-w-[160px]">
             {quickRanges.map((range) => (
               <button
                 key={range.id}
                 onClick={() => handleQuickRangeSelect(range.id)}
-                className={`px-3 py-2 text-sm text-left rounded transition-colors ${
+                className={`px-3 py-2 text-sm text-left rounded transition-colors whitespace-nowrap ${
                   selectedRange === range.id
                     ? "bg-[#0053E2] text-white"
-                    : "text-[#2E2F32] hover:bg-[#E3E4E5]"
+                    : "text-[#0053E2] hover:bg-[#E3E4E5]"
                 }`}
               >
                 {range.label}
@@ -129,7 +129,7 @@ export default function DateRangeFilterDropdown({
           </div>
 
           {/* Right section with date inputs and calendar */}
-          <div className="flex flex-col gap-4 p-4">
+          <div className="flex flex-col gap-4 p-6">
             {/* Date inputs */}
             <div className="flex gap-4">
               <div className="flex flex-col gap-1 flex-1">
