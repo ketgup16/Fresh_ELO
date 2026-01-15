@@ -18,92 +18,246 @@ interface RecommendationItem {
   message: string;
   affectedAdGroups?: string[];
   hasMultipleOptions?: boolean;
+  campaign?: string;
+  adGroup?: string;
+  keywords?: string;
+  currentKeywords?: string;
+  whyRecommend?: string;
+}
+
+interface Campaign {
+  id: string;
+  name: string;
+  adGroups: number;
+  recommendations: number;
+  impact: string;
+  description: string;
+  goal: string;
+  detailedRecommendations: RecommendationItem[];
 }
 
 type ViewMode = "list" | "detail" | "recommendation-detail";
 
 export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "Awareness" }: RecommendationsPanelProps) {
   const [viewMode, setViewMode] = useState<ViewMode>("list");
-  const [selectedCampaign, setSelectedCampaign] = useState<string | null>(null);
+  const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+  const [selectedRecommendation, setSelectedRecommendation] = useState<RecommendationItem | null>(null);
   const [selectedRecommendations, setSelectedRecommendations] = useState<Set<string>>(new Set());
   const [selectedRadioOptions, setSelectedRadioOptions] = useState<Record<string, string>>({});
-  const [keywordsExpanded, setKeywordsExpanded] = useState(true);
+  const [keywordsExpanded, setKeywordsExpanded] = useState(false);
   const [currentExpanded, setCurrentExpanded] = useState(false);
 
   if (!isOpen) return null;
 
-  const mockRecommendations = [
+  // Realistic display advertising campaigns with detailed recommendations
+  const campaigns: Campaign[] = [
     {
       id: "1",
-      name: "H&H_FY25_Always On_North Atlantic_Blackstone_Display_In-Market_50839",
-      adGroups: 3,
-      recommendations: 5,
+      name: "CocaCola_Summer_Always_On_Display_Contextual_National_Premium_Sites",
+      adGroups: 5,
+      recommendations: 8,
       impact: "850k-1.2M",
-      description: "Potential increase in impressions"
+      description: "Potential increase in impressions",
+      goal: "Awareness",
+      detailedRecommendations: [
+        {
+          id: "rec-1-1",
+          type: "campaign",
+          title: "Increase daily budget by 25%",
+          impact: "320k-450k",
+          message: "Potential increase in impressions",
+          affectedAdGroups: [
+            "Display|Premium_Sites|Desktop",
+            "Display|Premium_Sites|Mobile", 
+            "Display|Premium_Sites|Tablet"
+          ],
+          campaign: "CocaCola_Summer_Always_On_Display_Contextual_National_Premium_Sites",
+          adGroup: "",
+          keywords: "",
+          whyRecommend: "Your campaign is frequently hitting its daily budget limit, causing it to stop showing ads before the end of the day. Historical data shows that similar campaigns with increased budgets saw a 35% boost in impressions while maintaining a healthy CTR of 0.8%."
+        },
+        {
+          id: "rec-1-2",
+          type: "adgroup",
+          title: "Add 15 contextual keywords",
+          impact: "180k-220k",
+          message: "Potential increase in impressions",
+          campaign: "CocaCola_Summer_Always_On_Display_Contextual_National_Premium_Sites",
+          adGroup: "Display|Premium_Sites|Beverage_Context|Summer_Recipes",
+          keywords: "summer refreshment drinks, cold beverages recipes, backyard BBQ drinks, poolside refreshments, beach cooler drinks, picnic beverage ideas, outdoor party drinks, ice-cold sodas, summer meal pairings, refreshing drink mixes, family gathering beverages, cookout drink options, summer hydration tips, chilled drink recipes, warm weather beverages",
+          currentKeywords: "coca cola, coke, soda, soft drink, beverage, refreshment",
+          whyRecommend: "Based on your campaign performance, we've identified that adding contextual keywords related to summer activities could significantly increase your reach. Similar campaigns in the beverage category saw an average 28% increase in impressions while maintaining conversion quality. This recommendation uses machine learning to find users actively searching for summer refreshment ideas who are likely to engage with your brand."
+        },
+        {
+          id: "rec-1-3",
+          type: "adgroup",
+          title: "Expand to responsive display ads",
+          impact: "250k-310k",
+          message: "Potential increase in impressions",
+          campaign: "CocaCola_Summer_Always_On_Display_Contextual_National_Premium_Sites",
+          adGroup: "Display|Premium_Sites|Desktop",
+          keywords: "",
+          whyRecommend: "Your current ad group is limited to standard display formats. Enabling responsive display ads would allow your ads to dynamically adjust to available ad spaces across the Google Display Network, potentially reaching 40% more inventory."
+        }
+      ]
     },
     {
       id: "2",
-      name: "Electronics_Q1_Spring_Sale_Display_Retargeting_Desktop_Mobile",
-      adGroups: 4,
+      name: "CocaCola_Zero_Sugar_Retargeting_Desktop_Mobile_Conversion_Optimized",
+      adGroups: 3,
       recommendations: 6,
-      impact: "620k-890k",
-      description: "Potential increase in impressions"
+      impact: "420k-580k",
+      description: "Potential increase in impressions",
+      goal: "Conversion",
+      detailedRecommendations: [
+        {
+          id: "rec-2-1",
+          type: "campaign",
+          title: "Switch to Target CPA bidding",
+          impact: "15%-18%",
+          message: "Potential increase in conversions",
+          affectedAdGroups: [
+            "Retargeting|Past_Visitors_7_Days",
+            "Retargeting|Cart_Abandoners_14_Days"
+          ],
+          campaign: "CocaCola_Zero_Sugar_Retargeting_Desktop_Mobile_Conversion_Optimized",
+          adGroup: "",
+          keywords: "",
+          whyRecommend: "Your campaign has accumulated sufficient conversion data (150+ conversions in last 30 days) to enable Target CPA bidding. This automated bidding strategy can optimize bids in real-time to maximize conversions at your target cost per acquisition."
+        },
+        {
+          id: "rec-2-2",
+          type: "adgroup",
+          title: "Add product-specific audiences",
+          impact: "95k-125k",
+          message: "Potential increase in impressions",
+          campaign: "CocaCola_Zero_Sugar_Retargeting_Desktop_Mobile_Conversion_Optimized",
+          adGroup: "Retargeting|Health_Conscious_Shoppers|Zero_Calorie_Interest",
+          keywords: "zero calorie beverages, sugar-free drinks, diet soda alternatives, low-calorie refreshments, healthy drink options, keto-friendly sodas, diabetic-friendly beverages, calorie-free drinks, weight loss drinks, fitness lifestyle beverages, nutrition-conscious choices, guilt-free indulgence, wellness beverages",
+          currentKeywords: "zero sugar, diet coke, calorie free, no sugar",
+          whyRecommend: "Your retargeting campaign can be enhanced by layering in-market audiences interested in health and wellness. Users who visited your site and are also in health-conscious shopping audiences convert at 2.3x the rate of general retargeting audiences."
+        }
+      ]
     },
     {
       id: "3",
-      name: "Grocery_Essentials_FY25_Evergreen_Display_Contextual_Targeting",
-      adGroups: 2,
-      recommendations: 3,
-      impact: "425k-580k",
-      description: "Potential increase in impressions"
+      name: "CocaCola_Holiday_Campaign_Video_Display_YouTube_Cross_Device",
+      adGroups: 4,
+      recommendations: 5,
+      impact: "620k-890k",
+      description: "Potential increase in video views",
+      goal: "Awareness",
+      detailedRecommendations: [
+        {
+          id: "rec-3-1",
+          type: "campaign",
+          title: "Enable video partners on Display Network",
+          impact: "280k-350k",
+          message: "Potential increase in video views",
+          affectedAdGroups: [
+            "Video|YouTube_InStream|Desktop",
+            "Video|YouTube_InStream|Mobile"
+          ],
+          campaign: "CocaCola_Holiday_Campaign_Video_Display_YouTube_Cross_Device",
+          adGroup: "",
+          keywords: "",
+          whyRecommend: "Your video campaign is currently limited to YouTube. Expanding to video partners on the Display Network would increase your reach by approximately 45% while maintaining similar engagement rates based on our analysis of comparable campaigns."
+        },
+        {
+          id: "rec-3-2",
+          type: "adgroup",
+          title: "Add holiday-themed keywords",
+          impact: "195k-240k",
+          message: "Potential increase in impressions",
+          campaign: "CocaCola_Holiday_Campaign_Video_Display_YouTube_Cross_Device",
+          adGroup: "Display|YouTube_InStream|Holiday_Content",
+          keywords: "christmas traditions, holiday celebrations, family gatherings, festive season, winter holidays, holiday recipes, christmas dinner ideas, new year celebrations, holiday gift ideas, seasonal festivities, holiday party planning, christmas memories, holiday cooking, festive decorations, year-end celebrations",
+          currentKeywords: "holiday, christmas, coca cola christmas, santa",
+          whyRecommend: "The holiday season presents an opportunity to expand beyond brand-specific terms. Campaigns that include contextual holiday keywords see 42% higher engagement during Q4. These keywords will help reach users planning holiday events who may not be actively searching for your brand."
+        }
+      ]
     },
     {
       id: "4",
-      name: "Fashion_Spring_Collection_Display_Audience_Expansion_Video",
-      adGroups: 5,
-      recommendations: 7,
+      name: "CocaCola_Energy_Drink_Launch_Competitive_Conquest_Display",
+      adGroups: 6,
+      recommendations: 9,
       impact: "1.1M-1.5M",
-      description: "Potential increase in impressions"
+      description: "Potential increase in impressions",
+      goal: "Awareness",
+      detailedRecommendations: [
+        {
+          id: "rec-4-1",
+          type: "campaign",
+          title: "Increase bids for top-performing placements",
+          impact: "380k-475k",
+          message: "Potential increase in impressions",
+          affectedAdGroups: [
+            "Display|Energy_Lifestyle_Sites|Desktop",
+            "Display|Gaming_Platforms|Mobile",
+            "Display|Sports_Content|Cross_Device"
+          ],
+          campaign: "CocaCola_Energy_Drink_Launch_Competitive_Conquest_Display",
+          adGroup: "",
+          keywords: "",
+          whyRecommend: "Analysis shows that certain premium placements (ESPN.com, IGN.com, Twitch.tv) are driving 3x higher engagement than average. Increasing bids specifically for these high-performing sites could capture more inventory on these valuable placements."
+        },
+        {
+          id: "rec-4-2",
+          type: "adgroup",
+          title: "Add competitor conquest keywords",
+          impact: "420k-550k",
+          message: "Potential increase in impressions",
+          campaign: "CocaCola_Energy_Drink_Launch_Competitive_Conquest_Display",
+          adGroup: "Display|Competitive_Conquest|Energy_Drink_Market",
+          keywords: "best energy drinks, top energy drink brands, natural energy boosters, caffeine drink alternatives, pre-workout beverages, gaming energy drinks, athlete energy drinks, sugar-free energy drinks, healthy energy options, energy drink reviews, long-lasting energy, smooth energy boost, no crash energy, premium energy drinks, innovative energy drinks",
+          currentKeywords: "energy drink, caffeine, boost, power drink",
+          whyRecommend: "Your product launch can benefit from conquesting strategies. By targeting users searching for general energy drink categories and competitor alternatives, you can capture consideration during the research phase. New product launches that implement this strategy see 38% higher trial rates."
+        }
+      ]
     },
     {
       id: "5",
-      name: "Home_Garden_Seasonal_Display_Placement_Optimization",
-      adGroups: 3,
-      recommendations: 4,
+      name: "CocaCola_Local_Store_Locator_Geo_Targeted_Mobile_First",
+      adGroups: 8,
+      recommendations: 7,
       impact: "320k-450k",
-      description: "Potential increase in impressions"
+      description: "Potential increase in local actions",
+      goal: "Conversion",
+      detailedRecommendations: [
+        {
+          id: "rec-5-1",
+          type: "campaign",
+          title: "Enable location extensions",
+          impact: "85k-110k",
+          message: "Potential increase in store visits",
+          affectedAdGroups: [
+            "Local|Store_Locator|Mobile_Proximity",
+            "Local|Store_Locator|Desktop"
+          ],
+          campaign: "CocaCola_Local_Store_Locator_Geo_Targeted_Mobile_First",
+          adGroup: "",
+          keywords: "",
+          whyRecommend: "Adding location extensions to your mobile campaign will display the nearest store locations directly in your ads. Campaigns with location extensions see 15% higher CTR and significantly more foot traffic to physical locations."
+        },
+        {
+          id: "rec-5-2",
+          type: "adgroup",
+          title: "Add local purchase intent keywords",
+          impact: "125k-160k",
+          message: "Potential increase in impressions",
+          campaign: "CocaCola_Local_Store_Locator_Geo_Targeted_Mobile_First",
+          adGroup: "Local|Mobile|Near_Me_Searches",
+          keywords: "buy coca cola near me, soda shop nearby, beverage store locations, where to buy coke, local grocery stores, convenience stores near me, supermarket finder, drinks available now, buy beverages locally, same-day drink purchase, stores open now, quick refreshment nearby, local drink options",
+          currentKeywords: "near me, store locator, buy now, locations",
+          whyRecommend: "Mobile users searching with local intent convert at 4x the rate of general searches. Adding 'near me' and immediate purchase intent keywords will capture users at the moment they're ready to buy, significantly improving your conversion rate."
+        }
+      ]
     }
   ];
 
-  // Mock detailed recommendations for a campaign
-  const detailedRecommendations: RecommendationItem[] = [
-    {
-      id: "rec-1",
-      type: "campaign",
-      title: "Reallocate budget across ad groups",
-      impact: "23k-25k",
-      message: "Potential increase in reach",
-      affectedAdGroups: ["Ad group name....", "Ad group name....", "Ad group name...."]
-    },
-    {
-      id: "rec-2",
-      type: "adgroup",
-      title: "Add 15 keywords",
-      impact: "14k-16k",
-      message: "Potential increase in reach",
-    },
-    {
-      id: "rec-3",
-      type: "adgroup",
-      title: "Add 15 keywords",
-      impact: "14k-16k",
-      message: "Potential increase in reach",
-      hasMultipleOptions: true
-    }
-  ];
-
-  const handleViewRecommendations = (campaignId: string, campaignName: string) => {
-    setSelectedCampaign(campaignName);
+  const handleViewRecommendations = (campaign: Campaign) => {
+    setSelectedCampaign(campaign);
     setViewMode("detail");
   };
 
@@ -111,13 +265,16 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
     setViewMode("list");
     setSelectedCampaign(null);
     setSelectedRecommendations(new Set());
+    setSelectedRecommendation(null);
   };
 
   const handleBackToDetail = () => {
     setViewMode("detail");
+    setSelectedRecommendation(null);
   };
 
-  const handleViewRecommendationDetail = () => {
+  const handleViewRecommendationDetail = (recommendation: RecommendationItem) => {
+    setSelectedRecommendation(recommendation);
     setViewMode("recommendation-detail");
   };
 
@@ -131,8 +288,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
     setSelectedRecommendations(newSelected);
   };
 
-  const campaignLevelRecs = detailedRecommendations.filter(r => r.type === "campaign");
-  const adGroupRecs = detailedRecommendations.filter(r => r.type === "adgroup");
+  const campaignLevelRecs = selectedCampaign?.detailedRecommendations.filter(r => r.type === "campaign") || [];
+  const adGroupRecs = selectedCampaign?.detailedRecommendations.filter(r => r.type === "adgroup") || [];
 
   return (
     <>
@@ -180,9 +337,9 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               </div>
 
               {/* Recommendation Cards */}
-              {mockRecommendations.map((rec) => (
+              {campaigns.map((campaign) => (
                 <div 
-                  key={rec.id}
+                  key={campaign.id}
                   className="flex flex-col gap-4 p-4 rounded-lg border border-[#E3E4E5] bg-white"
                 >
                   {/* Campaign Name Link */}
@@ -191,20 +348,20 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                     className="text-sm text-[#2E2F32] underline hover:no-underline truncate"
                     onClick={(e) => e.preventDefault()}
                   >
-                    {rec.name}
+                    {campaign.name}
                   </a>
 
                   {/* Recommendation Content */}
                   <div className="flex flex-col gap-1">
                     <div className="text-sm text-[#2E2F32]">
-                      {rec.adGroups} ad groups · {rec.recommendations} recommendations
+                      {campaign.adGroups} ad groups · {campaign.recommendations} recommendations
                     </div>
                     <div className="flex items-end gap-1 flex-wrap">
                       <span className="text-sm font-bold text-[#2A8703]">
-                        {rec.impact}
+                        {campaign.impact}
                       </span>
                       <span className="text-sm font-bold text-[#2E2F32]">
-                        {rec.description}
+                        {campaign.description}
                       </span>
                     </div>
                   </div>
@@ -226,7 +383,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                       className="text-sm text-[#2E2F32] underline hover:no-underline"
                       onClick={(e) => {
                         e.preventDefault();
-                        handleViewRecommendations(rec.id, rec.name);
+                        handleViewRecommendations(campaign);
                       }}
                     >
                       View recommendations
@@ -235,7 +392,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 </div>
               ))}
             </div>
-          ) : viewMode === "recommendation-detail" ? (
+          ) : viewMode === "recommendation-detail" && selectedRecommendation ? (
             /* Recommendation Detail View */
             <div className="flex flex-col gap-4">
               {/* Breadcrumb */}
@@ -268,10 +425,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               {/* Title */}
               <div className="flex flex-col gap-2">
                 <div className="flex items-end gap-1 flex-wrap">
-                  <span className="text-base font-bold text-[#2A8703]">15k-18k</span>
-                  <span className="text-base font-bold text-[#2E2F32]">Potential increase in reach</span>
+                  <span className="text-base font-bold text-[#2A8703]">{selectedRecommendation.impact}</span>
+                  <span className="text-base font-bold text-[#2E2F32]">{selectedRecommendation.message}</span>
                 </div>
-                <div className="text-base text-[#2E2F32]">by adding 15 keywords</div>
+                <div className="text-base text-[#2E2F32]">{selectedRecommendation.title}</div>
               </div>
 
               {/* Alert */}
@@ -297,59 +454,74 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 <div className="text-sm font-bold text-[#2E2F32]">Campaign</div>
                 <a 
                   href="#"
-                  className="text-sm text-[#2E2F32] underline hover:no-underline truncate"
+                  className="text-sm text-[#2E2F32] underline hover:no-underline break-words"
                   onClick={(e) => e.preventDefault()}
                 >
-                  H&H_FY25_Always On_North Atlantic_Blackstone_Display_In-Market_50839
+                  {selectedRecommendation.campaign || selectedCampaign?.name}
                 </a>
               </div>
 
-              {/* Ad group */}
-              <div className="flex flex-col gap-1">
-                <div className="text-sm font-bold text-[#2E2F32]">Ad group</div>
-                <a 
-                  href="#"
-                  className="text-sm text-[#2E2F32] underline hover:no-underline truncate"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Walmart|Display|Auction|Cross Device|Behavioral Targeting|Past Purchasers of Tapatio
-                </a>
-              </div>
-
-              {/* Recommended keywords section */}
-              <div className="flex flex-col gap-3 rounded-lg border border-[#E3E4E5] overflow-hidden">
-                <div className="flex flex-col gap-2 p-3 pb-2 border-b border-[#E3E4E5]">
-                  <div className="text-sm font-bold text-[#2E2F32]">Recommended keywords</div>
-                  <div className="text-sm text-[#515357] line-clamp-4">
-                    Coca-Cola freestyle machine, Coke vending machine, Coca-Cola sponsorship deals, Coke tasting event, Coca-Cola heritage tour, Coke glassware, Coca-Cola recipe pairing, Coke float dessert, Coca-Cola ice cream soda, Coke recipe hacks, Coca-Cola themed café, Coke and popcorn combo, Coca-Cola holiday truck tour, Coke art installation, Coca-Cola fan club, Coke TikTok challenge, Coca-Cola merch giveaway
-                  </div>
-                  <a
+              {/* Ad group - only show if exists */}
+              {selectedRecommendation.adGroup && (
+                <div className="flex flex-col gap-1">
+                  <div className="text-sm font-bold text-[#2E2F32]">Ad group</div>
+                  <a 
                     href="#"
-                    className="text-sm text-[#2E2F32] underline hover:no-underline"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setKeywordsExpanded(!keywordsExpanded);
-                    }}
+                    className="text-sm text-[#2E2F32] underline hover:no-underline break-words"
+                    onClick={(e) => e.preventDefault()}
                   >
-                    View more
+                    {selectedRecommendation.adGroup}
                   </a>
                 </div>
-                
-                {/* Current section */}
-                <button
-                  onClick={() => setCurrentExpanded(!currentExpanded)}
-                  className="flex items-center justify-between px-4 pb-4 w-full text-left"
-                >
-                  <span className="text-sm font-bold text-[#2E2F32]">Current</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${currentExpanded ? 'rotate-180' : ''}`} />
-                </button>
-              </div>
+              )}
+
+              {/* Keywords section - only show if keywords exist */}
+              {selectedRecommendation.keywords && (
+                <div className="flex flex-col gap-3 rounded-lg border border-[#E3E4E5] overflow-hidden">
+                  <div className="flex flex-col gap-2 p-3 pb-2 border-b border-[#E3E4E5]">
+                    <div className="text-sm font-bold text-[#2E2F32]">Recommended keywords</div>
+                    <div className={`text-sm text-[#515357] ${keywordsExpanded ? '' : 'line-clamp-4'}`}>
+                      {selectedRecommendation.keywords}
+                    </div>
+                    <a
+                      href="#"
+                      className="text-sm text-[#2E2F32] underline hover:no-underline"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setKeywordsExpanded(!keywordsExpanded);
+                      }}
+                    >
+                      {keywordsExpanded ? 'View less' : 'View more'}
+                    </a>
+                  </div>
+                  
+                  {/* Current section */}
+                  {selectedRecommendation.currentKeywords && (
+                    <>
+                      <button
+                        onClick={() => setCurrentExpanded(!currentExpanded)}
+                        className="flex items-center justify-between px-4 pb-4 w-full text-left"
+                      >
+                        <span className="text-sm font-bold text-[#2E2F32]">Current</span>
+                        <ChevronDown className={`w-4 h-4 transition-transform ${currentExpanded ? 'rotate-180' : ''}`} />
+                      </button>
+                      {currentExpanded && (
+                        <div className="px-4 pb-4 pt-0">
+                          <div className="text-sm text-[#515357]">
+                            {selectedRecommendation.currentKeywords}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              )}
 
               {/* Why we recommend this */}
               <div className="flex flex-col gap-1">
                 <div className="text-sm font-bold text-[#2E2F32]">Why we recommend this</div>
                 <p className="text-sm text-[#2E2F32]">
-                  Based on your campaign performance, we've identified that adding keywords could significantly increase your reach. Similar campaigns saw an average 12% increase in impressions while maintaining conversion quality. This recommendation uses machine learning to find users with similar characteristics to your best-performing audience segments.
+                  {selectedRecommendation.whyRecommend || "Based on your campaign performance, we've identified an opportunity to improve results. This recommendation is backed by machine learning analysis of similar campaigns and industry benchmarks."}
                 </p>
               </div>
             </div>
@@ -369,7 +541,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   Main
                 </a>
                 <span className="text-[#515357]">/</span>
-                <span className="text-[#2E2F32]">Campaign name...</span>
+                <span className="text-[#2E2F32] truncate">Campaign name...</span>
               </div>
 
               {/* Campaign Info */}
@@ -379,179 +551,133 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                     <span className="text-sm font-bold text-[#2E2F32]">Campaign</span>
                     <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#E6F1FC] text-xs text-[#002E99]">
                       <Eye className="w-4 h-4" />
-                      {campaignGoal}
+                      {selectedCampaign?.goal || campaignGoal}
                     </span>
                   </div>
                   <a 
                     href="#"
-                    className="text-sm text-[#2E2F32] underline hover:no-underline truncate"
+                    className="text-sm text-[#2E2F32] underline hover:no-underline break-words"
                     onClick={(e) => e.preventDefault()}
                   >
-                    {selectedCampaign || "H&H_FY25_Always On_North Atlantic_Blackstone_Display_In..."}
+                    {selectedCampaign?.name}
                   </a>
                 </div>
 
                 <div className="h-px bg-[#E3E4E5]" />
 
                 {/* Campaign Level Recommendations */}
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-start gap-1">
-                    <span className="text-base font-bold text-[#2E2F32]">Campaign level recommendations</span>
-                    <span className="text-base text-[#2E2F32]">({campaignLevelRecs.length})</span>
-                  </div>
-
-                  {campaignLevelRecs.map((rec) => (
-                    <div 
-                      key={rec.id}
-                      className="flex items-start gap-3 p-4 rounded-lg border border-[#E3E4E5] bg-white"
-                    >
-                      {/* Checkbox */}
-                      <div className="flex items-start pt-0.5">
-                        <Checkbox
-                          checked={selectedRecommendations.has(rec.id)}
-                          onCheckedChange={() => handleToggleRecommendation(rec.id)}
-                          className="w-6 h-6 rounded border-2 data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32]"
-                        />
+                {campaignLevelRecs.length > 0 && (
+                  <>
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-start gap-1">
+                        <span className="text-base font-bold text-[#2E2F32]">Campaign level recommendations</span>
+                        <span className="text-base text-[#2E2F32]">({campaignLevelRecs.length})</span>
                       </div>
 
-                      {/* Content */}
-                      <div className="flex-1 flex flex-col gap-4">
-                        <div className="flex flex-col gap-2.5">
-                          <div className="flex flex-col gap-1">
-                            <div className="text-sm text-[#2E2F32]">{rec.title}</div>
-                            <div className="flex items-end gap-1 flex-wrap">
-                              <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
-                              <span className="text-sm font-bold text-[#2E2F32]">{rec.message}</span>
-                            </div>
+                      {campaignLevelRecs.map((rec) => (
+                        <div 
+                          key={rec.id}
+                          className="flex items-start gap-3 p-4 rounded-lg border border-[#E3E4E5] bg-white"
+                        >
+                          {/* Checkbox */}
+                          <div className="flex items-start pt-0.5">
+                            <Checkbox
+                              checked={selectedRecommendations.has(rec.id)}
+                              onCheckedChange={() => handleToggleRecommendation(rec.id)}
+                              className="w-6 h-6 rounded border-2 data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32]"
+                            />
                           </div>
 
-                          {rec.affectedAdGroups && (
-                            <div className="flex flex-col gap-2">
-                              <span className="text-sm text-[#515357]">Affected ad groups</span>
-                              <div className="flex items-center gap-2 flex-wrap">
-                                {rec.affectedAdGroups.map((adGroup, idx) => (
-                                  <span 
-                                    key={idx}
-                                    className="px-2 py-1 rounded-sm bg-[#F4F5F5] text-xs text-[#515357]"
-                                  >
-                                    {adGroup}
-                                  </span>
-                                ))}
+                          {/* Content */}
+                          <div className="flex-1 flex flex-col gap-4">
+                            <div className="flex flex-col gap-2.5">
+                              <div className="flex flex-col gap-1">
+                                <div className="text-sm text-[#2E2F32]">{rec.title}</div>
+                                <div className="flex items-end gap-1 flex-wrap">
+                                  <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
+                                  <span className="text-sm font-bold text-[#2E2F32]">{rec.message}</span>
+                                </div>
                               </div>
-                            </div>
-                          )}
-                        </div>
 
-                        {/* Card CTA */}
-                        <div className="flex items-center justify-end gap-4">
-                          <a
-                            href="#"
-                            className="text-sm text-[#2E2F32] underline hover:no-underline"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Dismiss
-                          </a>
-                          <a
-                            href="#"
-                            className="text-sm text-[#2E2F32] underline hover:no-underline"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleViewRecommendationDetail();
-                            }}
-                          >
-                            View details
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="h-px bg-[#E3E4E5]" />
-
-                {/* Ad Group Recommendations */}
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-start gap-1">
-                    <span className="text-base font-bold text-[#2E2F32]">Ad group recommendations</span>
-                    <span className="text-base text-[#2E2F32]">({adGroupRecs.length})</span>
-                  </div>
-
-                  {adGroupRecs.map((rec, idx) => (
-                    <div 
-                      key={rec.id}
-                      className="flex items-start gap-3 p-4 rounded-lg border border-[#E3E4E5] bg-white"
-                    >
-                      {/* Checkbox */}
-                      <div className="flex items-start pt-0.5">
-                        <Checkbox
-                          checked={selectedRecommendations.has(rec.id)}
-                          onCheckedChange={() => handleToggleRecommendation(rec.id)}
-                          className="w-6 h-6 rounded border-2 data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32]"
-                        />
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1 flex flex-col gap-4">
-                        {/* Ad Group Name Link */}
-                        <a 
-                          href="#"
-                          className="text-sm text-[#2E2F32] underline hover:no-underline truncate"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          Ad group {String(idx + 1).padStart(2, '0')} name goes here
-                        </a>
-
-                        {rec.hasMultipleOptions ? (
-                          // Multiple options with radio buttons
-                          <RadioGroup
-                            value={selectedRadioOptions[rec.id] || ''}
-                            onValueChange={(value) => setSelectedRadioOptions(prev => ({ ...prev, [rec.id]: value }))}
-                          >
-                            <div className="flex flex-col gap-4">
-                              {[1, 2].map((optionIdx) => (
-                                <div key={optionIdx} className="flex flex-col gap-2.5">
-                                  <div className="flex items-start gap-3">
-                                    <div className="flex items-start pt-0.5">
-                                      <RadioGroupItem
-                                        value={`${rec.id}-${optionIdx}`}
-                                        className="w-6 h-6 border-2 border-[#2E2F32]"
-                                      />
-                                    </div>
-                                    <div className="flex-1 flex flex-col gap-1">
-                                      <div className="text-sm text-[#2E2F32]">{rec.title}</div>
-                                      <div className="flex items-end gap-1 flex-wrap">
-                                        <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
-                                        <span className="text-sm font-bold text-[#2E2F32]">{rec.message}</span>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  {/* Card CTA */}
-                                  <div className="flex items-center justify-end gap-4">
-                                    <a
-                                      href="#"
-                                      className="text-sm text-[#2E2F32] underline hover:no-underline"
-                                      onClick={(e) => e.preventDefault()}
-                                    >
-                                      Dismiss
-                                    </a>
-                                    <a
-                                      href="#"
-                                      className="text-sm text-[#2E2F32] underline hover:no-underline"
-                                      onClick={(e) => {
-                                        e.preventDefault();
-                                        handleViewRecommendationDetail();
-                                      }}
-                                    >
-                                      View details
-                                    </a>
+                              {rec.affectedAdGroups && (
+                                <div className="flex flex-col gap-2">
+                                  <span className="text-sm text-[#515357]">Affected ad groups</span>
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    {rec.affectedAdGroups.map((adGroup, idx) => (
+                                      <span 
+                                        key={idx}
+                                        className="px-2 py-1 rounded-sm bg-[#F4F5F5] text-xs text-[#515357]"
+                                      >
+                                        {adGroup}
+                                      </span>
+                                    ))}
                                   </div>
                                 </div>
-                              ))}
+                              )}
                             </div>
-                          </RadioGroup>
-                        ) : (
-                          // Single option
+
+                            {/* Card CTA */}
+                            <div className="flex items-center justify-end gap-4">
+                              <a
+                                href="#"
+                                className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                onClick={(e) => e.preventDefault()}
+                              >
+                                Dismiss
+                              </a>
+                              <a
+                                href="#"
+                                className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  handleViewRecommendationDetail(rec);
+                                }}
+                              >
+                                View details
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="h-px bg-[#E3E4E5]" />
+                  </>
+                )}
+
+                {/* Ad Group Recommendations */}
+                {adGroupRecs.length > 0 && (
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-start gap-1">
+                      <span className="text-base font-bold text-[#2E2F32]">Ad group recommendations</span>
+                      <span className="text-base text-[#2E2F32]">({adGroupRecs.length})</span>
+                    </div>
+
+                    {adGroupRecs.map((rec) => (
+                      <div 
+                        key={rec.id}
+                        className="flex items-start gap-3 p-4 rounded-lg border border-[#E3E4E5] bg-white"
+                      >
+                        {/* Checkbox */}
+                        <div className="flex items-start pt-0.5">
+                          <Checkbox
+                            checked={selectedRecommendations.has(rec.id)}
+                            onCheckedChange={() => handleToggleRecommendation(rec.id)}
+                            className="w-6 h-6 rounded border-2 data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32]"
+                          />
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1 flex flex-col gap-4">
+                          {/* Ad Group Name Link */}
+                          <a 
+                            href="#"
+                            className="text-sm text-[#2E2F32] underline hover:no-underline break-words"
+                            onClick={(e) => e.preventDefault()}
+                          >
+                            {rec.adGroup}
+                          </a>
+
                           <div className="flex flex-col gap-2.5">
                             <div className="flex flex-col gap-1">
                               <div className="text-sm text-[#2E2F32]">{rec.title}</div>
@@ -575,18 +701,18 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                 className="text-sm text-[#2E2F32] underline hover:no-underline"
                                 onClick={(e) => {
                                   e.preventDefault();
-                                  handleViewRecommendationDetail();
+                                  handleViewRecommendationDetail(rec);
                                 }}
                               >
                                 View details
                               </a>
                             </div>
                           </div>
-                        )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           )}
