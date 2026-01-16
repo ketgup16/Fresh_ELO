@@ -1,0 +1,164 @@
+/* Button Base Styles */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-weight: 700;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.button:focus-visible {
+  outline: 2px solid #0071ce;
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Size Variants */
+.button--size-small {
+  padding: 6px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  min-height: 32px;
+}
+
+.button--size-medium {
+  padding: 10px 20px;
+  font-size: 16px;
+  line-height: 24px;
+  min-height: 44px;
+}
+
+.button--size-large {
+  padding: 14px 24px;
+  font-size: 18px;
+  line-height: 28px;
+  min-height: 56px;
+}
+
+/* Full Width */
+.button--fullWidth {
+  width: 100%;
+}
+
+/* Primary Variant */
+.button--variant-primary {
+  background-color: #0071ce;
+  color: #ffffff;
+  border-color: #0071ce;
+}
+
+.button--variant-primary:hover:not(:disabled) {
+  background-color: #004f9a;
+  border-color: #004f9a;
+}
+
+.button--variant-primary:active:not(:disabled) {
+  background-color: #003d7a;
+  border-color: #003d7a;
+}
+
+/* Secondary Variant */
+.button--variant-secondary {
+  background-color: #ffffff;
+  color: #0071ce;
+  border-color: #0071ce;
+}
+
+.button--variant-secondary:hover:not(:disabled) {
+  background-color: #e6f2ff;
+  border-color: #004f9a;
+  color: #004f9a;
+}
+
+.button--variant-secondary:active:not(:disabled) {
+  background-color: #cce4ff;
+  border-color: #003d7a;
+  color: #003d7a;
+}
+
+/* Tertiary Variant */
+.button--variant-tertiary {
+  background-color: transparent;
+  color: #0071ce;
+  border-color: transparent;
+}
+
+.button--variant-tertiary:hover:not(:disabled) {
+  background-color: #e6f2ff;
+  color: #004f9a;
+}
+
+.button--variant-tertiary:active:not(:disabled) {
+  background-color: #cce4ff;
+  color: #003d7a;
+}
+
+/* Destructive Variant */
+.button--variant-destructive {
+  background-color: #ea1100;
+  color: #ffffff;
+  border-color: #ea1100;
+}
+
+.button--variant-destructive:hover:not(:disabled) {
+  background-color: #c30e00;
+  border-color: #c30e00;
+}
+
+.button--variant-destructive:active:not(:disabled) {
+  background-color: #a20c00;
+  border-color: #a20c00;
+}
+
+/* Icon Containers */
+.button__leading,
+.button__trailing {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.button__leading {
+  margin-left: -4px;
+}
+
+.button__trailing {
+  margin-right: -4px;
+}
+
+.button__content {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Icon sizing based on button size */
+.button--size-small .button__leading svg,
+.button--size-small .button__trailing svg {
+  width: 16px;
+  height: 16px;
+}
+
+.button--size-medium .button__leading svg,
+.button--size-medium .button__trailing svg {
+  width: 20px;
+  height: 20px;
+}
+
+.button--size-large .button__leading svg,
+.button--size-large .button__trailing svg {
+  width: 24px;
+  height: 24px;
+}
