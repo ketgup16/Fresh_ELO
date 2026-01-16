@@ -54,72 +54,72 @@
 
 /* Primary Variant */
 .button--variant-primary {
-  background-color: #0071DC;
-  color: #ffffff;
-  border-color: #0071DC;
+  background-color: var(--ld-semantic-color-action-fill-primary);
+  color: var(--ld-semantic-color-action-text-on-fill-primary);
+  border-color: var(--ld-semantic-color-action-fill-primary);
 }
 
 .button--variant-primary:hover:not(:disabled) {
-  background-color: #0060B8;
-  border-color: #0060B8;
+  background-color: var(--ld-semantic-color-action-fill-primary-hovered);
+  border-color: var(--ld-semantic-color-action-fill-primary-hovered);
 }
 
 .button--variant-primary:active:not(:disabled) {
-  background-color: #004C94;
-  border-color: #004C94;
+  background-color: var(--ld-semantic-color-action-fill-primary-pressed);
+  border-color: var(--ld-semantic-color-action-fill-primary-pressed);
 }
 
 /* Secondary Variant */
 .button--variant-secondary {
-  background-color: #ffffff;
-  color: #0071ce;
-  border-color: #0071ce;
+  background-color: var(--ld-semantic-color-action-fill-secondary);
+  color: var(--ld-semantic-color-action-text-secondary);
+  border-color: var(--ld-semantic-color-action-border-secondary);
 }
 
 .button--variant-secondary:hover:not(:disabled) {
-  background-color: #e6f2ff;
-  border-color: #004f9a;
-  color: #004f9a;
+  background-color: var(--ld-semantic-color-action-fill-secondary-hovered);
+  border-color: var(--ld-semantic-color-action-border-secondary-hovered);
+  color: var(--ld-semantic-color-action-text-secondary-hovered);
 }
 
 .button--variant-secondary:active:not(:disabled) {
-  background-color: #cce4ff;
-  border-color: #003d7a;
-  color: #003d7a;
+  background-color: var(--ld-semantic-color-action-fill-secondary-pressed);
+  border-color: var(--ld-semantic-color-action-border-secondary-pressed);
+  color: var(--ld-semantic-color-action-text-secondary-pressed);
 }
 
 /* Tertiary Variant */
 .button--variant-tertiary {
-  background-color: transparent;
-  color: #0071ce;
+  background-color: var(--ld-semantic-color-action-fill-tertiary);
+  color: var(--ld-semantic-color-action-text-tertiary);
   border-color: transparent;
 }
 
 .button--variant-tertiary:hover:not(:disabled) {
-  background-color: #e6f2ff;
-  color: #004f9a;
+  background-color: var(--ld-semantic-color-action-fill-tertiary-hovered);
+  color: var(--ld-semantic-color-action-text-tertiary-hovered);
 }
 
 .button--variant-tertiary:active:not(:disabled) {
-  background-color: #cce4ff;
-  color: #003d7a;
+  background-color: var(--ld-semantic-color-action-fill-tertiary-pressed);
+  color: var(--ld-semantic-color-action-text-tertiary-pressed);
 }
 
 /* Destructive Variant */
 .button--variant-destructive {
-  background-color: #ea1100;
-  color: #ffffff;
-  border-color: #ea1100;
+  background-color: var(--ld-semantic-color-action-fill-destructive);
+  color: var(--ld-semantic-color-action-text-on-fill-destructive);
+  border-color: var(--ld-semantic-color-action-fill-destructive);
 }
 
 .button--variant-destructive:hover:not(:disabled) {
-  background-color: #c30e00;
-  border-color: #c30e00;
+  background-color: var(--ld-semantic-color-action-fill-destructive-hovered);
+  border-color: var(--ld-semantic-color-action-fill-destructive-hovered);
 }
 
 .button--variant-destructive:active:not(:disabled) {
-  background-color: #a20c00;
-  border-color: #a20c00;
+  background-color: var(--ld-semantic-color-action-fill-destructive-pressed);
+  border-color: var(--ld-semantic-color-action-fill-destructive-pressed);
 }
 
 /* Icon Containers */
