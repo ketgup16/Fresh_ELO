@@ -461,12 +461,6 @@ export default function ItemHealth() {
                     <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
                       <div className="flex items-center gap-1">Ad Group ID</div>
                     </th>
-                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] min-w-[100px]">
-                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('olq')}>
-                        OLQ
-                        {renderSortIcon('olq')}
-                      </div>
-                    </th>
                     <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[100px]">
                       <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('primaryVariant')}>
                         Primary Variant
@@ -507,6 +501,12 @@ export default function ItemHealth() {
                       <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('buyBoxWinRateLast7Days')}>
                         Buy Box Win Rate in Last 7 Days
                         {renderSortIcon('buyBoxWinRateLast7Days')}
+                      </div>
+                    </th>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] min-w-[100px]">
+                      <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('olq')}>
+                        OLQ
+                        {renderSortIcon('olq')}
                       </div>
                     </th>
                   </tr>
@@ -553,6 +553,13 @@ export default function ItemHealth() {
                           ))}
                         </div>
                       </td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.primaryVariant}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsToday.toLocaleString()}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsLast7Days.toLocaleString()}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.itemAvailableToday}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.itemAvailableLast7Days}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.buyBoxWinRateToday}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.buyBoxWinRateLast7Days}</td>
                       <td className="px-2 py-2">
                         <div
                           className="inline-block px-3 py-1 text-sm font-bold rounded"
@@ -561,13 +568,6 @@ export default function ItemHealth() {
                           {item.olq}
                         </div>
                       </td>
-                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.primaryVariant}</td>
-                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsToday.toLocaleString()}</td>
-                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsLast7Days.toLocaleString()}</td>
-                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.itemAvailableToday}</td>
-                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.itemAvailableLast7Days}</td>
-                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.buyBoxWinRateToday}</td>
-                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.buyBoxWinRateLast7Days}</td>
                     </tr>
                   ))}
                 </tbody>
