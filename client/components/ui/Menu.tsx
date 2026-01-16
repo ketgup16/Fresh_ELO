@@ -6,6 +6,7 @@ export interface MenuProps extends Omit<React.ComponentPropsWithoutRef<'div'>, '
   isOpen?: boolean;
   onClose: (event?: KeyboardEvent | MouseEvent | PointerEvent | TouchEvent) => void;
   position?: 'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight';
+  footer?: React.ReactNode;
 }
 
 export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
