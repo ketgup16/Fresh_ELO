@@ -54,19 +54,19 @@
 
 /* Primary Variant */
 .button--variant-primary {
-  background-color: #0071ce;
+  background-color: #0071DC;
   color: #ffffff;
-  border-color: #0071ce;
+  border-color: #0071DC;
 }
 
 .button--variant-primary:hover:not(:disabled) {
-  background-color: #004f9a;
-  border-color: #004f9a;
+  background-color: #0060B8;
+  border-color: #0060B8;
 }
 
 .button--variant-primary:active:not(:disabled) {
-  background-color: #003d7a;
-  border-color: #003d7a;
+  background-color: #004C94;
+  border-color: #004C94;
 }
 
 /* Secondary Variant */
