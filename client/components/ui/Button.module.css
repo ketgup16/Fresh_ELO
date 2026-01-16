@@ -6,7 +6,7 @@
   gap: 8px;
   font-family: var(--ld-semantic-font-family-sans);
   font-weight: 700;
-  border-radius: 4px;
+  border-radius: 9999px; /* Fully rounded pill shape */
   border: 2px solid transparent;
   cursor: pointer;
   text-decoration: none;
