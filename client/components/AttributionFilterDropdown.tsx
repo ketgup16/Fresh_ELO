@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/components/ui/Button";
+import { ButtonGroup } from "@/components/ui/ButtonGroup";
 
 interface AttributionFilterDropdownProps {
   value?: string;
@@ -63,18 +65,22 @@ export default function AttributionFilterDropdown({
 
           {/* Action buttons */}
           <div className="flex justify-end gap-2 p-3 border-t border-[#E3E4E5]">
-            <button
-              onClick={handleCancel}
-              className="px-4 py-2 text-sm font-bold text-[#2E2F32] border border-[#909196] rounded-full hover:bg-gray-50 transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={handleApply}
-              className="px-4 py-2 text-sm font-bold text-white bg-[#0053E2] rounded-full hover:bg-[#0046c7] transition-colors"
-            >
-              Apply
-            </button>
+            <ButtonGroup>
+              <Button
+                variant="secondary"
+                size="small"
+                onClick={handleCancel}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="primary"
+                size="small"
+                onClick={handleApply}
+              >
+                Apply
+              </Button>
+            </ButtonGroup>
           </div>
         </div>
       </PopoverContent>
