@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Check } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/Button";
 import { ButtonGroup } from "@/components/ui/ButtonGroup";
@@ -75,6 +75,13 @@ export default function AttributionFilterDropdown({
               key={option}
               selected={tempValue === option}
               onClick={() => setTempValue(option)}
+              leadingIcon={
+                tempValue === option ? (
+                  <Check className="w-4 h-4" />
+                ) : (
+                  <span className="w-4 h-4" />
+                )
+              }
             >
               {option}
             </MenuItem>
