@@ -94,7 +94,14 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
         onKeyDown={handleKeyDown}
         {...props}
       >
-        {children}
+        <div className={styles.menu__items}>
+          {children}
+        </div>
+        {footer && (
+          <div className={styles.menu__footer}>
+            {footer}
+          </div>
+        )}
       </div>
     );
   }
