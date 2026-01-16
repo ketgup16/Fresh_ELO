@@ -20,9 +20,9 @@
 
   /* Action/Interactive colors (for buttons and interactive elements) */
   /* Primary actions */
-  --ld-semantic-color-action-fill-primary: #0071DC; /* Primary button background (Walmart blue) */
-  --ld-semantic-color-action-fill-primary-hovered: #0060B8; /* Primary button hover state */
-  --ld-semantic-color-action-fill-primary-pressed: #004C94; /* Primary button active/pressed state */
+  --ld-semantic-color-action-fill-primary: var(--ld-primitive-color-blue-100); /* Primary button background */
+  --ld-semantic-color-action-fill-primary-hovered: #0046bd; /* Primary button hover state (darker than blue-100) */
+  --ld-semantic-color-action-fill-primary-pressed: var(--ld-primitive-color-blue-130); /* Primary button active/pressed state */
   --ld-semantic-color-action-text-on-fill-primary: var(--ld-primitive-color-white, #ffffff); /* Text on primary buttons */
 
   /* Secondary actions */
