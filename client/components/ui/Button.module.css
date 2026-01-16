@@ -16,7 +16,7 @@
 }
 
 .button:focus-visible {
-  outline: 2px solid #0071ce;
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
 }
 
