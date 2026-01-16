@@ -1,0 +1,33 @@
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--ld-semantic-color-border-subtle, #e6e6e6);
+}
+
+.cardHeader--size-small {
+  padding: 16px;
+}
+
+.cardHeader--size-large {
+  padding: 24px;
+}
+
+.cardHeader__leadingIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardHeader__title {
+  flex: 1;
+  min-width: 0; /* Enable text truncation if needed */
+}
+
+.cardHeader__trailing {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: auto;
+}

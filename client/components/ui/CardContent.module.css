@@ -1,0 +1,11 @@
+.cardContent {
+  flex: 1;
+}
+
+.cardContent--size-small {
+  padding: 16px;
+}
+
+.cardContent--size-large {
+  padding: 24px;
+}
