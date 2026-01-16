@@ -3,6 +3,8 @@ import { ChevronDown } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/Button";
 import { ButtonGroup } from "@/components/ui/ButtonGroup";
+import { Menu } from "@/components/ui/Menu";
+import { MenuItem } from "@/components/ui/MenuItem";
 
 interface AttributionFilterDropdownProps {
   value?: string;
@@ -46,22 +48,18 @@ export default function AttributionFilterDropdown({
       </PopoverTrigger>
       <PopoverContent className="w-64 p-0" align="start">
         <div className="flex flex-col">
-          {/* Options list */}
-          <div className="flex flex-col p-2">
+          {/* LD 3.5 Menu with MenuItems */}
+          <Menu isOpen={true} onClose={() => setOpen(false)}>
             {options.map((option) => (
-              <button
+              <MenuItem
                 key={option}
+                selected={tempValue === option}
                 onClick={() => setTempValue(option)}
-                className={`px-3 py-2 text-sm text-left rounded transition-colors ${
-                  tempValue === option
-                    ? "bg-[#E5F0FF] text-[#0053E2]"
-                    : "text-[#2E2F32] hover:bg-[#F8F8F8]"
-                }`}
               >
                 {option}
-              </button>
+              </MenuItem>
             ))}
-          </div>
+          </Menu>
 
           {/* Action buttons */}
           <div className="flex justify-end gap-2 p-3 border-t border-[#E3E4E5]">
