@@ -6,6 +6,7 @@ import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import RecommendationsPopover from "../components/RecommendationsPopover";
 import BiddingStrategyModal from "../components/BiddingStrategyModal";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { Button } from "../components/ui/Button";
 
 interface Alert {
   type: 'learning-paused' | 'out-of-budget';

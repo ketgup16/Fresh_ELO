@@ -5,6 +5,7 @@ import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import DisplayAdvertisingSidebar from "../components/DisplayAdvertisingSidebar";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import RecommendationsPanel from "../components/RecommendationsPanel";
+import { Button } from "../components/ui/Button";
 
 interface Campaign {
   id: string;
