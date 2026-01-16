@@ -10,7 +10,7 @@ export interface MenuProps extends Omit<React.ComponentPropsWithoutRef<'div'>, '
 }
 
 export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
-  ({ children, isOpen = false, onClose, position = 'bottomLeft', ...props }, ref) => {
+  ({ children, isOpen = false, onClose, position = 'bottomLeft', footer, ...props }, ref) => {
     const menuRef = useRef<HTMLDivElement>(null);
     const combinedRef = (ref as React.RefObject<HTMLDivElement>) || menuRef;
 
