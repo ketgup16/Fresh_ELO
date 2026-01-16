@@ -51,7 +51,7 @@
   --ld-semantic-color-action-text-on-fill-destructive: var(--ld-primitive-color-white, #ffffff); /* Text on destructive buttons */
 
   /* Focus state */
-  --ld-semantic-color-action-focus-outline: #0071ce; /* Focus outline color for interactive elements */
+  --ld-semantic-color-action-focus-outline: var(--ld-primitive-color-blue-100); /* Focus outline color for interactive elements */
   --ld-semantic-color-border-accent-blue: var(--ld-primitive-color-blue-100, #0053e2); /* Use for border with a blue accent */
   --ld-semantic-color-border-accent-blue-bold: var(--ld-primitive-color-blue-130, #002e99); /* Use for bold blue accent border */
   --ld-semantic-color-border-accent-cyan: var(--ld-primitive-color-cyan-100, #0076b3); /* Use for border with a cyan accent */
