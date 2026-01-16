@@ -1,0 +1,33 @@
+/* Menu Container */
+.menu {
+  background-color: var(--ld-semantic-color-background);
+  border: 1px solid var(--ld-semantic-color-border-default);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  padding: 8px 0;
+  min-width: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.menu:focus {
+  outline: none;
+}
+
+/* Positioning variants */
+.menu--position-bottomLeft {
+  /* Handled by positioning logic */
+}
+
+.menu--position-bottomRight {
+  /* Handled by positioning logic */
+}
+
+.menu--position-topLeft {
+  /* Handled by positioning logic */
+}
+
+.menu--position-topRight {
+  /* Handled by positioning logic */
+}
