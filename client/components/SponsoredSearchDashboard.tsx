@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CampaignChart from "./CampaignChart";
 import DateRangeFilterDropdown from "./DateRangeFilterDropdown";
 import AttributionFilterDropdown from "./AttributionFilterDropdown";
+import { Button } from "./ui/Button";
 
 interface Campaign {
   name: string;
@@ -171,12 +172,13 @@ export default function SponsoredSearchDashboard() {
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
           <h1 className="text-[32px] font-bold text-[#2E2F32] leading-10">Hi, Gabriela</h1>
-          <button
+          <Button
+            variant="primary"
+            size="medium"
             onClick={() => navigate('/campaign')}
-            className="h-10 px-6 bg-[#0053E2] text-white text-base font-bold rounded-full hover:bg-[#0046c7] transition-colors"
           >
             Create campaign
-          </button>
+          </Button>
         </div>
 
         {/* Filters */}
