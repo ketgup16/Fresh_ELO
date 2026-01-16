@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CampaignChart from "./CampaignChart";
@@ -25,6 +25,59 @@ export default function SponsoredSearchDashboard() {
 
   // Attribution filter state
   const [attribution, setAttribution] = useState<string>("14 days attribution");
+
+  // Metrics state (will be adjusted based on attribution)
+  const [metrics, setMetrics] = useState({
+    impressions: 18689154,
+    clicks: 148782,
+    cpc: 1.36,
+    ctr: 0.84,
+    adSpend: 195607
+  });
+
+  // Calculate metrics based on attribution window
+  useEffect(() => {
+    const attributionDays = parseInt(attribution.split(" ")[0]);
+
+    // Simulate how different attribution windows affect metrics
+    // Longer attribution windows typically capture more conversions
+    const attributionMultiplier = {
+      7: 0.85,   // 7 days - fewer conversions attributed
+      14: 1.0,   // 14 days - baseline
+      30: 1.18,  // 30 days - more conversions attributed
+      60: 1.32,  // 60 days - even more conversions
+      90: 1.45   // 90 days - most conversions attributed
+    }[attributionDays] || 1.0;
+
+    // Base metrics (14-day attribution)
+    const baseMetrics = {
+      impressions: 18689154,
+      clicks: 148782,
+      cpc: 1.36,
+      ctr: 0.84,
+      adSpend: 195607
+    };
+
+    // Adjust metrics based on attribution window
+    // Longer windows = better metrics (more conversions counted)
+    setMetrics({
+      impressions: Math.round(baseMetrics.impressions * (0.95 + (attributionMultiplier - 1) * 0.15)),
+      clicks: Math.round(baseMetrics.clicks * (0.95 + (attributionMultiplier - 1) * 0.2)),
+      cpc: parseFloat((baseMetrics.cpc * (1.05 - (attributionMultiplier - 1) * 0.05)).toFixed(2)),
+      ctr: parseFloat((baseMetrics.ctr * (0.95 + (attributionMultiplier - 1) * 0.15)).toFixed(2)),
+      adSpend: Math.round(baseMetrics.adSpend * (0.98 + (attributionMultiplier - 1) * 0.08))
+    });
+
+    // Also update campaign metrics
+    const adjustedCampaigns = initialCampaigns.map(campaign => ({
+      ...campaign,
+      roas: `$${(parseFloat(campaign.roas.replace('$', '')) * attributionMultiplier).toFixed(2)}`,
+      cvr: `${(parseFloat(campaign.cvr.replace('%', '')) * attributionMultiplier).toFixed(2)}%`,
+      cpc: `$${(parseFloat(campaign.cpc.replace('$', '')) * (1.1 - (attributionMultiplier - 1) * 0.1)).toFixed(2)}`,
+      ctr: `${(parseFloat(campaign.ctr.replace('%', '')) * (0.95 + (attributionMultiplier - 1) * 0.15)).toFixed(2)}%`,
+    }));
+    setCampaigns(adjustedCampaigns);
+  }, [attribution]);
 
   const initialCampaigns: Campaign[] = [
     {
@@ -160,7 +213,7 @@ export default function SponsoredSearchDashboard() {
                 <span className="text-sm text-[#2E2F32] leading-5">Impressions</span>
                 <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
               </div>
-              <div className="text-2xl font-bold text-[#2E2F32] leading-9">18,689,154</div>
+              <div className="text-2xl font-bold text-[#2E2F32] leading-9">{metrics.impressions.toLocaleString()}</div>
             </div>
           </div>
 
@@ -175,7 +228,7 @@ export default function SponsoredSearchDashboard() {
                 <span className="text-sm text-[#2E2F32] leading-5">Clicks</span>
                 <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
               </div>
-              <div className="text-2xl font-bold text-[#2E2F32] leading-9">148,782</div>
+              <div className="text-2xl font-bold text-[#2E2F32] leading-9">{metrics.clicks.toLocaleString()}</div>
             </div>
           </div>
 
@@ -190,7 +243,7 @@ export default function SponsoredSearchDashboard() {
                 <span className="text-sm text-[#2E2F32] leading-5">Cost per click</span>
                 <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
               </div>
-              <div className="text-2xl font-bold text-[#2E2F32] leading-9">$1.36</div>
+              <div className="text-2xl font-bold text-[#2E2F32] leading-9">${metrics.cpc.toFixed(2)}</div>
             </div>
           </div>
 
@@ -205,7 +258,7 @@ export default function SponsoredSearchDashboard() {
                 <span className="text-sm text-[#2E2F32] leading-5">Click through</span>
                 <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
               </div>
-              <div className="text-2xl font-bold text-[#2E2F32] leading-9">0.84%</div>
+              <div className="text-2xl font-bold text-[#2E2F32] leading-9">{metrics.ctr.toFixed(2)}%</div>
             </div>
           </div>
 
@@ -220,7 +273,7 @@ export default function SponsoredSearchDashboard() {
                 <span className="text-sm text-[#2E2F32] leading-5">Ad spend</span>
                 <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
               </div>
-              <div className="text-2xl font-bold text-[#2E2F32] leading-9">$195,607</div>
+              <div className="text-2xl font-bold text-[#2E2F32] leading-9">${metrics.adSpend.toLocaleString()}</div>
             </div>
           </div>
         </div>
