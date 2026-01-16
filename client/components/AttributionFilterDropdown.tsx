@@ -47,22 +47,11 @@ export default function AttributionFilterDropdown({
         </button>
       </PopoverTrigger>
       <PopoverContent className="w-64 p-0" align="start">
-        <div className="flex flex-col">
-          {/* LD 3.5 Menu with MenuItems */}
-          <Menu isOpen={true} onClose={() => setOpen(false)}>
-            {options.map((option) => (
-              <MenuItem
-                key={option}
-                selected={tempValue === option}
-                onClick={() => setTempValue(option)}
-              >
-                {option}
-              </MenuItem>
-            ))}
-          </Menu>
-
-          {/* Action buttons */}
-          <div className="flex justify-end gap-2 p-3 border-t border-[#E3E4E5]">
+        {/* LD 3.5 Menu with MenuItems and footer buttons */}
+        <Menu
+          isOpen={true}
+          onClose={() => setOpen(false)}
+          footer={
             <ButtonGroup>
               <Button
                 variant="secondary"
@@ -79,8 +68,18 @@ export default function AttributionFilterDropdown({
                 Apply
               </Button>
             </ButtonGroup>
-          </div>
-        </div>
+          }
+        >
+          {options.map((option) => (
+            <MenuItem
+              key={option}
+              selected={tempValue === option}
+              onClick={() => setTempValue(option)}
+            >
+              {option}
+            </MenuItem>
+          ))}
+        </Menu>
       </PopoverContent>
     </Popover>
   );
