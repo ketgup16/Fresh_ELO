@@ -78,7 +78,7 @@ export default function ItemHealth() {
     if (percentage < 50) {
       return {
         backgroundColor: '#FBD0CC',
-        color: '#FFFFFF',
+        color: '#EA1100',
         textAlign: 'center' as const,
       };
     } else if (percentage < 80) {
