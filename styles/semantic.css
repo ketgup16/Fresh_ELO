@@ -27,22 +27,22 @@
 
   /* Secondary actions */
   --ld-semantic-color-action-fill-secondary: var(--ld-primitive-color-white, #ffffff); /* Secondary button background */
-  --ld-semantic-color-action-fill-secondary-hovered: #e6f2ff; /* Secondary button hover */
-  --ld-semantic-color-action-fill-secondary-pressed: #cce4ff; /* Secondary button active/pressed */
-  --ld-semantic-color-action-border-secondary: #0071ce; /* Secondary button border */
-  --ld-semantic-color-action-border-secondary-hovered: #004f9a; /* Secondary button border hover */
-  --ld-semantic-color-action-border-secondary-pressed: #003d7a; /* Secondary button border active */
-  --ld-semantic-color-action-text-secondary: #0071ce; /* Secondary button text */
-  --ld-semantic-color-action-text-secondary-hovered: #004f9a; /* Secondary button text hover */
-  --ld-semantic-color-action-text-secondary-pressed: #003d7a; /* Secondary button text active */
+  --ld-semantic-color-action-fill-secondary-hovered: var(--ld-primitive-color-blue-10); /* Secondary button hover */
+  --ld-semantic-color-action-fill-secondary-pressed: var(--ld-primitive-color-blue-10); /* Secondary button active/pressed */
+  --ld-semantic-color-action-border-secondary: var(--ld-primitive-color-blue-100); /* Secondary button border */
+  --ld-semantic-color-action-border-secondary-hovered: var(--ld-primitive-color-blue-130); /* Secondary button border hover */
+  --ld-semantic-color-action-border-secondary-pressed: var(--ld-primitive-color-blue-130); /* Secondary button border active */
+  --ld-semantic-color-action-text-secondary: var(--ld-primitive-color-blue-100); /* Secondary button text */
+  --ld-semantic-color-action-text-secondary-hovered: var(--ld-primitive-color-blue-130); /* Secondary button text hover */
+  --ld-semantic-color-action-text-secondary-pressed: var(--ld-primitive-color-blue-130); /* Secondary button text active */
 
   /* Tertiary actions */
   --ld-semantic-color-action-fill-tertiary: transparent; /* Tertiary button background */
-  --ld-semantic-color-action-fill-tertiary-hovered: #e6f2ff; /* Tertiary button hover */
-  --ld-semantic-color-action-fill-tertiary-pressed: #cce4ff; /* Tertiary button active/pressed */
-  --ld-semantic-color-action-text-tertiary: #0071ce; /* Tertiary button text */
-  --ld-semantic-color-action-text-tertiary-hovered: #004f9a; /* Tertiary button text hover */
-  --ld-semantic-color-action-text-tertiary-pressed: #003d7a; /* Tertiary button text active */
+  --ld-semantic-color-action-fill-tertiary-hovered: var(--ld-primitive-color-blue-10); /* Tertiary button hover */
+  --ld-semantic-color-action-fill-tertiary-pressed: var(--ld-primitive-color-blue-10); /* Tertiary button active/pressed */
+  --ld-semantic-color-action-text-tertiary: var(--ld-primitive-color-blue-100); /* Tertiary button text */
+  --ld-semantic-color-action-text-tertiary-hovered: var(--ld-primitive-color-blue-130); /* Tertiary button text hover */
+  --ld-semantic-color-action-text-tertiary-pressed: var(--ld-primitive-color-blue-130); /* Tertiary button text active */
 
   /* Destructive actions */
   --ld-semantic-color-action-fill-destructive: var(--ld-primitive-color-red-100, #ea1100); /* Destructive button background */
