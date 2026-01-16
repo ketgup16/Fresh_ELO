@@ -7,6 +7,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Card } from "../components/ui/Card";
 import { CardHeader } from "../components/ui/CardHeader";
 import { CardContent } from "../components/ui/CardContent";
+import { Button } from "../components/ui/Button";
 
 export default function KeywordsPlanner() {
   const navigate = useNavigate();
@@ -127,11 +128,9 @@ export default function KeywordsPlanner() {
                 }
                 title="Keyword Research Tools"
                 trailing={
-                  <button
-                    className="px-4 py-2 bg-[#0071DC] text-white rounded hover:bg-[#0060B8] transition-colors"
-                  >
+                  <Button variant="primary" size="small">
                     Get Started
-                  </button>
+                  </Button>
                 }
               />
               <CardContent>
