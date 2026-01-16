@@ -58,4 +58,8 @@
   /* Yellow */
   --ld-primitive-color-yellow-140: #996900;
   --ld-primitive-color-yellow-160: #663800;
+
+  /* Spacing scale */
+  --ld-primitive-scale-space-100: 8px;
+  --ld-primitive-scale-space-200: 12px;
 }
