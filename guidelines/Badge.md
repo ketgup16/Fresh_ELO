@@ -1,0 +1,103 @@
+---
+title: Badge
+scope: component
+status: draft
+owner: design-system
+last_updated: 2025-12-19
+---
+
+## Purpose
+Badges highlight an object to visually indicate a **count** or **status**. Badges are **not interactive**.
+
+## Rules
+- **MUST** use the Living Design Badge component.
+- **MUST NOT** make Badges interactive (no click/press/hover affordances).
+- **MUST** use documented semantic variants/intents; **MUST NOT** custom-color.
+- **MUST NOT** use Badge for text-heavy labeling; use [Tag](/components/tag/) instead.
+
+## Usage
+Use a Badge when:
+- Notifying users that an item's status has meaningfully changed.
+- Associating a numeric count with an item (e.g., unread messages, selected items).
+
+## Color / intent
+The Badge color should come from documented semantic variants (names may differ in your API). If color conveys meaning, it must be reinforced by nearby text/content (do not rely on color alone).
+
+## React usage (example)
+Update import path after wiring in `guidelines/components/overview-components.md`.
+
+```tsx
+import * as React from "react";
+import { Badge, Button } from "REPLACE_ME_COMPONENT_IMPORT_PATH";
+
+export function BadgeExamples() {
+  return (
+    <>
+      {/* Count badge (common) */}
+      <Button
+        // Preferred: include the badge count in the accessible name so SR users hear both together.
+        aria-label="Inbox, 2 unread emails"
+      >
+        Inbox <Badge value={2} />
+      </Button>
+
+      {/* Status badge (semantic intent) */}
+      <div>
+        Status:{" "}
+        <Badge
+          // Adapt prop names to your actual API:
+          // intent="success" | "warning" | "error" | "info"
+          // value={1} // or a boolean/empty dot badge depending on API
+          intent="success"
+          value={1}
+          aria-label="Status: success"
+        />
+      </div>
+    </>
+  );
+}
+```
+
+## Best practices
+### Use when
+- Use when notifying users that an item's status has meaningfully changed.
+- Use when associating a numeric count with an item.
+
+### Don't use when
+- Don't use when a non-numeric text label would be required in the Badge. Badges should not contain text-based content or be used for other types of labeling. Consider using [Tag](/components/tag/) instead.
+
+### Do
+- Do use numerals in the Badge when tracking count is beneficial to the user.
+
+### Don't
+- Don't include text-heavy content or other types of labeling with the Badge; use [Tag](/components/tag/) instead.
+
+## Anatomy
+1. Container
+2. Value (optional; typically a number)
+
+## Behavior
+### Accessibility
+#### Color
+Color is not accessible on its own (e.g., users with color-blindness may not distinguish variants). Consider:
+- If Badge color has meaning, reinforce it with nearby supporting content.
+- If you show multiple Badge colors together, users will assume meaning—be explicit about the meaning, or use a single color.
+- Ensure meaning aligns with your system's [color strategy](/foundations/color#color-semantics).
+
+For more details, see the Accessibility Checklist entry on avoiding sole use of color to convey information.
+
+#### Badge grouping announcement
+If the Badge is used together with another element (e.g., a Button or Link), the label of the associated element should include the Badge content so assistive tech announces them together as one element.
+
+#### Specific badge labeling (preferred)
+To ensure screen reader users understand the meaning of a badge number, prefer a specific label in the format:
+\({count} {optional count description}\)
+
+Examples:
+- "2 selected documents"
+- "12 unread emails"
+
+## Token usage
+- Prefer component defaults (Badge should be token-wired for color, typography, spacing, radius).
+- Only use tokens for layout around the Badge (spacing/gaps), not for restyling the Badge.
+
