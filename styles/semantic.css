@@ -80,4 +80,24 @@
   --ld-semantic-color-fill-accent-green-subtle: var(--ld-primitive-color-green-10, #eaf3e6); /* Use for the background of elements with a green accent but with less emphasis */
   --ld-semantic-color-fill-accent-red-subtle: var(--ld-primitive-color-red-10, #fde9e8); /* Use for the background of elements with a red accent but with less emphasis */
   --ld-semantic-color-fill-accent-spark-subtle: var(--ld-primitive-color-spark-10, #fef6de); /* Use for the background of elements with a spark accent but with less emphasis */
+
+  /* Transparent/overlay action colors (for menus, dropdowns, etc.) */
+  --ld-semantic-color-action-fill-transparent: transparent;
+  --ld-semantic-color-action-fill-transparent-hovered: var(--ld-primitive-color-blue-10);
+  --ld-semantic-color-action-fill-transparent-focused: var(--ld-primitive-color-blue-10);
+  --ld-semantic-color-action-fill-transparent-pressed: var(--ld-primitive-color-blue-10);
+  --ld-semantic-color-action-text-onfill-transparent: var(--ld-primitive-color-gray-160);
+  --ld-semantic-color-action-text-onfill-transparent-hovered: var(--ld-primitive-color-gray-160);
+  --ld-semantic-color-action-text-onfill-transparent-focused: var(--ld-primitive-color-gray-160);
+  --ld-semantic-color-action-text-onfill-transparent-pressed: var(--ld-primitive-color-gray-160);
+  --ld-semantic-color-action-text-onfill-transparent-disabled: var(--ld-primitive-color-gray-50);
+
+  /* Font tokens */
+  --ld-semantic-font-body-small-family: var(--ld-semantic-font-family-sans);
+  --ld-semantic-font-body-small-size: 14px;
+  --ld-semantic-font-body-small-weight-default: 400;
+  --ld-semantic-font-body-small-lineheight: 20px; /* 142.857% of 14px */
+
+  /* Icon size */
+  --ld-semantic-scale-icon-small: 16px;
 }
