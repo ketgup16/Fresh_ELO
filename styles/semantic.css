@@ -1,4 +1,19 @@
 :root {
+  /* Font families */
+  --ld-semantic-font-family-sans: 'Everyday Sans UI', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ld-semantic-font-family-mono: 'Everyday Sans Mono', 'Courier New', monospace;
+
+  /* Text colors */
+  --ld-semantic-color-text: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-text-brand: var(--ld-primitive-color-blue-100, #0071ce);
+  --ld-semantic-color-text-subtle: var(--ld-primitive-color-gray-100, #74767c);
+  --ld-semantic-color-text-inverse: var(--ld-primitive-color-white, #ffffff);
+
+  /* Border colors */
+  --ld-semantic-color-border-default: var(--ld-primitive-color-gray-40, #d9d9d9);
+  --ld-semantic-color-border-subtle: var(--ld-primitive-color-gray-20, #e6e6e6);
+
+  /* Background colors */
   --ld-semantic-color-background: var(--ld-primitive-color-white, #ffffff); /* Use for the screen's main background color */
   --ld-semantic-color-background-inverse: var(--ld-primitive-color-gray-160, #2e2f32); /* Use for a background color that's the opposite lightness of `color.background` */
   --ld-semantic-color-background-subtle: var(--ld-primitive-color-gray-5, #f8f8f8); /* Use for a subtle, neutral background that accentuates overlaid surfaces */
