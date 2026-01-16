@@ -17,6 +17,41 @@
   --ld-semantic-color-background: var(--ld-primitive-color-white, #ffffff); /* Use for the screen's main background color */
   --ld-semantic-color-background-inverse: var(--ld-primitive-color-gray-160, #2e2f32); /* Use for a background color that's the opposite lightness of `color.background` */
   --ld-semantic-color-background-subtle: var(--ld-primitive-color-gray-5, #f8f8f8); /* Use for a subtle, neutral background that accentuates overlaid surfaces */
+
+  /* Action/Interactive colors (for buttons and interactive elements) */
+  /* Primary actions */
+  --ld-semantic-color-action-fill-primary: #0071DC; /* Primary button background (Walmart blue) */
+  --ld-semantic-color-action-fill-primary-hovered: #0060B8; /* Primary button hover state */
+  --ld-semantic-color-action-fill-primary-pressed: #004C94; /* Primary button active/pressed state */
+  --ld-semantic-color-action-text-on-fill-primary: var(--ld-primitive-color-white, #ffffff); /* Text on primary buttons */
+
+  /* Secondary actions */
+  --ld-semantic-color-action-fill-secondary: var(--ld-primitive-color-white, #ffffff); /* Secondary button background */
+  --ld-semantic-color-action-fill-secondary-hovered: #e6f2ff; /* Secondary button hover */
+  --ld-semantic-color-action-fill-secondary-pressed: #cce4ff; /* Secondary button active/pressed */
+  --ld-semantic-color-action-border-secondary: #0071ce; /* Secondary button border */
+  --ld-semantic-color-action-border-secondary-hovered: #004f9a; /* Secondary button border hover */
+  --ld-semantic-color-action-border-secondary-pressed: #003d7a; /* Secondary button border active */
+  --ld-semantic-color-action-text-secondary: #0071ce; /* Secondary button text */
+  --ld-semantic-color-action-text-secondary-hovered: #004f9a; /* Secondary button text hover */
+  --ld-semantic-color-action-text-secondary-pressed: #003d7a; /* Secondary button text active */
+
+  /* Tertiary actions */
+  --ld-semantic-color-action-fill-tertiary: transparent; /* Tertiary button background */
+  --ld-semantic-color-action-fill-tertiary-hovered: #e6f2ff; /* Tertiary button hover */
+  --ld-semantic-color-action-fill-tertiary-pressed: #cce4ff; /* Tertiary button active/pressed */
+  --ld-semantic-color-action-text-tertiary: #0071ce; /* Tertiary button text */
+  --ld-semantic-color-action-text-tertiary-hovered: #004f9a; /* Tertiary button text hover */
+  --ld-semantic-color-action-text-tertiary-pressed: #003d7a; /* Tertiary button text active */
+
+  /* Destructive actions */
+  --ld-semantic-color-action-fill-destructive: var(--ld-primitive-color-red-100, #ea1100); /* Destructive button background */
+  --ld-semantic-color-action-fill-destructive-hovered: #c30e00; /* Destructive button hover */
+  --ld-semantic-color-action-fill-destructive-pressed: var(--ld-primitive-color-red-130, #a20c00); /* Destructive button active */
+  --ld-semantic-color-action-text-on-fill-destructive: var(--ld-primitive-color-white, #ffffff); /* Text on destructive buttons */
+
+  /* Focus state */
+  --ld-semantic-color-action-focus-outline: #0071ce; /* Focus outline color for interactive elements */
   --ld-semantic-color-border-accent-blue: var(--ld-primitive-color-blue-100, #0053e2); /* Use for border with a blue accent */
   --ld-semantic-color-border-accent-blue-bold: var(--ld-primitive-color-blue-130, #002e99); /* Use for bold blue accent border */
   --ld-semantic-color-border-accent-cyan: var(--ld-primitive-color-cyan-100, #0076b3); /* Use for border with a cyan accent */
