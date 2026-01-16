@@ -1,47 +1,55 @@
-/* MenuItem Base */
+/* MenuItem Base - matches LD 3.5 Figma specifications exactly */
 .menuItem {
   display: flex;
+  padding: var(--ld-primitive-scale-space-100) var(--ld-primitive-scale-space-200);
   align-items: center;
-  gap: 12px;
+  gap: var(--ld-primitive-scale-space-100);
+  align-self: stretch;
   width: 100%;
-  padding: 12px 16px;
-  margin: 0 8px;
-  width: calc(100% - 16px);
   border: none;
-  background: transparent;
-  font-family: var(--ld-semantic-font-family-sans);
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 400;
-  color: var(--ld-semantic-color-text);
+  background: var(--ld-semantic-color-action-fill-transparent);
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size);
+  font-weight: var(--ld-semantic-font-body-small-weight-default);
+  line-height: var(--ld-semantic-font-body-small-lineheight);
+  color: var(--ld-semantic-color-action-text-onfill-transparent);
   text-align: left;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 0;
   transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
   white-space: nowrap;
+  font-kerning: none;
+  font-feature-settings: 'liga' off;
 }
 
+/* Hover state */
 .menuItem:hover:not(:disabled) {
-  background-color: var(--ld-semantic-color-background-subtle);
+  background: var(--ld-semantic-color-action-fill-transparent-hovered);
+  color: var(--ld-semantic-color-action-text-onfill-transparent-hovered);
 }
 
+/* Focus state */
 .menuItem:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
-  outline-offset: -2px;
+  outline: none;
+  background: var(--ld-semantic-color-action-fill-transparent-focused);
+  color: var(--ld-semantic-color-action-text-onfill-transparent-focused);
 }
 
+/* Active/Pressed state */
 .menuItem:active:not(:disabled) {
-  background-color: var(--ld-primitive-color-gray-20);
+  background: var(--ld-semantic-color-action-fill-transparent-pressed);
+  color: var(--ld-semantic-color-action-text-onfill-transparent-pressed);
 }
 
 /* Disabled state */
 .menuItem:disabled {
-  color: var(--ld-semantic-color-text-subtle);
+  color: var(--ld-semantic-color-action-text-onfill-transparent-disabled);
   cursor: not-allowed;
-  opacity: 0.5;
+  opacity: 1;
+  background: var(--ld-semantic-color-action-fill-transparent);
 }
 
-/* Selected state */
+/* Selected state (for checkboxes or radio items) */
 .menuItem--selected {
   background-color: var(--ld-primitive-color-blue-10);
   color: var(--ld-primitive-color-blue-100);
@@ -58,13 +66,13 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 16px;
-  height: 16px;
+  width: var(--ld-semantic-scale-icon-small);
+  height: var(--ld-semantic-scale-icon-small);
 }
 
 .menuItem__leadingIcon svg {
-  width: 16px;
-  height: 16px;
+  width: var(--ld-semantic-scale-icon-small);
+  height: var(--ld-semantic-scale-icon-small);
 }
 
 /* Content wrapper */
