@@ -8,3 +8,5 @@ When we create new pages:
 - Always upload new icon assets into the "client/components/icons" folder.
 
 - Modals always have scrim behind it
+
+- Always use our client/styles folder when designing and tokens and fonts, do not create new ones
