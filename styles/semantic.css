@@ -1,0 +1,33 @@
+:root {
+  --ld-semantic-color-background: var(--ld-primitive-color-white, #ffffff); /* Use for the screen's main background color */
+  --ld-semantic-color-background-inverse: var(--ld-primitive-color-gray-160, #2e2f32); /* Use for a background color that's the opposite lightness of `color.background` */
+  --ld-semantic-color-background-subtle: var(--ld-primitive-color-gray-5, #f8f8f8); /* Use for a subtle, neutral background that accentuates overlaid surfaces */
+  --ld-semantic-color-border-accent-blue: var(--ld-primitive-color-blue-100, #0053e2); /* Use for border with a blue accent */
+  --ld-semantic-color-border-accent-blue-bold: var(--ld-primitive-color-blue-130, #002e99); /* Use for bold blue accent border */
+  --ld-semantic-color-border-accent-cyan: var(--ld-primitive-color-cyan-100, #0076b3); /* Use for border with a cyan accent */
+  --ld-semantic-color-border-accent-cyan-bold: var(--ld-primitive-color-cyan-130, #004a70); /* Use for bold cyan accent border */
+  --ld-semantic-color-border-accent-gray: var(--ld-primitive-color-gray-100, #74767c); /* Use for border with a gray accent */
+  --ld-semantic-color-border-accent-gray-bold: var(--ld-primitive-color-gray-130, #515357); /* Use for bold gray accent border */
+  --ld-semantic-color-border-accent-green: var(--ld-primitive-color-green-100, #2a8703); /* Use for border with a green accent */
+  --ld-semantic-color-border-accent-green-bold: var(--ld-primitive-color-green-130, #1d5f02); /* Use for bold green accent border */
+  --ld-semantic-color-border-accent-orange: var(--ld-primitive-color-orange-120, #c83c00); /* Use for border with an orange accent */
+  --ld-semantic-color-border-accent-orange-bold: var(--ld-primitive-color-orange-130, #af2f00); /* Use for bold orange accent border */
+  --ld-semantic-color-border-accent-pink: var(--ld-primitive-color-pink-100, #cb2c90); /* Use for border with a pink accent */
+  --ld-semantic-color-border-accent-pink-bold: var(--ld-primitive-color-pink-130, #8c1e64); /* Use for bold pink accent border */
+  --ld-semantic-color-border-accent-purple: var(--ld-primitive-color-purple-100, #a6509f); /* Use for border with a purple accent */
+  --ld-semantic-color-border-accent-purple-bold: var(--ld-primitive-color-purple-130, #693364); /* Use for bold purple accent border */
+  --ld-semantic-color-border-accent-red: var(--ld-primitive-color-red-100, #ea1100); /* Use for border with a red accent */
+  --ld-semantic-color-border-accent-red-bold: var(--ld-primitive-color-red-130, #a20c00); /* Use for bold red accent border */
+  --ld-semantic-color-border-accent-spark: var(--ld-primitive-color-spark-140, #995213); /* Use for border with a spark accent */
+  --ld-semantic-color-border-accent-spark-bold: var(--ld-primitive-color-spark-160, #662b0d); /* Use for bold spark accent border */
+  --ld-semantic-color-border-accent-teal: var(--ld-primitive-color-teal-100, #00809e); /* Use for border with a teal accent */
+  --ld-semantic-color-border-accent-teal-bold: var(--ld-primitive-color-teal-130, #005a6f); /* Use for bold teal accent border */
+  --ld-semantic-color-border-accent-yellow: var(--ld-primitive-color-yellow-140, #996900); /* Use for border with a yellow accent */
+  --ld-semantic-color-border-accent-yellow-bold: var(--ld-primitive-color-yellow-160, #663800); /* Use for bold yellow accent border */
+  --ld-semantic-color-text-accent-green: var(--ld-primitive-color-green-100, #2a8703); /* Use for text with a green accent */
+  --ld-semantic-color-text-accent-red: var(--ld-primitive-color-red-100, #ea1100); /* Use for text with a red accent */
+  --ld-semantic-color-text-accent-spark: var(--ld-primitive-color-spark-140, #995213); /* Use for text with a spark accent */
+  --ld-semantic-color-fill-accent-green-subtle: var(--ld-primitive-color-green-10, #eaf3e6); /* Use for the background of elements with a green accent but with less emphasis */
+  --ld-semantic-color-fill-accent-red-subtle: var(--ld-primitive-color-red-10, #fde9e8); /* Use for the background of elements with a red accent but with less emphasis */
+  --ld-semantic-color-fill-accent-spark-subtle: var(--ld-primitive-color-spark-10, #fef6de); /* Use for the background of elements with a spark accent but with less emphasis */
+}
