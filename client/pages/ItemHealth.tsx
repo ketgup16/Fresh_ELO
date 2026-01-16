@@ -72,6 +72,30 @@ export default function ItemHealth() {
     }
   };
 
+  const getOLQStyle = (olq: string) => {
+    const percentage = parseFloat(olq);
+
+    if (percentage < 50) {
+      return {
+        backgroundColor: '#FBD0CC',
+        color: '#FFFFFF',
+        textAlign: 'center' as const,
+      };
+    } else if (percentage < 80) {
+      return {
+        backgroundColor: '#FFF9E6',
+        color: '#995213',
+        textAlign: 'center' as const,
+      };
+    } else {
+      return {
+        backgroundColor: '#E8F5E9',
+        color: '#2A8703',
+        textAlign: 'center' as const,
+      };
+    }
+  };
+
   const itemHealthData: ItemHealthData[] = [
     {
       itemImage: <CleaningSpray />,
@@ -79,7 +103,7 @@ export default function ItemHealth() {
       itemId: "1750942750",
       campaignIds: ["432081"],
       adGroupIds: ["580546"],
-      olq: "92.5%",
+      olq: "85%",
       primaryVariant: "1750942750",
       productDetailPageViewsToday: 4956,
       productDetailPageViewsLast7Days: 51124,
@@ -94,7 +118,7 @@ export default function ItemHealth() {
       itemId: "875633804",
       campaignIds: ["3920037"],
       adGroupIds: ["4934907"],
-      olq: "88.3%",
+      olq: "72%",
       primaryVariant: "875633804",
       productDetailPageViewsToday: 4543,
       productDetailPageViewsLast7Days: 57267,
@@ -108,7 +132,7 @@ export default function ItemHealth() {
       itemId: "1566660392",
       campaignIds: ["4001729", "4345285", "3920926", "3225492"],
       adGroupIds: ["4834896", "4706485", "3692926", "3387680"],
-      olq: "95.7%",
+      olq: "28%",
       primaryVariant: "1566660392",
       productDetailPageViewsToday: 3275,
       productDetailPageViewsLast7Days: 40379,
@@ -122,7 +146,7 @@ export default function ItemHealth() {
       itemId: "3452723904",
       campaignIds: ["4001729", "3920926", "3225492"],
       adGroupIds: ["4834896", "4706485", "3692214"],
-      olq: "91.2%",
+      olq: "89%",
       primaryVariant: "3452723904",
       productDetailPageViewsToday: 2331,
       productDetailPageViewsLast7Days: 30360,
@@ -136,7 +160,7 @@ export default function ItemHealth() {
       itemId: "1403322750",
       campaignIds: ["4345285", "4001729", "4706485"],
       adGroupIds: ["4834896", "4706485"],
-      olq: "87.9%",
+      olq: "54%",
       primaryVariant: "1403322750",
       productDetailPageViewsToday: 2352,
       productDetailPageViewsLast7Days: 30353,
@@ -529,7 +553,14 @@ export default function ItemHealth() {
                           ))}
                         </div>
                       </td>
-                      <td className="px-2 py-2 text-sm text-[#2E2F32] border-b border-dashed border-[#909196]">{item.olq}</td>
+                      <td className="px-2 py-2">
+                        <div
+                          className="inline-block px-3 py-1 text-sm font-bold rounded"
+                          style={getOLQStyle(item.olq)}
+                        >
+                          {item.olq}
+                        </div>
+                      </td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.primaryVariant}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsToday.toLocaleString()}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsLast7Days.toLocaleString()}</td>
