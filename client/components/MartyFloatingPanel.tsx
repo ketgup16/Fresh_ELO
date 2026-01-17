@@ -712,7 +712,7 @@ export default function MartyFloatingPanel({
                 style={{
                   backgroundColor: userMessage.trim() && !isTyping
                     ? 'var(--ld-semantic-color-action-fill-primary)'
-                    : '#BABBBE'
+                    : 'var(--ld-primitive-color-gray-50)'
                 }}
                 onMouseEnter={(e) => {
                   if (userMessage.trim() && !isTyping) {
