@@ -532,7 +532,7 @@ export default function MartyFloatingPanel({
                   Campaign type
                 </div>
               </div>
-              <div className="flex h-10 pl-3 items-center gap-2 self-stretch rounded-lg border border-[#E3E4E5] bg-white">
+              <div className="flex h-10 pl-3 items-center gap-2 self-stretch rounded-lg border border-[#909196] bg-white">
                 <div className="flex h-6 py-0.5 justify-center items-center flex-1">
                   <div className="w-full text-[#2E2F32] text-sm leading-5">
                     {campaignData.campaignType}
