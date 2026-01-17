@@ -1081,9 +1081,9 @@ export default function MartyFloatingPanel({
             </div>
           </div>
 
-          {/* Footer Section */}
-          <div className="flex flex-col items-start gap-3 self-stretch">
-            <div className="flex h-6 pt-2 justify-center items-center gap-2.5 self-stretch">
+          {/* Sticky Footer Section */}
+          <div className="flex flex-col items-start self-stretch bg-white">
+            <div className="flex h-6 px-4 justify-center items-center gap-2.5 self-stretch">
               <div className="flex-1 text-[#74767C] text-center text-xs leading-4">
                 Click "Save and review" to view item list and all campaign creation options
               </div>
