@@ -311,7 +311,7 @@ export default function SponsoredSearchDashboard() {
         </div>
 
         {/* Campaign Chart */}
-        <CampaignChart visibleSeries={visibleSeries} />
+        <CampaignChart visibleSeries={visibleSeries} attribution={attribution} />
       </div>
 
       {/* Recommendations */}
