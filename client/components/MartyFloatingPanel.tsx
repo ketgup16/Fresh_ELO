@@ -912,12 +912,13 @@ export default function MartyFloatingPanel({
 
             {/* View Campaign Button */}
             <div className="flex w-full flex-col items-start gap-2 bg-white">
-              <button
+              <Button
                 onClick={() => navigate('/all-campaigns')}
-                className="flex max-w-[318px] max-h-14 px-4 py-2 justify-center items-center content-center gap-2 flex-wrap rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors"
+                variant="tertiary"
+                className="max-w-[318px] text-sm"
               >
-                <span className="text-[#2E2F32] text-sm font-bold leading-5">View campaign</span>
-              </button>
+                View campaign
+              </Button>
             </div>
           </div>
 
