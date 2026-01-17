@@ -398,7 +398,7 @@ export default function MartyFloatingPanel({
               </svg>
             </div>
 
-            <div className="text-[#2E2F32] font-bold text-xl leading-[140%]">Marty</div>
+            <div className="text-[#2E2F32] font-bold text-lg leading-6">Marty</div>
 
             {/* Beta Tag */}
             <div className="flex px-2 py-1 items-start gap-1 rounded border border-[#515357] bg-white">
