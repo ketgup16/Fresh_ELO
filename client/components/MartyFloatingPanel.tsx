@@ -1236,7 +1236,7 @@ export default function MartyFloatingPanel({
                 <div className="flex flex-col justify-center flex-1 self-stretch text-[#74767C] text-sm leading-5">
                   Ask Marty anything...
                 </div>
-                <button className="flex p-2 flex-shrink-0 items-center justify-center rounded-full border border-transparent bg-[#BABBBE]">
+                <button className="flex p-2 flex-shrink-0 items-center justify-center rounded-full border border-transparent" style={{ backgroundColor: 'var(--ld-primitive-color-gray-50)' }}>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 3L8 13" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round"/>
                     <path d="M3 8L8 3L13 8" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
