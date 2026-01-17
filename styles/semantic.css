@@ -98,6 +98,11 @@
   --ld-semantic-font-body-small-weight-default: 400;
   --ld-semantic-font-body-small-lineheight: 20px; /* 142.857% of 14px */
 
+  --ld-semantic-font-body-medium-family: var(--ld-semantic-font-family-sans);
+  --ld-semantic-font-body-medium-size: 16px;
+  --ld-semantic-font-body-medium-weight-default: 400;
+  --ld-semantic-font-body-medium-lineheight: 24px; /* 150% of 16px */
+
   /* Icon size */
   --ld-semantic-scale-icon-small: 16px;
 
@@ -118,4 +123,24 @@
   --ld-semantic-color-text-on-fill-positive-subtle: var(--ld-primitive-color-green-130);
   --ld-semantic-color-text-on-fill-warning-subtle: var(--ld-primitive-color-spark-160);
   --ld-semantic-color-text-on-fill-negative-subtle: var(--ld-primitive-color-red-130);
+
+  /* Page Navigation colors (for SideNavigation component) */
+  /* Non-current/default state */
+  --ld-semantic-color-pagenav-fill: transparent; /* Background for non-current nav items */
+  --ld-semantic-color-pagenav-fill-hovered: rgba(233, 241, 254, 0.5); /* Hover background for non-current items */
+  --ld-semantic-color-pagenav-fill-pressed: var(--ld-primitive-color-blue-10, #e9f1fe); /* Pressed background for non-current items */
+  --ld-semantic-color-pagenav-text-onfill: var(--ld-primitive-color-gray-160, #2e2f32); /* Text color for non-current items */
+
+  /* Current/activated page state */
+  --ld-semantic-color-pagenav-fill-activated: var(--ld-primitive-color-blue-10, #e9f1fe); /* Background for current page */
+  --ld-semantic-color-pagenav-fill-activated-hovered: #d4e5fc; /* Hover background for current page (between blue-10 and blue-20) */
+  --ld-semantic-color-pagenav-fill-activated-focused: var(--ld-primitive-color-blue-10, #e9f1fe); /* Focus background for current page */
+  --ld-semantic-color-pagenav-fill-activated-pressed: #c0d9fb; /* Pressed background for current page (darker than hover) */
+  --ld-semantic-color-pagenav-text-onfill-activated: var(--ld-primitive-color-gray-160, #2e2f32); /* Text color for current page */
+
+  /* Current page indicator (4px left bar) */
+  --ld-semantic-color-pagenav-indicator-activated: var(--ld-primitive-color-blue-100, #0053e2); /* Indicator bar for current page */
+  --ld-semantic-color-pagenav-indicator-activated-hovered: #0046bd; /* Indicator bar hover (between blue-100 and blue-130) */
+  --ld-semantic-color-pagenav-indicator-activated-focused: var(--ld-primitive-color-blue-100, #0053e2); /* Indicator bar focus */
+  --ld-semantic-color-pagenav-indicator-activated-pressed: var(--ld-primitive-color-blue-130, #002e99); /* Indicator bar pressed */
 }
