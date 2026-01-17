@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Reports from "./icons/Reports";
+import { Button } from "./ui/button";
 
 interface MartyFloatingPanelProps {
   isMinimized?: boolean;
