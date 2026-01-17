@@ -6,13 +6,14 @@ interface MartyFloatingPanelProps {
   onMinimizedChange?: (minimized: boolean) => void;
 }
 
-type ViewState = 'welcome' | 'thinking' | 'campaignForm' | 'campaignReady' | 'campaignScheduled' | 'chat';
+type ViewState = 'welcome' | 'chat' | 'campaignSetup' | 'campaignForm' | 'campaignReady' | 'campaignScheduled';
 
 interface Message {
   id: string;
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+  isAction?: boolean;
 }
 
 export default function MartyFloatingPanel({
@@ -186,9 +187,9 @@ export default function MartyFloatingPanel({
       };
       setMessages(prev => [...prev, responseMsg]);
       
-      // Transition to campaign form
+      // Transition to campaign setup
       setTimeout(() => {
-        setViewState('campaignForm');
+        setViewState('campaignSetup');
       }, 1000);
       return;
     }
@@ -218,26 +219,85 @@ export default function MartyFloatingPanel({
     }
   };
 
-  const handleQuickAction = (action: string) => {
+  const handleQuickAction = async (action: string) => {
     if (action === 'create') {
-      setViewState('thinking');
+      // Add user message
+      const userMsg: Message = {
+        id: Date.now().toString(),
+        role: 'user',
+        content: 'Create campaign',
+        timestamp: new Date()
+      };
+      setMessages([userMsg]);
+      setViewState('chat');
+      setIsTyping(true);
+      
+      // Show typing animation
+      await new Promise(resolve => setTimeout(resolve, 1200));
+      
+      // Add assistant response with options
+      const assistantMsg: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: "Great! I'd love to help you create a campaign. To get started, what type of campaign would you like to create?",
+        timestamp: new Date(),
+        isAction: true
+      };
+      setMessages(prev => [...prev, assistantMsg]);
+      setIsTyping(false);
+      
+      // Show campaign setup view
       setTimeout(() => {
-        setViewState('campaignForm');
-      }, 900);
+        setViewState('campaignSetup');
+      }, 800);
+      
     } else if (action === 'help') {
       setUserMessage('Help & FAQs');
       setTimeout(() => handleSendMessage(), 100);
     }
   };
 
+  const handleCampaignTypeSelection = async (type: string) => {
+    // Add user message
+    const userMsg: Message = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: type,
+      timestamp: new Date()
+    };
+    setMessages(prev => [...prev, userMsg]);
+    setIsTyping(true);
+    
+    // Set campaign type
+    setCampaignData(prev => ({ ...prev, campaignType: type }));
+    
+    // Show typing animation
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Add assistant response
+    const assistantMsg: Message = {
+      id: (Date.now() + 1).toString(),
+      role: 'assistant',
+      content: `Perfect! I'll help you set up a ${type} campaign. Let me gather some details...`,
+      timestamp: new Date()
+    };
+    setMessages(prev => [...prev, assistantMsg]);
+    setIsTyping(false);
+    
+    // Transition to form
+    setTimeout(() => {
+      setViewState('campaignForm');
+    }, 800);
+  };
+
   const handleBack = () => {
-    setViewState('chat');
-    setCampaignData({
-      campaignType: 'Sponsored Products Automatic',
-      campaignName: 'Free Rein Coffee Campaign Fall 2025',
-      startDate: '10/01/2025',
-      dailyBudget: ''
-    });
+    if (viewState === 'campaignForm') {
+      setViewState('campaignSetup');
+    } else if (viewState === 'campaignSetup') {
+      setViewState('chat');
+    } else {
+      setViewState('chat');
+    }
   };
 
   const handleSaveAndReview = () => {
@@ -305,7 +365,7 @@ export default function MartyFloatingPanel({
     <div className="fixed bottom-0 right-4 z-30 w-[425px] h-[752px] rounded-t-2xl shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] bg-white flex flex-col border border-[#E3E4E5]">
       {/* Navbar */}
       <div className="flex w-full h-[60px] px-4 py-3 justify-between items-center rounded-t-2xl border-b border-[#E3E4E5] bg-white flex-shrink-0">
-        {viewState === 'campaignForm' ? (
+        {(viewState === 'campaignForm' || viewState === 'campaignSetup') ? (
           <div className="flex h-9 items-center gap-3">
             <button onClick={handleBack} className="w-6 h-6 flex items-center justify-center">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -494,29 +554,102 @@ export default function MartyFloatingPanel({
         </div>
       )}
 
-      {viewState === 'thinking' && (
-        <div className="flex w-full px-4 flex-col items-start gap-6 flex-1 bg-white overflow-y-auto">
-          {/* User Message */}
-          <div className="flex w-full pt-6 pl-20 flex-col items-end gap-1">
-            <div className="flex max-w-[608px] px-4 py-2 flex-col items-start gap-2 rounded-lg bg-[#F1F1F2]">
-              <div className="self-stretch text-[#2E2F32] text-sm leading-5">
-                Create a campaign
-              </div>
+      {viewState === 'campaignSetup' && (
+        <div className="flex w-full flex-col flex-1 bg-white overflow-hidden">
+          {/* Messages Area */}
+          <div className="flex-1 overflow-y-auto px-4 py-4">
+            <div className="flex flex-col gap-4">
+              {messages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex w-full ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`flex max-w-[85%] px-4 py-2 flex-col items-start gap-2 rounded-lg ${
+                      message.role === 'user'
+                        ? 'bg-[#F1F1F2]'
+                        : 'bg-white border border-[#E3E4E5]'
+                    }`}
+                  >
+                    <div className="text-[#2E2F32] text-sm leading-5 whitespace-pre-wrap">
+                      {message.content}
+                    </div>
+                  </div>
+                </div>
+              ))}
+              
+              {/* Campaign Type Options */}
+              {!isTyping && (
+                <div className="flex w-full justify-start">
+                  <div className="flex flex-col gap-2 max-w-[85%]">
+                    <button
+                      onClick={() => handleCampaignTypeSelection('Sponsored Products Automatic')}
+                      className="flex px-4 py-3 items-center gap-2 rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors"
+                    >
+                      <span className="text-[#2E2F32] text-sm font-bold leading-5">Sponsored Products Automatic</span>
+                    </button>
+                    <button
+                      onClick={() => handleCampaignTypeSelection('Sponsored Products Manual')}
+                      className="flex px-4 py-3 items-center gap-2 rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors"
+                    >
+                      <span className="text-[#2E2F32] text-sm font-bold leading-5">Sponsored Products Manual</span>
+                    </button>
+                    <button
+                      onClick={() => handleCampaignTypeSelection('Display Campaign')}
+                      className="flex px-4 py-3 items-center gap-2 rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors"
+                    >
+                      <span className="text-[#2E2F32] text-sm font-bold leading-5">Display Campaign</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+              
+              {/* Typing Indicator */}
+              {isTyping && (
+                <div className="flex w-full justify-start">
+                  <div className="flex px-4 py-3 items-center gap-1.5 rounded-lg bg-white border border-[#E3E4E5]">
+                    <div className="flex gap-1">
+                      <div className="w-2 h-2 rounded-full bg-[#993EF4] animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                      <div className="w-2 h-2 rounded-full bg-[#4DBDF5] animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                      <div className="w-2 h-2 rounded-full bg-[#00D0CD] animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
             </div>
           </div>
 
-          {/* Thinking Animation */}
-          <div className="flex w-full h-8 min-w-full px-0 py-1 items-center gap-1.5 bg-white">
-            <div 
-              className="text-sm leading-5"
-              style={{
-                background: 'linear-gradient(134deg, #993EF4 10.5%, #3F7FCF 71.77%, #00AD9F 102.41%)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}
-            >
-              Thinking…
+          {/* Footer Section */}
+          <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white border-t border-[#E3E4E5]">
+            {/* Input Field */}
+            <div className="flex justify-start max-w-[760px] max-h-44 px-4 py-3 items-center gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
+              <input
+                type="text"
+                value={userMessage}
+                onChange={(e) => setUserMessage(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="How can I help?"
+                className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C]"
+                disabled={isTyping}
+              />
+              <button
+                onClick={handleSendMessage}
+                disabled={!userMessage.trim() || isTyping}
+                className={`flex p-2 flex-col items-start rounded-full border border-transparent transition-colors ${
+                  userMessage.trim() && !isTyping ? 'bg-[#0071DC] hover:bg-[#0060B8]' : 'bg-[#BABBBE]'
+                }`}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 3L8 13" stroke={userMessage.trim() && !isTyping ? "white" : "#74767C"} strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M3 8L8 3L13 8" stroke={userMessage.trim() && !isTyping ? "white" : "#74767C"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            {/* Disclaimer */}
+            <div className="w-full text-[#74767C] text-center text-xs leading-4">
+              I'm powered by AI and can make mistakes. Don't share sensitive info. <span className="underline cursor-pointer">Disclaimer</span>
             </div>
           </div>
         </div>
@@ -604,7 +737,6 @@ export default function MartyFloatingPanel({
             </div>
 
             {/* Item List */}
-            {/* Item list */}
             <div className="flex flex-col items-start gap-1 self-stretch">
               <div className="flex pb-1 items-center gap-1 self-stretch">
                 <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
@@ -846,30 +978,6 @@ export default function MartyFloatingPanel({
                 <path d="M8 3L8 13" stroke={userMessage.trim() && !isTyping ? "white" : "#74767C"} strokeWidth="1.5" strokeLinecap="round"/>
                 <path d="M3 8L8 3L13 8" stroke={userMessage.trim() && !isTyping ? "white" : "#74767C"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </button>
-          </div>
-
-          {/* Disclaimer */}
-          <div className="w-full text-[#74767C] text-center text-xs leading-4">
-            I'm powered by AI and can make mistakes. Don't share sensitive info. <span className="underline cursor-pointer">Disclaimer</span>
-          </div>
-        </div>
-      )}
-
-      {/* Footer for thinking state */}
-      {viewState === 'thinking' && (
-        <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white">
-          {/* Input Field */}
-          <div className="flex max-w-[760px] max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
-            <div className="flex flex-col justify-center flex-1 self-stretch text-[#74767C] text-sm leading-5">
-              How can I help?
-            </div>
-            <button className="flex p-2 w-8 h-8 flex-col justify-center items-center rounded-full bg-[#E3E4E5]">
-              <div className="flex w-[15px] h-[15px] p-[18px_16px] justify-center items-center gap-1 flex-shrink-0 aspect-square">
-                <div className="flex w-[15px] h-[15px] justify-center items-center flex-shrink-0">
-                  <div className="w-3 h-3 flex-shrink-0 rounded-[2px] bg-white"></div>
-                </div>
-              </div>
             </button>
           </div>
 
