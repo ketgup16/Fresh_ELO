@@ -539,7 +539,7 @@ export default function MartyFloatingPanel({
                       <div className="flex items-center gap-2 mt-2">
                         <button
                           onClick={() => handleFeedback(message.id, 'up')}
-                          className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
+                          className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-semantic-color-action-fill-transparent-hovered)]"
                         >
                           {message.feedback === 'up' ? (
                             <img src="https://api.builder.io/api/v1/image/assets/TEMP/18e9627b3d3b2cd53e415878ba90cc59fddc29a0?width=32" className="w-4 h-4" alt="Thumbs up filled" />
@@ -549,7 +549,7 @@ export default function MartyFloatingPanel({
                         </button>
                         <button
                           onClick={() => handleFeedback(message.id, 'down')}
-                          className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
+                          className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-semantic-color-action-fill-transparent-hovered)]"
                         >
                           {message.feedback === 'down' ? (
                             <img src="https://api.builder.io/api/v1/image/assets/TEMP/ef817e281ba59ce0c70374ef584ec18ee2c44aa1?width=32" className="w-4 h-4" alt="Thumbs down filled" />
@@ -614,7 +614,7 @@ export default function MartyFloatingPanel({
                     <div className="flex items-center gap-2 mt-2">
                       <button
                         onClick={() => handleFeedback(message.id, 'up')}
-                        className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
+                        className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-semantic-color-action-fill-transparent-hovered)]"
                       >
                         {message.feedback === 'up' ? (
                           <img src="https://api.builder.io/api/v1/image/assets/TEMP/18e9627b3d3b2cd53e415878ba90cc59fddc29a0?width=32" className="w-4 h-4" alt="Thumbs up filled" />
@@ -624,7 +624,7 @@ export default function MartyFloatingPanel({
                       </button>
                       <button
                         onClick={() => handleFeedback(message.id, 'down')}
-                        className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
+                        className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-semantic-color-action-fill-transparent-hovered)]"
                       >
                         {message.feedback === 'down' ? (
                           <img src="https://api.builder.io/api/v1/image/assets/TEMP/ef817e281ba59ce0c70374ef584ec18ee2c44aa1?width=32" className="w-4 h-4" alt="Thumbs down filled" />
