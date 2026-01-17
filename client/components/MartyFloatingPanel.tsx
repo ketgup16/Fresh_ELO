@@ -565,7 +565,7 @@ export default function MartyFloatingPanel({
               <div className="self-stretch text-[#2E2F32] text-xs font-bold leading-4">
                 Start date (mm/dd/yyyy)
               </div>
-              <div className="flex h-10 px-3 py-0 pr-1 items-center gap-3 self-stretch rounded-lg border border-[#E3E4E5] bg-white">
+              <div className="flex h-10 px-3 py-0 pr-1 items-center gap-3 self-stretch rounded-lg border border-[#909196] bg-white">
                 <div className="flex-1 text-[#2E2F32] text-sm leading-5">
                   {campaignData.startDate}
                 </div>
