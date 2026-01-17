@@ -822,15 +822,15 @@ export default function MartyFloatingPanel({
 
               {/* Prompt Suggestions */}
               <div className="flex w-full flex-col items-start gap-2 bg-white px-4">
-                <button className="flex max-w-[393px] max-h-14 px-4 py-2 justify-center items-center content-center gap-2 flex-wrap rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
-                  <span className="text-[#2E2F32] text-sm font-bold leading-5">What can Marty help me do on this page?</span>
-                </button>
-                <button className="flex max-w-[393px] max-h-14 px-4 py-2 justify-center items-center content-center gap-2 flex-wrap rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
-                  <span className="text-[#2E2F32] text-sm font-bold leading-5">How do I set up a Sponsored Products campaign?</span>
-                </button>
-                <button className="flex max-w-[393px] max-h-14 px-4 py-2 justify-center items-center content-center gap-2 flex-wrap rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
-                  <span className="text-[#2E2F32] text-sm font-bold leading-5">Which items do you recommend I advertise?</span>
-                </button>
+                <Button variant="tertiary" className="max-w-[393px] text-sm">
+                  What can Marty help me do on this page?
+                </Button>
+                <Button variant="tertiary" className="max-w-[393px] text-sm">
+                  How do I set up a Sponsored Products campaign?
+                </Button>
+                <Button variant="tertiary" className="max-w-[393px] text-sm">
+                  Which items do you recommend I advertise?
+                </Button>
               </div>
             </div>
           </div>
