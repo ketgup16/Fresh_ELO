@@ -1258,7 +1258,7 @@ export default function MartyFloatingPanel({
       {(viewState === 'welcome' || viewState === 'chat') && (
         <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white border-t border-[#E3E4E5]">
           {/* Input Field */}
-          <div className="flex max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-[30px] border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
+          <div className="flex max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-[30px] border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] transition-colors focus-within:border-[#0053E2] focus-within:shadow-[0_0_0_1px_#0053E2]">
             <textarea
               ref={textareaRef}
               value={userMessage}
