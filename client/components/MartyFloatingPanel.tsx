@@ -683,27 +683,34 @@ export default function MartyFloatingPanel({
           {/* Footer Section */}
           <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white border-t border-[#E3E4E5]">
             {/* Input Field */}
-            <div className="flex justify-start max-w-[760px] max-h-44 px-4 py-3 items-center gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
-              <input
-                type="text"
+            <div className="flex max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-[30px] border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
+              <textarea
                 value={userMessage}
                 onChange={(e) => setUserMessage(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="How can I help?"
-                className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C]"
+                onKeyDown={handleKeyPress}
+                placeholder="Ask Marty anything..."
+                rows={1}
+                className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C] resize-none overflow-y-auto max-h-[152px] py-0.5"
                 disabled={isTyping}
+                style={{ minHeight: '20px' }}
               />
               <button
                 onClick={handleSendMessage}
                 disabled={!userMessage.trim() || isTyping}
-                className={`flex p-2 flex-col items-start rounded-full border border-transparent transition-colors ${
+                className={`flex p-2 flex-shrink-0 items-center justify-center rounded-full border border-transparent transition-colors ${
                   userMessage.trim() && !isTyping ? 'bg-[#0071DC] hover:bg-[#0060B8]' : 'bg-[#BABBBE]'
                 }`}
               >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 3L8 13" stroke={userMessage.trim() && !isTyping ? "white" : "#74767C"} strokeWidth="1.5" strokeLinecap="round"/>
-                  <path d="M3 8L8 3L13 8" stroke={userMessage.trim() && !isTyping ? "white" : "#74767C"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                {userMessage.trim() && !isTyping ? (
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="3" width="10" height="10" rx="2" fill="white"/>
+                  </svg>
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 3L8 13" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round"/>
+                    <path d="M3 8L8 3L13 8" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
               </button>
             </div>
 
@@ -895,11 +902,11 @@ export default function MartyFloatingPanel({
           <div className="flex flex-col items-start gap-3 self-stretch border-t border-[#E3E4E5] bg-white">
             <div className="flex px-4 py-4 flex-col items-center gap-3 self-stretch bg-white">
               {/* Input Field */}
-              <div className="flex max-w-[760px] max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
+              <div className="flex max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-[30px] border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
                 <div className="flex flex-col justify-center flex-1 self-stretch text-[#74767C] text-sm leading-5">
-                  How can I help?
+                  Ask Marty anything...
                 </div>
-                <button disabled className="flex p-2 flex-col items-start rounded-full border border-transparent bg-[#BABBBE]">
+                <button disabled className="flex p-2 flex-shrink-0 items-center justify-center rounded-full border border-transparent bg-[#BABBBE]">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 3L8 13" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round"/>
                     <path d="M3 8L8 3L13 8" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -983,11 +990,11 @@ export default function MartyFloatingPanel({
             <div className="flex flex-col items-start gap-3 self-stretch border-t border-[#E3E4E5] bg-white">
               <div className="flex px-4 py-4 flex-col items-center gap-3 self-stretch bg-white">
               {/* Input Field */}
-              <div className="flex max-w-[760px] max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
+              <div className="flex max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-[30px] border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
                 <div className="flex flex-col justify-center flex-1 self-stretch text-[#74767C] text-sm leading-5">
-                  How can I help?
+                  Ask Marty anything...
                 </div>
-                <button className="flex p-2 flex-col items-start rounded-full border border-transparent bg-[#BABBBE]">
+                <button className="flex p-2 flex-shrink-0 items-center justify-center rounded-full border border-transparent bg-[#BABBBE]">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 3L8 13" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round"/>
                     <path d="M3 8L8 3L13 8" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -1009,27 +1016,34 @@ export default function MartyFloatingPanel({
       {(viewState === 'welcome' || viewState === 'chat') && (
         <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white border-t border-[#E3E4E5]">
           {/* Input Field */}
-          <div className="flex justify-start max-w-[760px] max-h-44 px-4 py-3 items-center gap-6 self-stretch rounded-lg border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
-            <input
-              type="text"
+          <div className="flex max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-[30px] border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
+            <textarea
               value={userMessage}
               onChange={(e) => setUserMessage(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="How can I help?"
-              className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C]"
+              onKeyDown={handleKeyPress}
+              placeholder="Ask Marty anything..."
+              rows={1}
+              className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C] resize-none overflow-y-auto max-h-[152px] py-0.5"
               disabled={isTyping}
+              style={{ minHeight: '20px' }}
             />
             <button
               onClick={handleSendMessage}
               disabled={!userMessage.trim() || isTyping}
-              className={`flex p-2 flex-col items-start rounded-full border border-transparent transition-colors ${
+              className={`flex p-2 flex-shrink-0 items-center justify-center rounded-full border border-transparent transition-colors ${
                 userMessage.trim() && !isTyping ? 'bg-[#0071DC] hover:bg-[#0060B8]' : 'bg-[#BABBBE]'
               }`}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 3L8 13" stroke={userMessage.trim() && !isTyping ? "white" : "#74767C"} strokeWidth="1.5" strokeLinecap="round"/>
-                <path d="M3 8L8 3L13 8" stroke={userMessage.trim() && !isTyping ? "white" : "#74767C"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              {userMessage.trim() && !isTyping ? (
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="10" height="10" rx="2" fill="white"/>
+                </svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 3L8 13" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M3 8L8 3L13 8" stroke="#74767C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
             </button>
           </div>
 
