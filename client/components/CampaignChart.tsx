@@ -107,34 +107,40 @@ export default function CampaignChart({ visibleSeries = { impressions: true, cli
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* Purple Line - Impressions */}
-          <path
-            d={impressionsPath}
-            stroke="#993EF4"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
+          {visibleSeries.impressions && (
+            <path
+              d={impressionsPath}
+              stroke="#993EF4"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+          )}
 
           {/* Cyan Line - Clicks */}
-          <path
-            d={clicksPath}
-            stroke="#4DBDF5"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
+          {visibleSeries.clicks && (
+            <path
+              d={clicksPath}
+              stroke="#4DBDF5"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+          )}
 
           {/* Blue Line - Cost per click */}
-          <path
-            d={cpcPath}
-            stroke="#0053E2"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
+          {visibleSeries.cpc && (
+            <path
+              d={cpcPath}
+              stroke="#0053E2"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+          )}
         </svg>
       </div>
 
