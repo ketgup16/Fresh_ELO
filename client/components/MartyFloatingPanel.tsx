@@ -16,6 +16,7 @@ interface Message {
   content: string;
   timestamp: Date;
   isAction?: boolean;
+  feedback?: 'up' | 'down' | null;
 }
 
 export default function MartyFloatingPanel({
@@ -28,6 +29,12 @@ export default function MartyFloatingPanel({
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const handleFeedback = (messageId: string, feedback: 'up' | 'down') => {
+    setMessages(prev => prev.map(msg =>
+      msg.id === messageId ? { ...msg, feedback } : msg
+    ));
+  };
   const [campaignData, setCampaignData] = useState({
     campaignType: 'Sponsored Products Automatic',
     campaignName: 'Free Rein Coffee Campaign Fall 2025',
