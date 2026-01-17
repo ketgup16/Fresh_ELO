@@ -6,6 +6,9 @@ import DisplayDashboard from "../components/DisplayDashboard";
 import DisplayAdvertisingSidebar from "../components/DisplayAdvertisingSidebar";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Button } from "../components/ui/Button";
+import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
+import { Menu } from "../components/ui/Menu";
+import { MenuItem } from "../components/ui/MenuItem";
 
 interface Campaign {
   id: string;
@@ -2397,46 +2400,42 @@ export default function Index() {
               <div className="flex items-center gap-2 flex-1 min-w-[360px] max-w-[600px] px-3 h-8 border border-[rgba(46,47,50,1)] rounded-full bg-white relative">
                 <Search className="w-4 h-4 text-[#2E2F32]" />
                 <span className="text-sm text-[#515357]">Search by</span>
-                <div className="relative">
-                  <button
-                    className="flex items-center gap-1 text-sm font-bold text-[#2E2F32] hover:bg-gray-100 px-1 rounded"
-                    onClick={() => setShowSearchScopeDropdown(!showSearchScopeDropdown)}
-                  >
-                    {searchScope}
-                    {showSearchScopeDropdown ? (
-                      <ChevronUp className="w-4 h-4" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4" />
-                    )}
-                  </button>
-
-                  {/* Search Scope Dropdown */}
-                  {showSearchScopeDropdown && (
-                    <div
-                      ref={searchScopeDropdownRef}
-                      className="absolute left-0 top-full mt-1 w-[160px] bg-white rounded border border-[#D5D6D8] shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 py-1"
+                <Popover open={showSearchScopeDropdown} onOpenChange={setShowSearchScopeDropdown}>
+                  <PopoverTrigger asChild>
+                    <button
+                      className="flex items-center gap-1 text-sm font-bold text-[#2E2F32] hover:bg-gray-100 px-1 rounded"
                     >
-                      <button
-                        className="w-full text-left px-3 py-2 text-sm text-[#2E2F32] hover:bg-gray-100 transition-colors"
+                      {searchScope}
+                      {showSearchScopeDropdown ? (
+                        <ChevronUp className="w-4 h-4" />
+                      ) : (
+                        <ChevronDown className="w-4 h-4" />
+                      )}
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Menu isOpen={showSearchScopeDropdown} onClose={() => setShowSearchScopeDropdown(false)}>
+                      <MenuItem
+                        selected={searchScope === 'Campaign name'}
                         onClick={() => {
                           setSearchScope('Campaign name');
                           setShowSearchScopeDropdown(false);
                         }}
                       >
                         Campaign name
-                      </button>
-                      <button
-                        className="w-full text-left px-3 py-2 text-sm text-[#2E2F32] hover:bg-gray-100 transition-colors"
+                      </MenuItem>
+                      <MenuItem
+                        selected={searchScope === 'ID'}
                         onClick={() => {
                           setSearchScope('ID');
                           setShowSearchScopeDropdown(false);
                         }}
                       >
                         ID
-                      </button>
-                    </div>
-                  )}
-                </div>
+                      </MenuItem>
+                    </Menu>
+                  </PopoverContent>
+                </Popover>
                 <input
                   type="text"
                   placeholder=""
