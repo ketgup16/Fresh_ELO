@@ -1029,6 +1029,7 @@ export default function MartyFloatingPanel({
           {/* Input Field */}
           <div className="flex max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-[30px] border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)]">
             <textarea
+              ref={textareaRef}
               value={userMessage}
               onChange={(e) => setUserMessage(e.target.value)}
               onKeyDown={handleKeyPress}
