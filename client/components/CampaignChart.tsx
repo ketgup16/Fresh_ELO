@@ -1,4 +1,12 @@
-export default function CampaignChart() {
+interface CampaignChartProps {
+  visibleSeries?: {
+    impressions: boolean;
+    clicks: boolean;
+    cpc: boolean;
+  };
+}
+
+export default function CampaignChart({ visibleSeries = { impressions: true, clicks: true, cpc: true } }: CampaignChartProps) {
   const chartData = [
     { date: 'Dec 30', impressions: 15234000, clicks: 121000, cpc: 1.42 },
     { date: 'Jan 6', impressions: 16123000, clicks: 127500, cpc: 1.39 },
