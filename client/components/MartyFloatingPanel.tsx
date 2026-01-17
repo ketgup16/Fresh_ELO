@@ -548,7 +548,7 @@ export default function MartyFloatingPanel({
                       <div className="flex items-center gap-2 mt-2">
                         <button
                           onClick={() => handleFeedback(message.id, 'up')}
-                          className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-primitive-color-gray-10)] active:[background:var(--ld-primitive-color-gray-10)]"
+                          className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-primitive-color-gray-10)] active:[background:var(--ld-primitive-color-gray-20)]"
                           style={{ background: 'var(--ld-semantic-color-action-fill-transparent)' }}
                         >
                           {message.feedback === 'up' ? (
@@ -565,7 +565,7 @@ export default function MartyFloatingPanel({
                         </button>
                         <button
                           onClick={() => handleFeedback(message.id, 'down')}
-                          className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-primitive-color-gray-10)] active:[background:var(--ld-primitive-color-gray-10)]"
+                          className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-primitive-color-gray-10)] active:[background:var(--ld-primitive-color-gray-20)]"
                           style={{ background: 'var(--ld-semantic-color-action-fill-transparent)' }}
                         >
                           {message.feedback === 'down' ? (
@@ -637,7 +637,7 @@ export default function MartyFloatingPanel({
                     <div className="flex items-center gap-2 mt-2">
                       <button
                         onClick={() => handleFeedback(message.id, 'up')}
-                        className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-primitive-color-gray-10)] active:[background:var(--ld-primitive-color-gray-10)]"
+                        className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-primitive-color-gray-10)] active:[background:var(--ld-primitive-color-gray-20)]"
                         style={{ background: 'var(--ld-semantic-color-action-fill-transparent)' }}
                       >
                         {message.feedback === 'up' ? (
@@ -654,7 +654,7 @@ export default function MartyFloatingPanel({
                       </button>
                       <button
                         onClick={() => handleFeedback(message.id, 'down')}
-                        className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-primitive-color-gray-10)] active:[background:var(--ld-primitive-color-gray-10)]"
+                        className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-primitive-color-gray-10)] active:[background:var(--ld-primitive-color-gray-20)]"
                         style={{ background: 'var(--ld-semantic-color-action-fill-transparent)' }}
                       >
                         {message.feedback === 'down' ? (
