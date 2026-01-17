@@ -625,7 +625,7 @@ export default function MartyFloatingPanel({
                   <div
                     className={`flex max-w-[85%] px-4 py-2 flex-col items-start gap-2 ${
                       message.role === 'user'
-                        ? 'bg-[#F1F1F2] rounded-[28px]'
+                        ? '[background:var(--ld-semantic-color-background-subtle)] rounded-[28px]'
                         : 'bg-white rounded-lg'
                     }`}
                   >
