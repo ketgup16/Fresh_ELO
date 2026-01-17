@@ -40,8 +40,13 @@ export default function MartyFloatingPanel({
     campaignType: 'Sponsored Products Automatic',
     campaignName: 'Free Rein Coffee Campaign Fall 2025',
     startDate: '10/01/2025',
-    dailyBudget: '50'
+    dailyBudget: '50',
+    endDate: '03/01/2024',
+    biddingStrategy: 'dynamic' as 'dynamic' | 'fixed',
+    brandTermTargeting: true,
+    complementaryTargeting: true
   });
+  const [isAdditionalSettingsOpen, setIsAdditionalSettingsOpen] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
