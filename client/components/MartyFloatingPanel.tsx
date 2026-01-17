@@ -797,11 +797,14 @@ export default function MartyFloatingPanel({
                   Campaign type
                 </div>
               </div>
-              <div className="flex h-10 pl-3 items-center gap-2 self-stretch rounded-lg border border-[#909196] bg-white">
+              <div className="flex h-10 px-3 py-2 items-center gap-2 self-stretch rounded-lg border border-[#909196] bg-white">
                 <div className="flex h-6 py-0.5 justify-center items-center flex-1">
-                  <div className="w-full text-[#2E2F32] text-sm leading-5">
-                    {campaignData.campaignType}
-                  </div>
+                  <input
+                    type="text"
+                    value={campaignData.campaignType}
+                    onChange={(e) => setCampaignData({...campaignData, campaignType: e.target.value})}
+                    className="w-full text-[#2E2F32] text-sm leading-5 outline-none bg-transparent"
+                  />
                 </div>
               </div>
             </div>
@@ -831,10 +834,14 @@ export default function MartyFloatingPanel({
                 Start date (mm/dd/yyyy)
               </div>
               <div className="flex h-10 px-3 py-0 pr-1 items-center gap-3 self-stretch rounded-lg border border-[#909196] bg-white">
-                <div className="flex-1 text-[#2E2F32] text-sm leading-5">
-                  {campaignData.startDate}
-                </div>
-                <button className="flex p-2 flex-col items-start rounded-full border border-transparent bg-transparent">
+                <input
+                  type="text"
+                  value={campaignData.startDate}
+                  onChange={(e) => setCampaignData({...campaignData, startDate: e.target.value})}
+                  placeholder="mm/dd/yyyy"
+                  className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent"
+                />
+                <button className="flex p-2 flex-col items-start rounded-full border border-transparent bg-transparent hover:[background:var(--ld-semantic-color-action-fill-transparent-hovered)] transition-colors">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="3" y="4" width="10" height="10" rx="1" stroke="#2E2F32" strokeWidth="1.5"/>
                     <path d="M3 6H13" stroke="#2E2F32" strokeWidth="1.5"/>
@@ -987,10 +994,14 @@ export default function MartyFloatingPanel({
                       End date
                     </div>
                     <div className="flex h-10 px-3 pr-2 items-center gap-3 self-stretch rounded-lg border border-[#909196] bg-white">
-                      <div className="flex-1 text-[#2E2F32] text-sm leading-5">
-                        {campaignData.endDate}
-                      </div>
-                      <button className="flex p-2 flex-col items-start rounded-full border border-transparent bg-transparent">
+                      <input
+                        type="text"
+                        value={campaignData.endDate}
+                        onChange={(e) => setCampaignData({...campaignData, endDate: e.target.value})}
+                        placeholder="mm/dd/yyyy"
+                        className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent"
+                      />
+                      <button className="flex p-2 flex-col items-start rounded-full border border-transparent bg-transparent hover:[background:var(--ld-semantic-color-action-fill-transparent-hovered)] transition-colors">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <rect x="3" y="4" width="10" height="10" rx="1" stroke="#2E2F32" strokeWidth="1.5"/>
                           <path d="M3 6H13" stroke="#2E2F32" strokeWidth="1.5"/>
