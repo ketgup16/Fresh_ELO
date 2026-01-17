@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronRight, ChevronDown, ChevronUp, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X } from "lucide-react";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
@@ -2805,8 +2805,8 @@ export default function Index() {
                 </thead>
                 <tbody>
                   {getPaginatedCampaigns().map((campaign, idx) => (
-                    <>
-                      <tr key={campaign.id} className={`border-b border-[#E3E4E5] hover:bg-[#F0F5FF] group ${
+                    <React.Fragment key={campaign.id}>
+                      <tr className={`border-b border-[#E3E4E5] hover:bg-[#F0F5FF] group ${
                         searchQuery.trim() && (campaign.name.toLowerCase().includes(searchQuery.toLowerCase()) || campaign.id.toLowerCase().includes(searchQuery.toLowerCase()))
                           ? 'bg-[#FFF9E6]'
                           : ''
@@ -3192,7 +3192,7 @@ export default function Index() {
                           </td>
                         </tr>
                       ))}
-                    </>
+                    </React.Fragment>
                   ))}
                 </tbody>
               </table>
