@@ -197,17 +197,10 @@ export default function SponsoredSearchDashboard() {
               onApply={(value) => setAttribution(value)}
             />
           </div>
-          {/* Attribution info badge */}
-          <div className="flex items-center gap-2 px-3 py-2 bg-[#E5F0FF] rounded border border-[#4DBDF5]">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <circle cx="8" cy="8" r="7" fill="#0053E2" opacity="0.1"/>
-              <path d="M8 4C8.27614 4 8.5 4.22386 8.5 4.5V8.5C8.5 8.77614 8.27614 9 8 9C7.72386 9 7.5 8.77614 7.5 8.5V4.5C7.5 4.22386 7.72386 4 8 4Z" fill="#0053E2"/>
-              <path d="M8 11C8.27614 11 8.5 10.7761 8.5 10.5C8.5 10.2239 8.27614 10 8 10C7.72386 10 7.5 10.2239 7.5 10.5C7.5 10.7761 7.72386 11 8 11Z" fill="#0053E2"/>
-            </svg>
-            <span className="text-xs text-[#0053E2]">
-              Metrics shown with <strong>{attribution}</strong> attribution window. Longer windows capture more conversions.
-            </span>
-          </div>
+          {/* Attribution info alert */}
+          <Alert variant="info">
+            Metrics shown with <strong>{attribution}</strong> attribution window. Longer windows capture more conversions.
+          </Alert>
         </div>
       </div>
 
