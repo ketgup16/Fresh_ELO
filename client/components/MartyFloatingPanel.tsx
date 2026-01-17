@@ -586,7 +586,7 @@ export default function MartyFloatingPanel({
               {messages.map((message) => (
                 <div
                   key={message.id}
-                  className={`flex w-full ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  className={`flex w-full flex-col ${message.role === 'user' ? 'items-end' : 'items-start'}`}
                 >
                   <div
                     className={`flex max-w-[85%] px-4 py-2 flex-col items-start gap-2 ${
@@ -599,6 +599,30 @@ export default function MartyFloatingPanel({
                       {message.content}
                     </div>
                   </div>
+                  {message.role === 'assistant' && (
+                    <div className="flex items-center gap-2 mt-2">
+                      <button
+                        onClick={() => handleFeedback(message.id, 'up')}
+                        className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
+                      >
+                        {message.feedback === 'up' ? (
+                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/5c8ad4bd006c4dcc749102c227d76df47653ed7e?width=64" className="w-8 h-8" alt="Thumbs up filled" />
+                        ) : (
+                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/3d0bc4936d85b66916805587fc12a1ec874a87f9?width=64" className="w-8 h-8" alt="Thumbs up" />
+                        )}
+                      </button>
+                      <button
+                        onClick={() => handleFeedback(message.id, 'down')}
+                        className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
+                      >
+                        {message.feedback === 'down' ? (
+                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/88c262c6a6d223c4889485be03882fb31eb34391?width=64" className="w-8 h-8" alt="Thumbs down filled" />
+                        ) : (
+                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/592ac115aa96e9913da5574fa3e20b19a4342c56?width=64" className="w-8 h-8" alt="Thumbs down" />
+                        )}
+                      </button>
+                    </div>
+                  )}
                 </div>
               ))}
               
