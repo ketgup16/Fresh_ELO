@@ -234,7 +234,7 @@ export default function SponsoredSearchDashboard() {
             onClick={() => toggleSeries('impressions')}
           >
             <div className="h-2 self-stretch rounded-b-full transition-opacity" style={{ backgroundColor: '#993EF4', opacity: visibleSeries.impressions ? 1 : 0.3 }}></div>
-            <div className="flex flex-col justify-center items-start self-stretch">
+            <div className="flex flex-col justify-center items-start self-stretch transition-opacity" style={{ opacity: visibleSeries.impressions ? 1 : 0.5 }}>
               <div className="flex h-6 items-center gap-1">
                 <span className="text-sm text-[#2E2F32] leading-5">Impressions</span>
                 <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
@@ -252,7 +252,7 @@ export default function SponsoredSearchDashboard() {
             onClick={() => toggleSeries('clicks')}
           >
             <div className="h-2 self-stretch rounded-b-full transition-opacity" style={{ backgroundColor: '#4DBDF5', opacity: visibleSeries.clicks ? 1 : 0.3 }}></div>
-            <div className="flex flex-col justify-center items-start self-stretch">
+            <div className="flex flex-col justify-center items-start self-stretch transition-opacity" style={{ opacity: visibleSeries.clicks ? 1 : 0.5 }}>
               <div className="flex h-6 items-center gap-1">
                 <span className="text-sm text-[#2E2F32] leading-5">Clicks</span>
                 <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
@@ -270,7 +270,7 @@ export default function SponsoredSearchDashboard() {
             onClick={() => toggleSeries('cpc')}
           >
             <div className="h-2 self-stretch rounded-b-full transition-opacity" style={{ backgroundColor: '#0053E2', opacity: visibleSeries.cpc ? 1 : 0.3 }}></div>
-            <div className="flex flex-col justify-center items-start self-stretch">
+            <div className="flex flex-col justify-center items-start self-stretch transition-opacity" style={{ opacity: visibleSeries.cpc ? 1 : 0.5 }}>
               <div className="flex h-6 items-center gap-1">
                 <span className="text-sm text-[#2E2F32] leading-5">Cost per click</span>
                 <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
