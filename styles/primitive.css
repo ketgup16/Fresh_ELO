@@ -60,6 +60,13 @@
   --ld-primitive-color-yellow-160: #663800;
 
   /* Spacing scale */
+  --ld-primitive-scale-space-50: 4px;
   --ld-primitive-scale-space-100: 8px;
-  --ld-primitive-scale-space-200: 12px;
+  --ld-primitive-scale-space-200: 16px;
+
+  /* Border radius scale */
+  --ld-primitive-scale-border-radius-50: 4px;
+
+  /* Border width scale */
+  --ld-primitive-scale-border-width-100: 1px;
 }
