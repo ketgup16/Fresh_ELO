@@ -1,11 +1,12 @@
 /* Alert Container - LD 3.5 compliant */
 .alert {
   display: flex;
-  align-items: flex-start;
-  gap: var(--ld-primitive-scale-space-200, 1rem);
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-100, 0.5rem);
   padding: var(--ld-primitive-scale-space-100, 0.5rem) var(--ld-primitive-scale-space-200, 1rem);
   border-radius: var(--ld-primitive-scale-border-radius-50, 0.25rem);
   flex-wrap: wrap;
+  justify-content: flex-start;
   
   /* Border styling - thin on all sides except left/start */
   border-top: var(--ld-primitive-scale-border-width-100, 0.0625rem) solid;
