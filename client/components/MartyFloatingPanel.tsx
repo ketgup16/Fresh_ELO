@@ -785,22 +785,20 @@ export default function MartyFloatingPanel({
             </div>
             <div className="flex px-4 py-4 flex-col justify-center items-end gap-3 self-stretch border-t border-[#E3E4E5] bg-white">
               <div className="flex items-center gap-4">
-                <button
+                <Button
                   onClick={handleSaveAndReview}
-                  className="flex h-10 px-6 py-0 justify-center items-center gap-2 rounded-full border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors"
+                  variant="secondary"
+                  className="text-base"
                 >
-                  <div className="text-[#2E2F32] font-bold text-base leading-6">
-                    Save and review
-                  </div>
-                </button>
-                <button
+                  Save and review
+                </Button>
+                <Button
                   onClick={handleLaunchCampaign}
-                  className="flex h-10 px-6 py-0 justify-center items-center gap-2 rounded-full bg-[#0071DC] hover:bg-[#0060B8] transition-colors"
+                  variant="primary"
+                  className="text-base"
                 >
-                  <div className="font-bold text-base leading-6 text-white">
-                    Launch campaign
-                  </div>
-                </button>
+                  Launch campaign
+                </Button>
               </div>
             </div>
           </div>
