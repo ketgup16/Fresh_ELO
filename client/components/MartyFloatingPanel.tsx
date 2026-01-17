@@ -734,9 +734,9 @@ export default function MartyFloatingPanel({
                 onKeyDown={handleKeyPress}
                 placeholder="Ask Marty anything..."
                 rows={1}
-                className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C] resize-none overflow-y-auto max-h-[152px] py-0.5"
-                disabled={isTyping}
-                style={{ minHeight: '20px' }}
+                className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C] resize-none overflow-y-auto max-h-[152px] py-0.5 self-stretch my-auto"
+              disabled={isTyping}
+              style={{ minHeight: '20px', height: 'auto' }}
               />
               <button
                 onClick={isTyping ? handleStopGeneration : handleSendMessage}
@@ -1273,9 +1273,9 @@ export default function MartyFloatingPanel({
               onKeyDown={handleKeyPress}
               placeholder="Ask Marty anything..."
               rows={1}
-              className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C] resize-none overflow-y-auto max-h-[152px] py-0.5"
+              className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C] resize-none overflow-y-auto max-h-[152px] py-0.5 self-stretch my-auto"
               disabled={isTyping}
-              style={{ minHeight: '20px' }}
+              style={{ minHeight: '20px', height: 'auto' }}
             />
             <button
               onClick={isTyping ? handleStopGeneration : handleSendMessage}
