@@ -531,15 +531,9 @@ export default function MartyFloatingPanel({
                           className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
                         >
                           {message.feedback === 'up' ? (
-                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path fill="#2E2F32" d="M8 16v9.333A1.333 1.333 0 0 0 9.333 26.667h1.334A1.333 1.333 0 0 0 12 25.333V16A1.333 1.333 0 0 0 10.667 14.667H9.333A1.333 1.333 0 0 0 8 16Z"/>
-                              <path fill="#2E2F32" d="M12 16.667v-2.334a4 4 0 0 1 4-4h.667a1.333 1.333 0 0 1 1.333 1.334V12a1.333 1.333 0 0 0 1.333 1.333h4a2.667 2.667 0 0 1 2.667 2.667v6a2.667 2.667 0 0 1-2.667 2.667H16a4 4 0 0 1-4-4v-4Z"/>
-                            </svg>
+                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/5c8ad4bd006c4dcc749102c227d76df47653ed7e?width=64" className="w-8 h-8" alt="Thumbs up filled" />
                           ) : (
-                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path stroke="#2E2F32" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 16v9.333A1.333 1.333 0 0 0 9.333 26.667h1.334A1.333 1.333 0 0 0 12 25.333V16A1.333 1.333 0 0 0 10.667 14.667H9.333A1.333 1.333 0 0 0 8 16Z"/>
-                              <path stroke="#2E2F32" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 16.667v-2.334a4 4 0 0 1 4-4h.667a1.333 1.333 0 0 1 1.333 1.334V12a1.333 1.333 0 0 0 1.333 1.333h4a2.667 2.667 0 0 1 2.667 2.667v6a2.667 2.667 0 0 1-2.667 2.667H16a4 4 0 0 1-4-4Z"/>
-                            </svg>
+                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/3d0bc4936d85b66916805587fc12a1ec874a87f9?width=64" className="w-8 h-8" alt="Thumbs up" />
                           )}
                         </button>
                         <button
@@ -547,15 +541,9 @@ export default function MartyFloatingPanel({
                           className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
                         >
                           {message.feedback === 'down' ? (
-                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path fill="#2E2F32" d="M24 16V6.667A1.333 1.333 0 0 0 22.667 5.333h-1.334A1.333 1.333 0 0 0 20 6.667V16a1.333 1.333 0 0 0 1.333 1.333h1.334A1.333 1.333 0 0 0 24 16Z"/>
-                              <path fill="#2E2F32" d="M20 15.333v2.334a4 4 0 0 1-4 4h-.667a1.333 1.333 0 0 1-1.333-1.334V20a1.333 1.333 0 0 0-1.333-1.333H9a2.667 2.667 0 0 1-2.667-2.667v-6A2.667 2.667 0 0 1 9 7.333h7.333a4 4 0 0 1 4 4v4Z"/>
-                            </svg>
+                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/88c262c6a6d223c4889485be03882fb31eb34391?width=64" className="w-8 h-8" alt="Thumbs down filled" />
                           ) : (
-                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path stroke="#2E2F32" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M24 16V6.667A1.333 1.333 0 0 0 22.667 5.333h-1.334A1.333 1.333 0 0 0 20 6.667V16a1.333 1.333 0 0 0 1.333 1.333h1.334A1.333 1.333 0 0 0 24 16Z"/>
-                              <path stroke="#2E2F32" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M20 15.333v2.334a4 4 0 0 1-4 4h-.667a1.333 1.333 0 0 1-1.333-1.334V20a1.333 1.333 0 0 0-1.333-1.333H9a2.667 2.667 0 0 1-2.667-2.667v-6A2.667 2.667 0 0 1 9 7.333h7.333a4 4 0 0 1 4 4v4Z"/>
-                            </svg>
+                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/592ac115aa96e9913da5574fa3e20b19a4342c56?width=64" className="w-8 h-8" alt="Thumbs down" />
                           )}
                         </button>
                       </div>
@@ -618,15 +606,9 @@ export default function MartyFloatingPanel({
                         className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
                       >
                         {message.feedback === 'up' ? (
-                          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill="#2E2F32" d="M8 16v9.333A1.333 1.333 0 0 0 9.333 26.667h1.334A1.333 1.333 0 0 0 12 25.333V16A1.333 1.333 0 0 0 10.667 14.667H9.333A1.333 1.333 0 0 0 8 16Z"/>
-                            <path fill="#2E2F32" d="M12 16.667v-2.334a4 4 0 0 1 4-4h.667a1.333 1.333 0 0 1 1.333 1.334V12a1.333 1.333 0 0 0 1.333 1.333h4a2.667 2.667 0 0 1 2.667 2.667v6a2.667 2.667 0 0 1-2.667 2.667H16a4 4 0 0 1-4-4v-4Z"/>
-                          </svg>
+                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/5c8ad4bd006c4dcc749102c227d76df47653ed7e?width=64" className="w-8 h-8" alt="Thumbs up filled" />
                         ) : (
-                          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke="#2E2F32" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 16v9.333A1.333 1.333 0 0 0 9.333 26.667h1.334A1.333 1.333 0 0 0 12 25.333V16A1.333 1.333 0 0 0 10.667 14.667H9.333A1.333 1.333 0 0 0 8 16Z"/>
-                            <path stroke="#2E2F32" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 16.667v-2.334a4 4 0 0 1 4-4h.667a1.333 1.333 0 0 1 1.333 1.334V12a1.333 1.333 0 0 0 1.333 1.333h4a2.667 2.667 0 0 1 2.667 2.667v6a2.667 2.667 0 0 1-2.667 2.667H16a4 4 0 0 1-4-4Z"/>
-                          </svg>
+                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/3d0bc4936d85b66916805587fc12a1ec874a87f9?width=64" className="w-8 h-8" alt="Thumbs up" />
                         )}
                       </button>
                       <button
@@ -634,15 +616,9 @@ export default function MartyFloatingPanel({
                         className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
                       >
                         {message.feedback === 'down' ? (
-                          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill="#2E2F32" d="M24 16V6.667A1.333 1.333 0 0 0 22.667 5.333h-1.334A1.333 1.333 0 0 0 20 6.667V16a1.333 1.333 0 0 0 1.333 1.333h1.334A1.333 1.333 0 0 0 24 16Z"/>
-                            <path fill="#2E2F32" d="M20 15.333v2.334a4 4 0 0 1-4 4h-.667a1.333 1.333 0 0 1-1.333-1.334V20a1.333 1.333 0 0 0-1.333-1.333H9a2.667 2.667 0 0 1-2.667-2.667v-6A2.667 2.667 0 0 1 9 7.333h7.333a4 4 0 0 1 4 4v4Z"/>
-                          </svg>
+                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/88c262c6a6d223c4889485be03882fb31eb34391?width=64" className="w-8 h-8" alt="Thumbs down filled" />
                         ) : (
-                          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke="#2E2F32" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M24 16V6.667A1.333 1.333 0 0 0 22.667 5.333h-1.334A1.333 1.333 0 0 0 20 6.667V16a1.333 1.333 0 0 0 1.333 1.333h1.334A1.333 1.333 0 0 0 24 16Z"/>
-                            <path stroke="#2E2F32" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M20 15.333v2.334a4 4 0 0 1-4 4h-.667a1.333 1.333 0 0 1-1.333-1.334V20a1.333 1.333 0 0 0-1.333-1.333H9a2.667 2.667 0 0 1-2.667-2.667v-6A2.667 2.667 0 0 1 9 7.333h7.333a4 4 0 0 1 4 4v4Z"/>
-                          </svg>
+                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/592ac115aa96e9913da5574fa3e20b19a4342c56?width=64" className="w-8 h-8" alt="Thumbs down" />
                         )}
                       </button>
                     </div>
