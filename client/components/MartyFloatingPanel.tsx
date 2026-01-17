@@ -430,10 +430,10 @@ export default function MartyFloatingPanel({
           {/* Expand Icon */}
           <button className="flex w-6 h-6 justify-center items-center hover:bg-gray-100 rounded transition-colors">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16 8L16 3L21 3" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M8 16L8 21L3 21" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M21 3L14 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-              <path d="M3 21L10 14" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M14 4H20V10" stroke="#2E2F32" strokeWidth="1.5"/>
+              <path d="M14 10L20 4" stroke="#2E2F32" strokeWidth="1.5"/>
+              <path d="M10 20L4 20L4 14" stroke="#2E2F32" strokeWidth="1.5"/>
+              <path d="M10 14L4 20" stroke="#2E2F32" strokeWidth="1.5"/>
             </svg>
           </button>
 
