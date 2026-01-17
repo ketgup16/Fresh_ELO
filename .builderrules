@@ -9,4 +9,4 @@ When we create new pages:
 
 - Modals always have scrim behind it
 
-- Always use our client/styles folder when designing and tokens and fonts, do not create new ones
+- Always use our "client/styles" folder when designing and creating new components with our design tokens and fonts from style sheets
