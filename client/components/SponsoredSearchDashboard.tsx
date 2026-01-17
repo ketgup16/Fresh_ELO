@@ -28,6 +28,20 @@ export default function SponsoredSearchDashboard() {
   // Attribution filter state
   const [attribution, setAttribution] = useState<string>("14 days attribution");
 
+  // Chart series visibility state
+  const [visibleSeries, setVisibleSeries] = useState({
+    impressions: true,
+    clicks: true,
+    cpc: true
+  });
+
+  const toggleSeries = (series: 'impressions' | 'clicks' | 'cpc') => {
+    setVisibleSeries(prev => ({
+      ...prev,
+      [series]: !prev[series]
+    }));
+  };
+
   // Metrics state (will be adjusted based on attribution)
   const [metrics, setMetrics] = useState({
     impressions: 18689154,
@@ -215,8 +229,11 @@ export default function SponsoredSearchDashboard() {
         {/* Metrics Ribbon */}
         <div className="flex items-start gap-[11.5px] self-stretch px-4">
           {/* Impressions */}
-          <div className="flex flex-col items-start gap-4 flex-1 self-stretch">
-            <div className="h-2 self-stretch rounded-b-full bg-[#993EF4]"></div>
+          <div
+            className="flex flex-col items-start gap-4 flex-1 self-stretch cursor-pointer"
+            onClick={() => toggleSeries('impressions')}
+          >
+            <div className="h-2 self-stretch rounded-b-full transition-opacity" style={{ backgroundColor: '#993EF4', opacity: visibleSeries.impressions ? 1 : 0.3 }}></div>
             <div className="flex flex-col justify-center items-start self-stretch">
               <div className="flex h-6 items-center gap-1">
                 <span className="text-sm text-[#2E2F32] leading-5">Impressions</span>
@@ -230,8 +247,11 @@ export default function SponsoredSearchDashboard() {
           <div className="w-px h-[103px] bg-[#E3E4E5]"></div>
 
           {/* Clicks */}
-          <div className="flex flex-col items-start gap-4 flex-1 self-stretch">
-            <div className="h-2 self-stretch rounded-b-full bg-[#4DBDF5]"></div>
+          <div
+            className="flex flex-col items-start gap-4 flex-1 self-stretch cursor-pointer"
+            onClick={() => toggleSeries('clicks')}
+          >
+            <div className="h-2 self-stretch rounded-b-full transition-opacity" style={{ backgroundColor: '#4DBDF5', opacity: visibleSeries.clicks ? 1 : 0.3 }}></div>
             <div className="flex flex-col justify-center items-start self-stretch">
               <div className="flex h-6 items-center gap-1">
                 <span className="text-sm text-[#2E2F32] leading-5">Clicks</span>
@@ -245,8 +265,11 @@ export default function SponsoredSearchDashboard() {
           <div className="w-px h-[103px] bg-[#E3E4E5]"></div>
 
           {/* Cost per click */}
-          <div className="flex flex-col items-start gap-4 flex-1 self-stretch">
-            <div className="h-2 self-stretch rounded-b-full bg-[#0053E2]"></div>
+          <div
+            className="flex flex-col items-start gap-4 flex-1 self-stretch cursor-pointer"
+            onClick={() => toggleSeries('cpc')}
+          >
+            <div className="h-2 self-stretch rounded-b-full transition-opacity" style={{ backgroundColor: '#0053E2', opacity: visibleSeries.cpc ? 1 : 0.3 }}></div>
             <div className="flex flex-col justify-center items-start self-stretch">
               <div className="flex h-6 items-center gap-1">
                 <span className="text-sm text-[#2E2F32] leading-5">Cost per click</span>
@@ -288,7 +311,7 @@ export default function SponsoredSearchDashboard() {
         </div>
 
         {/* Campaign Chart */}
-        <CampaignChart />
+        <CampaignChart visibleSeries={visibleSeries} />
       </div>
 
       {/* Recommendations */}
