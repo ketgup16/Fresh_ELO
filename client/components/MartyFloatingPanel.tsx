@@ -309,8 +309,6 @@ export default function MartyFloatingPanel({
     setViewState('campaignScheduled');
   };
 
-  const isLaunchEnabled = campaignData.dailyBudget.trim() !== '';
-
   // Minimized "Ask Marty" button
   if (isMinimized) {
     return (
@@ -791,16 +789,9 @@ export default function MartyFloatingPanel({
                 </button>
                 <button
                   onClick={handleLaunchCampaign}
-                  disabled={!isLaunchEnabled}
-                  className={`flex h-10 px-6 py-0 justify-center items-center gap-2 rounded-full ${
-                    isLaunchEnabled
-                      ? 'bg-[#0071DC] hover:bg-[#0060B8]'
-                      : 'bg-[#E3E4E5]'
-                  } transition-colors`}
+                  className="flex h-10 px-6 py-0 justify-center items-center gap-2 rounded-full bg-[#0071DC] hover:bg-[#0060B8] transition-colors"
                 >
-                  <div className={`font-bold text-base leading-6 ${
-                    isLaunchEnabled ? 'text-white' : 'text-white'
-                  }`}>
+                  <div className="font-bold text-base leading-6 text-white">
                     Launch campaign
                   </div>
                 </button>
