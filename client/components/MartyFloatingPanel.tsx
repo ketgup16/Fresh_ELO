@@ -544,7 +544,8 @@ export default function MartyFloatingPanel({
                       <div className="flex items-center gap-2 mt-2">
                         <button
                           onClick={() => handleFeedback(message.id, 'up')}
-                          className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-semantic-color-action-fill-transparent-hovered)]"
+                          className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:[background:var(--ld-primitive-color-gray-10)] active:[background:var(--ld-primitive-color-gray-10)]"
+                          style={{ background: 'var(--ld-semantic-color-action-fill-transparent)' }}
                         >
                           {message.feedback === 'up' ? (
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
