@@ -788,8 +788,8 @@ export default function MartyFloatingPanel({
       )}
 
       {viewState === 'campaignForm' && (
-        <div className="flex w-full h-[692px] flex-col items-start flex-shrink-0 overflow-y-auto">
-          <div className="flex px-4 py-4 flex-col items-center gap-4 flex-1 self-stretch">
+        <div className="flex w-full h-[692px] flex-col items-start flex-shrink-0">
+          <div className="flex px-4 py-4 flex-col items-center gap-4 flex-1 self-stretch overflow-y-auto">
             {/* Campaign Type */}
             <div className="flex flex-col items-start gap-1 self-stretch">
               <div className="flex pb-1 items-center gap-1 self-stretch">
