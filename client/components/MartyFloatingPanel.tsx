@@ -410,11 +410,13 @@ export default function MartyFloatingPanel({
         <div className="flex justify-end items-center gap-4">
           {/* Reports Icon with Notification */}
           <button className="flex w-6 h-6 justify-center items-center relative hover:bg-gray-100 rounded transition-colors">
-            <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/1835b749ef39843ef58643bf8eaf007c6cbe63ff?width=48"
-              alt="Reports"
-              className="w-6 h-6"
-            />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.1106 11.1741L20.224 4.06067L19.1634 3L13.1106 9.05273L8.86794 4.81001L3 10.6785L4.06071 11.7391L8.86799 6.93143L13.1106 11.1741Z" fill="#2E2F32"/>
+              <path d="M17.602 23.1068V9.60678H19.102V23.1068H17.602Z" fill="#2E2F32"/>
+              <path d="M8.60204 23.1068V11.8568H10.102V23.1068H8.60204Z" fill="#2E2F32"/>
+              <path d="M4.10204 23.1068V15.6068H5.60204V23.1068H4.10204Z" fill="#2E2F32"/>
+              <path d="M13.102 14.1068V23.1068H14.602V14.1068H13.102Z" fill="#2E2F32"/>
+            </svg>
             {/* Notification Dot */}
             <svg
               className="absolute -right-0.5 top-0.5"
@@ -430,11 +432,12 @@ export default function MartyFloatingPanel({
 
           {/* Expand Icon */}
           <button className="flex w-6 h-6 justify-center items-center hover:bg-gray-100 rounded transition-colors">
-            <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/4b9543883bac0cc8b18c7c87ebc16153e09ba6ae?width=48"
-              alt="Expand"
-              className="w-6 h-6"
-            />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 8L16 3L21 3" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 16L8 21L3 21" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M21 3L14 10" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M3 21L10 14" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
           </button>
 
           {/* Minimize Icon */}
@@ -442,11 +445,10 @@ export default function MartyFloatingPanel({
             onClick={handleMinimize}
             className="flex w-6 h-6 justify-center items-center hover:bg-gray-100 rounded transition-colors"
           >
-            <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/c2b360d3b835174fd2ef962f1ffb922bf8000e86?width=48"
-              alt="Minimize"
-              className="w-6 h-6"
-            />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 18L18 6" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M6 6L18 18" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
           </button>
         </div>
       </div>
