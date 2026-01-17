@@ -730,7 +730,7 @@ export default function MartyFloatingPanel({
           {/* Footer Section */}
           <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white border-t border-[#E3E4E5]">
             {/* Input Field */}
-            <div className="flex max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-[30px] border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] transition-colors focus-within:border-[#0053E2] focus-within:shadow-[0_0_0_1px_#0053E2]">
+            <div className="flex max-h-44 px-4 py-3 items-center justify-start gap-6 self-stretch rounded-[30px] border border-[#4A4A4A] bg-white transition-colors focus-within:border-[#0053E2] focus-within:shadow-[0_0_0_1px_#0053E2]">
               <textarea
                 ref={textareaRef}
                 value={userMessage}
@@ -1144,7 +1144,7 @@ export default function MartyFloatingPanel({
           <div className="flex flex-col items-start gap-3 self-stretch border-t border-[#E3E4E5] bg-white">
             <div className="flex px-4 py-4 flex-col items-center gap-3 self-stretch bg-white">
               {/* Input Field */}
-              <div className="flex max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-[30px] border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] transition-colors focus-within:border-[#0053E2] focus-within:shadow-[0_0_0_1px_#0053E2]">
+              <div className="flex max-h-44 px-4 py-3 items-center justify-start gap-6 self-stretch rounded-[30px] border border-[#4A4A4A] bg-white transition-colors focus-within:border-[#0053E2] focus-within:shadow-[0_0_0_1px_#0053E2]">
                 <div className="flex flex-col justify-center flex-1 self-stretch text-[#74767C] text-sm leading-5">
                   Ask Marty anything...
                 </div>
@@ -1232,7 +1232,7 @@ export default function MartyFloatingPanel({
             <div className="flex flex-col items-start gap-3 self-stretch border-t border-[#E3E4E5] bg-white">
               <div className="flex px-4 py-4 flex-col items-center gap-3 self-stretch bg-white">
               {/* Input Field */}
-              <div className="flex max-h-44 px-4 py-3 items-end gap-6 self-stretch rounded-[30px] border border-[#E3E4E5] bg-white shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] transition-colors focus-within:border-[#0053E2] focus-within:shadow-[0_0_0_1px_#0053E2]">
+              <div className="flex max-h-44 px-4 py-3 items-center justify-start gap-6 self-stretch rounded-[30px] border border-[#4A4A4A] bg-white transition-colors focus-within:border-[#0053E2] focus-within:shadow-[0_0_0_1px_#0053E2]">
                 <div className="flex flex-col justify-center flex-1 self-stretch text-[#74767C] text-sm leading-5">
                   Ask Marty anything...
                 </div>
