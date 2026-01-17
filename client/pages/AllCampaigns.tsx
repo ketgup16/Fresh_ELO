@@ -87,7 +87,6 @@ export default function AllCampaigns() {
   const [searchScope, setSearchScope] = useState<string>('Campaign name');
   const [showSearchScopeDropdown, setShowSearchScopeDropdown] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const searchScopeDropdownRef = useRef<HTMLDivElement>(null);
 
   // Refs for scrolling
   const biddingStrategyColumnRef = useRef<HTMLDivElement>(null);
