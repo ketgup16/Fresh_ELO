@@ -604,49 +604,22 @@ export default function MartyFloatingPanel({
             </div>
 
             {/* Item List */}
-            <div className="flex flex-col items-start gap-4 self-stretch">
-              <div className="flex flex-col justify-center items-start self-stretch">
-                <div className="self-stretch text-[#2E2F32] text-xs font-bold leading-4">
-                  Items
-                </div>
-                <div className="self-stretch text-[#74767C] text-sm leading-5">
-                  Your recommended items
+            {/* Item list */}
+            <div className="flex flex-col items-start gap-1 self-stretch">
+              <div className="flex pb-1 items-center gap-1 self-stretch">
+                <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
+                  Item list
                 </div>
               </div>
-
-              <div className="flex flex-col items-start gap-2.5 self-stretch">
-                <div className="flex items-center gap-3 self-stretch">
-                  <div className="flex h-[69px] p-2 flex-col justify-center items-center gap-2 flex-1 aspect-square rounded-lg border border-[#E3E4E5] bg-white">
-                    <div className="flex h-[53px] justify-center items-center flex-shrink-0 self-stretch aspect-square">
-                      <img className="w-[53px] h-[53px]" src="https://api.builder.io/api/v1/image/assets/TEMP/b6b4cdf9361b1ac23ec99887ba61e7a25ca3b0ca?width=106" alt="" />
-                    </div>
-                  </div>
-                  <div className="flex h-[69px] p-2 flex-col justify-center items-center gap-2 flex-1 aspect-square rounded-lg border border-[#E3E4E5] bg-white">
-                    <div className="flex h-[53px] justify-center items-center flex-shrink-0 self-stretch aspect-square">
-                      <img className="w-[53px] h-[53px]" src="https://api.builder.io/api/v1/image/assets/TEMP/2a290bc40ba4ec7f8f862e2a3a3faad72e8d3d18?width=106" alt="" />
-                    </div>
-                  </div>
-                  <div className="flex h-[69px] p-2 flex-col justify-center items-center gap-2 flex-1 aspect-square rounded-lg border border-[#E3E4E5] bg-white">
-                    <div className="flex h-[53px] justify-center items-center flex-shrink-0 self-stretch aspect-square">
-                      <img className="w-[53px] h-[53px]" src="https://api.builder.io/api/v1/image/assets/TEMP/4af3fdb6e6f24421ca5071fdbd5ba9c3bcc9bde3?width=106" alt="" />
-                    </div>
-                  </div>
-                  <div className="flex h-[69px] p-2 flex-col justify-center items-center gap-2 flex-1 aspect-square rounded-lg border border-[#E3E4E5] bg-white">
-                    <div className="flex h-[53px] justify-center items-center flex-shrink-0 self-stretch aspect-square">
-                      <img className="w-[53px] h-[53px]" src="https://api.builder.io/api/v1/image/assets/TEMP/58079636d483927c7a6b8c0fd5f2a2c348acd83e?width=106" alt="" />
-                    </div>
-                  </div>
-                  <div className="h-[69px] flex-1 aspect-square rounded-lg border border-[#E3E4E5] bg-white relative">
-                    <div className="w-[53px] h-6 text-[#74767C] text-center font-bold text-base leading-6 absolute left-2 top-2.5">
-                      +16
-                    </div>
-                    <button className="inline-flex h-8 justify-center items-center gap-2 absolute left-1.5 top-7 w-[60px]">
-                      <div className="text-[#2E2F32] text-sm leading-5 underline">
-                        View/edit
-                      </div>
-                    </button>
+              <div className="flex h-10 pl-3 pr-3 items-center gap-2 self-stretch rounded-lg border border-[#909196] bg-white">
+                <div className="flex h-6 py-0.5 justify-center items-center flex-1">
+                  <div className="w-full text-[#2E2F32] text-sm leading-5">
+                    Top suggestions from your catalog
                   </div>
                 </div>
+                <button className="text-[#2E2F32] text-sm leading-5 underline hover:no-underline">
+                  Edit
+                </button>
               </div>
             </div>
 
