@@ -534,11 +534,11 @@ export default function MartyFloatingPanel({
                     className={`flex w-full flex-col ${message.role === 'user' ? 'items-end' : 'items-start'}`}
                   >
                     <div
-                      className={`flex max-w-[85%] px-4 py-2 flex-col items-start gap-2 ${
-                        message.role === 'user'
-                          ? '[background:var(--ld-semantic-color-background-subtle)] rounded-[28px]'
-                          : 'bg-white rounded-lg'
-                      }`}
+                      className={`flex max-w-[85%] flex-col items-start gap-2 ${
+                      message.role === 'user'
+                        ? '[background:var(--ld-semantic-color-background-subtle)] rounded-[28px] px-4 py-2'
+                        : 'bg-white rounded-lg'
+                    }`}
                     >
                       <div className="text-[#2E2F32] text-sm leading-5 whitespace-pre-wrap">
                         {message.content}
@@ -623,9 +623,9 @@ export default function MartyFloatingPanel({
                   className={`flex w-full flex-col ${message.role === 'user' ? 'items-end' : 'items-start'}`}
                 >
                   <div
-                    className={`flex max-w-[85%] px-4 py-2 flex-col items-start gap-2 ${
+                    className={`flex max-w-[85%] flex-col items-start gap-2 ${
                       message.role === 'user'
-                        ? '[background:var(--ld-semantic-color-background-subtle)] rounded-[28px]'
+                        ? '[background:var(--ld-semantic-color-background-subtle)] rounded-[28px] px-4 py-2'
                         : 'bg-white rounded-lg'
                     }`}
                   >
