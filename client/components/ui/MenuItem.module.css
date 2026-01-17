@@ -52,12 +52,13 @@
 /* Selected state (for checkboxes or radio items) */
 .menuItem--selected {
   background-color: var(--ld-primitive-color-blue-10);
-  color: var(--ld-primitive-color-blue-100);
-  font-weight: 600;
+  color: var(--ld-primitive-color-gray-160, #2e2f32);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
 }
 
 .menuItem--selected:hover:not(:disabled) {
   background-color: var(--ld-primitive-color-blue-10);
+  color: var(--ld-primitive-color-gray-160, #2e2f32);
 }
 
 /* Leading icon */
