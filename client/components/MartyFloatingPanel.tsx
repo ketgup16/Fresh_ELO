@@ -29,7 +29,7 @@ export default function MartyFloatingPanel({
     campaignType: 'Sponsored Products Automatic',
     campaignName: 'Free Rein Coffee Campaign Fall 2025',
     startDate: '10/01/2025',
-    dailyBudget: ''
+    dailyBudget: '50'
   });
 
   const scrollToBottom = () => {
