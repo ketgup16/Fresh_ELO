@@ -1309,7 +1309,7 @@ export default function MartyFloatingPanel({
 
           {/* Disclaimer */}
           <div className="w-full text-[#74767C] text-center text-xs leading-4">
-            I'm powered by AI and can make mistakes. Don't share sensitive info. <span className="underline cursor-pointer">Disclaimer</span>
+            This smart assistant is powered by AI. It may make mistakes or use data from outside Walmart. Never share personally sensitive info. View <span className="underline cursor-pointer">Disclaimer</span>.
           </div>
         </div>
       )}
