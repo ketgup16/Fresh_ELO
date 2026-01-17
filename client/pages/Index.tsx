@@ -1634,7 +1634,6 @@ export default function Index() {
   const [completedFilterSelected, setCompletedFilterSelected] = useState(false);
   const allFiltersPopoverRef = useRef<HTMLDivElement>(null);
   const liveFilterPopoverRef = useRef<HTMLDivElement>(null);
-  const searchScopeDropdownRef = useRef<HTMLDivElement>(null);
 
   // Selected recommendations state
   const [selectedRecommendations, setSelectedRecommendations] = useState<{[key: string]: number}>({});
@@ -1930,19 +1929,16 @@ export default function Index() {
       if (liveFilterPopoverRef.current && !liveFilterPopoverRef.current.contains(event.target as Node)) {
         setShowLiveFilterPopover(false);
       }
-      if (searchScopeDropdownRef.current && !searchScopeDropdownRef.current.contains(event.target as Node)) {
-        setShowSearchScopeDropdown(false);
-      }
     };
 
-    if (showPopover || showRecommendationPopover || showLiveFilterPopover || showSearchScopeDropdown) {
+    if (showPopover || showRecommendationPopover || showLiveFilterPopover) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showPopover, showRecommendationPopover, showLiveFilterPopover, showSearchScopeDropdown]);
+  }, [showPopover, showRecommendationPopover, showLiveFilterPopover]);
 
   useEffect(() => {
     if (showPanel && !panelClosing) {
