@@ -12,7 +12,7 @@ export interface AlertProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 
 
 // Default icons for each variant (using inline SVGs from LD 3.5 spec)
 const InfoIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" fill="none"/>
     <path d="M8 4C8.27614 4 8.5 4.22386 8.5 4.5V8.5C8.5 8.77614 8.27614 9 8 9C7.72386 9 7.5 8.77614 7.5 8.5V4.5C7.5 4.22386 7.72386 4 8 4Z" fill="currentColor"/>
     <path d="M8 11C8.27614 11 8.5 10.7761 8.5 10.5C8.5 10.2239 8.27614 10 8 10C7.72386 10 7.5 10.2239 7.5 10.5C7.5 10.7761 7.72386 11 8 11Z" fill="currentColor"/>
@@ -20,14 +20,14 @@ const InfoIcon = () => (
 );
 
 const SuccessIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" fill="none"/>
     <path d="M10.5 6L7.5 9.5L5.5 7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
 const WarningIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M8 2L14.928 14H1.072L8 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" fill="none"/>
     <path d="M8 6V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
     <circle cx="8" cy="11" r="0.5" fill="currentColor"/>
@@ -35,7 +35,7 @@ const WarningIcon = () => (
 );
 
 const ErrorIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" fill="none"/>
     <path d="M8 4V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
     <circle cx="8" cy="11" r="0.5" fill="currentColor"/>
