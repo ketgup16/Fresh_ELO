@@ -993,7 +993,7 @@ export default function MartyFloatingPanel({
                     <div className="text-[#2E2F32] text-xs font-bold leading-4">
                       End date
                     </div>
-                    <div className="flex h-10 px-3 pr-2 items-center gap-3 self-stretch rounded-lg border border-[#909196] bg-white">
+                    <div className="flex h-10 px-3 pr-2 items-center gap-3 self-stretch rounded-lg border border-[#909196] bg-white focus-within:border-[#0053E2] transition-colors">
                       <input
                         type="text"
                         value={campaignData.endDate}
