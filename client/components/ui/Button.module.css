@@ -73,6 +73,7 @@
 .button--variant-secondary {
   background-color: var(--ld-semantic-color-action-fill-secondary);
   color: var(--ld-semantic-color-action-text-secondary);
+  border-width: 1px;
   border-color: var(--ld-semantic-color-action-border-secondary);
 }
 
