@@ -411,7 +411,7 @@ export default function MartyFloatingPanel({
 
         <div className="flex justify-end items-center gap-4">
           {/* Reports Icon with Notification */}
-          <button className="flex w-6 h-6 justify-center items-center relative hover:bg-gray-100 rounded transition-colors">
+          <button className="flex w-6 h-6 justify-center items-center relative rounded transition-colors hover:[background:var(--ld-semantic-color-action-fill-transparent-hovered)]">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 19.5V4C2 3.44772 2.44772 3 3 3H7.08579C7.351 3 7.60536 3.10536 7.79289 3.29289L10.2071 5.70711C10.3946 5.89464 10.649 6 10.9142 6H21.5C22.0523 6 22.5 6.44772 22.5 7V19.5C22.5 20.0523 22.0523 20.5 21.5 20.5H3C2.44772 20.5 2 20.0523 2 19.5Z" stroke="#2E2F32" strokeWidth="1.5"/>
               <path d="M2 9H22.5" stroke="#2E2F32" strokeWidth="1.5"/>
