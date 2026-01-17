@@ -325,22 +325,20 @@ export default function MartyAssistant() {
       {viewState === "campaign-form" && (
         <div className="flex px-4 py-4 flex-col justify-center items-end gap-3 self-stretch border-t border-[#E3E4E5] bg-white flex-shrink-0">
           <div className="flex items-center gap-4">
-            <button className="flex h-10 px-6 justify-center items-center gap-2 rounded-full border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
-              <div className="text-[#2E2F32] text-base font-bold leading-6">Save and review</div>
-            </button>
-            <button
+            <Button
+              variant="secondary"
+              className="text-base"
+            >
+              Save and review
+            </Button>
+            <Button
               disabled={!dailyBudget}
               onClick={() => navigate('/campaign')}
-              className={`flex h-10 px-6 justify-center items-center gap-2 rounded-full transition-colors ${
-                dailyBudget
-                  ? 'bg-[#0053E2] hover:bg-[#0046c7]'
-                  : 'bg-[#E3E4E5]'
-              }`}
+              variant="primary"
+              className="text-base"
             >
-              <div className={`text-base font-bold leading-6 ${
-                dailyBudget ? 'text-white' : 'text-white'
-              }`}>Launch campaign</div>
-            </button>
+              Launch campaign
+            </Button>
           </div>
         </div>
       )}
