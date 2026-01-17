@@ -76,6 +76,15 @@
   height: var(--ld-semantic-scale-icon-small);
 }
 
+/* Icon color in selected state */
+.menuItem--selected .menuItem__leadingIcon {
+  color: var(--ld-primitive-color-gray-160, #2e2f32);
+}
+
+.menuItem--selected .menuItem__leadingIcon svg {
+  color: var(--ld-primitive-color-gray-160, #2e2f32);
+}
+
 /* Content wrapper */
 .menuItem__content {
   flex: 1;
