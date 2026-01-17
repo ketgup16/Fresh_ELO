@@ -575,24 +575,27 @@ export default function MartyFloatingPanel({
               {!isTyping && (
                 <div className="flex w-full justify-start">
                   <div className="flex flex-col gap-2 max-w-[85%]">
-                    <button
+                    <Button
                       onClick={() => handleCampaignTypeSelection('Sponsored Products Automatic')}
-                      className="flex px-4 py-3 items-center gap-2 rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors"
+                      variant="tertiary"
+                      className="text-sm"
                     >
-                      <span className="text-[#2E2F32] text-sm font-bold leading-5">Sponsored Products Automatic</span>
-                    </button>
-                    <button
+                      Sponsored Products Automatic
+                    </Button>
+                    <Button
                       onClick={() => handleCampaignTypeSelection('Sponsored Products Manual')}
-                      className="flex px-4 py-3 items-center gap-2 rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors"
+                      variant="tertiary"
+                      className="text-sm"
                     >
-                      <span className="text-[#2E2F32] text-sm font-bold leading-5">Sponsored Products Manual</span>
-                    </button>
-                    <button
+                      Sponsored Products Manual
+                    </Button>
+                    <Button
                       onClick={() => handleCampaignTypeSelection('Display Campaign')}
-                      className="flex px-4 py-3 items-center gap-2 rounded-lg border-2 border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors"
+                      variant="tertiary"
+                      className="text-sm"
                     >
-                      <span className="text-[#2E2F32] text-sm font-bold leading-5">Display Campaign</span>
-                    </button>
+                      Display Campaign
+                    </Button>
                   </div>
                 </div>
               )}
