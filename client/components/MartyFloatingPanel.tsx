@@ -852,19 +852,196 @@ export default function MartyFloatingPanel({
             </div>
 
             {/* Additional Settings Accordion */}
-            <div className="flex items-center gap-3 self-stretch bg-white">
-              <div className="flex flex-col justify-center items-start gap-1 flex-1">
-                <div className="flex items-center self-stretch">
-                  <div className="text-[#2E2F32] font-bold text-base leading-6">
-                    Additional settings
+            <div className="flex flex-col items-start gap-4 self-stretch">
+              <button
+                onClick={() => setIsAdditionalSettingsOpen(!isAdditionalSettingsOpen)}
+                className="flex items-center gap-3 self-stretch bg-white w-full"
+              >
+                <div className="flex flex-col justify-center items-start gap-1 flex-1">
+                  <div className="flex items-center self-stretch">
+                    <div className="text-[#2E2F32] font-bold text-base leading-6">
+                      Additional settings
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 9L12 15L18 9" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
+                <div className="flex items-center gap-2">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{
+                      transform: isAdditionalSettingsOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                      transition: 'transform 200ms ease-in-out'
+                    }}
+                  >
+                    <path d="M6 9L12 15L18 9" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+              </button>
+
+              {/* Accordion Content */}
+              {isAdditionalSettingsOpen && (
+                <div className="flex flex-col items-start gap-4 self-stretch">
+                  {/* Expanded Targeting */}
+                  <div className="flex flex-col items-start gap-2 self-stretch">
+                    <div className="flex pb-1 items-center gap-1 self-stretch">
+                      <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
+                        Expanded targeting
+                      </div>
+                    </div>
+                    <div className="text-[#000] text-xs leading-4">
+                      Choose when customers see your ads. <span className="underline cursor-pointer">Learn more</span>
+                    </div>
+
+                    {/* Checkboxes */}
+                    <div className="flex flex-col items-start gap-2 mt-2">
+                      <label className="flex items-center gap-3 cursor-pointer">
+                        <div
+                          className="flex w-6 h-6 justify-center items-center rounded-sm border-2 transition-colors"
+                          style={{
+                            borderColor: campaignData.brandTermTargeting ? '#2E2F32' : '#909196',
+                            backgroundColor: campaignData.brandTermTargeting ? '#2E2F32' : 'white'
+                          }}
+                        >
+                          {campaignData.brandTermTargeting && (
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M15 3.80705L6.23047 12.6609C5.78259 13.113 5.05642 13.113 4.60854 12.6609L1 9.01759L2.72031 7.28075L5.41951 10.1053L13.2101 2L15 3.80705Z" fill="white"/>
+                            </svg>
+                          )}
+                        </div>
+                        <input
+                          type="checkbox"
+                          checked={campaignData.brandTermTargeting}
+                          onChange={(e) => setCampaignData({...campaignData, brandTermTargeting: e.target.checked})}
+                          className="sr-only"
+                        />
+                        <span className="text-[#2E2F32] text-sm font-bold leading-5">Brand term targeting</span>
+                      </label>
+
+                      <label className="flex items-center gap-3 cursor-pointer">
+                        <div
+                          className="flex w-6 h-6 justify-center items-center rounded-sm border-2 transition-colors"
+                          style={{
+                            borderColor: campaignData.complementaryTargeting ? '#2E2F32' : '#909196',
+                            backgroundColor: campaignData.complementaryTargeting ? '#2E2F32' : 'white'
+                          }}
+                        >
+                          {campaignData.complementaryTargeting && (
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M15 3.80705L6.23047 12.6609C5.78259 13.113 5.05642 13.113 4.60854 12.6609L1 9.01759L2.72031 7.28075L5.41951 10.1053L13.2101 2L15 3.80705Z" fill="white"/>
+                            </svg>
+                          )}
+                        </div>
+                        <input
+                          type="checkbox"
+                          checked={campaignData.complementaryTargeting}
+                          onChange={(e) => setCampaignData({...campaignData, complementaryTargeting: e.target.checked})}
+                          className="sr-only"
+                        />
+                        <span className="text-[#2E2F32] text-sm font-bold leading-5">Complementary targeting</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  {/* End Date */}
+                  <div className="flex flex-col items-start gap-1 self-stretch">
+                    <div className="text-[#2E2F32] text-xs font-bold leading-4">
+                      End date
+                    </div>
+                    <div className="flex h-10 px-3 pr-2 items-center gap-3 self-stretch rounded-lg border border-[#909196] bg-white">
+                      <div className="flex-1 text-[#2E2F32] text-sm leading-5">
+                        {campaignData.endDate}
+                      </div>
+                      <button className="flex p-2 flex-col items-start rounded-full border border-transparent bg-transparent">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="3" y="4" width="10" height="10" rx="1" stroke="#2E2F32" strokeWidth="1.5"/>
+                          <path d="M3 6H13" stroke="#2E2F32" strokeWidth="1.5"/>
+                          <path d="M5 2V4" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                          <path d="M11 2V4" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Bidding Strategy */}
+                  <div className="flex flex-col items-start gap-2 self-stretch">
+                    <div className="flex pb-1 items-center gap-1 self-stretch">
+                      <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
+                        Bidding strategy
+                      </div>
+                    </div>
+                    <div className="text-[#000] text-xs leading-4">
+                      Choose the strategy that best suits your business goals. <span className="underline cursor-pointer">Learn more</span>
+                    </div>
+
+                    {/* Info Alert */}
+                    <div className="flex px-3 py-2 items-center gap-2 self-stretch rounded border border-[#0053E2] bg-[#E9F1FE] relative">
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#0053E2] rounded-l"></div>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                        <circle cx="8" cy="8" r="7" stroke="#0053E2" strokeWidth="1.5"/>
+                        <path d="M8 4V9" stroke="#0053E2" strokeWidth="1.5" strokeLinecap="round"/>
+                        <circle cx="8" cy="11.5" r="0.75" fill="#0053E2"/>
+                      </svg>
+                      <div className="flex-1 text-[#002E99] text-sm leading-5">
+                        When you switch to Dynamic or Fixed bidding we will apply the platform suggested bids to your items. You can change your bids at any time
+                      </div>
+                    </div>
+
+                    {/* Radio Buttons */}
+                    <div className="flex flex-col items-start gap-2 mt-2">
+                      <label className="flex items-center gap-3 cursor-pointer">
+                        <div className="relative w-6 h-6">
+                          <div
+                            className="w-6 h-6 rounded-full border-2 transition-colors"
+                            style={{
+                              borderColor: '#2E2F32',
+                              backgroundColor: campaignData.biddingStrategy === 'dynamic' ? '#2E2F32' : 'white'
+                            }}
+                          ></div>
+                          {campaignData.biddingStrategy === 'dynamic' && (
+                            <div className="absolute top-2 left-2 w-2 h-2 rounded-full bg-white"></div>
+                          )}
+                        </div>
+                        <input
+                          type="radio"
+                          name="biddingStrategy"
+                          value="dynamic"
+                          checked={campaignData.biddingStrategy === 'dynamic'}
+                          onChange={(e) => setCampaignData({...campaignData, biddingStrategy: 'dynamic'})}
+                          className="sr-only"
+                        />
+                        <span className="text-[#2E2F32] text-sm font-bold leading-5">Dynamic bidding</span>
+                      </label>
+
+                      <label className="flex items-center gap-3 cursor-pointer">
+                        <div className="relative w-6 h-6">
+                          <div
+                            className="w-6 h-6 rounded-full border-2 transition-colors"
+                            style={{
+                              borderColor: '#2E2F32',
+                              backgroundColor: campaignData.biddingStrategy === 'fixed' ? '#2E2F32' : 'white'
+                            }}
+                          ></div>
+                          {campaignData.biddingStrategy === 'fixed' && (
+                            <div className="absolute top-2 left-2 w-2 h-2 rounded-full bg-white"></div>
+                          )}
+                        </div>
+                        <input
+                          type="radio"
+                          name="biddingStrategy"
+                          value="fixed"
+                          checked={campaignData.biddingStrategy === 'fixed'}
+                          onChange={(e) => setCampaignData({...campaignData, biddingStrategy: 'fixed'})}
+                          className="sr-only"
+                        />
+                        <span className="text-[#2E2F32] text-sm leading-5">Fixed bidding</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
