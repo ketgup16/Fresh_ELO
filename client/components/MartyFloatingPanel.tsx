@@ -531,9 +531,9 @@ export default function MartyFloatingPanel({
                           className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
                         >
                           {message.feedback === 'up' ? (
-                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/5c8ad4bd006c4dcc749102c227d76df47653ed7e?width=64" className="w-8 h-8" alt="Thumbs up filled" />
+                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/18e9627b3d3b2cd53e415878ba90cc59fddc29a0?width=32" className="w-4 h-4" alt="Thumbs up filled" />
                           ) : (
-                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/3d0bc4936d85b66916805587fc12a1ec874a87f9?width=64" className="w-8 h-8" alt="Thumbs up" />
+                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/98ddd748d1782c43e885ec15444a178dc3b69cbf?width=32" className="w-4 h-4" alt="Thumbs up" />
                           )}
                         </button>
                         <button
@@ -541,9 +541,9 @@ export default function MartyFloatingPanel({
                           className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
                         >
                           {message.feedback === 'down' ? (
-                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/88c262c6a6d223c4889485be03882fb31eb34391?width=64" className="w-8 h-8" alt="Thumbs down filled" />
+                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/ef817e281ba59ce0c70374ef584ec18ee2c44aa1?width=32" className="w-4 h-4" alt="Thumbs down filled" />
                           ) : (
-                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/592ac115aa96e9913da5574fa3e20b19a4342c56?width=64" className="w-8 h-8" alt="Thumbs down" />
+                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/4e4a75be1f90305d824cff8a9284dd001fdac338?width=32" className="w-4 h-4" alt="Thumbs down" />
                           )}
                         </button>
                       </div>
@@ -606,9 +606,9 @@ export default function MartyFloatingPanel({
                         className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
                       >
                         {message.feedback === 'up' ? (
-                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/5c8ad4bd006c4dcc749102c227d76df47653ed7e?width=64" className="w-8 h-8" alt="Thumbs up filled" />
+                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/18e9627b3d3b2cd53e415878ba90cc59fddc29a0?width=32" className="w-4 h-4" alt="Thumbs up filled" />
                         ) : (
-                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/3d0bc4936d85b66916805587fc12a1ec874a87f9?width=64" className="w-8 h-8" alt="Thumbs up" />
+                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/98ddd748d1782c43e885ec15444a178dc3b69cbf?width=32" className="w-4 h-4" alt="Thumbs up" />
                         )}
                       </button>
                       <button
@@ -616,9 +616,9 @@ export default function MartyFloatingPanel({
                         className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
                       >
                         {message.feedback === 'down' ? (
-                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/88c262c6a6d223c4889485be03882fb31eb34391?width=64" className="w-8 h-8" alt="Thumbs down filled" />
+                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/ef817e281ba59ce0c70374ef584ec18ee2c44aa1?width=32" className="w-4 h-4" alt="Thumbs down filled" />
                         ) : (
-                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/592ac115aa96e9913da5574fa3e20b19a4342c56?width=64" className="w-8 h-8" alt="Thumbs down" />
+                          <img src="https://api.builder.io/api/v1/image/assets/TEMP/4e4a75be1f90305d824cff8a9284dd001fdac338?width=32" className="w-4 h-4" alt="Thumbs down" />
                         )}
                       </button>
                     </div>
