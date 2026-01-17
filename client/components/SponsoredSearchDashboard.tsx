@@ -168,7 +168,7 @@ export default function SponsoredSearchDashboard() {
     }
   };
   return (
-    <div className="flex flex-col gap-[25px] p-6 bg-[#F8F8F8] overflow-y-auto relative">
+    <div className="flex flex-col gap-[25px] p-6 bg-[#F8F8F8] overflow-y-auto relative justify-center items-start">
       {/* Page Header */}
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
