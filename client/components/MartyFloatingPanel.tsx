@@ -411,11 +411,8 @@ export default function MartyFloatingPanel({
           {/* Reports Icon with Notification */}
           <button className="flex w-6 h-6 justify-center items-center relative hover:bg-gray-100 rounded transition-colors">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.1106 11.1741L20.224 4.06067L19.1634 3L13.1106 9.05273L8.86794 4.81001L3 10.6785L4.06071 11.7391L8.86799 6.93143L13.1106 11.1741Z" fill="#2E2F32"/>
-              <path d="M17.602 23.1068V9.60678H19.102V23.1068H17.602Z" fill="#2E2F32"/>
-              <path d="M8.60204 23.1068V11.8568H10.102V23.1068H8.60204Z" fill="#2E2F32"/>
-              <path d="M4.10204 23.1068V15.6068H5.60204V23.1068H4.10204Z" fill="#2E2F32"/>
-              <path d="M13.102 14.1068V23.1068H14.602V14.1068H13.102Z" fill="#2E2F32"/>
+              <path d="M2 19.5V4C2 3.44772 2.44772 3 3 3H7.08579C7.351 3 7.60536 3.10536 7.79289 3.29289L10.2071 5.70711C10.3946 5.89464 10.649 6 10.9142 6H21.5C22.0523 6 22.5 6.44772 22.5 7V19.5C22.5 20.0523 22.0523 20.5 21.5 20.5H3C2.44772 20.5 2 20.0523 2 19.5Z" stroke="#2E2F32" strokeWidth="1.5"/>
+              <path d="M2 9H22.5" stroke="#2E2F32" strokeWidth="1.5"/>
             </svg>
             {/* Notification Dot */}
             <svg
