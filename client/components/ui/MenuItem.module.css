@@ -24,20 +24,20 @@
 
 /* Hover state */
 .menuItem:hover:not(:disabled) {
-  background: var(--ld-semantic-color-action-fill-transparent-hovered);
+  background: var(--ld-semantic-color-background-subtle, #f8f8f8);
   color: var(--ld-semantic-color-action-text-onfill-transparent-hovered);
 }
 
 /* Focus state */
 .menuItem:focus-visible {
   outline: none;
-  background: var(--ld-semantic-color-action-fill-transparent-focused);
+  background: var(--ld-semantic-color-background-subtle, #f8f8f8);
   color: var(--ld-semantic-color-action-text-onfill-transparent-focused);
 }
 
 /* Active/Pressed state */
 .menuItem:active:not(:disabled) {
-  background: var(--ld-semantic-color-action-fill-transparent-pressed);
+  background: var(--ld-primitive-color-gray-10, #f2f2f2);
   color: var(--ld-semantic-color-action-text-onfill-transparent-pressed);
 }
 
