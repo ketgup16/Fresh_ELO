@@ -27,14 +27,14 @@
 
   /* Secondary actions */
   --ld-semantic-color-action-fill-secondary: var(--ld-primitive-color-white, #ffffff); /* Secondary button background */
-  --ld-semantic-color-action-fill-secondary-hovered: var(--ld-primitive-color-blue-10); /* Secondary button hover */
-  --ld-semantic-color-action-fill-secondary-pressed: var(--ld-primitive-color-blue-10); /* Secondary button active/pressed */
-  --ld-semantic-color-action-border-secondary: var(--ld-primitive-color-blue-100); /* Secondary button border */
-  --ld-semantic-color-action-border-secondary-hovered: var(--ld-primitive-color-blue-130); /* Secondary button border hover */
-  --ld-semantic-color-action-border-secondary-pressed: var(--ld-primitive-color-blue-130); /* Secondary button border active */
-  --ld-semantic-color-action-text-secondary: var(--ld-primitive-color-blue-100); /* Secondary button text */
-  --ld-semantic-color-action-text-secondary-hovered: var(--ld-primitive-color-blue-130); /* Secondary button text hover */
-  --ld-semantic-color-action-text-secondary-pressed: var(--ld-primitive-color-blue-130); /* Secondary button text active */
+  --ld-semantic-color-action-fill-secondary-hovered: var(--ld-primitive-color-gray-5, #f8f8f8); /* Secondary button hover */
+  --ld-semantic-color-action-fill-secondary-pressed: var(--ld-primitive-color-gray-10, #f2f2f2); /* Secondary button active/pressed */
+  --ld-semantic-color-action-border-secondary: var(--ld-primitive-color-gray-160, #2e2f32); /* Secondary button border */
+  --ld-semantic-color-action-border-secondary-hovered: var(--ld-primitive-color-gray-160, #2e2f32); /* Secondary button border hover */
+  --ld-semantic-color-action-border-secondary-pressed: var(--ld-primitive-color-gray-160, #2e2f32); /* Secondary button border active */
+  --ld-semantic-color-action-text-secondary: var(--ld-primitive-color-gray-160, #2e2f32); /* Secondary button text */
+  --ld-semantic-color-action-text-secondary-hovered: var(--ld-primitive-color-gray-160, #2e2f32); /* Secondary button text hover */
+  --ld-semantic-color-action-text-secondary-pressed: var(--ld-primitive-color-gray-160, #2e2f32); /* Secondary button text active */
 
   /* Tertiary actions */
   --ld-semantic-color-action-fill-tertiary: transparent; /* Tertiary button background */
