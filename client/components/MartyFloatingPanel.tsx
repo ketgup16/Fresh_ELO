@@ -443,6 +443,7 @@ export default function MartyFloatingPanel({
       </div>
 
       {/* Content - Changes based on viewState */}
+      <div className="transition-all duration-300 ease-in-out flex-1 flex flex-col overflow-hidden">
       {viewState === 'welcome' && (
         <div className="flex w-full max-w-[760px] px-4 py-4 flex-col items-end gap-6 flex-1 bg-white overflow-y-auto">
           <div className="flex flex-col items-start gap-6 self-stretch bg-white">
@@ -517,7 +518,7 @@ export default function MartyFloatingPanel({
                       className={`flex max-w-[85%] px-4 py-2 flex-col items-start gap-2 ${
                         message.role === 'user'
                           ? 'bg-[#F1F1F2] rounded-[28px]'
-                          : 'bg-white border border-[#E3E4E5] rounded-lg'
+                          : 'bg-white rounded-lg'
                       }`}
                     >
                       <div className="text-[#2E2F32] text-sm leading-5 whitespace-pre-wrap">
@@ -592,7 +593,7 @@ export default function MartyFloatingPanel({
                     className={`flex max-w-[85%] px-4 py-2 flex-col items-start gap-2 ${
                       message.role === 'user'
                         ? 'bg-[#F1F1F2] rounded-[28px]'
-                        : 'bg-white border border-[#E3E4E5] rounded-lg'
+                        : 'bg-white rounded-lg'
                     }`}
                   >
                     <div className="text-[#2E2F32] text-sm leading-5 whitespace-pre-wrap">
@@ -1038,6 +1039,7 @@ export default function MartyFloatingPanel({
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }
