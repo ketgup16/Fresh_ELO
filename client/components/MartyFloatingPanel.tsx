@@ -1020,7 +1020,7 @@ export default function MartyFloatingPanel({
                     </div>
 
                     {/* Info Alert */}
-                    <div className="flex px-3 py-2 items-center gap-2 self-stretch rounded border border-[#0053E2] bg-[#E9F1FE] relative">
+                    <div className="flex px-3 py-2 items-start gap-2 self-stretch rounded border border-[#0053E2] bg-[#E9F1FE] relative justify-start">
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#0053E2] rounded-l"></div>
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
                         <circle cx="8" cy="8" r="7" stroke="#0053E2" strokeWidth="1.5"/>
