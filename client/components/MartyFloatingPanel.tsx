@@ -1263,7 +1263,7 @@ export default function MartyFloatingPanel({
 
       {/* Footer - Input for welcome and chat views */}
       {(viewState === 'welcome' || viewState === 'chat') && (
-        <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white border-t border-[#E3E4E5]">
+        <div className="flex w-full px-4 py-4 flex-col items-center gap-3 bg-white border-t border-[#E3E4E5] max-h-[187px]">
           {/* Input Field */}
           <div className="flex max-h-44 px-4 py-3 items-center justify-start gap-6 self-stretch rounded-[30px] border border-[#4A4A4A] bg-white transition-colors focus-within:border-[#0053E2] focus-within:shadow-[0_0_0_1px_#0053E2]">
             <textarea
