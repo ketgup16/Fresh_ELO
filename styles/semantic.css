@@ -100,4 +100,22 @@
 
   /* Icon size */
   --ld-semantic-scale-icon-small: 16px;
+
+  /* Alert/Notification fill colors (subtle backgrounds) */
+  --ld-semantic-color-fill-info-subtle: var(--ld-primitive-color-blue-10);
+  --ld-semantic-color-fill-positive-subtle: var(--ld-primitive-color-green-10);
+  --ld-semantic-color-fill-warning-subtle: var(--ld-primitive-color-spark-10);
+  --ld-semantic-color-fill-negative-subtle: var(--ld-primitive-color-red-10);
+
+  /* Alert/Notification border colors */
+  --ld-semantic-color-border-info: var(--ld-primitive-color-blue-100);
+  --ld-semantic-color-border-positive: var(--ld-primitive-color-green-100);
+  --ld-semantic-color-border-warning: var(--ld-primitive-color-spark-140);
+  --ld-semantic-color-border-negative: var(--ld-primitive-color-red-100);
+
+  /* Alert/Notification text colors (on subtle backgrounds) */
+  --ld-semantic-color-text-on-fill-info-subtle: var(--ld-primitive-color-blue-130);
+  --ld-semantic-color-text-on-fill-positive-subtle: var(--ld-primitive-color-green-130);
+  --ld-semantic-color-text-on-fill-warning-subtle: var(--ld-primitive-color-spark-160);
+  --ld-semantic-color-text-on-fill-negative-subtle: var(--ld-primitive-color-red-130);
 }
