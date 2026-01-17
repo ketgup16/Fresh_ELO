@@ -10,8 +10,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        primary: "bg-[#0071DC] text-white hover:bg-[#0060B8] rounded-full",
-        secondary: "border border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50 rounded-full",
+        primary: "text-white rounded-full" + " " + "[background:var(--ld-semantic-color-action-fill-primary)]" + " " + "hover:[background:var(--ld-semantic-color-action-fill-primary-hovered)]" + " " + "active:[background:var(--ld-semantic-color-action-fill-primary-pressed)]",
+        secondary: "border rounded-full" + " " + "[border-color:var(--ld-semantic-color-border-strong)]" + " " + "bg-white" + " " + "[color:var(--ld-semantic-color-text-primary)]" + " " + "hover:[background:var(--ld-semantic-color-action-fill-transparent-hovered)]" + " " + "active:[background:var(--ld-semantic-color-action-fill-transparent-pressed)]",
         tertiary: "border-2 border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50 rounded-lg",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
