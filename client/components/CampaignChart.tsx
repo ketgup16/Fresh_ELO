@@ -4,10 +4,22 @@ interface CampaignChartProps {
     clicks: boolean;
     cpc: boolean;
   };
+  attribution?: string;
 }
 
-export default function CampaignChart({ visibleSeries = { impressions: true, clicks: true, cpc: true } }: CampaignChartProps) {
-  const chartData = [
+export default function CampaignChart({ visibleSeries = { impressions: true, clicks: true, cpc: true }, attribution = "14 days attribution" }: CampaignChartProps) {
+  // Calculate attribution multiplier
+  const attributionDays = parseInt(attribution.split(" ")[0]);
+  const attributionMultiplier = {
+    7: 0.85,   // 7 days - fewer conversions attributed
+    14: 1.0,   // 14 days - baseline
+    30: 1.18,  // 30 days - more conversions attributed
+    60: 1.32,  // 60 days - even more conversions
+    90: 1.45   // 90 days - most conversions attributed
+  }[attributionDays] || 1.0;
+
+  // Base data (14-day attribution)
+  const baseChartData = [
     { date: 'Dec 30', impressions: 15234000, clicks: 121000, cpc: 1.42 },
     { date: 'Jan 6', impressions: 16123000, clicks: 127500, cpc: 1.39 },
     { date: 'Jan 13', impressions: 16234000, clicks: 129800, cpc: 1.38 },
@@ -23,6 +35,15 @@ export default function CampaignChart({ visibleSeries = { impressions: true, cli
     { date: 'Mar 24', impressions: 18745000, clicks: 148500, cpc: 1.36 },
     { date: 'Mar 31', impressions: 18689154, clicks: 148782, cpc: 1.36 }
   ];
+
+  // Apply attribution multiplier to generate dynamic data
+  const chartData = baseChartData.map(point => ({
+    ...point,
+    impressions: Math.round(point.impressions * attributionMultiplier),
+    clicks: Math.round(point.clicks * attributionMultiplier),
+    // CPC inversely affected by attribution (better attribution = lower CPC)
+    cpc: parseFloat((point.cpc / Math.sqrt(attributionMultiplier)).toFixed(2))
+  }));
 
   const xAxisLabels = [
     'Dec 30', 'Jan 6', 'Jan 13', '20', '27', 'Feb 3', '10',
