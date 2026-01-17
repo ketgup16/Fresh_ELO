@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
+import { NavList, NavListItem } from "@/components/ui/NavList";
 import { format } from "date-fns";
 
 interface DateRangeFilterDropdownProps {
@@ -112,20 +113,18 @@ export default function DateRangeFilterDropdown({
       <PopoverContent className="w-auto p-0 max-w-4xl" align="start">
         <div className="flex">
           {/* Left sidebar with quick select options */}
-          <div className="flex flex-col gap-1 p-3 border-r border-[#E3E4E5] bg-[#F8F8F8] min-w-[160px]">
-            {quickRanges.map((range) => (
-              <button
-                key={range.id}
-                onClick={() => handleQuickRangeSelect(range.id)}
-                className={`px-3 py-2 text-sm text-left rounded transition-colors whitespace-nowrap ${
-                  selectedRange === range.id
-                    ? "bg-[#0053E2] text-white"
-                    : "text-[#0053E2] hover:bg-[#E3E4E5]"
-                }`}
-              >
-                {range.label}
-              </button>
-            ))}
+          <div className="border-r border-[#E3E4E5]">
+            <NavList aria-label="Quick date ranges">
+              {quickRanges.map((range) => (
+                <NavListItem
+                  key={range.id}
+                  selected={selectedRange === range.id}
+                  onClick={() => handleQuickRangeSelect(range.id)}
+                >
+                  {range.label}
+                </NavListItem>
+              ))}
+            </NavList>
           </div>
 
           {/* Right section with date inputs and calendar */}
