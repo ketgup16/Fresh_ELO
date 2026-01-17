@@ -51,6 +51,15 @@ export default function MartyFloatingPanel({
     scrollToBottom();
   }, [messages, isTyping]);
 
+  // Auto-resize textarea
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = '20px';
+      const scrollHeight = textareaRef.current.scrollHeight;
+      textareaRef.current.style.height = Math.min(scrollHeight, 152) + 'px';
+    }
+  }, [userMessage]);
+
   const handleMinimize = () => {
     if (onMinimizedChange) {
       onMinimizedChange(true);
