@@ -411,7 +411,7 @@ export default function MartyFloatingPanel({
           {/* Reports Icon with Notification */}
           <button className="flex w-6 h-6 justify-center items-center relative hover:bg-gray-100 rounded transition-colors">
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/a366a3c1df1c4dccfcd08b05d2cff307b55586da?width=48"
+              src="https://api.builder.io/api/v1/image/assets/TEMP/1835b749ef39843ef58643bf8eaf007c6cbe63ff?width=48"
               alt="Reports"
               className="w-6 h-6"
             />
@@ -443,7 +443,7 @@ export default function MartyFloatingPanel({
             className="flex w-6 h-6 justify-center items-center hover:bg-gray-100 rounded transition-colors"
           >
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/e7b3a2f3ac0042faea6b580042a0890da69e644e?width=48"
+              src="https://api.builder.io/api/v1/image/assets/TEMP/c2b360d3b835174fd2ef962f1ffb922bf8000e86?width=48"
               alt="Minimize"
               className="w-6 h-6"
             />
