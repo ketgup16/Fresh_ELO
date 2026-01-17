@@ -262,7 +262,7 @@ export default function Campaign() {
               <Button variant="outline" className="px-6 h-10 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] font-bold hover:bg-gray-50">
                 Save
               </Button>
-              <Button className="px-6 h-10 rounded-full bg-[#0053E2] text-white font-bold hover:bg-[#0046c7]">
+              <Button variant="primary" className="text-base">
                 Launch campaign
               </Button>
             </div>
