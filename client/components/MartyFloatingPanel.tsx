@@ -1271,26 +1271,30 @@ export default function MartyFloatingPanel({
               style={{ minHeight: '20px' }}
             />
             <button
-              onClick={handleSendMessage}
-              disabled={!userMessage.trim() || isTyping}
+              onClick={isTyping ? handleStopGeneration : handleSendMessage}
+              disabled={!isTyping && !userMessage.trim()}
               className="flex p-2 flex-shrink-0 items-center justify-center rounded-full border border-transparent transition-colors"
               style={{
-                backgroundColor: userMessage.trim() && !isTyping
+                backgroundColor: isTyping || userMessage.trim()
                   ? 'var(--ld-semantic-color-action-fill-primary)'
-                  : '#BABBBE'
+                  : 'var(--ld-primitive-color-gray-50)'
               }}
               onMouseEnter={(e) => {
-                if (userMessage.trim() && !isTyping) {
+                if (isTyping || userMessage.trim()) {
                   e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-action-fill-primary-hovered)';
                 }
               }}
               onMouseLeave={(e) => {
-                if (userMessage.trim() && !isTyping) {
+                if (isTyping || userMessage.trim()) {
                   e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-action-fill-primary)';
                 }
               }}
             >
-              {userMessage.trim() && !isTyping ? (
+              {isTyping ? (
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="12" height="12" rx="2" fill="white"/>
+                </svg>
+              ) : userMessage.trim() ? (
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="3" y="3" width="10" height="10" rx="2" fill="white"/>
                 </svg>
