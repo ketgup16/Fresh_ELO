@@ -708,9 +708,22 @@ export default function MartyFloatingPanel({
               <button
                 onClick={handleSendMessage}
                 disabled={!userMessage.trim() || isTyping}
-                className={`flex p-2 flex-shrink-0 items-center justify-center rounded-full border border-transparent transition-colors ${
-                  userMessage.trim() && !isTyping ? 'bg-[#0071DC] hover:bg-[#0060B8]' : 'bg-[#BABBBE]'
-                }`}
+                className="flex p-2 flex-shrink-0 items-center justify-center rounded-full border border-transparent transition-colors"
+                style={{
+                  backgroundColor: userMessage.trim() && !isTyping
+                    ? 'var(--ld-semantic-color-action-fill-primary)'
+                    : '#BABBBE'
+                }}
+                onMouseEnter={(e) => {
+                  if (userMessage.trim() && !isTyping) {
+                    e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-action-fill-primary-hovered)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (userMessage.trim() && !isTyping) {
+                    e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-action-fill-primary)';
+                  }
+                }}
               >
                 {userMessage.trim() && !isTyping ? (
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
