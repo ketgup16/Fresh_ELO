@@ -952,7 +952,7 @@ export default function MartyFloatingPanel({
           <div className="flex px-4 py-4 flex-col items-start gap-6 flex-1 self-stretch overflow-y-auto">
             {/* User Message */}
             <div className="flex w-full pl-20 flex-col items-end gap-1">
-              <div className="flex max-w-[608px] px-4 py-2 flex-col items-start gap-2 rounded-lg bg-[#F1F1F2]">
+              <div className="flex max-w-[608px] px-4 py-2 flex-col items-start gap-2 rounded-lg [background:var(--ld-semantic-color-background-subtle)]">
                 <div className="self-stretch text-[#2E2F32] text-sm leading-5">
                   Launch campaign
                 </div>
