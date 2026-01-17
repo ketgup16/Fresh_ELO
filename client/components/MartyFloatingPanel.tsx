@@ -243,6 +243,10 @@ export default function MartyFloatingPanel({
     }
   };
 
+  const handleStopGeneration = () => {
+    setIsTyping(false);
+  };
+
   const handleQuickAction = async (action: string) => {
     if (action === 'create') {
       // Add user message
