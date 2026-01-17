@@ -548,7 +548,7 @@ export default function MartyFloatingPanel({
                   Campaign name
                 </div>
               </div>
-              <div className="flex h-10 px-3 py-2 items-center gap-2 self-stretch rounded-lg border border-[#E3E4E5] bg-white">
+              <div className="flex h-10 px-3 py-2 items-center gap-2 self-stretch rounded-lg border border-[#909196] bg-white">
                 <div className="flex h-6 py-0.5 justify-center items-center flex-1">
                   <input
                     type="text"
