@@ -24,6 +24,7 @@ export default function MartyFloatingPanel({
   onMinimizedChange
 }: MartyFloatingPanelProps) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [viewState, setViewState] = useState<ViewState>('welcome');
   const [userMessage, setUserMessage] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([]);
