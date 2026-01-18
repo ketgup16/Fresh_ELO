@@ -57,6 +57,13 @@ export default function MartyFloatingPanel({
     scrollToBottom();
   }, [messages, isTyping]);
 
+  // When on campaign page, don't show campaign type selection
+  useEffect(() => {
+    if (location.pathname === '/campaign' && viewState === 'campaignSetup') {
+      setViewState('campaignReady');
+    }
+  }, [location.pathname, viewState]);
+
   // Auto-resize textarea
   useEffect(() => {
     if (textareaRef.current) {
