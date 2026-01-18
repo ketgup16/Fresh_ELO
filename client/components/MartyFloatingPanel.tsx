@@ -671,8 +671,8 @@ export default function MartyFloatingPanel({
                 </div>
               ))}
               
-              {/* Campaign Type Options */}
-              {!isTyping && (
+              {/* Campaign Type Options - Hidden when on campaign page */}
+              {!isTyping && location.pathname !== '/campaign' && (
                 <div className="flex w-full justify-start">
                   <div className="flex flex-col gap-2 max-w-[85%]">
                     <Button
