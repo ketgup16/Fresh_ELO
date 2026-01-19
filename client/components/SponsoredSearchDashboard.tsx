@@ -29,6 +29,9 @@ export default function SponsoredSearchDashboard() {
   // Attribution filter state
   const [attribution, setAttribution] = useState<string>("14 days attribution");
 
+  // Edit metrics modal state
+  const [isEditMetricsModalOpen, setIsEditMetricsModalOpen] = useState(false);
+
   // Chart series visibility state
   const [visibleSeries, setVisibleSeries] = useState({
     impressions: true,
