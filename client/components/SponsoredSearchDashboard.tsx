@@ -553,6 +553,11 @@ export default function SponsoredSearchDashboard() {
         <a href="#" className="underline hover:no-underline">Terms</a>
       </div>
 
+      {/* Edit Metrics Modal */}
+      <EditMetricsModal
+        open={isEditMetricsModalOpen}
+        onOpenChange={setIsEditMetricsModalOpen}
+      />
     </div>
   );
 }
