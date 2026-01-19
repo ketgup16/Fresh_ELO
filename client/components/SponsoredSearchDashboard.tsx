@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CampaignChart from "./CampaignChart";
 import DateRangeFilterDropdown from "./DateRangeFilterDropdown";
 import AttributionFilterDropdown from "./AttributionFilterDropdown";
+import EditMetricsModal from "./EditMetricsModal";
 import { Button } from "./ui/Button";
 import { Alert } from "./ui/Alert";
 
