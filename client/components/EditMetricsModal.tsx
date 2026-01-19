@@ -23,6 +23,7 @@ const ALL_METRICS: Metric[] = [
   { id: 'total_pdp_views', label: 'Total Product Detail Page Views', category: 'performance' },
   { id: 'advertised_pdp_views', label: 'Advertised Product Detail Page Views', category: 'performance' },
   { id: 'other_pdp_views', label: 'Other Product Detail Page Views', category: 'performance' },
+  { id: 'omni_roas', label: 'Omni ROAS', category: 'conversion' },
 ];
 
 const DEFAULT_SELECTED_METRICS = ['impressions', 'clicks', 'average_cpc', 'ctr', 'total_pdp_views'];
