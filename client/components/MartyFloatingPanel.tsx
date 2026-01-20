@@ -678,8 +678,8 @@ export default function MartyFloatingPanel({
                 </div>
               ))}
               
-              {/* Campaign Type Options - Hidden when on campaign page */}
-              {!isTyping && location.pathname !== '/campaign' && (
+              {/* Campaign Type Options - Hidden when on campaign page or after selection */}
+              {!isTyping && location.pathname !== '/campaign' && messages.length <= 2 && (
                 <div className="flex w-full justify-start">
                   <div className="flex flex-col gap-2 max-w-[85%]">
                     <Button
