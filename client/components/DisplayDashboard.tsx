@@ -96,16 +96,16 @@ export default function DisplayDashboard() {
                     You could see an increase in impressions by applying recommendations to campaigns and ad groups.
                   </p>
                 </div>
-                <div className="flex gap-8">
-                  <div className="flex-1">
+                <div className="flex flex-wrap gap-4 sm:gap-8">
+                  <div className="flex-1 min-w-[80px]">
                     <div className="text-xs text-[#515357] mb-1">Campaigns</div>
                     <div className="text-sm font-bold text-[#2E2F32]">7</div>
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-[80px]">
                     <div className="text-xs text-[#515357] mb-1">Ad groups</div>
                     <div className="text-sm font-bold text-[#2E2F32]">15</div>
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-[100px]">
                     <div className="text-xs text-[#515357] mb-1">Recommendations</div>
                     <div className="text-sm font-bold text-[#2E2F32]">18</div>
                   </div>
