@@ -502,6 +502,12 @@ export default function AllCampaigns() {
 
     setRecommendationsOpen(false);
 
+    // Navigate to item health page for item health issues
+    if (type === 'item-health-issues') {
+      navigate('/item-health');
+      return;
+    }
+
     const campaign = campaigns.find((c) => c.id === selectedCampaignId);
     if (!campaign) return;
 
