@@ -21,6 +21,7 @@ interface Keyword {
   adGroupStatus: string;
   totalAttributedSales: string;
   roas: string;
+  omniRoas: string;
   adSpend: string;
   averageCPC: string;
   impressions: string;
