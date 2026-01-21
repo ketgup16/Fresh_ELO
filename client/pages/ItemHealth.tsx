@@ -37,6 +37,7 @@ export default function ItemHealth() {
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+  const [openAlertPopover, setOpenAlertPopover] = useState<number | null>(null);
 
   const handleSort = (column: string) => {
     if (sortColumn === column) {
