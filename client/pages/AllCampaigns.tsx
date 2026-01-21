@@ -51,6 +51,7 @@ interface Campaign {
   estMissedClicks: string;
   campaignReviewStatus: string;
   roas: string;
+  omniRoas: string;
   avgCPC: string;
   spend: string;
   totalAttributedSales: string;
