@@ -28,7 +28,7 @@ interface ItemHealthData {
   buyBoxWinRateLast7Days: string;
 }
 
-export default function ItemHealthCopy() {
+export default function OmniROAS() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
   const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
@@ -385,7 +385,7 @@ export default function ItemHealthCopy() {
           <div className="bg-white p-6">
             {/* Header Section */}
             <div className="flex items-center justify-between mb-6">
-              <h1 className="text-[32px] font-normal text-[#2E2F32]">Item Health (Copy)</h1>
+              <h1 className="text-[32px] font-normal text-[#2E2F32]">Omni ROAS</h1>
               <button className="h-10 px-6 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] text-sm font-normal hover:bg-gray-50 transition-colors">
                 Export to CSV
               </button>
