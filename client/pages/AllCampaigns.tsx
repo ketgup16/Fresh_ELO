@@ -1391,6 +1391,18 @@ export default function AllCampaigns() {
                       ))}
                     </div>
 
+                    {/* Omni ROAS Column */}
+                    <div className="flex flex-col min-w-[100px]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Omni ROAS</span>
+                      </div>
+                      {campaigns.map((campaign, idx) => (
+                        <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
+                          <span className="text-sm text-[#2E2F32]">{campaign.omniRoas}</span>
+                        </div>
+                      ))}
+                    </div>
+
                     {/* Total Attributed Sales Column */}
                     <div className="flex flex-col min-w-[180px]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
