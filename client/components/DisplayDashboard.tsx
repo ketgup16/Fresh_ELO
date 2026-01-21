@@ -76,7 +76,7 @@ export default function DisplayDashboard() {
               {/* Card 1 - Maximize your reach */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5]">
               <div className="px-6 py-4 flex-1">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                   <h3 className="text-sm font-bold text-[#2E2F32]">Maximize your reach</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#E6F1FC] text-xs text-[#002E99] whitespace-nowrap">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -125,7 +125,7 @@ export default function DisplayDashboard() {
             {/* Card 2 - Increase your engagement */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5]">
               <div className="px-6 py-4 flex-1">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                   <h3 className="text-base font-bold text-[#2E2F32]">Increase your engagement</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#EFEBF2] text-xs text-[#452358] whitespace-nowrap">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -174,7 +174,7 @@ export default function DisplayDashboard() {
             {/* Card 3 - Drive more conversions */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5]">
               <div className="px-6 py-4 flex-1">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                   <h3 className="text-base font-bold text-[#2E2F32]">Drive more conversions</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#FEF0E6] text-xs text-[#AF2F00] whitespace-nowrap">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
