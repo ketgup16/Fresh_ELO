@@ -1117,7 +1117,7 @@ export default function AllCampaigns() {
                     </div>
 
                     {/* Campaign Status Column */}
-                    <div className="flex flex-col min-w-[140px] sticky left-[280px] z-10">
+                    <div className="flex flex-col min-w-[140px] sticky left-[280px] z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign status</span>
                       </div>
