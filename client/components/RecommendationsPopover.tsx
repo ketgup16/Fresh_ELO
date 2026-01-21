@@ -2,7 +2,7 @@ import * as React from "react";
 import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from "./ui/popover";
 
 interface Alert {
-  type: 'learning-paused' | 'out-of-budget';
+  type: 'item-health-issues' | 'out-of-budget';
   message: string;
   targetColumn?: 'biddingStrategy' | 'totalBudget';
 }
