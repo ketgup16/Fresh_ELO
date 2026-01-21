@@ -489,9 +489,9 @@ export default function DisplayDashboard() {
         </div>
 
         {/* Metrics Ribbon */}
-        <div className="flex items-stretch bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] overflow-hidden min-h-[88px]">
+        <div className="flex flex-wrap items-stretch bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] gap-4 p-2 min-h-[88px]">
           {/* Impressions */}
-          <div className="flex-1 flex items-center p-2">
+          <div className="flex-1 flex items-center min-w-[180px]">
             <div className="flex-1 bg-white rounded px-2 py-1">
               <div className="flex items-center gap-1 mb-1">
                 <span className="text-sm text-[#2E2F32]">Impressions</span>
