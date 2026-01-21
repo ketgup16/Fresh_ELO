@@ -12,7 +12,7 @@ import { Menu } from "../components/ui/Menu";
 import { MenuItem } from "../components/ui/MenuItem";
 
 interface Alert {
-  type: 'learning-paused' | 'out-of-budget';
+  type: 'item-health-issues' | 'out-of-budget';
   message: string;
   targetColumn?: 'biddingStrategy' | 'totalBudget';
 }
@@ -112,7 +112,7 @@ export default function AllCampaigns() {
       roasTarget: "3.25",
       recommendedRoasTarget: "2.50",
       biddingIcon: true,
-      biddingStatus: "Learning paused",
+      biddingStatus: "Item health issues detected",
       biddingStatusDate: "Since 01/05/2025",
       campaignType: "Sponsored Products (Auto)",
       avgCapOutTime: "08:00am PST",
@@ -133,8 +133,8 @@ export default function AllCampaigns() {
       unitsSold: "1,067",
       alerts: [
         {
-          type: 'learning-paused',
-          message: 'Learning paused',
+          type: 'item-health-issues',
+          message: 'Item health issues detected',
           targetColumn: 'biddingStrategy'
         },
         {
