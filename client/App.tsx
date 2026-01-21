@@ -13,6 +13,7 @@ import AllCampaigns from "./pages/AllCampaigns";
 import AllKeywords from "./pages/AllKeywords";
 import KeywordsPlanner from "./pages/KeywordsPlanner";
 import ItemHealth from "./pages/ItemHealth";
+import ItemHealthCopy from "./pages/ItemHealthCopy";
 import DisplayAdvertisingCampaigns from "./pages/DisplayAdvertisingCampaigns";
 import NotFound from "./pages/NotFound";
 
