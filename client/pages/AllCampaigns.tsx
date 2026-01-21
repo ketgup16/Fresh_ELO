@@ -1097,7 +1097,7 @@ export default function AllCampaigns() {
                   {/* Data Columns */}
                   <div className="flex flex-1 overflow-x-auto">
                     {/* Campaign Name Column */}
-                    <div className="flex flex-col min-w-[280px] flex-1">
+                    <div className="flex flex-col min-w-[280px] flex-1 sticky left-0 z-10">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign name</span>
                         <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
@@ -1117,7 +1117,7 @@ export default function AllCampaigns() {
                     </div>
 
                     {/* Campaign Status Column */}
-                    <div className="flex flex-col min-w-[140px]">
+                    <div className="flex flex-col min-w-[140px] sticky left-[280px] z-10">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign status</span>
                       </div>
