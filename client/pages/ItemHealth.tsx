@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Settings as SettingsIcon, Download } from "lucide-react";
+import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Settings as SettingsIcon, Download, ExternalLink } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Button } from "../components/ui/button";
+import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
 import CleaningSpray from "../components/icons/CleaningSpray";
 import DishSoap from "../components/icons/DishSoap";
 import PaperTowels from "../components/icons/PaperTowels";
