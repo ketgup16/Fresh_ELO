@@ -504,7 +504,7 @@ export default function AllCampaigns() {
 
     // Navigate to item health page for item health issues
     if (type === 'item-health-issues') {
-      navigate('/item-health');
+      navigate('/reports/item-health');
       return;
     }
 
