@@ -610,6 +610,7 @@ export default function ItemHealth() {
                         </div>
                       </td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.primaryVariant}</td>
+                      <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.itemStatus}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsToday.toLocaleString()}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.productDetailPageViewsLast7Days.toLocaleString()}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.itemAvailableToday}</td>
