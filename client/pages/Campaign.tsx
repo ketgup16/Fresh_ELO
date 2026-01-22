@@ -16,6 +16,7 @@ export default function Campaign() {
   const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
+  const [openAlertPopover, setOpenAlertPopover] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
