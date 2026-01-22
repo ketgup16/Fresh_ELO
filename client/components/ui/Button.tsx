@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styles from './Button.module.css';
+import { cva, type VariantProps } from 'class-variance-authority';
 
 export type ButtonSize = 'large' | 'medium' | 'small';
 export type ButtonType = 'button' | 'reset' | 'submit';
