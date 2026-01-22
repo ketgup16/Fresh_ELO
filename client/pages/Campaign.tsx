@@ -709,7 +709,7 @@ export default function Campaign() {
                     {/* Column Headers */}
                     <div className="flex items-center gap-3 px-4 py-3 border-b border-[#E3E4E5] bg-white">
                       <div className="w-4"></div>
-                      <span className="text-xs font-semibold text-[#2E2F32] leading-tight w-16">Item Name</span>
+                      <span className="text-xs font-semibold text-[#2E2F32] leading-tight flex-1">Item Name</span>
                       <span className="text-xs font-semibold text-[#2E2F32] leading-4 w-16 text-right">Item Id</span>
                       <span className="text-[10px] font-semibold text-[#2E2F32] leading-3 flex items-center gap-0.5 w-16">
                         Sugg.Bid
@@ -737,9 +737,9 @@ export default function Campaign() {
                         return (
                           <div key={idx} className="flex items-center gap-3 px-4 py-2 border-b border-[#E3E4E5]">
                             <input type="checkbox" className="w-4 h-4 rounded border border-black" />
-                            <div className="flex items-start gap-2 w-16">
+                            <div className="flex items-start gap-2 flex-1">
                               <div className="w-8 h-8 bg-gray-200 rounded flex-shrink-0"></div>
-                              <div className="text-xs text-[#2E2F32] leading-tight break-words max-w-[32px]">{item}</div>
+                              <div className="text-xs text-[#2E2F32] leading-tight">{item}</div>
                             </div>
                             <span className="text-xs text-[#2E2F32] w-16 text-right">{ids[idx]}</span>
                             <span className="text-xs text-[#2E2F32] w-16 text-right">$3.91</span>
