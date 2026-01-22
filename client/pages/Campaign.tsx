@@ -772,10 +772,10 @@ export default function Campaign() {
                                         </p>
                                         <div className="flex flex-col gap-2">
                                           <div className="h-px bg-[#E3E4E5]"></div>
-                                          <div className="flex items-center justify-between">
+                                          <div className="flex items-center justify-end gap-4">
                                             <a
                                               href="/reports/item-health"
-                                              className="text-sm text-[#0071CE] underline hover:no-underline cursor-pointer"
+                                              className="text-sm text-[#2E2F32] underline hover:no-underline cursor-pointer"
                                             >
                                               View item health page
                                             </a>
