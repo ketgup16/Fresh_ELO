@@ -497,6 +497,11 @@ export default function ItemHealth() {
                       </div>
                     </th>
                     <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[120px]">
+                      <div className="flex items-center gap-1">
+                        Item Status
+                      </div>
+                    </th>
+                    <th className="p-2 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] max-w-[120px]">
                       <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('productDetailPageViewsToday')}>
                         Product Detail Page Views Today
                         {renderSortIcon('productDetailPageViewsToday')}
