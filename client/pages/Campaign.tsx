@@ -287,6 +287,28 @@ export default function Campaign() {
           </div>
         </div>
 
+        {/* Error Alert - Only shown when editing existing campaign */}
+        {isEditMode && (
+          <div className="bg-white px-6 pb-4">
+            <Alert
+              variant="error"
+              action={
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate('/seller-center');
+                  }}
+                >
+                  View details
+                </a>
+              }
+            >
+              Item health issues detected.
+            </Alert>
+          </div>
+        )}
+
         {/* Campaign Form Content */}
         <div className={`px-6 py-6 space-y-6 ${!isMartyMinimized ? 'pr-[457px]' : ''}`}>
           {/* General Information Card */}
