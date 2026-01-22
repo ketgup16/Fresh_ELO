@@ -270,7 +270,9 @@ export default function Campaign() {
             </span>
           </div>
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-[#2E2F32]">Campaign creation</h1>
+            <h1 className="text-2xl font-bold text-[#2E2F32]">
+              {isEditMode ? campaignName : 'Campaign creation'}
+            </h1>
             <div className="flex gap-4">
               <Button variant="outline" className="px-6 h-10 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] font-bold hover:bg-gray-50">
                 Delete
