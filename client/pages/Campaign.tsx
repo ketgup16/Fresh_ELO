@@ -13,11 +13,17 @@ import SponsoredVideosCard from "../components/icons/SponsoredVideosCard";
 
 export default function Campaign() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [showMartyPanel] = useState(true);
   const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
   const [openAlertPopover, setOpenAlertPopover] = useState<number | null>(null);
+
+  // Extract campaign data from navigation state
+  const campaignName = location.state?.campaignName || 'New Campaign';
+  const campaignId = location.state?.campaignId || null;
+  const isEditMode = !!location.state?.campaignName;
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
