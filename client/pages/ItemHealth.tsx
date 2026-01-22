@@ -558,7 +558,13 @@ export default function ItemHealth() {
                                 </p>
                                 <div className="flex flex-col gap-2">
                                   <div className="h-px bg-[#E3E4E5]"></div>
-                                  <div className="flex justify-end">
+                                  <div className="flex items-center justify-between">
+                                    <a
+                                      href="/reports/item-health"
+                                      className="text-sm text-[#0071CE] underline hover:no-underline cursor-pointer"
+                                    >
+                                      View item health page
+                                    </a>
                                     <button className="flex items-center gap-2 h-8 px-3 rounded-full border border-[#2E2F32] bg-white text-sm font-bold text-[#2E2F32] hover:bg-gray-50 transition-colors">
                                       Take action
                                       <ExternalLink className="w-4 h-4" />
