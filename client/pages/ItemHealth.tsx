@@ -551,6 +551,8 @@ export default function ItemHealth() {
                                     ? "This item was recently disabled in XX ad group and is no longer getting promoted. This may negatively affect your campaign performance."
                                     : idx === 3
                                     ? "The OLQ score of this item dropped over 10% because of XX and XX. This may negatively affect the ROAS of your campaign."
+                                    : idx === 4
+                                    ? "Your OLQ score is low because of XX(shipping) and XX(poor customer ratings), this may negatively affect you ROAS performance."
                                     : "The price of this item was significantly increased. This may negatively affect your campaign performance."
                                   }
                                 </p>
