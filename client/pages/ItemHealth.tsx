@@ -545,7 +545,10 @@ export default function ItemHealth() {
                             >
                               <div className="flex flex-col gap-4">
                                 <p className="text-sm text-[#2E2F32] leading-[1.43]">
-                                  The price of this item was significantly increased. This may negatively affect your campaign performance.
+                                  {idx === 0
+                                    ? "This item's Buy box win rate dropped significantly. This may negatively affect your campaign performance."
+                                    : "The price of this item was significantly increased. This may negatively affect your campaign performance."
+                                  }
                                 </p>
                                 <div className="flex flex-col gap-2">
                                   <div className="h-px bg-[#E3E4E5]"></div>
