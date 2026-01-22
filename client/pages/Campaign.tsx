@@ -737,6 +737,13 @@ export default function Campaign() {
                       {['Clorox wipes', 'Clorox tilex', 'Clorox tabs'].map((item, idx) => {
                         const ids = ['13246752', '18972432', '18265631'];
                         const showAlert = idx < 2; // Show alert for first two items
+
+                        // Different alert messages for each item
+                        const alertMessages = [
+                          "The OLQ score of this item dropped over 10% because of low stock availability and poor content quality. This may negatively affect the ROAS of your campaign.",
+                          "This item was recently disabled in SpookySoaps ad group and is no longer getting promoted. This may negatively affect your campaign performance."
+                        ];
+
                         return (
                           <div key={idx} className="flex items-center gap-3 px-4 py-2 border-b border-[#E3E4E5]">
                             <input type="checkbox" className="w-4 h-4 rounded border border-black" />
@@ -745,9 +752,31 @@ export default function Campaign() {
                               <div className="flex items-center gap-1">
                                 <div className="text-xs text-[#2E2F32] leading-tight">{item}</div>
                                 {showAlert && (
-                                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                                    <path d="M7 0C10.866 0 14 3.13401 14 7C14 10.866 10.866 14 7 14C3.13401 14 0 10.866 0 7C0 3.13401 3.13401 0 7 0ZM7 1.2002C3.79675 1.2002 1.2002 3.79675 1.2002 7C1.2002 10.2033 3.79675 12.7998 7 12.7998C10.2033 12.7998 12.7998 10.2033 12.7998 7C12.7998 3.79675 10.2033 1.2002 7 1.2002ZM7 9.89844C7.33224 9.89844 7.60156 10.1678 7.60156 10.5C7.60156 10.8322 7.33224 11.1016 7 11.1016C6.66776 11.1016 6.39844 10.8322 6.39844 10.5C6.39844 10.1678 6.66776 9.89844 7 9.89844ZM7 2.90039C7.2981 2.90039 7.54514 3.11744 7.5918 3.40234L7.59961 3.5V8.64062C7.59961 8.972 7.33137 9.24023 7 9.24023C6.70187 9.24023 6.45483 9.02322 6.4082 8.73828L6.40039 8.64062V3.5C6.40039 3.16863 6.66863 2.90039 7 2.90039Z" fill="#9B1419"/>
-                                  </svg>
+                                  <Popover open={openAlertPopover === idx} onOpenChange={(open) => setOpenAlertPopover(open ? idx : null)}>
+                                    <PopoverTrigger asChild>
+                                      <button className="flex-shrink-0 hover:opacity-80 transition-opacity">
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M7 0C10.866 0 14 3.13401 14 7C14 10.866 10.866 14 7 14C3.13401 14 0 10.866 0 7C0 3.13401 3.13401 0 7 0ZM7 1.2002C3.79675 1.2002 1.2002 3.79675 1.2002 7C1.2002 10.2033 3.79675 12.7998 7 12.7998C10.2033 12.7998 12.7998 10.2033 12.7998 7C12.7998 3.79675 10.2033 1.2002 7 1.2002ZM7 9.89844C7.33224 9.89844 7.60156 10.1678 7.60156 10.5C7.60156 10.8322 7.33224 11.1016 7 11.1016C6.66776 11.1016 6.39844 10.8322 6.39844 10.5C6.39844 10.1678 6.66776 9.89844 7 9.89844ZM7 2.90039C7.2981 2.90039 7.54514 3.11744 7.5918 3.40234L7.59961 3.5V8.64062C7.59961 8.972 7.33137 9.24023 7 9.24023C6.70187 9.24023 6.45483 9.02322 6.4082 8.73828L6.40039 8.64062V3.5C6.40039 3.16863 6.66863 2.90039 7 2.90039Z" fill="#9B1419"/>
+                                        </svg>
+                                      </button>
+                                    </PopoverTrigger>
+                                    <PopoverContent
+                                      className="w-[421px] p-4 bg-white shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] border border-[#E3E4E5] rounded"
+                                      align="start"
+                                      side="bottom"
+                                      sideOffset={8}
+                                    >
+                                      <div className="flex flex-col gap-3">
+                                        <p className="text-sm text-[#2E2F32] leading-5">
+                                          {alertMessages[idx]}
+                                        </p>
+                                        <button className="flex items-center justify-center gap-2 h-10 px-4 rounded-full bg-[#0053E2] text-white text-sm font-bold hover:bg-[#0046BD] transition-colors w-fit">
+                                          Take action
+                                          <ExternalLink className="w-4 h-4" />
+                                        </button>
+                                      </div>
+                                    </PopoverContent>
+                                  </Popover>
                                 )}
                               </div>
                             </div>
