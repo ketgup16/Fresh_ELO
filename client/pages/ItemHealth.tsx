@@ -545,7 +545,7 @@ export default function ItemHealth() {
                             >
                               <div className="flex flex-col gap-4">
                                 <p className="text-sm text-[#2E2F32] leading-[1.43]">
-                                  your OLQ score is low because of xx, this may negatively affect you ROAS performance.
+                                  The price of this item was significantly increased. This may negatively affect your campaign performance.
                                 </p>
                                 <div className="flex flex-col gap-2">
                                   <div className="h-px bg-[#E3E4E5]"></div>
