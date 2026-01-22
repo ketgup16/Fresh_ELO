@@ -124,6 +124,7 @@ export default function ItemHealth() {
       adGroupIds: ["4934907"],
       olq: "72%",
       primaryVariant: "875633804",
+      itemStatus: "Published",
       productDetailPageViewsToday: 4543,
       productDetailPageViewsLast7Days: 57267,
       itemAvailableToday: "99.68%",
