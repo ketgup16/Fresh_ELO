@@ -5,6 +5,7 @@ import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Button } from "../components/ui/button";
+import { OLQTag } from "../components/ui/olq-tag";
 import CleaningSpray from "../components/icons/CleaningSpray";
 import DishSoap from "../components/icons/DishSoap";
 import PaperTowels from "../components/icons/PaperTowels";
@@ -72,29 +73,6 @@ export default function OmniROAS() {
     }
   };
 
-  const getOLQStyle = (olq: string) => {
-    const percentage = parseFloat(olq);
-
-    if (percentage < 50) {
-      return {
-        backgroundColor: '#FBD0CC',
-        color: '#EA1100',
-        textAlign: 'center' as const,
-      };
-    } else if (percentage < 80) {
-      return {
-        backgroundColor: '#FFF9E6',
-        color: '#995213',
-        textAlign: 'center' as const,
-      };
-    } else {
-      return {
-        backgroundColor: '#E8F5E9',
-        color: '#2A8703',
-        textAlign: 'center' as const,
-      };
-    }
-  };
 
   const itemHealthData: ItemHealthData[] = [
     {
@@ -559,12 +537,7 @@ export default function OmniROAS() {
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.buyBoxWinRateToday}</td>
                       <td className="px-2 py-2 text-sm text-[#2E2F32]">{item.buyBoxWinRateLast7Days}</td>
                       <td className="px-2 py-2">
-                        <div
-                          className="inline-block px-3 py-1 text-sm font-bold rounded"
-                          style={getOLQStyle(item.olq)}
-                        >
-                          {item.olq}
-                        </div>
+                        <OLQTag value={item.olq} size="md" />
                       </td>
                     </tr>
                   ))}
