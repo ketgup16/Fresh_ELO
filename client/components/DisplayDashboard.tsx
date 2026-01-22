@@ -612,10 +612,10 @@ export default function DisplayDashboard() {
             </div>
           </div>
 
-          <div className="w-px bg-[#E3E4E5]"></div>
+          <div className="w-px bg-[#E3E4E5] hidden sm:block"></div>
 
           {/* Total attributed transactions */}
-          <div className="flex-1 flex items-center p-2">
+          <div className="flex-1 flex items-center min-w-[200px]">
             <div className="flex-1 bg-white rounded px-2 py-1">
               <div className="flex items-center gap-1 mb-1">
                 <span className="text-sm text-[#2E2F32]">Total attributed transactions</span>
@@ -639,10 +639,10 @@ export default function DisplayDashboard() {
             </div>
           </div>
 
-          <div className="w-px bg-[#E3E4E5]"></div>
+          <div className="w-px bg-[#E3E4E5] hidden sm:block"></div>
 
           {/* Total attributed units */}
-          <div className="flex-1 flex items-center p-2">
+          <div className="flex-1 flex items-center min-w-[200px]">
             <div className="flex-1 bg-white rounded px-2 py-1">
               <div className="flex items-center gap-1 mb-1">
                 <span className="text-sm text-[#2E2F32]">Total attributed units</span>
