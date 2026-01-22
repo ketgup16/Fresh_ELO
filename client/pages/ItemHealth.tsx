@@ -5,7 +5,7 @@ import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Button } from "../components/ui/button";
-import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
+import { Popover, PopoverTrigger, PopoverContent, PopoverArrow } from "../components/ui/popover";
 import { OLQTag } from "../components/ui/olq-tag";
 import CleaningSpray from "../components/icons/CleaningSpray";
 import DishSoap from "../components/icons/DishSoap";
@@ -541,8 +541,10 @@ export default function ItemHealth() {
                             <PopoverContent
                               align="start"
                               side="bottom"
+                              sideOffset={8}
                               className="w-[421px] p-4 bg-white rounded border border-[#E3E4E5] shadow-[0_5px_10px_rgba(0,0,0,0.15),0_-1px_4px_rgba(0,0,0,0.10)]"
                             >
+                              <PopoverArrow className="fill-white" style={{ filter: 'drop-shadow(0px -1px 1px rgba(0,0,0,0.1))' }} />
                               <div className="flex flex-col gap-4">
                                 <p className="text-sm text-[#2E2F32] leading-[1.43]">
                                   {idx === 0
