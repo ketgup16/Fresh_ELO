@@ -76,7 +76,7 @@ import { Button } from '@/components/ui/Button';
 >
   Click me
 </Button>
-```
+
 
 **Why tokens matter:**
 - ✅ Ensures brand consistency across the app
@@ -189,31 +189,93 @@ import { Select, SelectTrigger, SelectContent } from '@/components/ui/select';
 
 ### Living Design 3.5 Token Usage
 
-When styling components, ALWAYS use LD semantic tokens:
+**CRITICAL**: All components MUST use LD semantic tokens. NEVER use hard-coded colors or values.
+
+#### Button Component Tokens (Built-in)
+
+The Button component (`client/components/ui/Button.tsx`) uses these tokens internally:
+
+**Action Colors (Primary Button)**:
+```css
+/* These are used inside Button.module.css - DO NOT override */
+background: var(--ld-semantic-color-action-fill-primary);           /* #0071DC - Walmart blue */
+background-hover: var(--ld-semantic-color-action-fill-primary-hovered);  /* #0060B8 */
+background-pressed: var(--ld-semantic-color-action-fill-primary-pressed); /* #004C94 */
+color: var(--ld-semantic-color-action-text-on-fill-primary);        /* #FFFFFF */
+```
+
+**Action Colors (Secondary Button)**:
+```css
+background: var(--ld-semantic-color-action-fill-secondary);         /* #FFFFFF */
+border: var(--ld-semantic-color-action-border-secondary);           /* #74767C */
+color: var(--ld-semantic-color-action-text-secondary);              /* #2E2F32 */
+```
+
+**Action Colors (Destructive Button)**:
+```css
+background: var(--ld-semantic-color-action-fill-destructive);       /* #ea1100 */
+background-hover: var(--ld-semantic-color-action-fill-destructive-hovered);
+```
+
+**Focus State**:
+```css
+outline: var(--ld-semantic-color-action-focus-outline);             /* #0071DC */
+```
+
+#### General Token Usage
+
+When creating NEW components (only if absolutely necessary), use these tokens:
 
 **Colors**:
 ```css
-/* ✅ CORRECT */
+/* ✅ CORRECT - Always use semantic tokens */
 background: var(--ld-semantic-color-action-fill-primary);
 color: var(--ld-semantic-color-text-primary);
 border-color: var(--ld-semantic-color-border-strong);
 
-/* ❌ WRONG */
-background: #0071DC;
-color: #2E2F32;
-border-color: #BABBBE;
+/* ❌ WRONG - Never hard-code colors */
+background: #0071DC;      /* Use var(--ld-semantic-color-action-fill-primary) */
+color: #2E2F32;           /* Use var(--ld-semantic-color-text-primary) */
+border-color: #BABBBE;    /* Use var(--ld-semantic-color-border-strong) */
 ```
 
 **Typography**:
 ```css
 /* ✅ CORRECT */
-font-family: var(--ld-semantic-font-family-sans);
-font-size: 14px; /* Use documented sizes */
+font-family: var(--ld-semantic-font-family-sans);  /* Everyday Sans UI */
+font-weight: 700;                                   /* Bold for buttons */
+font-size: 14px;  /* Small */
+font-size: 16px;  /* Medium */
+font-size: 18px;  /* Large */
 
 /* ❌ WRONG */
-font-family: 'Arial';
-font-size: 13px; /* Non-standard size */
+font-family: 'Arial', sans-serif;
+font-size: 13px;  /* Non-standard size */
 ```
+
+**Spacing (for ButtonGroup and layouts)**:
+```css
+/* ✅ CORRECT */
+gap: var(--ld-semantic-spacing-3, 12px);   /* Standard gap */
+gap: var(--ld-semantic-spacing-2, 8px);    /* Tight gap */
+
+/* ❌ WRONG */
+gap: 10px;  /* Arbitrary value */
+```
+
+#### Complete Button Token Reference
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--ld-semantic-color-action-fill-primary` | #0071DC | Primary button background |
+| `--ld-semantic-color-action-fill-primary-hovered` | #0060B8 | Primary button hover |
+| `--ld-semantic-color-action-fill-primary-pressed` | #004C94 | Primary button active |
+| `--ld-semantic-color-action-fill-secondary` | #FFFFFF | Secondary button background |
+| `--ld-semantic-color-action-border-secondary` | #74767C | Secondary button border |
+| `--ld-semantic-color-action-fill-destructive` | #ea1100 | Destructive button background |
+| `--ld-semantic-color-action-focus-outline` | #0071DC | Focus indicator |
+| `--ld-semantic-font-family-sans` | Everyday Sans UI | All buttons |
+| `--ld-semantic-spacing-3` | 12px | Button group gap |
 
 ### Enforcement
 
