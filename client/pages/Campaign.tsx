@@ -258,9 +258,16 @@ export default function Campaign() {
           {/* Page Header */}
           <div className="bg-white border-b border-[#E3E4E5] px-6 py-6">
           <div className="flex items-center gap-1 text-sm mb-2">
-            <span className="text-[#2E2F32] underline cursor-pointer">Campaigns</span>
+            <span
+              className="text-[#2E2F32] underline cursor-pointer hover:no-underline"
+              onClick={() => navigate('/all-campaigns')}
+            >
+              Campaigns
+            </span>
             <span className="text-[#2E2F32]">/</span>
-            <span className="text-[#2E2F32]">Create Campaign</span>
+            <span className="text-[#2E2F32]">
+              {isEditMode ? campaignName : 'Create Campaign'}
+            </span>
           </div>
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-[#2E2F32]">Campaign creation</h1>
