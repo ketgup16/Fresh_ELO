@@ -1109,7 +1109,19 @@ export default function AllCampaigns() {
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline truncate">
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              navigate('/campaign', {
+                                state: {
+                                  campaignName: campaign.name,
+                                  campaignId: campaign.id
+                                }
+                              });
+                            }}
+                            className="text-sm text-[#2E2F32] underline hover:no-underline truncate cursor-pointer"
+                          >
                             {campaign.name}
                           </a>
                         </div>
