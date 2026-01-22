@@ -21,6 +21,7 @@ interface ItemHealthData {
   adGroupIds: string[];
   olq: string;
   primaryVariant: string;
+  itemStatus: string;
   productDetailPageViewsToday: number;
   productDetailPageViewsLast7Days: number;
   itemAvailableToday: string;
