@@ -294,10 +294,16 @@ export default function Campaign() {
               variant="error"
               action={
                 <a
-                  href="#"
+                  href="#added-items-section"
                   onClick={(e) => {
                     e.preventDefault();
-                    navigate('/seller-center');
+                    const targetElement = document.getElementById('added-items-section');
+                    if (targetElement) {
+                      targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                      });
+                    }
                   }}
                 >
                   View details
