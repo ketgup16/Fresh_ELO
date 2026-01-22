@@ -45,20 +45,46 @@ Before creating ANY new UI component, you MUST:
 
 #### Buttons
 - **ALWAYS use**: `client/components/ui/Button.tsx` (uppercase B)
-- **NEVER create**: Custom button elements with inline styles
+- **NEVER create**: Custom button elements with inline styles or hard-coded colors
+- **MUST use LD 3.5 tokens**: Button component internally uses all LD semantic tokens
 - **Variants**: `primary`, `secondary`, `tertiary`, `destructive`
 - **Sizes**: `small`, `medium`, `large`
 - **Import**: `import { Button } from '@/components/ui/Button'`
 
+**Token Usage** (Button component uses these internally - DO NOT override):
+- Colors: `var(--ld-semantic-color-action-fill-primary)`, `var(--ld-semantic-color-action-fill-secondary)`, etc.
+- Typography: `var(--ld-semantic-font-family-sans)`
+- Focus: `var(--ld-semantic-color-action-focus-outline)`
+- Border radius: `9999px` (pill-shaped, per LD 3.5 spec)
+
 Example:
 
-// ✅ CORRECT
+// ✅ CORRECT - Uses Button component with tokens
 import { Button } from '@/components/ui/Button';
 <Button variant="primary" size="medium">Click me</Button>
 
-// ❌ WRONG - Never do this
+// ❌ WRONG - Custom button with hard-coded colors
 <button className="bg-blue-500 px-4 py-2 rounded-full">Click me</button>
+
+// ❌ WRONG - Hard-coded Walmart blue
+<button className="bg-[#0071DC] text-white rounded-full">Click me</button>
+
+// ❌ WRONG - Overriding Button tokens
+<Button
+  variant="primary"
+  className="bg-[#0071DC]"  // Never override tokens!
+>
+  Click me
+</Button>
 ```
+
+**Why tokens matter:**
+- ✅ Ensures brand consistency across the app
+- ✅ Enables theme switching (light/dark mode)
+- ✅ Centralizes design updates (change once, updates everywhere)
+- ✅ Maintains Living Design 3.5 compliance
+- ❌ Hard-coded colors break the design system
+- ❌ Inline styles bypass the token system
 
 #### Button Groups
 - **ALWAYS use**: `client/components/ui/ButtonGroup.tsx`
