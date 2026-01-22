@@ -733,7 +733,7 @@ export default function Campaign() {
                   </div>
 
                   {/* Right Panel - Added Items */}
-                  <div className="flex-1 flex flex-col">
+                  <div id="added-items-section" className="flex-1 flex flex-col">
                     {/* Header */}
                     <div className="flex items-center justify-between px-4 py-3 bg-[#F8F8F8] border-b border-[#E3E4E5]">
                       <div className="flex items-center gap-1">
