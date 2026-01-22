@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, ExternalLink } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Button } from "../components/ui/Button";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
+import { Alert } from "../components/ui/Alert";
 import SponsoredProductsCard from "../components/icons/SponsoredProductsCard";
 import SponsoredBrandsCard from "../components/icons/SponsoredBrandsCard";
 import SponsoredVideosCard from "../components/icons/SponsoredVideosCard";
