@@ -67,23 +67,23 @@ This document summarizes the consolidation of button components across the appli
 --ld-semantic-color-action-focus-outline
 ```
 
-#### File: `client/components/ui/button.tsx` (Backward Compatibility Alias)
+#### File: `client/components/ui/button.tsx` (DELETED)
 
-**Status**: ✅ Re-exports from `Button.tsx` for backward compatibility
+**Status**: ❌ File has been deleted - no longer needed
 
-**Purpose**:
-- Provides a migration path for existing code
-- Re-exports `Button` and `ButtonGroup` from uppercase files
-- Includes deprecated `buttonVariants` for components that use CVA composition
-- Marked with clear deprecation warnings
+**What happened**:
+- All imports have been migrated to uppercase `Button.tsx`
+- `buttonVariants` CVA export moved to `Button.tsx` for Shadcn compatibility
+- Updated 5 Shadcn components: calendar, alert-dialog, pagination, sidebar, carousel
+- No code was using the lowercase import path
 
-**Migration Path**:
+**All imports now use**:
 ```tsx
-// Old import (still works but deprecated)
-import { Button } from '@/components/ui/button';
+// ✅ The ONLY correct import
+import { Button, buttonVariants } from '@/components/ui/Button';
 
-// New import (preferred)
-import { Button } from '@/components/ui/Button';
+// ❌ This no longer exists!
+import { Button } from '@/components/ui/button';
 ```
 
 ### 2. ButtonGroup Enhancement
@@ -145,8 +145,8 @@ import { Button } from '@/components/ui/Button';
 
 | Component | Location | Status | Use Case |
 |-----------|----------|--------|----------|
-| `Button.tsx` | `client/components/ui/` | ✅ Primary | All button needs |
-| `button.tsx` | `client/components/ui/` | ⚠️ Alias | Backward compatibility only |
+| `Button.tsx` | `client/components/ui/` | ✅ Primary | All button needs + buttonVariants export |
+| `button.tsx` | `client/components/ui/` | ❌ DELETED | No longer exists |
 | `ButtonGroup.tsx` | `client/components/ui/` | ✅ Active | Button layouts |
 
 ### Button Variants
