@@ -646,7 +646,7 @@ export default function Campaign() {
               <div className="flex-1 px-6 pb-6 overflow-hidden">
                 <div className="border border-[#E3E4E5] rounded h-full flex">
                   {/* Left Panel - Suggested Items */}
-                  <div className="w-[378px] flex flex-col border-r border-[#E3E4E5]">
+                  <div className="flex-1 flex flex-col border-r border-[#E3E4E5]">
                     {/* Header */}
                     <div className="flex items-center justify-between px-3 py-3 bg-[#F8F8F8] border-b border-[#E3E4E5]">
                       <div className="flex items-center gap-1">
