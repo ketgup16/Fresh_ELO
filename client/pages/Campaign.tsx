@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { Button } from "../components/ui/button";
+import { Button } from "../components/ui/Button";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
 import SponsoredProductsCard from "../components/icons/SponsoredProductsCard";
 import SponsoredBrandsCard from "../components/icons/SponsoredBrandsCard";

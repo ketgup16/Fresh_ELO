@@ -3,7 +3,7 @@ import { ChevronDown, Upload, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
-import { Button } from "../components/ui/button";
+import { Button } from "../components/ui/Button";
 
 export default function SellerCenter() {
   const navigate = useNavigate();
