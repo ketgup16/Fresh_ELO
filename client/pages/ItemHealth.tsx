@@ -547,6 +547,8 @@ export default function ItemHealth() {
                                 <p className="text-sm text-[#2E2F32] leading-[1.43]">
                                   {idx === 0
                                     ? "This item's Buy box win rate dropped significantly. This may negatively affect your campaign performance."
+                                    : idx === 2
+                                    ? "This item was recently disabled in XX ad group and is no longer getting promoted. This may negatively affect your campaign performance."
                                     : "The price of this item was significantly increased. This may negatively affect your campaign performance."
                                   }
                                 </p>
