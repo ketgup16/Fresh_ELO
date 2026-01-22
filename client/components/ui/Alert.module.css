@@ -44,7 +44,7 @@
 
 /* Text content */
 .alert__text {
-  flex: 1;
+  flex: 0 1 auto;
 }
 
 /* Action button/link */
