@@ -56,22 +56,56 @@ Buttons should use documented sizes only (names may differ in your API).
 - Prefer component defaults (Button should be token-wired for color, typography, spacing, radius).
 - Only use tokens for layout around the Button (spacing/gaps), not for restyling the Button.
 
-## React usage (example)
-Update import path after wiring in `guidelines/components/overview-components.md`.
+## React usage
+
+**IMPORTANT**: Always import from the uppercase path for Living Design 3.5 compliance.
 
 ```tsx
-import { Button } from "REPLACE_ME_COMPONENT_IMPORT_PATH";
+import { Button } from '@/components/ui/Button';
+import { ButtonGroup } from '@/components/ui/ButtonGroup';
 
 export function Example() {
   return (
     <>
-      <Button variant="primary">Save</Button>
-      <Button variant="secondary">Cancel</Button>
-      {/* If your API supports destructive: */}
-      {/* <Button variant="destructive">Delete</Button> */}
+      {/* Single button */}
+      <Button variant="primary" size="medium">Save</Button>
+
+      {/* Button group */}
+      <ButtonGroup>
+        <Button variant="secondary" size="small">Cancel</Button>
+        <Button variant="primary" size="small">Save</Button>
+      </ButtonGroup>
+
+      {/* Button with icon */}
+      <Button
+        variant="primary"
+        leading={<PlusIcon />}
+      >
+        Add Item
+      </Button>
+
+      {/* Link button */}
+      <Button
+        href="/campaign"
+        variant="primary"
+      >
+        Create Campaign
+      </Button>
+
+      {/* Destructive button */}
+      <Button variant="destructive">Delete</Button>
     </>
   );
 }
+```
+
+**DO NOT** import from lowercase `button` - it exists only for backward compatibility:
+```tsx
+// ❌ WRONG (deprecated)
+import { Button } from '@/components/ui/button';
+
+// ✅ CORRECT
+import { Button } from '@/components/ui/Button';
 ```
 
 ## Best practices
