@@ -343,27 +343,27 @@ export default function Campaign() {
             <div className="mb-8">
               <h3 className="text-sm font-bold text-[#514E4E] mb-4">Select campaign type:</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Button variant="outline" className="flex flex-col items-stretch gap-3 p-4 h-auto border-2 border-[#0071DC] rounded bg-white hover:bg-gray-50 text-left">
+                <div className="flex flex-col gap-4 p-6 h-auto border-2 border-[#0071DC] rounded bg-white hover:bg-gray-50 cursor-pointer">
                   <div className="text-xs font-bold text-[#515357] leading-4">Sponsored Products</div>
                   <div className="text-sm text-[#515357] leading-5">Get your items included in relevant results when customers search Walmart's site and app.</div>
                   <div className="w-full mt-auto">
                     <SponsoredProductsCard />
                   </div>
-                </Button>
-                <Button variant="outline" className="flex flex-col items-stretch gap-3 p-4 h-auto border border-[#E3E4E5] rounded bg-white hover:border-[#0071DC] hover:bg-gray-50 text-left">
+                </div>
+                <div className="flex flex-col gap-4 p-6 h-auto border border-[#E3E4E5] rounded bg-white hover:border-[#0071DC] hover:bg-gray-50 cursor-pointer">
                   <div className="text-xs font-bold text-[#515357] leading-4">Sponsored Brands</div>
                   <div className="text-sm text-[#515357] leading-5">This premium ad sends your brand and products to the top of relevant results when customers search our site & app.</div>
                   <div className="w-full mt-auto">
                     <SponsoredBrandsCard />
                   </div>
-                </Button>
-                <Button variant="outline" className="flex flex-col items-stretch gap-3 p-4 h-auto border border-[#E3E4E5] rounded bg-white hover:border-[#0071DC] hover:bg-gray-50 text-left">
+                </div>
+                <div className="flex flex-col gap-4 p-6 h-auto border border-[#E3E4E5] rounded bg-white hover:border-[#0071DC] hover:bg-gray-50 cursor-pointer">
                   <div className="text-xs font-bold text-[#515357] leading-4">Sponsored Videos</div>
                   <div className="text-sm text-[#515357] leading-5">Have your ads show up in the premium video ad slot.</div>
                   <div className="w-full mt-auto">
                     <SponsoredVideosCard />
                   </div>
-                </Button>
+                </div>
               </div>
             </div>
             <div>
