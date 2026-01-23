@@ -342,7 +342,7 @@ export default function Campaign() {
             <h2 className="text-xl font-semibold text-[#2E2F32] mb-6">Targeting</h2>
             <div className="mb-8">
               <h3 className="text-sm font-bold text-[#514E4E] mb-4">Select campaign type:</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="flex flex-col gap-6">
                 <Button variant="outline" className="flex flex-col items-start gap-2 pt-4 h-auto border-2 border-[#0071DC] rounded bg-white hover:bg-gray-50 text-left">
                   <div className="text-xs font-bold text-[#515357] leading-4 px-4">Sponsored Products</div>
                   <div className="text-sm text-[#515357] leading-5 px-4">Get your items included in relevant results when customers search Walmart's site and app.</div>
