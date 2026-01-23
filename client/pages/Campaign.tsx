@@ -489,13 +489,13 @@ export default function Campaign() {
 
             {/* Content */}
             <div className="px-6 pb-6">
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-4">
                 {/* Fields Section */}
                 <div className="flex flex-col gap-5 flex-1">
                   {/* Placement Row */}
-                  <div className="flex items-center gap-4">
-                    <span className="text-sm font-semibold text-[#2E2F32] leading-5 w-16 flex-shrink-0">Placement</span>
-                    <div className="flex gap-4 flex-1">
+                  <div className="flex flex-wrap items-start gap-4">
+                    <span className="text-sm font-semibold text-[#2E2F32] leading-5 w-full md:w-16 flex-shrink-0">Placement</span>
+                    <div className="flex flex-wrap gap-4 flex-1">
                       {/* Buy-Box Field */}
                       <div className="flex flex-col flex-1 min-w-0">
                         <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Buy-Box</label>
@@ -525,7 +525,7 @@ export default function Campaign() {
                   </div>
 
                   {/* Second Placement Row */}
-                  <div className="flex gap-4 pl-20">
+                  <div className="flex flex-wrap gap-4 pl-0 md:pl-20">
                     {/* Home page Field */}
                     <div className="flex flex-col flex-1 min-w-0">
                       <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Home page</label>
@@ -554,9 +554,9 @@ export default function Campaign() {
                   </div>
 
                   {/* Platform Row */}
-                  <div className="flex items-center gap-4">
-                    <span className="text-sm font-semibold text-[#2E2F32] leading-5 w-16 flex-shrink-0">Platform</span>
-                    <div className="flex gap-4 flex-1">
+                  <div className="flex flex-wrap items-start gap-4">
+                    <span className="text-sm font-semibold text-[#2E2F32] leading-5 w-full md:w-16 flex-shrink-0">Platform</span>
+                    <div className="flex flex-wrap gap-4 flex-1">
                       {/* Desktop Field */}
                       <div className="flex flex-col flex-1 min-w-0">
                         <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Desktop</label>
