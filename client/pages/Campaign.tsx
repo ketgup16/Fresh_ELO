@@ -320,7 +320,7 @@ export default function Campaign() {
           {/* General Information Card */}
           <div className="bg-white rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold text-[#2E2F32] mb-4">General information</h2>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-xs font-bold text-[#2E2F32] mb-1">Campaign name*</label>
                 <input
@@ -342,7 +342,7 @@ export default function Campaign() {
             <h2 className="text-xl font-semibold text-[#2E2F32] mb-6">Targeting</h2>
             <div className="mb-8">
               <h3 className="text-sm font-bold text-[#514E4E] mb-4">Select campaign type:</h3>
-              <div className="grid grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <Button variant="outline" className="flex flex-col items-start gap-2 pt-4 h-auto border-2 border-[#0071DC] rounded bg-white hover:bg-gray-50 text-left">
                   <div className="text-xs font-bold text-[#515357] leading-4 px-4">Sponsored Products</div>
                   <div className="text-sm text-[#515357] leading-5 px-4">Get your items included in relevant results when customers search Walmart's site and app.</div>
@@ -416,9 +416,9 @@ export default function Campaign() {
             <div className="px-6 pb-6">
               <div className="flex flex-col gap-6">
                 {/* Fields Row */}
-                <div className="flex gap-6">
+                <div className="flex flex-wrap gap-6">
                   {/* Start Date Field */}
-                  <div className="flex flex-col w-[296px]">
+                  <div className="flex flex-col w-full md:w-[296px]">
                     <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Start date</label>
                     <div className="relative">
                       <input
@@ -437,7 +437,7 @@ export default function Campaign() {
                   </div>
 
                   {/* Daily Budget Field */}
-                  <div className="flex flex-col w-[296px]">
+                  <div className="flex flex-col w-full md:w-[296px]">
                     <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Daily budget</label>
                     <div className="relative">
                       <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
@@ -454,7 +454,7 @@ export default function Campaign() {
                   </div>
 
                   {/* Help Text */}
-                  <div className="flex gap-4 w-[296px] items-start">
+                  <div className="flex gap-4 w-full md:w-[296px] items-start">
                     <div className="w-px h-full bg-[#E3E4E5] flex-shrink-0"></div>
                     <p className="text-sm text-[#515357] leading-5 flex-1">
                       If your campaign spends all of the daily budget, ads will stop serving. If there is budget remaining, it will roll over.
