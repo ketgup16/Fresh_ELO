@@ -113,7 +113,7 @@ export default function AllCampaigns() {
       roasTarget: "3.25",
       recommendedRoasTarget: "2.50",
       biddingIcon: true,
-      biddingStatus: "Item health issues detected",
+      biddingStatus: "Optimizing",
       biddingStatusDate: "Since 01/05/2025",
       campaignType: "Sponsored Products (Auto)",
       avgCapOutTime: "08:00am PST",
