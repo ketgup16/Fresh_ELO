@@ -20,10 +20,16 @@
 
   /* Action/Interactive colors (for buttons and interactive elements) */
   /* Primary actions */
-  --ld-semantic-color-action-fill-primary: var(--ld-primitive-color-blue-100); /* Primary button background */
-  --ld-semantic-color-action-fill-primary-hovered: #0046bd; /* Primary button hover state (darker than blue-100) */
-  --ld-semantic-color-action-fill-primary-pressed: var(--ld-primitive-color-blue-130); /* Primary button active/pressed state */
-  --ld-semantic-color-action-text-on-fill-primary: var(--ld-primitive-color-white, #ffffff); /* Text on primary buttons */
+  --ld-semantic-color-action-fill-primary: var(--ld-primitive-color-blue-100, #0071dc); /* Primary button background */
+  --ld-semantic-color-action-fill-primary-hovered: #0060b8; /* Primary button hover state */
+  --ld-semantic-color-action-fill-primary-focused: var(--ld-primitive-color-blue-100, #0071dc); /* Primary button focused */
+  --ld-semantic-color-action-fill-primary-pressed: var(--ld-primitive-color-blue-130, #004c94); /* Primary button pressed */
+  --ld-semantic-color-action-fill-primary-disabled: var(--ld-primitive-color-blue-40, #b3d7f4); /* Primary button disabled */
+  --ld-semantic-color-action-text-onfill-primary: var(--ld-primitive-color-white, #ffffff); /* Primary button text */
+  --ld-semantic-color-action-text-onfill-primary-hovered: var(--ld-primitive-color-white, #ffffff); /* Primary button text hover */
+  --ld-semantic-color-action-text-onfill-primary-focused: var(--ld-primitive-color-white, #ffffff); /* Primary button text focused */
+  --ld-semantic-color-action-text-onfill-primary-pressed: var(--ld-primitive-color-white, #ffffff); /* Primary button text pressed */
+  --ld-semantic-color-action-text-onfill-primary-disabled: var(--ld-primitive-color-white, #ffffff); /* Primary button text disabled */
 
   /* Secondary actions */
   --ld-semantic-color-action-fill-secondary: var(--ld-primitive-color-white, #ffffff); /* Secondary button background */
