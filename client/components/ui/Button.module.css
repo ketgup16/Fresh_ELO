@@ -92,7 +92,7 @@
 /* Tertiary Variant */
 .button--variant-tertiary {
   background-color: var(--ld-semantic-color-action-fill-tertiary);
-  color: var(--ld-semantic-color-action-text-tertiary);
+  color: var(--ld-semantic-color-action-text-onfill-tertiary);
   border-width: 1px;
   border-color: var(--ld-semantic-color-action-border-tertiary);
 }
@@ -100,13 +100,19 @@
 .button--variant-tertiary:hover:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-tertiary-hovered);
   border-color: var(--ld-semantic-color-action-border-tertiary-hovered);
-  color: var(--ld-semantic-color-action-text-tertiary-hovered);
+  color: var(--ld-semantic-color-action-text-onfill-tertiary-hovered);
 }
 
 .button--variant-tertiary:active:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-tertiary-pressed);
   border-color: var(--ld-semantic-color-action-border-tertiary-pressed);
-  color: var(--ld-semantic-color-action-text-tertiary-pressed);
+  color: var(--ld-semantic-color-action-text-onfill-tertiary-pressed);
+}
+
+.button--variant-tertiary:disabled {
+  background-color: var(--ld-semantic-color-action-fill-tertiary-disabled);
+  border-color: var(--ld-semantic-color-action-border-tertiary-disabled);
+  color: var(--ld-semantic-color-action-text-onfill-tertiary-disabled);
 }
 
 /* Destructive Variant */
