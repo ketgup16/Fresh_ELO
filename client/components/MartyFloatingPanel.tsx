@@ -497,14 +497,14 @@ export default function MartyFloatingPanel({
               <Button
                 onClick={() => handleQuickAction('create')}
                 variant="tertiary"
-                className="max-w-[318px] text-sm"
+                UNSAFE_className="max-w-[318px] text-sm"
               >
                 Create campaign
               </Button>
               <Button
                 onClick={() => handleQuickAction('help')}
                 variant="tertiary"
-                className="max-w-[318px] text-sm"
+                UNSAFE_className="max-w-[318px] text-sm"
               >
                 Help & FAQs
               </Button>
@@ -685,21 +685,21 @@ export default function MartyFloatingPanel({
                     <Button
                       onClick={() => handleCampaignTypeSelection('Sponsored Products Automatic')}
                       variant="tertiary"
-                      className="text-sm"
+                      UNSAFE_className="text-sm"
                     >
                       Sponsored Products Automatic
                     </Button>
                     <Button
                       onClick={() => handleCampaignTypeSelection('Sponsored Products Manual')}
                       variant="tertiary"
-                      className="text-sm"
+                      UNSAFE_className="text-sm"
                     >
                       Sponsored Products Manual
                     </Button>
                     <Button
                       onClick={() => handleCampaignTypeSelection('Display Campaign')}
                       variant="tertiary"
-                      className="text-sm"
+                      UNSAFE_className="text-sm"
                     >
                       Display Campaign
                     </Button>
@@ -1108,14 +1108,14 @@ export default function MartyFloatingPanel({
                 <Button
                   onClick={handleSaveAndReview}
                   variant="secondary"
-                  className="text-base"
+                  UNSAFE_className="text-base"
                 >
                   Save and review
                 </Button>
                 <Button
                   onClick={handleLaunchCampaign}
                   variant="primary"
-                  className="text-base"
+                  UNSAFE_className="text-base"
                 >
                   Launch campaign
                 </Button>
@@ -1142,13 +1142,13 @@ export default function MartyFloatingPanel({
 
               {/* Prompt Suggestions */}
               <div className="flex w-full flex-col items-start gap-2 bg-white px-4">
-                <Button variant="tertiary" className="max-w-[393px] text-sm">
+                <Button variant="tertiary" UNSAFE_className="max-w-[393px] text-sm">
                   What can Marty help me do on this page?
                 </Button>
-                <Button variant="tertiary" className="max-w-[393px] text-sm">
+                <Button variant="tertiary" UNSAFE_className="max-w-[393px] text-sm">
                   How do I set up a Sponsored Products campaign?
                 </Button>
-                <Button variant="tertiary" className="max-w-[393px] text-sm">
+                <Button variant="tertiary" UNSAFE_className="max-w-[393px] text-sm">
                   Which items do you recommend I advertise?
                 </Button>
               </div>
@@ -1235,7 +1235,7 @@ export default function MartyFloatingPanel({
               <Button
                 onClick={() => navigate('/all-campaigns')}
                 variant="tertiary"
-                className="max-w-[318px] text-sm"
+                UNSAFE_className="max-w-[318px] text-sm"
               >
                 View campaign
               </Button>
