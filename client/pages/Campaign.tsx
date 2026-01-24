@@ -554,9 +554,9 @@ export default function Campaign() {
                   </div>
 
                   {/* Platform Row */}
-                  <div className="flex flex-wrap items-start gap-4">
-                    <span className="text-sm font-semibold text-[#2E2F32] leading-5 w-full md:w-16 flex-shrink-0">Platform</span>
-                    <div className="flex flex-wrap gap-4 flex-1">
+                  <div className="flex items-start gap-4">
+                    <span className="text-sm font-semibold text-[#2E2F32] leading-5 w-20 flex-shrink-0">Platform</span>
+                    <div className="flex gap-4 flex-1">
                       {/* Desktop Field */}
                       <div className="flex flex-col flex-1 min-w-0">
                         <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Desktop</label>
