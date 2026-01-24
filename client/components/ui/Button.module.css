@@ -72,7 +72,7 @@
 /* Secondary Variant */
 .button--variant-secondary {
   background-color: var(--ld-semantic-color-action-fill-secondary);
-  color: var(--ld-semantic-color-action-text-secondary);
+  color: var(--ld-semantic-color-action-text-onfill-secondary);
   border-width: 1px;
   border-color: var(--ld-semantic-color-action-border-secondary);
 }
@@ -80,13 +80,19 @@
 .button--variant-secondary:hover:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-secondary-hovered);
   border-color: var(--ld-semantic-color-action-border-secondary-hovered);
-  color: var(--ld-semantic-color-action-text-secondary-hovered);
+  color: var(--ld-semantic-color-action-text-onfill-secondary-hovered);
 }
 
 .button--variant-secondary:active:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-secondary-pressed);
   border-color: var(--ld-semantic-color-action-border-secondary-pressed);
-  color: var(--ld-semantic-color-action-text-secondary-pressed);
+  color: var(--ld-semantic-color-action-text-onfill-secondary-pressed);
+}
+
+.button--variant-secondary:disabled {
+  background-color: var(--ld-semantic-color-action-fill-secondary-disabled);
+  border-color: var(--ld-semantic-color-action-border-secondary-disabled);
+  color: var(--ld-semantic-color-action-text-onfill-secondary-disabled);
 }
 
 /* Tertiary Variant */
