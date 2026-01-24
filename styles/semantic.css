@@ -40,9 +40,12 @@
   --ld-semantic-color-action-fill-tertiary: transparent; /* Tertiary button background */
   --ld-semantic-color-action-fill-tertiary-hovered: var(--ld-primitive-color-blue-10); /* Tertiary button hover */
   --ld-semantic-color-action-fill-tertiary-pressed: var(--ld-primitive-color-blue-10); /* Tertiary button active/pressed */
-  --ld-semantic-color-action-text-tertiary: var(--ld-primitive-color-blue-100); /* Tertiary button text */
-  --ld-semantic-color-action-text-tertiary-hovered: var(--ld-primitive-color-blue-130); /* Tertiary button text hover */
-  --ld-semantic-color-action-text-tertiary-pressed: var(--ld-primitive-color-blue-130); /* Tertiary button text active */
+  --ld-semantic-color-action-border-tertiary: var(--ld-primitive-color-gray-160, #2e2f32); /* Tertiary button border */
+  --ld-semantic-color-action-border-tertiary-hovered: var(--ld-primitive-color-gray-160, #2e2f32); /* Tertiary button border hover */
+  --ld-semantic-color-action-border-tertiary-pressed: var(--ld-primitive-color-gray-160, #2e2f32); /* Tertiary button border pressed */
+  --ld-semantic-color-action-text-tertiary: var(--ld-primitive-color-gray-160, #2e2f32); /* Tertiary button text */
+  --ld-semantic-color-action-text-tertiary-hovered: var(--ld-primitive-color-gray-160, #2e2f32); /* Tertiary button text hover */
+  --ld-semantic-color-action-text-tertiary-pressed: var(--ld-primitive-color-gray-160, #2e2f32); /* Tertiary button text pressed */
 
   /* Destructive actions */
   --ld-semantic-color-action-fill-destructive: var(--ld-primitive-color-red-100, #ea1100); /* Destructive button background */
