@@ -525,7 +525,7 @@ export default function Campaign() {
                   </div>
 
                   {/* Second Placement Row */}
-                  <div className="flex flex-wrap gap-4 pl-0 md:pl-20">
+                  <div className="flex gap-4 pl-24">
                     {/* Home page Field */}
                     <div className="flex flex-col flex-1 min-w-0">
                       <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Home page</label>
