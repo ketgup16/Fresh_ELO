@@ -68,8 +68,14 @@
   /* Destructive actions */
   --ld-semantic-color-action-fill-destructive: var(--ld-primitive-color-red-100, #ea1100); /* Destructive button background */
   --ld-semantic-color-action-fill-destructive-hovered: #c30e00; /* Destructive button hover */
-  --ld-semantic-color-action-fill-destructive-pressed: var(--ld-primitive-color-red-130, #a20c00); /* Destructive button active */
-  --ld-semantic-color-action-text-on-fill-destructive: var(--ld-primitive-color-white, #ffffff); /* Text on destructive buttons */
+  --ld-semantic-color-action-fill-destructive-focused: var(--ld-primitive-color-red-100, #ea1100); /* Destructive button focused */
+  --ld-semantic-color-action-fill-destructive-pressed: var(--ld-primitive-color-red-130, #a20c00); /* Destructive button pressed */
+  --ld-semantic-color-action-fill-destructive-disabled: var(--ld-primitive-color-red-40, #fbc4be); /* Destructive button disabled */
+  --ld-semantic-color-action-text-onfill-destructive: var(--ld-primitive-color-white, #ffffff); /* Destructive button text */
+  --ld-semantic-color-action-text-onfill-destructive-hovered: var(--ld-primitive-color-white, #ffffff); /* Destructive button text hover */
+  --ld-semantic-color-action-text-onfill-destructive-focused: var(--ld-primitive-color-white, #ffffff); /* Destructive button text focused */
+  --ld-semantic-color-action-text-onfill-destructive-pressed: var(--ld-primitive-color-white, #ffffff); /* Destructive button text pressed */
+  --ld-semantic-color-action-text-onfill-destructive-disabled: var(--ld-primitive-color-white, #ffffff); /* Destructive button text disabled */
 
   /* Focus state */
   --ld-semantic-color-action-focus-outline: var(--ld-primitive-color-blue-100); /* Focus outline color for interactive elements */
