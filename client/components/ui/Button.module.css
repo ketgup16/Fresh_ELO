@@ -55,18 +55,26 @@
 /* Primary Variant */
 .button--variant-primary {
   background-color: var(--ld-semantic-color-action-fill-primary);
-  color: var(--ld-semantic-color-action-text-on-fill-primary);
+  color: var(--ld-semantic-color-action-text-onfill-primary);
   border-color: var(--ld-semantic-color-action-fill-primary);
 }
 
 .button--variant-primary:hover:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-primary-hovered);
   border-color: var(--ld-semantic-color-action-fill-primary-hovered);
+  color: var(--ld-semantic-color-action-text-onfill-primary-hovered);
 }
 
 .button--variant-primary:active:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-primary-pressed);
   border-color: var(--ld-semantic-color-action-fill-primary-pressed);
+  color: var(--ld-semantic-color-action-text-onfill-primary-pressed);
+}
+
+.button--variant-primary:disabled {
+  background-color: var(--ld-semantic-color-action-fill-primary-disabled);
+  border-color: var(--ld-semantic-color-action-fill-primary-disabled);
+  color: var(--ld-semantic-color-action-text-onfill-primary-disabled);
 }
 
 /* Secondary Variant */
