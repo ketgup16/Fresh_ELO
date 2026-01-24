@@ -132,18 +132,26 @@
 /* Destructive Variant */
 .button--variant-destructive {
   background-color: var(--ld-semantic-color-action-fill-destructive);
-  color: var(--ld-semantic-color-action-text-on-fill-destructive);
+  color: var(--ld-semantic-color-action-text-onfill-destructive);
   border-color: var(--ld-semantic-color-action-fill-destructive);
 }
 
 .button--variant-destructive:hover:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-destructive-hovered);
   border-color: var(--ld-semantic-color-action-fill-destructive-hovered);
+  color: var(--ld-semantic-color-action-text-onfill-destructive-hovered);
 }
 
 .button--variant-destructive:active:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-destructive-pressed);
   border-color: var(--ld-semantic-color-action-fill-destructive-pressed);
+  color: var(--ld-semantic-color-action-text-onfill-destructive-pressed);
+}
+
+.button--variant-destructive:disabled {
+  background-color: var(--ld-semantic-color-action-fill-destructive-disabled);
+  border-color: var(--ld-semantic-color-action-fill-destructive-disabled);
+  color: var(--ld-semantic-color-action-text-onfill-destructive-disabled);
 }
 
 /* Icon Containers */
