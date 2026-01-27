@@ -1275,10 +1275,10 @@ export default function AllKeywords() {
                       ))}
                     </div>
 
-                    {/* Omni ROAS Column */}
-                    <div className="flex flex-col min-w-[100px]">
+                    {/* Online ROAS Column */}
+                    <div className="flex flex-col min-w-[120px]">
                       <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
-                        <span className="text-[13px] font-semibold text-[#2E2F32]">Omni ROAS</span>
+                        <span className="text-[13px] font-semibold text-[#2E2F32] whitespace-nowrap">Online ROAS</span>
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
