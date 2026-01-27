@@ -303,7 +303,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6">
               <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" fill="none"/>
-              <path d="M10.5 8.5C10.5 8.5 11 7.5 12.5 7.5C14 7.5 14.5 8.5 14.5 9.5C14.5 11 12.5 11.5 12.5 13M12.5 16V15.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M12 7V8M12 16V17M10.5 10C10.5 10 11 9 12.5 9C14 9 14.5 10 14.5 10.5C14.5 11.5 13.5 12 12.5 12C11.5 12 10.5 12.5 10.5 13.5C10.5 14 11 15 12.5 15C14 15 14.5 14 14.5 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             </svg>
             Conversion
           </button>
