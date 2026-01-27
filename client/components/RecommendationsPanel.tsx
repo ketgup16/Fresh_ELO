@@ -353,8 +353,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                       {visibleItems.map((rec) => (
                         <div
                           key={rec.id}
-                          className={`flex items-start gap-3 p-4 rounded-lg ${
-                            selectedRecommendations.has(rec.id) ? 'bg-[#F0F5FF]' : 'bg-white'
+                          className={`flex items-start gap-3 p-4 rounded-lg bg-white ${
+                            selectedRecommendations.has(rec.id) ? 'border border-[#E3E4E5]' : ''
                           }`}
                         >
                           {/* Checkbox */}
