@@ -783,6 +783,12 @@ export default function Campaign() {
                       {['Clorox wipes', 'Clorox tilex', 'Clorox tabs'].map((item, idx) => {
                         const ids = ['1750942750', '875633804', '1566660392'];
                         const showAlert = idx < 2; // Show alert for first two items
+                        const productImages = [
+                          'https://images.pexels.com/photos/28921817/pexels-photo-28921817.jpeg',
+                          'https://images.pexels.com/photos/28921820/pexels-photo-28921820.jpeg',
+                          'https://images.pexels.com/photos/12997254/pexels-photo-12997254.jpeg',
+                          'https://images.pexels.com/photos/28921809/pexels-photo-28921809.jpeg'
+                        ];
 
                         // Different alert messages for each item
                         const alertMessages = [
