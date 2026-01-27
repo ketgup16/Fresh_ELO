@@ -95,7 +95,7 @@ export default function AllCampaigns() {
 
   const [campaignsData, setCampaignsData] = useState<Campaign[]>([
     {
-      id: "camp-001",
+      id: "4673120",
       name: "SP - GTV - HiSense - New SKUs - Category - Auto",
       status: "Live",
       startDate: "10/08/2025",
@@ -155,7 +155,7 @@ export default function AllCampaigns() {
       ]
     },
     {
-      id: "camp-002",
+      id: "2596045",
       name: "SP - GTV - Hisense - Auto 2025 - All Products",
       status: "Live",
       startDate: "06/11/2025",
@@ -202,7 +202,7 @@ export default function AllCampaigns() {
       ]
     },
     {
-      id: "camp-003",
+      id: "4694172",
       name: "SP - GTV - Philips - Auto 2025 - All Products",
       status: "Live",
       startDate: "06/11/2025",
@@ -242,7 +242,7 @@ export default function AllCampaigns() {
       unitsSold: "238"
     },
     {
-      id: "camp-004",
+      id: "4401295",
       name: "SP - GTV - TCL - Q Series 55in - Category - Auto",
       status: "Live",
       startDate: "10/14/2025",
@@ -290,7 +290,7 @@ export default function AllCampaigns() {
       ]
     },
     {
-      id: "camp-005",
+      id: "4683076",
       name: "SP  - GTV - TCL - Q Series 65in - Category - Auto",
       status: "Live",
       startDate: "10/14/2025",
@@ -330,7 +330,7 @@ export default function AllCampaigns() {
       unitsSold: "83"
     },
     {
-      id: "camp-006",
+      id: "4450652",
       name: "SBA - Onn. Q2 - 4K Plus Launch - Category",
       status: "Live",
       startDate: "05/29/2025",
@@ -378,7 +378,7 @@ export default function AllCampaigns() {
       ]
     },
     {
-      id: "camp-007",
+      id: "4431941",
       name: "SBA - Q2 2025 GTV - Custom Image - TCL - BRANDED",
       status: "Live",
       startDate: "07/03/2025",
