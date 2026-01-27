@@ -367,7 +367,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                           </div>
 
                           {/* Content */}
-                          <div className="flex-1 flex flex-col gap-3">
+                          <div className="flex-1 flex flex-col justify-between gap-3">
                             <div className="flex flex-col gap-2">
                               <div className="flex flex-col gap-1">
                                 <div className="text-sm font-bold text-[#2E2F32]">{rec.title}</div>
@@ -401,17 +401,17 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                             </div>
 
                             {/* Card CTAs */}
-                            <div className="flex items-center justify-end gap-4">
+                            <div className="flex items-center justify-end gap-4 self-end">
                               <a
                                 href="#"
-                                className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                className="text-sm text-[#2E2F32] underline hover:no-underline leading-none"
                                 onClick={(e) => e.preventDefault()}
                               >
                                 Dismiss
                               </a>
                               <a
                                 href="#"
-                                className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                className="text-sm text-[#2E2F32] underline hover:no-underline leading-none"
                                 onClick={(e) => e.preventDefault()}
                               >
                                 View details
