@@ -362,7 +362,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                             <Checkbox
                               checked={selectedRecommendations.has(rec.id)}
                               onCheckedChange={() => handleToggleRecommendation(rec.id)}
-                              className="w-6 h-6 rounded border-2 border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32] data-[state=unchecked]:bg-white"
+                              className="w-6 h-6 rounded border-2 border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border data-[state=checked]:border-black data-[state=unchecked]:bg-white"
                             />
                           </div>
 
