@@ -838,13 +838,13 @@ export default function Campaign() {
                             <span className="text-xs text-[#2E2F32] w-16 text-right">{ids[idx]}</span>
                             <span className="text-xs text-[#2E2F32] w-16 text-right">$3.91</span>
                             <div className="w-14">
-                              <div className="relative h-[18px] w-14">
+                              <div className="relative h-[18px] w-14 flex items-center">
+                                <span className="absolute left-1.5 text-xs text-[#515357] pointer-events-none">$</span>
                                 <input
                                   type="text"
                                   defaultValue="3.91"
-                                  className="w-full h-full pl-2 pr-1 text-xs border border-[#C7C8CB] rounded bg-white text-center"
+                                  className="w-full h-full pl-5 pr-1 text-xs border border-[#C7C8CB] rounded bg-white"
                                 />
-                                <span className="absolute left-1.5 top-1/2 -translate-y-1/2 text-xs text-[#515357] pointer-events-none">$</span>
                               </div>
                             </div>
                             <div className="w-12">
