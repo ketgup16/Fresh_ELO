@@ -162,6 +162,14 @@ export default function ItemHealth() {
     }
   ];
 
+  // Filter items based on URL query parameter
+  const filteredItems = useMemo(() => {
+    if (filterItemId) {
+      return itemHealthData.filter(item => item.itemId === filterItemId);
+    }
+    return itemHealthData;
+  }, [filterItemId]);
+
   return (
     <div className="min-h-screen bg-[#F6F6F6] flex flex-col">
       {/* Header */}
