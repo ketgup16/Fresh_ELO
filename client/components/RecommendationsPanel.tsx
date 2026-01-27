@@ -420,17 +420,14 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                       {/* Show more/less link */}
                       {campaign.items.length > 2 && (
-                        <>
-                          <div className="h-px bg-[#E3E4E5]" />
-                          <div className="flex justify-end p-4 bg-white">
-                            <button
-                              onClick={() => handleToggleCampaignExpanded(campaign.id)}
-                              className="text-sm text-[#2E2F32] underline hover:no-underline"
-                            >
-                              {campaign.isExpanded ? 'Show less' : `Show more (${hiddenCount})`}
-                            </button>
-                          </div>
-                        </>
+                        <div className="flex justify-end p-4 bg-white">
+                          <button
+                            onClick={() => handleToggleCampaignExpanded(campaign.id)}
+                            className="text-sm text-[#2E2F32] underline hover:no-underline"
+                          >
+                            {campaign.isExpanded ? 'Show less' : `Show more (${hiddenCount})`}
+                          </button>
+                        </div>
                       )}
                     </div>
                   )}
