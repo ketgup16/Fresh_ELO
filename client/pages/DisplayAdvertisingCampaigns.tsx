@@ -1660,6 +1660,9 @@ export default function DisplayAdvertisingCampaigns() {
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Display Advertising');
 
+  // Count completed campaigns
+  const completedCount = campaigns.filter(campaign => campaign.status === 'Completed').length;
+
   const handleResizeStart = (e: React.MouseEvent, column: string, currentWidth: number) => {
     e.preventDefault();
     e.stopPropagation();
