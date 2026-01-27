@@ -2567,7 +2567,7 @@ export default function DisplayAdvertisingCampaigns() {
                   }`}
                   onClick={() => setCompletedFilterSelected(!completedFilterSelected)}
                 >
-                  <span className="text-sm text-[#2E2F32]">Completed</span>
+                  <span className="text-sm text-[#2E2F32]">Completed ({completedCount})</span>
                 </button>
               </div>
 
