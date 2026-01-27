@@ -84,20 +84,20 @@ export default function SponsoredProductsCard() {
       
       <g transform="translate(66, 87)">
         <rect width="33" height="16" rx="8" fill="#0053E2"/>
-        <path fillRule="evenodd" clipRule="evenodd" d="M6.5 3.5C6.67095 3.5 6.81184 3.62868 6.83109 3.79446L6.83333 3.83333V6.16667H9.16667C9.35076 6.16667 9.5 6.31591 9.5 6.5C9.5 6.67095 9.37132 6.81184 9.20554 6.83109L9.16667 6.83333H6.83333V9.16667C6.83333 9.35076 6.6841 9.5 6.5 9.5C6.32905 9.5 6.18816 9.37132 6.16891 9.20554L6.16667 9.16667V6.83333H3.83333C3.64924 6.83333 3.5 6.6841 3.5 6.5C3.5 6.32905 3.62868 6.18816 3.79446 6.16891L3.83333 6.16667H6.16667V3.83333C6.16667 3.64924 6.31591 3.5 6.5 3.5Z" fill="white" transform="translate(10, 4)"/>
-        <text x="23" y="11.5" fill="white" fontSize="6" fontWeight="800" fontFamily="Everyday Sans UI, -apple-system, Roboto, Helvetica, sans-serif">Add</text>
+        <path fillRule="evenodd" clipRule="evenodd" d="M6.5 3.5C6.67095 3.5 6.81184 3.62868 6.83109 3.79446L6.83333 3.83333V6.16667H9.16667C9.35076 6.16667 9.5 6.31591 9.5 6.5C9.5 6.67095 9.37132 6.81184 9.20554 6.83109L9.16667 6.83333H6.83333V9.16667C6.83333 9.35076 6.6841 9.5 6.5 9.5C6.32905 9.5 6.18816 9.37132 6.16891 9.20554L6.16667 9.16667V6.83333H3.83333C3.64924 6.83333 3.5 6.6841 3.5 6.5C3.5 6.32905 3.62868 6.18816 3.79446 6.16891L3.83333 6.16667H6.16667V3.83333C6.16667 3.64924 6.31591 3.5 6.5 3.5Z" fill="white" transform="translate(7.5, 5)"/>
+        <text x="15.5" y="11" fill="white" fontSize="6" fontWeight="800" fontFamily="Everyday Sans UI, -apple-system, Roboto, Helvetica, sans-serif">Add</text>
       </g>
       
       <g transform="translate(123, 87)">
         <rect width="33" height="16" rx="8" fill="#0053E2"/>
-        <path fillRule="evenodd" clipRule="evenodd" d="M6.5 3.5C6.67095 3.5 6.81184 3.62868 6.83109 3.79446L6.83333 3.83333V6.16667H9.16667C9.35076 6.16667 9.5 6.31591 9.5 6.5C9.5 6.67095 9.37132 6.81184 9.20554 6.83109L9.16667 6.83333H6.83333V9.16667C6.83333 9.35076 6.6841 9.5 6.5 9.5C6.32905 9.5 6.18816 9.37132 6.16891 9.20554L6.16667 9.16667V6.83333H3.83333C3.64924 6.83333 3.5 6.6841 3.5 6.5C3.5 6.32905 3.62868 6.18816 3.79446 6.16891L3.83333 6.16667H6.16667V3.83333C6.16667 3.64924 6.31591 3.5 6.5 3.5Z" fill="white" transform="translate(10, 4)"/>
-        <text x="23" y="11.5" fill="white" fontSize="6" fontWeight="800" fontFamily="Everyday Sans UI, -apple-system, Roboto, Helvetica, sans-serif">Add</text>
+        <path fillRule="evenodd" clipRule="evenodd" d="M6.5 3.5C6.67095 3.5 6.81184 3.62868 6.83109 3.79446L6.83333 3.83333V6.16667H9.16667C9.35076 6.16667 9.5 6.31591 9.5 6.5C9.5 6.67095 9.37132 6.81184 9.20554 6.83109L9.16667 6.83333H6.83333V9.16667C6.83333 9.35076 6.6841 9.5 6.5 9.5C6.32905 9.5 6.18816 9.37132 6.16891 9.20554L6.16667 9.16667V6.83333H3.83333C3.64924 6.83333 3.5 6.6841 3.5 6.5C3.5 6.32905 3.62868 6.18816 3.79446 6.16891L3.83333 6.16667H6.16667V3.83333C6.16667 3.64924 6.31591 3.5 6.5 3.5Z" fill="white" transform="translate(7.5, 5)"/>
+        <text x="15.5" y="11" fill="white" fontSize="6" fontWeight="800" fontFamily="Everyday Sans UI, -apple-system, Roboto, Helvetica, sans-serif">Add</text>
       </g>
       
       <g transform="translate(180, 87)">
         <rect width="33" height="16" rx="8" fill="#0053E2"/>
-        <path fillRule="evenodd" clipRule="evenodd" d="M6.5 3.5C6.67095 3.5 6.81184 3.62868 6.83109 3.79446L6.83333 3.83333V6.16667H9.16667C9.35076 6.16667 9.5 6.31591 9.5 6.5C9.5 6.67095 9.37132 6.81184 9.20554 6.83109L9.16667 6.83333H6.83333V9.16667C6.83333 9.35076 6.6841 9.5 6.5 9.5C6.32905 9.5 6.18816 9.37132 6.16891 9.20554L6.16667 9.16667V6.83333H3.83333C3.64924 6.83333 3.5 6.6841 3.5 6.5C3.5 6.32905 3.62868 6.18816 3.79446 6.16891L3.83333 6.16667H6.16667V3.83333C6.16667 3.64924 6.31591 3.5 6.5 3.5Z" fill="white" transform="translate(10, 4)"/>
-        <text x="23" y="11.5" fill="white" fontSize="6" fontWeight="800" fontFamily="Everyday Sans UI, -apple-system, Roboto, Helvetica, sans-serif">Add</text>
+        <path fillRule="evenodd" clipRule="evenodd" d="M6.5 3.5C6.67095 3.5 6.81184 3.62868 6.83109 3.79446L6.83333 3.83333V6.16667H9.16667C9.35076 6.16667 9.5 6.31591 9.5 6.5C9.5 6.67095 9.37132 6.81184 9.20554 6.83109L9.16667 6.83333H6.83333V9.16667C6.83333 9.35076 6.6841 9.5 6.5 9.5C6.32905 9.5 6.18816 9.37132 6.16891 9.20554L6.16667 9.16667V6.83333H3.83333C3.64924 6.83333 3.5 6.6841 3.5 6.5C3.5 6.32905 3.62868 6.18816 3.79446 6.16891L3.83333 6.16667H6.16667V3.83333C6.16667 3.64924 6.31591 3.5 6.5 3.5Z" fill="white" transform="translate(7.5, 5)"/>
+        <text x="15.5" y="11" fill="white" fontSize="6" fontWeight="800" fontFamily="Everyday Sans UI, -apple-system, Roboto, Helvetica, sans-serif">Add</text>
       </g>
       
       <defs>
