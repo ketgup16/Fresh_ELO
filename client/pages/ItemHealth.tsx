@@ -537,7 +537,7 @@ export default function ItemHealth() {
                   </tr>
                 </thead>
                 <tbody>
-                  {itemHealthData.map((item, idx) => (
+                  {filteredItems.map((item, idx) => (
                     <tr key={idx} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
                       <td className="px-2 py-2">
                         <div className="flex items-center justify-center">
