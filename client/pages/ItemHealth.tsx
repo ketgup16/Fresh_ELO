@@ -34,6 +34,7 @@ interface ItemHealthData {
 
 export default function ItemHealth() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [showMartyPanel] = useState(true);
   const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
   const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
@@ -41,6 +42,9 @@ export default function ItemHealth() {
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [openAlertPopover, setOpenAlertPopover] = useState<number | null>(null);
+
+  // Get itemId from URL query params
+  const filterItemId = searchParams.get('itemId');
 
   const handleSort = (column: string) => {
     if (sortColumn === column) {
