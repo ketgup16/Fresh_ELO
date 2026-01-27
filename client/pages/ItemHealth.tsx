@@ -423,7 +423,7 @@ export default function ItemHealth() {
 
               <div className="relative">
                 <button className="h-10 px-4 bg-white border border-[#BABBBE] rounded text-sm text-[#2E2F32] flex items-center gap-2 hover:bg-gray-50 transition-colors min-w-[160px]">
-                  4001729
+                  4673120
                   <ChevronDown className="w-4 h-4 ml-auto" />
                 </button>
               </div>
