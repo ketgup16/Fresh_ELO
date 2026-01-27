@@ -677,12 +677,8 @@ export default function Campaign() {
             {/* Item list Card */}
             <div className="bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] h-[628px] flex flex-col">
               {/* Header */}
-              <div className="px-6 py-6 border-b border-[#E3E4E5]">
+              <div className="px-6 py-6 border-b border-[#E3E4E5] flex items-center gap-3">
                 <h3 className="text-lg font-semibold text-[#2E2F32] leading-[25px]">Item list</h3>
-              </div>
-
-              {/* Tag */}
-              <div className="px-6 pt-3">
                 <div className="inline-flex px-2 py-1 bg-[#E9F1FE] rounded-sm">
                   <span className="text-xs text-[#002E99] leading-4">Adgroup name: SpookySoaps</span>
                 </div>
