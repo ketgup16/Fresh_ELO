@@ -408,13 +408,13 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                             >
                               Dismiss
                             </a>
-                            <a
-                              href="#"
-                              className="text-sm text-[#2E2F32] underline hover:no-underline whitespace-nowrap"
+                            <Button
+                              variant="tertiary"
+                              size="small"
                               onClick={(e) => e.preventDefault()}
                             >
                               View details
-                            </a>
+                            </Button>
                           </div>
                         </div>
                       ))}
