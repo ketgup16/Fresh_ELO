@@ -346,80 +346,75 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                   {/* Recommendations List - Gray Background */}
                   {!campaign.isHidden && (
-                    <div className="bg-[#F4F5F5] p-4">
-                      {visibleItems.map((rec, idx) => (
-                        <div key={rec.id}>
-                          <div
-                            className={`flex items-start gap-3 p-4 ${
-                              selectedRecommendations.has(rec.id) ? 'bg-[#F0F5FF]' : 'bg-white'
-                            }`}
-                          >
-                            {/* Checkbox */}
-                            <div className="flex items-start pt-0.5">
-                              <Checkbox
-                                checked={selectedRecommendations.has(rec.id)}
-                                onCheckedChange={() => handleToggleRecommendation(rec.id)}
-                                className="w-6 h-6 rounded border-2 border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32] data-[state=unchecked]:bg-white"
-                              />
-                            </div>
+                    <div className="bg-[#F4F5F5] p-4 flex flex-col gap-3">
+                      {visibleItems.map((rec) => (
+                        <div
+                          key={rec.id}
+                          className={`flex items-start gap-3 p-4 ${
+                            selectedRecommendations.has(rec.id) ? 'bg-[#F0F5FF]' : 'bg-white'
+                          }`}
+                        >
+                          {/* Checkbox */}
+                          <div className="flex items-start pt-0.5">
+                            <Checkbox
+                              checked={selectedRecommendations.has(rec.id)}
+                              onCheckedChange={() => handleToggleRecommendation(rec.id)}
+                              className="w-6 h-6 rounded border-2 border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border-[#2E2F32] data-[state=unchecked]:bg-white"
+                            />
+                          </div>
 
-                            {/* Content */}
-                            <div className="flex-1 flex flex-col gap-3">
-                              <div className="flex flex-col gap-2">
-                                <div className="flex flex-col gap-1">
-                                  <div className="text-sm font-bold text-[#2E2F32]">{rec.title}</div>
-                                  <div className="flex items-end gap-1">
-                                    <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
-                                    <span className="text-sm text-[#2E2F32]">{rec.message}</span>
+                          {/* Content */}
+                          <div className="flex-1 flex flex-col gap-3">
+                            <div className="flex flex-col gap-2">
+                              <div className="flex flex-col gap-1">
+                                <div className="text-sm font-bold text-[#2E2F32]">{rec.title}</div>
+                                <div className="flex items-end gap-1">
+                                  <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
+                                  <span className="text-sm text-[#2E2F32]">{rec.message}</span>
+                                </div>
+                              </div>
+
+                              {/* Affected ad groups */}
+                              {rec.affectedAdGroups && (
+                                <div className="flex flex-col gap-2">
+                                  <span className="text-sm text-[#515357]">Affected ad groups</span>
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    {rec.affectedAdGroups.map((adGroup, idx) => (
+                                      <span
+                                        key={idx}
+                                        className="px-2 py-1 rounded-sm bg-[#F4F5F5] text-xs text-[#515357]"
+                                      >
+                                        {adGroup}
+                                      </span>
+                                    ))}
                                   </div>
                                 </div>
+                              )}
 
-                                {/* Affected ad groups */}
-                                {rec.affectedAdGroups && (
-                                  <div className="flex flex-col gap-2">
-                                    <span className="text-sm text-[#515357]">Affected ad groups</span>
-                                    <div className="flex items-center gap-2 flex-wrap">
-                                      {rec.affectedAdGroups.map((adGroup, idx) => (
-                                        <span
-                                          key={idx}
-                                          className="px-2 py-1 rounded-sm bg-[#F4F5F5] text-xs text-[#515357]"
-                                        >
-                                          {adGroup}
-                                        </span>
-                                      ))}
-                                    </div>
-                                  </div>
-                                )}
+                              {/* Ad group name for adgroup type */}
+                              {rec.adGroup && (
+                                <div className="text-sm text-[#515357]">{rec.adGroup}</div>
+                              )}
+                            </div>
 
-                                {/* Ad group name for adgroup type */}
-                                {rec.adGroup && (
-                                  <div className="text-sm text-[#515357]">{rec.adGroup}</div>
-                                )}
-                              </div>
-
-                              {/* Card CTAs */}
-                              <div className="flex items-center justify-end gap-4">
-                                <a
-                                  href="#"
-                                  className="text-sm text-[#2E2F32] underline hover:no-underline"
-                                  onClick={(e) => e.preventDefault()}
-                                >
-                                  Dismiss
-                                </a>
-                                <a
-                                  href="#"
-                                  className="text-sm text-[#2E2F32] underline hover:no-underline"
-                                  onClick={(e) => e.preventDefault()}
-                                >
-                                  View details
-                                </a>
-                              </div>
+                            {/* Card CTAs */}
+                            <div className="flex items-center justify-end gap-4">
+                              <a
+                                href="#"
+                                className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                onClick={(e) => e.preventDefault()}
+                              >
+                                Dismiss
+                              </a>
+                              <a
+                                href="#"
+                                className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                onClick={(e) => e.preventDefault()}
+                              >
+                                View details
+                              </a>
                             </div>
                           </div>
-                          {/* Divider between cards (not after last card) */}
-                          {idx < visibleItems.length - 1 && (
-                            <div className="h-px bg-[#E3E4E5]" />
-                          )}
                         </div>
                       ))}
 
