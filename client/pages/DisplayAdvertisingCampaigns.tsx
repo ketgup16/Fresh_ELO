@@ -2484,13 +2484,16 @@ export default function DisplayAdvertisingCampaigns() {
                         : 'border-[rgba(46,47,50,1)] bg-white hover:bg-gray-50'
                     }`}
                     onClick={handleOpenLiveFilter}
+                    aria-label={`Filter by pacing status. ${livePacingFilter.length} filter${livePacingFilter.length !== 1 ? 's' : ''} applied`}
+                    aria-expanded={showLiveFilterPopover}
+                    aria-haspopup="true"
                   >
-                    <span className="text-sm text-[#2E2F32]">Pace</span>
-                    <span className="text-sm text-[#2E2F32]">({showLiveFilterPopover ? tempLivePacingFilter.length : livePacingFilter.length})</span>
+                    <span className="text-sm text-[#2E2F32]" aria-hidden="true">Pace</span>
+                    <span className="text-sm text-[#2E2F32]" aria-hidden="true">({showLiveFilterPopover ? tempLivePacingFilter.length : livePacingFilter.length})</span>
                     {showLiveFilterPopover ? (
-                      <ChevronUp className="w-4 h-4 text-[#2E2F32]" />
+                      <ChevronUp className="w-4 h-4 text-[#2E2F32]" aria-hidden="true" />
                     ) : (
-                      <ChevronDown className="w-4 h-4 text-[#2E2F32]" />
+                      <ChevronDown className="w-4 h-4 text-[#2E2F32]" aria-hidden="true" />
                     )}
                   </button>
 
