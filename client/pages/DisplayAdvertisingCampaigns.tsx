@@ -2566,8 +2566,10 @@ export default function DisplayAdvertisingCampaigns() {
                       : 'border-[rgba(46,47,50,1)] bg-white hover:bg-gray-50'
                   }`}
                   onClick={() => setCompletedFilterSelected(!completedFilterSelected)}
+                  aria-label={`Filter by completed campaigns. ${completedCount} campaign${completedCount !== 1 ? 's' : ''} completed`}
+                  aria-pressed={completedFilterSelected}
                 >
-                  <span className="text-sm text-[#2E2F32]">Completed ({completedCount})</span>
+                  <span className="text-sm text-[#2E2F32]" aria-hidden="true">Completed ({completedCount})</span>
                 </button>
               </div>
 
