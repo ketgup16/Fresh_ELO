@@ -721,9 +721,15 @@ export default function Campaign() {
                       {['Clorox blue', 'Clorox liquid', 'Clorox gel', 'Clorox spray', 'Clorox laundry', 'Clorox mist', 'Clorox wands', 'Clorox 360', 'Clorox pen', 'Clorox aloe'].map((item, idx) => {
                         const ids = ['15242283', '18775208', '34571821', '15234651', '18754261', '15246821', '12352075', '17252975', '16251829', '15242283'];
                         const prices = ['$2.56', '$3.91', '$3.91', '$2.56', '$3.91', '$3.91', '$2.56', '$3.91', '$3.91', '$3.91'];
+                        const productImages = [
+                          'https://images.pexels.com/photos/28921817/pexels-photo-28921817.jpeg',
+                          'https://images.pexels.com/photos/28921820/pexels-photo-28921820.jpeg',
+                          'https://images.pexels.com/photos/12997254/pexels-photo-12997254.jpeg',
+                          'https://images.pexels.com/photos/28921809/pexels-photo-28921809.jpeg'
+                        ];
                         return (
                           <div key={idx} className="flex items-center px-3 py-2 border-b border-[#E3E4E5] hover:bg-gray-50">
-                            <div className="w-8 h-8 bg-gray-200 rounded flex-shrink-0"></div>
+                            <img src={productImages[idx % productImages.length]} alt={item} className="w-8 h-8 rounded flex-shrink-0 object-cover" />
                             <span className="text-xs text-[#2E2F32] ml-3 flex-1">{item}</span>
                             <span className="text-xs text-[#2E2F32] w-16 text-right">{ids[idx]}</span>
                             <span className="text-xs text-[#2E2F32] w-12 text-right">{prices[idx]}</span>
@@ -830,7 +836,7 @@ export default function Campaign() {
                               ) : (
                                 <div className="w-6 h-6 flex-shrink-0"></div>
                               )}
-                              <div className="w-8 h-8 bg-gray-200 rounded flex-shrink-0"></div>
+                              <img src={productImages[idx % productImages.length]} alt={item} className="w-8 h-8 rounded flex-shrink-0 object-cover" />
                               <div className="flex items-center gap-1">
                                 <div className="text-xs text-[#2E2F32] leading-tight">{item}</div>
                               </div>
