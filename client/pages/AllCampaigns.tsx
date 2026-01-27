@@ -1398,7 +1398,7 @@ export default function AllCampaigns() {
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.roas}</span>
+                          <span className="text-sm text-[#2E2F32]">{campaign.omniRoas}</span>
                         </div>
                       ))}
                     </div>
@@ -1410,7 +1410,7 @@ export default function AllCampaigns() {
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-sm text-[#2E2F32]">{campaign.omniRoas}</span>
+                          <span className="text-sm text-[#2E2F32]">{campaign.roas}</span>
                         </div>
                       ))}
                     </div>
