@@ -775,7 +775,7 @@ export default function Campaign() {
                     {/* Added Items List */}
                     <div className="flex-1 overflow-y-auto">
                       {['Clorox wipes', 'Clorox tilex', 'Clorox tabs'].map((item, idx) => {
-                        const ids = ['13246752', '18972432', '18265631'];
+                        const ids = ['1750942750', '875633804', '1566660392'];
                         const showAlert = idx < 2; // Show alert for first two items
 
                         // Different alert messages for each item
