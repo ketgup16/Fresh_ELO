@@ -262,10 +262,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         </div>
 
         {/* Goal Filter Pills */}
-        <div className="px-6 pt-4 flex items-center gap-2">
+        <div className="px-6 pt-4 flex items-center gap-3">
           <button
             onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Awareness" ? null : "Awareness")}
-            className={`flex items-center gap-2 h-10 px-4 border-2 rounded text-sm font-normal transition-all ${
+            className={`flex items-center gap-3 h-12 px-6 border-2 rounded-lg text-base font-normal transition-all ${
               selectedGoalFilter === "Awareness"
                 ? "border-[#2E2F32] bg-[#2E2F32] text-white"
                 : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
@@ -280,7 +280,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           </button>
           <button
             onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Engagement" ? null : "Engagement")}
-            className={`flex items-center gap-2 h-10 px-4 border-2 rounded text-sm font-normal transition-all ${
+            className={`flex items-center gap-3 h-12 px-6 border-2 rounded-lg text-base font-normal transition-all ${
               selectedGoalFilter === "Engagement"
                 ? "border-[#2E2F32] bg-[#2E2F32] text-white"
                 : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
@@ -295,7 +295,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           </button>
           <button
             onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Conversion" ? null : "Conversion")}
-            className={`flex items-center gap-2 h-10 px-4 border-2 rounded text-sm font-normal transition-all ${
+            className={`flex items-center gap-3 h-12 px-6 border-2 rounded-lg text-base font-normal transition-all ${
               selectedGoalFilter === "Conversion"
                 ? "border-[#2E2F32] bg-[#2E2F32] text-white"
                 : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
