@@ -346,12 +346,12 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                   {/* Recommendations List - Gray Background */}
                   {!campaign.isHidden && (
-                    <div className="bg-[#F4F5F5]">
+                    <div className="bg-[#F4F5F5] p-4">
                       {visibleItems.map((rec, idx) => (
                         <div key={rec.id}>
                           <div
                             className={`flex items-start gap-3 p-4 ${
-                              selectedRecommendations.has(rec.id) ? 'bg-[#F0F5FF]' : 'bg-[#F4F5F5]'
+                              selectedRecommendations.has(rec.id) ? 'bg-[#F0F5FF]' : 'bg-white'
                             }`}
                           >
                             {/* Checkbox */}
