@@ -265,42 +265,45 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         <div className="px-6 pt-4 flex items-center gap-2">
           <button
             onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Awareness" ? null : "Awareness")}
-            className={`flex items-center gap-2 h-8 px-3 border rounded-full text-sm transition-all ${
+            className={`flex items-center gap-2 h-10 px-4 border-2 rounded-full text-sm font-normal transition-all ${
               selectedGoalFilter === "Awareness"
-                ? "border-2 border-[#0053E2] bg-[#E9F1FE] text-[#2E2F32]"
+                ? "border-[#0053E2] bg-[#E9F1FE] text-[#2E2F32]"
                 : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
             }`}
           >
-            <Eye className="w-4 h-4" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+              <path d="M12 6.75C8.15634 6.75 5.61812 9.5163 4.23279 11.6617L3 10.8383C4.46772 8.57532 7.39216 5.25 12 5.25C16.6078 5.25 19.5323 8.57532 21 10.8383L19.7672 11.6617C18.3819 9.5163 15.8437 6.75 12 6.75Z" fill="currentColor"/>
+              <path d="M12 17.25C8.15634 17.25 5.61812 14.4837 4.23279 12.3383L3 13.1617C4.46772 15.4247 7.39216 18.75 12 18.75C16.6078 18.75 19.5323 15.4247 21 13.1617L19.7672 12.3383C18.3819 14.4837 15.8437 17.25 12 17.25Z" fill="currentColor"/>
+              <path d="M15.6873 12C15.6873 14.0711 14.0477 15.75 12.0001 15.75C9.95248 15.75 8.31287 14.0711 8.31287 12C8.31287 9.92893 9.95248 8.25 12.0001 8.25C14.0477 8.25 15.6873 9.92893 15.6873 12ZM14.2124 12C14.2124 10.7574 13.2219 9.75 12.0001 9.75C10.7783 9.75 9.78779 10.7574 9.78779 12C9.78779 13.2426 10.7783 14.25 12.0001 14.25C13.2219 14.25 14.2124 13.2426 14.2124 12Z" fill="currentColor"/>
+            </svg>
             Awareness
           </button>
           <button
             onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Engagement" ? null : "Engagement")}
-            className={`flex items-center gap-2 h-8 px-3 border rounded-full text-sm transition-all ${
+            className={`flex items-center gap-2 h-10 px-4 border-2 rounded-full text-sm font-normal transition-all ${
               selectedGoalFilter === "Engagement"
-                ? "border-2 border-[#0053E2] bg-[#E9F1FE] text-[#2E2F32]"
+                ? "border-[#0053E2] bg-[#E9F1FE] text-[#2E2F32]"
                 : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
             }`}
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
-              <path d="M8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1Z" stroke="currentColor" strokeWidth="1.5"/>
-              <circle cx="5.5" cy="6.5" r="1" fill="currentColor"/>
-              <circle cx="10.5" cy="6.5" r="1" fill="currentColor"/>
-              <path d="M5 10C5.5 11 6.5 11.5 8 11.5C9.5 11.5 10.5 11 11 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" fill="none"/>
+              <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="2" fill="none"/>
+              <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
             </svg>
             Engagement
           </button>
           <button
             onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Conversion" ? null : "Conversion")}
-            className={`flex items-center gap-2 h-8 px-3 border rounded-full text-sm transition-all ${
+            className={`flex items-center gap-2 h-10 px-4 border-2 rounded-full text-sm font-normal transition-all ${
               selectedGoalFilter === "Conversion"
-                ? "border-2 border-[#0053E2] bg-[#E9F1FE] text-[#2E2F32]"
+                ? "border-[#0053E2] bg-[#E9F1FE] text-[#2E2F32]"
                 : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
             }`}
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
-              <path d="M8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1Z" stroke="currentColor" strokeWidth="1.5"/>
-              <path d="M5 8L7 10L11 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" fill="none"/>
+              <path d="M10.5 8.5C10.5 8.5 11 7.5 12.5 7.5C14 7.5 14.5 8.5 14.5 9.5C14.5 11 12.5 11.5 12.5 13M12.5 16V15.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             </svg>
             Conversion
           </button>
