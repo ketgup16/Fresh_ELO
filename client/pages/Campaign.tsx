@@ -788,7 +788,7 @@ export default function Campaign() {
                           <div key={idx} className="flex items-center gap-3 px-4 py-2 border-b border-[#E3E4E5]">
                             <input type="checkbox" className="w-4 h-4 rounded border border-black" />
                             <div className="flex items-start gap-2 flex-1">
-                              {showAlert && (
+                              {showAlert ? (
                                 <Popover open={openAlertPopover === idx} onOpenChange={(open) => setOpenAlertPopover(open ? idx : null)}>
                                   <PopoverTrigger asChild>
                                     <button className="flex-shrink-0 hover:opacity-80 transition-opacity mt-1">
@@ -827,6 +827,8 @@ export default function Campaign() {
                                     </div>
                                   </PopoverContent>
                                 </Popover>
+                              ) : (
+                                <div className="w-6 h-6 flex-shrink-0"></div>
                               )}
                               <div className="w-8 h-8 bg-gray-200 rounded flex-shrink-0"></div>
                               <div className="flex items-center gap-1">
