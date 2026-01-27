@@ -2492,7 +2492,7 @@ export default function DisplayAdvertisingCampaigns() {
                   >
                     <span className="text-sm text-[#2E2F32]" aria-hidden="true">Pace</span>
                     {livePacingFilter.length > 0 && (
-                      <span className="text-sm text-[#2E2F32]" aria-hidden="true">({showLiveFilterPopover ? tempLivePacingFilter.length : livePacingFilter.length})</span>
+                      <span className="text-sm text-[#2E2F32]" aria-hidden="true">({livePacingFilter.length})</span>
                     )}
                     {showLiveFilterPopover ? (
                       <ChevronUp className="w-4 h-4 text-[#2E2F32]" aria-hidden="true" />
