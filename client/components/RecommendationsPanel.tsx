@@ -226,34 +226,34 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         </div>
 
         {/* Tabs */}
-        <div className="px-6">
-          <div className="flex items-center gap-6 border-b-2 border-[#E3E4E5]">
+        <div className="px-6 border-b border-[#E3E4E5]">
+          <div className="flex gap-0">
             <button
               onClick={() => setSelectedTab("active")}
-              className={`pb-3 text-sm font-bold border-b-2 -mb-0.5 transition-colors ${
+              className={`px-3 pb-2 pt-4 text-sm relative ${
                 selectedTab === "active"
-                  ? "border-[#0053E2] text-[#2E2F32]"
-                  : "border-transparent text-[#2E2F32]"
+                  ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0053E2] after:rounded-t"
+                  : "font-normal text-[#2E2F32]"
               }`}
             >
               Active recommendations ({totalRecommendations})
             </button>
             <button
               onClick={() => setSelectedTab("applied")}
-              className={`pb-3 text-sm font-bold border-b-2 -mb-0.5 transition-colors ${
+              className={`px-3 pb-2 pt-4 text-sm relative ${
                 selectedTab === "applied"
-                  ? "border-[#0053E2] text-[#2E2F32]"
-                  : "border-transparent text-[#2E2F32]"
+                  ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0053E2] after:rounded-t"
+                  : "font-normal text-[#2E2F32]"
               }`}
             >
               Applied (8)
             </button>
             <button
               onClick={() => setSelectedTab("dismissed")}
-              className={`pb-3 text-sm font-bold border-b-2 -mb-0.5 transition-colors ${
+              className={`px-3 pb-2 pt-4 text-sm relative ${
                 selectedTab === "dismissed"
-                  ? "border-[#0053E2] text-[#2E2F32]"
-                  : "border-transparent text-[#2E2F32]"
+                  ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0053E2] after:rounded-t"
+                  : "font-normal text-[#2E2F32]"
               }`}
             >
               Dismissed (4)
@@ -350,7 +350,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                       {visibleItems.map((rec) => (
                         <div
                           key={rec.id}
-                          className={`flex items-start gap-3 p-4 ${
+                          className={`flex items-start gap-3 p-4 rounded-lg ${
                             selectedRecommendations.has(rec.id) ? 'bg-[#F0F5FF]' : 'bg-white'
                           }`}
                         >
@@ -420,14 +420,12 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                       {/* Show more/less link */}
                       {campaign.items.length > 2 && (
-                        <div className="flex justify-end p-4 bg-white">
-                          <button
-                            onClick={() => handleToggleCampaignExpanded(campaign.id)}
-                            className="text-sm text-[#2E2F32] underline hover:no-underline"
-                          >
-                            {campaign.isExpanded ? 'Show less' : `Show more (${hiddenCount})`}
-                          </button>
-                        </div>
+                        <button
+                          onClick={() => handleToggleCampaignExpanded(campaign.id)}
+                          className="text-sm text-[#2E2F32] underline hover:no-underline self-end"
+                        >
+                          {campaign.isExpanded ? 'Show less' : `Show more (${hiddenCount})`}
+                        </button>
                       )}
                     </div>
                   )}
