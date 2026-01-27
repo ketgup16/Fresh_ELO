@@ -82,7 +82,7 @@ export default function ItemHealth() {
       itemImage: <CleaningSpray />,
       hasAlertIcon: true,
       itemId: "1750942750",
-      campaignIds: ["4001729"],
+      campaignIds: ["4673120"],
       adGroupIds: ["580546"],
       olq: "85%",
       primaryVariant: "1750942750",
