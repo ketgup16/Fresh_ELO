@@ -314,9 +314,9 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               const hiddenCount = campaign.items.length - 2;
 
               return (
-                <div key={campaign.id} className="flex flex-col">
-                  {/* Campaign Header */}
-                  <div className="flex items-start justify-between mb-3">
+                <div key={campaign.id} className="rounded-lg border border-[#E3E4E5] overflow-hidden">
+                  {/* Campaign Header - White Background */}
+                  <div className="flex items-start justify-between p-4 bg-white">
                     <div className="flex flex-col gap-1">
                       <a
                         href="#"
@@ -344,14 +344,14 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                     </button>
                   </div>
 
-                  {/* Recommendations List */}
+                  {/* Recommendations List - Gray Background */}
                   {!campaign.isHidden && (
-                    <div className="rounded-lg border border-[#E3E4E5] bg-white overflow-hidden">
+                    <div className="bg-[#F4F5F5]">
                       {visibleItems.map((rec, idx) => (
                         <div key={rec.id}>
                           <div
                             className={`flex items-start gap-3 p-4 ${
-                              selectedRecommendations.has(rec.id) ? 'bg-[#F0F5FF]' : 'bg-white'
+                              selectedRecommendations.has(rec.id) ? 'bg-[#F0F5FF]' : 'bg-[#F4F5F5]'
                             }`}
                           >
                             {/* Checkbox */}
