@@ -353,12 +353,12 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                       {visibleItems.map((rec) => (
                         <div
                           key={rec.id}
-                          className={`flex items-center gap-3 p-4 rounded-lg ${
+                          className={`flex items-start gap-3 p-4 rounded-lg ${
                             selectedRecommendations.has(rec.id) ? 'bg-[#F0F5FF]' : 'bg-white'
                           }`}
                         >
                           {/* Checkbox */}
-                          <div className="flex items-center">
+                          <div className="flex items-start pt-0.5">
                             <Checkbox
                               checked={selectedRecommendations.has(rec.id)}
                               onCheckedChange={() => handleToggleRecommendation(rec.id)}
