@@ -98,7 +98,7 @@ export default function ItemHealth() {
       itemImage: <DishSoap />,
       hasAlertIcon: true,
       itemId: "875633804",
-      campaignIds: ["4001729"],
+      campaignIds: ["4673120"],
       adGroupIds: ["4934907"],
       olq: "72%",
       primaryVariant: "875633804",
@@ -113,7 +113,7 @@ export default function ItemHealth() {
     {
       itemImage: <PaperTowels />,
       itemId: "1566660392",
-      campaignIds: ["4001729", "4345285", "3920926", "3225492"],
+      campaignIds: ["4673120", "4345285", "3920926", "3225492"],
       adGroupIds: ["4834896", "4706485", "3692926", "3387680"],
       olq: "28%",
       primaryVariant: "1566660392",
@@ -128,7 +128,7 @@ export default function ItemHealth() {
     {
       itemImage: <LaundryDetergent />,
       itemId: "3452723904",
-      campaignIds: ["4001729", "3920926", "3225492"],
+      campaignIds: ["4673120", "3920926", "3225492"],
       adGroupIds: ["4834896", "4706485", "3692214"],
       olq: "89%",
       primaryVariant: "3452723904",
@@ -143,7 +143,7 @@ export default function ItemHealth() {
     {
       itemImage: <Sponge />,
       itemId: "1403322750",
-      campaignIds: ["4001729", "4001729", "4706485"],
+      campaignIds: ["4673120", "4673120", "4706485"],
       adGroupIds: ["4834896", "4706485"],
       olq: "54%",
       primaryVariant: "1403322750",
