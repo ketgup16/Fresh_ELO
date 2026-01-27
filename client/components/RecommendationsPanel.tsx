@@ -427,7 +427,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                       {campaign.items.length > 2 && (
                         <>
                           <div className="h-px bg-[#E3E4E5]" />
-                          <div className="flex justify-end p-4">
+                          <div className="flex justify-end p-4 bg-[#F4F5F5]">
                             <button
                               onClick={() => handleToggleCampaignExpanded(campaign.id)}
                               className="text-sm text-[#2E2F32] underline hover:no-underline"
