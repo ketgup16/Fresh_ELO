@@ -289,7 +289,7 @@ export default function Campaign() {
 
         {/* Error Alert - Only shown when editing existing campaign */}
         {isEditMode && (
-          <div className="bg-white px-6 pb-4">
+          <div className="bg-white px-6 pt-2 pb-4">
             <Alert
               variant="error"
               action={
