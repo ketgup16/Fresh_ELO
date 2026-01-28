@@ -1,4 +1,4 @@
-import { X, Eye } from "lucide-react";
+import { X, Eye, Info } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Checkbox } from "@/components/ui/checkbox";
