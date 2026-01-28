@@ -21,13 +21,13 @@ const OLQTag = React.forwardRef<HTMLSpanElement, OLQTagProps>(
     const getVariantClasses = () => {
       if (percentage < 50) {
         // Red - Poor OLQ
-        return "bg-[var(--ld-semantic-color-fill-accent-red-subtle)] text-[var(--ld-semantic-color-text-accent-red)] border-[var(--ld-semantic-color-border-accent-red)]";
+        return "bg-[var(--ld-semantic-color-fill-accent-red-subtle)] text-[var(--ld-semantic-color-text-accent-red)]";
       } else if (percentage < 80) {
         // Yellow/Spark - Fair OLQ
-        return "bg-[var(--ld-semantic-color-fill-accent-spark-subtle)] text-[var(--ld-semantic-color-text-accent-spark)] border-[var(--ld-semantic-color-border-accent-spark)]";
+        return "bg-[var(--ld-semantic-color-fill-accent-spark-subtle)] text-[var(--ld-semantic-color-text-accent-spark)]";
       } else {
         // Green - Good OLQ
-        return "bg-[var(--ld-semantic-color-fill-accent-green-subtle)] text-[var(--ld-semantic-color-text-accent-green)] border-[var(--ld-semantic-color-border-accent-green)]";
+        return "bg-[var(--ld-semantic-color-fill-accent-green-subtle)] text-[var(--ld-semantic-color-text-accent-green)]";
       }
     };
 
@@ -42,7 +42,7 @@ const OLQTag = React.forwardRef<HTMLSpanElement, OLQTagProps>(
         ref={ref}
         className={cn(
           // Base tag styles using LD 3.5 design system
-          "inline-flex items-center gap-1 font-[var(--ld-semantic-font-family-mono)] font-bold rounded border border-solid text-center",
+          "inline-flex items-center gap-1 font-[var(--ld-semantic-font-family-mono)] font-bold rounded text-center",
           sizeClasses[size],
           getVariantClasses(),
           className
