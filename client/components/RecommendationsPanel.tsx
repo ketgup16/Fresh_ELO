@@ -426,19 +426,9 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         {viewingDetailId ? (
           /* Detail View */
           <>
-            {/* Header with Breadcrumb */}
-            <div className="flex items-start justify-between p-6 pb-4">
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-2 text-sm text-[#2E2F32]">
-                  <button
-                    onClick={() => setViewingDetailId(null)}
-                    className="underline hover:no-underline"
-                  >
-                    Recommendations
-                  </button>
-                  <span>/</span>
-                  <span>Recommendation details</span>
-                </div>
+            {/* Header */}
+            <div className="flex items-start justify-between p-6 pb-0">
+              <div className="flex flex-col">
                 <h2 className="text-2xl font-bold text-[#2E2F32] leading-8">
                   Recommendations
                 </h2>
@@ -450,6 +440,20 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               >
                 <X className="w-6 h-6" />
               </button>
+            </div>
+
+            {/* Breadcrumb */}
+            <div className="px-6 pt-4 pb-4">
+              <div className="flex items-center gap-2 text-sm text-[#2E2F32]">
+                <button
+                  onClick={() => setViewingDetailId(null)}
+                  className="underline hover:no-underline"
+                >
+                  Recommendations
+                </button>
+                <span>/</span>
+                <span>Recommendation details</span>
+              </div>
             </div>
 
             {/* Detail Content */}
