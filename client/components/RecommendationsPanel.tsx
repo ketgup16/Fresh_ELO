@@ -371,9 +371,9 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   };
 
   const handleApplySelected = () => {
-    toast("Recommendations applied successfully", {
-      closeButton: true,
-    });
+    // Add all selected recommendations to the applied set
+    setNewlyAppliedIds(prev => new Set([...prev, ...selectedRecommendations]));
+    toast.success('Recommendation applied successfully');
     setSelectedRecommendations(new Set());
   };
 
@@ -903,17 +903,6 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                       }}
                                     >
                                       View details
-                                    </Button>
-                                    <Button
-                                      variant="primary"
-                                      size="small"
-                                      onClick={(e) => {
-                                        e.preventDefault();
-                                        setNewlyAppliedIds(prev => new Set([...prev, rec.id]));
-                                        toast.success('Recommendation applied successfully');
-                                      }}
-                                    >
-                                      Apply
                                     </Button>
                                   </>
                                 )}
