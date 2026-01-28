@@ -603,32 +603,43 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           <div className="px-6 pt-4 flex items-center gap-3">
             <button
               onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Awareness" ? null : "Awareness")}
-              className={`flex items-center justify-center h-10 px-4 rounded-lg text-sm font-normal transition-all ${
+              className={`flex items-center justify-center gap-2 h-10 px-4 rounded-lg text-sm font-normal transition-all ${
                 selectedGoalFilter === "Awareness"
                   ? "border-2 border-[#2E2F32] bg-white text-[#2E2F32]"
                   : "border border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
               }`}
             >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 32 32" className="flex-shrink-0">
+                <path fill="currentColor" d="M28 17.55C26.043 20.58 22.144 25 16 25S5.957 20.581 4 17.55l1.644-1.099c1.847 2.86 5.231 6.55 10.356 6.55s8.51-3.69 10.356-6.55L28 17.55ZM16 11c2.715 0 4.916 2.239 4.916 5S18.715 21 16 21c-2.715 0-4.916-2.239-4.916-5s2.2-5 4.916-5Zm0 2c-1.629 0-2.95 1.343-2.95 3 .001 1.657 1.321 3 2.95 3 1.629 0 2.95-1.343 2.95-3s-1.32-3-2.95-3Zm0-6c6.144 0 10.043 4.42 12 7.45l-1.644 1.099C24.51 12.69 21.125 9 16 9s-8.51 3.689-10.356 6.55L4 14.45C5.957 11.42 9.856 7 16 7Z"/>
+              </svg>
               Awareness
             </button>
             <button
               onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Engagement" ? null : "Engagement")}
-              className={`flex items-center justify-center h-10 px-4 rounded-lg text-sm font-normal transition-all ${
+              className={`flex items-center justify-center gap-2 h-10 px-4 rounded-lg text-sm font-normal transition-all ${
                 selectedGoalFilter === "Engagement"
                   ? "border-2 border-[#2E2F32] bg-white text-[#2E2F32]"
                   : "border border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
               }`}
             >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 32 32" className="flex-shrink-0">
+                <path fill="currentColor" d="M26.048 5.974 30 7.342l-5.565 5.37-3.772-.267-5.697 5.7-1.416-1.417L19.277 11V7.375l5.354-5.354 1.417 3.953zm-4.77 2.23v2.279l2.407.17 2.578-2.488-1.775-.614-.676-1.882-2.533 2.535Z"/>
+                <path fill="currentColor" d="M15.01 3.959c1.537 0 3.01.268 4.38.758l-1.6 1.597a11.028 11.028 0 0 0-2.78-.354C8.93 5.96 4.002 10.889 4 16.968c0 6.08 4.929 11.01 11.009 11.01s11.008-4.93 11.008-11.01c0-1.01-.138-1.989-.393-2.918l1.59-1.591c.52 1.405.804 2.924.804 4.51 0 7.185-5.824 13.01-13.01 13.01C7.826 29.98 2 24.155 2 16.97 2 9.784 7.825 3.96 15.01 3.96Z"/>
+                <path fill="currentColor" d="M15.01 10.964c.54 0 1.062.077 1.56.21l-1.803 1.803a4 4 0 0 0 .243 7.994 3.997 3.997 0 0 0 3.987-3.731l1.81-1.812a6.01 6.01 0 0 1 .207 1.54 6.004 6.004 0 1 1-6.004-6.004Z"/>
+              </svg>
               Engagement
             </button>
             <button
               onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Conversion" ? null : "Conversion")}
-              className={`flex items-center justify-center h-10 px-4 rounded-lg text-sm font-normal transition-all ${
+              className={`flex items-center justify-center gap-2 h-10 px-4 rounded-lg text-sm font-normal transition-all ${
                 selectedGoalFilter === "Conversion"
                   ? "border-2 border-[#2E2F32] bg-white text-[#2E2F32]"
                   : "border border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
               }`}
             >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 32 32" className="flex-shrink-0">
+                <path fill="currentColor" d="M16 2a14 14 0 1 1 0 28 14 14 0 0 1 0-28Zm0 2a12 12 0 1 0 0 24.001A12 12 0 0 0 16 4Zm1 3v3c.44.08.865.23 1.26.44.588.256 1.1.663 1.48 1.18a3.04 3.04 0 0 1 .54 1.74h-2a1.563 1.563 0 0 0-.68-1.16 2.54 2.54 0 0 0-1.48-.42 3.04 3.04 0 0 0-1.12.2 1.719 1.719 0 0 0-.72.54 1.222 1.222 0 0 0-.26.78c-.002.223.053.444.16.64.122.176.279.325.46.44.205.122.42.23.64.32l.72.2 1.1.36c.438.1.867.241 1.28.42.39.157.754.374 1.08.64a2.82 2.82 0 0 1 1.06 2.28 3.122 3.122 0 0 1-.52 1.8 3.46 3.46 0 0 1-1.52 1.22 5.662 5.662 0 0 1-1.42.38v3.04h-2v-3.1a4.94 4.94 0 0 1-1.3-.34 3.36 3.36 0 0 1-1.56-1.24 3.462 3.462 0 0 1-.6-2h2c.02.365.153.714.38 1 .225.28.523.495.86.62.386.131.792.198 1.2.2.41.006.819-.069 1.2-.22a2 2 0 0 0 .82-.58c.198-.242.305-.547.3-.86a1.08 1.08 0 0 0-.28-.76 1.842 1.842 0 0 0-.72-.5 6.457 6.457 0 0 0-1.1-.36l-1.32-.34a5.299 5.299 0 0 1-2.28-1.12 2.622 2.622 0 0 1-.82-2 2.88 2.88 0 0 1 .56-1.8 3.64 3.64 0 0 1 1.52-1.2c.345-.155.708-.27 1.08-.34V7h2Z"/>
+              </svg>
               Conversion
             </button>
           </div>
