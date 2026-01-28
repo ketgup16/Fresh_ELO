@@ -94,7 +94,7 @@ export default function CampaignChart({ visibleSeries = { impressions: true, cli
   }).reverse();
 
   return (
-    <div className="flex flex-col items-start w-full bg-white">
+    <div className="flex flex-col items-start w-full bg-white rounded-b-2xl">
       {/* Chart Container */}
       <div className="relative w-full h-[180px] bg-white pr-4 pl-16 pt-4 overflow-hidden">
         {/* Y-Axis Labels */}
