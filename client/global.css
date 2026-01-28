@@ -188,8 +188,9 @@
 [data-sonner-toast] [data-content] {
   color: white !important;
   flex: 1 !important;
-  padding: 8px !important;
-  padding-right: 0 !important;
+  padding: 16px !important;
+  padding-right: 8px !important;
+  order: 1 !important;
 }
 
 [data-sonner-toast] [data-title] {
