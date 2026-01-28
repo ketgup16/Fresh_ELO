@@ -194,20 +194,27 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
   // Helper function to check if a recommendation conflicts with selected ones
   const getConflictingRecommendation = (rec: RecommendationItem, campaignId: string): { isConflicted: boolean; conflictingRecTitle?: string } => {
-    // Get all selected recommendations across all campaigns
-    const allRecommendations = campaigns.flatMap(c => c.items);
-    const selectedRecs = allRecommendations.filter(r => selectedRecommendations.has(r.id));
+    // Get all selected recommendations from the same campaign
+    const currentCampaign = campaigns.find(c => c.id === campaignId);
+    if (!currentCampaign) return { isConflicted: false };
 
-    for (const selectedRec of selectedRecs) {
+    const selectedRecsInCampaign = currentCampaign.items.filter(r => selectedRecommendations.has(r.id));
+
+    for (const selectedRec of selectedRecsInCampaign) {
       // Skip if comparing with itself
       if (selectedRec.id === rec.id) continue;
 
-      // If selected recommendation affects multiple ad groups (campaign-level)
-      if (selectedRec.affectedAdGroups && selectedRec.affectedAdGroups.length > 0) {
-        // Check if current rec is in one of those affected ad groups
-        if (rec.adGroup && selectedRec.affectedAdGroups.some(ag => rec.adGroup?.includes(ag.split(' ')[0]))) {
+      // If selected recommendation is campaign-level (affects multiple ad groups)
+      if (selectedRec.type === 'campaign' && selectedRec.affectedAdGroups && selectedRec.affectedAdGroups.length > 0) {
+        // If current rec is ad group level, it conflicts
+        if (rec.type === 'adgroup') {
           return { isConflicted: true, conflictingRecTitle: selectedRec.title };
         }
+      }
+
+      // If selected recommendation is ad group level and current one is campaign level
+      if (selectedRec.type === 'adgroup' && rec.type === 'campaign' && rec.affectedAdGroups) {
+        return { isConflicted: true, conflictingRecTitle: selectedRec.title };
       }
     }
 
