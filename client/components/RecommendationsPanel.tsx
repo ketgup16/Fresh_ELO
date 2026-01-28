@@ -486,8 +486,50 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
         {/* Content Container */}
         <div className="flex-1 overflow-y-auto px-6 pt-4 pb-6">
-          <div className="flex flex-col gap-6">
-            {filteredCampaigns.map((campaign) => {
+          {selectedTab === "applied" ? (
+            /* Applied Recommendations Table */
+            <div className="bg-white rounded-lg border border-[#E3E4E5]">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-[#E3E4E5]">
+                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Recommendation</th>
+                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Type</th>
+                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Date applied</th>
+                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Impact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {appliedRecommendations.map((rec) => (
+                    <tr key={rec.id} className="border-b border-[#E3E4E5] last:border-b-0">
+                      <td className="px-4 py-3">
+                        <div className="flex flex-col gap-1">
+                          <div className="text-sm text-[#2E2F32]">{rec.title}</div>
+                          <div className="text-sm text-[#74767C]">{rec.campaignName}</div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="text-sm text-[#2E2F32]">{rec.type}</div>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="text-sm text-[#2E2F32]">{rec.dateApplied}</div>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-[#2E2F32]">{rec.impactType}</span>
+                          <span className="flex items-center gap-1 text-sm font-bold text-[#2A8703]">
+                            <ArrowUp className="w-4 h-4" />
+                            {rec.impactValue}
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-6">
+              {filteredCampaigns.map((campaign) => {
               const visibleItems = campaign.isExpanded ? campaign.items : campaign.items.slice(0, 2);
               const hiddenCount = campaign.items.length - 2;
 
@@ -643,8 +685,9 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   )}
                 </div>
               );
-            })}
-          </div>
+              })}
+            </div>
+          )}
         </div>
 
         {/* Bottom Section */}
