@@ -372,74 +372,112 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   {/* Recommendations List - Gray Background */}
                   {!campaign.isHidden && (
                     <div className="bg-[#F4F5F5] p-4 flex flex-col gap-3">
-                      {visibleItems.map((rec) => (
-                        <div
-                          key={rec.id}
-                          className={`flex items-start gap-3 p-4 rounded-lg bg-white ${
-                            selectedRecommendations.has(rec.id) ? 'border border-black' : ''
-                          }`}
-                        >
-                          {/* Checkbox */}
-                          <div className="flex items-start pt-0.5">
-                            <Checkbox
-                              checked={selectedRecommendations.has(rec.id)}
-                              onCheckedChange={() => handleToggleRecommendation(rec.id)}
-                              className="w-6 h-6 rounded border-2 border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border data-[state=checked]:border-black data-[state=unchecked]:bg-white"
-                            />
-                          </div>
+                      {visibleItems.map((rec) => {
+                        const conflict = getConflictingRecommendation(rec, campaign.id);
+                        const isDisabled = conflict.isConflicted;
 
-                          {/* Content */}
-                          <div className="flex-1 flex flex-col gap-2">
-                            <div className="flex flex-col gap-1">
-                              <div className="text-sm font-bold text-[#2E2F32]">{rec.title}</div>
-                              <div className="flex items-end gap-1">
-                                <span className="text-sm font-bold text-[#2A8703]">{rec.impact}</span>
-                                <span className="text-sm text-[#2E2F32]">{rec.message}</span>
+                        return (
+                          <div key={rec.id} className="flex flex-col gap-3">
+                            {/* Conflict Banner */}
+                            {isDisabled && (
+                              <div className="flex items-start gap-2 p-3 bg-[#E6F2FF] border border-[#0053E2] rounded">
+                                <Info className="w-4 h-4 text-[#0053E2] flex-shrink-0 mt-0.5" />
+                                <span className="text-sm text-[#0053E2]">
+                                  Not available with selected recommendation. Conflicting with: {conflict.conflictingRecTitle}
+                                </span>
+                              </div>
+                            )}
+
+                            <div
+                              className={`flex items-start gap-3 p-4 rounded-lg bg-white ${
+                                selectedRecommendations.has(rec.id) ? 'border border-black' : ''
+                              } ${isDisabled ? 'opacity-60' : ''}`}
+                            >
+                              {/* Checkbox */}
+                              <div className="flex items-start pt-0.5">
+                                <Checkbox
+                                  checked={selectedRecommendations.has(rec.id)}
+                                  onCheckedChange={() => !isDisabled && handleToggleRecommendation(rec.id)}
+                                  disabled={isDisabled}
+                                  className={`w-6 h-6 rounded border-2 ${
+                                    isDisabled
+                                      ? 'border-[#C7C8CB] bg-[#F4F5F5] cursor-not-allowed'
+                                      : 'border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border data-[state=checked]:border-black data-[state=unchecked]:bg-white'
+                                  }`}
+                                />
+                              </div>
+
+                              {/* Content */}
+                              <div className="flex-1 flex flex-col gap-2">
+                                <div className="flex flex-col gap-1">
+                                  <div className={`text-sm font-bold ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
+                                    {rec.title}
+                                  </div>
+                                  <div className="flex items-end gap-1">
+                                    <span className={`text-sm font-bold ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2A8703]'}`}>
+                                      {rec.impact}
+                                    </span>
+                                    <span className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
+                                      {rec.message}
+                                    </span>
+                                  </div>
+                                </div>
+
+                                {/* Affected ad groups */}
+                                {rec.affectedAdGroups && (
+                                  <div className="flex flex-col gap-2">
+                                    <span className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#515357]'}`}>
+                                      Affected ad groups
+                                    </span>
+                                    <div className="flex items-center gap-2 flex-wrap">
+                                      {rec.affectedAdGroups.map((adGroup, idx) => (
+                                        <span
+                                          key={idx}
+                                          className={`px-2 py-1 rounded-sm text-xs ${
+                                            isDisabled
+                                              ? 'bg-[#F4F5F5] text-[#C7C8CB]'
+                                              : 'bg-[#F4F5F5] text-[#515357]'
+                                          }`}
+                                        >
+                                          {adGroup}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+
+                                {/* Ad group name for adgroup type */}
+                                {rec.adGroup && (
+                                  <div className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#515357]'}`}>
+                                    {rec.adGroup}
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* Card CTAs */}
+                              <div className="flex items-center gap-4">
+                                <a
+                                  href="#"
+                                  className={`text-sm underline hover:no-underline whitespace-nowrap ${
+                                    isDisabled ? 'text-[#C7C8CB] cursor-not-allowed pointer-events-none' : 'text-[#2E2F32]'
+                                  }`}
+                                  onClick={(e) => e.preventDefault()}
+                                >
+                                  Dismiss
+                                </a>
+                                <Button
+                                  variant="tertiary"
+                                  size="small"
+                                  onClick={(e) => e.preventDefault()}
+                                  disabled={isDisabled}
+                                >
+                                  View details
+                                </Button>
                               </div>
                             </div>
-
-                            {/* Affected ad groups */}
-                            {rec.affectedAdGroups && (
-                              <div className="flex flex-col gap-2">
-                                <span className="text-sm text-[#515357]">Affected ad groups</span>
-                                <div className="flex items-center gap-2 flex-wrap">
-                                  {rec.affectedAdGroups.map((adGroup, idx) => (
-                                    <span
-                                      key={idx}
-                                      className="px-2 py-1 rounded-sm bg-[#F4F5F5] text-xs text-[#515357]"
-                                    >
-                                      {adGroup}
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-
-                            {/* Ad group name for adgroup type */}
-                            {rec.adGroup && (
-                              <div className="text-sm text-[#515357]">{rec.adGroup}</div>
-                            )}
                           </div>
-
-                          {/* Card CTAs */}
-                          <div className="flex items-center gap-4">
-                            <a
-                              href="#"
-                              className="text-sm text-[#2E2F32] underline hover:no-underline whitespace-nowrap"
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              Dismiss
-                            </a>
-                            <Button
-                              variant="tertiary"
-                              size="small"
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              View details
-                            </Button>
-                          </div>
-                        </div>
-                      ))}
+                        );
+                      })}
 
                       {/* Show more/less link */}
                       {campaign.items.length > 2 && (
