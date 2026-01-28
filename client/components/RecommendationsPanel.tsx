@@ -45,11 +45,11 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
       setCampaigns([
         {
           id: "campaign-1",
-          name: "Campaign name goes here",
-          adGroups: 2,
+          name: "Coca-Cola Zero Sugar - Summer Campaign 2024",
+          adGroups: 3,
           recommendations: 5,
-          impact: "20k-23k",
-          description: "Potential increase in reach",
+          impact: "2.4M-2.8M",
+          description: "Potential increase in impressions",
           goal: "Awareness",
           isHidden: false,
           isExpanded: false,
@@ -57,52 +57,52 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-1-1",
               type: "campaign",
-              title: "Reallocate budget",
-              impact: "20k-23k",
-              message: "Potential increase in reach",
-              affectedAdGroups: ["Ad group name...", "Ad group name...", "Ad group name..."]
+              title: "Expand audience targeting to similar audiences",
+              impact: "2.4M-2.8M",
+              message: "Potential increase in impressions",
+              affectedAdGroups: ["Young Adults 18-24", "Fitness Enthusiasts", "Health Conscious"]
             },
             {
               id: "rec-1-2",
               type: "adgroup",
-              title: "Add 15 keywords",
-              impact: "18k-21k",
-              message: "Potential increase in reach",
-              adGroup: "Ad group 01 name goes here"
+              title: "Add lifestyle and fitness placements",
+              impact: "890K-1.2M",
+              message: "Potential increase in impressions",
+              adGroup: "Young Adults 18-24"
             },
             {
               id: "rec-1-3",
               type: "adgroup",
-              title: "Add 20 categories",
-              impact: "14k-16k",
-              message: "Potential increase in reach",
-              adGroup: "Ad group 02 name goes here"
+              title: "Optimize creative for mobile devices",
+              impact: "750K-920K",
+              message: "Potential increase in engagement",
+              adGroup: "Fitness Enthusiasts"
             },
             {
               id: "rec-1-4",
               type: "adgroup",
-              title: "Add 20 keywords",
-              impact: "14k-16k",
-              message: "Potential increase in reach",
-              adGroup: "Ad group 02 name goes here"
+              title: "Increase bid for premium placements",
+              impact: "640K-780K",
+              message: "Potential increase in impressions",
+              adGroup: "Health Conscious"
             },
             {
               id: "rec-1-5",
               type: "adgroup",
-              title: "Extend campaign duration",
-              impact: "14k-16k",
+              title: "Extend campaign to high-performing locations",
+              impact: "520K-650K",
               message: "Potential increase in reach",
-              adGroup: "Ad group 02 name goes here"
+              adGroup: "Young Adults 18-24"
             }
           ]
         },
         {
           id: "campaign-2",
-          name: "Campaign name goes here",
-          adGroups: 2,
-          recommendations: 5,
-          impact: "20k-23k",
-          description: "Potential increase in reach",
+          name: "Coca-Cola Original - Holiday Brand Campaign",
+          adGroups: 4,
+          recommendations: 4,
+          impact: "3.1M-3.6M",
+          description: "Potential increase in impressions",
           goal: "Awareness",
           isHidden: false,
           isExpanded: false,
@@ -110,28 +110,44 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-2-1",
               type: "campaign",
-              title: "Reallocate budget",
-              impact: "20k-23k",
-              message: "Potential increase in reach",
-              affectedAdGroups: ["Ad group name...", "Ad group name...", "Ad group name..."]
+              title: "Add seasonal audience segments",
+              impact: "3.1M-3.6M",
+              message: "Potential increase in impressions",
+              affectedAdGroups: ["Families", "Holiday Shoppers", "Gift Buyers", "Entertainment Seekers"]
             },
             {
               id: "rec-2-2",
               type: "adgroup",
-              title: "Add 15 keywords",
-              impact: "18k-21k",
-              message: "Potential increase in reach",
-              adGroup: "Ad group 01 name goes here"
+              title: "Increase frequency cap during peak hours",
+              impact: "1.2M-1.5M",
+              message: "Potential increase in brand recall",
+              adGroup: "Families"
+            },
+            {
+              id: "rec-2-3",
+              type: "adgroup",
+              title: "Add video ad formats",
+              impact: "980K-1.1M",
+              message: "Potential increase in engagement",
+              adGroup: "Holiday Shoppers"
+            },
+            {
+              id: "rec-2-4",
+              type: "adgroup",
+              title: "Target streaming and entertainment sites",
+              impact: "850K-1.0M",
+              message: "Potential increase in impressions",
+              adGroup: "Entertainment Seekers"
             }
           ]
         },
         {
           id: "campaign-3",
-          name: "Campaign name goes here",
-          adGroups: 2,
-          recommendations: 5,
-          impact: "20k-23k",
-          description: "Potential increase in reach",
+          name: "Coca-Cola Energy - Sports & Gaming",
+          adGroups: 3,
+          recommendations: 3,
+          impact: "1.8M-2.1M",
+          description: "Potential increase in clicks",
           goal: "Engagement",
           isHidden: false,
           isExpanded: false,
@@ -139,18 +155,63 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-3-1",
               type: "campaign",
-              title: "Reallocate budget",
-              impact: "20k-23k",
-              message: "Potential increase in reach",
-              affectedAdGroups: ["Ad group name...", "Ad group name..."]
+              title: "Allocate more budget to gaming platforms",
+              impact: "1.8M-2.1M",
+              message: "Potential increase in clicks",
+              affectedAdGroups: ["Gamers 18-35", "Sports Fans", "Esports Viewers"]
             },
             {
               id: "rec-3-2",
               type: "adgroup",
-              title: "Add 15 keywords",
-              impact: "18k-21k",
-              message: "Potential increase in reach",
-              adGroup: "Ad group 01 name goes here"
+              title: "Add interactive ad formats",
+              impact: "720K-850K",
+              message: "Potential increase in engagement rate",
+              adGroup: "Gamers 18-35"
+            },
+            {
+              id: "rec-3-3",
+              type: "adgroup",
+              title: "Target live sports streaming platforms",
+              impact: "650K-780K",
+              message: "Potential increase in clicks",
+              adGroup: "Sports Fans"
+            }
+          ]
+        },
+        {
+          id: "campaign-4",
+          name: "Coca-Cola Mini - Impulse Purchase Driver",
+          adGroups: 2,
+          recommendations: 3,
+          impact: "420K-520K",
+          description: "Potential increase in store visits",
+          goal: "Conversion",
+          isHidden: false,
+          isExpanded: false,
+          items: [
+            {
+              id: "rec-4-1",
+              type: "campaign",
+              title: "Add location-based targeting near stores",
+              impact: "420K-520K",
+              message: "Potential increase in store visits",
+              affectedAdGroups: ["On-the-Go Consumers", "Convenience Shoppers"]
+            },
+            {
+              id: "rec-4-2",
+              type: "adgroup",
+              title: "Enable dynamic product ads with offers",
+              impact: "280K-340K",
+              message: "Potential increase in click-through rate",
+              adGroup: "On-the-Go Consumers"
+            },
+            {
+              id: "rec-4-3",
+              type: "adgroup",
+              title: "Optimize for mobile app installs",
+              impact: "180K-220K",
+              message: "Potential increase in conversions",
+              adGroup: "Convenience Shoppers"
             }
           ]
         }
