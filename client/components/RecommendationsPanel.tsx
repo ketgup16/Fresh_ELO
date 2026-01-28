@@ -445,10 +445,15 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                         const isDisabled = conflict.isConflicted;
 
                         return (
-                          <div key={rec.id} className="flex flex-col gap-3">
-                            {/* Conflict Banner */}
+                          <div
+                            key={rec.id}
+                            className={`flex flex-col gap-3 p-4 rounded-lg bg-white ${
+                              selectedRecommendations.has(rec.id) ? 'border border-black' : ''
+                            }`}
+                          >
+                            {/* Conflict Banner - Inside card */}
                             {isDisabled && (
-                              <div className="flex items-start gap-2 p-3 bg-[#E6F2FF] border border-[#0053E2] rounded">
+                              <div className="flex items-start gap-2 p-3 bg-[#E6F2FF] border border-[#0053E2] rounded -mx-4 -mt-4 mb-0">
                                 <Info className="w-4 h-4 text-[#0053E2] flex-shrink-0 mt-0.5" />
                                 <span className="text-sm text-[#0053E2]">
                                   Not available with selected recommendation. Conflicting with: {conflict.conflictingRecTitle}
@@ -456,11 +461,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                               </div>
                             )}
 
-                            <div
-                              className={`flex items-start gap-3 p-4 rounded-lg bg-white ${
-                                selectedRecommendations.has(rec.id) ? 'border border-black' : ''
-                              } ${isDisabled ? 'opacity-60' : ''}`}
-                            >
+                            <div className="flex items-start gap-3">
                               {/* Checkbox */}
                               <div className="flex items-start pt-0.5">
                                 <Checkbox
@@ -522,13 +523,11 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                 )}
                               </div>
 
-                              {/* Card CTAs */}
+                              {/* Card CTAs - Always enabled */}
                               <div className="flex items-center gap-4">
                                 <a
                                   href="#"
-                                  className={`text-sm underline hover:no-underline whitespace-nowrap ${
-                                    isDisabled ? 'text-[#C7C8CB] cursor-not-allowed pointer-events-none' : 'text-[#2E2F32]'
-                                  }`}
+                                  className="text-sm text-[#2E2F32] underline hover:no-underline whitespace-nowrap"
                                   onClick={(e) => e.preventDefault()}
                                 >
                                   Dismiss
@@ -537,7 +536,6 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                   variant="tertiary"
                                   size="small"
                                   onClick={(e) => e.preventDefault()}
-                                  disabled={isDisabled}
                                 >
                                   View details
                                 </Button>
