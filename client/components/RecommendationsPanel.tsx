@@ -117,6 +117,30 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               impact: "520K-650K",
               message: "Potential increase in reach",
               adGroup: "Young Adults 18-24"
+            },
+            {
+              id: "rec-1-6",
+              type: "adgroup",
+              title: "Adjust bid strategy for better ROI",
+              impact: "450K-580K",
+              message: "Potential increase in conversions",
+              adGroup: "Young Adults 18-24"
+            },
+            {
+              id: "rec-1-7",
+              type: "adgroup",
+              title: "Add video ad format",
+              impact: "680K-830K",
+              message: "Potential increase in engagement",
+              adGroup: "Fitness Enthusiasts"
+            },
+            {
+              id: "rec-1-8",
+              type: "adgroup",
+              title: "Expand targeting to lookalike audiences",
+              impact: "590K-720K",
+              message: "Potential increase in reach",
+              adGroup: "Health Conscious"
             }
           ]
         },
