@@ -78,7 +78,7 @@ export default function DisplayDashboard() {
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5]">
               <div className="px-6 py-4 flex-1">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                  <h3 className="text-sm font-bold text-[#2E2F32]">Maximize your reach</h3>
+                  <h3 className="text-base font-bold text-[#2E2F32]">Maximize your reach</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#E6F1FC] text-xs text-[#002E99] whitespace-nowrap">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M8 4.5C5.43756 4.5 3.74541 6.3442 2.82186 7.77447L2 7.22553C2.97848 5.71021 4.92776 3.5 8 3.5C11.0722 3.5 13.0215 5.71021 14 7.22553L13.1781 7.77447C12.2546 6.3442 10.5624 4.5 8 4.5Z" fill="#002E99"/>
