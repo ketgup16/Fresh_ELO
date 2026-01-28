@@ -233,3 +233,13 @@
   width: 16px !important;
   height: 16px !important;
 }
+
+/* Hide the success checkmark icon */
+[data-sonner-toast] [data-icon] {
+  display: none !important;
+}
+
+/* Ensure close button X icon is visible and on the right */
+[data-sonner-toast] {
+  justify-content: space-between !important;
+}
