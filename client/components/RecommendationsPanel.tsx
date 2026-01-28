@@ -436,8 +436,9 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           </div>
         </div>
 
-        {/* Goal Filter Pills */}
-        <div className="px-6 pt-4 flex items-center gap-3">
+        {/* Goal Filter Pills - Only show on active tab */}
+        {selectedTab === "active" && (
+          <div className="px-6 pt-4 flex items-center gap-3">
           <button
             onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Awareness" ? null : "Awareness")}
             className={`flex items-center gap-3 h-12 px-6 border-2 rounded-lg text-base font-normal transition-all ${
@@ -482,7 +483,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             </svg>
             Conversion
           </button>
-        </div>
+          </div>
+        )}
 
         {/* Content Container */}
         <div className="flex-1 overflow-y-auto px-6 pt-4 pb-6">
