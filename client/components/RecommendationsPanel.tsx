@@ -422,8 +422,132 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
       {/* Panel */}
       <div className="fixed top-0 right-0 bottom-0 w-[800px] bg-white shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 flex flex-col">
-        {/* Header */}
-        <div className="flex items-start justify-between p-6 pb-4">
+        {viewingDetailId ? (
+          /* Detail View */
+          <>
+            {/* Header with Breadcrumb */}
+            <div className="flex items-start justify-between p-6 pb-4">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-sm text-[#2E2F32]">
+                  <button
+                    onClick={() => setViewingDetailId(null)}
+                    className="underline hover:no-underline"
+                  >
+                    Recommendations
+                  </button>
+                  <span>/</span>
+                  <span>Recommendation details</span>
+                </div>
+                <h2 className="text-2xl font-bold text-[#2E2F32] leading-8">
+                  Recommendations
+                </h2>
+              </div>
+              <button
+                onClick={onClose}
+                className="rounded-full p-2 hover:bg-gray-100 transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Detail Content */}
+            <div className="flex-1 overflow-y-auto px-6 pb-6">
+              <div className="flex flex-col gap-4">
+                {/* Title and Impact */}
+                <div>
+                  <h3 className="text-base font-bold text-[#2E2F32] mb-1">Add 15 keywords</h3>
+                  <div className="flex items-end gap-1">
+                    <span className="text-sm font-bold text-[#2A8703]">15k-18k</span>
+                    <span className="text-sm text-[#2E2F32]">Potential increase in reach</span>
+                  </div>
+                </div>
+
+                {/* Alert Banner */}
+                <Alert variant="info">
+                  Applying this recommendation will reconfigure your ad group(s) and disable any other recommendations that affect the same group(s).
+                </Alert>
+
+                {/* Campaign */}
+                <div>
+                  <h4 className="text-sm font-bold text-[#2E2F32] mb-1">Campaign</h4>
+                  <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline">
+                    H&H_FY25_Always On_North Atlantic_Blackstone_Display_In-Market_50839
+                  </a>
+                </div>
+
+                {/* Ad group */}
+                <div>
+                  <h4 className="text-sm font-bold text-[#2E2F32] mb-1">Ad group</h4>
+                  <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline">
+                    Walmart|Display|Auction|Cross Device|Behavioral Targeting|Past Purchasers of Tapatio
+                  </a>
+                </div>
+
+                {/* Recommended keywords */}
+                <div className="bg-[#F8F8F8] border border-[#E3E4E5] rounded p-4">
+                  <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Recommended keywords</h4>
+                  <p className="text-sm text-[#2E2F32] mb-2">
+                    Coca-Cola freestyle machine, Coke vending machine, Coca-Cola sponsorship deals, Coke tasting event, Coca-Cola heritage tour, Coke glassware, Coca-Cola recipe pairing, Coke float dessert, Coca-Cola ice cream soda, Coke recipe hacks, Coca-Cola themed cafe, Coke and popcorn combo, Coca-Cola holiday truck tour, Coke art installation, Coca-Cola fan club, Coke TikTok challenge, Coca-Cola merch giveaway
+                  </p>
+                  <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                    View more
+                  </button>
+                </div>
+
+                {/* Current */}
+                <div className="bg-[#F8F8F8] border border-[#E3E4E5] rounded">
+                  <button className="w-full flex items-center justify-between p-4 text-left">
+                    <h4 className="text-sm font-bold text-[#2E2F32]">Current</h4>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transform rotate-0">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M3.14645 5.39645C3.32669 5.2162 3.6103 5.20234 3.80645 5.35485L3.85355 5.39645L8 9.5425L12.1464 5.39645C12.3267 5.2162 12.6103 5.20234 12.8064 5.35485L12.8536 5.39645C13.0338 5.57669 13.0477 5.8603 12.8951 6.05645L12.8536 6.10355L8.35355 10.6036C8.17331 10.7838 7.8897 10.7977 7.69355 10.6451L7.64645 10.6036L3.14645 6.10355C2.95118 5.90829 2.95118 5.59171 3.14645 5.39645Z" fill="#2E2F32"/>
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Why we recommend this */}
+                <div>
+                  <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Why we recommend this</h4>
+                  <p className="text-sm text-[#2E2F32]">
+                    Based on your campaign performance, we've identified that adding keywords could significantly increase your reach. Similar campaigns saw an average 12% increase in impressions while maintaining conversion quality. This recommendation uses machine learning to find users with similar characteristics to your best-performing audience segments.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Detail Footer */}
+            <div className="border-t border-[#E3E4E5] px-6 py-4">
+              <div className="flex items-center justify-end gap-4">
+                <button
+                  onClick={() => setViewingDetailId(null)}
+                  className="text-sm text-[#2E2F32] underline hover:no-underline"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={(e) => e.preventDefault()}
+                  className="text-sm text-[#2E2F32] underline hover:no-underline"
+                >
+                  Dismiss
+                </button>
+                <Button
+                  variant="primary"
+                  size="small"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setViewingDetailId(null);
+                  }}
+                >
+                  Apply recommendation
+                </Button>
+              </div>
+            </div>
+          </>
+        ) : (
+          /* List View */
+          <>
+            {/* Header */}
+            <div className="flex items-start justify-between p-6 pb-4">
           <div className="flex flex-col">
             <h2 className="text-2xl font-bold text-[#2E2F32] leading-8">
               Recommendations
@@ -792,6 +916,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               </div>
             </div>
           </div>
+        )}
+          </>
         )}
       </div>
     </>
