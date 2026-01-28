@@ -2576,7 +2576,7 @@ export default function DisplayAdvertisingCampaigns() {
                   aria-label={`Filter by completed campaigns. ${completedCount} campaign${completedCount !== 1 ? 's' : ''} completed`}
                   aria-pressed={completedFilterSelected}
                 >
-                  <span className="text-sm text-[#2E2F32]" aria-hidden="true">Completed ({completedCount})</span>
+                  <span className="text-sm text-[#2E2F32]" aria-hidden="true">Completed</span>
                 </button>
               </div>
 
