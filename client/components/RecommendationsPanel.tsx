@@ -522,7 +522,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 {/* Recommended keywords and Current - Combined container */}
                 <div className="bg-[#F8F8F8] border border-[#E3E4E5] rounded">
                   {/* Recommended keywords */}
-                  <div className="p-4 border-b border-[#E3E4E5]">
+                  <div className="p-4 border-b border-[#E3E4E5] bg-white">
                     <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Recommended keywords</h4>
                     <p className="text-sm text-[#2E2F32] mb-2 leading-relaxed">
                       Coca-Cola freestyle machine, Coke vending machine, Coca-Cola sponsorship deals, Coke tasting event, Coca-Cola heritage tour, Coke glassware, Coca-Cola recipe pairing, Coke float dessert, Coca-Cola ice cream soda, Coke recipe hacks, Coca-Cola themed cafe, Coke and popcorn combo, Coca-Cola holiday truck tour, Coke art installation, Coca-Cola fan club, Coke TikTok challenge, Coca-Cola merch giveaway
@@ -534,7 +534,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                   {/* Current */}
                   <div>
-                    <button className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-100 transition-colors">
+                    <button className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-100 transition-colors">
                       <h4 className="text-sm font-bold text-[#2E2F32]">Current</h4>
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transform rotate-0">
                         <path fillRule="evenodd" clipRule="evenodd" d="M3.14645 5.39645C3.32669 5.2162 3.6103 5.20234 3.80645 5.35485L3.85355 5.39645L8 9.5425L12.1464 5.39645C12.3267 5.2162 12.6103 5.20234 12.8064 5.35485L12.8536 5.39645C13.0338 5.57669 13.0477 5.8603 12.8951 6.05645L12.8536 6.10355L8.35355 10.6036C8.17331 10.7838 7.8897 10.7977 7.69355 10.6451L7.64645 10.6036L3.14645 6.10355C2.95118 5.90829 2.95118 5.59171 3.14645 5.39645Z" fill="#2E2F32"/>
