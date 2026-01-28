@@ -477,30 +477,30 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           <div className="px-6 pt-4 flex items-center gap-3">
             <button
               onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Awareness" ? null : "Awareness")}
-              className={`flex items-center justify-center h-10 px-4 border rounded-lg text-sm font-normal transition-all ${
+              className={`flex items-center justify-center h-10 px-4 rounded-lg text-sm font-normal transition-all ${
                 selectedGoalFilter === "Awareness"
-                  ? "border-[#2E2F32] bg-[#2E2F32] text-white"
-                  : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
+                  ? "border-2 border-[#2E2F32] bg-white text-[#2E2F32]"
+                  : "border border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
               }`}
             >
               Awareness
             </button>
             <button
               onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Engagement" ? null : "Engagement")}
-              className={`flex items-center justify-center h-10 px-4 border rounded-lg text-sm font-normal transition-all ${
+              className={`flex items-center justify-center h-10 px-4 rounded-lg text-sm font-normal transition-all ${
                 selectedGoalFilter === "Engagement"
-                  ? "border-[#2E2F32] bg-[#2E2F32] text-white"
-                  : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
+                  ? "border-2 border-[#2E2F32] bg-white text-[#2E2F32]"
+                  : "border border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
               }`}
             >
               Engagement
             </button>
             <button
               onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Conversion" ? null : "Conversion")}
-              className={`flex items-center justify-center h-10 px-4 border rounded-lg text-sm font-normal transition-all ${
+              className={`flex items-center justify-center h-10 px-4 rounded-lg text-sm font-normal transition-all ${
                 selectedGoalFilter === "Conversion"
-                  ? "border-[#2E2F32] bg-[#2E2F32] text-white"
-                  : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
+                  ? "border-2 border-[#2E2F32] bg-white text-[#2E2F32]"
+                  : "border border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
               }`}
             >
               Conversion
