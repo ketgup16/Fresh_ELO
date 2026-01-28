@@ -20,6 +20,16 @@ interface RecommendationItem {
   adGroup?: string;
 }
 
+interface AppliedRecommendation {
+  id: string;
+  title: string;
+  campaignName: string;
+  type: string;
+  dateApplied: string;
+  impactType: string;
+  impactValue: string;
+}
+
 interface CampaignSection {
   id: string;
   name: string;
