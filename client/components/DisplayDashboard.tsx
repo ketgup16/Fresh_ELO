@@ -118,8 +118,8 @@ export default function DisplayDashboard() {
                     setCampaignGoal('Awareness');
                     setRecommendationsPanelOpen(true);
                   }}
-                  variant="outline"
-                  className="h-8 px-4 text-sm font-bold text-[#2E2F32] border-[#2E2F32] rounded-full hover:bg-gray-50"
+                  variant="secondary"
+                  size="small"
                 >
                   View recommendations
                 </Button>
@@ -170,8 +170,8 @@ export default function DisplayDashboard() {
                     setCampaignGoal('Engagement');
                     setRecommendationsPanelOpen(true);
                   }}
-                  variant="outline"
-                  className="h-8 px-4 text-sm font-bold text-[#2E2F32] border-[#2E2F32] rounded-full hover:bg-gray-50"
+                  variant="secondary"
+                  size="small"
                 >
                   View recommendations
                 </Button>
@@ -221,8 +221,8 @@ export default function DisplayDashboard() {
                     setCampaignGoal('Conversion');
                     setRecommendationsPanelOpen(true);
                   }}
-                  variant="outline"
-                  className="h-8 px-4 text-sm font-bold text-[#2E2F32] border-[#2E2F32] rounded-full hover:bg-gray-50"
+                  variant="secondary"
+                  size="small"
                 >
                   View recommendations
                 </Button>
