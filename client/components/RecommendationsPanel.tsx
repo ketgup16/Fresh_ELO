@@ -536,6 +536,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   size="small"
                   onClick={(e) => {
                     e.preventDefault();
+                    if (viewingDetailId) {
+                      setNewlyAppliedIds(prev => new Set([...prev, viewingDetailId]));
+                      toast.success('Recommendation applied successfully');
+                    }
                     setViewingDetailId(null);
                   }}
                 >
