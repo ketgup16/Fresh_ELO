@@ -339,9 +339,9 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
       ]);
       setSelectedRecommendations(new Set());
       setSelectedTab("active");
-      setSelectedGoalFilter(null);
+      setSelectedGoalFilter(campaignGoal || null);
     }
-  }, [isOpen]);
+  }, [isOpen, campaignGoal]);
 
   if (!isOpen) return null;
 
