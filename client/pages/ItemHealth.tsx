@@ -578,7 +578,7 @@ export default function ItemHealth() {
                                       onClick={() => navigate('/seller-center')}
                                       className="flex items-center gap-2 h-8 px-3 rounded-full border border-[#2E2F32] bg-white text-sm font-bold text-[#2E2F32] hover:bg-gray-50 transition-colors"
                                     >
-                                      Take action
+                                      Resolve in Seller Center
                                       <ExternalLink className="w-4 h-4" />
                                     </button>
                                   </div>
