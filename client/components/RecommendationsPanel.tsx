@@ -60,6 +60,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   const [campaigns, setCampaigns] = useState<CampaignSection[]>([]);
   const [appliedRecommendations, setAppliedRecommendations] = useState<AppliedRecommendation[]>([]);
   const [dismissedRecommendations, setDismissedRecommendations] = useState<DismissedRecommendation[]>([]);
+  const [viewingDetailId, setViewingDetailId] = useState<string | null>(null);
 
   // Initialize campaigns data
   useEffect(() => {
@@ -730,7 +731,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                 <Button
                                   variant="tertiary"
                                   size="small"
-                                  onClick={(e) => e.preventDefault()}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setViewingDetailId(rec.id);
+                                  }}
                                 >
                                   View details
                                 </Button>
