@@ -227,6 +227,80 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           ]
         }
       ]);
+      setAppliedRecommendations([
+        {
+          id: "applied-1",
+          title: "Reallocate budget across ad groups",
+          campaignName: "Campaign name 01",
+          type: "Budget",
+          dateApplied: "01/20/2026",
+          impactType: "Impressions",
+          impactValue: "35k"
+        },
+        {
+          id: "applied-2",
+          title: "Add 15 keywords",
+          campaignName: "Campaign name 02",
+          type: "Targeting",
+          dateApplied: "01/20/2026",
+          impactType: "Clicks",
+          impactValue: "2.5%"
+        },
+        {
+          id: "applied-3",
+          title: "Add 7 categories",
+          campaignName: "Campaign name 02",
+          type: "Targeting",
+          dateApplied: "01/20/2026",
+          impactType: "Transactions",
+          impactValue: "15%"
+        },
+        {
+          id: "applied-4",
+          title: "Extend campaign duration",
+          campaignName: "Campaign name 03",
+          type: "Date",
+          dateApplied: "01/20/2026",
+          impactType: "Impressions",
+          impactValue: "15k"
+        },
+        {
+          id: "applied-5",
+          title: "Reallocate budget across ad groups",
+          campaignName: "Campaign name 01",
+          type: "Data",
+          dateApplied: "01/20/2026",
+          impactType: "Impressions",
+          impactValue: "100%"
+        },
+        {
+          id: "applied-6",
+          title: "Add 15 keywords",
+          campaignName: "Campaign name 02",
+          type: "Data",
+          dateApplied: "01/20/2026",
+          impactType: "Impressions",
+          impactValue: "100%"
+        },
+        {
+          id: "applied-7",
+          title: "Add 7 categories",
+          campaignName: "Campaign name 02",
+          type: "Data",
+          dateApplied: "01/20/2026",
+          impactType: "Transactions",
+          impactValue: "100%"
+        },
+        {
+          id: "applied-8",
+          title: "Extend campaign duration",
+          campaignName: "Campaign name 03",
+          type: "Data",
+          dateApplied: "01/20/2026",
+          impactType: "Transactions",
+          impactValue: "100%"
+        }
+      ]);
       setSelectedRecommendations(new Set());
       setSelectedTab("active");
       setSelectedGoalFilter(null);
