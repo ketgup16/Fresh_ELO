@@ -311,6 +311,32 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           impactValue: "100%"
         }
       ]);
+      setDismissedRecommendations([
+        {
+          id: "dismissed-1",
+          title: "Reallocate budget across ad groups",
+          campaignName: "Campaign name 01",
+          type: "Budget",
+          impactType: "Impressions",
+          impactValue: "27k-35k"
+        },
+        {
+          id: "dismissed-2",
+          title: "Add 15 keywords",
+          campaignName: "Campaign name 02",
+          type: "Targeting",
+          impactType: "Clicks",
+          impactValue: "2.1%-2.5%"
+        },
+        {
+          id: "dismissed-3",
+          title: "Add 7 categories",
+          campaignName: "Campaign name 02",
+          type: "Targeting",
+          impactType: "Transactions",
+          impactValue: "13%-15%"
+        }
+      ]);
       setSelectedRecommendations(new Set());
       setSelectedTab("active");
       setSelectedGoalFilter(null);
