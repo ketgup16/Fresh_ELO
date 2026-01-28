@@ -586,9 +586,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                       </td>
                       <td className="px-4 py-3">
                         <button className="flex items-center gap-1 text-sm text-[#2E2F32] hover:underline">
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
-                            <path d="M8 2v12m-6-6h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                          </svg>
+                          <RotateCcw className="w-4 h-4" />
                           Restore
                         </button>
                       </td>
