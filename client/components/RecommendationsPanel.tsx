@@ -663,7 +663,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                   checked={selectedRecommendations.has(rec.id)}
                                   onCheckedChange={() => !isDisabled && handleToggleRecommendation(rec.id)}
                                   disabled={isDisabled}
-                                  className={`w-6 h-6 rounded border-2 ${
+                                  className={`w-6 h-6 rounded border ${
                                     isDisabled
                                       ? 'border-[#C7C8CB] bg-[#F4F5F5] cursor-not-allowed'
                                       : 'border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border data-[state=checked]:border-black data-[state=unchecked]:bg-white'
