@@ -447,13 +447,13 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                         return (
                           <div
                             key={rec.id}
-                            className={`flex flex-col gap-3 p-4 rounded-lg bg-white ${
+                            className={`flex flex-col rounded-lg bg-white overflow-hidden ${
                               selectedRecommendations.has(rec.id) ? 'border border-black' : ''
                             }`}
                           >
-                            {/* Conflict Banner - Inside card */}
+                            {/* Conflict Banner - Inside card at top */}
                             {isDisabled && (
-                              <div className="flex items-start gap-2 p-3 bg-[#E6F2FF] border border-[#0053E2] rounded -mx-4 -mt-4 mb-0">
+                              <div className="flex items-start gap-2 p-3 bg-[#E6F2FF] border-l-4 border-l-[#0053E2]">
                                 <Info className="w-4 h-4 text-[#0053E2] flex-shrink-0 mt-0.5" />
                                 <span className="text-sm text-[#0053E2]">
                                   Not available with selected recommendation. Conflicting with: {conflict.conflictingRecTitle}
@@ -461,7 +461,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                               </div>
                             )}
 
-                            <div className="flex items-start gap-3">
+                            <div className="flex items-start gap-3 p-4">
                               {/* Checkbox */}
                               <div className="flex items-start pt-0.5">
                                 <Checkbox
