@@ -48,6 +48,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   const [selectedGoalFilter, setSelectedGoalFilter] = useState<string | null>(null);
   const [selectedRecommendations, setSelectedRecommendations] = useState<Set<string>>(new Set());
   const [campaigns, setCampaigns] = useState<CampaignSection[]>([]);
+  const [appliedRecommendations, setAppliedRecommendations] = useState<AppliedRecommendation[]>([]);
 
   // Initialize campaigns data
   useEffect(() => {
