@@ -904,6 +904,17 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                     >
                                       View details
                                     </Button>
+                                    <Button
+                                      variant="primary"
+                                      size="small"
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        setNewlyAppliedIds(prev => new Set([...prev, rec.id]));
+                                        toast.success('Recommendation applied successfully');
+                                      }}
+                                    >
+                                      Apply
+                                    </Button>
                                   </>
                                 )}
                               </div>
