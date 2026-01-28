@@ -91,7 +91,7 @@ export default function DisplayDashboard() {
                 <div className="mb-4">
                   <div className="flex items-end gap-1 mb-2 flex-wrap">
                     <span className="text-base font-bold text-[#2A8703]">2.5M-3.2M</span>
-                    <span className="text-base font-bold text-[#2E2F32]">Potential increase in impressions</span>
+                    <span className="text-base font-normal text-[#2E2F32]">Potential increase in impressions</span>
                   </div>
                   <p className="text-sm text-[#2E2F32]">
                     You could see an increase in impressions by applying recommendations to campaigns and ad groups.
@@ -143,7 +143,7 @@ export default function DisplayDashboard() {
                 <div className="mb-4">
                   <div className="flex items-end gap-1 mb-2 flex-wrap">
                     <span className="text-base font-bold text-[#2A8703]">0.8%-1.2%</span>
-                    <span className="text-base font-bold text-[#2E2F32]">Potential increase in clicks</span>
+                    <span className="text-base font-normal text-[#2E2F32]">Potential increase in clicks</span>
                   </div>
                   <p className="text-sm text-[#2E2F32]">
                     You could see an increase in clicks by applying recommendations to campaigns and ad groups.
@@ -194,7 +194,7 @@ export default function DisplayDashboard() {
                 <div className="mb-4">
                   <div className="flex items-end gap-1 mb-2 flex-wrap">
                     <span className="text-base font-bold text-[#2A8703]">15%-18%</span>
-                    <span className="text-base font-bold text-[#2E2F32]">Potential increase in transactions</span>
+                    <span className="text-base font-normal text-[#2E2F32]">Potential increase in transactions</span>
                   </div>
                   <p className="text-sm text-[#2E2F32]">
                     You could see an increase in impressions by applying recommendations to campaigns and ad groups.
