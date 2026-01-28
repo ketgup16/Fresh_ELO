@@ -551,6 +551,52 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 </tbody>
               </table>
             </div>
+          ) : selectedTab === "dismissed" ? (
+            /* Dismissed Recommendations Table */
+            <div className="bg-white rounded-lg border border-[#E3E4E5]">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-[#E3E4E5]">
+                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Recommendation</th>
+                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Type</th>
+                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Impact</th>
+                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {dismissedRecommendations.map((rec) => (
+                    <tr key={rec.id} className="border-b border-[#E3E4E5] last:border-b-0">
+                      <td className="px-4 py-3">
+                        <div className="flex flex-col gap-1">
+                          <div className="text-sm text-[#2E2F32]">{rec.title}</div>
+                          <div className="text-sm text-[#74767C]">{rec.campaignName}</div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="text-sm text-[#2E2F32]">{rec.type}</div>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-[#2E2F32]">{rec.impactType}</span>
+                          <span className="flex items-center gap-1 text-sm font-bold text-[#2A8703]">
+                            <ArrowUp className="w-4 h-4" />
+                            {rec.impactValue}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3">
+                        <button className="flex items-center gap-1 text-sm text-[#2E2F32] hover:underline">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
+                            <path d="M8 2v12m-6-6h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                          </svg>
+                          Restore
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           ) : (
             <div className="flex flex-col gap-6">
               {filteredCampaigns.map((campaign) => {
