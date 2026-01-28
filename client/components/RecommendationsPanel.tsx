@@ -553,6 +553,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                         if (viewingDetailId) {
                           setNewlyAppliedIds(prev => new Set([...prev, viewingDetailId]));
                           toast.success('Recommendation applied successfully');
+                          // Close detail view to show updated card status in list
+                          setTimeout(() => setViewingDetailId(null), 100);
                         }
                       }}
                     >
