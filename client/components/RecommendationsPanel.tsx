@@ -192,6 +192,28 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
     setSelectedRecommendations(new Set());
   };
 
+  // Helper function to check if a recommendation conflicts with selected ones
+  const getConflictingRecommendation = (rec: RecommendationItem, campaignId: string): { isConflicted: boolean; conflictingRecTitle?: string } => {
+    // Get all selected recommendations across all campaigns
+    const allRecommendations = campaigns.flatMap(c => c.items);
+    const selectedRecs = allRecommendations.filter(r => selectedRecommendations.has(r.id));
+
+    for (const selectedRec of selectedRecs) {
+      // Skip if comparing with itself
+      if (selectedRec.id === rec.id) continue;
+
+      // If selected recommendation affects multiple ad groups (campaign-level)
+      if (selectedRec.affectedAdGroups && selectedRec.affectedAdGroups.length > 0) {
+        // Check if current rec is in one of those affected ad groups
+        if (rec.adGroup && selectedRec.affectedAdGroups.some(ag => rec.adGroup?.includes(ag.split(' ')[0]))) {
+          return { isConflicted: true, conflictingRecTitle: selectedRec.title };
+        }
+      }
+    }
+
+    return { isConflicted: false };
+  };
+
   const filteredCampaigns = selectedGoalFilter
     ? campaigns.filter(c => c.goal === selectedGoalFilter)
     : campaigns;
