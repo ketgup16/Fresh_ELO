@@ -413,6 +413,12 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
       // Skip if comparing with itself
       if (selectedRec.id === rec.id) continue;
 
+      // If both are ad-group level and from the same ad group, they conflict
+      if (selectedRec.type === 'adgroup' && rec.type === 'adgroup' &&
+          selectedRec.adGroup && rec.adGroup && selectedRec.adGroup === rec.adGroup) {
+        return { isConflicted: true, conflictingRecTitle: selectedRec.title };
+      }
+
       // If selected recommendation is campaign-level (affects multiple ad groups)
       if (selectedRec.type === 'campaign' && selectedRec.affectedAdGroups && selectedRec.affectedAdGroups.length > 0) {
         // If current rec is ad group level, it conflicts
