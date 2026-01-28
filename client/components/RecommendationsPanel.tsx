@@ -30,6 +30,15 @@ interface AppliedRecommendation {
   impactValue: string;
 }
 
+interface DismissedRecommendation {
+  id: string;
+  title: string;
+  campaignName: string;
+  type: string;
+  impactType: string;
+  impactValue: string;
+}
+
 interface CampaignSection {
   id: string;
   name: string;
