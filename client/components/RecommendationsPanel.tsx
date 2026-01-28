@@ -693,27 +693,29 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-[#E3E4E5] px-6 py-4">
-          <div className="flex items-center justify-end gap-4">
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                onClose();
-              }}
-              className="text-sm text-[#2E2F32] underline hover:no-underline"
-            >
-              Cancel
-            </a>
-            <Button
-              onClick={handleApplySelected}
-              disabled={selectedRecommendations.size === 0}
-              className="h-8 px-4 text-sm font-bold bg-[#0053E2] hover:bg-[#0046c7] text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Apply selected
-            </Button>
+        {selectedTab === "active" && (
+          <div className="border-t border-[#E3E4E5] px-6 py-4">
+            <div className="flex items-center justify-end gap-4">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onClose();
+                }}
+                className="text-sm text-[#2E2F32] underline hover:no-underline"
+              >
+                Cancel
+              </a>
+              <Button
+                onClick={handleApplySelected}
+                disabled={selectedRecommendations.size === 0}
+                className="h-8 px-4 text-sm font-bold bg-[#0053E2] hover:bg-[#0046c7] text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Apply selected
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );
