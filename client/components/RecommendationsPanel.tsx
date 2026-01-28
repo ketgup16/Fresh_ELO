@@ -71,7 +71,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           id: "campaign-1",
           name: "Coca-Cola Zero Sugar - Summer Campaign 2024",
           adGroups: 3,
-          recommendations: 5,
+          recommendations: 8,
           impact: "2.4M-2.8M",
           description: "Potential increase in impressions",
           goal: "Awareness",
