@@ -525,26 +525,30 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 >
                   Cancel
                 </button>
-                <button
-                  onClick={(e) => e.preventDefault()}
-                  className="text-sm text-[#2E2F32] underline hover:no-underline"
-                >
-                  Dismiss
-                </button>
-                <Button
-                  variant="primary"
-                  size="small"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (viewingDetailId) {
-                      setNewlyAppliedIds(prev => new Set([...prev, viewingDetailId]));
-                      toast.success('Recommendation applied successfully');
-                    }
-                    setViewingDetailId(null);
-                  }}
-                >
-                  Apply recommendation
-                </Button>
+                {viewingDetailId && !newlyAppliedIds.has(viewingDetailId) && (
+                  <>
+                    <button
+                      onClick={(e) => e.preventDefault()}
+                      className="text-sm text-[#2E2F32] underline hover:no-underline"
+                    >
+                      Dismiss
+                    </button>
+                    <Button
+                      variant="primary"
+                      size="small"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (viewingDetailId) {
+                          setNewlyAppliedIds(prev => new Set([...prev, viewingDetailId]));
+                          toast.success('Recommendation applied successfully');
+                        }
+                        setViewingDetailId(null);
+                      }}
+                    >
+                      Apply recommendation
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </>
