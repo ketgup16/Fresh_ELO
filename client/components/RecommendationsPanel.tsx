@@ -2,6 +2,7 @@ import { X, Eye, Info, ArrowUp, RotateCcw } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Alert } from "@/components/ui/Alert";
 import { toast } from "sonner";
 
 interface RecommendationsPanelProps {
@@ -648,11 +649,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                           >
                             {/* Conflict Banner - Inside card at top */}
                             {isDisabled && (
-                              <div className="flex items-start gap-2 p-3 m-4 mb-0 bg-[#E6F2FF] border border-[#0053E2] rounded">
-                                <Info className="w-4 h-4 text-[#0053E2] flex-shrink-0 mt-0.5" />
-                                <span className="text-sm text-[#0053E2]">
+                              <div className="m-4 mb-0">
+                                <Alert variant="info">
                                   Not available with selected recommendation. Conflicting with: {conflict.conflictingRecTitle}
-                                </span>
+                                </Alert>
                               </div>
                             )}
 
