@@ -439,50 +439,36 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         {/* Goal Filter Pills - Only show on active tab */}
         {selectedTab === "active" && (
           <div className="px-6 pt-4 flex items-center gap-3">
-          <button
-            onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Awareness" ? null : "Awareness")}
-            className={`flex items-center gap-3 h-12 px-6 border-2 rounded-lg text-base font-normal transition-all ${
-              selectedGoalFilter === "Awareness"
-                ? "border-[#2E2F32] bg-[#2E2F32] text-white"
-                : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
-            }`}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-              <path d="M12 6.75C8.15634 6.75 5.61812 9.5163 4.23279 11.6617L3 10.8383C4.46772 8.57532 7.39216 5.25 12 5.25C16.6078 5.25 19.5323 8.57532 21 10.8383L19.7672 11.6617C18.3819 9.5163 15.8437 6.75 12 6.75Z" fill="currentColor"/>
-              <path d="M12 17.25C8.15634 17.25 5.61812 14.4837 4.23279 12.3383L3 13.1617C4.46772 15.4247 7.39216 18.75 12 18.75C16.6078 18.75 19.5323 15.4247 21 13.1617L19.7672 12.3383C18.3819 14.4837 15.8437 17.25 12 17.25Z" fill="currentColor"/>
-              <path d="M15.6873 12C15.6873 14.0711 14.0477 15.75 12.0001 15.75C9.95248 15.75 8.31287 14.0711 8.31287 12C8.31287 9.92893 9.95248 8.25 12.0001 8.25C14.0477 8.25 15.6873 9.92893 15.6873 12ZM14.2124 12C14.2124 10.7574 13.2219 9.75 12.0001 9.75C10.7783 9.75 9.78779 10.7574 9.78779 12C9.78779 13.2426 10.7783 14.25 12.0001 14.25C13.2219 14.25 14.2124 13.2426 14.2124 12Z" fill="currentColor"/>
-            </svg>
-            Awareness
-          </button>
-          <button
-            onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Engagement" ? null : "Engagement")}
-            className={`flex items-center gap-3 h-12 px-6 border-2 rounded-lg text-base font-normal transition-all ${
-              selectedGoalFilter === "Engagement"
-                ? "border-[#2E2F32] bg-[#2E2F32] text-white"
-                : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
-            }`}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-              <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" fill="none"/>
-              <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="2" fill="none"/>
-              <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
-            </svg>
-            Engagement
-          </button>
-          <button
-            onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Conversion" ? null : "Conversion")}
-            className={`flex items-center gap-3 h-12 px-6 border-2 rounded-lg text-base font-normal transition-all ${
-              selectedGoalFilter === "Conversion"
-                ? "border-[#2E2F32] bg-[#2E2F32] text-white"
-                : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
-            }`}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-              <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" fill="none"/>
-              <path d="M12 7V8M12 16V17M10.5 10C10.5 10 11 9 12.5 9C14 9 14.5 10 14.5 10.5C14.5 11.5 13.5 12 12.5 12C11.5 12 10.5 12.5 10.5 13.5C10.5 14 11 15 12.5 15C14 15 14.5 14 14.5 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-            Conversion
-          </button>
+            <button
+              onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Awareness" ? null : "Awareness")}
+              className={`flex items-center justify-center h-10 px-4 border rounded-lg text-sm font-normal transition-all ${
+                selectedGoalFilter === "Awareness"
+                  ? "border-[#2E2F32] bg-[#2E2F32] text-white"
+                  : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
+              }`}
+            >
+              Awareness
+            </button>
+            <button
+              onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Engagement" ? null : "Engagement")}
+              className={`flex items-center justify-center h-10 px-4 border rounded-lg text-sm font-normal transition-all ${
+                selectedGoalFilter === "Engagement"
+                  ? "border-[#2E2F32] bg-[#2E2F32] text-white"
+                  : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
+              }`}
+            >
+              Engagement
+            </button>
+            <button
+              onClick={() => setSelectedGoalFilter(selectedGoalFilter === "Conversion" ? null : "Conversion")}
+              className={`flex items-center justify-center h-10 px-4 border rounded-lg text-sm font-normal transition-all ${
+                selectedGoalFilter === "Conversion"
+                  ? "border-[#2E2F32] bg-[#2E2F32] text-white"
+                  : "border-[#2E2F32] bg-white text-[#2E2F32] hover:bg-gray-50"
+              }`}
+            >
+              Conversion
+            </button>
           </div>
         )}
 
