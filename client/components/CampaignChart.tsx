@@ -166,7 +166,7 @@ export default function CampaignChart({ visibleSeries = { impressions: true, cli
       </div>
 
       {/* X-Axis Labels */}
-      <div className="flex justify-between items-center w-full text-xs text-[#2E2F32] text-center pl-16 pr-4 py-2">
+      <div className="flex justify-between items-center w-full text-xs text-[#2E2F32] text-center pl-16 pr-4 py-2 rounded-b-2xl">
         {xAxisLabels.map((label, index) => (
           <div key={index} className="flex-shrink-0 w-[72px]">
             {label}
