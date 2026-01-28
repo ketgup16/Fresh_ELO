@@ -14,6 +14,7 @@ export default function DisplayDashboard() {
   const [buyerType, setBuyerType] = useState('Overall');
   const [buyerTypeOpen, setBuyerTypeOpen] = useState(false);
   const [recommendationsPanelOpen, setRecommendationsPanelOpen] = useState(false);
+  const [campaignGoal, setCampaignGoal] = useState<string>('Awareness');
   const [viewMoreModalOpen, setViewMoreModalOpen] = useState(false);
   const [modalTab, setModalTab] = useState<'applied' | 'dismissed'>('applied');
 
@@ -113,7 +114,10 @@ export default function DisplayDashboard() {
               </div>
               <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end h-[65px]">
                 <Button
-                  onClick={() => setRecommendationsPanelOpen(true)}
+                  onClick={() => {
+                    setCampaignGoal('Awareness');
+                    setRecommendationsPanelOpen(true);
+                  }}
                   variant="outline"
                   className="h-8 px-4 text-sm font-bold text-[#2E2F32] border-[#2E2F32] rounded-full hover:bg-gray-50"
                 >
@@ -162,7 +166,10 @@ export default function DisplayDashboard() {
               </div>
               <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end h-[65px]">
                 <Button
-                  onClick={() => setRecommendationsPanelOpen(true)}
+                  onClick={() => {
+                    setCampaignGoal('Engagement');
+                    setRecommendationsPanelOpen(true);
+                  }}
                   variant="outline"
                   className="h-8 px-4 text-sm font-bold text-[#2E2F32] border-[#2E2F32] rounded-full hover:bg-gray-50"
                 >
@@ -210,7 +217,10 @@ export default function DisplayDashboard() {
               </div>
               <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end h-[65px]">
                 <Button
-                  onClick={() => setRecommendationsPanelOpen(true)}
+                  onClick={() => {
+                    setCampaignGoal('Conversion');
+                    setRecommendationsPanelOpen(true);
+                  }}
                   variant="outline"
                   className="h-8 px-4 text-sm font-bold text-[#2E2F32] border-[#2E2F32] rounded-full hover:bg-gray-50"
                 >
@@ -937,7 +947,7 @@ export default function DisplayDashboard() {
       <RecommendationsPanel
         isOpen={recommendationsPanelOpen}
         onClose={() => setRecommendationsPanelOpen(false)}
-        campaignGoal="Awareness"
+        campaignGoal={campaignGoal}
       />
 
       {/* View More Modal */}
