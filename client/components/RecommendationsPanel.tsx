@@ -802,10 +802,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                               <div className="flex items-start pt-0.5">
                                 <Checkbox
                                   checked={selectedRecommendations.has(rec.id)}
-                                  onCheckedChange={() => !isDisabled && handleToggleRecommendation(rec.id)}
-                                  disabled={isDisabled}
+                                  onCheckedChange={() => !isDisabled && !newlyAppliedIds.has(rec.id) && handleToggleRecommendation(rec.id)}
+                                  disabled={isDisabled || newlyAppliedIds.has(rec.id)}
                                   className={`w-6 h-6 rounded border ${
-                                    isDisabled
+                                    isDisabled || newlyAppliedIds.has(rec.id)
                                       ? 'border-[#C7C8CB] bg-[#F4F5F5] cursor-not-allowed'
                                       : 'border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border data-[state=checked]:border-black data-[state=unchecked]:bg-white'
                                   }`}
