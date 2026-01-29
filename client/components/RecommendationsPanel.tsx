@@ -409,6 +409,11 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
     };
   }, [isResizing]);
 
+  // Save panel width to localStorage
+  useEffect(() => {
+    localStorage.setItem('recommendationsPanelWidth', panelWidth.toString());
+  }, [panelWidth]);
+
   if (!isOpen) return null;
 
   const handleToggleRecommendation = (recId: string) => {
