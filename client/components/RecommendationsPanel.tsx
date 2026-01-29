@@ -703,7 +703,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         {selectedTab === "active" && (
           <div className="px-6 pt-4">
             <Alert variant="info">
-              Applying this recommendation will reconfigure your ad group(s) and disable any other recommendations that affect the same group(s).
+              Some recommendations may become unavailable based on your selection.
             </Alert>
           </div>
         )}
