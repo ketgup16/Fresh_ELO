@@ -62,6 +62,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   const [dismissedRecommendations, setDismissedRecommendations] = useState<DismissedRecommendation[]>([]);
   const [viewingDetailId, setViewingDetailId] = useState<string | null>(null);
   const [newlyAppliedIds, setNewlyAppliedIds] = useState<Set<string>>(new Set());
+  const [panelWidth, setPanelWidth] = useState(800);
+  const [isResizing, setIsResizing] = useState(false);
 
   // Initialize campaigns data
   useEffect(() => {
