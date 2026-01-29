@@ -575,7 +575,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                 {/* Alert Banner */}
                 <Alert variant="info">
-                  Applying this recommendation will reconfigure your ad group(s) and disable any other recommendations that affect the same group(s).
+                  Applying this recommendation will update the ad group. Other recommendations for the same ad group may no longer apply.
                 </Alert>
 
                 {/* Campaign */}
