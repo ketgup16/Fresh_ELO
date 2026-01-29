@@ -879,23 +879,12 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
                                 {/* Affected ad groups */}
                                 {rec.affectedAdGroups && (
-                                  <div className="flex flex-col gap-2">
+                                  <div className="flex flex-col gap-1">
                                     <span className={`text-xs ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
-                                      Affected ad groups
+                                      Ad group(s) affected
                                     </span>
-                                    <div className="flex items-center gap-2 flex-wrap">
-                                      {rec.affectedAdGroups.map((adGroup, idx) => (
-                                        <span
-                                          key={idx}
-                                          className={`px-2 py-1 rounded-sm text-xs ${
-                                            isDisabled
-                                              ? 'bg-[#F4F5F5] text-[#C7C8CB]'
-                                              : 'bg-[#F4F5F5] text-[#515357]'
-                                          }`}
-                                        >
-                                          {adGroup}
-                                        </span>
-                                      ))}
+                                    <div className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
+                                      {rec.affectedAdGroups.join(' · ')}
                                     </div>
                                   </div>
                                 )}
