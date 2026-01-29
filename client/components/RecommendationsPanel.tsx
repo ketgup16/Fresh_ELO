@@ -86,7 +86,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-1-1",
               type: "campaign",
-              title: "Expand audience targeting to similar audiences",
+              title: "Reallocate budget across ad groups",
               impact: "2.4M-2.8M",
               message: "Potential increase in impressions",
               affectedAdGroups: ["Young Adults 18-24", "Fitness Enthusiasts", "Health Conscious"]
