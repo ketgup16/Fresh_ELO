@@ -921,15 +921,6 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                               selectedRecommendations.has(rec.id) ? 'border border-black' : ''
                             }`}
                           >
-                            {/* Conflict Banner - Inside card at top */}
-                            {isDisabled && (
-                              <div className="m-4 mb-0">
-                                <Alert variant="info">
-                                  Not available with selected recommendation. Conflicting with: {conflict.conflictingRecTitle}
-                                </Alert>
-                              </div>
-                            )}
-
                             <div className="flex items-start gap-3 p-4">
                               {/* Checkbox */}
                               <div className="flex items-start pt-0.5">
