@@ -494,10 +494,17 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
       >
         {/* Resize Handle */}
         <div
-          className="absolute left-0 top-0 bottom-0 w-1 cursor-col-resize hover:bg-[#0053E2] transition-colors group"
+          className="absolute left-0 top-0 bottom-0 w-1 bg-transparent hover:bg-[#0053E2] cursor-col-resize transition-colors z-10"
           onMouseDown={handleMouseDown}
         >
+          {/* Invisible expanded hit area */}
           <div className="absolute left-0 top-0 bottom-0 w-4 -translate-x-1.5" />
+          {/* Visual indicator - centered dots */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-1 pointer-events-none">
+            <div className="w-1 h-1 rounded-full bg-[#909196]" />
+            <div className="w-1 h-1 rounded-full bg-[#909196]" />
+            <div className="w-1 h-1 rounded-full bg-[#909196]" />
+          </div>
         </div>
         {viewingDetailId ? (
           /* Detail View */
