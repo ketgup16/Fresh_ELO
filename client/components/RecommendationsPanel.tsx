@@ -863,6 +863,11 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             </div>
           ) : (
             <div className="flex flex-col gap-6">
+              {/* Alert Banner */}
+              <Alert variant="info">
+                Some recommendations may become unavailable based on your selection.
+              </Alert>
+
               {filteredCampaigns.map((campaign) => {
               const visibleItems = campaign.isExpanded ? campaign.items : campaign.items.slice(0, 2);
               const hiddenCount = campaign.items.length - 2;
