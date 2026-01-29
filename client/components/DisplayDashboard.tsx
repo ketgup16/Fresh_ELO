@@ -29,46 +29,10 @@ export default function DisplayDashboard() {
 
       <div className="px-6 pb-6 flex flex-col gap-6">
         {/* Recommendations */}
-        <div className="flex flex-col gap-3 bg-white rounded-xl shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] p-6">
+        <div className="flex flex-col gap-4 bg-white rounded-xl shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] p-6">
           <div className="flex flex-col gap-1">
             <h2 className="text-lg font-bold text-[#2E2F32]">Recommendations</h2>
             <p className="text-sm text-[#2E2F32]">Discover opportunities to improve your campaign performance.</p>
-          </div>
-
-          {/* Tabs */}
-          <div className="border-b border-[#E3E4E5]">
-            <div className="flex gap-0">
-              <button
-                onClick={() => setActiveRecommendationTab('active')}
-                className={`px-3 pb-2 pt-4 text-sm relative ${
-                  activeRecommendationTab === 'active'
-                    ? 'font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0053E2] after:rounded-t'
-                    : 'font-normal text-[#2E2F32]'
-                }`}
-              >
-                Active recommendations (20)
-              </button>
-              <button
-                onClick={() => setActiveRecommendationTab('applied')}
-                className={`px-3 pb-2 pt-4 text-sm relative ${
-                  activeRecommendationTab === 'applied'
-                    ? 'font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0053E2] after:rounded-t'
-                    : 'font-normal text-[#2E2F32]'
-                }`}
-              >
-                Applied (8)
-              </button>
-              <button
-                onClick={() => setActiveRecommendationTab('dismissed')}
-                className={`px-3 pb-2 pt-4 text-sm relative ${
-                  activeRecommendationTab === 'dismissed'
-                    ? 'font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0053E2] after:rounded-t'
-                    : 'font-normal text-[#2E2F32]'
-                }`}
-              >
-                Dismissed (4)
-              </button>
-            </div>
           </div>
 
           {/* Conditional Content - Cards or Table */}
