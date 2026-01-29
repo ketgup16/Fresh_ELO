@@ -1416,7 +1416,7 @@ export default function AllCampaigns() {
                     {/* Total Attributed Sales Column */}
                     <div className="flex flex-col min-w-[180px]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Total attributed sales</span>
+                        <span className="text-sm font-bold text-[#2E2F32] leading-5">Online attributed sales</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
