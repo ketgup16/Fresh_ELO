@@ -104,7 +104,7 @@ Example:
   <button>Cancel</button>
   <button>Save</button>
 </div>
-```
+
 
 #### Tags & Badges
 - **For OLQ scores**: Use `client/components/ui/olq-tag.tsx` (OLQTag component)
@@ -395,6 +395,13 @@ When creating a NEW component (only if absolutely necessary):
 #### Navigation
 - ✅ `Menu.tsx` - Dropdown menus
 
+#### Panels & Drawers
+- ✅ **ALL panels MUST be resizable** - See `guidelines/Panel.md` for complete spec
+- **REQUIRED**: Min width 420px, Max width 800px (or responsive)
+- **REQUIRED**: Resize handle on left edge with visual indicator
+- **REQUIRED**: localStorage persistence of user's preferred width
+- **REQUIRED**: Responsive behavior for small screens
+
 ### Component Usage Stats
 
 Last updated: 2025-01-22
@@ -404,6 +411,24 @@ Last updated: 2025-01-22
 - OLQTag: ✅ Implemented with LD 3.5 tokens
 - ButtonGroup: ✅ Available
 - Popover: ✅ Available with arrow support
+- Panel: ✅ Resizable pattern established (see RecommendationsPanel.tsx)
+
+---
+
+## Panel Design Rule (CRITICAL)
+
+**RULE**: All panel/drawer components MUST be resizable with min/max width constraints.
+
+See `guidelines/Panel.md` for complete implementation requirements including:
+- Width constraints (420px min, 800px max)
+- Resize handle with visual indicator
+- State management and localStorage persistence
+- Responsive behavior
+- Complete code examples
+
+**Reference Implementation**: `client/components/RecommendationsPanel.tsx`
+
+**Exceptions**: Only non-resizable panels are full-screen modals, tooltips, or popovers with documented UX reasons.
 
 ---
 
