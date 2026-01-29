@@ -386,7 +386,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
       if (!isResizing) return;
 
       const newWidth = window.innerWidth - e.clientX;
-      const clampedWidth = Math.min(Math.max(newWidth, 420), 800);
+      const maxWidth = Math.min(800, window.innerWidth - 40); // Leave 40px margin on small screens
+      const clampedWidth = Math.min(Math.max(newWidth, 420), maxWidth);
       setPanelWidth(clampedWidth);
     };
 
