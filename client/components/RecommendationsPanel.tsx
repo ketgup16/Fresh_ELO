@@ -774,15 +774,6 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           </div>
         )}
 
-        {/* Alert Banner - Only show on active tab */}
-        {selectedTab === "active" && (
-          <div className="px-6 pt-4">
-            <Alert variant="info">
-              Some recommendations may become unavailable based on your selection.
-            </Alert>
-          </div>
-        )}
-
         {/* Content Container */}
         <div className="flex-1 overflow-y-auto px-6 pt-4 pb-6">
           {selectedTab === "applied" ? (
