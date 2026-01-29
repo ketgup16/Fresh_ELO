@@ -415,6 +415,19 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
     localStorage.setItem('recommendationsPanelWidth', panelWidth.toString());
   }, [panelWidth]);
 
+  // Adjust panel width on window resize
+  useEffect(() => {
+    const handleWindowResize = () => {
+      const maxWidth = Math.min(800, window.innerWidth - 40);
+      if (panelWidth > maxWidth) {
+        setPanelWidth(maxWidth);
+      }
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+    return () => window.removeEventListener('resize', handleWindowResize);
+  }, [panelWidth]);
+
   if (!isOpen) return null;
 
   const handleToggleRecommendation = (recId: string) => {
