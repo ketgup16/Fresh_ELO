@@ -484,7 +484,17 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
       />
 
       {/* Panel */}
-      <div className="fixed top-0 right-0 bottom-0 w-[800px] bg-white shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 flex flex-col">
+      <div
+        className="fixed top-0 right-0 bottom-0 bg-white shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 flex flex-col"
+        style={{ width: `${panelWidth}px` }}
+      >
+        {/* Resize Handle */}
+        <div
+          className="absolute left-0 top-0 bottom-0 w-1 cursor-col-resize hover:bg-[#0053E2] transition-colors group"
+          onMouseDown={handleMouseDown}
+        >
+          <div className="absolute left-0 top-0 bottom-0 w-4 -translate-x-1.5" />
+        </div>
         {viewingDetailId ? (
           /* Detail View */
           <>
