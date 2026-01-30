@@ -9,6 +9,8 @@ import martyGlassesAnimation from "../marty-glasses.json";
 interface MartyFloatingPanelProps {
   isMinimized?: boolean;
   onMinimizedChange?: (minimized: boolean) => void;
+  isDocked?: boolean;
+  onDockedChange?: (docked: boolean) => void;
 }
 
 type ViewState = 'welcome' | 'chat' | 'campaignSetup' | 'campaignForm' | 'campaignReady' | 'campaignScheduled';
@@ -24,7 +26,9 @@ interface Message {
 
 export default function MartyFloatingPanel({
   isMinimized = false,
-  onMinimizedChange
+  onMinimizedChange,
+  isDocked = false,
+  onDockedChange
 }: MartyFloatingPanelProps) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -182,11 +186,27 @@ export default function MartyFloatingPanel({
 
       setFabPosition({ x: newX, y: newY });
       setHasMoved(true);
+
+      // Check if dragging into masthead area (top 54px + some buffer)
+      if (isDocked && e.clientY > 100) {
+        // Dragging out of masthead - undock
+        if (onDockedChange) {
+          onDockedChange(false);
+        }
+      }
     }
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = (e?: MouseEvent) => {
     setIsDragging(false);
+
+    // Check if we should dock (in masthead area)
+    if (!isDocked && hasMoved && e && e.clientY < 80) {
+      // Snap to docked position
+      if (onDockedChange) {
+        onDockedChange(true);
+      }
+    }
   };
 
   useEffect(() => {
