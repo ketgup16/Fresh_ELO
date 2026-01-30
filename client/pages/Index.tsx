@@ -2600,7 +2600,7 @@ export default function Index() {
                       {/* Footer Buttons */}
                       <div className="flex items-center justify-end gap-4 p-2 pr-3">
                         <button
-                          className="text-sm text-[#2E2F32] underline hover:no-underline"
+                          style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
                           onClick={handleClearLivePacingFilter}
                         >
                           Clear All
@@ -2751,7 +2751,7 @@ export default function Index() {
                     <div className="p-4">
                       <div className="flex items-center justify-end gap-4">
                         <button
-                          className="text-sm text-[#2E2F32] underline hover:no-underline"
+                          style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
                           onClick={handleClearAllFilters}
                         >
                           Clear All
@@ -2901,7 +2901,7 @@ export default function Index() {
                             )}
                             {!campaign.children && <div className="w-6"></div>}
                             <div className="flex-1">
-                              <div className="text-[#2E2F32] underline hover:no-underline cursor-pointer">
+                              <div style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline cursor-pointer">
                                 {campaign.name}
                               </div>
                               {campaign.type === "campaign" && (
@@ -3007,13 +3007,13 @@ export default function Index() {
                                                 {/* Action links */}
                                                 <div className="flex items-center justify-end gap-4">
                                                   <button
-                                                    className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                                    style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
                                                     onClick={() => handleDismissRecommendation(campaign.id)}
                                                   >
                                                     Dismiss
                                                   </button>
                                                   <button
-                                                    className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                                    style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
                                                     onClick={(e) => {
                                                       e.stopPropagation();
                                                       openPanelWithDetails(campaign);
@@ -3098,7 +3098,7 @@ export default function Index() {
                                   <path fillRule="evenodd" clipRule="evenodd" d="M11.6742 1.74875L12.5453 4.99982H14.0001C14.5524 4.99982 15.0001 5.44753 15.0001 5.99982V13.9998C15.0001 14.5521 14.5524 14.9998 14.0001 14.9998H5.00012C4.44784 14.9998 4.00012 14.5521 4.00012 13.9998V13.061C3.59247 13.026 3.23153 12.7412 3.11952 12.3232L1.04897 4.59576C0.906029 4.0623 1.22261 3.51396 1.75608 3.37102L10.4494 1.04165C10.9829 0.898705 11.5312 1.21529 11.6742 1.74875ZM2.0149 4.33694L10.7082 2.00757L11.51 4.99982H5.00012C4.44784 4.99982 4.00012 5.44753 4.00012 5.99982V11.7459L2.0149 4.33694ZM14.0001 5.99982H5.00012L5.00012 11.2926L5.83985 10.4528C6.19174 10.1009 6.74884 10.0613 7.14696 10.3599L8.42909 11.3215L11.2718 8.0727C11.6527 7.63736 12.3225 7.61506 12.7315 8.0241L14.0001 9.29272V5.99982ZM14.0001 10.7069L12.0244 8.7312L9.18167 11.98C8.83721 12.3737 8.24756 12.4354 7.82909 12.1215L6.54696 11.1599L5.00012 12.7068V13.9998H14.0001V10.7069Z" fill="#2E2F32"/>
                                 </svg>
                               )}
-                              <span className="text-[#2E2F32] underline hover:no-underline cursor-pointer">
+                              <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline cursor-pointer">
                                 {child.name}
                               </span>
                             </div>
@@ -3188,13 +3188,13 @@ export default function Index() {
                                                   {/* Action links */}
                                                   <div className="flex items-center justify-end gap-4">
                                                     <button
-                                                      className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                                      style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
                                                       onClick={() => handleDismissRecommendation(child.id, true)}
                                                     >
                                                       Dismiss
                                                     </button>
                                                     <button
-                                                      className="text-sm text-[#2E2F32] underline hover:no-underline"
+                                                      style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
                                                       onClick={(e) => {
                                                         e.stopPropagation();
                                                         openPanelWithDetails(campaign);
@@ -3373,7 +3373,7 @@ export default function Index() {
                 <div className="flex items-center gap-2 mb-5">
                   <button
                     onClick={backToList}
-                    className="text-sm text-[#515357] underline hover:no-underline"
+                    style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
                   >
                     Recommendations
                   </button>
@@ -3397,7 +3397,7 @@ export default function Index() {
                   {/* Campaign Info */}
                   <div className="flex flex-col gap-1">
                     <span className="text-sm font-bold text-[#2E2F32]">Campaign</span>
-                    <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1">
+                    <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline line-clamp-1">
                       H&H_FY25_Always On_North Atlantic_Blackstone_Display_In-Market_50839
                     </a>
                   </div>
@@ -3405,7 +3405,7 @@ export default function Index() {
                   {/* Ad Group Info */}
                   <div className="flex flex-col gap-1">
                     <span className="text-sm font-bold text-[#2E2F32]">Ad group</span>
-                    <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1">
+                    <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline line-clamp-1">
                       Walmart|Display|Auction|Cross Device|Behavioral Targeting|Past Purchasers of Tapatio
                     </a>
                   </div>
@@ -3453,7 +3453,7 @@ export default function Index() {
                         <span className="text-xs text-[#002E99]">Awareness</span>
                       </div>
                     </div>
-                    <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1">
+                    <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline line-clamp-1">
                       {selectedCampaign.name}
                     </a>
                   </div>
@@ -3472,7 +3472,7 @@ export default function Index() {
                     <div className="flex items-start gap-3">
                       <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
                       <div className="flex-1">
-                        <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
+                        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline line-clamp-1 block mb-4">
                           Coca Cola Summer Campaign
                         </a>
 
@@ -3494,10 +3494,10 @@ export default function Index() {
                         </div>
 
                         <div className="flex items-center justify-end gap-4">
-                          <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                          <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                             Dismiss
                           </button>
-                          <button onClick={showDetails} className="text-sm text-[#2E2F32] underline hover:no-underline">
+                          <button onClick={showDetails} style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                             View details
                           </button>
                         </div>
@@ -3521,7 +3521,7 @@ export default function Index() {
                       <div className="flex items-start gap-3">
                         <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
                         <div className="flex-1">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
+                          <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline line-clamp-1 block mb-4">
                             Ad group 01 name goes here
                           </a>
 
@@ -3534,10 +3534,10 @@ export default function Index() {
                           </div>
 
                           <div className="flex items-center justify-end gap-4">
-                            <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                            <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                               Dismiss
                             </button>
-                            <button onClick={showDetails} className="text-sm text-[#2E2F32] underline hover:no-underline">
+                            <button onClick={showDetails} style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                               View details
                             </button>
                           </div>
@@ -3550,7 +3550,7 @@ export default function Index() {
                       <div className="flex items-start gap-3">
                         <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
                         <div className="flex-1">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline line-clamp-1 block mb-4">
+                          <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline line-clamp-1 block mb-4">
                             Ad group 02 name goes here
                           </a>
 
@@ -3568,10 +3568,10 @@ export default function Index() {
                                 </div>
                               </div>
                               <div className="flex items-center justify-end gap-4">
-                                <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                                <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                                   Dismiss
                                 </button>
-                                <button onClick={showDetails} className="text-sm text-[#2E2F32] underline hover:no-underline">
+                                <button onClick={showDetails} style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                                   View details
                                 </button>
                               </div>
@@ -3590,10 +3590,10 @@ export default function Index() {
                                 </div>
                               </div>
                               <div className="flex items-center justify-end gap-4">
-                                <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                                <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                                   Dismiss
                                 </button>
-                                <button onClick={showDetails} className="text-sm text-[#2E2F32] underline hover:no-underline">
+                                <button onClick={showDetails} style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                                   View details
                                 </button>
                               </div>
