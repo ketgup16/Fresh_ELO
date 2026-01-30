@@ -451,6 +451,7 @@ export default function MartyFloatingPanel({
         }}
       >
         <button
+          ref={fabButtonRef}
           onMouseDown={handleMouseDown}
           onClick={(e) => {
             e.stopPropagation();
