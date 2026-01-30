@@ -226,7 +226,7 @@
                         
                         {/* Campaign Name */}
                         <td className="p-2">
-                          <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline">
+                          <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                             {campaign.name}
                           </a>
                         </td>
