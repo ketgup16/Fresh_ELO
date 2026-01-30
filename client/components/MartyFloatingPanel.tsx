@@ -409,7 +409,7 @@ export default function MartyFloatingPanel({
           onMouseDown={handleMouseDown}
           onClick={(e) => {
             // Only expand if not dragging
-            if (!isDragging) {
+            if (!wasDragged) {
               handleExpand(e);
             }
           }}
