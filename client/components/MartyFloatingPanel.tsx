@@ -448,14 +448,14 @@ export default function MartyFloatingPanel({
           }`}>
             {/* Marty Mascot Logo */}
             <div className={`flex justify-center items-center rounded-full bg-white overflow-hidden flex-shrink-0 ${
-              hasMoved ? 'w-[28px] h-[28px]' : 'w-[38px] h-[38px]'
+              hasMoved ? 'w-[24px] h-[24px]' : 'w-[38px] h-[38px]'
             }`}>
               <Lottie
                 animationData={martyAnimation}
                 loop={true}
                 style={{
-                  width: hasMoved ? 28 : 38,
-                  height: hasMoved ? 28 : 38
+                  width: hasMoved ? 24 : 38,
+                  height: hasMoved ? 24 : 38
                 }}
               />
             </div>
