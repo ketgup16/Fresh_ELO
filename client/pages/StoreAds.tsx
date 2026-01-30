@@ -166,13 +166,15 @@ export default function StoreAds() {
         </header>
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-y-auto bg-[#F2F2F3] p-8">
-          <div className="max-w-7xl mx-auto">
-            {/* Hero Section */}
-            <div className="mb-8">
-              <h1 className="text-4xl font-bold text-[#2E2F32] mb-3">Welcome to Store Ads</h1>
-              <p className="text-lg text-[#74767C] mb-6">
-                Reach customers where they shop, both in-store and online
+        <main className="flex-1 overflow-y-auto bg-[#EDF4FA]">
+          {/* Hero Section */}
+          <div className="bg-[#EDF4FA] px-8 py-16">
+            <div className="max-w-6xl mx-auto text-center">
+              <h1 className="text-5xl font-bold text-[#2E2F32] mb-4">
+                Reach more customers with Store Ads
+              </h1>
+              <p className="text-xl text-[#2E2F32] mb-8">
+                Show off your brand with digital ads across 4,700 stores.
               </p>
               <Button
                 variant="primary"
@@ -182,104 +184,174 @@ export default function StoreAds() {
                 Create campaign
               </Button>
             </div>
+          </div>
 
-            {/* Feature Tiles */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              {/* Tile 1 */}
-              <button
-                onClick={() => navigate('/store-ads/campaigns')}
-                className="group bg-white rounded-lg p-6 border border-[#E3E4E5] hover:border-[#0071DC] hover:shadow-lg transition-all text-left"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-[#FFF3CD] flex items-center justify-center">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 2L2 7V12C2 16.55 5.84 20.74 10.35 21.87C11.21 22.04 12.79 22.04 13.65 21.87C18.16 20.74 22 16.55 22 12V7L12 2Z" fill="#FFC220"/>
-                    </svg>
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-[#74767C] group-hover:text-[#0071DC] group-hover:translate-x-1 transition-all" />
-                </div>
-                <h3 className="text-lg font-bold text-[#2E2F32] mb-2">Your products, seen by millions</h3>
-                <p className="text-sm text-[#74767C]">
-                  Showcase your products to millions of Walmart shoppers across stores and online.
-                </p>
-              </button>
-
-              {/* Tile 2 */}
-              <button
-                onClick={() => navigate('/store-ads/performance')}
-                className="group bg-white rounded-lg p-6 border border-[#E3E4E5] hover:border-[#0071DC] hover:shadow-lg transition-all text-left"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-[#D9F0FF] flex items-center justify-center">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M3 3V17C3 18.1 3.9 19 5 19H21V21H5C2.79 21 1 19.21 1 17V3H3ZM19 7V9H21V7H19ZM19 11V13H21V11H19ZM19 15V17H21V15H19ZM7 17H17V7H7V17ZM15 9V15H9V9H15Z" fill="#0071DC"/>
-                    </svg>
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-[#74767C] group-hover:text-[#0071DC] group-hover:translate-x-1 transition-all" />
-                </div>
-                <h3 className="text-lg font-bold text-[#2E2F32] mb-2">Brand experiences, built your way</h3>
-                <p className="text-sm text-[#74767C]">
-                  Create custom brand experiences that drive engagement and sales.
-                </p>
-              </button>
-
-              {/* Tile 3 */}
-              <button
-                onClick={() => navigate('/store-ads/inventory')}
-                className="group bg-white rounded-lg p-6 border border-[#E3E4E5] hover:border-[#0071DC] hover:shadow-lg transition-all text-left"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-[#E9F1FE] flex items-center justify-center">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M20 8H17V4H3V20H20V8ZM5 18V6H15V8H5V18ZM19 18H7V10H19V18Z" fill="#0053E2"/>
-                    </svg>
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-[#74767C] group-hover:text-[#0071DC] group-hover:translate-x-1 transition-all" />
-                </div>
-                <h3 className="text-lg font-bold text-[#2E2F32] mb-2">Manage your inventory</h3>
-                <p className="text-sm text-[#74767C]">
-                  Keep track of your product inventory and optimize stock levels.
-                </p>
-              </button>
-            </div>
-
-            {/* Quick Stats Section */}
-            <div className="bg-white rounded-lg p-6 border border-[#E3E4E5]">
-              <h2 className="text-xl font-bold text-[#2E2F32] mb-4">Get started with Store Ads</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-[#E9F1FE] flex items-center justify-center">
-                      <span className="text-sm font-bold text-[#0053E2]">1</span>
+          {/* Feature Cards Section */}
+          <div className="bg-white px-8 py-12">
+            <div className="max-w-6xl mx-auto">
+              {/* Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Card 1: Your products, seen by millions */}
+                <div className="bg-white border border-[#E3E4E5] rounded-lg p-6 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 flex-shrink-0">
+                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <path d="M21 8C21 5.79086 22.7909 4 25 4H39C41.2091 4 43 5.79086 43 8V33C43 35.2091 41.2091 37 39 37H25C22.7909 37 21 35.2091 21 33V8Z" fill="#0071DC"/>
+                        <circle cx="32" cy="21" r="2" fill="white"/>
+                        <circle cx="32" cy="28" r="2" fill="white"/>
+                        <rect x="5" y="22" width="12" height="19" rx="2" fill="#FFC220"/>
+                        <path d="M11 30C11 29.4477 11.4477 29 12 29C12.5523 29 13 29.4477 13 30V35C13 35.5523 12.5523 36 12 36C11.4477 36 11 35.5523 11 35V30Z" fill="#2E2F32"/>
+                      </svg>
                     </div>
-                    <h3 className="font-bold text-[#2E2F32]">Set up your campaign</h3>
-                  </div>
-                  <p className="text-sm text-[#74767C] ml-10">
-                    Define your goals, budget, and target audience
-                  </p>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-[#E9F1FE] flex items-center justify-center">
-                      <span className="text-sm font-bold text-[#0053E2]">2</span>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-[#2E2F32] mb-2">
+                        Your products, seen by millions
+                      </h3>
+                      <p className="text-sm text-[#74767C] mb-3">
+                        Don't miss billions of online traffic. Multiply your growth with online advertising.
+                      </p>
+                      <a href="#" className="text-sm text-[#0071DC] underline hover:no-underline">
+                        Start advertising
+                      </a>
                     </div>
-                    <h3 className="font-bold text-[#2E2F32]">Choose your products</h3>
                   </div>
-                  <p className="text-sm text-[#74767C] ml-10">
-                    Select which products to feature in your campaign
-                  </p>
                 </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-[#E9F1FE] flex items-center justify-center">
-                      <span className="text-sm font-bold text-[#0053E2]">3</span>
+
+                {/* Card 2: Brand experiences */}
+                <div className="bg-white border border-[#E3E4E5] rounded-lg p-6 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 flex-shrink-0">
+                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <rect x="12" y="16" width="24" height="24" rx="2" fill="#FFC220"/>
+                        <path d="M24 8L30 14H18L24 8Z" fill="#0071DC"/>
+                        <circle cx="18" cy="24" r="2" fill="#0071DC"/>
+                        <rect x="22" y="22" width="8" height="4" rx="1" fill="#0071DC"/>
+                      </svg>
                     </div>
-                    <h3 className="font-bold text-[#2E2F32]">Track performance</h3>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-[#2E2F32] mb-2">
+                        Brand experiences, built your way
+                      </h3>
+                      <p className="text-sm text-[#74767C] mb-3">
+                        Create immersive pages that tell your story, reach more customers.
+                      </p>
+                      <a href="#" className="text-sm text-[#0071DC] underline hover:no-underline">
+                        Create your shop
+                      </a>
+                    </div>
                   </div>
-                  <p className="text-sm text-[#74767C] ml-10">
-                    Monitor your campaign results and optimize for success
-                  </p>
                 </div>
+
+                {/* Card 3: Walmart Luminate */}
+                <div className="bg-white border border-[#E3E4E5] rounded-lg p-6 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 flex-shrink-0">
+                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <rect x="8" y="28" width="6" height="12" rx="1" fill="#7B61FF"/>
+                        <rect x="17" y="20" width="6" height="20" rx="1" fill="#0071DC"/>
+                        <rect x="26" y="12" width="6" height="28" rx="1" fill="#FFC220"/>
+                        <rect x="35" y="16" width="6" height="24" rx="1" fill="#2ED47A"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h3 className="text-lg font-bold text-[#2E2F32]">
+                          Walmart Luminate
+                        </h3>
+                        <span className="bg-[#2ED47A] text-white text-xs font-bold px-2 py-0.5 rounded">
+                          New
+                        </span>
+                      </div>
+                      <p className="text-sm text-[#74767C] mb-3">
+                        Gain deeper insights and opportunities that help optimizing your Store Ads campaigns.
+                      </p>
+                      <a href="#" className="text-sm text-[#0071DC] underline hover:no-underline">
+                        Discover more
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 4: Helpful how-to's */}
+                <div className="bg-white border border-[#E3E4E5] rounded-lg p-6 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 flex-shrink-0">
+                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <rect x="10" y="8" width="28" height="32" rx="2" fill="#FFE5B4"/>
+                        <rect x="14" y="14" width="20" height="2" rx="1" fill="#0071DC"/>
+                        <rect x="14" y="20" width="16" height="2" rx="1" fill="#0071DC"/>
+                        <rect x="14" y="26" width="18" height="2" rx="1" fill="#0071DC"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-[#2E2F32] mb-2">
+                        Helpful how-to's
+                      </h3>
+                      <p className="text-sm text-[#74767C] mb-3">
+                        Don't miss billions of online traffic. Multiply your growth with online advertising.
+                      </p>
+                      <a href="#" className="text-sm text-[#0071DC] underline hover:no-underline">
+                        Get guidance
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 5: On-demand instruction */}
+                <div className="bg-white border border-[#E3E4E5] rounded-lg p-6 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 flex-shrink-0">
+                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <rect x="8" y="12" width="32" height="24" rx="2" fill="#FFE5B4"/>
+                        <path d="M8 12C8 10.8954 8.89543 10 10 10H38C39.1046 10 40 10.8954 40 12V16H8V12Z" fill="#FFC220"/>
+                        <rect x="12" y="20" width="24" height="12" rx="1" fill="white"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-[#2E2F32] mb-2">
+                        On-demand instruction
+                      </h3>
+                      <p className="text-sm text-[#74767C] mb-3">
+                        Access our Seller Academy on Youtube for video walkthroughs.
+                      </p>
+                      <a href="#" className="text-sm text-[#0071DC] underline hover:no-underline">
+                        Subscribe
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 6: What makes an eye-catching video */}
+                <div className="bg-white border border-[#E3E4E5] rounded-lg p-6 hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 flex-shrink-0">
+                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <rect x="8" y="14" width="32" height="20" rx="2" fill="#2E2F32"/>
+                        <path d="M20 20L28 24L20 28V20Z" fill="#FFC220"/>
+                        <rect x="10" y="36" width="4" height="4" rx="1" fill="#0071DC"/>
+                        <rect x="16" y="36" width="4" height="4" rx="1" fill="#0071DC"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-[#2E2F32] mb-2">
+                        What makes an eye-catching video
+                      </h3>
+                      <p className="text-sm text-[#74767C] mb-3">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing eli.
+                      </p>
+                      <a href="#" className="text-sm text-[#0071DC] underline hover:no-underline">
+                        Learn more
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="mt-16 pt-8 border-t border-[#E3E4E5]">
+                <p className="text-xs text-[#74767C] text-center">
+                  © 2000–2023 Wal-Mart Stores, Inc. All Rights reserved. <a href="#" className="text-[#0071DC] hover:underline">Privacy</a> and <a href="#" className="text-[#0071DC] hover:underline">Terms</a>
+                </p>
               </div>
             </div>
           </div>
