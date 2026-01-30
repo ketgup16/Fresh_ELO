@@ -63,7 +63,7 @@ export default function SellerCenter() {
               <div className="flex-1">
                 <p className="text-sm text-[#663C00]">
                   The overall quality of listings across your catalog is currently <span className="font-bold">Poor</span>.{" "}
-                  <a href="#" className="underline hover:no-underline">Learn more</a> about how you can improve the health of your listings.
+                  <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline">Learn more</a> about how you can improve the health of your listings.
                 </p>
               </div>
             </div>
@@ -110,10 +110,10 @@ export default function SellerCenter() {
 
                   <div className="flex-1">
                     <p className="text-sm text-[#2E2F32] mb-2">Your listing quality is: <span className="font-bold text-[#C41E2E]">Poor</span></p>
-                    <a href="#" className="text-sm text-[#0071E3] underline hover:no-underline">Learn more</a> 
+                    <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">Learn more</a> 
                     <span className="text-sm text-[#2E2F32]"> about how you can improve listing quality.</span>
                     <br />
-                    <a href="#" className="text-sm text-[#0071E3] underline hover:no-underline">Learn more</a>
+                    <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">Learn more</a>
                   </div>
                 </div>
 
@@ -272,7 +272,7 @@ export default function SellerCenter() {
                 </div>
 
                 <div className="mt-6">
-                  <a href="#" className="text-sm text-[#0071E3] underline hover:no-underline">Get more insights with Listing quality analytics</a>
+                  <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">Get more insights with Listing quality analytics</a>
                 </div>
               </div>
             </div>
@@ -282,7 +282,7 @@ export default function SellerCenter() {
               <h2 className="text-lg font-bold text-[#2E2F32] mb-2">Make bulk content improvements in less time with spreadsheet edits</h2>
               <p className="text-sm text-[#2E2F32] mb-4">
                 Simply use our filters to populate your spreadsheet, make the appropriate edits, then upload the updated version.{" "}
-                <a href="#" className="text-[#0071E3] underline hover:no-underline">Learn more</a>
+                <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline">Learn more</a>
               </p>
 
               <div className="flex gap-4 mb-6">
@@ -376,7 +376,7 @@ export default function SellerCenter() {
                           <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.pageViews.toLocaleString()}</td>
                           <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.gMV}</td>
                           <td className="px-4 py-3">
-                            <button className="text-sm text-[#0071E3] underline hover:no-underline">Edit</button>
+                            <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">Edit</button>
                           </td>
                         </tr>
                       ))}
