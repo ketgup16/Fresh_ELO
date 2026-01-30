@@ -59,6 +59,8 @@ export default function MartyFloatingPanel({
   const [hasMoved, setHasMoved] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
+  const [tooltipPosition, setTooltipPosition] = useState<'top' | 'left' | 'right' | 'bottom'>('top');
+  const fabButtonRef = useRef<HTMLButtonElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
