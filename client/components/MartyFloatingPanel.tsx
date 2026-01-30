@@ -115,6 +115,35 @@ export default function MartyFloatingPanel({
     }
   }, [fabPosition, hasMoved]);
 
+  // Track mouse movement to make eyes follow cursor
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (fabButtonRef.current) {
+        const rect = fabButtonRef.current.getBoundingClientRect();
+        const fabCenterX = rect.left + rect.width / 2;
+        const fabCenterY = rect.top + rect.height / 2;
+
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        // Calculate angle from Marty to cursor
+        const deltaX = mouseX - fabCenterX;
+        const deltaY = mouseY - fabCenterY;
+
+        // Limit eye movement range (max 3px in each direction)
+        const maxMove = 3;
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        const limitedX = distance > 0 ? (deltaX / distance) * Math.min(distance / 20, maxMove) : 0;
+        const limitedY = distance > 0 ? (deltaY / distance) * Math.min(distance / 20, maxMove) : 0;
+
+        setEyePosition({ x: limitedX, y: limitedY });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   const handleMinimize = () => {
     if (onMinimizedChange) {
       onMinimizedChange(true);
