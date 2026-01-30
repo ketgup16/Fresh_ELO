@@ -581,7 +581,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 {/* Campaign */}
                 <div>
                   <h4 className="text-sm font-bold text-[#2E2F32] mb-1">Campaign</h4>
-                  <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline">
+                  <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                     H&H_FY25_Always On_North Atlantic_Blackstone_Display_In-Market_50839
                   </a>
                 </div>
@@ -589,7 +589,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 {/* Ad group */}
                 <div>
                   <h4 className="text-sm font-bold text-[#2E2F32] mb-1">Ad group</h4>
-                  <a href="#" className="text-sm text-[#2E2F32] underline hover:no-underline">
+                  <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                     Walmart|Display|Auction|Cross Device|Behavioral Targeting|Past Purchasers of Tapatio
                   </a>
                 </div>
@@ -602,7 +602,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                     <p className="text-sm text-[#2E2F32] mb-2 leading-relaxed">
                       Coca-Cola freestyle machine, Coke vending machine, Coca-Cola sponsorship deals, Coke tasting event, Coca-Cola heritage tour, Coke glassware, Coca-Cola recipe pairing, Coke float dessert, Coca-Cola ice cream soda, Coke recipe hacks, Coca-Cola themed cafe, Coke and popcorn combo, Coca-Cola holiday truck tour, Coke art installation, Coca-Cola fan club, Coke TikTok challenge, Coca-Cola merch giveaway
                     </p>
-                    <button className="text-sm text-[#2E2F32] underline hover:no-underline">
+                    <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                       View more
                     </button>
                   </div>
@@ -643,13 +643,13 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   <>
                     <button
                       onClick={() => setViewingDetailId(null)}
-                      className="text-sm text-[#2E2F32] underline hover:no-underline"
+                      style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
                     >
                       Cancel
                     </button>
                     <button
                       onClick={(e) => e.preventDefault()}
-                      className="text-sm text-[#2E2F32] underline hover:no-underline"
+                      style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
                     >
                       Dismiss
                     </button>
@@ -851,7 +851,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                         </div>
                       </td>
                       <td className="px-4 py-3">
-                        <button className="flex items-center gap-1 text-sm text-[#2E2F32] hover:underline">
+                        <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="flex items-center gap-1 text-sm underline hover:no-underline">
                           <RotateCcw className="w-4 h-4" />
                           Restore
                         </button>
@@ -879,7 +879,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                     <div className="flex flex-col gap-1">
                       <a
                         href="#"
-                        className="text-sm text-[#2E2F32] underline hover:no-underline"
+                        style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
                         onClick={(e) => e.preventDefault()}
                       >
                         {campaign.name}
@@ -894,7 +894,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                     </div>
                     <button
                       onClick={() => handleToggleCampaignHidden(campaign.id)}
-                      className="text-sm text-[#2E2F32] underline hover:no-underline flex items-center gap-1"
+                      style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
+                      className="text-sm underline hover:no-underline flex items-center gap-1"
                     >
                       Hide
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform ${campaign.isHidden ? 'rotate-180' : ''}`}>
@@ -987,7 +988,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                   <>
                                     <a
                                       href="#"
-                                      className="text-sm text-[#2E2F32] underline hover:no-underline whitespace-nowrap"
+                                      style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
+                                      className="text-sm underline hover:no-underline whitespace-nowrap"
                                       onClick={(e) => e.preventDefault()}
                                     >
                                       Dismiss
@@ -1014,7 +1016,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                       {campaign.items.length > 2 && (
                         <button
                           onClick={() => handleToggleCampaignExpanded(campaign.id)}
-                          className="text-sm text-[#2E2F32] underline hover:no-underline self-end"
+                          style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
+                          className="text-sm underline hover:no-underline self-end"
                         >
                           {campaign.isExpanded ? 'Show less' : `Show more (${hiddenCount})`}
                         </button>
@@ -1044,7 +1047,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                     e.preventDefault();
                     onClose();
                   }}
-                  className="text-sm text-[#2E2F32] underline hover:no-underline"
+                  style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
                 >
                   Cancel
                 </a>
