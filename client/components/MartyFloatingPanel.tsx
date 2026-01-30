@@ -4,6 +4,7 @@ import Lottie from "lottie-react";
 import Reports from "./icons/Reports";
 import { Button } from "./ui/Button";
 import martyAnimation from "../marty-thinking.json";
+import martyGlassesAnimation from "../marty-glasses.json";
 
 interface MartyFloatingPanelProps {
   isMinimized?: boolean;
