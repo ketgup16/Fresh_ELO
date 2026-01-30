@@ -3420,7 +3420,8 @@ export default function Index() {
                         </p>
                         <button
                           onClick={() => setKeywordsExpanded(!keywordsExpanded)}
-                          className="text-sm text-[#2E2F32] underline hover:no-underline self-start"
+                          style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
+                          className="text-sm underline hover:no-underline self-start"
                         >
                           {keywordsExpanded ? 'View less' : 'View more'}
                         </button>
