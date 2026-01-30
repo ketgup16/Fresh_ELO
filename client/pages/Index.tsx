@@ -3591,6 +3591,8 @@ export default function Index() {
         <MartyFloatingPanel
           isMinimized={isMartyMinimized}
           onMinimizedChange={setIsMartyMinimized}
+          isDocked={isMartyDocked}
+          onDockedChange={setIsMartyDocked}
         />
       )}
     </div>
