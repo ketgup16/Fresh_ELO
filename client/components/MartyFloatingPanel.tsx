@@ -461,7 +461,7 @@ export default function MartyFloatingPanel({
             </div>
 
             {/* Text - Hidden when moved unless hovered */}
-            <div className={`text-[#2E2F32] text-right text-base leading-6 whitespace-nowrap flex items-center transition-all duration-200 ease-out ${
+            <div className={`text-[#2E2F32] text-right text-base leading-6 whitespace-nowrap flex items-center gap-0.5 transition-all duration-200 ease-out ${
               hasMoved ? 'max-w-0 opacity-0 group-hover:max-w-[200px] group-hover:opacity-100 overflow-hidden' : ''
             }`}>
               {!hasMoved ? (
