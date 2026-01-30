@@ -466,7 +466,7 @@ export default function MartyFloatingPanel({
             }`}>
               {!hasMoved ? (
                 <>
-                  <span className="inline-block max-w-0 opacity-0 group-hover:max-w-[150px] group-hover:opacity-100 font-normal overflow-hidden transition-all duration-200 ease-out">Have a question?  </span>
+                  <span className="inline-block max-w-0 opacity-0 group-hover:max-w-[150px] group-hover:opacity-100 font-normal overflow-hidden transition-all duration-200 ease-out">Have a question?</span>
                   <span className="font-bold">Ask Marty</span>
                 </>
               ) : (
