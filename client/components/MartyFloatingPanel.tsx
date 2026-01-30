@@ -86,6 +86,34 @@ export default function MartyFloatingPanel({
     }
   }, [userMessage]);
 
+  // Calculate tooltip position based on FAB location to avoid clipping
+  useEffect(() => {
+    if (hasMoved && fabButtonRef.current) {
+      const rect = fabButtonRef.current.getBoundingClientRect();
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+
+      const spaceTop = rect.top;
+      const spaceBottom = windowHeight - rect.bottom;
+      const spaceLeft = rect.left;
+      const spaceRight = windowWidth - rect.right;
+
+      // Find the direction with most space (prefer top, then right, then left, then bottom)
+      const tooltipHeight = 60; // Approximate height of tooltip
+      const tooltipWidth = 200; // Approximate width of tooltip
+
+      if (spaceTop >= tooltipHeight) {
+        setTooltipPosition('top');
+      } else if (spaceRight >= tooltipWidth) {
+        setTooltipPosition('right');
+      } else if (spaceLeft >= tooltipWidth) {
+        setTooltipPosition('left');
+      } else {
+        setTooltipPosition('bottom');
+      }
+    }
+  }, [fabPosition, hasMoved]);
+
   const handleMinimize = () => {
     if (onMinimizedChange) {
       onMinimizedChange(true);
