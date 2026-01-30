@@ -1624,8 +1624,8 @@ export default function Index() {
 
   // Marty panel state
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', true);
-  const [isMartyDocked, setIsMartyDocked] = useState(true);
+  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
+  const [isMartyDocked, setIsMartyDocked] = useState(false);
   const [tempStatusFilter, setTempStatusFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showAllFiltersPopover, setShowAllFiltersPopover] = useState(false);
