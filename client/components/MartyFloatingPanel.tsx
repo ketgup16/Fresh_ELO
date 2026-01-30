@@ -487,6 +487,11 @@ export default function MartyFloatingPanel({
     setViewState('campaignScheduled');
   };
 
+  // When docked and minimized, don't render here - will be rendered in header
+  if (isDocked && isMinimized) {
+    return null;
+  }
+
   // Minimized "Ask Marty" button
   if (isMinimized) {
     return (
