@@ -240,7 +240,8 @@ export default function BiddingStrategyModal({
             <div className="flex items-center justify-end gap-4">
               <button
                 onClick={handleCancel}
-                className="text-sm text-[#2E2F32] leading-5 underline hover:no-underline"
+                style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
+                className="text-sm leading-5 underline hover:no-underline"
               >
                 Cancel
               </button>
