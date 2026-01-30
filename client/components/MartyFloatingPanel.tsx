@@ -135,7 +135,7 @@ export default function MartyFloatingPanel({
         window.removeEventListener('mouseup', handleMouseUp);
       };
     }
-  }, [isDragging, dragStart, fabPosition]);
+  }, [isDragging]);
 
   const handleExpand = (e?: React.MouseEvent) => {
     if (onMinimizedChange) {
