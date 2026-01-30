@@ -391,9 +391,24 @@ export default function MartyFloatingPanel({
   // Minimized "Ask Marty" button
   if (isMinimized) {
     return (
-      <div className="fixed bottom-8 right-8 z-30">
+      <div
+        className="fixed z-30"
+        style={{
+          bottom: hasMoved ? 'auto' : '32px',
+          right: hasMoved ? 'auto' : '32px',
+          top: hasMoved ? `${fabPosition.y}px` : 'auto',
+          left: hasMoved ? `${fabPosition.x}px` : 'auto',
+          cursor: isDragging ? 'grabbing' : 'grab'
+        }}
+      >
         <button
-          onClick={handleExpand}
+          onMouseDown={handleMouseDown}
+          onClick={(e) => {
+            // Only expand if not dragging
+            if (!isDragging) {
+              handleExpand(e);
+            }
+          }}
           className="inline-flex p-0.5 justify-end items-center gap-2 rounded-full shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] relative overflow-hidden group transition-all duration-200 ease-out"
         >
           {/* Gradient Border Background */}
@@ -405,20 +420,29 @@ export default function MartyFloatingPanel({
           />
 
           {/* Content */}
-          <div className="flex py-2 pl-2 pr-4 items-center gap-2 rounded-full bg-white relative z-10 transition-all duration-200 ease-out">
+          <div className={`flex items-center gap-2 rounded-full bg-white relative z-10 transition-all duration-200 ease-out ${
+            hasMoved ? 'p-1' : 'py-2 pl-2 pr-4'
+          }`}>
             {/* Marty Mascot Logo */}
-            <div className="flex w-[38px] h-[38px] justify-center items-center rounded-full bg-white overflow-hidden flex-shrink-0">
+            <div className={`flex justify-center items-center rounded-full bg-white overflow-hidden flex-shrink-0 ${
+              hasMoved ? 'w-[32px] h-[32px]' : 'w-[38px] h-[38px]'
+            }`}>
               <Lottie
                 animationData={martyAnimation}
                 loop={true}
-                style={{ width: 38, height: 38 }}
+                style={{
+                  width: hasMoved ? 32 : 38,
+                  height: hasMoved ? 32 : 38
+                }}
               />
             </div>
 
-            {/* Text - Changes on hover */}
-            <div className="text-[#2E2F32] text-right text-base leading-6 whitespace-pre flex items-center">
+            {/* Text - Hidden when moved unless hovered */}
+            <div className={`text-[#2E2F32] text-right text-base leading-6 whitespace-pre flex items-center overflow-hidden transition-all duration-200 ease-out ${
+              hasMoved ? 'max-w-0 opacity-0 group-hover:max-w-[150px] group-hover:opacity-100' : ''
+            }`}>
               <span className="inline-block max-w-0 opacity-0 group-hover:max-w-[150px] group-hover:opacity-100 font-normal overflow-hidden transition-all duration-200 ease-out">Have a question?  </span>
-              <span className="font-bold">Ask Marty</span>
+              <span className={`font-bold ${hasMoved ? 'group-hover:inline hidden' : ''}`}>Ask Marty</span>
             </div>
           </div>
         </button>
