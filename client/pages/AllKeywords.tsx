@@ -1044,7 +1044,7 @@ export default function AllKeywords() {
                   </h2>
                   <p className="text-sm text-[#515357] leading-5">
                     Analyze performance metrics and make updates to your keywords.{' '}
-                    <span className="underline text-[#2E2F32] cursor-pointer hover:no-underline">Learn more.</span>
+                    <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline cursor-pointer hover:no-underline">Learn more.</span>
                   </p>
                 </div>
               </div>
@@ -1179,7 +1179,7 @@ export default function AllKeywords() {
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-[13px] text-[#0071DC] underline hover:no-underline truncate">
+                          <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-[13px] underline hover:no-underline truncate">
                             {keyword.keyword}
                           </a>
                         </div>
@@ -1243,7 +1243,7 @@ export default function AllKeywords() {
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" className="text-[13px] text-[#0071DC] underline hover:no-underline truncate">
+                          <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-[13px] underline hover:no-underline truncate">
                             {keyword.campaignName}
                           </a>
                         </div>
