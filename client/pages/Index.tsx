@@ -3653,6 +3653,7 @@ export default function Index() {
           onMinimizedChange={setIsMartyMinimized}
           isDocked={isMartyDocked}
           onDockedChange={setIsMartyDocked}
+          initialPosition={martyInitialPosition}
         />
       )}
     </div>
