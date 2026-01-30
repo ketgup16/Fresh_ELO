@@ -91,8 +91,9 @@ export default function MartyFloatingPanel({
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent text selection while dragging
     setIsDragging(true);
-    setWasDragged(false);
+    isDraggingRef.current = false; // Reset - will be set to true if actual movement occurs
     setDragStart({
       x: e.clientX - fabPosition.x,
       y: e.clientY - fabPosition.y
@@ -110,7 +111,7 @@ export default function MartyFloatingPanel({
 
     // Only consider it a drag if moved more than 3 pixels
     if (distance > 3) {
-      setWasDragged(true);
+      isDraggingRef.current = true; // Mark as dragged
 
       const newX = e.clientX - dragStart.x;
       const newY = e.clientY - dragStart.y;
@@ -122,10 +123,6 @@ export default function MartyFloatingPanel({
 
   const handleMouseUp = () => {
     setIsDragging(false);
-    // Reset wasDragged after a delay to allow onClick to read it
-    setTimeout(() => {
-      setWasDragged(false);
-    }, 200);
   };
 
   useEffect(() => {
