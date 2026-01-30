@@ -257,7 +257,7 @@ export default function StoreAds() {
                       <p className="text-sm text-[#74767C] mb-3">
                         Don't miss billions of online traffic. Multiply your growth with online advertising.
                       </p>
-                      <a href="#" className="text-sm text-[#0071DC] underline hover:no-underline">
+                      <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                         Start advertising
                       </a>
                     </div>
@@ -282,7 +282,7 @@ export default function StoreAds() {
                       <p className="text-sm text-[#74767C] mb-3">
                         Create immersive pages that tell your story, reach more customers.
                       </p>
-                      <a href="#" className="text-sm text-[#0071DC] underline hover:no-underline">
+                      <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                         Create your shop
                       </a>
                     </div>
@@ -312,7 +312,7 @@ export default function StoreAds() {
                       <p className="text-sm text-[#74767C] mb-3">
                         Gain deeper insights and opportunities that help optimizing your Store Ads campaigns.
                       </p>
-                      <a href="#" className="text-sm text-[#0071DC] underline hover:no-underline">
+                      <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                         Discover more
                       </a>
                     </div>
@@ -337,7 +337,7 @@ export default function StoreAds() {
                       <p className="text-sm text-[#74767C] mb-3">
                         Don't miss billions of online traffic. Multiply your growth with online advertising.
                       </p>
-                      <a href="#" className="text-sm text-[#0071DC] underline hover:no-underline">
+                      <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                         Get guidance
                       </a>
                     </div>
@@ -361,7 +361,7 @@ export default function StoreAds() {
                       <p className="text-sm text-[#74767C] mb-3">
                         Access our Seller Academy on Youtube for video walkthroughs.
                       </p>
-                      <a href="#" className="text-sm text-[#0071DC] underline hover:no-underline">
+                      <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                         Subscribe
                       </a>
                     </div>
@@ -386,7 +386,7 @@ export default function StoreAds() {
                       <p className="text-sm text-[#74767C] mb-3">
                         Lorem ipsum dolor sit amet, consectetur adipiscing eli.
                       </p>
-                      <a href="#" className="text-sm text-[#0071DC] underline hover:no-underline">
+                      <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
                         Learn more
                       </a>
                     </div>
@@ -397,7 +397,7 @@ export default function StoreAds() {
               {/* Footer */}
               <div className="mt-16 pt-8 border-t border-[#E3E4E5]">
                 <p className="text-xs text-[#74767C] text-center">
-                  © 2000–2023 Wal-Mart Stores, Inc. All Rights reserved. <a href="#" className="text-[#0071DC] hover:underline">Privacy</a> and <a href="#" className="text-[#0071DC] hover:underline">Terms</a>
+                  © 2000–2023 Wal-Mart Stores, Inc. All Rights reserved. <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="hover:underline">Privacy</a> and <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="hover:underline">Terms</a>
                 </p>
               </div>
             </div>
