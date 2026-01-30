@@ -90,7 +90,7 @@ export default function MartyFloatingPanel({
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault();
+    // Don't prevent default to allow click events to work
     setIsDragging(true);
     setWasDragged(false);
     setDragStart({
