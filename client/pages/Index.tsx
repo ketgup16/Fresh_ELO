@@ -2362,7 +2362,8 @@ export default function Index() {
 
                     if (distance > 3) {
                       hasMoved = true;
-                      // Undock and start dragging
+                      // Undock and start dragging - set initial position at current mouse
+                      setMartyInitialPosition({ x: moveEvent.clientX - 25, y: moveEvent.clientY - 25 });
                       setIsMartyDocked(false);
                       // Clean up listeners
                       window.removeEventListener('mousemove', handleMouseMove);
