@@ -91,6 +91,7 @@ export default function MartyFloatingPanel({
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsDragging(true);
+    setWasDragged(false);
     setDragStart({
       x: e.clientX - fabPosition.x,
       y: e.clientY - fabPosition.y
@@ -103,6 +104,8 @@ export default function MartyFloatingPanel({
     const newX = e.clientX - dragStart.x;
     const newY = e.clientY - dragStart.y;
 
+    // Track that actual dragging occurred
+    setWasDragged(true);
     setFabPosition({ x: newX, y: newY });
     setHasMoved(true);
   };
