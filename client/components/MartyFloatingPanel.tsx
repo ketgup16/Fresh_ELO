@@ -461,11 +461,17 @@ export default function MartyFloatingPanel({
             </div>
 
             {/* Text - Hidden when moved unless hovered */}
-            <div className={`text-[#2E2F32] text-right text-base leading-6 whitespace-pre flex items-center overflow-hidden transition-all duration-200 ease-out ${
-              hasMoved ? 'max-w-0 opacity-0 group-hover:max-w-[150px] group-hover:opacity-100' : ''
+            <div className={`text-[#2E2F32] text-right text-base leading-6 whitespace-nowrap flex items-center transition-all duration-200 ease-out ${
+              hasMoved ? 'max-w-0 opacity-0 group-hover:max-w-[200px] group-hover:opacity-100 overflow-hidden' : ''
             }`}>
-              <span className="inline-block max-w-0 opacity-0 group-hover:max-w-[150px] group-hover:opacity-100 font-normal overflow-hidden transition-all duration-200 ease-out">Have a question?  </span>
-              <span className={`font-bold ${hasMoved ? 'group-hover:inline hidden' : ''}`}>Ask Marty</span>
+              {!hasMoved ? (
+                <>
+                  <span className="inline-block max-w-0 opacity-0 group-hover:max-w-[150px] group-hover:opacity-100 font-normal overflow-hidden transition-all duration-200 ease-out">Have a question?  </span>
+                  <span className="font-bold">Ask Marty</span>
+                </>
+              ) : (
+                <span className="font-normal whitespace-nowrap">Have a question? <span className="font-bold">Ask Marty</span></span>
+              )}
             </div>
           </div>
         </button>
