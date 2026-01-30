@@ -448,25 +448,27 @@ export default function MartyFloatingPanel({
             hasMoved ? 'w-[50px] h-[50px] justify-center p-0' : 'gap-2 py-2 pl-2 pr-4'
           }`}>
             {/* Marty Mascot Logo */}
-            <div className={`flex justify-center items-center rounded-full bg-white overflow-hidden flex-shrink-0 relative ${
-              hasMoved ? 'w-[50px] h-[50px]' : 'w-[38px] h-[38px]'
+            <div className={`flex justify-center items-center rounded-full bg-white flex-shrink-0 relative ${
+              hasMoved ? 'w-[50px] h-[50px]' : 'w-[38px] h-[38px] overflow-hidden'
             }`}>
-              <Lottie
-                animationData={hasMoved ? martyGlassesAnimation : martyAnimation}
-                loop={true}
-                style={{
-                  width: hasMoved ? 42 : 38,
-                  height: hasMoved ? 42 : 38
-                }}
-              />
+              <div className={`rounded-full ${hasMoved ? '' : 'overflow-hidden'} w-full h-full flex items-center justify-center`}>
+                <Lottie
+                  animationData={hasMoved ? martyGlassesAnimation : martyAnimation}
+                  loop={true}
+                  style={{
+                    width: hasMoved ? 42 : 38,
+                    height: hasMoved ? 42 : 38
+                  }}
+                />
+              </div>
 
               {/* Speech Bubble Tooltip - Shows on hover when collapsed */}
               {hasMoved && (
-                <div className="absolute -top-16 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
-                  <div className="bg-white rounded-lg shadow-lg px-3 py-2 relative whitespace-nowrap">
+                <div className="absolute -top-16 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-[60]">
+                  <div className="bg-white rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.15)] px-3 py-2 relative whitespace-nowrap">
                     <span className="text-sm text-[#2E2F32] font-normal">I have something to show you</span>
                     {/* Speech bubble arrow */}
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white" />
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white drop-shadow-sm" />
                   </div>
                 </div>
               )}
