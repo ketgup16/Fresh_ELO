@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Bell, HelpCircle, User, ArrowRight } from "lucide-react";
+import { ChevronDown, ChevronUp, Bell, HelpCircle, User, ArrowRight, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import StoreAdsSidebar from "../components/StoreAdsSidebar";
@@ -103,19 +103,20 @@ export default function StoreAds() {
                   <div className="absolute top-full mt-2 right-0 w-80 bg-white rounded-lg border border-[#BABBBE] shadow-lg z-50">
                     <div className="p-4">
                       <h3 className="text-sm font-extrabold text-[#2E2F32] mb-2">Media solutions</h3>
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-2 gap-2 mb-4">
                         <button
                           onClick={() => {
                             navigate('/sponsored-search');
                             setSelectedMediaSolution('Sponsored Search');
                             setMediaSolutionsOpen(false);
                           }}
-                          className="flex flex-col items-center justify-center p-3 rounded border border-[#E3E4E5] hover:border-[#0053E2] transition-colors min-h-[100px]"
+                          className={`flex flex-col items-center justify-center p-3 rounded border ${selectedMediaSolution === 'Sponsored Search' ? 'border-[#0053E2] bg-[#E9F1FE]' : 'border-[#E3E4E5]'} hover:border-[#0053E2] transition-colors min-h-[100px]`}
                         >
-                          <div className="w-12 h-12 mb-2">
-                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <circle cx="24" cy="24" r="20" fill="#0071DC"/>
-                            </svg>
+                          <div className="w-12 h-12 mb-2 relative">
+                            <div className="w-8 h-8 rounded bg-[#4DBDF5] absolute left-1 top-0" />
+                            <div className="w-8 h-8 rounded bg-[#001E60] absolute left-0 top-1 flex items-center justify-center">
+                              <Search className="w-5 h-5 text-white" />
+                            </div>
                           </div>
                           <span className="text-xs text-[#2E2F32] text-center">Sponsored Search</span>
                         </button>
@@ -126,11 +127,16 @@ export default function StoreAds() {
                             setSelectedMediaSolution('Display Advertising');
                             setMediaSolutionsOpen(false);
                           }}
-                          className="flex flex-col items-center justify-center p-3 rounded border border-[#E3E4E5] hover:border-[#0053E2] transition-colors min-h-[100px]"
+                          className={`flex flex-col items-center justify-center p-3 rounded border ${selectedMediaSolution === 'Display Advertising' ? 'border-[#0053E2] bg-[#E9F1FE]' : 'border-[#E3E4E5]'} hover:border-[#0053E2] transition-colors min-h-[100px]`}
                         >
                           <div className="w-12 h-12 mb-2">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <rect x="4" y="4" width="40" height="40" rx="4" fill="#9170FE"/>
+                              <rect x="7" y="7" width="34" height="34" rx="3" fill="#001E60"/>
+                              <path d="M12 18.9997C12 18.4474 12.4477 17.9997 13 17.9997H16V24.9997H13C12.4477 24.9997 12 24.552 12 23.9997V18.9997Z" fill="white"/>
+                              <path d="M14 17.9997C14 17.4474 14.4477 16.9997 15 16.9997H21V25.9997H15C14.4477 25.9997 14 25.552 14 24.9997V17.9997Z" fill="#29B8FF"/>
+                              <path d="M36.5 21.5C36.5 23.433 34.933 25 33 25C31.067 25 29.5 23.433 29.5 21.5C29.5 19.567 31.067 18 33 18C34.933 18 36.5 19.567 36.5 21.5Z" fill="#29B8FF"/>
+                              <path d="M23 16.9998L33.1715 13.4621C33.8213 13.236 34.5 13.7185 34.5 14.4066V28.5936C34.5 29.2816 33.8214 29.7641 33.1716 29.5382L22.9937 25.9998L23 16.9998Z" fill="white"/>
+                              <path d="M16.0001 25.9997H20.997L22.7383 32.9649C22.8697 33.4905 22.4721 33.9997 21.9303 33.9997H18.6503C18.2681 33.9997 17.935 33.7396 17.8423 33.3689L16.0001 25.9997Z" fill="white"/>
                             </svg>
                           </div>
                           <span className="text-xs text-[#2E2F32] text-center">Display Advertising</span>
@@ -138,10 +144,35 @@ export default function StoreAds() {
 
                         <button
                           onClick={() => {
+                            setSelectedMediaSolution('Shop Builder');
+                            setMediaSolutionsOpen(false);
+                          }}
+                          className={`flex flex-col items-center justify-center p-3 rounded border ${selectedMediaSolution === 'Shop Builder' ? 'border-[#0053E2] bg-[#E9F1FE]' : 'border-[#E3E4E5]'} hover:border-[#0053E2] transition-colors min-h-[100px]`}
+                        >
+                          <div className="w-12 h-12 mb-2">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M10 20H38V39C38 40.6569 36.6569 42 35 42H13C11.3431 42 10 40.6569 10 39V20Z" fill="#001E60"/>
+                              <path d="M23.8058 26.1225C23.8804 25.9592 24.1196 25.9592 24.1942 26.1225L25.913 29.8845C25.9438 29.952 26.0096 29.9983 26.0854 30.0059L30.3091 30.4273C30.4925 30.4456 30.5664 30.6659 30.4291 30.7852L27.2677 33.5316C27.211 33.5809 27.1859 33.6558 27.2019 33.728L28.0934 37.7504C28.1321 37.9251 27.9386 38.0613 27.7792 37.9716L24.1066 35.907C24.0407 35.87 23.9593 35.87 23.8934 35.907L20.2208 37.9716C20.0613 38.0613 19.8679 37.9251 19.9066 37.7505L20.7981 33.728C20.8141 33.6558 20.789 33.5809 20.7323 33.5316L17.5709 30.7852C17.4336 30.6659 17.5076 30.4456 17.6909 30.4273L21.9146 30.0059C21.9904 29.9983 22.0562 29.952 22.087 29.8845L23.8058 26.1225Z" fill="white"/>
+                              <path d="M10 23.5C11.933 23.5 13.5 21.933 13.5 20H6.5C6.5 21.933 8.067 23.5 10 23.5Z" fill="#0053E2"/>
+                              <path d="M17 23.5C18.933 23.5 20.5 21.933 20.5 20H13.5C13.5 21.933 15.067 23.5 17 23.5Z" fill="#29B8FF"/>
+                              <path d="M24 23.5C25.933 23.5 27.5 21.933 27.5 20H20.5C20.5 21.933 22.067 23.5 24 23.5Z" fill="#0053E2"/>
+                              <path d="M31 23.5C32.933 23.5 34.5 21.933 34.5 20H27.5C27.5 21.933 29.067 23.5 31 23.5Z" fill="#29B8FF"/>
+                              <path d="M38 23.5C39.933 23.5 41.5 21.933 41.5 20H34.5C34.5 21.933 36.067 23.5 38 23.5Z" fill="#0053E2"/>
+                              <path d="M10.7068 6.40864C10.9661 5.57107 11.7406 5 12.6174 5H35.3825C36.2593 5 37.0339 5.57106 37.2931 6.40863L41.5 20H6.5L10.7068 6.40864Z" fill="white"/>
+                              <path d="M10.5724 6.4253C10.8262 5.57934 11.6048 5 12.4881 5H16L13.5 20H6.5L10.5724 6.4253Z" fill="#29B8FF"/>
+                              <path d="M21.5 5H26.5L27.5 20H20.5L21.5 5Z" fill="#29B8FF"/>
+                              <path d="M32 5H35.5119C36.3952 5 37.1738 5.57934 37.4276 6.4253L41.5 20H34.5L32 5Z" fill="#29B8FF"/>
+                            </svg>
+                          </div>
+                          <span className="text-xs text-[#2E2F32] text-center">Shop Builder</span>
+                        </button>
+
+                        <button
+                          onClick={() => {
                             setSelectedMediaSolution('Store Ads');
                             setMediaSolutionsOpen(false);
                           }}
-                          className="flex flex-col items-center justify-center p-3 rounded border border-[#0053E2] bg-[#E9F1FE] transition-colors min-h-[100px]"
+                          className={`flex flex-col items-center justify-center p-3 rounded border ${selectedMediaSolution === 'Store Ads' ? 'border-[#0053E2] bg-[#E9F1FE]' : 'border-[#E3E4E5]'} hover:border-[#0053E2] transition-colors min-h-[100px]`}
                         >
                           <div className="w-12 h-12 mb-2">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -151,6 +182,22 @@ export default function StoreAds() {
                             </svg>
                           </div>
                           <span className="text-xs text-[#2E2F32] text-center">Store Ads</span>
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            setSelectedMediaSolution('Unified Reports');
+                            setMediaSolutionsOpen(false);
+                          }}
+                          className={`flex flex-col items-center justify-center p-3 rounded border ${selectedMediaSolution === 'Unified Reports' ? 'border-[#0053E2] bg-[#E9F1FE]' : 'border-[#E3E4E5]'} hover:border-[#0053E2] transition-colors min-h-[100px] col-span-2`}
+                        >
+                          <div className="w-12 h-12 mb-2">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <rect x="7" y="7" width="34" height="34" rx="3" fill="#001E60"/>
+                              <path d="M12 24.9267V34.5C12 35.0523 12.4477 35.5 13 35.5H35C35.5523 35.5 36 35.0523 36 34.5V16.5113C36 16.1902 35.8458 15.8886 35.5855 15.7006L32.1375 13.2104C31.7634 12.9403 31.253 12.9612 30.9022 13.261L22.8004 20.1874C22.5693 20.385 22.2609 20.4667 21.9624 20.4095L17.7246 19.5972C17.4064 19.5362 17.0784 19.6332 16.8445 19.8574L12.3081 24.2047C12.1113 24.3934 12 24.6541 12 24.9267Z" fill="white"/>
+                            </svg>
+                          </div>
+                          <span className="text-xs text-[#2E2F32] text-center">Unified Reports</span>
                         </button>
                       </div>
                     </div>
