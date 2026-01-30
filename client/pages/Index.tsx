@@ -2337,14 +2337,50 @@ export default function Index() {
             </button>
             {isMartyDocked && isMartyMinimized && (
               <button
-                onClick={() => setIsMartyMinimized(false)}
-                onMouseDown={(e) => {
-                  // Allow dragging the docked button
-                  e.preventDefault();
-                  setIsMartyDocked(false);
-                  setIsMartyMinimized(true);
+                onClick={(e) => {
+                  // Only expand if not being dragged
+                  const wasDragged = (e.currentTarget as any).wasDragged;
+                  if (!wasDragged) {
+                    setIsMartyMinimized(false);
+                  }
+                  // Reset drag flag
+                  setTimeout(() => {
+                    (e.currentTarget as any).wasDragged = false;
+                  }, 100);
                 }}
-                className="p-1 rounded hover:bg-gray-100 flex items-center justify-center"
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  const startX = e.clientX;
+                  const startY = e.clientY;
+                  let hasMoved = false;
+
+                  const handleMouseMove = (moveEvent: MouseEvent) => {
+                    const deltaX = Math.abs(moveEvent.clientX - startX);
+                    const deltaY = Math.abs(moveEvent.clientY - startY);
+                    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+                    if (distance > 3) {
+                      hasMoved = true;
+                      // Undock and start dragging
+                      setIsMartyDocked(false);
+                      // Clean up listeners
+                      window.removeEventListener('mousemove', handleMouseMove);
+                      window.removeEventListener('mouseup', handleMouseUp);
+                    }
+                  };
+
+                  const handleMouseUp = () => {
+                    window.removeEventListener('mousemove', handleMouseMove);
+                    window.removeEventListener('mouseup', handleMouseUp);
+                    if (hasMoved) {
+                      (e.currentTarget as any).wasDragged = true;
+                    }
+                  };
+
+                  window.addEventListener('mousemove', handleMouseMove);
+                  window.addEventListener('mouseup', handleMouseUp);
+                }}
+                className="p-1 rounded hover:bg-gray-100 flex items-center justify-center cursor-pointer"
               >
                 <div style={{ width: 28, height: 28 }}>
                   <Lottie
