@@ -909,7 +909,7 @@ export default function AllCampaigns() {
               <Button
                 variant="primary"
                 size="medium"
-                onClick={() => navigate('/campaign')}
+                onClick={() => setIsMartyMinimized(false)}
               >
                 Create campaign
               </Button>
