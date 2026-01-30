@@ -60,7 +60,15 @@ export default function MartyFloatingPanel({
   const [isAdditionalSettingsOpen, setIsAdditionalSettingsOpen] = useState(false);
 
   // FAB drag state
-  const [fabPosition, setFabPosition] = useState({ x: 0, y: 0 });
+  const [fabPosition, setFabPosition] = useState(initialPosition || { x: 0, y: 0 });
+
+  // Update position when initialPosition changes (undocking)
+  useEffect(() => {
+    if (initialPosition) {
+      setFabPosition(initialPosition);
+      setHasMoved(true);
+    }
+  }, [initialPosition]);
   const [isDragging, setIsDragging] = useState(false);
   const [hasMoved, setHasMoved] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
