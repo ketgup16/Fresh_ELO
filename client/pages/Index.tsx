@@ -2335,6 +2335,26 @@ export default function Index() {
             <button className="p-1 rounded hover:bg-gray-100">
               <User className="w-4 h-4" />
             </button>
+            {isMartyDocked && isMartyMinimized && (
+              <button
+                onClick={() => setIsMartyMinimized(false)}
+                onMouseDown={(e) => {
+                  // Allow dragging the docked button
+                  e.preventDefault();
+                  setIsMartyDocked(false);
+                  setIsMartyMinimized(true);
+                }}
+                className="p-1 rounded hover:bg-gray-100 flex items-center justify-center"
+              >
+                <div style={{ width: 28, height: 28 }}>
+                  <Lottie
+                    animationData={martyGlassesAnimation}
+                    loop={true}
+                    style={{ width: '100%', height: '100%' }}
+                  />
+                </div>
+              </button>
+            )}
           </div>
         </div>
       </header>
