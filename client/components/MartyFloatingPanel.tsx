@@ -444,7 +444,7 @@ export default function MartyFloatingPanel({
 
           {/* Content */}
           <div className={`flex items-center gap-2 rounded-full bg-white relative z-10 transition-all duration-200 ease-out ${
-            hasMoved ? 'p-1' : 'p-2'
+            hasMoved ? 'p-1' : 'py-2 pl-2 pr-3'
           }`}>
             {/* Marty Mascot Logo */}
             <div className={`flex justify-center items-center rounded-full bg-white overflow-hidden flex-shrink-0 ${
