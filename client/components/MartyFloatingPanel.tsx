@@ -121,8 +121,6 @@ export default function MartyFloatingPanel({
 
   const handleMouseUp = () => {
     setIsDragging(false);
-    // Reset wasDragged after a short delay to allow click handler to check it
-    setTimeout(() => setWasDragged(false), 100);
   };
 
   useEffect(() => {
