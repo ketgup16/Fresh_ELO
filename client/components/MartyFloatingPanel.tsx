@@ -97,22 +97,32 @@ export default function MartyFloatingPanel({
       x: e.clientX - fabPosition.x,
       y: e.clientY - fabPosition.y
     });
+    setDragStartPos({ x: e.clientX, y: e.clientY });
   };
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!isDragging) return;
 
-    const newX = e.clientX - dragStart.x;
-    const newY = e.clientY - dragStart.y;
+    // Calculate distance from start position
+    const deltaX = Math.abs(e.clientX - dragStartPos.x);
+    const deltaY = Math.abs(e.clientY - dragStartPos.y);
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-    // Track that actual dragging occurred
-    setWasDragged(true);
-    setFabPosition({ x: newX, y: newY });
-    setHasMoved(true);
+    // Only consider it a drag if moved more than 5 pixels
+    if (distance > 5) {
+      const newX = e.clientX - dragStart.x;
+      const newY = e.clientY - dragStart.y;
+
+      setWasDragged(true);
+      setFabPosition({ x: newX, y: newY });
+      setHasMoved(true);
+    }
   };
 
   const handleMouseUp = () => {
     setIsDragging(false);
+    // Reset wasDragged after a short delay to allow click handler to check it
+    setTimeout(() => setWasDragged(false), 100);
   };
 
   useEffect(() => {
