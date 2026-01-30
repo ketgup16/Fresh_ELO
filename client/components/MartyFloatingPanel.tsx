@@ -138,6 +138,7 @@ export default function MartyFloatingPanel({
   }, [isDragging]);
 
   const handleExpand = (e?: React.MouseEvent) => {
+    console.log('handleExpand called, onMinimizedChange:', onMinimizedChange);
     if (onMinimizedChange) {
       onMinimizedChange(false);
     }
