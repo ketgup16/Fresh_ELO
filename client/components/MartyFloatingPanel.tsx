@@ -407,7 +407,7 @@ export default function MartyFloatingPanel({
           </div>
         ) : (
           <div className="flex h-9 items-center gap-1.5 bg-white">
-            {/* Marty Mascot Logo */}
+            {/* Marty Mascot Animation */}
             <div className="flex w-6 h-6 justify-center items-center">
               <Lottie
                 animationData={martyAnimation}
