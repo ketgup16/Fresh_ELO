@@ -443,19 +443,19 @@ export default function MartyFloatingPanel({
           />
 
           {/* Content */}
-          <div className={`flex items-center gap-2 rounded-full bg-white relative z-10 transition-all duration-200 ease-out ${
-            hasMoved ? 'p-1.5' : 'py-2 pl-2 pr-4'
+          <div className={`flex items-center rounded-full bg-white relative z-10 transition-all duration-200 ease-out ${
+            hasMoved ? 'p-2 justify-center' : 'gap-2 py-2 pl-2 pr-4'
           }`}>
             {/* Marty Mascot Logo */}
             <div className={`flex justify-center items-center rounded-full bg-white overflow-hidden flex-shrink-0 ${
-              hasMoved ? 'w-[38px] h-[38px]' : 'w-[38px] h-[38px]'
+              hasMoved ? 'w-[42px] h-[42px]' : 'w-[38px] h-[38px]'
             }`}>
               <Lottie
                 animationData={martyAnimation}
                 loop={true}
                 style={{
-                  width: hasMoved ? 34 : 38,
-                  height: hasMoved ? 34 : 38
+                  width: hasMoved ? 38 : 38,
+                  height: hasMoved ? 38 : 38
                 }}
               />
             </div>
