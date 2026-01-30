@@ -192,7 +192,8 @@ export default function DateRangeFilterDropdown({
                 </div>
                 <button
                   onClick={handleApplyToday}
-                  className="text-sm text-[#0053E2] underline hover:no-underline"
+                  style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
+                  className="text-sm underline hover:no-underline"
                 >
                   Jump to today
                 </button>
@@ -203,7 +204,8 @@ export default function DateRangeFilterDropdown({
             <div className="flex justify-end gap-3 pt-4">
               <button
                 onClick={handleCancel}
-                className="px-6 py-2 text-sm text-[#2E2F32] hover:underline transition-colors"
+                style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
+                className="px-6 py-2 text-sm underline hover:no-underline transition-colors"
               >
                 Cancel
               </button>
