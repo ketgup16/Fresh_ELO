@@ -9,6 +9,8 @@ import { Button } from "../components/ui/Button";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
 import { Menu } from "../components/ui/Menu";
 import { MenuItem } from "../components/ui/MenuItem";
+import Lottie from "lottie-react";
+import martyGlassesAnimation from "../marty-glasses.json";
 
 interface Campaign {
   id: string;
