@@ -408,11 +408,11 @@ export default function MartyFloatingPanel({
         ) : (
           <div className="flex h-9 items-center gap-1.5 bg-white">
             {/* Marty Mascot Animation */}
-            <div className="flex w-6 h-6 justify-center items-center">
+            <div className="flex w-8 h-8 justify-center items-center">
               <Lottie
                 animationData={martyAnimation}
                 loop={true}
-                style={{ width: 24, height: 24 }}
+                style={{ width: 32, height: 32 }}
               />
             </div>
 
