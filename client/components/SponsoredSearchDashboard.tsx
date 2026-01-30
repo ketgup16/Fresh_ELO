@@ -363,7 +363,7 @@ export default function SponsoredSearchDashboard() {
           </div>
           <div className="h-px bg-[#E3E4E5]"></div>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
-            <button className="text-sm text-[#2E2F32] underline hover:no-underline text-center sm:text-left">See details</button>
+            <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline text-center sm:text-left">See details</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Update 10 campaigns</button>
           </div>
         </div>
@@ -397,7 +397,7 @@ export default function SponsoredSearchDashboard() {
           </div>
           <div className="h-px bg-[#E3E4E5]"></div>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
-            <button className="text-sm text-[#2E2F32] underline hover:no-underline text-center sm:text-left">See details</button>
+            <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline text-center sm:text-left">See details</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Update 24 campaigns</button>
           </div>
         </div>
@@ -434,7 +434,7 @@ export default function SponsoredSearchDashboard() {
           </div>
           <div className="h-px bg-[#E3E4E5]"></div>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
-            <button className="text-sm text-[#2E2F32] underline hover:no-underline text-center sm:text-left">See details</button>
+            <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline text-center sm:text-left">See details</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Update 4 campaigns</button>
           </div>
         </div>
@@ -453,7 +453,7 @@ export default function SponsoredSearchDashboard() {
             <span className="text-xs text-[#74767C]">Updated Oct 10, 2025</span>
           </div>
           <p className="text-sm text-[#2E2F32]">
-            We found items that you're not advertising that have the potential to drive sales in a Sponsored Products automatic campaign. <span className="underline cursor-pointer hover:no-underline">Learn more</span>
+            We found items that you're not advertising that have the potential to drive sales in a Sponsored Products automatic campaign. <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline cursor-pointer hover:no-underline">Learn more</span>
           </p>
           <div className="flex items-center gap-8 flex-wrap">
             <div>
@@ -474,7 +474,7 @@ export default function SponsoredSearchDashboard() {
           </div>
           <div className="h-px bg-[#E3E4E5]"></div>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
-            <button className="text-sm text-[#2E2F32] underline hover:no-underline text-center sm:text-left">Request report</button>
+            <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline text-center sm:text-left">Request report</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Create new campaign</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Add items to existing campaign</button>
           </div>
@@ -530,7 +530,7 @@ export default function SponsoredSearchDashboard() {
             {campaigns.map((campaign, index) => (
               <tr key={index} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
                 <td className="p-4">
-                  <div className="text-[#2E2F32] underline hover:no-underline cursor-pointer">
+                  <div style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline cursor-pointer">
                     {campaign.name}
                   </div>
                 </td>
@@ -548,9 +548,9 @@ export default function SponsoredSearchDashboard() {
       {/* Footer */}
       <div className="flex items-center justify-center gap-1 py-6 text-xs text-[#2E2F32]">
         <span>© 2025 Walmart Inc. All Rights reserved.</span>
-        <a href="#" className="underline hover:no-underline">Privacy</a>
+        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline">Privacy</a>
         <span>and</span>
-        <a href="#" className="underline hover:no-underline">Terms</a>
+        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline">Terms</a>
       </div>
 
       {/* Edit Metrics Modal */}
