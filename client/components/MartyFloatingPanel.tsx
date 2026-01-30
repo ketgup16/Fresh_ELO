@@ -452,7 +452,7 @@ export default function MartyFloatingPanel({
               hasMoved ? 'w-[50px] h-[50px]' : 'w-[38px] h-[38px]'
             }`}>
               <Lottie
-                animationData={martyAnimation}
+                animationData={hasMoved ? martyGlassesAnimation : martyAnimation}
                 loop={true}
                 style={{
                   width: hasMoved ? 42 : 38,
