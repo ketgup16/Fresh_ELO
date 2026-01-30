@@ -93,10 +93,13 @@ export default function MartyFloatingPanel({
     e.preventDefault(); // Prevent text selection while dragging
     setIsDragging(true);
     isDraggingRef.current = false; // Reset - will be set to true if actual movement occurs
-    setDragStart({
-      x: e.clientX - fabPosition.x,
-      y: e.clientY - fabPosition.y
-    });
+
+    // Get the button element to calculate its center offset
+    const buttonRect = e.currentTarget.getBoundingClientRect();
+    const offsetX = buttonRect.width / 2;
+    const offsetY = buttonRect.height / 2;
+
+    setDragStart({ x: offsetX, y: offsetY });
     setDragStartPos({ x: e.clientX, y: e.clientY });
   };
 
@@ -112,6 +115,7 @@ export default function MartyFloatingPanel({
     if (distance > 3) {
       isDraggingRef.current = true; // Mark as dragged
 
+      // Center the FAB on the cursor
       const newX = e.clientX - dragStart.x;
       const newY = e.clientY - dragStart.y;
 
