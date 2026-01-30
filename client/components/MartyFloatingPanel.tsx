@@ -367,6 +367,11 @@ export default function MartyFloatingPanel({
           <div className="flex py-2 pl-2 pr-4 items-center gap-2 rounded-full bg-white relative z-10 transition-all duration-200 ease-out">
             {/* Marty Mascot Logo */}
             <div className="flex w-[38px] h-[38px] justify-center items-center rounded-full bg-white overflow-hidden flex-shrink-0">
+              <Lottie
+                animationData={martyAnimation}
+                loop={true}
+                style={{ width: 38, height: 38 }}
+              />
             </div>
 
             {/* Text - Changes on hover */}
