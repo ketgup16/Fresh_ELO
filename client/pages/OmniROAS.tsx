@@ -509,7 +509,7 @@ export default function OmniROAS() {
                           {item.itemImage}
                         </div>
                       </td>
-                      <td className="px-2 py-2 text-sm text-[#2E2F32] underline cursor-pointer hover:no-underline">
+                      <td style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="px-2 py-2 text-sm underline cursor-pointer hover:no-underline">
                         {item.itemId}
                       </td>
                       <td className="px-2 py-2">
