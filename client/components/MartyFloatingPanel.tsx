@@ -515,14 +515,23 @@ export default function MartyFloatingPanel({
               hasMoved ? 'w-[50px] h-[50px]' : 'w-[38px] h-[38px] overflow-hidden'
             }`}>
               <div className={`rounded-full ${hasMoved ? '' : 'overflow-hidden'} w-full h-full flex items-center justify-center`}>
-                <Lottie
-                  animationData={hasMoved ? martyGlassesAnimation : martyAnimation}
-                  loop={true}
+                <div
                   style={{
                     width: hasMoved ? 42 : 38,
-                    height: hasMoved ? 42 : 38
+                    height: hasMoved ? 42 : 38,
+                    transform: `translate(${eyePosition.x}px, ${eyePosition.y}px)`,
+                    transition: 'transform 0.1s ease-out'
                   }}
-                />
+                >
+                  <Lottie
+                    animationData={hasMoved ? martyGlassesAnimation : martyAnimation}
+                    loop={true}
+                    style={{
+                      width: '100%',
+                      height: '100%'
+                    }}
+                  />
+                </div>
               </div>
 
               {/* Speech Bubble Tooltip - Shows on hover when collapsed */}
