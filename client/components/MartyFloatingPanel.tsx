@@ -11,6 +11,7 @@ interface MartyFloatingPanelProps {
   onMinimizedChange?: (minimized: boolean) => void;
   isDocked?: boolean;
   onDockedChange?: (docked: boolean) => void;
+  initialPosition?: { x: number; y: number };
 }
 
 type ViewState = 'welcome' | 'chat' | 'campaignSetup' | 'campaignForm' | 'campaignReady' | 'campaignScheduled';
