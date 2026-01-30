@@ -33,6 +33,7 @@ export default function MartyFloatingPanel({
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const isDraggingRef = useRef(false);
 
   const handleFeedback = (messageId: string, feedback: 'up' | 'down') => {
     setMessages(prev => prev.map(msg =>
