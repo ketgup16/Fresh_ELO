@@ -419,9 +419,13 @@ export default function MartyFloatingPanel({
         <button
           onMouseDown={handleMouseDown}
           onClick={(e) => {
+            e.stopPropagation();
             // Only expand if not dragging
             if (!wasDragged) {
+              console.log('FAB clicked - expanding panel');
               handleExpand(e);
+            } else {
+              console.log('FAB dragged - not expanding');
             }
           }}
           className="inline-flex p-0.5 justify-end items-center gap-2 rounded-full shadow-[0_-1px_3px_0_rgba(0,0,0,0.10),0_3px_5px_2px_rgba(0,0,0,0.15)] relative overflow-hidden group transition-all duration-200 ease-out"
