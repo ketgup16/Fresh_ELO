@@ -29,7 +29,8 @@ export default function MartyFloatingPanel({
   isMinimized = false,
   onMinimizedChange,
   isDocked = false,
-  onDockedChange
+  onDockedChange,
+  initialPosition
 }: MartyFloatingPanelProps) {
   const navigate = useNavigate();
   const location = useLocation();
