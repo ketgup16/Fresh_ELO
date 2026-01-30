@@ -16,6 +16,7 @@ import ItemHealth from "./pages/ItemHealth";
 import OmniROAS from "./pages/OmniROAS";
 import DisplayAdvertisingCampaigns from "./pages/DisplayAdvertisingCampaigns";
 import SellerCenter from "./pages/SellerCenter";
+import StoreAds from "./pages/StoreAds";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
