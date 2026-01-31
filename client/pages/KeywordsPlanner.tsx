@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Bell, HelpCircle, User, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { MastHead } from "../components/ui/MastHead";
+import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { Card } from "../components/ui/Card";
 import { CardHeader } from "../components/ui/CardHeader";
 import { CardContent } from "../components/ui/CardContent";
@@ -12,16 +12,7 @@ import { Button } from "../components/ui/Button";
 export default function KeywordsPlanner() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
-  const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
-  const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
-
-  const mediaSolutions = [
-    'Sponsored Search',
-    'Onsite',
-    'Offsite',
-    'In-store',
-  ];
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState<MediaSolution>('Sponsored Search');
 
   return (
     <div className="flex h-screen bg-white overflow-hidden">
