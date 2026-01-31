@@ -74,10 +74,10 @@ export function MediaSolutionsDropdown({
 
                 {/* Display Advertising */}
                 <button
-                  onClick={() => handleSolutionClick('Display Advertising')}
+                  onClick={() => handleSolutionClick('Display Advertising', '/')}
                   className={`flex flex-col items-center justify-center p-3 rounded border ${
-                    currentSolution === 'Display Advertising' 
-                      ? 'border-[#0053E2] bg-[#E9F1FE]' 
+                    currentSolution === 'Display Advertising'
+                      ? 'border-[#0053E2] bg-[#E9F1FE]'
                       : 'border-[#E3E4E5]'
                   } hover:border-[#0053E2] transition-colors min-h-[100px]`}
                 >
