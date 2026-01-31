@@ -1,17 +1,16 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Bell, HelpCircle, User, ArrowRight, Search } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import StoreAdsSidebar from "../components/StoreAdsSidebar";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Button } from "../components/ui/Button";
+import { MastHead } from "../components/ui/MastHead";
+import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
 export default function StoreAds() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
-  const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
-  const [selectedMediaSolution, setSelectedMediaSolution] = useState('Store Ads');
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState<MediaSolution>('Store Ads');
   const [activeMenuItem, setActiveMenuItem] = useState('home');
 
   const handleMenuItemClick = (itemId: string) => {
