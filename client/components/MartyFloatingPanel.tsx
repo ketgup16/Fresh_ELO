@@ -188,9 +188,7 @@ export default function MartyFloatingPanel() {
       // Check if dragging into masthead area (top 54px + some buffer)
       if (isDocked && e.clientY > 100) {
         // Dragging out of masthead - undock
-        if (onDockedChange) {
-          onDockedChange(false);
-        }
+        setIsDocked(false);
       }
     }
   };
@@ -201,9 +199,7 @@ export default function MartyFloatingPanel() {
     // Check if we should dock (in masthead area)
     if (!isDocked && hasMoved && e && e.clientY < 80) {
       // Snap to docked position
-      if (onDockedChange) {
-        onDockedChange(true);
-      }
+      setIsDocked(true);
     }
   };
 
@@ -220,9 +216,7 @@ export default function MartyFloatingPanel() {
   }, [isDragging]);
 
   const handleExpand = (e?: React.MouseEvent) => {
-    if (onMinimizedChange) {
-      onMinimizedChange(false);
-    }
+    setIsMinimized(false);
   };
 
   const generateMockResponse = (userInput: string): string => {
