@@ -35,13 +35,20 @@ export default function SellerCenter() {
   ];
 
   return (
-    <div className="flex h-screen bg-[#F7F8F9]">
-      <SponsoredSearchSidebar 
-        activeMenuItem={activeMenuItem} 
-        setActiveMenuItem={setActiveMenuItem}
+    <div className="min-h-screen bg-white flex flex-col">
+      <MastHead 
+        companyName="Coca Cola"
+        currentSolution={selectedMediaSolution}
+        onSolutionChange={setSelectedMediaSolution}
       />
 
-      <div className="flex-1 flex flex-col overflow-hidden ml-[240px]">
+      <div className="flex h-[calc(100vh-54px)] bg-[#F7F8F9]">
+        <SponsoredSearchSidebar 
+          activeMenuItem={activeMenuItem} 
+          setActiveMenuItem={setActiveMenuItem}
+        />
+
+        <div className="flex-1 flex flex-col overflow-hidden ml-[240px]">
         {/* Header */}
         <header className="h-16 bg-white border-b border-[#E3E4E5] flex items-center justify-between px-6">
           <h1 className="text-2xl font-bold text-[#2E2F32]">Seller Center</h1>
@@ -390,6 +397,7 @@ export default function SellerCenter() {
             </div>
           </div>
         </main>
+      </div>
       </div>
 
       <MartyFloatingPanel />
