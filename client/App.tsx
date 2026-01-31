@@ -39,7 +39,8 @@ const App = () => (
             <Route path="/keywords-planner" element={<KeywordsPlanner />} />
             <Route path="/reports/item-health" element={<ItemHealth />} />
             <Route path="/reports/omni-roas" element={<OmniROAS />} />
-            {/* Testing with reports routes */}
+            <Route path="/display-advertising/campaigns" element={<DisplayAdvertisingCampaigns />} />
+            {/* Testing with DisplayAdvertisingCampaigns */}
             <Route path="*" element={<div>404</div>} />
           </Routes>
         </BrowserRouter>
