@@ -1,6 +1,6 @@
 import { Bell, HelpCircle, User, ChevronDown } from 'lucide-react';
 import Lottie from 'lottie-react';
-import martyGlassesAnimation from '@/assets/marty-glasses.json';
+import martyGlassesAnimation from '../../marty-glasses.json';
 import { MediaSolutionsDropdown, MediaSolution } from './MediaSolutionsDropdown';
 import { useMarty } from '@/contexts/MartyContext';
 
