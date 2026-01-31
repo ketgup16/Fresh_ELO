@@ -157,12 +157,7 @@ export default function KeywordsPlanner() {
       </div>
 
       {/* Marty Floating Panel */}
-      {showMartyPanel && (
-        <MartyFloatingPanel
-          isMinimized={isMartyMinimized}
-          onToggleMinimize={() => setIsMartyMinimized(!isMartyMinimized)}
-        />
-      )}
+      {showMartyPanel && <MartyFloatingPanel />}
     </div>
   );
 }
