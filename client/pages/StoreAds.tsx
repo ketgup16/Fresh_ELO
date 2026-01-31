@@ -18,8 +18,8 @@ export default function StoreAds() {
   };
 
   const handleCreateCampaign = () => {
-    setIsMartyMinimized(false);
     // Marty panel will handle the campaign creation flow
+    // Marty state is now managed by MartyContext
   };
 
   return (
