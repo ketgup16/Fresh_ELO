@@ -22,17 +22,25 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Main App component with routing - Testing MartyProvider
+// Main App component with routing - Testing full stack with test route
 const App = () => {
   console.log('App component rendering');
 
   return (
-    <MartyProvider>
-      <div style={{ padding: '20px' }}>
-        <h1>App is rendering with MartyProvider!</h1>
-        <p>If you see this, MartyProvider is working.</p>
-      </div>
-    </MartyProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <MartyProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<div style={{ padding: '20px' }}><h1>Test Home Page</h1></div>} />
+              <Route path="*" element={<div style={{ padding: '20px' }}><h1>Test 404</h1></div>} />
+            </Routes>
+          </BrowserRouter>
+        </MartyProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 };
 
