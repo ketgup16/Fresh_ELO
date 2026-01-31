@@ -3644,15 +3644,7 @@ export default function Index() {
       )}
 
       {/* Marty Floating Panel */}
-      {showMartyPanel && (
-        <MartyFloatingPanel
-          isMinimized={isMartyMinimized}
-          onMinimizedChange={setIsMartyMinimized}
-          isDocked={isMartyDocked}
-          onDockedChange={setIsMartyDocked}
-          initialPosition={martyInitialPosition}
-        />
-      )}
+      {showMartyPanel && <MartyFloatingPanel />}
     </div>
   );
 }
