@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronRight, ChevronDown, ChevronUp, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X } from "lucide-react";
+import { ChevronRight, ChevronDown, Search, Settings, Download, MoreHorizontal, Eye, Sliders, X } from "lucide-react";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import DisplayDashboard from "../components/DisplayDashboard";
 import DisplayAdvertisingSidebar from "../components/DisplayAdvertisingSidebar";
@@ -9,8 +9,8 @@ import { Button } from "../components/ui/Button";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
 import { Menu } from "../components/ui/Menu";
 import { MenuItem } from "../components/ui/MenuItem";
-import Lottie from "lottie-react";
-import martyGlassesAnimation from "../marty-glasses.json";
+import { MastHead } from "../components/ui/MastHead";
+import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
 interface Campaign {
   id: string;
