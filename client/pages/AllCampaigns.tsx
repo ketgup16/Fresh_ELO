@@ -1,15 +1,16 @@
 import { useState, useRef, useMemo, useEffect } from "react";
-import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Calendar, Filter, Download, Settings as SettingsIcon, X } from "lucide-react";
+import { Search, Calendar, Filter, Download, Settings as SettingsIcon, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import RecommendationsPopover from "../components/RecommendationsPopover";
 import BiddingStrategyModal from "../components/BiddingStrategyModal";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Button } from "../components/ui/Button";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
 import { Menu } from "../components/ui/Menu";
 import { MenuItem } from "../components/ui/MenuItem";
+import { MastHead } from "../components/ui/MastHead";
+import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
 interface Alert {
   type: 'item-health-issues' | 'out-of-budget';
@@ -70,9 +71,7 @@ interface Campaign {
 export default function AllCampaigns() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
-  const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
-  const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState<MediaSolution>('Sponsored Search');
 
   // Recommendations & Modal State
   const [recommendationsOpen, setRecommendationsOpen] = useState(false);
