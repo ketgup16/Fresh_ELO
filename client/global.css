@@ -133,6 +133,17 @@
   }
 }
 
+@layer components {
+  /* Text link using Living Design 3.5 semantic token */
+  .text-link {
+    color: var(--ld-semantic-color-text-brand, #0071ce);
+  }
+
+  .text-link:hover {
+    color: var(--ld-semantic-color-text-brand, #0071ce);
+  }
+}
+
 /* Everyday Sans UI Font */
 @font-face {
   font-family: 'Everyday Sans UI';
