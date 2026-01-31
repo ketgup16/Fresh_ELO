@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronRight, ChevronDown, ChevronUp, Search, Settings, Download, Bell, HelpCircle, User, MoreHorizontal, Eye, Sliders, X } from "lucide-react";
+import { ChevronRight, Search, Settings, Download, MoreHorizontal, Eye, Sliders, X } from "lucide-react";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import DisplayAdvertisingSidebar from "../components/DisplayAdvertisingSidebar";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { MastHead } from "../components/ui/MastHead";
+import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import RecommendationsPanel from "../components/RecommendationsPanel";
 import { Button } from "../components/ui/Button";
 
@@ -1619,7 +1620,7 @@ export default function DisplayAdvertisingCampaigns() {
 
   // Marty panel state
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState<MediaSolution>('Display Advertising');
   const [tempStatusFilter, setTempStatusFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showAllFiltersPopover, setShowAllFiltersPopover] = useState(false);
@@ -1657,7 +1658,6 @@ export default function DisplayAdvertisingCampaigns() {
   const [activeMenuItem, setActiveMenuItem] = useState('campaigns');
 
   // Media solutions dropdown state
-  const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
   const [selectedMediaSolution, setSelectedMediaSolution] = useState('Display Advertising');
 
   // Count completed campaigns
