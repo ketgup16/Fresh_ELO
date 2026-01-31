@@ -22,7 +22,19 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Main App component with routing
+// Main App component with routing - Simplified for debugging
+const App = () => {
+  console.log('App component rendering');
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>App is rendering!</h1>
+      <p>If you see this, React is working.</p>
+    </div>
+  );
+};
+
+/* Original App code - will restore after debugging
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -45,7 +57,6 @@ const App = () => (
             <Route path="/store-ads/campaigns" element={<StoreAds />} />
             <Route path="/store-ads/performance" element={<StoreAds />} />
             <Route path="/store-ads/inventory" element={<StoreAds />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
@@ -53,6 +64,7 @@ const App = () => (
     </TooltipProvider>
   </QueryClientProvider>
 );
+*/
 
 const rootElement = document.getElementById("root")!;
 
