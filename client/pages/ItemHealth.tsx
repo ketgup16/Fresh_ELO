@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Settings as SettingsIcon, Download, ExternalLink } from "lucide-react";
+import { Search, Settings as SettingsIcon, Download, ExternalLink } from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMemo } from "react";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { MastHead } from "../components/ui/MastHead";
+import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { Button } from "../components/ui/button";
 import { Popover, PopoverTrigger, PopoverContent, PopoverArrow } from "../components/ui/popover";
 import { OLQTag } from "../components/ui/olq-tag";
@@ -36,9 +37,7 @@ export default function ItemHealth() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
-  const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
-  const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState<MediaSolution>('Sponsored Search');
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [openAlertPopover, setOpenAlertPopover] = useState<number | null>(null);
