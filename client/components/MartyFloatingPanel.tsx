@@ -147,9 +147,7 @@ export default function MartyFloatingPanel() {
   }, []);
 
   const handleMinimize = () => {
-    if (onMinimizedChange) {
-      onMinimizedChange(true);
-    }
+    setIsMinimized(true);
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
