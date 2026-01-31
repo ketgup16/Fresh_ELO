@@ -29,7 +29,12 @@ export function MartyProvider({ children }: MartyProviderProps) {
 
   const [initialPosition, setInitialPosition] = useState<{ x: number; y: number }>(() => {
     const saved = localStorage.getItem('marty-position');
-    return saved ? JSON.parse(saved) : { x: window.innerWidth - 400, y: 100 };
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    // Safe window access - use default if window is not available
+    const defaultX = typeof window !== 'undefined' ? window.innerWidth - 400 : 800;
+    return { x: defaultX, y: 100 };
   });
 
   // Persist to localStorage when state changes
