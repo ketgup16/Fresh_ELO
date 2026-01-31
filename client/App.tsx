@@ -23,36 +23,40 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 // Main App component with routing
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <MartyProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/sponsored-search" element={<SponsoredSearch />} />
-            <Route path="/campaign" element={<Campaign />} />
-            <Route path="/all-campaigns" element={<AllCampaigns />} />
-            <Route path="/all-keywords" element={<AllKeywords />} />
-            <Route path="/keywords-planner" element={<KeywordsPlanner />} />
-            <Route path="/reports/item-health" element={<ItemHealth />} />
-            <Route path="/reports/omni-roas" element={<OmniROAS />} />
-            <Route path="/display-advertising/campaigns" element={<DisplayAdvertisingCampaigns />} />
-            <Route path="/seller-center" element={<SellerCenter />} />
-            <Route path="/store-ads" element={<StoreAds />} />
-            <Route path="/store-ads/campaigns" element={<StoreAds />} />
-            <Route path="/store-ads/performance" element={<StoreAds />} />
-            <Route path="/store-ads/inventory" element={<StoreAds />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </MartyProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  console.log('App component rendering');
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <div>Loading test...</div>
+        <MartyProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/sponsored-search" element={<SponsoredSearch />} />
+              <Route path="/campaign" element={<Campaign />} />
+              <Route path="/all-campaigns" element={<AllCampaigns />} />
+              <Route path="/all-keywords" element={<AllKeywords />} />
+              <Route path="/keywords-planner" element={<KeywordsPlanner />} />
+              <Route path="/reports/item-health" element={<ItemHealth />} />
+              <Route path="/reports/omni-roas" element={<OmniROAS />} />
+              <Route path="/display-advertising/campaigns" element={<DisplayAdvertisingCampaigns />} />
+              <Route path="/seller-center" element={<SellerCenter />} />
+              <Route path="/store-ads" element={<StoreAds />} />
+              <Route path="/store-ads/campaigns" element={<StoreAds />} />
+              <Route path="/store-ads/performance" element={<StoreAds />} />
+              <Route path="/store-ads/inventory" element={<StoreAds />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </MartyProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 const rootElement = document.getElementById("root")!;
 
