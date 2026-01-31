@@ -4,10 +4,13 @@ import { useNavigate } from "react-router-dom";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import { Button } from "../components/ui/Button";
+import { MastHead } from "../components/ui/MastHead";
+import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
 export default function SellerCenter() {
   const navigate = useNavigate();
   const [activeMenuItem, setActiveMenuItem] = useState("listing-quality");
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState<MediaSolution>('Display Advertising');
 
   // Mock data for the table
   const items = [
