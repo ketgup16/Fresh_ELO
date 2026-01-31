@@ -18,19 +18,31 @@ interface MartyProviderProps {
 export function MartyProvider({ children }: MartyProviderProps) {
   // Initialize state from localStorage or defaults
   const [isMinimized, setIsMinimized] = useState<boolean>(() => {
-    const saved = localStorage.getItem('marty-minimized');
-    return saved ? JSON.parse(saved) : false;
+    try {
+      const saved = localStorage.getItem('marty-minimized');
+      return saved ? JSON.parse(saved) : false;
+    } catch {
+      return false;
+    }
   });
 
   const [isDocked, setIsDocked] = useState<boolean>(() => {
-    const saved = localStorage.getItem('marty-docked');
-    return saved ? JSON.parse(saved) : false;
+    try {
+      const saved = localStorage.getItem('marty-docked');
+      return saved ? JSON.parse(saved) : false;
+    } catch {
+      return false;
+    }
   });
 
   const [initialPosition, setInitialPosition] = useState<{ x: number; y: number }>(() => {
-    const saved = localStorage.getItem('marty-position');
-    if (saved) {
-      return JSON.parse(saved);
+    try {
+      const saved = localStorage.getItem('marty-position');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch {
+      // Ignore parse errors
     }
     // Safe window access - use default if window is not available
     const defaultX = typeof window !== 'undefined' ? window.innerWidth - 400 : 800;
@@ -39,15 +51,27 @@ export function MartyProvider({ children }: MartyProviderProps) {
 
   // Persist to localStorage when state changes
   useEffect(() => {
-    localStorage.setItem('marty-minimized', JSON.stringify(isMinimized));
+    try {
+      localStorage.setItem('marty-minimized', JSON.stringify(isMinimized));
+    } catch {
+      // Ignore localStorage errors
+    }
   }, [isMinimized]);
 
   useEffect(() => {
-    localStorage.setItem('marty-docked', JSON.stringify(isDocked));
+    try {
+      localStorage.setItem('marty-docked', JSON.stringify(isDocked));
+    } catch {
+      // Ignore localStorage errors
+    }
   }, [isDocked]);
 
   useEffect(() => {
-    localStorage.setItem('marty-position', JSON.stringify(initialPosition));
+    try {
+      localStorage.setItem('marty-position', JSON.stringify(initialPosition));
+    } catch {
+      // Ignore localStorage errors
+    }
   }, [initialPosition]);
 
   const value: MartyContextValue = {
