@@ -22,7 +22,7 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Main App component with routing - Testing reports routes
+// Main App component with routing
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -40,8 +40,13 @@ const App = () => (
             <Route path="/reports/item-health" element={<ItemHealth />} />
             <Route path="/reports/omni-roas" element={<OmniROAS />} />
             <Route path="/display-advertising/campaigns" element={<DisplayAdvertisingCampaigns />} />
-            {/* Testing with DisplayAdvertisingCampaigns */}
-            <Route path="*" element={<div>404</div>} />
+            <Route path="/seller-center" element={<SellerCenter />} />
+            <Route path="/store-ads" element={<StoreAds />} />
+            <Route path="/store-ads/campaigns" element={<StoreAds />} />
+            <Route path="/store-ads/performance" element={<StoreAds />} />
+            <Route path="/store-ads/inventory" element={<StoreAds />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </MartyProvider>
