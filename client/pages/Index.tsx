@@ -1624,9 +1624,6 @@ export default function Index() {
 
   // Marty panel state
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
-  const [isMartyDocked, setIsMartyDocked] = useState(false);
-  const [martyInitialPosition, setMartyInitialPosition] = useState<{ x: number; y: number } | undefined>(undefined);
   const [tempStatusFilter, setTempStatusFilter] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showAllFiltersPopover, setShowAllFiltersPopover] = useState(false);
@@ -1662,9 +1659,8 @@ export default function Index() {
   // Sidebar state
   const [activeMenuItem, setActiveMenuItem] = useState('dashboard');
 
-  // Media solutions dropdown state
-  const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
-  const [selectedMediaSolution, setSelectedMediaSolution] = useState('Display Advertising');
+  // Media solution state (for MastHead)
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState<MediaSolution>('Display Advertising');
 
   const handleResizeStart = (e: React.MouseEvent, column: string, currentWidth: number) => {
     e.preventDefault();
