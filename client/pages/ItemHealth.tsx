@@ -634,12 +634,7 @@ export default function ItemHealth() {
         </div>
 
         {/* Marty Panel */}
-        {showMartyPanel && (
-          <MartyFloatingPanel
-            isMinimized={isMartyMinimized}
-            onMinimizedChange={setIsMartyMinimized}
-          />
-        )}
+        {showMartyPanel && <MartyFloatingPanel />}
       </div>
     </div>
   );
