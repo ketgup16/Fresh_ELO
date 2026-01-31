@@ -5,14 +5,7 @@ import Reports from "./icons/Reports";
 import { Button } from "./ui/Button";
 import martyAnimation from "../marty-thinking.json";
 import martyGlassesAnimation from "../marty-glasses.json";
-
-interface MartyFloatingPanelProps {
-  isMinimized?: boolean;
-  onMinimizedChange?: (minimized: boolean) => void;
-  isDocked?: boolean;
-  onDockedChange?: (docked: boolean) => void;
-  initialPosition?: { x: number; y: number };
-}
+import { useMarty } from "@/contexts/MartyContext";
 
 type ViewState = 'welcome' | 'chat' | 'campaignSetup' | 'campaignForm' | 'campaignReady' | 'campaignScheduled';
 
@@ -25,13 +18,8 @@ interface Message {
   feedback?: 'up' | 'down' | null;
 }
 
-export default function MartyFloatingPanel({
-  isMinimized = false,
-  onMinimizedChange,
-  isDocked = false,
-  onDockedChange,
-  initialPosition
-}: MartyFloatingPanelProps) {
+export default function MartyFloatingPanel() {
+  const { isMinimized, setIsMinimized, isDocked, setIsDocked, initialPosition, setInitialPosition } = useMarty();
   const navigate = useNavigate();
   const location = useLocation();
   const [viewState, setViewState] = useState<ViewState>('welcome');
