@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Button } from "../components/ui/Button";
+import { MastHead } from "../components/ui/MastHead";
+import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
 import { Alert } from "../components/ui/Alert";
 import SponsoredProductsCard from "../components/icons/SponsoredProductsCard";
@@ -15,9 +16,7 @@ export default function Campaign() {
   const navigate = useNavigate();
   const location = useLocation();
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
-  const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
-  const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState<MediaSolution>('Sponsored Search');
   const [openAlertPopover, setOpenAlertPopover] = useState<number | null>(null);
 
   // Extract campaign data from navigation state
