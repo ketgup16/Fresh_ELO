@@ -1657,9 +1657,6 @@ export default function DisplayAdvertisingCampaigns() {
   // Sidebar state
   const [activeMenuItem, setActiveMenuItem] = useState('campaigns');
 
-  // Media solutions dropdown state
-  const [selectedMediaSolution, setSelectedMediaSolution] = useState('Display Advertising');
-
   // Count completed campaigns
   const completedCount = campaigns.filter(campaign => campaign.status === 'Completed').length;
 
