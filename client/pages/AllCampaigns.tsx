@@ -1352,12 +1352,7 @@ export default function AllCampaigns() {
       )}
 
       {/* Marty Floating Panel */}
-      {showMartyPanel && (
-        <MartyFloatingPanel
-          isMinimized={isMartyMinimized}
-          onMinimizedChange={setIsMartyMinimized}
-        />
-      )}
+      {showMartyPanel && <MartyFloatingPanel />}
     </div>
   );
 }
