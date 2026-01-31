@@ -22,29 +22,7 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Main App component with routing - Testing Index page
-const App = () => {
-  console.log('App component rendering');
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <MartyProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="*" element={<div style={{ padding: '20px' }}><h1>Test 404</h1></div>} />
-            </Routes>
-          </BrowserRouter>
-        </MartyProvider>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-};
-
-/* Original App code - will restore after debugging
+// Main App component with routing
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -67,6 +45,7 @@ const App = () => (
             <Route path="/store-ads/campaigns" element={<StoreAds />} />
             <Route path="/store-ads/performance" element={<StoreAds />} />
             <Route path="/store-ads/inventory" element={<StoreAds />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
@@ -74,7 +53,6 @@ const App = () => (
     </TooltipProvider>
   </QueryClientProvider>
 );
-*/
 
 const rootElement = document.getElementById("root")!;
 
