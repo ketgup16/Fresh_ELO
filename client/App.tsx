@@ -22,7 +22,7 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Main App component with routing - Testing full stack with test route
+// Main App component with routing - Testing Index page
 const App = () => {
   console.log('App component rendering');
 
@@ -34,7 +34,7 @@ const App = () => {
         <MartyProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<div style={{ padding: '20px' }}><h1>Test Home Page</h1></div>} />
+              <Route path="/" element={<Index />} />
               <Route path="*" element={<div style={{ padding: '20px' }}><h1>Test 404</h1></div>} />
             </Routes>
           </BrowserRouter>
