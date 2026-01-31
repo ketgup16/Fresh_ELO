@@ -1,9 +1,10 @@
 import { useState, useRef, useMemo, useEffect } from "react";
-import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Calendar, Filter, Download, Settings as SettingsIcon, X } from "lucide-react";
+import { Search, Calendar, Filter, Download, Settings as SettingsIcon, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { MastHead } from "../components/ui/MastHead";
+import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
 interface Keyword {
   id: string;
@@ -37,9 +38,7 @@ interface Keyword {
 export default function AllKeywords() {
   const navigate = useNavigate();
   const [showMartyPanel] = useState(true);
-  const [isMartyMinimized, setIsMartyMinimized] = useLocalStorage('marty:minimized', false);
-  const [mediaSolutionsOpen, setMediaSolutionsOpen] = useState(false);
-  const [selectedMediaSolution, setSelectedMediaSolution] = useState('Sponsored Search');
+  const [selectedMediaSolution, setSelectedMediaSolution] = useState<MediaSolution>('Sponsored Search');
 
   // Selected rows state
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
