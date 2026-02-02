@@ -960,9 +960,9 @@ export default function AllKeywords() {
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-[13px] underline hover:no-underline truncate">
+                          <Link href="#" className="text-[13px] truncate">
                             {keyword.keyword}
-                          </a>
+                          </Link>
                         </div>
                       ))}
                     </div>
@@ -1024,9 +1024,9 @@ export default function AllKeywords() {
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-[13px] underline hover:no-underline truncate">
+                          <Link href="#" className="text-[13px] truncate">
                             {keyword.campaignName}
-                          </a>
+                          </Link>
                         </div>
                       ))}
                     </div>
