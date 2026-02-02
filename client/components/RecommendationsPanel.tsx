@@ -1,6 +1,7 @@
 import { X, ArrowUp, RotateCcw } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
+import { Link } from "@/components/ui/Link";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Alert } from "@/components/ui/Alert";
 import { toast } from "sonner";
@@ -581,17 +582,17 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 {/* Campaign */}
                 <div>
                   <h4 className="text-sm font-bold text-[#2E2F32] mb-1">Campaign</h4>
-                  <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
+                  <Link href="#" className="text-sm">
                     H&H_FY25_Always On_North Atlantic_Blackstone_Display_In-Market_50839
-                  </a>
+                  </Link>
                 </div>
 
                 {/* Ad group */}
                 <div>
                   <h4 className="text-sm font-bold text-[#2E2F32] mb-1">Ad group</h4>
-                  <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
+                  <Link href="#" className="text-sm">
                     Walmart|Display|Auction|Cross Device|Behavioral Targeting|Past Purchasers of Tapatio
-                  </a>
+                  </Link>
                 </div>
 
                 {/* Recommended keywords and Current - Combined container */}
@@ -877,13 +878,13 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   {/* Campaign Header - White Background */}
                   <div className="flex items-start justify-between p-4 bg-white">
                     <div className="flex flex-col gap-1">
-                      <a
+                      <Link
                         href="#"
-                        style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
+                        className="text-sm"
                         onClick={(e) => e.preventDefault()}
                       >
                         {campaign.name}
-                      </a>
+                      </Link>
                       <div className="flex items-center gap-2 text-sm text-[#2E2F32]">
                         <span>{campaign.adGroups} ad groups · {campaign.recommendations} recommendations</span>
                       </div>
@@ -986,14 +987,13 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                   </div>
                                 ) : (
                                   <>
-                                    <a
+                                    <Link
                                       href="#"
-                                      style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
-                                      className="text-sm underline hover:no-underline whitespace-nowrap"
+                                      className="text-sm whitespace-nowrap"
                                       onClick={(e) => e.preventDefault()}
                                     >
                                       Dismiss
-                                    </a>
+                                    </Link>
                                     <Button
                                       variant="tertiary"
                                       size="small"
@@ -1041,16 +1041,16 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 </span>
               )}
               <div className="flex items-center gap-4 ml-auto">
-                <a
+                <Link
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
                     onClose();
                   }}
-                  style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
+                  className="text-sm"
                 >
                   Cancel
-                </a>
+                </Link>
                 <Button
                   onClick={handleApplySelected}
                   disabled={selectedRecommendations.size === 0}
