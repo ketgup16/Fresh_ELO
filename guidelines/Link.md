@@ -91,7 +91,7 @@ interface LinkProps {
   /**
    * Visual variant of the link
    * - 'default': Black text color with underline (default)
-   * - 'subtle': Subtle gray color with underline
+   * - 'subtle': Black text color with underline (same as default)
    */
   variant?: 'default' | 'subtle';
 
