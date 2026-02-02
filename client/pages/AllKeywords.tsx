@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import { MastHead } from "../components/ui/MastHead";
+import { Link } from "../components/ui/Link";
 import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
 interface Keyword {
