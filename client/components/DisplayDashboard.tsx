@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import RecommendationsPanel from './RecommendationsPanel';
 import { Button } from '@/components/ui/Button';
+import { Link } from '@/components/ui/Link';
 import {
   Dialog,
   DialogContent,
@@ -296,9 +297,9 @@ export default function DisplayDashboard() {
 
               {/* View more link */}
               <div className="flex justify-end">
-                <a
+                <Link
                   href="#"
-                  style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
+                  className="text-sm"
                   onClick={(e) => {
                     e.preventDefault();
                     setModalTab('applied');
@@ -306,7 +307,7 @@ export default function DisplayDashboard() {
                   }}
                 >
                   View more
-                </a>
+                </Link>
               </div>
             </div>
           )}
@@ -430,9 +431,9 @@ export default function DisplayDashboard() {
 
               {/* View more link */}
               <div className="flex justify-end">
-                <a
+                <Link
                   href="#"
-                  style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline"
+                  className="text-sm"
                   onClick={(e) => {
                     e.preventDefault();
                     setModalTab('dismissed');
@@ -440,7 +441,7 @@ export default function DisplayDashboard() {
                   }}
                 >
                   View more
-                </a>
+                </Link>
               </div>
             </div>
           )}
