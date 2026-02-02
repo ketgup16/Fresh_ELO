@@ -804,9 +804,9 @@ export default function AllCampaigns() {
               <div ref={tableContainerRef} className="overflow-x-auto">
                 <div className="flex">
                   {/* Checkbox Column */}
-                  <div className="flex flex-col flex-shrink-0">
+                  <div className="flex flex-col flex-shrink-0 sticky left-0 z-30">
                     {/* Header */}
-                    <div className="flex items-center justify-center h-[52px] px-3 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
+                    <div className="flex items-center justify-center h-[52px] px-3 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-30 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.1)]">
                       <input
                         ref={selectAllCheckboxRef}
                         type="checkbox"
@@ -817,7 +817,7 @@ export default function AllCampaigns() {
                     </div>
                     {/* Rows */}
                     {campaigns.map((campaign, idx) => (
-                      <div key={idx} className="flex items-center justify-center h-[52px] px-3 border-b border-[#E3E4E5] bg-white">
+                      <div key={idx} className="flex items-center justify-center h-[52px] px-3 border-b border-[#E3E4E5] bg-white shadow-[2px_0_4px_-2px_rgba(0,0,0,0.1)]">
                         <input
                           type="checkbox"
                           className="w-5 h-5 rounded border-[#909196] accent-black cursor-pointer"
