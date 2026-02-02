@@ -90,7 +90,7 @@ interface LinkProps {
 
   /**
    * Visual variant of the link
-   * - 'default': Blue brand color with underline (default)
+   * - 'default': Black text color with underline (default)
    * - 'subtle': Subtle gray color with underline
    */
   variant?: 'default' | 'subtle';
