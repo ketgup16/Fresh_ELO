@@ -806,7 +806,7 @@ export default function AllCampaigns() {
                   {/* Checkbox Column */}
                   <div className="flex flex-col flex-shrink-0">
                     {/* Header */}
-                    <div className="flex items-center justify-center h-[52px] px-3 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                    <div className="flex items-center justify-center h-[52px] px-3 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                       <input
                         ref={selectAllCheckboxRef}
                         type="checkbox"
@@ -831,7 +831,7 @@ export default function AllCampaigns() {
                   {/* Icon Column */}
                   <div className="flex flex-col flex-shrink-0 w-[48px]">
                     {/* Header */}
-                    <div className="flex items-center justify-center h-[52px] border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                    <div className="flex items-center justify-center h-[52px] border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                       {/* Empty header for icon column */}
                     </div>
                     {/* Rows */}
@@ -879,7 +879,7 @@ export default function AllCampaigns() {
                   <div className="flex flex-1 overflow-x-auto">
                     {/* Campaign Name Column */}
                     <div className="flex flex-col min-w-[280px] flex-1 sticky left-0 z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign name</span>
                         <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -911,7 +911,7 @@ export default function AllCampaigns() {
 
                     {/* Campaign Status Column */}
                     <div className="flex flex-col min-w-[140px] sticky left-[280px] z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign status</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -925,7 +925,7 @@ export default function AllCampaigns() {
 
                     {/* Total Budget Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Total budget</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -951,7 +951,7 @@ export default function AllCampaigns() {
 
                     {/* Daily Budget Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Daily budget</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -963,7 +963,7 @@ export default function AllCampaigns() {
 
                     {/* Bidding Strategy Column */}
                     <div ref={biddingStrategyColumnRef} className="flex flex-col min-w-[140px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Bidding strategy</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -999,7 +999,7 @@ export default function AllCampaigns() {
 
                     {/* Bidding Status Column */}
                     <div className="flex flex-col min-w-[140px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Bidding status</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1014,7 +1014,7 @@ export default function AllCampaigns() {
 
                     {/* Average CPC Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Average CPC</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1026,7 +1026,7 @@ export default function AllCampaigns() {
 
                     {/* Spend Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Spend</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1038,7 +1038,7 @@ export default function AllCampaigns() {
 
                     {/* Start Date Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Start date</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1050,7 +1050,7 @@ export default function AllCampaigns() {
 
                     {/* End Date Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">End date</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1062,7 +1062,7 @@ export default function AllCampaigns() {
 
                     {/* Suggested Total Budget Column */}
                     <div className="flex flex-col min-w-[150px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Sugg. total budget</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1074,7 +1074,7 @@ export default function AllCampaigns() {
 
                     {/* Suggested Daily Budget Column */}
                     <div className="flex flex-col min-w-[150px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Sugg. daily budget</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1086,7 +1086,7 @@ export default function AllCampaigns() {
 
                     {/* ROAS Target Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">ROAS target</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1098,7 +1098,7 @@ export default function AllCampaigns() {
 
                     {/* Recommended ROAS Target Column */}
                     <div className="flex flex-col min-w-[180px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Recommended ROAS target</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1110,7 +1110,7 @@ export default function AllCampaigns() {
 
                     {/* Campaign Type Column */}
                     <div className="flex flex-col min-w-[200px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign type</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1122,7 +1122,7 @@ export default function AllCampaigns() {
 
                     {/* Avg. Cap-out Time Column */}
                     <div className="flex flex-col min-w-[140px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Avg. cap-out time</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1134,7 +1134,7 @@ export default function AllCampaigns() {
 
                     {/* Est. Missed Impressions Column */}
                     <div className="flex flex-col min-w-[180px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Est. missed impressions</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1146,7 +1146,7 @@ export default function AllCampaigns() {
 
                     {/* Est. Missed Clicks Column */}
                     <div className="flex flex-col min-w-[160px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Est. missed clicks</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1158,7 +1158,7 @@ export default function AllCampaigns() {
 
                     {/* Campaign Review Status Column */}
                     <div className="flex flex-col min-w-[180px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign review status</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1170,7 +1170,7 @@ export default function AllCampaigns() {
 
                     {/* ROAS Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">ROAS</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1182,7 +1182,7 @@ export default function AllCampaigns() {
 
                     {/* Online ROAS Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5 whitespace-nowrap">Online ROAS</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1194,7 +1194,7 @@ export default function AllCampaigns() {
 
                     {/* Total Attributed Sales Column */}
                     <div className="flex flex-col min-w-[180px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Online attributed sales</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1206,7 +1206,7 @@ export default function AllCampaigns() {
 
                     {/* Impressions Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Impressions</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1218,7 +1218,7 @@ export default function AllCampaigns() {
 
                     {/* Clicks Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Clicks</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1230,7 +1230,7 @@ export default function AllCampaigns() {
 
                     {/* CTR Column */}
                     <div className="flex flex-col min-w-[80px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">CTR</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1242,7 +1242,7 @@ export default function AllCampaigns() {
 
                     {/* Total Product Detail Page Views Column */}
                     <div className="flex flex-col min-w-[220px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Total product detail page views</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1254,7 +1254,7 @@ export default function AllCampaigns() {
 
                     {/* Total Add to Cart Column */}
                     <div className="flex flex-col min-w-[150px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Total add to cart</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1266,7 +1266,7 @@ export default function AllCampaigns() {
 
                     {/* Conversion Rate Column */}
                     <div className="flex flex-col min-w-[140px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Conversion rate</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1278,7 +1278,7 @@ export default function AllCampaigns() {
 
                     {/* Orders Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Orders</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1290,7 +1290,7 @@ export default function AllCampaigns() {
 
                     {/* Campaign ID Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign ID</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
@@ -1302,7 +1302,7 @@ export default function AllCampaigns() {
 
                     {/* Units Sold Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Units sold</span>
                       </div>
                       {campaigns.map((campaign, idx) => (
