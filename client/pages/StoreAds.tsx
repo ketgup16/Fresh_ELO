@@ -5,6 +5,7 @@ import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import StoreAdsSidebar from "../components/StoreAdsSidebar";
 import { Button } from "../components/ui/Button";
 import { MastHead } from "../components/ui/MastHead";
+import { Link } from "../components/ui/Link";
 import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
 export default function StoreAds() {
@@ -84,9 +85,9 @@ export default function StoreAds() {
                       <p className="text-sm text-[#74767C] mb-3">
                         Don't miss billions of online traffic. Multiply your growth with online advertising.
                       </p>
-                      <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
+                      <Link href="#" className="text-sm">
                         Start advertising
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -109,9 +110,9 @@ export default function StoreAds() {
                       <p className="text-sm text-[#74767C] mb-3">
                         Create immersive pages that tell your story, reach more customers.
                       </p>
-                      <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
+                      <Link href="#" className="text-sm">
                         Create your shop
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -139,9 +140,9 @@ export default function StoreAds() {
                       <p className="text-sm text-[#74767C] mb-3">
                         Gain deeper insights and opportunities that help optimizing your Store Ads campaigns.
                       </p>
-                      <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
+                      <Link href="#" className="text-sm">
                         Discover more
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -164,9 +165,9 @@ export default function StoreAds() {
                       <p className="text-sm text-[#74767C] mb-3">
                         Don't miss billions of online traffic. Multiply your growth with online advertising.
                       </p>
-                      <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
+                      <Link href="#" className="text-sm">
                         Get guidance
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -188,9 +189,9 @@ export default function StoreAds() {
                       <p className="text-sm text-[#74767C] mb-3">
                         Access our Seller Academy on Youtube for video walkthroughs.
                       </p>
-                      <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
+                      <Link href="#" className="text-sm">
                         Subscribe
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -213,9 +214,9 @@ export default function StoreAds() {
                       <p className="text-sm text-[#74767C] mb-3">
                         Lorem ipsum dolor sit amet, consectetur adipiscing eli.
                       </p>
-                      <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
+                      <Link href="#" className="text-sm">
                         Learn more
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -224,7 +225,7 @@ export default function StoreAds() {
               {/* Footer */}
               <div className="mt-16 pt-8 border-t border-[#E3E4E5]">
                 <p className="text-xs text-[#74767C] text-center">
-                  © 2000–2023 Wal-Mart Stores, Inc. All Rights reserved. <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="hover:underline">Privacy</a> and <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="hover:underline">Terms</a>
+                  © 2000–2023 Wal-Mart Stores, Inc. All Rights reserved. <Link href="#" underline={false}>Privacy</Link> and <Link href="#" underline={false}>Terms</Link>
                 </p>
               </div>
             </div>
