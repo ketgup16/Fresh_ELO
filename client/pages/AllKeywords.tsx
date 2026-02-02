@@ -1116,8 +1116,9 @@ export default function AllKeywords() {
 
                     {/* Impressions Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Impressions</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1128,8 +1129,9 @@ export default function AllKeywords() {
 
                     {/* Clicks Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Clicks</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1140,8 +1142,9 @@ export default function AllKeywords() {
 
                     {/* CTR Column */}
                     <div className="flex flex-col min-w-[80px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">CTR</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1152,8 +1155,9 @@ export default function AllKeywords() {
 
                     {/* Conversion Rate Column */}
                     <div className="flex flex-col min-w-[140px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Conversion rate</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1164,8 +1168,9 @@ export default function AllKeywords() {
 
                     {/* Orders Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Orders</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1176,8 +1181,9 @@ export default function AllKeywords() {
 
                     {/* Units Sold Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Units sold</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
