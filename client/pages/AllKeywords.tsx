@@ -1077,8 +1077,9 @@ export default function AllKeywords() {
 
                     {/* Average CPC Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Average CPC</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1089,8 +1090,9 @@ export default function AllKeywords() {
 
                     {/* Ad Spend Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Ad spend</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1101,8 +1103,9 @@ export default function AllKeywords() {
 
                     {/* Total Attributed Sales Column */}
                     <div className="flex flex-col min-w-[180px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Total attributed sales</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
