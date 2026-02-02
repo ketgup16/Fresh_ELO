@@ -5,6 +5,7 @@ import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import { MastHead } from "../components/ui/MastHead";
 import { Link } from "../components/ui/Link";
+import { Tag } from "../components/ui/tag";
 import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
 interface Keyword {
@@ -826,7 +827,7 @@ export default function AllKeywords() {
                   </h2>
                   <p className="text-sm text-[#515357] leading-5">
                     Analyze performance metrics and make updates to your keywords.{' '}
-                    <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline cursor-pointer hover:no-underline">Learn more.</span>
+                    <span className="underline cursor-pointer hover:no-underline">Learn more.</span>
                   </p>
                 </div>
               </div>
@@ -975,9 +976,9 @@ export default function AllKeywords() {
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className="text-[13px] text-[#2E2F32]">
+                          <Tag variant={keyword.status === 'Enabled' ? 'success' : 'neutral'} size="small">
                             {keyword.status}
-                          </span>
+                          </Tag>
                         </div>
                       ))}
                     </div>
