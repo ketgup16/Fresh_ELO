@@ -1,0 +1,123 @@
+/* Badge Component - Living Design 3.5 */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px; /* Full circle */
+  font-family: var(--ld-semantic-font-family-sans);
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  
+  /* Non-interactive - no pointer events */
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Size variants */
+.badge--size-small {
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  font-size: 10px;
+}
+
+.badge--size-medium {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 12px;
+}
+
+.badge--size-large {
+  min-width: 24px;
+  height: 24px;
+  padding: 0 7px;
+  font-size: 14px;
+}
+
+/* Semantic color variants using LD 3.5 tokens */
+
+/* Info variant - Blue */
+.badge--variant-info,
+.badge--variant-blue {
+  background-color: var(--ld-primitive-color-blue-100, #0053e2);
+  color: var(--ld-primitive-color-white, #ffffff);
+}
+
+/* Success variant - Green */
+.badge--variant-success,
+.badge--variant-green {
+  background-color: var(--ld-primitive-color-green-100, #2a8703);
+  color: var(--ld-primitive-color-white, #ffffff);
+}
+
+/* Warning variant - Spark (Yellow/Orange) */
+.badge--variant-warning,
+.badge--variant-yellow {
+  background-color: var(--ld-primitive-color-spark-100, #ffc220);
+  color: var(--ld-primitive-color-gray-160, #2e2f32);
+}
+
+/* Error variant - Red */
+.badge--variant-error,
+.badge--variant-red {
+  background-color: var(--ld-primitive-color-red-100, #ea1100);
+  color: var(--ld-primitive-color-white, #ffffff);
+}
+
+/* Neutral variant - Gray */
+.badge--variant-neutral {
+  background-color: var(--ld-primitive-color-gray-100, #74767c);
+  color: var(--ld-primitive-color-white, #ffffff);
+}
+
+/* Additional color variants for extended palette */
+
+/* Purple */
+.badge--variant-purple {
+  background-color: var(--ld-primitive-color-purple-100, #a6509f);
+  color: var(--ld-primitive-color-white, #ffffff);
+}
+
+/* Orange */
+.badge--variant-orange {
+  background-color: var(--ld-primitive-color-orange-120, #c83c00);
+  color: var(--ld-primitive-color-white, #ffffff);
+}
+
+/* Pink */
+.badge--variant-pink {
+  background-color: var(--ld-primitive-color-pink-100, #cb2c90);
+  color: var(--ld-primitive-color-white, #ffffff);
+}
+
+/* Teal */
+.badge--variant-teal {
+  background-color: var(--ld-primitive-color-teal-100, #00809e);
+  color: var(--ld-primitive-color-white, #ffffff);
+}
+
+/* Dot badge - when no value is provided */
+.badge:empty {
+  min-width: 0;
+  padding: 0;
+}
+
+.badge--size-small:empty {
+  width: 8px;
+  height: 8px;
+}
+
+.badge--size-medium:empty {
+  width: 10px;
+  height: 10px;
+}
+
+.badge--size-large:empty {
+  width: 12px;
+  height: 12px;
+}
