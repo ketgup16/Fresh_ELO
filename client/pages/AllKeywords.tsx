@@ -976,7 +976,7 @@ export default function AllKeywords() {
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <Tag variant={keyword.status === 'Enabled' ? 'success' : 'neutral'} size="small">
+                          <Tag variant={keyword.status === 'Enabled' ? 'success' : 'default'} size="sm">
                             {keyword.status}
                           </Tag>
                         </div>
