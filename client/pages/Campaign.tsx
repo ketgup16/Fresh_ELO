@@ -608,13 +608,12 @@ export default function Campaign() {
                                       <div className="flex flex-col gap-2">
                                         <div className="h-px bg-[#E3E4E5]"></div>
                                         <div className="flex items-center justify-end gap-4">
-                                          <a
+                                          <Link
                                             href={`/reports/item-health?itemId=${ids[idx]}`}
-                                            style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
-                                            className="text-sm underline hover:no-underline cursor-pointer"
+                                            className="text-sm cursor-pointer"
                                           >
                                             View item health page
-                                          </a>
+                                          </Link>
                                           <button className="flex items-center gap-2 h-8 px-3 rounded-full border border-[#2E2F32] bg-white text-sm font-bold text-[#2E2F32] hover:bg-gray-50 transition-colors">
                                             Resolve in Seller Center
                                             <ExternalLink className="w-4 h-4" />
