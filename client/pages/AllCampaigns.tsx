@@ -1253,8 +1253,9 @@ export default function AllCampaigns() {
 
                     {/* CTR Column */}
                     <div className="flex flex-col min-w-[80px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20 relative group">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">CTR</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1265,8 +1266,9 @@ export default function AllCampaigns() {
 
                     {/* Total Product Detail Page Views Column */}
                     <div className="flex flex-col min-w-[220px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20 relative group">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Total product detail page views</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1277,8 +1279,9 @@ export default function AllCampaigns() {
 
                     {/* Total Add to Cart Column */}
                     <div className="flex flex-col min-w-[150px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20 relative group">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Total add to cart</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1289,8 +1292,9 @@ export default function AllCampaigns() {
 
                     {/* Conversion Rate Column */}
                     <div className="flex flex-col min-w-[140px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20 relative group">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Conversion rate</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1301,8 +1305,9 @@ export default function AllCampaigns() {
 
                     {/* Orders Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20 relative group">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Orders</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1313,8 +1318,9 @@ export default function AllCampaigns() {
 
                     {/* Campaign ID Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20 relative group">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign ID</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1325,8 +1331,9 @@ export default function AllCampaigns() {
 
                     {/* Units Sold Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20 relative group">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Units sold</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
