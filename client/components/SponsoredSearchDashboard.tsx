@@ -548,9 +548,9 @@ export default function SponsoredSearchDashboard() {
       {/* Footer */}
       <div className="flex items-center justify-center gap-1 py-6 text-xs text-[#2E2F32]">
         <span>© 2025 Walmart Inc. All Rights reserved.</span>
-        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline">Privacy</a>
+        <Link href="#">Privacy</Link>
         <span>and</span>
-        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline">Terms</a>
+        <Link href="#">Terms</Link>
       </div>
 
       {/* Edit Metrics Modal */}
