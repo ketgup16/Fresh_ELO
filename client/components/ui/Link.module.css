@@ -35,9 +35,9 @@
   border-radius: 2px;
 }
 
-/* Variant: Subtle (Gray) */
+/* Variant: Subtle (Black - same as default for consistency) */
 .link--variant-subtle {
-  color: var(--ld-semantic-color-text-subtle, #74767c);
+  color: var(--ld-semantic-color-text, #2e2f32);
 }
 
 .link--variant-subtle:hover {
