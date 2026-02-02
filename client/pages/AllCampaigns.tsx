@@ -911,8 +911,9 @@ export default function AllCampaigns() {
 
                     {/* Campaign Status Column */}
                     <div className="flex flex-col min-w-[140px] sticky left-[280px] z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20 relative group">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign status</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -925,8 +926,9 @@ export default function AllCampaigns() {
 
                     {/* Total Budget Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20 relative group">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Total budget</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -951,8 +953,9 @@ export default function AllCampaigns() {
 
                     {/* Daily Budget Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
+                      <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20 relative group">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Daily budget</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
