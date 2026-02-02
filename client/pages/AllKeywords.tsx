@@ -1021,7 +1021,7 @@ export default function AllKeywords() {
 
                     {/* Campaign Name Column */}
                     <div className="flex flex-col min-w-[220px]">
-                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Campaign name</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -1035,7 +1035,7 @@ export default function AllKeywords() {
 
                     {/* Campaign Status Column */}
                     <div className="flex flex-col min-w-[150px]">
-                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Campaign status</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -1049,7 +1049,7 @@ export default function AllKeywords() {
 
                     {/* ROAS Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">ROAS</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -1061,7 +1061,7 @@ export default function AllKeywords() {
 
                     {/* Online ROAS Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32] whitespace-nowrap">Online ROAS</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -1073,7 +1073,7 @@ export default function AllKeywords() {
 
                     {/* Average CPC Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Average CPC</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -1085,7 +1085,7 @@ export default function AllKeywords() {
 
                     {/* Ad Spend Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Ad spend</span>
                       </div>
                       {keywords.map((keyword, idx) => (
