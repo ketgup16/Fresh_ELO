@@ -78,7 +78,7 @@ export default function Campaign() {
             <Alert
               variant="error"
               action={
-                <a
+                <Link
                   href="#added-items-section"
                   onClick={(e) => {
                     e.preventDefault();
@@ -92,7 +92,7 @@ export default function Campaign() {
                   }}
                 >
                   View details
-                </a>
+                </Link>
               }
             >
               Item health issues detected.
