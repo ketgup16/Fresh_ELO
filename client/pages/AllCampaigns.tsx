@@ -829,14 +829,14 @@ export default function AllCampaigns() {
                   </div>
 
                   {/* Icon Column */}
-                  <div className="flex flex-col flex-shrink-0 w-[48px]">
+                  <div className="flex flex-col flex-shrink-0 w-[48px] sticky left-[56px] z-30">
                     {/* Header */}
-                    <div className="flex items-center justify-center h-[52px] border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
+                    <div className="flex items-center justify-center h-[52px] border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-30 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.1)]">
                       {/* Empty header for icon column */}
                     </div>
                     {/* Rows */}
                     {campaigns.map((campaign, idx) => (
-                      <div key={campaign.id} className="flex items-center justify-center h-[52px] border-b border-[#E3E4E5] bg-white">
+                      <div key={campaign.id} className="flex items-center justify-center h-[52px] border-b border-[#E3E4E5] bg-white shadow-[2px_0_4px_-2px_rgba(0,0,0,0.1)]">
                         {(campaign.hasAlertIcon || campaign.hasRecIcon) && (
                           <RecommendationsPopover
                             open={recommendationsOpen && selectedCampaignId === campaign.id}
@@ -878,7 +878,7 @@ export default function AllCampaigns() {
                   {/* Data Columns */}
                   <div className="flex flex-1 overflow-x-auto">
                     {/* Campaign Name Column */}
-                    <div className="flex flex-col min-w-[280px] flex-1 sticky left-0 z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]">
+                    <div className="flex flex-col min-w-[280px] flex-1 sticky left-[104px] z-30 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.1)]">
                       <div className="flex items-center h-[52px] px-4 gap-1 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-20">
                         <span className="text-sm font-bold text-[#2E2F32] leading-5">Campaign name</span>
                         <button className="p-1 rounded-full hover:bg-gray-200 transition-colors">
