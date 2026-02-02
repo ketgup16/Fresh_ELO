@@ -226,9 +226,9 @@
                         
                         {/* Campaign Name */}
                         <td className="p-2">
-                          <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">
+                          <Link href="#" className="text-sm">
                             {campaign.name}
-                          </a>
+                          </Link>
                         </td>
                         
                         {/* Campaign Status */}
