@@ -11,6 +11,7 @@ import { Menu } from "../components/ui/Menu";
 import { MenuItem } from "../components/ui/MenuItem";
 import { MastHead } from "../components/ui/MastHead";
 import { Link } from "../components/ui/Link";
+import { Tag } from "../components/ui/tag";
 import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
 interface Alert {
@@ -915,13 +916,9 @@ export default function AllCampaigns() {
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <span className={`inline-block px-2 py-0.5 text-xs rounded ${
-                            campaign.status === 'Live'
-                              ? 'bg-[#EAF3E6] text-[#1D5F02]'
-                              : 'bg-[#FFF4E5] text-[#74767C]'
-                          }`}>
+                          <Tag variant={campaign.status === 'Live' ? 'success' : 'neutral'} size="small">
                             {campaign.status}
-                          </span>
+                          </Tag>
                         </div>
                       ))}
                     </div>
