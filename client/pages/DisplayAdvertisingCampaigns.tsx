@@ -2045,12 +2045,12 @@ export default function DisplayAdvertisingCampaigns() {
   };
 
   const getStatusBadge = (status: Campaign["status"]) => {
-    const variantMap: Record<Campaign["status"] | "Archived", "success" | "info" | "neutral" | "warning"> = {
+    const variantMap: Record<Campaign["status"] | "Archived", "success" | "info" | "default" | "warning"> = {
       Live: "success",
       Scheduled: "info",
       Paused: "warning",
-      Completed: "neutral",
-      Archived: "neutral"
+      Completed: "default",
+      Archived: "default"
     };
 
     // Show "Archived" for all campaigns in archive tab
@@ -2058,7 +2058,7 @@ export default function DisplayAdvertisingCampaigns() {
     const variant = selectedTab === "archive" ? variantMap.Archived : variantMap[status];
 
     return (
-      <Tag variant={variant} size="small">
+      <Tag variant={variant} size="sm">
         {displayStatus}
       </Tag>
     );
