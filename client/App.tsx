@@ -18,6 +18,7 @@ import OmniROAS from "./pages/OmniROAS";
 import DisplayAdvertisingCampaigns from "./pages/DisplayAdvertisingCampaigns";
 import SellerCenter from "./pages/SellerCenter";
 import StoreAds from "./pages/StoreAds";
+import BadgeExamples from "./pages/BadgeExamples";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -45,6 +46,7 @@ const App = () => (
             <Route path="/store-ads/campaigns" element={<StoreAds />} />
             <Route path="/store-ads/performance" element={<StoreAds />} />
             <Route path="/store-ads/inventory" element={<StoreAds />} />
+            <Route path="/badge-examples" element={<BadgeExamples />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
