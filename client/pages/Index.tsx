@@ -10,6 +10,7 @@ import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popove
 import { Menu } from "../components/ui/Menu";
 import { MenuItem } from "../components/ui/MenuItem";
 import { MastHead } from "../components/ui/MastHead";
+import { Link } from "../components/ui/Link";
 import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
 interface Campaign {
@@ -3121,17 +3122,17 @@ export default function Index() {
                   {/* Campaign Info */}
                   <div className="flex flex-col gap-1">
                     <span className="text-sm font-bold text-[#2E2F32]">Campaign</span>
-                    <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline line-clamp-1">
+                    <Link href="#" className="text-sm line-clamp-1">
                       H&H_FY25_Always On_North Atlantic_Blackstone_Display_In-Market_50839
-                    </a>
+                    </Link>
                   </div>
 
                   {/* Ad Group Info */}
                   <div className="flex flex-col gap-1">
                     <span className="text-sm font-bold text-[#2E2F32]">Ad group</span>
-                    <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline line-clamp-1">
+                    <Link href="#" className="text-sm line-clamp-1">
                       Walmart|Display|Auction|Cross Device|Behavioral Targeting|Past Purchasers of Tapatio
-                    </a>
+                    </Link>
                   </div>
 
                   {/* Recommended Keywords */}
@@ -3197,9 +3198,9 @@ export default function Index() {
                     <div className="flex items-start gap-3">
                       <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
                       <div className="flex-1">
-                        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline line-clamp-1 block mb-4">
+                        <Link href="#" className="text-sm line-clamp-1 block mb-4">
                           Coca Cola Summer Campaign
-                        </a>
+                        </Link>
 
                         <div className="mb-4">
                           <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
@@ -3246,9 +3247,9 @@ export default function Index() {
                       <div className="flex items-start gap-3">
                         <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
                         <div className="flex-1">
-                          <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline line-clamp-1 block mb-4">
+                          <Link href="#" className="text-sm line-clamp-1 block mb-4">
                             Ad group 01 name goes here
-                          </a>
+                          </Link>
 
                           <div className="mb-4">
                             <p className="text-sm text-[#2E2F32] mb-2">Add 15 keywords</p>
@@ -3275,9 +3276,9 @@ export default function Index() {
                       <div className="flex items-start gap-3">
                         <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
                         <div className="flex-1">
-                          <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline line-clamp-1 block mb-4">
+                          <Link href="#" className="text-sm line-clamp-1 block mb-4">
                             Ad group 02 name goes here
-                          </a>
+                          </Link>
 
                           <div className="space-y-4">
                             {/* First recommendation option */}
