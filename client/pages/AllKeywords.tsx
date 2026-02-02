@@ -1021,8 +1021,9 @@ export default function AllKeywords() {
 
                     {/* Campaign Name Column */}
                     <div className="flex flex-col min-w-[220px]">
-                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Campaign name</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1035,8 +1036,9 @@ export default function AllKeywords() {
 
                     {/* Campaign Status Column */}
                     <div className="flex flex-col min-w-[150px]">
-                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Campaign status</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1049,8 +1051,9 @@ export default function AllKeywords() {
 
                     {/* ROAS Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">ROAS</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
@@ -1061,8 +1064,9 @@ export default function AllKeywords() {
 
                     {/* Online ROAS Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20 relative group">
                         <span className="text-[13px] font-semibold text-[#2E2F32] whitespace-nowrap">Online ROAS</span>
+                        <div className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20" />
                       </div>
                       {keywords.map((keyword, idx) => (
                         <div key={idx} className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-white">
