@@ -24,39 +24,78 @@ Use a Badge when:
 The Badge color should come from documented semantic variants (names may differ in your API). If color conveys meaning, it must be reinforced by nearby text/content (do not rely on color alone).
 
 ## React usage (example)
-Update import path after wiring in `guidelines/components/overview-components.md`.
 
 ```tsx
 import * as React from "react";
-import { Badge, Button } from "REPLACE_ME_COMPONENT_IMPORT_PATH";
+import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
 
 export function BadgeExamples() {
   return (
     <>
       {/* Count badge (common) */}
       <Button
+        variant="secondary"
         // Preferred: include the badge count in the accessible name so SR users hear both together.
         aria-label="Inbox, 2 unread emails"
       >
-        Inbox <Badge value={2} />
+        Inbox <Badge variant="info" value={2} aria-label="2 unread" />
       </Button>
 
       {/* Status badge (semantic intent) */}
       <div>
         Status:{" "}
         <Badge
-          // Adapt prop names to your actual API:
-          // intent="success" | "warning" | "error" | "info"
-          // value={1} // or a boolean/empty dot badge depending on API
-          intent="success"
+          variant="success"
           value={1}
-          aria-label="Status: success"
+          aria-label="1 active item"
         />
+      </div>
+
+      {/* Dot badge (no value - status indicator only) */}
+      <div className="flex items-center gap-2">
+        <Badge variant="success" aria-label="Status: active" />
+        <span>Active</span>
       </div>
     </>
   );
 }
 ```
+
+### Component API
+
+```tsx
+interface BadgeProps {
+  /**
+   * The variant/intent of the badge, determines its color
+   * Semantic variants: 'info' | 'success' | 'warning' | 'error' | 'neutral'
+   * Color variants: 'blue' | 'green' | 'red' | 'orange' | 'purple' | 'pink' | 'teal' | 'yellow'
+   */
+  variant?: BadgeVariant;
+
+  /**
+   * The numeric value to display in the badge
+   * If not provided, badge will render as a dot
+   */
+  value?: number | string;
+
+  /**
+   * Size of the badge
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
+
+  /**
+   * Accessible label for the badge
+   * Recommended format: "{count} {description}" (e.g., "2 unread messages")
+   */
+  'aria-label'?: string;
+}
+```
+
+### Examples
+
+**See full examples:** `client/components/BadgeExample.tsx`
 
 ## Best practices
 ### Use when
