@@ -12,7 +12,7 @@ export interface LinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorEle
   
   /**
    * Visual variant of the link
-   * - 'default': Blue brand color with underline
+   * - 'default': Black text color with underline
    * - 'subtle': Subtle gray color with underline
    * @default 'default'
    */
