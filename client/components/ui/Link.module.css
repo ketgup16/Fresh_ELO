@@ -12,21 +12,21 @@
   display: inline;
 }
 
-/* Variant: Default (Brand blue) */
+/* Variant: Default (Black) */
 .link--variant-default {
-  color: var(--ld-semantic-color-text-brand, #0071ce);
+  color: var(--ld-semantic-color-text, #2e2f32);
 }
 
 .link--variant-default:hover {
-  color: var(--ld-semantic-color-text-brand, #0071ce);
+  color: var(--ld-semantic-color-text, #2e2f32);
 }
 
 .link--variant-default:active {
-  color: var(--ld-primitive-color-blue-130, #004c94);
+  color: var(--ld-semantic-color-text, #2e2f32);
 }
 
 .link--variant-default:visited {
-  color: var(--ld-primitive-color-purple-100, #a6509f);
+  color: var(--ld-semantic-color-text, #2e2f32);
 }
 
 .link--variant-default:focus-visible {
