@@ -1314,8 +1314,8 @@ export default function AllCampaigns() {
                   </div>
 
                   {/* Actions Column - Right Aligned */}
-                  <div className="flex flex-col flex-shrink-0 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]">
-                    <div className="flex items-center h-[52px] px-4 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
+                  <div className="flex flex-col flex-shrink-0 sticky right-0 z-30 shadow-[-2px_0_4px_-2px_rgba(0,0,0,0.1)]">
+                    <div className="flex items-center h-[52px] px-4 border-t border-b border-[#E3E4E5] bg-[#F8F8F8] sticky top-0 z-30">
                       <span className="text-sm font-bold text-[#2E2F32] leading-5">Actions</span>
                     </div>
                     {campaigns.map((_, idx) => (
