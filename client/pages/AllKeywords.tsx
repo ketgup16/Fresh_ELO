@@ -1097,7 +1097,7 @@ export default function AllKeywords() {
 
                     {/* Total Attributed Sales Column */}
                     <div className="flex flex-col min-w-[180px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Total attributed sales</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -1109,7 +1109,7 @@ export default function AllKeywords() {
 
                     {/* Impressions Column */}
                     <div className="flex flex-col min-w-[120px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Impressions</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -1121,7 +1121,7 @@ export default function AllKeywords() {
 
                     {/* Clicks Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Clicks</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -1133,7 +1133,7 @@ export default function AllKeywords() {
 
                     {/* CTR Column */}
                     <div className="flex flex-col min-w-[80px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">CTR</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -1145,7 +1145,7 @@ export default function AllKeywords() {
 
                     {/* Conversion Rate Column */}
                     <div className="flex flex-col min-w-[140px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Conversion rate</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -1157,7 +1157,7 @@ export default function AllKeywords() {
 
                     {/* Orders Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Orders</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -1169,7 +1169,7 @@ export default function AllKeywords() {
 
                     {/* Units Sold Column */}
                     <div className="flex flex-col min-w-[100px]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Units sold</span>
                       </div>
                       {keywords.map((keyword, idx) => (
