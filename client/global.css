@@ -121,6 +121,12 @@
     font-family: 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif;
   }
 
+  /* Reset default link styles to allow component styles to take precedence */
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
   :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
     overflow-wrap: anywhere;
     word-break: break-word;
