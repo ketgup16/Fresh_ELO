@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { MastHead } from "../components/ui/MastHead";
+import { Link } from "../components/ui/Link";
 import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
 const NotFound = () => {
@@ -25,13 +26,9 @@ const NotFound = () => {
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">404</h1>
           <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-          <a
-            href="/"
-            style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
-            className="underline hover:no-underline"
-          >
+          <Link href="/">
             Return to Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>
