@@ -5,6 +5,7 @@ import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import { Button } from "../components/ui/Button";
 import { MastHead } from "../components/ui/MastHead";
+import { Link } from "../components/ui/Link";
 import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
 export default function SellerCenter() {
@@ -73,7 +74,7 @@ export default function SellerCenter() {
               <div className="flex-1">
                 <p className="text-sm text-[#663C00]">
                   The overall quality of listings across your catalog is currently <span className="font-bold">Poor</span>.{" "}
-                  <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline">Learn more</a> about how you can improve the health of your listings.
+                  <Link href="#">Learn more</Link> about how you can improve the health of your listings.
                 </p>
               </div>
             </div>
@@ -120,10 +121,10 @@ export default function SellerCenter() {
 
                   <div className="flex-1">
                     <p className="text-sm text-[#2E2F32] mb-2">Your listing quality is: <span className="font-bold text-[#C41E2E]">Poor</span></p>
-                    <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">Learn more</a> 
+                    <Link href="#" className="text-sm">Learn more</Link>
                     <span className="text-sm text-[#2E2F32]"> about how you can improve listing quality.</span>
                     <br />
-                    <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">Learn more</a>
+                    <Link href="#" className="text-sm">Learn more</Link>
                   </div>
                 </div>
 
@@ -282,7 +283,7 @@ export default function SellerCenter() {
                 </div>
 
                 <div className="mt-6">
-                  <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">Get more insights with Listing quality analytics</a>
+                  <Link href="#" className="text-sm">Get more insights with Listing quality analytics</Link>
                 </div>
               </div>
             </div>
@@ -292,7 +293,7 @@ export default function SellerCenter() {
               <h2 className="text-lg font-bold text-[#2E2F32] mb-2">Make bulk content improvements in less time with spreadsheet edits</h2>
               <p className="text-sm text-[#2E2F32] mb-4">
                 Simply use our filters to populate your spreadsheet, make the appropriate edits, then upload the updated version.{" "}
-                <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline">Learn more</a>
+                <Link href="#">Learn more</Link>
               </p>
 
               <div className="flex gap-4 mb-6">
