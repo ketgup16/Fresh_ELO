@@ -350,13 +350,13 @@ export default function DisplayDashboard() {
                         </div>
                       </td>
                       <td className="px-4 py-2 text-right">
-                        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="inline-flex items-center gap-2 text-sm underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                        <Link href="#" className="inline-flex items-center gap-2 text-sm" onClick={(e) => e.preventDefault()}>
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.00003 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8.00003 2C5.8279 2 3.92536 3.15424 2.8723 4.88282L4.50003 4.88281L4.50004 5.88281L1.50001 5.88284C1.3674 5.88284 1.24022 5.83016 1.14645 5.73639C1.05268 5.64262 1 5.51544 1 5.38283L1.00003 2.49901L2.00003 2.49902L2.00001 4.39245C3.2249 2.3596 5.45369 1 8.00003 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8.00003 15C4.13404 15 1.00003 11.866 1.00003 8L2.00003 8.00007C2.00007 11.3137 4.68634 14 8.00003 14Z" fill="#2E2F32"/>
                             <path d="M8.05862 4H7.05862V8.8297L10.8617 10.4596L11.2556 9.54043L8.05862 8.1703V4Z" fill="#2E2F32"/>
                           </svg>
                           Restore
-                        </a>
+                        </Link>
                       </td>
                     </tr>
 
@@ -383,13 +383,13 @@ export default function DisplayDashboard() {
                         </div>
                       </td>
                       <td className="px-4 py-2 text-right">
-                        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="inline-flex items-center gap-2 text-sm underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                        <Link href="#" className="inline-flex items-center gap-2 text-sm" onClick={(e) => e.preventDefault()}>
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.00003 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8.00003 2C5.8279 2 3.92536 3.15424 2.8723 4.88282L4.50003 4.88281L4.50004 5.88281L1.50001 5.88284C1.3674 5.88284 1.24022 5.83016 1.14645 5.73639C1.05268 5.64262 1 5.51544 1 5.38283L1.00003 2.49901L2.00003 2.49902L2.00001 4.39245C3.2249 2.3596 5.45369 1 8.00003 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8.00003 15C4.13404 15 1.00003 11.866 1.00003 8L2.00003 8.00007C2.00007 11.3137 4.68634 14 8.00003 14Z" fill="#2E2F32"/>
                             <path d="M8.05862 4H7.05862V8.8297L10.8617 10.4596L11.2556 9.54043L8.05862 8.1703V4Z" fill="#2E2F32"/>
                           </svg>
                           Restore
-                        </a>
+                        </Link>
                       </td>
                     </tr>
 
@@ -416,13 +416,13 @@ export default function DisplayDashboard() {
                         </div>
                       </td>
                       <td className="px-4 py-2 text-right">
-                        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="inline-flex items-center gap-2 text-sm underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                        <Link href="#" className="inline-flex items-center gap-2 text-sm" onClick={(e) => e.preventDefault()}>
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.00003 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8.00003 2C5.8279 2 3.92536 3.15424 2.8723 4.88282L4.50003 4.88281L4.50004 5.88281L1.50001 5.88284C1.3674 5.88284 1.24022 5.83016 1.14645 5.73639C1.05268 5.64262 1 5.51544 1 5.38283L1.00003 2.49901L2.00003 2.49902L2.00001 4.39245C3.2249 2.3596 5.45369 1 8.00003 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8.00003 15C4.13404 15 1.00003 11.866 1.00003 8L2.00003 8.00007C2.00007 11.3137 4.68634 14 8.00003 14Z" fill="#2E2F32"/>
                             <path d="M8.05862 4H7.05862V8.8297L10.8617 10.4596L11.2556 9.54043L8.05862 8.1703V4Z" fill="#2E2F32"/>
                           </svg>
                           Restore
-                        </a>
+                        </Link>
                       </td>
                     </tr>
                   </tbody>
@@ -890,7 +890,7 @@ export default function DisplayDashboard() {
                 {[1, 2, 3, 4, 5].map((row) => (
                   <tr key={row} className="border-b border-[#E3E4E5] hover:bg-gray-50">
                     <td className="px-4 py-3">
-                      <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline cursor-pointer hover:no-underline">Button label</span>
+                      <Link href="#" className="cursor-pointer">Button label</Link>
                     </td>
                     <td className="px-4 py-3 text-[#2E2F32]">Data</td>
                     <td className="px-4 py-3 text-[#2E2F32]">Data</td>
@@ -1081,7 +1081,7 @@ export default function DisplayDashboard() {
                         </div>
                       </td>
                       <td className="px-4 py-2">
-                        <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline">Data</span>
+                        <Link href="#" className="text-sm">Data</Link>
                       </td>
                       <td className="px-4 py-2">
                         <span className="text-sm text-[#2E2F32]">01/20/2026</span>
@@ -1108,7 +1108,7 @@ export default function DisplayDashboard() {
                         </div>
                       </td>
                       <td className="px-4 py-2">
-                        <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline">Data</span>
+                        <Link href="#" className="text-sm">Data</Link>
                       </td>
                       <td className="px-4 py-2">
                         <span className="text-sm text-[#2E2F32]">01/20/2026</span>
@@ -1135,7 +1135,7 @@ export default function DisplayDashboard() {
                         </div>
                       </td>
                       <td className="px-4 py-2">
-                        <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline">Data</span>
+                        <Link href="#" className="text-sm">Data</Link>
                       </td>
                       <td className="px-4 py-2">
                         <span className="text-sm text-[#2E2F32]">01/20/2026</span>
@@ -1162,7 +1162,7 @@ export default function DisplayDashboard() {
                         </div>
                       </td>
                       <td className="px-4 py-2">
-                        <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline">Data</span>
+                        <Link href="#" className="text-sm">Data</Link>
                       </td>
                       <td className="px-4 py-2">
                         <span className="text-sm text-[#2E2F32]">01/20/2026</span>
@@ -1220,13 +1220,13 @@ export default function DisplayDashboard() {
                         </div>
                       </td>
                       <td className="px-4 py-2 text-right">
-                        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="inline-flex items-center gap-2 text-sm underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                        <Link href="#" className="inline-flex items-center gap-2 text-sm" onClick={(e) => e.preventDefault()}>
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.00003 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8.00003 2C5.8279 2 3.92536 3.15424 2.8723 4.88282L4.50003 4.88281L4.50004 5.88281L1.50001 5.88284C1.3674 5.88284 1.24022 5.83016 1.14645 5.73639C1.05268 5.64262 1 5.51544 1 5.38283L1.00003 2.49901L2.00003 2.49902L2.00001 4.39245C3.2249 2.3596 5.45369 1 8.00003 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8.00003 15C4.13404 15 1.00003 11.866 1.00003 8L2.00003 8.00007C2.00007 11.3137 4.68634 14 8.00003 14Z" fill="#2E2F32"/>
                             <path d="M8.05862 4H7.05862V8.8297L10.8617 10.4596L11.2556 9.54043L8.05862 8.1703V4Z" fill="#2E2F32"/>
                           </svg>
                           Restore
-                        </a>
+                        </Link>
                       </td>
                     </tr>
 
@@ -1253,13 +1253,13 @@ export default function DisplayDashboard() {
                         </div>
                       </td>
                       <td className="px-4 py-2 text-right">
-                        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="inline-flex items-center gap-2 text-sm underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                        <Link href="#" className="inline-flex items-center gap-2 text-sm" onClick={(e) => e.preventDefault()}>
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.00003 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8.00003 2C5.8279 2 3.92536 3.15424 2.8723 4.88282L4.50003 4.88281L4.50004 5.88281L1.50001 5.88284C1.3674 5.88284 1.24022 5.83016 1.14645 5.73639C1.05268 5.64262 1 5.51544 1 5.38283L1.00003 2.49901L2.00003 2.49902L2.00001 4.39245C3.2249 2.3596 5.45369 1 8.00003 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8.00003 15C4.13404 15 1.00003 11.866 1.00003 8L2.00003 8.00007C2.00007 11.3137 4.68634 14 8.00003 14Z" fill="#2E2F32"/>
                             <path d="M8.05862 4H7.05862V8.8297L10.8617 10.4596L11.2556 9.54043L8.05862 8.1703V4Z" fill="#2E2F32"/>
                           </svg>
                           Restore
-                        </a>
+                        </Link>
                       </td>
                     </tr>
 
@@ -1286,13 +1286,13 @@ export default function DisplayDashboard() {
                         </div>
                       </td>
                       <td className="px-4 py-2 text-right">
-                        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="inline-flex items-center gap-2 text-sm underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                        <Link href="#" className="inline-flex items-center gap-2 text-sm" onClick={(e) => e.preventDefault()}>
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.00003 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8.00003 2C5.8279 2 3.92536 3.15424 2.8723 4.88282L4.50003 4.88281L4.50004 5.88281L1.50001 5.88284C1.3674 5.88284 1.24022 5.83016 1.14645 5.73639C1.05268 5.64262 1 5.51544 1 5.38283L1.00003 2.49901L2.00003 2.49902L2.00001 4.39245C3.2249 2.3596 5.45369 1 8.00003 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8.00003 15C4.13404 15 1.00003 11.866 1.00003 8L2.00003 8.00007C2.00007 11.3137 4.68634 14 8.00003 14Z" fill="#2E2F32"/>
                             <path d="M8.05862 4H7.05862V8.8297L10.8617 10.4596L11.2556 9.54043L8.05862 8.1703V4Z" fill="#2E2F32"/>
                           </svg>
                           Restore
-                        </a>
+                        </Link>
                       </td>
                     </tr>
 
@@ -1319,13 +1319,13 @@ export default function DisplayDashboard() {
                         </div>
                       </td>
                       <td className="px-4 py-2 text-right">
-                        <a href="#" style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="inline-flex items-center gap-2 text-sm underline hover:no-underline" onClick={(e) => e.preventDefault()}>
+                        <Link href="#" className="inline-flex items-center gap-2 text-sm" onClick={(e) => e.preventDefault()}>
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.00003 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8.00003 2C5.8279 2 3.92536 3.15424 2.8723 4.88282L4.50003 4.88281L4.50004 5.88281L1.50001 5.88284C1.3674 5.88284 1.24022 5.83016 1.14645 5.73639C1.05268 5.64262 1 5.51544 1 5.38283L1.00003 2.49901L2.00003 2.49902L2.00001 4.39245C3.2249 2.3596 5.45369 1 8.00003 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8.00003 15C4.13404 15 1.00003 11.866 1.00003 8L2.00003 8.00007C2.00007 11.3137 4.68634 14 8.00003 14Z" fill="#2E2F32"/>
                             <path d="M8.05862 4H7.05862V8.8297L10.8617 10.4596L11.2556 9.54043L8.05862 8.1703V4Z" fill="#2E2F32"/>
                           </svg>
                           Restore
-                        </a>
+                        </Link>
                       </td>
                     </tr>
                   </tbody>
