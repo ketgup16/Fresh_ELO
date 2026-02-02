@@ -707,7 +707,7 @@ export default function AllCampaigns() {
                   </h2>
                   <p className="text-sm text-[#515357] leading-5">
                     Analyze performance metrics and make updates to your campaigns.{' '}
-                    <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline cursor-pointer hover:no-underline">Learn more.</span>
+                    <span className="underline cursor-pointer hover:no-underline">Learn more.</span>
                   </p>
                 </div>
               </div>
@@ -888,8 +888,9 @@ export default function AllCampaigns() {
                       </div>
                       {campaigns.map((campaign, idx) => (
                         <div key={idx} className="flex items-center h-[52px] px-4 border-b border-[#E3E4E5] bg-white">
-                          <a
-                            href="#"
+                          <Link
+                            href="/campaign"
+                            className="text-sm truncate"
                             onClick={(e) => {
                               e.preventDefault();
                               navigate('/campaign', {
@@ -899,11 +900,9 @@ export default function AllCampaigns() {
                                 }
                               });
                             }}
-                            style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
-                            className="text-sm underline hover:no-underline truncate cursor-pointer"
                           >
                             {campaign.name}
-                          </a>
+                          </Link>
                         </div>
                       ))}
                     </div>
