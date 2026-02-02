@@ -140,13 +140,13 @@
 }
 
 @layer components {
-  /* Text link using Living Design 3.5 semantic token - black for consistency */
+  /* Text link using Living Design 3.5 primitive token */
   .text-link {
-    color: var(--ld-semantic-color-text, #2e2f32);
+    color: var(--ld-primitive-color-gray-160, #2e2f32);
   }
 
   .text-link:hover {
-    color: var(--ld-semantic-color-text, #2e2f32);
+    color: var(--ld-primitive-color-gray-160, #2e2f32);
   }
 }
 
