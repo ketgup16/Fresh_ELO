@@ -1,0 +1,90 @@
+/* Link Component - Living Design 3.5 */
+
+.link {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  display: inline;
+}
+
+/* Variant: Default (Brand blue) */
+.link--variant-default {
+  color: var(--ld-semantic-color-text-brand, #0071ce);
+}
+
+.link--variant-default:hover {
+  color: var(--ld-semantic-color-text-brand, #0071ce);
+}
+
+.link--variant-default:active {
+  color: var(--ld-primitive-color-blue-130, #004c94);
+}
+
+.link--variant-default:visited {
+  color: var(--ld-primitive-color-purple-100, #a6509f);
+}
+
+.link--variant-default:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071ce);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Variant: Subtle (Gray) */
+.link--variant-subtle {
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+}
+
+.link--variant-subtle:hover {
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.link--variant-subtle:active {
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.link--variant-subtle:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071ce);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Underline states */
+.link--underlined {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.link--underlined:hover {
+  text-decoration: none;
+}
+
+.link--no-underline {
+  text-decoration: none;
+}
+
+.link--no-underline:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+/* Disabled state (aria-disabled) */
+.link[aria-disabled="true"] {
+  color: var(--ld-primitive-color-gray-50, #babbbe);
+  cursor: not-allowed;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+/* Ensure links inline with text don't disrupt line height */
+.link {
+  line-height: inherit;
+  vertical-align: baseline;
+}
