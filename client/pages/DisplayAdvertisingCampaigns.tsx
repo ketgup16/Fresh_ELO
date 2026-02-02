@@ -2637,9 +2637,9 @@ export default function DisplayAdvertisingCampaigns() {
                             )}
                             {!campaign.children && <div className="w-6"></div>}
                             <div className="flex-1">
-                              <div className="underline hover:no-underline cursor-pointer">
+                              <Link href={`/campaign?id=${campaign.id}`} className="truncate">
                                 {campaign.name}
-                              </div>
+                              </Link>
                               {campaign.type === "campaign" && (
                                 <div className="text-xs text-[#74767C] mt-0.5">
                                   ID: {campaign.id}
