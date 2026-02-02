@@ -925,7 +925,7 @@ export default function AllKeywords() {
                   {/* Checkbox Column */}
                   <div className="flex flex-col flex-shrink-0">
                     {/* Header */}
-                    <div className="flex items-center justify-center h-[44px] px-3 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                    <div className="flex items-center justify-center h-[44px] px-3 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                       <input
                         ref={selectAllCheckboxRef}
                         type="checkbox"
@@ -951,7 +951,7 @@ export default function AllKeywords() {
                   <div className="flex flex-1 overflow-x-auto">
                     {/* Keyword Column */}
                     <div className="flex flex-col min-w-[300px] flex-1 sticky left-0 z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]">
-                      <div className="flex items-center h-[44px] px-4 gap-1 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center h-[44px] px-4 gap-1 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Keyword</span>
                         <button className="p-1 hover:bg-gray-200 transition-colors">
                           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -971,7 +971,7 @@ export default function AllKeywords() {
 
                     {/* Status Column */}
                     <div className="flex flex-col min-w-[120px] sticky left-[300px] z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]">
-                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Status</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -985,7 +985,7 @@ export default function AllKeywords() {
 
                     {/* Match Type Column */}
                     <div className="flex flex-col min-w-[120px] sticky left-[420px] z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]">
-                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Match type</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -997,7 +997,7 @@ export default function AllKeywords() {
 
                     {/* Suggested Bid Column */}
                     <div className="flex flex-col min-w-[130px] sticky left-[540px] z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Suggested bid</span>
                       </div>
                       {keywords.map((keyword, idx) => (
@@ -1009,7 +1009,7 @@ export default function AllKeywords() {
 
                     {/* Bid Column */}
                     <div className="flex flex-col min-w-[100px] sticky left-[670px] z-10 shadow-[2px_0_4px_rgba(0,0,0,0.05)]">
-                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA]">
+                      <div className="flex items-center justify-end h-[44px] px-4 border-b border-[#E3E4E5] bg-[#FAFAFA] sticky top-0 z-20">
                         <span className="text-[13px] font-semibold text-[#2E2F32]">Bid</span>
                       </div>
                       {keywords.map((keyword, idx) => (
