@@ -737,30 +737,134 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         {/* Filter Dropdowns - Only show on active tab */}
         {selectedTab === "active" && (
           <div className="px-6 pt-4 flex items-center gap-3">
-            <button
-              className="flex items-center justify-center gap-2 h-8 px-4 rounded-full text-sm font-normal transition-all border-2 border-[#0053E2] bg-[#E5F0FF] text-[#2E2F32]"
-            >
-              Awareness campaign
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                <path fillRule="evenodd" clipRule="evenodd" d="M3.93306 7.24553C4.15578 7.02281 4.51544 7.00292 4.75806 7.18482L4.81694 7.24553L10 12.4281L15.1831 7.24553C15.4058 7.02281 15.7654 7.00292 16.0081 7.18482L16.0669 7.24553C16.2896 7.46825 16.3095 7.82791 16.1276 8.07053L16.0669 8.12941L10.4419 13.7544C10.2192 13.9771 9.85956 13.997 9.61694 13.8151L9.55806 13.7544L3.93306 8.12941C3.68897 7.88532 3.68897 7.48962 3.93306 7.24553Z" fill="#2E2F32"/>
-              </svg>
-            </button>
-            <button
-              className="flex items-center justify-center gap-2 h-8 px-4 rounded-full text-sm font-normal transition-all border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50"
-            >
-              Type
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                <path fillRule="evenodd" clipRule="evenodd" d="M3.93306 7.24553C4.15578 7.02281 4.51544 7.00292 4.75806 7.18482L4.81694 7.24553L10 12.4281L15.1831 7.24553C15.4058 7.02281 15.7654 7.00292 16.0081 7.18482L16.0669 7.24553C16.2896 7.46825 16.3095 7.82791 16.1276 8.07053L16.0669 8.12941L10.4419 13.7544C10.2192 13.9771 9.85956 13.997 9.61694 13.8151L9.55806 13.7544L3.93306 8.12941C3.68897 7.88532 3.68897 7.48962 3.93306 7.24553Z" fill="#2E2F32"/>
-              </svg>
-            </button>
-            <button
-              className="flex items-center justify-center gap-2 h-8 px-4 rounded-full text-sm font-normal transition-all border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50"
-            >
-              Campaign
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                <path fillRule="evenodd" clipRule="evenodd" d="M3.93306 7.24553C4.15578 7.02281 4.51544 7.00292 4.75806 7.18482L4.81694 7.24553L10 12.4281L15.1831 7.24553C15.4058 7.02281 15.7654 7.00292 16.0081 7.18482L16.0669 7.24553C16.2896 7.46825 16.3095 7.82791 16.1276 8.07053L16.0669 8.12941L10.4419 13.7544C10.2192 13.9771 9.85956 13.997 9.61694 13.8151L9.55806 13.7544L3.93306 8.12941C3.68897 7.88532 3.68897 7.48962 3.93306 7.24553Z" fill="#2E2F32"/>
-              </svg>
-            </button>
+            {/* Campaign Goal Filter */}
+            <Popover>
+              <PopoverTrigger asChild>
+                <button
+                  className={`flex items-center justify-center gap-2 h-8 px-4 rounded-full text-sm font-normal transition-all ${
+                    selectedCampaignGoals.size > 0
+                      ? 'border-2 border-[#0053E2] bg-[#E5F0FF] text-[#2E2F32]'
+                      : 'border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50'
+                  }`}
+                >
+                  {selectedCampaignGoals.size > 0 ? Array.from(selectedCampaignGoals)[0] : 'Campaign goal'}
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M3.93306 7.24553C4.15578 7.02281 4.51544 7.00292 4.75806 7.18482L4.81694 7.24553L10 12.4281L15.1831 7.24553C15.4058 7.02281 15.7654 7.00292 16.0081 7.18482L16.0669 7.24553C16.2896 7.46825 16.3095 7.82791 16.1276 8.07053L16.0669 8.12941L10.4419 13.7544C10.2192 13.9771 9.85956 13.997 9.61694 13.8151L9.55806 13.7544L3.93306 8.12941C3.68897 7.88532 3.68897 7.48962 3.93306 7.24553Z" fill="#2E2F32"/>
+                  </svg>
+                </button>
+              </PopoverTrigger>
+              <PopoverContent align="start" className="w-[226px] p-4 bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
+                <div className="flex flex-col gap-3">
+                  <div className="text-sm font-bold text-[#2E2F32]">Campaign goal</div>
+                  <div className="flex flex-col gap-3">
+                    {['Awareness campaign', 'Engagement campaign', 'Conversion campaign'].map((goal) => (
+                      <label key={goal} className="flex items-center gap-3 cursor-pointer">
+                        <Checkbox
+                          checked={selectedCampaignGoals.has(goal)}
+                          onCheckedChange={(checked) => {
+                            const newGoals = new Set(selectedCampaignGoals);
+                            if (checked) {
+                              newGoals.add(goal);
+                            } else {
+                              newGoals.delete(goal);
+                            }
+                            setSelectedCampaignGoals(newGoals);
+                          }}
+                          className="w-6 h-6 rounded border border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=unchecked]:bg-white"
+                        />
+                        <span className="text-sm text-[#2E2F32] flex-1">{goal}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+
+            {/* Type Filter */}
+            <Popover>
+              <PopoverTrigger asChild>
+                <button
+                  className={`flex items-center justify-center gap-2 h-8 px-4 rounded-full text-sm font-normal transition-all ${
+                    selectedTypes.size > 0
+                      ? 'border-2 border-[#0053E2] bg-[#E5F0FF] text-[#2E2F32]'
+                      : 'border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50'
+                  }`}
+                >
+                  Type
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M3.93306 7.24553C4.15578 7.02281 4.51544 7.00292 4.75806 7.18482L4.81694 7.24553L10 12.4281L15.1831 7.24553C15.4058 7.02281 15.7654 7.00292 16.0081 7.18482L16.0669 7.24553C16.2896 7.46825 16.3095 7.82791 16.1276 8.07053L16.0669 8.12941L10.4419 13.7544C10.2192 13.9771 9.85956 13.997 9.61694 13.8151L9.55806 13.7544L3.93306 8.12941C3.68897 7.88532 3.68897 7.48962 3.93306 7.24553Z" fill="#2E2F32"/>
+                  </svg>
+                </button>
+              </PopoverTrigger>
+              <PopoverContent align="start" className="w-[226px] p-4 bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
+                <div className="flex flex-col gap-3">
+                  <div className="text-sm font-bold text-[#2E2F32]">Recommendation type</div>
+                  <div className="flex flex-col gap-3">
+                    {['Budget', 'Targeting', 'Date', 'Creative', 'Frequency'].map((type) => (
+                      <label key={type} className="flex items-center gap-3 cursor-pointer">
+                        <Checkbox
+                          checked={selectedTypes.has(type)}
+                          onCheckedChange={(checked) => {
+                            const newTypes = new Set(selectedTypes);
+                            if (checked) {
+                              newTypes.add(type);
+                            } else {
+                              newTypes.delete(type);
+                            }
+                            setSelectedTypes(newTypes);
+                          }}
+                          className="w-6 h-6 rounded border border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=unchecked]:bg-white"
+                        />
+                        <span className="text-sm text-[#2E2F32] flex-1">{type}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+
+            {/* Group By Filter */}
+            <Popover>
+              <PopoverTrigger asChild>
+                <button
+                  className={`flex items-center justify-center gap-2 h-8 px-4 rounded-full text-sm font-normal transition-all ${
+                    selectedGroupBy.size > 0
+                      ? 'border-2 border-[#0053E2] bg-[#E5F0FF] text-[#2E2F32]'
+                      : 'border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50'
+                  }`}
+                >
+                  Group by
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M3.93306 7.24553C4.15578 7.02281 4.51544 7.00292 4.75806 7.18482L4.81694 7.24553L10 12.4281L15.1831 7.24553C15.4058 7.02281 15.7654 7.00292 16.0081 7.18482L16.0669 7.24553C16.2896 7.46825 16.3095 7.82791 16.1276 8.07053L16.0669 8.12941L10.4419 13.7544C10.2192 13.9771 9.85956 13.997 9.61694 13.8151L9.55806 13.7544L3.93306 8.12941C3.68897 7.88532 3.68897 7.48962 3.93306 7.24553Z" fill="#2E2F32"/>
+                  </svg>
+                </button>
+              </PopoverTrigger>
+              <PopoverContent align="start" className="w-[226px] p-4 bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
+                <div className="flex flex-col gap-3">
+                  <div className="text-sm font-bold text-[#2E2F32]">Group by</div>
+                  <div className="flex flex-col gap-3">
+                    {['Campaign', 'Recommendation'].map((group) => (
+                      <label key={group} className="flex items-center gap-3 cursor-pointer">
+                        <Checkbox
+                          checked={selectedGroupBy.has(group)}
+                          onCheckedChange={(checked) => {
+                            const newGroups = new Set(selectedGroupBy);
+                            if (checked) {
+                              newGroups.add(group);
+                            } else {
+                              newGroups.delete(group);
+                            }
+                            setSelectedGroupBy(newGroups);
+                          }}
+                          className="w-6 h-6 rounded border border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=unchecked]:bg-white"
+                        />
+                        <span className="text-sm text-[#2E2F32] flex-1">{group}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
           </div>
         )}
 
