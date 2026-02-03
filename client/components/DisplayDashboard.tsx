@@ -66,7 +66,7 @@ export default function DisplayDashboard() {
                     setRecommendationsPanelOpen(true);
                   }}
                   variant="secondary"
-                  size="medium"
+                  size="small"
                 >
                   View recommendations
                 </Button>
@@ -100,7 +100,7 @@ export default function DisplayDashboard() {
                     setRecommendationsPanelOpen(true);
                   }}
                   variant="secondary"
-                  size="medium"
+                  size="small"
                 >
                   View recommendations
                 </Button>
@@ -134,7 +134,7 @@ export default function DisplayDashboard() {
                     setRecommendationsPanelOpen(true);
                   }}
                   variant="secondary"
-                  size="medium"
+                  size="small"
                 >
                   View recommendations
                 </Button>
