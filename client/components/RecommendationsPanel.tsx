@@ -847,10 +847,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             </div>
           ) : (
             <div className="flex flex-col gap-6">
-              {/* Alert Banner */}
-              <Alert variant="info">
+              {/* Banner Text */}
+              <div className="text-sm text-[#2E2F32]">
                 Some recommendations may become unavailable based on your selection.
-              </Alert>
+              </div>
 
               {filteredCampaigns.map((campaign) => {
               const visibleItems = campaign.isExpanded ? campaign.items : campaign.items.slice(0, 2);
