@@ -387,7 +387,7 @@ export default function SellerCenter() {
                           <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.pageViews.toLocaleString()}</td>
                           <td className="px-4 py-3 text-sm text-[#2E2F32]">{item.gMV}</td>
                           <td className="px-4 py-3">
-                            <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline hover:no-underline">Edit</button>
+                            <button className="text-sm underline hover:no-underline">Edit</button>
                           </td>
                         </tr>
                       ))}

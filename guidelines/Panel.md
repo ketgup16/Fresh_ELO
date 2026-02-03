@@ -1,184 +1,128 @@
-# Panel Component Guidelines
+---
+title: Panel
+scope: component
+status: draft
+owner: design-system
+last_updated: 2025-12-19
+---
 
-## Overview
-Panels (also known as drawers, sidebars, or slide-out panels) are overlay components that slide in from the edge of the screen to display additional content or functionality.
+## Purpose
+A Panel provides room for additional information or prompts users for input. Panels appear as a result of user interaction and **block access to the main content** until dismissed (modal behavior).
 
-## CRITICAL RULE: All Panels Must Be Resizable
+Use a Panel to complete a **secondary task** without navigating away from the current page (similar to a modal surface).
 
-**REQUIREMENT**: All panel implementations MUST include the following features:
+## Rules
+- **MUST** use the Living Design Panel component.
+- **MUST** open in response to a user action on an interactive element (e.g., a [Button](/components/button/)).
+- **MUST** block interaction with underlying content while open (scrim + modal behavior).
+- **MUST** be user-dismissible and provide at least one explicit dismissal control (e.g., close button).
+- **MUST** support `Escape` to dismiss on desktop/web when applicable.
+- **MUST** return focus to the element that triggered the Panel when it closes.
+- **MUST NOT** use a Panel for primary tasks that should be part of the main page.
+- **MUST NOT** use a Panel for prolonged interactions or repeatable/complex flows; consider a dedicated page/screen instead.
+- **MUST NOT** layer a Panel on top of Bottom Sheet, Modal, or another Panel.
 
-### 1. Width Constraints
-- **Min Width**: 420px (ensures content remains readable and usable)
-- **Max Width**: Typically 800px, but may vary based on use case
-- **Responsive**: On smaller screens, max width should adjust to `window.innerWidth - 40px` to maintain viewport margin
+## Usage
+Use a Panel to pause activity on the main page to complete a short, secondary task such as:
+- Form input or edits
+- Product sort/filter
+- A focused list of secondary links/content
 
-### 2. Resizable Handle
-All panels MUST include a resize handle that allows users to adjust the panel width:
+## Sizes
+Panels are available in 3 widths (names may differ in your API). Use documented sizes only.
 
-```tsx
-{/* Resize Handle - Required for all panels */}
-<div
-  className="absolute left-0 top-0 bottom-0 w-1 bg-transparent hover:bg-[#0053E2] cursor-col-resize transition-colors z-10"
-  onMouseDown={handleMouseDown}
->
-  {/* Invisible expanded hit area */}
-  <div className="absolute left-0 top-0 bottom-0 w-4 -translate-x-1.5" />
-  {/* Visual indicator - centered dots */}
-  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-1 pointer-events-none">
-    <div className="w-1 h-1 rounded-full bg-[#909196]" />
-    <div className="w-1 h-1 rounded-full bg-[#909196]" />
-    <div className="w-1 h-1 rounded-full bg-[#909196]" />
-  </div>
-</div>
-```
+## Placement
+The Panel can appear from either the **left** or **right** edge of the viewport. Choose the side that best matches your information architecture and avoids covering critical context.
 
-### 3. State Management
-Panels MUST maintain width state and persist user preferences:
+## Anatomy
+### Panel
+1. Layout container
+2. Scrim (overlay/backdrop)
+3. Container
+4. Header
+5. Content
+6. Action content (optional)
 
-```tsx
-// Panel width state with localStorage persistence
-const [panelWidth, setPanelWidth] = useState(() => {
-  const saved = localStorage.getItem('panelName_Width');
-  return saved ? parseInt(saved, 10) : 800; // Default to max width
-});
-const [isResizing, setIsResizing] = useState(false);
+### Panel header
+1. Container
+2. Title
+3. Close button
 
-// Save to localStorage when width changes
-useEffect(() => {
-  localStorage.setItem('panelName_Width', panelWidth.toString());
-}, [panelWidth]);
-```
+## Behavior
+### Closing
+A Panel can be closed in the following ways (when enabled in the component API):
+1. Clicking or tapping the Close button/icon
+2. Clicking or tapping the scrim (outside the Panel)
+3. Pressing the `Escape` key on the keyboard
 
-### 4. Resize Logic
-Required event handlers for resize functionality:
+If the Panel contains unsaved user input, dismissal behavior **SHOULD** be guarded (e.g., confirm before discarding).
 
-```tsx
-// Mouse down handler
-const handleMouseDown = (e: React.MouseEvent) => {
-  setIsResizing(true);
-  e.preventDefault();
-};
+### Responsiveness
+#### Width
+- On smaller screens, the maximum width of the Panel **SHOULD** be viewport width minus 24px.
+- On larger screens, width is determined by the selected Panel size.
 
-// Mouse move and cleanup
-useEffect(() => {
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!isResizing) return;
-    
-    const newWidth = window.innerWidth - e.clientX;
-    const maxWidth = Math.min(800, window.innerWidth - 40); // Responsive max
-    const clampedWidth = Math.min(Math.max(newWidth, 420), maxWidth);
-    setPanelWidth(clampedWidth);
-  };
+#### Height
+The Panel height should be 100% of the viewport height.
 
-  const handleMouseUp = () => {
-    setIsResizing(false);
-  };
+## Accessibility
+- **MUST** trap focus while open and prevent interaction with underlying content.
+- **MUST** return focus to the triggering element when the Panel closes.
+- **SHOULD** avoid launching a snackbar at the same moment the Panel closes; focus will not be on the snackbar so it may not be announced by screen readers.
+  - If you must show a snackbar after closing, consider adding a short delay (commonly ~1 second) before triggering it. See your system’s Snackbar docs/FAQ for platform-specific guidance.
 
-  if (isResizing) {
-    document.body.style.cursor = 'col-resize';
-    document.body.style.userSelect = 'none';
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-  }
+## Token usage
+- Prefer component defaults (Panel should be token-wired for scrim/elevation, spacing, typography, and surface styling).
+- Only use tokens for layout around the Panel, not for restyling Panel internals.
 
-  return () => {
-    document.body.style.cursor = '';
-    document.body.style.userSelect = '';
-    document.removeEventListener('mousemove', handleMouseMove);
-    document.removeEventListener('mouseup', handleMouseUp);
-  };
-}, [isResizing]);
-```
-
-### 5. Responsive Window Resize
-Adjust panel width when window is resized:
+## React usage (example)
+Update import path after wiring in `guidelines/components/overview-components.md`.
 
 ```tsx
-useEffect(() => {
-  const handleWindowResize = () => {
-    const maxWidth = Math.min(800, window.innerWidth - 40);
-    if (panelWidth > maxWidth) {
-      setPanelWidth(maxWidth);
-    }
-  };
+import * as React from "react";
+import { Button, Panel } from "REPLACE_ME_COMPONENT_IMPORT_PATH";
 
-  window.addEventListener('resize', handleWindowResize);
-  return () => window.removeEventListener('resize', handleWindowResize);
-}, [panelWidth]);
+export function PanelExample() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <>
+      <Button variant="secondary" onClick={() => setOpen(true)}>
+        Open panel
+      </Button>
+
+      <Panel
+        // Adapt prop names to your actual API:
+        // side="right" | "left"
+        // size="sm" | "md" | "lg"
+        // closeOnScrimClick={true}
+        // closeOnEscape={true}
+        open={open}
+        onOpenChange={setOpen}
+        title="Filters"
+        side="right"
+        size="md"
+      >
+        {/* Keep the task short and focused; content may scroll. */}
+      </Panel>
+    </>
+  );
+}
 ```
 
-## Implementation Checklist
+## Best practices
+### Use when
+- Use when completing a secondary task that temporarily pauses interaction with the main page.
 
-When creating a new panel component, ensure:
+### Don’t use when
+- Don’t use for primary tasks that should remain on the main page.
+- Don’t use for prolonged or repeatable tasks; consider a dedicated page/screen.
 
-- [ ] Min width is set to 420px
-- [ ] Max width is defined (typically 800px)
-- [ ] Resize handle is present on the left edge (for right-side panels)
-- [ ] Visual indicator (3 dots) is visible on the resize handle
-- [ ] Hover state changes handle color to `#0053E2` (LD 3.5 blue)
-- [ ] Cursor changes to `col-resize` when hovering/dragging
-- [ ] Width is clamped between min and max values
-- [ ] Panel width is saved to localStorage with a unique key
-- [ ] Responsive behavior adjusts max width on small screens
-- [ ] Window resize listener prevents panel from exceeding viewport
+## Do / Don’t
+### Do
+- Do use Panels for short, secondary tasks like sorting/filtering or quick edits.
+- Do ensure the Panel is clearly dismissible and restores focus to the trigger.
 
-## Panel Structure
+### Don’t
+- Don’t stack Panels or combine with other modal surfaces (Modal, Bottom Sheet).
 
-```tsx
-<div
-  className="fixed top-0 right-0 bottom-0 bg-white shadow-[0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)] z-50 flex flex-col"
-  style={{ width: `${panelWidth}px` }}
->
-  {/* Resize Handle - REQUIRED */}
-  <div
-    className="absolute left-0 top-0 bottom-0 w-1 bg-transparent hover:bg-[#0053E2] cursor-col-resize transition-colors z-10"
-    onMouseDown={handleMouseDown}
-  >
-    <div className="absolute left-0 top-0 bottom-0 w-4 -translate-x-1.5" />
-    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-1 pointer-events-none">
-      <div className="w-1 h-1 rounded-full bg-[#909196]" />
-      <div className="w-1 h-1 rounded-full bg-[#909196]" />
-      <div className="w-1 h-1 rounded-full bg-[#909196]" />
-    </div>
-  </div>
-
-  {/* Panel Content */}
-  {/* ... */}
-</div>
-```
-
-## Design Tokens
-
-### Colors
-- **Resize handle hover**: `var(--ld-semantic-color-action-fill-primary)` or `#0053E2`
-- **Resize handle dots**: `#909196`
-- **Panel background**: `var(--ld-semantic-color-fill-primary)` or `#FFFFFF`
-- **Panel shadow**: `0_-1px_4px_0_rgba(0,0,0,0.10),0_5px_10px_3px_rgba(0,0,0,0.15)`
-
-### Spacing
-- **Resize handle width**: 1px (4px hit area)
-- **Min panel width**: 420px
-- **Max panel width**: 800px (or responsive)
-- **Viewport margin**: 40px on small screens
-
-## Reference Implementation
-
-See `client/components/RecommendationsPanel.tsx` for a complete reference implementation of an expandable panel with all required features.
-
-## Why This Matters
-
-1. **User Control**: Users can adjust panel width to fit their workflow and screen size
-2. **Flexibility**: Different content requires different widths
-3. **Persistence**: User preferences are remembered across sessions
-4. **Responsive**: Panels adapt gracefully to smaller viewports
-5. **Consistency**: All panels follow the same interaction pattern
-6. **Accessibility**: Large hit areas make resizing easier for all users
-
-## Exceptions
-
-The only time a panel may NOT be resizable is if:
-- It's a full-screen modal (100% width)
-- It's a temporary tooltip or popover (fixed small size)
-- There's a documented UX reason requiring a fixed width
-
-For all other cases, panels MUST be resizable as specified above.

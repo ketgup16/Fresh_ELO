@@ -138,7 +138,7 @@ export default function EditMetricsModal({ open, onOpenChange }: EditMetricsModa
               <h3 className="text-xl font-bold text-[#2E2F32] leading-7">All Metrics</h3>
               <button
                 onClick={handleSelectAll}
-                style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
+               
                 className="text-sm font-bold leading-5 underline hover:no-underline"
               >
                 Select all

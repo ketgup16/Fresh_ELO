@@ -94,7 +94,7 @@ export default function BiddingStrategyModal({
               </div>
               <DialogPrimitive.Description className="text-sm text-[#2E2F32] leading-5">
                 Choose the strategy that best suits your business goals.{" "}
-                <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline cursor-pointer hover:no-underline">
+                <span className="underline cursor-pointer hover:no-underline">
                   Learn more
                 </span>
               </DialogPrimitive.Description>
@@ -182,7 +182,7 @@ export default function BiddingStrategyModal({
                         <span className="font-bold">
                           potentially increase your sales up to $12k-15k/week.
                         </span>{" "}
-                        <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline cursor-pointer hover:no-underline">
+                        <span className="underline cursor-pointer hover:no-underline">
                           Learn more
                         </span>
                       </p>
@@ -206,7 +206,7 @@ export default function BiddingStrategyModal({
                     </span>
                     <button
                       onClick={handleReset}
-                      style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
+                     
                       className="text-xs underline hover:no-underline ml-1"
                     >
                       Reset
@@ -240,7 +240,7 @@ export default function BiddingStrategyModal({
             <div className="flex items-center justify-end gap-4">
               <button
                 onClick={handleCancel}
-                style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
+               
                 className="text-sm leading-5 underline hover:no-underline"
               >
                 Cancel

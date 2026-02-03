@@ -43,7 +43,7 @@ export default function Campaign() {
           <div className="bg-white border-b border-[#E3E4E5] px-6 py-6">
           <div className="flex items-center gap-1 text-sm mb-2">
             <span
-              style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }}
+             
               className="underline cursor-pointer hover:no-underline"
               onClick={() => navigate('/all-campaigns')}
             >
@@ -518,7 +518,7 @@ export default function Campaign() {
                             <span className="text-xs text-[#2E2F32] ml-3 flex-1">{item}</span>
                             <span className="text-xs text-[#2E2F32] w-16 text-right">{ids[idx]}</span>
                             <span className="text-xs text-[#2E2F32] w-12 text-right">{prices[idx]}</span>
-                            <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-xs underline ml-4 hover:no-underline">Add</button>
+                            <button className="text-xs underline ml-4 hover:no-underline">Add</button>
                           </div>
                         );
                       })}

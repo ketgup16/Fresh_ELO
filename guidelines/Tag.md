@@ -7,12 +7,12 @@ last_updated: 2025-12-19
 ---
 
 ## Purpose
-Tags label or "call out" a short attribute of an item, a status, or a group an item belongs to. Tags are **static** (non-interactive) and should be **brief** (a few words maximum).
+Tags label or “call out” a short attribute of an item, a status, or a group an item belongs to. Tags are **static** (non-interactive) and should be **brief** (a few words maximum).
 
 Common uses:
-- Attribute labels (e.g., "New", "Organic", "Limited time")
-- Status indicators (e.g., "In stock", "Delayed", "Approved")
-- Group/category cues (e.g., "Pickup", "Delivery", "Rx")
+- Attribute labels (e.g., “New”, “Organic”, “Limited time”)
+- Status indicators (e.g., “In stock”, “Delayed”, “Approved”)
+- Group/category cues (e.g., “Pickup”, “Delivery”, “Rx”)
 
 ## Rules
 - **MUST** use the Living Design `Tag` component for tag UI.
@@ -48,7 +48,7 @@ Color selection guidance:
 ## Content strategy
 - Keep labels **specific and scannable**.
 - Avoid sentences and punctuation; Tags are not for long explanations.
-- Don't use more than 2–3 words; if you need more, use a different component/pattern (e.g., inline helper text, Alert, or a description row).
+- Don’t use more than 2–3 words; if you need more, use a different component/pattern (e.g., inline helper text, Alert, or a description row).
 
 ## Accessibility
 - **MUST** ensure the label communicates meaning without color.
@@ -87,14 +87,14 @@ export function TagExamples() {
 }
 ```
 
-## Do / Don't
+## Do / Don’t
 ### Do
 - Use Tags to **call out an attribute or status** that helps users scan.
 - Use Tags to **group related items** and reinforce relationships.
 - Choose colors with clear **semantic meaning** when applicable.
 - Keep labels **short** and easy to translate/localize.
 
-### Don't
+### Don’t
 - Use Tags for more than **2–3 words** of content.
 - Add interaction to Tags; if it needs to be clickable, use a **Button** or **Chip**.
 - Use icon-only tags or replace text with an icon.

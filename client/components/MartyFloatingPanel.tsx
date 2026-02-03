@@ -994,7 +994,7 @@ export default function MartyFloatingPanel() {
 
             {/* Disclaimer */}
             <div className="w-full text-[#74767C] text-center text-xs leading-4">
-              This smart assistant is powered by AI. It may make mistakes or use data from outside Walmart. Never share personally sensitive info. View <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline cursor-pointer">Disclaimer</span>.
+              This smart assistant is powered by AI. It may make mistakes or use data from outside Walmart. Never share personally sensitive info. View <span className="underline hover:no-underline cursor-pointer">Disclaimer</span>.
             </div>
           </div>
         </div>
@@ -1101,7 +1101,7 @@ export default function MartyFloatingPanel() {
                     Top suggestions from your catalog
                   </div>
                 </div>
-                <button style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm leading-5 underline hover:no-underline">
+                <button className="text-sm leading-5 underline hover:no-underline">
                   Edit
                 </button>
               </div>
@@ -1148,7 +1148,7 @@ export default function MartyFloatingPanel() {
                       </div>
                     </div>
                     <div className="text-[#000] text-xs leading-4">
-                      Choose when customers see your ads. <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline cursor-pointer">Learn more</span>
+                      Choose when customers see your ads. <span className="underline hover:no-underline cursor-pointer">Learn more</span>
                     </div>
 
                     {/* Checkboxes */}
@@ -1233,7 +1233,7 @@ export default function MartyFloatingPanel() {
                       </div>
                     </div>
                     <div className="text-[#000] text-xs leading-4">
-                      Choose the strategy that best suits your business goals. <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline cursor-pointer">Learn more</span>
+                      Choose the strategy that best suits your business goals. <span className="underline hover:no-underline cursor-pointer">Learn more</span>
                     </div>
 
                     {/* Info Alert */}
@@ -1382,7 +1382,7 @@ export default function MartyFloatingPanel() {
 
               {/* Disclaimer */}
               <div className="w-full text-[#74767C] text-center text-xs leading-4">
-                This smart assistant is powered by AI. It may make mistakes or use data from outside Walmart. Never share personally sensitive info. View <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline cursor-pointer">Disclaimer</span>.
+                This smart assistant is powered by AI. It may make mistakes or use data from outside Walmart. Never share personally sensitive info. View <span className="underline hover:no-underline cursor-pointer">Disclaimer</span>.
               </div>
             </div>
           </div>
@@ -1470,7 +1470,7 @@ export default function MartyFloatingPanel() {
 
               {/* Disclaimer */}
               <div className="w-full text-[#74767C] text-center text-xs leading-4">
-                This smart assistant is powered by AI. It may make mistakes or use data from outside Walmart. Never share personally sensitive info. View <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline cursor-pointer">Disclaimer</span>.
+                This smart assistant is powered by AI. It may make mistakes or use data from outside Walmart. Never share personally sensitive info. View <span className="underline hover:no-underline cursor-pointer">Disclaimer</span>.
               </div>
               </div>
             </div>
@@ -1533,7 +1533,7 @@ export default function MartyFloatingPanel() {
 
           {/* Disclaimer */}
           <div className="w-full text-[#74767C] text-center text-xs leading-4">
-            This smart assistant is powered by AI. It may make mistakes or use data from outside Walmart. Never share personally sensitive info. View <span style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="underline hover:no-underline cursor-pointer">Disclaimer</span>.
+            This smart assistant is powered by AI. It may make mistakes or use data from outside Walmart. Never share personally sensitive info. View <span className="underline hover:no-underline cursor-pointer">Disclaimer</span>.
           </div>
         </div>
       )}

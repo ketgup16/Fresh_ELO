@@ -6,6 +6,10 @@ owner: design-system
 last_updated: 2025-12-19
 ---
 
+import { PopoverGuidelinesSandbox } from "./PopoverGuidelines";
+
+<PopoverGuidelinesSandbox />
+
 ## Purpose
 A Popover is a **non-modal dialog** that displays supporting content anchored to a trigger. It can contain instructions, a short list of options, and lightweight actions without taking the user away from the current context.
 
@@ -16,7 +20,7 @@ A Popover is a **non-modal dialog** that displays supporting content anchored to
 - **MUST** include at least **one focusable element** inside the Popover (e.g., link, button, input) and provide a clear close path.
 - **MUST** support dismissal via **Escape** and by interacting **outside** the Popover (per the component API).
 - **MUST NOT** use Popover to display complex information or multi-step flows; use a dedicated screen or a [Modal](/components/modal/) instead.
-- **MUST NOT** use Popover for "choose one" selection controls; use [Select](/components/select/) or a radio group instead.
+- **MUST NOT** use Popover for “choose one” selection controls; use [Select](/components/select/) or a radio group instead.
 
 ## Usage
 A Popover is a non-modal dialog that can display a variety of content, instructions, options, and actions. The component should be paired with a clickable trigger element and contain at least one focusable element.
@@ -26,11 +30,11 @@ A Popover is a non-modal dialog that can display a variety of content, instructi
 - Use when providing relevant supporting information or actions.
 - Use when presenting a short list of options to be taken on the current view.
 
-### Don't use when
-- Don't use when displaying complex information.
-- Don't use when the resulting interaction flow requires multiple steps.
-- Don't use when a user is making a selection or picking an option. Use [Select](/components/select/) or a radio group instead.
-- Don't use when the Popover is displayed without user demand (e.g., on page load).
+### Don’t use when
+- Don’t use when displaying complex information.
+- Don’t use when the resulting interaction flow requires multiple steps.
+- Don’t use when a user is making a selection or picking an option. Use [Select](/components/select/) or a radio group instead.
+- Don’t use when the Popover is displayed without user demand (e.g., on page load).
 
 ## Anatomy
 - **Layout container**
@@ -91,14 +95,14 @@ export function PopoverExample() {
 }
 ```
 
-## Do / Don't
+## Do / Don’t
 ### Do
 - Use Popover for **supporting** information and lightweight actions.
 - Keep content **short and scannable**, and include at least one focusable element.
 - Ensure the user can **dismiss** it quickly (Escape and outside click).
 
-### Don't
-- Don't open Popover automatically on page load.
-- Don't use Popover for complex content or multi-step flows.
-- Don't use Popover as a selection control (use [Select](/components/select/) or a radio group).
+### Don’t
+- Don’t open Popover automatically on page load.
+- Don’t use Popover for complex content or multi-step flows.
+- Don’t use Popover as a selection control (use [Select](/components/select/) or a radio group).
 

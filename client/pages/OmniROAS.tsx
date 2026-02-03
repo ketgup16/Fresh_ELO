@@ -508,13 +508,13 @@ export default function OmniROAS() {
                           {item.itemImage}
                         </div>
                       </td>
-                      <td style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="px-2 py-2 text-sm underline cursor-pointer hover:no-underline">
+                      <td className="px-2 py-2 text-sm underline cursor-pointer hover:no-underline">
                         {item.itemId}
                       </td>
                       <td className="px-2 py-2">
                         <div className="flex flex-col gap-1">
                           {item.campaignIds.map((id, i) => (
-                            <span key={i} style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline cursor-pointer hover:no-underline">
+                            <span key={i} className="text-sm underline cursor-pointer hover:no-underline">
                               {id}
                             </span>
                           ))}
@@ -523,7 +523,7 @@ export default function OmniROAS() {
                       <td className="px-2 py-2">
                         <div className="flex flex-col gap-1">
                           {item.adGroupIds.map((id, i) => (
-                            <span key={i} style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm underline cursor-pointer hover:no-underline">
+                            <span key={i} className="text-sm underline cursor-pointer hover:no-underline">
                               {id}
                             </span>
                           ))}

@@ -266,7 +266,7 @@ export default function MartyAssistant() {
                   <div className="h-[69px] flex-1 aspect-square rounded-lg border border-[#E3E4E5] relative">
                     <div className="w-[53px] text-[#74767C] text-center text-base font-bold leading-6 absolute left-2 top-2.5">+16</div>
                     <button className="inline-flex h-8 justify-center items-center gap-2 absolute left-1.5 top-7">
-                      <div style={{ color: 'var(--ld-semantic-color-text-brand, #0071ce)' }} className="text-sm leading-5 underline hover:no-underline cursor-pointer">View/edit</div>
+                      <div className="text-sm leading-5 underline hover:no-underline cursor-pointer">View/edit</div>
                     </button>
                   </div>
                 </div>

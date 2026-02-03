@@ -17,7 +17,6 @@ This is the **delegator/index** for all React-specific Living Design guidelines.
 1. **Never use `@private` components** - See [Component Visibility](./component-visibility.md)
 2. **Always use typography components** - See [Typography](./typography.md)
 3. **Never bypass token system** - See [Tokens](./tokens.md)
-4. **All panels MUST be resizable** - See [Panel](./Panel.md)
 
 ### 📚 Detailed Guidelines
 
@@ -40,14 +39,6 @@ This is the **delegator/index** for all React-specific Living Design guidelines.
   - Accessibility requirements
   - Common patterns
 
-- **[Panel (Drawer/Sidebar)](./Panel.md)** ⭐ **REQUIRED FOR ALL PANELS**
-  - Resizable panel requirements
-  - Min/max width constraints (420px - 800px)
-  - Resize handle implementation
-  - localStorage persistence
-  - Responsive behavior
-  - Complete code examples
-
 - **[Token System](./tokens.md)**
   - Why tokens exist
   - Why you shouldn't use them directly
@@ -67,9 +58,6 @@ This is the **delegator/index** for all React-specific Living Design guidelines.
 
 ### Q: Can I reference CSS variables directly in my code?
 **A:** No. Use the component props API. See [Tokens](./tokens.md).
-
-### Q: Do I need to make my panel/drawer resizable?
-**A:** Yes. All panels MUST be resizable with min/max width constraints. See [Panel](./Panel.md).
 
 ## Integration with Main Guidelines
 
