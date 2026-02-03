@@ -1040,7 +1040,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
           ) : (
             <div className="flex flex-col gap-6">
               {/* Banner Text */}
-              <div className="text-sm text-[#2E2F32] pt-4">
+              <div className="text-sm text-[#2E2F32]">
                 Some recommendations may become unavailable based on your selection.
               </div>
 
