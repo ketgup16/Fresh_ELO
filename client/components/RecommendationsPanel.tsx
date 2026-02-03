@@ -538,9 +538,23 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
     return { isConflicted: false };
   };
 
-  const filteredCampaigns = selectedGoalFilter
-    ? campaigns.filter(c => c.goal === selectedGoalFilter)
-    : campaigns;
+  const filteredCampaigns = campaigns
+    .filter(c => !selectedGoalFilter || c.goal === selectedGoalFilter)
+    .map(campaign => {
+      // Filter campaign items by type if type filter is active
+      if (selectedTypes.size > 0) {
+        const filteredItems = campaign.items.filter(item =>
+          item.recommendationType && selectedTypes.has(item.recommendationType)
+        );
+        return {
+          ...campaign,
+          items: filteredItems,
+          recommendations: filteredItems.length
+        };
+      }
+      return campaign;
+    })
+    .filter(campaign => campaign.items.length > 0); // Only show campaigns with items
 
   const totalRecommendations = campaigns.reduce((sum, c) => sum + c.recommendations, 0);
 
