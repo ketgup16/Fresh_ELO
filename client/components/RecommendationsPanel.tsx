@@ -22,6 +22,7 @@ interface RecommendationItem {
   message: string;
   affectedAdGroups?: string[];
   adGroup?: string;
+  recommendationType?: "Budget" | "Targeting" | "Date" | "Creative" | "Frequency";
 }
 
 interface AppliedRecommendation {
