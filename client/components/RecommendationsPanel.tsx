@@ -856,7 +856,12 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                       : 'border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50'
                   }`}
                 >
-                  Type
+                  {selectedTypes.size === 1
+                    ? Array.from(selectedTypes)[0]
+                    : selectedTypes.size > 1
+                      ? `Type (${selectedTypes.size})`
+                      : 'Type'
+                  }
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
                     <path fillRule="evenodd" clipRule="evenodd" d="M3.93306 7.24553C4.15578 7.02281 4.51544 7.00292 4.75806 7.18482L4.81694 7.24553L10 12.4281L15.1831 7.24553C15.4058 7.02281 15.7654 7.00292 16.0081 7.18482L16.0669 7.24553C16.2896 7.46825 16.3095 7.82791 16.1276 8.07053L16.0669 8.12941L10.4419 13.7544C10.2192 13.9771 9.85956 13.997 9.61694 13.8151L9.55806 13.7544L3.93306 8.12941C3.68897 7.88532 3.68897 7.48962 3.93306 7.24553Z" fill="#2E2F32"/>
                   </svg>
