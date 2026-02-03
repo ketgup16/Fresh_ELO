@@ -495,25 +495,25 @@ export default function SponsoredSearchDashboard() {
                   {renderSortIcon('name')}
                 </div>
               </th>
-              <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[12%]">
+              <th className="py-4 px-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[12%]">
                 <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('roas')}>
                   ROAS
                   {renderSortIcon('roas')}
                 </div>
               </th>
-              <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[12%]">
+              <th className="py-4 px-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[12%]">
                 <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('cpc')}>
                   CPC
                   {renderSortIcon('cpc')}
                 </div>
               </th>
-              <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[12%]">
+              <th className="py-4 px-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[12%]">
                 <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('ctr')}>
                   CTR
                   {renderSortIcon('ctr')}
                 </div>
               </th>
-              <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[12%]">
+              <th className="py-4 px-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[12%]">
                 <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('cvr')}>
                   CVR
                   {renderSortIcon('cvr')}
