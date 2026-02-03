@@ -530,7 +530,7 @@ export default function SponsoredSearchDashboard() {
           <tbody>
             {campaigns.map((campaign, index) => (
               <tr key={index} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
-                <td className="p-4">
+                <td className="p-4 pl-10">
                   <div className="underline hover:no-underline cursor-pointer">
                     {campaign.name}
                   </div>
@@ -539,7 +539,7 @@ export default function SponsoredSearchDashboard() {
                 <td className="p-4 text-[#2E2F32]">{campaign.cpc}</td>
                 <td className="p-4 text-[#2E2F32]">{campaign.ctr}</td>
                 <td className="p-4 text-[#2E2F32]">{campaign.cvr}</td>
-                <td className="p-4 text-[#2E2F32]">${campaign.spend.toFixed(2)}</td>
+                <td className="p-4 pr-10 text-[#2E2F32]">${campaign.spend.toFixed(2)}</td>
               </tr>
             ))}
           </tbody>
