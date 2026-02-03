@@ -647,13 +647,22 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             <div className="border-t border-[#E3E4E5] px-6 py-4">
               <div className="flex items-center justify-end gap-4">
                 {viewingDetailId && newlyAppliedIds.has(viewingDetailId) ? (
-                  <div className="flex items-center gap-2">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                      <circle cx="10" cy="10" r="10" fill="#2A8703"/>
-                      <path d="M14.5 7L8.5 13L5.5 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span className="text-sm font-normal text-[#2A8703]">Recommendation applied</span>
-                  </div>
+                  <>
+                    <div className="flex items-center gap-2">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                        <circle cx="10" cy="10" r="10" fill="#2A8703"/>
+                        <path d="M14.5 7L8.5 13L5.5 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      <span className="text-sm font-normal text-[#2A8703]">Recommendation applied</span>
+                    </div>
+                    <Button
+                      variant="tertiary"
+                      size="small"
+                      onClick={() => setViewingDetailId(null)}
+                    >
+                      Close
+                    </Button>
+                  </>
                 ) : (
                   <>
                     <button
