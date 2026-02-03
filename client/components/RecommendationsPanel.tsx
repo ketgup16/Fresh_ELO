@@ -591,10 +591,16 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               <div className="flex flex-col gap-4">
                 {/* Title and Impact */}
                 <div>
-                  <h3 className="text-base font-bold text-[#2E2F32] mb-1">Add 15 keywords</h3>
+                  <h3 className="text-base font-bold text-[#2E2F32] mb-1">
+                    {getCurrentRecommendation()?.title || "Add 15 keywords"}
+                  </h3>
                   <div className="flex items-end gap-1">
-                    <span className="text-sm font-bold text-[#2A8703]">15k-18k</span>
-                    <span className="text-sm text-[#2E2F32]">Potential increase in reach</span>
+                    <span className="text-sm font-bold text-[#2A8703]">
+                      {getCurrentRecommendation()?.impact || "15k-18k"}
+                    </span>
+                    <span className="text-sm text-[#2E2F32]">
+                      {getCurrentRecommendation()?.message || "Potential increase in reach"}
+                    </span>
                   </div>
                 </div>
 
