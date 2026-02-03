@@ -1016,91 +1016,93 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                               </div>
 
                               {/* Content */}
-                              <div className="flex-1 flex flex-col gap-2 min-w-0">
-                                <div className="flex flex-col gap-1">
-                                  <div className={`text-sm font-normal ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
-                                    {rec.title}
+                              <div className="flex-1 flex flex-col gap-3 min-w-0">
+                                <div className="flex flex-col gap-2">
+                                  <div className="flex flex-col gap-1">
+                                    <div className={`text-sm font-normal ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
+                                      {rec.title}
+                                    </div>
+                                    <div className="flex items-baseline gap-1">
+                                      <span className={`text-sm font-bold ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2A8703]'}`}>
+                                        {rec.impact}
+                                      </span>
+                                      <span className={`text-sm font-bold ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
+                                        {rec.message}
+                                      </span>
+                                    </div>
                                   </div>
-                                  <div className="flex items-baseline gap-1">
-                                    <span className={`text-sm font-bold ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2A8703]'}`}>
-                                      {rec.impact}
-                                    </span>
-                                    <span className={`text-sm font-bold ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
-                                      {rec.message}
-                                    </span>
-                                  </div>
+
+                                  {/* Affected ad groups */}
+                                  {rec.affectedAdGroups && (
+                                    <div className="flex flex-col gap-1">
+                                      <span className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
+                                        Ad group(s) affected
+                                      </span>
+                                      <div className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
+                                        {rec.affectedAdGroups.join(' · ')}
+                                      </div>
+                                    </div>
+                                  )}
+
+                                  {/* Ad group name for adgroup type */}
+                                  {rec.adGroup && (
+                                    <div className="flex flex-col gap-1">
+                                      <span className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
+                                        Ad group(s) affected
+                                      </span>
+                                      <div className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
+                                        {rec.adGroup}
+                                      </div>
+                                    </div>
+                                  )}
                                 </div>
 
-                                {/* Affected ad groups */}
-                                {rec.affectedAdGroups && (
-                                  <div className="flex flex-col gap-1">
-                                    <span className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
-                                      Ad group(s) affected
-                                    </span>
-                                    <div className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
-                                      {rec.affectedAdGroups.join(' · ')}
+                                {/* Card CTAs - Below ad groups */}
+                                <div className="flex flex-wrap items-center gap-4">
+                                  {newlyAppliedIds.has(rec.id) ? (
+                                    <div className="flex items-center gap-2">
+                                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                                        <circle cx="10" cy="10" r="10" fill="#2A8703"/>
+                                        <path d="M14.5 7L8.5 13L5.5 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                      </svg>
+                                      <span className="text-sm font-normal text-[#2A8703] whitespace-nowrap">Recommendation applied</span>
                                     </div>
-                                  </div>
-                                )}
-
-                                {/* Ad group name for adgroup type */}
-                                {rec.adGroup && (
-                                  <div className="flex flex-col gap-1">
-                                    <span className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
-                                      Ad group(s) affected
-                                    </span>
-                                    <div className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
-                                      {rec.adGroup}
-                                    </div>
-                                  </div>
-                                )}
-                              </div>
-
-                              {/* Card CTAs - Always enabled */}
-                              <div className="flex flex-wrap items-center gap-4 sm:ml-0 ml-9">
-                                {newlyAppliedIds.has(rec.id) ? (
-                                  <div className="flex items-center gap-2">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                                      <circle cx="10" cy="10" r="10" fill="#2A8703"/>
-                                      <path d="M14.5 7L8.5 13L5.5 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                    </svg>
-                                    <span className="text-sm font-normal text-[#2A8703] whitespace-nowrap">Recommendation applied</span>
-                                  </div>
-                                ) : (
-                                  <>
-                                    <Link
-                                      href="#"
-                                      className="text-sm whitespace-nowrap"
-                                      onClick={(e) => e.preventDefault()}
-                                    >
-                                      Dismiss
-                                    </Link>
-                                    <Button
-                                      variant="tertiary"
-                                      size="small"
-                                      onClick={(e) => {
-                                        e.preventDefault();
-                                        setViewingDetailId(rec.id);
-                                      }}
-                                    >
-                                      View details
-                                    </Button>
-                                    <Button
-                                      variant="secondary"
-                                      size="small"
-                                      onClick={(e) => {
-                                        e.preventDefault();
-                                        if (!isDisabled) {
-                                          setNewlyAppliedIds(prev => new Set([...prev, rec.id]));
-                                          toast.success('Recommendation applied successfully');
-                                        }
-                                      }}
-                                      disabled={isDisabled}
-                                    >
-                                      Apply
-                                    </Button>
-                                  </>
-                                )}
+                                  ) : (
+                                    <>
+                                      <Link
+                                        href="#"
+                                        className="text-sm whitespace-nowrap"
+                                        onClick={(e) => e.preventDefault()}
+                                      >
+                                        Dismiss
+                                      </Link>
+                                      <Button
+                                        variant="tertiary"
+                                        size="small"
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          setViewingDetailId(rec.id);
+                                        }}
+                                      >
+                                        View details
+                                      </Button>
+                                      <Button
+                                        variant="secondary"
+                                        size="small"
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          if (!isDisabled) {
+                                            setNewlyAppliedIds(prev => new Set([...prev, rec.id]));
+                                            toast.success('Recommendation applied successfully');
+                                          }
+                                        }}
+                                        disabled={isDisabled}
+                                      >
+                                        Apply
+                                      </Button>
+                                    </>
+                                  )}
+                                </div>
                               </div>
                             </div>
                           </div>
