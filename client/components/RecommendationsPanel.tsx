@@ -539,9 +539,15 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   };
 
   const filteredCampaigns = campaigns
-    .filter(c => !selectedGoalFilter || c.goal === selectedGoalFilter)
+    // Filter by campaign goal
+    .filter(campaign => {
+      if (selectedCampaignGoals.size === 0) return true;
+      return Array.from(selectedCampaignGoals).some(goal =>
+        goal.includes(campaign.goal)
+      );
+    })
+    // Filter items by recommendation type
     .map(campaign => {
-      // Filter campaign items by type if type filter is active
       if (selectedTypes.size > 0) {
         const filteredItems = campaign.items.filter(item =>
           item.recommendationType && selectedTypes.has(item.recommendationType)
