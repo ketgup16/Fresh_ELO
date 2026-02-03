@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Link } from "@/components/ui/Link";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Alert } from "@/components/ui/Alert";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { toast } from "sonner";
 
 interface RecommendationsPanelProps {
