@@ -732,7 +732,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         {selectedTab === "active" && (
           <div className="px-6 pt-4 flex items-center gap-3">
             <button
-              className="flex items-center justify-center gap-2 h-8 px-4 rounded-full text-base font-normal transition-all border-2 border-[#0053E2] bg-[#E5F0FF] text-[#2E2F32]"
+              className="flex items-center justify-center gap-2 h-8 px-4 rounded-full text-sm font-normal transition-all border-2 border-[#0053E2] bg-[#E5F0FF] text-[#2E2F32]"
             >
               Awareness campaign
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
@@ -740,7 +740,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               </svg>
             </button>
             <button
-              className="flex items-center justify-center gap-2 h-8 px-4 rounded-full text-base font-normal transition-all border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50"
+              className="flex items-center justify-center gap-2 h-8 px-4 rounded-full text-sm font-normal transition-all border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50"
             >
               Type
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
@@ -748,7 +748,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               </svg>
             </button>
             <button
-              className="flex items-center justify-center gap-2 h-8 px-4 rounded-full text-base font-normal transition-all border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50"
+              className="flex items-center justify-center gap-2 h-8 px-4 rounded-full text-sm font-normal transition-all border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50"
             >
               Campaign
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
@@ -861,12 +861,12 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   {/* Campaign Header - White Background */}
                   <div className="flex items-start justify-between p-4 bg-white">
                     <div className="flex flex-col gap-1">
-                      <div className="text-base text-[#2E2F32]">
+                      <div className="text-sm text-[#2E2F32]">
                         {campaign.name}
                       </div>
                       <div className="flex items-baseline gap-1">
-                        <span className="text-base font-bold text-[#2A8703]">{campaign.impact}</span>
-                        <span className="text-base text-[#2E2F32]">{campaign.description}</span>
+                        <span className="text-sm font-bold text-[#2A8703]">{campaign.impact}</span>
+                        <span className="text-sm text-[#2E2F32]">{campaign.description}</span>
                       </div>
                     </div>
                     <div className="text-sm text-[#74767C]">
@@ -906,14 +906,14 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                               {/* Content */}
                               <div className="flex-1 flex flex-col gap-2">
                                 <div className="flex flex-col gap-1">
-                                  <div className={`text-base font-normal ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
+                                  <div className={`text-sm font-normal ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
                                     {rec.title}
                                   </div>
                                   <div className="flex items-baseline gap-1">
-                                    <span className={`text-base font-bold ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2A8703]'}`}>
+                                    <span className={`text-sm font-bold ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2A8703]'}`}>
                                       {rec.impact}
                                     </span>
-                                    <span className={`text-base ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
+                                    <span className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
                                       {rec.message}
                                     </span>
                                   </div>
@@ -925,7 +925,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                     <span className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
                                       Ad group(s) affected
                                     </span>
-                                    <div className={`text-base ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
+                                    <div className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
                                       {rec.affectedAdGroups.join(' · ')}
                                     </div>
                                   </div>
@@ -937,7 +937,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                     <span className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
                                       Ad group(s) affected
                                     </span>
-                                    <div className={`text-base ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
+                                    <div className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
                                       {rec.adGroup}
                                     </div>
                                   </div>
