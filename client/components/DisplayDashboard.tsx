@@ -74,9 +74,9 @@ export default function DisplayDashboard() {
               </div>
             </div>
 
-            {/* Card 2 - Increase your engagement */}
-            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5]">
-              <div className="px-6 py-4 flex-1">
+            {/* Card 2 - Engagement */}
+            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] p-6">
+              <div className="flex flex-col gap-4 flex-1">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                   <h3 className="text-base font-bold text-[#2E2F32]">Increase your engagement</h3>
                   <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#EFEBF2] text-xs text-[#452358] whitespace-nowrap">
