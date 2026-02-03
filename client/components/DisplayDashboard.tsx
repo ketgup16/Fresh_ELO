@@ -49,7 +49,7 @@ export default function DisplayDashboard() {
                 <div className="flex flex-col gap-2">
                   <div className="text-[18px] leading-[24px]">
                     <span className="font-bold text-[#2A8703] text-[18px]">45k-48k</span>
-                    <span className="font-normal text-[#2E2F32] text-[18px]"> Potential increase in impressions</span>
+                    <span className="font-bold text-[#2E2F32] text-[18px]"> Potential increase in impressions</span>
                   </div>
                   <p className="text-base text-[#74767C]">
                     8 recommendations available
@@ -83,7 +83,7 @@ export default function DisplayDashboard() {
                 <div className="flex flex-col gap-2">
                   <div className="text-[18px] leading-[24px]">
                     <span className="font-bold text-[#2A8703] text-[18px]">0.8%-1.2%</span>
-                    <span className="font-normal text-[#2E2F32] text-[18px]"> Potential increase in clicks</span>
+                    <span className="font-bold text-[#2E2F32] text-[18px]"> Potential increase in clicks</span>
                   </div>
                   <p className="text-base text-[#74767C]">
                     14 recommendations available
@@ -117,7 +117,7 @@ export default function DisplayDashboard() {
                 <div className="flex flex-col gap-2">
                   <div className="text-[18px] leading-[24px]">
                     <span className="font-bold text-[#2A8703] text-[18px]">15%-18%</span>
-                    <span className="font-normal text-[#2E2F32] text-[18px]"> Potential increase in transactions</span>
+                    <span className="font-bold text-[#2E2F32] text-[18px]"> Potential increase in transactions</span>
                   </div>
                   <p className="text-base text-[#74767C]">
                     10 recommendations available
