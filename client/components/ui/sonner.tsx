@@ -24,7 +24,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           cancelButton:
             "group-[.toast]:bg-transparent group-[.toast]:text-white group-[.toast]:hover:bg-white/10",
           closeButton:
-            "group-[.toast]:bg-transparent group-[.toast]:border-0 group-[.toast]:text-white group-[.toast]:hover:bg-white/10 group-[.toast]:static group-[.toast]:ml-auto group-[.toast]:flex group-[.toast]:items-center group-[.toast]:justify-center group-[.toast]:self-center",
+            "group-[.toast]:bg-transparent group-[.toast]:border-0 group-[.toast]:text-white group-[.toast]:hover:bg-white/10 group-[.toast]:static group-[.toast]:ml-auto group-[.toast]:flex group-[.toast]:items-center group-[.toast]:justify-center group-[.toast]:self-center group-[.toast]:h-5 group-[.toast]:w-5 group-[.toast]:p-0 group-[.toast]:m-0",
           success:
             "bg-[#3C3E42] text-white border-0",
         },
