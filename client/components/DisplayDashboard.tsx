@@ -77,49 +77,32 @@ export default function DisplayDashboard() {
             {/* Card 2 - Engagement */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] p-6">
               <div className="flex flex-col gap-4 flex-1">
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                  <h3 className="text-base font-bold text-[#2E2F32]">Increase your engagement</h3>
-                  <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#EFEBF2] text-xs text-[#452358] whitespace-nowrap">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path fillRule="evenodd" clipRule="evenodd" d="M10.1071 3.21526L13.3214 0.000976562V2.67955H16L12.7857 5.89384H10.8606L8.33418 8.42422C8.12017 8.6285 7.78106 8.62062 7.57677 8.4066C7.39518 8.21636 7.38124 7.92729 7.53069 7.72192L7.59439 7.64919L10.1071 5.13251V3.21526ZM11.1786 3.68127L12.25 2.59412V3.75101H13.3927L12.3191 4.82244H11.1786V3.68127Z" fill="#452358"/>
-                      <path d="M13.6478 6.47411C13.7843 6.97173 13.8571 7.49566 13.8571 8.03661C13.8571 11.2911 11.2188 13.9295 7.96429 13.9295C4.70975 13.9295 2.07143 11.2911 2.07143 8.03661C2.07143 4.78207 4.70975 2.14375 7.96429 2.14375C8.47905 2.14375 8.97841 2.20975 9.45434 2.33376L10.3106 1.47752C9.57747 1.21525 8.78756 1.07239 7.96429 1.07239C4.11802 1.07239 1 4.19041 1 8.03669C1 11.883 4.11802 15.001 7.96429 15.001C11.8106 15.001 14.9286 11.883 14.9286 8.03669C14.9286 7.1881 14.7768 6.37496 14.4989 5.62294L13.6478 6.47411Z" fill="#452358"/>
-                      <path d="M8.80269 4.93283C8.5354 4.86081 8.25433 4.82239 7.96428 4.82239C6.18908 4.82239 4.75 6.26148 4.75 8.03668C4.75 9.81188 6.18908 11.251 7.96428 11.251C9.73949 11.251 11.1786 9.81188 11.1786 8.03668C11.1786 7.75086 11.1413 7.47375 11.0713 7.20996L10.1025 8.17871C10.0294 9.29593 9.1 10.1795 7.96429 10.1795C6.78082 10.1795 5.82143 9.22007 5.82143 8.0366C5.82143 6.89548 6.71338 5.96269 7.83813 5.8974L8.80269 4.93283Z" fill="#452358"/>
-                    </svg>
-                    Engagement
-                  </span>
-                </div>
-                <div className="mb-4">
-                  <div className="flex items-end gap-1 mb-2 flex-wrap">
-                    <span className="text-base font-bold text-[#2A8703]">0.8%-1.2%</span>
-                    <span className="text-base font-normal text-[#2E2F32]">Potential increase in clicks</span>
+                <h3 className="text-base text-[#2E2F32]">
+                  <span className="font-bold">Engagement:</span> Increase engagement
+                </h3>
+
+                <div className="flex flex-col gap-2">
+                  <div className="text-[28px] leading-[36px]">
+                    <span className="font-bold text-[#2A8703]">0.8%-1.2%</span>
+                    <span className="font-normal text-[#2E2F32]"> Potential increase in clicks</span>
                   </div>
-                  <p className="text-sm text-[#2E2F32]">
-                    You could see an increase in clicks by applying recommendations to campaigns and ad groups.
+                  <p className="text-base text-[#74767C]">
+                    14 recommendations available
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-4 sm:gap-8">
-                  <div className="flex-1 min-w-[80px]">
-                    <div className="text-xs text-[#515357] mb-1">Campaigns</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">4</div>
-                  </div>
-                  <div className="flex-1 min-w-[80px]">
-                    <div className="text-xs text-[#515357] mb-1">Ad groups</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">11</div>
-                  </div>
-                  <div className="flex-1 min-w-[100px]">
-                    <div className="text-xs text-[#515357] mb-1">Recommendations</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">14</div>
-                  </div>
-                </div>
               </div>
-              <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end h-[65px]">
+
+              <div className="border-t border-[#E3E4E5] -mx-6 my-4"></div>
+
+              <div className="flex items-center justify-end">
                 <Button
                   onClick={() => {
                     setCampaignGoal('Engagement');
                     setRecommendationsPanelOpen(true);
                   }}
                   variant="secondary"
-                  size="small"
+                  size="medium"
+                  className="rounded-full"
                 >
                   View recommendations
                 </Button>
