@@ -485,7 +485,7 @@ export default function SponsoredSearchDashboard() {
       {/* Top Campaigns */}
       <h2 className="text-[32px] font-bold text-[#2E2F32] leading-10 mt-0.5">Top campaigns</h2>
 
-      <div className="overflow-x-auto bg-white rounded-xl shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)]">
+      <div className="overflow-x-auto bg-white shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] -mx-6">
         <table className="w-full text-sm">
           <thead className="bg-[#F8F8F8] sticky top-0 z-10">
             <tr>
