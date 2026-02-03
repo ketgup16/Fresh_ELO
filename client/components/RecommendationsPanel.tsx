@@ -101,7 +101,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-1-2",
               type: "adgroup",
-              title: "Add lifestyle and fitness placements",
+              title: "Add categories",
               impact: "890K-1.2M",
               message: "Potential increase in impressions",
               adGroup: "Young Adults 18-24"
@@ -117,7 +117,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-1-4",
               type: "adgroup",
-              title: "Increase bid for premium placements",
+              title: "Increase budget",
               impact: "640K-780K",
               message: "Potential increase in impressions",
               adGroup: "Health Conscious"
@@ -125,7 +125,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-1-5",
               type: "adgroup",
-              title: "Extend campaign to high-performing locations",
+              title: "Extend campaign duration",
               impact: "520K-650K",
               message: "Potential increase in reach",
               adGroup: "Young Adults 18-24"
@@ -133,7 +133,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-1-6",
               type: "adgroup",
-              title: "Adjust bid strategy for better ROI",
+              title: "Increase budget",
               impact: "450K-580K",
               message: "Potential increase in conversions",
               adGroup: "Young Adults 18-24"
@@ -149,7 +149,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-1-8",
               type: "adgroup",
-              title: "Expand targeting to lookalike audiences",
+              title: "Add audience segments",
               impact: "590K-720K",
               message: "Potential increase in reach",
               adGroup: "Health Conscious"
@@ -194,7 +194,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-2-4",
               type: "adgroup",
-              title: "Target streaming and entertainment sites",
+              title: "Add categories",
               impact: "850K-1.0M",
               message: "Potential increase in impressions",
               adGroup: "Entertainment Seekers"
@@ -231,7 +231,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-3-3",
               type: "adgroup",
-              title: "Target live sports streaming platforms",
+              title: "Add keywords",
               impact: "650K-780K",
               message: "Potential increase in clicks",
               adGroup: "Sports Fans"
