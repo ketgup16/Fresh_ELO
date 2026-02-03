@@ -70,6 +70,11 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   });
   const [isResizing, setIsResizing] = useState(false);
 
+  // Filter states
+  const [selectedCampaignGoals, setSelectedCampaignGoals] = useState<Set<string>>(new Set(["Awareness campaign"]));
+  const [selectedTypes, setSelectedTypes] = useState<Set<string>>(new Set());
+  const [selectedGroupBy, setSelectedGroupBy] = useState<Set<string>>(new Set());
+
   // Initialize campaigns data
   useEffect(() => {
     if (isOpen) {
