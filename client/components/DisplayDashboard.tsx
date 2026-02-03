@@ -39,52 +39,35 @@ export default function DisplayDashboard() {
           {/* Conditional Content - Cards or Table */}
           {activeRecommendationTab === 'active' && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Card 1 - Maximize your reach */}
-            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5]">
-              <div className="px-6 py-4 flex-1">
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                  <h3 className="text-base font-bold text-[#2E2F32]">Maximize your reach</h3>
-                  <span className="inline-flex items-center gap-1 px-2 py-1 rounded-sm bg-[#E6F1FC] text-xs text-[#002E99] whitespace-nowrap">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M8 4.5C5.43756 4.5 3.74541 6.3442 2.82186 7.77447L2 7.22553C2.97848 5.71021 4.92776 3.5 8 3.5C11.0722 3.5 13.0215 5.71021 14 7.22553L13.1781 7.77447C12.2546 6.3442 10.5624 4.5 8 4.5Z" fill="#002E99"/>
-                      <path d="M8 11.5C5.43756 11.5 3.74541 9.6558 2.82186 8.22553L2 8.77447C2.97848 10.2898 4.92776 12.5 8 12.5C11.0722 12.5 13.0215 10.2898 14 8.77447L13.1781 8.22553C12.2546 9.6558 10.5624 11.5 8 11.5Z" fill="#002E99"/>
-                      <path d="M10.4582 8C10.4582 9.38071 9.35764 10.5 8.00006 10.5C6.64248 10.5 5.54195 9.38071 5.54195 8C5.54195 6.61929 6.64248 5.5 8.00006 5.5C9.35764 5.5 10.4582 6.61929 10.4582 8ZM9.47493 8C9.47493 7.17157 8.81461 6.5 8.00006 6.5C7.18552 6.5 6.52519 7.17157 6.52519 8C6.52519 8.82843 7.18552 9.5 8.00006 9.5C8.81461 9.5 9.47493 8.82843 9.47493 8Z" fill="#002E99"/>
-                    </svg>
-                    Awareness
-                  </span>
-                </div>
-                <div className="mb-4">
-                  <div className="flex items-end gap-1 mb-2 flex-wrap">
-                    <span className="text-base font-bold text-[#2A8703]">2.5M-3.2M</span>
-                    <span className="text-base font-normal text-[#2E2F32]">Potential increase in impressions</span>
+              {/* Card 1 - Awareness */}
+            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] p-6">
+              <div className="flex flex-col gap-4 flex-1">
+                <h3 className="text-base text-[#2E2F32]">
+                  <span className="font-bold">Awareness:</span> Increase reach and visibility
+                </h3>
+
+                <div className="flex flex-col gap-2">
+                  <div className="text-[28px] leading-[36px]">
+                    <span className="font-bold text-[#2A8703]">45k-48k</span>
+                    <span className="font-normal text-[#2E2F32]"> Potential increase in impressions</span>
                   </div>
-                  <p className="text-sm text-[#2E2F32]">
-                    You could see an increase in impressions by applying recommendations to campaigns and ad groups.
+                  <p className="text-base text-[#74767C]">
+                    8 recommendations available
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-4 sm:gap-8">
-                  <div className="flex-1 min-w-[80px]">
-                    <div className="text-xs text-[#515357] mb-1">Campaigns</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">7</div>
-                  </div>
-                  <div className="flex-1 min-w-[80px]">
-                    <div className="text-xs text-[#515357] mb-1">Ad groups</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">15</div>
-                  </div>
-                  <div className="flex-1 min-w-[100px]">
-                    <div className="text-xs text-[#515357] mb-1">Recommendations</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">18</div>
-                  </div>
-                </div>
               </div>
-              <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end h-[65px]">
+
+              <div className="border-t border-[#E3E4E5] -mx-6 my-4"></div>
+
+              <div className="flex items-center justify-end">
                 <Button
                   onClick={() => {
                     setCampaignGoal('Awareness');
                     setRecommendationsPanelOpen(true);
                   }}
                   variant="secondary"
-                  size="small"
+                  size="medium"
+                  className="rounded-full"
                 >
                   View recommendations
                 </Button>
