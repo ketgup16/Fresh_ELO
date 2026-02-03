@@ -200,7 +200,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Reallocate budget across ad groups",
               impact: "3.1M-3.6M",
               message: "Potential increase in impressions",
-              affectedAdGroups: ["Families", "Holiday Shoppers", "Gift Buyers", "Entertainment Seekers"]
+              affectedAdGroups: ["Families", "Holiday Shoppers", "Gift Buyers", "Entertainment Seekers"],
+              recommendationType: "Budget"
             },
             {
               id: "rec-2-2",
@@ -208,7 +209,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Increase budget",
               impact: "1.2M-1.5M",
               message: "Potential increase in brand recall",
-              adGroup: "Families"
+              adGroup: "Families",
+              recommendationType: "Budget"
             },
             {
               id: "rec-2-3",
@@ -216,7 +218,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Add video ad formats",
               impact: "980K-1.1M",
               message: "Potential increase in engagement",
-              adGroup: "Holiday Shoppers"
+              adGroup: "Holiday Shoppers",
+              recommendationType: "Creative"
             },
             {
               id: "rec-2-4",
@@ -224,7 +227,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Add categories",
               impact: "850K-1.0M",
               message: "Potential increase in impressions",
-              adGroup: "Entertainment Seekers"
+              adGroup: "Entertainment Seekers",
+              recommendationType: "Targeting"
             }
           ]
         },
