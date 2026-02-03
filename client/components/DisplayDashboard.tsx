@@ -125,31 +125,11 @@ export default function DisplayDashboard() {
                     Conversion
                   </span>
                 </div>
-                <div className="mb-4">
-                  <div className="flex items-end gap-1 mb-2 flex-wrap">
-                    <span className="text-base font-bold text-[#2A8703]">15%-18%</span>
-                    <span className="text-base font-normal text-[#2E2F32]">Potential increase in transactions</span>
-                  </div>
-                  <p className="text-sm text-[#2E2F32]">
-                    You could see an increase in impressions by applying recommendations to campaigns and ad groups.
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-4 sm:gap-8">
-                  <div className="flex-1 min-w-[80px]">
-                    <div className="text-xs text-[#515357] mb-1">Campaigns</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">3</div>
-                  </div>
-                  <div className="flex-1 min-w-[80px]">
-                    <div className="text-xs text-[#515357] mb-1">Ad groups</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">9</div>
-                  </div>
-                  <div className="flex-1 min-w-[100px]">
-                    <div className="text-xs text-[#515357] mb-1">Recommendations</div>
-                    <div className="text-sm font-bold text-[#2E2F32]">10</div>
-                  </div>
-                </div>
               </div>
-              <div className="border-t border-[#E3E4E5] -mx-6 px-6 py-4 flex items-center justify-end">
+
+              <div className="border-t border-[#E3E4E5] -mx-6 my-4"></div>
+
+              <div className="flex items-center justify-end">
                 <Button
                   onClick={() => {
                     setCampaignGoal('Conversion');
