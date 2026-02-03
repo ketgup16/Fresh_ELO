@@ -170,7 +170,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-2-1",
               type: "campaign",
-              title: "Add seasonal audience segments",
+              title: "Reallocate budget across ad groups",
               impact: "3.1M-3.6M",
               message: "Potential increase in impressions",
               affectedAdGroups: ["Families", "Holiday Shoppers", "Gift Buyers", "Entertainment Seekers"]
@@ -215,7 +215,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-3-1",
               type: "campaign",
-              title: "Allocate more budget to gaming platforms",
+              title: "Reallocate budget across ad groups",
               impact: "1.8M-2.1M",
               message: "Potential increase in clicks",
               affectedAdGroups: ["Gamers 18-35", "Sports Fans", "Esports Viewers"]
@@ -252,7 +252,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-4-1",
               type: "campaign",
-              title: "Add location-based targeting near stores",
+              title: "Reallocate budget across ad groups",
               impact: "420K-520K",
               message: "Potential increase in store visits",
               affectedAdGroups: ["On-the-Go Consumers", "Convenience Shoppers"]
