@@ -178,7 +178,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-2-2",
               type: "adgroup",
-              title: "Increase frequency cap during peak hours",
+              title: "Increase budget",
               impact: "1.2M-1.5M",
               message: "Potential increase in brand recall",
               adGroup: "Families"
@@ -268,7 +268,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
             {
               id: "rec-4-3",
               type: "adgroup",
-              title: "Optimize for mobile app installs",
+              title: "Add keywords",
               impact: "180K-220K",
               message: "Potential increase in conversions",
               adGroup: "Convenience Shoppers"
