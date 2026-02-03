@@ -21,6 +21,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           description: "group-[.toast]:text-white",
           icon: "group-[.toast]:flex group-[.toast]:items-center group-[.toast]:justify-center",
           content: "group-[.toast]:flex group-[.toast]:items-center",
+          title: "group-[.toast]:leading-5",
           actionButton:
             "group-[.toast]:bg-transparent group-[.toast]:text-white",
           cancelButton:
