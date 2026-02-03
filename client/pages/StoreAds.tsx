@@ -53,7 +53,7 @@ export default function StoreAds() {
               </p>
               <Button
                 variant="primary"
-                size="large"
+                size="medium"
                 onClick={handleCreateCampaign}
               >
                 Create campaign
