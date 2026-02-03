@@ -66,7 +66,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   const [newlyAppliedIds, setNewlyAppliedIds] = useState<Set<string>>(new Set());
   const [panelWidth, setPanelWidth] = useState(() => {
     const saved = localStorage.getItem('recommendationsPanelWidth');
-    return saved ? parseInt(saved, 10) : 800;
+    return saved ? parseInt(saved, 10) : 1069;
   });
   const [isResizing, setIsResizing] = useState(false);
 
@@ -393,7 +393,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
       if (!isResizing) return;
 
       const newWidth = window.innerWidth - e.clientX;
-      const maxWidth = Math.min(800, window.innerWidth - 40); // Leave 40px margin on small screens
+      const maxWidth = Math.min(1200, window.innerWidth - 40); // Leave 40px margin on small screens
       const clampedWidth = Math.min(Math.max(newWidth, 420), maxWidth);
       setPanelWidth(clampedWidth);
     };
@@ -425,7 +425,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
   // Adjust panel width on window resize
   useEffect(() => {
     const handleWindowResize = () => {
-      const maxWidth = Math.min(800, window.innerWidth - 40);
+      const maxWidth = Math.min(1200, window.innerWidth - 40);
       if (panelWidth > maxWidth) {
         setPanelWidth(maxWidth);
       }
