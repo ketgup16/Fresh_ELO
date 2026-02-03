@@ -14,16 +14,17 @@ const Toaster = ({ ...props }: ToasterProps) => {
       offset={24}
       toastOptions={{
         duration: 4000,
+        closeButton: true,
         classNames: {
           toast:
-            "group toast bg-[#3C3E42] text-white border-0 shadow-lg rounded-lg",
+            "group toast bg-[#3C3E42] text-white border-0 shadow-lg rounded-lg px-4 py-4 flex items-center gap-4",
           description: "group-[.toast]:text-white",
           actionButton:
             "group-[.toast]:bg-transparent group-[.toast]:text-white",
           cancelButton:
             "group-[.toast]:bg-transparent group-[.toast]:text-white group-[.toast]:hover:bg-white/10",
           closeButton:
-            "group-[.toast]:bg-transparent group-[.toast]:border-0 group-[.toast]:text-white group-[.toast]:hover:bg-white/10",
+            "group-[.toast]:bg-transparent group-[.toast]:border-0 group-[.toast]:text-white group-[.toast]:hover:bg-white/10 group-[.toast]:static group-[.toast]:ml-auto",
           success:
             "bg-[#3C3E42] text-white border-0",
         },
