@@ -67,7 +67,6 @@ export default function DisplayDashboard() {
                   }}
                   variant="secondary"
                   size="medium"
-                  className="rounded-full"
                 >
                   View recommendations
                 </Button>
@@ -102,7 +101,6 @@ export default function DisplayDashboard() {
                   }}
                   variant="secondary"
                   size="medium"
-                  className="rounded-full"
                 >
                   View recommendations
                 </Button>
@@ -137,7 +135,6 @@ export default function DisplayDashboard() {
                   }}
                   variant="secondary"
                   size="medium"
-                  className="rounded-full"
                 >
                   View recommendations
                 </Button>
