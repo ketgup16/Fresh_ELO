@@ -732,7 +732,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         {selectedTab === "active" && (
           <div className="px-6 pt-4 flex items-center gap-3">
             <button
-              className="flex items-center justify-center gap-2 h-10 px-4 rounded-full text-base font-normal transition-all border-2 border-[#0053E2] bg-[#E5F0FF] text-[#2E2F32]"
+              className="flex items-center justify-center gap-2 h-8 px-4 rounded-full text-base font-normal transition-all border-2 border-[#0053E2] bg-[#E5F0FF] text-[#2E2F32]"
             >
               Awareness campaign
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
@@ -740,7 +740,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               </svg>
             </button>
             <button
-              className="flex items-center justify-center gap-2 h-10 px-4 rounded-full text-base font-normal transition-all border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50"
+              className="flex items-center justify-center gap-2 h-8 px-4 rounded-full text-base font-normal transition-all border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50"
             >
               Type
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
@@ -748,7 +748,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               </svg>
             </button>
             <button
-              className="flex items-center justify-center gap-2 h-10 px-4 rounded-full text-base font-normal transition-all border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50"
+              className="flex items-center justify-center gap-2 h-8 px-4 rounded-full text-base font-normal transition-all border border-[#74767C] bg-white text-[#2E2F32] hover:bg-gray-50"
             >
               Campaign
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
