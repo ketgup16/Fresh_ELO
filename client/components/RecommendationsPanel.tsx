@@ -582,7 +582,9 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   Recommendations
                 </button>
                 <span>/</span>
-                <span>Recommendation details</span>
+                <span className="truncate">
+                  {getCurrentRecommendation()?.title || "Recommendation details"}
+                </span>
               </div>
             </div>
 
