@@ -20,6 +20,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
             "group toast bg-[#3C3E42] text-white border-0 shadow-lg rounded-lg px-4 py-4 flex items-center gap-4",
           description: "group-[.toast]:text-white",
           icon: "group-[.toast]:flex group-[.toast]:items-center group-[.toast]:justify-center",
+          content: "group-[.toast]:flex group-[.toast]:items-center",
           actionButton:
             "group-[.toast]:bg-transparent group-[.toast]:text-white",
           cancelButton:
