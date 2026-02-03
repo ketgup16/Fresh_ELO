@@ -861,7 +861,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   {/* Campaign Header - White Background */}
                   <div className="flex items-start justify-between p-4 bg-white">
                     <div className="flex flex-col gap-1">
-                      <div className="text-base text-[#74767C]">
+                      <div className="text-base text-[#2E2F32]">
                         {campaign.name}
                       </div>
                       <div className="flex items-baseline gap-1">
@@ -906,7 +906,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                               {/* Content */}
                               <div className="flex-1 flex flex-col gap-2">
                                 <div className="flex flex-col gap-1">
-                                  <div className={`text-base font-bold ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
+                                  <div className={`text-base font-normal ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
                                     {rec.title}
                                   </div>
                                   <div className="flex items-baseline gap-1">
