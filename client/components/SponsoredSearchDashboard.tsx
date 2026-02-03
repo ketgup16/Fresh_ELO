@@ -489,7 +489,7 @@ export default function SponsoredSearchDashboard() {
         <table className="w-full text-sm table-fixed">
           <thead className="bg-[#F8F8F8] sticky top-0 z-10">
             <tr>
-              <th className="p-4 pl-10 pr-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[40%]">
+              <th className="py-4 pl-6 pr-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[40%]">
                 <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('name')}>
                   Campaign
                   {renderSortIcon('name')}
@@ -519,7 +519,7 @@ export default function SponsoredSearchDashboard() {
                   {renderSortIcon('cvr')}
                 </div>
               </th>
-              <th className="p-4 pr-10 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[12%]">
+              <th className="py-4 pl-4 pr-6 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[12%]">
                 <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('spend')}>
                   Spend
                   {renderSortIcon('spend')}
@@ -530,7 +530,7 @@ export default function SponsoredSearchDashboard() {
           <tbody>
             {campaigns.map((campaign, index) => (
               <tr key={index} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
-                <td className="p-4 pl-10">
+                <td className="py-4 pl-6 pr-4">
                   <div className="underline hover:no-underline cursor-pointer">
                     {campaign.name}
                   </div>
@@ -539,7 +539,7 @@ export default function SponsoredSearchDashboard() {
                 <td className="p-4 text-[#2E2F32]">{campaign.cpc}</td>
                 <td className="p-4 text-[#2E2F32]">{campaign.ctr}</td>
                 <td className="p-4 text-[#2E2F32]">{campaign.cvr}</td>
-                <td className="p-4 pr-10 text-[#2E2F32]">${campaign.spend.toFixed(2)}</td>
+                <td className="py-4 pl-4 pr-6 text-[#2E2F32]">${campaign.spend.toFixed(2)}</td>
               </tr>
             ))}
           </tbody>
