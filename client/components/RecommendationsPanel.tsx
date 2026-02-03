@@ -249,7 +249,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Reallocate budget across ad groups",
               impact: "1.8M-2.1M",
               message: "Potential increase in clicks",
-              affectedAdGroups: ["Gamers 18-35", "Sports Fans", "Esports Viewers"]
+              affectedAdGroups: ["Gamers 18-35", "Sports Fans", "Esports Viewers"],
+              recommendationType: "Budget"
             },
             {
               id: "rec-3-2",
@@ -257,7 +258,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Add interactive ad formats",
               impact: "720K-850K",
               message: "Potential increase in engagement rate",
-              adGroup: "Gamers 18-35"
+              adGroup: "Gamers 18-35",
+              recommendationType: "Creative"
             },
             {
               id: "rec-3-3",
@@ -265,7 +267,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Add keywords",
               impact: "650K-780K",
               message: "Potential increase in clicks",
-              adGroup: "Sports Fans"
+              adGroup: "Sports Fans",
+              recommendationType: "Targeting"
             }
           ]
         },
@@ -286,7 +289,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Reallocate budget across ad groups",
               impact: "420K-520K",
               message: "Potential increase in store visits",
-              affectedAdGroups: ["On-the-Go Consumers", "Convenience Shoppers"]
+              affectedAdGroups: ["On-the-Go Consumers", "Convenience Shoppers"],
+              recommendationType: "Budget"
             },
             {
               id: "rec-4-2",
@@ -294,7 +298,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Enable dynamic product ads with offers",
               impact: "280K-340K",
               message: "Potential increase in click-through rate",
-              adGroup: "On-the-Go Consumers"
+              adGroup: "On-the-Go Consumers",
+              recommendationType: "Creative"
             },
             {
               id: "rec-4-3",
@@ -302,7 +307,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Add keywords",
               impact: "180K-220K",
               message: "Potential increase in conversions",
-              adGroup: "Convenience Shoppers"
+              adGroup: "Convenience Shoppers",
+              recommendationType: "Targeting"
             }
           ]
         }
