@@ -1000,7 +1000,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                               selectedRecommendations.has(rec.id) ? 'border border-black' : ''
                             }`}
                           >
-                            <div className="flex flex-col sm:flex-row items-start gap-3 p-4">
+                            <div className="flex items-start gap-3 p-4">
                               {/* Checkbox */}
                               <div className="flex items-start pt-0.5">
                                 <Checkbox
