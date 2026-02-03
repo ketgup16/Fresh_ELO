@@ -1037,7 +1037,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                   {/* Affected ad groups */}
                                   {rec.affectedAdGroups && (
                                     <div className="flex flex-col gap-1">
-                                      <span className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
+                                      <span className={`text-xs ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
                                         Ad group(s) affected
                                       </span>
                                       <div className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
@@ -1049,7 +1049,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                   {/* Ad group name for adgroup type */}
                                   {rec.adGroup && (
                                     <div className="flex flex-col gap-1">
-                                      <span className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
+                                      <span className={`text-xs ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
                                         Ad group(s) affected
                                       </span>
                                       <div className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#74767C]'}`}>
