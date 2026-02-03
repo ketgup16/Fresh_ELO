@@ -519,7 +519,7 @@ export default function SponsoredSearchDashboard() {
                   {renderSortIcon('cvr')}
                 </div>
               </th>
-              <th className="p-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[12%]">
+              <th className="p-4 pr-10 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[12%]">
                 <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('spend')}>
                   Spend
                   {renderSortIcon('spend')}
