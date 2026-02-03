@@ -149,14 +149,15 @@ export default function DisplayDashboard() {
                   </div>
                 </div>
               </div>
-              <div className="border-t border-[#E3E4E5] px-6 py-4 flex items-center justify-end h-[65px]">
+              <div className="border-t border-[#E3E4E5] -mx-6 px-6 py-4 flex items-center justify-end">
                 <Button
                   onClick={() => {
                     setCampaignGoal('Conversion');
                     setRecommendationsPanelOpen(true);
                   }}
                   variant="secondary"
-                  size="small"
+                  size="medium"
+                  className="rounded-full"
                 >
                   View recommendations
                 </Button>
