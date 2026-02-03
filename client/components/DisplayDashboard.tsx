@@ -77,7 +77,7 @@ export default function DisplayDashboard() {
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] p-6">
               <div className="flex flex-col gap-4 flex-1">
                 <h3 className="text-base text-[#2E2F32]">
-                  <span className="font-bold">Engagement:</span> Increase engagement
+                  <span className="font-bold">Engagement:</span> Drive more clicks and interactions
                 </h3>
 
                 <div className="flex flex-col gap-2">
@@ -111,7 +111,7 @@ export default function DisplayDashboard() {
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] p-6">
               <div className="flex flex-col gap-4 flex-1">
                 <h3 className="text-base text-[#2E2F32]">
-                  <span className="font-bold">Conversion:</span> Drive more conversions
+                  <span className="font-bold">Conversion:</span> Increase sales and ROAS
                 </h3>
 
                 <div className="flex flex-col gap-2">
