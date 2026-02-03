@@ -22,9 +22,9 @@ export default function SponsoredSearch() {
 
 
       {/* Main Layout */}
-      <div className="flex h-[calc(100vh-54px)]">
+      <div className="flex flex-1 overflow-hidden">
         <SponsoredSearchSidebar />
-        <main className="flex-1 h-auto overflow-y-auto">
+        <main className="flex-1 overflow-y-auto">
           <SponsoredSearchDashboard />
         </main>
       </div>
