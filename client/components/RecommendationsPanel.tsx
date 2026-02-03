@@ -1015,9 +1015,10 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                 />
                               </div>
 
-                              {/* Content */}
-                              <div className="flex-1 flex flex-col gap-3 min-w-0">
-                                <div className="flex flex-col gap-2">
+                              {/* Content and CTAs wrapper */}
+                              <div className="flex-1 flex flex-col lg:flex-row items-start gap-3 min-w-0">
+                                {/* Content */}
+                                <div className="flex-1 flex flex-col gap-2 min-w-0">
                                   <div className="flex flex-col gap-1">
                                     <div className={`text-sm font-normal ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
                                       {rec.title}
@@ -1057,7 +1058,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                   )}
                                 </div>
 
-                                {/* Card CTAs - Below ad groups */}
+                                {/* Card CTAs - Right side on wide, below content on narrow */}
                                 <div className="flex flex-wrap items-center gap-4">
                                   {newlyAppliedIds.has(rec.id) ? (
                                     <div className="flex items-center gap-2">
