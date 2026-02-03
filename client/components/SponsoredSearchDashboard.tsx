@@ -535,10 +535,10 @@ export default function SponsoredSearchDashboard() {
                     {campaign.name}
                   </div>
                 </td>
-                <td className="p-4 text-[#2E2F32]">{campaign.roas}</td>
-                <td className="p-4 text-[#2E2F32]">{campaign.cpc}</td>
-                <td className="p-4 text-[#2E2F32]">{campaign.ctr}</td>
-                <td className="p-4 text-[#2E2F32]">{campaign.cvr}</td>
+                <td className="py-4 px-4 text-[#2E2F32]">{campaign.roas}</td>
+                <td className="py-4 px-4 text-[#2E2F32]">{campaign.cpc}</td>
+                <td className="py-4 px-4 text-[#2E2F32]">{campaign.ctr}</td>
+                <td className="py-4 px-4 text-[#2E2F32]">{campaign.cvr}</td>
                 <td className="py-4 pl-4 pr-6 text-[#2E2F32]">${campaign.spend.toFixed(2)}</td>
               </tr>
             ))}
