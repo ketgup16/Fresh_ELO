@@ -699,8 +699,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         </div>
 
         {/* Tabs */}
-        <div className="px-6 border-b border-[#E3E4E5]">
-          <div className="flex gap-0">
+        <div className="px-6 border-b border-[#E3E4E5] overflow-x-auto">
+          <div className="flex gap-0 min-w-max">
             <button
               onClick={() => setSelectedTab("active")}
               className={`px-3 pb-2 pt-4 text-sm relative ${
@@ -736,7 +736,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
         {/* Filter Dropdowns - Only show on active tab */}
         {selectedTab === "active" && (
-          <div className="px-6 pt-4 flex items-center gap-3">
+          <div className="px-6 pt-4 overflow-x-auto">
+            <div className="flex items-center gap-3 min-w-max">
             {/* Campaign Goal Filter */}
             <Popover>
               <PopoverTrigger asChild>
@@ -865,6 +866,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 </div>
               </PopoverContent>
             </Popover>
+            </div>
           </div>
         )}
 
@@ -969,17 +971,17 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               return (
                 <div key={campaign.id} className="rounded-lg border border-[#E3E4E5] overflow-hidden">
                   {/* Campaign Header - White Background */}
-                  <div className="flex items-start justify-between p-4 bg-white">
-                    <div className="flex flex-col gap-1">
+                  <div className="flex items-start justify-between gap-4 p-4 bg-white flex-wrap">
+                    <div className="flex flex-col gap-1 flex-1 min-w-0">
                       <div className="text-sm text-[#2E2F32]">
                         {campaign.name}
                       </div>
-                      <div className="flex items-baseline gap-1">
+                      <div className="flex items-baseline gap-1 flex-wrap">
                         <span className="text-sm font-bold text-[#2A8703]">{campaign.impact}</span>
                         <span className="text-sm font-bold text-[#2E2F32]">{campaign.description}</span>
                       </div>
                     </div>
-                    <div className="text-sm text-[#74767C]">
+                    <div className="text-sm text-[#74767C] whitespace-nowrap">
                       {campaign.recommendations} recommendation{campaign.recommendations !== 1 ? 's' : ''}
                     </div>
                   </div>
@@ -998,7 +1000,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                               selectedRecommendations.has(rec.id) ? 'border border-black' : ''
                             }`}
                           >
-                            <div className="flex items-start gap-3 p-4">
+                            <div className="flex flex-col sm:flex-row items-start gap-3 p-4">
                               {/* Checkbox */}
                               <div className="flex items-start pt-0.5">
                                 <Checkbox
@@ -1014,7 +1016,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                               </div>
 
                               {/* Content */}
-                              <div className="flex-1 flex flex-col gap-2">
+                              <div className="flex-1 flex flex-col gap-2 min-w-0">
                                 <div className="flex flex-col gap-1">
                                   <div className={`text-sm font-normal ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
                                     {rec.title}
@@ -1055,7 +1057,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                               </div>
 
                               {/* Card CTAs - Always enabled */}
-                              <div className="flex items-center gap-4">
+                              <div className="flex flex-wrap items-center gap-4 sm:ml-0 ml-9">
                                 {newlyAppliedIds.has(rec.id) ? (
                                   <div className="flex items-center gap-2">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
