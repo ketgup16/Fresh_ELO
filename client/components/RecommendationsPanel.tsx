@@ -83,6 +83,16 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
     }
   }, [campaignGoal, isOpen]);
 
+  // Helper to find current recommendation
+  const getCurrentRecommendation = () => {
+    if (!viewingDetailId) return null;
+    for (const campaign of campaigns) {
+      const rec = campaign.items.find(item => item.id === viewingDetailId);
+      if (rec) return rec;
+    }
+    return null;
+  };
+
   // Initialize campaigns data
   useEffect(() => {
     if (isOpen) {
