@@ -866,7 +866,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                       </div>
                       <div className="flex items-baseline gap-1">
                         <span className="text-sm font-bold text-[#2A8703]">{campaign.impact}</span>
-                        <span className="text-sm text-[#2E2F32]">{campaign.description}</span>
+                        <span className="text-sm font-bold text-[#2E2F32]">{campaign.description}</span>
                       </div>
                     </div>
                     <div className="text-sm text-[#74767C]">
@@ -913,7 +913,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                     <span className={`text-sm font-bold ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2A8703]'}`}>
                                       {rec.impact}
                                     </span>
-                                    <span className={`text-sm ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
+                                    <span className={`text-sm font-bold ${isDisabled ? 'text-[#C7C8CB]' : 'text-[#2E2F32]'}`}>
                                       {rec.message}
                                     </span>
                                   </div>
