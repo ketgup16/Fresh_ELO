@@ -40,7 +40,7 @@ export default function DisplayDashboard() {
           {activeRecommendationTab === 'active' && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Card 1 - Awareness */}
-            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] p-6">
+            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] py-4 px-6">
               <div className="flex flex-col gap-4 flex-1">
                 <h3 className="text-base text-[#2E2F32]">
                   <span className="font-bold">Awareness:</span> Increase reach and visibility
@@ -74,7 +74,7 @@ export default function DisplayDashboard() {
             </div>
 
             {/* Card 2 - Engagement */}
-            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] p-6">
+            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] py-4 px-6">
               <div className="flex flex-col gap-4 flex-1">
                 <h3 className="text-base text-[#2E2F32]">
                   <span className="font-bold">Engagement:</span> Drive more clicks and interactions
@@ -108,7 +108,7 @@ export default function DisplayDashboard() {
             </div>
 
             {/* Card 3 - Conversion */}
-            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] p-6">
+            <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] py-4 px-6">
               <div className="flex flex-col gap-4 flex-1">
                 <h3 className="text-base text-[#2E2F32]">
                   <span className="font-bold">Conversion:</span> Increase sales and ROAS
