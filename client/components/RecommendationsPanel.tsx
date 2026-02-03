@@ -974,7 +974,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                       View details
                                     </Button>
                                     <Button
-                                      variant="primary"
+                                      variant="secondary"
                                       size="small"
                                       onClick={(e) => {
                                         e.preventDefault();
