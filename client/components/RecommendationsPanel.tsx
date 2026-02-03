@@ -964,7 +964,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                       Dismiss
                                     </Link>
                                     <Button
-                                      variant="secondary"
+                                      variant="tertiary"
                                       size="small"
                                       onClick={(e) => {
                                         e.preventDefault();
