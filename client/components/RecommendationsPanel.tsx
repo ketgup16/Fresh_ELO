@@ -5,6 +5,7 @@ import { Link } from "@/components/ui/Link";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Alert } from "@/components/ui/Alert";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from "@/components/ui/table";
 import { toast } from "sonner";
 
 interface RecommendationsPanelProps {
@@ -874,32 +875,32 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
         <div className="flex-1 overflow-y-auto px-6 pt-4 pb-6">
           {selectedTab === "applied" ? (
             /* Applied Recommendations Table */
-            <div className="bg-white rounded-lg border border-[#E3E4E5]">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-[#E3E4E5]">
-                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Recommendation</th>
-                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Type</th>
-                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Date applied</th>
-                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Impact</th>
-                  </tr>
-                </thead>
-                <tbody>
+            <div className="bg-white rounded-lg border border-[#E3E4E5] overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-b border-[#E3E4E5]">
+                    <TableHead className="text-left py-3 text-sm font-normal text-[#2E2F32]">Recommendation</TableHead>
+                    <TableHead className="text-left py-3 text-sm font-normal text-[#2E2F32]">Type</TableHead>
+                    <TableHead className="text-left py-3 text-sm font-normal text-[#2E2F32]">Date applied</TableHead>
+                    <TableHead className="text-left py-3 text-sm font-normal text-[#2E2F32]">Impact</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
                   {appliedRecommendations.map((rec) => (
-                    <tr key={rec.id} className="border-b border-[#E3E4E5] last:border-b-0">
-                      <td className="px-4 py-3">
+                    <TableRow key={rec.id} className="border-b border-[#E3E4E5] last:border-b-0">
+                      <TableCell className="py-3">
                         <div className="flex flex-col gap-1">
                           <div className="text-sm text-[#2E2F32]">{rec.title}</div>
                           <div className="text-sm text-[#74767C]">{rec.campaignName}</div>
                         </div>
-                      </td>
-                      <td className="px-4 py-3">
+                      </TableCell>
+                      <TableCell className="py-3">
                         <div className="text-sm text-[#2E2F32]">{rec.type}</div>
-                      </td>
-                      <td className="px-4 py-3">
+                      </TableCell>
+                      <TableCell className="py-3">
                         <div className="text-sm text-[#2E2F32]">{rec.dateApplied}</div>
-                      </td>
-                      <td className="px-4 py-3">
+                      </TableCell>
+                      <TableCell className="py-3">
                         <div className="flex items-center gap-2">
                           <span className="text-sm text-[#2E2F32]">{rec.impactType}</span>
                           <span className="flex items-center gap-1 text-sm font-bold text-[#2A8703]">
@@ -907,37 +908,37 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                             {rec.impactValue}
                           </span>
                         </div>
-                      </td>
-                    </tr>
+                      </TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
+                </TableBody>
+              </Table>
             </div>
           ) : selectedTab === "dismissed" ? (
             /* Dismissed Recommendations Table */
-            <div className="bg-white rounded-lg border border-[#E3E4E5]">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-[#E3E4E5]">
-                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Recommendation</th>
-                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Type</th>
-                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Impact</th>
-                    <th className="text-left px-4 py-3 text-sm font-normal text-[#2E2F32]">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
+            <div className="bg-white rounded-lg border border-[#E3E4E5] overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-b border-[#E3E4E5]">
+                    <TableHead className="text-left py-3 text-sm font-normal text-[#2E2F32]">Recommendation</TableHead>
+                    <TableHead className="text-left py-3 text-sm font-normal text-[#2E2F32]">Type</TableHead>
+                    <TableHead className="text-left py-3 text-sm font-normal text-[#2E2F32]">Impact</TableHead>
+                    <TableHead className="text-left py-3 text-sm font-normal text-[#2E2F32]">Action</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
                   {dismissedRecommendations.map((rec) => (
-                    <tr key={rec.id} className="border-b border-[#E3E4E5] last:border-b-0">
-                      <td className="px-4 py-3">
+                    <TableRow key={rec.id} className="border-b border-[#E3E4E5] last:border-b-0">
+                      <TableCell className="py-3">
                         <div className="flex flex-col gap-1">
                           <div className="text-sm text-[#2E2F32]">{rec.title}</div>
                           <div className="text-sm text-[#74767C]">{rec.campaignName}</div>
                         </div>
-                      </td>
-                      <td className="px-4 py-3">
+                      </TableCell>
+                      <TableCell className="py-3">
                         <div className="text-sm text-[#2E2F32]">{rec.type}</div>
-                      </td>
-                      <td className="px-4 py-3">
+                      </TableCell>
+                      <TableCell className="py-3">
                         <div className="flex items-center gap-2">
                           <span className="text-sm text-[#2E2F32]">{rec.impactType}</span>
                           <span className="flex items-center gap-1 text-sm font-bold text-[#2A8703]">
@@ -945,17 +946,17 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                             {rec.impactValue}
                           </span>
                         </div>
-                      </td>
-                      <td className="px-4 py-3">
+                      </TableCell>
+                      <TableCell className="py-3">
                         <button className="flex items-center gap-1 text-sm underline hover:no-underline">
                           <RotateCcw className="w-4 h-4" />
                           Restore
                         </button>
-                      </td>
-                    </tr>
+                      </TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
+                </TableBody>
+              </Table>
             </div>
           ) : (
             <div className="flex flex-col gap-6">
