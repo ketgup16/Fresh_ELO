@@ -115,7 +115,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Reallocate budget across ad groups",
               impact: "2.4M-2.8M",
               message: "Potential increase in impressions",
-              affectedAdGroups: ["Young Adults 18-24", "Fitness Enthusiasts", "Health Conscious"]
+              affectedAdGroups: ["Young Adults 18-24", "Fitness Enthusiasts", "Health Conscious"],
+              recommendationType: "Budget"
             },
             {
               id: "rec-1-2",
@@ -123,7 +124,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Add categories",
               impact: "890K-1.2M",
               message: "Potential increase in impressions",
-              adGroup: "Young Adults 18-24"
+              adGroup: "Young Adults 18-24",
+              recommendationType: "Targeting"
             },
             {
               id: "rec-1-3",
@@ -131,7 +133,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Optimize creative for mobile devices",
               impact: "750K-920K",
               message: "Potential increase in engagement",
-              adGroup: "Fitness Enthusiasts"
+              adGroup: "Fitness Enthusiasts",
+              recommendationType: "Creative"
             },
             {
               id: "rec-1-4",
@@ -139,7 +142,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Increase budget",
               impact: "640K-780K",
               message: "Potential increase in impressions",
-              adGroup: "Health Conscious"
+              adGroup: "Health Conscious",
+              recommendationType: "Budget"
             },
             {
               id: "rec-1-5",
@@ -147,7 +151,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Extend campaign duration",
               impact: "520K-650K",
               message: "Potential increase in reach",
-              adGroup: "Young Adults 18-24"
+              adGroup: "Young Adults 18-24",
+              recommendationType: "Date"
             },
             {
               id: "rec-1-6",
@@ -155,7 +160,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Increase budget",
               impact: "450K-580K",
               message: "Potential increase in conversions",
-              adGroup: "Young Adults 18-24"
+              adGroup: "Young Adults 18-24",
+              recommendationType: "Budget"
             },
             {
               id: "rec-1-7",
@@ -163,7 +169,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Add video ad format",
               impact: "680K-830K",
               message: "Potential increase in engagement",
-              adGroup: "Fitness Enthusiasts"
+              adGroup: "Fitness Enthusiasts",
+              recommendationType: "Creative"
             },
             {
               id: "rec-1-8",
@@ -171,7 +178,8 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               title: "Add audience segments",
               impact: "590K-720K",
               message: "Potential increase in reach",
-              adGroup: "Health Conscious"
+              adGroup: "Health Conscious",
+              recommendationType: "Targeting"
             }
           ]
         },
