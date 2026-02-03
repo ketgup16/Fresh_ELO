@@ -20,9 +20,9 @@ export function MartyProvider({ children }: MartyProviderProps) {
   const [isMinimized, setIsMinimized] = useState<boolean>(() => {
     try {
       const saved = localStorage.getItem('marty-minimized');
-      return saved ? JSON.parse(saved) : false;
+      return saved ? JSON.parse(saved) : true;
     } catch {
-      return false;
+      return true;
     }
   });
 
