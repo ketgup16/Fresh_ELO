@@ -489,7 +489,7 @@ export default function SponsoredSearchDashboard() {
         <table className="w-full text-sm table-fixed">
           <thead className="bg-[#F8F8F8] sticky top-0 z-10">
             <tr>
-              <th className="p-4 pl-10 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[40%]">
+              <th className="p-4 pl-10 pr-4 text-left font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-[40%]">
                 <div className="flex items-center gap-1 cursor-pointer whitespace-nowrap" onClick={() => handleSort('name')}>
                   Campaign
                   {renderSortIcon('name')}
