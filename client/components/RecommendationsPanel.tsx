@@ -861,31 +861,17 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   {/* Campaign Header - White Background */}
                   <div className="flex items-start justify-between p-4 bg-white">
                     <div className="flex flex-col gap-1">
-                      <Link
-                        href="#"
-                        className="text-sm"
-                        onClick={(e) => e.preventDefault()}
-                      >
+                      <div className="text-base text-[#74767C]">
                         {campaign.name}
-                      </Link>
-                      <div className="flex items-center gap-2 text-sm text-[#2E2F32]">
-                        <span>{campaign.adGroups} ad groups · {campaign.recommendations} recommendations</span>
                       </div>
-                      <div className="flex items-end gap-1">
-                        <span className="text-sm font-bold text-[#2A8703]">{campaign.impact}</span>
-                        <span className="text-sm font-bold text-[#2E2F32]">{campaign.description}</span>
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-base font-bold text-[#2A8703]">{campaign.impact}</span>
+                        <span className="text-base text-[#2E2F32]">{campaign.description}</span>
                       </div>
                     </div>
-                    <button
-                      onClick={() => handleToggleCampaignHidden(campaign.id)}
-                     
-                      className="text-sm underline hover:no-underline flex items-center gap-1"
-                    >
-                      Hide
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform ${campaign.isHidden ? 'rotate-180' : ''}`}>
-                        <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </button>
+                    <div className="text-sm text-[#74767C]">
+                      {campaign.recommendations} recommendation{campaign.recommendations !== 1 ? 's' : ''}
+                    </div>
                   </div>
 
                   {/* Recommendations List - Gray Background */}
