@@ -1357,20 +1357,6 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                       >
                                         View details
                                       </Button>
-                                      <Button
-                                        variant="secondary"
-                                        size="small"
-                                        onClick={(e) => {
-                                          e.preventDefault();
-                                          if (!isDisabled) {
-                                            setNewlyAppliedIds(prev => new Set([...prev, rec.id]));
-                                            toast.success('Recommendation applied successfully');
-                                          }
-                                        }}
-                                        disabled={isDisabled}
-                                      >
-                                        Apply
-                                      </Button>
                                     </>
                                   )}
                                 </div>
