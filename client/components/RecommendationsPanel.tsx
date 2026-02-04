@@ -503,35 +503,38 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
     setSelectedRecommendations(new Set());
   };
 
-  // Helper function to check if a recommendation conflicts with selected ones
+  // Helper function to check if a recommendation conflicts with selected or applied ones
   const getConflictingRecommendation = (rec: RecommendationItem, campaignId: string): { isConflicted: boolean; conflictingRecTitle?: string } => {
-    // Get all selected recommendations from the same campaign
+    // Get all selected and applied recommendations from the same campaign
     const currentCampaign = campaigns.find(c => c.id === campaignId);
     if (!currentCampaign) return { isConflicted: false };
 
-    const selectedRecsInCampaign = currentCampaign.items.filter(r => selectedRecommendations.has(r.id));
+    // Check both selected and applied recommendations
+    const conflictingRecsInCampaign = currentCampaign.items.filter(r =>
+      selectedRecommendations.has(r.id) || newlyAppliedIds.has(r.id)
+    );
 
-    for (const selectedRec of selectedRecsInCampaign) {
+    for (const conflictingRec of conflictingRecsInCampaign) {
       // Skip if comparing with itself
-      if (selectedRec.id === rec.id) continue;
+      if (conflictingRec.id === rec.id) continue;
 
       // If both are ad-group level and from the same ad group, they conflict
-      if (selectedRec.type === 'adgroup' && rec.type === 'adgroup' &&
-          selectedRec.adGroup && rec.adGroup && selectedRec.adGroup === rec.adGroup) {
-        return { isConflicted: true, conflictingRecTitle: selectedRec.title };
+      if (conflictingRec.type === 'adgroup' && rec.type === 'adgroup' &&
+          conflictingRec.adGroup && rec.adGroup && conflictingRec.adGroup === rec.adGroup) {
+        return { isConflicted: true, conflictingRecTitle: conflictingRec.title };
       }
 
-      // If selected recommendation is campaign-level (affects multiple ad groups)
-      if (selectedRec.type === 'campaign' && selectedRec.affectedAdGroups && selectedRec.affectedAdGroups.length > 0) {
+      // If conflicting recommendation is campaign-level (affects multiple ad groups)
+      if (conflictingRec.type === 'campaign' && conflictingRec.affectedAdGroups && conflictingRec.affectedAdGroups.length > 0) {
         // If current rec is ad group level, it conflicts
         if (rec.type === 'adgroup') {
-          return { isConflicted: true, conflictingRecTitle: selectedRec.title };
+          return { isConflicted: true, conflictingRecTitle: conflictingRec.title };
         }
       }
 
-      // If selected recommendation is ad group level and current one is campaign level
-      if (selectedRec.type === 'adgroup' && rec.type === 'campaign' && rec.affectedAdGroups) {
-        return { isConflicted: true, conflictingRecTitle: selectedRec.title };
+      // If conflicting recommendation is ad group level and current one is campaign level
+      if (conflictingRec.type === 'adgroup' && rec.type === 'campaign' && rec.affectedAdGroups) {
+        return { isConflicted: true, conflictingRecTitle: conflictingRec.title };
       }
     }
 
