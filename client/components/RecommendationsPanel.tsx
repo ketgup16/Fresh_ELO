@@ -1045,14 +1045,34 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               </div>
 
               {filteredCampaigns.map((campaign) => {
+              // Helper function to parse impact value and convert to number for sorting
+              const parseImpact = (impact: string): number => {
+                // Extract the maximum value from range like "2.4M-2.8M" or "890K-1.2M"
+                const parts = impact.split('-');
+                const maxValue = parts[parts.length - 1].trim();
+
+                // Convert to number (M = million, K = thousand)
+                if (maxValue.endsWith('M')) {
+                  return parseFloat(maxValue.replace('M', '')) * 1000000;
+                } else if (maxValue.endsWith('K')) {
+                  return parseFloat(maxValue.replace('K', '')) * 1000;
+                }
+                return 0;
+              };
+
+              // Sort all items by impact (highest to lowest)
+              const sortedItems = [...campaign.items].sort((a, b) => {
+                return parseImpact(b.impact) - parseImpact(a.impact);
+              });
+
               // When not expanded, limit to 2 recommendations per ad group (for single ad group recs only)
               let visibleItems: RecommendationItem[];
               if (campaign.isExpanded) {
-                visibleItems = campaign.items;
+                visibleItems = sortedItems;
               } else {
                 // Separate campaign-level recs from ad-group-level recs
-                const campaignLevelRecs = campaign.items.filter(item => item.affectedAdGroups);
-                const adGroupLevelRecs = campaign.items.filter(item => item.adGroup);
+                const campaignLevelRecs = sortedItems.filter(item => item.affectedAdGroups);
+                const adGroupLevelRecs = sortedItems.filter(item => item.adGroup);
 
                 // Group ad-group-level recs by ad group and take max 2 from each
                 const adGroupMap = new Map<string, RecommendationItem[]>();
@@ -1075,7 +1095,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                 visibleItems = [...campaignLevelRecs, ...limitedAdGroupRecs];
               }
 
-              const hiddenCount = campaign.items.length - visibleItems.length;
+              const hiddenCount = sortedItems.length - visibleItems.length;
 
               return (
                 <div key={campaign.id} className="rounded-lg border border-[#E3E4E5] overflow-hidden">
