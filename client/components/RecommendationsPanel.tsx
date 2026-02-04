@@ -666,37 +666,166 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   </Link>
                 </div>
 
-                {/* Recommended keywords and Current - Combined container */}
-                <div className="bg-[#F8F8F8] border border-[#E3E4E5] rounded">
-                  {/* Recommended keywords */}
-                  <div className="p-4 border-b border-[#E3E4E5] bg-white">
-                    <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Recommended keywords</h4>
-                    <p className="text-sm text-[#2E2F32] mb-2 leading-relaxed">
-                      Coca-Cola freestyle machine, Coke vending machine, Coca-Cola sponsorship deals, Coke tasting event, Coca-Cola heritage tour, Coke glassware, Coca-Cola recipe pairing, Coke float dessert, Coca-Cola ice cream soda, Coke recipe hacks, Coca-Cola themed cafe, Coke and popcorn combo, Coca-Cola holiday truck tour, Coke art installation, Coca-Cola fan club, Coke TikTok challenge, Coca-Cola merch giveaway
-                    </p>
-                    <button className="text-sm underline hover:no-underline">
-                      View more
-                    </button>
-                  </div>
+                {/* Dynamic content based on recommendation type */}
+                {(() => {
+                  const currentRec = getCurrentRecommendation();
+                  const recType = currentRec?.recommendationType;
 
-                  {/* Current */}
-                  <div>
-                    <button className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-100 transition-colors">
-                      <h4 className="text-sm font-bold text-[#2E2F32]">Current</h4>
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transform rotate-0">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M3.14645 5.39645C3.32669 5.2162 3.6103 5.20234 3.80645 5.35485L3.85355 5.39645L8 9.5425L12.1464 5.39645C12.3267 5.2162 12.6103 5.20234 12.8064 5.35485L12.8536 5.39645C13.0338 5.57669 13.0477 5.8603 12.8951 6.05645L12.8536 6.10355L8.35355 10.6036C8.17331 10.7838 7.8897 10.7977 7.69355 10.6451L7.64645 10.6036L3.14645 6.10355C2.95118 5.90829 2.95118 5.59171 3.14645 5.39645Z" fill="#2E2F32"/>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
+                  if (recType === 'Targeting') {
+                    return (
+                      <>
+                        <div className="bg-[#F8F8F8] border border-[#E3E4E5] rounded">
+                          <div className="p-4 border-b border-[#E3E4E5] bg-white">
+                            <h4 className="text-sm font-bold text-[#2E2F32] mb-2">
+                              {currentRec?.title.includes('keyword') ? 'Recommended keywords' : 'Recommended targeting'}
+                            </h4>
+                            <p className="text-sm text-[#2E2F32] mb-2 leading-relaxed">
+                              {currentRec?.title.includes('keyword')
+                                ? 'Coca-Cola freestyle machine, Coke vending machine, Coca-Cola sponsorship deals, Coke tasting event, Coca-Cola heritage tour, Coke glassware, Coca-Cola recipe pairing, Coke float dessert, Coca-Cola ice cream soda, Coke recipe hacks, Coca-Cola themed cafe, Coke and popcorn combo, Coca-Cola holiday truck tour, Coke art installation, Coca-Cola fan club, Coke TikTok challenge, Coca-Cola merch giveaway'
+                                : 'Health-conscious shoppers, Fitness enthusiasts, Zero-sugar beverage consumers, Active lifestyle segment, Weight-conscious millennials'
+                              }
+                            </p>
+                            <button className="text-sm underline hover:no-underline">View more</button>
+                          </div>
+                          <div>
+                            <button className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-100 transition-colors">
+                              <h4 className="text-sm font-bold text-[#2E2F32]">Current</h4>
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transform rotate-0">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M3.14645 5.39645C3.32669 5.2162 3.6103 5.20234 3.80645 5.35485L3.85355 5.39645L8 9.5425L12.1464 5.39645C12.3267 5.2162 12.6103 5.20234 12.8064 5.35485L12.8536 5.39645C13.0338 5.57669 13.0477 5.8603 12.8951 6.05645L12.8536 6.10355L8.35355 10.6036C8.17331 10.7838 7.8897 10.7977 7.69355 10.6451L7.64645 10.6036L3.14645 6.10355C2.95118 5.90829 2.95118 5.59171 3.14645 5.39645Z" fill="#2E2F32"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Why we recommend this</h4>
+                          <p className="text-sm text-[#2E2F32]">
+                            Based on your campaign performance, we've identified that expanding your targeting could significantly increase your reach. Similar campaigns saw an average 12% increase in impressions while maintaining conversion quality. This recommendation uses machine learning to find users with similar characteristics to your best-performing audience segments.
+                          </p>
+                        </div>
+                      </>
+                    );
+                  }
 
-                {/* Why we recommend this */}
-                <div>
-                  <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Why we recommend this</h4>
-                  <p className="text-sm text-[#2E2F32]">
-                    Based on your campaign performance, we've identified that adding keywords could significantly increase your reach. Similar campaigns saw an average 12% increase in impressions while maintaining conversion quality. This recommendation uses machine learning to find users with similar characteristics to your best-performing audience segments.
-                  </p>
-                </div>
+                  if (recType === 'Budget') {
+                    return (
+                      <>
+                        <div className="bg-[#F8F8F8] border border-[#E3E4E5] rounded">
+                          <div className="p-4 border-b border-[#E3E4E5] bg-white">
+                            <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Recommended budget allocation</h4>
+                            <div className="space-y-2">
+                              {currentRec?.affectedAdGroups?.map((adGroup, idx) => (
+                                <div key={idx} className="flex justify-between text-sm text-[#2E2F32]">
+                                  <span>{adGroup}</span>
+                                  <span className="font-bold">+{15 + idx * 5}%</span>
+                                </div>
+                              )) || (
+                                <div className="flex justify-between text-sm text-[#2E2F32]">
+                                  <span>{currentRec?.adGroup}</span>
+                                  <span className="font-bold">+20%</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          <div>
+                            <button className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-100 transition-colors">
+                              <h4 className="text-sm font-bold text-[#2E2F32]">Current allocation</h4>
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transform rotate-0">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M3.14645 5.39645C3.32669 5.2162 3.6103 5.20234 3.80645 5.35485L3.85355 5.39645L8 9.5425L12.1464 5.39645C12.3267 5.2162 12.6103 5.20234 12.8064 5.35485L12.8536 5.39645C13.0338 5.57669 13.0477 5.8603 12.8951 6.05645L12.8536 6.10355L8.35355 10.6036C8.17331 10.7838 7.8897 10.7977 7.69355 10.6451L7.64645 10.6036L3.14645 6.10355C2.95118 5.90829 2.95118 5.59171 3.14645 5.39645Z" fill="#2E2F32"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Why we recommend this</h4>
+                          <p className="text-sm text-[#2E2F32]">
+                            Our analysis shows that reallocating your budget across ad groups will maximize your campaign performance. Based on historical data and current performance trends, the recommended distribution will help you achieve better results with the same total budget.
+                          </p>
+                        </div>
+                      </>
+                    );
+                  }
+
+                  if (recType === 'Creative') {
+                    return (
+                      <>
+                        <div className="bg-[#F8F8F8] border border-[#E3E4E5] rounded">
+                          <div className="p-4 border-b border-[#E3E4E5] bg-white">
+                            <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Recommended creative formats</h4>
+                            <p className="text-sm text-[#2E2F32]">
+                              {currentRec?.title.includes('video')
+                                ? 'Video ads (15s, 30s), Interactive video, Shoppable video formats'
+                                : 'Mobile-optimized carousel ads, Vertical video (9:16), Interactive story ads'
+                              }
+                            </p>
+                          </div>
+                          <div>
+                            <button className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-100 transition-colors">
+                              <h4 className="text-sm font-bold text-[#2E2F32]">Current formats</h4>
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transform rotate-0">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M3.14645 5.39645C3.32669 5.2162 3.6103 5.20234 3.80645 5.35485L3.85355 5.39645L8 9.5425L12.1464 5.39645C12.3267 5.2162 12.6103 5.20234 12.8064 5.35485L12.8536 5.39645C13.0338 5.57669 13.0477 5.8603 12.8951 6.05645L12.8536 6.10355L8.35355 10.6036C8.17331 10.7838 7.8897 10.7977 7.69355 10.6451L7.64645 10.6036L3.14645 6.10355C2.95118 5.90829 2.95118 5.59171 3.14645 5.39645Z" fill="#2E2F32"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Why we recommend this</h4>
+                          <p className="text-sm text-[#2E2F32]">
+                            Adding new creative formats can significantly boost engagement. Our data shows that similar campaigns using these formats saw a 25% increase in engagement rates and better ad recall among target audiences.
+                          </p>
+                        </div>
+                      </>
+                    );
+                  }
+
+                  if (recType === 'Date') {
+                    return (
+                      <>
+                        <div className="bg-[#F8F8F8] border border-[#E3E4E5] rounded">
+                          <div className="p-4 border-b border-[#E3E4E5] bg-white">
+                            <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Recommended timeline</h4>
+                            <p className="text-sm text-[#2E2F32]">
+                              Extend campaign duration by 2 weeks to capture additional high-intent shoppers during peak season
+                            </p>
+                          </div>
+                          <div>
+                            <button className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-100 transition-colors">
+                              <h4 className="text-sm font-bold text-[#2E2F32]">Current timeline</h4>
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transform rotate-0">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M3.14645 5.39645C3.32669 5.2162 3.6103 5.20234 3.80645 5.35485L3.85355 5.39645L8 9.5425L12.1464 5.39645C12.3267 5.2162 12.6103 5.20234 12.8064 5.35485L12.8536 5.39645C13.0338 5.57669 13.0477 5.8603 12.8951 6.05645L12.8536 6.10355L8.35355 10.6036C8.17331 10.7838 7.8897 10.7977 7.69355 10.6451L7.64645 10.6036L3.14645 6.10355C2.95118 5.90829 2.95118 5.59171 3.14645 5.39645Z" fill="#2E2F32"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Why we recommend this</h4>
+                          <p className="text-sm text-[#2E2F32]">
+                            Extending your campaign duration allows you to capture additional opportunities during high-traffic periods. Our analysis shows this adjustment will maximize your return on ad spend while maintaining strong performance metrics.
+                          </p>
+                        </div>
+                      </>
+                    );
+                  }
+
+                  // Default fallback
+                  return (
+                    <>
+                      <div className="bg-[#F8F8F8] border border-[#E3E4E5] rounded">
+                        <div className="p-4 border-b border-[#E3E4E5] bg-white">
+                          <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Recommendation details</h4>
+                          <p className="text-sm text-[#2E2F32]">
+                            Review the details below to understand the impact of this recommendation on your campaign.
+                          </p>
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-bold text-[#2E2F32] mb-2">Why we recommend this</h4>
+                        <p className="text-sm text-[#2E2F32]">
+                          This recommendation is based on your campaign performance data and industry best practices. Implementing this change can help improve your overall campaign results.
+                        </p>
+                      </div>
+                    </>
+                  );
+                })()}
               </div>
             </div>
 
