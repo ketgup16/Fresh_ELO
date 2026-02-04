@@ -1045,8 +1045,37 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
               </div>
 
               {filteredCampaigns.map((campaign) => {
-              const visibleItems = campaign.isExpanded ? campaign.items : campaign.items.slice(0, 2);
-              const hiddenCount = campaign.items.length - 2;
+              // When not expanded, limit to 2 recommendations per ad group (for single ad group recs only)
+              let visibleItems: RecommendationItem[];
+              if (campaign.isExpanded) {
+                visibleItems = campaign.items;
+              } else {
+                // Separate campaign-level recs from ad-group-level recs
+                const campaignLevelRecs = campaign.items.filter(item => item.affectedAdGroups);
+                const adGroupLevelRecs = campaign.items.filter(item => item.adGroup);
+
+                // Group ad-group-level recs by ad group and take max 2 from each
+                const adGroupMap = new Map<string, RecommendationItem[]>();
+                adGroupLevelRecs.forEach(rec => {
+                  if (rec.adGroup) {
+                    if (!adGroupMap.has(rec.adGroup)) {
+                      adGroupMap.set(rec.adGroup, []);
+                    }
+                    const group = adGroupMap.get(rec.adGroup)!;
+                    if (group.length < 2) {
+                      group.push(rec);
+                    }
+                  }
+                });
+
+                // Flatten the grouped recommendations
+                const limitedAdGroupRecs = Array.from(adGroupMap.values()).flat();
+
+                // Combine campaign-level and limited ad-group-level recs
+                visibleItems = [...campaignLevelRecs, ...limitedAdGroupRecs];
+              }
+
+              const hiddenCount = campaign.items.length - visibleItems.length;
 
               return (
                 <div key={campaign.id} className="rounded-lg border border-[#E3E4E5] overflow-hidden">
