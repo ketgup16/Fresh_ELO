@@ -1345,8 +1345,15 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                     <>
                                       <Link
                                         href="#"
-                                        className="text-sm whitespace-nowrap"
-                                        onClick={(e) => e.preventDefault()}
+                                        className={`text-sm whitespace-nowrap ${
+                                          isDisabled ? 'text-[#C7C8CB] cursor-not-allowed pointer-events-none' : ''
+                                        }`}
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          if (!isDisabled) {
+                                            // Handle dismiss logic here
+                                          }
+                                        }}
                                       >
                                         Dismiss
                                       </Link>
