@@ -68,7 +68,7 @@ export default function DisplayDashboard() {
                   variant="secondary"
                   size="small"
                 >
-                  Review recommendations
+                  Review
                 </Button>
               </div>
             </div>
@@ -102,7 +102,7 @@ export default function DisplayDashboard() {
                   variant="secondary"
                   size="small"
                 >
-                  Review recommendations
+                  Review
                 </Button>
               </div>
             </div>
@@ -136,7 +136,7 @@ export default function DisplayDashboard() {
                   variant="secondary"
                   size="small"
                 >
-                  Review recommendations
+                  Review
                 </Button>
               </div>
             </div>
