@@ -89,9 +89,15 @@ export default function DisplayDashboard() {
             {/* Card 2 - Engagement */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] py-4 px-6">
               <div className="flex flex-col gap-4 flex-1">
-                <h3 className="text-base text-[#2E2F32]">
-                  <span className="font-bold">Engagement:</span> Drive more clicks and interactions
-                </h3>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#E9F2FF] rounded">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 8.66667L9.33333 13.3333L5.33333 9.33333M2 7.33333L6.66667 12L14 4.66667" stroke="#0071DC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span className="text-base font-bold text-[#0071DC]">Engagement</span>
+                  </div>
+                  <span className="text-base text-[#2E2F32]">Drive more clicks and interactions</span>
+                </div>
 
                 <div className="flex flex-col gap-2">
                   <div className="text-[18px] leading-[24px]">
@@ -123,9 +129,16 @@ export default function DisplayDashboard() {
             {/* Card 3 - Conversion */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] py-4 px-6">
               <div className="flex flex-col gap-4 flex-1">
-                <h3 className="text-base text-[#2E2F32]">
-                  <span className="font-bold">Conversion:</span> Increase sales and ROAS
-                </h3>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#E9F2FF] rounded">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.33333 6L8 2L12.6667 6M4 12.6667V6.66667L8 3.33333L12 6.66667V12.6667H4Z" stroke="#0071DC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M8 12.6667V8.66667H10.6667V12.6667" stroke="#0071DC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span className="text-base font-bold text-[#0071DC]">Conversion</span>
+                  </div>
+                  <span className="text-base text-[#2E2F32]">Increase sales and ROAS</span>
+                </div>
 
                 <div className="flex flex-col gap-2">
                   <div className="text-[18px] leading-[24px]">
