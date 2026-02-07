@@ -90,11 +90,14 @@ export default function DisplayDashboard() {
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] py-4 px-6">
               <div className="flex flex-col gap-4 flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#E9F2FF] rounded">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#F3E5F5] rounded">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M14 8.66667L9.33333 13.3333L5.33333 9.33333M2 7.33333L6.66667 12L14 4.66667" stroke="#0071DC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx="8" cy="8" r="6" stroke="#6F2C7A" strokeWidth="1.5"/>
+                      <circle cx="8" cy="8" r="4" stroke="#6F2C7A" strokeWidth="1.5"/>
+                      <circle cx="8" cy="8" r="2" fill="#6F2C7A"/>
+                      <path d="M12.5 3.5L10 6M12.5 3.5L14 2M12.5 3.5L11 2" stroke="#6F2C7A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <span className="text-base font-bold text-[#0071DC]">Engagement</span>
+                    <span className="text-base font-bold text-[#6F2C7A]">Engagement</span>
                   </div>
                   <span className="text-base text-[#2E2F32]">Drive more clicks and interactions</span>
                 </div>
