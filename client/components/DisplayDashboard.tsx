@@ -48,9 +48,16 @@ export default function DisplayDashboard() {
               {/* Card 1 - Awareness */}
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] py-4 px-6">
               <div className="flex flex-col gap-4 flex-1">
-                <h3 className="text-base text-[#2E2F32]">
-                  <span className="font-bold">Awareness:</span> Increase reach and visibility
-                </h3>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#E9F2FF] rounded">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 3C4.5 3 1.73 5.11 1 8C1.73 10.89 4.5 13 8 13C11.5 13 14.27 10.89 15 8C14.27 5.11 11.5 3 8 3Z" stroke="#0071DC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 7C6 8.10457 6.89543 10 8 10Z" stroke="#0071DC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span className="text-base font-bold text-[#0071DC]">Awareness</span>
+                  </div>
+                  <span className="text-base text-[#2E2F32]">Increase reach and visibility</span>
+                </div>
 
                 <div className="flex flex-col gap-2">
                   <div className="text-[18px] leading-[24px]">
