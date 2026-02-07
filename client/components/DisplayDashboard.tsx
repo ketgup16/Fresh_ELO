@@ -32,7 +32,12 @@ export default function DisplayDashboard() {
         {/* Recommendations */}
         <div className="flex flex-col gap-4 bg-white rounded-xl shadow-[0_-1px_2px_0_rgba(0,0,0,0.10),0_1px_2px_1px_rgba(0,0,0,0.15)] p-6">
           <div className="flex flex-col gap-1">
-            <h2 className="text-lg font-bold text-[#2E2F32]">Recommendations</h2>
+            <div className="flex items-center gap-2">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.25 2.5L4.375 11.25H10L8.75 17.5L15.625 8.75H10L11.25 2.5Z" fill="#B428CD" stroke="#B428CD" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <h2 className="text-lg font-bold text-[#2E2F32]">Recommendations</h2>
+            </div>
             <p className="text-sm text-[#2E2F32]">Discover opportunities to improve your campaign performance.</p>
           </div>
 
