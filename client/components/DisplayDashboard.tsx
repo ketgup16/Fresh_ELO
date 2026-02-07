@@ -133,12 +133,12 @@ export default function DisplayDashboard() {
             <div className="flex flex-col bg-white rounded-lg border border-[#E3E4E5] py-4 px-6">
               <div className="flex flex-col gap-4 flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#E9F2FF] rounded">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFF4E6] rounded">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M3.33333 6L8 2L12.6667 6M4 12.6667V6.66667L8 3.33333L12 6.66667V12.6667H4Z" stroke="#0071DC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M8 12.6667V8.66667H10.6667V12.6667" stroke="#0071DC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx="8" cy="8" r="6.5" stroke="#C15A28" strokeWidth="1.5"/>
+                      <path d="M8 4V12M8 4C8.66667 4 10 4.4 10 5.6C10 6.8 8.66667 7.2 8 7.2M8 4C7.33333 4 6 4.4 6 5.6C6 6.8 7.33333 7.2 8 7.2M8 12C7.33333 12 6 11.6 6 10.4C6 9.2 7.33333 8.8 8 8.8M8 12C8.66667 12 10 11.6 10 10.4C10 9.2 8.66667 8.8 8 8.8M8 7.2V8.8" stroke="#C15A28" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <span className="text-base font-bold text-[#0071DC]">Conversion</span>
+                    <span className="text-base font-bold text-[#C15A28]">Conversion</span>
                   </div>
                   <span className="text-base text-[#2E2F32]">Increase sales and ROAS</span>
                 </div>
