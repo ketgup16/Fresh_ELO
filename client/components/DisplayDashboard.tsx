@@ -437,6 +437,9 @@ export default function DisplayDashboard() {
             </svg>
             Oct 1, 2025 - Oct 31, 2025
           </Button>
+          <Button variant="primary" size="small">
+            Apply
+          </Button>
         </div>
 
         {/* Metrics Ribbon */}
