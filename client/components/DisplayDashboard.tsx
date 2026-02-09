@@ -437,9 +437,13 @@ export default function DisplayDashboard() {
             </svg>
             Oct 1, 2025 - Oct 31, 2025
           </Button>
-          <Button variant="primary" size="small">
-            Apply
-          </Button>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#E7F4E4] border border-[#2A8703] rounded">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15Z" stroke="#2A8703" strokeWidth="1.5"/>
+              <path d="M5.5 8L7.5 10L10.5 6" stroke="#2A8703" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span className="text-sm font-normal text-[#2E2F32]">Filters applied successfully</span>
+          </div>
         </div>
 
         {/* Metrics Ribbon */}
