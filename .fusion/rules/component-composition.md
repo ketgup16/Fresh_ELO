@@ -38,8 +38,8 @@ Pages (Specific instances)
 Located in `client/components/ui/`:
 
 **Action Components:**
-- `Button.tsx` - All button variants
-- `icon-button.tsx` - Icon-only buttons
+- `Button.tsx` - All button variants (primary, secondary, tertiary, destructive)
+- `IconButton.tsx` - Icon-only buttons (ghost, primary, secondary, tertiary, destructive)
 - `checkbox.tsx` - Checkboxes
 - `switch.tsx` - Toggle switches
 - `radio-group.tsx` - Radio buttons
