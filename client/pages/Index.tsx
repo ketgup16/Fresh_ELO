@@ -12,6 +12,7 @@ import { MenuItem } from "../components/ui/MenuItem";
 import { MastHead } from "../components/ui/MastHead";
 import { Link } from "../components/ui/Link";
 import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
+import { Breadcrumb, BreadcrumbItem } from "../components/ui/Breadcrumb";
 
 interface Campaign {
   id: string;
@@ -3095,15 +3096,15 @@ export default function Index() {
             {showDetailView ? (
               <>
                 {/* Breadcrumb */}
-                <div className="flex items-center gap-2 mb-5">
-                  <button
-                    onClick={backToList}
-                    className="text-sm underline hover:no-underline"
-                  >
-                    Recommendations
-                  </button>
-                  <span className="text-sm text-[#515357]">/</span>
-                  <span className="text-sm text-[#2E2F32]">Recommendation details</span>
+                <div className="mb-5">
+                  <Breadcrumb aria-label="Breadcrumb navigation">
+                    <BreadcrumbItem onClick={backToList}>
+                      Recommendations
+                    </BreadcrumbItem>
+                    <BreadcrumbItem isCurrent>
+                      Recommendation details
+                    </BreadcrumbItem>
+                  </Breadcrumb>
                 </div>
 
                 {/* Recommendation Detail */}
