@@ -1,6 +1,7 @@
 import { X, ArrowUp, RotateCcw } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
+import { Breadcrumb, BreadcrumbItem } from "@/components/ui/Breadcrumb";
 import { Link } from "@/components/ui/Link";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Alert } from "@/components/ui/Alert";
@@ -616,18 +617,14 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
 
             {/* Breadcrumb */}
             <div className="px-6 pt-4 pb-4">
-              <div className="flex items-center gap-2 text-sm text-[#2E2F32]">
-                <button
-                  onClick={() => setViewingDetailId(null)}
-                  className="underline hover:no-underline"
-                >
+              <Breadcrumb aria-label="Breadcrumb navigation">
+                <BreadcrumbItem onClick={() => setViewingDetailId(null)}>
                   Recommendations
-                </button>
-                <span>/</span>
-                <span className="truncate">
+                </BreadcrumbItem>
+                <BreadcrumbItem isCurrent>
                   {getCurrentRecommendation()?.title || "Recommendation details"}
-                </span>
-              </div>
+                </BreadcrumbItem>
+              </Breadcrumb>
             </div>
 
             {/* Detail Content */}
