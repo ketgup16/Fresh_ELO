@@ -68,25 +68,150 @@ Don't use Breadcrumbs when:
 - Prefer component defaults (Breadcrumb should be token-wired for color, typography, spacing).
 - Only use tokens for layout around the Breadcrumb (page spacing), not for restyling the Breadcrumb.
 
-## React usage (example)
-Update import path after wiring in `guidelines/components/overview-components.md`.
+## React usage
 
+### Import
 ```tsx
-import * as React from "react";
-import { Breadcrumb } from "REPLACE_ME_COMPONENT_IMPORT_PATH";
+import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
+```
+
+### Basic Example (with onClick handlers)
+```tsx
+import * as React from 'react';
+import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
 
 export function BreadcrumbExample() {
+  const handleBackToList = () => {
+    // Navigate back to list
+  };
+
   return (
-    <Breadcrumb
-      // Adapt to your API shape:
-      items={[
-        { label: "Home", href: "/" },
-        { label: "Category", href: "/category" },
-        { label: "Subcategory", href: "/category/subcategory" },
-        { label: "Current page" }, // current location (typically not a link)
-      ]}
-    />
+    <Breadcrumb aria-label="Breadcrumb navigation">
+      <BreadcrumbItem onClick={handleBackToList}>
+        Recommendations
+      </BreadcrumbItem>
+      <BreadcrumbItem isCurrent>
+        Recommendation details
+      </BreadcrumbItem>
+    </Breadcrumb>
   );
 }
 ```
+
+### With href Links
+```tsx
+<Breadcrumb aria-label="Product navigation">
+  <BreadcrumbItem href="/">Home</BreadcrumbItem>
+  <BreadcrumbItem href="/products">Products</BreadcrumbItem>
+  <BreadcrumbItem href="/products/electronics">Electronics</BreadcrumbItem>
+  <BreadcrumbItem isCurrent>Smartphones</BreadcrumbItem>
+</Breadcrumb>
+```
+
+### Custom Separator
+```tsx
+<Breadcrumb separator="›" aria-label="Navigation">
+  <BreadcrumbItem href="/">Home</BreadcrumbItem>
+  <BreadcrumbItem href="/products">Products</BreadcrumbItem>
+  <BreadcrumbItem isCurrent>Details</BreadcrumbItem>
+</Breadcrumb>
+```
+
+## API Reference
+
+### Breadcrumb Props
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | required | BreadcrumbItem components |
+| `separator` | `React.ReactNode` | `"/"` | Separator between items |
+| `aria-label` | `string` | `"Breadcrumb"` | Accessible label for navigation |
+| `UNSAFE_className` | `string` | - | Escape hatch for custom styling |
+
+### BreadcrumbItem Props
+
+#### As Link (with href)
+| Prop | Type | Description |
+|------|------|-------------|
+| `children` | `React.ReactNode` | Link text |
+| `href` | `string` | URL for the link |
+| `UNSAFE_className` | `string` | Escape hatch for custom styling |
+
+#### As Button (with onClick)
+| Prop | Type | Description |
+|------|------|-------------|
+| `children` | `React.ReactNode` | Button text |
+| `onClick` | `(e: React.MouseEvent) => void` | Click handler |
+| `UNSAFE_className` | `string` | Escape hatch for custom styling |
+
+#### As Current Page
+| Prop | Type | Description |
+|------|------|-------------|
+| `children` | `React.ReactNode` | Current page text |
+| `isCurrent` | `true` | Marks as current page |
+| `UNSAFE_className` | `string` | Escape hatch for custom styling |
+
+## Migration from Manual Implementation
+
+### Before (Manual)
+```tsx
+<div className="flex items-center gap-2 mb-5">
+  <button onClick={backToList} className="text-sm underline hover:no-underline">
+    Recommendations
+  </button>
+  <span className="text-sm text-[#515357]">/</span>
+  <span className="text-sm text-[#2E2F32]">Recommendation details</span>
+</div>
+```
+
+### After (LD 3.5 Breadcrumb)
+```tsx
+<Breadcrumb aria-label="Breadcrumb navigation">
+  <BreadcrumbItem onClick={backToList}>
+    Recommendations
+  </BreadcrumbItem>
+  <BreadcrumbItem isCurrent>
+    Recommendation details
+  </BreadcrumbItem>
+</Breadcrumb>
+```
+
+## Design Tokens Used
+
+The Breadcrumb component uses the following LD 3.5 semantic design tokens:
+
+**Typography:**
+- `--ld-semantic-font-family-sans`: Font family (Everyday Sans UI)
+- `--ld-semantic-font-body-small-size`: 14px
+- `--ld-semantic-font-body-small-lineheight`: Line height
+- `--ld-semantic-font-body-small-weight-default`: 400 (normal)
+
+**Colors:**
+- `--ld-semantic-color-text`: #2e2f32 (link and current page text)
+- `--ld-semantic-color-text-subtle`: #74767c (separator color)
+- `--ld-semantic-color-action-focus-outline`: #0071DC (focus indicator)
+
+**Interaction States:**
+- Default: Underlined links
+- Hover: Underline removed
+- Focus: 2px outline with 2px offset
+- Current page: No underline, same text color
+
+## Accessibility Features
+
+The LD 3.5 Breadcrumb component includes:
+- Semantic `<nav>` element with configurable `aria-label`
+- Current page marked with `aria-current="page"`
+- Keyboard navigation support (Tab key)
+- Clear focus indicators (2px outline)
+- Separators hidden from screen readers (`aria-hidden="true"`)
+- Proper link vs span semantics for clickable vs current items
+
+## Examples
+
+See `client/components/BreadcrumbExample.tsx` for comprehensive usage examples including:
+- 2-5 level breadcrumbs
+- onClick vs href patterns
+- Custom separators
+- Responsive behavior
+- Interactive demos
 
