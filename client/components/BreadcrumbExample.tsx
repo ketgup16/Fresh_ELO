@@ -128,7 +128,7 @@ export const BreadcrumbExample: React.FC = () => {
           </div>
           
           <div>
-            <p style={{ marginBottom: '8px', fontSize: '14px', color: '#666' }}>Chevron separator (>)</p>
+            <p style={{ marginBottom: '8px', fontSize: '14px', color: '#666' }}>Chevron separator (&gt;)</p>
             <Breadcrumb separator=">" aria-label="Chevron separator navigation">
               <BreadcrumbItem onClick={() => handleNavigation('Home')}>
                 Home
