@@ -1,0 +1,99 @@
+/**
+ * Living Design 3.5 Breadcrumb Component Styles
+ * Uses semantic design tokens for consistent theming
+ */
+
+/* Breadcrumb container */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  
+  /* Typography tokens */
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+}
+
+/* Breadcrumb link (clickable items) */
+.breadcrumbLink {
+  /* Color tokens */
+  color: var(--ld-semantic-color-text, #2e2f32);
+  
+  /* Typography */
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  
+  /* Interaction */
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  
+  /* Smooth transitions */
+  transition: text-decoration 0.2s ease;
+}
+
+/* Hover state - remove underline */
+.breadcrumbLink:hover {
+  text-decoration: none;
+}
+
+/* Focus state - accessible outline */
+.breadcrumbLink:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071DC);
+  outline-offset: 2px;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+/* Active/pressed state */
+.breadcrumbLink:active {
+  opacity: 0.8;
+}
+
+/* Current page (non-clickable) */
+.breadcrumbCurrent {
+  /* Color tokens */
+  color: var(--ld-semantic-color-text, #2e2f32);
+  
+  /* Typography */
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  
+  /* No interaction styling */
+  text-decoration: none;
+  cursor: default;
+}
+
+/* Separator between items */
+.breadcrumbSeparator {
+  /* Color tokens - subtle color for separators */
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  
+  /* Typography */
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  
+  /* Non-interactive */
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Responsive behavior for small screens */
+@media (max-width: 640px) {
+  .breadcrumb {
+    font-size: 12px;
+    line-height: 18px;
+    gap: 6px;
+  }
+}
