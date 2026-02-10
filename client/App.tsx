@@ -32,6 +32,7 @@ const App = () => (
       <MartyProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="/component-showcase-library" element={<ComponentShowcase />} />
             <Route path="/components" element={<ComponentShowcase />} />
             <Route path="/" element={<Index />} />
             <Route path="/sponsored-search" element={<SponsoredSearch />} />
