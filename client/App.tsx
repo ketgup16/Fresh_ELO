@@ -18,8 +18,7 @@ import OmniROAS from "./pages/OmniROAS";
 import DisplayAdvertisingCampaigns from "./pages/DisplayAdvertisingCampaigns";
 import SellerCenter from "./pages/SellerCenter";
 import StoreAds from "./pages/StoreAds";
-import ComponentShowcase from "./pages/ComponentShowcase";
-import TestRoutingPage from "./pages/TestRoutingPage";
+import ComponentLibrary from "./pages/ComponentLibrary";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,8 +32,7 @@ const App = () => (
       <MartyProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/test-routing-works" element={<TestRoutingPage />} />
-            <Route path="/components" element={<ComponentShowcase />} />
+            <Route path="/component-library" element={<ComponentLibrary />} />
             <Route path="/" element={<Index />} />
             <Route path="/sponsored-search" element={<SponsoredSearch />} />
             <Route path="/campaign" element={<Campaign />} />
