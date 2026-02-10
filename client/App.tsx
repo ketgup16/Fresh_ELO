@@ -34,6 +34,7 @@ const App = () => (
       <MartyProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="/components" element={<ComponentShowcase />} />
             <Route path="/" element={<Index />} />
             <Route path="/sponsored-search" element={<SponsoredSearch />} />
             <Route path="/campaign" element={<Campaign />} />
@@ -50,7 +51,6 @@ const App = () => (
             <Route path="/store-ads/inventory" element={<StoreAds />} />
             <Route path="/badge-examples" element={<BadgeExamples />} />
             <Route path="/link-examples" element={<LinkExamples />} />
-            <Route path="/components" element={<ComponentShowcase />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
