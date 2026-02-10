@@ -18,8 +18,6 @@ import OmniROAS from "./pages/OmniROAS";
 import DisplayAdvertisingCampaigns from "./pages/DisplayAdvertisingCampaigns";
 import SellerCenter from "./pages/SellerCenter";
 import StoreAds from "./pages/StoreAds";
-import BadgeExamples from "./pages/BadgeExamples";
-import LinkExamples from "./pages/LinkExamples";
 import ComponentShowcase from "./pages/ComponentShowcase";
 import NotFound from "./pages/NotFound";
 
