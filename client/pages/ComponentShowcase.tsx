@@ -1,11 +1,6 @@
 import * as React from 'react';
-import { ButtonExample } from '@/components/ButtonExample';
-import IconButtonExample from '@/components/IconButtonExample';
-import { LinkExample } from '@/components/LinkExample';
-import { BadgeExample } from '@/components/BadgeExample';
-import { BreadcrumbExample } from '@/components/BreadcrumbExample';
-import { CardHeaderExample } from '@/components/CardHeaderExample';
 import { Button } from '@/components/ui/Button';
+import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { IconButton } from '@/components/ui/IconButton';
 import { Tag } from '@/components/ui/tag';
 import { OLQTag } from '@/components/ui/olq-tag';
@@ -17,23 +12,14 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Switch } from '@/components/ui/switch';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Card, CardHeader, CardContent } from '@/components/ui/Card';
+import { Heading } from '@/components/ui/Heading';
 
 /**
  * Component Showcase Page
- * Displays all available components from the client/components folder
+ * Single page displaying all available components from the project
  */
 export default function ComponentShowcase() {
-  const [activeSection, setActiveSection] = React.useState<string | null>('example-components');
-
-  const exampleSections = [
-    { id: 'buttons', title: 'Buttons', component: ButtonExample },
-    { id: 'icon-buttons', title: 'Icon Buttons', component: IconButtonExample },
-    { id: 'links', title: 'Links', component: LinkExample },
-    { id: 'badges', title: 'Badges', component: BadgeExample },
-    { id: 'breadcrumbs', title: 'Breadcrumbs', component: BreadcrumbExample },
-    { id: 'card-headers', title: 'Card Headers', component: CardHeaderExample },
-  ];
-
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#f9fafb' }}>
       {/* Header */}
@@ -45,9 +31,9 @@ export default function ComponentShowcase() {
         zIndex: 10
       }}>
         <div style={{ 
-          maxWidth: '1400px', 
+          maxWidth: '1200px', 
           margin: '0 auto', 
-          padding: '24px 32px',
+          padding: '32px',
         }}>
           <h1 style={{ 
             fontSize: '32px', 
@@ -55,282 +41,375 @@ export default function ComponentShowcase() {
             color: '#2E2F32',
             marginBottom: '8px'
           }}>
-            Component Showcase
+            Living Design 3.5 Components
           </h1>
           <p style={{ 
             fontSize: '16px', 
-            color: '#74767c',
-            marginBottom: '16px'
+            color: '#74767c'
           }}>
-            Living Design 3.5 component library - All components from client/components and client/components/ui
+            Complete component library reference
           </p>
-          
-          {/* Navigation Pills */}
-          <div style={{ 
-            display: 'flex', 
-            gap: '8px', 
-            flexWrap: 'wrap' 
-          }}>
-            <a
-              href="#example-components"
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveSection('example-components');
-                document.getElementById('example-components')?.scrollIntoView({ 
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }}
-              style={{
-                padding: '8px 16px',
-                borderRadius: '999px',
-                fontSize: '14px',
-                fontWeight: 500,
-                textDecoration: 'none',
-                backgroundColor: activeSection === 'example-components' ? '#0071DC' : '#f3f4f6',
-                color: activeSection === 'example-components' ? 'white' : '#2E2F32',
-                cursor: 'pointer',
-              }}
-            >
-              Example Components
-            </a>
-            <a
-              href="#ui-components"
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveSection('ui-components');
-                document.getElementById('ui-components')?.scrollIntoView({ 
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }}
-              style={{
-                padding: '8px 16px',
-                borderRadius: '999px',
-                fontSize: '14px',
-                fontWeight: 500,
-                textDecoration: 'none',
-                backgroundColor: activeSection === 'ui-components' ? '#0071DC' : '#f3f4f6',
-                color: activeSection === 'ui-components' ? 'white' : '#2E2F32',
-                cursor: 'pointer',
-              }}
-            >
-              UI Components
-            </a>
-          </div>
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* All Components - Single Page */}
       <div style={{ 
-        maxWidth: '1400px', 
+        maxWidth: '1200px', 
         margin: '0 auto', 
         padding: '32px',
       }}>
         
-        {/* Example Components Section */}
-        <section id="example-components" style={{ marginBottom: '48px', scrollMarginTop: '120px' }}>
-          <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#2E2F32', marginBottom: '24px' }}>
-            Example Components
-          </h2>
-          <p style={{ fontSize: '14px', color: '#74767c', marginBottom: '24px' }}>
-            Comprehensive examples showing all features and variants of each component
-          </p>
-          
-          {exampleSections.map((section, index) => {
-            const Component = section.component;
-            return (
-              <div
-                key={section.id}
-                id={section.id}
-                style={{
-                  marginBottom: index < exampleSections.length - 1 ? '32px' : '0',
-                  scrollMarginTop: '120px',
+        {/* Buttons */}
+        <ComponentSection title="Button" description="Primary interactive elements">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <SectionLabel>Variants</SectionLabel>
+              <ButtonGroup>
+                <Button variant="primary">Primary</Button>
+                <Button variant="secondary">Secondary</Button>
+                <Button variant="tertiary">Tertiary</Button>
+                <Button variant="destructive">Destructive</Button>
+              </ButtonGroup>
+            </div>
+            
+            <div>
+              <SectionLabel>Sizes</SectionLabel>
+              <ButtonGroup>
+                <Button variant="primary" size="small">Small</Button>
+                <Button variant="primary" size="medium">Medium</Button>
+                <Button variant="primary" size="large">Large</Button>
+              </ButtonGroup>
+            </div>
+
+            <div>
+              <SectionLabel>With Icons</SectionLabel>
+              <ButtonGroup>
+                <Button 
+                  variant="primary"
+                  leading={<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" /></svg>}
+                >
+                  Add Item
+                </Button>
+                <Button 
+                  variant="secondary"
+                  trailing={<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" /></svg>}
+                >
+                  Next
+                </Button>
+              </ButtonGroup>
+            </div>
+          </div>
+        </ComponentSection>
+
+        {/* ButtonGroup */}
+        <ComponentSection title="ButtonGroup" description="Groups buttons together with consistent spacing">
+          <ButtonGroup>
+            <Button variant="secondary">Cancel</Button>
+            <Button variant="secondary">Save Draft</Button>
+            <Button variant="primary">Publish</Button>
+          </ButtonGroup>
+        </ComponentSection>
+
+        {/* IconButton */}
+        <ComponentSection title="IconButton" description="Icon-only buttons for compact actions">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <SectionLabel>Variants</SectionLabel>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                <IconButton variant="primary" aria-label="Add">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                  </svg>
+                </IconButton>
+                <IconButton variant="secondary" aria-label="Settings">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+                  </svg>
+                </IconButton>
+                <IconButton variant="tertiary" aria-label="Close">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </IconButton>
+                <IconButton variant="destructive" aria-label="Delete">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                </IconButton>
+              </div>
+            </div>
+
+            <div>
+              <SectionLabel>Sizes</SectionLabel>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                <IconButton variant="primary" size="small" aria-label="Small">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                  </svg>
+                </IconButton>
+                <IconButton variant="primary" size="medium" aria-label="Medium">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                  </svg>
+                </IconButton>
+                <IconButton variant="primary" size="large" aria-label="Large">
+                  <svg width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                  </svg>
+                </IconButton>
+              </div>
+            </div>
+          </div>
+        </ComponentSection>
+
+        {/* Tag */}
+        <ComponentSection title="Tag" description="Labels and status indicators">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div>
+              <SectionLabel>Filled Variants</SectionLabel>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <Tag variant="default">Default</Tag>
+                <Tag variant="primary">Primary</Tag>
+                <Tag variant="secondary">Secondary</Tag>
+                <Tag variant="success">Success</Tag>
+                <Tag variant="warning">Warning</Tag>
+                <Tag variant="destructive">Destructive</Tag>
+                <Tag variant="info">Info</Tag>
+              </div>
+            </div>
+            
+            <div>
+              <SectionLabel>Outline Variants</SectionLabel>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <Tag variant="outline">Outline</Tag>
+                <Tag variant="outline-primary">Outline Primary</Tag>
+                <Tag variant="outline-success">Outline Success</Tag>
+                <Tag variant="outline-warning">Outline Warning</Tag>
+                <Tag variant="outline-destructive">Outline Destructive</Tag>
+                <Tag variant="outline-info">Outline Info</Tag>
+              </div>
+            </div>
+
+            <div>
+              <SectionLabel>Sizes</SectionLabel>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <Tag variant="primary" size="sm">Small</Tag>
+                <Tag variant="primary" size="md">Medium</Tag>
+                <Tag variant="primary" size="lg">Large</Tag>
+              </div>
+            </div>
+          </div>
+        </ComponentSection>
+
+        {/* OLQTag */}
+        <ComponentSection title="OLQTag" description="Specialized tags for Offer Listing Quality scores">
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <div>
+              <p style={{ fontSize: '12px', color: '#74767c', marginBottom: '6px' }}>Excellent (≥80%)</p>
+              <OLQTag value="95" />
+            </div>
+            <div>
+              <p style={{ fontSize: '12px', color: '#74767c', marginBottom: '6px' }}>Good (≥80%)</p>
+              <OLQTag value="82" />
+            </div>
+            <div>
+              <p style={{ fontSize: '12px', color: '#74767c', marginBottom: '6px' }}>Fair (50-79%)</p>
+              <OLQTag value="65" />
+            </div>
+            <div>
+              <p style={{ fontSize: '12px', color: '#74767c', marginBottom: '6px' }}>Warning (50-79%)</p>
+              <OLQTag value="52" />
+            </div>
+            <div>
+              <p style={{ fontSize: '12px', color: '#74767c', marginBottom: '6px' }}>Poor (&lt;50%)</p>
+              <OLQTag value="35" />
+            </div>
+          </div>
+        </ComponentSection>
+
+        {/* Breadcrumb */}
+        <ComponentSection title="Breadcrumb" description="Navigation hierarchy indicator">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div>
+              <SectionLabel>Basic (2 levels)</SectionLabel>
+              <Breadcrumb aria-label="Basic navigation">
+                <BreadcrumbItem href="/">Home</BreadcrumbItem>
+                <BreadcrumbItem isCurrent>Dashboard</BreadcrumbItem>
+              </Breadcrumb>
+            </div>
+            
+            <div>
+              <SectionLabel>Multi-level (4 levels)</SectionLabel>
+              <Breadcrumb aria-label="Multi-level navigation">
+                <BreadcrumbItem href="/">Home</BreadcrumbItem>
+                <BreadcrumbItem href="/products">Products</BreadcrumbItem>
+                <BreadcrumbItem href="/products/electronics">Electronics</BreadcrumbItem>
+                <BreadcrumbItem isCurrent>Smartphones</BreadcrumbItem>
+              </Breadcrumb>
+            </div>
+
+            <div>
+              <SectionLabel>Custom Separator</SectionLabel>
+              <Breadcrumb separator="›" aria-label="Custom separator">
+                <BreadcrumbItem href="/">Home</BreadcrumbItem>
+                <BreadcrumbItem href="/products">Products</BreadcrumbItem>
+                <BreadcrumbItem isCurrent>Details</BreadcrumbItem>
+              </Breadcrumb>
+            </div>
+          </div>
+        </ComponentSection>
+
+        {/* Badge */}
+        <ComponentSection title="Badge" description="Small status or count indicators">
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <Badge variant="default">Default</Badge>
+            <Badge variant="secondary">Secondary</Badge>
+            <Badge variant="destructive">Error</Badge>
+            <Badge variant="outline">Outline</Badge>
+            <div style={{ position: 'relative', display: 'inline-block' }}>
+              <Button variant="secondary">
+                Notifications
+              </Button>
+              <Badge 
+                variant="destructive" 
+                style={{ 
+                  position: 'absolute', 
+                  top: '-8px', 
+                  right: '-8px',
+                  minWidth: '20px',
+                  height: '20px',
+                  borderRadius: '10px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '11px'
                 }}
               >
-                <div style={{
-                  backgroundColor: 'white',
-                  borderRadius: '12px',
-                  boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-                  overflow: 'hidden',
-                }}>
-                  <div style={{
-                    padding: '20px 32px',
-                    borderBottom: '1px solid #e5e7eb',
-                    backgroundColor: '#fafafa',
-                  }}>
-                    <h3 style={{
-                      fontSize: '20px',
-                      fontWeight: 700,
-                      color: '#2E2F32',
-                      margin: 0,
-                    }}>
-                      {section.title}
-                    </h3>
-                  </div>
-                  <div style={{ padding: '0', backgroundColor: 'white' }}>
-                    <Component />
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </section>
-
-        {/* UI Components Section */}
-        <section id="ui-components" style={{ marginBottom: '48px', scrollMarginTop: '120px' }}>
-          <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#2E2F32', marginBottom: '24px' }}>
-            UI Components (client/components/ui)
-          </h2>
-          <p style={{ fontSize: '14px', color: '#74767c', marginBottom: '24px' }}>
-            Individual component instances from the ui folder
-          </p>
-
-          {/* Button Component */}
-          <UIComponentCard title="Button" path="client/components/ui/Button.tsx">
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <Button variant="primary">Primary</Button>
-              <Button variant="secondary">Secondary</Button>
-              <Button variant="tertiary">Tertiary</Button>
-              <Button variant="destructive">Destructive</Button>
+                3
+              </Badge>
             </div>
-            <div style={{ display: 'flex', gap: '12px', marginTop: '16px', flexWrap: 'wrap' }}>
-              <Button variant="primary" size="small">Small</Button>
-              <Button variant="primary" size="medium">Medium</Button>
-              <Button variant="primary" size="large">Large</Button>
-            </div>
-          </UIComponentCard>
+          </div>
+        </ComponentSection>
 
-          {/* IconButton Component */}
-          <UIComponentCard title="IconButton" path="client/components/ui/IconButton.tsx">
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-              <IconButton variant="primary" aria-label="Add">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+        {/* Link */}
+        <ComponentSection title="Link" description="Text links and navigation">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <Link href="/" variant="default">Default Link</Link>
+            <Link href="/" variant="underlined">Underlined Link</Link>
+            <Link href="/" variant="subtle">Subtle Link</Link>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <Link href="/">
+                Link with Icon
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style={{ display: 'inline', marginLeft: '4px' }}>
+                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
-              </IconButton>
-              <IconButton variant="secondary" aria-label="Settings">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-                </svg>
-              </IconButton>
-              <IconButton variant="tertiary" aria-label="Close">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
-                </svg>
-              </IconButton>
+              </Link>
             </div>
-          </UIComponentCard>
+          </div>
+        </ComponentSection>
 
-          {/* Tag Component */}
-          <UIComponentCard title="Tag" path="client/components/ui/tag.tsx">
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              <Tag variant="default">Default</Tag>
-              <Tag variant="primary">Primary</Tag>
-              <Tag variant="secondary">Secondary</Tag>
-              <Tag variant="success">Success</Tag>
-              <Tag variant="warning">Warning</Tag>
-              <Tag variant="destructive">Destructive</Tag>
-              <Tag variant="info">Info</Tag>
+        {/* Alert */}
+        <ComponentSection title="Alert" description="Contextual feedback messages">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <Alert variant="default">
+              <strong>Information:</strong> This is a default informational alert.
+            </Alert>
+            <Alert variant="success">
+              <strong>Success:</strong> Your changes have been saved successfully!
+            </Alert>
+            <Alert variant="warning">
+              <strong>Warning:</strong> Please review the following items before proceeding.
+            </Alert>
+            <Alert variant="error">
+              <strong>Error:</strong> There was a problem processing your request.
+            </Alert>
+          </div>
+        </ComponentSection>
+
+        {/* Card */}
+        <ComponentSection title="Card" description="Container for content grouping">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+            <Card>
+              <CardHeader
+                title="Card Title"
+                description="Card description goes here"
+              />
+              <CardContent>
+                <p style={{ fontSize: '14px', color: '#2E2F32' }}>
+                  This is the card content area. You can place any content here.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader
+                title="With Action"
+                description="Card with header action"
+                action={<Button variant="tertiary" size="small">Action</Button>}
+              />
+              <CardContent>
+                <p style={{ fontSize: '14px', color: '#2E2F32' }}>
+                  Cards can include actions in the header.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </ComponentSection>
+
+        {/* Form Controls */}
+        <ComponentSection title="Form Controls" description="Input elements for forms">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '500px' }}>
+            <div>
+              <label style={{ display: 'block', fontSize: '14px', marginBottom: '6px', fontWeight: 500, color: '#2E2F32' }}>
+                Text Input
+              </label>
+              <Input placeholder="Enter text..." />
             </div>
-            <div style={{ display: 'flex', gap: '8px', marginTop: '12px', flexWrap: 'wrap' }}>
-              <Tag variant="outline">Outline</Tag>
-              <Tag variant="outline-primary">Outline Primary</Tag>
-              <Tag variant="outline-success">Outline Success</Tag>
+            
+            <div>
+              <label style={{ display: 'block', fontSize: '14px', marginBottom: '6px', fontWeight: 500, color: '#2E2F32' }}>
+                Textarea
+              </label>
+              <Textarea placeholder="Enter longer text..." rows={3} />
             </div>
-          </UIComponentCard>
-
-          {/* OLQTag Component */}
-          <UIComponentCard title="OLQTag" path="client/components/ui/olq-tag.tsx">
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-              <div>
-                <p style={{ fontSize: '12px', color: '#74767c', marginBottom: '4px' }}>Good (≥80%)</p>
-                <OLQTag value="85" />
-              </div>
-              <div>
-                <p style={{ fontSize: '12px', color: '#74767c', marginBottom: '4px' }}>Fair (50-79%)</p>
-                <OLQTag value="65" />
-              </div>
-              <div>
-                <p style={{ fontSize: '12px', color: '#74767c', marginBottom: '4px' }}>Poor (&lt;50%)</p>
-                <OLQTag value="35" />
-              </div>
-            </div>
-          </UIComponentCard>
-
-          {/* Breadcrumb Component */}
-          <UIComponentCard title="Breadcrumb" path="client/components/ui/Breadcrumb.tsx">
-            <Breadcrumb aria-label="Example navigation">
-              <BreadcrumbItem href="/">Home</BreadcrumbItem>
-              <BreadcrumbItem href="/products">Products</BreadcrumbItem>
-              <BreadcrumbItem isCurrent>Current Page</BreadcrumbItem>
-            </Breadcrumb>
-          </UIComponentCard>
-
-          {/* Badge Component */}
-          <UIComponentCard title="Badge" path="client/components/ui/Badge.tsx">
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <Badge variant="default">Default</Badge>
-              <Badge variant="secondary">Secondary</Badge>
-              <Badge variant="destructive">Destructive</Badge>
-              <Badge variant="outline">Outline</Badge>
-            </div>
-          </UIComponentCard>
-
-          {/* Link Component */}
-          <UIComponentCard title="Link" path="client/components/ui/Link.tsx">
+            
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <Link href="/">Default Link</Link>
-              <Link href="/" variant="underlined">Underlined Link</Link>
-              <Link href="/" variant="subtle">Subtle Link</Link>
-            </div>
-          </UIComponentCard>
-
-          {/* Alert Component */}
-          <UIComponentCard title="Alert" path="client/components/ui/Alert.tsx">
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <Alert variant="default">
-                <strong>Default Alert:</strong> This is a default alert message.
-              </Alert>
-              <Alert variant="success">
-                <strong>Success:</strong> Your action was completed successfully.
-              </Alert>
-              <Alert variant="warning">
-                <strong>Warning:</strong> Please review this information.
-              </Alert>
-              <Alert variant="error">
-                <strong>Error:</strong> Something went wrong.
-              </Alert>
-            </div>
-          </UIComponentCard>
-
-          {/* Form Controls */}
-          <UIComponentCard title="Form Controls" path="client/components/ui/">
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '400px' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '14px', marginBottom: '4px', fontWeight: 500 }}>
-                  Input
-                </label>
-                <Input placeholder="Enter text..." />
-              </div>
-              <div>
-                <label style={{ display: 'block', fontSize: '14px', marginBottom: '4px', fontWeight: 500 }}>
-                  Textarea
-                </label>
-                <Textarea placeholder="Enter longer text..." rows={3} />
-              </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Checkbox id="check1" />
-                <label htmlFor="check1" style={{ fontSize: '14px' }}>Checkbox</label>
+                <label htmlFor="check1" style={{ fontSize: '14px', color: '#2E2F32' }}>Checkbox option</label>
               </div>
+              
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Switch id="switch1" />
-                <label htmlFor="switch1" style={{ fontSize: '14px' }}>Switch</label>
+                <Checkbox id="check2" defaultChecked />
+                <label htmlFor="check2" style={{ fontSize: '14px', color: '#2E2F32' }}>Checked by default</label>
               </div>
             </div>
-          </UIComponentCard>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Switch id="switch1" />
+                <label htmlFor="switch1" style={{ fontSize: '14px', color: '#2E2F32' }}>Enable feature</label>
+              </div>
+              
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Switch id="switch2" defaultChecked />
+                <label htmlFor="switch2" style={{ fontSize: '14px', color: '#2E2F32' }}>Enabled by default</label>
+              </div>
+            </div>
+          </div>
+        </ComponentSection>
 
-        </section>
+        {/* Heading */}
+        <ComponentSection title="Heading" description="Semantic heading components">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <Heading level={1}>Heading Level 1</Heading>
+            <Heading level={2}>Heading Level 2</Heading>
+            <Heading level={3}>Heading Level 3</Heading>
+            <Heading level={4}>Heading Level 4</Heading>
+            <Heading level={5}>Heading Level 5</Heading>
+            <Heading level={6}>Heading Level 6</Heading>
+          </div>
+        </ComponentSection>
 
       </div>
 
@@ -342,7 +421,7 @@ export default function ComponentShowcase() {
         marginTop: '48px',
       }}>
         <div style={{ 
-          maxWidth: '1400px', 
+          maxWidth: '1200px', 
           margin: '0 auto',
           textAlign: 'center'
         }}>
@@ -351,7 +430,7 @@ export default function ComponentShowcase() {
             color: '#74767c',
             margin: 0
           }}>
-            Living Design 3.5 Component Library • {exampleSections.length} example components + UI components
+            Living Design 3.5 Component Library
           </p>
           <p style={{ 
             fontSize: '12px', 
@@ -366,49 +445,63 @@ export default function ComponentShowcase() {
   );
 }
 
-// Helper component for UI component cards
-function UIComponentCard({ 
+// Helper Components
+function ComponentSection({ 
   title, 
-  path, 
+  description, 
   children 
 }: { 
   title: string; 
-  path: string; 
+  description: string;
   children: React.ReactNode;
 }) {
   return (
     <div style={{
       backgroundColor: 'white',
       borderRadius: '12px',
-      boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+      boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
       overflow: 'hidden',
       marginBottom: '24px',
     }}>
       <div style={{
-        padding: '16px 24px',
+        padding: '20px 24px',
         borderBottom: '1px solid #e5e7eb',
         backgroundColor: '#fafafa',
       }}>
-        <h3 style={{
-          fontSize: '18px',
+        <h2 style={{
+          fontSize: '20px',
           fontWeight: 700,
           color: '#2E2F32',
           margin: '0 0 4px 0',
         }}>
           {title}
-        </h3>
+        </h2>
         <p style={{
-          fontSize: '12px',
+          fontSize: '14px',
           color: '#74767c',
           margin: 0,
-          fontFamily: 'monospace',
         }}>
-          {path}
+          {description}
         </p>
       </div>
       <div style={{ padding: '24px' }}>
         {children}
       </div>
     </div>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p style={{
+      fontSize: '12px',
+      fontWeight: 600,
+      color: '#74767c',
+      textTransform: 'uppercase',
+      letterSpacing: '0.5px',
+      marginBottom: '8px',
+    }}>
+      {children}
+    </p>
   );
 }
