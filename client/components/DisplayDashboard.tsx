@@ -3,6 +3,7 @@ import RecommendationsPanel from './RecommendationsPanel';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 import { Link } from '@/components/ui/Link';
+import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
 import {
   Dialog,
   DialogContent,
@@ -24,7 +25,11 @@ export default function DisplayDashboard() {
     <div className="flex-1 overflow-y-auto bg-[#F8F8F8]">
       {/* Page Header */}
       <div className="px-6 py-6">
-        <div className="flex items-center justify-between gap-4 mb-1">
+        <Breadcrumb aria-label="Page navigation">
+          <BreadcrumbItem href="/">Home</BreadcrumbItem>
+          <BreadcrumbItem isCurrent>Dashboard</BreadcrumbItem>
+        </Breadcrumb>
+        <div className="flex items-center justify-between gap-4 mb-1 mt-4">
           <h1 className="text-[32px] font-bold text-[#2E2F32] leading-[40px]">Hi, Gabriela</h1>
         </div>
       </div>
