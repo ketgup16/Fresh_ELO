@@ -59,13 +59,13 @@ export default function Campaign() {
               {isEditMode ? campaignName : 'Campaign creation'}
             </h1>
             <div className="flex flex-wrap gap-4">
-              <Button variant="outline" className="px-6 h-10 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] font-bold hover:bg-gray-50">
+              <Button variant="secondary" UNSAFE_className="px-6 h-10 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] font-bold hover:bg-gray-50">
                 Delete
               </Button>
-              <Button variant="outline" className="px-6 h-10 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] font-bold hover:bg-gray-50">
+              <Button variant="secondary" UNSAFE_className="px-6 h-10 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] font-bold hover:bg-gray-50">
                 Save
               </Button>
-              <Button variant="primary" className="text-base">
+              <Button variant="primary" UNSAFE_className="text-base">
                 Launch campaign
               </Button>
             </div>
@@ -250,7 +250,7 @@ export default function Campaign() {
                 {/* Additional Settings Accordion */}
                 <div className="flex justify-between items-center pt-4 border-t border-[#E3E4E5]">
                   <span className="text-sm font-semibold text-[#2E2F32] leading-5">Additional settings (optional)</span>
-                  <Button variant="ghost" size="icon" className="p-0 h-6 w-6 hover:opacity-70">
+                  <Button variant="tertiary" size="small" UNSAFE_className="p-0 h-6 w-6 hover:opacity-70">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" clipRule="evenodd" d="M4.71967 8.09467C4.99003 7.82431 5.41546 7.80351 5.70967 8.03228L5.78033 8.09467L12 14.3137L18.2197 8.09467C18.49 7.82431 18.9155 7.80351 19.2097 8.03228L19.2803 8.09467C19.5507 8.36503 19.5715 8.79046 19.3427 9.08467L19.2803 9.15533L12.5303 15.9053C12.26 16.1757 11.8345 16.1965 11.5403 15.9677L11.4697 15.9053L4.71967 9.15533C4.42678 8.86244 4.42678 8.38756 4.71967 8.09467Z" fill="black"/>
                     </svg>
@@ -265,7 +265,7 @@ export default function Campaign() {
             {/* Header */}
             <div className="flex justify-between items-center px-6 py-6">
               <h2 className="text-[20px] font-semibold text-[#2E2F32] leading-7">Big Multiplier</h2>
-              <Button variant="ghost" size="icon" className="p-0 h-6 w-6 hover:opacity-70">
+              <Button variant="tertiary" size="small" UNSAFE_className="p-0 h-6 w-6 hover:opacity-70">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12.5652 6.99897L21 16.2124L19.8695 17.25L12 8.65402L4.13049 17.25L3 16.2124L11.4348 6.99897C11.58 6.84033 11.7851 6.75 12 6.75C12.2149 6.75 12.42 6.84033 12.5652 6.99897Z" fill="black"/>
                 </svg>
@@ -412,7 +412,7 @@ export default function Campaign() {
               {/* Header */}
               <div className="flex justify-between items-center px-6 py-6">
                 <h3 className="text-base font-semibold text-[#2E2F32] leading-6">Manage ad groups</h3>
-                <Button variant="ghost" size="icon" className="p-0 h-6 w-6 hover:opacity-70">
+                <Button variant="tertiary" size="small" UNSAFE_className="p-0 h-6 w-6 hover:opacity-70">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" clipRule="evenodd" d="M15.9053 11.4697C16.1757 11.74 16.1965 12.1655 15.9677 12.4597L15.9053 12.5303L9.15533 19.2803C8.86244 19.5732 8.38756 19.5732 8.09467 19.2803C7.82431 19.01 7.80351 18.5845 8.03228 18.2903L8.09467 18.2197L14.3137 12L8.09467 5.78033C7.82431 5.50997 7.80351 5.08454 8.03228 4.79033L8.09467 4.71967C8.36503 4.44931 8.79046 4.42851 9.08467 4.65728L9.15533 4.71967L15.9053 11.4697Z" fill="black"/>
                   </svg>
@@ -429,7 +429,7 @@ export default function Campaign() {
                 <div className="flex flex-col">
                   <div className="h-px bg-[#E3E4E5] mb-6"></div>
                   <div className="flex justify-end pb-6">
-                    <Button className="inline-flex items-center gap-2 h-8 px-4 rounded-full bg-[#BABBBE] cursor-not-allowed" disabled>
+                    <Button UNSAFE_className="inline-flex items-center gap-2 h-8 px-4 rounded-full bg-[#BABBBE] cursor-not-allowed" disabled>
                       <div className="w-3.5 h-3.5 bg-[#E3E4E5] rounded-sm"></div>
                       <span className="text-sm font-bold text-white leading-5">Create new ad group</span>
                     </Button>
