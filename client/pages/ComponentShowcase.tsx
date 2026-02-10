@@ -22,6 +22,8 @@ import { Heading } from '@/components/ui/Heading';
  * Single page displaying all available components from the project
  */
 export default function ComponentShowcase() {
+  console.log('🎨 ComponentShowcase is rendering!');
+
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#f9fafb', padding: '40px' }}>
       <h1 style={{
