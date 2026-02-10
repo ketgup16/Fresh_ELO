@@ -12,7 +12,9 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Switch } from '@/components/ui/switch';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardHeader, CardContent } from '@/components/ui/Card';
+import { Card } from '@/components/ui/Card';
+import { CardHeader } from '@/components/ui/CardHeader';
+import { CardContent } from '@/components/ui/CardContent';
 import { Heading } from '@/components/ui/Heading';
 
 /**
@@ -260,33 +262,24 @@ export default function ComponentShowcase() {
         </ComponentSection>
 
         {/* Badge */}
-        <ComponentSection title="Badge" description="Small status or count indicators">
+        <ComponentSection title="Badge" description="Small numeric indicators">
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <Badge variant="default">Default</Badge>
-            <Badge variant="secondary">Secondary</Badge>
-            <Badge variant="destructive">Error</Badge>
-            <Badge variant="outline">Outline</Badge>
+            <Badge variant="info" value={5} />
+            <Badge variant="success" value={12} />
+            <Badge variant="warning" value={3} />
+            <Badge variant="error" value={99} />
+            <Badge variant="neutral" value={2} />
             <div style={{ position: 'relative', display: 'inline-block' }}>
               <Button variant="secondary">
                 Notifications
               </Button>
-              <Badge 
-                variant="destructive" 
-                style={{ 
-                  position: 'absolute', 
-                  top: '-8px', 
-                  right: '-8px',
-                  minWidth: '20px',
-                  height: '20px',
-                  borderRadius: '10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '11px'
-                }}
-              >
-                3
-              </Badge>
+              <span style={{ 
+                position: 'absolute', 
+                top: '-8px', 
+                right: '-8px' 
+              }}>
+                <Badge variant="error" value={3} size="small" />
+              </span>
             </div>
           </div>
         </ComponentSection>
@@ -294,13 +287,13 @@ export default function ComponentShowcase() {
         {/* Link */}
         <ComponentSection title="Link" description="Text links and navigation">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <Link href="/" variant="default">Default Link</Link>
-            <Link href="/" variant="underlined">Underlined Link</Link>
+            <Link href="/" variant="default">Default Link (underlined)</Link>
             <Link href="/" variant="subtle">Subtle Link</Link>
+            <Link href="/" underline={false}>Link without underline</Link>
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
               <Link href="/">
                 Link with Icon
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style={{ display: 'inline', marginLeft: '4px' }}>
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }}>
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
               </Link>
@@ -311,8 +304,8 @@ export default function ComponentShowcase() {
         {/* Alert */}
         <ComponentSection title="Alert" description="Contextual feedback messages">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <Alert variant="default">
-              <strong>Information:</strong> This is a default informational alert.
+            <Alert variant="info">
+              <strong>Information:</strong> This is an informational alert.
             </Alert>
             <Alert variant="success">
               <strong>Success:</strong> Your changes have been saved successfully!
@@ -402,12 +395,12 @@ export default function ComponentShowcase() {
         {/* Heading */}
         <ComponentSection title="Heading" description="Semantic heading components">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <Heading level={1}>Heading Level 1</Heading>
-            <Heading level={2}>Heading Level 2</Heading>
-            <Heading level={3}>Heading Level 3</Heading>
-            <Heading level={4}>Heading Level 4</Heading>
-            <Heading level={5}>Heading Level 5</Heading>
-            <Heading level={6}>Heading Level 6</Heading>
+            <Heading as="h1" size="large">Heading H1 (Large)</Heading>
+            <Heading as="h2" size="large">Heading H2 (Large)</Heading>
+            <Heading as="h3" size="medium">Heading H3 (Medium)</Heading>
+            <Heading as="h4" size="medium">Heading H4 (Medium)</Heading>
+            <Heading as="h5" size="small">Heading H5 (Small)</Heading>
+            <Heading as="h6" size="small">Heading H6 (Small)</Heading>
           </div>
         </ComponentSection>
 
