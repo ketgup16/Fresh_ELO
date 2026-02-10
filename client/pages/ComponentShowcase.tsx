@@ -23,30 +23,49 @@ import { Heading } from '@/components/ui/Heading';
  */
 export default function ComponentShowcase() {
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f9fafb' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#f9fafb', padding: '40px' }}>
+      <h1 style={{
+        fontSize: '48px',
+        fontWeight: 700,
+        color: '#0071DC',
+        marginBottom: '16px',
+        textAlign: 'center'
+      }}>
+        🎨 COMPONENT SHOWCASE PAGE
+      </h1>
+      <p style={{
+        fontSize: '24px',
+        color: '#2E2F32',
+        textAlign: 'center',
+        marginBottom: '32px'
+      }}>
+        If you can see this, the routing is working correctly!
+      </p>
+
       {/* Header */}
-      <div style={{ 
-        backgroundColor: 'white', 
+      <div style={{
+        backgroundColor: 'white',
         borderBottom: '1px solid #e5e7eb',
         position: 'sticky',
         top: 0,
-        zIndex: 10
+        zIndex: 10,
+        marginTop: '40px'
       }}>
-        <div style={{ 
-          maxWidth: '1200px', 
-          margin: '0 auto', 
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
           padding: '32px',
         }}>
-          <h1 style={{ 
-            fontSize: '32px', 
-            fontWeight: 700, 
+          <h2 style={{
+            fontSize: '32px',
+            fontWeight: 700,
             color: '#2E2F32',
             marginBottom: '8px'
           }}>
             Living Design 3.5 Components
-          </h1>
-          <p style={{ 
-            fontSize: '16px', 
+          </h2>
+          <p style={{
+            fontSize: '16px',
             color: '#74767c'
           }}>
             Complete component library reference
