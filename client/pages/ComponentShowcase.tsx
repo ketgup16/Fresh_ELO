@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ButtonExample } from '@/components/ButtonExample';
-import { IconButtonExample } from '@/components/IconButtonExample';
+import IconButtonExample from '@/components/IconButtonExample';
 import { LinkExample } from '@/components/LinkExample';
 import { BadgeExample } from '@/components/BadgeExample';
 import { BreadcrumbExample } from '@/components/BreadcrumbExample';
