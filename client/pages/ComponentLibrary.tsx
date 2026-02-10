@@ -16,12 +16,12 @@ import { Card } from '@/components/ui/Card';
 import { CardHeader } from '@/components/ui/CardHeader';
 import { CardContent } from '@/components/ui/CardContent';
 import { Heading } from '@/components/ui/Heading';
-import { BadgeExample } from '@/components/BadgeExample';
-import { ButtonExample } from '@/components/ButtonExample';
-import { BreadcrumbExample } from '@/components/BreadcrumbExample';
-import { IconButtonExample } from '@/components/IconButtonExample';
-import { LinkExample } from '@/components/LinkExample';
-import { CardHeaderExample } from '@/components/CardHeaderExample';
+import BadgeExample from '@/components/BadgeExample';
+import ButtonExample from '@/components/ButtonExample';
+import BreadcrumbExample from '@/components/BreadcrumbExample';
+import IconButtonExample from '@/components/IconButtonExample';
+import LinkExample from '@/components/LinkExample';
+import CardHeaderExample from '@/components/CardHeaderExample';
 
 /**
  * Component Library Page
