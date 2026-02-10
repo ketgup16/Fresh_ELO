@@ -323,26 +323,25 @@ export default function ComponentShowcase() {
         <ComponentSection title="Card" description="Container for content grouping">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
             <Card>
-              <CardHeader
-                title="Card Title"
-                description="Card description goes here"
-              />
+              <CardHeader title="Card Title" />
               <CardContent>
-                <p style={{ fontSize: '14px', color: '#2E2F32' }}>
+                <p style={{ fontSize: '14px', color: '#2E2F32', marginBottom: '8px' }}>
                   This is the card content area. You can place any content here.
+                </p>
+                <p style={{ fontSize: '14px', color: '#74767c' }}>
+                  Cards provide a contained surface for displaying related content.
                 </p>
               </CardContent>
             </Card>
-            
+
             <Card>
               <CardHeader
-                title="With Action"
-                description="Card with header action"
-                action={<Button variant="tertiary" size="small">Action</Button>}
+                title="With Trailing Action"
+                trailing={<Button variant="tertiary" size="small">Action</Button>}
               />
               <CardContent>
                 <p style={{ fontSize: '14px', color: '#2E2F32' }}>
-                  Cards can include actions in the header.
+                  Cards can include trailing actions in the header using the trailing prop.
                 </p>
               </CardContent>
             </Card>
