@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Settings as SettingsIcon, Download, ExternalLink } from "lucide-react";
+import { Search, Settings as SettingsIcon, Download, ExternalLink } from "@/components/icons";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMemo } from "react";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";

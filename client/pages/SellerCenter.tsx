@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, Upload, Download } from "lucide-react";
+import { ChevronDown, Upload, Download } from "@/components/icons";
 import { useNavigate } from "react-router-dom";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";

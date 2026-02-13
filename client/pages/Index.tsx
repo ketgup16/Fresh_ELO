@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronRight, ChevronDown, Search, Settings, Download, MoreHorizontal, Eye, Sliders, X } from "lucide-react";
+import { ChevronRight, ChevronDown, Search, Settings, Download, MoreHorizontal, Eye, Sliders, X } from "@/components/icons";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import DisplayDashboard from "../components/DisplayDashboard";
 import DisplayAdvertisingSidebar from "../components/DisplayAdvertisingSidebar";

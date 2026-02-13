@@ -1,4 +1,4 @@
-import { X, ArrowUp, RotateCcw } from "lucide-react";
+import { X, ArrowUp, RotateCcw } from "@/components/icons";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Breadcrumb, BreadcrumbItem } from "@/components/ui/Breadcrumb";

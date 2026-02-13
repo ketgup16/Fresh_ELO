@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { Check, X } from "lucide-react";
+import { Check, X } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 interface Campaign {

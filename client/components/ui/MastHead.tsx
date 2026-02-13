@@ -1,4 +1,4 @@
-import { Bell, HelpCircle, User, ChevronDown } from 'lucide-react';
+import { Bell, HelpCircle, User, ChevronDown } from '@/components/icons';
 import Lottie from 'lottie-react';
 import martyGlassesAnimation from '../../marty-glasses.json';
 import { MediaSolutionsDropdown, MediaSolution } from './MediaSolutionsDropdown';
