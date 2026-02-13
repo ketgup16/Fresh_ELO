@@ -27,6 +27,19 @@ export { Trash2 } from './Trash2';
 export { Eye } from './Eye';
 export { Sliders } from './Sliders';
 
+// Additional custom icons
+export { default as CleaningSpray } from './CleaningSpray';
+export { default as DishSoap } from './DishSoap';
+export { default as ImageIcon } from './ImageIcon';
+export { default as LaundryDetergent } from './LaundryDetergent';
+export { default as MeasurementConsole } from './MeasurementConsole';
+export { default as PaperTowels } from './PaperTowels';
+export { default as Reports } from './Reports';
+export { default as Sponge } from './Sponge';
+export { default as SponsoredBrandsCard } from './SponsoredBrandsCard';
+export { default as SponsoredProductsCard } from './SponsoredProductsCard';
+export { default as SponsoredVideosCard } from './SponsoredVideosCard';
+
 // Legacy inline icon exports
 export const SGHome = (props: SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32" {...props}>

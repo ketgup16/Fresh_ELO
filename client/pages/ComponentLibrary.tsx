@@ -10,7 +10,13 @@ import {
   ChevronDown, ChevronUp, ChevronLeft, ChevronRight,
   Check, X, Dot, Circle, MoreHorizontal, PanelLeft,
   HelpCircle, User, RotateCcw, GripVertical, Calendar,
-  Plus, Edit, Trash2, Eye, Sliders, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Bell
+  Plus, Edit, Trash2, Eye, Sliders,
+  ArrowUp, ArrowDown, ArrowLeft, ArrowRight,
+  Bell, Article, Ban, Barcode,
+  SGHome, SGShareImpact,
+  CleaningSpray, DishSoap, ImageIcon, LaundryDetergent,
+  MeasurementConsole, PaperTowels, Reports, Sponge,
+  SponsoredBrandsCard, SponsoredProductsCard, SponsoredVideosCard
 } from '@/components/icons';
 
 export default function ComponentLibrary() {
@@ -107,7 +113,8 @@ export default function ComponentLibrary() {
           padding: '32px',
           boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
         }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px' }}>
+          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '20px', color: '#2E2F32' }}>LD 3.5 Core Icons</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px', marginBottom: '40px' }}>
             <IconShowcase icon={<Search />} name="Search" />
             <IconShowcase icon={<Settings />} name="Settings" />
             <IconShowcase icon={<Download />} name="Download" />
@@ -133,11 +140,47 @@ export default function ComponentLibrary() {
             <IconShowcase icon={<Trash2 />} name="Trash2" />
             <IconShowcase icon={<Eye />} name="Eye" />
             <IconShowcase icon={<Sliders />} name="Sliders" />
+          </div>
+
+          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '20px', color: '#2E2F32' }}>Navigation Icons</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px', marginBottom: '40px' }}>
             <IconShowcase icon={<ArrowUp />} name="ArrowUp" />
             <IconShowcase icon={<ArrowDown />} name="ArrowDown" />
             <IconShowcase icon={<ArrowLeft />} name="ArrowLeft" />
             <IconShowcase icon={<ArrowRight />} name="ArrowRight" />
+          </div>
+
+          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '20px', color: '#2E2F32' }}>Feature Icons</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px', marginBottom: '40px' }}>
             <IconShowcase icon={<Bell />} name="Bell" />
+            <IconShowcase icon={<Article />} name="Article" />
+            <IconShowcase icon={<Ban />} name="Ban" />
+            <IconShowcase icon={<Barcode />} name="Barcode" />
+            <IconShowcase icon={<SGHome />} name="SGHome" />
+            <IconShowcase icon={<SGShareImpact />} name="SGShareImpact" />
+          </div>
+
+          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '20px', color: '#2E2F32' }}>Custom Product Icons</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px', marginBottom: '40px' }}>
+            <IconShowcase icon={<CleaningSpray />} name="CleaningSpray" />
+            <IconShowcase icon={<DishSoap />} name="DishSoap" />
+            <IconShowcase icon={<LaundryDetergent />} name="LaundryDetergent" />
+            <IconShowcase icon={<PaperTowels />} name="PaperTowels" />
+            <IconShowcase icon={<Sponge />} name="Sponge" />
+          </div>
+
+          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '20px', color: '#2E2F32' }}>Ad Type Icons</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px', marginBottom: '40px' }}>
+            <IconShowcase icon={<SponsoredBrandsCard />} name="SponsoredBrandsCard" />
+            <IconShowcase icon={<SponsoredProductsCard />} name="SponsoredProductsCard" />
+            <IconShowcase icon={<SponsoredVideosCard />} name="SponsoredVideosCard" />
+          </div>
+
+          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '20px', color: '#2E2F32' }}>Utility Icons</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px' }}>
+            <IconShowcase icon={<ImageIcon />} name="ImageIcon" />
+            <IconShowcase icon={<Reports />} name="Reports" />
+            <IconShowcase icon={<MeasurementConsole />} name="MeasurementConsole" />
           </div>
 
           <div style={{
