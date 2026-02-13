@@ -1,0 +1,160 @@
+/* Chip Base Styles - LD 3.5 */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-weight: 500;
+  border-radius: 9999px; /* Pill shape */
+  border: 1.5px solid var(--ld-semantic-color-action-border-secondary);
+  background-color: var(--ld-semantic-color-action-fill-secondary);
+  color: var(--ld-semantic-color-action-text-on-fill-secondary);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Focus visible */
+.chip:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
+  outline-offset: 2px;
+}
+
+/* Hover - Unselected */
+.chip:hover:not(:disabled) {
+  background-color: var(--ld-semantic-color-action-fill-secondary-hovered);
+  border-color: var(--ld-semantic-color-action-border-secondary-hovered);
+  color: var(--ld-semantic-color-action-text-on-fill-secondary-hovered);
+}
+
+/* Pressed - Unselected */
+.chip:active:not(:disabled) {
+  background-color: var(--ld-semantic-color-action-fill-secondary-pressed);
+  border-color: var(--ld-semantic-color-action-border-secondary-pressed);
+  color: var(--ld-semantic-color-action-text-on-fill-secondary-pressed);
+}
+
+/* Disabled */
+.chip:disabled {
+  cursor: not-allowed;
+  background-color: var(--ld-semantic-color-action-fill-secondary-disabled);
+  border-color: var(--ld-semantic-color-action-border-secondary-disabled);
+  color: var(--ld-semantic-color-action-text-on-fill-secondary-disabled);
+}
+
+/* ==================== */
+/* Size Variants         */
+/* ==================== */
+
+.chip--size-small {
+  padding: 4px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  min-height: 32px;
+}
+
+.chip--size-medium {
+  padding: 6px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  min-height: 36px;
+}
+
+.chip--size-large {
+  padding: 8px 20px;
+  font-size: 16px;
+  line-height: 24px;
+  min-height: 40px;
+}
+
+/* ==================== */
+/* Selected State        */
+/* ==================== */
+
+/* Selected - Default variant */
+.chip--variant-default.chip--selected {
+  background-color: var(--ld-semantic-color-input-fill-activated);
+  border-color: var(--ld-semantic-color-input-border-activated);
+  color: var(--ld-semantic-color-input-indicator-activated);
+}
+
+.chip--variant-default.chip--selected:hover:not(:disabled) {
+  background-color: var(--ld-semantic-color-input-fill-activated-hovered);
+  border-color: var(--ld-semantic-color-input-border-activated-hovered);
+  color: var(--ld-semantic-color-input-indicator-activated);
+}
+
+.chip--variant-default.chip--selected:active:not(:disabled) {
+  background-color: var(--ld-semantic-color-input-fill-activated-pressed);
+  border-color: var(--ld-semantic-color-input-border-activated-pressed);
+  color: var(--ld-semantic-color-input-indicator-activated);
+}
+
+.chip--variant-default.chip--selected:disabled {
+  background-color: var(--ld-semantic-color-input-fill-activated-disabled);
+  border-color: var(--ld-semantic-color-input-border-activated-disabled);
+  color: var(--ld-semantic-color-input-fill-disabled);
+}
+
+/* Selected - Primary variant */
+.chip--variant-primary.chip--selected {
+  background-color: var(--ld-semantic-color-action-fill-primary);
+  border-color: var(--ld-semantic-color-action-fill-primary);
+  color: var(--ld-semantic-color-action-text-on-fill-primary);
+}
+
+.chip--variant-primary.chip--selected:hover:not(:disabled) {
+  background-color: var(--ld-semantic-color-action-fill-primary-hovered);
+  border-color: var(--ld-semantic-color-action-fill-primary-hovered);
+  color: var(--ld-semantic-color-action-text-on-fill-primary-hovered);
+}
+
+.chip--variant-primary.chip--selected:active:not(:disabled) {
+  background-color: var(--ld-semantic-color-action-fill-primary-pressed);
+  border-color: var(--ld-semantic-color-action-fill-primary-pressed);
+  color: var(--ld-semantic-color-action-text-on-fill-primary-pressed);
+}
+
+.chip--variant-primary.chip--selected:disabled {
+  background-color: var(--ld-semantic-color-action-fill-primary-disabled);
+  border-color: var(--ld-semantic-color-action-fill-primary-disabled);
+  color: var(--ld-semantic-color-action-text-on-fill-primary-disabled);
+}
+
+/* ==================== */
+/* Icon Containers       */
+/* ==================== */
+
+.chip__iconLeading,
+.chip__iconTrailing {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chip__iconLeading svg,
+.chip__iconTrailing svg {
+  width: 16px;
+  height: 16px;
+}
+
+.chip--size-large .chip__iconLeading svg,
+.chip--size-large .chip__iconTrailing svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Label */
+.chip__label {
+  display: inline-flex;
+  align-items: center;
+}

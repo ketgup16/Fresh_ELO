@@ -7,12 +7,14 @@ import IconButtonExample from '@/components/IconButtonExample';
 import { CalloutExample } from '@/components/CalloutExample';
 import { CardHeaderExample } from '@/components/CardHeaderExample';
 import { CheckboxExample } from '@/components/CheckboxExample';
+import { ChipExample } from '@/components/ChipExample';
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Badge } from '@/components/ui/Badge';
 import { IconButton } from '@/components/ui/IconButton';
 import { Link } from '@/components/ui/Link';
 import { Tag } from '@/components/ui/tag';
+import { Chip } from '@/components/ui/Chip';
 import { OLQTag } from '@/components/ui/olq-tag';
 import * as Icons from '@/components/icons';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
@@ -30,6 +32,7 @@ export default function ComponentLibrary() {
     { id: 'links', name: 'Links', keywords: ['link', 'anchor', 'hyperlink', 'url'] },
     { id: 'icon-buttons', name: 'Icon Buttons', keywords: ['icon button', 'icon', 'action'] },
     { id: 'checkboxes', name: 'Checkboxes', keywords: ['checkbox', 'check', 'select', 'form', 'input', 'indeterminate'] },
+    { id: 'chips', name: 'Chips', keywords: ['chip', 'filter', 'select', 'toggle', 'pill', 'tag', 'interactive'] },
     { id: 'callouts', name: 'Callouts', keywords: ['callout', 'tooltip', 'nubbin', 'coaching', 'onboarding', 'pointer'] },
     { id: 'cards', name: 'Cards', keywords: ['card', 'container', 'panel'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
@@ -297,7 +300,7 @@ export default function ComponentLibrary() {
           Quick Navigation
         </h3>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Callouts', 'Cards', 'Design Tokens'].map(section => (
+          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Callouts', 'Cards', 'Design Tokens'].map(section => (
             <a
               key={section}
               href={`#${section.toLowerCase().replace(' ', '-')}`}
@@ -480,6 +483,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="checkboxes" title="Checkboxes" description="Form checkboxes with checked, unchecked, and indeterminate states using LD 3.5 input tokens">
         <ComponentShowcase>
           <CheckboxExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Chips Section */}
+      <Section id="chips" title="Chips" description="Interactive, selectable pill-shaped buttons for filtering and categorization with toggle selection">
+        <ComponentShowcase>
+          <ChipExample />
         </ComponentShowcase>
       </Section>
 
@@ -888,7 +898,7 @@ function SearchableComponentSelect({ selectedComponent, onComponentChange, avail
 
 // Interactive Component Tester - Supports multiple component types
 function InteractiveComponentTester() {
-  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'Tag' | 'OLQTag';
+  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'Tag' | 'OLQTag' | 'Chip';
 
   const [selectedComponent, setSelectedComponent] = React.useState<ComponentType>('Button');
   const [variant, setVariant] = React.useState<string>('primary');
@@ -902,6 +912,7 @@ function InteractiveComponentTester() {
   const [dismissible, setDismissible] = React.useState(false);
   const [clickable, setClickable] = React.useState(false);
   const [olqPercentage, setOlqPercentage] = React.useState(85);
+  const [chipSelected, setChipSelected] = React.useState(false);
 
   const SearchIcon = (Icons as any).Search;
   const ArrowRightIcon = (Icons as any).ChevronRight;
@@ -993,6 +1004,18 @@ function InteractiveComponentTester() {
       supportsClickable: false,
       supportsOLQPercentage: true,
     },
+    Chip: {
+      variants: ['default', 'primary'],
+      sizes: ['small', 'medium', 'large'],
+      supportsFullWidth: false,
+      supportsIcons: true,
+      supportsValue: false,
+      supportsShape: false,
+      supportsUnderline: false,
+      supportsDismissible: false,
+      supportsClickable: false,
+      supportsOLQPercentage: false,
+    },
   };
 
   const config = componentConfigs[selectedComponent];
@@ -1009,6 +1032,7 @@ function InteractiveComponentTester() {
     setDismissible(false);
     setClickable(false);
     setOlqPercentage(85);
+    setChipSelected(false);
   }, [selectedComponent]);
 
   // Generate code based on selected component
@@ -1059,6 +1083,15 @@ function InteractiveComponentTester() {
   value="${olqPercentage}%"
   size="${size}"
 />`;
+
+      case 'Chip':
+        return `<Chip
+  variant="${variant}"
+  size="${size}"${chipSelected ? '\n  selected' : ''}${disabled ? '\n  disabled' : ''}${withIcon ? '\n  iconLeading={<Filter />}' : ''}
+  onSelectedChange={setSelected}
+>
+  Filter Label
+</Chip>`;
 
       default:
         return '';
@@ -1142,6 +1175,22 @@ function InteractiveComponentTester() {
             size={size as any}
           />
         );
+
+      case 'Chip': {
+        const FilterIcon = (Icons as any).Filter;
+        return (
+          <Chip
+            variant={variant as any}
+            size={size as any}
+            selected={chipSelected}
+            onSelectedChange={setChipSelected}
+            disabled={disabled}
+            iconLeading={withIcon && FilterIcon ? <FilterIcon style={{ width: 16, height: 16 }} /> : undefined}
+          >
+            Filter Label
+          </Chip>
+        );
+      }
 
       default:
         return null;
