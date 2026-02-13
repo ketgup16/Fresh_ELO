@@ -294,7 +294,7 @@ export default function ComponentLibrary() {
           Quick Navigation
         </h3>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {['Icons', 'Component Tester', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Cards', 'Design Tokens'].map(section => (
+          {['Icons', 'Component Tester', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Callouts', 'Cards', 'Design Tokens'].map(section => (
             <a
               key={section}
               href={`#${section.toLowerCase().replace(' ', '-')}`}
