@@ -21,40 +21,16 @@ const THEME_STORAGE_KEY = 'ld-theme';
 
 /**
  * Load theme CSS files dynamically using inheritance model
- * Base theme is always loaded first, then theme-specific overrides
+ * Base theme is loaded statically via global.css
+ * This function only manages theme OVERRIDE files
  */
 function loadThemeCSS(theme: Theme): Promise<void> {
   return new Promise((resolve, reject) => {
-    // Remove existing theme override links (but keep base)
+    // Remove existing theme override links
     const existingOverrides = document.querySelectorAll('link[data-theme-override]');
     existingOverrides.forEach(link => link.remove());
 
-    // Ensure base theme is loaded (if not already)
-    const baseTheme = AVAILABLE_THEMES.find(t => t.id === 'base');
-    if (!baseTheme) {
-      reject(new Error('Base theme not found'));
-      return;
-    }
-
-    const existingBase = document.querySelectorAll('link[data-theme-base]');
-
-    // Load base theme if not already loaded
-    if (existingBase.length === 0) {
-      const basePrimitiveLink = document.createElement('link');
-      basePrimitiveLink.rel = 'stylesheet';
-      basePrimitiveLink.href = baseTheme.primitiveCSS;
-      basePrimitiveLink.setAttribute('data-theme-base', 'primitive');
-
-      const baseSemanticLink = document.createElement('link');
-      baseSemanticLink.rel = 'stylesheet';
-      baseSemanticLink.href = baseTheme.semanticCSS;
-      baseSemanticLink.setAttribute('data-theme-base', 'semantic');
-
-      document.head.appendChild(basePrimitiveLink);
-      document.head.appendChild(baseSemanticLink);
-    }
-
-    // If selecting base theme, we're done
+    // If selecting base theme, just remove overrides (base already loaded via global.css)
     if (theme.id === 'base') {
       resolve();
       return;
@@ -105,7 +81,7 @@ function loadThemeCSS(theme: Theme): Promise<void> {
 
     semanticLink.onerror = handleError;
 
-    // Append override links to head (after base)
+    // Append override links to head (after base from global.css)
     document.head.appendChild(primitiveLink);
     document.head.appendChild(semanticLink);
   });
@@ -164,10 +140,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       });
   }, []);
 
-  // Load initial theme on mount
+  // Load initial theme on mount (if not base, since base is already in global.css)
   useEffect(() => {
     const theme = getThemeById(currentTheme);
-    if (theme) {
+    if (theme && theme.id !== 'base') {
       setIsLoading(true);
       loadThemeCSS(theme)
         .then(() => setIsLoading(false))
