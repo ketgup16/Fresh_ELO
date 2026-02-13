@@ -5,6 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 export type IconButtonSize = 'small' | 'medium' | 'large';
 export type IconButtonType = 'button' | 'reset' | 'submit';
 export type IconButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'ghost';
+export type IconButtonShape = 'square' | 'rounded';
 
 interface CommonProps {
   'aria-label': string; // Required for accessibility
@@ -17,18 +18,24 @@ interface IconButtonBaseProps extends CommonProps {
    * The icon content for the button.
    */
   children: React.ReactNode;
-  
+
   /**
    * The size for the icon button.
    * @default "medium"
    */
   size?: IconButtonSize;
-  
+
   /**
    * The variant for the icon button.
    * @default "ghost"
    */
   variant?: IconButtonVariant;
+
+  /**
+   * The shape for the icon button.
+   * @default "square"
+   */
+  shape?: IconButtonShape;
 }
 
 /**
@@ -90,6 +97,7 @@ export const IconButton = React.forwardRef<
     children,
     size = 'medium',
     variant = 'ghost',
+    shape = 'square',
     'aria-label': ariaLabel,
     UNSAFE_className,
     UNSAFE_style,
@@ -100,6 +108,7 @@ export const IconButton = React.forwardRef<
     styles.iconButton,
     styles[`iconButton--size-${size}`],
     styles[`iconButton--variant-${variant}`],
+    styles[`iconButton--shape-${shape}`],
     UNSAFE_className,
   ]
     .filter(Boolean)
@@ -168,9 +177,14 @@ const iconButtonVariants = cva('', {
       destructive: '',
       ghost: '',
     },
+    shape: {
+      square: '',
+      rounded: '',
+    },
   },
   defaultVariants: {
     size: 'medium',
     variant: 'ghost',
+    shape: 'square',
   },
 });

@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: center;
   font-family: var(--ld-semantic-font-family-sans);
-  border-radius: 4px; /* Square with slight rounding */
   border: 1px solid transparent;
   cursor: pointer;
   text-decoration: none;
@@ -187,4 +186,13 @@
   background-color: var(--ld-semantic-color-action-fill-negative-disabled);
   border-color: var(--ld-semantic-color-action-fill-negative-disabled);
   color: var(--ld-semantic-color-action-text-on-fill-negative-disabled);
+}
+
+/* Shape Variants */
+.iconButton--shape-square {
+  border-radius: 4px; /* Square with slight rounding */
+}
+
+.iconButton--shape-rounded {
+  border-radius: 9999px; /* Fully rounded/circular */
 }

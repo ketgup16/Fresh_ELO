@@ -50,6 +50,67 @@ export default function IconButtonExample() {
         </div>
       </section>
 
+      {/* Rounded Shape Variant */}
+      <section>
+        <h2 className="text-xl font-semibold mb-4">Rounded Shape</h2>
+        <p className="text-sm text-gray-600 mb-3">
+          Icon buttons can have a fully rounded (circular) shape by adding the shape="rounded" prop.
+        </p>
+        <div className="space-y-4">
+          <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
+            <span className="text-sm text-gray-600 w-24">Primary:</span>
+            <IconButton aria-label="Add item" variant="primary" shape="rounded" size="small">
+              <Plus style={{ width: 16, height: 16 }} />
+            </IconButton>
+            <IconButton aria-label="Add item" variant="primary" shape="rounded" size="medium">
+              <Plus style={{ width: 20, height: 20 }} />
+            </IconButton>
+            <IconButton aria-label="Add item" variant="primary" shape="rounded" size="large">
+              <Plus style={{ width: 24, height: 24 }} />
+            </IconButton>
+          </div>
+
+          <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
+            <span className="text-sm text-gray-600 w-24">Secondary:</span>
+            <IconButton aria-label="Edit" variant="secondary" shape="rounded" size="small">
+              <Edit style={{ width: 16, height: 16 }} />
+            </IconButton>
+            <IconButton aria-label="Edit" variant="secondary" shape="rounded" size="medium">
+              <Edit style={{ width: 20, height: 20 }} />
+            </IconButton>
+            <IconButton aria-label="Edit" variant="secondary" shape="rounded" size="large">
+              <Edit style={{ width: 24, height: 24 }} />
+            </IconButton>
+          </div>
+
+          <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
+            <span className="text-sm text-gray-600 w-24">Ghost:</span>
+            <IconButton aria-label="Close" variant="ghost" shape="rounded" size="small">
+              <X style={{ width: 16, height: 16 }} />
+            </IconButton>
+            <IconButton aria-label="Close" variant="ghost" shape="rounded" size="medium">
+              <X style={{ width: 20, height: 20 }} />
+            </IconButton>
+            <IconButton aria-label="Close" variant="ghost" shape="rounded" size="large">
+              <X style={{ width: 24, height: 24 }} />
+            </IconButton>
+          </div>
+
+          <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
+            <span className="text-sm text-gray-600 w-24">Destructive:</span>
+            <IconButton aria-label="Delete" variant="destructive" shape="rounded" size="small">
+              <Trash style={{ width: 16, height: 16 }} />
+            </IconButton>
+            <IconButton aria-label="Delete" variant="destructive" shape="rounded" size="medium">
+              <Trash style={{ width: 20, height: 20 }} />
+            </IconButton>
+            <IconButton aria-label="Delete" variant="destructive" shape="rounded" size="large">
+              <Trash style={{ width: 24, height: 24 }} />
+            </IconButton>
+          </div>
+        </div>
+      </section>
+
       {/* Primary Variant */}
       <section>
         <h2 className="text-xl font-semibold mb-4">Primary Variant</h2>
@@ -147,16 +208,21 @@ export default function IconButtonExample() {
       <section>
         <h2 className="text-xl font-semibold mb-4">Code Examples</h2>
         <div className="bg-gray-900 text-gray-100 p-4 rounded font-mono text-sm space-y-2">
-          <div className="text-green-400">// Ghost icon button (default)</div>
+          <div className="text-green-400">// Ghost icon button (default square shape)</div>
           <div>{'<IconButton aria-label="Info" variant="ghost" size="medium">'}</div>
           <div className="pl-4">{'<InfoIcon />'}</div>
           <div>{'</IconButton>'}</div>
-          
+
           <div className="mt-4 text-green-400">// Primary icon button</div>
           <div>{'<IconButton aria-label="Add" variant="primary">'}</div>
           <div className="pl-4">{'<PlusIcon />'}</div>
           <div>{'</IconButton>'}</div>
-          
+
+          <div className="mt-4 text-green-400">// Rounded icon button</div>
+          <div>{'<IconButton aria-label="Add" variant="primary" shape="rounded">'}</div>
+          <div className="pl-4">{'<PlusIcon />'}</div>
+          <div>{'</IconButton>'}</div>
+
           <div className="mt-4 text-green-400">// Disabled icon button</div>
           <div>{'<IconButton aria-label="Delete" variant="destructive" disabled>'}</div>
           <div className="pl-4">{'<TrashIcon />'}</div>

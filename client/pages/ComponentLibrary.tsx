@@ -8,9 +8,38 @@ import { CardHeaderExample } from '@/components/CardHeaderExample';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { IconButton } from '@/components/ui/IconButton';
+import { Link } from '@/components/ui/Link';
+import { Tag } from '@/components/ui/tag';
+import { OLQTag } from '@/components/ui/olq-tag';
 import * as Icons from '@/components/icons';
 
 export default function ComponentLibrary() {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  // Define all searchable sections
+  const allSections = [
+    { id: 'icons', name: 'Icons', keywords: ['icon', 'svg', 'graphic', 'symbol'] },
+    { id: 'component-tester', name: 'Component Tester', keywords: ['test', 'playground', 'interactive', 'properties'] },
+    { id: 'buttons', name: 'Buttons', keywords: ['button', 'action', 'click', 'primary', 'secondary'] },
+    { id: 'badges', name: 'Badges', keywords: ['badge', 'count', 'notification', 'label', 'tag'] },
+    { id: 'breadcrumbs', name: 'Breadcrumbs', keywords: ['breadcrumb', 'navigation', 'path'] },
+    { id: 'links', name: 'Links', keywords: ['link', 'anchor', 'hyperlink', 'url'] },
+    { id: 'icon-buttons', name: 'Icon Buttons', keywords: ['icon button', 'icon', 'action'] },
+    { id: 'cards', name: 'Cards', keywords: ['card', 'container', 'panel'] },
+    { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
+  ];
+
+  // Filter sections based on search query
+  const filteredSections = searchQuery.trim()
+    ? allSections.filter(section => {
+        const query = searchQuery.toLowerCase();
+        return (
+          section.name.toLowerCase().includes(query) ||
+          section.keywords.some(keyword => keyword.includes(query))
+        );
+      })
+    : allSections;
+
   // Organize icons by category
   const iconCategories = {
     'Navigation & Arrows': [
@@ -165,6 +194,77 @@ export default function ComponentLibrary() {
         </p>
       </div>
 
+      {/* Search Bar */}
+      <div style={{
+        marginBottom: '32px',
+        backgroundColor: 'var(--ld-semantic-color-surface)',
+        padding: '24px',
+        borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+        boxShadow: 'var(--ld-semantic-elevation-100)'
+      }}>
+        <div style={{ position: 'relative', maxWidth: '600px' }}>
+          <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
+            {React.createElement((Icons as any).Search, { style: { width: 20, height: 20, color: 'var(--ld-semantic-color-text-subtle)' }})}
+          </div>
+          <input
+            type="text"
+            placeholder="Search components, icons, or design tokens..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '12px 16px 12px 48px',
+              fontSize: '16px',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+              border: '2px solid var(--ld-semantic-color-border)',
+              borderRadius: 'var(--ld-semantic-border-radius-medium)',
+              backgroundColor: 'var(--ld-semantic-color-surface)',
+              color: 'var(--ld-semantic-color-text)',
+              outline: 'none',
+              transition: 'border-color 0.2s'
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = 'var(--ld-semantic-color-action-fill-primary)';
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.borderColor = 'var(--ld-semantic-color-border)';
+            }}
+          />
+        </div>
+        {searchQuery.trim() && (
+          <div style={{ marginTop: '16px' }}>
+            <p style={{
+              fontSize: '14px',
+              color: 'var(--ld-semantic-color-text-subtle)',
+              marginBottom: '12px'
+            }}>
+              Found {filteredSections.length} result{filteredSections.length !== 1 ? 's' : ''}
+            </p>
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              {filteredSections.map(section => (
+                <a
+                  key={section.id}
+                  href={`#${section.id}`}
+                  onClick={() => setSearchQuery('')}
+                  style={{
+                    padding: '6px 12px',
+                    backgroundColor: 'var(--ld-semantic-color-fill-info-subtle)',
+                    color: 'var(--ld-semantic-color-text-brand)',
+                    borderRadius: '16px',
+                    fontSize: '13px',
+                    textDecoration: 'none',
+                    fontWeight: 500,
+                    border: '1px solid var(--ld-semantic-color-border-info)'
+                  }}
+                >
+                  {section.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* Navigation */}
       <div style={{
         marginBottom: '32px',
@@ -221,37 +321,61 @@ export default function ComponentLibrary() {
           padding: '32px',
           boxShadow: 'var(--ld-semantic-elevation-100)'
         }}>
-          {Object.entries(iconCategories).map(([category, iconNames]) => (
-            <div key={category} style={{ marginBottom: '48px' }}>
-              <h3 style={{ 
-                fontSize: '18px', 
-                fontWeight: 600, 
-                marginBottom: '20px', 
-                color: 'var(--ld-semantic-color-text)',
-                fontFamily: 'var(--ld-semantic-font-family-sans)'
-              }}>
-                {category} ({iconNames.length})
-              </h3>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', 
-                gap: '16px'
-              }}>
-                {iconNames.map(iconName => {
-                  const IconComponent = (Icons as any)[iconName];
-                  if (!IconComponent) return null;
-                  
-                  return (
-                    <IconShowcase 
-                      key={iconName}
-                      icon={<IconComponent />} 
-                      name={iconName} 
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+          {Object.entries(iconCategories).map(([category, iconNames]) => {
+            const CategoryComponent = () => {
+              const [isExpanded, setIsExpanded] = React.useState(false);
+              const ChevronIcon = isExpanded ? (Icons as any).ChevronDown : (Icons as any).ChevronRight;
+
+              return (
+                <div key={category} style={{ marginBottom: '48px' }}>
+                  <div
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      cursor: 'pointer',
+                      userSelect: 'none',
+                      marginBottom: '20px'
+                    }}
+                  >
+                    <ChevronIcon style={{ width: 20, height: 20, color: 'var(--ld-semantic-color-text-subtle)' }} />
+                    <h3 style={{
+                      fontSize: '18px',
+                      fontWeight: 600,
+                      margin: 0,
+                      color: 'var(--ld-semantic-color-text)',
+                      fontFamily: 'var(--ld-semantic-font-family-sans)'
+                    }}>
+                      {category} ({iconNames.length})
+                    </h3>
+                  </div>
+                  {isExpanded && (
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
+                      gap: '16px'
+                    }}>
+                      {iconNames.map(iconName => {
+                        const IconComponent = (Icons as any)[iconName];
+                        if (!IconComponent) return null;
+
+                        return (
+                          <IconShowcase
+                            key={iconName}
+                            icon={<IconComponent />}
+                            name={iconName}
+                          />
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            };
+
+            return <CategoryComponent key={category} />;
+          })}
 
           {/* Usage Example */}
           <div style={{
@@ -434,29 +558,44 @@ interface SectionProps {
 }
 
 function Section({ id, title, description, children }: SectionProps) {
+  const [isExpanded, setIsExpanded] = React.useState(true);
+  const ChevronIcon = isExpanded ? (Icons as any).ChevronDown : (Icons as any).ChevronRight;
+
   return (
     <div id={id} style={{ marginBottom: '48px', scrollMarginTop: '24px' }}>
-      <div style={{ marginBottom: '24px' }}>
-        <h2 style={{
-          fontSize: '28px',
-          fontWeight: 700,
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text)',
-          marginBottom: '8px'
-        }}>
-          {title}
-        </h2>
+      <div
+        style={{
+          marginBottom: '24px',
+          cursor: 'pointer',
+          userSelect: 'none'
+        }}
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <ChevronIcon style={{ width: 24, height: 24, color: 'var(--ld-semantic-color-text-subtle)' }} />
+          <h2 style={{
+            fontSize: '28px',
+            fontWeight: 700,
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+            color: 'var(--ld-semantic-color-text)',
+            marginBottom: '8px',
+            flex: 1
+          }}>
+            {title}
+          </h2>
+        </div>
         {description && (
           <p style={{
             fontSize: '14px',
             color: 'var(--ld-semantic-color-text-subtle)',
-            lineHeight: '1.5'
+            lineHeight: '1.5',
+            marginLeft: '36px'
           }}>
             {description}
           </p>
         )}
       </div>
-      {children}
+      {isExpanded && children}
     </div>
   );
 }
@@ -546,9 +685,183 @@ function GuidelineItem({ title, description }: GuidelineItemProps) {
   );
 }
 
+// Searchable Component Select Dropdown
+interface SearchableComponentSelectProps {
+  selectedComponent: string;
+  onComponentChange: (component: string) => void;
+  availableComponents: string[];
+}
+
+function SearchableComponentSelect({ selectedComponent, onComponentChange, availableComponents }: SearchableComponentSelectProps) {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+        setSearchQuery('');
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const filteredComponents = availableComponents.filter(component =>
+    component.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const ChevronDown = (Icons as any).ChevronDown;
+  const SearchIcon = (Icons as any).Search;
+
+  return (
+    <div ref={dropdownRef} style={{ position: 'relative' }}>
+      {/* Selected Component Display */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        style={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '12px 16px',
+          fontSize: '14px',
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          fontWeight: 500,
+          border: '2px solid var(--ld-semantic-color-border)',
+          borderRadius: 'var(--ld-semantic-border-radius-medium)',
+          backgroundColor: 'var(--ld-semantic-color-surface)',
+          color: 'var(--ld-semantic-color-text)',
+          cursor: 'pointer',
+          transition: 'all 0.2s',
+          outline: 'none'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = 'var(--ld-semantic-color-border-strong)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = 'var(--ld-semantic-color-border)';
+        }}
+      >
+        <span>{selectedComponent}</span>
+        <ChevronDown style={{
+          width: 16,
+          height: 16,
+          transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+          transition: 'transform 0.2s'
+        }} />
+      </button>
+
+      {/* Dropdown Menu */}
+      {isOpen && (
+        <div style={{
+          position: 'absolute',
+          top: 'calc(100% + 4px)',
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          backgroundColor: 'var(--ld-semantic-color-surface)',
+          border: '1px solid var(--ld-semantic-color-border)',
+          borderRadius: 'var(--ld-semantic-border-radius-medium)',
+          boxShadow: 'var(--ld-semantic-elevation-200)',
+          overflow: 'hidden'
+        }}>
+          {/* Search Input */}
+          <div style={{ padding: '12px', borderBottom: '1px solid var(--ld-semantic-color-separator)' }}>
+            <div style={{ position: 'relative' }}>
+              <SearchIcon style={{
+                position: 'absolute',
+                left: '12px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: 16,
+                height: 16,
+                color: 'var(--ld-semantic-color-text-subtle)',
+                pointerEvents: 'none'
+              }} />
+              <input
+                type="text"
+                placeholder="Search components..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                autoFocus
+                style={{
+                  width: '100%',
+                  padding: '8px 12px 8px 36px',
+                  fontSize: '14px',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)',
+                  border: '1px solid var(--ld-semantic-color-border)',
+                  borderRadius: 'var(--ld-semantic-border-radius-small)',
+                  backgroundColor: 'var(--ld-semantic-color-background-subtle)',
+                  color: 'var(--ld-semantic-color-text)',
+                  outline: 'none'
+                }}
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+          </div>
+
+          {/* Component List */}
+          <div style={{ maxHeight: '240px', overflowY: 'auto' }}>
+            {filteredComponents.length > 0 ? (
+              filteredComponents.map((component) => (
+                <button
+                  key={component}
+                  onClick={() => {
+                    onComponentChange(component);
+                    setIsOpen(false);
+                    setSearchQuery('');
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    fontSize: '14px',
+                    fontFamily: 'var(--ld-semantic-font-family-sans)',
+                    textAlign: 'left',
+                    border: 'none',
+                    backgroundColor: component === selectedComponent
+                      ? 'var(--ld-semantic-color-fill-info-subtle)'
+                      : 'transparent',
+                    color: 'var(--ld-semantic-color-text)',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.15s',
+                    fontWeight: component === selectedComponent ? 600 : 400
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-hovered)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = component === selectedComponent
+                      ? 'var(--ld-semantic-color-fill-info-subtle)'
+                      : 'transparent';
+                  }}
+                >
+                  {component}
+                </button>
+              ))
+            ) : (
+              <div style={{
+                padding: '16px',
+                textAlign: 'center',
+                color: 'var(--ld-semantic-color-text-subtle)',
+                fontSize: '14px'
+              }}>
+                No components found
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // Interactive Component Tester - Supports multiple component types
 function InteractiveComponentTester() {
-  type ComponentType = 'Button' | 'Badge' | 'IconButton';
+  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'Tag' | 'OLQTag';
 
   const [selectedComponent, setSelectedComponent] = React.useState<ComponentType>('Button');
   const [variant, setVariant] = React.useState<string>('primary');
@@ -557,6 +870,11 @@ function InteractiveComponentTester() {
   const [fullWidth, setFullWidth] = React.useState(false);
   const [withIcon, setWithIcon] = React.useState(false);
   const [badgeValue, setBadgeValue] = React.useState(5);
+  const [shape, setShape] = React.useState<string>('square');
+  const [underline, setUnderline] = React.useState(true);
+  const [dismissible, setDismissible] = React.useState(false);
+  const [clickable, setClickable] = React.useState(false);
+  const [olqPercentage, setOlqPercentage] = React.useState(85);
 
   const SearchIcon = (Icons as any).Search;
   const ArrowRightIcon = (Icons as any).ChevronRight;
@@ -570,6 +888,11 @@ function InteractiveComponentTester() {
     supportsFullWidth: boolean;
     supportsIcons: boolean;
     supportsValue: boolean;
+    supportsShape: boolean;
+    supportsUnderline: boolean;
+    supportsDismissible: boolean;
+    supportsClickable: boolean;
+    supportsOLQPercentage: boolean;
   }> = {
     Button: {
       variants: ['primary', 'secondary', 'tertiary', 'destructive'],
@@ -577,6 +900,11 @@ function InteractiveComponentTester() {
       supportsFullWidth: true,
       supportsIcons: true,
       supportsValue: false,
+      supportsShape: false,
+      supportsUnderline: false,
+      supportsDismissible: false,
+      supportsClickable: false,
+      supportsOLQPercentage: false,
     },
     Badge: {
       variants: ['info', 'success', 'warning', 'error', 'neutral', 'blue', 'green', 'red'],
@@ -584,6 +912,11 @@ function InteractiveComponentTester() {
       supportsFullWidth: false,
       supportsIcons: false,
       supportsValue: true,
+      supportsShape: false,
+      supportsUnderline: false,
+      supportsDismissible: false,
+      supportsClickable: false,
+      supportsOLQPercentage: false,
     },
     IconButton: {
       variants: ['ghost', 'primary', 'secondary', 'destructive'],
@@ -591,6 +924,47 @@ function InteractiveComponentTester() {
       supportsFullWidth: false,
       supportsIcons: false,
       supportsValue: false,
+      supportsShape: true,
+      supportsUnderline: false,
+      supportsDismissible: false,
+      supportsClickable: false,
+      supportsOLQPercentage: false,
+    },
+    Link: {
+      variants: ['default', 'subtle'],
+      sizes: [],
+      supportsFullWidth: false,
+      supportsIcons: false,
+      supportsValue: false,
+      supportsShape: false,
+      supportsUnderline: true,
+      supportsDismissible: false,
+      supportsClickable: false,
+      supportsOLQPercentage: false,
+    },
+    Tag: {
+      variants: ['default', 'primary', 'secondary', 'success', 'warning', 'destructive', 'info'],
+      sizes: ['sm', 'md', 'lg'],
+      supportsFullWidth: false,
+      supportsIcons: true,
+      supportsValue: false,
+      supportsShape: false,
+      supportsUnderline: false,
+      supportsDismissible: true,
+      supportsClickable: true,
+      supportsOLQPercentage: false,
+    },
+    OLQTag: {
+      variants: [],
+      sizes: ['sm', 'md', 'lg'],
+      supportsFullWidth: false,
+      supportsIcons: false,
+      supportsValue: false,
+      supportsShape: false,
+      supportsUnderline: false,
+      supportsDismissible: false,
+      supportsClickable: false,
+      supportsOLQPercentage: true,
     },
   };
 
@@ -598,11 +972,16 @@ function InteractiveComponentTester() {
 
   // Reset properties when switching components
   React.useEffect(() => {
-    setVariant(config.variants[0]);
-    setSize('medium');
+    setVariant(config.variants[0] || 'default');
+    setSize(config.sizes[0] || 'medium');
     setDisabled(false);
     setFullWidth(false);
     setWithIcon(false);
+    setShape('square');
+    setUnderline(true);
+    setDismissible(false);
+    setClickable(false);
+    setOlqPercentage(85);
   }, [selectedComponent]);
 
   // Generate code based on selected component
@@ -626,11 +1005,33 @@ function InteractiveComponentTester() {
       case 'IconButton':
         return `<IconButton
   variant="${variant}"
-  size="${size}"${disabled ? '\n  disabled' : ''}
+  size="${size}"${shape !== 'square' ? `\n  shape="${shape}"` : ''}${disabled ? '\n  disabled' : ''}
   aria-label="Settings"
 >
   <Settings style={{ width: 20, height: 20 }} />
 </IconButton>`;
+
+      case 'Link':
+        return `<Link
+  href="/example"
+  variant="${variant}"${!underline ? '\n  underline={false}' : ''}
+>
+  ${variant === 'subtle' ? 'Subtle Link' : 'Example Link'}
+</Link>`;
+
+      case 'Tag':
+        return `<Tag
+  variant="${variant}"
+  size="${size}"${disabled ? '\n  disabled' : ''}${dismissible ? '\n  dismissible\n  onDismiss={() => console.log("Dismissed")}' : ''}${clickable ? '\n  clickable\n  onClick={() => console.log("Clicked")}' : ''}${withIcon ? '\n  icon={<Star />}' : ''}
+>
+  ${variant.charAt(0).toUpperCase() + variant.slice(1)} Tag
+</Tag>`;
+
+      case 'OLQTag':
+        return `<OLQTag
+  value="${olqPercentage}%"
+  size="${size}"
+/>`;
 
       default:
         return '';
@@ -671,11 +1072,48 @@ function InteractiveComponentTester() {
           <IconButton
             variant={variant as any}
             size={size as any}
+            shape={shape as any}
             disabled={disabled}
             aria-label="Settings"
           >
             <SettingsIcon style={{ width: 20, height: 20 }} />
           </IconButton>
+        );
+
+      case 'Link':
+        return (
+          <Link
+            href="/example"
+            variant={variant as any}
+            underline={underline}
+          >
+            {variant === 'subtle' ? 'Subtle Link' : 'Example Link'}
+          </Link>
+        );
+
+      case 'Tag':
+        const StarIcon = (Icons as any).Star;
+        return (
+          <Tag
+            variant={variant as any}
+            size={size as any}
+            disabled={disabled}
+            dismissible={dismissible}
+            onDismiss={() => console.log('Dismissed')}
+            clickable={clickable}
+            onClick={() => console.log('Clicked')}
+            icon={withIcon ? <StarIcon style={{ width: 16, height: 16 }} /> : undefined}
+          >
+            {variant.charAt(0).toUpperCase() + variant.slice(1)} Tag
+          </Tag>
+        );
+
+      case 'OLQTag':
+        return (
+          <OLQTag
+            value={`${olqPercentage}%`}
+            size={size as any}
+          />
         );
 
       default:
@@ -716,71 +1154,96 @@ function InteractiveComponentTester() {
               }}>
                 Component
               </label>
-              <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)', flexWrap: 'wrap' }}>
-                {(['Button', 'Badge', 'IconButton'] as ComponentType[]).map((componentType) => (
-                  <Button
-                    key={componentType}
-                    variant={selectedComponent === componentType ? 'primary' : 'secondary'}
-                    size="small"
-                    onClick={() => setSelectedComponent(componentType)}
-                  >
-                    {componentType}
-                  </Button>
-                ))}
-              </div>
+              <SearchableComponentSelect
+                selectedComponent={selectedComponent}
+                onComponentChange={(component) => setSelectedComponent(component as ComponentType)}
+                availableComponents={Object.keys(componentConfigs) as ComponentType[]}
+              />
             </div>
 
             {/* Variant Selection */}
-            <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: 600,
-                color: 'var(--ld-semantic-color-text-subtle)',
-                marginBottom: 'var(--ld-semantic-spacing-100)',
-                fontFamily: 'var(--ld-semantic-font-family-sans)'
-              }}>
-                Variant
-              </label>
-              <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)', flexWrap: 'wrap' }}>
-                {config.variants.map((v) => (
-                  <Button
-                    key={v}
-                    variant={variant === v ? 'primary' : 'secondary'}
-                    size="small"
-                    onClick={() => setVariant(v)}
-                  >
-                    {v.charAt(0).toUpperCase() + v.slice(1)}
-                  </Button>
-                ))}
+            {config.variants.length > 0 && (
+              <div>
+                <label style={{
+                  display: 'block',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  color: 'var(--ld-semantic-color-text-subtle)',
+                  marginBottom: 'var(--ld-semantic-spacing-100)',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)'
+                }}>
+                  Variant
+                </label>
+                <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)', flexWrap: 'wrap' }}>
+                  {config.variants.map((v) => (
+                    <Button
+                      key={v}
+                      variant={variant === v ? 'primary' : 'secondary'}
+                      size="small"
+                      onClick={() => setVariant(v)}
+                    >
+                      {v.charAt(0).toUpperCase() + v.slice(1)}
+                    </Button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Size Selection */}
-            <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: 600,
-                color: 'var(--ld-semantic-color-text-subtle)',
-                marginBottom: 'var(--ld-semantic-spacing-100)',
-                fontFamily: 'var(--ld-semantic-font-family-sans)'
-              }}>
-                Size
-              </label>
-              <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)' }}>
-                {config.sizes.map((s) => (
-                  <Button
-                    key={s}
-                    variant={size === s ? 'primary' : 'secondary'}
-                    size="small"
-                    onClick={() => setSize(s)}
-                  >
-                    {s.charAt(0).toUpperCase() + s.slice(1)}
-                  </Button>
-                ))}
+            {config.sizes.length > 0 && (
+              <div>
+                <label style={{
+                  display: 'block',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  color: 'var(--ld-semantic-color-text-subtle)',
+                  marginBottom: 'var(--ld-semantic-spacing-100)',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)'
+                }}>
+                  Size
+                </label>
+                <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)' }}>
+                  {config.sizes.map((s) => (
+                    <Button
+                      key={s}
+                      variant={size === s ? 'primary' : 'secondary'}
+                      size="small"
+                      onClick={() => setSize(s)}
+                    >
+                      {s.charAt(0).toUpperCase() + s.slice(1)}
+                    </Button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
+
+            {/* Shape Selection (IconButton only) */}
+            {config.supportsShape && (
+              <div>
+                <label style={{
+                  display: 'block',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  color: 'var(--ld-semantic-color-text-subtle)',
+                  marginBottom: 'var(--ld-semantic-spacing-100)',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)'
+                }}>
+                  Shape
+                </label>
+                <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)' }}>
+                  {['square', 'rounded'].map((s) => (
+                    <Button
+                      key={s}
+                      variant={shape === s ? 'primary' : 'secondary'}
+                      size="small"
+                      onClick={() => setShape(s)}
+                    >
+                      {s.charAt(0).toUpperCase() + s.slice(1)}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Boolean Properties */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-semantic-spacing-100)' }}>
@@ -858,6 +1321,96 @@ function InteractiveComponentTester() {
                     type="number"
                     value={badgeValue}
                     onChange={(e) => setBadgeValue(parseInt(e.target.value) || 0)}
+                    style={{
+                      padding: '6px 12px',
+                      fontSize: '14px',
+                      border: '1px solid var(--ld-semantic-color-border)',
+                      borderRadius: 'var(--ld-semantic-border-radius-small)',
+                      width: '100px',
+                      fontFamily: 'var(--ld-semantic-font-family-sans)'
+                    }}
+                  />
+                </div>
+              )}
+
+              {config.supportsUnderline && (
+                <label style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--ld-semantic-spacing-100)',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  color: 'var(--ld-semantic-color-text)',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)'
+                }}>
+                  <input
+                    type="checkbox"
+                    checked={underline}
+                    onChange={(e) => setUnderline(e.target.checked)}
+                    style={{ cursor: 'pointer' }}
+                  />
+                  Underline
+                </label>
+              )}
+
+              {config.supportsDismissible && (
+                <label style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--ld-semantic-spacing-100)',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  color: 'var(--ld-semantic-color-text)',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)'
+                }}>
+                  <input
+                    type="checkbox"
+                    checked={dismissible}
+                    onChange={(e) => setDismissible(e.target.checked)}
+                    style={{ cursor: 'pointer' }}
+                  />
+                  Dismissible
+                </label>
+              )}
+
+              {config.supportsClickable && (
+                <label style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--ld-semantic-spacing-100)',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  color: 'var(--ld-semantic-color-text)',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)'
+                }}>
+                  <input
+                    type="checkbox"
+                    checked={clickable}
+                    onChange={(e) => setClickable(e.target.checked)}
+                    style={{ cursor: 'pointer' }}
+                  />
+                  Clickable
+                </label>
+              )}
+
+              {config.supportsOLQPercentage && (
+                <div>
+                  <label style={{
+                    display: 'block',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    color: 'var(--ld-semantic-color-text)',
+                    marginBottom: 'var(--ld-semantic-spacing-50)',
+                    fontFamily: 'var(--ld-semantic-font-family-sans)'
+                  }}>
+                    OLQ Percentage
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={olqPercentage}
+                    onChange={(e) => setOlqPercentage(parseInt(e.target.value) || 0)}
                     style={{
                       padding: '6px 12px',
                       fontSize: '14px',
