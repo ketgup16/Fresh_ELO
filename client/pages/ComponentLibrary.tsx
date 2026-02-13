@@ -294,7 +294,7 @@ export default function ComponentLibrary() {
           Quick Navigation
         </h3>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {['Icons', 'Component Tester', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Callouts', 'Cards', 'Design Tokens'].map(section => (
+          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Callouts', 'Cards', 'Design Tokens'].map(section => (
             <a
               key={section}
               href={`#${section.toLowerCase().replace(' ', '-')}`}
@@ -322,6 +322,11 @@ export default function ComponentLibrary() {
           ))}
         </div>
       </div>
+
+      {/* Interactive Component Tester */}
+      <Section id="component-tester" title="Component Property Tester" description="Interactive playground to test component variants, sizes, and properties in real-time">
+        <InteractiveComponentTester />
+      </Section>
 
       {/* Icons Section */}
       <Section id="icons" title="Icons" description={`Complete icon library with ${Object.values(iconCategories).flat().length}+ React components organized by category`}>
@@ -395,9 +400,9 @@ export default function ComponentLibrary() {
             borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
             borderLeft: `4px solid var(--ld-semantic-color-border-info)`
           }}>
-            <h4 style={{ 
-              fontSize: '14px', 
-              fontWeight: 600, 
+            <h4 style={{
+              fontSize: '14px',
+              fontWeight: 600,
               marginBottom: '12px',
               color: 'var(--ld-semantic-color-text)'
             }}>
@@ -421,7 +426,7 @@ import { Search, Settings, Cart, User } from '@/components/icons';
 <Settings style={{ width: 20, height: 20, color: '#0071DC' }} />
 
 // Use with design tokens
-<Cart style={{ 
+<Cart style={{
   color: 'var(--ld-semantic-color-action-fill-primary)',
   width: 'var(--ld-semantic-scale-icon-small)'
 }} />
@@ -431,11 +436,6 @@ import { Search, Settings, Cart, User } from '@/components/icons';
             </pre>
           </div>
         </div>
-      </Section>
-
-      {/* Interactive Component Tester */}
-      <Section id="component-tester" title="Component Property Tester" description="Interactive playground to test component variants, sizes, and properties in real-time">
-        <InteractiveComponentTester />
       </Section>
 
       {/* Buttons Section */}
