@@ -16,7 +16,7 @@
 - ✅ NEVER create inline SVG icons
 - ✅ NEVER use external icon libraries (react-icons, heroicons)
 - ✅ ALWAYS use semantic design tokens (624 tokens available)
-- ✅ ALWAYS use icons from centralized library (304 icons)
+- ✅ ALWAYS use icons from centralized library (303 icons)
 - ✅ ALWAYS use LD components (Button, not inline styled buttons)
 
 **Quick Check**:
@@ -86,7 +86,7 @@ import { Search } from '@/components/icons';
 ```
 
 **Icon Library Stats**:
-- 304 icons available across 15+ categories
+- 303 icons available across 15+ categories
 - Core library: `client/components/icons/`
 - Custom icons: `client/components/icons-custom/`
 
@@ -230,7 +230,7 @@ import { Button } from '@/components/ui/Button';
 Before creating ANY new component, icon, or design:
 
 - [ ] Searched existing components in `client/components/ui/`
-- [ ] Searched all 304 icons at `/component-library#icons`
+- [ ] Searched all 303 icons at `/component-library#icons`
 - [ ] Checked relevant guideline docs in `guidelines/`
 - [ ] Verified no duplicates exist
 - [ ] Confirmed using semantic design tokens only
@@ -249,7 +249,7 @@ Before creating ANY new component, icon, or design:
 | Icon Usage Rule | `guidelines/RULE_IconUsage.md` |
 | Token Documentation | `guidelines/DesignTokens.md` |
 | Component Library | `/component-library` |
-| Icon Library (304 icons) | `/component-library#icons` |
+| Icon Library (303 icons) | `/component-library#icons` |
 | Primitive Tokens | `styles/primitive.css` |
 | Semantic Tokens | `styles/semantic.css` |
 | Component Guidelines | `guidelines/*.md` (30+ files) |
@@ -262,7 +262,7 @@ Before creating ANY new component, icon, or design:
 
 1. **Analyze** imported Figma design
 2. **Map** colors → existing semantic tokens
-3. **Map** icons → existing icon library (304 icons)
+3. **Map** icons → existing icon library (303 icons)
 4. **Map** components → existing LD 3.5 components
 5. **Generate** code using ONLY existing tokens and components
 6. **Verify** no hard-coded values or duplicates

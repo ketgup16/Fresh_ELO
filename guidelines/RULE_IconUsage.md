@@ -22,7 +22,7 @@ Before creating or importing ANY new icon, you **MUST**:
 
 1. **Search the icon library** at `client/components/icons/`
 2. **Check the Component Library** at `/component-library#icons`
-3. **Review all 306 available icons** organized in categories
+3. **Review all 303 available icons** organized in categories
 4. **Find similar or equivalent icons** that can be repurposed
 
 ```tsx
@@ -46,13 +46,13 @@ import { Search } from '@/components/icons';
 // - SearchIcon.tsx (Search.tsx exists)
 // - UserIcon.tsx (User.tsx exists)
 // - SettingsIcon.tsx (Settings.tsx exists)
-// - TrashIcon.tsx (Trash.tsx or Trash2.tsx exists)
+// - TrashIcon.tsx (Trash.tsx exists)
 
 // ✅ REQUIRED - Use existing
-import { Search, User, Settings, Trash2 } from '@/components/icons';
+import { Search, User, Settings, Trash } from '@/components/icons';
 ```
 
-### 3. **Icon Library Inventory** (306 Icons Available)
+### 3. **Icon Library Inventory** (303 Icons Available)
 
 Before creating a new icon, verify it's not already available in these categories:
 
@@ -64,8 +64,8 @@ Before creating a new icon, verify it's not already available in these categorie
 - CaretDown, ArrowCircleDot
 
 #### Actions & Controls (25+ icons)
-- Check, X, Close, Plus, Minus
-- Edit, Pencil, Trash, Trash2
+- Check, X, Plus, Minus
+- Edit, Pencil, Trash
 - Download, Upload, Refresh, RotateCcw, Undo
 - Search, Filter, Settings, Gear, Sliders
 - More, MoreHorizontal, MoreVertical, Menu
@@ -135,7 +135,7 @@ Before creating a new icon, verify it's not already available in these categorie
 
 ...and 100+ more icons across Technology, Security, Tools, Business, and other categories.
 
-**Total: 304 icons available**
+**Total: 303 icons available**
 
 ---
 
@@ -163,7 +163,7 @@ Before creating a new icon, verify it's not already available in these categorie
 
 **Step 4: Check Component Library**
 - Visit `/component-library#icons`
-- Browse all 304 icons organized by category
+- Browse all 303 icons organized by category
 - Use search/filter to find similar icons
 
 **Step 5: Only if NO match found**
@@ -280,7 +280,7 @@ When searching for icons, use these common mappings:
 | Search | `Search` | ❌ SearchIcon |
 | Settings | `Settings`, `Gear` | ❌ SettingsIcon, Cog |
 | User/Profile | `User`, `UserCircle` | ❌ Profile, Avatar |
-| Close/Delete | `X`, `Close`, `Trash2` | ❌ Delete, Remove |
+| Close/Delete | `X`, `Trash` | ❌ Delete, Remove |
 | Home | `Home`, `SGHome` | ❌ House, HomeIcon |
 | Cart | `Cart`, `CartFill` | ❌ ShoppingCart |
 | Edit | `Edit`, `Pencil` | ❌ EditIcon, Modify |
@@ -463,7 +463,7 @@ import { SpecialFeatureIcon } from '@/components/icons-custom';
 - **Gear** → `Settings`, `Gear`, `GearFill`
 - **Person** → `User`, `UserCircle`, `UserCircleFill`
 - **Shopping bag** → `Cart`, `CartFill`, `CartArrow`
-- **Trash can** → `Trash`, `Trash2`
+- **Trash can** → `Trash`
 - **Pencil** → `Edit`, `Pencil`
 - **Three dots** → `More`, `MoreHorizontal`, `MoreVertical`
 - **Bell** → `Bell`
@@ -505,7 +505,7 @@ import { SpecialFeatureIcon } from '@/components/icons-custom';
 
 **Golden Rules:**
 1. 🔍 **Search FIRST**, create LAST
-2. 📚 Use existing 304 icons whenever possible
+2. 📚 Use existing 303 icons whenever possible
 3. 🚫 NEVER create duplicates
 4. 📁 New icons ONLY in `icons-custom/` folder
 5. ✅ Follow LD 3.5 specifications for all new icons

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from './ui/Button';
 import { ButtonGroup } from './ui/ButtonGroup';
-import { Plus, ChevronRight, Download, Trash2, X, Settings } from '@/components/icons';
+import { Plus, ChevronRight, Download, Trash, X, Settings } from '@/components/icons';
 
 /**
  * Example component demonstrating Button usage with Living Design 3.5
@@ -150,7 +150,7 @@ export const ButtonExample: React.FC = () => {
           <Button variant="secondary">Keep Item</Button>
           <Button
             variant="destructive"
-            leading={<Trash2 style={{ width: 20, height: 20 }} />}
+            leading={<Trash style={{ width: 20, height: 20 }} />}
           >
             Delete Permanently
           </Button>

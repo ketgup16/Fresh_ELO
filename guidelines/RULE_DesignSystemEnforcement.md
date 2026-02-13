@@ -74,7 +74,7 @@ import { Home, Search, Settings } from '@/components/icons';
 }} />
 ```
 
-**Available icons:** 304 icons in the centralized library
+**Available icons:** 303 icons in the centralized library
 **Location:** `client/components/icons/`
 **Index:** All icons are exported from `client/components/icons/index.tsx`
 
@@ -235,7 +235,7 @@ grep -r "margin: [0-9]" client/
 
 - **Component Library:** `/component-library` page
 - **Design Tokens:** 624 tokens in `styles/semantic.css`
-- **Icon Library:** 304 icons in `client/components/icons/`
+- **Icon Library:** 303 icons in `client/components/icons/`
 - **Button Component:** `client/components/ui/Button.tsx`
 - **Guidelines:** `guidelines/` folder
 

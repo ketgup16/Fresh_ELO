@@ -158,11 +158,11 @@ const [isOpen, setIsOpen] = useState(false);
 
 ```tsx
 <IconButton 
-  size="medium" 
+  size="medium"
   aria-label="Delete item"
   disabled={!canDelete}
 >
-  <Trash2 size={24} />
+  <Trash size={24} />
 </IconButton>
 ```
 

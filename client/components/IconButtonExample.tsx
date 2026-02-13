@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IconButton } from './ui/IconButton';
-import { Plus, Edit, Trash2, InfoCircle, X, Menu, ChevronDown } from '@/components/icons';
+import { Plus, Edit, Trash, InfoCircle, X, Menu, ChevronDown } from '@/components/icons';
 
 /**
  * Example component demonstrating IconButton usage patterns with LD icon library
@@ -99,19 +99,19 @@ export default function IconButtonExample() {
         <h2 className="text-xl font-semibold mb-4">Destructive Variant</h2>
         <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
           <IconButton aria-label="Delete" variant="destructive" size="small">
-            <Trash2 style={{ width: 16, height: 16 }} />
+            <Trash style={{ width: 16, height: 16 }} />
           </IconButton>
 
           <IconButton aria-label="Delete" variant="destructive" size="medium">
-            <Trash2 style={{ width: 20, height: 20 }} />
+            <Trash style={{ width: 20, height: 20 }} />
           </IconButton>
 
           <IconButton aria-label="Delete" variant="destructive" size="large">
-            <Trash2 style={{ width: 24, height: 24 }} />
+            <Trash style={{ width: 24, height: 24 }} />
           </IconButton>
 
           <IconButton aria-label="Delete" variant="destructive" size="medium" disabled>
-            <Trash2 style={{ width: 20, height: 20 }} />
+            <Trash style={{ width: 20, height: 20 }} />
           </IconButton>
         </div>
       </section>

@@ -6,6 +6,8 @@ import { LinkExample } from '@/components/LinkExample';
 import IconButtonExample from '@/components/IconButtonExample';
 import { CardHeaderExample } from '@/components/CardHeaderExample';
 import { Button } from '@/components/ui/Button';
+import { Badge } from '@/components/ui/Badge';
+import { IconButton } from '@/components/ui/IconButton';
 import * as Icons from '@/components/icons';
 
 export default function ComponentLibrary() {
@@ -20,7 +22,7 @@ export default function ComponentLibrary() {
     ],
     'Actions & Controls': [
       'Check', 'X', 'Plus', 'Minus',
-      'Edit', 'Pencil', 'Trash', 'Trash2',
+      'Edit', 'Pencil', 'Trash',
       'Download', 'Upload', 'Refresh', 'RotateCcw', 'Undo',
       'Search', 'Filter', 'Settings', 'Gear', 'Sliders',
       'More', 'MoreHorizontal', 'MoreVertical', 'Menu',
@@ -544,16 +546,142 @@ function GuidelineItem({ title, description }: GuidelineItemProps) {
   );
 }
 
-// Interactive Component Tester
+// Interactive Component Tester - Supports multiple component types
 function InteractiveComponentTester() {
-  const [buttonVariant, setButtonVariant] = React.useState<'primary' | 'secondary' | 'tertiary' | 'destructive'>('primary');
-  const [buttonSize, setButtonSize] = React.useState<'small' | 'medium' | 'large'>('medium');
-  const [buttonDisabled, setButtonDisabled] = React.useState(false);
-  const [buttonFullWidth, setButtonFullWidth] = React.useState(false);
-  const [buttonWithIcon, setButtonWithIcon] = React.useState(false);
+  type ComponentType = 'Button' | 'Badge' | 'IconButton';
+
+  const [selectedComponent, setSelectedComponent] = React.useState<ComponentType>('Button');
+  const [variant, setVariant] = React.useState<string>('primary');
+  const [size, setSize] = React.useState<string>('medium');
+  const [disabled, setDisabled] = React.useState(false);
+  const [fullWidth, setFullWidth] = React.useState(false);
+  const [withIcon, setWithIcon] = React.useState(false);
+  const [badgeValue, setBadgeValue] = React.useState(5);
 
   const SearchIcon = (Icons as any).Search;
-  const ArrowRightIcon = (Icons as any).ArrowRight;
+  const ArrowRightIcon = (Icons as any).ChevronRight;
+  const PlusIcon = (Icons as any).Plus;
+  const SettingsIcon = (Icons as any).Settings;
+
+  // Component-specific configurations
+  const componentConfigs: Record<ComponentType, {
+    variants: string[];
+    sizes: string[];
+    supportsFullWidth: boolean;
+    supportsIcons: boolean;
+    supportsValue: boolean;
+  }> = {
+    Button: {
+      variants: ['primary', 'secondary', 'tertiary', 'destructive'],
+      sizes: ['small', 'medium', 'large'],
+      supportsFullWidth: true,
+      supportsIcons: true,
+      supportsValue: false,
+    },
+    Badge: {
+      variants: ['info', 'success', 'warning', 'error', 'neutral', 'blue', 'green', 'red'],
+      sizes: ['small', 'medium', 'large'],
+      supportsFullWidth: false,
+      supportsIcons: false,
+      supportsValue: true,
+    },
+    IconButton: {
+      variants: ['ghost', 'primary', 'secondary', 'destructive'],
+      sizes: ['small', 'medium', 'large'],
+      supportsFullWidth: false,
+      supportsIcons: false,
+      supportsValue: false,
+    },
+  };
+
+  const config = componentConfigs[selectedComponent];
+
+  // Reset properties when switching components
+  React.useEffect(() => {
+    setVariant(config.variants[0]);
+    setSize('medium');
+    setDisabled(false);
+    setFullWidth(false);
+    setWithIcon(false);
+  }, [selectedComponent]);
+
+  // Generate code based on selected component
+  const generateCode = () => {
+    switch (selectedComponent) {
+      case 'Button':
+        return `<Button
+  variant="${variant}"
+  size="${size}"${disabled ? '\n  disabled' : ''}${fullWidth ? '\n  isFullWidth' : ''}${withIcon ? `\n  leading={<Search />}\n  trailing={<ChevronRight />}` : ''}
+>
+  Click Me
+</Button>`;
+
+      case 'Badge':
+        return `<Badge
+  variant="${variant}"
+  size="${size}"${badgeValue ? `\n  value={${badgeValue}}` : ''}
+  aria-label="${badgeValue} items"
+/>`;
+
+      case 'IconButton':
+        return `<IconButton
+  variant="${variant}"
+  size="${size}"${disabled ? '\n  disabled' : ''}
+  aria-label="Settings"
+>
+  <Settings style={{ width: 20, height: 20 }} />
+</IconButton>`;
+
+      default:
+        return '';
+    }
+  };
+
+  // Render live preview based on selected component
+  const renderPreview = () => {
+    switch (selectedComponent) {
+      case 'Button':
+        return (
+          <div style={{ width: fullWidth ? '100%' : 'auto' }}>
+            <Button
+              variant={variant as any}
+              size={size as any}
+              disabled={disabled}
+              isFullWidth={fullWidth}
+              leading={withIcon ? <SearchIcon style={{ width: 20, height: 20 }} /> : undefined}
+              trailing={withIcon ? <ArrowRightIcon style={{ width: 20, height: 20 }} /> : undefined}
+            >
+              Click Me
+            </Button>
+          </div>
+        );
+
+      case 'Badge':
+        return (
+          <Badge
+            variant={variant as any}
+            size={size as any}
+            value={badgeValue}
+            aria-label={`${badgeValue} items`}
+          />
+        );
+
+      case 'IconButton':
+        return (
+          <IconButton
+            variant={variant as any}
+            size={size as any}
+            disabled={disabled}
+            aria-label="Settings"
+          >
+            <SettingsIcon style={{ width: 20, height: 20 }} />
+          </IconButton>
+        );
+
+      default:
+        return null;
+    }
+  };
 
   return (
     <div style={{
@@ -576,6 +704,32 @@ function InteractiveComponentTester() {
           </h3>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-semantic-spacing-200)' }}>
+            {/* Component Type Selection */}
+            <div>
+              <label style={{
+                display: 'block',
+                fontSize: '14px',
+                fontWeight: 600,
+                color: 'var(--ld-semantic-color-text-subtle)',
+                marginBottom: 'var(--ld-semantic-spacing-100)',
+                fontFamily: 'var(--ld-semantic-font-family-sans)'
+              }}>
+                Component
+              </label>
+              <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)', flexWrap: 'wrap' }}>
+                {(['Button', 'Badge', 'IconButton'] as ComponentType[]).map((componentType) => (
+                  <Button
+                    key={componentType}
+                    variant={selectedComponent === componentType ? 'primary' : 'secondary'}
+                    size="small"
+                    onClick={() => setSelectedComponent(componentType)}
+                  >
+                    {componentType}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
             {/* Variant Selection */}
             <div>
               <label style={{
@@ -589,14 +743,14 @@ function InteractiveComponentTester() {
                 Variant
               </label>
               <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)', flexWrap: 'wrap' }}>
-                {(['primary', 'secondary', 'tertiary', 'destructive'] as const).map((variant) => (
+                {config.variants.map((v) => (
                   <Button
-                    key={variant}
-                    variant={buttonVariant === variant ? 'primary' : 'secondary'}
+                    key={v}
+                    variant={variant === v ? 'primary' : 'secondary'}
                     size="small"
-                    onClick={() => setButtonVariant(variant)}
+                    onClick={() => setVariant(v)}
                   >
-                    {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                    {v.charAt(0).toUpperCase() + v.slice(1)}
                   </Button>
                 ))}
               </div>
@@ -615,14 +769,14 @@ function InteractiveComponentTester() {
                 Size
               </label>
               <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)' }}>
-                {(['small', 'medium', 'large'] as const).map((size) => (
+                {config.sizes.map((s) => (
                   <Button
-                    key={size}
-                    variant={buttonSize === size ? 'primary' : 'secondary'}
+                    key={s}
+                    variant={size === s ? 'primary' : 'secondary'}
                     size="small"
-                    onClick={() => setButtonSize(size)}
+                    onClick={() => setSize(s)}
                   >
-                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                    {s.charAt(0).toUpperCase() + s.slice(1)}
                   </Button>
                 ))}
               </div>
@@ -641,46 +795,80 @@ function InteractiveComponentTester() {
               }}>
                 <input
                   type="checkbox"
-                  checked={buttonDisabled}
-                  onChange={(e) => setButtonDisabled(e.target.checked)}
+                  checked={disabled}
+                  onChange={(e) => setDisabled(e.target.checked)}
                   style={{ cursor: 'pointer' }}
                 />
                 Disabled
               </label>
-              <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 'var(--ld-semantic-spacing-100)',
-                cursor: 'pointer',
-                fontSize: '14px',
-                color: 'var(--ld-semantic-color-text)',
-                fontFamily: 'var(--ld-semantic-font-family-sans)'
-              }}>
-                <input
-                  type="checkbox"
-                  checked={buttonFullWidth}
-                  onChange={(e) => setButtonFullWidth(e.target.checked)}
-                  style={{ cursor: 'pointer' }}
-                />
-                Full Width
-              </label>
-              <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 'var(--ld-semantic-spacing-100)',
-                cursor: 'pointer',
-                fontSize: '14px',
-                color: 'var(--ld-semantic-color-text)',
-                fontFamily: 'var(--ld-semantic-font-family-sans)'
-              }}>
-                <input
-                  type="checkbox"
-                  checked={buttonWithIcon}
-                  onChange={(e) => setButtonWithIcon(e.target.checked)}
-                  style={{ cursor: 'pointer' }}
-                />
-                With Icons
-              </label>
+
+              {config.supportsFullWidth && (
+                <label style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--ld-semantic-spacing-100)',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  color: 'var(--ld-semantic-color-text)',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)'
+                }}>
+                  <input
+                    type="checkbox"
+                    checked={fullWidth}
+                    onChange={(e) => setFullWidth(e.target.checked)}
+                    style={{ cursor: 'pointer' }}
+                  />
+                  Full Width
+                </label>
+              )}
+
+              {config.supportsIcons && (
+                <label style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--ld-semantic-spacing-100)',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  color: 'var(--ld-semantic-color-text)',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)'
+                }}>
+                  <input
+                    type="checkbox"
+                    checked={withIcon}
+                    onChange={(e) => setWithIcon(e.target.checked)}
+                    style={{ cursor: 'pointer' }}
+                  />
+                  With Icons
+                </label>
+              )}
+
+              {config.supportsValue && (
+                <div>
+                  <label style={{
+                    display: 'block',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    color: 'var(--ld-semantic-color-text)',
+                    marginBottom: 'var(--ld-semantic-spacing-50)',
+                    fontFamily: 'var(--ld-semantic-font-family-sans)'
+                  }}>
+                    Badge Value
+                  </label>
+                  <input
+                    type="number"
+                    value={badgeValue}
+                    onChange={(e) => setBadgeValue(parseInt(e.target.value) || 0)}
+                    style={{
+                      padding: '6px 12px',
+                      fontSize: '14px',
+                      border: '1px solid var(--ld-semantic-color-border)',
+                      borderRadius: 'var(--ld-semantic-border-radius-small)',
+                      width: '100px',
+                      fontFamily: 'var(--ld-semantic-font-family-sans)'
+                    }}
+                  />
+                </div>
+              )}
             </div>
 
             {/* Code Preview */}
@@ -706,12 +894,7 @@ function InteractiveComponentTester() {
                 lineHeight: '1.5',
                 margin: 0
               }}>
-{`<Button
-  variant="${buttonVariant}"
-  size="${buttonSize}"${buttonDisabled ? '\n  disabled' : ''}${buttonFullWidth ? '\n  isFullWidth' : ''}${buttonWithIcon ? `\n  leading={<Search />}\n  trailing={<ArrowRight />}` : ''}
->
-  Click Me
-</Button>`}
+                {generateCode()}
               </pre>
             </div>
           </div>
@@ -738,40 +921,7 @@ function InteractiveComponentTester() {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <div style={{ width: buttonFullWidth ? '100%' : 'auto' }}>
-              <button
-                disabled={buttonDisabled}
-                className={`button button--variant-${buttonVariant} button--size-${buttonSize}${buttonFullWidth ? ' button--fullWidth' : ''}`}
-                style={{
-                  fontFamily: 'var(--ld-semantic-font-family-sans)',
-                  fontWeight: 700,
-                  borderRadius: '9999px',
-                  border: '2px solid transparent',
-                  cursor: buttonDisabled ? 'not-allowed' : 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  transition: 'all 0.2s',
-                  width: buttonFullWidth ? '100%' : 'auto',
-                  padding: buttonSize === 'small' ? '6px 16px' : buttonSize === 'medium' ? '10px 20px' : '14px 24px',
-                  fontSize: buttonSize === 'small' ? '14px' : buttonSize === 'medium' ? '16px' : '18px',
-                  backgroundColor: buttonVariant === 'primary' ? 'var(--ld-semantic-color-action-fill-primary)' :
-                                   buttonVariant === 'destructive' ? 'var(--ld-semantic-color-action-fill-negative)' :
-                                   'var(--ld-semantic-color-action-fill-secondary)',
-                  color: buttonVariant === 'primary' || buttonVariant === 'destructive' ?
-                         'var(--ld-semantic-color-action-text-on-fill-primary)' :
-                         'var(--ld-semantic-color-action-text-on-fill-secondary)',
-                  borderColor: buttonVariant === 'secondary' || buttonVariant === 'tertiary' ?
-                               'var(--ld-semantic-color-action-border-secondary)' : 'transparent',
-                  opacity: buttonDisabled ? 0.4 : 1
-                }}
-              >
-                {buttonWithIcon && <SearchIcon style={{ width: 16, height: 16 }} />}
-                Click Me
-                {buttonWithIcon && <ArrowRightIcon style={{ width: 16, height: 16 }} />}
-              </button>
-            </div>
+            {renderPreview()}
           </div>
         </div>
       </div>
@@ -804,36 +954,204 @@ function TokenCategorySection() {
   const tokenGroups = {
     'action-colors': {
       title: 'Action Colors (Buttons & Interactive Elements)',
-      count: 60,
+      count: 76,
       tokens: [
-        { name: 'Primary', token: '--ld-semantic-color-action-fill-primary' },
-        { name: 'Primary Hovered', token: '--ld-semantic-color-action-fill-primary-hovered' },
-        { name: 'Primary Pressed', token: '--ld-semantic-color-action-fill-primary-pressed' },
-        { name: 'Primary Disabled', token: '--ld-semantic-color-action-fill-primary-disabled' },
-        { name: 'Secondary', token: '--ld-semantic-color-action-fill-secondary' },
-        { name: 'Secondary Hovered', token: '--ld-semantic-color-action-fill-secondary-hovered' },
-        { name: 'Tertiary', token: '--ld-semantic-color-action-fill-tertiary' },
-        { name: 'Negative/Destructive', token: '--ld-semantic-color-action-fill-negative' },
-        { name: 'Negative Hovered', token: '--ld-semantic-color-action-fill-negative-hovered' },
-        { name: 'Text on Primary', token: '--ld-semantic-color-action-text-on-fill-primary' },
-        { name: 'Text on Secondary', token: '--ld-semantic-color-action-text-on-fill-secondary' },
+        // Primary Button Fill
+        { name: 'Fill Primary', token: '--ld-semantic-color-action-fill-primary' },
+        { name: 'Fill Primary Hovered', token: '--ld-semantic-color-action-fill-primary-hovered' },
+        { name: 'Fill Primary Focused', token: '--ld-semantic-color-action-fill-primary-focused' },
+        { name: 'Fill Primary Pressed', token: '--ld-semantic-color-action-fill-primary-pressed' },
+        { name: 'Fill Primary Disabled', token: '--ld-semantic-color-action-fill-primary-disabled' },
+
+        // Secondary Button Fill
+        { name: 'Fill Secondary', token: '--ld-semantic-color-action-fill-secondary' },
+        { name: 'Fill Secondary Hovered', token: '--ld-semantic-color-action-fill-secondary-hovered' },
+        { name: 'Fill Secondary Focused', token: '--ld-semantic-color-action-fill-secondary-focused' },
+        { name: 'Fill Secondary Pressed', token: '--ld-semantic-color-action-fill-secondary-pressed' },
+        { name: 'Fill Secondary Disabled', token: '--ld-semantic-color-action-fill-secondary-disabled' },
+
+        // Tertiary Button Fill
+        { name: 'Fill Tertiary', token: '--ld-semantic-color-action-fill-tertiary' },
+        { name: 'Fill Tertiary Hovered', token: '--ld-semantic-color-action-fill-tertiary-hovered' },
+        { name: 'Fill Tertiary Focused', token: '--ld-semantic-color-action-fill-tertiary-focused' },
+        { name: 'Fill Tertiary Pressed', token: '--ld-semantic-color-action-fill-tertiary-pressed' },
+        { name: 'Fill Tertiary Disabled', token: '--ld-semantic-color-action-fill-tertiary-disabled' },
+
+        // Negative/Destructive Button Fill
+        { name: 'Fill Negative', token: '--ld-semantic-color-action-fill-negative' },
+        { name: 'Fill Negative Hovered', token: '--ld-semantic-color-action-fill-negative-hovered' },
+        { name: 'Fill Negative Focused', token: '--ld-semantic-color-action-fill-negative-focused' },
+        { name: 'Fill Negative Pressed', token: '--ld-semantic-color-action-fill-negative-pressed' },
+        { name: 'Fill Negative Disabled', token: '--ld-semantic-color-action-fill-negative-disabled' },
+
+        // Transparent Button Fill
+        { name: 'Fill Transparent', token: '--ld-semantic-color-action-fill-transparent' },
+        { name: 'Fill Transparent Hovered', token: '--ld-semantic-color-action-fill-transparent-hovered' },
+        { name: 'Fill Transparent Focused', token: '--ld-semantic-color-action-fill-transparent-focused' },
+        { name: 'Fill Transparent Pressed', token: '--ld-semantic-color-action-fill-transparent-pressed' },
+        { name: 'Fill Transparent Disabled', token: '--ld-semantic-color-action-fill-transparent-disabled' },
+
+        // Button Text Colors
+        { name: 'Text Primary', token: '--ld-semantic-color-action-text-primary' },
+        { name: 'Text Primary Hovered', token: '--ld-semantic-color-action-text-primary-hovered' },
+        { name: 'Text Primary Focused', token: '--ld-semantic-color-action-text-primary-focused' },
+        { name: 'Text Primary Pressed', token: '--ld-semantic-color-action-text-primary-pressed' },
+        { name: 'Text Primary Disabled', token: '--ld-semantic-color-action-text-primary-disabled' },
+
+        { name: 'Text Secondary', token: '--ld-semantic-color-action-text-secondary' },
+        { name: 'Text Secondary Hovered', token: '--ld-semantic-color-action-text-secondary-hovered' },
+        { name: 'Text Secondary Focused', token: '--ld-semantic-color-action-text-secondary-focused' },
+        { name: 'Text Secondary Pressed', token: '--ld-semantic-color-action-text-secondary-pressed' },
+        { name: 'Text Secondary Disabled', token: '--ld-semantic-color-action-text-secondary-disabled' },
+
+        { name: 'Text Tertiary', token: '--ld-semantic-color-action-text-tertiary' },
+        { name: 'Text Tertiary Hovered', token: '--ld-semantic-color-action-text-tertiary-hovered' },
+        { name: 'Text Tertiary Focused', token: '--ld-semantic-color-action-text-tertiary-focused' },
+        { name: 'Text Tertiary Pressed', token: '--ld-semantic-color-action-text-tertiary-pressed' },
+        { name: 'Text Tertiary Disabled', token: '--ld-semantic-color-action-text-tertiary-disabled' },
+
+        { name: 'Text Negative', token: '--ld-semantic-color-action-text-negative' },
+        { name: 'Text Negative Hovered', token: '--ld-semantic-color-action-text-negative-hovered' },
+        { name: 'Text Negative Focused', token: '--ld-semantic-color-action-text-negative-focused' },
+        { name: 'Text Negative Pressed', token: '--ld-semantic-color-action-text-negative-pressed' },
+        { name: 'Text Negative Disabled', token: '--ld-semantic-color-action-text-negative-disabled' },
+
+        { name: 'Text on Fill Primary', token: '--ld-semantic-color-action-text-on-fill-primary' },
+        { name: 'Text on Fill Secondary', token: '--ld-semantic-color-action-text-on-fill-secondary' },
+        { name: 'Text on Fill Tertiary', token: '--ld-semantic-color-action-text-on-fill-tertiary' },
+        { name: 'Text on Fill Negative', token: '--ld-semantic-color-action-text-on-fill-negative' },
+        { name: 'Text on Fill Transparent', token: '--ld-semantic-color-action-text-on-fill-transparent' },
+
+        // Button Borders
+        { name: 'Border Secondary', token: '--ld-semantic-color-action-border-secondary' },
+        { name: 'Border Secondary Hovered', token: '--ld-semantic-color-action-border-secondary-hovered' },
+        { name: 'Border Secondary Focused', token: '--ld-semantic-color-action-border-secondary-focused' },
+        { name: 'Border Secondary Pressed', token: '--ld-semantic-color-action-border-secondary-pressed' },
+        { name: 'Border Secondary Disabled', token: '--ld-semantic-color-action-border-secondary-disabled' },
+
+        { name: 'Border Tertiary', token: '--ld-semantic-color-action-border-tertiary' },
+        { name: 'Border Tertiary Hovered', token: '--ld-semantic-color-action-border-tertiary-hovered' },
+        { name: 'Border Tertiary Focused', token: '--ld-semantic-color-action-border-tertiary-focused' },
+        { name: 'Border Tertiary Pressed', token: '--ld-semantic-color-action-border-tertiary-pressed' },
+        { name: 'Border Tertiary Disabled', token: '--ld-semantic-color-action-border-tertiary-disabled' },
+
+        { name: 'Border Transparent', token: '--ld-semantic-color-action-border-transparent' },
+        { name: 'Border Transparent Hovered', token: '--ld-semantic-color-action-border-transparent-hovered' },
+        { name: 'Border Transparent Focused', token: '--ld-semantic-color-action-border-transparent-focused' },
+        { name: 'Border Transparent Pressed', token: '--ld-semantic-color-action-border-transparent-pressed' },
+        { name: 'Border Transparent Disabled', token: '--ld-semantic-color-action-border-transparent-disabled' },
+
+        // Focus States
         { name: 'Focus Outline', token: '--ld-semantic-color-action-focus-outline' },
       ]
     },
     'text-colors': {
       title: 'Text Colors',
-      count: 50,
+      count: 90,
       tokens: [
-        { name: 'Text Primary', token: '--ld-semantic-color-text' },
+        // Base Text Colors
+        { name: 'Text', token: '--ld-semantic-color-text' },
         { name: 'Text Subtle', token: '--ld-semantic-color-text-subtle' },
         { name: 'Text Subtlest', token: '--ld-semantic-color-text-subtlest' },
-        { name: 'Text Brand', token: '--ld-semantic-color-text-brand' },
         { name: 'Text Inverse (White)', token: '--ld-semantic-color-text-inverse' },
+        { name: 'Text Disabled', token: '--ld-semantic-color-text-disabled' },
+        { name: 'Text Brand', token: '--ld-semantic-color-text-brand' },
+        { name: 'Text Placeholder', token: '--ld-semantic-color-text-placeholder' },
+
+        // Semantic Text Colors
         { name: 'Text Info', token: '--ld-semantic-color-text-info' },
         { name: 'Text Positive', token: '--ld-semantic-color-text-positive' },
         { name: 'Text Negative', token: '--ld-semantic-color-text-negative' },
         { name: 'Text Warning', token: '--ld-semantic-color-text-warning' },
-        { name: 'Text Disabled', token: '--ld-semantic-color-text-disabled' },
+        { name: 'Text Edited', token: '--ld-semantic-color-text-edited' },
+
+        // Text on Fill Colors
+        { name: 'Text on Fill Activated', token: '--ld-semantic-color-text-on-fill-activated' },
+        { name: 'Text on Fill Activated Subtle', token: '--ld-semantic-color-text-on-fill-activated-subtle' },
+        { name: 'Text on Fill Brand', token: '--ld-semantic-color-text-on-fill-brand' },
+        { name: 'Text on Fill Info', token: '--ld-semantic-color-text-on-fill-info' },
+        { name: 'Text on Fill Positive', token: '--ld-semantic-color-text-on-fill-positive' },
+        { name: 'Text on Fill Negative', token: '--ld-semantic-color-text-on-fill-negative' },
+        { name: 'Text on Fill Warning', token: '--ld-semantic-color-text-on-fill-warning' },
+        { name: 'Text on Fill Edited', token: '--ld-semantic-color-text-on-fill-edited' },
+
+        // Accent Text Colors (Blue)
+        { name: 'Text Accent Blue', token: '--ld-semantic-color-text-accent-blue' },
+        { name: 'Text Accent Blue Bold', token: '--ld-semantic-color-text-accent-blue-bold' },
+        { name: 'Text on Fill Accent Blue', token: '--ld-semantic-color-text-on-fill-accent-blue' },
+        { name: 'Text on Fill Accent Blue Subtle', token: '--ld-semantic-color-text-on-fill-accent-blue-subtle' },
+
+        // Accent Text Colors (Cyan)
+        { name: 'Text Accent Cyan', token: '--ld-semantic-color-text-accent-cyan' },
+        { name: 'Text Accent Cyan Bold', token: '--ld-semantic-color-text-accent-cyan-bold' },
+        { name: 'Text on Fill Accent Cyan', token: '--ld-semantic-color-text-on-fill-accent-cyan' },
+        { name: 'Text on Fill Accent Cyan Subtle', token: '--ld-semantic-color-text-on-fill-accent-cyan-subtle' },
+
+        // Accent Text Colors (Gray)
+        { name: 'Text Accent Gray', token: '--ld-semantic-color-text-accent-gray' },
+        { name: 'Text Accent Gray Bold', token: '--ld-semantic-color-text-accent-gray-bold' },
+        { name: 'Text on Fill Accent Gray', token: '--ld-semantic-color-text-on-fill-accent-gray' },
+        { name: 'Text on Fill Accent Gray Subtle', token: '--ld-semantic-color-text-on-fill-accent-gray-subtle' },
+
+        // Accent Text Colors (Green)
+        { name: 'Text Accent Green', token: '--ld-semantic-color-text-accent-green' },
+        { name: 'Text Accent Green Bold', token: '--ld-semantic-color-text-accent-green-bold' },
+        { name: 'Text on Fill Accent Green', token: '--ld-semantic-color-text-on-fill-accent-green' },
+        { name: 'Text on Fill Accent Green Subtle', token: '--ld-semantic-color-text-on-fill-accent-green-subtle' },
+
+        // Accent Text Colors (Orange)
+        { name: 'Text Accent Orange', token: '--ld-semantic-color-text-accent-orange' },
+        { name: 'Text Accent Orange Bold', token: '--ld-semantic-color-text-accent-orange-bold' },
+        { name: 'Text on Fill Accent Orange', token: '--ld-semantic-color-text-on-fill-accent-orange' },
+        { name: 'Text on Fill Accent Orange Subtle', token: '--ld-semantic-color-text-on-fill-accent-orange-subtle' },
+
+        // Accent Text Colors (Pink)
+        { name: 'Text Accent Pink', token: '--ld-semantic-color-text-accent-pink' },
+        { name: 'Text Accent Pink Bold', token: '--ld-semantic-color-text-accent-pink-bold' },
+        { name: 'Text on Fill Accent Pink', token: '--ld-semantic-color-text-on-fill-accent-pink' },
+        { name: 'Text on Fill Accent Pink Subtle', token: '--ld-semantic-color-text-on-fill-accent-pink-subtle' },
+
+        // Accent Text Colors (Purple)
+        { name: 'Text Accent Purple', token: '--ld-semantic-color-text-accent-purple' },
+        { name: 'Text Accent Purple Bold', token: '--ld-semantic-color-text-accent-purple-bold' },
+        { name: 'Text on Fill Accent Purple', token: '--ld-semantic-color-text-on-fill-accent-purple' },
+        { name: 'Text on Fill Accent Purple Subtle', token: '--ld-semantic-color-text-on-fill-accent-purple-subtle' },
+
+        // Accent Text Colors (Red)
+        { name: 'Text Accent Red', token: '--ld-semantic-color-text-accent-red' },
+        { name: 'Text Accent Red Bold', token: '--ld-semantic-color-text-accent-red-bold' },
+        { name: 'Text on Fill Accent Red', token: '--ld-semantic-color-text-on-fill-accent-red' },
+        { name: 'Text on Fill Accent Red Subtle', token: '--ld-semantic-color-text-on-fill-accent-red-subtle' },
+
+        // Accent Text Colors (Spark)
+        { name: 'Text Accent Spark', token: '--ld-semantic-color-text-accent-spark' },
+        { name: 'Text Accent Spark Bold', token: '--ld-semantic-color-text-accent-spark-bold' },
+        { name: 'Text on Fill Accent Spark', token: '--ld-semantic-color-text-on-fill-accent-spark' },
+        { name: 'Text on Fill Accent Spark Subtle', token: '--ld-semantic-color-text-on-fill-accent-spark-subtle' },
+
+        // Accent Text Colors (Teal)
+        { name: 'Text Accent Teal', token: '--ld-semantic-color-text-accent-teal' },
+        { name: 'Text Accent Teal Bold', token: '--ld-semantic-color-text-accent-teal-bold' },
+        { name: 'Text on Fill Accent Teal', token: '--ld-semantic-color-text-on-fill-accent-teal' },
+        { name: 'Text on Fill Accent Teal Subtle', token: '--ld-semantic-color-text-on-fill-accent-teal-subtle' },
+
+        // Accent Text Colors (Yellow)
+        { name: 'Text Accent Yellow', token: '--ld-semantic-color-text-accent-yellow' },
+        { name: 'Text Accent Yellow Bold', token: '--ld-semantic-color-text-accent-yellow-bold' },
+        { name: 'Text on Fill Accent Yellow', token: '--ld-semantic-color-text-on-fill-accent-yellow' },
+        { name: 'Text on Fill Accent Yellow Subtle', token: '--ld-semantic-color-text-on-fill-accent-yellow-subtle' },
+
+        // Link Text Colors
+        { name: 'Link Text', token: '--ld-semantic-color-link-text' },
+        { name: 'Link Text Hovered', token: '--ld-semantic-color-link-text-hovered' },
+        { name: 'Link Text Focused', token: '--ld-semantic-color-link-text-focused' },
+        { name: 'Link Text Pressed', token: '--ld-semantic-color-link-text-pressed' },
+        { name: 'Link Text Disabled', token: '--ld-semantic-color-link-text-disabled' },
+        { name: 'Link Text Subtle', token: '--ld-semantic-color-link-text-subtle' },
+        { name: 'Link Text Subtle Hovered', token: '--ld-semantic-color-link-text-subtle-hovered' },
+        { name: 'Link Text Subtle Focused', token: '--ld-semantic-color-link-text-subtle-focused' },
+        { name: 'Link Text Subtle Pressed', token: '--ld-semantic-color-link-text-subtle-pressed' },
+        { name: 'Link Text Subtle Disabled', token: '--ld-semantic-color-link-text-subtle-disabled' },
       ]
     },
     'fill-colors': {
@@ -904,36 +1222,105 @@ function TokenCategorySection() {
     },
     'border-colors': {
       title: 'Border & Separator Colors',
-      count: 40,
+      count: 44,
       tokens: [
+        // Base Borders
         { name: 'Border', token: '--ld-semantic-color-border' },
         { name: 'Border Subtle', token: '--ld-semantic-color-border-subtle' },
         { name: 'Border Subtlest', token: '--ld-semantic-color-border-subtlest' },
+        { name: 'Border Strong', token: '--ld-semantic-color-border-strong' },
         { name: 'Separator', token: '--ld-semantic-color-separator' },
+        { name: 'Border Inverse', token: '--ld-semantic-color-border-inverse' },
+        { name: 'Border Disabled', token: '--ld-semantic-color-border-disabled' },
+        { name: 'Border Focus', token: '--ld-semantic-color-border-focus' },
+        { name: 'Border Selected', token: '--ld-semantic-color-border-selected' },
+
+        // Semantic Borders
         { name: 'Border Brand', token: '--ld-semantic-color-border-brand' },
         { name: 'Border Info', token: '--ld-semantic-color-border-info' },
         { name: 'Border Positive', token: '--ld-semantic-color-border-positive' },
         { name: 'Border Negative', token: '--ld-semantic-color-border-negative' },
         { name: 'Border Warning', token: '--ld-semantic-color-border-warning' },
+        { name: 'Border Edited', token: '--ld-semantic-color-border-edited' },
+
+        // Accent Borders (Blue)
+        { name: 'Border Accent Blue', token: '--ld-semantic-color-border-accent-blue' },
+        { name: 'Border Accent Blue Subtle', token: '--ld-semantic-color-border-accent-blue-subtle' },
+
+        // Accent Borders (Cyan)
+        { name: 'Border Accent Cyan', token: '--ld-semantic-color-border-accent-cyan' },
+        { name: 'Border Accent Cyan Subtle', token: '--ld-semantic-color-border-accent-cyan-subtle' },
+
+        // Accent Borders (Gray)
+        { name: 'Border Accent Gray', token: '--ld-semantic-color-border-accent-gray' },
+        { name: 'Border Accent Gray Subtle', token: '--ld-semantic-color-border-accent-gray-subtle' },
+
+        // Accent Borders (Green)
+        { name: 'Border Accent Green', token: '--ld-semantic-color-border-accent-green' },
+        { name: 'Border Accent Green Subtle', token: '--ld-semantic-color-border-accent-green-subtle' },
+
+        // Accent Borders (Orange)
+        { name: 'Border Accent Orange', token: '--ld-semantic-color-border-accent-orange' },
+        { name: 'Border Accent Orange Subtle', token: '--ld-semantic-color-border-accent-orange-subtle' },
+
+        // Accent Borders (Pink)
+        { name: 'Border Accent Pink', token: '--ld-semantic-color-border-accent-pink' },
+        { name: 'Border Accent Pink Subtle', token: '--ld-semantic-color-border-accent-pink-subtle' },
+
+        // Accent Borders (Purple)
+        { name: 'Border Accent Purple', token: '--ld-semantic-color-border-accent-purple' },
+        { name: 'Border Accent Purple Subtle', token: '--ld-semantic-color-border-accent-purple-subtle' },
+
+        // Accent Borders (Red)
+        { name: 'Border Accent Red', token: '--ld-semantic-color-border-accent-red' },
+        { name: 'Border Accent Red Subtle', token: '--ld-semantic-color-border-accent-red-subtle' },
+
+        // Accent Borders (Spark)
+        { name: 'Border Accent Spark', token: '--ld-semantic-color-border-accent-spark' },
+        { name: 'Border Accent Spark Subtle', token: '--ld-semantic-color-border-accent-spark-subtle' },
+
+        // Accent Borders (Teal)
+        { name: 'Border Accent Teal', token: '--ld-semantic-color-border-accent-teal' },
+        { name: 'Border Accent Teal Subtle', token: '--ld-semantic-color-border-accent-teal-subtle' },
+
+        // Accent Borders (Yellow)
+        { name: 'Border Accent Yellow', token: '--ld-semantic-color-border-accent-yellow' },
+        { name: 'Border Accent Yellow Subtle', token: '--ld-semantic-color-border-accent-yellow-subtle' },
       ]
     },
     'surface-colors': {
       title: 'Surface & Elevation Colors',
-      count: 20,
+      count: 19,
       tokens: [
-        { name: 'Surface (Cards, Modals)', token: '--ld-semantic-color-surface' },
-        { name: 'Surface Hovered', token: '--ld-semantic-color-surface-hovered' },
-        { name: 'Surface Activated', token: '--ld-semantic-color-surface-activated' },
-        { name: 'Surface Overlay', token: '--ld-semantic-color-surface-overlay' },
-        { name: 'Surface Brand', token: '--ld-semantic-color-surface-brand' },
+        // Background Colors
         { name: 'Background', token: '--ld-semantic-color-background' },
         { name: 'Background Subtle', token: '--ld-semantic-color-background-subtle' },
+        { name: 'Background Inverse', token: '--ld-semantic-color-background-inverse' },
+
+        // Surface Colors
+        { name: 'Surface (Cards, Modals)', token: '--ld-semantic-color-surface' },
+        { name: 'Surface Subtle', token: '--ld-semantic-color-surface-subtle' },
+        { name: 'Surface Hovered', token: '--ld-semantic-color-surface-hovered' },
+        { name: 'Surface Focused', token: '--ld-semantic-color-surface-focused' },
+        { name: 'Surface Pressed', token: '--ld-semantic-color-surface-pressed' },
+        { name: 'Surface Subtle Hovered', token: '--ld-semantic-color-surface-subtle-hovered' },
+        { name: 'Surface Subtle Focused', token: '--ld-semantic-color-surface-subtle-focused' },
+        { name: 'Surface Subtle Pressed', token: '--ld-semantic-color-surface-subtle-pressed' },
+        { name: 'Surface Activated', token: '--ld-semantic-color-surface-activated' },
+        { name: 'Surface Activated Hovered', token: '--ld-semantic-color-surface-activated-hovered' },
+        { name: 'Surface Activated Focused', token: '--ld-semantic-color-surface-activated-focused' },
+        { name: 'Surface Activated Pressed', token: '--ld-semantic-color-surface-activated-pressed' },
+        { name: 'Surface Brand', token: '--ld-semantic-color-surface-brand' },
+        { name: 'Surface Overlay', token: '--ld-semantic-color-surface-overlay' },
+        { name: 'Surface Overlay Inverse', token: '--ld-semantic-color-surface-overlay-inverse' },
+        { name: 'Surface Overlay Brand Subtle', token: '--ld-semantic-color-surface-overlay-brand-subtle' },
       ]
     },
     'spacing': {
       title: 'Spacing Scale',
-      count: 30,
+      count: 29,
       tokens: [
+        // Base Spacing Scale
         { name: 'Spacing 25 (2px)', token: '--ld-semantic-spacing-25', value: '0.125rem' },
         { name: 'Spacing 50 (4px)', token: '--ld-semantic-spacing-50', value: '0.25rem' },
         { name: 'Spacing 100 (8px)', token: '--ld-semantic-spacing-100', value: '0.5rem' },
@@ -942,31 +1329,124 @@ function TokenCategorySection() {
         { name: 'Spacing 250 (20px)', token: '--ld-semantic-spacing-250', value: '1.25rem' },
         { name: 'Spacing 300 (24px)', token: '--ld-semantic-spacing-300', value: '1.5rem' },
         { name: 'Spacing 400 (32px)', token: '--ld-semantic-spacing-400', value: '2rem' },
+        { name: 'Spacing 500 (40px)', token: '--ld-semantic-spacing-500', value: '2.5rem' },
+        { name: 'Spacing 600 (48px)', token: '--ld-semantic-spacing-600', value: '3rem' },
+        { name: 'Spacing 700 (56px)', token: '--ld-semantic-spacing-700', value: '3.5rem' },
+        { name: 'Spacing 800 (64px)', token: '--ld-semantic-spacing-800', value: '4rem' },
+        { name: 'Spacing 900 (72px)', token: '--ld-semantic-spacing-900', value: '4.5rem' },
+        { name: 'Spacing 1000 (80px)', token: '--ld-semantic-spacing-1000', value: '5rem' },
+
+        // Component Spacing
+        { name: 'Component Padding Small', token: '--ld-semantic-spacing-component-padding-small' },
+        { name: 'Component Padding Medium', token: '--ld-semantic-spacing-component-padding-medium' },
+        { name: 'Component Padding Large', token: '--ld-semantic-spacing-component-padding-large' },
+        { name: 'Component Gap Small', token: '--ld-semantic-spacing-component-gap-small' },
+        { name: 'Component Gap Medium', token: '--ld-semantic-spacing-component-gap-medium' },
+        { name: 'Component Gap Large', token: '--ld-semantic-spacing-component-gap-large' },
+
+        // Layout Spacing
+        { name: 'Layout Margin Small', token: '--ld-semantic-spacing-layout-margin-small' },
+        { name: 'Layout Margin Medium', token: '--ld-semantic-spacing-layout-margin-medium' },
+        { name: 'Layout Margin Large', token: '--ld-semantic-spacing-layout-margin-large' },
+        { name: 'Layout Padding Small', token: '--ld-semantic-spacing-layout-padding-small' },
+        { name: 'Layout Padding Medium', token: '--ld-semantic-spacing-layout-padding-medium' },
+        { name: 'Layout Padding Large', token: '--ld-semantic-spacing-layout-padding-large' },
+        { name: 'Section Gap Small', token: '--ld-semantic-spacing-section-gap-small' },
+        { name: 'Section Gap Medium', token: '--ld-semantic-spacing-section-gap-medium' },
+        { name: 'Section Gap Large', token: '--ld-semantic-spacing-section-gap-large' },
       ]
     },
     'typography': {
       title: 'Typography Tokens',
-      count: 60,
+      count: 62,
       tokens: [
+        // Font Families
         { name: 'Font Family Sans', token: '--ld-semantic-font-family-sans', value: 'EverydaySans' },
         { name: 'Font Family Mono', token: '--ld-semantic-font-family-mono', value: 'EverydaySansMono' },
-        { name: 'Heading Large Size', token: '--ld-semantic-font-heading-large-size-b-s', value: '1.5rem' },
-        { name: 'Heading Medium Size', token: '--ld-semantic-font-heading-medium-size-b-s', value: '1.25rem' },
+        { name: 'Action Font Weight', token: '--ld-semantic-font-action-weight', value: '700' },
+
+        // Body Large
+        { name: 'Body Large Family', token: '--ld-semantic-font-body-large-family' },
+        { name: 'Body Large Size', token: '--ld-semantic-font-body-large-size', value: '1.125rem' },
+        { name: 'Body Large Line Height', token: '--ld-semantic-font-body-large-line-height' },
+        { name: 'Body Large Weight Default', token: '--ld-semantic-font-body-large-weight-default' },
+        { name: 'Body Large Weight Alt', token: '--ld-semantic-font-body-large-weight-alt' },
+
+        // Body Medium
+        { name: 'Body Medium Family', token: '--ld-semantic-font-body-medium-family' },
         { name: 'Body Medium Size', token: '--ld-semantic-font-body-medium-size', value: '1rem' },
+        { name: 'Body Medium Line Height', token: '--ld-semantic-font-body-medium-line-height' },
+        { name: 'Body Medium Weight Default', token: '--ld-semantic-font-body-medium-weight-default' },
+        { name: 'Body Medium Weight Alt', token: '--ld-semantic-font-body-medium-weight-alt' },
+
+        // Body Small
+        { name: 'Body Small Family', token: '--ld-semantic-font-body-small-family' },
         { name: 'Body Small Size', token: '--ld-semantic-font-body-small-size', value: '0.875rem' },
+        { name: 'Body Small Line Height', token: '--ld-semantic-font-body-small-line-height' },
+        { name: 'Body Small Weight Default', token: '--ld-semantic-font-body-small-weight-default' },
+        { name: 'Body Small Weight Alt', token: '--ld-semantic-font-body-small-weight-alt' },
+
+        // Heading Large
+        { name: 'Heading Large Family', token: '--ld-semantic-font-heading-large-family' },
+        { name: 'Heading Large Size (Small)', token: '--ld-semantic-font-heading-large-size-b-s', value: '1.5rem' },
+        { name: 'Heading Large Size (Large)', token: '--ld-semantic-font-heading-large-size-b-l' },
+        { name: 'Heading Large Line Height (Small)', token: '--ld-semantic-font-heading-large-line-height-b-s' },
+        { name: 'Heading Large Line Height (Large)', token: '--ld-semantic-font-heading-large-line-height-b-l' },
+        { name: 'Heading Large Weight', token: '--ld-semantic-font-heading-large-weight-default' },
+
+        // Heading Medium
+        { name: 'Heading Medium Family', token: '--ld-semantic-font-heading-medium-family' },
+        { name: 'Heading Medium Size (Small)', token: '--ld-semantic-font-heading-medium-size-b-s', value: '1.25rem' },
+        { name: 'Heading Medium Size (Large)', token: '--ld-semantic-font-heading-medium-size-b-l' },
+        { name: 'Heading Medium Line Height (Small)', token: '--ld-semantic-font-heading-medium-line-height-b-s' },
+        { name: 'Heading Medium Line Height (Large)', token: '--ld-semantic-font-heading-medium-line-height-b-l' },
+        { name: 'Heading Medium Weight', token: '--ld-semantic-font-heading-medium-weight-default' },
+
+        // Heading Small
+        { name: 'Heading Small Family', token: '--ld-semantic-font-heading-small-family' },
+        { name: 'Heading Small Size', token: '--ld-semantic-font-heading-small-size' },
+        { name: 'Heading Small Line Height', token: '--ld-semantic-font-heading-small-line-height' },
+        { name: 'Heading Small Weight', token: '--ld-semantic-font-heading-small-weight-default' },
+
+        // Caption
+        { name: 'Caption Family', token: '--ld-semantic-font-caption-family' },
         { name: 'Caption Size', token: '--ld-semantic-font-caption-size', value: '0.75rem' },
+        { name: 'Caption Line Height', token: '--ld-semantic-font-caption-line-height' },
+        { name: 'Caption Weight Default', token: '--ld-semantic-font-caption-weight-default' },
+        { name: 'Caption Weight Alt', token: '--ld-semantic-font-caption-weight-alt' },
+        { name: 'Caption Mono Family', token: '--ld-semantic-font-caption-mono-family' },
+
+        // Label Large
+        { name: 'Label Large Family', token: '--ld-semantic-font-label-large-family' },
+        { name: 'Label Large Size', token: '--ld-semantic-font-label-large-size' },
+        { name: 'Label Large Line Height', token: '--ld-semantic-font-label-large-line-height' },
+        { name: 'Label Large Weight', token: '--ld-semantic-font-label-large-weight-default' },
+
+        // Label Medium
+        { name: 'Label Medium Family', token: '--ld-semantic-font-label-medium-family' },
+        { name: 'Label Medium Size', token: '--ld-semantic-font-label-medium-size' },
+        { name: 'Label Medium Line Height', token: '--ld-semantic-font-label-medium-line-height' },
+        { name: 'Label Medium Weight', token: '--ld-semantic-font-label-medium-weight-default' },
       ]
     },
     'border-radius': {
       title: 'Border Radius',
-      count: 13,
+      count: 14,
       tokens: [
         { name: 'Small (2px)', token: '--ld-semantic-border-radius-small', value: '0.125rem' },
         { name: 'Medium (4px)', token: '--ld-semantic-border-radius-medium', value: '0.25rem' },
         { name: 'Large (8px)', token: '--ld-semantic-border-radius-large', value: '0.5rem' },
+        { name: 'XLarge (12px)', token: '--ld-semantic-border-radius-xlarge', value: '0.75rem' },
+        { name: 'XXLarge (16px)', token: '--ld-semantic-border-radius-xxlarge', value: '1rem' },
+        { name: 'XXXLarge (24px)', token: '--ld-semantic-border-radius-xxxlarge', value: '1.5rem' },
+        { name: 'Round (Pill)', token: '--ld-semantic-border-radius-round', value: '62.5rem' },
         { name: 'Button (Pill)', token: '--ld-semantic-border-radius-button', value: '62.5rem' },
         { name: 'Card', token: '--ld-semantic-border-radius-card', value: '0.5rem' },
-        { name: 'Round (Pill)', token: '--ld-semantic-border-radius-round', value: '62.5rem' },
+        { name: 'Input', token: '--ld-semantic-border-radius-input', value: '0.25rem' },
+        { name: 'Modal', token: '--ld-semantic-border-radius-modal', value: '0.5rem' },
+        { name: 'Popover', token: '--ld-semantic-border-radius-popover', value: '0.5rem' },
+        { name: 'Tag', token: '--ld-semantic-border-radius-tag', value: '62.5rem' },
+        { name: 'Badge', token: '--ld-semantic-border-radius-badge', value: '62.5rem' },
       ]
     },
     'elevation': {
@@ -980,13 +1460,44 @@ function TokenCategorySection() {
     },
     'duration': {
       title: 'Animation Duration',
-      count: 20,
+      count: 21,
       tokens: [
+        // Base Durations
         { name: 'Instant (100ms)', token: '--ld-semantic-duration-instant', value: '0.10s' },
         { name: 'Fast (200ms)', token: '--ld-semantic-duration-fast', value: '0.20s' },
         { name: 'Medium (300ms)', token: '--ld-semantic-duration-medium', value: '0.30s' },
+        { name: 'Slow (400ms)', token: '--ld-semantic-duration-slow', value: '0.40s' },
+        { name: 'Slower (500ms)', token: '--ld-semantic-duration-slower', value: '0.50s' },
+        { name: 'Slowest (600ms)', token: '--ld-semantic-duration-slowest', value: '0.60s' },
+        { name: 'Glacial (1000ms)', token: '--ld-semantic-duration-glacial', value: '1.00s' },
+
+        // Button Animations
         { name: 'Button Hover', token: '--ld-semantic-duration-button-hover', value: '0.20s' },
+        { name: 'Button Press', token: '--ld-semantic-duration-button-press', value: '0.10s' },
+
+        // Modal Animations
         { name: 'Modal Open', token: '--ld-semantic-duration-modal-open', value: '0.30s' },
+        { name: 'Modal Close', token: '--ld-semantic-duration-modal-close', value: '0.20s' },
+
+        // Popover Animations
+        { name: 'Popover Open', token: '--ld-semantic-duration-popover-open', value: '0.20s' },
+        { name: 'Popover Close', token: '--ld-semantic-duration-popover-close', value: '0.15s' },
+
+        // Tooltip Animations
+        { name: 'Tooltip Show', token: '--ld-semantic-duration-tooltip-show', value: '0.15s' },
+        { name: 'Tooltip Hide', token: '--ld-semantic-duration-tooltip-hide', value: '0.10s' },
+
+        // Dropdown Animations
+        { name: 'Dropdown Open', token: '--ld-semantic-duration-dropdown-open', value: '0.20s' },
+        { name: 'Dropdown Close', token: '--ld-semantic-duration-dropdown-close', value: '0.15s' },
+
+        // Fade Animations
+        { name: 'Fade In', token: '--ld-semantic-duration-fade-in', value: '0.30s' },
+        { name: 'Fade Out', token: '--ld-semantic-duration-fade-out', value: '0.20s' },
+
+        // Slide Animations
+        { name: 'Slide In', token: '--ld-semantic-duration-slide-in', value: '0.30s' },
+        { name: 'Slide Out', token: '--ld-semantic-duration-slide-out', value: '0.20s' },
       ]
     },
   };

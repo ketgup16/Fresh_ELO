@@ -279,7 +279,6 @@ export { Trailer } from './Trailer';
 export { TrailerArrowRight } from './TrailerArrowRight';
 export { TrailerDoor } from './TrailerDoor';
 export { Trash } from './Trash';
-export { Trash2 } from './Trash2';
 export { Trophy } from './Trophy';
 export { Truck } from './Truck';
 export { Undo } from './Undo';
