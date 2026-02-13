@@ -166,44 +166,6 @@ export default function ComponentLibrary() {
       backgroundColor: 'var(--ld-semantic-color-background-subtle)',
       padding: '40px 60px'
     }}>
-      {/* Theme Debug Banner */}
-      <div
-        style={{
-          marginBottom: '20px',
-          padding: '16px 20px',
-          backgroundColor: 'var(--ld-semantic-color-fill-info-subtle)',
-          border: '2px solid var(--ld-semantic-color-action-fill-primary)',
-          borderRadius: '8px',
-          fontSize: '13px',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px' }}>
-          <div
-            style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '4px',
-              backgroundColor: 'var(--ld-semantic-color-action-fill-primary)',
-              border: '2px solid var(--ld-semantic-color-border)',
-              flexShrink: 0,
-            }}
-          />
-          <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 700, marginBottom: '4px' }}>
-              Theme Token Test
-            </div>
-            <div style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>
-              The color box should be <strong>Walmart Blue (#0053e2)</strong> for Walmart theme,
-              or <strong>Navy (#002e99)</strong> for Business theme.
-            </div>
-          </div>
-        </div>
-        <div style={{ fontSize: '11px', color: 'var(--ld-semantic-color-text-subtle)' }}>
-          💡 Open browser console (F12) to see theme loading logs
-        </div>
-      </div>
-
       {/* Page Header */}
       <div style={{
         marginBottom: '40px',
