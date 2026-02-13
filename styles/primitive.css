@@ -10,26 +10,26 @@
   --ld-primitive-color-black: #000000;
   --ld-primitive-color-white: #ffffff;
   
-  /* Blue color scale */
-  --ld-primitive-color-blue-5: #f0f5ff;
-  --ld-primitive-color-blue-10: #e9f1fe;
-  --ld-primitive-color-blue-20: #c9dcfd;
-  --ld-primitive-color-blue-30: #acc8fb;
-  --ld-primitive-color-blue-40: #90b5f9;
-  --ld-primitive-color-blue-50: #7aa5f6;
-  --ld-primitive-color-blue-60: #5e93f3;
-  --ld-primitive-color-blue-70: #4380ef;
-  --ld-primitive-color-blue-80: #2e70eb;
-  --ld-primitive-color-blue-90: #175ee2;
-  --ld-primitive-color-blue-100: #0053e2;
-  --ld-primitive-color-blue-110: #114ab6;
-  --ld-primitive-color-blue-120: #003fb2;
-  --ld-primitive-color-blue-130: #002e99;
-  --ld-primitive-color-blue-140: #002185;
-  --ld-primitive-color-blue-150: #001270;
-  --ld-primitive-color-blue-160: #001e60;
-  --ld-primitive-color-blue-170: #080042;
-  --ld-primitive-color-blue-180: #0e002e;
+  /* Blue color scale - Walmart Blue */
+  --ld-primitive-color-blue-5: #e6f1fc;
+  --ld-primitive-color-blue-10: #d4e7fb;
+  --ld-primitive-color-blue-20: #adcff7;
+  --ld-primitive-color-blue-30: #85b8f3;
+  --ld-primitive-color-blue-40: #5ea0ef;
+  --ld-primitive-color-blue-50: #3689eb;
+  --ld-primitive-color-blue-60: #0f71e7;
+  --ld-primitive-color-blue-70: #0065d1;
+  --ld-primitive-color-blue-80: #0059bb;
+  --ld-primitive-color-blue-90: #004da5;
+  --ld-primitive-color-blue-100: #0071DC; /* Walmart Blue */
+  --ld-primitive-color-blue-110: #0060B8;
+  --ld-primitive-color-blue-120: #004F94;
+  --ld-primitive-color-blue-130: #003D70;
+  --ld-primitive-color-blue-140: #002C4C;
+  --ld-primitive-color-blue-150: #001A28;
+  --ld-primitive-color-blue-160: #041E42; /* Walmart Dark Blue */
+  --ld-primitive-color-blue-170: #03182f;
+  --ld-primitive-color-blue-180: #02121c;
 
   /* Cyan color scale */
   --ld-primitive-color-cyan-5: #f0faff;
