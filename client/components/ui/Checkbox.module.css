@@ -1,0 +1,121 @@
+/* Checkbox Base Styles - LD 3.5 */
+.checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border-radius: var(--ld-primitive-scale-border-radius-25, 2px);
+  border: 1.5px solid var(--ld-semantic-color-input-border);
+  background-color: var(--ld-semantic-color-input-fill);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  outline: none;
+  padding: 0;
+}
+
+/* Hover - Unchecked */
+.checkbox:hover:not([data-disabled]) {
+  background-color: var(--ld-semantic-color-input-fill-hovered);
+  border-color: var(--ld-semantic-color-input-border-hovered);
+}
+
+/* Focus visible */
+.checkbox:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
+  outline-offset: 2px;
+}
+
+/* Pressed - Unchecked */
+.checkbox:active:not([data-disabled]) {
+  background-color: var(--ld-semantic-color-input-fill-pressed);
+  border-color: var(--ld-semantic-color-input-border-pressed);
+}
+
+/* Checked / Indeterminate (activated) */
+.checkbox[data-state="checked"],
+.checkbox[data-state="indeterminate"] {
+  background-color: var(--ld-semantic-color-input-fill-activated);
+  border-color: var(--ld-semantic-color-input-border-activated);
+}
+
+/* Hover - Checked / Indeterminate */
+.checkbox[data-state="checked"]:hover:not([data-disabled]),
+.checkbox[data-state="indeterminate"]:hover:not([data-disabled]) {
+  background-color: var(--ld-semantic-color-input-fill-activated-hovered);
+  border-color: var(--ld-semantic-color-input-border-activated-hovered);
+}
+
+/* Pressed - Checked / Indeterminate */
+.checkbox[data-state="checked"]:active:not([data-disabled]),
+.checkbox[data-state="indeterminate"]:active:not([data-disabled]) {
+  background-color: var(--ld-semantic-color-input-fill-activated-pressed);
+  border-color: var(--ld-semantic-color-input-border-activated-pressed);
+}
+
+/* Disabled - Unchecked */
+.checkbox[data-disabled] {
+  background-color: var(--ld-semantic-color-input-fill-disabled);
+  border-color: var(--ld-semantic-color-input-border-disabled);
+  cursor: not-allowed;
+}
+
+/* Disabled - Checked / Indeterminate */
+.checkbox[data-state="checked"][data-disabled],
+.checkbox[data-state="indeterminate"][data-disabled] {
+  background-color: var(--ld-semantic-color-input-fill-activated-disabled);
+  border-color: var(--ld-semantic-color-input-border-activated-disabled);
+}
+
+/* Indicator container */
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--ld-semantic-color-input-indicator-activated);
+}
+
+/* Disabled indicator */
+.checkbox[data-disabled] .indicator {
+  color: var(--ld-semantic-color-input-fill-disabled);
+}
+
+/* Check icon */
+.checkIcon {
+  width: 12px;
+  height: 12px;
+}
+
+/* Indeterminate dash icon */
+.indeterminateIcon {
+  width: 10px;
+  height: 10px;
+}
+
+/* Label wrapper (optional, for checkbox + label combos) */
+.wrapper {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.wrapper--disabled {
+  cursor: not-allowed;
+}
+
+.label {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ld-semantic-color-input-text-on-fill);
+  user-select: none;
+}
+
+.label--disabled {
+  color: var(--ld-semantic-color-input-text-on-fill-disabled);
+}

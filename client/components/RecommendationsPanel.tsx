@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Breadcrumb, BreadcrumbItem } from "@/components/ui/Breadcrumb";
 import { Link } from "@/components/ui/Link";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "@/components/ui/Checkbox";
 import { Alert } from "@/components/ui/Alert";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from "@/components/ui/table";
@@ -958,22 +958,20 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   <div className="text-sm font-bold text-[#2E2F32]">Campaign goal</div>
                   <div className="flex flex-col gap-3">
                     {['Awareness campaign', 'Engagement campaign', 'Conversion campaign'].map((goal) => (
-                      <label key={goal} className="flex items-center gap-3 cursor-pointer">
-                        <Checkbox
-                          checked={selectedCampaignGoals.has(goal)}
-                          onCheckedChange={(checked) => {
-                            const newGoals = new Set(selectedCampaignGoals);
-                            if (checked) {
-                              newGoals.add(goal);
-                            } else {
-                              newGoals.delete(goal);
-                            }
-                            setSelectedCampaignGoals(newGoals);
-                          }}
-                          className="w-6 h-6 rounded border border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=unchecked]:bg-white"
-                        />
-                        <span className="text-sm text-[#2E2F32] flex-1">{goal}</span>
-                      </label>
+                      <Checkbox
+                        key={goal}
+                        label={goal}
+                        checked={selectedCampaignGoals.has(goal)}
+                        onCheckedChange={(checked) => {
+                          const newGoals = new Set(selectedCampaignGoals);
+                          if (checked) {
+                            newGoals.add(goal);
+                          } else {
+                            newGoals.delete(goal);
+                          }
+                          setSelectedCampaignGoals(newGoals);
+                        }}
+                      />
                     ))}
                   </div>
                 </div>
@@ -1006,22 +1004,20 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   <div className="text-sm font-bold text-[#2E2F32]">Recommendation type</div>
                   <div className="flex flex-col gap-3">
                     {['Budget', 'Targeting', 'Date', 'Creative', 'Frequency'].map((type) => (
-                      <label key={type} className="flex items-center gap-3 cursor-pointer">
-                        <Checkbox
-                          checked={selectedTypes.has(type)}
-                          onCheckedChange={(checked) => {
-                            const newTypes = new Set(selectedTypes);
-                            if (checked) {
-                              newTypes.add(type);
-                            } else {
-                              newTypes.delete(type);
-                            }
-                            setSelectedTypes(newTypes);
-                          }}
-                          className="w-6 h-6 rounded border border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=unchecked]:bg-white"
-                        />
-                        <span className="text-sm text-[#2E2F32] flex-1">{type}</span>
-                      </label>
+                      <Checkbox
+                        key={type}
+                        label={type}
+                        checked={selectedTypes.has(type)}
+                        onCheckedChange={(checked) => {
+                          const newTypes = new Set(selectedTypes);
+                          if (checked) {
+                            newTypes.add(type);
+                          } else {
+                            newTypes.delete(type);
+                          }
+                          setSelectedTypes(newTypes);
+                        }}
+                      />
                     ))}
                   </div>
                 </div>
@@ -1054,22 +1050,20 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                   <div className="text-sm font-bold text-[#2E2F32]">Group by</div>
                   <div className="flex flex-col gap-3">
                     {['Campaign', 'Recommendation'].map((group) => (
-                      <label key={group} className="flex items-center gap-3 cursor-pointer">
-                        <Checkbox
-                          checked={selectedGroupBy.has(group)}
-                          onCheckedChange={(checked) => {
-                            const newGroups = new Set(selectedGroupBy);
-                            if (checked) {
-                              newGroups.add(group);
-                            } else {
-                              newGroups.delete(group);
-                            }
-                            setSelectedGroupBy(newGroups);
-                          }}
-                          className="w-6 h-6 rounded border border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=unchecked]:bg-white"
-                        />
-                        <span className="text-sm text-[#2E2F32] flex-1">{group}</span>
-                      </label>
+                      <Checkbox
+                        key={group}
+                        label={group}
+                        checked={selectedGroupBy.has(group)}
+                        onCheckedChange={(checked) => {
+                          const newGroups = new Set(selectedGroupBy);
+                          if (checked) {
+                            newGroups.add(group);
+                          } else {
+                            newGroups.delete(group);
+                          }
+                          setSelectedGroupBy(newGroups);
+                        }}
+                      />
                     ))}
                   </div>
                 </div>
@@ -1265,11 +1259,7 @@ export default function RecommendationsPanel({ isOpen, onClose, campaignGoal = "
                                   checked={selectedRecommendations.has(rec.id)}
                                   onCheckedChange={() => !isDisabled && !newlyAppliedIds.has(rec.id) && handleToggleRecommendation(rec.id)}
                                   disabled={isDisabled || newlyAppliedIds.has(rec.id)}
-                                  className={`w-6 h-6 rounded border ${
-                                    isDisabled || newlyAppliedIds.has(rec.id)
-                                      ? 'border-[#C7C8CB] bg-[#F4F5F5] cursor-not-allowed'
-                                      : 'border-[#2E2F32] data-[state=checked]:bg-[#2E2F32] data-[state=checked]:border data-[state=checked]:border-black data-[state=unchecked]:bg-white'
-                                  }`}
+                                  aria-label={`Select recommendation: ${rec.title}`}
                                 />
                               </div>
 

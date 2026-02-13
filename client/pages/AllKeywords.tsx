@@ -1,5 +1,6 @@
 import { useState, useRef, useMemo, useEffect } from "react";
 import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Calendar, Filter, Download, Settings as SettingsIcon, X } from "@/components/icons";
+import { Checkbox } from "@/components/ui/Checkbox";
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
@@ -43,7 +44,6 @@ export default function AllKeywords() {
 
   // Selected rows state
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
-  const selectAllCheckboxRef = useRef<HTMLInputElement>(null);
 
   // Search state
   const [searchScope, setSearchScope] = useState<string>('Keyword');
@@ -659,12 +659,8 @@ export default function AllKeywords() {
     return selectedCount > 0 && selectedCount < keywords.length;
   };
 
-  // Set indeterminate state for select all checkbox
-  useEffect(() => {
-    if (selectAllCheckboxRef.current) {
-      selectAllCheckboxRef.current.indeterminate = isSomeSelected();
-    }
-  }, [selectedRows]);
+  const selectAllCheckedState: boolean | 'indeterminate' =
+    isAllSelected() ? true : isSomeSelected() ? 'indeterminate' : false;
 
   // Handle click outside for search scope dropdown
   useEffect(() => {
@@ -1143,22 +1139,19 @@ export default function AllKeywords() {
                   <div className="flex flex-col flex-shrink-0">
                     {/* Header */}
                     <div className="flex items-center justify-center h-[44px] px-3 border-b border-[#E3E4E5] bg-[#FAFAFA]">
-                      <input
-                        ref={selectAllCheckboxRef}
-                        type="checkbox"
-                        className="w-4 h-4 rounded border-[#909196] accent-black cursor-pointer"
-                        checked={isAllSelected()}
-                        onChange={(e) => handleSelectAll(e.target.checked)}
+                      <Checkbox
+                        checked={selectAllCheckedState}
+                        onCheckedChange={(checked) => handleSelectAll(checked === true)}
+                        aria-label="Select all keywords"
                       />
                     </div>
                     {/* Rows */}
                     {keywords.map((keyword, idx) => (
                       <div key={idx} className="flex items-center justify-center h-[44px] px-3 border-b border-[#E3E4E5] bg-white">
-                        <input
-                          type="checkbox"
-                          className="w-4 h-4 rounded border-[#909196] accent-black cursor-pointer"
+                        <Checkbox
                           checked={selectedRows.has(keyword.id)}
-                          onChange={(e) => handleSelectRow(keyword.id, e.target.checked)}
+                          onCheckedChange={(checked) => handleSelectRow(keyword.id, !!checked)}
+                          aria-label={`Select keyword ${keyword.keyword}`}
                         />
                       </div>
                     ))}

@@ -6,6 +6,7 @@ import { LinkExample } from '@/components/LinkExample';
 import IconButtonExample from '@/components/IconButtonExample';
 import { CalloutExample } from '@/components/CalloutExample';
 import { CardHeaderExample } from '@/components/CardHeaderExample';
+import { CheckboxExample } from '@/components/CheckboxExample';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { IconButton } from '@/components/ui/IconButton';
@@ -20,13 +21,14 @@ export default function ComponentLibrary() {
 
   // Define all searchable sections
   const allSections = [
-    { id: 'icons', name: 'Icons', keywords: ['icon', 'svg', 'graphic', 'symbol'] },
     { id: 'component-tester', name: 'Component Tester', keywords: ['test', 'playground', 'interactive', 'properties'] },
+    { id: 'icons', name: 'Icons', keywords: ['icon', 'svg', 'graphic', 'symbol'] },
     { id: 'buttons', name: 'Buttons', keywords: ['button', 'action', 'click', 'primary', 'secondary'] },
     { id: 'badges', name: 'Badges', keywords: ['badge', 'count', 'notification', 'label', 'tag'] },
     { id: 'breadcrumbs', name: 'Breadcrumbs', keywords: ['breadcrumb', 'navigation', 'path'] },
     { id: 'links', name: 'Links', keywords: ['link', 'anchor', 'hyperlink', 'url'] },
     { id: 'icon-buttons', name: 'Icon Buttons', keywords: ['icon button', 'icon', 'action'] },
+    { id: 'checkboxes', name: 'Checkboxes', keywords: ['checkbox', 'check', 'select', 'form', 'input', 'indeterminate'] },
     { id: 'callouts', name: 'Callouts', keywords: ['callout', 'tooltip', 'nubbin', 'coaching', 'onboarding', 'pointer'] },
     { id: 'cards', name: 'Cards', keywords: ['card', 'container', 'panel'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
@@ -294,7 +296,7 @@ export default function ComponentLibrary() {
           Quick Navigation
         </h3>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Callouts', 'Cards', 'Design Tokens'].map(section => (
+          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Callouts', 'Cards', 'Design Tokens'].map(section => (
             <a
               key={section}
               href={`#${section.toLowerCase().replace(' ', '-')}`}
@@ -470,6 +472,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="icon-buttons" title="Icon Buttons" description="Icon-only buttons for compact actions with ghost, primary, secondary, and destructive variants">
         <ComponentShowcase>
           <IconButtonExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Checkboxes Section */}
+      <Section id="checkboxes" title="Checkboxes" description="Form checkboxes with checked, unchecked, and indeterminate states using LD 3.5 input tokens">
+        <ComponentShowcase>
+          <CheckboxExample />
         </ComponentShowcase>
       </Section>
 

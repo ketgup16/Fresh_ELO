@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Lottie from "lottie-react";
 import Reports from "./icons/Reports";
 import { Button } from "./ui/Button";
+import { Checkbox } from "./ui/Checkbox";
 import martyAnimation from "../marty-thinking.json";
 import martyGlassesAnimation from "../marty-glasses.json";
 import { useMarty } from "@/contexts/MartyContext";
@@ -1153,51 +1154,16 @@ export default function MartyFloatingPanel() {
 
                     {/* Checkboxes */}
                     <div className="flex flex-col items-start gap-2 mt-2">
-                      <label className="flex items-center gap-3 cursor-pointer">
-                        <div
-                          className="flex w-6 h-6 justify-center items-center rounded-sm border-2 transition-colors"
-                          style={{
-                            borderColor: campaignData.brandTermTargeting ? '#2E2F32' : '#909196',
-                            backgroundColor: campaignData.brandTermTargeting ? '#2E2F32' : 'white'
-                          }}
-                        >
-                          {campaignData.brandTermTargeting && (
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M15 3.80705L6.23047 12.6609C5.78259 13.113 5.05642 13.113 4.60854 12.6609L1 9.01759L2.72031 7.28075L5.41951 10.1053L13.2101 2L15 3.80705Z" fill="white"/>
-                            </svg>
-                          )}
-                        </div>
-                        <input
-                          type="checkbox"
-                          checked={campaignData.brandTermTargeting}
-                          onChange={(e) => setCampaignData({...campaignData, brandTermTargeting: e.target.checked})}
-                          className="sr-only"
-                        />
-                        <span className="text-[#2E2F32] text-sm font-bold leading-5">Brand term targeting</span>
-                      </label>
-
-                      <label className="flex items-center gap-3 cursor-pointer">
-                        <div
-                          className="flex w-6 h-6 justify-center items-center rounded-sm border-2 transition-colors"
-                          style={{
-                            borderColor: campaignData.complementaryTargeting ? '#2E2F32' : '#909196',
-                            backgroundColor: campaignData.complementaryTargeting ? '#2E2F32' : 'white'
-                          }}
-                        >
-                          {campaignData.complementaryTargeting && (
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M15 3.80705L6.23047 12.6609C5.78259 13.113 5.05642 13.113 4.60854 12.6609L1 9.01759L2.72031 7.28075L5.41951 10.1053L13.2101 2L15 3.80705Z" fill="white"/>
-                            </svg>
-                          )}
-                        </div>
-                        <input
-                          type="checkbox"
-                          checked={campaignData.complementaryTargeting}
-                          onChange={(e) => setCampaignData({...campaignData, complementaryTargeting: e.target.checked})}
-                          className="sr-only"
-                        />
-                        <span className="text-[#2E2F32] text-sm font-bold leading-5">Complementary targeting</span>
-                      </label>
+                      <Checkbox
+                        label="Brand term targeting"
+                        checked={campaignData.brandTermTargeting}
+                        onCheckedChange={(checked) => setCampaignData({...campaignData, brandTermTargeting: !!checked})}
+                      />
+                      <Checkbox
+                        label="Complementary targeting"
+                        checked={campaignData.complementaryTargeting}
+                        onCheckedChange={(checked) => setCampaignData({...campaignData, complementaryTargeting: !!checked})}
+                      />
                     </div>
                   </div>
 

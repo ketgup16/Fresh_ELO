@@ -6,6 +6,7 @@ import {
   DialogTitle,
 } from './ui/dialog';
 import { Button } from './ui/Button';
+import { Checkbox } from './ui/Checkbox';
 
 interface Metric {
   id: string;
@@ -175,38 +176,12 @@ export default function EditMetricsModal({ open, onOpenChange }: EditMetricsModa
             <div className="flex-1 overflow-y-auto px-6">
               <div className="flex flex-col gap-3 pb-4">
                 {filteredMetrics.map(metric => (
-                  <label
+                  <Checkbox
                     key={metric.id}
-                    className="flex items-center gap-3 cursor-pointer group"
-                  >
-                    <div className="relative flex items-center justify-center w-6 h-6 flex-shrink-0">
-                      <input
-                        type="checkbox"
-                        checked={selectedMetrics.includes(metric.id)}
-                        onChange={() => toggleMetric(metric.id)}
-                        className="sr-only"
-                      />
-                      <div
-                        className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-colors ${
-                          selectedMetrics.includes(metric.id)
-                            ? 'bg-[#2E2F32] border-[#2E2F32]'
-                            : 'bg-white border-[#909196] group-hover:border-[#2E2F32]'
-                        }`}
-                      >
-                        {selectedMetrics.includes(metric.id) && (
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M15 3.80705L6.23047 12.6609C5.78259 13.113 5.05642 13.113 4.60854 12.6609L1 9.01759L2.72031 7.28075L5.41951 10.1053L13.2101 2L15 3.80705Z"
-                              fill="white"
-                            />
-                          </svg>
-                        )}
-                      </div>
-                    </div>
-                    <span className="text-base text-[#2E2F32] font-bold leading-6">
-                      {metric.label}
-                    </span>
-                  </label>
+                    label={metric.label}
+                    checked={selectedMetrics.includes(metric.id)}
+                    onCheckedChange={() => toggleMetric(metric.id)}
+                  />
                 ))}
               </div>
             </div>

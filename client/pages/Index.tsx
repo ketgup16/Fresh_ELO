@@ -13,6 +13,7 @@ import { MastHead } from "../components/ui/MastHead";
 import { Link } from "../components/ui/Link";
 import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { Breadcrumb, BreadcrumbItem } from "../components/ui/Breadcrumb";
+import { Checkbox } from "../components/ui/Checkbox";
 
 interface Campaign {
   id: string;
@@ -1595,7 +1596,6 @@ export default function Index() {
   const popoverRef = useRef<HTMLDivElement>(null);
   const recPopoverRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-  const selectAllCheckboxRef = useRef<HTMLInputElement>(null);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -1913,12 +1913,8 @@ export default function Index() {
     setCurrentPage(1);
   }, [statusFilter, searchQuery]);
 
-  // Set indeterminate state for select all checkbox
-  useEffect(() => {
-    if (selectAllCheckboxRef.current) {
-      selectAllCheckboxRef.current.indeterminate = isSomeSelected();
-    }
-  }, [selectedRows]);
+  const selectAllCheckedState: boolean | 'indeterminate' =
+    isAllSelected() ? true : isSomeSelected() ? 'indeterminate' : false;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -2300,24 +2296,16 @@ export default function Index() {
 
                       {/* Checkbox Options */}
                       <div className="px-3 pb-2 space-y-2">
-                        <label className="flex items-start gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                            checked={tempLivePacingFilter.includes('on-track')}
-                            onChange={() => handleToggleLivePacingFilter('on-track')}
-                          />
-                          <span className="text-sm text-[#2A8703]">On track</span>
-                        </label>
-                        <label className="flex items-start gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                            checked={tempLivePacingFilter.includes('at-risk')}
-                            onChange={() => handleToggleLivePacingFilter('at-risk')}
-                          />
-                          <span className="text-sm text-[#995213]">At risk</span>
-                        </label>
+                        <Checkbox
+                          label="On track"
+                          checked={tempLivePacingFilter.includes('on-track')}
+                          onCheckedChange={() => handleToggleLivePacingFilter('on-track')}
+                        />
+                        <Checkbox
+                          label="At risk"
+                          checked={tempLivePacingFilter.includes('at-risk')}
+                          onCheckedChange={() => handleToggleLivePacingFilter('at-risk')}
+                        />
                       </div>
 
                       {/* Divider */}
@@ -2405,42 +2393,10 @@ export default function Index() {
                     <div className="flex-1 overflow-y-auto self-stretch p-4">
                       <div className="mb-3">
                         <div className="space-y-3">
-                          <label className="flex items-start gap-2 cursor-pointer">
-                            <input
-                              type="checkbox"
-                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                              checked={tempStatusFilter.includes('Live')}
-                              onChange={() => handleToggleStatusFilter('Live')}
-                            />
-                            <span className="text-sm text-[#2E2F32]">Live</span>
-                          </label>
-                          <label className="flex items-start gap-2 cursor-pointer">
-                            <input
-                              type="checkbox"
-                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                              checked={tempStatusFilter.includes('Scheduled')}
-                              onChange={() => handleToggleStatusFilter('Scheduled')}
-                            />
-                            <span className="text-sm text-[#2E2F32]">Scheduled</span>
-                          </label>
-                          <label className="flex items-start gap-2 cursor-pointer">
-                            <input
-                              type="checkbox"
-                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                              checked={tempStatusFilter.includes('Paused')}
-                              onChange={() => handleToggleStatusFilter('Paused')}
-                            />
-                            <span className="text-sm text-[#2E2F32]">Paused</span>
-                          </label>
-                          <label className="flex items-start gap-2 cursor-pointer">
-                            <input
-                              type="checkbox"
-                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                              checked={tempStatusFilter.includes('Completed')}
-                              onChange={() => handleToggleStatusFilter('Completed')}
-                            />
-                            <span className="text-sm text-[#2E2F32]">Complete</span>
-                          </label>
+                          <Checkbox label="Live" checked={tempStatusFilter.includes('Live')} onCheckedChange={() => handleToggleStatusFilter('Live')} />
+                          <Checkbox label="Scheduled" checked={tempStatusFilter.includes('Scheduled')} onCheckedChange={() => handleToggleStatusFilter('Scheduled')} />
+                          <Checkbox label="Paused" checked={tempStatusFilter.includes('Paused')} onCheckedChange={() => handleToggleStatusFilter('Paused')} />
+                          <Checkbox label="Complete" checked={tempStatusFilter.includes('Completed')} onCheckedChange={() => handleToggleStatusFilter('Completed')} />
                         </div>
                       </div>
 
@@ -2448,24 +2404,8 @@ export default function Index() {
                       <div className="mb-3 mt-6">
                         <div className="text-sm font-bold text-[#2E2F32] mb-3">Pace</div>
                         <div className="space-y-3">
-                          <label className="flex items-start gap-2 cursor-pointer">
-                            <input
-                              type="checkbox"
-                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                              checked={tempLivePacingFilter.includes('on-track')}
-                              onChange={() => handleToggleLivePacingFilter('on-track')}
-                            />
-                            <span className="text-sm text-[#2A8703]">On track</span>
-                          </label>
-                          <label className="flex items-start gap-2 cursor-pointer">
-                            <input
-                              type="checkbox"
-                              className="w-6 h-6 mt-0.5 rounded border-2 border-[#909196] accent-black"
-                              checked={tempLivePacingFilter.includes('at-risk')}
-                              onChange={() => handleToggleLivePacingFilter('at-risk')}
-                            />
-                            <span className="text-sm text-[#995213]">At risk</span>
-                          </label>
+                          <Checkbox label="On track" checked={tempLivePacingFilter.includes('on-track')} onCheckedChange={() => handleToggleLivePacingFilter('on-track')} />
+                          <Checkbox label="At risk" checked={tempLivePacingFilter.includes('at-risk')} onCheckedChange={() => handleToggleLivePacingFilter('at-risk')} />
                         </div>
                       </div>
                     </div>
@@ -2501,12 +2441,10 @@ export default function Index() {
                 <thead className="bg-[#F8F8F8] sticky top-0 z-20">
                   <tr>
                     <th className="p-2 text-left relative group sticky left-0 bg-[#F8F8F8] z-30 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.1)]" style={{ width: columnWidths.checkbox }}>
-                      <input
-                        ref={selectAllCheckboxRef}
-                        type="checkbox"
-                        className="w-5 h-5 rounded border-[#909196] accent-black"
-                        checked={isAllSelected()}
-                        onChange={(e) => handleSelectAll(e.target.checked)}
+                      <Checkbox
+                        checked={selectAllCheckedState}
+                        onCheckedChange={(checked) => handleSelectAll(checked === true)}
+                        aria-label="Select all campaigns"
                       />
                       <div
                         className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-[#0053E2] group-hover:bg-[#0053E2]/20"
@@ -2604,11 +2542,10 @@ export default function Index() {
                             ? 'bg-[#FFF9E6]'
                             : 'bg-white'
                         }`} style={{ width: columnWidths.checkbox }}>
-                          <input
-                            type="checkbox"
-                            className="w-5 h-5 rounded border-[#909196] accent-black"
+                          <Checkbox
                             checked={selectedRows.has(campaign.id)}
-                            onChange={(e) => handleSelectRow(campaign.id, e.target.checked)}
+                            onCheckedChange={(checked) => handleSelectRow(campaign.id, !!checked)}
+                            aria-label={`Select campaign ${campaign.name}`}
                           />
                         </td>
                         <td className="p-2" style={{ width: columnWidths.campaign }}>
