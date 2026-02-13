@@ -3,11 +3,22 @@ title: Living Design Guidelines
 scope: meta
 status: draft
 owner: design-system
-last_updated: 2026-01-14
+last_updated: 2026-02-13
 ---
 
 ## What this is
 This folder is the **Living Design Agent Kit**: agent-readable rules that help tools like **Figma Make** generate UI that correctly uses Living Design.
+
+## 🚀 Quick Start: Component Reference
+**NEW: Complete Living Design component API reference:**
+👉 **`LivingDesign-Component-Reference.md`** 👈
+
+This comprehensive guide includes:
+- All Living Design component imports from `@livingdesign/react`
+- Complete prop definitions and types for each component
+- Required vs optional props
+- Component variants and usage guidance
+- 40+ components documented
 
 ## ⚠️ REQUIRED: Pre-Implementation Checklist
 **Before implementing ANYTHING, agents MUST complete the checklist in:**
@@ -46,6 +57,7 @@ These files reference placeholders that you must update once Living Design is in
 ## Index
 - **Meta & Checklists**:
   - `Agent-Implementation-Checklist.md` ⚠️ **REQUIRED READING**
+  - `LivingDesign-Component-Reference.md` 🚀 **COMPLETE COMPONENT API REFERENCE**
   - `Component-Inventory.md` 📋 **Component lookup table**
   - `overview-components.md`
 - **Foundations (design tokens)**:

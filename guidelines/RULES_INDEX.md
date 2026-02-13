@@ -60,25 +60,57 @@ import { Search } from '@/components/icons';
 
 ## 📚 Component Guidelines
 
-### 3. Component Reuse Policy
+### 3. Living Design Component API Reference
+**File**: `LivingDesign-Component-Reference.md` 🆕
+
+**When**: Using ANY Living Design component from `@livingdesign/react`
+
+**What's Included**:
+- ✅ 40+ Living Design components with complete API documentation
+- ✅ All prop definitions with types (required vs optional)
+- ✅ Component variants and sizing options
+- ✅ Import statements for each component
+- ✅ Usage guidance and examples
+
+**Quick Reference**:
+```tsx
+// Alert Component
+import { Alert } from '@livingdesign/react'
+<Alert variant="info">Message</Alert>
+
+// Button Component
+import { Button } from '@livingdesign/react'
+<Button variant="primary" size="medium">Click</Button>
+
+// Card Component
+import { Card, CardHeader, CardContent } from '@livingdesign/react'
+<Card>
+  <CardHeader title="Title" />
+  <CardContent>Content</CardContent>
+</Card>
+```
+
+### 4. Component Reuse Policy
 **Reference**: Custom rules in system prompt
 
 **When**: Creating any new UI component
 
 **Key Requirements**:
-- ✅ Search `client/components/ui/` before creating components
+- ✅ Check `LivingDesign-Component-Reference.md` for @livingdesign/react components FIRST
+- ✅ Search `client/components/ui/` for custom components
 - ✅ Use Living Design 3.5 components (Button, Tag, ButtonGroup, etc.)
 - ✅ Never create custom buttons with inline styles
 - ✅ Consolidate duplicates immediately
 
 **Component Priority**:
-1. Living Design 3.5 components (`client/components/ui/` with uppercase)
-2. Shadcn/Radix components (lowercase names)
-3. Custom components (only if no equivalent exists)
+1. Living Design components from `@livingdesign/react` (see Component Reference)
+2. Living Design 3.5 components (`client/components/ui/` with uppercase)
+3. Shadcn/Radix components (lowercase names)
+4. Custom components (only if no equivalent exists)
 
 ---
 
-### 4. Panel Design Requirements
+### 5. Panel Design Requirements
 **File**: `Panel.md`
 
 **When**: Creating any panel, drawer, or sidebar component
@@ -177,6 +209,7 @@ Before creating ANY new component, icon, or design:
 
 | Resource | Location |
 |----------|----------|
+| **LD Component API Reference** 🆕 | `guidelines/LivingDesign-Component-Reference.md` |
 | Design Token Rule | `guidelines/RULE_DesignTokenEnforcement.md` |
 | Icon Usage Rule | `guidelines/RULE_IconUsage.md` |
 | Token Documentation | `guidelines/DesignTokens.md` |
