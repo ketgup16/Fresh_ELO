@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Breadcrumb, BreadcrumbItem } from './ui/Breadcrumb';
+import { Button } from './ui/Button';
 
 /**
  * Example component demonstrating Breadcrumb usage with Living Design 3.5
@@ -163,20 +164,13 @@ export const BreadcrumbExample: React.FC = () => {
             <p style={{ fontSize: '14px', marginBottom: '8px' }}>
               <strong>Current page:</strong> {currentPage}
             </p>
-            <button
+            <Button
+              variant="primary"
+              size="medium"
               onClick={handleBackToRecommendations}
-              style={{
-                padding: '8px 16px',
-                backgroundColor: '#0071DC',
-                color: 'white',
-                border: 'none',
-                borderRadius: '999px',
-                cursor: 'pointer',
-                fontSize: '14px'
-              }}
             >
               Simulate "Back" Click
-            </button>
+            </Button>
           </div>
         </div>
       </section>

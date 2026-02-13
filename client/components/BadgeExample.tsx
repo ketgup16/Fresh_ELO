@@ -14,22 +14,28 @@ export function BadgeExample() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Button variant="secondary" aria-label="Inbox, 5 unread messages">
-              Inbox
-              <Badge variant="info" value={5} aria-label="5 unread" />
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                Inbox
+                <Badge variant="info" value={5} aria-label="5 unread" />
+              </span>
             </Button>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <Button variant="secondary" aria-label="Notifications, 12 new items">
-              Notifications
-              <Badge variant="error" value={12} aria-label="12 new" />
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                Notifications
+                <Badge variant="error" value={12} aria-label="12 new" />
+              </span>
             </Button>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <Button variant="secondary" aria-label="Cart, 3 items">
-              Cart
-              <Badge variant="success" value={3} aria-label="3 items" />
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                Cart
+                <Badge variant="success" value={3} aria-label="3 items" />
+              </span>
             </Button>
           </div>
         </div>
