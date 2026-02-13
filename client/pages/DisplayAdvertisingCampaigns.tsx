@@ -7,6 +7,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import RecommendationsPanel from "../components/RecommendationsPanel";
 import { Button } from "../components/ui/Button";
 import { Checkbox } from "../components/ui/Checkbox";
+import { Divider } from "../components/ui/Divider";
 
 interface Campaign {
   id: string;
@@ -2525,7 +2526,7 @@ export default function DisplayAdvertisingCampaigns() {
                       </div>
 
                       {/* Divider */}
-                      <div className="h-px bg-[#E3E4E5]"></div>
+                      <Divider />
 
                       {/* Footer Buttons */}
                       <div className="flex items-center justify-end gap-4 p-2 pr-3">
@@ -2605,7 +2606,7 @@ export default function DisplayAdvertisingCampaigns() {
                     </div>
 
                     {/* Divider */}
-                    <div className="h-px bg-[#E3E4E5]"></div>
+                    <Divider />
 
                     {/* Content */}
                     <div className="flex-1 overflow-y-auto self-stretch p-4">
@@ -2629,7 +2630,7 @@ export default function DisplayAdvertisingCampaigns() {
                     </div>
 
                     {/* Divider */}
-                    <div className="h-px bg-[#E3E4E5]"></div>
+                    <Divider />
 
                     {/* Footer */}
                     <div className="p-4">
@@ -2846,7 +2847,7 @@ export default function DisplayAdvertisingCampaigns() {
                                     </div>
 
                                     {/* Divider */}
-                                    <div className="h-px bg-[#E3E4E5] my-4"></div>
+                                    <Divider UNSAFE_className="my-4" />
 
                                     {/* Recommendations with radio buttons */}
                                     <div className="space-y-0">
@@ -2904,7 +2905,7 @@ export default function DisplayAdvertisingCampaigns() {
                                             </div>
 
                                             {recIdx < campaign.recommendations - 1 && (
-                                              <div className="h-px bg-[#E3E4E5]"></div>
+                                              <Divider />
                                             )}
                                           </div>
                                         );

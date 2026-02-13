@@ -14,6 +14,7 @@ import { Link } from "../components/ui/Link";
 import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { Breadcrumb, BreadcrumbItem } from "../components/ui/Breadcrumb";
 import { Checkbox } from "../components/ui/Checkbox";
+import { Divider } from "../components/ui/Divider";
 
 interface Campaign {
   id: string;
@@ -2309,7 +2310,7 @@ export default function Index() {
                       </div>
 
                       {/* Divider */}
-                      <div className="h-px bg-[#E3E4E5]"></div>
+                      <Divider />
 
                       {/* Footer Buttons */}
                       <div className="flex items-center justify-end gap-4 p-2 pr-3">
@@ -2387,7 +2388,7 @@ export default function Index() {
                     </div>
 
                     {/* Divider */}
-                    <div className="h-px bg-[#E3E4E5]"></div>
+                    <Divider />
 
                     {/* Content */}
                     <div className="flex-1 overflow-y-auto self-stretch p-4">
@@ -2411,7 +2412,7 @@ export default function Index() {
                     </div>
 
                     {/* Divider */}
-                    <div className="h-px bg-[#E3E4E5]"></div>
+                    <Divider />
 
                     {/* Footer */}
                     <div className="p-4">
@@ -2628,7 +2629,7 @@ export default function Index() {
                                     </div>
 
                                     {/* Divider */}
-                                    <div className="h-px bg-[#E3E4E5] my-4"></div>
+                                    <Divider UNSAFE_className="my-4" />
 
                                     {/* Recommendations with radio buttons */}
                                     <div className="space-y-0">
@@ -2686,7 +2687,7 @@ export default function Index() {
                                             </div>
 
                                             {recIdx < campaign.recommendations - 1 && (
-                                              <div className="h-px bg-[#E3E4E5]"></div>
+                                              <Divider />
                                             )}
                                           </div>
                                         );
@@ -2694,7 +2695,7 @@ export default function Index() {
                                     </div>
 
                                     {/* Divider */}
-                                    <div className="h-px bg-[#E3E4E5] my-4"></div>
+                                    <Divider UNSAFE_className="my-4" />
 
                                     {/* Apply button */}
                                     <div className="flex justify-end">
@@ -2806,7 +2807,7 @@ export default function Index() {
                                       </div>
 
                                       {/* Divider */}
-                                      <div className="h-px bg-[#E3E4E5] my-4"></div>
+                                      <Divider UNSAFE_className="my-4" />
 
                                       {/* Recommendations with radio buttons */}
                                       <div className="space-y-0">
@@ -2864,7 +2865,7 @@ export default function Index() {
                                               </div>
 
                                               {recIdx < child.recommendations - 1 && (
-                                                <div className="h-px bg-[#E3E4E5]"></div>
+                                                <Divider />
                                               )}
                                             </div>
                                           );
@@ -2872,7 +2873,7 @@ export default function Index() {
                                       </div>
 
                                       {/* Divider */}
-                                      <div className="h-px bg-[#E3E4E5] my-4"></div>
+                                      <Divider UNSAFE_className="my-4" />
 
                                       {/* Apply button */}
                                       <div className="flex justify-end">
@@ -3020,7 +3021,7 @@ export default function Index() {
             </button>
           </div>
 
-          <div className="h-px bg-[#E3E4E5]"></div>
+          <Divider />
 
           {/* Content */}
           <div className="flex-1 overflow-y-auto p-6">
@@ -3049,7 +3050,7 @@ export default function Index() {
                     <p className="text-base text-[#2E2F32]">by adding 15 keywords</p>
                   </div>
 
-                  <div className="h-px bg-[#E3E4E5]"></div>
+                  <Divider />
 
                   {/* Campaign Info */}
                   <div className="flex flex-col gap-1">
@@ -3117,7 +3118,7 @@ export default function Index() {
                   </div>
                 )}
 
-                <div className="h-px bg-[#E3E4E5] mb-6"></div>
+                <Divider UNSAFE_className="mb-6" />
 
                 {/* Campaign Level Recommendations */}
                 <div className="mb-6">
@@ -3166,7 +3167,7 @@ export default function Index() {
                   </div>
                 </div>
 
-                <div className="h-px bg-[#E3E4E5] mb-6"></div>
+                <Divider UNSAFE_className="mb-6" />
 
                 {/* Ad Group Recommendations */}
                 <div>
@@ -3272,7 +3273,7 @@ export default function Index() {
             )}
           </div>
 
-          <div className="h-px bg-[#E3E4E5]"></div>
+          <Divider />
 
           {/* Footer Actions */}
           <div className="p-6 flex flex-col gap-4">

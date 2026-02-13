@@ -9,6 +9,7 @@ import { CardHeaderExample } from '@/components/CardHeaderExample';
 import { CheckboxExample } from '@/components/CheckboxExample';
 import { ChipExample } from '@/components/ChipExample';
 import { ContentMessageExample } from '@/components/ContentMessageExample';
+import { DividerExample } from '@/components/DividerExample';
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Badge } from '@/components/ui/Badge';
@@ -37,6 +38,7 @@ export default function ComponentLibrary() {
     { id: 'callouts', name: 'Callouts', keywords: ['callout', 'tooltip', 'nubbin', 'coaching', 'onboarding', 'pointer'] },
     { id: 'cards', name: 'Cards', keywords: ['card', 'container', 'panel'] },
     { id: 'content-messages', name: 'Content Messages', keywords: ['content message', 'error', 'success', 'permission', 'critical', 'blocking', 'state', 'info', 'warning'] },
+    { id: 'dividers', name: 'Dividers', keywords: ['divider', 'separator', 'line', 'horizontal', 'vertical', 'rule', 'hr'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
   ];
 
@@ -513,6 +515,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="content-messages" title="Content Messages" description="Critical, blocking messages for errors, permissions, and states that prevent user progress">
         <ComponentShowcase>
           <ContentMessageExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Dividers Section */}
+      <Section id="dividers" title="Dividers" description="Visual separators using the LD 3.5 separator token. Horizontal, vertical, and titled variants.">
+        <ComponentShowcase>
+          <DividerExample />
         </ComponentShowcase>
       </Section>
 
