@@ -2648,16 +2648,13 @@ export default function Index() {
                                           <div key={checkKey}>
                                             <div className="flex items-start gap-3 py-2.5">
                                               {/* Checkbox */}
-                                              <input
-                                                type="checkbox"
-                                                checked={isChecked}
-                                                onChange={(e) => {
-                                                  e.stopPropagation();
-                                                  toggleRecommendationCheck(campaign.id, recIdx);
-                                                }}
-                                                onClick={(e) => e.stopPropagation()}
-                                                className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer"
-                                              />
+                                              <div className="mt-0.5" onClick={(e) => e.stopPropagation()}>
+                                                <Checkbox
+                                                  checked={isChecked}
+                                                  onCheckedChange={() => toggleRecommendationCheck(campaign.id, recIdx)}
+                                                  aria-label={`Select recommendation: ${rec.text}`}
+                                                />
+                                              </div>
 
                                               {/* Content */}
                                               <div className="flex-1">
@@ -2829,16 +2826,13 @@ export default function Index() {
                                             <div key={checkKey}>
                                               <div className="flex items-start gap-3 py-2.5">
                                                 {/* Checkbox */}
-                                                <input
-                                                  type="checkbox"
-                                                  checked={isChecked}
-                                                  onChange={(e) => {
-                                                    e.stopPropagation();
-                                                    toggleRecommendationCheck(child.id, recIdx);
-                                                  }}
-                                                  onClick={(e) => e.stopPropagation()}
-                                                  className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer"
-                                                />
+                                                <div className="mt-0.5" onClick={(e) => e.stopPropagation()}>
+                                                  <Checkbox
+                                                    checked={isChecked}
+                                                    onCheckedChange={() => toggleRecommendationCheck(child.id, recIdx)}
+                                                    aria-label={`Select recommendation: ${rec.text}`}
+                                                  />
+                                                </div>
 
                                                 {/* Content */}
                                                 <div className="flex-1">
@@ -3134,7 +3128,9 @@ export default function Index() {
 
                   <div className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
                     <div className="flex items-start gap-3">
-                      <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
+                      <div className="mt-0.5">
+                        <Checkbox onCheckedChange={() => showDetails()} aria-label="Select campaign recommendation" />
+                      </div>
                       <div className="flex-1">
                         <Link href="#" className="text-sm line-clamp-1 block mb-4">
                           Coca Cola Summer Campaign
@@ -3183,7 +3179,9 @@ export default function Index() {
                     {/* Ad group 01 - single recommendation */}
                     <div className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
                       <div className="flex items-start gap-3">
-                        <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
+                        <div className="mt-0.5">
+                          <Checkbox onCheckedChange={() => showDetails()} aria-label="Select ad group 01 recommendation" />
+                        </div>
                         <div className="flex-1">
                           <Link href="#" className="text-sm line-clamp-1 block mb-4">
                             Ad group 01 name goes here
@@ -3212,7 +3210,9 @@ export default function Index() {
                     {/* Ad group 02 - multiple recommendations with radio buttons */}
                     <div className="p-4 border border-[#E3E4E5] rounded-lg bg-white">
                       <div className="flex items-start gap-3">
-                        <input type="checkbox" onClick={showDetails} className="mt-0.5 w-5 h-5 rounded border-[#909196] accent-black cursor-pointer" />
+                        <div className="mt-0.5">
+                          <Checkbox onCheckedChange={() => showDetails()} aria-label="Select ad group 02 recommendation" />
+                        </div>
                         <div className="flex-1">
                           <Link href="#" className="text-sm line-clamp-1 block mb-4">
                             Ad group 02 name goes here

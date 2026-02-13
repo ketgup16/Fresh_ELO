@@ -8,12 +8,10 @@
                     <tr>
                       {/* Checkbox Column */}
                       <th className="p-2 text-left relative sticky left-0 bg-[#F8F8F8] z-30">
-                        <input
-                          ref={selectAllCheckboxRef}
-                          type="checkbox"
-                          className="w-5 h-5 rounded border-[#909196] accent-black"
-                          checked={isAllSelected()}
-                          onChange={(e) => handleSelectAll(e.target.checked)}
+                        <Checkbox
+                          checked={selectAllCheckedState}
+                          onCheckedChange={(checked) => handleSelectAll(checked === true)}
+                          aria-label="Select all campaigns"
                         />
                       </th>
                       
@@ -176,11 +174,10 @@
                       <tr key={campaign.id} className="border-b border-[#E3E4E5] hover:bg-[#F0F5FF]">
                         {/* Checkbox */}
                         <td className="p-2 sticky left-0 bg-white group-hover:bg-[#F0F5FF] z-10">
-                          <input
-                            type="checkbox"
-                            className="w-5 h-5 rounded border-[#909196] accent-black"
+                          <Checkbox
                             checked={selectedRows.has(campaign.id)}
-                            onChange={(e) => handleSelectRow(campaign.id, e.target.checked)}
+                            onCheckedChange={(checked) => handleSelectRow(campaign.id, !!checked)}
+                            aria-label={`Select campaign ${campaign.name}`}
                           />
                         </td>
                         

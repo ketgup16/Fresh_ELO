@@ -7,6 +7,7 @@ import RecommendationsPopover from "../components/RecommendationsPopover";
 import BiddingStrategyModal from "../components/BiddingStrategyModal";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Button } from "../components/ui/Button";
+import { Checkbox } from "../components/ui/Checkbox";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
 import { Menu } from "../components/ui/Menu";
 import { MenuItem } from "../components/ui/MenuItem";
@@ -82,7 +83,6 @@ export default function AllCampaigns() {
 
   // Selected rows state
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
-  const selectAllCheckboxRef = useRef<HTMLInputElement>(null);
 
   // Search state
   const [searchScope, setSearchScope] = useState<string>('Campaign name');
@@ -608,12 +608,8 @@ export default function AllCampaigns() {
     return selectedCount > 0 && selectedCount < campaigns.length;
   };
 
-  // Set indeterminate state for select all checkbox
-  useEffect(() => {
-    if (selectAllCheckboxRef.current) {
-      selectAllCheckboxRef.current.indeterminate = isSomeSelected();
-    }
-  }, [selectedRows]);
+  const selectAllCheckedState: boolean | 'indeterminate' =
+    isAllSelected() ? true : isSomeSelected() ? 'indeterminate' : false;
 
   return (
     <div className="min-h-screen bg-[#F6F6F6] flex flex-col">
@@ -1025,22 +1021,19 @@ export default function AllCampaigns() {
                   <div className="flex flex-col flex-shrink-0">
                     {/* Header */}
                     <div className="flex items-center justify-center h-[52px] px-3 border-t border-b border-[#E3E4E5] bg-[#F8F8F8]">
-                      <input
-                        ref={selectAllCheckboxRef}
-                        type="checkbox"
-                        className="w-5 h-5 rounded border-[#909196] accent-black cursor-pointer"
-                        checked={isAllSelected()}
-                        onChange={(e) => handleSelectAll(e.target.checked)}
+                      <Checkbox
+                        checked={selectAllCheckedState}
+                        onCheckedChange={(checked) => handleSelectAll(checked === true)}
+                        aria-label="Select all campaigns"
                       />
                     </div>
                     {/* Rows */}
                     {campaigns.map((campaign, idx) => (
                       <div key={idx} className="flex items-center justify-center h-[52px] px-3 border-b border-[#E3E4E5] bg-white">
-                        <input
-                          type="checkbox"
-                          className="w-5 h-5 rounded border-[#909196] accent-black cursor-pointer"
+                        <Checkbox
                           checked={selectedRows.has(campaign.id)}
-                          onChange={(e) => handleSelectRow(campaign.id, e.target.checked)}
+                          onCheckedChange={(checked) => handleSelectRow(campaign.id, !!checked)}
+                          aria-label={`Select campaign ${campaign.name}`}
                         />
                       </div>
                     ))}

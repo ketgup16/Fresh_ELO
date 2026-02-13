@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
 import { Button } from "../components/ui/Button";
+import { Checkbox } from "../components/ui/Checkbox";
 import { MastHead } from "../components/ui/MastHead";
 import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
@@ -583,7 +584,7 @@ export default function Campaign() {
 
                         return (
                           <div key={idx} className="flex items-center gap-3 px-4 py-2 border-b border-[#E3E4E5]">
-                            <input type="checkbox" className="w-4 h-4 rounded border border-black" />
+                            <Checkbox aria-label="Select item" />
                             <div className="flex items-start gap-2 flex-1">
                               {showAlert ? (
                                 <Popover open={openAlertPopover === idx} onOpenChange={(open) => setOpenAlertPopover(open ? idx : null)}>

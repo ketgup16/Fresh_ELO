@@ -8,6 +8,7 @@ import { CalloutExample } from '@/components/CalloutExample';
 import { CardHeaderExample } from '@/components/CardHeaderExample';
 import { CheckboxExample } from '@/components/CheckboxExample';
 import { Button } from '@/components/ui/Button';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Badge } from '@/components/ui/Badge';
 import { IconButton } from '@/components/ui/IconButton';
 import { Link } from '@/components/ui/Link';
@@ -1273,62 +1274,26 @@ function InteractiveComponentTester() {
 
             {/* Boolean Properties */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-semantic-spacing-100)' }}>
-              <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 'var(--ld-semantic-spacing-100)',
-                cursor: 'pointer',
-                fontSize: '14px',
-                color: 'var(--ld-semantic-color-text)',
-                fontFamily: 'var(--ld-semantic-font-family-sans)'
-              }}>
-                <input
-                  type="checkbox"
-                  checked={disabled}
-                  onChange={(e) => setDisabled(e.target.checked)}
-                  style={{ cursor: 'pointer' }}
-                />
-                Disabled
-              </label>
+              <Checkbox
+                label="Disabled"
+                checked={disabled}
+                onCheckedChange={(c) => setDisabled(!!c)}
+              />
 
               {config.supportsFullWidth && (
-                <label style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--ld-semantic-spacing-100)',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  color: 'var(--ld-semantic-color-text)',
-                  fontFamily: 'var(--ld-semantic-font-family-sans)'
-                }}>
-                  <input
-                    type="checkbox"
-                    checked={fullWidth}
-                    onChange={(e) => setFullWidth(e.target.checked)}
-                    style={{ cursor: 'pointer' }}
-                  />
-                  Full Width
-                </label>
+                <Checkbox
+                  label="Full Width"
+                  checked={fullWidth}
+                  onCheckedChange={(c) => setFullWidth(!!c)}
+                />
               )}
 
               {config.supportsIcons && (
-                <label style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--ld-semantic-spacing-100)',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  color: 'var(--ld-semantic-color-text)',
-                  fontFamily: 'var(--ld-semantic-font-family-sans)'
-                }}>
-                  <input
-                    type="checkbox"
-                    checked={withIcon}
-                    onChange={(e) => setWithIcon(e.target.checked)}
-                    style={{ cursor: 'pointer' }}
-                  />
-                  With Icons
-                </label>
+                <Checkbox
+                  label="With Icons"
+                  checked={withIcon}
+                  onCheckedChange={(c) => setWithIcon(!!c)}
+                />
               )}
 
               {config.supportsValue && (
@@ -1360,63 +1325,27 @@ function InteractiveComponentTester() {
               )}
 
               {config.supportsUnderline && (
-                <label style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--ld-semantic-spacing-100)',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  color: 'var(--ld-semantic-color-text)',
-                  fontFamily: 'var(--ld-semantic-font-family-sans)'
-                }}>
-                  <input
-                    type="checkbox"
-                    checked={underline}
-                    onChange={(e) => setUnderline(e.target.checked)}
-                    style={{ cursor: 'pointer' }}
-                  />
-                  Underline
-                </label>
+                <Checkbox
+                  label="Underline"
+                  checked={underline}
+                  onCheckedChange={(c) => setUnderline(!!c)}
+                />
               )}
 
               {config.supportsDismissible && (
-                <label style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--ld-semantic-spacing-100)',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  color: 'var(--ld-semantic-color-text)',
-                  fontFamily: 'var(--ld-semantic-font-family-sans)'
-                }}>
-                  <input
-                    type="checkbox"
-                    checked={dismissible}
-                    onChange={(e) => setDismissible(e.target.checked)}
-                    style={{ cursor: 'pointer' }}
-                  />
-                  Dismissible
-                </label>
+                <Checkbox
+                  label="Dismissible"
+                  checked={dismissible}
+                  onCheckedChange={(c) => setDismissible(!!c)}
+                />
               )}
 
               {config.supportsClickable && (
-                <label style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--ld-semantic-spacing-100)',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  color: 'var(--ld-semantic-color-text)',
-                  fontFamily: 'var(--ld-semantic-font-family-sans)'
-                }}>
-                  <input
-                    type="checkbox"
-                    checked={clickable}
-                    onChange={(e) => setClickable(e.target.checked)}
-                    style={{ cursor: 'pointer' }}
-                  />
-                  Clickable
-                </label>
+                <Checkbox
+                  label="Clickable"
+                  checked={clickable}
+                  onCheckedChange={(c) => setClickable(!!c)}
+                />
               )}
 
               {config.supportsOLQPercentage && (
