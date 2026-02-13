@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Lottie from "lottie-react";
 import Reports from "./icons/Reports";
 import { Button } from "./ui/Button";
+import { DateField } from "./ui/DateField";
 import { Checkbox } from "./ui/Checkbox";
 import martyAnimation from "../marty-thinking.json";
 import martyGlassesAnimation from "../marty-glasses.json";
@@ -1168,28 +1169,12 @@ export default function MartyFloatingPanel() {
                   </div>
 
                   {/* End Date */}
-                  <div className="flex flex-col items-start gap-1 self-stretch">
-                    <div className="text-[#2E2F32] text-xs font-bold leading-4">
-                      End date
-                    </div>
-                    <div className="flex h-10 px-3 pr-2 items-center gap-3 self-stretch rounded-lg border border-[#909196] bg-white focus-within:border-[#0053E2] transition-colors">
-                      <input
-                        type="text"
-                        value={campaignData.endDate}
-                        onChange={(e) => setCampaignData({...campaignData, endDate: e.target.value})}
-                        placeholder="mm/dd/yyyy"
-                        className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent"
-                      />
-                      <button className="flex p-2 flex-col items-start rounded-full border border-transparent bg-transparent hover:[background:var(--ld-primitive-color-gray-10)] active:[background:var(--ld-primitive-color-gray-20)] transition-colors">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <rect x="3" y="4" width="10" height="10" rx="1" stroke="#2E2F32" strokeWidth="1.5"/>
-                          <path d="M3 6H13" stroke="#2E2F32" strokeWidth="1.5"/>
-                          <path d="M5 2V4" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-                          <path d="M11 2V4" stroke="#2E2F32" strokeWidth="1.5" strokeLinecap="round"/>
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
+                  <DateField
+                    label="End date"
+                    value={campaignData.endDate}
+                    onChange={(e) => setCampaignData({...campaignData, endDate: e.target.value})}
+                    showCalendarIcon
+                  />
 
                   {/* Bidding Strategy */}
                   <div className="flex flex-col items-start gap-2 self-stretch">

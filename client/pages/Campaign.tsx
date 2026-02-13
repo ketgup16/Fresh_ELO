@@ -10,6 +10,7 @@ import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
 import { Alert } from "../components/ui/Alert";
 import { Link } from "../components/ui/Link";
+import { DateField } from "../components/ui/DateField";
 import { Divider } from "../components/ui/Divider";
 import SponsoredProductsCard from "../components/icons/SponsoredProductsCard";
 import SponsoredBrandsCard from "../components/icons/SponsoredBrandsCard";
@@ -205,22 +206,12 @@ export default function Campaign() {
                 {/* Fields Row */}
                 <div className="flex flex-wrap gap-6">
                   {/* Start Date Field */}
-                  <div className="flex flex-col w-full md:w-[296px]">
-                    <label className="text-xs font-semibold text-[#2E2F32] leading-4 mb-1">Start date</label>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        placeholder="Select a date"
-                        className="w-full h-10 px-3 rounded border border-[#909196] bg-white text-sm text-[#74767C] placeholder:text-[#74767C] leading-5"
-                      />
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M7.50018 4.51758H16.5002V1.51758H18.0002V4.51758H21.0002C21.8286 4.51758 22.5002 5.18915 22.5002 6.01758V10.5176H1.50018V6.01758C1.50018 5.18915 2.17176 4.51758 3.00018 4.51758H6.00018V1.51758H7.50018V4.51758ZM21.0002 6.01758H3.00018V9.01758H21.0002V6.01758Z" fill="black"/>
-                          <path d="M1.5 20.2676V12.7676H3V20.2676C3 20.6818 3.33579 21.0176 3.75 21.0176H20.25C20.6642 21.0176 21 20.6818 21 20.2676V12.7676H22.5V20.2676C22.5 21.5102 21.4926 22.5176 20.25 22.5176H3.75C2.50736 22.5176 1.5 21.5102 1.5 20.2676Z" fill="black"/>
-                          <path d="M18.0002 13.5176H13.5002V18.0176H18.0002V13.5176Z" fill="black"/>
-                        </svg>
-                      </div>
-                    </div>
+                  <div className="w-full md:w-[296px]">
+                    <DateField
+                      label="Start date"
+                      placeholder="Select a date"
+                      showCalendarIcon
+                    />
                   </div>
 
                   {/* Daily Budget Field */}

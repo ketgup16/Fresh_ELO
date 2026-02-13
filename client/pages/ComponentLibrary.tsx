@@ -9,6 +9,7 @@ import { CardHeaderExample } from '@/components/CardHeaderExample';
 import { CheckboxExample } from '@/components/CheckboxExample';
 import { ChipExample } from '@/components/ChipExample';
 import { ContentMessageExample } from '@/components/ContentMessageExample';
+import { DateFieldExample } from '@/components/DateFieldExample';
 import { DividerExample } from '@/components/DividerExample';
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
@@ -38,6 +39,7 @@ export default function ComponentLibrary() {
     { id: 'callouts', name: 'Callouts', keywords: ['callout', 'tooltip', 'nubbin', 'coaching', 'onboarding', 'pointer'] },
     { id: 'cards', name: 'Cards', keywords: ['card', 'container', 'panel'] },
     { id: 'content-messages', name: 'Content Messages', keywords: ['content message', 'error', 'success', 'permission', 'critical', 'blocking', 'state', 'info', 'warning'] },
+    { id: 'date-fields', name: 'Date Fields', keywords: ['date', 'input', 'calendar', 'field', 'form', 'datepicker'] },
     { id: 'dividers', name: 'Dividers', keywords: ['divider', 'separator', 'line', 'horizontal', 'vertical', 'rule', 'hr'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
   ];
@@ -304,7 +306,7 @@ export default function ComponentLibrary() {
           Quick Navigation
         </h3>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Callouts', 'Cards', 'Content Messages', 'Dividers', 'Design Tokens'].map(section => (
+          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Callouts', 'Cards', 'Content Messages', 'Date Fields', 'Dividers', 'Design Tokens'].map(section => (
             <a
               key={section}
               href={`#${section.toLowerCase().replace(' ', '-')}`}
@@ -515,6 +517,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="content-messages" title="Content Messages" description="Critical, blocking messages for errors, permissions, and states that prevent user progress">
         <ComponentShowcase>
           <ContentMessageExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Date Fields Section */}
+      <Section id="date-fields" title="Date Fields" description="Text input for manual date entry in mm/dd/yyyy format with built-in validation, error states, and optional calendar icon.">
+        <ComponentShowcase>
+          <DateFieldExample />
         </ComponentShowcase>
       </Section>
 

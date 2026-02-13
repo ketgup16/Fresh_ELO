@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown } from "@/components/icons";
+import { DateField } from "@/components/ui/DateField";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { NavList, NavListItem } from "@/components/ui/NavList";
@@ -131,10 +132,9 @@ export default function DateRangeFilterDropdown({
           <div className="flex flex-col gap-4 p-6">
             {/* Date inputs */}
             <div className="flex gap-4">
-              <div className="flex flex-col gap-1 flex-1">
-                <label className="text-xs font-bold text-[#2E2F32]">Start date</label>
-                <input
-                  type="text"
+              <div className="flex-1">
+                <DateField
+                  label="Start date"
                   value={tempStartDate ? format(tempStartDate, "MM/dd/yyyy") : ""}
                   onChange={(e) => {
                     const date = new Date(e.target.value);
@@ -143,14 +143,13 @@ export default function DateRangeFilterDropdown({
                       setSelectedRange("custom");
                     }
                   }}
-                  className="px-3 py-2 text-sm border border-[#909196] rounded focus:outline-none focus:ring-2 focus:ring-[#0053E2] bg-white"
                   placeholder="01/01/2026"
+                  validateOnBlur={false}
                 />
               </div>
-              <div className="flex flex-col gap-1 flex-1">
-                <label className="text-xs font-bold text-[#2E2F32]">End date</label>
-                <input
-                  type="text"
+              <div className="flex-1">
+                <DateField
+                  label="End date"
                   value={tempEndDate ? format(tempEndDate, "MM/dd/yyyy") : ""}
                   onChange={(e) => {
                     const date = new Date(e.target.value);
@@ -159,8 +158,8 @@ export default function DateRangeFilterDropdown({
                       setSelectedRange("custom");
                     }
                   }}
-                  className="px-3 py-2 text-sm border border-[#909196] rounded focus:outline-none focus:ring-2 focus:ring-[#0053E2] bg-white"
                   placeholder="05/15/2026"
+                  validateOnBlur={false}
                 />
               </div>
             </div>
