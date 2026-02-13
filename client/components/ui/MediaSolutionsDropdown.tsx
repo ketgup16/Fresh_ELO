@@ -177,6 +177,30 @@ export function MediaSolutionsDropdown({
                   </div>
                   <span className="text-xs text-[#2E2F32]">Associate tools</span>
                 </button>
+
+                <button
+                  onClick={() => {
+                    navigate('/component-library');
+                    setIsOpen(false);
+                  }}
+                  className="flex items-center gap-2 p-2 rounded border border-[#E3E4E5] hover:border-[#0053E2] transition-colors"
+                >
+                  <div className="w-5 h-5 rounded-full bg-[#C3E7EF] flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="10" cy="10" r="10" fill="#C3E7EF"/>
+                      <path d="M6 6H8V8H6V6Z" fill="#909196"/>
+                      <path d="M9 6H11V8H9V6Z" fill="#909196"/>
+                      <path d="M12 6H14V8H12V6Z" fill="#909196"/>
+                      <path d="M6 9H8V11H6V9Z" fill="#909196"/>
+                      <path d="M9 9H11V11H9V9Z" fill="#909196"/>
+                      <path d="M12 9H14V11H12V9Z" fill="#909196"/>
+                      <path d="M6 12H8V14H6V12Z" fill="#909196"/>
+                      <path d="M9 12H11V14H9V12Z" fill="#909196"/>
+                      <path d="M12 12H14V14H12V12Z" fill="#909196"/>
+                    </svg>
+                  </div>
+                  <span className="text-xs text-[#2E2F32]">Component Library</span>
+                </button>
               </div>
             </div>
           </div>
