@@ -12,6 +12,7 @@ import { Link } from '@/components/ui/Link';
 import { Tag } from '@/components/ui/tag';
 import { OLQTag } from '@/components/ui/olq-tag';
 import * as Icons from '@/components/icons';
+import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 
 export default function ComponentLibrary() {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -166,32 +167,39 @@ export default function ComponentLibrary() {
       padding: '40px 60px'
     }}>
       {/* Page Header */}
-      <div style={{ 
+      <div style={{
         marginBottom: '40px',
         backgroundColor: 'var(--ld-semantic-color-surface)',
         padding: '32px',
         borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
-        boxShadow: 'var(--ld-semantic-elevation-100)'
+        boxShadow: 'var(--ld-semantic-elevation-100)',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        gap: '32px'
       }}>
-        <h1 style={{ 
-          fontSize: '32px', 
-          fontWeight: 700,
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text)',
-          marginBottom: '12px'
-        }}>
-          Living Design 3.5 Component Library
-        </h1>
-        <p style={{
-          fontSize: '16px',
-          color: 'var(--ld-semantic-color-text-subtle)',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          lineHeight: '1.5'
-        }}>
-          A comprehensive showcase of all UI components and {Object.values(iconCategories).flat().length}+ icons in the Walmart Connect Ad Center. 
-          Each component follows the Living Design 3.5 specification with proper accessibility, 
-          semantic tokens, and responsive behavior.
-        </p>
+        <div style={{ flex: 1 }}>
+          <h1 style={{
+            fontSize: '32px',
+            fontWeight: 700,
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+            color: 'var(--ld-semantic-color-text)',
+            marginBottom: '12px'
+          }}>
+            Living Design 3.5 Component Library
+          </h1>
+          <p style={{
+            fontSize: '16px',
+            color: 'var(--ld-semantic-color-text-subtle)',
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+            lineHeight: '1.5'
+          }}>
+            A comprehensive showcase of all UI components and {Object.values(iconCategories).flat().length}+ icons in the Walmart Connect Ad Center.
+            Each component follows the Living Design 3.5 specification with proper accessibility,
+            semantic tokens, and responsive behavior.
+          </p>
+        </div>
+        <ThemeSwitcher />
       </div>
 
       {/* Search Bar */}

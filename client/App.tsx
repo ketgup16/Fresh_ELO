@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MartyProvider } from "@/contexts/MartyContext";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import Index from "./pages/Index";
 import SponsoredSearch from "./pages/SponsoredSearch";
 import Campaign from "./pages/Campaign";
@@ -25,35 +26,37 @@ const queryClient = new QueryClient();
 
 // Main App component with routing
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <MartyProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/component-library" element={<ComponentLibrary />} />
-            <Route path="/" element={<Index />} />
-            <Route path="/sponsored-search" element={<SponsoredSearch />} />
-            <Route path="/campaign" element={<Campaign />} />
-            <Route path="/all-campaigns" element={<AllCampaigns />} />
-            <Route path="/all-keywords" element={<AllKeywords />} />
-            <Route path="/keywords-planner" element={<KeywordsPlanner />} />
-            <Route path="/reports/item-health" element={<ItemHealth />} />
-            <Route path="/reports/omni-roas" element={<OmniROAS />} />
-            <Route path="/display-advertising/campaigns" element={<DisplayAdvertisingCampaigns />} />
-            <Route path="/seller-center" element={<SellerCenter />} />
-            <Route path="/store-ads" element={<StoreAds />} />
-            <Route path="/store-ads/campaigns" element={<StoreAds />} />
-            <Route path="/store-ads/performance" element={<StoreAds />} />
-            <Route path="/store-ads/inventory" element={<StoreAds />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </MartyProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <MartyProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/component-library" element={<ComponentLibrary />} />
+              <Route path="/" element={<Index />} />
+              <Route path="/sponsored-search" element={<SponsoredSearch />} />
+              <Route path="/campaign" element={<Campaign />} />
+              <Route path="/all-campaigns" element={<AllCampaigns />} />
+              <Route path="/all-keywords" element={<AllKeywords />} />
+              <Route path="/keywords-planner" element={<KeywordsPlanner />} />
+              <Route path="/reports/item-health" element={<ItemHealth />} />
+              <Route path="/reports/omni-roas" element={<OmniROAS />} />
+              <Route path="/display-advertising/campaigns" element={<DisplayAdvertisingCampaigns />} />
+              <Route path="/seller-center" element={<SellerCenter />} />
+              <Route path="/store-ads" element={<StoreAds />} />
+              <Route path="/store-ads/campaigns" element={<StoreAds />} />
+              <Route path="/store-ads/performance" element={<StoreAds />} />
+              <Route path="/store-ads/inventory" element={<StoreAds />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </MartyProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 const rootElement = document.getElementById("root")!;

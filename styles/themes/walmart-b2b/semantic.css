@@ -1,0 +1,315 @@
+/**
+ * Do not edit directly
+ * Walmart B2B (Business) Theme - Semantic Tokens
+ * Generated for Walmart Business platform
+ * 
+ * This theme overrides specific LD 3.5 tokens for B2B customers
+ * Darker, more professional color palette compared to base theme
+ */
+
+
+:root {
+  /* ========================================
+     BACKGROUND COLORS
+     ======================================== */
+  --ld-semantic-color-background: var(--ld-primitive-color-white, #ffffff); /* Use for the screen's main background color */
+  --ld-semantic-color-background-inverse: var(--ld-primitive-color-gray-160, #2e2f32); /* Use for a background color that's the opposite lightness of `color.background` */
+  --ld-semantic-color-background-subtle: var(--ld-primitive-color-gray-5, #f8f8f8); /* Use for a subtle, neutral background that accentuates overlaid surfaces */
+
+  /* ========================================
+     BORDER COLORS - B2B OVERRIDES
+     ======================================== */
+  /* Accent borders */
+  --ld-semantic-color-border-accent-blue: var(--ld-primitive-color-blue-130, #002e99); /* B2B: Darker blue */
+  --ld-semantic-color-border-accent-blue-bold: var(--ld-primitive-color-blue-160, #001e60); /* B2B: Navy blue */
+  --ld-semantic-color-border-accent-cyan: var(--ld-primitive-color-cyan-100, #0076b3);
+  --ld-semantic-color-border-accent-cyan-bold: var(--ld-primitive-color-cyan-130, #004a70);
+  --ld-semantic-color-border-accent-gray: var(--ld-primitive-color-gray-100, #74767c);
+  --ld-semantic-color-border-accent-gray-bold: var(--ld-primitive-color-gray-130, #515357);
+  --ld-semantic-color-border-accent-green: var(--ld-primitive-color-green-100, #2a8703);
+  --ld-semantic-color-border-accent-green-bold: var(--ld-primitive-color-green-130, #1d5f02);
+  --ld-semantic-color-border-accent-orange: var(--ld-primitive-color-orange-120, #c83c00);
+  --ld-semantic-color-border-accent-orange-bold: var(--ld-primitive-color-orange-130, #af2f00);
+  --ld-semantic-color-border-accent-pink: var(--ld-primitive-color-pink-100, #cb2c90);
+  --ld-semantic-color-border-accent-pink-bold: var(--ld-primitive-color-pink-130, #8c1e64);
+  --ld-semantic-color-border-accent-purple: var(--ld-primitive-color-purple-100, #63327e);
+  --ld-semantic-color-border-accent-purple-bold: var(--ld-primitive-color-purple-130, #452358);
+  --ld-semantic-color-border-accent-red: var(--ld-primitive-color-red-100, #ea1100);
+  --ld-semantic-color-border-accent-red-bold: var(--ld-primitive-color-red-130, #a20c00);
+  --ld-semantic-color-border-accent-spark: var(--ld-primitive-color-spark-140, #995213);
+  --ld-semantic-color-border-accent-spark-bold: var(--ld-primitive-color-spark-160, #662b0d);
+  --ld-semantic-color-border-accent-teal: var(--ld-primitive-color-teal-100, #00809e);
+  --ld-semantic-color-border-accent-teal-bold: var(--ld-primitive-color-teal-130, #005a6f);
+  --ld-semantic-color-border-accent-yellow: var(--ld-primitive-color-yellow-140, #996900);
+  --ld-semantic-color-border-accent-yellow-bold: var(--ld-primitive-color-yellow-160, #663800);
+
+  /* Generic borders - B2B OVERRIDES */
+  --ld-semantic-color-border: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-border-activated: var(--ld-primitive-color-blue-160, #001e60); /* B2B: Navy for activated */
+  --ld-semantic-color-border-brand: var(--ld-primitive-color-magic-1, #0053e2); /* B2B: Keep magic-1 for brand */
+  --ld-semantic-color-border-brand-bold: var(--ld-primitive-color-blue-160, #001e60);
+  --ld-semantic-color-border-disabled: var(--ld-primitive-color-gray-50, #babbbe);
+  --ld-semantic-color-border-edited: var(--ld-primitive-color-purple-100, #63327e);
+  --ld-semantic-color-border-edited-bold: var(--ld-primitive-color-purple-130, #452358);
+  --ld-semantic-color-border-info: var(--ld-primitive-color-blue-130, #002e99); /* B2B: Darker info */
+  --ld-semantic-color-border-info-bold: var(--ld-primitive-color-blue-160, #001e60);
+  --ld-semantic-color-border-inverse: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-border-magic-start: var(--ld-primitive-color-magic-1, #0053E2);
+  --ld-semantic-color-border-magic-middle: var(--ld-primitive-color-magic-2, #3D90EC);
+  --ld-semantic-color-border-magic-stop: var(--ld-primitive-color-magic-3, #79CDF6);
+  --ld-semantic-color-border-negative: var(--ld-primitive-color-red-100, #ea1100);
+  --ld-semantic-color-border-negative-bold: var(--ld-primitive-color-red-130, #a20c00);
+  --ld-semantic-color-border-positive: var(--ld-primitive-color-green-100, #2a8703);
+  --ld-semantic-color-border-positive-bold: var(--ld-primitive-color-green-130, #1d5f02);
+  --ld-semantic-color-border-subtle: var(--ld-primitive-color-gray-130, #515357);
+  --ld-semantic-color-border-subtlest: var(--ld-primitive-color-gray-100, #74767c);
+  --ld-semantic-color-border-warning: var(--ld-primitive-color-spark-140, #995213);
+  --ld-semantic-color-border-warning-bold: var(--ld-primitive-color-spark-160, #662b0d);
+
+  /* ========================================
+     CHART COLORS
+     ======================================== */
+  --ld-semantic-color-chart-categorical-1: var(--ld-primitive-color-blue-130, #002e99);
+  --ld-semantic-color-chart-categorical-2: var(--ld-primitive-color-pink-70, #df74b1);
+  --ld-semantic-color-chart-categorical-3: var(--ld-primitive-color-spark-120, #cc851a);
+  --ld-semantic-color-chart-categorical-4: var(--ld-primitive-color-cyan-80, #0092db);
+  --ld-semantic-color-chart-categorical-5: var(--ld-primitive-color-orange-130, #af2f00);
+  --ld-semantic-color-chart-categorical-6: var(--ld-primitive-color-purple-60, #a184b2);
+  --ld-semantic-color-chart-categorical-7: var(--ld-primitive-color-green-90, #3f931c);
+  --ld-semantic-color-chart-categorical-8: var(--ld-primitive-color-pink-120, #b1267d);
+
+  /* ========================================
+     ACTION/INTERACTIVE COLORS (Buttons) - B2B OVERRIDES
+     ======================================== */
+  /* Action borders */
+  --ld-semantic-color-action-border-secondary: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-action-border-secondary-hovered: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-action-border-secondary-focused: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-action-border-secondary-pressed: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-action-border-secondary-disabled: var(--ld-primitive-color-gray-50, #babbbe);
+  --ld-semantic-color-action-border-tertiary: var(--ld-primitive-color-gray-50, #babbbe);
+  --ld-semantic-color-action-border-tertiary-hovered: var(--ld-primitive-color-gray-50, #babbbe);
+  --ld-semantic-color-action-border-tertiary-focused: var(--ld-primitive-color-gray-50, #babbbe);
+  --ld-semantic-color-action-border-tertiary-pressed: var(--ld-primitive-color-gray-50, #babbbe);
+  --ld-semantic-color-action-border-tertiary-disabled: var(--ld-primitive-color-gray-50, #babbbe);
+  --ld-semantic-color-action-border-transparent: var(--ld-primitive-color-transparent-dark-0, #00000000);
+  --ld-semantic-color-action-border-transparent-hovered: var(--ld-primitive-color-transparent-dark-0, #00000000);
+  --ld-semantic-color-action-border-transparent-focused: var(--ld-primitive-color-transparent-dark-0, #00000000);
+  --ld-semantic-color-action-border-transparent-pressed: var(--ld-primitive-color-transparent-dark-0, #00000000);
+  --ld-semantic-color-action-border-transparent-disabled: var(--ld-primitive-color-transparent-dark-0, #00000000);
+
+  /* Action fills - B2B PRIMARY OVERRIDES */
+  --ld-semantic-color-action-fill-negative: var(--ld-primitive-color-red-100, #ea1100);
+  --ld-semantic-color-action-fill-negative-focused: var(--ld-primitive-color-red-110, #ce0f00);
+  --ld-semantic-color-action-fill-negative-hovered: var(--ld-primitive-color-red-110, #ce0f00);
+  --ld-semantic-color-action-fill-negative-pressed: var(--ld-primitive-color-red-120, #b70d00);
+  --ld-semantic-color-action-fill-negative-disabled: var(--ld-primitive-color-gray-50, #babbbe);
+  --ld-semantic-color-action-fill-primary: var(--ld-primitive-color-blue-130, #002e99); /* B2B: DARKER BLUE */
+  --ld-semantic-color-action-fill-primary-focused: var(--ld-primitive-color-blue-140, #002185); /* B2B */
+  --ld-semantic-color-action-fill-primary-hovered: var(--ld-primitive-color-blue-140, #002185); /* B2B */
+  --ld-semantic-color-action-fill-primary-pressed: var(--ld-primitive-color-blue-150, #001270); /* B2B */
+  --ld-semantic-color-action-fill-primary-disabled: var(--ld-primitive-color-gray-50, #babbbe);
+  --ld-semantic-color-action-fill-secondary: var(--ld-primitive-color-transparent-light-0, #ffffff00);
+  --ld-semantic-color-action-fill-secondary-focused: var(--ld-primitive-color-transparent-dark-10, #0000001a);
+  --ld-semantic-color-action-fill-secondary-hovered: var(--ld-primitive-color-transparent-dark-10, #0000001a);
+  --ld-semantic-color-action-fill-secondary-pressed: var(--ld-primitive-color-transparent-dark-20, #00000033);
+  --ld-semantic-color-action-fill-secondary-disabled: var(--ld-primitive-color-transparent-light-0, #ffffff00);
+  --ld-semantic-color-action-fill-tertiary: var(--ld-primitive-color-transparent-light-0, #ffffff00);
+  --ld-semantic-color-action-fill-tertiary-focused: var(--ld-primitive-color-transparent-dark-10, #0000001a);
+  --ld-semantic-color-action-fill-tertiary-hovered: var(--ld-primitive-color-transparent-dark-10, #0000001a);
+  --ld-semantic-color-action-fill-tertiary-pressed: var(--ld-primitive-color-transparent-dark-20, #00000033);
+  --ld-semantic-color-action-fill-tertiary-disabled: var(--ld-primitive-color-transparent-light-0, #ffffff00);
+  --ld-semantic-color-action-fill-ghost: var(--ld-primitive-color-transparent-light-0, #ffffff00);
+  --ld-semantic-color-action-fill-ghost-focused: var(--ld-primitive-color-transparent-dark-10, #0000001a);
+  --ld-semantic-color-action-fill-ghost-hovered: var(--ld-primitive-color-transparent-dark-10, #0000001a);
+  --ld-semantic-color-action-fill-ghost-pressed: var(--ld-primitive-color-transparent-dark-20, #00000033);
+  --ld-semantic-color-action-fill-ghost-disabled: var(--ld-primitive-color-transparent-light-0, #ffffff00);
+
+  /* Action focus outlines */
+  --ld-semantic-color-action-focus-outline: var(--ld-primitive-color-blue-130, #002e99); /* B2B: Darker focus */
+  --ld-semantic-color-action-focus-outline-inverse: var(--ld-primitive-color-white, #ffffff);
+
+  /* Action text colors - B2B OVERRIDES */
+  --ld-semantic-color-action-text-negative: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-action-text-primary: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-action-text-secondary: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-action-text-tertiary: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-action-text-ghost: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-action-text-disabled: var(--ld-primitive-color-gray-100, #74767c);
+  --ld-semantic-color-action-text-on-fill-primary: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-action-text-on-fill-secondary: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-action-text-on-fill-tertiary: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-action-text-on-fill-ghost: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-action-text-on-fill-negative: var(--ld-primitive-color-white, #ffffff);
+
+  /* ========================================
+     FILL COLORS - B2B OVERRIDES
+     ======================================== */
+  --ld-semantic-color-fill-activated: var(--ld-primitive-color-blue-160, #001e60); /* B2B: Navy */
+  --ld-semantic-color-fill-brand: var(--ld-primitive-color-blue-130, #002e99); /* B2B: Darker brand */
+  --ld-semantic-color-fill-brand-bold: var(--ld-primitive-color-blue-160, #001e60); /* B2B: Navy */
+  --ld-semantic-color-fill-disabled: var(--ld-primitive-color-gray-20, #e3e4e5);
+  --ld-semantic-color-fill-edited: var(--ld-primitive-color-purple-10, #efebf2);
+  --ld-semantic-color-fill-edited-bold: var(--ld-primitive-color-purple-100, #63327e);
+  --ld-semantic-color-fill-info: var(--ld-primitive-color-blue-10, #e9f1fe);
+  --ld-semantic-color-fill-info-bold: var(--ld-primitive-color-blue-130, #002e99); /* B2B */
+  --ld-semantic-color-fill-inverse: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-fill-magic-start: var(--ld-primitive-color-magic-1, #0053E2);
+  --ld-semantic-color-fill-magic-middle: var(--ld-primitive-color-magic-2, #3D90EC);
+  --ld-semantic-color-fill-magic-stop: var(--ld-primitive-color-magic-3, #79CDF6);
+  --ld-semantic-color-fill-magic-subtle: var(--ld-primitive-color-magic-4, #E9F1FE);
+  --ld-semantic-color-fill-negative: var(--ld-primitive-color-red-10, #fde9e8);
+  --ld-semantic-color-fill-negative-bold: var(--ld-primitive-color-red-100, #ea1100);
+  --ld-semantic-color-fill-positive: var(--ld-primitive-color-green-10, #eaf3e6);
+  --ld-semantic-color-fill-positive-bold: var(--ld-primitive-color-green-100, #2a8703);
+  --ld-semantic-color-fill-warning: var(--ld-primitive-color-spark-10, #fef6de);
+  --ld-semantic-color-fill-warning-bold: var(--ld-primitive-color-spark-140, #995213);
+
+  /* ========================================
+     ICON COLORS
+     ======================================== */
+  --ld-semantic-color-icon: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-icon-activated: var(--ld-primitive-color-blue-160, #001e60); /* B2B: Navy */
+  --ld-semantic-color-icon-brand: var(--ld-primitive-color-blue-130, #002e99); /* B2B */
+  --ld-semantic-color-icon-disabled: var(--ld-primitive-color-gray-100, #74767c);
+  --ld-semantic-color-icon-info: var(--ld-primitive-color-blue-130, #002e99); /* B2B */
+  --ld-semantic-color-icon-inverse: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-icon-negative: var(--ld-primitive-color-red-100, #ea1100);
+  --ld-semantic-color-icon-positive: var(--ld-primitive-color-green-100, #2a8703);
+  --ld-semantic-color-icon-subtle: var(--ld-primitive-color-gray-130, #515357);
+  --ld-semantic-color-icon-subtlest: var(--ld-primitive-color-gray-100, #74767c);
+  --ld-semantic-color-icon-warning: var(--ld-primitive-color-spark-140, #995213);
+  --ld-semantic-color-icon-on-fill-activated: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-icon-on-fill-brand: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-icon-on-fill-disabled: var(--ld-primitive-color-gray-100, #74767c);
+  --ld-semantic-color-icon-on-fill-info: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-icon-on-fill-inverse: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-icon-on-fill-negative: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-icon-on-fill-positive: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-icon-on-fill-warning: var(--ld-primitive-color-gray-160, #2e2f32);
+
+  /* (Continuing with TEXT, SURFACE, FONT, SCALE, SPACING, etc. - inheriting from base) */
+  /* For brevity, non-overridden tokens inherit from base theme */
+
+  /* ========================================
+     TEXT COLORS - B2B OVERRIDES
+     ======================================== */
+  --ld-semantic-color-text: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-text-activated: var(--ld-primitive-color-blue-160, #001e60); /* B2B: Navy */
+  --ld-semantic-color-text-brand: var(--ld-primitive-color-blue-130, #002e99); /* B2B */
+  --ld-semantic-color-text-disabled: var(--ld-primitive-color-gray-100, #74767c);
+  --ld-semantic-color-text-edited: var(--ld-primitive-color-purple-100, #63327e);
+  --ld-semantic-color-text-info: var(--ld-primitive-color-blue-130, #002e99); /* B2B */
+  --ld-semantic-color-text-inverse: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-text-link: var(--ld-primitive-color-blue-130, #002e99); /* B2B */
+  --ld-semantic-color-text-negative: var(--ld-primitive-color-red-100, #ea1100);
+  --ld-semantic-color-text-positive: var(--ld-primitive-color-green-100, #2a8703);
+  --ld-semantic-color-text-subtle: var(--ld-primitive-color-gray-130, #515357);
+  --ld-semantic-color-text-subtlest: var(--ld-primitive-color-gray-100, #74767c);
+  --ld-semantic-color-text-warning: var(--ld-primitive-color-spark-140, #995213);
+  --ld-semantic-color-text-on-fill-activated: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-text-on-fill-brand: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-text-on-fill-disabled: var(--ld-primitive-color-gray-100, #74767c);
+  --ld-semantic-color-text-on-fill-info: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-text-on-fill-inverse: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-text-on-fill-negative: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-text-on-fill-positive: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-text-on-fill-warning: var(--ld-primitive-color-gray-160, #2e2f32);
+
+  /* ========================================
+     SURFACE/OVERLAY COLORS
+     ======================================== */
+  --ld-semantic-color-surface: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-surface-overlay-brand: var(--ld-primitive-color-blue-10, #e9f1fe);
+  --ld-semantic-color-surface-overlay-brand-subtle: var(--ld-primitive-color-blue-5, #f0f5ff);
+  --ld-semantic-color-surface-overlay-gray: var(--ld-primitive-color-gray-10, #f1f1f2);
+  --ld-semantic-color-surface-overlay-inverse: var(--ld-primitive-color-transparent-dark-60, #00000099);
+
+  /* Inheriting non-color tokens from base (fonts, spacing, etc.) */
+  --ld-semantic-font-family-sans: var(--ld-primitive-font-family-sans, EverydaySans, 'Helvetica Neue', 'Arial', 'sans-serif');
+  --ld-semantic-font-family-mono: var(--ld-primitive-font-family-mono, EverydaySansMono, 'Courier New', 'monospace');
+
+  /* Spacing tokens (inherited) */
+  --ld-semantic-spacing-25: var(--ld-primitive-scale-space-25, 0.125rem);
+  --ld-semantic-spacing-50: var(--ld-primitive-scale-space-50, 0.25rem);
+  --ld-semantic-spacing-100: var(--ld-primitive-scale-space-100, 0.5rem);
+  --ld-semantic-spacing-150: var(--ld-primitive-scale-space-150, 0.75rem);
+  --ld-semantic-spacing-200: var(--ld-primitive-scale-space-200, 1rem);
+  --ld-semantic-spacing-250: var(--ld-primitive-scale-space-250, 1.25rem);
+  --ld-semantic-spacing-300: var(--ld-primitive-scale-space-300, 1.5rem);
+  --ld-semantic-spacing-400: var(--ld-primitive-scale-space-400, 2rem);
+  --ld-semantic-spacing-500: var(--ld-primitive-scale-space-500, 2.5rem);
+  --ld-semantic-spacing-600: var(--ld-primitive-scale-space-600, 3rem);
+  --ld-semantic-spacing-700: var(--ld-primitive-scale-space-700, 3.5rem);
+  --ld-semantic-spacing-800: var(--ld-primitive-scale-space-800, 4rem);
+  --ld-semantic-spacing-900: var(--ld-primitive-scale-space-900, 4.5rem);
+  --ld-semantic-spacing-1000: var(--ld-primitive-scale-space-1000, 5rem);
+
+  /* Border radius (inherited) */
+  --ld-semantic-border-radius-small: var(--ld-primitive-scale-border-radius-25, 0.125rem);
+  --ld-semantic-border-radius-medium: var(--ld-primitive-scale-border-radius-50, 0.25rem);
+  --ld-semantic-border-radius-large: var(--ld-primitive-scale-border-radius-100, 0.5rem);
+  --ld-semantic-border-radius-xlarge: var(--ld-primitive-scale-border-radius-200, 1rem);
+  --ld-semantic-border-radius-round: var(--ld-primitive-scale-border-radius-round, 62.5rem);
+  --ld-semantic-border-radius-button: var(--ld-primitive-scale-border-radius-round, 62.5rem);
+
+  /* ═══════════════════════════════════════════════════ */
+  /* WCP (Walmart Connect Platform) Extended Tokens - B2B */
+  /* ═══════════════════════════════════════════════════ */
+  
+  /* WCP Action Colors - B2B uses CYAN instead of spark yellow */
+  --wcp-semantic-color-action-fill-primary-alt: var(--ld-primitive-color-cyan-50, #4dbdf5); /* B2B: Cyan button */
+  --wcp-semantic-color-action-fill-primary-alt-hovered: var(--ld-primitive-color-cyan-60, #2eacea);
+  --wcp-semantic-color-action-fill-primary-alt-pressed: var(--ld-primitive-color-cyan-70, #189ee2);
+  --wcp-semantic-color-action-text-primary-alt: var(--ld-primitive-color-white, #ffffff); /* B2B: White on cyan */
+  --wcp-semantic-color-action-border-primary-alt: var(--ld-primitive-color-cyan-80, #0092db);
+  
+  /* Other WCP tokens inherit from base */
+  --wcp-semantic-color-border-savings-subtle: var(--ld-primitive-color-red-20, #fbd0cc);
+  --wcp-semantic-color-border-savings-bold: var(--ld-primitive-color-red-100, #ea1100);
+  --wcp-semantic-color-bottomNav-background: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-bottomNav-border: var(--ld-primitive-color-gray-50, #babbbe);
+  --wcp-semantic-color-fill-savings-subtle: var(--ld-primitive-color-red-10, #fde9e8);
+  --wcp-semantic-color-fill-savings-bold: var(--ld-primitive-color-red-100, #ea1100);
+  --wcp-semantic-color-fill-express: var(--ld-primitive-color-purple-60, #a184b2);
+  --wcp-semantic-color-fill-express-subtle: var(--ld-primitive-color-purple-10, #efebf2);
+  --wcp-semantic-color-fill-member: var(--ld-primitive-color-spark-100, #ffc220);
+  --wcp-semantic-color-fill-member-subtle: var(--ld-primitive-color-spark-10, #fef6de);
+  --wcp-semantic-color-fill-holiday-member: var(--ld-primitive-color-green-100, #2a8703);
+  --wcp-semantic-color-fill-holiday-member-subtle: var(--ld-primitive-color-green-10, #eaf3e6);
+  --wcp-semantic-color-fill-confidence: var(--ld-primitive-color-blue-130, #002e99); /* B2B: Darker blue */
+  --wcp-semantic-color-fill-confidence-subtle: var(--ld-primitive-color-blue-10, #e9f1fe);
+  --wcp-semantic-color-fill-trending: var(--ld-primitive-color-orange-100, #fa6400);
+  --wcp-semantic-color-input-background: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-input-background-disabled: var(--ld-primitive-color-gray-10, #f1f1f2);
+  --wcp-semantic-color-input-border: var(--ld-primitive-color-gray-100, #74767c);
+  --wcp-semantic-color-input-border-focused: var(--ld-primitive-color-blue-130, #002e99); /* B2B */
+  --wcp-semantic-color-input-border-error: var(--ld-primitive-color-red-100, #ea1100);
+  --wcp-semantic-color-input-text-placeholder: var(--ld-primitive-color-gray-100, #74767c);
+  --wcp-semantic-color-notice-info-background: var(--ld-primitive-color-blue-10, #e9f1fe);
+  --wcp-semantic-color-notice-info-border: var(--ld-primitive-color-blue-130, #002e99); /* B2B */
+  --wcp-semantic-color-notice-success-background: var(--ld-primitive-color-green-10, #eaf3e6);
+  --wcp-semantic-color-notice-success-border: var(--ld-primitive-color-green-100, #2a8703);
+  --wcp-semantic-color-notice-warning-background: var(--ld-primitive-color-spark-10, #fef6de);
+  --wcp-semantic-color-notice-warning-border: var(--ld-primitive-color-spark-140, #995213);
+  --wcp-semantic-color-rating-star-filled: var(--ld-primitive-color-spark-100, #ffc220);
+  --wcp-semantic-color-rating-star-empty: var(--ld-primitive-color-gray-50, #babbbe);
+  --wcp-semantic-color-rating-text: var(--ld-primitive-color-gray-160, #2e2f32);
+  --wcp-semantic-color-rating-count-text: var(--ld-primitive-color-gray-100, #74767c);
+  --wcp-semantic-color-surface-express: var(--ld-primitive-color-purple-10, #efebf2);
+  --wcp-semantic-color-surface-member: var(--ld-primitive-color-spark-10, #fef6de);
+  --wcp-semantic-color-surface-savings: var(--ld-primitive-color-red-10, #fde9e8);
+  --wcp-semantic-color-surface-trending: var(--ld-primitive-color-orange-10, #fff0e6);
+  --wcp-semantic-color-text-onFill-savings: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-text-onFill-express: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-text-onFill-member: var(--ld-primitive-color-gray-160, #2e2f32);
+  --wcp-semantic-color-text-onFill-confidence: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-text-savings: var(--ld-primitive-color-red-100, #ea1100);
+  --wcp-semantic-color-text-savings-subtle: var(--ld-primitive-color-red-130, #a20c00);
+  --wcp-semantic-color-text-express: var(--ld-primitive-color-purple-100, #63327e);
+  --wcp-semantic-color-text-member: var(--ld-primitive-color-spark-140, #995213);
+  --wcp-semantic-color-text-link: var(--ld-primitive-color-blue-130, #002e99); /* B2B */
+  --wcp-semantic-color-text-link-hovered: var(--ld-primitive-color-blue-140, #002185); /* B2B */
+  --wcp-semantic-color-text-link-visited: var(--ld-primitive-color-purple-100, #63327e);
+  --wcp-semantic-color-text-strikethrough: var(--ld-primitive-color-gray-100, #74767c);
+}
