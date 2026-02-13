@@ -1,8 +1,8 @@
 /** @import must precede all other statements */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
-@import "../styles/primitive.css";
-@import "../styles/semantic.css";
-@import "../styles/tag.css";
+/* Theme CSS (primitive + semantic) is now loaded dynamically via ThemeProvider */
+/* See client/contexts/ThemeContext.tsx for theme loading logic */
+@import "./styles/tag.css";
 
 @tailwind base;
 @tailwind components;
