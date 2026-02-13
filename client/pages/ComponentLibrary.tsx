@@ -1,28 +1,26 @@
 import React from 'react';
-import { Button } from '@/components/ui/Button';
-import { ButtonGroup } from '@/components/ui/ButtonGroup';
-import { Tag } from '@/components/ui/tag';
-import { OLQTag } from '@/components/ui/olq-tag';
-import { Link } from '@/components/ui/Link';
-import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
-import { Card } from '@/components/ui/Card';
-import { CardHeader } from '@/components/ui/CardHeader';
-import { CardContent } from '@/components/ui/CardContent';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import { Popover, PopoverTrigger, PopoverContent, PopoverArrow } from '@/components/ui/popover';
-import { Badge } from '@/components/ui/Badge';
-import { Settings, Download, Upload, Search, Plus, Edit, Trash2 } from 'lucide-react';
+import { BadgeExample } from '@/components/BadgeExample';
+import { ButtonExample } from '@/components/ButtonExample';
+import { BreadcrumbExample } from '@/components/BreadcrumbExample';
+import { LinkExample } from '@/components/LinkExample';
+import IconButtonExample from '@/components/IconButtonExample';
+import { CardHeaderExample } from '@/components/CardHeaderExample';
 
 export default function ComponentLibrary() {
   return (
     <div style={{ 
       minHeight: '100vh', 
-      backgroundColor: 'var(--ld-semantic-color-surface-primary, #FFFFFF)',
+      backgroundColor: '#F9FAFB',
       padding: '40px 60px'
     }}>
       {/* Page Header */}
-      <div style={{ marginBottom: '40px' }}>
+      <div style={{ 
+        marginBottom: '40px',
+        backgroundColor: 'white',
+        padding: '32px',
+        borderRadius: '12px',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+      }}>
         <h1 style={{ 
           fontSize: '32px', 
           fontWeight: 700,
@@ -35,311 +33,356 @@ export default function ComponentLibrary() {
         <p style={{
           fontSize: '16px',
           color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          fontFamily: 'var(--ld-semantic-font-family-sans, "Everyday Sans UI", sans-serif)'
+          fontFamily: 'var(--ld-semantic-font-family-sans, "Everyday Sans UI", sans-serif)',
+          lineHeight: '1.5'
         }}>
-          A comprehensive showcase of all UI components in the Walmart Connect Ad Center
+          A comprehensive showcase of all UI components in the Walmart Connect Ad Center. 
+          Each component follows the Living Design 3.5 specification with proper accessibility, 
+          semantic tokens, and responsive behavior.
         </p>
       </div>
 
-      {/* Breadcrumb Section */}
-      <Section title="Breadcrumb">
-        <ComponentCard>
-          <Breadcrumb>
-            <BreadcrumbItem href="/">Home</BreadcrumbItem>
-            <BreadcrumbItem href="/campaigns">Campaigns</BreadcrumbItem>
-            <BreadcrumbItem>Component Library</BreadcrumbItem>
-          </Breadcrumb>
-        </ComponentCard>
-      </Section>
+      {/* Navigation */}
+      <div style={{
+        marginBottom: '32px',
+        backgroundColor: 'white',
+        padding: '20px',
+        borderRadius: '8px',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+      }}>
+        <h3 style={{ 
+          fontSize: '14px', 
+          fontWeight: 600, 
+          marginBottom: '12px',
+          color: '#74767C',
+          textTransform: 'uppercase',
+          letterSpacing: '0.5px'
+        }}>
+          Quick Navigation
+        </h3>
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+          {['Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Cards'].map(section => (
+            <a
+              key={section}
+              href={`#${section.toLowerCase().replace(' ', '-')}`}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#F3F4F6',
+                color: '#2E2F32',
+                borderRadius: '20px',
+                fontSize: '14px',
+                textDecoration: 'none',
+                transition: 'all 0.2s',
+                border: '1px solid transparent'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#0071DC';
+                e.currentTarget.style.color = 'white';
+                e.currentTarget.style.borderColor = '#0071DC';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#F3F4F6';
+                e.currentTarget.style.color = '#2E2F32';
+                e.currentTarget.style.borderColor = 'transparent';
+              }}
+            >
+              {section}
+            </a>
+          ))}
+        </div>
+      </div>
 
       {/* Buttons Section */}
-      <Section title="Buttons">
-        <ComponentCard label="Button Variants">
-          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <Button variant="primary" size="medium">Primary</Button>
-            <Button variant="secondary" size="medium">Secondary</Button>
-            <Button variant="tertiary" size="medium">Tertiary</Button>
-            <Button variant="destructive" size="medium">Destructive</Button>
-          </div>
-        </ComponentCard>
-
-        <ComponentCard label="Button Sizes">
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-            <Button variant="primary" size="small">Small</Button>
-            <Button variant="primary" size="medium">Medium</Button>
-            <Button variant="primary" size="large">Large</Button>
-          </div>
-        </ComponentCard>
-
-        <ComponentCard label="Buttons with Icons">
-          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-            <Button variant="primary" size="medium" icon={<Plus size={16} />}>
-              Create Campaign
-            </Button>
-            <Button variant="secondary" size="medium" icon={<Download size={16} />}>
-              Download
-            </Button>
-            <Button variant="secondary" size="medium" icon={<Upload size={16} />}>
-              Upload
-            </Button>
-            <Button variant="tertiary" size="medium" icon={<Settings size={16} />}>
-              Settings
-            </Button>
-          </div>
-        </ComponentCard>
-
-        <ComponentCard label="Button Group">
-          <ButtonGroup>
-            <Button variant="secondary" size="medium">Cancel</Button>
-            <Button variant="primary" size="medium">Save Changes</Button>
-          </ButtonGroup>
-        </ComponentCard>
-
-        <ComponentCard label="Disabled State">
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <Button variant="primary" size="medium" disabled>Disabled Primary</Button>
-            <Button variant="secondary" size="medium" disabled>Disabled Secondary</Button>
-          </div>
-        </ComponentCard>
+      <Section id="buttons" title="Buttons" description="Primary, secondary, tertiary, and destructive button variants with full accessibility support">
+        <ComponentShowcase>
+          <ButtonExample />
+        </ComponentShowcase>
       </Section>
 
-      {/* Tags & Badges Section */}
-      <Section title="Tags & Badges">
-        <ComponentCard label="Tag Variants">
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <Tag variant="default">Default</Tag>
-            <Tag variant="success">Success</Tag>
-            <Tag variant="warning">Warning</Tag>
-            <Tag variant="error">Error</Tag>
-            <Tag variant="info">Info</Tag>
-          </div>
-        </ComponentCard>
+      {/* Badges Section */}
+      <Section id="badges" title="Badges" description="Count badges, status indicators, and semantic color variants for notifications and labels">
+        <ComponentShowcase>
+          <BadgeExample />
+        </ComponentShowcase>
+      </Section>
 
-        <ComponentCard label="OLQ Tags">
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <OLQTag percentage={95} />
-            <OLQTag percentage={75} />
-            <OLQTag percentage={50} />
-            <OLQTag percentage={25} />
-          </div>
-        </ComponentCard>
-
-        <ComponentCard label="Badges">
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <Badge>New</Badge>
-            <Badge variant="secondary">Beta</Badge>
-            <Badge variant="destructive">Urgent</Badge>
-            <Badge variant="outline">Featured</Badge>
-          </div>
-        </ComponentCard>
+      {/* Breadcrumbs Section */}
+      <Section id="breadcrumbs" title="Breadcrumbs" description="Navigation breadcrumbs with support for 2-5 levels and custom separators">
+        <ComponentShowcase>
+          <BreadcrumbExample />
+        </ComponentShowcase>
       </Section>
 
       {/* Links Section */}
-      <Section title="Links">
-        <ComponentCard label="Link Variants">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <Link href="/campaigns">Standard Link</Link>
-            <Link href="/campaigns" icon={<Search size={16} />}>Link with Icon</Link>
-            <Link href="/campaigns" external>External Link</Link>
-          </div>
-        </ComponentCard>
+      <Section id="links" title="Links" description="Text links with underline variants, external link support, and hover states">
+        <ComponentShowcase>
+          <LinkExample />
+        </ComponentShowcase>
       </Section>
 
-      {/* Form Elements Section */}
-      <Section title="Form Elements">
-        <ComponentCard label="Inputs">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '400px' }}>
-            <Input placeholder="Enter campaign name" />
-            <Input placeholder="Search..." icon={<Search size={16} />} />
-            <Input placeholder="Disabled input" disabled />
-          </div>
-        </ComponentCard>
-
-        <ComponentCard label="Checkboxes">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Checkbox id="check1" />
-              <label htmlFor="check1" style={{ fontSize: '14px', cursor: 'pointer' }}>
-                Enable notifications
-              </label>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Checkbox id="check2" defaultChecked />
-              <label htmlFor="check2" style={{ fontSize: '14px', cursor: 'pointer' }}>
-                Auto-save changes
-              </label>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Checkbox id="check3" disabled />
-              <label htmlFor="check3" style={{ fontSize: '14px', color: '#999', cursor: 'not-allowed' }}>
-                Disabled option
-              </label>
-            </div>
-          </div>
-        </ComponentCard>
+      {/* Icon Buttons Section */}
+      <Section id="icon-buttons" title="Icon Buttons" description="Icon-only buttons for compact actions with ghost, primary, secondary, and destructive variants">
+        <ComponentShowcase>
+          <IconButtonExample />
+        </ComponentShowcase>
       </Section>
 
       {/* Cards Section */}
-      <Section title="Cards">
-        <ComponentCard label="Basic Card">
-          <Card style={{ maxWidth: '400px' }}>
-            <CardHeader>
-              <h3 style={{ fontSize: '18px', fontWeight: 600, margin: 0 }}>Campaign Performance</h3>
-            </CardHeader>
-            <CardContent>
-              <p style={{ margin: 0, color: 'var(--ld-semantic-color-text-secondary)' }}>
-                Your campaign has generated 1,234,567 impressions with a 2.5% click-through rate.
-              </p>
-            </CardContent>
-          </Card>
-        </ComponentCard>
-
-        <ComponentCard label="Card with Actions">
-          <Card style={{ maxWidth: '400px' }}>
-            <CardHeader>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h3 style={{ fontSize: '18px', fontWeight: 600, margin: 0 }}>Campaign Settings</h3>
-                <div style={{ display: 'flex', gap: '8px' }}>
-                  <Button variant="tertiary" size="small" icon={<Edit size={14} />} />
-                  <Button variant="tertiary" size="small" icon={<Trash2 size={14} />} />
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <div>
-                  <span style={{ fontWeight: 600 }}>Status:</span>{' '}
-                  <Tag variant="success">Active</Tag>
-                </div>
-                <div>
-                  <span style={{ fontWeight: 600 }}>Budget:</span> $10,000
-                </div>
-                <div>
-                  <span style={{ fontWeight: 600 }}>Duration:</span> Jan 1 - Dec 31, 2025
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </ComponentCard>
+      <Section id="cards" title="Cards" description="Card containers with headers, content areas, and support for leading/trailing elements">
+        <ComponentShowcase>
+          <CardHeaderExample />
+        </ComponentShowcase>
       </Section>
 
-      {/* Popovers Section */}
-      <Section title="Popovers">
-        <ComponentCard label="Basic Popover">
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button variant="secondary" size="medium">Open Popover</Button>
-            </PopoverTrigger>
-            <PopoverContent>
-              <PopoverArrow className="fill-white" />
-              <div style={{ padding: '8px' }}>
-                <h4 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
-                  Additional Information
-                </h4>
-                <p style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text-secondary)', margin: 0 }}>
-                  This is a popover with additional context and information about the selected item.
-                </p>
-              </div>
-            </PopoverContent>
-          </Popover>
-        </ComponentCard>
-      </Section>
-
-      {/* Color Tokens Section */}
-      <Section title="Design Tokens">
-        <ComponentCard label="Action Colors">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px' }}>
+      {/* Design Tokens Section */}
+      <Section id="design-tokens" title="Design Tokens" description="Living Design 3.5 semantic color tokens and spacing values">
+        <div style={{
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          padding: '32px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+        }}>
+          <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '24px' }}>Action Colors</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px', marginBottom: '32px' }}>
             <ColorSwatch 
               color="var(--ld-semantic-color-action-fill-primary)" 
               label="Action Primary" 
+              token="--ld-semantic-color-action-fill-primary"
+            />
+            <ColorSwatch 
+              color="var(--ld-semantic-color-action-fill-primary-hovered)" 
+              label="Action Primary Hovered" 
+              token="--ld-semantic-color-action-fill-primary-hovered"
             />
             <ColorSwatch 
               color="var(--ld-semantic-color-action-fill-secondary)" 
               label="Action Secondary" 
+              token="--ld-semantic-color-action-fill-secondary"
             />
             <ColorSwatch 
               color="var(--ld-semantic-color-action-fill-destructive)" 
               label="Action Destructive" 
+              token="--ld-semantic-color-action-fill-destructive"
             />
           </div>
-        </ComponentCard>
 
-        <ComponentCard label="Text Colors">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px' }}>
+          <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '24px' }}>Text Colors</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px', marginBottom: '32px' }}>
             <ColorSwatch 
               color="var(--ld-semantic-color-text-primary)" 
               label="Text Primary" 
+              token="--ld-semantic-color-text-primary"
             />
             <ColorSwatch 
               color="var(--ld-semantic-color-text-secondary)" 
               label="Text Secondary" 
+              token="--ld-semantic-color-text-secondary"
             />
           </div>
-        </ComponentCard>
+
+          <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '24px' }}>Border Colors</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px' }}>
+            <ColorSwatch 
+              color="var(--ld-semantic-color-border-strong, #BABBBE)" 
+              label="Border Strong" 
+              token="--ld-semantic-color-border-strong"
+            />
+            <ColorSwatch 
+              color="var(--ld-semantic-color-border-subtle, #E6E6E8)" 
+              label="Border Subtle" 
+              token="--ld-semantic-color-border-subtle"
+            />
+          </div>
+        </div>
       </Section>
+
+      {/* Usage Guidelines */}
+      <Section id="usage-guidelines" title="Usage Guidelines" description="Best practices for implementing Living Design 3.5 components">
+        <div style={{
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          padding: '32px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+        }}>
+          <div style={{ display: 'grid', gap: '24px' }}>
+            <GuidelineItem 
+              title="Always Use Semantic Tokens"
+              description="Never hard-code colors or spacing. Always use LD 3.5 semantic tokens like var(--ld-semantic-color-action-fill-primary) to ensure consistency and support theme switching."
+            />
+            <GuidelineItem 
+              title="Reuse Existing Components"
+              description="Before creating custom components, check if an existing LD 3.5 component meets your needs. Reusing components ensures consistency across the application."
+            />
+            <GuidelineItem 
+              title="Accessibility First"
+              description="All components include proper ARIA labels, keyboard navigation support, and focus indicators. Maintain these standards when implementing components."
+            />
+            <GuidelineItem 
+              title="Responsive Design"
+              description="Components are designed to work across all screen sizes. Use responsive utilities and test on mobile, tablet, and desktop viewports."
+            />
+            <GuidelineItem 
+              title="Component Composition"
+              description="Break complex UIs into smaller, reusable components. This improves maintainability and follows React best practices."
+            />
+          </div>
+        </div>
+      </Section>
+
+      {/* Footer */}
+      <div style={{
+        marginTop: '64px',
+        padding: '24px',
+        backgroundColor: 'white',
+        borderRadius: '8px',
+        textAlign: 'center',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+      }}>
+        <p style={{ 
+          fontSize: '14px', 
+          color: '#74767C',
+          marginBottom: '8px'
+        }}>
+          Living Design 3.5 Component Library
+        </p>
+        <p style={{ 
+          fontSize: '12px', 
+          color: '#BABBBE'
+        }}>
+          For more information, visit the{' '}
+          <a 
+            href="/guidelines" 
+            style={{ 
+              color: '#0071DC', 
+              textDecoration: 'none',
+              fontWeight: 500
+            }}
+          >
+            Design System Guidelines
+          </a>
+        </p>
+      </div>
     </div>
   );
 }
 
 // Helper Components
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div style={{ marginBottom: '48px' }}>
-      <h2 style={{
-        fontSize: '24px',
-        fontWeight: 700,
-        fontFamily: 'var(--ld-semantic-font-family-sans)',
-        color: 'var(--ld-semantic-color-text-primary)',
-        marginBottom: '24px',
-        paddingBottom: '12px',
-        borderBottom: '2px solid var(--ld-semantic-color-border-strong, #E6E6E8)'
-      }}>
-        {title}
-      </h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        {children}
-      </div>
-    </div>
-  );
+interface SectionProps {
+  id: string;
+  title: string;
+  description?: string;
+  children: React.ReactNode;
 }
 
-function ComponentCard({ label, children }: { label?: string; children: React.ReactNode }) {
+function Section({ id, title, description, children }: SectionProps) {
   return (
-    <div style={{
-      backgroundColor: '#FFFFFF',
-      border: '1px solid var(--ld-semantic-color-border-subtle, #E6E6E8)',
-      borderRadius: '8px',
-      padding: '24px'
-    }}>
-      {label && (
-        <div style={{
-          fontSize: '14px',
-          fontWeight: 600,
-          color: 'var(--ld-semantic-color-text-secondary)',
-          marginBottom: '16px',
-          textTransform: 'uppercase',
-          letterSpacing: '0.5px'
+    <div id={id} style={{ marginBottom: '48px', scrollMarginTop: '24px' }}>
+      <div style={{ marginBottom: '24px' }}>
+        <h2 style={{
+          fontSize: '28px',
+          fontWeight: 700,
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          color: 'var(--ld-semantic-color-text-primary)',
+          marginBottom: '8px'
         }}>
-          {label}
-        </div>
-      )}
+          {title}
+        </h2>
+        {description && (
+          <p style={{
+            fontSize: '14px',
+            color: 'var(--ld-semantic-color-text-secondary)',
+            lineHeight: '1.5'
+          }}>
+            {description}
+          </p>
+        )}
+      </div>
       {children}
     </div>
   );
 }
 
-function ColorSwatch({ color, label }: { color: string; label: string }) {
+function ComponentShowcase({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    <div style={{
+      backgroundColor: '#FFFFFF',
+      borderRadius: '8px',
+      overflow: 'hidden',
+      boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+    }}>
+      {children}
+    </div>
+  );
+}
+
+interface ColorSwatchProps {
+  color: string;
+  label: string;
+  token: string;
+}
+
+function ColorSwatch({ color, label, token }: ColorSwatchProps) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
       <div style={{
         width: '100%',
-        height: '80px',
+        height: '100px',
         backgroundColor: color,
         borderRadius: '8px',
-        border: '1px solid #E6E6E8'
+        border: '1px solid #E6E6E8',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
       }} />
-      <div style={{ fontSize: '13px', fontWeight: 500 }}>{label}</div>
-      <div style={{ fontSize: '11px', color: '#74767C', fontFamily: 'monospace' }}>{color}</div>
+      <div>
+        <div style={{ 
+          fontSize: '14px', 
+          fontWeight: 600,
+          color: '#2E2F32',
+          marginBottom: '4px'
+        }}>
+          {label}
+        </div>
+        <div style={{ 
+          fontSize: '11px', 
+          color: '#74767C', 
+          fontFamily: 'monospace',
+          wordBreak: 'break-all'
+        }}>
+          {token}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface GuidelineItemProps {
+  title: string;
+  description: string;
+}
+
+function GuidelineItem({ title, description }: GuidelineItemProps) {
+  return (
+    <div style={{
+      padding: '20px',
+      backgroundColor: '#F9FAFB',
+      borderLeft: '4px solid #0071DC',
+      borderRadius: '4px'
+    }}>
+      <h4 style={{
+        fontSize: '16px',
+        fontWeight: 600,
+        color: '#2E2F32',
+        marginBottom: '8px'
+      }}>
+        {title}
+      </h4>
+      <p style={{
+        fontSize: '14px',
+        color: '#74767C',
+        lineHeight: '1.6',
+        margin: 0
+      }}>
+        {description}
+      </p>
     </div>
   );
 }
