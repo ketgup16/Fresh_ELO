@@ -253,6 +253,14 @@
   --ld-semantic-border-radius-round: var(--ld-primitive-scale-border-radius-round, 62.5rem);
   --ld-semantic-border-radius-button: var(--ld-primitive-scale-border-radius-round, 62.5rem);
 
+  /* Elevation/Shadow tokens (inherited) */
+  --ld-semantic-elevation-100: 0 0.0625rem 0.125rem 0.0625rem #00000026, 0 -0.0625rem 0.125rem 0 #0000001a;
+  --ld-semantic-elevation-200: 0 0.1875rem 0.3125rem 0.125rem #00000026, 0 -0.0625rem 0.1875rem 0 #0000001a;
+  --ld-semantic-elevation-300: 0 0.3125rem 0.625rem 0.1875rem #00000026, 0 -0.0625rem 0.25rem 0 #0000001a;
+
+  /* Fill/Surface colors (inherited except overrides) */
+  --ld-semantic-color-fill-subtle: var(--ld-primitive-color-gray-5, #f8f8f8);
+
   /* ═══════════════════════════════════════════════════ */
   /* WCP (Walmart Connect Platform) Extended Tokens - B2B */
   /* ═══════════════════════════════════════════════════ */
