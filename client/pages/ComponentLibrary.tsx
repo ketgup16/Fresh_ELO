@@ -5,11 +5,13 @@ import { Tag } from '@/components/ui/tag';
 import { OLQTag } from '@/components/ui/olq-tag';
 import { Link } from '@/components/ui/Link';
 import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
-import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/Card';
+import { CardHeader } from '@/components/ui/CardHeader';
+import { CardContent } from '@/components/ui/CardContent';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverTrigger, PopoverContent, PopoverArrow } from '@/components/ui/popover';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@/components/ui/Badge';
 import { Settings, Download, Upload, Search, Plus, Edit, Trash2 } from 'lucide-react';
 
 export default function ComponentLibrary() {
