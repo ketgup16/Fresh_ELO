@@ -244,6 +244,70 @@ export function ThemeSwitcher() {
         </div>
       )}
 
+      {/* Debug: Show current primary color + Test Button */}
+      {!isLoading && (
+        <div style={{ marginTop: '12px' }}>
+          <div
+            style={{
+              fontSize: '11px',
+              color: 'var(--ld-semantic-color-text-subtle)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              marginBottom: '8px',
+            }}
+          >
+            <span>Expected primary:</span>
+            <span
+              style={{
+                width: '12px',
+                height: '12px',
+                borderRadius: '2px',
+                backgroundColor: 'var(--ld-semantic-color-action-fill-primary)',
+                border: '1px solid var(--ld-semantic-color-border-subtlest)',
+              }}
+            />
+            <code
+              style={{
+                fontSize: '10px',
+                fontFamily: 'monospace',
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                padding: '2px 4px',
+                borderRadius: '2px',
+              }}
+            >
+              {currentTheme === 'base' ? '#0053e2' : '#002e99'}
+            </code>
+          </div>
+
+          {/* Test button using the primary token */}
+          <button
+            type="button"
+            style={{
+              width: '100%',
+              padding: '10px 20px',
+              backgroundColor: 'var(--ld-semantic-color-action-fill-primary)',
+              color: 'var(--ld-semantic-color-action-text-on-fill-primary)',
+              border: 'none',
+              borderRadius: '9999px',
+              fontSize: '14px',
+              fontWeight: 700,
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-action-fill-primary-hovered)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-action-fill-primary)';
+            }}
+          >
+            Test Button (Should be {currentTheme === 'base' ? 'Blue' : 'Navy'})
+          </button>
+        </div>
+      )}
+
       <style>{`
         @keyframes fadeIn {
           from {
