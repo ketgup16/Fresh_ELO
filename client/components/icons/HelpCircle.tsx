@@ -20,7 +20,7 @@ export const HelpCircle = (props: SVGProps<SVGSVGElement>) => (
       d="M7.5 7.5C7.5 6.11929 8.61929 5 10 5C11.3807 5 12.5 6.11929 12.5 7.5C12.5 8.5 11.5 9 10.5 9.5C10.2239 9.64732 10 9.92157 10 10.25V11" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round"
+      strokeLinecap="square"
     />
     <circle 
       cx="10" 

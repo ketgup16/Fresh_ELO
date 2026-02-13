@@ -13,14 +13,14 @@ export const Edit = (props: SVGProps<SVGSVGElement>) => (
       d="M14.5 2.5L17.5 5.5L7 16H4V13L14.5 2.5Z" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round" 
+      strokeLinecap="square" 
       strokeLinejoin="round"
     />
     <path 
       d="M12 5L15 8" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round"
+      strokeLinecap="square"
     />
   </svg>
 );

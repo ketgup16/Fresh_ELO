@@ -13,7 +13,7 @@ export const X = (props: SVGProps<SVGSVGElement>) => (
       d="M5 5L15 15M15 5L5 15" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round"
+      strokeLinecap="square"
     />
   </svg>
 );

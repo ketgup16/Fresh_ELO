@@ -20,7 +20,7 @@ export const Search = (props: SVGProps<SVGSVGElement>) => (
       d="M13 13L17 17" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round"
+      strokeLinecap="square"
     />
   </svg>
 );

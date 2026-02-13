@@ -13,14 +13,14 @@ export const Download = (props: SVGProps<SVGSVGElement>) => (
       d="M10 3V13M10 13L6 9M10 13L14 9" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round" 
+      strokeLinecap="square" 
       strokeLinejoin="round"
     />
     <path 
       d="M3 17H17" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round"
+      strokeLinecap="square"
     />
   </svg>
 );

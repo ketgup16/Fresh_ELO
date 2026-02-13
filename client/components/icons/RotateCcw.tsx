@@ -13,13 +13,13 @@ export const RotateCcw = (props: SVGProps<SVGSVGElement>) => (
       d="M3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10C17 13.866 13.866 17 10 17C7.5 17 5.5 15.5 4.5 13.5" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round"
+      strokeLinecap="square"
     />
     <path 
       d="M3 6V10H7" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round" 
+      strokeLinecap="square" 
       strokeLinejoin="round"
     />
   </svg>

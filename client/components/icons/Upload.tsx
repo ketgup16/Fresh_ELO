@@ -13,14 +13,14 @@ export const Upload = (props: SVGProps<SVGSVGElement>) => (
       d="M10 17V7M10 7L6 11M10 7L14 11" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round" 
+      strokeLinecap="square" 
       strokeLinejoin="round"
     />
     <path 
       d="M3 3H17" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round"
+      strokeLinecap="square"
     />
   </svg>
 );

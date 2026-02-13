@@ -13,7 +13,7 @@ export const Sliders = (props: SVGProps<SVGSVGElement>) => (
       d="M4 7H16M4 13H16" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round"
+      strokeLinecap="square"
     />
     <circle 
       cx="7" 

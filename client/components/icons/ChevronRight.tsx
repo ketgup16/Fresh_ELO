@@ -13,7 +13,7 @@ export const ChevronRight = (props: SVGProps<SVGSVGElement>) => (
       d="M7.5 5L12.5 10L7.5 15" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round" 
+      strokeLinecap="square" 
       strokeLinejoin="round"
     />
   </svg>

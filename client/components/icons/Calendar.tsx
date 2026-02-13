@@ -27,7 +27,7 @@ export const Calendar = (props: SVGProps<SVGSVGElement>) => (
       d="M6 3V5M14 3V5" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round"
+      strokeLinecap="square"
     />
   </svg>
 );

@@ -13,7 +13,7 @@ export const Check = (props: SVGProps<SVGSVGElement>) => (
       d="M4 10L8 14L16 6" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round" 
+      strokeLinecap="square" 
       strokeLinejoin="round"
     />
   </svg>

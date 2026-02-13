@@ -135,7 +135,7 @@ Before creating a new icon, verify it's not already available in these categorie
 
 ...and 100+ more icons across Technology, Security, Tools, Business, and other categories.
 
-**Total: 306 icons available**
+**Total: 304 icons available**
 
 ---
 
@@ -163,7 +163,7 @@ Before creating a new icon, verify it's not already available in these categorie
 
 **Step 4: Check Component Library**
 - Visit `/component-library#icons`
-- Browse all 306 icons organized by category
+- Browse all 304 icons organized by category
 - Use search/filter to find similar icons
 
 **Step 5: Only if NO match found**
@@ -505,7 +505,7 @@ import { SpecialFeatureIcon } from '@/components/icons-custom';
 
 **Golden Rules:**
 1. 🔍 **Search FIRST**, create LAST
-2. 📚 Use existing 306 icons whenever possible
+2. 📚 Use existing 304 icons whenever possible
 3. 🚫 NEVER create duplicates
 4. 📁 New icons ONLY in `icons-custom/` folder
 5. ✅ Follow LD 3.5 specifications for all new icons

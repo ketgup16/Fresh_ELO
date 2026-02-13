@@ -13,7 +13,7 @@ export const ChevronUp = (props: SVGProps<SVGSVGElement>) => (
       d="M15 12.5L10 7.5L5 12.5" 
       stroke="currentColor" 
       strokeWidth="1.5" 
-      strokeLinecap="round" 
+      strokeLinecap="square" 
       strokeLinejoin="round"
     />
   </svg>

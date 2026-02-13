@@ -90,8 +90,6 @@ export { ChevronUp } from './ChevronUp';
 export { Circle } from './Circle';
 export { Clipboard } from './Clipboard';
 export { Clock } from './Clock';
-export { Close } from './Close';
-export { CloseCircleFill } from './CloseCircleFill';
 export { CloudUploadFill } from './CloudUploadFill';
 export { Columns } from './Columns';
 export { ConnectLogo } from './ConnectLogo';
