@@ -8,6 +8,7 @@ import EditMetricsModal from "./EditMetricsModal";
 import { Button } from "./ui/Button";
 import { Link } from "./ui/Link";
 import { Alert } from "./ui/Alert";
+import { Divider } from "./ui/Divider";
 
 interface Campaign {
   name: string;
@@ -258,7 +259,7 @@ export default function SponsoredSearchDashboard() {
           </div>
 
           {/* Divider */}
-          <div className="w-px h-[103px] bg-[#E3E4E5]"></div>
+          <Divider orientation="vertical" UNSAFE_className="h-[103px]" />
 
           {/* Clicks */}
           <div
@@ -276,7 +277,7 @@ export default function SponsoredSearchDashboard() {
           </div>
 
           {/* Divider */}
-          <div className="w-px h-[103px] bg-[#E3E4E5]"></div>
+          <Divider orientation="vertical" UNSAFE_className="h-[103px]" />
 
           {/* Cost per click */}
           <div
@@ -294,7 +295,7 @@ export default function SponsoredSearchDashboard() {
           </div>
 
           {/* Divider */}
-          <div className="w-px h-[103px] bg-[#E3E4E5]"></div>
+          <Divider orientation="vertical" UNSAFE_className="h-[103px]" />
 
           {/* Click through */}
           <div className="flex flex-col items-start gap-4 flex-1 self-stretch">
@@ -309,7 +310,7 @@ export default function SponsoredSearchDashboard() {
           </div>
 
           {/* Divider */}
-          <div className="w-px h-[103px] bg-[#E3E4E5]"></div>
+          <Divider orientation="vertical" UNSAFE_className="h-[103px]" />
 
           {/* Ad spend */}
           <div className="flex flex-col items-start gap-4 flex-1 self-stretch">
@@ -362,7 +363,7 @@ export default function SponsoredSearchDashboard() {
               <div className="text-lg font-bold text-[#2A8703]">$24k-$30k</div>
             </div>
           </div>
-          <div className="h-px bg-[#E3E4E5]"></div>
+          <Divider />
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
             <button className="text-sm underline hover:no-underline text-center sm:text-left">See details</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Update 10 campaigns</button>
@@ -396,7 +397,7 @@ export default function SponsoredSearchDashboard() {
               <div className="text-lg font-bold text-[#2A8703]">$124k-$130k</div>
             </div>
           </div>
-          <div className="h-px bg-[#E3E4E5]"></div>
+          <Divider />
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
             <button className="text-sm underline hover:no-underline text-center sm:text-left">See details</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Update 24 campaigns</button>
@@ -433,7 +434,7 @@ export default function SponsoredSearchDashboard() {
               <div className="text-lg font-bold text-[#2A8703]">$32k-40k</div>
             </div>
           </div>
-          <div className="h-px bg-[#E3E4E5]"></div>
+          <Divider />
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
             <button className="text-sm underline hover:no-underline text-center sm:text-left">See details</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Update 4 campaigns</button>
@@ -473,7 +474,7 @@ export default function SponsoredSearchDashboard() {
               <img src="https://api.builder.io/api/v1/image/assets/TEMP/fa81303645e82b1387b2f225cd10e485d3c956fe?width=52" alt="Product" className="w-[26px] h-12 object-cover" />
             </div>
           </div>
-          <div className="h-px bg-[#E3E4E5]"></div>
+          <Divider />
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-4">
             <button className="text-sm underline hover:no-underline text-center sm:text-left">Request report</button>
             <button className="h-8 px-4 border border-[#2E2F32] rounded-full text-sm font-bold text-[#2E2F32] hover:bg-gray-50">Create new campaign</button>

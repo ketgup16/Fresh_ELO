@@ -11,6 +11,7 @@ import { Checkbox } from "../components/ui/Checkbox";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
 import { Menu } from "../components/ui/Menu";
 import { MenuItem } from "../components/ui/MenuItem";
+import { Divider } from "../components/ui/Divider";
 
 interface Alert {
   type: 'item-health-issues' | 'out-of-budget';
@@ -817,12 +818,12 @@ export default function AllCampaigns() {
               </>
             )}
           </div>
-          <div className="w-px h-[22px] bg-gray-300"></div>
+          <Divider orientation="vertical" UNSAFE_className="h-[22px]" />
           <div className="flex items-center gap-1 text-xs">
             <span className="text-[#2E2F32]">Coca Cola</span>
             <ChevronDown className="w-4 h-4" />
           </div>
-          <div className="w-px h-[22px] bg-gray-300"></div>
+          <Divider orientation="vertical" UNSAFE_className="h-[22px]" />
           <div className="flex items-center gap-1">
             <button className="relative p-1 rounded-full hover:bg-gray-100">
               <Bell className="w-4 h-4" />

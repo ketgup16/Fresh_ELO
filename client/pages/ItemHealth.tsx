@@ -8,6 +8,7 @@ import { MastHead } from "../components/ui/MastHead";
 import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { Button } from "../components/ui/button";
 import { Popover, PopoverTrigger, PopoverContent, PopoverArrow } from "../components/ui/popover";
+import { Divider } from "../components/ui/Divider";
 import { OLQTag } from "../components/ui/olq-tag";
 import CleaningSpray from "../components/icons/CleaningSpray";
 import DishSoap from "../components/icons/DishSoap";
@@ -572,7 +573,7 @@ export default function ItemHealth() {
                                   }
                                 </p>
                                 <div className="flex flex-col gap-2">
-                                  <div className="h-px bg-[#E3E4E5]"></div>
+                                  <Divider />
                                   <div className="flex items-center justify-end">
                                     <button
                                       onClick={() => navigate('/seller-center')}

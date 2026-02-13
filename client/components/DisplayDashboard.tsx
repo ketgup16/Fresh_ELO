@@ -3,6 +3,7 @@ import RecommendationsPanel from './RecommendationsPanel';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 import { Link } from '@/components/ui/Link';
+import { Divider } from '@/components/ui/Divider';
 import {
   Dialog,
   DialogContent,
@@ -564,7 +565,7 @@ export default function DisplayDashboard() {
             </div>
           </div>
 
-          <div className="w-px bg-[#E3E4E5] hidden sm:block"></div>
+          <Divider orientation="vertical" UNSAFE_className="hidden sm:block" />
 
           {/* Total attributed transactions */}
           <div className="flex-1 flex items-center min-w-[200px]">
@@ -591,7 +592,7 @@ export default function DisplayDashboard() {
             </div>
           </div>
 
-          <div className="w-px bg-[#E3E4E5] hidden sm:block"></div>
+          <Divider orientation="vertical" UNSAFE_className="hidden sm:block" />
 
           {/* Total attributed units */}
           <div className="flex-1 flex items-center min-w-[200px]">

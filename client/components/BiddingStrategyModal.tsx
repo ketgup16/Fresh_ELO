@@ -2,6 +2,7 @@ import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Check, X } from "@/components/icons";
 import { cn } from "@/lib/utils";
+import { Divider } from "./ui/Divider";
 
 interface Campaign {
   id: string;
@@ -233,7 +234,7 @@ export default function BiddingStrategyModal({
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-[#E3E4E5] mx-6" />
+          <Divider UNSAFE_className="mx-6" />
 
           {/* Footer */}
           <div className="px-6 pb-6 pt-6">

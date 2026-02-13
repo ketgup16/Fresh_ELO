@@ -2913,7 +2913,7 @@ export default function DisplayAdvertisingCampaigns() {
                                     </div>
 
                                     {/* Divider */}
-                                    <div className="h-px bg-[#E3E4E5] my-4"></div>
+                                    <Divider UNSAFE_className="my-4" />
 
                                     {/* Apply button */}
                                     <div className="flex justify-end">
@@ -3025,7 +3025,7 @@ export default function DisplayAdvertisingCampaigns() {
                                       </div>
 
                                       {/* Divider */}
-                                      <div className="h-px bg-[#E3E4E5] my-4"></div>
+                                      <Divider UNSAFE_className="my-4" />
 
                                       {/* Recommendations with radio buttons */}
                                       <div className="space-y-0">
@@ -3083,7 +3083,7 @@ export default function DisplayAdvertisingCampaigns() {
                                               </div>
 
                                               {recIdx < child.recommendations - 1 && (
-                                                <div className="h-px bg-[#E3E4E5]"></div>
+                                                <Divider />
                                               )}
                                             </div>
                                           );
@@ -3091,7 +3091,7 @@ export default function DisplayAdvertisingCampaigns() {
                                       </div>
 
                                       {/* Divider */}
-                                      <div className="h-px bg-[#E3E4E5] my-4"></div>
+                                      <Divider UNSAFE_className="my-4" />
 
                                       {/* Apply button */}
                                       <div className="flex justify-end">

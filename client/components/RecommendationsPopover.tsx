@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from "./ui/popover";
+import { Divider } from "./ui/Divider";
 
 interface Alert {
   type: 'item-health-issues' | 'out-of-budget';
@@ -71,7 +72,7 @@ export default function RecommendationsPopover({
         <div className="flex flex-col gap-4">
           {alerts.map((alert, idx) => (
             <React.Fragment key={`alert-${idx}`}>
-              {idx > 0 && <div className="h-px bg-[#E3E4E5]" />}
+              {idx > 0 && <Divider />}
               <div className="flex items-start gap-2">
                 {/* Alert Icon */}
                 <div className="flex items-center justify-center w-5 h-5 rounded-full bg-[#F8D2D3] flex-shrink-0">
@@ -118,7 +119,7 @@ export default function RecommendationsPopover({
 
           {recommendations.map((rec, idx) => (
             <React.Fragment key={`rec-${idx}`}>
-              {(alerts.length > 0 || idx > 0) && <div className="h-px bg-[#E3E4E5]" />}
+              {(alerts.length > 0 || idx > 0) && <Divider />}
               <div className="flex items-start gap-2">
                 {/* Recommendation Icon */}
                 <div className="flex items-center justify-center w-5 h-5 rounded-full bg-[#F5D5E9] flex-shrink-0">

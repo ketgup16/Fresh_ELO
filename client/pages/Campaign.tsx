@@ -10,6 +10,7 @@ import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
 import { Alert } from "../components/ui/Alert";
 import { Link } from "../components/ui/Link";
+import { Divider } from "../components/ui/Divider";
 import SponsoredProductsCard from "../components/icons/SponsoredProductsCard";
 import SponsoredBrandsCard from "../components/icons/SponsoredBrandsCard";
 import SponsoredVideosCard from "../components/icons/SponsoredVideosCard";
@@ -241,7 +242,7 @@ export default function Campaign() {
 
                   {/* Help Text */}
                   <div className="flex gap-4 w-full md:w-[296px] items-start">
-                    <div className="w-px h-full bg-[#E3E4E5] flex-shrink-0"></div>
+                    <Divider orientation="vertical" UNSAFE_className="flex-shrink-0" />
                     <p className="text-sm text-[#515357] leading-5 flex-1">
                       If your campaign spends all of the daily budget, ads will stop serving. If there is budget remaining, it will roll over.
                     </p>
@@ -387,7 +388,7 @@ export default function Campaign() {
 
                 {/* Help Text Section */}
                 <div className="flex gap-4 w-[180px] items-start flex-shrink-0">
-                  <div className="w-px h-48 bg-[#E3E4E5] flex-shrink-0"></div>
+                  <Divider orientation="vertical" UNSAFE_className="h-48 flex-shrink-0" />
                   <p className="text-sm text-[#515357] leading-5 flex-1">
                     Bid multipliers increase your bid by a preset percentage when your ads are eligible to serve in premium placements
                     <br /><br />
@@ -428,7 +429,7 @@ export default function Campaign() {
 
                 {/* Divider and Button */}
                 <div className="flex flex-col">
-                  <div className="h-px bg-[#E3E4E5] mb-6"></div>
+                  <Divider UNSAFE_className="mb-6" />
                   <div className="flex justify-end pb-6">
                     <Button UNSAFE_className="inline-flex items-center gap-2 h-8 px-4 rounded-full bg-[#BABBBE] cursor-not-allowed" disabled>
                       <div className="w-3.5 h-3.5 bg-[#E3E4E5] rounded-sm"></div>
@@ -608,7 +609,7 @@ export default function Campaign() {
                                         {alertMessages[idx]}
                                       </p>
                                       <div className="flex flex-col gap-2">
-                                        <div className="h-px bg-[#E3E4E5]"></div>
+                                        <Divider />
                                         <div className="flex items-center justify-end gap-4">
                                           <Link
                                             href={`/reports/item-health?itemId=${ids[idx]}`}
