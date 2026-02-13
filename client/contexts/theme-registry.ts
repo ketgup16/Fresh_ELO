@@ -15,7 +15,7 @@ export interface Theme {
 export const AVAILABLE_THEMES: Theme[] = [
   {
     id: 'base',
-    name: 'Walmart Connect',
+    name: 'Walmart',
     description: 'Default Walmart Connect Ad Center theme with Living Design 3.5 + WCP extensions',
     primitiveCSS: '/styles/themes/base/primitive.css',
     semanticCSS: '/styles/themes/base/semantic.css',
