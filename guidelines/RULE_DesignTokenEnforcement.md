@@ -1,224 +1,612 @@
-# RULE: Design Token Enforcement
+# Design Token Enforcement Rule
 
-**CRITICAL RULE - ALWAYS ENFORCE**
+## 🎯 Purpose
 
-## When This Rule Applies
+**MANDATORY**: All components, pages, and designs in this project MUST use Living Design 3.5 semantic tokens exclusively. Hard-coded colors, spacing, and typography values are **strictly prohibited**.
 
-This rule **MUST** be enforced when:
-
-1. ✅ User imports designs from Builder.io Figma plugin
-2. ✅ User requests AI to generate new designs or components
-3. ✅ User asks to create new UI elements or pages
-4. ✅ User requests styling changes or updates
-5. ✅ Any new CSS or component styles are being written
-
-## Mandatory Requirements
-
-### 1. **NEVER Use Hard-Coded Values**
-
-All colors, spacing, typography, and border radius values **MUST** use design tokens.
-
-```css
-/* ❌ FORBIDDEN */
-.element {
-  color: #0053e2;
-  background: white;
-  padding: 16px;
-  font-size: 16px;
-  border-radius: 8px;
-}
-
-/* ✅ REQUIRED */
-.element {
-  color: var(--ld-semantic-color-action-fill-primary);
-  background: var(--ld-semantic-color-surface);
-  padding: var(--ld-primitive-scale-space-200);
-  font-size: var(--ld-semantic-font-body-medium-size);
-  border-radius: var(--ld-primitive-scale-border-radius-100);
-}
-```
-
-### 2. **NEVER Create New Tokens**
-
-**DO NOT** create custom CSS variables. All necessary tokens exist in:
-- `styles/primitive.css` - Primitive tokens (colors, spacing, typography scales)
-- `styles/semantic.css` - Semantic tokens (context-aware usage)
-
-```css
-/* ❌ FORBIDDEN */
-:root {
-  --my-custom-color: #1a73e8;
-  --my-spacing: 24px;
-}
-
-/* ✅ REQUIRED */
-/* Use existing tokens - they are comprehensive and cover all use cases */
-```
-
-### 3. **ALWAYS Use Semantic Tokens**
-
-For colors and text, use semantic tokens (NOT primitive tokens).
-
-```css
-/* ❌ WRONG - Using primitive tokens directly */
-.button {
-  background: var(--ld-primitive-color-blue-100);
-  color: var(--ld-primitive-color-white);
-}
-
-/* ✅ CORRECT - Using semantic tokens */
-.button {
-  background: var(--ld-semantic-color-action-fill-primary);
-  color: var(--ld-semantic-color-action-text-on-fill-primary);
-}
-```
-
-### 4. **ALWAYS Include Interactive States**
-
-For interactive elements (buttons, links, inputs), include all state variants.
-
-```css
-/* ✅ REQUIRED - All states defined */
-.button {
-  background-color: var(--ld-semantic-color-action-fill-primary);
-  color: var(--ld-semantic-color-action-text-on-fill-primary);
-}
-
-.button:hover {
-  background-color: var(--ld-semantic-color-action-fill-primary-hovered);
-}
-
-.button:focus {
-  background-color: var(--ld-semantic-color-action-fill-primary-focused);
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
-}
-
-.button:active {
-  background-color: var(--ld-semantic-color-action-fill-primary-pressed);
-}
-
-.button:disabled {
-  background-color: var(--ld-semantic-color-action-fill-primary-disabled);
-  color: var(--ld-semantic-color-action-text-on-fill-primary-disabled);
-  cursor: not-allowed;
-}
-```
-
-## Token Categories Reference
-
-### Colors
-- **Actions/Buttons**: `--ld-semantic-color-action-fill-{variant}-{state}`
-  - Variants: `primary`, `secondary`, `tertiary`, `negative`
-  - States: `hovered`, `focused`, `pressed`, `disabled`
-
-- **Text**: `--ld-semantic-color-text-{purpose}`
-  - Purpose: `text`, `subtle`, `subtlest`, `inverse`, `brand`, `info`, `positive`, `negative`, `warning`
-
-- **Backgrounds**: `--ld-semantic-color-fill-{purpose}-{emphasis}`
-  - Purpose: `accent-blue`, `accent-green`, `accent-red`, `info`, `positive`, `negative`, `warning`
-  - Emphasis: base or `subtle`
-
-- **Borders**: `--ld-semantic-color-border-{purpose}-{emphasis}`
-  - Purpose: `accent-blue`, `info`, `positive`, `negative`, `warning`
-  - Emphasis: base or `bold`
-
-### Typography
-- **Font Family**: 
-  - `--ld-semantic-font-family-sans` (Everyday Sans UI + fallbacks)
-  - `--ld-semantic-font-family-mono` (Everyday Sans Mono + fallbacks)
-
-- **Font Sizes**: `--ld-semantic-font-{style}-{size}-size`
-  - Style: `display`, `heading`, `body`, `caption`
-  - Size: `large`, `medium`, `small`
-
-- **Line Heights**: `--ld-semantic-font-{style}-{size}-line-height`
-
-### Spacing
-- **Space Scale**: `--ld-primitive-scale-space-{size}`
-  - Sizes: `25` (2px), `50` (4px), `100` (8px), `150` (12px), `200` (16px), `250` (20px), `300` (24px), `400` (32px), `500` (40px), `600` (48px), `700` (56px), `800` (64px), `900` (72px), `1000` (80px)
-
-### Border Radius
-- **Radius Scale**: `--ld-primitive-scale-border-radius-{size}`
-  - Sizes: `25` (2px), `50` (4px), `100` (8px), `200` (16px), `300` (24px), `400` (32px), `round` (pill shape)
-
-## Common Token Mappings
-
-### Buttons
-
-| Button Type | Fill Token | Text Token | Border Token |
-|-------------|------------|------------|--------------|
-| Primary | `--ld-semantic-color-action-fill-primary` | `--ld-semantic-color-action-text-on-fill-primary` | N/A |
-| Secondary | `--ld-semantic-color-action-fill-secondary` | `--ld-semantic-color-action-text-on-fill-secondary` | `--ld-semantic-color-action-border-secondary` |
-| Tertiary | `--ld-semantic-color-action-fill-tertiary` | `--ld-semantic-color-action-text-on-fill-tertiary` | `--ld-semantic-color-action-border-tertiary` |
-| Destructive | `--ld-semantic-color-action-fill-negative` | `--ld-semantic-color-action-text-on-fill-negative` | N/A |
-
-### Alert/Notice Variants
-
-| Variant | Fill Token | Border Token | Text Token |
-|---------|------------|--------------|------------|
-| Info | `--ld-semantic-color-fill-info-subtle` | `--ld-semantic-color-border-info` | `--ld-semantic-color-text-on-fill-info-subtle` |
-| Success | `--ld-semantic-color-fill-positive-subtle` | `--ld-semantic-color-border-positive` | `--ld-semantic-color-text-on-fill-positive-subtle` |
-| Error | `--ld-semantic-color-fill-negative-subtle` | `--ld-semantic-color-border-negative` | `--ld-semantic-color-text-on-fill-negative-subtle` |
-| Warning | `--ld-semantic-color-fill-warning-subtle` | `--ld-semantic-color-border-warning` | `--ld-semantic-color-text-on-fill-warning-subtle` |
-
-### Form Inputs
-
-| Property | Token |
-|----------|-------|
-| Background | `--ld-semantic-color-field-fill` |
-| Border | `--ld-semantic-color-field-border` |
-| Border (hover) | `--ld-semantic-color-field-border-hovered` |
-| Border (focus) | `--ld-semantic-color-field-border-focused` |
-| Border (error) | `--ld-semantic-color-field-border-negative` |
-| Text | `--ld-semantic-color-field-text-on-fill` |
-| Placeholder | `--ld-semantic-color-field-text-subtle-on-fill` |
-
-## Builder.io Import Workflow
-
-When processing designs from Builder.io:
-
-1. **Analyze** the Figma design values
-2. **Map** each value to the closest semantic token
-3. **Generate** CSS using ONLY design tokens
-4. **Verify** no hard-coded values exist
-5. **Add** all interactive states (hover, focus, active, disabled)
-
-## Validation Checklist
-
-Before considering code complete, verify:
-
-- [ ] Zero hard-coded color values (`#000000`, `rgb()`, `hsl()`, etc.)
-- [ ] Zero hard-coded spacing values (`16px`, `1rem`, etc.)
-- [ ] Zero hard-coded font sizes or line heights
-- [ ] Zero new CSS custom properties created
-- [ ] All colors use semantic tokens (not primitive)
-- [ ] All interactive elements have state variants
-- [ ] All typography uses semantic font tokens
-- [ ] All spacing uses primitive space scale tokens
-
-## Error Messages
-
-If violations are detected, respond with:
-
-```
-❌ Design Token Violation Detected
-
-Hard-coded values found:
-- Line 23: color: #0053e2; → USE: var(--ld-semantic-color-action-fill-primary)
-- Line 24: padding: 16px; → USE: var(--ld-primitive-scale-space-200)
-
-Please update to use design tokens. See guidelines/DesignTokens.md for reference.
-```
-
-## Additional Resources
-
-- **Complete token documentation**: `guidelines/DesignTokens.md`
-- **Primitive tokens**: `styles/primitive.css`
-- **Semantic tokens**: `styles/semantic.css`
-- **Component examples**: `client/components/ui/`
+This rule ensures:
+- ✅ Theme switching works correctly across all components
+- ✅ Visual consistency across the application
+- ✅ Easy maintenance and updates (change once, update everywhere)
+- ✅ Accessibility compliance (proper contrast ratios maintained)
+- ✅ Brand consistency across Walmart, Walmart Business, and future themes
 
 ---
 
-**ENFORCEMENT LEVEL**: CRITICAL - NO EXCEPTIONS
+## 🚨 Golden Rule
 
-All generated code MUST comply with these rules. Code reviews MUST reject any violations.
+**NEVER hard-code visual properties. ALWAYS use semantic tokens.**
+
+```tsx
+// ❌ WRONG - Hard-coded values
+<div style={{ 
+  color: '#0053e2',
+  backgroundColor: '#ffffff',
+  padding: '16px',
+  borderRadius: '8px',
+  fontSize: '14px'
+}}>
+
+// ✅ CORRECT - Semantic tokens
+<div style={{ 
+  color: 'var(--ld-semantic-color-text-brand)',
+  backgroundColor: 'var(--ld-semantic-color-surface)',
+  padding: 'var(--ld-semantic-spacing-200)',
+  borderRadius: 'var(--ld-semantic-border-radius-large)',
+  fontSize: 'var(--ld-semantic-font-body-medium-size-b-s)'
+}}>
+```
+
+---
+
+## 📋 Token Usage by Category
+
+### 1. Colors
+
+**ALWAYS use semantic color tokens. NEVER use:**
+- Hex codes (`#0053e2`, `#ffffff`)
+- RGB values (`rgb(0, 83, 226)`)
+- Color names (`blue`, `white`, `red`)
+- Primitive tokens directly (use semantic instead)
+
+#### Text Colors
+
+```tsx
+// ✅ CORRECT
+color: 'var(--ld-semantic-color-text)'              // Primary text
+color: 'var(--ld-semantic-color-text-brand)'        // Brand text
+color: 'var(--ld-semantic-color-text-subtle)'       // Secondary text
+color: 'var(--ld-semantic-color-text-link)'         // Links
+color: 'var(--ld-semantic-color-text-negative)'     // Error text
+color: 'var(--ld-semantic-color-text-positive)'     // Success text
+color: 'var(--ld-semantic-color-text-disabled)'     // Disabled text
+
+// ❌ WRONG
+color: '#2e2f32'
+color: '#0053e2'
+color: 'black'
+color: 'var(--ld-primitive-color-gray-160)'  // Don't use primitives directly
+```
+
+#### Background Colors
+
+```tsx
+// ✅ CORRECT
+backgroundColor: 'var(--ld-semantic-color-surface)'           // Main surface
+backgroundColor: 'var(--ld-semantic-color-background)'        // Page background
+backgroundColor: 'var(--ld-semantic-color-background-subtle)' // Subtle background
+backgroundColor: 'var(--ld-semantic-color-fill-info)'         // Info background
+backgroundColor: 'var(--ld-semantic-color-fill-positive)'     // Success background
+backgroundColor: 'var(--ld-semantic-color-fill-negative)'     // Error background
+
+// ❌ WRONG
+backgroundColor: '#ffffff'
+backgroundColor: '#f8f8f8'
+backgroundColor: 'white'
+```
+
+#### Border Colors
+
+```tsx
+// ✅ CORRECT
+borderColor: 'var(--ld-semantic-color-border)'
+borderColor: 'var(--ld-semantic-color-border-subtle)'
+borderColor: 'var(--ld-semantic-color-border-brand)'
+borderColor: 'var(--ld-semantic-color-border-activated)'
+
+// ❌ WRONG
+borderColor: '#e3e4e5'
+borderColor: '#0053e2'
+```
+
+#### Button/Action Colors
+
+**Use Button component instead of custom buttons:**
+
+```tsx
+// ✅ CORRECT - Use Button component
+import { Button } from '@/components/ui/Button';
+<Button variant="primary">Click Me</Button>
+<Button variant="secondary">Cancel</Button>
+
+// ❌ WRONG - Custom button with hard-coded colors
+<button style={{ backgroundColor: '#0053e2', color: '#ffffff' }}>Click Me</button>
+
+// ⚠️ ACCEPTABLE - If you must create custom interactive element
+<div style={{
+  backgroundColor: 'var(--ld-semantic-color-action-fill-primary)',
+  color: 'var(--ld-semantic-color-action-text-on-fill-primary)'
+}}>
+```
+
+---
+
+### 2. Spacing
+
+**ALWAYS use semantic spacing tokens. NEVER hard-code px/rem values.**
+
+```tsx
+// ✅ CORRECT
+padding: 'var(--ld-semantic-spacing-200)'           // 16px
+margin: 'var(--ld-semantic-spacing-300)'            // 24px
+gap: 'var(--ld-semantic-spacing-150)'               // 12px
+paddingTop: 'var(--ld-semantic-spacing-400)'        // 32px
+
+// Component-specific spacing
+padding: 'var(--ld-semantic-spacing-component-padding-medium)'
+gap: 'var(--ld-semantic-spacing-component-gap-large)'
+
+// ❌ WRONG
+padding: '16px'
+margin: '24px'
+gap: '12px'
+padding: '1rem'
+```
+
+#### Spacing Scale Reference
+
+| Token | Value | Use Case |
+|-------|-------|----------|
+| `--ld-semantic-spacing-50` | 4px | Tight spacing |
+| `--ld-semantic-spacing-100` | 8px | Small spacing |
+| `--ld-semantic-spacing-150` | 12px | Default gap |
+| `--ld-semantic-spacing-200` | 16px | Standard padding |
+| `--ld-semantic-spacing-300` | 24px | Section spacing |
+| `--ld-semantic-spacing-400` | 32px | Large section spacing |
+| `--ld-semantic-spacing-600` | 48px | Page section spacing |
+
+---
+
+### 3. Typography
+
+**ALWAYS use semantic font tokens.**
+
+```tsx
+// ✅ CORRECT
+fontFamily: 'var(--ld-semantic-font-family-sans)'
+fontSize: 'var(--ld-semantic-font-body-medium-size-b-s)'
+fontWeight: '700'  // Numeric values are OK
+lineHeight: 'var(--ld-semantic-font-body-medium-line-height-b-s)'
+
+// ❌ WRONG
+fontFamily: 'Arial, sans-serif'
+fontFamily: 'Everyday Sans UI'  // Use token instead
+fontSize: '14px'
+fontSize: '1rem'
+```
+
+#### Typography Tokens Reference
+
+```tsx
+// Body text
+fontSize: 'var(--ld-semantic-font-body-small-size-b-s)'   // 12px
+fontSize: 'var(--ld-semantic-font-body-medium-size-b-s)'  // 14px
+fontSize: 'var(--ld-semantic-font-body-large-size-b-s)'   // 16px
+
+// Headings
+fontSize: 'var(--ld-semantic-font-heading-small-size-b-s)'   // 18px
+fontSize: 'var(--ld-semantic-font-heading-medium-size-b-s)'  // 20px
+fontSize: 'var(--ld-semantic-font-heading-large-size-b-s)'   // 24px
+
+// Line heights
+lineHeight: 'var(--ld-semantic-font-body-medium-line-height-b-s)'
+lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s)'
+
+// Font family
+fontFamily: 'var(--ld-semantic-font-family-sans)'  // Everyday Sans UI
+fontFamily: 'var(--ld-semantic-font-family-mono)'  // Everyday Sans Mono
+```
+
+---
+
+### 4. Border Radius
+
+```tsx
+// ✅ CORRECT
+borderRadius: 'var(--ld-semantic-border-radius-small)'    // 2px
+borderRadius: 'var(--ld-semantic-border-radius-medium)'   // 4px
+borderRadius: 'var(--ld-semantic-border-radius-large)'    // 8px
+borderRadius: 'var(--ld-semantic-border-radius-button)'   // Full round (pill)
+borderRadius: 'var(--ld-semantic-border-radius-card)'     // 8px
+
+// ❌ WRONG
+borderRadius: '4px'
+borderRadius: '8px'
+borderRadius: '9999px'
+borderRadius: '0.5rem'
+```
+
+---
+
+### 5. Shadows & Elevation
+
+```tsx
+// ✅ CORRECT
+boxShadow: 'var(--ld-semantic-elevation-100)'  // Subtle shadow
+boxShadow: 'var(--ld-semantic-elevation-200)'  // Medium shadow
+boxShadow: 'var(--ld-semantic-elevation-300)'  // Strong shadow
+
+// ❌ WRONG
+boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+```
+
+---
+
+### 6. Opacity
+
+```tsx
+// ✅ CORRECT
+opacity: 'var(--ld-semantic-opacity-disabled)'     // 0.4
+opacity: 'var(--ld-semantic-opacity-hover-overlay)' // 0.08
+opacity: 'var(--ld-semantic-opacity-backdrop)'     // 0.4
+
+// ⚠️ ACCEPTABLE - Numeric opacity values are OK for specific cases
+opacity: 0.5
+opacity: 1
+
+// ❌ WRONG for common states
+opacity: 0.4  // Use var(--ld-semantic-opacity-disabled) instead
+```
+
+---
+
+## 🎨 Using Existing Components
+
+**ALWAYS prefer existing LD 3.5 components over creating custom elements.**
+
+### Button
+
+```tsx
+// ✅ CORRECT - Use Button component
+import { Button } from '@/components/ui/Button';
+
+<Button variant="primary" size="medium">Save</Button>
+<Button variant="secondary" size="medium">Cancel</Button>
+<Button variant="destructive">Delete</Button>
+<Button variant="tertiary" fullWidth>Full Width</Button>
+
+// ❌ WRONG - Custom button
+<button className="bg-blue-500 px-4 py-2 rounded-full">Save</button>
+<div style={{ backgroundColor: '#0053e2', padding: '12px 24px' }}>Save</div>
+```
+
+### ButtonGroup
+
+```tsx
+// ✅ CORRECT
+import { ButtonGroup } from '@/components/ui/ButtonGroup';
+
+<ButtonGroup>
+  <Button variant="secondary">Cancel</Button>
+  <Button variant="primary">Save</Button>
+</ButtonGroup>
+
+// ❌ WRONG
+<div style={{ display: 'flex', gap: '12px' }}>
+  <button>Cancel</button>
+  <button>Save</button>
+</div>
+```
+
+### Tag / Badge
+
+```tsx
+// ✅ CORRECT
+import { Tag } from '@/components/ui/tag';
+import { OLQTag } from '@/components/ui/olq-tag';
+
+<Tag variant="success">Active</Tag>
+<OLQTag value="85%" size="md" />
+
+// ❌ WRONG
+<span style={{ 
+  backgroundColor: '#eaf3e6', 
+  color: '#2a8703',
+  padding: '4px 8px',
+  borderRadius: '4px'
+}}>
+  Active
+</span>
+```
+
+---
+
+## 🔍 Code Review Checklist
+
+Before submitting code, verify:
+
+### ✅ DO:
+- [ ] All colors use `var(--ld-semantic-color-*)`
+- [ ] All spacing uses `var(--ld-semantic-spacing-*)`
+- [ ] All typography uses `var(--ld-semantic-font-*)`
+- [ ] All border radius uses `var(--ld-semantic-border-radius-*)`
+- [ ] Existing LD 3.5 components used where possible
+- [ ] Theme switching tested and works correctly
+- [ ] No hard-coded hex codes, RGB values, or color names
+
+### ❌ DON'T:
+- [ ] No hard-coded colors (`#0053e2`, `rgb(...)`, `blue`)
+- [ ] No hard-coded spacing (`16px`, `1rem`)
+- [ ] No hard-coded font sizes (`14px`, `1rem`)
+- [ ] No primitive tokens used directly (`--ld-primitive-color-blue-100`)
+- [ ] No custom buttons when Button component exists
+- [ ] No custom tags when Tag component exists
+
+---
+
+## 🛠️ Migration Guide for Existing Code
+
+If you find code with hard-coded values, migrate it:
+
+### Example 1: Hard-coded Button
+
+**Before:**
+```tsx
+<button style={{
+  backgroundColor: '#0053e2',
+  color: '#ffffff',
+  padding: '12px 24px',
+  borderRadius: '9999px',
+  fontSize: '14px',
+  fontWeight: 700,
+  border: 'none'
+}}>
+  Click Me
+</button>
+```
+
+**After:**
+```tsx
+import { Button } from '@/components/ui/Button';
+
+<Button variant="primary" size="medium">
+  Click Me
+</Button>
+```
+
+### Example 2: Hard-coded Card
+
+**Before:**
+```tsx
+<div style={{
+  backgroundColor: '#ffffff',
+  padding: '32px',
+  borderRadius: '8px',
+  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+  marginBottom: '24px'
+}}>
+  <h2 style={{ fontSize: '24px', fontWeight: 700, color: '#2e2f32' }}>
+    Title
+  </h2>
+  <p style={{ fontSize: '14px', color: '#74767c' }}>
+    Description
+  </p>
+</div>
+```
+
+**After:**
+```tsx
+<div style={{
+  backgroundColor: 'var(--ld-semantic-color-surface)',
+  padding: 'var(--ld-semantic-spacing-400)',
+  borderRadius: 'var(--ld-semantic-border-radius-card)',
+  boxShadow: 'var(--ld-semantic-elevation-100)',
+  marginBottom: 'var(--ld-semantic-spacing-300)'
+}}>
+  <h2 style={{
+    fontSize: 'var(--ld-semantic-font-heading-large-size-b-s)',
+    fontWeight: 700,
+    color: 'var(--ld-semantic-color-text)',
+    fontFamily: 'var(--ld-semantic-font-family-sans)'
+  }}>
+    Title
+  </h2>
+  <p style={{
+    fontSize: 'var(--ld-semantic-font-body-medium-size-b-s)',
+    color: 'var(--ld-semantic-color-text-subtle)',
+    fontFamily: 'var(--ld-semantic-font-family-sans)'
+  }}>
+    Description
+  </p>
+</div>
+```
+
+### Example 3: Hard-coded Status Badge
+
+**Before:**
+```tsx
+<span style={{
+  backgroundColor: '#eaf3e6',
+  color: '#2a8703',
+  padding: '4px 12px',
+  borderRadius: '4px',
+  fontSize: '12px',
+  fontWeight: 600
+}}>
+  Active
+</span>
+```
+
+**After:**
+```tsx
+import { Tag } from '@/components/ui/tag';
+
+<Tag variant="success" size="sm">Active</Tag>
+```
+
+---
+
+## 📚 Token Reference Quick Guide
+
+### Common Color Tokens
+
+```css
+/* Text */
+--ld-semantic-color-text                    /* Primary text */
+--ld-semantic-color-text-brand              /* Brand blue */
+--ld-semantic-color-text-subtle             /* Secondary text */
+--ld-semantic-color-text-link               /* Link text */
+--ld-semantic-color-text-negative           /* Error text */
+--ld-semantic-color-text-positive           /* Success text */
+
+/* Backgrounds */
+--ld-semantic-color-surface                 /* White surface */
+--ld-semantic-color-background              /* Page background */
+--ld-semantic-color-background-subtle       /* Subtle gray bg */
+
+/* Borders */
+--ld-semantic-color-border                  /* Standard border */
+--ld-semantic-color-border-subtle           /* Light border */
+--ld-semantic-color-border-brand            /* Brand border */
+
+/* Actions (Buttons) */
+--ld-semantic-color-action-fill-primary                /* Primary button bg */
+--ld-semantic-color-action-fill-primary-hovered        /* Hover state */
+--ld-semantic-color-action-fill-secondary              /* Secondary button bg */
+--ld-semantic-color-action-text-on-fill-primary        /* Text on primary button */
+--ld-semantic-color-action-focus-outline               /* Focus ring */
+
+/* Status/Fills */
+--ld-semantic-color-fill-info               /* Info background */
+--ld-semantic-color-fill-positive           /* Success background */
+--ld-semantic-color-fill-negative           /* Error background */
+--ld-semantic-color-fill-warning            /* Warning background */
+```
+
+### Common Spacing Tokens
+
+```css
+--ld-semantic-spacing-50      /* 4px   - Tight */
+--ld-semantic-spacing-100     /* 8px   - Small */
+--ld-semantic-spacing-150     /* 12px  - Default gap */
+--ld-semantic-spacing-200     /* 16px  - Standard padding */
+--ld-semantic-spacing-300     /* 24px  - Section spacing */
+--ld-semantic-spacing-400     /* 32px  - Large section */
+--ld-semantic-spacing-600     /* 48px  - Page section */
+```
+
+---
+
+## 🎯 Why This Matters
+
+### Theme Switching
+
+When users switch from "Walmart" to "Walmart Business" theme:
+- ✅ **Tokenized code**: All colors update automatically
+- ❌ **Hard-coded colors**: Buttons stay blue, breaking the theme
+
+**Example:**
+
+```tsx
+// ✅ Updates automatically when theme switches
+<Button variant="primary">Save</Button>
+// Walmart theme: #0053e2 (standard blue)
+// B2B theme: #002e99 (darker navy)
+
+// ❌ Always stays #0053e2, breaking B2B theme
+<button style={{ backgroundColor: '#0053e2' }}>Save</button>
+```
+
+### Brand Consistency
+
+Tokens ensure:
+- All primary buttons use the same blue
+- All headings use the same font size/weight
+- All spacing is consistent
+- Easy global updates (change token once, updates everywhere)
+
+### Accessibility
+
+Semantic tokens maintain:
+- Proper contrast ratios in all themes
+- Consistent focus indicators
+- Readable text on all backgrounds
+- WCAG AA compliance
+
+---
+
+## 🚫 Common Violations & Fixes
+
+### Violation 1: Hard-coded Brand Color
+
+```tsx
+// ❌ WRONG
+<h1 style={{ color: '#0053e2' }}>Walmart Connect</h1>
+
+// ✅ CORRECT
+<h1 style={{ color: 'var(--ld-semantic-color-text-brand)' }}>Walmart Connect</h1>
+```
+
+### Violation 2: Inline Padding
+
+```tsx
+// ❌ WRONG
+<div style={{ padding: '16px' }}>Content</div>
+
+// ✅ CORRECT
+<div style={{ padding: 'var(--ld-semantic-spacing-200)' }}>Content</div>
+```
+
+### Violation 3: Custom Button
+
+```tsx
+// ❌ WRONG
+<div 
+  onClick={handleClick}
+  style={{ 
+    backgroundColor: '#0053e2',
+    color: 'white',
+    padding: '12px 24px',
+    borderRadius: '9999px',
+    cursor: 'pointer'
+  }}
+>
+  Click Me
+</div>
+
+// ✅ CORRECT
+import { Button } from '@/components/ui/Button';
+<Button variant="primary" size="medium" onClick={handleClick}>
+  Click Me
+</Button>
+```
+
+### Violation 4: Font Size
+
+```tsx
+// ❌ WRONG
+<p style={{ fontSize: '14px' }}>Text</p>
+
+// ✅ CORRECT
+<p style={{ fontSize: 'var(--ld-semantic-font-body-medium-size-b-s)' }}>Text</p>
+```
+
+---
+
+## 📖 Additional Resources
+
+- **Token Reference**: See `client/styles/themes/base/semantic.css` for all available tokens
+- **Primitive Tokens**: See `client/styles/themes/base/primitive.css` (use semantic instead)
+- **Component Library**: Visit `/component-library` to see all components and tokens in action
+- **Theme Switching Guide**: See `guidelines/RULE_ThemeSwitcher.md`
+- **Component Inventory**: See custom rules in codebase for available LD 3.5 components
+
+---
+
+## 🎓 Summary
+
+**Three Rules to Remember:**
+
+1. **NEVER hard-code colors** - Always use `var(--ld-semantic-color-*)`
+2. **ALWAYS use existing components** - Button, Tag, ButtonGroup, etc.
+3. **TEST theme switching** - Verify your code works in all themes
+
+By following this rule, you ensure:
+- ✅ Theme switching works perfectly
+- ✅ Visual consistency across the app
+- ✅ Easy maintenance and updates
+- ✅ Accessibility compliance
+- ✅ Brand consistency
+
+**Remember: If you're typing a hex code, you're doing it wrong!** 🎨
