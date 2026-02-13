@@ -8,6 +8,7 @@ import { CalloutExample } from '@/components/CalloutExample';
 import { CardHeaderExample } from '@/components/CardHeaderExample';
 import { CheckboxExample } from '@/components/CheckboxExample';
 import { ChipExample } from '@/components/ChipExample';
+import { ContentMessageExample } from '@/components/ContentMessageExample';
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Badge } from '@/components/ui/Badge';
@@ -35,6 +36,7 @@ export default function ComponentLibrary() {
     { id: 'chips', name: 'Chips', keywords: ['chip', 'filter', 'select', 'toggle', 'pill', 'tag', 'interactive'] },
     { id: 'callouts', name: 'Callouts', keywords: ['callout', 'tooltip', 'nubbin', 'coaching', 'onboarding', 'pointer'] },
     { id: 'cards', name: 'Cards', keywords: ['card', 'container', 'panel'] },
+    { id: 'content-messages', name: 'Content Messages', keywords: ['content message', 'error', 'success', 'permission', 'critical', 'blocking', 'state', 'info', 'warning'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
   ];
 
@@ -300,7 +302,7 @@ export default function ComponentLibrary() {
           Quick Navigation
         </h3>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Callouts', 'Cards', 'Design Tokens'].map(section => (
+          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Callouts', 'Cards', 'Content Messages', 'Design Tokens'].map(section => (
             <a
               key={section}
               href={`#${section.toLowerCase().replace(' ', '-')}`}
@@ -504,6 +506,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="cards" title="Cards" description="Card containers with headers, content areas, and support for leading/trailing elements">
         <ComponentShowcase>
           <CardHeaderExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Content Messages Section */}
+      <Section id="content-messages" title="Content Messages" description="Critical, blocking messages for errors, permissions, and states that prevent user progress">
+        <ComponentShowcase>
+          <ContentMessageExample />
         </ComponentShowcase>
       </Section>
 

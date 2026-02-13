@@ -1,13 +1,13 @@
 ---
 title: Content Message
 scope: component
-status: draft
+status: stable
 owner: design-system
-last_updated: 2025-12-19
+last_updated: 2025-02-13
 ---
 
 ## Purpose
-Content Messages communicate **critical states** that block or significantly impact a user’s ability to proceed (for example: outages, permissions, or an error that prevents content from rendering). They reduce confusion by pairing clear, direct copy with suggested next actions in a consistent layout.
+Content Messages communicate **critical states** that block or significantly impact a user's ability to proceed (for example: outages, permissions, or an error that prevents content from rendering). They reduce confusion by pairing clear, direct copy with suggested next actions in a consistent layout.
 
 ## Rules
 - **MUST** use the Living Design Content Message component.
@@ -16,11 +16,11 @@ Content Messages communicate **critical states** that block or significantly imp
 - **MUST** provide a clear way forward (an action or next step). No dead ends.
 - **MUST NOT** use Content Message for inline, user-correctable form errors. Use [Alert](/components/alert) instead.
 - **MUST NOT** use Content Message for issues that must remain continuously visible while the user continues working. Use [Banner](/components/banner) instead.
-- **SHOULD** avoid “try again” loops when users cannot reasonably self-resolve within 1–2 attempts; provide an alternate action.
+- **SHOULD** avoid "try again" loops when users cannot reasonably self-resolve within 1–2 attempts; provide an alternate action.
 
 ## Usage
 Use Content Message to display critical messages to users, including:
-- Error messages (content can’t load, critical feature unavailable)
+- Error messages (content can't load, critical feature unavailable)
 - Success or confirmation messages (when presented as a standalone state)
 - Information or instructions (when the message blocks progress until acknowledged)
 - Permissions (missing access prevents moving forward)
@@ -36,7 +36,7 @@ Content Messages can be used on a **full page** or inside containers such as Car
 
 ## Variants
 Use documented variants only (names differ by implementation). Common intents:
-- **Error**: Something failed; content or a feature can’t be used.
+- **Error**: Something failed; content or a feature can't be used.
 - **Success / Confirmation**: Operation completed; user can proceed.
 - **Info / Instructions**: Guidance required before proceeding.
 - **Permission**: Access is required; user must request/enable permission.
@@ -51,7 +51,7 @@ Use documented variants only (names differ by implementation). Common intents:
 When the error is related to displaying content, place the Content Message **in the content area** where the content would normally render. This preserves context and user flow.
 
 ### Service-related errors
-When the error relates to a service impacting one or more features but not tied to a specific UI element, the Content Message may be placed in a temporary overlay (e.g., Modal or Bottom Sheet) to communicate the issue without forcing navigation away from the user’s current step.
+When the error relates to a service impacting one or more features but not tied to a specific UI element, the Content Message may be placed in a temporary overlay (e.g., Modal or Bottom Sheet) to communicate the issue without forcing navigation away from the user's current step.
 
 ## Content strategy
 Keep the message simple and direct. Use specifics and offer a path forward.
@@ -67,7 +67,7 @@ Keep the message simple and direct. Use specifics and offer a path forward.
 - **Title**: State what just happened (specific if possible).
 - **Text label**: State what the user can do next; keep it actionable.
 - **Actions**: Make the action label describe the outcome.
-  - Avoid vague actions like “Try again”.
+  - Avoid vague actions like "Try again".
   - People mostly scan the first 1–2 words—lead with the most important words.
 
 ## Accessibility
@@ -80,67 +80,91 @@ Keep the message simple and direct. Use specifics and offer a path forward.
 - Prefer component defaults (Content Message should be token-wired for color, typography, spacing, radius).
 - Only use tokens for layout around the Content Message (spacing/gaps), not for restyling its internals.
 
-## React usage (example)
-Update import path after wiring in `guidelines/components/overview-components.md`.
+## Props Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `React.ReactNode` | *required* | The heading — states what happened |
+| `children` | `React.ReactNode` | *required* | The description — states what the user can do next |
+| `variant` | `'error' \| 'success' \| 'info' \| 'warning' \| 'neutral'` | `'neutral'` | Color-codes the message severity |
+| `media` | `React.ReactNode` | — | Optional icon or illustration above the content |
+| `actions` | `React.ReactNode` | — | Optional buttons/links below the description |
+| `size` | `'small' \| 'large'` | `'small'` | Controls padding and typography scale |
+| `headingLevel` | `'h2' \| 'h3' \| 'h4'` | `'h2'` | Semantic heading level for the title |
+| `UNSAFE_className` | `string` | — | Escape hatch for additional CSS classes |
+| `UNSAFE_style` | `React.CSSProperties` | — | Escape hatch for inline styles |
+
+## Design Tokens
+
+| Token | Usage |
+|-------|-------|
+| `--ld-semantic-color-fill-negative-subtle` | Error variant background |
+| `--ld-semantic-color-border-negative` | Error variant border |
+| `--ld-semantic-color-text-on-fill-negative-subtle` | Error variant text |
+| `--ld-semantic-color-fill-positive-subtle` | Success variant background |
+| `--ld-semantic-color-border-positive` | Success variant border |
+| `--ld-semantic-color-text-on-fill-positive-subtle` | Success variant text |
+| `--ld-semantic-color-fill-info-subtle` | Info variant background |
+| `--ld-semantic-color-border-info` | Info variant border |
+| `--ld-semantic-color-text-on-fill-info-subtle` | Info variant text |
+| `--ld-semantic-color-fill-warning-subtle` | Warning variant background |
+| `--ld-semantic-color-border-warning` | Warning variant border |
+| `--ld-semantic-color-text-on-fill-warning-subtle` | Warning variant text |
+| `--ld-semantic-color-surface` | Neutral variant background |
+| `--ld-semantic-color-border-subtlest` | Neutral variant border |
+| `--ld-primitive-scale-border-radius-100` | Container border radius |
+| `--ld-primitive-scale-space-*` | Internal spacing |
+
+## React usage
 
 ```tsx
-import * as React from "react";
-import { ContentMessage, Button } from "REPLACE_ME_COMPONENT_IMPORT_PATH";
+import { ContentMessage } from "@/components/ui/ContentMessage";
+import { Button } from "@/components/ui/Button";
+import { ButtonGroup } from "@/components/ui/ButtonGroup";
+import { ExclamationCircle } from "@/components/icons";
 
-type Props = {
-  state: "error" | "permission" | "info" | "success";
-};
-
-export function ContentMessageExample({ state }: Props) {
-  if (state === "error") {
-    return (
-      <ContentMessage
-        // Adapt prop names to your actual API:
-        // intent="error"
-        // title="We can’t load your orders"
-        // description="Check your connection, then try again."
-        intent="error"
-        title="We can’t load your orders"
-        description="Check your connection, then try again."
-        actions={
-          <>
-            <Button onPress={() => window.location.reload()}>Reload page</Button>
-            <Button variant="secondary" onPress={() => {}}>
-              Contact support
-            </Button>
-          </>
-        }
-      />
-    );
+// Error state with media and actions
+<ContentMessage
+  variant="error"
+  title="We can't load your orders"
+  media={<ExclamationCircle style={{ width: 48, height: 48 }} />}
+  actions={
+    <ButtonGroup>
+      <Button variant="primary" size="small" onClick={() => window.location.reload()}>
+        Reload page
+      </Button>
+      <Button variant="secondary" size="small">
+        Contact support
+      </Button>
+    </ButtonGroup>
   }
+>
+  Check your connection, then try again.
+</ContentMessage>
 
-  if (state === "permission") {
-    return (
-      <ContentMessage
-        intent="permission"
-        title="Camera access required"
-        description="Enable camera access to scan your card."
-        actions={
-          <>
-            <Button onPress={() => {}}>Open settings</Button>
-            <Button variant="secondary" onPress={() => {}}>
-              Choose another method
-            </Button>
-          </>
-        }
-      />
-    );
-  }
+// Success confirmation
+<ContentMessage
+  variant="success"
+  title="All set"
+  actions={<Button variant="primary" size="small">Continue</Button>}
+>
+  You can continue to the next step.
+</ContentMessage>
 
-  return (
-    <ContentMessage
-      intent={state}
-      title="All set"
-      description="You can continue to the next step."
-      actions={<Button onPress={() => {}}>Continue</Button>}
-    />
-  );
-}
+// Large full-page blocking state
+<ContentMessage
+  size="large"
+  variant="error"
+  title="Service unavailable"
+  headingLevel="h2"
+>
+  We're experiencing an outage. Please try again later.
+</ContentMessage>
+
+// Neutral empty state
+<ContentMessage variant="neutral" title="No campaigns yet">
+  Create your first campaign to start reaching customers.
+</ContentMessage>
 ```
 
 ## Best practices
@@ -149,17 +173,16 @@ export function ContentMessageExample({ state }: Props) {
 - Use when an error prevents the whole application, or a single feature, from working as expected.
 - Use when a critical error or permission prevents the user from moving forward in their journey.
 
-### Don’t use when
-- Don’t use when an error is the result of a user action. Use an [Alert](/components/alert) instead.
-- Don’t use when an issue needs to be constantly visible to the user. Use a [Banner](/components/banner) instead.
+### Don't use when
+- Don't use when an error is the result of a user action. Use an [Alert](/components/alert) instead.
+- Don't use when an issue needs to be constantly visible to the user. Use a [Banner](/components/banner) instead.
 
-## Do / Don’t
+## Do / Don't
 ### Do
-- Do place the Content Message so users don’t have to scroll within a container to find the message and actions.
+- Do place the Content Message so users don't have to scroll within a container to find the message and actions.
 - Do remove optional media if space is constrained and you need to prioritize text and actions.
-- Do provide an alternate path forward if “Try again” may not work quickly (e.g., “Contact support”, “Use a different method”, “Save and exit”).
+- Do provide an alternate path forward if "Try again" may not work quickly (e.g., "Contact support", "Use a different method", "Save and exit").
 
-### Don’t
-- Don’t trap users in repeated “Try again” loops when they can’t self-resolve.
-- Don’t use Content Message for inline validation errors or non-blocking feedback.
-
+### Don't
+- Don't trap users in repeated "Try again" loops when they can't self-resolve.
+- Don't use Content Message for inline validation errors or non-blocking feedback.
