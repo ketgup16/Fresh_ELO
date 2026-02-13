@@ -5,51 +5,158 @@ import { BreadcrumbExample } from '@/components/BreadcrumbExample';
 import { LinkExample } from '@/components/LinkExample';
 import IconButtonExample from '@/components/IconButtonExample';
 import { CardHeaderExample } from '@/components/CardHeaderExample';
-import {
-  Search, Settings, Download, Upload, ExternalLink,
-  ChevronDown, ChevronUp, ChevronLeft, ChevronRight,
-  Check, X, Dot, Circle, MoreHorizontal, PanelLeft,
-  HelpCircle, User, RotateCcw, GripVertical, Calendar,
-  Plus, Edit, Trash2, Eye, Sliders,
-  ArrowUp, ArrowDown, ArrowLeft, ArrowRight,
-  Bell, Article, Ban, Barcode,
-  SGHome, SGShareImpact,
-  CleaningSpray, DishSoap, ImageIcon, LaundryDetergent,
-  MeasurementConsole, PaperTowels, Reports, Sponge,
-  SponsoredBrandsCard, SponsoredProductsCard, SponsoredVideosCard
-} from '@/components/icons';
+import * as Icons from '@/components/icons';
 
 export default function ComponentLibrary() {
+  // Organize icons by category
+  const iconCategories = {
+    'Navigation & Arrows': [
+      'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
+      'ArrowUpDown', 'ArrowUpLeft', 'ArrowUpRight',
+      'ArrowsLeftRight', 'ArrowsUpDown', 'ArrowsLeftRightCurve',
+      'ChevronUp', 'ChevronDown', 'ChevronLeft', 'ChevronRight',
+      'CaretDown', 'ArrowCircleDot'
+    ],
+    'Actions & Controls': [
+      'Check', 'X', 'Close', 'Plus', 'Minus',
+      'Edit', 'Pencil', 'Trash', 'Trash2',
+      'Download', 'Upload', 'Refresh', 'RotateCcw', 'Undo',
+      'Search', 'Filter', 'Settings', 'Gear', 'Sliders',
+      'More', 'MoreHorizontal', 'MoreVertical', 'Menu',
+      'Drag', 'GripVertical'
+    ],
+    'Communication': [
+      'Email', 'EmailFill', 'Chat', 'ChatBubbleSquare',
+      'Phone', 'Bell', 'Share', 'ShareAndroid',
+      'Microphone', 'MicrophoneSlash', 'Speaker', 'SpeakerSlash',
+      'VoiceSearch'
+    ],
+    'Media & Files': [
+      'Image', 'ImageIcon', 'Camera', 'Play', 'PlayFill',
+      'Pause', 'VideoArrowUp', 'VideoArrowUpFill',
+      'Article', 'Note', 'DocumentCorner', 'DocumentExclamation',
+      'BoxDocument', 'BoxDocumentFill', 'Clipboard',
+      'PaperClip', 'Printer', 'ScanDocument'
+    ],
+    'User & Account': [
+      'User', 'UserCircle', 'UserCircleFill', 'UserPlus',
+      'UserBook', 'UserGraph', 'UsersArrows', 'UsersFill',
+      'IdCard', 'CardUser', 'SignIn', 'SignOut'
+    ],
+    'Commerce & Shopping': [
+      'Cart', 'CartFill', 'CartArrow', 'Tag', 'TagFill',
+      'Dollar', 'DollarCircle', 'DollarCircleFill',
+      'Receipt', 'ReceiptPercent', 'ReceiptPercentFill',
+      'CreditCard', 'CreditCardFill', 'Wallet',
+      'Gift', 'GiftFill', 'Coupon', 'Barcode', 'QrCode',
+      'UpcLabel', 'UpcLabelCancel'
+    ],
+    'Location & Maps': [
+      'Location', 'CurrentLocation', 'Map', 'MapRoute', 'MapRouteFill',
+      'Pin', 'PinFill', 'PinLine', 'Globe',
+      'Facility', 'Home', 'SGHome', 'Building'
+    ],
+    'Store & Retail': [
+      'Store', 'StoreFill', 'StoreAwning', 'StoreAwningFill',
+      'StoreClock', 'StoreLocation', 'StoreMap',
+      'Associate', 'Services', 'ServicesFill',
+      'Returns', 'Restroom'
+    ],
+    'Charts & Data': [
+      'BarGraph', 'BarGraphFill', 'BarGraphThin',
+      'LineGraph', 'LineGraphBars', 'LineGraphXY',
+      'PieChart', 'DonutChart', 'BubbleChart', 'BubbleChartFill',
+      'ScatterChart', 'ChartWaterfall', 'Reports'
+    ],
+    'Status & Indicators': [
+      'CheckCircle', 'CheckCircleFill', 'InfoCircle', 'InfoCircleFill',
+      'ExclamationCircle', 'ExclamationCircleFill',
+      'CloseCircleFill', 'QuestionCircle', 'HelpCircle',
+      'Warning', 'WarningFill', 'Ban',
+      'Flag', 'FlagFill', 'FlagStrike',
+      'Star', 'StarFill', 'StarHalf',
+      'ThumbUp', 'ThumbUpFill', 'ThumbDown', 'ThumbDownFill',
+      'Heart', 'HeartFill', 'Spark'
+    ],
+    'Time & Calendar': [
+      'Calendar', 'CalendarMoney', 'Clock', 'History', 'Hourglass'
+    ],
+    'Logistics & Shipping': [
+      'Box', 'BoxArrowUp', 'BoxArrowDown', 'BoxCorners',
+      'BoxOpenArrowDown', 'BoxShelves', 'BoxSpark', 'BoxSparkFill',
+      'Truck', 'Trailer', 'TrailerArrowRight', 'TrailerDoor',
+      'Forklift', 'PalletBoxes', 'ThreeDBoxArrows',
+      'FedExBox', 'DockDoor', 'Bulkhead'
+    ],
+    'Products': [
+      'CleaningSpray', 'DishSoap', 'LaundryDetergent',
+      'PaperTowels', 'Sponge', 'BottleEach', 'BowlWhisk',
+      'FruitCarton', 'FruitEach', 'Shirt'
+    ],
+    'Tools & Utilities': [
+      'Wrench', 'Toolbox', 'ToolboxFill', 'RulerArrow', 'RulerArrowFill',
+      'Scale', 'MeasurementConsole', 'Crop', 'Crosshairs',
+      'ZoomIn', 'ZoomOut', 'PanelLeft', 'Columns'
+    ],
+    'Security & Verification': [
+      'Lock', 'LockOpen', 'ShieldCheck', 'ShieldCheckFill',
+      'Eye', 'EyeSlash'
+    ],
+    'Technology': [
+      'Bluetooth', 'WiFi', 'Mobile', 'Airplane',
+      'Headphones', 'Headset', 'Sound'
+    ],
+    'Business & Finance': [
+      'Bank', 'Bill', 'MoneyArrowLeft', 'MoneyArrowRight',
+      'HouseMoney', 'Suitcase', 'SuitcaseFill',
+      'Trademark', 'TrademarkFill'
+    ],
+    'Advertising': [
+      'SponsoredBrandsCard', 'SponsoredProductsCard', 'SponsoredVideosCard',
+      'SGShareImpact', 'CardsHashtag', 'CardsStar',
+      'Megaphone', 'MegaphoneFill', 'TargetArrow', 'TargetArrowFill'
+    ],
+    'Miscellaneous': [
+      'Dot', 'Circle', 'Grid', 'GridFill', 'List', 'BulletList',
+      'Brackets', 'BoldText', 'Placeholder', 'AppSwitcher',
+      'Shuffle', 'SortUp', 'SortDown', 'SortingArrows',
+      'Trophy', 'Medal', 'Rocket', 'RocketFill',
+      'LightBulb', 'Flash', 'FlashFill', 'FlashSlash',
+      'Flames', 'FuelPump', 'Bug', 'Dropper',
+      'ConnectLogo', 'Mortarboard'
+    ]
+  };
+
   return (
     <div style={{ 
       minHeight: '100vh', 
-      backgroundColor: '#F9FAFB',
+      backgroundColor: 'var(--ld-semantic-color-background-subtle)',
       padding: '40px 60px'
     }}>
       {/* Page Header */}
       <div style={{ 
         marginBottom: '40px',
-        backgroundColor: 'white',
+        backgroundColor: 'var(--ld-semantic-color-surface)',
         padding: '32px',
-        borderRadius: '12px',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+        borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+        boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
         <h1 style={{ 
           fontSize: '32px', 
           fontWeight: 700,
-          fontFamily: 'var(--ld-semantic-font-family-sans, "Everyday Sans UI", sans-serif)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          color: 'var(--ld-semantic-color-text)',
           marginBottom: '12px'
         }}>
           Living Design 3.5 Component Library
         </h1>
         <p style={{
           fontSize: '16px',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          fontFamily: 'var(--ld-semantic-font-family-sans, "Everyday Sans UI", sans-serif)',
+          color: 'var(--ld-semantic-color-text-subtle)',
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
           lineHeight: '1.5'
         }}>
-          A comprehensive showcase of all UI components in the Walmart Connect Ad Center. 
+          A comprehensive showcase of all UI components and {Object.values(iconCategories).flat().length}+ icons in the Walmart Connect Ad Center. 
           Each component follows the Living Design 3.5 specification with proper accessibility, 
           semantic tokens, and responsive behavior.
         </p>
@@ -58,16 +165,16 @@ export default function ComponentLibrary() {
       {/* Navigation */}
       <div style={{
         marginBottom: '32px',
-        backgroundColor: 'white',
+        backgroundColor: 'var(--ld-semantic-color-surface)',
         padding: '20px',
-        borderRadius: '8px',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+        borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+        boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
         <h3 style={{ 
           fontSize: '14px', 
           fontWeight: 600, 
           marginBottom: '12px',
-          color: '#74767C',
+          color: 'var(--ld-semantic-color-text-subtle)',
           textTransform: 'uppercase',
           letterSpacing: '0.5px'
         }}>
@@ -79,9 +186,9 @@ export default function ComponentLibrary() {
               key={section}
               href={`#${section.toLowerCase().replace(' ', '-')}`}
               style={{
-                padding: '8px 16px',
-                backgroundColor: '#F3F4F6',
-                color: '#2E2F32',
+                padding: 'var(--ld-primitive-scale-space-100) var(--ld-primitive-scale-space-200)',
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                color: 'var(--ld-semantic-color-text)',
                 borderRadius: '20px',
                 fontSize: '14px',
                 textDecoration: 'none',
@@ -89,14 +196,12 @@ export default function ComponentLibrary() {
                 border: '1px solid transparent'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#0071DC';
-                e.currentTarget.style.color = 'white';
-                e.currentTarget.style.borderColor = '#0071DC';
+                e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-action-fill-primary)';
+                e.currentTarget.style.color = 'var(--ld-semantic-color-action-text-on-fill-primary)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#F3F4F6';
-                e.currentTarget.style.color = '#2E2F32';
-                e.currentTarget.style.borderColor = 'transparent';
+                e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
+                e.currentTarget.style.color = 'var(--ld-semantic-color-text)';
               }}
             >
               {section}
@@ -106,102 +211,86 @@ export default function ComponentLibrary() {
       </div>
 
       {/* Icons Section */}
-      <Section id="icons" title="Icons" description="LD 3.5-styled icon library with consistent stroke widths, semantic colors, and accessibility">
+      <Section id="icons" title="Icons" description={`Complete icon library with ${Object.values(iconCategories).flat().length}+ React components organized by category`}>
         <div style={{
-          backgroundColor: 'white',
-          borderRadius: '8px',
+          backgroundColor: 'var(--ld-semantic-color-surface)',
+          borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
           padding: '32px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+          boxShadow: 'var(--ld-semantic-elevation-100)'
         }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '20px', color: '#2E2F32' }}>LD 3.5 Core Icons</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-            <IconShowcase icon={<Search />} name="Search" />
-            <IconShowcase icon={<Settings />} name="Settings" />
-            <IconShowcase icon={<Download />} name="Download" />
-            <IconShowcase icon={<Upload />} name="Upload" />
-            <IconShowcase icon={<ExternalLink />} name="ExternalLink" />
-            <IconShowcase icon={<ChevronDown />} name="ChevronDown" />
-            <IconShowcase icon={<ChevronUp />} name="ChevronUp" />
-            <IconShowcase icon={<ChevronLeft />} name="ChevronLeft" />
-            <IconShowcase icon={<ChevronRight />} name="ChevronRight" />
-            <IconShowcase icon={<Check />} name="Check" />
-            <IconShowcase icon={<X />} name="X" />
-            <IconShowcase icon={<Dot />} name="Dot" />
-            <IconShowcase icon={<Circle />} name="Circle" />
-            <IconShowcase icon={<MoreHorizontal />} name="MoreHorizontal" />
-            <IconShowcase icon={<PanelLeft />} name="PanelLeft" />
-            <IconShowcase icon={<HelpCircle />} name="HelpCircle" />
-            <IconShowcase icon={<User />} name="User" />
-            <IconShowcase icon={<RotateCcw />} name="RotateCcw" />
-            <IconShowcase icon={<GripVertical />} name="GripVertical" />
-            <IconShowcase icon={<Calendar />} name="Calendar" />
-            <IconShowcase icon={<Plus />} name="Plus" />
-            <IconShowcase icon={<Edit />} name="Edit" />
-            <IconShowcase icon={<Trash2 />} name="Trash2" />
-            <IconShowcase icon={<Eye />} name="Eye" />
-            <IconShowcase icon={<Sliders />} name="Sliders" />
-          </div>
+          {Object.entries(iconCategories).map(([category, iconNames]) => (
+            <div key={category} style={{ marginBottom: '48px' }}>
+              <h3 style={{ 
+                fontSize: '18px', 
+                fontWeight: 600, 
+                marginBottom: '20px', 
+                color: 'var(--ld-semantic-color-text)',
+                fontFamily: 'var(--ld-semantic-font-family-sans)'
+              }}>
+                {category} ({iconNames.length})
+              </h3>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', 
+                gap: '16px'
+              }}>
+                {iconNames.map(iconName => {
+                  const IconComponent = (Icons as any)[iconName];
+                  if (!IconComponent) return null;
+                  
+                  return (
+                    <IconShowcase 
+                      key={iconName}
+                      icon={<IconComponent />} 
+                      name={iconName} 
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          ))}
 
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '20px', color: '#2E2F32' }}>Navigation Icons</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-            <IconShowcase icon={<ArrowUp />} name="ArrowUp" />
-            <IconShowcase icon={<ArrowDown />} name="ArrowDown" />
-            <IconShowcase icon={<ArrowLeft />} name="ArrowLeft" />
-            <IconShowcase icon={<ArrowRight />} name="ArrowRight" />
-          </div>
-
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '20px', color: '#2E2F32' }}>Feature Icons</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-            <IconShowcase icon={<Bell />} name="Bell" />
-            <IconShowcase icon={<Article />} name="Article" />
-            <IconShowcase icon={<Ban />} name="Ban" />
-            <IconShowcase icon={<Barcode />} name="Barcode" />
-            <IconShowcase icon={<SGHome />} name="SGHome" />
-            <IconShowcase icon={<SGShareImpact />} name="SGShareImpact" />
-          </div>
-
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '20px', color: '#2E2F32' }}>Custom Product Icons</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-            <IconShowcase icon={<CleaningSpray />} name="CleaningSpray" />
-            <IconShowcase icon={<DishSoap />} name="DishSoap" />
-            <IconShowcase icon={<LaundryDetergent />} name="LaundryDetergent" />
-            <IconShowcase icon={<PaperTowels />} name="PaperTowels" />
-            <IconShowcase icon={<Sponge />} name="Sponge" />
-          </div>
-
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '20px', color: '#2E2F32' }}>Ad Type Icons</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-            <IconShowcase icon={<SponsoredBrandsCard />} name="SponsoredBrandsCard" />
-            <IconShowcase icon={<SponsoredProductsCard />} name="SponsoredProductsCard" />
-            <IconShowcase icon={<SponsoredVideosCard />} name="SponsoredVideosCard" />
-          </div>
-
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '20px', color: '#2E2F32' }}>Utility Icons</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px' }}>
-            <IconShowcase icon={<ImageIcon />} name="ImageIcon" />
-            <IconShowcase icon={<Reports />} name="Reports" />
-            <IconShowcase icon={<MeasurementConsole />} name="MeasurementConsole" />
-          </div>
-
+          {/* Usage Example */}
           <div style={{
-            marginTop: '32px',
-            padding: '20px',
-            backgroundColor: '#F9FAFB',
-            borderRadius: '8px',
-            borderLeft: '4px solid #0071DC'
+            marginTop: '40px',
+            padding: 'var(--ld-primitive-scale-space-300)',
+            backgroundColor: 'var(--ld-semantic-color-fill-info-subtle)',
+            borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+            borderLeft: `4px solid var(--ld-semantic-color-border-info)`
           }}>
-            <h4 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>Usage</h4>
-            <pre style={{
-              fontFamily: 'monospace',
-              fontSize: '13px',
-              color: '#2E2F32',
-              margin: 0,
-              lineHeight: '1.6'
+            <h4 style={{ 
+              fontSize: '14px', 
+              fontWeight: 600, 
+              marginBottom: '12px',
+              color: 'var(--ld-semantic-color-text)'
             }}>
-{`import { Search, ChevronDown, Check } from '@/components/icons';
+              Usage Examples
+            </h4>
+            <pre style={{
+              fontFamily: 'var(--ld-semantic-font-family-mono)',
+              fontSize: '13px',
+              color: 'var(--ld-semantic-color-text)',
+              margin: 0,
+              lineHeight: '1.6',
+              overflowX: 'auto'
+            }}>
+{`// Import icons from the centralized library
+import { Search, Settings, Cart, User } from '@/components/icons';
 
+// Use with className (Tailwind or custom classes)
 <Search className="w-5 h-5 text-blue-600" />
-<ChevronDown style={{ color: '#0071DC' }} />`}
+
+// Use with inline styles
+<Settings style={{ width: 20, height: 20, color: '#0071DC' }} />
+
+// Use with design tokens
+<Cart style={{ 
+  color: 'var(--ld-semantic-color-action-fill-primary)',
+  width: 'var(--ld-semantic-scale-icon-small)'
+}} />
+
+// All icons support currentColor for semantic theming
+<User className="text-gray-600 hover:text-blue-600" />`}
             </pre>
           </div>
         </div>
@@ -252,10 +341,10 @@ export default function ComponentLibrary() {
       {/* Design Tokens Section */}
       <Section id="design-tokens" title="Design Tokens" description="Living Design 3.5 semantic color tokens and spacing values">
         <div style={{
-          backgroundColor: 'white',
-          borderRadius: '8px',
+          backgroundColor: 'var(--ld-semantic-color-surface)',
+          borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
           padding: '32px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+          boxShadow: 'var(--ld-semantic-elevation-100)'
         }}>
           <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '24px' }}>Action Colors</h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px', marginBottom: '32px' }}>
@@ -275,37 +364,37 @@ export default function ComponentLibrary() {
               token="--ld-semantic-color-action-fill-secondary"
             />
             <ColorSwatch 
-              color="var(--ld-semantic-color-action-fill-destructive)" 
-              label="Action Destructive" 
-              token="--ld-semantic-color-action-fill-destructive"
+              color="var(--ld-semantic-color-action-fill-negative)" 
+              label="Action Negative" 
+              token="--ld-semantic-color-action-fill-negative"
             />
           </div>
 
           <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '24px' }}>Text Colors</h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px', marginBottom: '32px' }}>
             <ColorSwatch 
-              color="var(--ld-semantic-color-text-primary)" 
+              color="var(--ld-semantic-color-text)" 
               label="Text Primary" 
-              token="--ld-semantic-color-text-primary"
+              token="--ld-semantic-color-text"
             />
             <ColorSwatch 
-              color="var(--ld-semantic-color-text-secondary)" 
-              label="Text Secondary" 
-              token="--ld-semantic-color-text-secondary"
+              color="var(--ld-semantic-color-text-subtle)" 
+              label="Text Subtle" 
+              token="--ld-semantic-color-text-subtle"
             />
           </div>
 
           <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '24px' }}>Border Colors</h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px' }}>
             <ColorSwatch 
-              color="var(--ld-semantic-color-border-strong, #BABBBE)" 
-              label="Border Strong" 
-              token="--ld-semantic-color-border-strong"
+              color="var(--ld-semantic-color-border)" 
+              label="Border Default" 
+              token="--ld-semantic-color-border"
             />
             <ColorSwatch 
-              color="var(--ld-semantic-color-border-subtle, #E6E6E8)" 
-              label="Border Subtle" 
-              token="--ld-semantic-color-border-subtle"
+              color="var(--ld-semantic-color-separator)" 
+              label="Separator" 
+              token="--ld-semantic-color-separator"
             />
           </div>
         </div>
@@ -314,10 +403,10 @@ export default function ComponentLibrary() {
       {/* Usage Guidelines */}
       <Section id="usage-guidelines" title="Usage Guidelines" description="Best practices for implementing Living Design 3.5 components">
         <div style={{
-          backgroundColor: 'white',
-          borderRadius: '8px',
+          backgroundColor: 'var(--ld-semantic-color-surface)',
+          borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
           padding: '32px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+          boxShadow: 'var(--ld-semantic-elevation-100)'
         }}>
           <div style={{ display: 'grid', gap: '24px' }}>
             <GuidelineItem 
@@ -327,6 +416,10 @@ export default function ComponentLibrary() {
             <GuidelineItem 
               title="Reuse Existing Components"
               description="Before creating custom components, check if an existing LD 3.5 component meets your needs. Reusing components ensures consistency across the application."
+            />
+            <GuidelineItem 
+              title="Use Icon Components"
+              description="Always import icons from @/components/icons. All 306+ icons are React components that support currentColor for semantic theming. Never use inline SVG elements."
             />
             <GuidelineItem 
               title="Accessibility First"
@@ -348,27 +441,27 @@ export default function ComponentLibrary() {
       <div style={{
         marginTop: '64px',
         padding: '24px',
-        backgroundColor: 'white',
-        borderRadius: '8px',
+        backgroundColor: 'var(--ld-semantic-color-surface)',
+        borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
         textAlign: 'center',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+        boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
         <p style={{ 
           fontSize: '14px', 
-          color: '#74767C',
+          color: 'var(--ld-semantic-color-text-subtle)',
           marginBottom: '8px'
         }}>
-          Living Design 3.5 Component Library
+          Living Design 3.5 Component Library - {Object.values(iconCategories).flat().length} Icons Available
         </p>
         <p style={{ 
           fontSize: '12px', 
-          color: '#BABBBE'
+          color: 'var(--ld-semantic-color-text-subtlest)'
         }}>
           For more information, visit the{' '}
           <a 
             href="/guidelines" 
             style={{ 
-              color: '#0071DC', 
+              color: 'var(--ld-semantic-color-text-brand)', 
               textDecoration: 'none',
               fontWeight: 500
             }}
@@ -397,7 +490,7 @@ function Section({ id, title, description, children }: SectionProps) {
           fontSize: '28px',
           fontWeight: 700,
           fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)',
+          color: 'var(--ld-semantic-color-text)',
           marginBottom: '8px'
         }}>
           {title}
@@ -405,7 +498,7 @@ function Section({ id, title, description, children }: SectionProps) {
         {description && (
           <p style={{
             fontSize: '14px',
-            color: 'var(--ld-semantic-color-text-secondary)',
+            color: 'var(--ld-semantic-color-text-subtle)',
             lineHeight: '1.5'
           }}>
             {description}
@@ -420,10 +513,10 @@ function Section({ id, title, description, children }: SectionProps) {
 function ComponentShowcase({ children }: { children: React.ReactNode }) {
   return (
     <div style={{
-      backgroundColor: '#FFFFFF',
-      borderRadius: '8px',
+      backgroundColor: 'var(--ld-semantic-color-surface)',
+      borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
       overflow: 'hidden',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+      boxShadow: 'var(--ld-semantic-elevation-100)'
     }}>
       {children}
     </div>
@@ -443,23 +536,23 @@ function ColorSwatch({ color, label, token }: ColorSwatchProps) {
         width: '100%',
         height: '100px',
         backgroundColor: color,
-        borderRadius: '8px',
-        border: '1px solid #E6E6E8',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+        borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+        border: `1px solid var(--ld-semantic-color-separator)`,
+        boxShadow: 'var(--ld-semantic-elevation-100)'
       }} />
       <div>
         <div style={{ 
           fontSize: '14px', 
           fontWeight: 600,
-          color: '#2E2F32',
+          color: 'var(--ld-semantic-color-text)',
           marginBottom: '4px'
         }}>
           {label}
         </div>
         <div style={{ 
           fontSize: '11px', 
-          color: '#74767C', 
-          fontFamily: 'monospace',
+          color: 'var(--ld-semantic-color-text-subtle)', 
+          fontFamily: 'var(--ld-semantic-font-family-mono)',
           wordBreak: 'break-all'
         }}>
           {token}
@@ -477,22 +570,22 @@ interface GuidelineItemProps {
 function GuidelineItem({ title, description }: GuidelineItemProps) {
   return (
     <div style={{
-      padding: '20px',
-      backgroundColor: '#F9FAFB',
-      borderLeft: '4px solid #0071DC',
-      borderRadius: '4px'
+      padding: 'var(--ld-primitive-scale-space-300)',
+      backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+      borderLeft: `4px solid var(--ld-semantic-color-border-info)`,
+      borderRadius: 'var(--ld-primitive-scale-border-radius-50)'
     }}>
       <h4 style={{
         fontSize: '16px',
         fontWeight: 600,
-        color: '#2E2F32',
+        color: 'var(--ld-semantic-color-text)',
         marginBottom: '8px'
       }}>
         {title}
       </h4>
       <p style={{
         fontSize: '14px',
-        color: '#74767C',
+        color: 'var(--ld-semantic-color-text-subtle)',
         lineHeight: '1.6',
         margin: 0
       }}>
@@ -523,25 +616,25 @@ function IconShowcase({ icon, name }: IconShowcaseProps) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '12px',
-        padding: '20px',
-        backgroundColor: '#F9FAFB',
-        borderRadius: '8px',
-        border: '1px solid transparent',
+        gap: 'var(--ld-primitive-scale-space-150)',
+        padding: 'var(--ld-primitive-scale-space-200)',
+        backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+        borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+        border: `1px solid transparent`,
         cursor: 'pointer',
         transition: 'all 0.2s'
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = '#0071DC';
-        e.currentTarget.style.backgroundColor = '#E9F1FE';
+        e.currentTarget.style.borderColor = 'var(--ld-semantic-color-border-brand)';
+        e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-brand-subtle)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = 'transparent';
-        e.currentTarget.style.backgroundColor = '#F9FAFB';
+        e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
       }}
     >
       <div style={{
-        color: '#2E2F32',
+        color: 'var(--ld-semantic-color-text)',
         width: '32px',
         height: '32px',
         display: 'flex',
@@ -553,10 +646,11 @@ function IconShowcase({ icon, name }: IconShowcaseProps) {
         })}
       </div>
       <div style={{
-        fontSize: '12px',
-        color: '#74767C',
+        fontSize: '11px',
+        color: 'var(--ld-semantic-color-text-subtlest)',
         textAlign: 'center',
-        fontFamily: 'monospace'
+        fontFamily: 'var(--ld-semantic-font-family-mono)',
+        wordBreak: 'break-word'
       }}>
         {copied ? '✓ Copied!' : name}
       </div>

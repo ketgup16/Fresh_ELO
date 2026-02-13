@@ -1,33 +1,315 @@
 import { SVGProps } from 'react';
 
-// LD 3.5 Core Icons
-export { Search } from './Search';
-export { Settings } from './Settings';
-export { Download } from './Download';
-export { Upload } from './Upload';
-export { ExternalLink } from './ExternalLink';
+// ============================================
+// LIVING DESIGN 3.5 ICON LIBRARY
+// ============================================
+// This file exports all 306 icon components
+// All icons use currentColor for semantic theming
+//
+// Usage:
+//   import { Search, Settings, Home } from '@/components/icons';
+//   <Search className="text-blue-600" />
+//   <Settings style={{ color: 'var(--ld-semantic-color-text-brand)' }} />
+// ============================================
+
+// Named Exports (295 icons)
+export { Airplane } from './Airplane';
+export { AppSwitcher } from './AppSwitcher';
+export { ArrowCircleDot } from './ArrowCircleDot';
+export { ArrowDown } from './ArrowDown';
+export { ArrowDownMoney } from './ArrowDownMoney';
+export { ArrowLeft } from './ArrowLeft';
+export { ArrowLeftLine } from './ArrowLeftLine';
+export { ArrowRight } from './ArrowRight';
+export { ArrowRightLine } from './ArrowRightLine';
+export { ArrowUp } from './ArrowUp';
+export { ArrowUpDown } from './ArrowUpDown';
+export { ArrowUpLeft } from './ArrowUpLeft';
+export { ArrowUpLeftMobile } from './ArrowUpLeftMobile';
+export { ArrowUpRight } from './ArrowUpRight';
+export { ArrowsLeftRight } from './ArrowsLeftRight';
+export { ArrowsLeftRightCurve } from './ArrowsLeftRightCurve';
+export { ArrowsUpDown } from './ArrowsUpDown';
+export { ArrowsUpDownLeftRight } from './ArrowsUpDownLeftRight';
+export { ArrowsUpDownLine } from './ArrowsUpDownLine';
+export { Article } from './Article';
+export { Associate } from './Associate';
+export { Ban } from './Ban';
+export { Bank } from './Bank';
+export { BarGraph } from './BarGraph';
+export { BarGraphFill } from './BarGraphFill';
+export { BarGraphThin } from './BarGraphThin';
+export { Barcode } from './Barcode';
+export { Bell } from './Bell';
+export { Bill } from './Bill';
+export { Bluetooth } from './Bluetooth';
+export { BoldText } from './BoldText';
+export { BookOpen } from './BookOpen';
+export { BookUser } from './BookUser';
+export { BottleEach } from './BottleEach';
+export { BowlWhisk } from './BowlWhisk';
+export { Box } from './Box';
+export { BoxArrowDown } from './BoxArrowDown';
+export { BoxArrowUp } from './BoxArrowUp';
+export { BoxCorners } from './BoxCorners';
+export { BoxDocument } from './BoxDocument';
+export { BoxDocumentFill } from './BoxDocumentFill';
+export { BoxOpenArrowDown } from './BoxOpenArrowDown';
+export { BoxShelves } from './BoxShelves';
+export { BoxSpark } from './BoxSpark';
+export { BoxSparkFill } from './BoxSparkFill';
+export { Brackets } from './Brackets';
+export { BubbleChart } from './BubbleChart';
+export { BubbleChartFill } from './BubbleChartFill';
+export { Bug } from './Bug';
+export { Building } from './Building';
+export { Bulkhead } from './Bulkhead';
+export { BulletList } from './BulletList';
+export { Calendar } from './Calendar';
+export { CalendarMoney } from './CalendarMoney';
+export { Camera } from './Camera';
+export { Car } from './Car';
+export { Card } from './Card';
+export { CardUser } from './CardUser';
+export { CardsHashtag } from './CardsHashtag';
+export { CardsStar } from './CardsStar';
+export { CaretDown } from './CaretDown';
+export { Cart } from './Cart';
+export { CartArrow } from './CartArrow';
+export { CartFill } from './CartFill';
+export { ChartWaterfall } from './ChartWaterfall';
+export { Chat } from './Chat';
+export { ChatBubbleSquare } from './ChatBubbleSquare';
+export { Check } from './Check';
+export { CheckCircle } from './CheckCircle';
+export { CheckCircleFill } from './CheckCircleFill';
 export { ChevronDown } from './ChevronDown';
-export { ChevronUp } from './ChevronUp';
 export { ChevronLeft } from './ChevronLeft';
 export { ChevronRight } from './ChevronRight';
-export { Check } from './Check';
-export { X } from './X';
-export { Dot } from './Dot';
+export { ChevronUp } from './ChevronUp';
 export { Circle } from './Circle';
-export { MoreHorizontal } from './MoreHorizontal';
-export { PanelLeft } from './PanelLeft';
-export { HelpCircle } from './HelpCircle';
-export { User } from './User';
-export { RotateCcw } from './RotateCcw';
-export { GripVertical } from './GripVertical';
-export { Calendar } from './Calendar';
-export { Plus } from './Plus';
+export { Clipboard } from './Clipboard';
+export { Clock } from './Clock';
+export { Close } from './Close';
+export { CloseCircleFill } from './CloseCircleFill';
+export { CloudUploadFill } from './CloudUploadFill';
+export { Columns } from './Columns';
+export { ConnectLogo } from './ConnectLogo';
+export { Coupon } from './Coupon';
+export { CreditCard } from './CreditCard';
+export { CreditCardFill } from './CreditCardFill';
+export { Crop } from './Crop';
+export { Crosshairs } from './Crosshairs';
+export { CurrentLocation } from './CurrentLocation';
+export { DockDoor } from './DockDoor';
+export { DocumentCorner } from './DocumentCorner';
+export { DocumentExclamation } from './DocumentExclamation';
+export { Dollar } from './Dollar';
+export { DollarCircle } from './DollarCircle';
+export { DollarCircleFill } from './DollarCircleFill';
+export { DonutChart } from './DonutChart';
+export { Dot } from './Dot';
+export { Download } from './Download';
+export { Drag } from './Drag';
+export { Dropper } from './Dropper';
 export { Edit } from './Edit';
-export { Trash2 } from './Trash2';
+export { Email } from './Email';
+export { EmailFill } from './EmailFill';
+export { EmailSpamMobile } from './EmailSpamMobile';
+export { ExclamationCircle } from './ExclamationCircle';
+export { ExclamationCircleFill } from './ExclamationCircleFill';
+export { ExternalLink } from './ExternalLink';
 export { Eye } from './Eye';
+export { Facility } from './Facility';
+export { Factory } from './Factory';
+export { FactoryFill } from './FactoryFill';
+export { FedExBox } from './FedExBox';
+export { Filter } from './Filter';
+export { Flag } from './Flag';
+export { FlagFill } from './FlagFill';
+export { FlagStrike } from './FlagStrike';
+export { Flames } from './Flames';
+export { Flash } from './Flash';
+export { FlashFill } from './FlashFill';
+export { FlashSlash } from './FlashSlash';
+export { Forklift } from './Forklift';
+export { FruitCarton } from './FruitCarton';
+export { FruitEach } from './FruitEach';
+export { FuelPump } from './FuelPump';
+export { Gear } from './Gear';
+export { GearFill } from './GearFill';
+export { Gift } from './Gift';
+export { GiftFill } from './GiftFill';
+export { Globe } from './Globe';
+export { Grid } from './Grid';
+export { GridFill } from './GridFill';
+export { GripVertical } from './GripVertical';
+export { Headphones } from './Headphones';
+export { Headset } from './Headset';
+export { Heart } from './Heart';
+export { HeartFill } from './HeartFill';
+export { HelpCircle } from './HelpCircle';
+export { History } from './History';
+export { Home } from './Home';
+export { HomeFill } from './HomeFill';
+export { Hourglass } from './Hourglass';
+export { HouseMoney } from './HouseMoney';
+export { IdCard } from './IdCard';
+export { Image } from './Image';
+export { ImageFill } from './ImageFill';
+export { InfoCircle } from './InfoCircle';
+export { InfoCircleFill } from './InfoCircleFill';
+export { LanguageSettings } from './LanguageSettings';
+export { LanguageSettingsFill } from './LanguageSettingsFill';
+export { LightBulb } from './LightBulb';
+export { LineGraph } from './LineGraph';
+export { LineGraphBars } from './LineGraphBars';
+export { LineGraphXY } from './LineGraphXY';
+export { Link } from './Link';
+export { LinkExternal } from './LinkExternal';
+export { List } from './List';
+export { ListBox } from './ListBox';
+export { ListBoxFill } from './ListBoxFill';
+export { Location } from './Location';
+export { Lock } from './Lock';
+export { LockOpen } from './LockOpen';
+export { Map } from './Map';
+export { MapRoute } from './MapRoute';
+export { MapRouteFill } from './MapRouteFill';
+export { Medal } from './Medal';
+export { Megaphone } from './Megaphone';
+export { MegaphoneFill } from './MegaphoneFill';
+export { Menu } from './Menu';
+export { Microphone } from './Microphone';
+export { MicrophoneSlash } from './MicrophoneSlash';
+export { Minus } from './Minus';
+export { Mobile } from './Mobile';
+export { MoneyArrowLeft } from './MoneyArrowLeft';
+export { MoneyArrowRight } from './MoneyArrowRight';
+export { More } from './More';
+export { MoreHorizontal } from './MoreHorizontal';
+export { MoreVertical } from './MoreVertical';
+export { Mortarboard } from './Mortarboard';
+export { Note } from './Note';
+export { NumberList } from './NumberList';
+export { PalletBoxes } from './PalletBoxes';
+export { PanelLeft } from './PanelLeft';
+export { PaperClip } from './PaperClip';
+export { Pause } from './Pause';
+export { Pencil } from './Pencil';
+export { PencilBox } from './PencilBox';
+export { PencilFill } from './PencilFill';
+export { Phone } from './Phone';
+export { PieChart } from './PieChart';
+export { Pin } from './Pin';
+export { PinFill } from './PinFill';
+export { PinLine } from './PinLine';
+export { Placeholder } from './Placeholder';
+export { Play } from './Play';
+export { PlayFill } from './PlayFill';
+export { Plus } from './Plus';
+export { PlusCircle } from './PlusCircle';
+export { Printer } from './Printer';
+export { QrCode } from './QrCode';
+export { QuestionCircle } from './QuestionCircle';
+export { Receipt } from './Receipt';
+export { ReceiptPercent } from './ReceiptPercent';
+export { ReceiptPercentFill } from './ReceiptPercentFill';
+export { Refresh } from './Refresh';
+export { Restroom } from './Restroom';
+export { Returns } from './Returns';
+export { Rocket } from './Rocket';
+export { RocketFill } from './RocketFill';
+export { RotateCcw } from './RotateCcw';
+export { RulerArrow } from './RulerArrow';
+export { RulerArrowFill } from './RulerArrowFill';
+export { SGHome } from './SGHome';
+export { SGShareImpact } from './SGShareImpact';
+export { Scale } from './Scale';
+export { ScanDocument } from './ScanDocument';
+export { ScatterChart } from './ScatterChart';
+export { Search } from './Search';
+export { Services } from './Services';
+export { ServicesFill } from './ServicesFill';
+export { Settings } from './Settings';
+export { Share } from './Share';
+export { ShareAndroid } from './ShareAndroid';
+export { ShieldCheck } from './ShieldCheck';
+export { ShieldCheckFill } from './ShieldCheckFill';
+export { Shirt } from './Shirt';
+export { Shuffle } from './Shuffle';
+export { SignIn } from './SignIn';
+export { SignOut } from './SignOut';
 export { Sliders } from './Sliders';
+export { SortDown } from './SortDown';
+export { SortUp } from './SortUp';
+export { SortingArrows } from './SortingArrows';
+export { Sound } from './Sound';
+export { Spark } from './Spark';
+export { Speaker } from './Speaker';
+export { SpeakerSlash } from './SpeakerSlash';
+export { Speedometer } from './Speedometer';
+export { SpeedometerFill } from './SpeedometerFill';
+export { Star } from './Star';
+export { StarFill } from './StarFill';
+export { StarHalf } from './StarHalf';
+export { Store } from './Store';
+export { StoreAwning } from './StoreAwning';
+export { StoreAwningFill } from './StoreAwningFill';
+export { StoreClock } from './StoreClock';
+export { StoreFill } from './StoreFill';
+export { StoreLocation } from './StoreLocation';
+export { StoreMap } from './StoreMap';
+export { Suitcase } from './Suitcase';
+export { SuitcaseFill } from './SuitcaseFill';
+export { Table } from './Table';
+export { TableArrow } from './TableArrow';
+export { Tag } from './Tag';
+export { TagFill } from './TagFill';
+export { TargetArrow } from './TargetArrow';
+export { TargetArrowFill } from './TargetArrowFill';
+export { ThreeDBoxArrows } from './ThreeDBoxArrows';
+export { ThumbDown } from './ThumbDown';
+export { ThumbDownFill } from './ThumbDownFill';
+export { ThumbUp } from './ThumbUp';
+export { ThumbUpFill } from './ThumbUpFill';
+export { Toolbox } from './Toolbox';
+export { ToolboxFill } from './ToolboxFill';
+export { Trademark } from './Trademark';
+export { TrademarkFill } from './TrademarkFill';
+export { Trailer } from './Trailer';
+export { TrailerArrowRight } from './TrailerArrowRight';
+export { TrailerDoor } from './TrailerDoor';
+export { Trash } from './Trash';
+export { Trash2 } from './Trash2';
+export { Trophy } from './Trophy';
+export { Truck } from './Truck';
+export { Undo } from './Undo';
+export { Unlink } from './Unlink';
+export { UpcLabel } from './UpcLabel';
+export { UpcLabelCancel } from './UpcLabelCancel';
+export { Upload } from './Upload';
+export { User } from './User';
+export { UserBook } from './UserBook';
+export { UserCircle } from './UserCircle';
+export { UserCircleFill } from './UserCircleFill';
+export { UserGraph } from './UserGraph';
+export { UserPlus } from './UserPlus';
+export { UsersArrows } from './UsersArrows';
+export { UsersFill } from './UsersFill';
+export { VideoArrowUp } from './VideoArrowUp';
+export { VideoArrowUpFill } from './VideoArrowUpFill';
+export { VoiceSearch } from './VoiceSearch';
+export { Wallet } from './Wallet';
+export { Warning } from './Warning';
+export { WarningFill } from './WarningFill';
+export { WiFi } from './WiFi';
+export { Wrench } from './Wrench';
+export { X } from './X';
+export { ZoomIn } from './ZoomIn';
+export { ZoomOut } from './ZoomOut';
 
-// Additional custom icons
+// Default Exports (11 icons)
 export { default as CleaningSpray } from './CleaningSpray';
 export { default as DishSoap } from './DishSoap';
 export { default as ImageIcon } from './ImageIcon';
@@ -39,64 +321,3 @@ export { default as Sponge } from './Sponge';
 export { default as SponsoredBrandsCard } from './SponsoredBrandsCard';
 export { default as SponsoredProductsCard } from './SponsoredProductsCard';
 export { default as SponsoredVideosCard } from './SponsoredVideosCard';
-
-// Legacy inline icon exports
-export const SGHome = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32" {...props}>
-    <path fill="currentColor" d="M6.002 17v11h20V17h2v12a1 1 0 0 1-1 1h-22a1 1 0 0 1-1-1V17h2Zm11.426-2.917a3.728 3.728 0 0 1 5.254 0l.232.23a3.684 3.684 0 0 1 0 5.228l-6.195 6.164a1.018 1.018 0 0 1-1.434 0L9.09 19.541a3.683 3.683 0 0 1 0-5.228l.232-.23a3.728 3.728 0 0 1 5.254 0l1.426 1.418 1.426-1.418Zm-4.284 1.426a1.695 1.695 0 0 0-2.39 0l-.23.23c-.66.656-.66 1.72 0 2.376l5.478 5.451 2.62-2.606-3.337-3.32-.007-.007-2.134-2.124Zm8.105 0a1.695 1.695 0 0 0-2.389 0l-1.425 1.418 2.62 2.607 1.425-1.419c.66-.656.66-1.72 0-2.376l-.231-.23ZM15.322 2.266a1 1 0 0 1 1.357 0l13 12-1.357 1.47L16.001 4.36 3.679 15.735l-1.357-1.47 13-12Z"/>
-  </svg>
-);
-
-export const SGShareImpact = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32" {...props}>
-    <path fill="currentColor" d="M26 6a4 4 0 0 1 4 4v18.865a1 1 0 0 1-1.64.768l-3.803-3.17a2 2 0 0 0-1.28-.463H12v-2h11.276a4 4 0 0 1 2.56.927L28 26.73V10a2 2 0 0 0-2-2V6Zm-6-4a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H8.578c-.265 0-.578.133-.578.133v.003c-.2.078-.389.188-.557.328l-3.802 3.169A1 1 0 0 1 2 24.865V6a4 4 0 0 1 4-4h14ZM6 4a2 2 0 0 0-2 2v16.73l2.163-1.803A4 4 0 0 1 8.723 20H20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6Zm7.926 3.45a3.101 3.101 0 0 1 4.468 0l.18.186a3.306 3.306 0 0 1 0 4.588l-1.662 1.707-.008.008-.006.007-3.153 3.238a1.035 1.035 0 0 1-1.49 0l-4.83-4.96a3.306 3.306 0 0 1 0-4.588l.181-.186a3.101 3.101 0 0 1 4.468 0L13 8.4l.926-.95Zm-3.341 1.53a1.034 1.034 0 0 0-1.49 0l-.18.185a1.102 1.102 0 0 0 0 1.53L13 14.89l1.67-1.716-2.403-2.468-.012-.012-1.67-1.715Zm6.32 0a1.034 1.034 0 0 0-1.49 0l-.926.95 1.671 1.715.925-.95a1.102 1.102 0 0 0 0-1.53l-.18-.186Z"/>
-  </svg>
-);
-
-export const ArrowDown = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32" {...props}>
-    <path fill="currentColor" d="m17 26.586 7.293-7.293 1.414 1.414-9 9a1 1 0 0 1-1.414 0l-9-9 1.414-1.414L15 26.586V2h2v24.586Z"/>
-  </svg>
-);
-
-export const ArrowLeft = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32" {...props}>
-    <path fill="currentColor" d="M12.707 7.707 5.414 15h24.587v2H5.414l7.293 7.293-1.414 1.414-9-9a1 1 0 0 1 0-1.414l9-9 1.414 1.414Z"/>
-  </svg>
-);
-
-export const ArrowRight = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32" {...props}>
-    <path fill="currentColor" d="M29.707 15.293a1 1 0 0 1 0 1.414l-9 9-1.414-1.414L26.586 17H2v-2h24.586l-7.293-7.293 1.414-1.414 9 9Z"/>
-  </svg>
-);
-
-export const ArrowUp = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32" {...props}>
-    <path fill="currentColor" d="M15.293 2.293a1 1 0 0 1 1.414 0l9 9-1.415 1.414L17 5.414V30h-2V5.414l-7.293 7.293-1.414-1.414 9-9Z"/>
-  </svg>
-);
-
-export const Article = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32" {...props}>
-    <path fill="currentColor" d="M28 2a2 2 0 0 1 2 2v21a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5v-2.5A1.5 1.5 0 0 1 3.5 21h17a1.5 1.5 0 0 1 1.5 1.5V25a3 3 0 1 0 6 0V4H9v14H7V4a2 2 0 0 1 2-2h19ZM4 25a3 3 0 0 0 3 3h14a4.978 4.978 0 0 1-1-3v-2H4v2Zm20-7H12v-2h12v2Zm-4-4h-8v-2h8v2Zm-4-4h-4V8h4v2Z"/>
-  </svg>
-);
-
-export const Ban = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32" {...props}>
-    <path fill="currentColor" d="M16 2.001c7.732 0 14 6.268 14 14s-6.268 14-14 14-14-6.268-14-14 6.268-14 14-14ZM8.251 25.163A11.953 11.953 0 0 0 16 28.001c6.627 0 12-5.373 12-12 0-2.954-1.067-5.658-2.837-7.75L8.251 25.164ZM16 4.001c-6.627 0-12 5.373-12 12a11.95 11.95 0 0 0 2.837 7.748L23.749 6.838A11.953 11.953 0 0 0 16 4Z"/>
-  </svg>
-);
-
-export const Barcode = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32" {...props}>
-    <path fill="currentColor" d="M11 6H4v20h7v2H3.4A1.4 1.4 0 0 1 2 26.6V5.4A1.4 1.4 0 0 1 3.4 4H11v2Zm17.6-2A1.4 1.4 0 0 1 30 5.4v21.2a1.4 1.4 0 0 1-1.4 1.4H21v-2h7V6h-7V4h7.6ZM9 12v8H7v-8h2Zm4 8h-2v-8h2v8Zm4 0h-2v-8h2v8Zm4 0h-2v-8h2v8Zm4 0h-2v-8h2v8Z"/>
-  </svg>
-);
-
-export const Bell = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32" {...props}>
-    <path fill="currentColor" d="M13 25a3 3 0 0 0 6 0h2a5 5 0 0 1-10 0h2Zm4-23v2.05c5.053.502 9 4.765 9 9.95v4.86c0 .174.063.343.177.476l2.583 3.014A1 1 0 0 1 28 24H4a1 1 0 0 1-.759-1.65l2.583-3.014A.732.732 0 0 0 6 18.859V14c0-5.185 3.947-9.448 9-9.95V2h2Zm-1 4a8 8 0 0 0-8 8v4.86c0 .652-.233 1.282-.657 1.778L6.175 22h19.651l-1.168-1.362A2.734 2.734 0 0 1 24 18.859V14a8 8 0 0 0-8-8Z"/>
-  </svg>
-);
