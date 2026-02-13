@@ -20,26 +20,57 @@ const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 const THEME_STORAGE_KEY = 'ld-theme';
 
 /**
- * Load theme CSS files dynamically
+ * Load theme CSS files dynamically using inheritance model
+ * Base theme is always loaded first, then theme-specific overrides
  */
 function loadThemeCSS(theme: Theme): Promise<void> {
   return new Promise((resolve, reject) => {
-    // Remove existing theme links
-    const existingLinks = document.querySelectorAll('link[data-theme-layer]');
-    existingLinks.forEach(link => link.remove());
+    // Remove existing theme override links (but keep base)
+    const existingOverrides = document.querySelectorAll('link[data-theme-override]');
+    existingOverrides.forEach(link => link.remove());
 
-    // Create primitive link
+    // Ensure base theme is loaded (if not already)
+    const baseTheme = AVAILABLE_THEMES.find(t => t.id === 'base');
+    if (!baseTheme) {
+      reject(new Error('Base theme not found'));
+      return;
+    }
+
+    const existingBase = document.querySelectorAll('link[data-theme-base]');
+
+    // Load base theme if not already loaded
+    if (existingBase.length === 0) {
+      const basePrimitiveLink = document.createElement('link');
+      basePrimitiveLink.rel = 'stylesheet';
+      basePrimitiveLink.href = baseTheme.primitiveCSS;
+      basePrimitiveLink.setAttribute('data-theme-base', 'primitive');
+
+      const baseSemanticLink = document.createElement('link');
+      baseSemanticLink.rel = 'stylesheet';
+      baseSemanticLink.href = baseTheme.semanticCSS;
+      baseSemanticLink.setAttribute('data-theme-base', 'semantic');
+
+      document.head.appendChild(basePrimitiveLink);
+      document.head.appendChild(baseSemanticLink);
+    }
+
+    // If selecting base theme, we're done
+    if (theme.id === 'base') {
+      resolve();
+      return;
+    }
+
+    // Load theme override files (these override base tokens)
     const primitiveLink = document.createElement('link');
     primitiveLink.rel = 'stylesheet';
     primitiveLink.href = theme.primitiveCSS;
-    primitiveLink.setAttribute('data-theme-layer', 'primitive');
+    primitiveLink.setAttribute('data-theme-override', 'primitive');
     primitiveLink.setAttribute('data-theme-id', theme.id);
 
-    // Create semantic link
     const semanticLink = document.createElement('link');
     semanticLink.rel = 'stylesheet';
     semanticLink.href = theme.semanticCSS;
-    semanticLink.setAttribute('data-theme-layer', 'semantic');
+    semanticLink.setAttribute('data-theme-override', 'semantic');
     semanticLink.setAttribute('data-theme-id', theme.id);
 
     let primitiveLoaded = false;
@@ -55,8 +86,8 @@ function loadThemeCSS(theme: Theme): Promise<void> {
     const handleError = (error: Event) => {
       if (!hasError) {
         hasError = true;
-        console.error('Failed to load theme CSS:', error);
-        reject(new Error(`Failed to load theme: ${theme.name}`));
+        console.error('Failed to load theme override CSS:', error);
+        reject(new Error(`Failed to load theme overrides: ${theme.name}`));
       }
     };
 
@@ -74,7 +105,7 @@ function loadThemeCSS(theme: Theme): Promise<void> {
 
     semanticLink.onerror = handleError;
 
-    // Append to head
+    // Append override links to head (after base)
     document.head.appendChild(primitiveLink);
     document.head.appendChild(semanticLink);
   });
