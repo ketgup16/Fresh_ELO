@@ -21,7 +21,7 @@
   /* Action/Interactive colors (for buttons and interactive elements) */
   /* Primary actions */
   --ld-semantic-color-action-fill-primary: var(--ld-primitive-color-blue-100, #0071dc); /* Primary button background */
-  --ld-semantic-color-action-fill-primitive-hovered: var(--ld-primitive-color-blue-110, #0060b8); /* Primitive hover state - blue-110 */
+  --ld-semantic-color-action-fill-primitive-hovered: var(--ld-primitive-color-blue-110, #114AB6); /* Primitive hover state - blue-110 */
   --ld-semantic-color-action-fill-primary-hovered: var(--ld-semantic-color-action-fill-primitive-hovered); /* Primary button hover state */
   --ld-semantic-color-action-fill-primary-focused: var(--ld-primitive-color-blue-100, #0071dc); /* Primary button focused */
   --ld-semantic-color-action-fill-primary-pressed: var(--ld-primitive-color-blue-130, #004c94); /* Primary button pressed */
