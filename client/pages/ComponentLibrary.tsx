@@ -5,6 +5,13 @@ import { BreadcrumbExample } from '@/components/BreadcrumbExample';
 import { LinkExample } from '@/components/LinkExample';
 import IconButtonExample from '@/components/IconButtonExample';
 import { CardHeaderExample } from '@/components/CardHeaderExample';
+import {
+  Search, Settings, Download, Upload, ExternalLink,
+  ChevronDown, ChevronUp, ChevronLeft, ChevronRight,
+  Check, X, Dot, Circle, MoreHorizontal, PanelLeft,
+  HelpCircle, User, RotateCcw, GripVertical, Calendar,
+  Plus, Edit, Trash2, Eye, Sliders, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Bell
+} from '@/components/icons';
 
 export default function ComponentLibrary() {
   return (
@@ -61,7 +68,7 @@ export default function ComponentLibrary() {
           Quick Navigation
         </h3>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {['Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Cards'].map(section => (
+          {['Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Cards'].map(section => (
             <a
               key={section}
               href={`#${section.toLowerCase().replace(' ', '-')}`}
@@ -91,6 +98,71 @@ export default function ComponentLibrary() {
           ))}
         </div>
       </div>
+
+      {/* Icons Section */}
+      <Section id="icons" title="Icons" description="LD 3.5-styled icon library with consistent stroke widths, semantic colors, and accessibility">
+        <div style={{
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          padding: '32px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+        }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '24px' }}>
+            <IconShowcase icon={<Search />} name="Search" />
+            <IconShowcase icon={<Settings />} name="Settings" />
+            <IconShowcase icon={<Download />} name="Download" />
+            <IconShowcase icon={<Upload />} name="Upload" />
+            <IconShowcase icon={<ExternalLink />} name="ExternalLink" />
+            <IconShowcase icon={<ChevronDown />} name="ChevronDown" />
+            <IconShowcase icon={<ChevronUp />} name="ChevronUp" />
+            <IconShowcase icon={<ChevronLeft />} name="ChevronLeft" />
+            <IconShowcase icon={<ChevronRight />} name="ChevronRight" />
+            <IconShowcase icon={<Check />} name="Check" />
+            <IconShowcase icon={<X />} name="X" />
+            <IconShowcase icon={<Dot />} name="Dot" />
+            <IconShowcase icon={<Circle />} name="Circle" />
+            <IconShowcase icon={<MoreHorizontal />} name="MoreHorizontal" />
+            <IconShowcase icon={<PanelLeft />} name="PanelLeft" />
+            <IconShowcase icon={<HelpCircle />} name="HelpCircle" />
+            <IconShowcase icon={<User />} name="User" />
+            <IconShowcase icon={<RotateCcw />} name="RotateCcw" />
+            <IconShowcase icon={<GripVertical />} name="GripVertical" />
+            <IconShowcase icon={<Calendar />} name="Calendar" />
+            <IconShowcase icon={<Plus />} name="Plus" />
+            <IconShowcase icon={<Edit />} name="Edit" />
+            <IconShowcase icon={<Trash2 />} name="Trash2" />
+            <IconShowcase icon={<Eye />} name="Eye" />
+            <IconShowcase icon={<Sliders />} name="Sliders" />
+            <IconShowcase icon={<ArrowUp />} name="ArrowUp" />
+            <IconShowcase icon={<ArrowDown />} name="ArrowDown" />
+            <IconShowcase icon={<ArrowLeft />} name="ArrowLeft" />
+            <IconShowcase icon={<ArrowRight />} name="ArrowRight" />
+            <IconShowcase icon={<Bell />} name="Bell" />
+          </div>
+
+          <div style={{
+            marginTop: '32px',
+            padding: '20px',
+            backgroundColor: '#F9FAFB',
+            borderRadius: '8px',
+            borderLeft: '4px solid #0071DC'
+          }}>
+            <h4 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>Usage</h4>
+            <pre style={{
+              fontFamily: 'monospace',
+              fontSize: '13px',
+              color: '#2E2F32',
+              margin: 0,
+              lineHeight: '1.6'
+            }}>
+{`import { Search, ChevronDown, Check } from '@/components/icons';
+
+<Search className="w-5 h-5 text-blue-600" />
+<ChevronDown style={{ color: '#0071DC' }} />`}
+            </pre>
+          </div>
+        </div>
+      </Section>
 
       {/* Buttons Section */}
       <Section id="buttons" title="Buttons" description="Primary, secondary, tertiary, and destructive button variants with full accessibility support">
@@ -383,6 +455,68 @@ function GuidelineItem({ title, description }: GuidelineItemProps) {
       }}>
         {description}
       </p>
+    </div>
+  );
+}
+
+interface IconShowcaseProps {
+  icon: React.ReactNode;
+  name: string;
+}
+
+function IconShowcase({ icon, name }: IconShowcaseProps) {
+  const [copied, setCopied] = React.useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(name);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div
+      onClick={handleCopy}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '12px',
+        padding: '20px',
+        backgroundColor: '#F9FAFB',
+        borderRadius: '8px',
+        border: '1px solid transparent',
+        cursor: 'pointer',
+        transition: 'all 0.2s'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = '#0071DC';
+        e.currentTarget.style.backgroundColor = '#E9F1FE';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = 'transparent';
+        e.currentTarget.style.backgroundColor = '#F9FAFB';
+      }}
+    >
+      <div style={{
+        color: '#2E2F32',
+        width: '32px',
+        height: '32px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        {React.cloneElement(icon as React.ReactElement, {
+          style: { width: '24px', height: '24px' }
+        })}
+      </div>
+      <div style={{
+        fontSize: '12px',
+        color: '#74767C',
+        textAlign: 'center',
+        fontFamily: 'monospace'
+      }}>
+        {copied ? '✓ Copied!' : name}
+      </div>
     </div>
   );
 }
