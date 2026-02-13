@@ -6,7 +6,41 @@
 
 ## 🎯 Critical Rules (ALWAYS ENFORCE)
 
-### 1. Design Token Enforcement
+### 1. Design System Enforcement (Tokens + Icons)
+**File**: `RULE_DesignSystemEnforcement.md` 🆕
+
+**When**: ALL code - components, pages, styles, and designs
+
+**Key Requirements**:
+- ✅ NEVER use hard-coded hex colors, spacing, or values
+- ✅ NEVER create inline SVG icons
+- ✅ NEVER use external icon libraries (react-icons, heroicons)
+- ✅ ALWAYS use semantic design tokens (624 tokens available)
+- ✅ ALWAYS use icons from centralized library (304 icons)
+- ✅ ALWAYS use LD components (Button, not inline styled buttons)
+
+**Quick Check**:
+```tsx
+/* ❌ WRONG */
+<button style={{ backgroundColor: '#0071DC', padding: '16px' }}>
+  <svg><path d="..."/></svg>
+</button>
+
+/* ✅ CORRECT */
+import { Button } from '@/components/ui/Button';
+import { Search } from '@/components/icons';
+<Button variant="primary" leading={<Search />}>Click</Button>
+```
+
+**New Icon Requirements**:
+- ✅ Square linecap (`strokeLinecap="square"`)
+- ✅ 1.5px stroke width
+- ✅ 20x20 viewBox
+- ✅ currentColor for theming
+
+---
+
+### 2. Design Token Enforcement
 **File**: `RULE_DesignTokenEnforcement.md`
 
 **When**: All new designs, Builder.io imports, AI-generated code
@@ -23,7 +57,7 @@
 .button { background: #0053e2; padding: 16px; }
 
 /* ✅ CORRECT */
-.button { 
+.button {
   background: var(--ld-semantic-color-action-fill-primary);
   padding: var(--ld-primitive-scale-space-200);
 }
@@ -31,13 +65,13 @@
 
 ---
 
-### 2. Icon Usage and Management
+### 3. Icon Usage and Management
 **File**: `RULE_IconUsage.md`
 
 **When**: Adding icons to designs, Builder.io imports, new components
 
 **Key Requirements**:
-- ✅ ALWAYS search 306 existing icons first
+- ✅ ALWAYS search 304 existing icons first
 - ✅ NEVER create duplicate icons
 - ✅ NEVER add to core `icons/` folder (use `icons-custom/` for new)
 - ✅ ALWAYS check Component Library at `/component-library#icons`
@@ -52,7 +86,7 @@ import { Search } from '@/components/icons';
 ```
 
 **Icon Library Stats**:
-- 306 icons available across 15+ categories
+- 304 icons available across 15+ categories
 - Core library: `client/components/icons/`
 - Custom icons: `client/components/icons-custom/`
 
@@ -196,7 +230,7 @@ import { Button } from '@/components/ui/Button';
 Before creating ANY new component, icon, or design:
 
 - [ ] Searched existing components in `client/components/ui/`
-- [ ] Searched all 306 icons at `/component-library#icons`
+- [ ] Searched all 304 icons at `/component-library#icons`
 - [ ] Checked relevant guideline docs in `guidelines/`
 - [ ] Verified no duplicates exist
 - [ ] Confirmed using semantic design tokens only
@@ -210,11 +244,12 @@ Before creating ANY new component, icon, or design:
 | Resource | Location |
 |----------|----------|
 | **LD Component API Reference** 🆕 | `guidelines/LivingDesign-Component-Reference.md` |
+| **Design System Enforcement** 🆕 | `guidelines/RULE_DesignSystemEnforcement.md` |
 | Design Token Rule | `guidelines/RULE_DesignTokenEnforcement.md` |
 | Icon Usage Rule | `guidelines/RULE_IconUsage.md` |
 | Token Documentation | `guidelines/DesignTokens.md` |
 | Component Library | `/component-library` |
-| Icon Library (306 icons) | `/component-library#icons` |
+| Icon Library (304 icons) | `/component-library#icons` |
 | Primitive Tokens | `styles/primitive.css` |
 | Semantic Tokens | `styles/semantic.css` |
 | Component Guidelines | `guidelines/*.md` (30+ files) |
@@ -227,7 +262,7 @@ Before creating ANY new component, icon, or design:
 
 1. **Analyze** imported Figma design
 2. **Map** colors → existing semantic tokens
-3. **Map** icons → existing icon library (306 icons)
+3. **Map** icons → existing icon library (304 icons)
 4. **Map** components → existing LD 3.5 components
 5. **Generate** code using ONLY existing tokens and components
 6. **Verify** no hard-coded values or duplicates

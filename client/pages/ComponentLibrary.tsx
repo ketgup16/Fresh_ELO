@@ -5,6 +5,7 @@ import { BreadcrumbExample } from '@/components/BreadcrumbExample';
 import { LinkExample } from '@/components/LinkExample';
 import IconButtonExample from '@/components/IconButtonExample';
 import { CardHeaderExample } from '@/components/CardHeaderExample';
+import { Button } from '@/components/ui/Button';
 import * as Icons from '@/components/icons';
 
 export default function ComponentLibrary() {
@@ -589,24 +590,14 @@ function InteractiveComponentTester() {
               </label>
               <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)', flexWrap: 'wrap' }}>
                 {(['primary', 'secondary', 'tertiary', 'destructive'] as const).map((variant) => (
-                  <button
+                  <Button
                     key={variant}
+                    variant={buttonVariant === variant ? 'primary' : 'secondary'}
+                    size="small"
                     onClick={() => setButtonVariant(variant)}
-                    style={{
-                      padding: '6px 12px',
-                      fontSize: '13px',
-                      fontWeight: 500,
-                      borderRadius: 'var(--ld-semantic-border-radius-medium)',
-                      border: '1px solid var(--ld-semantic-color-border-subtlest)',
-                      backgroundColor: buttonVariant === variant ? 'var(--ld-semantic-color-fill-activated)' : 'var(--ld-semantic-color-surface)',
-                      color: buttonVariant === variant ? 'var(--ld-semantic-color-text-on-fill-activated-subtle)' : 'var(--ld-semantic-color-text)',
-                      cursor: 'pointer',
-                      fontFamily: 'var(--ld-semantic-font-family-sans)',
-                      transition: 'all 0.2s'
-                    }}
                   >
                     {variant.charAt(0).toUpperCase() + variant.slice(1)}
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>
@@ -625,24 +616,14 @@ function InteractiveComponentTester() {
               </label>
               <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)' }}>
                 {(['small', 'medium', 'large'] as const).map((size) => (
-                  <button
+                  <Button
                     key={size}
+                    variant={buttonSize === size ? 'primary' : 'secondary'}
+                    size="small"
                     onClick={() => setButtonSize(size)}
-                    style={{
-                      padding: '6px 12px',
-                      fontSize: '13px',
-                      fontWeight: 500,
-                      borderRadius: 'var(--ld-semantic-border-radius-medium)',
-                      border: '1px solid var(--ld-semantic-color-border-subtlest)',
-                      backgroundColor: buttonSize === size ? 'var(--ld-semantic-color-fill-activated)' : 'var(--ld-semantic-color-surface)',
-                      color: buttonSize === size ? 'var(--ld-semantic-color-text-on-fill-activated-subtle)' : 'var(--ld-semantic-color-text)',
-                      cursor: 'pointer',
-                      fontFamily: 'var(--ld-semantic-font-family-sans)',
-                      transition: 'all 0.2s'
-                    }}
                   >
                     {size.charAt(0).toUpperCase() + size.slice(1)}
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>
