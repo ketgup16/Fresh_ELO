@@ -30,7 +30,7 @@
   
   /* Interactive styling */
   background-color: var(--ld-semantic-color-action-fill-transparent);
-  color: var(--ld-semantic-color-action-text-onfill-transparent);
+  color: var(--ld-semantic-color-action-text-on-fill-transparent);
   cursor: pointer;
   border: none;
   text-align: left;
@@ -43,7 +43,7 @@
 /* Hover state */
 .navListItem:hover:not(:disabled):not(.navListItem--selected) {
   background-color: var(--ld-semantic-color-action-fill-transparent-hovered);
-  color: var(--ld-semantic-color-action-text-onfill-transparent-hovered);
+  color: var(--ld-semantic-color-action-text-on-fill-transparent-hovered);
 }
 
 /* Focus state */
@@ -55,7 +55,7 @@
 /* Pressed/Active state */
 .navListItem:active:not(:disabled):not(.navListItem--selected) {
   background-color: var(--ld-semantic-color-action-fill-transparent-pressed);
-  color: var(--ld-semantic-color-action-text-onfill-transparent-pressed);
+  color: var(--ld-semantic-color-action-text-on-fill-transparent-pressed);
 }
 
 /* Selected/Current state */
@@ -74,7 +74,7 @@
 .navListItem:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-  color: var(--ld-semantic-color-action-text-onfill-transparent-disabled);
+  color: var(--ld-semantic-color-action-text-on-fill-transparent-disabled);
 }
 
 /* Leading icon */

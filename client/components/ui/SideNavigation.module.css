@@ -23,8 +23,8 @@
   font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
   
   /* Interactive styling - Default state */
-  background-color: var(--ld-semantic-color-pagenav-fill, transparent);
-  color: var(--ld-semantic-color-pagenav-text-onfill, #2e2f32);
+  background-color: var(--ld-semantic-color-page-nav-fill);
+  color: var(--ld-semantic-color-page-nav-text-on-fill);
   cursor: pointer;
   border: none;
   text-align: left;
@@ -37,7 +37,7 @@
 
 /* Hover state */
 .sideNavigationItem:hover:not(:disabled):not(.sideNavigationItem--current) {
-  background-color: var(--ld-semantic-color-pagenav-fill-hovered, rgba(233, 241, 254, 0.5));
+  background-color: var(--ld-semantic-color-page-nav-fill-hovered);
 }
 
 /* Focus state */
@@ -48,21 +48,21 @@
 
 /* Pressed/Active state */
 .sideNavigationItem:active:not(:disabled):not(.sideNavigationItem--current) {
-  background-color: var(--ld-semantic-color-pagenav-fill-pressed, #e9f1fe);
+  background-color: var(--ld-semantic-color-page-nav-fill-pressed);
 }
 
 /* Current/Selected page state */
 .sideNavigationItem--current {
-  background-color: var(--ld-semantic-color-pagenav-fill-activated, #e9f1fe);
-  color: var(--ld-semantic-color-pagenav-text-onfill-activated, #2e2f32);
+  background-color: var(--ld-semantic-color-page-nav-fill-activated);
+  color: var(--ld-semantic-color-page-nav-text-on-fill-activated);
 }
 
 .sideNavigationItem--current:hover:not(:disabled) {
-  background-color: var(--ld-semantic-color-pagenav-fill-activated-hovered, #d4e5fc);
+  background-color: var(--ld-semantic-color-page-nav-fill-activated-hovered);
 }
 
 .sideNavigationItem--current:active:not(:disabled) {
-  background-color: var(--ld-semantic-color-pagenav-fill-activated-pressed, #c0d9fb);
+  background-color: var(--ld-semantic-color-page-nav-fill-activated-pressed);
 }
 
 /* Selected indicator (4px left bar) - only shown when current */
@@ -73,20 +73,20 @@
   top: var(--ld-primitive-scale-space-50, 0.25rem);
   bottom: var(--ld-primitive-scale-space-50, 0.25rem);
   width: var(--ld-primitive-scale-space-50, 0.25rem);
-  background-color: var(--ld-semantic-color-pagenav-indicator-activated, #0053e2);
+  background-color: var(--ld-semantic-color-page-nav-indicator-activated);
   border-radius: 0 var(--ld-primitive-scale-border-radius-50, 0.25rem) var(--ld-primitive-scale-border-radius-50, 0.25rem) 0;
 }
 
 .sideNavigationItem--current:hover:not(:disabled)::before {
-  background-color: var(--ld-semantic-color-pagenav-indicator-activated-hovered, #0046bd);
+  background-color: var(--ld-semantic-color-page-nav-indicator-activated-hovered);
 }
 
 .sideNavigationItem--current:focus-visible::before {
-  background-color: var(--ld-semantic-color-pagenav-indicator-activated-focused, #0053e2);
+  background-color: var(--ld-semantic-color-page-nav-indicator-activated-focused);
 }
 
 .sideNavigationItem--current:active:not(:disabled)::before {
-  background-color: var(--ld-semantic-color-pagenav-indicator-activated-pressed, #002e99);
+  background-color: var(--ld-semantic-color-page-nav-indicator-activated-pressed);
 }
 
 /* Disabled state */

@@ -39,66 +39,86 @@
   font-size: 14px;
 }
 
-/* Semantic color variants using LD 3.5 tokens */
+/* Semantic color variants using LD 3.5 semantic tokens */
 
-/* Info variant - Blue */
-.badge--variant-info,
-.badge--variant-blue {
-  background-color: var(--ld-primitive-color-blue-100, #0053e2);
-  color: var(--ld-primitive-color-white, #ffffff);
+/* Info variant - Blue (semantic) */
+.badge--variant-info {
+  background-color: var(--ld-semantic-color-fill-info);
+  color: var(--ld-semantic-color-text-on-fill-info);
 }
 
-/* Success variant - Green */
-.badge--variant-success,
-.badge--variant-green {
-  background-color: var(--ld-primitive-color-green-100, #2a8703);
-  color: var(--ld-primitive-color-white, #ffffff);
+/* Success variant - Green (semantic) */
+.badge--variant-success {
+  background-color: var(--ld-semantic-color-fill-positive);
+  color: var(--ld-semantic-color-text-on-fill-positive);
 }
 
-/* Warning variant - Spark (Yellow/Orange) */
-.badge--variant-warning,
-.badge--variant-yellow {
-  background-color: var(--ld-primitive-color-spark-100, #ffc220);
-  color: var(--ld-primitive-color-gray-160, #2e2f32);
+/* Warning variant - Spark (semantic) */
+.badge--variant-warning {
+  background-color: var(--ld-semantic-color-fill-warning);
+  color: var(--ld-semantic-color-text-on-fill-warning);
 }
 
-/* Error variant - Red */
-.badge--variant-error,
-.badge--variant-red {
-  background-color: var(--ld-primitive-color-red-100, #ea1100);
-  color: var(--ld-primitive-color-white, #ffffff);
+/* Error variant - Red (semantic) */
+.badge--variant-error {
+  background-color: var(--ld-semantic-color-fill-negative);
+  color: var(--ld-semantic-color-text-on-fill-negative);
 }
 
-/* Neutral variant - Gray */
+/* Neutral variant - Gray (semantic accent) */
 .badge--variant-neutral {
-  background-color: var(--ld-primitive-color-gray-100, #74767c);
-  color: var(--ld-primitive-color-white, #ffffff);
+  background-color: var(--ld-semantic-color-fill-accent-gray);
+  color: var(--ld-semantic-color-text-on-fill-accent-gray);
 }
 
-/* Additional color variants for extended palette */
+/* Additional color variants using semantic accent tokens */
+
+/* Blue */
+.badge--variant-blue {
+  background-color: var(--ld-semantic-color-fill-accent-blue);
+  color: var(--ld-semantic-color-text-on-fill-accent-blue);
+}
+
+/* Green */
+.badge--variant-green {
+  background-color: var(--ld-semantic-color-fill-accent-green);
+  color: var(--ld-semantic-color-text-on-fill-accent-green);
+}
+
+/* Yellow */
+.badge--variant-yellow {
+  background-color: var(--ld-semantic-color-fill-accent-yellow);
+  color: var(--ld-semantic-color-text-on-fill-accent-yellow);
+}
+
+/* Red */
+.badge--variant-red {
+  background-color: var(--ld-semantic-color-fill-accent-red);
+  color: var(--ld-semantic-color-text-on-fill-accent-red);
+}
 
 /* Purple */
 .badge--variant-purple {
-  background-color: var(--ld-primitive-color-purple-100, #a6509f);
-  color: var(--ld-primitive-color-white, #ffffff);
+  background-color: var(--ld-semantic-color-fill-accent-purple);
+  color: var(--ld-semantic-color-text-on-fill-accent-purple);
 }
 
 /* Orange */
 .badge--variant-orange {
-  background-color: var(--ld-primitive-color-orange-120, #c83c00);
-  color: var(--ld-primitive-color-white, #ffffff);
+  background-color: var(--ld-semantic-color-fill-accent-orange);
+  color: var(--ld-semantic-color-text-on-fill-accent-orange);
 }
 
 /* Pink */
 .badge--variant-pink {
-  background-color: var(--ld-primitive-color-pink-100, #cb2c90);
-  color: var(--ld-primitive-color-white, #ffffff);
+  background-color: var(--ld-semantic-color-fill-accent-pink);
+  color: var(--ld-semantic-color-text-on-fill-accent-pink);
 }
 
 /* Teal */
 .badge--variant-teal {
-  background-color: var(--ld-primitive-color-teal-100, #00809e);
-  color: var(--ld-primitive-color-white, #ffffff);
+  background-color: var(--ld-semantic-color-fill-accent-teal);
+  color: var(--ld-semantic-color-text-on-fill-accent-teal);
 }
 
 /* Dot badge - when no value is provided */

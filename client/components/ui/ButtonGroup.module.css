@@ -8,7 +8,7 @@
 .buttonGroup {
   display: flex;
   align-items: center;
-  gap: var(--ld-semantic-spacing-3, 12px); /* LD 3.5 spacing token */
+  gap: var(--ld-semantic-spacing-150); /* 12px - LD 3.5 spacing token */
   flex-wrap: wrap;
 }
 
@@ -20,6 +20,6 @@
 /* Responsive behavior for smaller screens */
 @media (max-width: 640px) {
   .buttonGroup {
-    gap: var(--ld-semantic-spacing-2, 8px);
+    gap: var(--ld-semantic-spacing-100); /* 8px */
   }
 }

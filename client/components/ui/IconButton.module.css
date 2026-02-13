@@ -69,122 +69,122 @@
 
 /* Ghost Variant (transparent background) */
 .iconButton--variant-ghost {
-  background-color: transparent;
-  color: var(--ld-semantic-color-action-text-secondary);
+  background-color: var(--ld-semantic-color-action-fill-transparent);
+  color: var(--ld-semantic-color-action-text-on-fill-transparent);
   border-color: transparent;
 }
 
 .iconButton--variant-ghost:hover:not(:disabled) {
-  background-color: var(--ld-semantic-color-action-fill-secondary-hovered);
-  color: var(--ld-semantic-color-action-text-secondary-hovered);
+  background-color: var(--ld-semantic-color-action-fill-transparent-hovered);
+  color: var(--ld-semantic-color-action-text-on-fill-transparent-hovered);
 }
 
 .iconButton--variant-ghost:active:not(:disabled) {
-  background-color: var(--ld-semantic-color-action-fill-secondary-pressed);
-  color: var(--ld-semantic-color-action-text-secondary-pressed);
+  background-color: var(--ld-semantic-color-action-fill-transparent-pressed);
+  color: var(--ld-semantic-color-action-text-on-fill-transparent-pressed);
 }
 
 .iconButton--variant-ghost:disabled {
-  background-color: transparent;
-  color: var(--ld-semantic-color-action-text-secondary-disabled);
+  background-color: var(--ld-semantic-color-action-fill-transparent-disabled);
+  color: var(--ld-semantic-color-action-text-on-fill-transparent-disabled);
 }
 
 /* Primary Variant */
 .iconButton--variant-primary {
   background-color: var(--ld-semantic-color-action-fill-primary);
-  color: var(--ld-semantic-color-action-text-onfill-primary);
+  color: var(--ld-semantic-color-action-text-on-fill-primary);
   border-color: var(--ld-semantic-color-action-fill-primary);
 }
 
 .iconButton--variant-primary:hover:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-primary-hovered);
   border-color: var(--ld-semantic-color-action-fill-primary-hovered);
-  color: var(--ld-semantic-color-action-text-onfill-primary-hovered);
+  color: var(--ld-semantic-color-action-text-on-fill-primary-hovered);
 }
 
 .iconButton--variant-primary:active:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-primary-pressed);
   border-color: var(--ld-semantic-color-action-fill-primary-pressed);
-  color: var(--ld-semantic-color-action-text-onfill-primary-pressed);
+  color: var(--ld-semantic-color-action-text-on-fill-primary-pressed);
 }
 
 .iconButton--variant-primary:disabled {
   background-color: var(--ld-semantic-color-action-fill-primary-disabled);
   border-color: var(--ld-semantic-color-action-fill-primary-disabled);
-  color: var(--ld-semantic-color-action-text-onfill-primary-disabled);
+  color: var(--ld-semantic-color-action-text-on-fill-primary-disabled);
 }
 
 /* Secondary Variant */
 .iconButton--variant-secondary {
   background-color: var(--ld-semantic-color-action-fill-secondary);
-  color: var(--ld-semantic-color-action-text-onfill-secondary);
+  color: var(--ld-semantic-color-action-text-on-fill-secondary);
   border-color: var(--ld-semantic-color-action-border-secondary);
 }
 
 .iconButton--variant-secondary:hover:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-secondary-hovered);
   border-color: var(--ld-semantic-color-action-border-secondary-hovered);
-  color: var(--ld-semantic-color-action-text-onfill-secondary-hovered);
+  color: var(--ld-semantic-color-action-text-on-fill-secondary-hovered);
 }
 
 .iconButton--variant-secondary:active:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-secondary-pressed);
   border-color: var(--ld-semantic-color-action-border-secondary-pressed);
-  color: var(--ld-semantic-color-action-text-onfill-secondary-pressed);
+  color: var(--ld-semantic-color-action-text-on-fill-secondary-pressed);
 }
 
 .iconButton--variant-secondary:disabled {
   background-color: var(--ld-semantic-color-action-fill-secondary-disabled);
   border-color: var(--ld-semantic-color-action-border-secondary-disabled);
-  color: var(--ld-semantic-color-action-text-onfill-secondary-disabled);
+  color: var(--ld-semantic-color-action-text-on-fill-secondary-disabled);
 }
 
 /* Tertiary Variant */
 .iconButton--variant-tertiary {
   background-color: var(--ld-semantic-color-action-fill-tertiary);
-  color: var(--ld-semantic-color-action-text-onfill-tertiary);
+  color: var(--ld-semantic-color-action-text-on-fill-tertiary);
   border-color: var(--ld-semantic-color-action-border-tertiary);
 }
 
 .iconButton--variant-tertiary:hover:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-tertiary-hovered);
   border-color: var(--ld-semantic-color-action-border-tertiary-hovered);
-  color: var(--ld-semantic-color-action-text-onfill-tertiary-hovered);
+  color: var(--ld-semantic-color-action-text-on-fill-tertiary-hovered);
 }
 
 .iconButton--variant-tertiary:active:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-tertiary-pressed);
   border-color: var(--ld-semantic-color-action-border-tertiary-pressed);
-  color: var(--ld-semantic-color-action-text-onfill-tertiary-pressed);
+  color: var(--ld-semantic-color-action-text-on-fill-tertiary-pressed);
 }
 
 .iconButton--variant-tertiary:disabled {
   background-color: var(--ld-semantic-color-action-fill-tertiary-disabled);
   border-color: var(--ld-semantic-color-action-border-tertiary-disabled);
-  color: var(--ld-semantic-color-action-text-onfill-tertiary-disabled);
+  color: var(--ld-semantic-color-action-text-on-fill-tertiary-disabled);
 }
 
 /* Destructive Variant */
 .iconButton--variant-destructive {
-  background-color: var(--ld-semantic-color-action-fill-destructive);
-  color: var(--ld-semantic-color-action-text-onfill-destructive);
-  border-color: var(--ld-semantic-color-action-fill-destructive);
+  background-color: var(--ld-semantic-color-action-fill-negative);
+  color: var(--ld-semantic-color-action-text-on-fill-negative);
+  border-color: var(--ld-semantic-color-action-fill-negative);
 }
 
 .iconButton--variant-destructive:hover:not(:disabled) {
-  background-color: var(--ld-semantic-color-action-fill-destructive-hovered);
-  border-color: var(--ld-semantic-color-action-fill-destructive-hovered);
-  color: var(--ld-semantic-color-action-text-onfill-destructive-hovered);
+  background-color: var(--ld-semantic-color-action-fill-negative-hovered);
+  border-color: var(--ld-semantic-color-action-fill-negative-hovered);
+  color: var(--ld-semantic-color-action-text-on-fill-negative-hovered);
 }
 
 .iconButton--variant-destructive:active:not(:disabled) {
-  background-color: var(--ld-semantic-color-action-fill-destructive-pressed);
-  border-color: var(--ld-semantic-color-action-fill-destructive-pressed);
-  color: var(--ld-semantic-color-action-text-onfill-destructive-pressed);
+  background-color: var(--ld-semantic-color-action-fill-negative-pressed);
+  border-color: var(--ld-semantic-color-action-fill-negative-pressed);
+  color: var(--ld-semantic-color-action-text-on-fill-negative-pressed);
 }
 
 .iconButton--variant-destructive:disabled {
-  background-color: var(--ld-semantic-color-action-fill-destructive-disabled);
-  border-color: var(--ld-semantic-color-action-fill-destructive-disabled);
-  color: var(--ld-semantic-color-action-text-onfill-destructive-disabled);
+  background-color: var(--ld-semantic-color-action-fill-negative-disabled);
+  border-color: var(--ld-semantic-color-action-fill-negative-disabled);
+  color: var(--ld-semantic-color-action-text-on-fill-negative-disabled);
 }

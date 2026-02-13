@@ -14,44 +14,46 @@
 
 /* Variant: Default */
 .link--variant-default {
-  color: var(--ld-primitive-color-gray-160, #2e2f32);
+  color: var(--ld-semantic-color-link-text);
 }
 
 .link--variant-default:hover {
-  color: var(--ld-primitive-color-gray-160, #2e2f32);
+  color: var(--ld-semantic-color-link-text-hovered);
 }
 
 .link--variant-default:active {
-  color: var(--ld-primitive-color-gray-160, #2e2f32);
+  color: var(--ld-semantic-color-link-text-pressed);
 }
 
 .link--variant-default:visited {
-  color: var(--ld-primitive-color-gray-160, #2e2f32);
+  color: var(--ld-semantic-color-link-text);
 }
 
 .link--variant-default:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071ce);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
   border-radius: 2px;
+  color: var(--ld-semantic-color-link-text-focused);
 }
 
-/* Variant: Subtle (same as default for consistency) */
+/* Variant: Subtle */
 .link--variant-subtle {
-  color: var(--ld-primitive-color-gray-160, #2e2f32);
+  color: var(--ld-semantic-color-link-text-subtle);
 }
 
 .link--variant-subtle:hover {
-  color: var(--ld-primitive-color-gray-160, #2e2f32);
+  color: var(--ld-semantic-color-link-text-subtle-hovered);
 }
 
 .link--variant-subtle:active {
-  color: var(--ld-primitive-color-gray-160, #2e2f32);
+  color: var(--ld-semantic-color-link-text-subtle-pressed);
 }
 
 .link--variant-subtle:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071ce);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
   border-radius: 2px;
+  color: var(--ld-semantic-color-link-text-subtle-focused);
 }
 
 /* Underline states */
@@ -77,7 +79,7 @@
 
 /* Disabled state (aria-disabled) */
 .link[aria-disabled="true"] {
-  color: var(--ld-primitive-color-gray-50, #babbbe);
+  color: var(--ld-semantic-color-link-text-disabled);
   cursor: not-allowed;
   pointer-events: none;
   text-decoration: none;

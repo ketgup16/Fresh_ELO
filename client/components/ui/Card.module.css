@@ -1,7 +1,7 @@
 .card {
-  background-color: var(--ld-semantic-color-background, #ffffff);
-  border: 1px solid var(--ld-semantic-color-border-default, #d9d9d9);
-  border-radius: 8px;
+  background-color: var(--ld-semantic-color-surface);
+  border: 1px solid var(--ld-semantic-color-border-subtlest);
+  border-radius: var(--ld-semantic-border-radius-large);
   overflow: hidden;
   display: flex;
   flex-direction: column;
