@@ -4,6 +4,7 @@ import { ButtonExample } from '@/components/ButtonExample';
 import { BreadcrumbExample } from '@/components/BreadcrumbExample';
 import { LinkExample } from '@/components/LinkExample';
 import IconButtonExample from '@/components/IconButtonExample';
+import { CalloutExample } from '@/components/CalloutExample';
 import { CardHeaderExample } from '@/components/CardHeaderExample';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -26,6 +27,7 @@ export default function ComponentLibrary() {
     { id: 'breadcrumbs', name: 'Breadcrumbs', keywords: ['breadcrumb', 'navigation', 'path'] },
     { id: 'links', name: 'Links', keywords: ['link', 'anchor', 'hyperlink', 'url'] },
     { id: 'icon-buttons', name: 'Icon Buttons', keywords: ['icon button', 'icon', 'action'] },
+    { id: 'callouts', name: 'Callouts', keywords: ['callout', 'tooltip', 'nubbin', 'coaching', 'onboarding', 'pointer'] },
     { id: 'cards', name: 'Cards', keywords: ['card', 'container', 'panel'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
   ];
@@ -468,6 +470,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="icon-buttons" title="Icon Buttons" description="Icon-only buttons for compact actions with ghost, primary, secondary, and destructive variants">
         <ComponentShowcase>
           <IconButtonExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Callouts Section */}
+      <Section id="callouts" title="Callouts" description="Coaching callouts with nubbin pointers for onboarding guidance anchored to UI elements">
+        <ComponentShowcase>
+          <CalloutExample />
         </ComponentShowcase>
       </Section>
 

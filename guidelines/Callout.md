@@ -1,9 +1,9 @@
 ---
 title: Callout
 scope: component
-status: draft
+status: stable
 owner: design-system
-last_updated: 2025-12-19
+last_updated: 2026-02-13
 ---
 
 ## Purpose
@@ -76,34 +76,50 @@ Screen reader behavior note:
 - Only use tokens for layout around the Callout/trigger, not for restyling the Callout itself.
 
 ## React usage (example)
-Update import path after wiring in `guidelines/components/overview-components.md`.
 
 ```tsx
 import * as React from "react";
-import { Button, Callout } from "REPLACE_ME_COMPONENT_IMPORT_PATH";
+import { Callout } from "@/components/ui/Callout";
 
 export default function CalloutExample() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const ref = React.useRef<HTMLButtonElement | null>(null);
+  const [isOpen, setIsOpen] = React.useState(true);
+
+  if (!isOpen) return null;
 
   return (
     <Callout
       a11yContentLabel="Tip: This button creates a new project."
-      isOpen={isOpen}
-      onClose={() => setIsOpen(false)}
       position="topRight"
-      trigger={
-        <Button ref={ref} variant="primary" onClick={() => setIsOpen(true)}>
-          Create project
-        </Button>
-      }
-      triggerRef={ref}
+      onClose={() => setIsOpen(false)}
     >
       Create a project to organize your work. You can rename it anytime later.
     </Callout>
   );
 }
 ```
+
+## Props reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | — | Content displayed inside the callout |
+| `position` | `CalloutPosition` | `'bottomCenter'` | Nubbin position (8 variants) |
+| `closable` | `boolean` | `true` | Whether the close button is shown |
+| `onClose` | `() => void` | — | Callback fired on close |
+| `a11yContentLabel` | `string` | — | Accessible description of the callout |
+| `UNSAFE_className` | `string` | — | Escape-hatch class name |
+| `UNSAFE_style` | `CSSProperties` | — | Escape-hatch inline styles |
+
+## Design tokens used
+
+| Property | Token | Fallback |
+|----------|-------|----------|
+| Background | `--ld-semantic-color-surface-inverse` | #2E2F32 |
+| Text | `--ld-semantic-color-text-inverse` | #FFFFFF |
+| Border radius | `--ld-primitive-scale-border-radius-100` | 8px |
+| Shadow | `--ld-semantic-elevation-200` | — |
+| Font family | `--ld-semantic-font-family-sans` | Everyday Sans UI |
+| Focus outline | `--ld-semantic-color-action-focus-outline` | #0071DC |
 
 ## Best practices
 ### Use when
