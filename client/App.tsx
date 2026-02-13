@@ -32,12 +32,7 @@ const App = () => (
       <MartyProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/component-library" element={
-              <div style={{ backgroundColor: '#FF0000', minHeight: '100vh', padding: '40px' }}>
-                <h1 style={{ color: 'white', fontSize: '48px' }}>DIRECT ROUTE TEST - RED PAGE</h1>
-                <ComponentLibrary />
-              </div>
-            } />
+            <Route path="/component-library" element={<ComponentLibrary />} />
             <Route path="/" element={<Index />} />
             <Route path="/sponsored-search" element={<SponsoredSearch />} />
             <Route path="/campaign" element={<Campaign />} />
