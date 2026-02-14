@@ -8,6 +8,7 @@ import IconButtonExample from '@/components/examples/IconButtonExample';
 import { CalloutExample } from '@/components/examples/CalloutExample';
 import { CardHeaderExample } from '@/components/examples/CardHeaderExample';
 import { CheckboxExample } from '@/components/examples/CheckboxExample';
+import { RadioExample } from '@/components/examples/RadioExample';
 import { ChipExample } from '@/components/examples/ChipExample';
 import { FilterChipExample } from '@/components/examples/FilterChipExample';
 import { ContentMessageExample } from '@/components/examples/ContentMessageExample';
@@ -24,6 +25,8 @@ import { Chip } from '@/components/ui/Chip';
 import { FilterChip } from '@/components/ui/FilterChip';
 import { OLQTag } from '@/components/ui/olq-tag';
 import { DatePicker } from '@/components/ui/DatePicker';
+import { Radio } from '@/components/ui/Radio';
+import { RadioGroup } from '@/components/ui/radio-group';
 import * as Icons from '@/components/icons';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 
@@ -54,6 +57,7 @@ export default function ComponentLibrary() {
     { id: 'links', name: 'Links', keywords: ['link', 'anchor', 'hyperlink', 'url'] },
     { id: 'icon-buttons', name: 'Icon Buttons', keywords: ['icon button', 'icon', 'action'] },
     { id: 'checkboxes', name: 'Checkboxes', keywords: ['checkbox', 'check', 'select', 'form', 'input', 'indeterminate'] },
+    { id: 'radio-buttons', name: 'Radio Buttons', keywords: ['radio', 'radio button', 'radio group', 'select', 'form', 'input', 'option'] },
     { id: 'chips', name: 'Chips', keywords: ['chip', 'select', 'toggle', 'tag', 'interactive', 'category'] },
     { id: 'filter-chips', name: 'Filter Chips', keywords: ['filter chip', 'filter', 'pill', 'select', 'toggle'] },
     { id: 'callouts', name: 'Callouts', keywords: ['callout', 'tooltip', 'nubbin', 'coaching', 'onboarding', 'pointer'] },
@@ -507,6 +511,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="checkboxes" title="Checkboxes" description="Form checkboxes with checked, unchecked, and indeterminate states using LD 3.5 input tokens">
         <ComponentShowcase>
           <CheckboxExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Radio Buttons Section */}
+      <Section id="radio-buttons" title="Radio Buttons" description="Mutually exclusive selection within a group. Uses LD 3.5 input tokens with bold label when selected.">
+        <ComponentShowcase>
+          <RadioExample />
         </ComponentShowcase>
       </Section>
 
@@ -989,7 +1000,7 @@ function SearchableComponentSelect({ selectedComponent, onComponentChange, avail
 
 // Interactive Component Tester - Supports multiple component types
 function InteractiveComponentTester() {
-  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip' | 'DatePicker';
+  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip' | 'DatePicker' | 'Radio';
 
   const [selectedComponent, setSelectedComponent] = React.useState<ComponentType>('Button');
   const [variant, setVariant] = React.useState<string>('primary');
@@ -1004,6 +1015,8 @@ function InteractiveComponentTester() {
   const [clickable, setClickable] = React.useState(false);
   const [olqPercentage, setOlqPercentage] = React.useState(85);
   const [chipSelected, setChipSelected] = React.useState(false);
+  const [radioValue, setRadioValue] = React.useState('option-a');
+  const [radioShowLabel, setRadioShowLabel] = React.useState(true);
 
   // DatePicker state
   const [datePickerDate, setDatePickerDate] = React.useState<Date>();
@@ -1135,6 +1148,18 @@ function InteractiveComponentTester() {
       supportsClickable: false,
       supportsOLQPercentage: false,
     },
+    Radio: {
+      variants: [],
+      sizes: [],
+      supportsFullWidth: false,
+      supportsIcons: false,
+      supportsValue: false,
+      supportsShape: false,
+      supportsUnderline: false,
+      supportsDismissible: false,
+      supportsClickable: false,
+      supportsOLQPercentage: false,
+    },
   };
 
   const config = componentConfigs[selectedComponent];
@@ -1212,6 +1237,13 @@ function InteractiveComponentTester() {
 >
   Filter Label
 </Chip>`;
+
+      case 'Radio':
+        return `<RadioGroup value={selected} onValueChange={setSelected}${disabled ? ' disabled' : ''}>
+  <Radio value="option-a" label="Option A"${disabled ? ' disabled' : ''} />
+  <Radio value="option-b" label="Option B"${disabled ? ' disabled' : ''} />
+  <Radio value="option-c" label="Option C"${disabled ? ' disabled' : ''} />
+</RadioGroup>`;
 
       default:
         return '';
@@ -1356,6 +1388,15 @@ function InteractiveComponentTester() {
               helperText="Select a date from the calendar or type manually"
             />
           </div>
+        );
+
+      case 'Radio':
+        return (
+          <RadioGroup value={radioValue} onValueChange={setRadioValue}>
+            <Radio value="option-a" label={radioShowLabel ? 'Option A' : undefined} aria-label="Option A" showLabel={radioShowLabel} disabled={disabled} />
+            <Radio value="option-b" label={radioShowLabel ? 'Option B' : undefined} aria-label="Option B" showLabel={radioShowLabel} disabled={disabled} />
+            <Radio value="option-c" label={radioShowLabel ? 'Option C' : undefined} aria-label="Option C" showLabel={radioShowLabel} disabled={disabled} />
+          </RadioGroup>
         );
 
       default:
@@ -1558,6 +1599,14 @@ function InteractiveComponentTester() {
                   label="Clickable"
                   checked={clickable}
                   onCheckedChange={(c) => setClickable(!!c)}
+                />
+              )}
+
+              {selectedComponent === 'Radio' && (
+                <Checkbox
+                  label="Show Labels"
+                  checked={radioShowLabel}
+                  onCheckedChange={(c) => setRadioShowLabel(!!c)}
                 />
               )}
 
