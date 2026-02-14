@@ -328,6 +328,15 @@
   --ld-primitive-scale-border-radius-400: 2rem;
   --ld-primitive-scale-border-radius-round: 62.5rem;
 
+  /* Border radius aliases (without dashes for Figma compatibility) */
+  --ld-primitive-scale-borderradius-25: var(--ld-primitive-scale-border-radius-25);
+  --ld-primitive-scale-borderradius-50: var(--ld-primitive-scale-border-radius-50);
+  --ld-primitive-scale-borderradius-100: var(--ld-primitive-scale-border-radius-100);
+  --ld-primitive-scale-borderradius-200: var(--ld-primitive-scale-border-radius-200);
+  --ld-primitive-scale-borderradius-300: var(--ld-primitive-scale-border-radius-300);
+  --ld-primitive-scale-borderradius-400: var(--ld-primitive-scale-border-radius-400);
+  --ld-primitive-scale-borderradius-round: var(--ld-primitive-scale-border-radius-round);
+
   /* Border width scale */
   --ld-primitive-scale-border-width-100: 0.0625rem;
   --ld-primitive-scale-border-width-200: 0.125rem;

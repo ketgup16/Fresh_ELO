@@ -634,6 +634,16 @@
   --ld-semantic-scale-border-width-interactive-activated-hovered: var(--ld-primitive-scale-border-width-200, 0.125rem);
   --ld-semantic-scale-border-width-interactive-activated-pressed: var(--ld-primitive-scale-border-width-200, 0.125rem);
 
+  /* Border width aliases (without dashes for Figma compatibility) */
+  --ld-semantic-scale-borderwidth-interactive: var(--ld-semantic-scale-border-width-interactive);
+  --ld-semantic-scale-borderwidth-interactive-focused: var(--ld-semantic-scale-border-width-interactive-focused);
+  --ld-semantic-scale-borderwidth-interactive-hovered: var(--ld-semantic-scale-border-width-interactive-hovered);
+  --ld-semantic-scale-borderwidth-interactive-pressed: var(--ld-semantic-scale-border-width-interactive-pressed);
+  --ld-semantic-scale-borderwidth-interactive-activated: var(--ld-semantic-scale-border-width-interactive-activated);
+  --ld-semantic-scale-borderwidth-interactive-activated-focused: var(--ld-semantic-scale-border-width-interactive-activated-focused);
+  --ld-semantic-scale-borderwidth-interactive-activated-hovered: var(--ld-semantic-scale-border-width-interactive-activated-hovered);
+  --ld-semantic-scale-borderwidth-interactive-activated-pressed: var(--ld-semantic-scale-border-width-interactive-activated-pressed);
+
   /* Icon sizes */
   --ld-semantic-scale-icon-large: 2rem;
   --ld-semantic-scale-icon-medium: 1.5rem;
