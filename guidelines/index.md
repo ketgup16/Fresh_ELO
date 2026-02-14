@@ -88,6 +88,7 @@ Migration plans and standardization documentation for transitioning to Living De
 Design system enforcement rules and best practices.
 
 - [Rules Index](rules/RULES_INDEX.md) - Overview of all design system rules
+- [**Create New Component**](rules/RULE_CreateNewComponent.md) - **Complete process for new components**
 - [Design System Enforcement](rules/RULE_DesignSystemEnforcement.md) - Component usage rules
 - [Design Token Enforcement](rules/RULE_DesignTokenEnforcement.md) - Token usage requirements
 - [**Token Usage Enforcement**](rules/RULE_TokenUsageEnforcement.md) - **HARD RULE: All components must use tokens**
