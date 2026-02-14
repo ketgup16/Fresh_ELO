@@ -4,18 +4,18 @@
   align-items: center;
   justify-content: center;
   font-family: var(--ld-semantic-font-family-sans);
-  border: 1px solid transparent;
+  border: var(--ld-semantic-scale-border-width-interactive) solid transparent;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s ease-in-out;
+  transition: all var(--ld-primitive-duration-200) ease-in-out;
   box-sizing: border-box;
   flex-shrink: 0;
   position: relative;
 }
 
 .iconButton:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
-  outline-offset: 2px;
+  outline: var(--ld-semantic-scale-border-width-interactive-focused) solid var(--ld-semantic-color-action-focus-outline);
+  outline-offset: var(--ld-primitive-scale-space-50);
 }
 
 .iconButton:disabled {
@@ -34,36 +34,36 @@
 
 /* Size Variants */
 .iconButton--size-small {
-  width: 24px;
-  height: 24px;
-  padding: 4px;
+  width: var(--ld-primitive-scale-space-300);
+  height: var(--ld-primitive-scale-space-300);
+  padding: var(--ld-primitive-scale-space-50);
 }
 
 .iconButton--size-small .iconButton__icon svg {
-  width: 16px;
-  height: 16px;
+  width: var(--ld-semantic-scale-icon-small);
+  height: var(--ld-semantic-scale-icon-small);
 }
 
 .iconButton--size-medium {
-  width: 32px;
-  height: 32px;
-  padding: 6px;
+  width: 32px; /* LD 3.5 spec */
+  height: 32px; /* LD 3.5 spec */
+  padding: var(--ld-primitive-scale-space-100);
 }
 
 .iconButton--size-medium .iconButton__icon svg {
-  width: 20px;
-  height: 20px;
+  width: var(--ld-semantic-scale-icon-medium);
+  height: var(--ld-semantic-scale-icon-medium);
 }
 
 .iconButton--size-large {
-  width: 40px;
-  height: 40px;
-  padding: 8px;
+  width: 40px; /* LD 3.5 spec */
+  height: 40px; /* LD 3.5 spec */
+  padding: var(--ld-primitive-scale-space-100);
 }
 
 .iconButton--size-large .iconButton__icon svg {
-  width: 24px;
-  height: 24px;
+  width: var(--ld-primitive-scale-space-300);
+  height: var(--ld-primitive-scale-space-300);
 }
 
 /* Ghost Variant (transparent background) */
@@ -190,7 +190,7 @@
 
 /* Shape Variants */
 .iconButton--shape-square {
-  border-radius: 4px; /* Square with slight rounding */
+  border-radius: var(--ld-primitive-scale-border-radius-50);
 }
 
 .iconButton--shape-rounded {

@@ -4,14 +4,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+  width: var(--ld-semantic-scale-icon-small);
+  height: var(--ld-semantic-scale-icon-small);
   flex-shrink: 0;
   border-radius: var(--ld-primitive-scale-border-radius-25, 2px);
-  border: 1.5px solid var(--ld-semantic-color-input-border);
+  border: var(--ld-semantic-scale-border-width-interactive) solid var(--ld-semantic-color-input-border);
   background-color: var(--ld-semantic-color-input-fill);
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition: background-color var(--ld-primitive-duration-200) ease, border-color var(--ld-primitive-duration-200) ease;
   outline: none;
   padding: 0;
 }
@@ -24,8 +24,8 @@
 
 /* Focus visible */
 .checkbox:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
-  outline-offset: 2px;
+  outline: var(--ld-semantic-scale-border-width-interactive-focused) solid var(--ld-semantic-color-action-focus-outline);
+  outline-offset: var(--ld-primitive-scale-space-50);
 }
 
 /* Pressed - Unchecked */
@@ -86,21 +86,21 @@
 
 /* Check icon */
 .checkIcon {
-  width: 12px;
-  height: 12px;
+  width: var(--ld-primitive-scale-space-150);
+  height: var(--ld-primitive-scale-space-150);
 }
 
 /* Indeterminate dash icon */
 .indeterminateIcon {
-  width: 10px;
-  height: 10px;
+  width: 10px; /* Spec */
+  height: 10px; /* Spec */
 }
 
 /* Label wrapper (optional, for checkbox + label combos) */
 .wrapper {
   display: inline-flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: var(--ld-primitive-scale-space-100);
   cursor: pointer;
 }
 
@@ -110,8 +110,8 @@
 
 .label {
   font-family: var(--ld-semantic-font-family-sans);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: var(--ld-semantic-font-body-small-size);
+  line-height: var(--ld-semantic-font-body-small-line-height);
   color: var(--ld-semantic-color-input-text-on-fill);
   user-select: none;
 }

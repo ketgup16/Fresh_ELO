@@ -92,6 +92,7 @@ Design system enforcement rules and best practices.
 - [Design Token Enforcement](rules/RULE_DesignTokenEnforcement.md) - Token usage requirements
 - [**Token Usage Enforcement**](rules/RULE_TokenUsageEnforcement.md) - **HARD RULE: All components must use tokens**
 - [**Component Property Tester**](rules/RULE_ComponentPropertyTester.md) - **HARD RULE: All components must be testable**
+- [**No Emojis, Use Icons**](rules/RULE_NoEmojisUseIcons.md) - **HARD RULE: No emojis or random images**
 - [Icon Usage](rules/RULE_IconUsage.md) - Icon library usage guidelines
 - [Theme Switcher](rules/RULE_ThemeSwitcher.md) - Theme management rules
 - [Theme Addition](rules/RULE_ThemeAddition.md) - Process for adding new themes
