@@ -17,6 +17,7 @@ import { ContentMessageExample } from '@/components/examples/ContentMessageExamp
 import { DateFieldExample } from '@/components/examples/DateFieldExample';
 import { DatePickerExample } from '@/components/examples/DatePickerExample';
 import { DividerExample } from '@/components/examples/DividerExample';
+import { ListExample } from '@/components/examples/ListExample';
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Badge } from '@/components/ui/Badge';
@@ -72,6 +73,7 @@ export default function ComponentLibrary() {
     { id: 'date-fields', name: 'Date Fields', keywords: ['date', 'input', 'calendar', 'field', 'form'] },
     { id: 'date-pickers', name: 'Date Pickers', keywords: ['date picker', 'calendar', 'popup', 'date selection', 'datepicker'] },
     { id: 'dividers', name: 'Dividers', keywords: ['divider', 'separator', 'line', 'horizontal', 'vertical', 'rule', 'hr'] },
+    { id: 'lists', name: 'Lists', keywords: ['list', 'listitem', 'item', 'vertical', 'group', 'spot icon', 'trailing', 'leading'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
   ];
 
@@ -600,6 +602,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="dividers" title="Dividers" description="Visual separators using the LD 3.5 separator token. Horizontal, vertical, and titled variants.">
         <ComponentShowcase>
           <DividerExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Lists Section */}
+      <Section id="lists" title="Lists" description="Presentational vertical list of related information with leading (icon, spot icon, custom) and trailing (icon, link, custom) variants.">
+        <ComponentShowcase>
+          <ListExample />
         </ComponentShowcase>
       </Section>
 
