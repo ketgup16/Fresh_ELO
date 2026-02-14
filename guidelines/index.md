@@ -81,6 +81,9 @@ Migration plans and standardization documentation for transitioning to Living De
 - [UI Component Replacement Plan](migrations/UI-COMPONENT-REPLACEMENT-PLAN.md)
 - [Theme Switcher Plan](migrations/THEME_SWITCHER_PLAN.md)
 
+### 📁 Project Documentation
+- [AGENTS.md](AGENTS.md) - Fusion Starter project documentation and tech stack
+
 ### 📁 rules/
 Design system enforcement rules and best practices.
 

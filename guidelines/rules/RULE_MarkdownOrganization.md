@@ -10,12 +10,13 @@ All markdown documentation files MUST be organized in the appropriate directorie
 
 **ONLY these files are permitted in project root:**
 
-- `AGENTS.md` - Main project documentation (Fusion Starter)
 - `README.md` - Project README (if exists)
 - `CHANGELOG.md` - Version history (if exists)
 - `LICENSE.md` - License file (if exists)
 
 **All other .md files MUST be in organized folders.**
+
+**Note**: AGENTS.md is now located in `guidelines/AGENTS.md`
 
 ### 📁 guidelines/
 
