@@ -1,90 +1,106 @@
+# Living Design 3.5 Guidelines
+
+This directory contains comprehensive documentation for the Living Design 3.5 design system implementation.
+
+## Directory Structure
+
+### 📁 components/
+Component-specific guidelines and specifications for all Living Design 3.5 components.
+
+**Core Components:**
+- [Badge](components/Badge.md) - Notification badges and count indicators
+- [Breadcrumb](components/Breadcrumb.md) - Navigation breadcrumb trails
+- [Button](components/Button.md) - Primary, secondary, tertiary, and destructive buttons
+- [Callout](components/Callout.md) - Tooltips with nubbin positioning
+- [Card](components/Card.md) - Content container cards
+- [Checkbox](components/Checkbox.md) - Form checkboxes with indeterminate state
+- [Chip](components/Chip.md) - Interactive selection chips
+- [FilterChip](components/FilterChip.md) - Filter selection pills with counts
+
+**Input Components:**
+- [DateField](components/DateField.md) - Date input fields
+- [Select](components/Select.md) - Dropdown selectors
+- [TextArea](components/TextArea.md) - Multi-line text inputs
+- [TextField](components/TextField.md) - Single-line text inputs
+- [Form-Group](components/Form-Group.md) - Form field grouping
+
+**Navigation & Actions:**
+- [IconButton](components/IconButton.md) - Icon-only action buttons
+- [Link](components/Link.md) - Hyperlinks and text links
+- [Link-Button](components/Link-Button.md) - Link-styled buttons
+- [Menu](components/Menu.md) - Dropdown menus
+
+**Feedback & Messaging:**
+- [Banner](components/Banner.md) - Page-level banners
+- [Content-Message](components/Content-Message.md) - Content state messages
+- [Modal](components/Modal.md) - Dialog modals
+- [Nudge](components/Nudge.md) - Nudge notifications
+
+**Layout & Structure:**
+- [Bottom-Sheet](components/Bottom-Sheet.md) - Mobile bottom sheets
+- [Divider](components/Divider.md) - Content dividers
+- [List](components/List.md) - List components
+- [Magic-Box](components/Magic-Box.md) - Magic box container
+- [Panel](components/Panel.md) - Resizable side panels
+- [Popover](components/Popover.md) - Popover overlays
+
+**Data Display:**
+- [Metric](components/Metric.md) - Metric displays
+- [Tag](components/Tag.md) - Status and category tags
+
+### 📁 migrations/
+Migration plans and standardization documentation for transitioning to Living Design 3.5.
+
+- [Button Standardization Summary](migrations/BUTTON-STANDARDIZATION-SUMMARY.md)
+- [IconButton Migration Plan](migrations/ICONBUTTON_MIGRATION_PLAN.md)
+- [Living Design Migration Assessment](migrations/LIVING-DESIGN-MIGRATION-ASSESSMENT.md)
+- [Table Standardization Plan](migrations/PLAN_TABLE_STANDARDIZATION.md)
+- [UI Component Replacement Plan](migrations/UI-COMPONENT-REPLACEMENT-PLAN.md)
+
+### 📁 rules/
+Design system enforcement rules and best practices.
+
+- [Rules Index](rules/RULES_INDEX.md) - Overview of all design system rules
+- [Design System Enforcement](rules/RULE_DesignSystemEnforcement.md) - Component usage rules
+- [Design Token Enforcement](rules/RULE_DesignTokenEnforcement.md) - Token usage requirements
+- [Icon Usage](rules/RULE_IconUsage.md) - Icon library usage guidelines
+- [Theme Switcher](rules/RULE_ThemeSwitcher.md) - Theme management rules
+
+## Core Documentation
+
+### Design Tokens & Theming
+- [DesignTokens.md](DesignTokens.md) - Complete design token reference
+- [design-tokens-overview.md](design-tokens-overview.md) - Token system overview
+- [tokens.md](tokens.md) - Token usage guide
+- [Color.md](Color.md) - Color system and palette
+- [typography.md](typography.md) - Typography system
+
+### Development Guidelines
+- [Guidelines.md](Guidelines.md) - General development guidelines
+- [Guidelines-react.md](Guidelines-react.md) - React-specific guidelines
+- [Component-Inventory.md](Component-Inventory.md) - Available components inventory
+- [LivingDesign-Component-Reference.md](LivingDesign-Component-Reference.md) - Component reference
+
+### Technical Reference
+- [css-variables-source.md](css-variables-source.md) - CSS variables reference
+- [component-visibility.md](component-visibility.md) - Component visibility states
+- [overview-components.md](overview-components.md) - Components overview
+- [Agent-Implementation-Checklist.md](Agent-Implementation-Checklist.md) - Implementation checklist
+
+## Quick Links
+
+- 🎨 **Design Tokens**: Start with [DesignTokens.md](DesignTokens.md)
+- 🧱 **Components**: Browse [components/](components/)
+- 🔄 **Migration**: See [migrations/](migrations/)
+- ✅ **Rules**: Check [rules/](rules/)
+
+## Getting Started
+
+1. **For new components**: Read the component-specific guide in `components/`
+2. **For migrations**: Check `migrations/` for transition plans
+3. **For token usage**: Reference `DesignTokens.md`
+4. **For best practices**: Review files in `rules/`
+
 ---
-title: React Component Guidelines for Living Design
-scope: react
-status: active
-owner: design-system
-last_updated: 2026-01-12
----
 
-# React Component Guidelines
-
-This is the **delegator/index** for all React-specific Living Design guidelines. These rules help agents and developers use Living Design components correctly in React applications.
-
-## Quick Reference
-
-### 🚫 Critical Rules (MUST follow)
-
-1. **Never use `@private` components** - See [Component Visibility](./component-visibility.md)
-2. **Always use typography components** - See [Typography](./typography.md)
-3. **Never bypass token system** - See [Tokens](./tokens.md)
-
-### 📚 Detailed Guidelines
-
-- **[Component Visibility & Access](./component-visibility.md)**
-  - Rules about `@private` components
-  - What components can and cannot be used directly
-  - How to check component visibility
-
-- **[Typography Components](./typography.md)** ⭐ **REQUIRED READING**
-  - Display, Heading, Body, and Caption components
-  - Props API (`size`, `weight`, `as`)
-  - Usage rules and examples
-  - Common patterns
-  - Responsive behavior
-
-- **[Icon Button](./icon-button.md)**
-  - IconButton component with lucide-react icons
-  - Size prop mapping (xsmall, small, medium, large)
-  - Icon sizing requirements
-  - Accessibility requirements
-  - Common patterns
-
-- **[Token System](./tokens.md)**
-  - Why tokens exist
-  - Why you shouldn't use them directly
-  - Token naming conventions
-  - Guidance for component authors
-
-## Common Questions
-
-### Q: Can I use plain `<p>` or `<h1>` tags?
-**A:** No. Always wrap them in Living Design typography components. See [Typography](./typography.md).
-
-### Q: Can I use Tailwind typography classes like `text-lg` or `font-bold`?
-**A:** No. Use typography component props instead. See [Typography](./typography.md).
-
-### Q: I found a component but it's marked `@private`. Can I use it?
-**A:** No. Find the public API that provides that functionality. See [Component Visibility](./component-visibility.md).
-
-### Q: Can I reference CSS variables directly in my code?
-**A:** No. Use the component props API. See [Tokens](./tokens.md).
-
-## Integration with Main Guidelines
-
-These React-specific guidelines extend the main Living Design guidelines:
-
-- Start with the [main Guidelines.md](../Guidelines.md) for overall design system rules
-- Use these React guidelines for implementation details
-- Refer to component-specific docs in `/guidelines/components/` for individual component usage
-
-## File Organization
-
-```
-/guidelines/
-├── Guidelines.md                    # Main design system overview
-├── Guidelines-react.md              # This delegator file (symlink/alias to react/index.md)
-└── react/
-    ├── index.md                     # This file
-    ├── component-visibility.md      # @private rules
-    ├── typography.md                # Typography components
-    ├── icon-button.md               # IconButton component
-    └── tokens.md                    # Token system
-```
-
-## For Agents
-
-When you need React-specific guidance:
-1. Start here for quick reference
-2. Follow links to detailed topic files
-3. Always check component visibility before using a component
-4. Default to typography components for all text rendering
+Last updated: 2025-02-14

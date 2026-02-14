@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChevronDown, Upload, Download } from "@/components/icons";
 import { useNavigate } from "react-router-dom";
-import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
+import SponsoredSearchSidebar from "../features/sponsored-search/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 import { Button } from "../components/ui/Button";
 import { MastHead } from "../components/ui/MastHead";

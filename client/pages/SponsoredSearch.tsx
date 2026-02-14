@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { MastHead } from "../components/ui/MastHead";
 import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { useNavigate } from "react-router-dom";
-import SponsoredSearchDashboard from "../components/SponsoredSearchDashboard";
-import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
+import SponsoredSearchDashboard from "../features/sponsored-search/SponsoredSearchDashboard";
+import SponsoredSearchSidebar from "../features/sponsored-search/SponsoredSearchSidebar";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
 
 export default function SponsoredSearch() {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import RecommendationsPanel from './RecommendationsPanel';
+import RecommendationsPanel from '@/components/shared/RecommendationsPanel';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 import { Link } from '@/components/ui/Link';

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Breadcrumb, BreadcrumbItem } from './ui/Breadcrumb';
-import { Button } from './ui/Button';
+import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
+import { Button } from '@/components/ui/Button';
 
 /**
  * Example component demonstrating Breadcrumb usage with Living Design 3.5

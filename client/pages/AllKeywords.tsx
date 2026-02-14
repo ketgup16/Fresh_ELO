@@ -3,7 +3,7 @@ import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Calendar, Filte
 import { Checkbox } from "@/components/ui/Checkbox";
 import { useNavigate } from "react-router-dom";
 import MartyFloatingPanel from "../components/MartyFloatingPanel";
-import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
+import SponsoredSearchSidebar from "../features/sponsored-search/SponsoredSearchSidebar";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Divider } from "../components/ui/Divider";
 

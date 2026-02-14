@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IconButton } from './ui/IconButton';
+import { IconButton } from '@/components/ui/IconButton';
 import { Plus, Edit, Trash, InfoCircle, X, Menu, ChevronDown } from '@/components/icons';
 
 /**

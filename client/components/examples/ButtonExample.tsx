@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Button } from './ui/Button';
-import { ButtonGroup } from './ui/ButtonGroup';
+import { Button } from '@/components/ui/Button';
+import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { Plus, ChevronRight, Download, Trash, X, Settings } from '@/components/icons';
 
 /**

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Callout, type CalloutPosition } from './ui/Callout';
+import { Callout, type CalloutPosition } from '@/components/ui/Callout';
 
 const positions: { position: CalloutPosition; label: string }[] = [
   { position: 'topLeft', label: 'Top Left' },

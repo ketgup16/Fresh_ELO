@@ -4,9 +4,9 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from './ui/dialog';
-import { Button } from './ui/Button';
-import { Checkbox } from './ui/Checkbox';
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/Button';
+import { Checkbox } from '@/components/ui/Checkbox';
 
 interface Metric {
   id: string;

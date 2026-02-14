@@ -1,4 +1,4 @@
-import { Link } from './ui/Link';
+import { Link } from '@/components/ui/Link';
 
 /**
  * LinkExample - Demonstrates LD 3.5 Link component usage

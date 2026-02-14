@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Card } from './ui/Card';
-import { CardHeader } from './ui/CardHeader';
-import { CardContent } from './ui/CardContent';
-import { Button } from './ui/Button';
+import { Card } from '@/components/ui/Card';
+import { CardHeader } from '@/components/ui/CardHeader';
+import { CardContent } from '@/components/ui/CardContent';
+import { Button } from '@/components/ui/Button';
 import { Home, CheckCircle, InfoCircle } from '@/components/icons';
 
 /**

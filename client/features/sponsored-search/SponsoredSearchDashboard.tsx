@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { ChevronDown } from "@/components/icons";
 import { useNavigate } from "react-router-dom";
-import CampaignChart from "./CampaignChart";
-import DateRangeFilterDropdown from "./DateRangeFilterDropdown";
-import AttributionFilterDropdown from "./AttributionFilterDropdown";
+import CampaignChart from "@/features/advertising/CampaignChart";
+import DateRangeFilterDropdown from "@/components/shared/DateRangeFilterDropdown";
+import AttributionFilterDropdown from "@/components/shared/AttributionFilterDropdown";
 import EditMetricsModal from "./EditMetricsModal";
-import { Button } from "./ui/Button";
-import { Link } from "./ui/Link";
-import { Alert } from "./ui/Alert";
-import { Divider } from "./ui/Divider";
+import { Button } from "@/components/ui/Button";
+import { Link } from "@/components/ui/Link";
+import { Alert } from "@/components/ui/Alert";
+import { Divider } from "@/components/ui/Divider";
 
 interface Campaign {
   name: string;

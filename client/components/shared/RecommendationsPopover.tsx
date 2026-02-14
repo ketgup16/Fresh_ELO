@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from "./ui/popover";
-import { Divider } from "./ui/Divider";
+import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from "@/components/ui/popover";
+import { Divider } from "@/components/ui/Divider";
 
 interface Alert {
   type: 'item-health-issues' | 'out-of-budget';
