@@ -1,14 +1,14 @@
 /**
  * Data Ventures Theme - Semantic Token Overrides
  * Generated from LivingDesign Airtable Sync + LD Base
- * 
+ *
  * INHERITANCE MODEL:
- * This theme inherits ALL tokens from the base theme (Developer)
- * Includes Partner persona overrides
- * 
+ * LD Base → PX → Data Ventures
+ * This theme inherits from PX theme
+ *
  * Key Changes:
  * - Purple brand color (#6245b7) instead of blue
- * - Partner-specific UX adjustments
+ * - Partner/data platform-specific UX
  */
 
 :root {

@@ -1,0 +1,15 @@
+/**
+ * PX Theme
+ * Generated from LivingDesign Airtable Sync + LD Base
+ * 
+ * INHERITANCE: Inherits LD Base
+ * CHILDREN: Data Ventures, PX Sam's Club, PX Walmart
+ * 
+ * PX-specific overrides for partner experience platforms
+ */
+
+:root {
+  /* PX theme base - minimal overrides */
+  /* Children like Data Ventures add specific brand colors */
+  /* Inherits all tokens from LD Base */
+}

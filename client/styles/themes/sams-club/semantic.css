@@ -1,0 +1,18 @@
+/**
+ * Sam's Club Theme
+ * Generated from LivingDesign Airtable Sync + LD Base
+ * 
+ * INHERITANCE: Inherits LD Base directly
+ * 
+ * Sam's Club brand color: #0062ad (blue)
+ * Font family: Gibson
+ */
+
+:root {
+  /* Sam's Club brand colors */
+  --ld-semantic-color-action-fill-primary: var(--ld-primitive-color-blue-130, #0062ad);
+  --ld-semantic-color-text-brand: var(--ld-primitive-color-blue-130, #0062ad);
+  --ld-semantic-color-border-brand: var(--ld-primitive-color-blue-130, #0062ad);
+  
+  /* Inherits all other tokens from LD Base */
+}

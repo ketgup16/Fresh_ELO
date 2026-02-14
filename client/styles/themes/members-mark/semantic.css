@@ -1,0 +1,29 @@
+/**
+ * Member's Mark Theme
+ * Generated from LivingDesign Airtable Sync + LD Base
+ * 
+ * INHERITANCE: Inherits LD Base directly
+ * 
+ * Member's Mark private label brand
+ * Dark gray with beige top nav
+ */
+
+:root {
+  /* Member's Mark brand colors - DARK GRAY */
+  --ld-semantic-color-action-border-secondary: #283645;
+  --ld-semantic-color-action-border-secondary-focused: #283645;
+  --ld-semantic-color-action-border-secondary-hovered: #283645;
+  --ld-semantic-color-action-border-secondary-pressed: var(--ld-primitive-color-gray-160, #2e2f32);
+  
+  /* Beige top navigation */
+  --ld-semantic-color-top-nav-fill: #fcf6f0;
+  --ld-semantic-color-top-nav-separator: #fcf6f0;
+  --ld-semantic-color-top-nav-text-on-fill: #151f29;
+  --ld-semantic-color-top-nav-text-on-fill-focused: #151f29;
+  --ld-semantic-color-top-nav-text-on-fill-hovered: #151f29;
+  --ld-semantic-color-top-nav-text-on-fill-pressed: #151f29;
+  
+  --ld-semantic-color-surface-brand: #fcf6f0;
+  
+  /* Inherits all other tokens from LD Base */
+}
