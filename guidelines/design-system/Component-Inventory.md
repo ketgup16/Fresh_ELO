@@ -137,7 +137,7 @@ This file is a **single source of truth** for all Living Design components. Befo
 | **InputOTP** | ✅ Implemented | `/components/ui/input-otp.tsx` | - | OTP input field |
 | **Calendar** | ✅ Implemented | `/components/ui/calendar.tsx` | - | Date picker calendar |
 | **FocusTrap** | ✅ Implemented | `/components/ui/FocusTrap.tsx` | - | Focus trap utility |
-| **MagicBox** | 📝 Guideline Only | - | `/guidelines/Magic-Box.md` | Magic box component (needs implementation) |
+| **MagicBox** | ✅ Implemented | `/client/components/ui/MagicBox.tsx` | `/guidelines/components/Magic-Box.md` | AI-generated content wrapper with glow effect |
 
 ### Special Components
 

@@ -18,6 +18,7 @@ import { DateFieldExample } from '@/components/examples/DateFieldExample';
 import { DatePickerExample } from '@/components/examples/DatePickerExample';
 import { DividerExample } from '@/components/examples/DividerExample';
 import { ListExample } from '@/components/examples/ListExample';
+import { MagicBoxExample } from '@/components/examples/MagicBoxExample';
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Badge } from '@/components/ui/Badge';
@@ -74,6 +75,7 @@ export default function ComponentLibrary() {
     { id: 'date-pickers', name: 'Date Pickers', keywords: ['date picker', 'calendar', 'popup', 'date selection', 'datepicker'] },
     { id: 'dividers', name: 'Dividers', keywords: ['divider', 'separator', 'line', 'horizontal', 'vertical', 'rule', 'hr'] },
     { id: 'lists', name: 'Lists', keywords: ['list', 'listitem', 'item', 'vertical', 'group', 'spot icon', 'trailing', 'leading'] },
+    { id: 'magic-box', name: 'Magic Box', keywords: ['magic box', 'ai', 'agent', 'glow', 'magic', 'loading', 'processing', 'animation', 'sparkle'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
   ];
 
@@ -609,6 +611,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="lists" title="Lists" description="Presentational vertical list of related information with leading (icon, spot icon, custom) and trailing (icon, link, custom) variants.">
         <ComponentShowcase>
           <ListExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Magic Box Section */}
+      <Section id="magic-box" title="Magic Box" description="Highlights AI-generated content being actively processed. Wrapper component with animated glow effect that responds to theme.">
+        <ComponentShowcase>
+          <MagicBoxExample />
         </ComponentShowcase>
       </Section>
 

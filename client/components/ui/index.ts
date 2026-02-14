@@ -13,3 +13,5 @@ export { DateField } from './DateField';
 export type { DateFieldProps } from './DateField';
 export { Divider } from './Divider';
 export type { DividerProps } from './Divider';
+export { MagicBox } from './MagicBox';
+export type { MagicBoxProps, MagicBoxState } from './MagicBox';

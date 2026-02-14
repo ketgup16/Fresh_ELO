@@ -43,10 +43,9 @@ Magic Box colors respond to the “super agent” theme (Sparky, Squiggly, Marty
 - Do not restyle Magic Box via ad-hoc tokens or custom CSS.
 
 ## React usage (example)
-Update import path after wiring in `guidelines/components/overview-components.md`.
 
 ```tsx
-import { MagicBox } from "REPLACE_ME_COMPONENT_IMPORT_PATH";
+import { MagicBox } from "@/components/ui/MagicBox";
 
 export function Example({ isUpdating }: { isUpdating: boolean }) {
   return (
