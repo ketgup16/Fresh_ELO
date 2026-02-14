@@ -7,9 +7,9 @@ last_updated: 2025-02-13
 ---
 
 ## Purpose
-Chips represent selectable, compact labels used to categorize content and (optionally) filter a list or dataset. They are interactive toggle buttons that visually indicate selection state.
+Chips represent selectable, compact labels with **subtle rounded corners (4px)** used for categorizing content and general selections. They are interactive toggle buttons that visually indicate selection state.
 
-**Square chips** (default) are used for general selections and categories. **Pill-shaped chips** are specifically designed for filtering use cases.
+**For filtering interfaces**, use the **FilterChip** component instead, which has pill-shaped (fully rounded) corners.
 
 ## Import
 
@@ -33,7 +33,6 @@ import { Chip } from "@/components/ui/Chip";
 | `onSelectedChange` | `(selected: boolean) => void` | — | Callback when chip selection changes |
 | `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | Size variant |
 | `variant` | `'default' \| 'primary'` | `'default'` | Visual variant (default = dark fill selected, primary = blue fill selected) |
-| `shape` | `'square' \| 'pill'` | `'square'` | Shape variant (square = rounded corners for general use, pill = fully rounded for filters) |
 | `iconLeading` | `React.ReactNode` | — | Optional leading icon/content |
 | `iconTrailing` | `React.ReactNode` | — | Optional trailing icon/content |
 | `disabled` | `boolean` | `false` | Whether the chip is disabled |
@@ -41,14 +40,6 @@ import { Chip } from "@/components/ui/Chip";
 | `UNSAFE_style` | `React.CSSProperties` | — | Escape hatch for inline styles |
 
 All standard `<button>` HTML attributes are also supported (except `className` and `style`).
-
-## Shapes
-
-### square (default)
-Subtle rounded corners (`border-radius: 4px`). Use for general selections, categories, and non-filter use cases.
-
-### pill
-Fully rounded (`border-radius: 9999px`). Use specifically for filter chips to visually distinguish filtering UI from other selection patterns.
 
 ## Variants
 
@@ -106,7 +97,7 @@ Chips use the **INPUT token family** for consistency with other selectable/filte
 
 ## Usage Examples
 
-### Square chip (general selection)
+### Basic chip (general selection)
 ```tsx
 const [active, setActive] = React.useState(false);
 
@@ -115,43 +106,32 @@ const [active, setActive] = React.useState(false);
 </Chip>
 ```
 
-### Pill chip (for filters)
+### Multi-select pattern
 ```tsx
-const [active, setActive] = React.useState(false);
+const [selections, setSelections] = React.useState({ featured: false, new: false });
 
-<Chip shape="pill" selected={active} onSelectedChange={setActive}>
-  Filter
-</Chip>
-```
-
-### Multi-select filter
-```tsx
-const [filters, setFilters] = React.useState({ open: false, closed: false });
-
-<div role="group" aria-label="Status filters" style={{ display: 'flex', gap: 8 }}>
+<div role="group" aria-label="Category selections" style={{ display: 'flex', gap: 8 }}>
   <Chip
-    shape="pill"
-    selected={filters.open}
-    onSelectedChange={(v) => setFilters(prev => ({ ...prev, open: v }))}
+    selected={selections.featured}
+    onSelectedChange={(v) => setSelections(prev => ({ ...prev, featured: v }))}
   >
-    Open
+    Featured
   </Chip>
   <Chip
-    shape="pill"
-    selected={filters.closed}
-    onSelectedChange={(v) => setFilters(prev => ({ ...prev, closed: v }))}
+    selected={selections.new}
+    onSelectedChange={(v) => setSelections(prev => ({ ...prev, new: v }))}
   >
-    Closed
+    New
   </Chip>
 </div>
 ```
 
 ### With icons
 ```tsx
-import { Filter } from '@/components/icons';
+import { Star } from '@/components/icons';
 
-<Chip shape="pill" iconLeading={<Filter />} selected>
-  Filtered
+<Chip iconLeading={<Star />} selected>
+  Favorites
 </Chip>
 ```
 
@@ -184,8 +164,9 @@ const categories = ['Featured', 'New', 'Sale'];
 ## Best Practices
 
 ### Use when
-- A small number of filter options where users can toggle one or more.
-- Category selection for content filtering.
+- Category selection and general toggle selections.
+- Content categorization interfaces.
+- **For filters**, use FilterChip instead (pill-shaped).
 
 ### Don't use when
 - Items are not selectable — use Tag instead.
@@ -195,6 +176,7 @@ const categories = ['Featured', 'New', 'Sale'];
 - Tab-based content switching — use Tabs.
 
 ## Component Hierarchy
-- **Chip**: Interactive, selectable toggle buttons (this component)
+- **Chip**: Interactive, selectable toggle buttons with subtle rounding (this component)
+- **FilterChip**: Interactive, pill-shaped buttons specifically for filtering
 - **Tag**: Static, non-interactive labels with optional dismiss
 - **Badge**: Non-interactive count/status indicators

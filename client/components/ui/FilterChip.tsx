@@ -1,38 +1,38 @@
 import * as React from 'react';
-import styles from './Chip.module.css';
+import styles from './FilterChip.module.css';
 
-export type ChipSize = 'small' | 'medium' | 'large';
-export type ChipVariant = 'default' | 'primary';
+export type FilterChipSize = 'small' | 'medium' | 'large';
+export type FilterChipVariant = 'default' | 'primary';
 
-export interface ChipProps
+export interface FilterChipProps
   extends Omit<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     'className' | 'style'
   > {
   /**
-   * Whether the chip is in selected/pressed state.
+   * Whether the filter chip is in selected/pressed state.
    * @default false
    */
   selected?: boolean;
 
   /**
-   * Callback when chip selection changes.
+   * Callback when filter chip selection changes.
    */
   onSelectedChange?: (selected: boolean) => void;
 
   /**
-   * The size of the chip.
+   * The size of the filter chip.
    * @default 'medium'
    */
-  size?: ChipSize;
+  size?: FilterChipSize;
 
   /**
-   * The visual variant of the chip.
+   * The visual variant of the filter chip.
    * - `default`: Dark fill when selected (uses INPUT tokens).
    * - `primary`: Walmart blue fill when selected (uses ACTION tokens).
    * @default 'default'
    */
-  variant?: ChipVariant;
+  variant?: FilterChipVariant;
 
   /**
    * Optional leading icon/content (rendered before the label).
@@ -45,7 +45,7 @@ export interface ChipProps
   iconTrailing?: React.ReactNode;
 
   /**
-   * Whether the chip is disabled.
+   * Whether the filter chip is disabled.
    * @default false
    */
   disabled?: boolean;
@@ -62,20 +62,20 @@ export interface ChipProps
 }
 
 /**
- * Chip component — Living Design 3.5
+ * FilterChip component — Living Design 3.5
  *
- * Interactive, selectable buttons with subtle rounded corners used for
- * categorization and selection. Chips are toggle buttons that expose their
- * selected state via `aria-pressed`. For filter-specific chips, use FilterChip.
+ * Interactive, selectable pill-shaped buttons specifically designed for filtering.
+ * FilterChips are toggle buttons that expose their selected state via `aria-pressed`.
+ * They use the INPUT token family and have fully rounded corners (pill shape).
  *
  * @example
  * ```tsx
- * <Chip selected={isActive} onSelectedChange={setIsActive}>
+ * <FilterChip selected={isActive} onSelectedChange={setIsActive}>
  *   Open
- * </Chip>
+ * </FilterChip>
  * ```
  */
-export const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(
+export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
   (
     {
       selected = false,
@@ -101,10 +101,10 @@ export const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(
     };
 
     const className = [
-      styles.chip,
-      styles[`chip--size-${size}`],
-      styles[`chip--variant-${variant}`],
-      selected && styles['chip--selected'],
+      styles.filterChip,
+      styles[`filterChip--size-${size}`],
+      styles[`filterChip--variant-${variant}`],
+      selected && styles['filterChip--selected'],
       UNSAFE_className,
     ]
       .filter(Boolean)
@@ -122,15 +122,15 @@ export const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(
         {...restProps}
       >
         {iconLeading && (
-          <span className={styles.chip__iconLeading}>{iconLeading}</span>
+          <span className={styles.filterChip__iconLeading}>{iconLeading}</span>
         )}
-        <span className={styles.chip__label}>{children}</span>
+        <span className={styles.filterChip__label}>{children}</span>
         {iconTrailing && (
-          <span className={styles.chip__iconTrailing}>{iconTrailing}</span>
+          <span className={styles.filterChip__iconTrailing}>{iconTrailing}</span>
         )}
       </button>
     );
   },
 );
 
-Chip.displayName = 'Chip';
+FilterChip.displayName = 'FilterChip';

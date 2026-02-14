@@ -1,12 +1,12 @@
-/* Chip Base Styles - LD 3.5 */
-.chip {
+/* FilterChip Base Styles - LD 3.5 */
+.filterChip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   font-family: var(--ld-semantic-font-family-sans);
   font-weight: 500;
-  border-radius: var(--ld-primitive-scale-border-radius-50, 4px); /* Square with subtle rounding */
+  border-radius: 9999px; /* Pill shape for filters */
   border: 2px solid var(--ld-semantic-color-input-border);
   background-color: var(--ld-semantic-color-input-fill);
   color: var(--ld-semantic-color-input-text-on-fill);
@@ -23,27 +23,27 @@
 }
 
 /* Focus visible */
-.chip:focus-visible {
+.filterChip:focus-visible {
   outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
 }
 
 /* Hover - Unselected */
-.chip:hover:not(:disabled) {
+.filterChip:hover:not(:disabled) {
   background-color: var(--ld-semantic-color-input-fill-hovered);
   border-color: var(--ld-semantic-color-input-border-hovered);
   color: var(--ld-semantic-color-input-text-on-fill);
 }
 
 /* Pressed - Unselected */
-.chip:active:not(:disabled) {
+.filterChip:active:not(:disabled) {
   background-color: var(--ld-semantic-color-input-fill-pressed);
   border-color: var(--ld-semantic-color-input-border-pressed);
   color: var(--ld-semantic-color-input-text-on-fill);
 }
 
 /* Disabled */
-.chip:disabled {
+.filterChip:disabled {
   cursor: not-allowed;
   background-color: var(--ld-semantic-color-input-fill-disabled);
   border-color: var(--ld-semantic-color-input-border-disabled);
@@ -54,21 +54,21 @@
 /* Size Variants         */
 /* ==================== */
 
-.chip--size-small {
+.filterChip--size-small {
   padding: 4px 12px;
   font-size: 14px;
   line-height: 20px;
   min-height: 32px;
 }
 
-.chip--size-medium {
+.filterChip--size-medium {
   padding: 6px 16px;
   font-size: 14px;
   line-height: 20px;
   min-height: 36px;
 }
 
-.chip--size-large {
+.filterChip--size-large {
   padding: 8px 20px;
   font-size: 16px;
   line-height: 24px;
@@ -80,50 +80,50 @@
 /* ==================== */
 
 /* Selected - Default variant */
-.chip--variant-default.chip--selected {
+.filterChip--variant-default.filterChip--selected {
   background-color: var(--ld-semantic-color-input-fill-activated);
   border-color: var(--ld-semantic-color-input-border-activated);
   color: var(--ld-semantic-color-input-indicator-activated);
 }
 
-.chip--variant-default.chip--selected:hover:not(:disabled) {
+.filterChip--variant-default.filterChip--selected:hover:not(:disabled) {
   background-color: var(--ld-semantic-color-input-fill-activated-hovered);
   border-color: var(--ld-semantic-color-input-border-activated-hovered);
   color: var(--ld-semantic-color-input-indicator-activated);
 }
 
-.chip--variant-default.chip--selected:active:not(:disabled) {
+.filterChip--variant-default.filterChip--selected:active:not(:disabled) {
   background-color: var(--ld-semantic-color-input-fill-activated-pressed);
   border-color: var(--ld-semantic-color-input-border-activated-pressed);
   color: var(--ld-semantic-color-input-indicator-activated);
 }
 
-.chip--variant-default.chip--selected:disabled {
+.filterChip--variant-default.filterChip--selected:disabled {
   background-color: var(--ld-semantic-color-input-fill-activated-disabled);
   border-color: var(--ld-semantic-color-input-border-activated-disabled);
   color: var(--ld-semantic-color-input-fill-disabled);
 }
 
 /* Selected - Primary variant */
-.chip--variant-primary.chip--selected {
+.filterChip--variant-primary.filterChip--selected {
   background-color: var(--ld-semantic-color-action-fill-primary);
   border-color: var(--ld-semantic-color-action-fill-primary);
   color: var(--ld-semantic-color-action-text-on-fill-primary);
 }
 
-.chip--variant-primary.chip--selected:hover:not(:disabled) {
+.filterChip--variant-primary.filterChip--selected:hover:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-primary-hovered);
   border-color: var(--ld-semantic-color-action-fill-primary-hovered);
   color: var(--ld-semantic-color-action-text-on-fill-primary-hovered);
 }
 
-.chip--variant-primary.chip--selected:active:not(:disabled) {
+.filterChip--variant-primary.filterChip--selected:active:not(:disabled) {
   background-color: var(--ld-semantic-color-action-fill-primary-pressed);
   border-color: var(--ld-semantic-color-action-fill-primary-pressed);
   color: var(--ld-semantic-color-action-text-on-fill-primary-pressed);
 }
 
-.chip--variant-primary.chip--selected:disabled {
+.filterChip--variant-primary.filterChip--selected:disabled {
   background-color: var(--ld-semantic-color-action-fill-primary-disabled);
   border-color: var(--ld-semantic-color-action-fill-primary-disabled);
   color: var(--ld-semantic-color-action-text-on-fill-primary-disabled);
@@ -133,28 +133,28 @@
 /* Icon Containers       */
 /* ==================== */
 
-.chip__iconLeading,
-.chip__iconTrailing {
+.filterChip__iconLeading,
+.filterChip__iconTrailing {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-.chip__iconLeading svg,
-.chip__iconTrailing svg {
+.filterChip__iconLeading svg,
+.filterChip__iconTrailing svg {
   width: 16px;
   height: 16px;
 }
 
-.chip--size-large .chip__iconLeading svg,
-.chip--size-large .chip__iconTrailing svg {
+.filterChip--size-large .filterChip__iconLeading svg,
+.filterChip--size-large .filterChip__iconTrailing svg {
   width: 20px;
   height: 20px;
 }
 
 /* Label */
-.chip__label {
+.filterChip__label {
   display: inline-flex;
   align-items: center;
 }

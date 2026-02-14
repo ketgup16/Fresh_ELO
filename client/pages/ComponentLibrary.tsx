@@ -8,6 +8,7 @@ import { CalloutExample } from '@/components/CalloutExample';
 import { CardHeaderExample } from '@/components/CardHeaderExample';
 import { CheckboxExample } from '@/components/CheckboxExample';
 import { ChipExample } from '@/components/ChipExample';
+import { FilterChipExample } from '@/components/FilterChipExample';
 import { ContentMessageExample } from '@/components/ContentMessageExample';
 import { DateFieldExample } from '@/components/DateFieldExample';
 import { DividerExample } from '@/components/DividerExample';
@@ -18,6 +19,7 @@ import { IconButton } from '@/components/ui/IconButton';
 import { Link } from '@/components/ui/Link';
 import { Tag } from '@/components/ui/tag';
 import { Chip } from '@/components/ui/Chip';
+import { FilterChip } from '@/components/ui/FilterChip';
 import { OLQTag } from '@/components/ui/olq-tag';
 import * as Icons from '@/components/icons';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
@@ -35,7 +37,8 @@ export default function ComponentLibrary() {
     { id: 'links', name: 'Links', keywords: ['link', 'anchor', 'hyperlink', 'url'] },
     { id: 'icon-buttons', name: 'Icon Buttons', keywords: ['icon button', 'icon', 'action'] },
     { id: 'checkboxes', name: 'Checkboxes', keywords: ['checkbox', 'check', 'select', 'form', 'input', 'indeterminate'] },
-    { id: 'chips', name: 'Chips', keywords: ['chip', 'filter', 'select', 'toggle', 'pill', 'tag', 'interactive'] },
+    { id: 'chips', name: 'Chips', keywords: ['chip', 'select', 'toggle', 'tag', 'interactive', 'category'] },
+    { id: 'filter-chips', name: 'Filter Chips', keywords: ['filter chip', 'filter', 'pill', 'select', 'toggle'] },
     { id: 'callouts', name: 'Callouts', keywords: ['callout', 'tooltip', 'nubbin', 'coaching', 'onboarding', 'pointer'] },
     { id: 'cards', name: 'Cards', keywords: ['card', 'container', 'panel'] },
     { id: 'content-messages', name: 'Content Messages', keywords: ['content message', 'error', 'success', 'permission', 'critical', 'blocking', 'state', 'info', 'warning'] },
@@ -306,7 +309,7 @@ export default function ComponentLibrary() {
           Quick Navigation
         </h3>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Callouts', 'Cards', 'Content Messages', 'Date Fields', 'Dividers', 'Design Tokens'].map(section => (
+          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Filter Chips', 'Callouts', 'Cards', 'Content Messages', 'Date Fields', 'Dividers', 'Design Tokens'].map(section => (
             <a
               key={section}
               href={`#${section.toLowerCase().replace(' ', '-')}`}
@@ -493,9 +496,16 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       </Section>
 
       {/* Chips Section */}
-      <Section id="chips" title="Chips" description="Interactive, selectable pill-shaped buttons for filtering and categorization with toggle selection">
+      <Section id="chips" title="Chips" description="Interactive, selectable buttons with subtle rounded corners (4px) for categories and selections using INPUT tokens">
         <ComponentShowcase>
           <ChipExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Filter Chips Section */}
+      <Section id="filter-chips" title="Filter Chips" description="Pill-shaped (fully rounded) filter chips for filtering interfaces. Use same INPUT tokens as Chip but with different border-radius">
+        <ComponentShowcase>
+          <FilterChipExample />
         </ComponentShowcase>
       </Section>
 
@@ -925,7 +935,7 @@ function SearchableComponentSelect({ selectedComponent, onComponentChange, avail
 
 // Interactive Component Tester - Supports multiple component types
 function InteractiveComponentTester() {
-  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'Tag' | 'OLQTag' | 'Chip';
+  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip';
 
   const [selectedComponent, setSelectedComponent] = React.useState<ComponentType>('Button');
   const [variant, setVariant] = React.useState<string>('primary');
@@ -1037,7 +1047,19 @@ function InteractiveComponentTester() {
       supportsFullWidth: false,
       supportsIcons: true,
       supportsValue: false,
-      supportsShape: true,
+      supportsShape: false,
+      supportsUnderline: false,
+      supportsDismissible: false,
+      supportsClickable: false,
+      supportsOLQPercentage: false,
+    },
+    FilterChip: {
+      variants: ['default', 'primary'],
+      sizes: ['small', 'medium', 'large'],
+      supportsFullWidth: false,
+      supportsIcons: true,
+      supportsValue: false,
+      supportsShape: false,
       supportsUnderline: false,
       supportsDismissible: false,
       supportsClickable: false,
@@ -1204,19 +1226,34 @@ function InteractiveComponentTester() {
         );
 
       case 'Chip': {
-        const FilterIcon = (Icons as any).Filter;
+        const StarIcon = (Icons as any).Star;
         return (
           <Chip
             variant={variant as any}
             size={size as any}
-            shape={shape as any}
+            selected={chipSelected}
+            onSelectedChange={setChipSelected}
+            disabled={disabled}
+            iconLeading={withIcon && StarIcon ? <StarIcon style={{ width: 16, height: 16 }} /> : undefined}
+          >
+            Chip Label
+          </Chip>
+        );
+      }
+
+      case 'FilterChip': {
+        const FilterIcon = (Icons as any).Filter;
+        return (
+          <FilterChip
+            variant={variant as any}
+            size={size as any}
             selected={chipSelected}
             onSelectedChange={setChipSelected}
             disabled={disabled}
             iconLeading={withIcon && FilterIcon ? <FilterIcon style={{ width: 16, height: 16 }} /> : undefined}
           >
-            {shape === 'pill' ? 'Filter Label' : 'Chip Label'}
-          </Chip>
+            Filter Label
+          </FilterChip>
         );
       }
 

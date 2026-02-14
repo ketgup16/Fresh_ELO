@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Chip } from '@/components/ui/Chip';
+import { FilterChip } from '@/components/ui/FilterChip';
 import { Filter, Check, X, Star } from '@/components/icons';
 
-export function ChipExample() {
+export function FilterChipExample() {
   // Multi-select filter demo
   const [filters, setFilters] = React.useState<Record<string, boolean>>({
     all: true,
@@ -26,10 +26,6 @@ export function ChipExample() {
     }
   };
 
-  // Single-select category demo
-  const [selectedCategory, setSelectedCategory] = React.useState('featured');
-  const categories = ['Featured', 'New', 'Sale', 'Clearance'];
-
   // Size demo
   const [sizeSelected, setSizeSelected] = React.useState<Record<string, boolean>>({
     small: false,
@@ -41,24 +37,24 @@ export function ChipExample() {
     <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '48px' }}>
       {/* Basic States */}
       <ExampleSection
-        title="Chip States"
-        description="Chips have subtle rounded corners (4px) and use INPUT tokens. For filters, use FilterChip (pill-shaped) instead."
+        title="Filter Chip States"
+        description="Filter chips are pill-shaped (fully rounded) and designed specifically for filtering interfaces."
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <div>
             <VariantLabel>Default variant</VariantLabel>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
               <StateDemo label="Unselected">
-                <Chip>Label</Chip>
+                <FilterChip>Filter</FilterChip>
               </StateDemo>
               <StateDemo label="Selected">
-                <Chip selected>Label</Chip>
+                <FilterChip selected>Filter</FilterChip>
               </StateDemo>
               <StateDemo label="Disabled">
-                <Chip disabled>Label</Chip>
+                <FilterChip disabled>Filter</FilterChip>
               </StateDemo>
               <StateDemo label="Selected + Disabled">
-                <Chip selected disabled>Label</Chip>
+                <FilterChip selected disabled>Filter</FilterChip>
               </StateDemo>
             </div>
           </div>
@@ -66,16 +62,16 @@ export function ChipExample() {
             <VariantLabel>Primary variant</VariantLabel>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
               <StateDemo label="Unselected">
-                <Chip variant="primary">Label</Chip>
+                <FilterChip variant="primary">Filter</FilterChip>
               </StateDemo>
               <StateDemo label="Selected">
-                <Chip variant="primary" selected>Label</Chip>
+                <FilterChip variant="primary" selected>Filter</FilterChip>
               </StateDemo>
               <StateDemo label="Disabled">
-                <Chip variant="primary" disabled>Label</Chip>
+                <FilterChip variant="primary" disabled>Filter</FilterChip>
               </StateDemo>
               <StateDemo label="Selected + Disabled">
-                <Chip variant="primary" selected disabled>Label</Chip>
+                <FilterChip variant="primary" selected disabled>Filter</FilterChip>
               </StateDemo>
             </div>
           </div>
@@ -85,7 +81,7 @@ export function ChipExample() {
       {/* Size Variants */}
       <ExampleSection
         title="Size Variants"
-        description="Small, medium, and large sizes. All sizes within a group should be consistent."
+        description="Small, medium, and large sizes for different contexts."
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {(['small', 'medium', 'large'] as const).map(size => (
@@ -99,15 +95,15 @@ export function ChipExample() {
               }}>
                 {size}
               </span>
-              <Chip
+              <FilterChip
                 size={size}
                 selected={sizeSelected[size]}
                 onSelectedChange={(v) => setSizeSelected(prev => ({ ...prev, [size]: v }))}
               >
                 Toggle me
-              </Chip>
-              <Chip size={size} selected>Selected</Chip>
-              <Chip size={size}>Unselected</Chip>
+              </FilterChip>
+              <FilterChip size={size} selected>Selected</FilterChip>
+              <FilterChip size={size}>Unselected</FilterChip>
             </div>
           ))}
         </div>
@@ -116,88 +112,65 @@ export function ChipExample() {
       {/* With Icons */}
       <ExampleSection
         title="With Icons"
-        description="Chips support leading and trailing icons to reinforce meaning."
+        description="Filter chips support leading and trailing icons."
       >
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
-          <Chip iconLeading={<Star />}>
+          <FilterChip iconLeading={<Filter />} selected>
+            Filtered
+          </FilterChip>
+          <FilterChip iconLeading={<Star />}>
             Favorites
-          </Chip>
-          <Chip iconLeading={<Star />} selected>
-            Starred
-          </Chip>
-          <Chip iconTrailing={<X />} selected>
+          </FilterChip>
+          <FilterChip iconTrailing={<X />} selected>
             Remove
-          </Chip>
-          <Chip iconLeading={<Check />} iconTrailing={<X />} selected variant="primary">
+          </FilterChip>
+          <FilterChip iconLeading={<Check />} iconTrailing={<X />} selected variant="primary">
             Both Icons
-          </Chip>
+          </FilterChip>
         </div>
       </ExampleSection>
 
-      {/* Multi-Select Pattern */}
+      {/* Multi-Select Filter Pattern */}
       <ExampleSection
-        title="Multi-Select Pattern"
-        description="Click chips to toggle selections. 'All' is mutually exclusive with other options."
+        title="Multi-Select Filter Pattern"
+        description="Common pattern for filtering lists. 'All' is mutually exclusive with other filters."
       >
         <div
           role="group"
-          aria-label="Status selections"
+          aria-label="Status filters"
           style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}
         >
-          <Chip
+          <FilterChip
             selected={filters.all}
             onSelectedChange={() => toggleFilter('all')}
           >
             All
-          </Chip>
-          <Chip
+          </FilterChip>
+          <FilterChip
             selected={filters.open}
             onSelectedChange={() => toggleFilter('open')}
           >
             Open
-          </Chip>
-          <Chip
+          </FilterChip>
+          <FilterChip
             selected={filters.closed}
             onSelectedChange={() => toggleFilter('closed')}
           >
             Closed
-          </Chip>
-          <Chip
+          </FilterChip>
+          <FilterChip
             selected={filters.assigned}
             onSelectedChange={() => toggleFilter('assigned')}
           >
             Assigned to me
-          </Chip>
-        </div>
-      </ExampleSection>
-
-      {/* Single-Select Pattern */}
-      <ExampleSection
-        title="Single-Select Pattern"
-        description="Only one chip can be selected at a time (radio-like behavior)."
-      >
-        <div
-          role="group"
-          aria-label="Category selection"
-          style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}
-        >
-          {categories.map(cat => (
-            <Chip
-              key={cat}
-              variant="primary"
-              selected={selectedCategory === cat.toLowerCase()}
-              onSelectedChange={() => setSelectedCategory(cat.toLowerCase())}
-            >
-              {cat}
-            </Chip>
-          ))}
+          </FilterChip>
         </div>
       </ExampleSection>
 
       {/* Usage Code */}
       <ExampleSection
         title="Usage"
-        description="Import and use the Chip component."
+        description="Import and use the FilterChip component for filtering interfaces."
       >
         <pre style={{
           fontFamily: 'var(--ld-semantic-font-family-mono)',
@@ -210,35 +183,29 @@ export function ChipExample() {
           borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
           margin: 0,
         }}>
-{`import { Chip } from '@/components/ui/Chip';
-import { FilterChip } from '@/components/ui/FilterChip';
+{`import { FilterChip } from '@/components/ui/FilterChip';
 
-// Chip - for categories, selections (subtle rounding)
-<Chip selected={isActive} onSelectedChange={setIsActive}>
-  Category
-</Chip>
-
-// FilterChip - for filters (pill-shaped)
+// Basic filter chip
 <FilterChip selected={isActive} onSelectedChange={setIsActive}>
   Filter
 </FilterChip>
 
 // With icon
-<Chip iconLeading={<StarIcon />} selected>
-  Favorites
-</Chip>
+<FilterChip iconLeading={<FilterIcon />} selected>
+  Filtered
+</FilterChip>
 
 // Primary variant
-<Chip variant="primary" selected={active} onSelectedChange={setActive}>
-  Featured
-</Chip>
+<FilterChip variant="primary" selected={active} onSelectedChange={setActive}>
+  Important Filter
+</FilterChip>
 
 // Sizes: small | medium (default) | large
-<Chip size="small">Compact</Chip>
-<Chip size="large">Spacious</Chip>
+<FilterChip size="small">Compact</FilterChip>
+<FilterChip size="large">Spacious</FilterChip>
 
 // Disabled
-<Chip disabled>Unavailable</Chip>`}
+<FilterChip disabled>Unavailable</FilterChip>`}
         </pre>
       </ExampleSection>
     </div>
