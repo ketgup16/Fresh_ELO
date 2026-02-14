@@ -312,30 +312,19 @@ export default function ComponentLibrary() {
         </h3>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Filter Chips', 'Callouts', 'Cards', 'Alerts', 'Content Messages', 'Date Fields', 'Dividers', 'Design Tokens'].map(section => (
-            <a
+            <Chip
               key={section}
-              href={`#${section.toLowerCase().replace(' ', '-')}`}
-              style={{
-                padding: 'var(--ld-primitive-scale-space-100) var(--ld-primitive-scale-space-200)',
-                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
-                color: 'var(--ld-semantic-color-text)',
-                borderRadius: '20px',
-                fontSize: '14px',
-                textDecoration: 'none',
-                transition: 'all 0.2s',
-                border: '1px solid transparent'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-action-fill-primary)';
-                e.currentTarget.style.color = 'var(--ld-semantic-color-action-text-on-fill-primary)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
-                e.currentTarget.style.color = 'var(--ld-semantic-color-text)';
+              onClick={(e) => {
+                e.preventDefault();
+                const id = section.toLowerCase().replace(' ', '-');
+                const element = document.getElementById(id);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
               }}
             >
               {section}
-            </a>
+            </Chip>
           ))}
         </div>
       </div>
@@ -1324,14 +1313,13 @@ function InteractiveComponentTester() {
                 </label>
                 <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)', flexWrap: 'wrap' }}>
                   {config.variants.map((v) => (
-                    <Button
+                    <Chip
                       key={v}
-                      variant={variant === v ? 'primary' : 'secondary'}
-                      size="small"
+                      selected={variant === v}
                       onClick={() => setVariant(v)}
                     >
                       {v.charAt(0).toUpperCase() + v.slice(1)}
-                    </Button>
+                    </Chip>
                   ))}
                 </div>
               </div>
@@ -1352,14 +1340,13 @@ function InteractiveComponentTester() {
                 </label>
                 <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)' }}>
                   {config.sizes.map((s) => (
-                    <Button
+                    <Chip
                       key={s}
-                      variant={size === s ? 'primary' : 'secondary'}
-                      size="small"
+                      selected={size === s}
                       onClick={() => setSize(s)}
                     >
                       {s.charAt(0).toUpperCase() + s.slice(1)}
-                    </Button>
+                    </Chip>
                   ))}
                 </div>
               </div>
