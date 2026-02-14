@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronRight, ChevronDown, Search, Settings, Download, MoreHorizontal, Eye, Sliders, X } from "@/components/icons";
-import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import MartyFloatingPanel from "../features/marty/MartyFloatingPanel";
 import DisplayDashboard from "../features/advertising/DisplayDashboard";
 import DisplayAdvertisingSidebar from "../features/advertising/DisplayAdvertisingSidebar";
 import { useLocalStorage } from "../hooks/useLocalStorage";

@@ -2,7 +2,7 @@ import { useState, useRef, useMemo, useEffect } from "react";
 import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Calendar, Filter, Download, Settings as SettingsIcon, X } from "@/components/icons";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { useNavigate } from "react-router-dom";
-import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import MartyFloatingPanel from "../features/marty/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../features/sponsored-search/SponsoredSearchSidebar";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Divider } from "../components/ui/Divider";

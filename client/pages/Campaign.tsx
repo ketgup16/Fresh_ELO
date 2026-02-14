@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ExternalLink } from "@/components/icons";
 import { useNavigate, useLocation } from "react-router-dom";
-import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import MartyFloatingPanel from "../features/marty/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../features/sponsored-search/SponsoredSearchSidebar";
 import { Button } from "../components/ui/Button";
 import { Checkbox } from "../components/ui/Checkbox";

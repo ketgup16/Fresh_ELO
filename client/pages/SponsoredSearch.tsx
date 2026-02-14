@@ -4,7 +4,7 @@ import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { useNavigate } from "react-router-dom";
 import SponsoredSearchDashboard from "../features/sponsored-search/SponsoredSearchDashboard";
 import SponsoredSearchSidebar from "../features/sponsored-search/SponsoredSearchSidebar";
-import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import MartyFloatingPanel from "../features/marty/MartyFloatingPanel";
 
 export default function SponsoredSearch() {
   const navigate = useNavigate();

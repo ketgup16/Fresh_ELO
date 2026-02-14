@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Search, Settings as SettingsIcon, Download } from "@/components/icons";
 import { useNavigate } from "react-router-dom";
-import SponsoredSearchSidebar from "../components/SponsoredSearchSidebar";
-import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import SponsoredSearchSidebar from "../features/sponsored-search/SponsoredSearchSidebar";
+import MartyFloatingPanel from "../features/marty/MartyFloatingPanel";
 import { MastHead } from "../components/ui/MastHead";
 import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { Button } from "../components/ui/button";

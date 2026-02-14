@@ -3,7 +3,7 @@ import { Search, Settings as SettingsIcon, Download, ExternalLink } from "@/comp
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMemo } from "react";
 import SponsoredSearchSidebar from "../features/sponsored-search/SponsoredSearchSidebar";
-import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import MartyFloatingPanel from "../features/marty/MartyFloatingPanel";
 import { MastHead } from "../components/ui/MastHead";
 import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { Button } from "../components/ui/button";

@@ -1,7 +1,7 @@
 import { useState, useRef, useMemo, useEffect } from "react";
 import { ChevronDown, ChevronUp, Bell, HelpCircle, User, Search, Calendar, Filter, Download, Settings as SettingsIcon, X } from "@/components/icons";
 import { useNavigate } from "react-router-dom";
-import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import MartyFloatingPanel from "../features/marty/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../features/sponsored-search/SponsoredSearchSidebar";
 import RecommendationsPopover from "../components/shared/RecommendationsPopover";
 import BiddingStrategyModal from "../features/sponsored-search/BiddingStrategyModal";

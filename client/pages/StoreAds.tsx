@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ArrowRight } from "@/components/icons";
 import { useNavigate } from "react-router-dom";
-import MartyFloatingPanel from "../components/MartyFloatingPanel";
-import StoreAdsSidebar from "../components/StoreAdsSidebar";
+import MartyFloatingPanel from "../features/marty/MartyFloatingPanel";
+import StoreAdsSidebar from "../features/store-ads/StoreAdsSidebar";
 import { Button } from "../components/ui/Button";
 import { MastHead } from "../components/ui/MastHead";
 import { Link } from "../components/ui/Link";

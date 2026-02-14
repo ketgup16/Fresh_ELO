@@ -1,7 +1,7 @@
 import { ArrowLeft, Calendar } from "@/components/icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "./ui/Button";
+import { Button } from "@/components/ui/Button";
 
 type ViewState = "welcome" | "thinking" | "campaign-form";
 

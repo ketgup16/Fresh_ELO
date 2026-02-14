@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MartyFloatingPanel from "../components/MartyFloatingPanel";
+import MartyFloatingPanel from "../features/marty/MartyFloatingPanel";
 import SponsoredSearchSidebar from "../features/sponsored-search/SponsoredSearchSidebar";
 import { MastHead } from "../components/ui/MastHead";
 import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";

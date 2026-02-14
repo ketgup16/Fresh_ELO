@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Lottie from "lottie-react";
-import Reports from "./icons/Reports";
-import { Button } from "./ui/Button";
-import { DateField } from "./ui/DateField";
-import { Checkbox } from "./ui/Checkbox";
-import martyAnimation from "../marty-thinking.json";
-import martyGlassesAnimation from "../marty-glasses.json";
+import Reports from "@/components/icons/Reports";
+import { Button } from "@/components/ui/Button";
+import { DateField } from "@/components/ui/DateField";
+import { Checkbox } from "@/components/ui/Checkbox";
+import martyAnimation from "@/marty-thinking.json";
+import martyGlassesAnimation from "@/marty-glasses.json";
 import { useMarty } from "@/contexts/MartyContext";
 
 type ViewState = 'welcome' | 'chat' | 'campaignSetup' | 'campaignForm' | 'campaignReady' | 'campaignScheduled';
