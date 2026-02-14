@@ -66,8 +66,15 @@ export interface FilterChipProps
   showLabel?: boolean;
 
   /**
-   * Active filter count to display in All Filters variant.
-   * When provided, shows count in parentheses. Only applies when `isAllFilters` is true.
+   * Show count badge/number.
+   * When true and count is provided, displays count in parentheses.
+   * @default false
+   */
+  showCount?: boolean;
+
+  /**
+   * Active filter count to display.
+   * Only shown when `showCount` is true.
    * @example "All Filters (2)"
    */
   count?: number;
@@ -117,6 +124,7 @@ export interface FilterChipProps
  *   isOpen={menuOpen}
  *   selected={hasFilters}
  *   iconLeading={<FilterIcon />}
+ *   showCount
  *   count={2}
  * >
  *   Text label
@@ -126,13 +134,13 @@ export interface FilterChipProps
  * @example
  * All Filters variant with label and count
  * ```tsx
- * <FilterChip isAllFilters selected count={3}>
+ * <FilterChip isAllFilters selected showCount count={3}>
  *   All Filters
  * </FilterChip>
  * ```
  *
  * @example
- * All Filters variant - icon only
+ * All Filters variant - icon only (28x28)
  * ```tsx
  * <FilterChip isAllFilters selected showLabel={false} />
  * ```
@@ -140,7 +148,7 @@ export interface FilterChipProps
  * @example
  * All Filters variant - icon + count (no label)
  * ```tsx
- * <FilterChip isAllFilters selected showLabel={false} count={5} />
+ * <FilterChip isAllFilters selected showLabel={false} showCount count={5} />
  * ```
  */
 export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
@@ -157,6 +165,7 @@ export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
       isMultiSelect = false,
       isOpen = false,
       showLabel = true,
+      showCount = false,
       count,
       UNSAFE_className,
       UNSAFE_style,
@@ -184,7 +193,7 @@ export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
     // All Filters variant: always show Sliders icon, optional label and count
     if (isAllFilters) {
       const labelText = showLabel ? (children || 'All Filters') : null;
-      const countText = typeof count === 'number' && count > 0 ? ` (${count})` : '';
+      const countText = showCount && typeof count === 'number' && count > 0 ? ` (${count})` : '';
 
       return (
         <button
@@ -212,7 +221,7 @@ export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
     // Multi-Select variant: show chevron down when closed, chevron up when open
     if (isMultiSelect) {
       const ChevronIcon = isOpen ? ChevronUp : ChevronDown;
-      const countText = typeof count === 'number' && count > 0 ? ` (${count})` : '';
+      const countText = showCount && typeof count === 'number' && count > 0 ? ` (${count})` : '';
 
       return (
         <button

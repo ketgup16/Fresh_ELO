@@ -61,28 +61,28 @@ export function FilterChipExample() {
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
           {/* Closed state - unselected */}
           <StateDemo label="Closed">
-            <FilterChip isMultiSelect isOpen={false} iconLeading={<Filter />} count={2}>
+            <FilterChip isMultiSelect isOpen={false} iconLeading={<Filter />} showCount count={2}>
               Text label
             </FilterChip>
           </StateDemo>
 
           {/* Open state - unselected */}
           <StateDemo label="Open">
-            <FilterChip isMultiSelect isOpen={true} iconLeading={<Filter />} count={2}>
+            <FilterChip isMultiSelect isOpen={true} iconLeading={<Filter />} showCount count={2}>
               Text label
             </FilterChip>
           </StateDemo>
 
           {/* Closed state - selected */}
           <StateDemo label="Closed + Selected">
-            <FilterChip isMultiSelect isOpen={false} selected iconLeading={<Filter />} count={2}>
+            <FilterChip isMultiSelect isOpen={false} selected iconLeading={<Filter />} showCount count={2}>
               Text label
             </FilterChip>
           </StateDemo>
 
           {/* Open state - selected */}
           <StateDemo label="Open + Selected">
-            <FilterChip isMultiSelect isOpen={true} selected iconLeading={<Filter />} count={2}>
+            <FilterChip isMultiSelect isOpen={true} selected iconLeading={<Filter />} showCount count={2}>
               Text label
             </FilterChip>
           </StateDemo>
@@ -96,6 +96,7 @@ export function FilterChipExample() {
               onClick={() => setMultiSelectOpen(!multiSelectOpen)}
               onSelectedChange={setMultiSelectSelected}
               iconLeading={<Filter />}
+              showCount
               count={3}
             >
               Interactive
@@ -139,7 +140,7 @@ export function FilterChipExample() {
       >
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
           {/* Icon + Label + Count */}
-          <FilterChip isAllFilters selected count={2}>
+          <FilterChip isAllFilters selected showCount count={2}>
             All Filters
           </FilterChip>
 
@@ -149,17 +150,17 @@ export function FilterChipExample() {
           </FilterChip>
 
           {/* Icon + Count (no label) */}
-          <FilterChip isAllFilters selected showLabel={false} count={3} />
+          <FilterChip isAllFilters selected showLabel={false} showCount count={3} />
 
           {/* Icon only (no label, no count) */}
           <FilterChip isAllFilters selected showLabel={false} />
 
           {/* Unselected states */}
-          <FilterChip isAllFilters count={2}>
+          <FilterChip isAllFilters showCount count={2}>
             All Filters
           </FilterChip>
 
-          <FilterChip isAllFilters showLabel={false} count={5} />
+          <FilterChip isAllFilters showLabel={false} showCount count={5} />
         </div>
       </ExampleSection>
 
@@ -245,6 +246,7 @@ export function FilterChipExample() {
             selected={filters.open || filters.closed}
             onClick={() => setMultiSelectOpen(!multiSelectOpen)}
             iconLeading={<Filter />}
+            showCount
             count={[filters.open, filters.closed].filter(Boolean).length || undefined}
           >
             Status
@@ -288,11 +290,13 @@ export function FilterChipExample() {
 
 // Multi-Select variant (dropdown trigger)
 // Shows ChevronDown when closed, ChevronUp when open
+// Count is hidden by default - use showCount to display it
 <FilterChip
   isMultiSelect
   isOpen={menuOpen}
   selected={hasFilters}
   iconLeading={<FilterIcon />}
+  showCount
   count={2}
   onClick={() => setMenuOpen(!menuOpen)}
 >
@@ -300,14 +304,14 @@ export function FilterChipExample() {
 </FilterChip>
 
 // All Filters variant - Icon + Label + Count
-<FilterChip isAllFilters selected count={3}>
+<FilterChip isAllFilters selected showCount count={3}>
   All Filters
 </FilterChip>
 
 // All Filters - Icon + Count only (no label)
-<FilterChip isAllFilters selected showLabel={false} count={5} />
+<FilterChip isAllFilters selected showLabel={false} showCount count={5} />
 
-// All Filters - Icon only (no label or count)
+// All Filters - Icon only (no label or count, 28x28)
 <FilterChip isAllFilters selected showLabel={false} />
 
 // Disabled
