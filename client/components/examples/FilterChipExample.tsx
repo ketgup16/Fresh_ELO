@@ -227,7 +227,7 @@ export function FilterChipExample() {
       {/* Filter Group with Multi-Select */}
       <ExampleSection
         title="Filter Group with Multi-Select"
-        description="Filter group pattern combining icon-only All Filters with a multi-select dropdown for advanced filtering."
+        description="Filter group pattern with multi-select dropdown. Count is hidden by default (set showCount={true} to display active filter count)."
       >
         <div
           role="group"
@@ -246,8 +246,7 @@ export function FilterChipExample() {
             selected={filters.open || filters.closed}
             onClick={() => setMultiSelectOpen(!multiSelectOpen)}
             iconLeading={<Filter />}
-            showCount
-            count={[filters.open, filters.closed].filter(Boolean).length || undefined}
+            /* Count hidden by default for multi-select (showCount defaults to false) */
           >
             Status
           </FilterChip>
