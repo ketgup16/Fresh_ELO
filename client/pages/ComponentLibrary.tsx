@@ -656,6 +656,7 @@ import { Search, Settings, Cart, User } from '@/components/icons';
             aria-label="Scroll to top"
             variant="primary"
             size="medium"
+            shape="rounded"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             {React.createElement((Icons as any).ChevronUp)}
