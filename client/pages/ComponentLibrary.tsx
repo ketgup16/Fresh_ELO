@@ -647,9 +647,9 @@ import { Search, Settings, Cart, User } from '@/components/icons';
             bottom: '32px',
             right: '32px',
             zIndex: 30,
-            transition: `opacity var(--ld-primitive-duration-200) ease, transform var(--ld-primitive-duration-200) ease`,
+            transition: `opacity 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)`,
             opacity: showScrollTop ? 1 : 0,
-            transform: showScrollTop ? 'translateY(0)' : 'translateY(8px)',
+            transform: showScrollTop ? 'translateY(0) scale(1)' : 'translateY(16px) scale(0.8)',
           }}
         >
           <IconButton
