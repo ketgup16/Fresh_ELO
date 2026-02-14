@@ -30,7 +30,7 @@ export default function ComponentLibrary() {
 
   // Define all searchable sections
   const allSections = [
-    { id: 'component-tester', name: 'Component Tester', keywords: ['test', 'playground', 'interactive', 'properties'] },
+    { id: 'component-tester', name: 'Component Sandbox', keywords: ['test', 'playground', 'interactive', 'properties', 'sandbox'] },
     { id: 'icons', name: 'Icons', keywords: ['icon', 'svg', 'graphic', 'symbol'] },
     { id: 'buttons', name: 'Buttons', keywords: ['button', 'action', 'click', 'primary', 'secondary'] },
     { id: 'badges', name: 'Badges', keywords: ['badge', 'count', 'notification', 'label', 'tag'] },
@@ -311,7 +311,7 @@ export default function ComponentLibrary() {
           Quick Navigation
         </h3>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Filter Chips', 'Callouts', 'Cards', 'Alerts', 'Content Messages', 'Date Fields', 'Dividers', 'Design Tokens'].map(section => (
+          {['Component Sandbox', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Filter Chips', 'Callouts', 'Cards', 'Alerts', 'Content Messages', 'Date Fields', 'Dividers', 'Design Tokens'].map(section => (
             <Chip
               key={section}
               onClick={(e) => {
@@ -329,8 +329,8 @@ export default function ComponentLibrary() {
         </div>
       </div>
 
-      {/* Interactive Component Tester */}
-      <Section id="component-tester" title="Component Property Tester" description="Interactive playground to test component variants, sizes, and properties in real-time">
+      {/* Interactive Component Sandbox */}
+      <Section id="component-tester" title="Component Sandbox" description="Interactive playground to test component variants, sizes, and properties in real-time">
         <InteractiveComponentTester />
       </Section>
 
@@ -931,7 +931,7 @@ function SearchableComponentSelect({ selectedComponent, onComponentChange, avail
   );
 }
 
-// Interactive Component Tester - Supports multiple component types
+// Interactive Component Sandbox - Supports multiple component types
 function InteractiveComponentTester() {
   type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip';
 

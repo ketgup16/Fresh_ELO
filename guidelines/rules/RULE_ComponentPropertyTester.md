@@ -1,8 +1,8 @@
-# RULE: Component Property Tester Coverage
+# RULE: Component Sandbox Coverage
 
 ## Overview
 
-**ALL Living Design 3.5 components MUST be included in the Component Property Tester** on the Component Library page. This ensures every component can be interactively tested with all its variants, sizes, and properties.
+**ALL Living Design 3.5 components MUST be included in the Component Sandbox** on the Component Library page. This ensures every component can be interactively tested with all its variants, sizes, and properties.
 
 ## Hard Rule
 
@@ -10,7 +10,7 @@
 
 When you create or update ANY LD 3.5 component:
 
-1. **Add to Component Property Tester** in `client/pages/ComponentLibrary.tsx`
+1. **Add to Component Sandbox** in `client/pages/ComponentLibrary.tsx`
 2. **Configure all properties** (variants, sizes, special props)
 3. **Add code generation** for the component
 4. **Add live preview** rendering
@@ -180,7 +180,7 @@ Developers can:
 ### Manual Check
 
 1. Open Component Library page
-2. Go to "Component Property Tester" section
+2. Go to "Component Sandbox" section
 3. Open component dropdown
 4. Verify ALL LD 3.5 components are listed
 
@@ -254,7 +254,7 @@ case 'Checkbox':
 
 ### During Code Review
 
-**REJECT** any component PR that doesn't include Component Property Tester updates.
+**REJECT** any component PR that doesn't include Component Sandbox updates.
 
 ### Component Checklist
 
