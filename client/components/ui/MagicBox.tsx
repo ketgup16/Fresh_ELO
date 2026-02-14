@@ -76,6 +76,9 @@ export const MagicBox = React.forwardRef<HTMLDivElement, MagicBoxProps>(
       .filter(Boolean)
       .join(' ');
 
+    // Border radius value
+    const borderRadius = 16;
+
     return (
       <div
         ref={ref}
@@ -84,12 +87,95 @@ export const MagicBox = React.forwardRef<HTMLDivElement, MagicBoxProps>(
         data-magic-active={active}
         {...restProps}
       >
-        {/* Layered blur effects for the magic glow */}
+        {/* SVG-based layered blur effects for the magic glow */}
         <div className={styles['magic-box__glow-container']} aria-hidden="true">
-          <div className={`${styles['magic-box__blur']} ${styles['magic-box__blur--s']}`} />
-          <div className={`${styles['magic-box__blur']} ${styles['magic-box__blur--m']}`} />
-          <div className={`${styles['magic-box__blur']} ${styles['magic-box__blur--l']}`} />
-          <div className={`${styles['magic-box__blur']} ${styles['magic-box__blur--xl']}`} />
+          {/* Blur S */}
+          <svg className={`${styles['magic-box__blur']} ${styles['magic-box__blur--s']}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+            <defs>
+              <linearGradient id="magic-gradient-s" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="var(--ld-semantic-color-border-magic-start, #0053E2)" />
+                <stop offset="50%" stopColor="var(--ld-semantic-color-border-magic-middle, #3D90EC)" />
+                <stop offset="100%" stopColor="var(--ld-semantic-color-border-magic-stop, #79CDF6)" />
+              </linearGradient>
+            </defs>
+            <rect
+              x="1"
+              y="1"
+              width="calc(100% - 2px)"
+              height="calc(100% - 2px)"
+              rx={borderRadius}
+              ry={borderRadius}
+              fill="none"
+              stroke="url(#magic-gradient-s)"
+              strokeWidth="2"
+            />
+          </svg>
+
+          {/* Blur M */}
+          <svg className={`${styles['magic-box__blur']} ${styles['magic-box__blur--m']}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+            <defs>
+              <linearGradient id="magic-gradient-m" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="var(--ld-semantic-color-border-magic-start, #0053E2)" />
+                <stop offset="50%" stopColor="var(--ld-semantic-color-border-magic-middle, #3D90EC)" />
+                <stop offset="100%" stopColor="var(--ld-semantic-color-border-magic-stop, #79CDF6)" />
+              </linearGradient>
+            </defs>
+            <rect
+              x="1"
+              y="1"
+              width="calc(100% - 2px)"
+              height="calc(100% - 2px)"
+              rx={borderRadius}
+              ry={borderRadius}
+              fill="none"
+              stroke="url(#magic-gradient-m)"
+              strokeWidth="2"
+            />
+          </svg>
+
+          {/* Blur L */}
+          <svg className={`${styles['magic-box__blur']} ${styles['magic-box__blur--l']}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+            <defs>
+              <linearGradient id="magic-gradient-l" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="var(--ld-semantic-color-border-magic-start, #0053E2)" />
+                <stop offset="50%" stopColor="var(--ld-semantic-color-border-magic-middle, #3D90EC)" />
+                <stop offset="100%" stopColor="var(--ld-semantic-color-border-magic-stop, #79CDF6)" />
+              </linearGradient>
+            </defs>
+            <rect
+              x="1"
+              y="1"
+              width="calc(100% - 2px)"
+              height="calc(100% - 2px)"
+              rx={borderRadius}
+              ry={borderRadius}
+              fill="none"
+              stroke="url(#magic-gradient-l)"
+              strokeWidth="2"
+            />
+          </svg>
+
+          {/* Blur XL */}
+          <svg className={`${styles['magic-box__blur']} ${styles['magic-box__blur--xl']}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+            <defs>
+              <linearGradient id="magic-gradient-xl" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="var(--ld-semantic-color-border-magic-start, #0053E2)" />
+                <stop offset="50%" stopColor="var(--ld-semantic-color-border-magic-middle, #3D90EC)" />
+                <stop offset="100%" stopColor="var(--ld-semantic-color-border-magic-stop, #79CDF6)" />
+              </linearGradient>
+            </defs>
+            <rect
+              x="1"
+              y="1"
+              width="calc(100% - 2px)"
+              height="calc(100% - 2px)"
+              rx={borderRadius}
+              ry={borderRadius}
+              fill="none"
+              stroke="url(#magic-gradient-xl)"
+              strokeWidth="2"
+            />
+          </svg>
         </div>
         
         {/* Content wrapper */}

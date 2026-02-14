@@ -9,52 +9,37 @@
 /* Glow container holds all blur layers */
 .magic-box__glow-container {
   position: absolute;
-  inset: -4px; /* Extend outward for glow visibility */
+  inset: 0;
   pointer-events: none;
   z-index: 0;
   border-radius: var(--ld-primitive-scale-borderradius-100, 16px);
 }
 
-/* Base blur layer - using box-shadow for glow effect */
+/* Base blur layer styles - now SVG elements */
 .magic-box__blur {
   position: absolute;
-  inset: 4px; /* Compensate for container extension */
-  border-radius: var(--ld-primitive-scale-borderradius-100, 16px);
-  
-  /* Use box-shadow to create the gradient glow effect */
-  /* Multiple shadows to simulate gradient from start -> middle -> stop */
-  box-shadow: 
-    0 0 0 2px var(--ld-semantic-color-border-magic-start, #0053E2),
-    inset 0 0 0 2px var(--ld-semantic-color-border-magic-start, #0053E2);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
-/* S blur - slight blur */
+/* Individual blur layer variations */
 .magic-box__blur--s {
   filter: blur(0.5px);
-  box-shadow: 
-    0 0 0 2px var(--ld-semantic-color-border-magic-start, #0053E2);
 }
 
-/* M blur - medium blur with gradient transition */
 .magic-box__blur--m {
   filter: blur(1px);
-  box-shadow: 
-    0 0 0 2px var(--ld-semantic-color-border-magic-middle, #3D90EC);
 }
 
-/* L blur - large blur nearing end color */
 .magic-box__blur--l {
   filter: blur(3px);
-  box-shadow: 
-    0 0 0 2px var(--ld-semantic-color-border-magic-stop, #79CDF6);
 }
 
-/* XL blur - hard light blend */
 .magic-box__blur--xl {
   filter: blur(0.5px);
   mix-blend-mode: hard-light;
-  box-shadow: 
-    0 0 0 2px var(--ld-semantic-color-border-magic-middle, #3D90EC);
 }
 
 /* Content wrapper - stays above glow layers */
