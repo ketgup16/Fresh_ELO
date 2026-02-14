@@ -2,9 +2,6 @@ import * as React from 'react';
 import styles from './FilterChip.module.css';
 import { Sliders } from '@/components/icons';
 
-export type FilterChipSize = 'small' | 'medium' | 'large';
-export type FilterChipVariant = 'default' | 'primary';
-
 export interface FilterChipProps
   extends Omit<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -20,20 +17,6 @@ export interface FilterChipProps
    * Callback when filter chip selection changes.
    */
   onSelectedChange?: (selected: boolean) => void;
-
-  /**
-   * The size of the filter chip.
-   * @default 'medium'
-   */
-  size?: FilterChipSize;
-
-  /**
-   * The visual variant of the filter chip.
-   * - `default`: Light blue fill when selected (uses FILTER-activated tokens).
-   * - `primary`: Light blue fill when selected (uses FILTER-activated tokens).
-   * @default 'default'
-   */
-  variant?: FilterChipVariant;
 
   /**
    * Optional leading icon/content (rendered before the label).
@@ -85,19 +68,22 @@ export interface FilterChipProps
 }
 
 /**
- * FilterChip component — Living Design 3.5
+ * FilterChip (Toggle) component — Living Design 3.5
  *
- * Interactive, selectable pill-shaped buttons specifically designed for filtering.
+ * Interactive, selectable pill-shaped toggle buttons specifically designed for filtering.
  * FilterChips are toggle buttons that expose their selected state via `aria-pressed`.
  * They use the FILTER semantic token family and have fully rounded corners (pill shape).
  *
+ * **Single Size:** Fixed at 32px height (no size variants)
+ * **Single Variant:** Toggle (same styling for all filter chips)
+ *
  * **Tokens Used:**
- * - Unselected: `filter-fill` (white), `filter-border` (gray-160), `filter-text-on-fill` (gray-160)
- * - Selected: `filter-fill-activated` (blue-10), `filter-border-activated` (blue-100)
+ * - Unselected: `filter-fill` (white), `filter-border` (gray-160, 1px), `filter-text-on-fill` (gray-160)
+ * - Selected: `filter-fill-activated` (blue-10), `filter-border-activated` (blue-100, 2px)
  * - All states include `-hovered`, `-focused`, `-pressed`, and `-disabled` variants
  *
  * @example
- * Basic filter chip
+ * Basic filter chip (Toggle)
  * ```tsx
  * <FilterChip selected={isActive} onSelectedChange={setIsActive}>
  *   Open
@@ -129,8 +115,6 @@ export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
     {
       selected = false,
       onSelectedChange,
-      size = 'medium',
-      variant = 'default',
       iconLeading,
       iconTrailing,
       disabled = false,
@@ -154,8 +138,6 @@ export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
 
     const className = [
       styles.filterChip,
-      styles[`filterChip--size-${size}`],
-      styles[`filterChip--variant-${variant}`],
       selected && styles['filterChip--selected'],
       isAllFilters && styles['filterChip--allFilters'],
       UNSAFE_className,

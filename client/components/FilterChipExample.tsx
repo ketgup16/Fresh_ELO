@@ -26,86 +26,26 @@ export function FilterChipExample() {
     }
   };
 
-  // Size demo
-  const [sizeSelected, setSizeSelected] = React.useState<Record<string, boolean>>({
-    small: false,
-    medium: true,
-    large: false,
-  });
-
   return (
     <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '48px' }}>
       {/* Basic States */}
       <ExampleSection
-        title="Filter Chip States"
-        description="Filter chips are pill-shaped (fully rounded) and designed specifically for filtering interfaces."
+        title="Filter Chip States (Toggle)"
+        description="Filter chips are pill-shaped toggles (32px height) designed specifically for filtering interfaces. Single variant: Toggle."
       >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <div>
-            <VariantLabel>Default variant</VariantLabel>
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
-              <StateDemo label="Unselected">
-                <FilterChip>Filter</FilterChip>
-              </StateDemo>
-              <StateDemo label="Selected">
-                <FilterChip selected>Filter</FilterChip>
-              </StateDemo>
-              <StateDemo label="Disabled">
-                <FilterChip disabled>Filter</FilterChip>
-              </StateDemo>
-              <StateDemo label="Selected + Disabled">
-                <FilterChip selected disabled>Filter</FilterChip>
-              </StateDemo>
-            </div>
-          </div>
-          <div>
-            <VariantLabel>Primary variant</VariantLabel>
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
-              <StateDemo label="Unselected">
-                <FilterChip variant="primary">Filter</FilterChip>
-              </StateDemo>
-              <StateDemo label="Selected">
-                <FilterChip variant="primary" selected>Filter</FilterChip>
-              </StateDemo>
-              <StateDemo label="Disabled">
-                <FilterChip variant="primary" disabled>Filter</FilterChip>
-              </StateDemo>
-              <StateDemo label="Selected + Disabled">
-                <FilterChip variant="primary" selected disabled>Filter</FilterChip>
-              </StateDemo>
-            </div>
-          </div>
-        </div>
-      </ExampleSection>
-
-      {/* Size Variants */}
-      <ExampleSection
-        title="Size Variants"
-        description="Small, medium, and large sizes for different contexts."
-      >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {(['small', 'medium', 'large'] as const).map(size => (
-            <div key={size} style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <span style={{
-                width: '70px',
-                fontSize: '13px',
-                fontFamily: 'var(--ld-semantic-font-family-sans)',
-                color: 'var(--ld-semantic-color-text-subtle)',
-                textTransform: 'capitalize',
-              }}>
-                {size}
-              </span>
-              <FilterChip
-                size={size}
-                selected={sizeSelected[size]}
-                onSelectedChange={(v) => setSizeSelected(prev => ({ ...prev, [size]: v }))}
-              >
-                Toggle me
-              </FilterChip>
-              <FilterChip size={size} selected>Selected</FilterChip>
-              <FilterChip size={size}>Unselected</FilterChip>
-            </div>
-          ))}
+        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+          <StateDemo label="Unselected">
+            <FilterChip>Filter</FilterChip>
+          </StateDemo>
+          <StateDemo label="Selected">
+            <FilterChip selected>Filter</FilterChip>
+          </StateDemo>
+          <StateDemo label="Disabled">
+            <FilterChip disabled>Filter</FilterChip>
+          </StateDemo>
+          <StateDemo label="Selected + Disabled">
+            <FilterChip selected disabled>Filter</FilterChip>
+          </StateDemo>
         </div>
       </ExampleSection>
 
@@ -124,7 +64,7 @@ export function FilterChipExample() {
           <FilterChip iconTrailing={<X />} selected>
             Remove
           </FilterChip>
-          <FilterChip iconLeading={<Check />} iconTrailing={<X />} selected variant="primary">
+          <FilterChip iconLeading={<Check />} iconTrailing={<X />} selected>
             Both Icons
           </FilterChip>
         </div>
@@ -224,7 +164,7 @@ export function FilterChipExample() {
       {/* Usage Code */}
       <ExampleSection
         title="Usage"
-        description="Import and use the FilterChip component for filtering interfaces."
+        description="Import and use the FilterChip (Toggle) component for filtering interfaces. Single size (32px) and single variant."
       >
         <pre style={{
           fontFamily: 'var(--ld-semantic-font-family-mono)',
@@ -239,7 +179,7 @@ export function FilterChipExample() {
         }}>
 {`import { FilterChip } from '@/components/ui/FilterChip';
 
-// Basic filter chip
+// Basic filter chip (Toggle variant, 32px height)
 <FilterChip selected={isActive} onSelectedChange={setIsActive}>
   Filter
 </FilterChip>
@@ -259,15 +199,6 @@ export function FilterChipExample() {
 
 // All Filters - Icon only (no label or count)
 <FilterChip isAllFilters selected showLabel={false} />
-
-// Primary variant
-<FilterChip variant="primary" selected={active} onSelectedChange={setActive}>
-  Important Filter
-</FilterChip>
-
-// Sizes: small | medium (default) | large
-<FilterChip size="small">Compact</FilterChip>
-<FilterChip size="large">Spacious</FilterChip>
 
 // Disabled
 <FilterChip disabled>Unavailable</FilterChip>`}

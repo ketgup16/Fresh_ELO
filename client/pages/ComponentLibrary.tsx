@@ -1054,8 +1054,8 @@ function InteractiveComponentTester() {
       supportsOLQPercentage: false,
     },
     FilterChip: {
-      variants: ['default', 'primary'],
-      sizes: ['small', 'medium', 'large'],
+      variants: ['toggle'],
+      sizes: [],
       supportsFullWidth: false,
       supportsIcons: true,
       supportsValue: false,
@@ -1245,8 +1245,6 @@ function InteractiveComponentTester() {
         const FilterIcon = (Icons as any).Filter;
         return (
           <FilterChip
-            variant={variant as any}
-            size={size as any}
             selected={chipSelected}
             onSelectedChange={setChipSelected}
             disabled={disabled}

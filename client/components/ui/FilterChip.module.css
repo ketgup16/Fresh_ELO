@@ -1,11 +1,16 @@
-/* FilterChip Base Styles - LD 3.5 */
+/* FilterChip (Toggle) Base Styles - LD 3.5 */
+/* Single size variant: 32px height */
 .filterChip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  padding: 4px 12px;
   font-family: var(--ld-semantic-font-family-sans);
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  min-height: 32px;
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px); /* Pill shape for filters */
   border-width: 1px;
   border-style: solid;
@@ -16,7 +21,6 @@
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, border-width 0.15s ease;
   white-space: nowrap;
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
   text-decoration: none;
   outline: none;
@@ -59,50 +63,24 @@
 }
 
 /* ==================== */
-/* Size Variants         */
+/* Selected State (Toggle) */
 /* ==================== */
 
-.filterChip--size-small {
-  padding: 4px 12px;
-  font-size: 14px;
-  line-height: 20px;
-  min-height: 32px;
-}
-
-.filterChip--size-medium {
-  padding: 6px 16px;
-  font-size: 14px;
-  line-height: 20px;
-  min-height: 36px;
-}
-
-.filterChip--size-large {
-  padding: 8px 20px;
-  font-size: 16px;
-  line-height: 24px;
-  min-height: 40px;
-}
-
-/* ==================== */
-/* Selected State        */
-/* ==================== */
-
-/* Selected - Default variant (uses FILTER-activated tokens when selected) */
-.filterChip--variant-default.filterChip--selected {
+.filterChip--selected {
   border-width: 2px;
   background-color: var(--ld-semantic-color-filter-fill-activated);
   border-color: var(--ld-semantic-color-filter-border-activated);
   color: var(--ld-semantic-color-filter-text-on-fill-activated);
 }
 
-.filterChip--variant-default.filterChip--selected:hover:not(:disabled) {
+.filterChip--selected:hover:not(:disabled) {
   border-width: 2px;
   background-color: var(--ld-semantic-color-filter-fill-activated-hovered);
   border-color: var(--ld-semantic-color-filter-border-activated-hovered);
   color: var(--ld-semantic-color-filter-text-on-fill-activated-hovered);
 }
 
-.filterChip--variant-default.filterChip--selected:focus-visible {
+.filterChip--selected:focus-visible {
   border-width: 2px;
   background-color: var(--ld-semantic-color-filter-fill-activated-focused);
   border-color: var(--ld-semantic-color-filter-border-activated-focused);
@@ -111,42 +89,14 @@
   outline-offset: 2px;
 }
 
-.filterChip--variant-default.filterChip--selected:active:not(:disabled) {
+.filterChip--selected:active:not(:disabled) {
   border-width: 2px;
   background-color: var(--ld-semantic-color-filter-fill-activated-pressed);
   border-color: var(--ld-semantic-color-filter-border-activated-pressed);
   color: var(--ld-semantic-color-filter-text-on-fill-activated-pressed);
 }
 
-.filterChip--variant-default.filterChip--selected:disabled {
-  background-color: var(--ld-semantic-color-filter-fill-disabled);
-  border-color: var(--ld-semantic-color-filter-border-disabled);
-  color: var(--ld-semantic-color-filter-text-on-fill-disabled);
-}
-
-/* Selected - Primary variant */
-.filterChip--variant-primary.filterChip--selected {
-  border-width: 2px;
-  background-color: var(--ld-semantic-color-filter-fill-activated);
-  border-color: var(--ld-semantic-color-filter-border-activated);
-  color: var(--ld-semantic-color-filter-text-on-fill-activated);
-}
-
-.filterChip--variant-primary.filterChip--selected:hover:not(:disabled) {
-  border-width: 2px;
-  background-color: var(--ld-semantic-color-filter-fill-activated-hovered);
-  border-color: var(--ld-semantic-color-filter-border-activated-hovered);
-  color: var(--ld-semantic-color-filter-text-on-fill-activated-hovered);
-}
-
-.filterChip--variant-primary.filterChip--selected:active:not(:disabled) {
-  border-width: 2px;
-  background-color: var(--ld-semantic-color-filter-fill-activated-pressed);
-  border-color: var(--ld-semantic-color-filter-border-activated-pressed);
-  color: var(--ld-semantic-color-filter-text-on-fill-activated-pressed);
-}
-
-.filterChip--variant-primary.filterChip--selected:disabled {
+.filterChip--selected:disabled {
   background-color: var(--ld-semantic-color-filter-fill-disabled);
   border-color: var(--ld-semantic-color-filter-border-disabled);
   color: var(--ld-semantic-color-filter-text-on-fill-disabled);
@@ -168,12 +118,6 @@
 .filterChip__iconTrailing svg {
   width: 16px;
   height: 16px;
-}
-
-.filterChip--size-large .filterChip__iconLeading svg,
-.filterChip--size-large .filterChip__iconTrailing svg {
-  width: 20px;
-  height: 20px;
 }
 
 /* Label */
