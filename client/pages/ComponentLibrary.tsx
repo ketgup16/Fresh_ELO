@@ -1,4 +1,5 @@
 import React from 'react';
+import { AlertExample } from '@/components/AlertExample';
 import { BadgeExample } from '@/components/BadgeExample';
 import { ButtonExample } from '@/components/ButtonExample';
 import { BreadcrumbExample } from '@/components/BreadcrumbExample';
@@ -41,6 +42,7 @@ export default function ComponentLibrary() {
     { id: 'filter-chips', name: 'Filter Chips', keywords: ['filter chip', 'filter', 'pill', 'select', 'toggle'] },
     { id: 'callouts', name: 'Callouts', keywords: ['callout', 'tooltip', 'nubbin', 'coaching', 'onboarding', 'pointer'] },
     { id: 'cards', name: 'Cards', keywords: ['card', 'container', 'panel'] },
+    { id: 'alerts', name: 'Alerts', keywords: ['alert', 'notification', 'info', 'success', 'warning', 'error', 'message', 'banner'] },
     { id: 'content-messages', name: 'Content Messages', keywords: ['content message', 'error', 'success', 'permission', 'critical', 'blocking', 'state', 'info', 'warning'] },
     { id: 'date-fields', name: 'Date Fields', keywords: ['date', 'input', 'calendar', 'field', 'form', 'datepicker'] },
     { id: 'dividers', name: 'Dividers', keywords: ['divider', 'separator', 'line', 'horizontal', 'vertical', 'rule', 'hr'] },
@@ -309,7 +311,7 @@ export default function ComponentLibrary() {
           Quick Navigation
         </h3>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Filter Chips', 'Callouts', 'Cards', 'Content Messages', 'Date Fields', 'Dividers', 'Design Tokens'].map(section => (
+          {['Component Tester', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Filter Chips', 'Callouts', 'Cards', 'Alerts', 'Content Messages', 'Date Fields', 'Dividers', 'Design Tokens'].map(section => (
             <a
               key={section}
               href={`#${section.toLowerCase().replace(' ', '-')}`}
@@ -520,6 +522,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="cards" title="Cards" description="Card containers with headers, content areas, and support for leading/trailing elements">
         <ComponentShowcase>
           <CardHeaderExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Alerts Section */}
+      <Section id="alerts" title="Alerts" description="Informational messages with semantic variants (info, success, warning, error) for communicating important updates">
+        <ComponentShowcase>
+          <AlertExample />
         </ComponentShowcase>
       </Section>
 
