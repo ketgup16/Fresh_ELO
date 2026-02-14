@@ -6,7 +6,6 @@
   gap: 8px;
   font-family: var(--ld-semantic-font-family-sans);
   font-weight: 500;
-  border-radius: 9999px; /* Pill shape */
   border: 1.5px solid var(--ld-semantic-color-action-border-secondary);
   background-color: var(--ld-semantic-color-action-fill-secondary);
   color: var(--ld-semantic-color-action-text-on-fill-secondary);
@@ -73,6 +72,18 @@
   font-size: 16px;
   line-height: 24px;
   min-height: 40px;
+}
+
+/* ==================== */
+/* Shape Variants        */
+/* ==================== */
+
+.chip--shape-square {
+  border-radius: var(--ld-primitive-scale-border-radius-100, 6px);
+}
+
+.chip--shape-pill {
+  border-radius: 9999px;
 }
 
 /* ==================== */

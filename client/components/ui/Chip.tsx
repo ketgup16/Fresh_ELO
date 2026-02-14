@@ -3,6 +3,7 @@ import styles from './Chip.module.css';
 
 export type ChipSize = 'small' | 'medium' | 'large';
 export type ChipVariant = 'default' | 'primary';
+export type ChipShape = 'square' | 'pill';
 
 export interface ChipProps
   extends Omit<
@@ -33,6 +34,14 @@ export interface ChipProps
    * @default 'default'
    */
   variant?: ChipVariant;
+
+  /**
+   * The shape of the chip.
+   * - `square`: Rounded corners (for general chips).
+   * - `pill`: Fully rounded pill shape (for filter chips).
+   * @default 'square'
+   */
+  shape?: ChipShape;
 
   /**
    * Optional leading icon/content (rendered before the label).
@@ -82,6 +91,7 @@ export const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(
       onSelectedChange,
       size = 'medium',
       variant = 'default',
+      shape = 'square',
       iconLeading,
       iconTrailing,
       disabled = false,
@@ -104,6 +114,7 @@ export const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(
       styles.chip,
       styles[`chip--size-${size}`],
       styles[`chip--variant-${variant}`],
+      styles[`chip--shape-${shape}`],
       selected && styles['chip--selected'],
       UNSAFE_className,
     ]

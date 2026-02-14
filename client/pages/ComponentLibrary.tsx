@@ -1037,7 +1037,7 @@ function InteractiveComponentTester() {
       supportsFullWidth: false,
       supportsIcons: true,
       supportsValue: false,
-      supportsShape: false,
+      supportsShape: true,
       supportsUnderline: false,
       supportsDismissible: false,
       supportsClickable: false,
@@ -1209,12 +1209,13 @@ function InteractiveComponentTester() {
           <Chip
             variant={variant as any}
             size={size as any}
+            shape={shape as any}
             selected={chipSelected}
             onSelectedChange={setChipSelected}
             disabled={disabled}
             iconLeading={withIcon && FilterIcon ? <FilterIcon style={{ width: 16, height: 16 }} /> : undefined}
           >
-            Filter Label
+            {shape === 'pill' ? 'Filter Label' : 'Chip Label'}
           </Chip>
         );
       }
@@ -1320,7 +1321,7 @@ function InteractiveComponentTester() {
               </div>
             )}
 
-            {/* Shape Selection (IconButton only) */}
+            {/* Shape Selection */}
             {config.supportsShape && (
               <div>
                 <label style={{
@@ -1334,7 +1335,7 @@ function InteractiveComponentTester() {
                   Shape
                 </label>
                 <div style={{ display: 'flex', gap: 'var(--ld-semantic-spacing-100)' }}>
-                  {['square', 'rounded'].map((s) => (
+                  {(selectedComponent === 'Chip' ? ['square', 'pill'] : ['square', 'rounded']).map((s) => (
                     <Button
                       key={s}
                       variant={shape === s ? 'primary' : 'secondary'}

@@ -39,9 +39,46 @@ export function ChipExample() {
 
   return (
     <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '48px' }}>
+      {/* Shape Variants */}
+      <ExampleSection
+        title="Shape Variants"
+        description="Chips come in two shapes: square (default, for general use) and pill (for filter chips)."
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div>
+            <VariantLabel>Square (default)</VariantLabel>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+              <StateDemo label="Unselected">
+                <Chip>Category</Chip>
+              </StateDemo>
+              <StateDemo label="Selected">
+                <Chip selected>Category</Chip>
+              </StateDemo>
+              <StateDemo label="Primary">
+                <Chip variant="primary" selected>Category</Chip>
+              </StateDemo>
+            </div>
+          </div>
+          <div>
+            <VariantLabel>Pill (for filters)</VariantLabel>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+              <StateDemo label="Unselected">
+                <Chip shape="pill">Filter</Chip>
+              </StateDemo>
+              <StateDemo label="Selected">
+                <Chip shape="pill" selected>Filter</Chip>
+              </StateDemo>
+              <StateDemo label="Primary">
+                <Chip shape="pill" variant="primary" selected>Filter</Chip>
+              </StateDemo>
+            </div>
+          </div>
+        </div>
+      </ExampleSection>
+
       {/* Basic States */}
       <ExampleSection
-        title="Basic States"
+        title="All States"
         description="Unselected, selected, and disabled chip states across both variants."
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -119,7 +156,7 @@ export function ChipExample() {
         description="Chips support leading and trailing icons to reinforce meaning."
       >
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
-          <Chip iconLeading={<Filter />} selected>
+          <Chip shape="pill" iconLeading={<Filter />} selected>
             Filtered
           </Chip>
           <Chip iconLeading={<Star />}>
@@ -137,7 +174,7 @@ export function ChipExample() {
       {/* Multi-Select Filter Pattern */}
       <ExampleSection
         title="Multi-Select Filter"
-        description="Click chips to toggle filters. 'All' is mutually exclusive with other filters."
+        description="Click chips to toggle filters. 'All' is mutually exclusive with other filters. Filter chips use pill shape."
       >
         <div
           role="group"
@@ -145,24 +182,28 @@ export function ChipExample() {
           style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}
         >
           <Chip
+            shape="pill"
             selected={filters.all}
             onSelectedChange={() => toggleFilter('all')}
           >
             All
           </Chip>
           <Chip
+            shape="pill"
             selected={filters.open}
             onSelectedChange={() => toggleFilter('open')}
           >
             Open
           </Chip>
           <Chip
+            shape="pill"
             selected={filters.closed}
             onSelectedChange={() => toggleFilter('closed')}
           >
             Closed
           </Chip>
           <Chip
+            shape="pill"
             selected={filters.assigned}
             onSelectedChange={() => toggleFilter('assigned')}
           >
@@ -212,19 +253,24 @@ export function ChipExample() {
         }}>
 {`import { Chip } from '@/components/ui/Chip';
 
-// Basic toggle chip
+// Square chip (default) - for categories, selections
 <Chip selected={isActive} onSelectedChange={setIsActive}>
+  Category
+</Chip>
+
+// Pill chip - for filters
+<Chip shape="pill" selected={isActive} onSelectedChange={setIsActive}>
   Filter
 </Chip>
 
 // With icon
-<Chip iconLeading={<FilterIcon />} selected>
+<Chip shape="pill" iconLeading={<FilterIcon />} selected>
   Filtered
 </Chip>
 
 // Primary variant
 <Chip variant="primary" selected={active} onSelectedChange={setActive}>
-  Category
+  Featured
 </Chip>
 
 // Sizes: small | medium (default) | large
