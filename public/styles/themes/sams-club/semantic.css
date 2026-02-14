@@ -10,10 +10,17 @@
  */
 
 :root {
-  /* Sam's Club brand colors */
-  --ld-semantic-color-action-fill-primary: var(--ld-primitive-color-blue-130, #0062ad);
+  /* Sam's Club brand colors - LIGHTER BLUE */
+  --ld-semantic-color-action-fill-primary: var(--ld-primitive-color-blue-100, #0086ed);
+  --ld-semantic-color-action-fill-primary-hovered: var(--ld-primitive-color-blue-110, #007bd9);
+  --ld-semantic-color-action-fill-primary-focused: var(--ld-primitive-color-blue-110, #007bd9);
+  --ld-semantic-color-action-fill-primary-pressed: var(--ld-primitive-color-blue-130, #0062ad);
+
   --ld-semantic-color-text-brand: var(--ld-primitive-color-blue-130, #0062ad);
   --ld-semantic-color-border-brand: var(--ld-primitive-color-blue-130, #0062ad);
+  --ld-semantic-color-border-activated: var(--ld-primitive-color-blue-130, #0062ad);
+
+  --ld-semantic-color-top-nav-fill: var(--ld-primitive-color-blue-130, #0062ad);
 
   /* Inherits WCP commerce tokens and all LD Base tokens */
 }

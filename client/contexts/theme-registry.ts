@@ -129,9 +129,9 @@ export const AVAILABLE_THEMES: Theme[] = [
     id: 'sams-club',
     name: 'Sam\'s Club',
     description: 'Sam\'s Club retail brand with Gibson font',
-    primitiveCSS: '/styles/themes/base/primitive.css',
+    primitiveCSS: '/styles/themes/sams-club/primitive.css',
     semanticCSS: '/styles/themes/sams-club/semantic.css',
-    previewColor: '#0062ad',
+    previewColor: '#0086ed',
     inherits: 'wcp',
   },
   {
