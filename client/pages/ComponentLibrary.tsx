@@ -1,25 +1,27 @@
 import React from 'react';
-import { AlertExample } from '@/components/examples/AlertExample';
-import { BadgeExample } from '@/components/examples/BadgeExample';
-import { ButtonExample } from '@/components/examples/ButtonExample';
-import { BreadcrumbExample } from '@/components/examples/BreadcrumbExample';
-import { LinkExample } from '@/components/examples/LinkExample';
-import { LinkButtonExample } from '@/components/examples/LinkButtonExample';
-import IconButtonExample from '@/components/examples/IconButtonExample';
-import { CalloutExample } from '@/components/examples/CalloutExample';
-import { CardHeaderExample } from '@/components/examples/CardHeaderExample';
-import { CheckboxExample } from '@/components/examples/CheckboxExample';
-import { RadioExample } from '@/components/examples/RadioExample';
-import { FormGroupExample } from '@/components/examples/FormGroupExample';
-import { ChipExample } from '@/components/examples/ChipExample';
-import { FilterChipExample } from '@/components/examples/FilterChipExample';
-import { ContentMessageExample } from '@/components/examples/ContentMessageExample';
-import { DateFieldExample } from '@/components/examples/DateFieldExample';
-import { DatePickerExample } from '@/components/examples/DatePickerExample';
-import { DividerExample } from '@/components/examples/DividerExample';
-import { ListExample } from '@/components/examples/ListExample';
-import { MagicBoxExample } from '@/components/examples/MagicBoxExample';
-import { MenuExample } from '@/components/examples/MenuExample';
+
+// Lazy load all example components for significantly better initial load performance
+const AlertExample = React.lazy(() => import('@/components/examples/AlertExample').then(m => ({ default: m.AlertExample })));
+const BadgeExample = React.lazy(() => import('@/components/examples/BadgeExample').then(m => ({ default: m.BadgeExample })));
+const ButtonExample = React.lazy(() => import('@/components/examples/ButtonExample').then(m => ({ default: m.ButtonExample })));
+const BreadcrumbExample = React.lazy(() => import('@/components/examples/BreadcrumbExample').then(m => ({ default: m.BreadcrumbExample })));
+const LinkExample = React.lazy(() => import('@/components/examples/LinkExample').then(m => ({ default: m.LinkExample })));
+const LinkButtonExample = React.lazy(() => import('@/components/examples/LinkButtonExample').then(m => ({ default: m.LinkButtonExample })));
+const IconButtonExample = React.lazy(() => import('@/components/examples/IconButtonExample'));
+const CalloutExample = React.lazy(() => import('@/components/examples/CalloutExample').then(m => ({ default: m.CalloutExample })));
+const CardHeaderExample = React.lazy(() => import('@/components/examples/CardHeaderExample').then(m => ({ default: m.CardHeaderExample })));
+const CheckboxExample = React.lazy(() => import('@/components/examples/CheckboxExample').then(m => ({ default: m.CheckboxExample })));
+const RadioExample = React.lazy(() => import('@/components/examples/RadioExample').then(m => ({ default: m.RadioExample })));
+const FormGroupExample = React.lazy(() => import('@/components/examples/FormGroupExample').then(m => ({ default: m.FormGroupExample })));
+const ChipExample = React.lazy(() => import('@/components/examples/ChipExample').then(m => ({ default: m.ChipExample })));
+const FilterChipExample = React.lazy(() => import('@/components/examples/FilterChipExample').then(m => ({ default: m.FilterChipExample })));
+const ContentMessageExample = React.lazy(() => import('@/components/examples/ContentMessageExample').then(m => ({ default: m.ContentMessageExample })));
+const DateFieldExample = React.lazy(() => import('@/components/examples/DateFieldExample').then(m => ({ default: m.DateFieldExample })));
+const DatePickerExample = React.lazy(() => import('@/components/examples/DatePickerExample').then(m => ({ default: m.DatePickerExample })));
+const DividerExample = React.lazy(() => import('@/components/examples/DividerExample').then(m => ({ default: m.DividerExample })));
+const ListExample = React.lazy(() => import('@/components/examples/ListExample').then(m => ({ default: m.ListExample })));
+const MagicBoxExample = React.lazy(() => import('@/components/examples/MagicBoxExample').then(m => ({ default: m.MagicBoxExample })));
+const MenuExample = React.lazy(() => import('@/components/examples/MenuExample').then(m => ({ default: m.MenuExample })));
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Badge } from '@/components/ui/Badge';
@@ -793,7 +795,21 @@ function ComponentShowcase({ children }: { children: React.ReactNode }) {
       overflow: 'hidden',
       boxShadow: 'var(--ld-semantic-elevation-100)'
     }}>
-      {children}
+      <React.Suspense fallback={
+        <div style={{
+          padding: '48px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'var(--ld-semantic-color-text-subtle)',
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          fontSize: '14px'
+        }}>
+          Loading component...
+        </div>
+      }>
+        {children}
+      </React.Suspense>
     </div>
   );
 }
