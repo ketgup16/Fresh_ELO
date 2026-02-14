@@ -28,8 +28,8 @@ export interface FilterChipProps
 
   /**
    * The visual variant of the filter chip.
-   * - `default`: Dark fill when selected (uses INPUT tokens).
-   * - `primary`: Walmart blue fill when selected (uses ACTION tokens).
+   * - `default`: Light blue fill when selected (uses FILTER-activated tokens).
+   * - `primary`: Light blue fill when selected (uses FILTER-activated tokens).
    * @default 'default'
    */
   variant?: FilterChipVariant;
@@ -66,7 +66,12 @@ export interface FilterChipProps
  *
  * Interactive, selectable pill-shaped buttons specifically designed for filtering.
  * FilterChips are toggle buttons that expose their selected state via `aria-pressed`.
- * They use the INPUT token family and have fully rounded corners (pill shape).
+ * They use the FILTER semantic token family and have fully rounded corners (pill shape).
+ *
+ * **Tokens Used:**
+ * - Unselected: `filter-fill` (white), `filter-border` (gray-160), `filter-text-on-fill` (gray-160)
+ * - Selected: `filter-fill-activated` (blue-10), `filter-border-activated` (blue-100)
+ * - All states include `-hovered`, `-focused`, `-pressed`, and `-disabled` variants
  *
  * @example
  * ```tsx
