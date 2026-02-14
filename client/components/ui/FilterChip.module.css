@@ -146,7 +146,8 @@
 
 /* Icon-only state when label is hidden */
 .filterChip--allFilters:has(.filterChip__iconLeading):not(:has(.filterChip__label)) {
-  /* Adjust padding for icon-only state if needed */
-  padding-left: 10px;
-  padding-right: 10px;
+  /* Constrain to icon-only size */
+  max-width: 28px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
