@@ -293,62 +293,7 @@ export default function ComponentLibrary() {
         )}
       </div>
 
-      {/* Navigation */}
-      <div style={{
-        marginBottom: '32px',
-        backgroundColor: 'var(--ld-semantic-color-surface)',
-        padding: '20px',
-        borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
-        boxShadow: 'var(--ld-semantic-elevation-100)'
-      }}>
-        <button
-          onClick={() => setQuickNavExpanded(!quickNavExpanded)}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--ld-primitive-scale-space-100)',
-            background: 'none',
-            border: 'none',
-            padding: '0',
-            cursor: 'pointer',
-            fontSize: '14px',
-            fontWeight: 600,
-            color: 'var(--ld-semantic-color-text-subtle)',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-            marginBottom: quickNavExpanded ? '12px' : '0',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-          }}
-        >
-          {quickNavExpanded ?
-            <Icons.ChevronUp style={{ width: 16, height: 16 }} /> :
-            <Icons.ChevronDown style={{ width: 16, height: 16 }} />
-          }
-          Quick Navigation
-        </button>
-
-        {quickNavExpanded && (
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-            {['Component Sandbox', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Filter Chips', 'Callouts', 'Cards', 'Alerts', 'Content Messages', 'Date Fields', 'Dividers', 'Design Tokens'].map(section => (
-              <Chip
-                key={section}
-                onClick={(e) => {
-                  e.preventDefault();
-                  const id = section.toLowerCase().replace(' ', '-');
-                  const element = document.getElementById(id);
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }}
-              >
-                {section}
-              </Chip>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Interactive Component Tester */}
+      {/* Component Sandbox */}
       <Section id="component-tester" title="Component Sandbox" description="Interactive playground to test component variants, sizes, and properties in real-time">
         <InteractiveComponentTester />
       </Section>
