@@ -340,7 +340,7 @@ export default function ComponentLibrary() {
 
             {quickNavExpanded && (
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                {['Component Sandbox', 'Alerts', 'Badges', 'Breadcrumbs', 'Buttons', 'Callouts', 'Cards', 'Checkboxes', 'Chips', 'Content Messages', 'Date Fields', 'Dividers', 'Filter Chips', 'Form Groups', 'Icon Buttons', 'Link Buttons', 'Links', 'Radio Buttons', 'Icons', 'Design Tokens'].map(section => (
+                {['Component Sandbox', 'Alerts', 'Badges', 'Breadcrumbs', 'Buttons', 'Callouts', 'Cards', 'Checkboxes', 'Chips', 'Content Messages', 'Date Fields', 'Dividers', 'Filter Chips', 'Form Groups', 'Icon Buttons', 'Link Buttons', 'Links', 'Lists', 'Radio Buttons', 'Icons', 'Design Tokens'].map(section => (
                   <Chip
                     key={section}
                     onClick={(e) => {
