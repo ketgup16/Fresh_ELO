@@ -7,11 +7,11 @@
   font-family: var(--ld-semantic-font-family-sans);
   font-weight: 500;
   border-radius: var(--ld-primitive-scale-border-radius-50, 4px); /* Square with subtle rounding */
-  border: 2px solid var(--ld-semantic-color-input-border);
+  border: 1px solid var(--ld-semantic-color-input-border); /* 1px for unselected */
   background-color: var(--ld-semantic-color-input-fill);
   color: var(--ld-semantic-color-input-text-on-fill);
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, border-width 0.15s ease;
   white-space: nowrap;
   box-sizing: border-box;
   padding: 0;
@@ -28,26 +28,33 @@
   outline-offset: 2px;
 }
 
-/* Hover - Unselected */
-.chip:hover:not(:disabled) {
+/* Hover - Unselected (light gray fill) */
+.chip:hover:not(:disabled):not(.chip--selected) {
   background-color: var(--ld-semantic-color-input-fill-hovered);
-  border-color: var(--ld-semantic-color-input-border-hovered);
+  border-color: var(--ld-semantic-color-input-border);
   color: var(--ld-semantic-color-input-text-on-fill);
 }
 
-/* Pressed - Unselected */
-.chip:active:not(:disabled) {
+/* Focus - Unselected (light gray fill) */
+.chip:focus:not(:disabled):not(.chip--selected) {
+  background-color: var(--ld-semantic-color-input-fill-focused);
+  border-color: var(--ld-semantic-color-input-border);
+}
+
+/* Pressed - Unselected (light gray fill) */
+.chip:active:not(:disabled):not(.chip--selected) {
   background-color: var(--ld-semantic-color-input-fill-pressed);
-  border-color: var(--ld-semantic-color-input-border-pressed);
+  border-color: var(--ld-semantic-color-input-border);
   color: var(--ld-semantic-color-input-text-on-fill);
 }
 
-/* Disabled */
+/* Disabled - No fill, light gray border and text */
 .chip:disabled {
   cursor: not-allowed;
-  background-color: var(--ld-semantic-color-input-fill-disabled);
+  background-color: transparent; /* No fill when disabled */
   border-color: var(--ld-semantic-color-input-border-disabled);
   color: var(--ld-semantic-color-input-text-on-fill-disabled);
+  border-width: 1px; /* 1px border when disabled */
 }
 
 /* ==================== */
@@ -79,10 +86,11 @@
 /* Selected State        */
 /* ==================== */
 
-/* Selected - Default variant */
+/* Selected - Default variant (2px border) */
 .chip--variant-default.chip--selected {
   background-color: var(--ld-semantic-color-input-fill-activated);
   border-color: var(--ld-semantic-color-input-border-activated);
+  border-width: 2px; /* 2px border when selected */
   color: var(--ld-semantic-color-input-indicator-activated);
 }
 
@@ -99,15 +107,17 @@
 }
 
 .chip--variant-default.chip--selected:disabled {
-  background-color: var(--ld-semantic-color-input-fill-activated-disabled);
+  background-color: transparent; /* No fill when disabled */
   border-color: var(--ld-semantic-color-input-border-activated-disabled);
-  color: var(--ld-semantic-color-input-fill-disabled);
+  border-width: 2px; /* Maintain 2px border even when disabled+selected */
+  color: var(--ld-semantic-color-input-text-on-fill-disabled);
 }
 
-/* Selected - Primary variant */
+/* Selected - Primary variant (2px border) */
 .chip--variant-primary.chip--selected {
   background-color: var(--ld-semantic-color-action-fill-primary);
   border-color: var(--ld-semantic-color-action-fill-primary);
+  border-width: 2px; /* 2px border when selected */
   color: var(--ld-semantic-color-action-text-on-fill-primary);
 }
 
