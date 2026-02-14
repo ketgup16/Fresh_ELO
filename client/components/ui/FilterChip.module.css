@@ -9,9 +9,9 @@
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px); /* Pill shape for filters */
   border-width: 1px;
   border-style: solid;
-  border-color: var(--ld-semantic-color-action-border-secondary);
-  background-color: var(--ld-semantic-color-action-fill-secondary);
-  color: var(--ld-semantic-color-action-text-on-fill-secondary);
+  border-color: var(--ld-semantic-color-filter-border);
+  background-color: var(--ld-semantic-color-filter-fill);
+  color: var(--ld-semantic-color-filter-text-on-fill);
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   white-space: nowrap;
@@ -26,33 +26,33 @@
 
 /* Focus visible */
 .filterChip:focus-visible {
-  border-color: var(--ld-semantic-color-action-border-secondary-focused);
-  background-color: var(--ld-semantic-color-action-fill-secondary-focused);
-  color: var(--ld-semantic-color-action-text-on-fill-secondary-focused);
+  border-color: var(--ld-semantic-color-filter-border-focused);
+  background-color: var(--ld-semantic-color-filter-fill-focused);
+  color: var(--ld-semantic-color-filter-text-on-fill-focused);
   outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
 }
 
 /* Hover - Unselected */
 .filterChip:hover:not(:disabled) {
-  background-color: var(--ld-semantic-color-action-fill-secondary-hovered);
-  border-color: var(--ld-semantic-color-action-border-secondary-hovered);
-  color: var(--ld-semantic-color-action-text-on-fill-secondary-hovered);
+  background-color: var(--ld-semantic-color-filter-fill-hovered);
+  border-color: var(--ld-semantic-color-filter-border-hovered);
+  color: var(--ld-semantic-color-filter-text-on-fill-hovered);
 }
 
 /* Pressed - Unselected */
 .filterChip:active:not(:disabled) {
-  background-color: var(--ld-semantic-color-action-fill-secondary-pressed);
-  border-color: var(--ld-semantic-color-action-border-secondary-pressed);
-  color: var(--ld-semantic-color-action-text-on-fill-secondary-pressed);
+  background-color: var(--ld-semantic-color-filter-fill-pressed);
+  border-color: var(--ld-semantic-color-filter-border-pressed);
+  color: var(--ld-semantic-color-filter-text-on-fill-pressed);
 }
 
 /* Disabled */
 .filterChip:disabled {
   cursor: not-allowed;
-  background-color: var(--ld-semantic-color-action-fill-secondary-disabled);
-  border-color: var(--ld-semantic-color-action-border-secondary-disabled);
-  color: var(--ld-semantic-color-action-text-on-fill-secondary-disabled);
+  background-color: var(--ld-semantic-color-filter-fill-disabled);
+  border-color: var(--ld-semantic-color-filter-border-disabled);
+  color: var(--ld-semantic-color-filter-text-on-fill-disabled);
 }
 
 /* ==================== */
@@ -84,62 +84,62 @@
 /* Selected State        */
 /* ==================== */
 
-/* Selected - Default variant (uses primary ACTION tokens when selected) */
+/* Selected - Default variant (uses FILTER-activated tokens when selected) */
 .filterChip--variant-default.filterChip--selected {
-  background-color: var(--ld-semantic-color-action-fill-primary);
-  border-color: var(--ld-semantic-color-action-fill-primary);
-  color: var(--ld-semantic-color-action-text-on-fill-primary);
+  background-color: var(--ld-semantic-color-filter-fill-activated);
+  border-color: var(--ld-semantic-color-filter-border-activated);
+  color: var(--ld-semantic-color-filter-text-on-fill-activated);
 }
 
 .filterChip--variant-default.filterChip--selected:hover:not(:disabled) {
-  background-color: var(--ld-semantic-color-action-fill-primary-hovered);
-  border-color: var(--ld-semantic-color-action-fill-primary-hovered);
-  color: var(--ld-semantic-color-action-text-on-fill-primary-hovered);
+  background-color: var(--ld-semantic-color-filter-fill-activated-hovered);
+  border-color: var(--ld-semantic-color-filter-border-activated-hovered);
+  color: var(--ld-semantic-color-filter-text-on-fill-activated-hovered);
 }
 
 .filterChip--variant-default.filterChip--selected:focus-visible {
-  background-color: var(--ld-semantic-color-action-fill-primary-focused);
-  border-color: var(--ld-semantic-color-action-fill-primary-focused);
-  color: var(--ld-semantic-color-action-text-on-fill-primary-focused);
+  background-color: var(--ld-semantic-color-filter-fill-activated-focused);
+  border-color: var(--ld-semantic-color-filter-border-activated-focused);
+  color: var(--ld-semantic-color-filter-text-on-fill-activated-focused);
   outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
 }
 
 .filterChip--variant-default.filterChip--selected:active:not(:disabled) {
-  background-color: var(--ld-semantic-color-action-fill-primary-pressed);
-  border-color: var(--ld-semantic-color-action-fill-primary-pressed);
-  color: var(--ld-semantic-color-action-text-on-fill-primary-pressed);
+  background-color: var(--ld-semantic-color-filter-fill-activated-pressed);
+  border-color: var(--ld-semantic-color-filter-border-activated-pressed);
+  color: var(--ld-semantic-color-filter-text-on-fill-activated-pressed);
 }
 
 .filterChip--variant-default.filterChip--selected:disabled {
-  background-color: var(--ld-semantic-color-action-fill-primary-disabled);
-  border-color: var(--ld-semantic-color-action-fill-primary-disabled);
-  color: var(--ld-semantic-color-action-text-on-fill-primary-disabled);
+  background-color: var(--ld-semantic-color-filter-fill-disabled);
+  border-color: var(--ld-semantic-color-filter-border-disabled);
+  color: var(--ld-semantic-color-filter-text-on-fill-disabled);
 }
 
 /* Selected - Primary variant */
 .filterChip--variant-primary.filterChip--selected {
-  background-color: var(--ld-semantic-color-action-fill-primary);
-  border-color: var(--ld-semantic-color-action-fill-primary);
-  color: var(--ld-semantic-color-action-text-on-fill-primary);
+  background-color: var(--ld-semantic-color-filter-fill-activated);
+  border-color: var(--ld-semantic-color-filter-border-activated);
+  color: var(--ld-semantic-color-filter-text-on-fill-activated);
 }
 
 .filterChip--variant-primary.filterChip--selected:hover:not(:disabled) {
-  background-color: var(--ld-semantic-color-action-fill-primary-hovered);
-  border-color: var(--ld-semantic-color-action-fill-primary-hovered);
-  color: var(--ld-semantic-color-action-text-on-fill-primary-hovered);
+  background-color: var(--ld-semantic-color-filter-fill-activated-hovered);
+  border-color: var(--ld-semantic-color-filter-border-activated-hovered);
+  color: var(--ld-semantic-color-filter-text-on-fill-activated-hovered);
 }
 
 .filterChip--variant-primary.filterChip--selected:active:not(:disabled) {
-  background-color: var(--ld-semantic-color-action-fill-primary-pressed);
-  border-color: var(--ld-semantic-color-action-fill-primary-pressed);
-  color: var(--ld-semantic-color-action-text-on-fill-primary-pressed);
+  background-color: var(--ld-semantic-color-filter-fill-activated-pressed);
+  border-color: var(--ld-semantic-color-filter-border-activated-pressed);
+  color: var(--ld-semantic-color-filter-text-on-fill-activated-pressed);
 }
 
 .filterChip--variant-primary.filterChip--selected:disabled {
-  background-color: var(--ld-semantic-color-action-fill-primary-disabled);
-  border-color: var(--ld-semantic-color-action-fill-primary-disabled);
-  color: var(--ld-semantic-color-action-text-on-fill-primary-disabled);
+  background-color: var(--ld-semantic-color-filter-fill-disabled);
+  border-color: var(--ld-semantic-color-filter-border-disabled);
+  color: var(--ld-semantic-color-filter-text-on-fill-disabled);
 }
 
 /* ==================== */

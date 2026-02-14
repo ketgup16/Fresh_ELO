@@ -178,6 +178,42 @@
   --ld-semantic-color-bottom-nav-text-on-fill-activated-pressed: var(--ld-primitive-color-blue-100, #0053e2);
 
   /* ========================================
+     FILTER COLORS (Filter Chips)
+     ======================================== */
+  /* Filter fills */
+  --ld-semantic-color-filter-fill: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-filter-fill-hovered: var(--ld-primitive-color-gray-10, #f1f1f2);
+  --ld-semantic-color-filter-fill-focused: var(--ld-primitive-color-gray-10, #f1f1f2);
+  --ld-semantic-color-filter-fill-pressed: var(--ld-primitive-color-gray-20, #e3e4e5);
+  --ld-semantic-color-filter-fill-disabled: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-filter-fill-activated: var(--ld-primitive-color-blue-10, #e9f1fe);
+  --ld-semantic-color-filter-fill-activated-hovered: var(--ld-primitive-color-blue-10, #e9f1fe);
+  --ld-semantic-color-filter-fill-activated-focused: var(--ld-primitive-color-blue-10, #e9f1fe);
+  --ld-semantic-color-filter-fill-activated-pressed: var(--ld-primitive-color-blue-20, #c9dcfd);
+
+  /* Filter borders */
+  --ld-semantic-color-filter-border: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-filter-border-hovered: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-filter-border-focused: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-filter-border-pressed: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-filter-border-disabled: var(--ld-primitive-color-gray-50, #babbbe);
+  --ld-semantic-color-filter-border-activated: var(--ld-primitive-color-blue-100, #0053e2);
+  --ld-semantic-color-filter-border-activated-hovered: var(--ld-primitive-color-blue-100, #0053e2);
+  --ld-semantic-color-filter-border-activated-focused: var(--ld-primitive-color-blue-100, #0053e2);
+  --ld-semantic-color-filter-border-activated-pressed: var(--ld-primitive-color-blue-140, #002185);
+
+  /* Filter text on fill */
+  --ld-semantic-color-filter-text-on-fill: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-filter-text-on-fill-hovered: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-filter-text-on-fill-focused: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-filter-text-on-fill-pressed: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-filter-text-on-fill-disabled: var(--ld-primitive-color-gray-50, #babbbe);
+  --ld-semantic-color-filter-text-on-fill-activated: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-filter-text-on-fill-activated-hovered: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-filter-text-on-fill-activated-focused: var(--ld-primitive-color-gray-160, #2e2f32);
+  --ld-semantic-color-filter-text-on-fill-activated-pressed: var(--ld-primitive-color-gray-160, #2e2f32);
+
+  /* ========================================
      FIELD/INPUT COLORS
      ======================================== */
   --ld-semantic-color-field-border: var(--ld-primitive-color-gray-80, #909196);
