@@ -36,10 +36,10 @@ export const MenuExample: React.FC = () => {
             <MenuItem leadingIcon={<Icons.Edit />}>
               Edit
             </MenuItem>
-            <MenuItem leadingIcon={<Icons.Duplicate />}>
+            <MenuItem leadingIcon={<Icons.Plus />}>
               Duplicate
             </MenuItem>
-            <MenuItem leadingIcon={<Icons.Delete />}>
+            <MenuItem leadingIcon={<Icons.Trash />}>
               Delete
             </MenuItem>
           </Menu>
@@ -101,13 +101,13 @@ export const MenuExample: React.FC = () => {
         </p>
         <div style={{ position: 'relative', height: '160px' }}>
           <Menu isOpen={true} onClose={() => {}}>
-            <MenuItem leadingIcon={<Icons.Save />}>
+            <MenuItem leadingIcon={<Icons.Download />}>
               Save
             </MenuItem>
-            <MenuItem leadingIcon={<Icons.Export />} disabled>
+            <MenuItem leadingIcon={<Icons.Upload />} disabled>
               Export (unavailable)
             </MenuItem>
-            <MenuItem leadingIcon={<Icons.Print />}>
+            <MenuItem leadingIcon={<Icons.Printer />}>
               Print
             </MenuItem>
             <MenuItem leadingIcon={<Icons.Download />}>
@@ -137,8 +137,8 @@ export const MenuExample: React.FC = () => {
           Menu can include a footer section with action buttons. This is a custom extension beyond the base LD 3.5 spec, useful for filter menus.
         </p>
         <div style={{ position: 'relative', height: '200px' }}>
-          <Menu 
-            isOpen={true} 
+          <Menu
+            isOpen={true}
             onClose={() => {}}
             footer={
               <ButtonGroup>
@@ -150,7 +150,7 @@ export const MenuExample: React.FC = () => {
             <MenuItem leadingIcon={<Icons.Filter />}>
               Filter by date
             </MenuItem>
-            <MenuItem leadingIcon={<Icons.Sort />}>
+            <MenuItem leadingIcon={<Icons.SortingArrows />}>
               Sort by name
             </MenuItem>
             <MenuItem leadingIcon={<Icons.Sliders />}>
@@ -195,7 +195,7 @@ export const MenuExample: React.FC = () => {
             <div style={{ position: 'relative', height: '100px' }}>
               <Menu isOpen={true} onClose={() => {}}>
                 <MenuItem leadingIcon={<Icons.Edit />}>Edit</MenuItem>
-                <MenuItem leadingIcon={<Icons.Delete />}>Delete</MenuItem>
+                <MenuItem leadingIcon={<Icons.Trash />}>Delete</MenuItem>
               </Menu>
             </div>
           </div>
@@ -214,8 +214,8 @@ export const MenuExample: React.FC = () => {
             <div style={{ position: 'relative', height: '120px' }}>
               <Menu isOpen={true} onClose={() => {}}>
                 <MenuItem leadingIcon={<Icons.Edit />}>Edit</MenuItem>
-                <MenuItem leadingIcon={<Icons.Duplicate />}>Duplicate</MenuItem>
-                <MenuItem leadingIcon={<Icons.Delete />}>Delete</MenuItem>
+                <MenuItem leadingIcon={<Icons.Plus />}>Duplicate</MenuItem>
+                <MenuItem leadingIcon={<Icons.Trash />}>Delete</MenuItem>
               </Menu>
             </div>
           </div>
@@ -235,9 +235,9 @@ export const MenuExample: React.FC = () => {
               <Menu isOpen={true} onClose={() => {}}>
                 <MenuItem leadingIcon={<Icons.Eye />}>View</MenuItem>
                 <MenuItem leadingIcon={<Icons.Edit />}>Edit</MenuItem>
-                <MenuItem leadingIcon={<Icons.Duplicate />}>Duplicate</MenuItem>
+                <MenuItem leadingIcon={<Icons.Plus />}>Duplicate</MenuItem>
                 <MenuItem leadingIcon={<Icons.Download />}>Download</MenuItem>
-                <MenuItem leadingIcon={<Icons.Delete />}>Delete</MenuItem>
+                <MenuItem leadingIcon={<Icons.Trash />}>Delete</MenuItem>
               </Menu>
             </div>
           </div>
