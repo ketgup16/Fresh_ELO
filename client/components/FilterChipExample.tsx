@@ -186,22 +186,22 @@ export function FilterChipExample() {
         </div>
       </ExampleSection>
 
-      {/* Multi-Select Filter Pattern */}
+      {/* Filter Group Pattern */}
       <ExampleSection
-        title="Multi-Select Filter Pattern"
-        description="Common pattern for filtering lists. 'All' is mutually exclusive with other filters."
+        title="Filter Group Pattern"
+        description="Common pattern for filtering lists. 'All' (icon-only) is mutually exclusive with other filters."
       >
         <div
           role="group"
           aria-label="Status filters"
-          style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}
+          style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}
         >
           <FilterChip
+            isAllFilters
+            showLabel={false}
             selected={filters.all}
             onSelectedChange={() => toggleFilter('all')}
-          >
-            All
-          </FilterChip>
+          />
           <FilterChip
             selected={filters.open}
             onSelectedChange={() => toggleFilter('open')}
@@ -213,6 +213,41 @@ export function FilterChipExample() {
             onSelectedChange={() => toggleFilter('closed')}
           >
             Closed
+          </FilterChip>
+          <FilterChip
+            selected={filters.assigned}
+            onSelectedChange={() => toggleFilter('assigned')}
+          >
+            Assigned to me
+          </FilterChip>
+        </div>
+      </ExampleSection>
+
+      {/* Filter Group with Multi-Select */}
+      <ExampleSection
+        title="Filter Group with Multi-Select"
+        description="Filter group pattern combining icon-only All Filters with a multi-select dropdown for advanced filtering."
+      >
+        <div
+          role="group"
+          aria-label="Advanced status filters"
+          style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}
+        >
+          <FilterChip
+            isAllFilters
+            showLabel={false}
+            selected={filters.all}
+            onSelectedChange={() => toggleFilter('all')}
+          />
+          <FilterChip
+            isMultiSelect
+            isOpen={multiSelectOpen}
+            selected={filters.open || filters.closed}
+            onClick={() => setMultiSelectOpen(!multiSelectOpen)}
+            iconLeading={<Filter />}
+            count={[filters.open, filters.closed].filter(Boolean).length || undefined}
+          >
+            Status
           </FilterChip>
           <FilterChip
             selected={filters.assigned}
