@@ -45,7 +45,7 @@ All standard `<button>` HTML attributes are also supported (except `className` a
 ## Shapes
 
 ### square (default)
-Rounded corners (`border-radius: 6px`). Use for general selections, categories, and non-filter use cases.
+Subtle rounded corners (`border-radius: 4px`). Use for general selections, categories, and non-filter use cases.
 
 ### pill
 Fully rounded (`border-radius: 9999px`). Use specifically for filter chips to visually distinguish filtering UI from other selection patterns.
@@ -76,12 +76,14 @@ Walmart blue fill when selected using action tokens (`--ld-semantic-color-action
 
 ## Design Tokens Used
 
+Chips use the **INPUT token family** for consistency with other selectable/filterable UI elements.
+
 ### Unselected State
 | Property | Token |
 |----------|-------|
-| Background | `--ld-semantic-color-action-fill-secondary` |
-| Border | `--ld-semantic-color-action-border-secondary` |
-| Text | `--ld-semantic-color-action-text-on-fill-secondary` |
+| Background | `--ld-semantic-color-input-fill` |
+| Border | `--ld-semantic-color-input-border` (2px) |
+| Text | `--ld-semantic-color-input-text-on-fill` |
 
 ### Selected (default variant)
 | Property | Token |

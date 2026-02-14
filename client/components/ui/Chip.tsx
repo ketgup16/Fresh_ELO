@@ -29,8 +29,8 @@ export interface ChipProps
 
   /**
    * The visual variant of the chip.
-   * - `default`: Dark fill when selected (neutral).
-   * - `primary`: Walmart blue fill when selected.
+   * - `default`: Dark fill when selected (uses INPUT tokens).
+   * - `primary`: Walmart blue fill when selected (uses ACTION tokens).
    * @default 'default'
    */
   variant?: ChipVariant;

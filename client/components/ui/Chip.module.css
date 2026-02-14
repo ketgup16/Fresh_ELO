@@ -6,9 +6,9 @@
   gap: 8px;
   font-family: var(--ld-semantic-font-family-sans);
   font-weight: 500;
-  border: 1.5px solid var(--ld-semantic-color-action-border-secondary);
-  background-color: var(--ld-semantic-color-action-fill-secondary);
-  color: var(--ld-semantic-color-action-text-on-fill-secondary);
+  border: 2px solid var(--ld-semantic-color-input-border);
+  background-color: var(--ld-semantic-color-input-fill);
+  color: var(--ld-semantic-color-input-text-on-fill);
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   white-space: nowrap;
@@ -29,24 +29,24 @@
 
 /* Hover - Unselected */
 .chip:hover:not(:disabled) {
-  background-color: var(--ld-semantic-color-action-fill-secondary-hovered);
-  border-color: var(--ld-semantic-color-action-border-secondary-hovered);
-  color: var(--ld-semantic-color-action-text-on-fill-secondary-hovered);
+  background-color: var(--ld-semantic-color-input-fill-hovered);
+  border-color: var(--ld-semantic-color-input-border-hovered);
+  color: var(--ld-semantic-color-input-text-on-fill);
 }
 
 /* Pressed - Unselected */
 .chip:active:not(:disabled) {
-  background-color: var(--ld-semantic-color-action-fill-secondary-pressed);
-  border-color: var(--ld-semantic-color-action-border-secondary-pressed);
-  color: var(--ld-semantic-color-action-text-on-fill-secondary-pressed);
+  background-color: var(--ld-semantic-color-input-fill-pressed);
+  border-color: var(--ld-semantic-color-input-border-pressed);
+  color: var(--ld-semantic-color-input-text-on-fill);
 }
 
 /* Disabled */
 .chip:disabled {
   cursor: not-allowed;
-  background-color: var(--ld-semantic-color-action-fill-secondary-disabled);
-  border-color: var(--ld-semantic-color-action-border-secondary-disabled);
-  color: var(--ld-semantic-color-action-text-on-fill-secondary-disabled);
+  background-color: var(--ld-semantic-color-input-fill-disabled);
+  border-color: var(--ld-semantic-color-input-border-disabled);
+  color: var(--ld-semantic-color-input-text-on-fill-disabled);
 }
 
 /* ==================== */
@@ -79,7 +79,7 @@
 /* ==================== */
 
 .chip--shape-square {
-  border-radius: var(--ld-primitive-scale-border-radius-100, 6px);
+  border-radius: var(--ld-primitive-scale-border-radius-50, 4px);
 }
 
 .chip--shape-pill {
