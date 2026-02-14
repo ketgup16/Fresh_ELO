@@ -150,12 +150,12 @@ export default function OmniROAS() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F6F6F6] flex flex-col">
+    <div className="min-h-screen bg-ld-subtle flex flex-col">
       {/* Header */}
-      <header className="h-[54px] border-b border-[#E3E4E5] flex items-center justify-between px-6 bg-white">
+      <header className="h-[54px] border-b border-ld-subtlest flex items-center justify-between px-6 bg-ld-main">
         <div className="flex items-center gap-5">
           {/* App Switcher */}
-          <button className="w-6 h-6 p-1 rounded-full hover:bg-gray-100">
+          <button className="w-6 h-6 p-1 rounded-full hover-ld-gray">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <rect x="0" y="0" width="2" height="2" fill="#2E2F32"/>
               <rect x="0" y="5" width="2" height="2" fill="#2E2F32"/>
@@ -181,7 +181,7 @@ export default function OmniROAS() {
           <div className="relative">
             <button
               onClick={() => setMediaSolutionsOpen(!mediaSolutionsOpen)}
-              className="flex items-center gap-1 text-xs hover:bg-gray-100 px-2 py-1 rounded transition-colors"
+              className="flex items-center gap-1 text-xs hover-ld-gray px-2 py-1 rounded transition-colors"
             >
               <span className="text-[#2E2F32]">{selectedMediaSolution === 'Display Advertising' ? 'Display' : selectedMediaSolution === 'Sponsored Search' ? 'Sponsored Search' : selectedMediaSolution === 'Shop Builder' ? 'Shop Builder' : selectedMediaSolution === 'Store Ads' ? 'Store Ads' : 'Unified Reports'}</span>
               {mediaSolutionsOpen ? (
@@ -197,7 +197,7 @@ export default function OmniROAS() {
                   className="fixed inset-0 z-40"
                   onClick={() => setMediaSolutionsOpen(false)}
                 />
-                <div className="absolute top-full mt-2 right-0 w-80 bg-white rounded-lg border border-[#BABBBE] shadow-lg z-50">
+                <div className="absolute top-full mt-2 right-0 w-80 bg-ld-main rounded-lg border border-ld-disabled shadow-lg z-50">
                   <div className="p-4">
                     <h3 className="text-sm font-extrabold text-[#2E2F32] mb-2">Media solutions</h3>
                     <div className="grid grid-cols-2 gap-2 mb-4">
@@ -215,7 +215,7 @@ export default function OmniROAS() {
                             <Search className="w-5 h-5 text-white" />
                           </div>
                         </div>
-                        <span className="text-xs text-[#2E2F32] text-center">Sponsored Search</span>
+                        <span className="text-xs text-ld-primary text-center">Sponsored Search</span>
                       </button>
 
                       <button
@@ -235,7 +235,7 @@ export default function OmniROAS() {
                             <path d="M16.0001 25.9997H20.997L22.7383 32.9649C22.8697 33.4905 22.4721 33.9997 21.9303 33.9997H18.6503C18.2681 33.9997 17.935 33.7396 17.8423 33.3689L16.0001 25.9997Z" fill="white"/>
                           </svg>
                         </div>
-                        <span className="text-xs text-[#2E2F32] text-center">Display Advertising</span>
+                        <span className="text-xs text-ld-primary text-center">Display Advertising</span>
                       </button>
 
                       <button
@@ -260,7 +260,7 @@ export default function OmniROAS() {
                             <path d="M32 5H35.5119C36.3952 5 37.1738 5.57934 37.4276 6.4253L41.5 20H34.5L32 5Z" fill="#29B8FF"/>
                           </svg>
                         </div>
-                        <span className="text-xs text-[#2E2F32] text-center">Shop Builder</span>
+                        <span className="text-xs text-ld-primary text-center">Shop Builder</span>
                       </button>
 
                       <button
@@ -278,7 +278,7 @@ export default function OmniROAS() {
                             <path d="M21 22.1465V30.3535C21 30.745 21.4296 30.9846 21.7627 30.7789L28.4065 26.6754C28.7228 26.48 28.7228 26.02 28.4065 25.8246L21.7627 21.7211C21.4296 21.5154 21 21.755 21 22.1465Z" fill="#29B8FF"/>
                           </svg>
                         </div>
-                        <span className="text-xs text-[#2E2F32] text-center">Store Ads</span>
+                        <span className="text-xs text-ld-primary text-center">Store Ads</span>
                       </button>
 
                       <button
@@ -296,7 +296,7 @@ export default function OmniROAS() {
                             <path d="M12 31.6876V35C12 35.5523 12.4477 36 13 36H35C35.5523 36 36 35.5523 36 35V29.5785C36 29.2206 35.8087 28.89 35.4985 28.7116L31.2914 26.2926C30.9773 26.1119 30.59 26.1154 30.2791 26.3016L22.8522 30.75C22.5887 30.9078 22.2673 30.9358 21.9804 30.8258L17.5753 29.1372C17.3449 29.0489 17.0899 29.0489 16.8595 29.1372L12.6421 30.7539C12.2553 30.9021 12 31.2734 12 31.6876Z" fill="#0053E2"/>
                           </svg>
                         </div>
-                        <span className="text-xs text-[#2E2F32] text-center">Unified Reports</span>
+                        <span className="text-xs text-ld-primary text-center">Unified Reports</span>
                       </button>
                     </div>
 
@@ -313,7 +313,7 @@ export default function OmniROAS() {
                             <rect x="1" y="6" width="4" height="3" rx="0.5" fill="#90B5F9"/>
                           </svg>
                         </div>
-                        <span className="text-xs text-[#2E2F32]">Billing Manager</span>
+                        <span className="text-xs text-ld-primary">Billing Manager</span>
                       </button>
 
                       <button
@@ -326,7 +326,7 @@ export default function OmniROAS() {
                             <path fillRule="evenodd" clipRule="evenodd" d="M16.1229 4.928C16.3784 5.47725 16.3422 6.14398 15.9698 6.67587C15.5829 7.2284 14.9352 7.48978 14.3095 7.41013L6.73269 14.9869C6.8077 15.5146 6.64226 16.0699 6.23637 16.4758C5.55121 17.1609 4.44036 17.1609 3.7552 16.4758C3.07005 15.7906 3.07005 14.6798 3.7552 13.9946C4.16103 13.5888 4.71622 13.4233 5.24383 13.4983L12.7995 5.94265C12.7313 5.50965 12.8242 5.05068 13.0954 4.66325C13.4679 4.1313 14.0821 3.86922 14.6857 3.92151L13.814 5.1664L15.2512 6.17272L16.1229 4.928Z" fill="#909196"/>
                           </svg>
                         </div>
-                        <span className="text-xs text-[#2E2F32]">Associate tools</span>
+                        <span className="text-xs text-ld-primary">Associate tools</span>
                       </button>
                     </div>
                   </div>
@@ -341,14 +341,14 @@ export default function OmniROAS() {
           </div>
           <Divider orientation="vertical" UNSAFE_className="h-[22px]" />
           <div className="flex items-center gap-1">
-            <button className="relative p-1 rounded-full hover:bg-gray-100">
+            <button className="relative p-1 rounded-full hover-ld-gray">
               <Bell className="w-4 h-4" />
               <span className="absolute top-0 right-0 w-1.5 h-1.5 bg-red-600 rounded-full"></span>
             </button>
-            <button className="p-1 rounded hover:bg-gray-100">
+            <button className="p-1 rounded hover-ld-gray">
               <HelpCircle className="w-4 h-4" />
             </button>
-            <button className="p-1 rounded hover:bg-gray-100">
+            <button className="p-1 rounded hover-ld-gray">
               <User className="w-4 h-4" />
             </button>
           </div>
@@ -361,47 +361,47 @@ export default function OmniROAS() {
         
         <div className="flex-1 overflow-y-auto">
           {/* Page Content */}
-          <div className="bg-white p-6">
+          <div className="bg-ld-main p-6">
             {/* Header Section */}
             <div className="flex items-center justify-between mb-6">
-              <h1 className="text-[32px] font-normal text-[#2E2F32]">Omni ROAS</h1>
-              <button className="h-10 px-6 rounded-full border border-[#2E2F32] bg-white text-[#2E2F32] text-sm font-normal hover:bg-gray-50 transition-colors">
+              <h1 className="text-[32px] font-normal text-ld-primary">Omni ROAS</h1>
+              <button className="h-10 px-6 rounded-full border border-ld bg-ld-main text-ld-primary text-sm font-normal hover-ld-gray transition-colors">
                 Export to CSV
               </button>
             </div>
 
             {/* Date Range Info */}
             <div className="flex flex-col gap-0.5 mb-6">
-              <p className="text-sm text-[#2E2F32]">
+              <p className="text-sm text-ld-primary">
                 Item's health on as of the date, date range: 01/06/2026 - 01/13/2026
               </p>
-              <p className="text-sm text-[#2E2F32]">
+              <p className="text-sm text-ld-primary">
                 *Report only shows enabled items that have been live for at least 3 days
               </p>
-              <p className="text-sm text-[#2E2F32]">
+              <p className="text-sm text-ld-primary">
                 **The data below is from Walmart.com only
               </p>
             </div>
 
             {/* Filters and Search */}
-            <div className="flex items-center gap-3 mb-6 bg-[#F6F6F6] p-4 rounded-lg">
+            <div className="flex items-center gap-3 mb-6 bg-ld-subtle p-4 rounded-lg">
               {/* Filter Dropdowns */}
               <div className="relative">
-                <button className="h-10 px-4 bg-white border border-[#BABBBE] rounded text-sm text-[#2E2F32] flex items-center gap-2 hover:bg-gray-50 transition-colors min-w-[140px]">
+                <button className="h-10 px-4 bg-ld-main border border-ld-disabled rounded text-sm text-ld-primary flex items-center gap-2 hover-ld-gray transition-colors min-w-[140px]">
                   Item Status (2)
                   <ChevronDown className="w-4 h-4 ml-auto" />
                 </button>
               </div>
 
               <div className="relative">
-                <button className="h-10 px-4 bg-white border border-[#BABBBE] rounded text-sm text-[#2E2F32] flex items-center gap-2 hover:bg-gray-50 transition-colors min-w-[160px]">
+                <button className="h-10 px-4 bg-ld-main border border-ld-disabled rounded text-sm text-ld-primary flex items-center gap-2 hover-ld-gray transition-colors min-w-[160px]">
                   All Campaigns (3)
                   <ChevronDown className="w-4 h-4 ml-auto" />
                 </button>
               </div>
 
               <div className="relative">
-                <button className="h-10 px-4 bg-white border border-[#BABBBE] rounded text-sm text-[#2E2F32] flex items-center gap-2 hover:bg-gray-50 transition-colors min-w-[160px]">
+                <button className="h-10 px-4 bg-ld-main border border-ld-disabled rounded text-sm text-ld-primary flex items-center gap-2 hover-ld-gray transition-colors min-w-[160px]">
                   All Ad Groups (3)
                   <ChevronDown className="w-4 h-4 ml-auto" />
                 </button>
@@ -418,9 +418,9 @@ export default function OmniROAS() {
             </div>
 
             {/* Table */}
-            <div className="overflow-x-auto bg-white">
+            <div className="overflow-x-auto bg-ld-main">
               <table className="w-full text-sm">
-                <thead className="bg-[#F8F8F8] sticky top-0 z-10">
+                <thead className="bg-ld-fill-subtlest sticky top-0 z-10">
                   <tr>
                     <th className="p-2 text-center font-bold text-[#2E2F32] border-b border-t border-[#E3E4E5] w-16">
                       {/* Alerts/Notifications column */}

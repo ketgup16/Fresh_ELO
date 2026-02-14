@@ -151,6 +151,89 @@
   .text-link:hover {
     color: var(--ld-primitive-color-gray-160, #2e2f32);
   }
+
+  /* ========================================
+     LIVING DESIGN 3.5 UTILITY CLASSES
+     Use these instead of hard-coded colors
+     ======================================== */
+
+  /* Background utilities */
+  .bg-ld-main {
+    background-color: var(--ld-semantic-color-background, #ffffff);
+  }
+
+  .bg-ld-subtle {
+    background-color: var(--ld-semantic-color-background-subtle, #f8f8f8);
+  }
+
+  .bg-ld-inverse {
+    background-color: var(--ld-semantic-color-background-inverse, #2e2f32);
+  }
+
+  /* Fill utilities (for cards, surfaces) */
+  .bg-ld-fill-subtle {
+    background-color: var(--ld-semantic-color-fill-subtle, #f1f1f2);
+  }
+
+  .bg-ld-fill-subtlest {
+    background-color: var(--ld-semantic-color-fill-subtlest, #f8f8f8);
+  }
+
+  /* Text color utilities */
+  .text-ld-primary {
+    color: var(--ld-semantic-color-text-primary, #2e2f32);
+  }
+
+  .text-ld-subtle {
+    color: var(--ld-semantic-color-text-subtle, #515357);
+  }
+
+  .text-ld-subtlest {
+    color: var(--ld-semantic-color-text-subtlest, #74767c);
+  }
+
+  .text-ld-inverse {
+    color: var(--ld-semantic-color-text-inverse, #ffffff);
+  }
+
+  .text-ld-disabled {
+    color: var(--ld-semantic-color-text-disabled, #babbbe);
+  }
+
+  .text-ld-brand {
+    color: var(--ld-semantic-color-text-brand, #0053e2);
+  }
+
+  /* Border utilities */
+  .border-ld {
+    border-color: var(--ld-semantic-color-border, #2e2f32);
+  }
+
+  .border-ld-subtle {
+    border-color: var(--ld-semantic-color-border-subtle, #515357);
+  }
+
+  .border-ld-subtlest {
+    border-color: var(--ld-semantic-color-border-subtlest, #74767c);
+  }
+
+  .border-ld-disabled {
+    border-color: var(--ld-semantic-color-border-disabled, #babbbe);
+  }
+
+  /* Interactive/hover utilities */
+  .hover-ld-subtle:hover {
+    background-color: var(--ld-semantic-color-action-fill-transparent-hovered, #0000001a);
+  }
+
+  .hover-ld-gray:hover {
+    background-color: var(--ld-semantic-color-fill-subtle, #f1f1f2);
+  }
+
+  /* Divider utility */
+  .divide-ld-subtlest > * + * {
+    border-color: var(--ld-semantic-color-border-subtlest, #74767c);
+  }
 }
 
 /* Everyday Sans UI Font */

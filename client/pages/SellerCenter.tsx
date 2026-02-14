@@ -36,7 +36,7 @@ export default function SellerCenter() {
   ];
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-ld-main flex flex-col">
       <MastHead 
         companyName="Coca Cola"
         currentSolution={selectedMediaSolution}
@@ -51,10 +51,10 @@ export default function SellerCenter() {
 
         <div className="flex-1 flex flex-col overflow-hidden ml-[240px]">
         {/* Header */}
-        <header className="h-16 bg-white border-b border-[#E3E4E5] flex items-center justify-between px-6">
-          <h1 className="text-2xl font-bold text-[#2E2F32]">Seller Center</h1>
+        <header className="h-16 bg-ld-main border-b border-ld-subtlest flex items-center justify-between px-6">
+          <h1 className="text-2xl font-bold text-ld-primary">Seller Center</h1>
           <div className="flex items-center gap-4">
-            <Button variant="outline" className="h-10 px-4 border-[#74767C] rounded bg-white gap-2 text-sm text-[#2E2F32]">
+            <Button variant="outline" className="h-10 px-4 border-ld-subtlest rounded bg-ld-main gap-2 text-sm text-ld-primary">
               <Download className="w-4 h-4" />
               Export
             </Button>
@@ -81,9 +81,9 @@ export default function SellerCenter() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Listing Quality Section */}
-              <div className="bg-white rounded-lg border border-[#E3E4E5] p-6">
+              <div className="bg-ld-main rounded-lg border border-ld-subtlest p-6">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-lg font-bold text-[#2E2F32]">Listing quality</h2>
+                  <h2 className="text-lg font-bold text-ld-primary">Listing quality</h2>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15ZM8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 11.3137 11.3137 14 8 14Z" fill="#515357"/>
                     <path d="M7.40039 7H8.60039V11.5H7.40039V7Z" fill="#515357"/>
@@ -208,9 +208,9 @@ export default function SellerCenter() {
               </div>
 
               {/* Items Performance Section */}
-              <div className="bg-white rounded-lg border border-[#E3E4E5] p-6">
+              <div className="bg-ld-main rounded-lg border border-ld-subtlest p-6">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-lg font-bold text-[#2E2F32]">Items performance</h2>
+                  <h2 className="text-lg font-bold text-ld-primary">Items performance</h2>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15ZM8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 11.3137 11.3137 14 8 14Z" fill="#515357"/>
                     <path d="M7.40039 7H8.60039V11.5H7.40039V7Z" fill="#515357"/>
@@ -297,7 +297,7 @@ export default function SellerCenter() {
               </p>
 
               <div className="flex gap-4 mb-6">
-                <Button variant="outline" className="h-10 px-4 border-[#74767C] rounded bg-white gap-2 text-sm text-[#2E2F32]">
+                <Button variant="outline" className="h-10 px-4 border-ld-subtlest rounded bg-ld-main gap-2 text-sm text-ld-primary">
                   <Upload className="w-4 h-4" />
                   Upload spreadsheet
                 </Button>

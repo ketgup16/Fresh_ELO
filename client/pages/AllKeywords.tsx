@@ -683,12 +683,12 @@ export default function AllKeywords() {
   }, [showSearchScopeDropdown]);
 
   return (
-    <div className="min-h-screen bg-[#F6F6F6] flex flex-col">
+    <div className="min-h-screen bg-ld-subtle flex flex-col">
       {/* Header */}
-      <header className="h-[54px] border-b border-[#E3E4E5] flex items-center justify-between px-6 bg-white">
+      <header className="h-[54px] border-b border-ld-subtlest flex items-center justify-between px-6 bg-ld-main">
         <div className="flex items-center gap-5">
           {/* App Switcher */}
-          <button className="w-6 h-6 p-1 rounded-full hover:bg-gray-100">
+          <button className="w-6 h-6 p-1 rounded-full hover-ld-gray">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <rect x="0" y="0" width="2" height="2" fill="#2E2F32"/>
               <rect x="0" y="5" width="2" height="2" fill="#2E2F32"/>
@@ -735,7 +735,7 @@ export default function AllKeywords() {
           <div className="relative">
             <button
               onClick={() => setMediaSolutionsOpen(!mediaSolutionsOpen)}
-              className="flex items-center gap-1 text-xs hover:bg-gray-100 px-2 py-1 rounded transition-colors"
+              className="flex items-center gap-1 text-xs hover-ld-gray px-2 py-1 rounded transition-colors"
             >
               <span className="text-[#2E2F32]">{selectedMediaSolution === 'Display Advertising' ? 'Display' : selectedMediaSolution === 'Sponsored Search' ? 'Sponsored Search' : selectedMediaSolution === 'Shop Builder' ? 'Shop Builder' : selectedMediaSolution === 'Store Ads' ? 'Store Ads' : 'Unified Reports'}</span>
               {mediaSolutionsOpen ? (
@@ -751,7 +751,7 @@ export default function AllKeywords() {
                   className="fixed inset-0 z-40"
                   onClick={() => setMediaSolutionsOpen(false)}
                 />
-                <div className="absolute top-full mt-2 right-0 w-80 bg-white rounded-lg border border-[#BABBBE] shadow-lg z-50">
+                <div className="absolute top-full mt-2 right-0 w-80 bg-ld-main rounded-lg border border-ld-disabled shadow-lg z-50">
                   <div className="p-4">
                     <h3 className="text-sm font-extrabold text-[#2E2F32] mb-2">Media solutions</h3>
                     <div className="grid grid-cols-2 gap-2 mb-4">
@@ -769,7 +769,7 @@ export default function AllKeywords() {
                             <Search className="w-5 h-5 text-white" />
                           </div>
                         </div>
-                        <span className="text-xs text-[#2E2F32] text-center">Sponsored Search</span>
+                        <span className="text-xs text-ld-primary text-center">Sponsored Search</span>
                       </button>
 
                       <button
@@ -789,7 +789,7 @@ export default function AllKeywords() {
                             <path d="M16.0001 25.9997H20.997L22.7383 32.9649C22.8697 33.4905 22.4721 33.9997 21.9303 33.9997H18.6503C18.2681 33.9997 17.935 33.7396 17.8423 33.3689L16.0001 25.9997Z" fill="white"/>
                           </svg>
                         </div>
-                        <span className="text-xs text-[#2E2F32] text-center">Display Advertising</span>
+                        <span className="text-xs text-ld-primary text-center">Display Advertising</span>
                       </button>
 
                       <button
@@ -814,7 +814,7 @@ export default function AllKeywords() {
                             <path d="M32 5H35.5119C36.3952 5 37.1738 5.57934 37.4276 6.4253L41.5 20H34.5L32 5Z" fill="#29B8FF"/>
                           </svg>
                         </div>
-                        <span className="text-xs text-[#2E2F32] text-center">Shop Builder</span>
+                        <span className="text-xs text-ld-primary text-center">Shop Builder</span>
                       </button>
 
                       <button
@@ -832,7 +832,7 @@ export default function AllKeywords() {
                             <path d="M21 22.1465V30.3535C21 30.745 21.4296 30.9846 21.7627 30.7789L28.4065 26.6754C28.7228 26.48 28.7228 26.02 28.4065 25.8246L21.7627 21.7211C21.4296 21.5154 21 21.755 21 22.1465Z" fill="#29B8FF"/>
                           </svg>
                         </div>
-                        <span className="text-xs text-[#2E2F32] text-center">Store Ads</span>
+                        <span className="text-xs text-ld-primary text-center">Store Ads</span>
                       </button>
 
                       <button
@@ -850,7 +850,7 @@ export default function AllKeywords() {
                             <path d="M12 31.6876V35C12 35.5523 12.4477 36 13 36H35C35.5523 36 36 35.5523 36 35V29.5785C36 29.2206 35.8087 28.89 35.4985 28.7116L31.2914 26.2926C30.9773 26.1119 30.59 26.1154 30.2791 26.3016L22.8522 30.75C22.5887 30.9078 22.2673 30.9358 21.9804 30.8258L17.5753 29.1372C17.3449 29.0489 17.0899 29.0489 16.8595 29.1372L12.6421 30.7539C12.2553 30.9021 12 31.2734 12 31.6876Z" fill="#0053E2"/>
                           </svg>
                         </div>
-                        <span className="text-xs text-[#2E2F32] text-center">Unified Reports</span>
+                        <span className="text-xs text-ld-primary text-center">Unified Reports</span>
                       </button>
                     </div>
 
@@ -867,7 +867,7 @@ export default function AllKeywords() {
                             <rect x="1" y="6" width="4" height="3" rx="0.5" fill="#90B5F9"/>
                           </svg>
                         </div>
-                        <span className="text-xs text-[#2E2F32]">Billing Manager</span>
+                        <span className="text-xs text-ld-primary">Billing Manager</span>
                       </button>
 
                       <button
@@ -880,7 +880,7 @@ export default function AllKeywords() {
                             <path fillRule="evenodd" clipRule="evenodd" d="M16.1229 4.928C16.3784 5.47725 16.3422 6.14398 15.9698 6.67587C15.5829 7.2284 14.9352 7.48978 14.3095 7.41013L6.73269 14.9869C6.8077 15.5146 6.64226 16.0699 6.23637 16.4758C5.55121 17.1609 4.44036 17.1609 3.7552 16.4758C3.07005 15.7906 3.07005 14.6798 3.7552 13.9946C4.16103 13.5888 4.71622 13.4233 5.24383 13.4983L12.7995 5.94265C12.7313 5.50965 12.8242 5.05068 13.0954 4.66325C13.4679 4.1313 14.0821 3.86922 14.6857 3.92151L13.814 5.1664L15.2512 6.17272L16.1229 4.928Z" fill="#909196"/>
                           </svg>
                         </div>
-                        <span className="text-xs text-[#2E2F32]">Associate tools</span>
+                        <span className="text-xs text-ld-primary">Associate tools</span>
                       </button>
                     </div>
                   </div>
@@ -895,14 +895,14 @@ export default function AllKeywords() {
           </div>
           <Divider orientation="vertical" UNSAFE_className="h-[22px]" />
           <div className="flex items-center gap-1">
-            <button className="relative p-1 rounded-full hover:bg-gray-100">
+            <button className="relative p-1 rounded-full hover-ld-gray">
               <Bell className="w-4 h-4" />
               <span className="absolute top-0 right-0 w-1.5 h-1.5 bg-red-600 rounded-full"></span>
             </button>
-            <button className="p-1 rounded hover:bg-gray-100">
+            <button className="p-1 rounded hover-ld-gray">
               <HelpCircle className="w-4 h-4" />
             </button>
-            <button className="p-1 rounded hover:bg-gray-100">
+            <button className="p-1 rounded hover-ld-gray">
               <User className="w-4 h-4" />
             </button>
           </div>
@@ -915,36 +915,36 @@ export default function AllKeywords() {
         
         <div className="flex-1 overflow-y-auto">
           {/* Page Header */}
-          <div className="bg-white shadow-sm px-6 py-6">
-            <h1 className="text-[28px] font-bold text-[#2E2F32] mb-2">All Keywords</h1>
+          <div className="bg-ld-main shadow-sm px-6 py-6">
+            <h1 className="text-[28px] font-bold text-ld-primary mb-2">All Keywords</h1>
             
             {/* Filters */}
             <div className="flex items-center gap-4 mt-6">
               {/* Date Range */}
               <button className="flex items-center gap-2 px-4 h-10 border border-[#74767C] rounded">
                 <Calendar className="w-4 h-4" />
-                <span className="text-sm text-[#2E2F32]">Jan 03, 2023 - Jan 09, 2023</span>
+                <span className="text-sm text-ld-primary">Jan 03, 2023 - Jan 09, 2023</span>
               </button>
 
               {/* Attribution Tabs */}
-              <div className="flex border border-[#74767C] rounded overflow-hidden">
+              <div className="flex border border-ld-subtlest rounded overflow-hidden">
                 <button className="px-4 h-10 bg-[#F2F8FD] border-r border-[#0071DC] text-sm text-[#0071DC]">
                   Attributed data
                 </button>
-                <button className="px-4 h-10 bg-white text-sm text-[#2E2F32]">
+                <button className="px-4 h-10 bg-ld-main text-sm text-ld-primary">
                   Near real time data
                 </button>
               </div>
 
               {/* Attribution Period */}
               <button className="flex items-center gap-2 px-4 h-10 border border-[#74767C] rounded bg-white">
-                <span className="text-sm text-[#2E2F32]">Attribution: 14 days</span>
+                <span className="text-sm text-ld-primary">Attribution: 14 days</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
 
               {/* Campaign Status */}
               <button className="flex items-center gap-2 px-4 h-10 border border-[#74767C] rounded bg-white">
-                <span className="text-sm text-[#2E2F32]">Campaign status: Live, Schedu...</span>
+                <span className="text-sm text-ld-primary">Campaign status: Live, Schedu...</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
 
@@ -958,7 +958,7 @@ export default function AllKeywords() {
             {/* Search Bar */}
             <div className="flex items-center gap-4 mt-4">
               <div className="flex items-center gap-2 flex-1 px-3 h-10 border border-[rgba(46,47,50,1)] rounded-full bg-white relative">
-                <Search className="w-4 h-4 text-[#2E2F32]" />
+                <Search className="w-4 h-4 text-ld-primary" />
                 <span className="text-sm text-[#515357]">Search by</span>
                 <div className="relative">
                   <button
@@ -1010,7 +1010,7 @@ export default function AllKeywords() {
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="p-0.5 hover:bg-gray-100 rounded-full transition-colors"
+                    className="p-0.5 hover-ld-gray rounded-full transition-colors"
                     aria-label="Clear search"
                   >
                     <X className="w-4 h-4 text-[#2E2F32]" />
@@ -1023,7 +1023,7 @@ export default function AllKeywords() {
               </button>
               <button
                 onClick={() => navigate('/campaign')}
-                className="px-6 h-10 rounded-full bg-[#0071DC] text-white font-bold"
+                className="px-6 h-10 rounded-full bg-[var(--ld-semantic-color-action-fill-primary)] text-[var(--ld-semantic-color-action-text-on-fill-primary)] font-bold"
               >
                 Add keywords
               </button>
@@ -1050,7 +1050,7 @@ export default function AllKeywords() {
               <div className="flex items-center justify-end gap-2 p-4 border-b border-[#E3E4E5] bg-white">
                 {/* Search Bar */}
                 <div className="flex items-center gap-2 flex-1 min-w-[360px] max-w-[600px] px-3 h-8 border border-[rgba(46,47,50,1)] rounded-full bg-white relative">
-                  <Search className="w-4 h-4 text-[#2E2F32]" />
+                  <Search className="w-4 h-4 text-ld-primary" />
                   <span className="text-sm text-[#515357]">Search by</span>
                   <div className="relative" ref={searchScopeDropdownRef}>
                     <button
@@ -1099,7 +1099,7 @@ export default function AllKeywords() {
                   {searchQuery && (
                     <button
                       onClick={() => setSearchQuery('')}
-                      className="p-0.5 hover:bg-gray-100 rounded-full transition-colors"
+                      className="p-0.5 hover-ld-gray rounded-full transition-colors"
                       aria-label="Clear search"
                     >
                       <X className="w-4 h-4 text-[#2E2F32]" />

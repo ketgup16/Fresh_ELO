@@ -15,12 +15,12 @@ export default function KeywordsPlanner() {
   const [selectedMediaSolution, setSelectedMediaSolution] = useState<MediaSolution>('Sponsored Search');
 
   return (
-    <div className="flex h-screen bg-white overflow-hidden">
+    <div className="flex h-screen bg-ld-main overflow-hidden">
       <SponsoredSearchSidebar />
 
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="h-14 bg-[#0071DC] flex items-center justify-between px-6 flex-shrink-0">
+        <div className="h-14 bg-[var(--ld-semantic-color-action-fill-primary)] flex items-center justify-between px-6 flex-shrink-0">
           {/* Left section */}
           <div className="flex items-center gap-6">
             {/* Walmart logo */}
@@ -40,7 +40,7 @@ export default function KeywordsPlanner() {
               </button>
 
               {mediaSolutionsOpen && (
-                <div className="absolute top-full left-0 mt-1 bg-white rounded shadow-lg py-1 min-w-[200px] z-50">
+                <div className="absolute top-full left-0 mt-1 bg-ld-main rounded shadow-lg py-1 min-w-[200px] z-50">
                   {mediaSolutions.map((solution) => (
                     <button
                       key={solution}
@@ -48,7 +48,7 @@ export default function KeywordsPlanner() {
                         setSelectedMediaSolution(solution);
                         setMediaSolutionsOpen(false);
                       }}
-                      className="w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-900"
+                      className="w-full text-left px-4 py-2 hover-ld-gray text-ld-primary"
                     >
                       {solution}
                     </button>
@@ -60,30 +60,30 @@ export default function KeywordsPlanner() {
 
           {/* Right section */}
           <div className="flex items-center gap-4">
-            <button className="text-white hover:bg-white/10 p-2 rounded transition-colors">
+            <button className="text-[var(--ld-semantic-color-text-inverse)] hover:bg-white/10 p-2 rounded transition-colors">
               <Bell className="w-5 h-5" />
             </button>
-            <button className="text-white hover:bg-white/10 p-2 rounded transition-colors">
+            <button className="text-[var(--ld-semantic-color-text-inverse)] hover:bg-white/10 p-2 rounded transition-colors">
               <HelpCircle className="w-5 h-5" />
             </button>
-            <button className="text-white hover:bg-white/10 p-2 rounded transition-colors">
+            <button className="text-[var(--ld-semantic-color-text-inverse)] hover:bg-white/10 p-2 rounded transition-colors">
               <User className="w-5 h-5" />
             </button>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 overflow-auto bg-gray-50">
+        <div className="flex-1 overflow-auto bg-ld-subtle">
           <div className="max-w-7xl mx-auto p-8">
             <div className="mb-6">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Keywords Planner</h1>
-              <p className="text-gray-600">
+              <h1 className="text-3xl font-bold text-ld-primary mb-2">Keywords Planner</h1>
+              <p className="text-ld-subtle">
                 Plan and discover new keywords for your campaigns
               </p>
             </div>
 
             {/* Placeholder content */}
-            <div className="bg-white rounded-lg shadow p-8 text-center mb-6">
+            <div className="bg-ld-main rounded-lg shadow p-8 text-center mb-6">
               <div className="max-w-md mx-auto">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg

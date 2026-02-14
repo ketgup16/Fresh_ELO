@@ -12,7 +12,7 @@ export default function SponsoredSearch() {
   const [showMartyPanel] = useState(true);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-ld-main flex flex-col">
       {/* Header */}
       <MastHead 
         companyName="Coca Cola"
