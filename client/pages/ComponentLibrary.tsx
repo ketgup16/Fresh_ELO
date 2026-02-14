@@ -4,6 +4,7 @@ import { BadgeExample } from '@/components/examples/BadgeExample';
 import { ButtonExample } from '@/components/examples/ButtonExample';
 import { BreadcrumbExample } from '@/components/examples/BreadcrumbExample';
 import { LinkExample } from '@/components/examples/LinkExample';
+import { LinkButtonExample } from '@/components/examples/LinkButtonExample';
 import IconButtonExample from '@/components/examples/IconButtonExample';
 import { CalloutExample } from '@/components/examples/CalloutExample';
 import { CardHeaderExample } from '@/components/examples/CardHeaderExample';
@@ -21,6 +22,7 @@ import { Checkbox } from '@/components/ui/Checkbox';
 import { Badge } from '@/components/ui/Badge';
 import { IconButton } from '@/components/ui/IconButton';
 import { Link } from '@/components/ui/Link';
+import { LinkButton } from '@/components/ui/LinkButton';
 import { Tag } from '@/components/ui/tag';
 import { Chip } from '@/components/ui/Chip';
 import { FilterChip } from '@/components/ui/FilterChip';
@@ -56,6 +58,7 @@ export default function ComponentLibrary() {
     { id: 'badges', name: 'Badges', keywords: ['badge', 'count', 'notification', 'label', 'tag'] },
     { id: 'breadcrumbs', name: 'Breadcrumbs', keywords: ['breadcrumb', 'navigation', 'path'] },
     { id: 'links', name: 'Links', keywords: ['link', 'anchor', 'hyperlink', 'url'] },
+    { id: 'link-buttons', name: 'Link Buttons', keywords: ['link button', 'link', 'text button', 'underline', 'navigation'] },
     { id: 'icon-buttons', name: 'Icon Buttons', keywords: ['icon button', 'icon', 'action'] },
     { id: 'checkboxes', name: 'Checkboxes', keywords: ['checkbox', 'check', 'select', 'form', 'input', 'indeterminate'] },
     { id: 'radio-buttons', name: 'Radio Buttons', keywords: ['radio', 'radio button', 'radio group', 'select', 'form', 'input', 'option'] },
@@ -335,7 +338,7 @@ export default function ComponentLibrary() {
 
             {quickNavExpanded && (
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                {['Component Sandbox', 'Alerts', 'Badges', 'Breadcrumbs', 'Buttons', 'Callouts', 'Cards', 'Checkboxes', 'Chips', 'Content Messages', 'Date Fields', 'Dividers', 'Filter Chips', 'Form Groups', 'Icon Buttons', 'Links', 'Radio Buttons', 'Icons', 'Design Tokens'].map(section => (
+                {['Component Sandbox', 'Alerts', 'Badges', 'Breadcrumbs', 'Buttons', 'Callouts', 'Cards', 'Checkboxes', 'Chips', 'Content Messages', 'Date Fields', 'Dividers', 'Filter Chips', 'Form Groups', 'Icon Buttons', 'Link Buttons', 'Links', 'Radio Buttons', 'Icons', 'Design Tokens'].map(section => (
                   <Chip
                     key={section}
                     onClick={(e) => {
@@ -499,6 +502,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="links" title="Links" description="Text links with underline variants, external link support, and hover states">
         <ComponentShowcase>
           <LinkExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Link Buttons Section */}
+      <Section id="link-buttons" title="Link Buttons" description="Link-styled interactive elements with icon support, multiple sizes, and color variants. Renders as anchor or button.">
+        <ComponentShowcase>
+          <LinkButtonExample />
         </ComponentShowcase>
       </Section>
 
@@ -1009,7 +1019,7 @@ function SearchableComponentSelect({ selectedComponent, onComponentChange, avail
 
 // Interactive Component Tester - Supports multiple component types
 function InteractiveComponentTester() {
-  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip' | 'DatePicker' | 'Radio';
+  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'LinkButton' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip' | 'DatePicker' | 'Radio';
 
   const [selectedComponent, setSelectedComponent] = React.useState<ComponentType>('Button');
   const [variant, setVariant] = React.useState<string>('primary');
@@ -1093,6 +1103,18 @@ function InteractiveComponentTester() {
       supportsValue: false,
       supportsShape: false,
       supportsUnderline: true,
+      supportsDismissible: false,
+      supportsClickable: false,
+      supportsOLQPercentage: false,
+    },
+    LinkButton: {
+      variants: ['default', 'subtle', 'white'],
+      sizes: ['small', 'medium', 'large'],
+      supportsFullWidth: true,
+      supportsIcons: true,
+      supportsValue: false,
+      supportsShape: false,
+      supportsUnderline: false,
       supportsDismissible: false,
       supportsClickable: false,
       supportsOLQPercentage: false,
@@ -1224,6 +1246,15 @@ function InteractiveComponentTester() {
   ${linkText}
 </Link>`;
 
+      case 'LinkButton':
+        return `<LinkButton
+  color="${variant}"
+  size="${size}"${disabled ? '\n  disabled' : ''}${fullWidth ? '\n  isFullWidth' : ''}${withIcon ? `\n  leading={<Home />}\n  trailing={<ChevronRight />}` : ''}
+  href="/example"
+>
+  Button label
+</LinkButton>`;
+
       case 'Tag':
         return `<Tag
   variant="${variant}"
@@ -1300,6 +1331,38 @@ function InteractiveComponentTester() {
             <SettingsIcon style={{ width: 20, height: 20 }} />
           </IconButton>
         );
+
+      case 'LinkButton': {
+        const HomeIcon = (Icons as any).Home;
+        const ChevronIcon = (Icons as any).ChevronRight;
+        const linkBtnContent = (
+          <LinkButton
+            color={variant as any}
+            size={size as any}
+            disabled={disabled}
+            isFullWidth={fullWidth}
+            leading={withIcon && HomeIcon ? <HomeIcon /> : undefined}
+            trailing={withIcon && ChevronIcon ? <ChevronIcon /> : undefined}
+          >
+            Button label
+          </LinkButton>
+        );
+
+        if (variant === 'white') {
+          return (
+            <div style={{
+              padding: 'var(--ld-primitive-scale-space-300)',
+              backgroundColor: 'var(--ld-semantic-color-surface-inverse)',
+              borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+              width: fullWidth ? '100%' : 'auto',
+            }}>
+              {linkBtnContent}
+            </div>
+          );
+        }
+
+        return <div style={{ width: fullWidth ? '100%' : 'auto' }}>{linkBtnContent}</div>;
+      }
 
       case 'Link':
         const linkContent = (
