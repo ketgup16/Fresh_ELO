@@ -1,13 +1,14 @@
 /**
- * WCP (Walmart Commerce Platform) Theme - Semantic Token Overrides
+ * WCP (Walmart Commerce Platform) Theme
  * Generated from LivingDesign Airtable Sync + LD Base
- * 
- * INHERITANCE MODEL:
- * This theme inherits ALL tokens from the base theme (Developer)
- * Adds WCP-specific tokens (wcp- prefix) for commerce features
- * Includes Customer persona overrides
- * 
- * Used by: Walmart B2B, commerce platforms
+ *
+ * INHERITANCE: LD Base (includes Developer) + Customer tokens
+ *
+ * This theme includes:
+ * - Customer persona tokens
+ * - WCP-specific tokens (wcp- prefix) for commerce features
+ *
+ * Used by: Walmart (main), Walmart B2B
  */
 
 :root {

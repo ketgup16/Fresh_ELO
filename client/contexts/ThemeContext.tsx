@@ -31,11 +31,11 @@ function loadThemeCSS(theme: Theme): Promise<void> {
     console.log(`🗑️ Removing ${existingOverrides.length} existing override link(s)`);
     existingOverrides.forEach(link => link.remove());
 
-    // If selecting base theme, just remove overrides (base already loaded via global.css)
-    if (theme.id === 'base') {
-      console.log('✅ Base theme selected - using static base CSS (no overrides)');
-      resolve();
-      return;
+    // If selecting walmart (base + WCP), load WCP overrides
+    // Base is always loaded via global.css
+    if (theme.id === 'walmart') {
+      console.log('✅ Walmart theme selected - loading WCP overrides on top of base');
+      // Continue to load WCP semantic.css
     }
 
     console.log(`📥 Loading override CSS for theme: ${theme.name}`);

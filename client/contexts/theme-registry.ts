@@ -4,11 +4,11 @@
  */
 
 export interface Theme {
-  id: 'base' | 'developer' | 'customer' | 'associate' | 'partner' | 'wcp' |
-      'ax' | 'ax-sams-club' | 'ax-walmart' |
+  id: 'walmart' | 'walmart-b2b' |
+      'wcp' | 'ax' | 'ax-sams-club' | 'ax-walmart' |
       'px' | 'px-sams-club' | 'px-walmart' | 'data-ventures' |
       'sams-club' | 'cashi-mx' | 'bodega' | 'walmart-legacy' | 'walmart-plus' |
-      'sparky' | 'members-mark' | 'walmart-b2b';
+      'sparky' | 'members-mark';
   name: string;
   description: string;
   primitiveCSS: string;
@@ -18,55 +18,27 @@ export interface Theme {
 }
 
 export const AVAILABLE_THEMES: Theme[] = [
-  // ========== LD BASE (Root) ==========
+  // ========== WALMART (Main) ==========
   {
-    id: 'base',
-    name: 'Walmart (LD Base)',
-    description: 'Living Design 3.5 base theme with all standard tokens',
+    id: 'walmart',
+    name: 'Walmart',
+    description: 'Default Walmart theme with commerce platform features',
     primitiveCSS: '/styles/themes/base/primitive.css',
-    semanticCSS: '/styles/themes/base/semantic.css',
+    semanticCSS: '/styles/themes/wcp/semantic.css',
     previewColor: '#0053e2',
+    inherits: 'LD Base + WCP',
+  },
+  {
+    id: 'walmart-b2b',
+    name: 'Walmart Business',
+    description: 'B2B platform with navy blue and professional palette',
+    primitiveCSS: '/styles/themes/walmart-b2b/primitive.css',
+    semanticCSS: '/styles/themes/walmart-b2b/semantic.css',
+    previewColor: '#002e99',
+    inherits: 'walmart',
   },
 
-  // ========== DEVELOPER & PERSONAS ==========
-  {
-    id: 'developer',
-    name: 'Developer',
-    description: 'Developer theme with green magic gradient for AI features',
-    primitiveCSS: '/styles/themes/developer/primitive.css',
-    semanticCSS: '/styles/themes/developer/semantic.css',
-    previewColor: '#a4fb6c',
-    inherits: 'base',
-  },
-  {
-    id: 'customer',
-    name: 'Customer',
-    description: 'Customer-facing persona (inherits Developer)',
-    primitiveCSS: '/styles/themes/base/primitive.css',
-    semanticCSS: '/styles/themes/customer/semantic.css',
-    previewColor: '#0053e2',
-    inherits: 'developer',
-  },
-  {
-    id: 'associate',
-    name: 'Associate',
-    description: 'Employee/associate persona (inherits Developer)',
-    primitiveCSS: '/styles/themes/base/primitive.css',
-    semanticCSS: '/styles/themes/associate/semantic.css',
-    previewColor: '#0053e2',
-    inherits: 'developer',
-  },
-  {
-    id: 'partner',
-    name: 'Partner',
-    description: 'Partner portal persona (inherits Developer)',
-    primitiveCSS: '/styles/themes/base/primitive.css',
-    semanticCSS: '/styles/themes/partner/semantic.css',
-    previewColor: '#0053e2',
-    inherits: 'developer',
-  },
-
-  // ========== WCP ==========
+  // ========== WCP (Commerce Platform) ==========
   {
     id: 'wcp',
     name: 'WCP',
@@ -74,16 +46,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     primitiveCSS: '/styles/themes/base/primitive.css',
     semanticCSS: '/styles/themes/wcp/semantic.css',
     previewColor: '#ffc220',
-    inherits: 'base',
-  },
-  {
-    id: 'walmart-b2b',
-    name: 'Walmart Business',
-    description: 'B2B platform theme with navy blue and professional palette',
-    primitiveCSS: '/styles/themes/walmart-b2b/primitive.css',
-    semanticCSS: '/styles/themes/walmart-b2b/semantic.css',
-    previewColor: '#002e99',
-    inherits: 'wcp',
+    inherits: 'LD Base + Customer',
   },
 
   // ========== AX (Advertising Experience) ==========
@@ -219,7 +182,7 @@ export const AVAILABLE_THEMES: Theme[] = [
   },
 ];
 
-export const DEFAULT_THEME: Theme['id'] = 'base';
+export const DEFAULT_THEME: Theme['id'] = 'walmart';
 
 /**
  * Get theme by ID
