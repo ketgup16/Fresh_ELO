@@ -87,9 +87,11 @@ Design system enforcement rules and best practices.
 - [Rules Index](rules/RULES_INDEX.md) - Overview of all design system rules
 - [Design System Enforcement](rules/RULE_DesignSystemEnforcement.md) - Component usage rules
 - [Design Token Enforcement](rules/RULE_DesignTokenEnforcement.md) - Token usage requirements
+- [**Token Usage Enforcement**](rules/RULE_TokenUsageEnforcement.md) - **HARD RULE: All components must use tokens**
 - [Icon Usage](rules/RULE_IconUsage.md) - Icon library usage guidelines
 - [Theme Switcher](rules/RULE_ThemeSwitcher.md) - Theme management rules
 - [Theme Addition](rules/RULE_ThemeAddition.md) - Process for adding new themes
+- [Markdown Organization](rules/RULE_MarkdownOrganization.md) - Markdown file organization
 
 ## Quick Links
 
