@@ -65,6 +65,7 @@ Design system enforcement rules and best practices.
 - [Design Token Enforcement](rules/RULE_DesignTokenEnforcement.md) - Token usage requirements
 - [Icon Usage](rules/RULE_IconUsage.md) - Icon library usage guidelines
 - [Theme Switcher](rules/RULE_ThemeSwitcher.md) - Theme management rules
+- [Theme Addition](rules/RULE_ThemeAddition.md) - Process for adding new themes
 
 ## Core Documentation
 
