@@ -48,6 +48,29 @@ Component-specific guidelines and specifications for all Living Design 3.5 compo
 - [Metric](components/Metric.md) - Metric displays
 - [Tag](components/Tag.md) - Status and category tags
 
+### 📁 design-system/
+Core design system documentation and token references.
+
+- [DesignTokens.md](design-system/DesignTokens.md) - Complete design token reference
+- [design-tokens-overview.md](design-system/design-tokens-overview.md) - Token system overview
+- [tokens.md](design-system/tokens.md) - Token usage guide
+- [Color.md](design-system/Color.md) - Color system and palette
+- [typography.md](design-system/typography.md) - Typography system
+- [Component-Inventory.md](design-system/Component-Inventory.md) - Available components inventory
+- [LivingDesign-Component-Reference.md](design-system/LivingDesign-Component-Reference.md) - Component reference
+- [Guidelines.md](design-system/Guidelines.md) - General development guidelines
+- [Guidelines-react.md](design-system/Guidelines-react.md) - React-specific guidelines
+- [css-variables-source.md](design-system/css-variables-source.md) - CSS variables reference
+- [component-visibility.md](design-system/component-visibility.md) - Component visibility states
+- [overview-components.md](design-system/overview-components.md) - Components overview
+
+### 📁 implementations/
+Completed component implementation summaries and documentation.
+
+- [ATTRIBUTION-DROPDOWN-SUMMARY.md](implementations/ATTRIBUTION-DROPDOWN-SUMMARY.md) - Attribution filter implementation
+- [COMPONENT-CONSOLIDATION-SUMMARY.md](implementations/COMPONENT-CONSOLIDATION-SUMMARY.md) - Button standardization
+- [LD-TAG-IMPLEMENTATION-SUMMARY.md](implementations/LD-TAG-IMPLEMENTATION-SUMMARY.md) - Tag component implementation
+
 ### 📁 migrations/
 Migration plans and standardization documentation for transitioning to Living Design 3.5.
 
@@ -56,6 +79,7 @@ Migration plans and standardization documentation for transitioning to Living De
 - [Living Design Migration Assessment](migrations/LIVING-DESIGN-MIGRATION-ASSESSMENT.md)
 - [Table Standardization Plan](migrations/PLAN_TABLE_STANDARDIZATION.md)
 - [UI Component Replacement Plan](migrations/UI-COMPONENT-REPLACEMENT-PLAN.md)
+- [Theme Switcher Plan](migrations/THEME_SWITCHER_PLAN.md)
 
 ### 📁 rules/
 Design system enforcement rules and best practices.
@@ -67,40 +91,22 @@ Design system enforcement rules and best practices.
 - [Theme Switcher](rules/RULE_ThemeSwitcher.md) - Theme management rules
 - [Theme Addition](rules/RULE_ThemeAddition.md) - Process for adding new themes
 
-## Core Documentation
-
-### Design Tokens & Theming
-- [DesignTokens.md](DesignTokens.md) - Complete design token reference
-- [design-tokens-overview.md](design-tokens-overview.md) - Token system overview
-- [tokens.md](tokens.md) - Token usage guide
-- [Color.md](Color.md) - Color system and palette
-- [typography.md](typography.md) - Typography system
-
-### Development Guidelines
-- [Guidelines.md](Guidelines.md) - General development guidelines
-- [Guidelines-react.md](Guidelines-react.md) - React-specific guidelines
-- [Component-Inventory.md](Component-Inventory.md) - Available components inventory
-- [LivingDesign-Component-Reference.md](LivingDesign-Component-Reference.md) - Component reference
-
-### Technical Reference
-- [css-variables-source.md](css-variables-source.md) - CSS variables reference
-- [component-visibility.md](component-visibility.md) - Component visibility states
-- [overview-components.md](overview-components.md) - Components overview
-- [Agent-Implementation-Checklist.md](Agent-Implementation-Checklist.md) - Implementation checklist
-
 ## Quick Links
 
-- 🎨 **Design Tokens**: Start with [DesignTokens.md](DesignTokens.md)
+- 🎨 **Design Tokens**: Start with [design-system/DesignTokens.md](design-system/DesignTokens.md)
 - 🧱 **Components**: Browse [components/](components/)
-- 🔄 **Migration**: See [migrations/](migrations/)
+- 🔄 **Migrations**: See [migrations/](migrations/)
 - ✅ **Rules**: Check [rules/](rules/)
+- 📝 **Implementations**: Review [implementations/](implementations/)
+- 🎨 **Design System**: Explore [design-system/](design-system/)
 
 ## Getting Started
 
 1. **For new components**: Read the component-specific guide in `components/`
-2. **For migrations**: Check `migrations/` for transition plans
-3. **For token usage**: Reference `DesignTokens.md`
+2. **For design tokens**: Reference `design-system/DesignTokens.md`
+3. **For migrations**: Check `migrations/` for transition plans
 4. **For best practices**: Review files in `rules/`
+5. **For implementation examples**: See `implementations/`
 
 ---
 
