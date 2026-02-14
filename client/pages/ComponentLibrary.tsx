@@ -20,6 +20,8 @@ import { DividerExample } from '@/components/examples/DividerExample';
 import { ListExample } from '@/components/examples/ListExample';
 import { MagicBoxExample } from '@/components/examples/MagicBoxExample';
 import { Button } from '@/components/ui/Button';
+import { Menu } from '@/components/ui/Menu';
+import { MenuItem } from '@/components/ui/MenuItem';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Badge } from '@/components/ui/Badge';
 import { IconButton } from '@/components/ui/IconButton';
@@ -76,6 +78,7 @@ export default function ComponentLibrary() {
     { id: 'dividers', name: 'Dividers', keywords: ['divider', 'separator', 'line', 'horizontal', 'vertical', 'rule', 'hr'] },
     { id: 'lists', name: 'Lists', keywords: ['list', 'listitem', 'item', 'vertical', 'group', 'spot icon', 'trailing', 'leading'] },
     { id: 'magic-box', name: 'Magic Box', keywords: ['magic box', 'ai', 'agent', 'glow', 'magic', 'loading', 'processing', 'animation', 'sparkle'] },
+    { id: 'menu', name: 'Menu', keywords: ['menu', 'dropdown', 'overlay', 'actions', 'menuitem', 'popup', 'context'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
   ];
 
@@ -342,7 +345,7 @@ export default function ComponentLibrary() {
 
             {quickNavExpanded && (
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                {['Component Sandbox', 'Alerts', 'Badges', 'Breadcrumbs', 'Buttons', 'Callouts', 'Cards', 'Checkboxes', 'Chips', 'Content Messages', 'Date Fields', 'Dividers', 'Filter Chips', 'Form Groups', 'Icon Buttons', 'Link Buttons', 'Links', 'Lists', 'Radio Buttons', 'Icons', 'Design Tokens'].map(section => (
+                {['Component Sandbox', 'Alerts', 'Badges', 'Breadcrumbs', 'Buttons', 'Callouts', 'Cards', 'Checkboxes', 'Chips', 'Content Messages', 'Date Fields', 'Dividers', 'Filter Chips', 'Form Groups', 'Icon Buttons', 'Link Buttons', 'Links', 'Lists', 'Magic Box', 'Menu', 'Radio Buttons', 'Icons', 'Design Tokens'].map(section => (
                   <Chip
                     key={section}
                     onClick={(e) => {
@@ -619,6 +622,233 @@ import { Search, Settings, Cart, User } from '@/components/icons';
         <ComponentShowcase>
           <MagicBoxExample />
         </ComponentShowcase>
+      </Section>
+
+      {/* Menu Section */}
+      <Section
+        id="menu"
+        title="Menu"
+        description="Displays a list of actions in a small overlay. Built with Living Design 3.5 tokens for consistent spacing, typography, and interactive states."
+      >
+        <div style={{ display: 'grid', gap: '32px' }}>
+          {/* Basic Menu Example */}
+          <ComponentShowcase
+            title="Basic Menu with Icons"
+            description="Menu items with leading icons. Each item uses LD 3.5 semantic tokens for padding (4px 8px), gap (4px), and small icon size (16x16)."
+            code={`<Menu isOpen={true} onClose={() => {}}>
+  <MenuItem leadingIcon={<Icons.Edit size="small" />}>
+    Edit
+  </MenuItem>
+  <MenuItem leadingIcon={<Icons.Duplicate size="small" />}>
+    Duplicate
+  </MenuItem>
+  <MenuItem leadingIcon={<Icons.Delete size="small" />}>
+    Delete
+  </MenuItem>
+</Menu>`}
+          >
+            <div style={{ position: 'relative', height: '150px' }}>
+              <Menu isOpen={true} onClose={() => {}}>
+                <MenuItem leadingIcon={<Icons.Edit />}>
+                  Edit
+                </MenuItem>
+                <MenuItem leadingIcon={<Icons.Duplicate />}>
+                  Duplicate
+                </MenuItem>
+                <MenuItem leadingIcon={<Icons.Delete />}>
+                  Delete
+                </MenuItem>
+              </Menu>
+            </div>
+          </ComponentShowcase>
+
+          {/* Menu with Selected State */}
+          <ComponentShowcase
+            title="Menu with Selected State"
+            description="Menu item in selected state shows active background color using LD 3.5 semantic tokens."
+            code={`<Menu isOpen={true} onClose={() => {}}>
+  <MenuItem leadingIcon={<Icons.Check size="small" />} selected>
+    Option 1
+  </MenuItem>
+  <MenuItem>
+    Option 2
+  </MenuItem>
+  <MenuItem>
+    Option 3
+  </MenuItem>
+</Menu>`}
+          >
+            <div style={{ position: 'relative', height: '150px' }}>
+              <Menu isOpen={true} onClose={() => {}}>
+                <MenuItem leadingIcon={<Icons.Check />} selected>
+                  Option 1
+                </MenuItem>
+                <MenuItem>
+                  Option 2
+                </MenuItem>
+                <MenuItem>
+                  Option 3
+                </MenuItem>
+              </Menu>
+            </div>
+          </ComponentShowcase>
+
+          {/* Menu with Disabled State */}
+          <ComponentShowcase
+            title="Menu with Disabled Items"
+            description="Disabled menu items use LD 3.5 disabled text color and cannot be interacted with."
+            code={`<Menu isOpen={true} onClose={() => {}}>
+  <MenuItem leadingIcon={<Icons.Save size="small" />}>
+    Save
+  </MenuItem>
+  <MenuItem leadingIcon={<Icons.Export size="small" />} disabled>
+    Export (disabled)
+  </MenuItem>
+  <MenuItem leadingIcon={<Icons.Print size="small" />}>
+    Print
+  </MenuItem>
+</Menu>`}
+          >
+            <div style={{ position: 'relative', height: '150px' }}>
+              <Menu isOpen={true} onClose={() => {}}>
+                <MenuItem leadingIcon={<Icons.Save />}>
+                  Save
+                </MenuItem>
+                <MenuItem leadingIcon={<Icons.Export />} disabled>
+                  Export (disabled)
+                </MenuItem>
+                <MenuItem leadingIcon={<Icons.Print />}>
+                  Print
+                </MenuItem>
+              </Menu>
+            </div>
+          </ComponentShowcase>
+
+          {/* Menu with Footer */}
+          <ComponentShowcase
+            title="Menu with Footer"
+            description="Menu can include a footer section with action buttons. This is a custom extension beyond the base LD 3.5 spec."
+            code={`<Menu
+  isOpen={true}
+  onClose={() => {}}
+  footer={
+    <div style={{ display: 'flex', gap: '8px' }}>
+      <Button variant="secondary" size="small">Cancel</Button>
+      <Button variant="primary" size="small">Apply</Button>
+    </div>
+  }
+>
+  <MenuItem leadingIcon={<Icons.Filter size="small" />}>
+    Filter by date
+  </MenuItem>
+  <MenuItem leadingIcon={<Icons.Sort size="small" />}>
+    Sort by name
+  </MenuItem>
+</Menu>`}
+          >
+            <div style={{ position: 'relative', height: '200px' }}>
+              <Menu
+                isOpen={true}
+                onClose={() => {}}
+                footer={
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <Button variant="secondary" size="small">Cancel</Button>
+                    <Button variant="primary" size="small">Apply</Button>
+                  </div>
+                }
+              >
+                <MenuItem leadingIcon={<Icons.Filter />}>
+                  Filter by date
+                </MenuItem>
+                <MenuItem leadingIcon={<Icons.Sort />}>
+                  Sort by name
+                </MenuItem>
+              </Menu>
+            </div>
+          </ComponentShowcase>
+
+          {/* Props Documentation */}
+          <div style={{
+            backgroundColor: 'var(--ld-semantic-color-surface)',
+            borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+            padding: '24px',
+            border: '1px solid var(--ld-semantic-color-border-subtlest)'
+          }}>
+            <h3 style={{
+              marginTop: 0,
+              marginBottom: '16px',
+              fontSize: 'var(--ld-semantic-font-heading-small-size)',
+              fontWeight: 'var(--ld-semantic-font-heading-small-weight)',
+            }}>
+              Menu Props
+            </h3>
+            <div style={{ display: 'grid', gap: '12px', fontSize: '14px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '8px', padding: '8px', borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                <strong>isOpen</strong>
+                <span>boolean - Controls menu visibility</span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '8px', padding: '8px', borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                <strong>onClose</strong>
+                <span>function - Called when menu should close (Escape key, click outside)</span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '8px', padding: '8px', borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                <strong>position</strong>
+                <span>'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight' - Menu position (default: 'bottomLeft')</span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '8px', padding: '8px', borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                <strong>footer</strong>
+                <span>ReactNode - Optional footer content (custom extension)</span>
+              </div>
+            </div>
+
+            <h3 style={{
+              marginTop: '24px',
+              marginBottom: '16px',
+              fontSize: 'var(--ld-semantic-font-heading-small-size)',
+              fontWeight: 'var(--ld-semantic-font-heading-small-weight)',
+            }}>
+              MenuItem Props
+            </h3>
+            <div style={{ display: 'grid', gap: '12px', fontSize: '14px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '8px', padding: '8px', borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                <strong>leadingIcon</strong>
+                <span>ReactNode - Icon displayed before text (use size="small" for LD 3.5 compliance)</span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '8px', padding: '8px', borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                <strong>selected</strong>
+                <span>boolean - Highlights item as selected with activated background</span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '8px', padding: '8px', borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                <strong>disabled</strong>
+                <span>boolean - Disables interaction and shows disabled styling</span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '8px', padding: '8px', borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                <strong>onClick</strong>
+                <span>function - Click handler for menu item</span>
+              </div>
+            </div>
+
+            <div style={{
+              marginTop: '24px',
+              padding: '16px',
+              backgroundColor: 'var(--ld-semantic-color-surface-informational)',
+              borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+              fontSize: '14px'
+            }}>
+              <strong>Keyboard Navigation:</strong> Arrow keys to navigate items, Escape to close, Home/End to jump to first/last item.
+            </div>
+
+            <div style={{
+              marginTop: '12px',
+              padding: '16px',
+              backgroundColor: 'var(--ld-semantic-color-surface-informational)',
+              borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+              fontSize: '14px'
+            }}>
+              <strong>LD 3.5 Documentation:</strong> <a href="https://digitaltoolkit.livingdesign.walmart.com/components/menu/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ld-semantic-color-action-text-link)' }}>https://digitaltoolkit.livingdesign.walmart.com/components/menu/</a>
+            </div>
+          </div>
+        </div>
       </Section>
 
       {/* Design Tokens Section */}
