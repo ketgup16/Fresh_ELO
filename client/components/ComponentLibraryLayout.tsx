@@ -147,6 +147,11 @@ const navigationSections = [
         name: 'Metrics',
         path: '/component-library/metrics'
       },
+      {
+        id: 'modals',
+        name: 'Modals',
+        path: '/component-library/modals'
+      },
     ]
   }
 ];

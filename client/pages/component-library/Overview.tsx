@@ -149,6 +149,12 @@ const componentSections = [
     icon: 'BarGraph'
   },
   {
+    title: 'Modals',
+    description: 'Centered overlay dialogs with size variants for focused user interactions',
+    path: '/component-library/modals',
+    icon: 'Square'
+  },
+  {
     title: 'Design Tokens', 
     description: 'CSS custom properties for colors, spacing, and typography',
     path: '/component-library/design-tokens',

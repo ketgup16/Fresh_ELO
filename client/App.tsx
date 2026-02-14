@@ -48,6 +48,7 @@ import ListsPage from "./pages/component-library/Lists";
 import MagicBoxPage from "./pages/component-library/MagicBox";
 import MenuPage from "./pages/component-library/Menu";
 import MetricsPage from "./pages/component-library/Metrics";
+import ModalsPage from "./pages/component-library/Modals";
 import DesignTokensPage from "./pages/component-library/DesignTokens";
 import GuidelinesPage from "./pages/component-library/Guidelines";
 
@@ -90,6 +91,7 @@ const App = () => (
                 <Route path="magic-box" element={<MagicBoxPage />} />
                 <Route path="menu" element={<MenuPage />} />
                 <Route path="metrics" element={<MetricsPage />} />
+                <Route path="modals" element={<ModalsPage />} />
                 <Route path="design-tokens" element={<DesignTokensPage />} />
                 <Route path="guidelines" element={<GuidelinesPage />} />
               </Route>
