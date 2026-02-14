@@ -17,6 +17,28 @@ Filter chips are **pill-shaped** (fully rounded) selectable buttons specifically
 import { FilterChip } from "@/components/ui/FilterChip";
 ```
 
+## Anatomy
+
+Per the Figma design spec, FilterChip consists of the following parts:
+
+### Variant: Multi (with dropdown)
+1. **Container** — The pill-shaped button wrapper
+2. **Leading Slot** (optional) — Icon or media element
+3. **Text label** — Primary label text
+4. **Count** (optional) — Numeric indicator (e.g., "(2)")
+5. **Trailing Action** — Dropdown chevron icon when opened
+
+### Variant: Toggle (simple toggle)
+1. **Container** — The pill-shaped button wrapper
+2. **Leading Slot** (optional) — Media/icon element
+3. **Text label** — Primary label text
+
+### Variant: All Filters (summary chip)
+1. **Container** — The pill-shaped button wrapper
+2. **[LD 3.5] Sliders Icon** — Special icon for "All Filters" chip
+3. **Text label** (optional) — "All Filters" or custom text
+4. **Count** (optional) — Number of active filters (e.g., "(2)")
+
 ## Rules
 - **MUST** use the Living Design FilterChip component (`@/components/ui/FilterChip`).
 - **MUST** use FilterChips specifically for **filtering interfaces** (not general selections).
@@ -69,19 +91,78 @@ Walmart blue fill when selected using ACTION tokens (`--ld-semantic-color-action
 
 FilterChips use the **INPUT token family** (same as Chip) for consistency across selectable UI elements.
 
+### Border Width Tokens (Per Figma Spec)
+| State | Token |
+|-------|-------|
+| Default | `--ld-semantic-scale-borderwidth-interactive` (2px) |
+| Hovered | `--ld-semantic-scale-borderwidth-interactive-hovered` (2px) |
+| Focused | `--ld-semantic-scale-borderwidth-interactive-focused` (2px) |
+| Pressed | `--ld-semantic-scale-borderwidth-interactive-pressed` (2px) |
+| Activated (Selected) | `--ld-semantic-scale-borderwidth-interactive-activated` (2px) |
+
 ### Unselected State
 | Property | Token |
 |----------|-------|
 | Background | `--ld-semantic-color-input-fill` |
-| Border | `--ld-semantic-color-input-border` (2px) |
+| Border Color | `--ld-semantic-color-input-border` |
+| Border Width | `--ld-semantic-scale-borderwidth-interactive` |
 | Text | `--ld-semantic-color-input-text-on-fill` |
+| Border Radius | `--ld-primitive-scale-borderradius-round` (9999px) |
+
+### Hover State (Unselected)
+| Property | Token |
+|----------|-------|
+| Background | `--ld-semantic-color-input-fill-hovered` |
+| Border Color | `--ld-semantic-color-input-border-hovered` |
+| Border Width | `--ld-semantic-scale-borderwidth-interactive-hovered` |
+
+### Focused State
+| Property | Token |
+|----------|-------|
+| Border Color | `--ld-semantic-color-input-border-focused` |
+| Border Width | `--ld-semantic-scale-borderwidth-interactive-focused` |
+| Background | `--ld-semantic-color-fill-focused` |
+| Outline | `--ld-semantic-color-action-focus-outline` (2px) |
+
+### Pressed State (Unselected)
+| Property | Token |
+|----------|-------|
+| Background | `--ld-semantic-color-input-fill-pressed` |
+| Border Color | `--ld-semantic-color-input-border-pressed` |
+| Border Width | `--ld-semantic-scale-borderwidth-interactive-pressed` |
 
 ### Selected (default variant)
 | Property | Token |
 |----------|-------|
 | Background | `--ld-semantic-color-input-fill-activated` |
-| Border | `--ld-semantic-color-input-border-activated` |
+| Border Color | `--ld-semantic-color-input-border-activated` |
+| Border Width | `--ld-semantic-scale-borderwidth-interactive-activated` |
 | Text | `--ld-semantic-color-input-indicator-activated` |
+
+### Selected + Hovered (default variant)
+| Property | Token |
+|----------|-------|
+| Background | `--ld-semantic-color-input-fill-activated-hovered` |
+| Border Color | `--ld-semantic-color-input-border-activated-hovered` |
+
+### Selected + Focused (default variant)
+| Property | Token |
+|----------|-------|
+| Background | `--ld-semantic-color-input-fill-activated-focused` |
+| Border Color | `--ld-semantic-color-input-border-activated-focused` |
+
+### Selected + Pressed (default variant)
+| Property | Token |
+|----------|-------|
+| Background | `--ld-semantic-color-input-fill-activated-pressed` |
+| Border Color | `--ld-semantic-color-input-border-activated-pressed` |
+
+### Disabled State
+| Property | Token |
+|----------|-------|
+| Background | `--ld-semantic-color-input-fill-disabled` |
+| Border Color | `--ld-semantic-color-input-border-disabled` |
+| Text | `--ld-semantic-color-input-text-on-fill-disabled` |
 
 ### Selected (primary variant)
 | Property | Token |
@@ -89,11 +170,6 @@ FilterChips use the **INPUT token family** (same as Chip) for consistency across
 | Background | `--ld-semantic-color-action-fill-primary` |
 | Border | `--ld-semantic-color-action-fill-primary` |
 | Text | `--ld-semantic-color-action-text-on-fill-primary` |
-
-### Focus
-| Property | Token |
-|----------|-------|
-| Outline | `--ld-semantic-color-action-focus-outline` |
 
 ## Usage Examples
 
@@ -132,6 +208,24 @@ import { Filter } from '@/components/icons';
 
 <FilterChip iconLeading={<Filter />} selected>
   Filtered
+</FilterChip>
+```
+
+### With count
+```tsx
+// Display count of selected items in filter
+const selectedCount = 3;
+
+<FilterChip selected={selectedCount > 0}>
+  Categories {selectedCount > 0 && `(${selectedCount})`}
+</FilterChip>
+
+// "All Filters" variant with count
+<FilterChip
+  iconLeading={<SlidersIcon />}
+  selected={hasActiveFilters}
+>
+  All Filters {activeFilterCount > 0 && `(${activeFilterCount})`}
 </FilterChip>
 ```
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FilterChip } from '@/components/ui/FilterChip';
-import { Filter, Check, X, Star } from '@/components/icons';
+import { Filter, Check, X, Star, Sliders, ChevronDown } from '@/components/icons';
 
 export function FilterChipExample() {
   // Multi-select filter demo
@@ -126,6 +126,34 @@ export function FilterChipExample() {
           </FilterChip>
           <FilterChip iconLeading={<Check />} iconTrailing={<X />} selected variant="primary">
             Both Icons
+          </FilterChip>
+        </div>
+      </ExampleSection>
+
+      {/* With Count (Figma Anatomy) */}
+      <ExampleSection
+        title="With Count"
+        description="Filter chips can display counts to show number of selected items or active filters (from Figma anatomy spec)."
+      >
+        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+          {/* Multi variant with count */}
+          <FilterChip iconLeading={<Filter />} iconTrailing={<ChevronDown />} selected>
+            Text label (2)
+          </FilterChip>
+
+          {/* Toggle variant with count */}
+          <FilterChip iconLeading={<Filter />} selected>
+            Text label
+          </FilterChip>
+
+          {/* All Filters variant with Sliders icon and count */}
+          <FilterChip iconLeading={<Sliders />} selected>
+            All Filters (2)
+          </FilterChip>
+
+          {/* Unselected state */}
+          <FilterChip iconLeading={<Sliders />}>
+            All Filters
           </FilterChip>
         </div>
       </ExampleSection>

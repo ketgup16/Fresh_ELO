@@ -6,12 +6,14 @@
   gap: 8px;
   font-family: var(--ld-semantic-font-family-sans);
   font-weight: 500;
-  border-radius: 9999px; /* Pill shape for filters */
-  border: 2px solid var(--ld-semantic-color-input-border);
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px); /* Pill shape for filters */
+  border-width: var(--ld-semantic-scale-borderwidth-interactive, 2px);
+  border-style: solid;
+  border-color: var(--ld-semantic-color-input-border);
   background-color: var(--ld-semantic-color-input-fill);
   color: var(--ld-semantic-color-input-text-on-fill);
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, border-width 0.15s ease;
   white-space: nowrap;
   box-sizing: border-box;
   padding: 0;
@@ -24,12 +26,16 @@
 
 /* Focus visible */
 .filterChip:focus-visible {
+  border-width: var(--ld-semantic-scale-borderwidth-interactive-focused, 2px);
+  border-color: var(--ld-semantic-color-input-border-focused);
+  background-color: var(--ld-semantic-color-fill-focused);
   outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
 }
 
 /* Hover - Unselected */
 .filterChip:hover:not(:disabled) {
+  border-width: var(--ld-semantic-scale-borderwidth-interactive-hovered, 2px);
   background-color: var(--ld-semantic-color-input-fill-hovered);
   border-color: var(--ld-semantic-color-input-border-hovered);
   color: var(--ld-semantic-color-input-text-on-fill);
@@ -37,6 +43,7 @@
 
 /* Pressed - Unselected */
 .filterChip:active:not(:disabled) {
+  border-width: var(--ld-semantic-scale-borderwidth-interactive-pressed, 2px);
   background-color: var(--ld-semantic-color-input-fill-pressed);
   border-color: var(--ld-semantic-color-input-border-pressed);
   color: var(--ld-semantic-color-input-text-on-fill);
@@ -81,6 +88,7 @@
 
 /* Selected - Default variant */
 .filterChip--variant-default.filterChip--selected {
+  border-width: var(--ld-semantic-scale-borderwidth-interactive-activated, 2px);
   background-color: var(--ld-semantic-color-input-fill-activated);
   border-color: var(--ld-semantic-color-input-border-activated);
   color: var(--ld-semantic-color-input-indicator-activated);
