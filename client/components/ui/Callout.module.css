@@ -16,7 +16,7 @@
   line-height: var(--ld-semantic-font-body-small-line-height, 1.25rem);
   font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
   box-sizing: border-box;
-  min-width: var(--ld-primitive-scale-space-800, 200px); /* Min 200px */
+  min-width: 200px; /* Min 200px per LD 3.5 spec */
   max-width: var(--ld-primitive-scale-space-1000, 320px); /* Max 320px */
 }
 
