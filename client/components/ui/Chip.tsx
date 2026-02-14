@@ -1,8 +1,7 @@
 import * as React from 'react';
 import styles from './Chip.module.css';
 
-export type ChipSize = 'small' | 'medium' | 'large';
-export type ChipVariant = 'default' | 'primary';
+export type ChipSize = 'small' | 'medium';
 
 export interface ChipProps
   extends Omit<
@@ -22,17 +21,11 @@ export interface ChipProps
 
   /**
    * The size of the chip.
+   * - `small`: 32px height, 16px horizontal padding
+   * - `medium`: 40px height, 16px horizontal padding
    * @default 'medium'
    */
   size?: ChipSize;
-
-  /**
-   * The visual variant of the chip.
-   * - `default`: Dark fill when selected (uses INPUT tokens).
-   * - `primary`: Walmart blue fill when selected (uses ACTION tokens).
-   * @default 'default'
-   */
-  variant?: ChipVariant;
 
   /**
    * Optional leading icon/content (rendered before the label).
@@ -81,7 +74,6 @@ export const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(
       selected = false,
       onSelectedChange,
       size = 'medium',
-      variant = 'default',
       iconLeading,
       iconTrailing,
       disabled = false,
@@ -103,7 +95,6 @@ export const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(
     const className = [
       styles.chip,
       styles[`chip--size-${size}`],
-      styles[`chip--variant-${variant}`],
       selected && styles['chip--selected'],
       UNSAFE_className,
     ]
