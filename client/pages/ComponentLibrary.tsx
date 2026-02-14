@@ -9,6 +9,7 @@ import { CalloutExample } from '@/components/examples/CalloutExample';
 import { CardHeaderExample } from '@/components/examples/CardHeaderExample';
 import { CheckboxExample } from '@/components/examples/CheckboxExample';
 import { RadioExample } from '@/components/examples/RadioExample';
+import { FormGroupExample } from '@/components/examples/FormGroupExample';
 import { ChipExample } from '@/components/examples/ChipExample';
 import { FilterChipExample } from '@/components/examples/FilterChipExample';
 import { ContentMessageExample } from '@/components/examples/ContentMessageExample';
@@ -58,6 +59,7 @@ export default function ComponentLibrary() {
     { id: 'icon-buttons', name: 'Icon Buttons', keywords: ['icon button', 'icon', 'action'] },
     { id: 'checkboxes', name: 'Checkboxes', keywords: ['checkbox', 'check', 'select', 'form', 'input', 'indeterminate'] },
     { id: 'radio-buttons', name: 'Radio Buttons', keywords: ['radio', 'radio button', 'radio group', 'select', 'form', 'input', 'option'] },
+    { id: 'form-groups', name: 'Form Groups', keywords: ['form', 'group', 'fieldset', 'legend', 'checkbox group', 'radio group'] },
     { id: 'chips', name: 'Chips', keywords: ['chip', 'select', 'toggle', 'tag', 'interactive', 'category'] },
     { id: 'filter-chips', name: 'Filter Chips', keywords: ['filter chip', 'filter', 'pill', 'select', 'toggle'] },
     { id: 'callouts', name: 'Callouts', keywords: ['callout', 'tooltip', 'nubbin', 'coaching', 'onboarding', 'pointer'] },
@@ -333,7 +335,7 @@ export default function ComponentLibrary() {
 
             {quickNavExpanded && (
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                {['Component Sandbox', 'Alerts', 'Badges', 'Breadcrumbs', 'Buttons', 'Callouts', 'Cards', 'Checkboxes', 'Chips', 'Content Messages', 'Date Fields', 'Dividers', 'Filter Chips', 'Icon Buttons', 'Links', 'Radio Buttons', 'Icons', 'Design Tokens'].map(section => (
+                {['Component Sandbox', 'Alerts', 'Badges', 'Breadcrumbs', 'Buttons', 'Callouts', 'Cards', 'Checkboxes', 'Chips', 'Content Messages', 'Date Fields', 'Dividers', 'Filter Chips', 'Form Groups', 'Icon Buttons', 'Links', 'Radio Buttons', 'Icons', 'Design Tokens'].map(section => (
                   <Chip
                     key={section}
                     onClick={(e) => {
@@ -518,6 +520,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="radio-buttons" title="Radio Buttons" description="Mutually exclusive selection within a group. Uses LD 3.5 input tokens with bold label when selected.">
         <ComponentShowcase>
           <RadioExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Form Groups Section */}
+      <Section id="form-groups" title="Form Groups" description="Semantic fieldset/legend wrapper for grouping related form controls (checkboxes, radios) with label, helper text, and error states.">
+        <ComponentShowcase>
+          <FormGroupExample />
         </ComponentShowcase>
       </Section>
 
