@@ -49,6 +49,7 @@ import ListsPage from "./pages/component-library/Lists";
 import MagicBoxPage from "./pages/component-library/MagicBox";
 import MenuPage from "./pages/component-library/Menu";
 import DesignTokensPage from "./pages/component-library/DesignTokens";
+import GuidelinesPage from "./pages/component-library/Guidelines";
 
 const queryClient = new QueryClient();
 
@@ -89,6 +90,7 @@ const App = () => (
                 <Route path="magic-box" element={<MagicBoxPage />} />
                 <Route path="menu" element={<MenuPage />} />
                 <Route path="design-tokens" element={<DesignTokensPage />} />
+                <Route path="guidelines" element={<GuidelinesPage />} />
               </Route>
 
               <Route path="/" element={<Index />} />
