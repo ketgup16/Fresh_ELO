@@ -212,24 +212,15 @@ export default function ComponentLibrary() {
             fontSize: '16px',
             color: 'var(--ld-semantic-color-text-subtle)',
             fontFamily: 'var(--ld-semantic-font-family-sans)',
-            lineHeight: '1.5'
+            lineHeight: '1.5',
+            marginBottom: '24px'
           }}>
             A comprehensive showcase of all UI components and {Object.values(iconCategories).flat().length}+ icons in the Walmart Connect Ad Center.
             Each component follows the Living Design 3.5 specification with proper accessibility,
             semantic tokens, and responsive behavior.
           </p>
-        </div>
-        <ThemeSwitcher />
-      </div>
 
-      {/* Search Bar */}
-      <div style={{
-        marginBottom: '32px',
-        backgroundColor: 'var(--ld-semantic-color-surface)',
-        padding: '24px',
-        borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
-        boxShadow: 'var(--ld-semantic-elevation-100)'
-      }}>
+          {/* Search Bar */}
         <div style={{ position: 'relative', maxWidth: '600px' }}>
           <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
             {React.createElement((Icons as any).Search, { style: { width: 20, height: 20, color: 'var(--ld-semantic-color-text-subtle)' }})}
@@ -291,6 +282,59 @@ export default function ComponentLibrary() {
             </div>
           </div>
         )}
+
+          {/* Quick Navigation - Collapsible */}
+          <div style={{ marginTop: '24px' }}>
+            <button
+              onClick={() => setQuickNavExpanded(!quickNavExpanded)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'var(--ld-primitive-scale-space-100)',
+                background: 'none',
+                border: 'none',
+                padding: '0',
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: 600,
+                color: 'var(--ld-semantic-color-text-subtle)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+                marginBottom: quickNavExpanded ? '16px' : '0',
+                fontFamily: 'var(--ld-semantic-font-family-sans)',
+              }}
+            >
+              {quickNavExpanded ?
+                <Icons.ChevronUp style={{ width: 16, height: 16 }} /> :
+                <Icons.ChevronDown style={{ width: 16, height: 16 }} />
+              }
+              Quick Navigation
+            </button>
+
+            {quickNavExpanded && (
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                {['Component Sandbox', 'Alerts', 'Badges', 'Breadcrumbs', 'Buttons', 'Callouts', 'Cards', 'Checkboxes', 'Chips', 'Content Messages', 'Date Fields', 'Dividers', 'Filter Chips', 'Icon Buttons', 'Links', 'Icons', 'Design Tokens'].map(section => (
+                  <Chip
+                    key={section}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const id = section.toLowerCase().replace(/ /g, '-');
+                      const element = document.getElementById(id);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }}
+                  >
+                    {section}
+                  </Chip>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+        <div style={{ flexShrink: 0 }}>
+          <ThemeSwitcher />
+        </div>
       </div>
 
       {/* Component Sandbox */}
