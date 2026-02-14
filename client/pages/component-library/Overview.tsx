@@ -136,13 +136,19 @@ const componentSections = [
     path: '/component-library/magic-box',
     icon: 'Sparkles'
   },
-  { 
-    title: 'Menu', 
+  {
+    title: 'Menu',
     description: 'Dropdown menus with keyboard navigation and positioning',
     path: '/component-library/menu',
     icon: 'Menu'
   },
-  { 
+  {
+    title: 'Metrics',
+    description: 'Display critical data points with trend indicators and units',
+    path: '/component-library/metrics',
+    icon: 'BarGraph'
+  },
+  {
     title: 'Design Tokens', 
     description: 'CSS custom properties for colors, spacing, and typography',
     path: '/component-library/design-tokens',

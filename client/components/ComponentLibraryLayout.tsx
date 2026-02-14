@@ -142,6 +142,11 @@ const navigationSections = [
         name: 'Menu',
         path: '/component-library/menu'
       },
+      {
+        id: 'metrics',
+        name: 'Metrics',
+        path: '/component-library/metrics'
+      },
     ]
   }
 ];
