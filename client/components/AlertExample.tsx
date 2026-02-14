@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Alert } from '@/components/ui/Alert';
 import { Button } from '@/components/ui/Button';
+import { Star } from '@/components/icons';
 
 /**
  * AlertExample - Demonstrates LD 3.5 Alert component usage
@@ -115,15 +116,11 @@ export function AlertExample() {
           Replace default icons with custom ones or hide icons entirely.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          <Alert 
+          <Alert
             variant="info"
-            icon={
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 1L10.5 6L16 6.75L12 10.5L13 16L8 13.25L3 16L4 10.5L0 6.75L5.5 6L8 1Z" fill="currentColor"/>
-              </svg>
-            }
+            icon={<Star style={{ width: 16, height: 16 }} />}
           >
-            Custom icon example with a star.
+            Custom icon example with a star from the icon library.
           </Alert>
 
           <Alert variant="success" icon={null}>
@@ -155,26 +152,27 @@ export function AlertExample() {
           margin: 0,
         }}>
 {`import { Alert } from '@/components/ui/Alert';
+import { Star } from '@/components/icons';
 
-// Basic alert
+// Basic alert (uses default library icons)
 <Alert variant="info">
   This is an informational message.
 </Alert>
 
 // Alert with action
-<Alert 
+<Alert
   variant="warning"
   action={<a href="#">Learn more</a>}
 >
   Important update available.
 </Alert>
 
-// Alert with custom icon
-<Alert 
+// Alert with custom icon from library
+<Alert
   variant="success"
-  icon={<CustomIcon />}
+  icon={<Star style={{ width: 16, height: 16 }} />}
 >
-  Custom icon example.
+  Custom icon example using library icons.
 </Alert>
 
 // Alert without icon
