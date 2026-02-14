@@ -1004,7 +1004,7 @@ function InteractiveComponentTester() {
       supportsOLQPercentage: false,
     },
     Link: {
-      variants: ['default', 'subtle'],
+      variants: ['default', 'subtle', 'white'],
       sizes: [],
       supportsFullWidth: false,
       supportsIcons: false,

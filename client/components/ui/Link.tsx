@@ -2,18 +2,19 @@ import * as React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import styles from './Link.module.css';
 
-export type LinkVariant = 'default' | 'subtle';
+export type LinkVariant = 'default' | 'subtle' | 'white';
 
 export interface LinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> {
   /**
    * The URL that the link points to
    */
   href: string;
-  
+
   /**
    * Visual variant of the link
-   * - 'default': Black text color with underline
-   * - 'subtle': Black text color with underline (same as default)
+   * - 'default': Dark text color with underline
+   * - 'subtle': Subtle gray text color with underline
+   * - 'white': White text color for dark backgrounds
    * @default 'default'
    */
   variant?: LinkVariant;

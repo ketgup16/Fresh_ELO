@@ -2,8 +2,9 @@ import { Link } from '@/components/ui/Link';
 
 /**
  * LinkExample - Demonstrates LD 3.5 Link component usage
- * 
+ *
  * Reference: guidelines/Link.md
+ * Variants: Default, Subtle, White
  */
 export function LinkExample() {
   return (
@@ -66,6 +67,30 @@ export function LinkExample() {
             <Link href="/home" underline={false}>Home</Link>
             <Link href="/about" underline={false}>About</Link>
             <Link href="/contact" underline={false}>Contact</Link>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-bold mb-4">White Variant (For Dark Backgrounds)</h2>
+        <div
+          style={{
+            backgroundColor: 'var(--ld-semantic-color-surface-inverse)',
+            padding: 'var(--ld-primitive-scale-space-300)',
+            borderRadius: 'var(--ld-primitive-scale-border-radius-100)'
+          }}
+        >
+          <p style={{
+            color: 'var(--ld-semantic-color-text-inverse)',
+            marginBottom: 'var(--ld-primitive-scale-space-200)'
+          }}>
+            Use white links on dark backgrounds: <Link href="/help" variant="white">Help Center</Link> or{' '}
+            <Link href="/support" variant="white">Contact Support</Link>.
+          </p>
+          <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-300)' }}>
+            <Link href="/terms" variant="white">Terms</Link>
+            <Link href="/privacy" variant="white">Privacy</Link>
+            <Link href="/accessibility" variant="white">Accessibility</Link>
           </div>
         </div>
       </section>
