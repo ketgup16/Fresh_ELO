@@ -25,6 +25,20 @@
   --ld-semantic-color-top-nav-text-on-fill-pressed: #151f29;
   
   --ld-semantic-color-surface-brand: #fcf6f0;
-  
+
+  /* Font Family - Gibson (override primitive, same as Sam's Club parent) */
+  --ld-primitive-font-family-sans: Gibson, 'Helvetica Neue', 'Arial', sans-serif;
+
+  /* Semantic font overrides */
+  --ld-semantic-font-body-large-family: Gibson, 'Helvetica Neue', 'Arial', sans-serif;
+  --ld-semantic-font-body-medium-family: Gibson, 'Helvetica Neue', 'Arial', sans-serif;
+  --ld-semantic-font-body-small-family: Gibson, 'Helvetica Neue', 'Arial', sans-serif;
+  --ld-semantic-font-caption-family: Gibson, 'Helvetica Neue', 'Arial', sans-serif;
+  --ld-semantic-font-display-large-family: Gibson, 'Helvetica Neue', 'Arial', sans-serif;
+  --ld-semantic-font-display-small-family: Gibson, 'Helvetica Neue', 'Arial', sans-serif;
+  --ld-semantic-font-heading-large-family: Gibson, 'Helvetica Neue', 'Arial', sans-serif;
+  --ld-semantic-font-heading-medium-family: Gibson, 'Helvetica Neue', 'Arial', sans-serif;
+  --ld-semantic-font-heading-small-family: Gibson, 'Helvetica Neue', 'Arial', sans-serif;
+
   /* Inherits Sam's Club brand + WCP commerce tokens */
 }
