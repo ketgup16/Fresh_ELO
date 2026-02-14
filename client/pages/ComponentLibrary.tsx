@@ -27,6 +27,7 @@ import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 
 export default function ComponentLibrary() {
   const [searchQuery, setSearchQuery] = React.useState('');
+  const [quickNavExpanded, setQuickNavExpanded] = React.useState(true);
 
   // Define all searchable sections
   const allSections = [
@@ -300,36 +301,54 @@ export default function ComponentLibrary() {
         borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <h3 style={{ 
-          fontSize: '14px', 
-          fontWeight: 600, 
-          marginBottom: '12px',
-          color: 'var(--ld-semantic-color-text-subtle)',
-          textTransform: 'uppercase',
-          letterSpacing: '0.5px'
-        }}>
+        <button
+          onClick={() => setQuickNavExpanded(!quickNavExpanded)}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 'var(--ld-primitive-scale-space-100)',
+            background: 'none',
+            border: 'none',
+            padding: '0',
+            cursor: 'pointer',
+            fontSize: '14px',
+            fontWeight: 600,
+            color: 'var(--ld-semantic-color-text-subtle)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+            marginBottom: quickNavExpanded ? '12px' : '0',
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+          }}
+        >
+          {quickNavExpanded ?
+            <Icons.ChevronUp style={{ width: 16, height: 16 }} /> :
+            <Icons.ChevronDown style={{ width: 16, height: 16 }} />
+          }
           Quick Navigation
-        </h3>
-        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {['Component Sandbox', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Filter Chips', 'Callouts', 'Cards', 'Alerts', 'Content Messages', 'Date Fields', 'Dividers', 'Design Tokens'].map(section => (
-            <Chip
-              key={section}
-              onClick={(e) => {
-                e.preventDefault();
-                const id = section.toLowerCase().replace(' ', '-');
-                const element = document.getElementById(id);
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-              }}
-            >
-              {section}
-            </Chip>
-          ))}
-        </div>
+        </button>
+
+        {quickNavExpanded && (
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+            {['Component Sandbox', 'Icons', 'Buttons', 'Badges', 'Breadcrumbs', 'Links', 'Icon Buttons', 'Checkboxes', 'Chips', 'Filter Chips', 'Callouts', 'Cards', 'Alerts', 'Content Messages', 'Date Fields', 'Dividers', 'Design Tokens'].map(section => (
+              <Chip
+                key={section}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const id = section.toLowerCase().replace(' ', '-');
+                  const element = document.getElementById(id);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+              >
+                {section}
+              </Chip>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Interactive Component Sandbox */}
+      {/* Interactive Component Tester */}
       <Section id="component-tester" title="Component Sandbox" description="Interactive playground to test component variants, sizes, and properties in real-time">
         <InteractiveComponentTester />
       </Section>
@@ -931,7 +950,7 @@ function SearchableComponentSelect({ selectedComponent, onComponentChange, avail
   );
 }
 
-// Interactive Component Sandbox - Supports multiple component types
+// Interactive Component Tester - Supports multiple component types
 function InteractiveComponentTester() {
   type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip';
 
