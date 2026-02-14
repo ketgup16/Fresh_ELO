@@ -37,7 +37,8 @@ function loadThemeCSS(theme: Theme): Promise<void> {
     const cssFilesToLoad: Array<{href: string, type: 'primitive' | 'semantic', source: string}> = [];
 
     // If theme inherits WCP, load WCP semantic.css first
-    if (theme.inherits?.includes('wcp') || theme.id === 'walmart') {
+    const inheritsWCP = theme.inherits === 'wcp' || theme.inherits?.includes('wcp') || theme.id === 'walmart';
+    if (inheritsWCP) {
       cssFilesToLoad.push({
         href: '/styles/themes/wcp/semantic.css',
         type: 'semantic',
@@ -45,8 +46,16 @@ function loadThemeCSS(theme: Theme): Promise<void> {
       });
     }
 
-    // If theme inherits Sam's Club, load Sam's Club semantic.css first
+    // If theme inherits Sam's Club, load Sam's Club semantic.css (which will also load WCP)
     if (theme.inherits === 'sams-club') {
+      // Sam's Club inherits WCP, so load WCP first if not already added
+      if (!inheritsWCP) {
+        cssFilesToLoad.push({
+          href: '/styles/themes/wcp/semantic.css',
+          type: 'semantic',
+          source: 'WCP (grandparent)'
+        });
+      }
       cssFilesToLoad.push({
         href: '/styles/themes/sams-club/semantic.css',
         type: 'semantic',
@@ -63,13 +72,11 @@ function loadThemeCSS(theme: Theme): Promise<void> {
           source: theme.name
         });
       }
-      if (theme.semanticCSS !== '/styles/themes/wcp/semantic.css') {
-        cssFilesToLoad.push({
-          href: theme.semanticCSS,
-          type: 'semantic',
-          source: theme.name
-        });
-      }
+      cssFilesToLoad.push({
+        href: theme.semanticCSS,
+        type: 'semantic',
+        source: theme.name
+      });
     }
 
     // If no files to load, just resolve
@@ -104,6 +111,12 @@ function loadThemeCSS(theme: Theme): Promise<void> {
     const checkAllLoaded = () => {
       if (loadedCount === linkElements.length && !hasError) {
         console.log(`✅ All ${linkElements.length} theme CSS files loaded successfully`);
+
+        // Log final computed values for debugging
+        const primaryColor = getComputedStyle(document.documentElement)
+          .getPropertyValue('--ld-semantic-color-action-fill-primary').trim();
+        console.log(`🔍 Primary action color:`, primaryColor || 'NOT FOUND');
+
         resolve();
       }
     };

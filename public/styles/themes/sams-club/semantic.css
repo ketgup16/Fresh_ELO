@@ -1,0 +1,19 @@
+/**
+ * Sam's Club Theme
+ * Generated from LivingDesign Airtable Sync + LD Base
+ *
+ * INHERITANCE: LD Base → WCP → Sam's Club
+ * Inherits WCP commerce tokens and Customer persona
+ *
+ * Sam's Club brand color: #0062ad (blue)
+ * Font family: Gibson
+ */
+
+:root {
+  /* Sam's Club brand colors */
+  --ld-semantic-color-action-fill-primary: var(--ld-primitive-color-blue-130, #0062ad);
+  --ld-semantic-color-text-brand: var(--ld-primitive-color-blue-130, #0062ad);
+  --ld-semantic-color-border-brand: var(--ld-primitive-color-blue-130, #0062ad);
+
+  /* Inherits WCP commerce tokens and all LD Base tokens */
+}
