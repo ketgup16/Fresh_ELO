@@ -5,25 +5,25 @@
   position: relative;
   display: inline-flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 16px 20px;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  padding: var(--ld-primitive-scale-space-200, 16px) var(--ld-primitive-scale-space-250, 20px);
   background-color: var(--ld-semantic-color-surface-inverse, #2E2F32);
   color: var(--ld-semantic-color-text-inverse, #FFFFFF);
-  border-radius: var(--ld-primitive-scale-border-radius-100, 8px);
+  border-radius: var(--ld-primitive-scale-border-radius-50, 0.25rem); /* 4px corner radius */
   box-shadow: var(--ld-semantic-elevation-200, 0 4px 12px rgba(0, 0, 0, 0.15));
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', -apple-system, sans-serif);
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 400;
+  font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
+  line-height: var(--ld-semantic-font-body-small-line-height, 1.25rem);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
   box-sizing: border-box;
-  max-width: 320px;
+  max-width: var(--ld-primitive-scale-space-1000, 320px); /* ~320px */
 }
 
 /* Content area */
 .callout__body {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--ld-primitive-scale-space-100, 8px);
 }
 
 /* Text content */
@@ -42,12 +42,12 @@
   margin: 0;
   color: var(--ld-semantic-color-text-inverse, #FFFFFF);
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', -apple-system, sans-serif);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
+  line-height: var(--ld-semantic-font-body-small-line-height, 1.25rem);
   cursor: pointer;
   text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: opacity 0.15s ease;
+  text-underline-offset: var(--ld-primitive-scale-space-50, 2px);
+  transition: opacity var(--ld-primitive-duration-200, 0.15s) ease;
 }
 
 .callout__close:hover {
@@ -55,9 +55,9 @@
 }
 
 .callout__close:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071DC);
-  outline-offset: 2px;
-  border-radius: 2px;
+  outline: var(--ld-semantic-scale-border-width-interactive-focused, 2px) solid var(--ld-semantic-color-action-focus-outline, #0071DC);
+  outline-offset: var(--ld-primitive-scale-space-50, 2px);
+  border-radius: var(--ld-primitive-scale-border-radius-25, 2px);
 }
 
 .callout__close:active {
@@ -70,8 +70,8 @@
 
 .callout__nubbin {
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: var(--ld-semantic-scale-icon-small, 1rem); /* 16px */
+  height: var(--ld-semantic-scale-icon-small, 1rem); /* 16px */
   background-color: var(--ld-semantic-color-surface-inverse, #2E2F32);
   transform: rotate(45deg);
 }
@@ -79,51 +79,51 @@
 /* --- Bottom positions (nubbin points DOWN) --- */
 
 .callout--bottomCenter .callout__nubbin {
-  bottom: -8px;
+  bottom: calc(var(--ld-primitive-scale-space-100, 8px) * -1);
   left: 50%;
-  margin-left: -8px;
+  margin-left: calc(var(--ld-primitive-scale-space-100, 8px) * -1);
 }
 
 .callout--bottomLeft .callout__nubbin {
-  bottom: -8px;
-  left: 20px;
+  bottom: calc(var(--ld-primitive-scale-space-100, 8px) * -1);
+  left: var(--ld-primitive-scale-space-250, 20px);
 }
 
 .callout--bottomRight .callout__nubbin {
-  bottom: -8px;
-  right: 20px;
+  bottom: calc(var(--ld-primitive-scale-space-100, 8px) * -1);
+  right: var(--ld-primitive-scale-space-250, 20px);
 }
 
 /* --- Top positions (nubbin points UP) --- */
 
 .callout--topCenter .callout__nubbin {
-  top: -8px;
+  top: calc(var(--ld-primitive-scale-space-100, 8px) * -1);
   left: 50%;
-  margin-left: -8px;
+  margin-left: calc(var(--ld-primitive-scale-space-100, 8px) * -1);
 }
 
 .callout--topLeft .callout__nubbin {
-  top: -8px;
-  left: 20px;
+  top: calc(var(--ld-primitive-scale-space-100, 8px) * -1);
+  left: var(--ld-primitive-scale-space-250, 20px);
 }
 
 .callout--topRight .callout__nubbin {
-  top: -8px;
-  right: 20px;
+  top: calc(var(--ld-primitive-scale-space-100, 8px) * -1);
+  right: var(--ld-primitive-scale-space-250, 20px);
 }
 
 /* --- Left position (nubbin points LEFT) --- */
 
 .callout--left .callout__nubbin {
-  left: -8px;
+  left: calc(var(--ld-primitive-scale-space-100, 8px) * -1);
   top: 50%;
-  margin-top: -8px;
+  margin-top: calc(var(--ld-primitive-scale-space-100, 8px) * -1);
 }
 
 /* --- Right position (nubbin points RIGHT) --- */
 
 .callout--right .callout__nubbin {
-  right: -8px;
+  right: calc(var(--ld-primitive-scale-space-100, 8px) * -1);
   top: 50%;
-  margin-top: -8px;
+  margin-top: calc(var(--ld-primitive-scale-space-100, 8px) * -1);
 }
