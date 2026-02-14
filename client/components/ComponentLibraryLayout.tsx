@@ -1,159 +1,133 @@
 import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
-import * as Icons from '@/components/icons';
 
 // Component library navigation structure
 const componentNavItems = [
-  { 
-    id: 'overview', 
-    name: 'Overview', 
-    path: '/component-library',
-    icon: 'Home'
+  {
+    id: 'overview',
+    name: 'Overview',
+    path: '/component-library'
   },
-  { 
-    id: 'component-tester', 
-    name: 'Component Sandbox', 
-    path: '/component-library/component-tester',
-    icon: 'Settings'
+  {
+    id: 'component-tester',
+    name: 'Component Sandbox',
+    path: '/component-library/component-tester'
   },
-  { 
-    id: 'icons', 
-    name: 'Icons', 
-    path: '/component-library/icons',
-    icon: 'Star'
+  {
+    id: 'icons',
+    name: 'Icons',
+    path: '/component-library/icons'
   },
-  { 
-    id: 'buttons', 
-    name: 'Buttons', 
-    path: '/component-library/buttons',
-    icon: 'Target'
+  {
+    id: 'buttons',
+    name: 'Buttons',
+    path: '/component-library/buttons'
   },
-  { 
-    id: 'badges', 
-    name: 'Badges', 
-    path: '/component-library/badges',
-    icon: 'Tag'
+  {
+    id: 'badges',
+    name: 'Badges',
+    path: '/component-library/badges'
   },
-  { 
-    id: 'breadcrumbs', 
-    name: 'Breadcrumbs', 
-    path: '/component-library/breadcrumbs',
-    icon: 'ArrowRight'
+  {
+    id: 'breadcrumbs',
+    name: 'Breadcrumbs',
+    path: '/component-library/breadcrumbs'
   },
-  { 
-    id: 'links', 
-    name: 'Links', 
-    path: '/component-library/links',
-    icon: 'Link'
+  {
+    id: 'links',
+    name: 'Links',
+    path: '/component-library/links'
   },
-  { 
-    id: 'link-buttons', 
-    name: 'Link Buttons', 
-    path: '/component-library/link-buttons',
-    icon: 'Link'
+  {
+    id: 'link-buttons',
+    name: 'Link Buttons',
+    path: '/component-library/link-buttons'
   },
-  { 
-    id: 'icon-buttons', 
-    name: 'Icon Buttons', 
-    path: '/component-library/icon-buttons',
-    icon: 'Star'
+  {
+    id: 'icon-buttons',
+    name: 'Icon Buttons',
+    path: '/component-library/icon-buttons'
   },
-  { 
-    id: 'checkboxes', 
-    name: 'Checkboxes', 
-    path: '/component-library/checkboxes',
-    icon: 'Check'
+  {
+    id: 'checkboxes',
+    name: 'Checkboxes',
+    path: '/component-library/checkboxes'
   },
-  { 
-    id: 'radio-buttons', 
-    name: 'Radio Buttons', 
-    path: '/component-library/radio-buttons',
-    icon: 'Circle'
+  {
+    id: 'radio-buttons',
+    name: 'Radio Buttons',
+    path: '/component-library/radio-buttons'
   },
-  { 
-    id: 'form-groups', 
-    name: 'Form Groups', 
-    path: '/component-library/form-groups',
-    icon: 'List'
+  {
+    id: 'form-groups',
+    name: 'Form Groups',
+    path: '/component-library/form-groups'
   },
-  { 
-    id: 'chips', 
-    name: 'Chips', 
-    path: '/component-library/chips',
-    icon: 'Tag'
+  {
+    id: 'chips',
+    name: 'Chips',
+    path: '/component-library/chips'
   },
-  { 
-    id: 'filter-chips', 
-    name: 'Filter Chips', 
-    path: '/component-library/filter-chips',
-    icon: 'Filter'
+  {
+    id: 'filter-chips',
+    name: 'Filter Chips',
+    path: '/component-library/filter-chips'
   },
-  { 
-    id: 'callouts', 
-    name: 'Callouts', 
-    path: '/component-library/callouts',
-    icon: 'Info'
+  {
+    id: 'callouts',
+    name: 'Callouts',
+    path: '/component-library/callouts'
   },
-  { 
-    id: 'cards', 
-    name: 'Cards', 
-    path: '/component-library/cards',
-    icon: 'Square'
+  {
+    id: 'cards',
+    name: 'Cards',
+    path: '/component-library/cards'
   },
-  { 
-    id: 'alerts', 
-    name: 'Alerts', 
-    path: '/component-library/alerts',
-    icon: 'AlertCircle'
+  {
+    id: 'alerts',
+    name: 'Alerts',
+    path: '/component-library/alerts'
   },
-  { 
-    id: 'content-messages', 
-    name: 'Content Messages', 
-    path: '/component-library/content-messages',
-    icon: 'MessageSquare'
+  {
+    id: 'content-messages',
+    name: 'Content Messages',
+    path: '/component-library/content-messages'
   },
-  { 
-    id: 'date-fields', 
-    name: 'Date Fields', 
-    path: '/component-library/date-fields',
-    icon: 'Calendar'
+  {
+    id: 'date-fields',
+    name: 'Date Fields',
+    path: '/component-library/date-fields'
   },
-  { 
-    id: 'date-pickers', 
-    name: 'Date Pickers', 
-    path: '/component-library/date-pickers',
-    icon: 'Calendar'
+  {
+    id: 'date-pickers',
+    name: 'Date Pickers',
+    path: '/component-library/date-pickers'
   },
-  { 
-    id: 'dividers', 
-    name: 'Dividers', 
-    path: '/component-library/dividers',
-    icon: 'Minus'
+  {
+    id: 'dividers',
+    name: 'Dividers',
+    path: '/component-library/dividers'
   },
-  { 
-    id: 'lists', 
-    name: 'Lists', 
-    path: '/component-library/lists',
-    icon: 'List'
+  {
+    id: 'lists',
+    name: 'Lists',
+    path: '/component-library/lists'
   },
-  { 
-    id: 'magic-box', 
-    name: 'Magic Box', 
-    path: '/component-library/magic-box',
-    icon: 'Sparkles'
+  {
+    id: 'magic-box',
+    name: 'Magic Box',
+    path: '/component-library/magic-box'
   },
-  { 
-    id: 'menu', 
-    name: 'Menu', 
-    path: '/component-library/menu',
-    icon: 'Menu'
+  {
+    id: 'menu',
+    name: 'Menu',
+    path: '/component-library/menu'
   },
-  { 
-    id: 'design-tokens', 
-    name: 'Design Tokens', 
-    path: '/component-library/design-tokens',
-    icon: 'Palette'
+  {
+    id: 'design-tokens',
+    name: 'Design Tokens',
+    path: '/component-library/design-tokens'
   },
 ];
 
@@ -197,16 +171,14 @@ export function ComponentLibraryLayout() {
           
           <SideNavigation aria-label="Component Library Navigation">
             {componentNavItems.map((item) => {
-              const IconComponent = Icons[item.icon as keyof typeof Icons] as React.ComponentType<{ size?: number }>;
               const isActive = location.pathname === item.path;
-              
+
               return (
                 <SideNavigationItem
                   key={item.id}
                   href={item.path}
                   isCurrent={isActive}
                   onClick={(e) => handleNavClick(e, item.path)}
-                  leading={IconComponent ? <IconComponent size={20} /> : undefined}
                 >
                   {item.name}
                 </SideNavigationItem>
