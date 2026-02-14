@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as Icons from '@/components/icons';
+import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 
 const componentSections = [
   { 
@@ -150,6 +151,16 @@ const componentSections = [
 ];
 
 export default function ComponentLibraryOverview() {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  // Filter components based on search query
+  const filteredSections = searchQuery.trim()
+    ? componentSections.filter(section =>
+        section.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        section.description.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : componentSections;
+
   return (
     <div style={{
       padding: '48px',
@@ -158,25 +169,88 @@ export default function ComponentLibraryOverview() {
     }}>
       {/* Header */}
       <div style={{ marginBottom: '48px' }}>
-        <h1 style={{
-          fontSize: '36px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-          marginBottom: '16px'
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+          marginBottom: '24px',
+          gap: '24px'
         }}>
-          Living Design 3.5
-        </h1>
-        <p style={{
-          fontSize: '18px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          maxWidth: '800px'
-        }}>
-          A comprehensive component library for the Walmart Connect Ad Center. 
-          Each component follows the Living Design 3.5 specification with proper accessibility, 
-          semantic tokens, and responsive behavior.
-        </p>
+          <div style={{ flex: 1 }}>
+            <h1 style={{
+              fontSize: '36px',
+              fontWeight: '700',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+              color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
+              marginBottom: '16px'
+            }}>
+              Living Design 3.5
+            </h1>
+            <p style={{
+              fontSize: '18px',
+              lineHeight: '1.6',
+              color: 'var(--ld-semantic-color-text-secondary, #74767C)',
+              maxWidth: '800px'
+            }}>
+              A comprehensive component library for the Walmart Connect Ad Center.
+              Each component follows the Living Design 3.5 specification with proper accessibility,
+              semantic tokens, and responsive behavior.
+            </p>
+          </div>
+
+          {/* Theme Switcher */}
+          <div style={{ minWidth: '280px' }}>
+            <ThemeSwitcher />
+          </div>
+        </div>
+
+        {/* Search Bar */}
+        <div style={{ position: 'relative', maxWidth: '600px' }}>
+          <div style={{
+            position: 'absolute',
+            left: '16px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            pointerEvents: 'none'
+          }}>
+            <Icons.Search style={{ width: 20, height: 20, color: 'var(--ld-semantic-color-text-secondary, #74767C)' }} />
+          </div>
+          <input
+            type="text"
+            placeholder="Search components..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '12px 16px 12px 48px',
+              fontSize: '16px',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+              border: '2px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+              borderRadius: '8px',
+              backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
+              color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
+              outline: 'none',
+              transition: 'border-color 0.2s'
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = 'var(--ld-semantic-color-action-fill-primary, #0071DC)';
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.borderColor = 'var(--ld-semantic-color-border-moderate, #E6E6E8)';
+            }}
+          />
+        </div>
+
+        {/* Search Results Count */}
+        {searchQuery.trim() && (
+          <div style={{
+            marginTop: '16px',
+            fontSize: '14px',
+            color: 'var(--ld-semantic-color-text-secondary, #74767C)'
+          }}>
+            Found {filteredSections.length} component{filteredSections.length !== 1 ? 's' : ''}
+          </div>
+        )}
       </div>
 
       {/* Component Grid */}
@@ -185,68 +259,81 @@ export default function ComponentLibraryOverview() {
         gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
         gap: '24px'
       }}>
-        {componentSections.map((section) => {
-          const IconComponent = Icons[section.icon as keyof typeof Icons] as React.ComponentType<{ size?: number }>;
-          
-          return (
-            <Link
-              key={section.path}
-              to={section.path}
-              style={{
-                textDecoration: 'none',
-                display: 'block',
-                padding: '24px',
-                backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-                border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
-                borderRadius: '8px',
-                transition: 'all 0.2s',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--ld-semantic-color-action-fill-primary, #0071DC)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--ld-semantic-color-border-moderate, #E6E6E8)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <div style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: '16px'
-              }}>
-                {IconComponent && (
-                  <div style={{
-                    padding: '12px',
-                    backgroundColor: 'var(--ld-semantic-color-fill-info-subtle, #E3F1FF)',
-                    borderRadius: '8px',
-                    flexShrink: 0
-                  }}>
-                    <IconComponent size={24} />
+        {filteredSections.length > 0 ? (
+          filteredSections.map((section) => {
+            const IconComponent = Icons[section.icon as keyof typeof Icons] as React.ComponentType<{ size?: number }>;
+
+            return (
+              <Link
+                key={section.path}
+                to={section.path}
+                style={{
+                  textDecoration: 'none',
+                  display: 'block',
+                  padding: '24px',
+                  backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
+                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  borderRadius: '8px',
+                  transition: 'all 0.2s',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--ld-semantic-color-action-fill-primary, #0071DC)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--ld-semantic-color-border-moderate, #E6E6E8)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '16px'
+                }}>
+                  {IconComponent && (
+                    <div style={{
+                      padding: '12px',
+                      backgroundColor: 'var(--ld-semantic-color-fill-info-subtle, #E3F1FF)',
+                      borderRadius: '8px',
+                      flexShrink: 0
+                    }}>
+                      <IconComponent size={24} />
+                    </div>
+                  )}
+                  <div>
+                    <h3 style={{
+                      fontSize: '18px',
+                      fontWeight: '600',
+                      color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
+                      marginBottom: '8px'
+                    }}>
+                      {section.title}
+                    </h3>
+                    <p style={{
+                      fontSize: '14px',
+                      lineHeight: '1.5',
+                      color: 'var(--ld-semantic-color-text-secondary, #74767C)'
+                    }}>
+                      {section.description}
+                    </p>
                   </div>
-                )}
-                <div>
-                  <h3 style={{
-                    fontSize: '18px',
-                    fontWeight: '600',
-                    color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-                    marginBottom: '8px'
-                  }}>
-                    {section.title}
-                  </h3>
-                  <p style={{
-                    fontSize: '14px',
-                    lineHeight: '1.5',
-                    color: 'var(--ld-semantic-color-text-secondary, #74767C)'
-                  }}>
-                    {section.description}
-                  </p>
                 </div>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })
+        ) : (
+          <div style={{
+            gridColumn: '1 / -1',
+            textAlign: 'center',
+            padding: '64px 32px',
+            color: 'var(--ld-semantic-color-text-secondary, #74767C)'
+          }}>
+            <Icons.Search style={{ width: 48, height: 48, margin: '0 auto 16px', opacity: 0.5 }} />
+            <p style={{ fontSize: '16px', marginBottom: '8px' }}>No components found</p>
+            <p style={{ fontSize: '14px' }}>Try a different search term</p>
+          </div>
+        )}
       </div>
     </div>
   );
