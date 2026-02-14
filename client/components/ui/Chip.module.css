@@ -3,12 +3,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: var(--ld-primitive-scale-space-100, 8px);
   font-family: var(--ld-semantic-font-family-sans);
   font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
   font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
   border-radius: var(--ld-primitive-scale-border-radius-50, 4px); /* Square with subtle rounding */
-  border: 1px solid var(--ld-semantic-color-input-border); /* 1px for unselected */
+  border: var(--ld-semantic-scale-border-width-interactive, 1px) solid var(--ld-semantic-color-input-border);
   background-color: var(--ld-semantic-color-input-fill);
   color: var(--ld-semantic-color-input-text-on-fill);
   cursor: pointer;
@@ -25,8 +25,8 @@
 
 /* Focus visible */
 .chip:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
-  outline-offset: 2px;
+  outline: var(--ld-semantic-scale-border-width-interactive-focused, 2px) solid var(--ld-semantic-color-action-focus-outline);
+  outline-offset: var(--ld-primitive-scale-space-50, 2px);
 }
 
 /* Hover - Unselected (light gray fill) */
@@ -55,7 +55,7 @@
   background-color: transparent; /* No fill when disabled */
   border-color: var(--ld-semantic-color-input-border-disabled);
   color: var(--ld-semantic-color-input-text-on-fill-disabled);
-  border-width: 1px; /* 1px border when disabled */
+  border-width: var(--ld-semantic-scale-border-width-interactive, 1px);
 }
 
 /* ==================== */
@@ -63,18 +63,18 @@
 /* ==================== */
 
 .chip--size-small {
-  padding: 0 16px; /* 16px horizontal padding */
-  font-size: 14px;
-  line-height: 20px;
-  height: 32px; /* Exact 32px height */
+  padding: 0 var(--ld-primitive-scale-space-200, 16px);
+  font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
+  line-height: var(--ld-semantic-font-body-small-line-height, 1.25rem);
+  height: 32px; /* Exact 32px height per spec */
   min-height: 32px;
 }
 
 .chip--size-medium {
-  padding: 0 16px; /* 16px horizontal padding */
-  font-size: 14px;
-  line-height: 20px;
-  height: 40px; /* Exact 40px height */
+  padding: 0 var(--ld-primitive-scale-space-200, 16px);
+  font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
+  line-height: var(--ld-semantic-font-body-small-line-height, 1.25rem);
+  height: 40px; /* Exact 40px height per spec */
   min-height: 40px;
 }
 
@@ -86,7 +86,7 @@
 .chip--selected {
   background-color: var(--ld-semantic-color-input-fill); /* White/no fill */
   border-color: var(--ld-semantic-color-input-border-activated);
-  border-width: 2px; /* 2px border when selected */
+  border-width: var(--ld-semantic-scale-border-width-interactive-activated, 2px);
   color: var(--ld-semantic-color-input-text-on-fill); /* Dark text, not white */
   font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
   font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
@@ -107,7 +107,7 @@
 .chip--selected:disabled {
   background-color: transparent; /* No fill when disabled */
   border-color: var(--ld-semantic-color-input-border-disabled);
-  border-width: 2px; /* Maintain 2px border even when disabled+selected */
+  border-width: var(--ld-semantic-scale-border-width-interactive-activated, 2px);
   color: var(--ld-semantic-color-input-text-on-fill-disabled);
 }
 
@@ -125,8 +125,8 @@
 
 .chip__iconLeading svg,
 .chip__iconTrailing svg {
-  width: 16px;
-  height: 16px;
+  width: var(--ld-semantic-scale-icon-small, 1rem);
+  height: var(--ld-semantic-scale-icon-small, 1rem);
 }
 
 /* Icon sizes remain 16px for both small and medium */
