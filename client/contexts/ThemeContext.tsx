@@ -22,7 +22,7 @@ const THEME_STORAGE_KEY = 'ld-theme';
 /**
  * Load theme CSS files dynamically using inheritance model
  * Base theme is loaded statically via global.css
- * This function only manages theme OVERRIDE files
+ * This function manages theme OVERRIDE files and inheritance chains
  */
 function loadThemeCSS(theme: Theme): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -31,78 +31,105 @@ function loadThemeCSS(theme: Theme): Promise<void> {
     console.log(`🗑️ Removing ${existingOverrides.length} existing override link(s)`);
     existingOverrides.forEach(link => link.remove());
 
-    // If selecting walmart (base + WCP), load WCP overrides
-    // Base is always loaded via global.css
-    if (theme.id === 'walmart') {
-      console.log('✅ Walmart theme selected - loading WCP overrides on top of base');
-      // Continue to load WCP semantic.css
+    console.log(`🎨 Loading theme: ${theme.name} (inherits: ${theme.inherits || 'none'})`);
+
+    // Determine which CSS files to load based on inheritance
+    const cssFilesToLoad: Array<{href: string, type: 'primitive' | 'semantic', source: string}> = [];
+
+    // If theme inherits WCP, load WCP semantic.css first
+    if (theme.inherits?.includes('wcp') || theme.id === 'walmart') {
+      cssFilesToLoad.push({
+        href: '/styles/themes/wcp/semantic.css',
+        type: 'semantic',
+        source: 'WCP (parent)'
+      });
     }
 
-    console.log(`📥 Loading override CSS for theme: ${theme.name}`);
-    console.log(`  - Primitive: ${theme.primitiveCSS}`);
-    console.log(`  - Semantic: ${theme.semanticCSS}`);
+    // If theme inherits Sam's Club, load Sam's Club semantic.css first
+    if (theme.inherits === 'sams-club') {
+      cssFilesToLoad.push({
+        href: '/styles/themes/sams-club/semantic.css',
+        type: 'semantic',
+        source: 'Sam\'s Club (parent)'
+      });
+    }
 
-    // Add cache-busting timestamp to ensure fresh CSS loads
+    // Then load the theme's own files (if not walmart, which just uses WCP)
+    if (theme.id !== 'walmart') {
+      if (theme.primitiveCSS !== '/styles/themes/base/primitive.css') {
+        cssFilesToLoad.push({
+          href: theme.primitiveCSS,
+          type: 'primitive',
+          source: theme.name
+        });
+      }
+      if (theme.semanticCSS !== '/styles/themes/wcp/semantic.css') {
+        cssFilesToLoad.push({
+          href: theme.semanticCSS,
+          type: 'semantic',
+          source: theme.name
+        });
+      }
+    }
+
+    // If no files to load, just resolve
+    if (cssFilesToLoad.length === 0) {
+      console.log('✅ No override files needed - using base theme only');
+      resolve();
+      return;
+    }
+
+    console.log(`📥 Loading ${cssFilesToLoad.length} CSS file(s):`);
+    cssFilesToLoad.forEach(file => console.log(`  - ${file.type}: ${file.href} (from ${file.source})`));
+
+    // Add cache-busting timestamp
     const cacheBust = `?v=${Date.now()}`;
 
-    // Load theme override files (these override base tokens)
-    const primitiveLink = document.createElement('link');
-    primitiveLink.rel = 'stylesheet';
-    primitiveLink.href = theme.primitiveCSS + cacheBust;
-    primitiveLink.setAttribute('data-theme-override', 'primitive');
-    primitiveLink.setAttribute('data-theme-id', theme.id);
+    // Create link elements for all files in inheritance chain
+    const linkElements = cssFilesToLoad.map((file, index) => {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = file.href + cacheBust;
+      link.setAttribute('data-theme-override', file.type);
+      link.setAttribute('data-theme-id', theme.id);
+      link.setAttribute('data-theme-source', file.source);
+      link.setAttribute('data-load-order', String(index));
+      return link;
+    });
 
-    const semanticLink = document.createElement('link');
-    semanticLink.rel = 'stylesheet';
-    semanticLink.href = theme.semanticCSS + cacheBust;
-    semanticLink.setAttribute('data-theme-override', 'semantic');
-    semanticLink.setAttribute('data-theme-id', theme.id);
-
-    console.log(`🔗 Creating link tags with cache-bust: ${cacheBust}`);
-
-    let primitiveLoaded = false;
-    let semanticLoaded = false;
+    // Track loading state
+    let loadedCount = 0;
     let hasError = false;
 
-    const checkBothLoaded = () => {
-      if (primitiveLoaded && semanticLoaded && !hasError) {
+    const checkAllLoaded = () => {
+      if (loadedCount === linkElements.length && !hasError) {
+        console.log(`✅ All ${linkElements.length} theme CSS files loaded successfully`);
         resolve();
       }
     };
 
-    const handleError = (error: Event) => {
+    const handleError = (error: Event, file: {href: string, source: string}) => {
       if (!hasError) {
         hasError = true;
-        const target = error.target as HTMLLinkElement;
-        console.error('❌ Failed to load theme override CSS:', {
-          href: target?.href,
-          error: error,
-        });
-        console.error('💡 Check Network tab for 404 errors');
-        reject(new Error(`Failed to load theme overrides: ${theme.name}`));
+        console.error('❌ Failed to load theme CSS:', file.href, 'from', file.source);
+        reject(new Error(`Failed to load theme: ${theme.name}`));
       }
     };
 
-    primitiveLink.onload = () => {
-      console.log('✅ Primitive override CSS loaded');
-      primitiveLoaded = true;
-      checkBothLoaded();
-    };
+    // Attach load handlers and append to head
+    linkElements.forEach((link, index) => {
+      const file = cssFilesToLoad[index];
 
-    primitiveLink.onerror = handleError;
+      link.onload = () => {
+        loadedCount++;
+        console.log(`✅ Loaded (${loadedCount}/${linkElements.length}): ${file.source} ${file.type}`);
+        checkAllLoaded();
+      };
 
-    semanticLink.onload = () => {
-      console.log('✅ Semantic override CSS loaded');
-      semanticLoaded = true;
-      checkBothLoaded();
-    };
+      link.onerror = (error) => handleError(error, file);
 
-    semanticLink.onerror = handleError;
-
-    // Append override links to head (after base from global.css)
-    console.log('📌 Appending override <link> tags to document head');
-    document.head.appendChild(primitiveLink);
-    document.head.appendChild(semanticLink);
+      document.head.appendChild(link);
+    });
   });
 }
 

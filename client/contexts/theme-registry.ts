@@ -15,6 +15,7 @@ export interface Theme {
   semanticCSS: string;
   previewColor?: string; // Visual indicator color for UI
   inherits?: string; // Parent theme for documentation
+  hidden?: boolean; // Hide from dropdown (platform/base themes)
 }
 
 export const AVAILABLE_THEMES: Theme[] = [
@@ -47,6 +48,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     semanticCSS: '/styles/themes/wcp/semantic.css',
     previewColor: '#ffc220',
     inherits: 'LD Base + Customer',
+    hidden: true, // Base platform theme
   },
 
   // ========== AX (Advertising Experience) ==========
@@ -58,6 +60,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     semanticCSS: '/styles/themes/ax/semantic.css',
     previewColor: '#0053e2',
     inherits: 'base',
+    hidden: true, // Platform theme
   },
   {
     id: 'ax-sams-club',
@@ -67,6 +70,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     semanticCSS: '/styles/themes/ax-sams-club/semantic.css',
     previewColor: '#0062ad',
     inherits: 'ax',
+    hidden: true, // Platform variant
   },
   {
     id: 'ax-walmart',
@@ -76,6 +80,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     semanticCSS: '/styles/themes/ax-walmart/semantic.css',
     previewColor: '#0053e2',
     inherits: 'ax',
+    hidden: true, // Platform variant
   },
 
   // ========== PX (Partner Experience) ==========
@@ -87,6 +92,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     semanticCSS: '/styles/themes/px/semantic.css',
     previewColor: '#0053e2',
     inherits: 'base',
+    hidden: true, // Platform theme
   },
   {
     id: 'data-ventures',
@@ -105,6 +111,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     semanticCSS: '/styles/themes/px-sams-club/semantic.css',
     previewColor: '#0062ad',
     inherits: 'px',
+    hidden: true, // Platform variant
   },
   {
     id: 'px-walmart',
@@ -114,6 +121,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     semanticCSS: '/styles/themes/px-walmart/semantic.css',
     previewColor: '#0053e2',
     inherits: 'px',
+    hidden: true, // Platform variant
   },
 
   // ========== STANDALONE THEMES ==========
@@ -124,7 +132,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     primitiveCSS: '/styles/themes/base/primitive.css',
     semanticCSS: '/styles/themes/sams-club/semantic.css',
     previewColor: '#0062ad',
-    inherits: 'base',
+    inherits: 'wcp',
   },
   {
     id: 'cashi-mx',
@@ -142,7 +150,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     primitiveCSS: '/styles/themes/base/primitive.css',
     semanticCSS: '/styles/themes/bodega/semantic.css',
     previewColor: '#2c981d',
-    inherits: 'base',
+    inherits: 'wcp',
   },
   {
     id: 'walmart-legacy',
@@ -151,7 +159,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     primitiveCSS: '/styles/themes/base/primitive.css',
     semanticCSS: '/styles/themes/walmart-legacy/semantic.css',
     previewColor: '#0071dc',
-    inherits: 'base',
+    inherits: 'wcp',
   },
   {
     id: 'walmart-plus',
@@ -160,7 +168,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     primitiveCSS: '/styles/themes/base/primitive.css',
     semanticCSS: '/styles/themes/walmart-plus/semantic.css',
     previewColor: '#fff200',
-    inherits: 'base',
+    inherits: 'wcp',
   },
   {
     id: 'sparky',
@@ -169,7 +177,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     primitiveCSS: '/styles/themes/base/primitive.css',
     semanticCSS: '/styles/themes/sparky/semantic.css',
     previewColor: '#001e60',
-    inherits: 'base',
+    inherits: 'wcp',
   },
   {
     id: 'members-mark',
@@ -178,7 +186,7 @@ export const AVAILABLE_THEMES: Theme[] = [
     primitiveCSS: '/styles/themes/base/primitive.css',
     semanticCSS: '/styles/themes/members-mark/semantic.css',
     previewColor: '#283645',
-    inherits: 'base',
+    inherits: 'sams-club',
   },
 ];
 

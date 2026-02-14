@@ -1,9 +1,10 @@
 /**
  * Member's Mark Theme
  * Generated from LivingDesign Airtable Sync + LD Base
- * 
- * INHERITANCE: Inherits LD Base directly
- * 
+ *
+ * INHERITANCE: LD Base → WCP → Sam's Club → Member's Mark
+ * Inherits Sam's Club brand + WCP commerce tokens
+ *
  * Member's Mark private label brand
  * Dark gray with beige top nav
  */
@@ -25,5 +26,5 @@
   
   --ld-semantic-color-surface-brand: #fcf6f0;
   
-  /* Inherits all other tokens from LD Base */
+  /* Inherits Sam's Club brand + WCP commerce tokens */
 }

@@ -32,6 +32,8 @@ export function ThemeSwitcher() {
     };
   }, [isOpen]);
 
+  // Filter out hidden themes (platforms: WCP, AX, PX and their variants)
+  const visibleThemes = availableThemes.filter(t => !t.hidden);
   const currentThemeData = availableThemes.find(t => t.id === currentTheme);
 
   return (
@@ -147,7 +149,7 @@ export function ThemeSwitcher() {
             animation: 'fadeIn 0.15s ease',
           }}
         >
-          {availableThemes.map((theme) => (
+          {visibleThemes.map((theme) => (
             <button
               key={theme.id}
               type="button"

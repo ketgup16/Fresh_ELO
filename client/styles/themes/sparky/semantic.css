@@ -1,9 +1,10 @@
 /**
  * Sparky Theme (Internal Tools)
  * Generated from LivingDesign Airtable Sync + LD Base
- * 
- * INHERITANCE: Inherits LD Base directly
- * 
+ *
+ * INHERITANCE: LD Base → WCP → Sparky
+ * Inherits WCP commerce tokens and Customer persona
+ *
  * Dark navy brand with cyan backgrounds
  * Used for internal tools and platforms
  */
@@ -23,5 +24,5 @@
   --ld-semantic-color-fill-subtle: var(--ld-primitive-color-cyan-10, #e7f6fe);
   --ld-semantic-color-background-inverse: var(--ld-primitive-color-blue-170, #080042);
   
-  /* Inherits all other tokens from LD Base */
+  /* Inherits WCP commerce tokens and all LD Base tokens */
 }

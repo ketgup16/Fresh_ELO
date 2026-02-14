@@ -1,9 +1,10 @@
 /**
  * Bodega Theme (Walmart Mexico)
  * Generated from LivingDesign Airtable Sync + LD Base
- * 
- * INHERITANCE: Inherits LD Base directly
- * 
+ *
+ * INHERITANCE: LD Base → WCP → Bodega
+ * Inherits WCP commerce tokens and Customer persona
+ *
  * Bodega brand color: #2c981d (green)
  * Market: Mexico
  */
@@ -21,5 +22,5 @@
   
   --ld-semantic-color-top-nav-fill: var(--ld-primitive-color-green-100, #2c981d);
   
-  /* Inherits all other tokens from LD Base */
+  /* Inherits WCP commerce tokens and all LD Base tokens */
 }
