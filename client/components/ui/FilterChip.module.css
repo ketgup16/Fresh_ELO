@@ -171,3 +171,19 @@
   display: inline-flex;
   align-items: center;
 }
+
+/* ==================== */
+/* All Filters Variant   */
+/* ==================== */
+
+/* All Filters variant always has Sliders icon */
+.filterChip--allFilters {
+  /* Inherits all base styles */
+}
+
+/* Icon-only state when label is hidden */
+.filterChip--allFilters:has(.filterChip__iconLeading):not(:has(.filterChip__label)) {
+  /* Adjust padding for icon-only state if needed */
+  padding-left: 10px;
+  padding-right: 10px;
+}

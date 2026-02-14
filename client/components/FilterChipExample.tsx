@@ -130,10 +130,41 @@ export function FilterChipExample() {
         </div>
       </ExampleSection>
 
+      {/* All Filters Variant */}
+      <ExampleSection
+        title="All Filters Variant"
+        description="Special variant with Sliders icon, optional label, and optional count. Perfect for 'All Filters' buttons."
+      >
+        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+          {/* Icon + Label + Count */}
+          <FilterChip isAllFilters selected count={2}>
+            All Filters
+          </FilterChip>
+
+          {/* Icon + Label (no count) */}
+          <FilterChip isAllFilters selected>
+            All Filters
+          </FilterChip>
+
+          {/* Icon + Count (no label) */}
+          <FilterChip isAllFilters selected showLabel={false} count={3} />
+
+          {/* Icon only (no label, no count) */}
+          <FilterChip isAllFilters selected showLabel={false} />
+
+          {/* Unselected states */}
+          <FilterChip isAllFilters count={2}>
+            All Filters
+          </FilterChip>
+
+          <FilterChip isAllFilters showLabel={false} count={5} />
+        </div>
+      </ExampleSection>
+
       {/* With Count (Figma Anatomy) */}
       <ExampleSection
         title="With Count"
-        description="Filter chips can display counts to show number of selected items or active filters (from Figma anatomy spec)."
+        description="Filter chips can display counts to show number of selected items or active filters."
       >
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
           {/* Multi variant with count */}
@@ -146,14 +177,9 @@ export function FilterChipExample() {
             Text label
           </FilterChip>
 
-          {/* All Filters variant with Sliders icon and count */}
+          {/* Standard variant with Sliders icon and count (not using isAllFilters) */}
           <FilterChip iconLeading={<Sliders />} selected>
-            All Filters (2)
-          </FilterChip>
-
-          {/* Unselected state */}
-          <FilterChip iconLeading={<Sliders />}>
-            All Filters
+            Filters (2)
           </FilterChip>
         </div>
       </ExampleSection>
@@ -222,6 +248,17 @@ export function FilterChipExample() {
 <FilterChip iconLeading={<FilterIcon />} selected>
   Filtered
 </FilterChip>
+
+// All Filters variant - Icon + Label + Count
+<FilterChip isAllFilters selected count={3}>
+  All Filters
+</FilterChip>
+
+// All Filters - Icon + Count only (no label)
+<FilterChip isAllFilters selected showLabel={false} count={5} />
+
+// All Filters - Icon only (no label or count)
+<FilterChip isAllFilters selected showLabel={false} />
 
 // Primary variant
 <FilterChip variant="primary" selected={active} onSelectedChange={setActive}>

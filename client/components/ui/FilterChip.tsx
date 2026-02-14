@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styles from './FilterChip.module.css';
+import { Sliders } from '@/components/icons';
 
 export type FilterChipSize = 'small' | 'medium' | 'large';
 export type FilterChipVariant = 'default' | 'primary';
@@ -36,6 +37,7 @@ export interface FilterChipProps
 
   /**
    * Optional leading icon/content (rendered before the label).
+   * Note: If `isAllFilters` is true, this will be ignored and Sliders icon will be used.
    */
   iconLeading?: React.ReactNode;
 
@@ -49,6 +51,27 @@ export interface FilterChipProps
    * @default false
    */
   disabled?: boolean;
+
+  /**
+   * Enable "All Filters" variant with Sliders icon.
+   * When true, always shows Sliders icon and allows optional label/count.
+   * @default false
+   */
+  isAllFilters?: boolean;
+
+  /**
+   * Show text label in All Filters variant.
+   * Only applies when `isAllFilters` is true.
+   * @default true
+   */
+  showLabel?: boolean;
+
+  /**
+   * Active filter count to display in All Filters variant.
+   * When provided, shows count in parentheses. Only applies when `isAllFilters` is true.
+   * @example "All Filters (2)"
+   */
+  count?: number;
 
   /**
    * Escape hatch for additional CSS classes.
@@ -74,10 +97,31 @@ export interface FilterChipProps
  * - All states include `-hovered`, `-focused`, `-pressed`, and `-disabled` variants
  *
  * @example
+ * Basic filter chip
  * ```tsx
  * <FilterChip selected={isActive} onSelectedChange={setIsActive}>
  *   Open
  * </FilterChip>
+ * ```
+ *
+ * @example
+ * All Filters variant with label and count
+ * ```tsx
+ * <FilterChip isAllFilters selected count={3}>
+ *   All Filters
+ * </FilterChip>
+ * ```
+ *
+ * @example
+ * All Filters variant - icon only
+ * ```tsx
+ * <FilterChip isAllFilters selected showLabel={false} />
+ * ```
+ *
+ * @example
+ * All Filters variant - icon + count (no label)
+ * ```tsx
+ * <FilterChip isAllFilters selected showLabel={false} count={5} />
  * ```
  */
 export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
@@ -92,6 +136,9 @@ export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
       disabled = false,
       children,
       onClick,
+      isAllFilters = false,
+      showLabel = true,
+      count,
       UNSAFE_className,
       UNSAFE_style,
       ...restProps
@@ -110,11 +157,41 @@ export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
       styles[`filterChip--size-${size}`],
       styles[`filterChip--variant-${variant}`],
       selected && styles['filterChip--selected'],
+      isAllFilters && styles['filterChip--allFilters'],
       UNSAFE_className,
     ]
       .filter(Boolean)
       .join(' ');
 
+    // All Filters variant: always show Sliders icon, optional label and count
+    if (isAllFilters) {
+      const labelText = showLabel ? (children || 'All Filters') : null;
+      const countText = typeof count === 'number' && count > 0 ? ` (${count})` : '';
+
+      return (
+        <button
+          ref={ref}
+          type="button"
+          className={className}
+          style={UNSAFE_style}
+          disabled={disabled}
+          aria-pressed={selected}
+          onClick={handleClick}
+          {...restProps}
+        >
+          <span className={styles.filterChip__iconLeading}>
+            <Sliders />
+          </span>
+          {(labelText || countText) && (
+            <span className={styles.filterChip__label}>
+              {labelText}{countText}
+            </span>
+          )}
+        </button>
+      );
+    }
+
+    // Standard variant
     return (
       <button
         ref={ref}
