@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from './FilterChip.module.css';
-import { Sliders } from '@/components/icons';
+import { Sliders, ChevronDown, ChevronUp } from '@/components/icons';
 
 export interface FilterChipProps
   extends Omit<
@@ -26,6 +26,7 @@ export interface FilterChipProps
 
   /**
    * Optional trailing icon/content (rendered after the label).
+   * Note: If `isMultiSelect` is true, this will be ignored and chevron icons will be used.
    */
   iconTrailing?: React.ReactNode;
 
@@ -34,6 +35,21 @@ export interface FilterChipProps
    * @default false
    */
   disabled?: boolean;
+
+  /**
+   * Enable Multi-Select variant with chevron icons.
+   * When true, shows ChevronDown when closed and ChevronUp when open.
+   * @default false
+   */
+  isMultiSelect?: boolean;
+
+  /**
+   * Controls the open/closed state for Multi-Select variant.
+   * When true, shows ChevronUp. When false, shows ChevronDown.
+   * Only applies when `isMultiSelect` is true.
+   * @default false
+   */
+  isOpen?: boolean;
 
   /**
    * Enable "All Filters" variant with Sliders icon.
@@ -75,7 +91,10 @@ export interface FilterChipProps
  * They use the FILTER semantic token family and have fully rounded corners (pill shape).
  *
  * **Single Size:** Fixed at 32px height (no size variants)
- * **Single Variant:** Toggle (same styling for all filter chips)
+ * **Variants:**
+ * - Toggle: Simple on/off filter
+ * - Multi-Select: Opens dropdown menu (shows ChevronDown when closed, ChevronUp when open)
+ * - All Filters: Special variant with Sliders icon
  *
  * **Tokens Used:**
  * - Unselected: `filter-fill` (white), `filter-border` (gray-160, 1px), `filter-text-on-fill` (gray-160)
@@ -87,6 +106,20 @@ export interface FilterChipProps
  * ```tsx
  * <FilterChip selected={isActive} onSelectedChange={setIsActive}>
  *   Open
+ * </FilterChip>
+ * ```
+ *
+ * @example
+ * Multi-Select variant (dropdown trigger)
+ * ```tsx
+ * <FilterChip
+ *   isMultiSelect
+ *   isOpen={menuOpen}
+ *   selected={hasFilters}
+ *   iconLeading={<FilterIcon />}
+ *   count={2}
+ * >
+ *   Text label
  * </FilterChip>
  * ```
  *
@@ -121,6 +154,8 @@ export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
       children,
       onClick,
       isAllFilters = false,
+      isMultiSelect = false,
+      isOpen = false,
       showLabel = true,
       count,
       UNSAFE_className,
@@ -140,6 +175,7 @@ export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
       styles.filterChip,
       selected && styles['filterChip--selected'],
       isAllFilters && styles['filterChip--allFilters'],
+      isMultiSelect && styles['filterChip--multiSelect'],
       UNSAFE_className,
     ]
       .filter(Boolean)
@@ -173,7 +209,37 @@ export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
       );
     }
 
-    // Standard variant
+    // Multi-Select variant: show chevron down when closed, chevron up when open
+    if (isMultiSelect) {
+      const ChevronIcon = isOpen ? ChevronUp : ChevronDown;
+      const countText = typeof count === 'number' && count > 0 ? ` (${count})` : '';
+
+      return (
+        <button
+          ref={ref}
+          type="button"
+          className={className}
+          style={UNSAFE_style}
+          disabled={disabled}
+          aria-pressed={selected}
+          aria-expanded={isOpen}
+          onClick={handleClick}
+          {...restProps}
+        >
+          {iconLeading && (
+            <span className={styles.filterChip__iconLeading}>{iconLeading}</span>
+          )}
+          <span className={styles.filterChip__label}>
+            {children}{countText}
+          </span>
+          <span className={styles.filterChip__iconTrailing}>
+            <ChevronIcon />
+          </span>
+        </button>
+      );
+    }
+
+    // Standard Toggle variant
     return (
       <button
         ref={ref}

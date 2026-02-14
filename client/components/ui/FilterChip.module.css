@@ -127,6 +127,15 @@
 }
 
 /* ==================== */
+/* Multi-Select Variant  */
+/* ==================== */
+
+/* Multi-Select variant always has chevron trailing icon */
+.filterChip--multiSelect {
+  /* Inherits all base styles */
+}
+
+/* ==================== */
 /* All Filters Variant   */
 /* ==================== */
 

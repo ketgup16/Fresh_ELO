@@ -26,12 +26,16 @@ export function FilterChipExample() {
     }
   };
 
+  // Multi-select dropdown state
+  const [multiSelectOpen, setMultiSelectOpen] = React.useState(false);
+  const [multiSelectSelected, setMultiSelectSelected] = React.useState(false);
+
   return (
     <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '48px' }}>
       {/* Basic States */}
       <ExampleSection
         title="Filter Chip States (Toggle)"
-        description="Filter chips are pill-shaped toggles (32px height) designed specifically for filtering interfaces. Single variant: Toggle."
+        description="Filter chips are pill-shaped toggles (32px height) designed specifically for filtering interfaces."
       >
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
           <StateDemo label="Unselected">
@@ -46,6 +50,64 @@ export function FilterChipExample() {
           <StateDemo label="Selected + Disabled">
             <FilterChip selected disabled>Filter</FilterChip>
           </StateDemo>
+        </div>
+      </ExampleSection>
+
+      {/* Multi-Select Variant */}
+      <ExampleSection
+        title="Multi-Select Variant"
+        description="Filter chips that open dropdown menus. Shows ChevronDown when closed, ChevronUp when open."
+      >
+        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+          {/* Closed state - unselected */}
+          <StateDemo label="Closed">
+            <FilterChip isMultiSelect isOpen={false} iconLeading={<Filter />} count={2}>
+              Text label
+            </FilterChip>
+          </StateDemo>
+
+          {/* Open state - unselected */}
+          <StateDemo label="Open">
+            <FilterChip isMultiSelect isOpen={true} iconLeading={<Filter />} count={2}>
+              Text label
+            </FilterChip>
+          </StateDemo>
+
+          {/* Closed state - selected */}
+          <StateDemo label="Closed + Selected">
+            <FilterChip isMultiSelect isOpen={false} selected iconLeading={<Filter />} count={2}>
+              Text label
+            </FilterChip>
+          </StateDemo>
+
+          {/* Open state - selected */}
+          <StateDemo label="Open + Selected">
+            <FilterChip isMultiSelect isOpen={true} selected iconLeading={<Filter />} count={2}>
+              Text label
+            </FilterChip>
+          </StateDemo>
+
+          {/* Interactive example */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+            <FilterChip
+              isMultiSelect
+              isOpen={multiSelectOpen}
+              selected={multiSelectSelected}
+              onClick={() => setMultiSelectOpen(!multiSelectOpen)}
+              onSelectedChange={setMultiSelectSelected}
+              iconLeading={<Filter />}
+              count={3}
+            >
+              Interactive
+            </FilterChip>
+            <span style={{
+              fontSize: '12px',
+              color: 'var(--ld-semantic-color-text-subtle)',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}>
+              Click to toggle
+            </span>
+          </div>
         </div>
       </ExampleSection>
 
@@ -187,6 +249,19 @@ export function FilterChipExample() {
 // With icon
 <FilterChip iconLeading={<FilterIcon />} selected>
   Filtered
+</FilterChip>
+
+// Multi-Select variant (dropdown trigger)
+// Shows ChevronDown when closed, ChevronUp when open
+<FilterChip
+  isMultiSelect
+  isOpen={menuOpen}
+  selected={hasFilters}
+  iconLeading={<FilterIcon />}
+  count={2}
+  onClick={() => setMenuOpen(!menuOpen)}
+>
+  Text label
 </FilterChip>
 
 // All Filters variant - Icon + Label + Count
