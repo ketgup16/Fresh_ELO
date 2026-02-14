@@ -95,10 +95,10 @@
   --ld-primitive-color-green-180: #081b01;
 
   /* Magic gradient colors */
-  --ld-primitive-color-magic-1: #0053E2;
-  --ld-primitive-color-magic-2: #3D90EC;
-  --ld-primitive-color-magic-3: #79CDF6;
-  --ld-primitive-color-magic-4: #E9F1FE;
+  --ld-primitive-color-magic-1: #0053e2;
+  --ld-primitive-color-magic-2: #a4fb6c;
+  --ld-primitive-color-magic-3: #79cdf6;
+  --ld-primitive-color-magic-4: #e9f1fe;
 
   /* Orange color scale */
   --ld-primitive-color-orange-5: #fff7f2;
