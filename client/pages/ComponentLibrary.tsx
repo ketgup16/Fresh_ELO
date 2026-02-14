@@ -12,6 +12,7 @@ import { ChipExample } from '@/components/examples/ChipExample';
 import { FilterChipExample } from '@/components/examples/FilterChipExample';
 import { ContentMessageExample } from '@/components/examples/ContentMessageExample';
 import { DateFieldExample } from '@/components/examples/DateFieldExample';
+import { DatePickerExample } from '@/components/examples/DatePickerExample';
 import { DividerExample } from '@/components/examples/DividerExample';
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
@@ -22,6 +23,7 @@ import { Tag } from '@/components/ui/tag';
 import { Chip } from '@/components/ui/Chip';
 import { FilterChip } from '@/components/ui/FilterChip';
 import { OLQTag } from '@/components/ui/olq-tag';
+import { DatePicker } from '@/components/ui/DatePicker';
 import * as Icons from '@/components/icons';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 
@@ -58,7 +60,8 @@ export default function ComponentLibrary() {
     { id: 'cards', name: 'Cards', keywords: ['card', 'container', 'panel'] },
     { id: 'alerts', name: 'Alerts', keywords: ['alert', 'notification', 'info', 'success', 'warning', 'error', 'message', 'banner'] },
     { id: 'content-messages', name: 'Content Messages', keywords: ['content message', 'error', 'success', 'permission', 'critical', 'blocking', 'state', 'info', 'warning'] },
-    { id: 'date-fields', name: 'Date Fields', keywords: ['date', 'input', 'calendar', 'field', 'form', 'datepicker'] },
+    { id: 'date-fields', name: 'Date Fields', keywords: ['date', 'input', 'calendar', 'field', 'form'] },
+    { id: 'date-pickers', name: 'Date Pickers', keywords: ['date picker', 'calendar', 'popup', 'date selection', 'datepicker'] },
     { id: 'dividers', name: 'Dividers', keywords: ['divider', 'separator', 'line', 'horizontal', 'vertical', 'rule', 'hr'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
   ];
@@ -556,6 +559,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
         </ComponentShowcase>
       </Section>
 
+      {/* Date Pickers Section */}
+      <Section id="date-pickers" title="Date Pickers" description="Combined text input and calendar popup for date selection. Supports both manual entry and calendar selection.">
+        <ComponentShowcase>
+          <DatePickerExample />
+        </ComponentShowcase>
+      </Section>
+
       {/* Dividers Section */}
       <Section id="dividers" title="Dividers" description="Visual separators using the LD 3.5 separator token. Horizontal, vertical, and titled variants.">
         <ComponentShowcase>
@@ -979,7 +989,7 @@ function SearchableComponentSelect({ selectedComponent, onComponentChange, avail
 
 // Interactive Component Tester - Supports multiple component types
 function InteractiveComponentTester() {
-  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip';
+  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip' | 'DatePicker';
 
   const [selectedComponent, setSelectedComponent] = React.useState<ComponentType>('Button');
   const [variant, setVariant] = React.useState<string>('primary');
@@ -994,6 +1004,10 @@ function InteractiveComponentTester() {
   const [clickable, setClickable] = React.useState(false);
   const [olqPercentage, setOlqPercentage] = React.useState(85);
   const [chipSelected, setChipSelected] = React.useState(false);
+
+  // DatePicker state
+  const [datePickerDate, setDatePickerDate] = React.useState<Date>();
+  const [datePickerIsOpen, setDatePickerIsOpen] = React.useState(false);
 
   const SearchIcon = (Icons as any).Search;
   const ArrowRightIcon = (Icons as any).ChevronRight;
@@ -1102,6 +1116,18 @@ function InteractiveComponentTester() {
       sizes: [],
       supportsFullWidth: false,
       supportsIcons: true,
+      supportsValue: false,
+      supportsShape: false,
+      supportsUnderline: false,
+      supportsDismissible: false,
+      supportsClickable: false,
+      supportsOLQPercentage: false,
+    },
+    DatePicker: {
+      variants: [],
+      sizes: ['small', 'large'],
+      supportsFullWidth: false,
+      supportsIcons: false,
       supportsValue: false,
       supportsShape: false,
       supportsUnderline: false,
@@ -1314,6 +1340,23 @@ function InteractiveComponentTester() {
           </FilterChip>
         );
       }
+
+      case 'DatePicker':
+        return (
+          <div style={{ maxWidth: '320px', width: '100%' }}>
+            <DatePicker
+              label="Choose date (mm/dd/yyyy)"
+              value={datePickerDate}
+              isOpen={datePickerIsOpen}
+              onOpen={() => setDatePickerIsOpen(true)}
+              onClose={() => setDatePickerIsOpen(false)}
+              onSelect={(date) => setDatePickerDate(date)}
+              disabled={disabled}
+              size={size as 'small' | 'large'}
+              helperText="Select a date from the calendar or type manually"
+            />
+          </div>
+        );
 
       default:
         return null;
