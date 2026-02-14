@@ -21,6 +21,34 @@ import SellerCenter from "./pages/SellerCenter";
 import StoreAds from "./pages/StoreAds";
 import ComponentLibrary from "./pages/ComponentLibrary";
 import NotFound from "./pages/NotFound";
+import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
+
+// Component library pages
+import ComponentLibraryOverview from "./pages/component-library/Overview";
+import ComponentTester from "./pages/component-library/ComponentTester";
+import IconsPage from "./pages/component-library/Icons";
+import ButtonsPage from "./pages/component-library/Buttons";
+import BadgesPage from "./pages/component-library/Badges";
+import BreadcrumbsPage from "./pages/component-library/Breadcrumbs";
+import LinksPage from "./pages/component-library/Links";
+import LinkButtonsPage from "./pages/component-library/LinkButtons";
+import IconButtonsPage from "./pages/component-library/IconButtons";
+import CheckboxesPage from "./pages/component-library/Checkboxes";
+import RadioButtonsPage from "./pages/component-library/RadioButtons";
+import FormGroupsPage from "./pages/component-library/FormGroups";
+import ChipsPage from "./pages/component-library/Chips";
+import FilterChipsPage from "./pages/component-library/FilterChips";
+import CalloutsPage from "./pages/component-library/Callouts";
+import CardsPage from "./pages/component-library/Cards";
+import AlertsPage from "./pages/component-library/Alerts";
+import ContentMessagesPage from "./pages/component-library/ContentMessages";
+import DateFieldsPage from "./pages/component-library/DateFields";
+import DatePickersPage from "./pages/component-library/DatePickers";
+import DividersPage from "./pages/component-library/Dividers";
+import ListsPage from "./pages/component-library/Lists";
+import MagicBoxPage from "./pages/component-library/MagicBox";
+import MenuPage from "./pages/component-library/Menu";
+import DesignTokensPage from "./pages/component-library/DesignTokens";
 
 const queryClient = new QueryClient();
 
@@ -34,7 +62,35 @@ const App = () => (
         <MartyProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/component-library" element={<ComponentLibrary />} />
+              {/* Component Library with nested routes */}
+              <Route path="/component-library" element={<ComponentLibraryLayout />}>
+                <Route index element={<ComponentLibraryOverview />} />
+                <Route path="component-tester" element={<ComponentTester />} />
+                <Route path="icons" element={<IconsPage />} />
+                <Route path="buttons" element={<ButtonsPage />} />
+                <Route path="badges" element={<BadgesPage />} />
+                <Route path="breadcrumbs" element={<BreadcrumbsPage />} />
+                <Route path="links" element={<LinksPage />} />
+                <Route path="link-buttons" element={<LinkButtonsPage />} />
+                <Route path="icon-buttons" element={<IconButtonsPage />} />
+                <Route path="checkboxes" element={<CheckboxesPage />} />
+                <Route path="radio-buttons" element={<RadioButtonsPage />} />
+                <Route path="form-groups" element={<FormGroupsPage />} />
+                <Route path="chips" element={<ChipsPage />} />
+                <Route path="filter-chips" element={<FilterChipsPage />} />
+                <Route path="callouts" element={<CalloutsPage />} />
+                <Route path="cards" element={<CardsPage />} />
+                <Route path="alerts" element={<AlertsPage />} />
+                <Route path="content-messages" element={<ContentMessagesPage />} />
+                <Route path="date-fields" element={<DateFieldsPage />} />
+                <Route path="date-pickers" element={<DatePickersPage />} />
+                <Route path="dividers" element={<DividersPage />} />
+                <Route path="lists" element={<ListsPage />} />
+                <Route path="magic-box" element={<MagicBoxPage />} />
+                <Route path="menu" element={<MenuPage />} />
+                <Route path="design-tokens" element={<DesignTokensPage />} />
+              </Route>
+
               <Route path="/" element={<Index />} />
               <Route path="/sponsored-search" element={<SponsoredSearch />} />
               <Route path="/campaign" element={<Campaign />} />
