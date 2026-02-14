@@ -1110,11 +1110,12 @@ function InteractiveComponentTester() {
 </IconButton>`;
 
       case 'Link':
+        const linkText = variant === 'subtle' ? 'Subtle Link' : variant === 'white' ? 'White Link' : 'Example Link';
         return `<Link
   href="/example"
   variant="${variant}"${!underline ? '\n  underline={false}' : ''}
 >
-  ${variant === 'subtle' ? 'Subtle Link' : 'Example Link'}
+  ${linkText}
 </Link>`;
 
       case 'Tag':
@@ -1188,15 +1189,30 @@ function InteractiveComponentTester() {
         );
 
       case 'Link':
-        return (
+        const linkContent = (
           <Link
             href="/example"
             variant={variant as any}
             underline={underline}
           >
-            {variant === 'subtle' ? 'Subtle Link' : 'Example Link'}
+            {variant === 'subtle' ? 'Subtle Link' : variant === 'white' ? 'White Link' : 'Example Link'}
           </Link>
         );
+
+        // Show white variant on dark background
+        if (variant === 'white') {
+          return (
+            <div style={{
+              padding: 'var(--ld-primitive-scale-space-300)',
+              backgroundColor: 'var(--ld-semantic-color-surface-inverse)',
+              borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+            }}>
+              {linkContent}
+            </div>
+          );
+        }
+
+        return linkContent;
 
       case 'Tag':
         const StarIcon = (Icons as any).Star;
