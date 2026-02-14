@@ -28,6 +28,19 @@ import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 export default function ComponentLibrary() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [quickNavExpanded, setQuickNavExpanded] = React.useState(true);
+  const [showScrollTop, setShowScrollTop] = React.useState(false);
+
+  // Scroll listener for scroll-to-top button
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial state
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Define all searchable sections
   const allSections = [
@@ -601,22 +614,22 @@ import { Search, Settings, Cart, User } from '@/components/icons';
         textAlign: 'center',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <p style={{ 
-          fontSize: '14px', 
+        <p style={{
+          fontSize: '14px',
           color: 'var(--ld-semantic-color-text-subtle)',
           marginBottom: '8px'
         }}>
           Living Design 3.5 Component Library - {Object.values(iconCategories).flat().length} Icons Available
         </p>
-        <p style={{ 
-          fontSize: '12px', 
+        <p style={{
+          fontSize: '12px',
           color: 'var(--ld-semantic-color-text-subtlest)'
         }}>
           For more information, visit the{' '}
-          <a 
-            href="/guidelines" 
-            style={{ 
-              color: 'var(--ld-semantic-color-text-brand)', 
+          <a
+            href="/guidelines"
+            style={{
+              color: 'var(--ld-semantic-color-text-brand)',
               textDecoration: 'none',
               fontWeight: 500
             }}
@@ -625,6 +638,30 @@ import { Search, Settings, Cart, User } from '@/components/icons';
           </a>
         </p>
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <div
+          style={{
+            position: 'fixed',
+            bottom: '32px',
+            right: '32px',
+            zIndex: 30,
+            transition: `opacity var(--ld-primitive-duration-200) ease, transform var(--ld-primitive-duration-200) ease`,
+            opacity: showScrollTop ? 1 : 0,
+            transform: showScrollTop ? 'translateY(0)' : 'translateY(8px)',
+          }}
+        >
+          <IconButton
+            aria-label="Scroll to top"
+            variant="primary"
+            size="medium"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
+            {React.createElement((Icons as any).ChevronUp)}
+          </IconButton>
+        </div>
+      )}
     </div>
   );
 }
