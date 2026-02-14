@@ -15,21 +15,32 @@
   border-radius: var(--ld-primitive-scale-borderradius-100, 16px);
 }
 
-/* Base blur layer styles */
+/* Base blur layer styles - using background gradient that respects border-radius */
 .magic-box__blur {
   position: absolute;
   inset: 0;
   border-radius: var(--ld-primitive-scale-borderradius-100, 16px);
-  border-width: 2px;
-  border-style: solid;
   
-  /* Use semantic magic tokens that respond to theme */
-  border-image: linear-gradient(
+  /* Create gradient border using background and padding trick */
+  background: linear-gradient(
     135deg,
     var(--ld-semantic-color-border-magic-start, #0053E2) 0%,
     var(--ld-semantic-color-border-magic-middle, #3D90EC) 50%,
     var(--ld-semantic-color-border-magic-stop, #79CDF6) 100%
-  ) 1;
+  );
+  
+  /* Mask technique: create transparent interior to show only border */
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  
+  /* 2px border width */
+  padding: 2px;
 }
 
 /* Individual blur layer variations */
