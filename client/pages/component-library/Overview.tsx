@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as Icons from '@/components/icons';
 
+const FallbackIcon = Icons.Box || Icons.Circle;
+
 const componentSections = [
   {
     title: 'Alerts',
     description: 'Banner messages for info, success, warning, and error states',
     path: '/component-library/alerts',
-    icon: 'AlertCircle'
+    icon: 'ExclamationCircle'
   },
   {
     title: 'Badges',
@@ -25,19 +27,19 @@ const componentSections = [
     title: 'Buttons',
     description: 'Primary, secondary, tertiary, and destructive button variants with full accessibility',
     path: '/component-library/buttons',
-    icon: 'Target'
+    icon: 'Circle'
   },
   {
     title: 'Callouts',
     description: 'Contextual tooltips with directional arrows for onboarding',
     path: '/component-library/callouts',
-    icon: 'Info'
+    icon: 'InfoCircle'
   },
   {
     title: 'Cards',
     description: 'Card containers with headers, actions, and content areas',
     path: '/component-library/cards',
-    icon: 'Square'
+    icon: 'Box'
   },
   {
     title: 'Checkboxes',
@@ -61,7 +63,7 @@ const componentSections = [
     title: 'Content Messages',
     description: 'Full-page state messages for errors, permissions, and loading',
     path: '/component-library/content-messages',
-    icon: 'MessageSquare'
+    icon: 'Chat'
   },
   {
     title: 'Date Fields',
@@ -127,7 +129,7 @@ const componentSections = [
     title: 'Magic Box',
     description: 'AI-powered loading animation with sparkle effects',
     path: '/component-library/magic-box',
-    icon: 'Sparkles'
+    icon: 'Star'
   },
   {
     title: 'Menu',
@@ -157,13 +159,13 @@ const componentSections = [
     title: 'Panels',
     description: 'Slide-out panels for supplemental content and forms with three size variants',
     path: '/component-library/panels',
-    icon: 'Sidebar'
+    icon: 'PanelLeft'
   },
   {
     title: 'Progress Tracker',
     description: 'Step-by-step progress visualization for multi-step processes and workflows',
     path: '/component-library/progress-tracker',
-    icon: 'TrendingUp'
+    icon: 'ArrowRight'
   },
   {
     title: 'Radio Buttons',
@@ -181,19 +183,19 @@ const componentSections = [
     title: 'Spinners',
     description: 'Loading indicators for indeterminate processes with color and size variants',
     path: '/component-library/spinners',
-    icon: 'Loader'
+    icon: 'Refresh'
   },
   {
     title: 'Spot Icons',
     description: 'Decorative icon containers with brand and neutral color variants',
     path: '/component-library/spot-icons',
-    icon: 'Circle'
+    icon: 'Star'
   },
   {
     title: 'Switches',
     description: 'Toggle controls for binary on/off settings with immediate state changes',
     path: '/component-library/switches',
-    icon: 'ToggleLeft'
+    icon: 'Circle'
   },
   {
     title: 'Tab Navigation',
@@ -205,7 +207,7 @@ const componentSections = [
     title: 'Text Area',
     description: 'Multi-line text input with character counting and AI-generated content indicators',
     path: '/component-library/textarea',
-    icon: 'FileText'
+    icon: 'Note'
   },
   {
     title: 'Text Fields',
@@ -330,12 +332,12 @@ export default function ComponentLibraryOverview() {
                   cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--ld-semantic-color-action-fill-primary, #0071DC)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+                  e.currentTarget.style.boxShadow = 'var(--ld-semantic-elevation-200)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--ld-semantic-color-border-moderate, #E6E6E8)';
-                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.boxShadow = 'var(--ld-semantic-elevation-100)';
+                  e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
                 <div style={{
@@ -343,17 +345,36 @@ export default function ComponentLibraryOverview() {
                   alignItems: 'flex-start',
                   gap: '16px'
                 }}>
-                  {IconComponent && (
-                    <div style={{
-                      padding: '12px',
-                      backgroundColor: 'var(--ld-semantic-color-fill-info-subtle, #E3F1FF)',
-                      borderRadius: '8px',
-                      flexShrink: 0
-                    }}>
-                      <IconComponent size={24} />
-                    </div>
-                  )}
-                  <div>
+                  {/* Icon Box - Always present with consistent blue background */}
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: 'var(--ld-semantic-color-action-fill-primary, #0071DC)',
+                    borderRadius: '8px',
+                    flexShrink: 0
+                  }}>
+                    {IconComponent ? (
+                      <IconComponent
+                        style={{
+                          width: 24,
+                          height: 24,
+                          color: 'var(--ld-semantic-color-action-text-on-fill-primary, #ffffff)'
+                        }}
+                      />
+                    ) : (
+                      <FallbackIcon
+                        style={{
+                          width: 24,
+                          height: 24,
+                          color: 'var(--ld-semantic-color-action-text-on-fill-primary, #ffffff)'
+                        }}
+                      />
+                    )}
+                  </div>
+                  <div style={{ flex: 1 }}>
                     <h3 style={{
                       fontSize: '18px',
                       fontWeight: '600',
@@ -365,7 +386,8 @@ export default function ComponentLibraryOverview() {
                     <p style={{
                       fontSize: '14px',
                       lineHeight: '1.5',
-                      color: 'var(--ld-semantic-color-text-secondary, #74767C)'
+                      color: 'var(--ld-semantic-color-text-secondary, #74767C)',
+                      margin: 0
                     }}>
                       {section.description}
                     </p>
