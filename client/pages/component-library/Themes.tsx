@@ -65,60 +65,87 @@ export default function ThemesPage() {
   const [otherExpanded, setOtherExpanded] = React.useState(false);
   const [showBackToTop, setShowBackToTop] = React.useState(false);
 
-  React.useEffect(() => {
-    // Extract tokens on mount and when theme changes
+  // Function to extract and update all tokens
+  const updateAllTokens = React.useCallback(() => {
+    // Extract color tokens
     const colors = extractTokens('--ld-semantic-color');
     const wcpColors = extractTokens('--wcp-semantic-color');
     const allColors = [...colors, ...wcpColors];
-    
+
+    // Extract space tokens
     const spaces = extractTokens('--ld-semantic-spacing');
     const primitiveSpaces = extractTokens('--ld-primitive-scale-space');
     const allSpaces = [...spaces, ...primitiveSpaces];
-    
-    // Extract text/typography tokens separately
+
+    // Extract text/typography tokens
     const textFonts = extractTokens('--ld-semantic-font');
     const textPrimitive = extractTokens('--ld-primitive-font');
     const allText = [...textFonts, ...textPrimitive];
-    
-    // Get other useful tokens (borders, elevation, duration, etc)
+
+    // Extract other tokens (borders, elevation, duration, etc)
     const borders = extractTokens('--ld-semantic-border');
     const elevation = extractTokens('--ld-semantic-elevation');
     const duration = extractTokens('--ld-semantic-duration');
     const opacity = extractTokens('--ld-semantic-opacity');
     const zIndex = extractTokens('--ld-semantic-z-index');
     const allOther = [...borders, ...elevation, ...duration, ...opacity, ...zIndex];
-    
+
+    // Update all state
     setColorTokens(allColors);
     setSpaceTokens(allSpaces);
     setTextTokens(allText);
     setOtherTokens(allOther);
-    
+
     // Get current font family
     const styles = getComputedStyle(document.documentElement);
     const fontFamily = styles.getPropertyValue('--ld-semantic-font-family-sans').trim();
     setCurrentFontFamily(fontFamily);
-    
-    // Re-run when theme changes (listen to CSS variable changes)
-    const observer = new MutationObserver(() => {
-      const newStyles = getComputedStyle(document.documentElement);
-      const newFontFamily = newStyles.getPropertyValue('--ld-semantic-font-family-sans').trim();
-      if (newFontFamily !== currentFontFamily) {
-        setCurrentFontFamily(newFontFamily);
-        
-        // Re-extract all tokens when theme changes
-        const newColors = extractTokens('--ld-semantic-color');
-        const newWcpColors = extractTokens('--wcp-semantic-color');
-        setColorTokens([...newColors, ...newWcpColors]);
+  }, []);
+
+  React.useEffect(() => {
+    // Extract tokens on mount
+    updateAllTokens();
+
+    // Listen for theme changes by watching for custom event or DOM changes
+    // Re-run extraction when any CSS link or style tag changes
+    const handleThemeChange = () => {
+      // Small delay to ensure CSS has loaded
+      setTimeout(updateAllTokens, 100);
+    };
+
+    // Watch for class changes on html/body (theme switching often changes these)
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'attributes') {
+          handleThemeChange();
+          break;
+        }
       }
     });
-    
+
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class', 'style']
+      attributeFilter: ['class', 'data-theme', 'style']
     });
-    
-    return () => observer.disconnect();
-  }, [currentFontFamily]);
+
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class', 'data-theme', 'style']
+    });
+
+    // Also listen for style tag changes (theme CSS injection)
+    const styleObserver = new MutationObserver(handleThemeChange);
+    const head = document.head;
+    styleObserver.observe(head, {
+      childList: true,
+      subtree: true
+    });
+
+    return () => {
+      observer.disconnect();
+      styleObserver.disconnect();
+    };
+  }, [updateAllTokens]);
 
   // Handle scroll for back-to-top button
   React.useEffect(() => {
