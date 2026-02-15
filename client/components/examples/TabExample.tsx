@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/Tab';
-import { Tag } from '@/components/ui/tag';
+import { Tag } from '@/components/ui/Tag';
 
 /**
  * TabExample - Demonstrates all variants of the Tab Navigation component
