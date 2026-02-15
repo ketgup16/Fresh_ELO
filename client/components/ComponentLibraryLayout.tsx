@@ -157,6 +157,11 @@ const navigationSections = [
         name: 'Nudges',
         path: '/component-library/nudges'
       },
+      {
+        id: 'panels',
+        name: 'Panels',
+        path: '/component-library/panels'
+      },
     ]
   }
 ];
