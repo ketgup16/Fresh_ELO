@@ -10,8 +10,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { TextField } from '@/components/ui/TextField';
 
 export default function SheetExample() {
   return (
@@ -38,14 +37,14 @@ export default function SheetExample() {
               </SheetDescription>
             </SheetHeader>
             <div style={{ display: 'grid', gap: '16px', paddingTop: '24px', paddingBottom: '24px' }}>
-              <div style={{ display: 'grid', gap: '8px' }}>
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" defaultValue="Pedro Duarte" />
-              </div>
-              <div style={{ display: 'grid', gap: '8px' }}>
-                <Label htmlFor="username">Username</Label>
-                <Input id="username" defaultValue="@peduarte" />
-              </div>
+              <TextField
+                label="Name"
+                defaultValue="Pedro Duarte"
+              />
+              <TextField
+                label="Username"
+                defaultValue="@peduarte"
+              />
             </div>
             <SheetFooter>
               <SheetClose asChild>

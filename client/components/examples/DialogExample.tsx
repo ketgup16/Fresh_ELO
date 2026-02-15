@@ -9,8 +9,7 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { TextField } from '@/components/ui/TextField';
 
 export default function DialogExample() {
   return (
@@ -37,14 +36,14 @@ export default function DialogExample() {
               </DialogDescription>
             </DialogHeader>
             <div style={{ display: 'grid', gap: '16px', paddingTop: '16px', paddingBottom: '16px' }}>
-              <div style={{ display: 'grid', gap: '8px' }}>
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" defaultValue="Pedro Duarte" />
-              </div>
-              <div style={{ display: 'grid', gap: '8px' }}>
-                <Label htmlFor="username">Username</Label>
-                <Input id="username" defaultValue="@peduarte" />
-              </div>
+              <TextField
+                label="Name"
+                defaultValue="Pedro Duarte"
+              />
+              <TextField
+                label="Username"
+                defaultValue="@peduarte"
+              />
             </div>
             <DialogFooter>
               <Button variant="primary">Save changes</Button>

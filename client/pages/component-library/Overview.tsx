@@ -118,14 +118,20 @@ const componentSections = [
     path: '/component-library/date-fields',
     icon: 'Calendar'
   },
-  { 
-    title: 'Date Pickers', 
+  {
+    title: 'Date Pickers',
     description: 'Calendar popup for visual date selection',
     path: '/component-library/date-pickers',
     icon: 'Calendar'
   },
-  { 
-    title: 'Dividers', 
+  {
+    title: 'Text Fields',
+    description: 'Single-line text inputs with labels, error states, helper text, icons, and AI-generated content indicators',
+    path: '/component-library/text-fields',
+    icon: 'Edit'
+  },
+  {
+    title: 'Dividers',
     description: 'Horizontal and vertical separators for content sections',
     path: '/component-library/dividers',
     icon: 'Minus'

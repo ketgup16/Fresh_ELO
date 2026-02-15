@@ -30,3 +30,5 @@ export { Switch } from './Switch';
 export type { SwitchProps } from './Switch';
 export { TextArea } from './TextArea';
 export type { TextAreaProps, TextAreaSize } from './TextArea';
+export { TextField } from './TextField';
+export type { TextFieldProps, TextFieldSize, TextFieldType } from './TextField';

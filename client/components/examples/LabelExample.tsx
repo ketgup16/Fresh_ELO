@@ -1,6 +1,6 @@
 import React from 'react';
 import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
+import { TextField } from '@/components/ui/TextField';
 import { Checkbox } from '@/components/ui/Checkbox';
 
 export default function LabelExample() {
@@ -14,11 +14,10 @@ export default function LabelExample() {
           color: 'var(--ld-semantic-color-text-primary)',
           marginBottom: '16px'
         }}>
-          Label with Input
+          Label with TextField
         </h3>
-        <div style={{ maxWidth: '400px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <Label htmlFor="name">Your Name</Label>
-          <Input id="name" placeholder="Enter your name" />
+        <div style={{ maxWidth: '400px' }}>
+          <TextField label="Your Name" placeholder="Enter your name" />
         </div>
       </section>
 
@@ -48,13 +47,15 @@ export default function LabelExample() {
           color: 'var(--ld-semantic-color-text-primary)',
           marginBottom: '16px'
         }}>
-          Required Field Label
+          Required Field
         </h3>
-        <div style={{ maxWidth: '400px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <Label htmlFor="email">
-            Email <span style={{ color: 'var(--ld-semantic-color-action-fill-destructive)' }}>*</span>
-          </Label>
-          <Input id="email" type="email" placeholder="you@example.com" required />
+        <div style={{ maxWidth: '400px' }}>
+          <TextField
+            label={<>Email <span style={{ color: 'var(--ld-semantic-color-action-fill-destructive)' }}>*</span></>}
+            type="email"
+            placeholder="you@example.com"
+            inputProps={{ required: true }}
+          />
         </div>
       </section>
     </div>
