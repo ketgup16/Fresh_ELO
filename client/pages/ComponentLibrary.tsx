@@ -23,6 +23,7 @@ const DividerExample = React.lazy(() => import('@/components/examples/DividerExa
 const ListExample = React.lazy(() => import('@/components/examples/ListExample').then(m => ({ default: m.ListExample })));
 const MagicBoxExample = React.lazy(() => import('@/components/examples/MagicBoxExample').then(m => ({ default: m.MagicBoxExample })));
 const MenuExample = React.lazy(() => import('@/components/examples/MenuExample').then(m => ({ default: m.MenuExample })));
+const ScrimExample = React.lazy(() => import('@/components/examples/ScrimExample').then(m => ({ default: m.ScrimExample })));
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Badge } from '@/components/ui/Badge';
@@ -82,6 +83,7 @@ export default function ComponentLibrary() {
     { id: 'lists', name: 'Lists', keywords: ['list', 'listitem', 'item', 'vertical', 'group', 'spot icon', 'trailing', 'leading'] },
     { id: 'magic-box', name: 'Magic Box', keywords: ['magic box', 'ai', 'agent', 'glow', 'magic', 'loading', 'processing', 'animation', 'sparkle'] },
     { id: 'menu', name: 'Menu', keywords: ['menu', 'dropdown', 'overlay', 'actions', 'menuitem', 'popup', 'context'] },
+    { id: 'scrim', name: 'Scrim', keywords: ['scrim', 'overlay', 'backdrop', 'modal', 'panel', 'dimmer', 'background'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
   ];
 
@@ -638,6 +640,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="menu" title="Menu" description="Displays a list of actions in a small overlay. Built with Living Design 3.5 tokens for consistent spacing, typography, and interactive states.">
         <ComponentShowcase>
           <MenuExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Scrim Section */}
+      <Section id="scrim" title="Scrim" description="Semi-transparent backdrop component for overlay interfaces. Provides visual separation between overlay content and background, helping focus user attention on modals, panels, and bottom sheets.">
+        <ComponentShowcase>
+          <ScrimExample />
         </ComponentShowcase>
       </Section>
 

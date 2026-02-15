@@ -19,3 +19,5 @@ export { ProgressTracker } from './ProgressTracker';
 export type { ProgressTrackerProps, ProgressTrackerStatus } from './ProgressTracker';
 export { Rating } from './Rating';
 export type { RatingProps } from './Rating';
+export { Scrim } from './Scrim';
+export type { ScrimProps, ScrimVariant } from './Scrim';

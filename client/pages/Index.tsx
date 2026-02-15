@@ -15,6 +15,7 @@ import { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 import { Breadcrumb, BreadcrumbItem } from "../components/ui/Breadcrumb";
 import { Checkbox } from "../components/ui/Checkbox";
 import { Divider } from "../components/ui/Divider";
+import { Scrim } from "../components/ui/Scrim";
 
 interface Campaign {
   id: string;
@@ -2358,13 +2359,7 @@ export default function Index() {
               {showAllFiltersPopover && (
                 <>
                   {/* Scrim/Backdrop */}
-                  <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-40 animate-[fadeIn_0.3s_ease-out]"
-                    onClick={() => setShowAllFiltersPopover(false)}
-                    style={{
-                      animation: 'fadeIn 0.3s ease-out'
-                    }}
-                  ></div>
+                  <Scrim onClick={() => setShowAllFiltersPopover(false)} />
 
                   {/* Side Panel */}
                   <div
@@ -2981,10 +2976,9 @@ export default function Index() {
 
       {/* Scrim Overlay */}
       {showPanel && (
-        <div
-          className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 ${
-            panelClosing ? "opacity-0" : "opacity-100"
-          }`}
+        <Scrim
+          isOpen={!panelClosing}
+          isClosing={panelClosing}
           onClick={closePanel}
         />
       )}

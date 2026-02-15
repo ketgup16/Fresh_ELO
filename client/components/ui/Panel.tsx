@@ -2,6 +2,7 @@ import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { IconButton } from './IconButton';
 import { Divider } from './Divider';
+import { Scrim } from './Scrim';
 import * as Icons from '@/components/icons';
 import styles from './Panel.module.css';
 
@@ -250,10 +251,10 @@ export const Panel = React.forwardRef<HTMLDivElement, PanelProps>(
     const panelContent = (
       <>
         {/* Scrim */}
-        <div
-          className={`${styles.scrim} ${isOpen ? styles['scrim--open'] : styles['scrim--closing']}`}
+        <Scrim
+          isOpen={isOpen}
+          isClosing={!isOpen}
           onClick={handleScrimClick}
-          aria-hidden="true"
         />
 
         {/* Panel */}

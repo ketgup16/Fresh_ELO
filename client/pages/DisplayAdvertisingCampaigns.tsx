@@ -9,6 +9,7 @@ import { RecommendationsContent } from "../components/recommendations/Recommenda
 import { Button } from "../components/ui/Button";
 import { Checkbox } from "../components/ui/Checkbox";
 import { Divider } from "../components/ui/Divider";
+import { Scrim } from "../components/ui/Scrim";
 
 interface Campaign {
   id: string;
@@ -2577,13 +2578,7 @@ export default function DisplayAdvertisingCampaigns() {
               {showAllFiltersPopover && (
                 <>
                   {/* Scrim/Backdrop */}
-                  <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-40 animate-[fadeIn_0.3s_ease-out]"
-                    onClick={() => setShowAllFiltersPopover(false)}
-                    style={{
-                      animation: 'fadeIn 0.3s ease-out'
-                    }}
-                  ></div>
+                  <Scrim onClick={() => setShowAllFiltersPopover(false)} />
 
                   {/* Side Panel */}
                   <div
