@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
+import { useTheme } from '@/contexts/ThemeContext';
 import {
   Table,
   TableHeader,
@@ -52,13 +53,15 @@ function extractTokens(prefix: string): Array<{ name: string; value: string; com
 }
 
 export default function ThemesPage() {
+  const { currentTheme, currentThemeData } = useTheme();
   const [colorTokens, setColorTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
   const [spaceTokens, setSpaceTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
   const [textTokens, setTextTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
   const [otherTokens, setOtherTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
   const [copiedToken, setCopiedToken] = React.useState<string | null>(null);
   const [currentFontFamily, setCurrentFontFamily] = React.useState<string>('');
-  
+  const [primaryFontName, setPrimaryFontName] = React.useState<string>('');
+
   const [colorExpanded, setColorExpanded] = React.useState(true);
   const [spaceExpanded, setSpaceExpanded] = React.useState(false);
   const [textExpanded, setTextExpanded] = React.useState(false);
@@ -100,6 +103,7 @@ export default function ThemesPage() {
     // This will resolve the full font stack including Gibson, EverydaySans, etc.
     const tempElement = document.createElement('div');
     tempElement.style.fontFamily = 'var(--ld-semantic-font-family-sans)';
+    tempElement.textContent = 'Test';
     document.body.appendChild(tempElement);
     const computedStyle = window.getComputedStyle(tempElement);
     const actualFont = computedStyle.fontFamily;
@@ -108,10 +112,34 @@ export default function ThemesPage() {
     // Also get the CSS variable value for reference
     const styles = getComputedStyle(document.documentElement);
     const cssVarValue = styles.getPropertyValue('--ld-semantic-font-family-sans').trim();
+    const primitiveValue = styles.getPropertyValue('--ld-primitive-font-family-sans').trim();
 
     // Use the actual computed font family (will show Gibson for Sam's Club, EverydaySans for Walmart, etc)
-    setCurrentFontFamily(actualFont || cssVarValue);
+    const fontToUse = actualFont || cssVarValue || primitiveValue;
+    setCurrentFontFamily(fontToUse);
+
+    // Extract primary font name (first in the stack)
+    const primaryFont = fontToUse.split(',')[0].trim().replace(/['"]/g, '');
+    setPrimaryFontName(primaryFont);
+
+    console.log('🔤 Font detected:', {
+      primary: primaryFont,
+      full: fontToUse,
+      cssVar: cssVarValue,
+      primitive: primitiveValue
+    });
   }, []);
+
+  // Re-extract tokens whenever theme changes
+  React.useEffect(() => {
+    console.log('🎨 Current theme:', currentTheme, currentThemeData?.name);
+    // Delay extraction to ensure theme CSS has loaded
+    const timer = setTimeout(() => {
+      updateAllTokens();
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [currentTheme, updateAllTokens]);
 
   React.useEffect(() => {
     // Extract tokens on mount
@@ -120,14 +148,18 @@ export default function ThemesPage() {
     // Listen for theme changes by watching for custom event or DOM changes
     // Re-run extraction when any CSS link or style tag changes
     const handleThemeChange = () => {
-      // Small delay to ensure CSS has loaded
-      setTimeout(updateAllTokens, 100);
+      // Delay to ensure CSS has fully loaded and computed styles are updated
+      setTimeout(() => {
+        console.log('🔄 Theme changed - re-extracting all tokens...');
+        updateAllTokens();
+      }, 200); // Increased delay for theme CSS to fully apply
     };
 
     // Watch for class changes on html/body (theme switching often changes these)
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         if (mutation.type === 'attributes') {
+          console.log('📝 Attribute changed:', mutation.attributeName, 'on', mutation.target);
           handleThemeChange();
           break;
         }
@@ -144,19 +176,56 @@ export default function ThemesPage() {
       attributeFilter: ['class', 'data-theme', 'style']
     });
 
-    // Also listen for style tag changes (theme CSS injection)
-    const styleObserver = new MutationObserver(handleThemeChange);
-    const head = document.head;
-    styleObserver.observe(head, {
-      childList: true,
-      subtree: true
+    // Watch for link tag changes (theme CSS injection/removal)
+    const linkObserver = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'childList') {
+          // Check if any added/removed nodes are link or style tags
+          const hasThemeChange = Array.from(mutation.addedNodes).some(
+            node => node.nodeName === 'LINK' || node.nodeName === 'STYLE'
+          ) || Array.from(mutation.removedNodes).some(
+            node => node.nodeName === 'LINK' || node.nodeName === 'STYLE'
+          );
+
+          if (hasThemeChange) {
+            console.log('🎨 Theme CSS link changed');
+            handleThemeChange();
+            break;
+          }
+        }
+      }
     });
+
+    linkObserver.observe(document.head, {
+      childList: true,
+      subtree: false
+    });
+
+    // Also periodically check for changes (backup mechanism)
+    const interval = setInterval(() => {
+      const styles = getComputedStyle(document.documentElement);
+      const newFont = styles.getPropertyValue('--ld-semantic-font-family-sans').trim();
+
+      // Create temp element to get actual computed font
+      const tempElement = document.createElement('div');
+      tempElement.style.fontFamily = 'var(--ld-semantic-font-family-sans)';
+      document.body.appendChild(tempElement);
+      const computedStyle = window.getComputedStyle(tempElement);
+      const actualFont = computedStyle.fontFamily;
+      document.body.removeChild(tempElement);
+
+      if (actualFont && actualFont !== currentFontFamily) {
+        console.log('🔄 Font changed detected via interval:', actualFont);
+        updateAllTokens();
+      }
+    }, 1000); // Check every second
 
     return () => {
       observer.disconnect();
-      styleObserver.disconnect();
+      linkObserver.disconnect();
+      clearInterval(interval);
     };
-  }, [updateAllTokens]);
+  }, [updateAllTokens, currentFontFamily]);
 
   // Handle scroll for back-to-top button
   React.useEffect(() => {
@@ -316,6 +385,40 @@ export default function ThemesPage() {
               Current Theme Details
             </h2>
             
+            {/* Current Theme Display */}
+            <div style={{
+              padding: '12px 16px',
+              backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle)',
+              borderRadius: '6px',
+              border: '2px solid var(--ld-semantic-color-border-brand)',
+              marginBottom: '16px'
+            }}>
+              <div style={{
+                fontSize: '12px',
+                fontWeight: '700',
+                color: 'var(--ld-semantic-color-text-subtlest)',
+                marginBottom: '6px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px'
+              }}>
+                Current Theme
+              </div>
+              <div style={{
+                fontSize: '20px',
+                fontWeight: '700',
+                color: 'var(--ld-semantic-color-text-brand)',
+                marginBottom: '4px'
+              }}>
+                {currentThemeData?.name || 'Loading...'}
+              </div>
+              <div style={{
+                fontSize: '13px',
+                color: 'var(--ld-semantic-color-text-subtle)',
+              }}>
+                {currentThemeData?.description}
+              </div>
+            </div>
+
             {/* Font Family Display */}
             <div style={{
               padding: '12px 16px',
@@ -341,7 +444,7 @@ export default function ThemesPage() {
                 color: 'var(--ld-semantic-color-text)',
                 marginBottom: '8px'
               }}>
-                {currentFontFamily.split(',')[0].trim().replace(/['"]/g, '')}
+                {primaryFontName || 'Loading...'}
               </div>
               <div style={{
                 fontSize: '16px',
