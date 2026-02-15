@@ -155,6 +155,12 @@ const componentSections = [
     icon: 'Square'
   },
   {
+    title: 'Nudges',
+    description: 'Non-critical supportive information with actions and dismissible states',
+    path: '/component-library/nudges',
+    icon: 'Info'
+  },
+  {
     title: 'Design Tokens', 
     description: 'CSS custom properties for colors, spacing, and typography',
     path: '/component-library/design-tokens',

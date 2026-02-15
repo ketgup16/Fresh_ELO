@@ -152,6 +152,11 @@ const navigationSections = [
         name: 'Modals',
         path: '/component-library/modals'
       },
+      {
+        id: 'nudges',
+        name: 'Nudges',
+        path: '/component-library/nudges'
+      },
     ]
   }
 ];
