@@ -4,7 +4,6 @@ import { ChevronRight, ChevronDown, Search, Settings, Download, MoreHorizontal, 
 import MartyFloatingPanel from "../features/marty/MartyFloatingPanel";
 import DisplayDashboard from "../features/advertising/DisplayDashboard";
 import DisplayAdvertisingSidebar from "../features/advertising/DisplayAdvertisingSidebar";
-import { AdminButton } from "../components/AdminButton";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Button } from "../components/ui/Button";
 import { Popover, PopoverTrigger, PopoverContent } from "../components/ui/popover";
@@ -3297,9 +3296,6 @@ export default function Index() {
 
       {/* Marty Floating Panel */}
       {showMartyPanel && <MartyFloatingPanel />}
-
-      {/* Admin Button - Global access */}
-      <AdminButton />
     </div>
   );
 }

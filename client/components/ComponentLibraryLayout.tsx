@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
-import { AdminButton } from '@/components/AdminButton';
+import { IconButton } from '@/components/ui/IconButton';
+import * as Icons from '@/components/icons';
 
 // Component library navigation structure with groups
 const navigationSections = [
@@ -454,6 +455,23 @@ export function ComponentLibraryLayout() {
             </div>
           ))}
 
+          {/* Admin Settings - Icon Button at Bottom */}
+          <div style={{
+            marginTop: 'auto',
+            paddingTop: '24px',
+            borderTop: '2px solid var(--ld-semantic-color-border-subtle)',
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
+            <IconButton
+              variant="primary"
+              size="large"
+              onClick={() => navigate('/settings')}
+              aria-label="Admin Settings"
+            >
+              <Icons.Gear style={{ width: 24, height: 24 }} />
+            </IconButton>
+          </div>
         </div>
       </aside>
 
@@ -466,8 +484,6 @@ export function ComponentLibraryLayout() {
         <Outlet />
       </main>
 
-      {/* Admin Button - Global for component library */}
-      <AdminButton />
     </div>
   );
 }
