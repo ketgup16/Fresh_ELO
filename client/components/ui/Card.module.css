@@ -1,6 +1,6 @@
 .card {
   background-color: var(--ld-semantic-color-surface);
-  border: 1px solid var(--ld-semantic-color-border-subtlest);
+  box-shadow: var(--ld-semantic-elevation-100);
   border-radius: var(--ld-semantic-border-radius-large);
   overflow: hidden;
   display: flex;

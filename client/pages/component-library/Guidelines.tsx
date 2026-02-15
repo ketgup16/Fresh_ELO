@@ -44,7 +44,7 @@ export default function GuidelinesPage() {
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
           padding: '32px',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+          boxShadow: 'var(--ld-semantic-elevation-100)',
           marginBottom: '24px'
         }}>
           <h3 style={{
@@ -85,7 +85,7 @@ export default function GuidelinesPage() {
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
           padding: '32px',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+          boxShadow: 'var(--ld-semantic-elevation-100)',
           marginBottom: '24px'
         }}>
           <h3 style={{
@@ -161,7 +161,7 @@ export default function GuidelinesPage() {
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
           padding: '32px',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)'
+          boxShadow: 'var(--ld-semantic-elevation-100)'
         }}>
           <h3 style={{
             fontSize: '18px',
@@ -201,7 +201,7 @@ export default function GuidelinesPage() {
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
           padding: '32px',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+          boxShadow: 'var(--ld-semantic-elevation-100)',
           marginBottom: '24px'
         }}>
           <h3 style={{
@@ -256,7 +256,7 @@ export default function GuidelinesPage() {
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
           padding: '32px',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)'
+          boxShadow: 'var(--ld-semantic-elevation-100)'
         }}>
           <h3 style={{
             fontSize: '18px',
@@ -321,7 +321,7 @@ export default function GuidelinesPage() {
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
           padding: '32px',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+          boxShadow: 'var(--ld-semantic-elevation-100)',
           marginBottom: '24px'
         }}>
           <h3 style={{
@@ -348,7 +348,7 @@ export default function GuidelinesPage() {
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
           padding: '32px',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+          boxShadow: 'var(--ld-semantic-elevation-100)',
           marginBottom: '24px'
         }}>
           <h3 style={{
@@ -382,7 +382,7 @@ export default function GuidelinesPage() {
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
           padding: '32px',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)'
+          boxShadow: 'var(--ld-semantic-elevation-100)'
         }}>
           <h3 style={{
             fontSize: '18px',

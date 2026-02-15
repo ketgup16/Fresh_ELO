@@ -169,7 +169,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               >
@@ -197,7 +197,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               >
@@ -225,7 +225,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               />
@@ -261,7 +261,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               >
@@ -291,7 +291,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               />
@@ -320,7 +320,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               />
@@ -357,7 +357,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               />
@@ -381,7 +381,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               />
@@ -417,7 +417,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               >
@@ -444,7 +444,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               >
@@ -486,7 +486,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               />
@@ -551,7 +551,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               >
@@ -579,7 +579,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               >
@@ -612,7 +612,7 @@ export default function ComponentTester() {
                   width: '100%',
                   padding: '8px 12px',
                   borderRadius: '6px',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   fontSize: '14px'
                 }}
               />
@@ -773,7 +773,7 @@ export default function ComponentTester() {
             backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
             padding: '24px',
             borderRadius: '8px',
-            border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)'
+            boxShadow: 'var(--ld-semantic-elevation-100)'
           }}>
             <h3 style={{
               fontSize: '16px',
@@ -794,7 +794,7 @@ export default function ComponentTester() {
             backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
             padding: '48px',
             borderRadius: '8px',
-            border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+            boxShadow: 'var(--ld-semantic-elevation-100)',
             minHeight: '200px',
             display: 'flex',
             alignItems: 'center',

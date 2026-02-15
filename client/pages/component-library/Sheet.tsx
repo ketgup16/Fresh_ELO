@@ -12,7 +12,7 @@ export default function SheetPage() {
           Slide-in panel from screen edges with backdrop overlay.
         </p>
       </div>
-      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)' }}>
+      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
         <React.Suspense fallback={<div>Loading...</div>}>
           <SheetExample />
         </React.Suspense>

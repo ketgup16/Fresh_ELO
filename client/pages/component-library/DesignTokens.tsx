@@ -115,7 +115,7 @@ const ColorSwatch: React.FC<{ tokenName: string; description: string }> = ({ tok
           height: '48px',
           borderRadius: '6px',
           backgroundColor: `var(${tokenName})`,
-          border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+          boxShadow: 'var(--ld-semantic-elevation-100)',
           flexShrink: 0
         }}
       />
@@ -237,7 +237,7 @@ export default function DesignTokensPage() {
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
           padding: '24px',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)'
+          boxShadow: 'var(--ld-semantic-elevation-100)'
         }}>
           {spacingTokens.map((token) => (
             <div
@@ -303,7 +303,7 @@ export default function DesignTokensPage() {
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
           padding: '24px',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)'
+          boxShadow: 'var(--ld-semantic-elevation-100)'
         }}>
           {typographyTokens.map((token) => (
             <div
@@ -360,7 +360,7 @@ export default function DesignTokensPage() {
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
           padding: '24px',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)'
+          boxShadow: 'var(--ld-semantic-elevation-100)'
         }}>
           {borderRadiusTokens.map((token) => (
             <div

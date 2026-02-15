@@ -137,7 +137,7 @@ export default function ThemesPage() {
         backgroundColor: 'var(--ld-semantic-color-surface)',
         padding: '32px',
         borderRadius: '8px',
-        border: '1px solid var(--ld-semantic-color-border-subtle)',
+        boxShadow: 'var(--ld-semantic-elevation-100)',
         marginBottom: '48px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
@@ -178,7 +178,7 @@ export default function ThemesPage() {
               padding: '12px 16px',
               backgroundColor: 'var(--ld-semantic-color-surface)',
               borderRadius: '6px',
-              border: '1px solid var(--ld-semantic-color-border-subtle)',
+              boxShadow: 'var(--ld-semantic-elevation-100)',
               marginBottom: '16px'
             }}>
               <div style={{
@@ -271,7 +271,7 @@ export default function ThemesPage() {
         <div style={{
           backgroundColor: 'var(--ld-semantic-color-surface)',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-subtle)',
+          boxShadow: 'var(--ld-semantic-elevation-100)',
           overflow: 'hidden'
         }}>
           <table style={{
@@ -343,7 +343,7 @@ export default function ThemesPage() {
                       height: '32px',
                       borderRadius: '4px',
                       backgroundColor: token.computed || `var(${token.name})`,
-                      border: '1px solid var(--ld-semantic-color-border-subtle)',
+                      boxShadow: 'var(--ld-semantic-elevation-100)',
                     }} />
                   </td>
                   <td style={{
@@ -425,7 +425,7 @@ export default function ThemesPage() {
         <div style={{
           backgroundColor: 'var(--ld-semantic-color-surface)',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-subtle)',
+          boxShadow: 'var(--ld-semantic-elevation-100)',
           overflow: 'hidden'
         }}>
           <table style={{
@@ -604,7 +604,7 @@ export default function ThemesPage() {
         <div style={{
           backgroundColor: 'var(--ld-semantic-color-surface)',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-subtle)',
+          boxShadow: 'var(--ld-semantic-elevation-100)',
           overflow: 'hidden'
         }}>
           <table style={{
@@ -797,7 +797,7 @@ export default function ThemesPage() {
           <div style={{
             backgroundColor: 'var(--ld-semantic-color-surface)',
             borderRadius: '8px',
-            border: '1px solid var(--ld-semantic-color-border-subtle)',
+            boxShadow: 'var(--ld-semantic-elevation-100)',
             overflow: 'hidden'
           }}>
             <table style={{

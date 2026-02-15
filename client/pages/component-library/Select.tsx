@@ -50,7 +50,7 @@ export default function SelectPage() {
         backgroundColor: 'var(--ld-semantic-color-background, #ffffff)',
         padding: '32px',
         borderRadius: '8px',
-        border: '1px solid var(--ld-semantic-color-border-subtlest, #74767c)'
+        boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
         <React.Suspense fallback={<div>Loading...</div>}>
           <SelectExample />

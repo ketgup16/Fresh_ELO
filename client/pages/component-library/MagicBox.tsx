@@ -32,7 +32,7 @@ export default function MagicBoxPage() {
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
         padding: '32px',
         borderRadius: '8px',
-        border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)'
+        boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
         <React.Suspense fallback={<div>Loading...</div>}>
           <MagicBoxExample />

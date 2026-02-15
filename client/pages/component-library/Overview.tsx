@@ -324,7 +324,7 @@ export default function ComponentLibraryOverview() {
                   display: 'block',
                   padding: '24px',
                   backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  boxShadow: 'var(--ld-semantic-elevation-100)',
                   borderRadius: '8px',
                   transition: 'all 0.2s',
                   cursor: 'pointer'
