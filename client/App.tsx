@@ -19,6 +19,7 @@ import OmniROAS from "./pages/OmniROAS";
 import DisplayAdvertisingCampaigns from "./pages/DisplayAdvertisingCampaigns";
 import SellerCenter from "./pages/SellerCenter";
 import StoreAds from "./pages/StoreAds";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
 
@@ -145,6 +146,7 @@ const App = () => (
               <Route path="/store-ads/campaigns" element={<StoreAds />} />
               <Route path="/store-ads/performance" element={<StoreAds />} />
               <Route path="/store-ads/inventory" element={<StoreAds />} />
+              <Route path="/settings" element={<Settings />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

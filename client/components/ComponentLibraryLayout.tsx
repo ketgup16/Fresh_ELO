@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
+import { AdminButton } from '@/components/AdminButton';
 
 // Component library navigation structure with groups
 const navigationSections = [
@@ -388,16 +389,23 @@ export function ComponentLibraryLayout() {
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
       {/* Sidebar */}
-      <aside 
-        style={{ 
-          width: '280px', 
+      <aside
+        style={{
+          width: '280px',
           borderRight: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-          overflowY: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
           flexShrink: 0
         }}
       >
-        <div style={{ padding: '24px 16px' }}>
+        <div style={{
+          padding: '24px 16px',
+          flex: 1,
+          overflowY: 'auto',
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
           <h1 style={{ 
             fontSize: '24px', 
             fontWeight: '700',
@@ -445,17 +453,21 @@ export function ComponentLibraryLayout() {
               </SideNavigation>
             </div>
           ))}
+
         </div>
       </aside>
 
       {/* Main content area */}
-      <main style={{ 
-        flex: 1, 
+      <main style={{
+        flex: 1,
         overflowY: 'auto',
         backgroundColor: 'var(--ld-semantic-color-fill-surface-secondary, #F7F7F8)'
       }}>
         <Outlet />
       </main>
+
+      {/* Admin Button - Global for component library */}
+      <AdminButton />
     </div>
   );
 }
