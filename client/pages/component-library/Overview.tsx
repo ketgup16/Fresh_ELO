@@ -345,14 +345,14 @@ export default function ComponentLibraryOverview() {
                   alignItems: 'flex-start',
                   gap: '16px'
                 }}>
-                  {/* Icon Box - Always present with consistent blue background */}
+                  {/* Icon Box - Always present with brand blue subtle background */}
                   <div style={{
                     width: '48px',
                     height: '48px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: 'var(--ld-semantic-color-action-fill-primary, #0071DC)',
+                    backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle)',
                     borderRadius: '8px',
                     flexShrink: 0
                   }}>
@@ -361,7 +361,7 @@ export default function ComponentLibraryOverview() {
                         style={{
                           width: 24,
                           height: 24,
-                          color: 'var(--ld-semantic-color-action-text-on-fill-primary, #ffffff)'
+                          color: 'var(--ld-semantic-color-text-brand-bold)'
                         }}
                       />
                     ) : (
@@ -369,7 +369,7 @@ export default function ComponentLibraryOverview() {
                         style={{
                           width: 24,
                           height: 24,
-                          color: 'var(--ld-semantic-color-action-text-on-fill-primary, #ffffff)'
+                          color: 'var(--ld-semantic-color-text-brand-bold)'
                         }}
                       />
                     )}
