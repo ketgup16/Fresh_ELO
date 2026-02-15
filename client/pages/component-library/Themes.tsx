@@ -303,9 +303,9 @@ export default function ThemesPage() {
           Quick Navigate
         </div>
         <div style={{
-          display: 'flex',
-          gap: '12px',
-          flexWrap: 'wrap'
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+          gap: '12px'
         }}>
           <Button
             variant="secondary"
@@ -355,7 +355,7 @@ export default function ThemesPage() {
       }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '400px 1fr',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(400px, 100%), 1fr))',
           gap: '32px',
           alignItems: 'start'
         }}>
