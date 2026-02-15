@@ -173,6 +173,12 @@ const componentSections = [
     icon: 'Sidebar'
   },
   {
+    title: 'Spinners',
+    description: 'Loading indicators for indeterminate processes with color and size variants',
+    path: '/component-library/spinners',
+    icon: 'Loader'
+  },
+  {
     title: 'Progress Tracker',
     description: 'Step-by-step progress visualization for multi-step processes and workflows',
     path: '/component-library/progress-tracker',

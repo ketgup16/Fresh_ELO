@@ -63,6 +63,7 @@ import ProgressIndicatorPage from "./pages/component-library/ProgressIndicator";
 import ProgressTrackerPage from "./pages/component-library/ProgressTracker";
 import SkeletonPage from "./pages/component-library/Skeleton";
 import SnackbarsPage from "./pages/component-library/Snackbars";
+import SpinnersPage from "./pages/component-library/Spinners";
 
 const queryClient = new QueryClient();
 
@@ -116,6 +117,7 @@ const App = () => (
                 <Route path="progress-indicator" element={<ProgressIndicatorPage />} />
                 <Route path="skeleton" element={<SkeletonPage />} />
                 <Route path="snackbars" element={<SnackbarsPage />} />
+                <Route path="spinners" element={<SpinnersPage />} />
                 <Route path="progress-tracker" element={<ProgressTrackerPage />} />
               </Route>
 

@@ -24,6 +24,7 @@ const ListExample = React.lazy(() => import('@/components/examples/ListExample')
 const MagicBoxExample = React.lazy(() => import('@/components/examples/MagicBoxExample').then(m => ({ default: m.MagicBoxExample })));
 const MenuExample = React.lazy(() => import('@/components/examples/MenuExample').then(m => ({ default: m.MenuExample })));
 const ScrimExample = React.lazy(() => import('@/components/examples/ScrimExample').then(m => ({ default: m.ScrimExample })));
+const SpinnerExample = React.lazy(() => import('@/components/examples/SpinnerExample').then(m => ({ default: m.SpinnerExample })));
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Badge } from '@/components/ui/Badge';
@@ -37,6 +38,7 @@ import { OLQTag } from '@/components/ui/olq-tag';
 import { DatePicker } from '@/components/ui/DatePicker';
 import { Radio } from '@/components/ui/Radio';
 import { RadioGroup } from '@/components/ui/radio-group';
+import { Spinner } from '@/components/ui/Spinner';
 import * as Icons from '@/components/icons';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 
@@ -84,6 +86,7 @@ export default function ComponentLibrary() {
     { id: 'magic-box', name: 'Magic Box', keywords: ['magic box', 'ai', 'agent', 'glow', 'magic', 'loading', 'processing', 'animation', 'sparkle'] },
     { id: 'menu', name: 'Menu', keywords: ['menu', 'dropdown', 'overlay', 'actions', 'menuitem', 'popup', 'context'] },
     { id: 'scrim', name: 'Scrim', keywords: ['scrim', 'overlay', 'backdrop', 'modal', 'panel', 'dimmer', 'background'] },
+    { id: 'spinners', name: 'Spinners', keywords: ['spinner', 'loading', 'loader', 'progress', 'indeterminate', 'processing', 'waiting', 'busy'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
   ];
 
@@ -650,6 +653,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
         </ComponentShowcase>
       </Section>
 
+      {/* Spinners Section */}
+      <Section id="spinners" title="Spinners" description="Loading indicators for indeterminate processes. Spinners inform users of ongoing operations including data retrieval, loading states, and saving. Available in two colors (neutral, white) and two sizes (large, small).">
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <SpinnerExample />
+        </React.Suspense>
+      </Section>
+
       {/* Design Tokens Section */}
       <Section id="design-tokens" title="Design Tokens" description="Complete Living Design 3.5 semantic token system - 624 tokens organized by category">
         <TokenCategorySection />
@@ -1080,7 +1090,7 @@ function SearchableComponentSelect({ selectedComponent, onComponentChange, avail
 
 // Interactive Component Tester - Supports multiple component types
 function InteractiveComponentTester() {
-  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'LinkButton' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip' | 'DatePicker' | 'Radio';
+  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'LinkButton' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip' | 'DatePicker' | 'Radio' | 'Spinner';
 
   const [selectedComponent, setSelectedComponent] = React.useState<ComponentType>('Button');
   const [variant, setVariant] = React.useState<string>('primary');
@@ -1252,6 +1262,18 @@ function InteractiveComponentTester() {
       supportsClickable: false,
       supportsOLQPercentage: false,
     },
+    Spinner: {
+      variants: ['neutral', 'white'],
+      sizes: ['large', 'small'],
+      supportsFullWidth: false,
+      supportsIcons: false,
+      supportsValue: false,
+      supportsShape: false,
+      supportsUnderline: false,
+      supportsDismissible: false,
+      supportsClickable: false,
+      supportsOLQPercentage: false,
+    },
   };
 
   const config = componentConfigs[selectedComponent];
@@ -1345,6 +1367,13 @@ function InteractiveComponentTester() {
   <Radio value="option-b" label="Option B"${disabled ? ' disabled' : ''} />
   <Radio value="option-c" label="Option C"${disabled ? ' disabled' : ''} />
 </RadioGroup>`;
+
+      case 'Spinner':
+        return `<Spinner
+  color="${variant}"
+  size="${size}"
+  a11yLabel="Loading…"
+/>`;
 
       default:
         return '';
@@ -1530,6 +1559,15 @@ function InteractiveComponentTester() {
             <Radio value="option-b" label={radioShowLabel ? 'Option B' : undefined} aria-label="Option B" showLabel={radioShowLabel} disabled={disabled} />
             <Radio value="option-c" label={radioShowLabel ? 'Option C' : undefined} aria-label="Option C" showLabel={radioShowLabel} disabled={disabled} />
           </RadioGroup>
+        );
+
+      case 'Spinner':
+        return (
+          <Spinner
+            color={variant as any}
+            size={size as any}
+            a11yLabel="Loading…"
+          />
         );
 
       default:
