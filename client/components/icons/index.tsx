@@ -171,6 +171,8 @@ export { ListBoxFill } from './ListBoxFill';
 export { Location } from './Location';
 export { Lock } from './Lock';
 export { LockOpen } from './LockOpen';
+export { Magic } from './Magic';
+export { MagicFill } from './MagicFill';
 export { Map } from './Map';
 export { MapRoute } from './MapRoute';
 export { MapRouteFill } from './MapRouteFill';

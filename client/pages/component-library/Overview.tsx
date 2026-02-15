@@ -129,7 +129,7 @@ const componentSections = [
     title: 'Magic Box',
     description: 'AI-powered loading animation with sparkle effects',
     path: '/component-library/magic-box',
-    icon: 'Star'
+    icon: 'Magic'
   },
   {
     title: 'Menu',
@@ -147,13 +147,13 @@ const componentSections = [
     title: 'Modals',
     description: 'Centered overlay dialogs with size variants for focused user interactions',
     path: '/component-library/modals',
-    icon: 'Square'
+    icon: 'Box'
   },
   {
     title: 'Nudges',
     description: 'Non-critical supportive information with actions and dismissible states',
     path: '/component-library/nudges',
-    icon: 'Info'
+    icon: 'InfoCircle'
   },
   {
     title: 'Panels',
