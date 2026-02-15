@@ -7,21 +7,38 @@ import { Tag } from '@/components/ui/Tag';
 import { OLQTag } from '@/components/ui/olq-tag';
 import { IconButton } from '@/components/ui/IconButton';
 import { Checkbox } from '@/components/ui/Checkbox';
-import { Radio, RadioGroup } from '@/components/ui/radio-group';
+import { Switch } from '@/components/ui/Switch';
+import { TextField } from '@/components/ui/TextField';
+import { TextArea } from '@/components/ui/TextArea';
+import { DateField } from '@/components/ui/DateField';
+import { Select, SelectItem } from '@/components/ui/Select';
+import { Divider } from '@/components/ui/Divider';
+import { SpotIcon } from '@/components/ui/SpotIcon';
+import { Rating } from '@/components/ui/Rating';
 import * as Icons from '@/components/icons';
 
-type ComponentType = 'button' | 'badge' | 'chip' | 'filterchip' | 'tag' | 'olqtag' | 'iconbutton' | 'checkbox' | 'radio';
+type ComponentType = 
+  | 'button' | 'badge' | 'chip' | 'filterchip' | 'tag' | 'olqtag' 
+  | 'iconbutton' | 'checkbox' | 'switch' | 'textfield' | 'textarea'
+  | 'datefield' | 'select' | 'divider' | 'spoticon' | 'rating';
 
 const components = [
-  { id: 'button', name: 'Button' },
-  { id: 'badge', name: 'Badge' },
-  { id: 'chip', name: 'Chip' },
-  { id: 'filterchip', name: 'Filter Chip' },
-  { id: 'tag', name: 'Tag' },
-  { id: 'olqtag', name: 'OLQ Tag' },
-  { id: 'iconbutton', name: 'Icon Button' },
-  { id: 'checkbox', name: 'Checkbox' },
-  { id: 'radio', name: 'Radio' },
+  { id: 'button', name: 'Button', category: 'Actions' },
+  { id: 'iconbutton', name: 'Icon Button', category: 'Actions' },
+  { id: 'badge', name: 'Badge', category: 'Display' },
+  { id: 'chip', name: 'Chip', category: 'Selection' },
+  { id: 'filterchip', name: 'Filter Chip', category: 'Selection' },
+  { id: 'tag', name: 'Tag', category: 'Display' },
+  { id: 'olqtag', name: 'OLQ Tag', category: 'Display' },
+  { id: 'spoticon', name: 'Spot Icon', category: 'Display' },
+  { id: 'rating', name: 'Rating', category: 'Display' },
+  { id: 'textfield', name: 'Text Field', category: 'Forms' },
+  { id: 'textarea', name: 'Text Area', category: 'Forms' },
+  { id: 'datefield', name: 'Date Field', category: 'Forms' },
+  { id: 'select', name: 'Select', category: 'Forms' },
+  { id: 'checkbox', name: 'Checkbox', category: 'Forms' },
+  { id: 'switch', name: 'Switch', category: 'Forms' },
+  { id: 'divider', name: 'Divider', category: 'Layout' },
 ];
 
 export default function ComponentTester() {
@@ -33,24 +50,51 @@ export default function ComponentTester() {
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
   const [buttonText, setButtonText] = React.useState('Click me');
   
+  // TextField props
+  const [textFieldSize, setTextFieldSize] = React.useState<'small' | 'large'>('large');
+  const [textFieldValue, setTextFieldValue] = React.useState('');
+  const [textFieldError, setTextFieldError] = React.useState('');
+  const [textFieldDisabled, setTextFieldDisabled] = React.useState(false);
+  const [textFieldMagic, setTextFieldMagic] = React.useState(false);
+  
+  // TextArea props
+  const [textAreaSize, setTextAreaSize] = React.useState<'small' | 'large'>('large');
+  const [textAreaValue, setTextAreaValue] = React.useState('');
+  const [textAreaDisabled, setTextAreaDisabled] = React.useState(false);
+  const [textAreaMagic, setTextAreaMagic] = React.useState(false);
+  
+  // DateField props
+  const [dateFieldValue, setDateFieldValue] = React.useState('');
+  const [dateFieldDisabled, setDateFieldDisabled] = React.useState(false);
+  
+  // Switch props
+  const [switchChecked, setSwitchChecked] = React.useState(false);
+  const [switchDisabled, setSwitchDisabled] = React.useState(false);
+  
+  // Select props
+  const [selectValue, setSelectValue] = React.useState('');
+  const [selectSize, setSelectSize] = React.useState<'small' | 'large'>('large');
+  const [selectDisabled, setSelectDisabled] = React.useState(false);
+  
   // Badge props
   const [badgeVariant, setBadgeVariant] = React.useState<'default' | 'info' | 'success' | 'warning' | 'error'>('default');
   const [badgeContent, setBadgeContent] = React.useState('5');
   
   // Chip props
+  const [chipSize, setChipSize] = React.useState<'small' | 'medium'>('medium');
   const [chipSelected, setChipSelected] = React.useState(false);
   const [chipText, setChipText] = React.useState('Chip Label');
   
   // Filter Chip props
+  const [filterChipSize, setFilterChipSize] = React.useState<'small' | 'medium' | 'large'>('medium');
   const [filterChipSelected, setFilterChipSelected] = React.useState(false);
   const [filterChipText, setFilterChipText] = React.useState('Filter');
   const [filterChipCount, setFilterChipCount] = React.useState(12);
   
   // Tag props
   const [tagVariant, setTagVariant] = React.useState<'primary' | 'secondary' | 'tertiary'>('secondary');
-  const [tagColor, setTagColor] = React.useState<'brand' | 'positive' | 'negative' | 'warning' | 'info' | 'edited' | 'blue' | 'spark' | 'green' | 'red' | 'purple' | 'gray' | 'cyan' | 'orange' | 'pink' | 'yellow' | 'teal'>('brand');
+  const [tagColor, setTagColor] = React.useState<'brand' | 'positive' | 'negative' | 'warning' | 'info'>('brand');
   const [tagText, setTagText] = React.useState('Tag Label');
-  const [tagHasIcon, setTagHasIcon] = React.useState(true);
   
   // OLQ Tag props
   const [olqPercentage, setOlqPercentage] = React.useState(85);
@@ -59,12 +103,20 @@ export default function ComponentTester() {
   const [iconButtonVariant, setIconButtonVariant] = React.useState<'ghost' | 'primary' | 'secondary' | 'destructive'>('ghost');
   const [iconButtonSize, setIconButtonSize] = React.useState<'small' | 'medium' | 'large'>('medium');
   
+  // SpotIcon props
+  const [spotIconSize, setSpotIconSize] = React.useState<'small' | 'medium' | 'large'>('medium');
+  const [spotIconColor, setSpotIconColor] = React.useState<'brand' | 'neutral'>('brand');
+  
+  // Rating props
+  const [ratingValue, setRatingValue] = React.useState(4);
+  const [ratingMax, setRatingMax] = React.useState(5);
+  
   // Checkbox props
   const [checkboxChecked, setCheckboxChecked] = React.useState(false);
   const [checkboxLabel, setCheckboxLabel] = React.useState('Checkbox Label');
   
-  // Radio props
-  const [radioValue, setRadioValue] = React.useState('option1');
+  // Divider props
+  const [dividerOrientation, setDividerOrientation] = React.useState<'horizontal' | 'vertical'>('horizontal');
 
   const renderComponent = () => {
     switch (selectedComponent) {
@@ -79,12 +131,78 @@ export default function ComponentTester() {
           </Button>
         );
       
+      case 'textfield':
+        return (
+          <TextField
+            label="Label"
+            size={textFieldSize}
+            value={textFieldValue}
+            onChange={(e) => setTextFieldValue(e.target.value)}
+            error={textFieldError || undefined}
+            disabled={textFieldDisabled}
+            isMagic={textFieldMagic}
+            placeholder="Enter text..."
+            helperText="Helper text goes here"
+          />
+        );
+      
+      case 'textarea':
+        return (
+          <TextArea
+            label="Label"
+            size={textAreaSize}
+            value={textAreaValue}
+            onChange={(e) => setTextAreaValue(e.target.value)}
+            disabled={textAreaDisabled}
+            isMagic={textAreaMagic}
+            placeholder="Enter text..."
+            maxLength={200}
+          />
+        );
+      
+      case 'datefield':
+        return (
+          <DateField
+            label="Date"
+            value={dateFieldValue}
+            onChange={(e) => setDateFieldValue(e.target.value)}
+            disabled={dateFieldDisabled}
+            showCalendarIcon
+          />
+        );
+      
+      case 'select':
+        return (
+          <Select
+            label="Select Option"
+            value={selectValue}
+            onValueChange={setSelectValue}
+            size={selectSize}
+            disabled={selectDisabled}
+          >
+            <SelectItem value="option1">Option 1</SelectItem>
+            <SelectItem value="option2">Option 2</SelectItem>
+            <SelectItem value="option3">Option 3</SelectItem>
+          </Select>
+        );
+      
+      case 'switch':
+        return (
+          <Switch
+            checked={switchChecked}
+            onCheckedChange={setSwitchChecked}
+            disabled={switchDisabled}
+            label="Toggle option"
+          />
+        );
+      
       case 'badge':
         return <Badge variant={badgeVariant}>{badgeContent}</Badge>;
       
       case 'chip':
         return (
           <Chip
+            size={chipSize}
             selected={chipSelected}
             onClick={() => setChipSelected(!chipSelected)}
           >
@@ -95,6 +213,7 @@ export default function ComponentTester() {
       case 'filterchip':
         return (
           <FilterChip
+            size={filterChipSize}
             selected={filterChipSelected}
             count={filterChipCount}
             onClick={() => setFilterChipSelected(!filterChipSelected)}
@@ -105,13 +224,13 @@ export default function ComponentTester() {
       
       case 'tag':
         return (
-          <Tag variant={tagVariant} color={tagColor} leading={tagHasIcon ? <Icons.Check size={14} /> : undefined}>
+          <Tag variant={tagVariant} color={tagColor}>
             {tagText}
           </Tag>
         );
       
       case 'olqtag':
-        return <OLQTag value={`${olqPercentage}%`} />;
+        return <OLQTag percentage={olqPercentage} />;
       
       case 'iconbutton':
         return (
@@ -120,8 +239,24 @@ export default function ComponentTester() {
             size={iconButtonSize}
             aria-label="Settings"
           >
-            <Icons.Settings size={20} />
+            <Icons.Settings style={{ width: 20, height: 20 }} />
           </IconButton>
+        );
+      
+      case 'spoticon':
+        return (
+          <SpotIcon size={spotIconSize} color={spotIconColor}>
+            <Icons.Star style={{ width: 24, height: 24 }} />
+          </SpotIcon>
+        );
+      
+      case 'rating':
+        return (
+          <Rating
+            value={ratingValue}
+            max={ratingMax}
+            onChange={setRatingValue}
+          />
         );
       
       case 'checkbox':
@@ -133,13 +268,11 @@ export default function ComponentTester() {
           />
         );
       
-      case 'radio':
+      case 'divider':
         return (
-          <RadioGroup value={radioValue} onValueChange={setRadioValue}>
-            <Radio value="option1" label="Option 1" />
-            <Radio value="option2" label="Option 2" />
-            <Radio value="option3" label="Option 3" />
-          </RadioGroup>
+          <div style={{ width: dividerOrientation === 'horizontal' ? '100%' : '2px', height: dividerOrientation === 'vertical' ? '200px' : 'auto' }}>
+            <Divider orientation={dividerOrientation} />
+          </div>
         );
       
       default:
@@ -151,83 +284,49 @@ export default function ComponentTester() {
     switch (selectedComponent) {
       case 'button':
         return (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
                 Variant
-              </label>
-              <select
-                value={buttonVariant}
-                onChange={(e) => setButtonVariant(e.target.value as any)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
-              >
-                <option value="primary">Primary</option>
-                <option value="secondary">Secondary</option>
-                <option value="tertiary">Tertiary</option>
-                <option value="destructive">Destructive</option>
-              </select>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['primary', 'secondary', 'tertiary', 'destructive'] as const).map((variant) => (
+                  <Chip
+                    key={variant}
+                    size="small"
+                    selected={buttonVariant === variant}
+                    onClick={() => setButtonVariant(variant)}
+                  >
+                    {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                  </Chip>
+                ))}
+              </div>
             </div>
             
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
                 Size
-              </label>
-              <select
-                value={buttonSize}
-                onChange={(e) => setButtonSize(e.target.value as any)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
-              >
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-              </select>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['small', 'medium', 'large'] as const).map((size) => (
+                  <Chip
+                    key={size}
+                    size="small"
+                    selected={buttonSize === size}
+                    onClick={() => setButtonSize(size)}
+                  >
+                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                  </Chip>
+                ))}
+              </div>
             </div>
             
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
-                Text
-              </label>
-              <input
-                type="text"
+              <TextField
+                label="Button Text"
+                size="small"
                 value={buttonText}
                 onChange={(e) => setButtonText(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
               />
             </div>
             
@@ -241,59 +340,172 @@ export default function ComponentTester() {
           </div>
         );
       
-      case 'badge':
+      case 'textfield':
         return (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
-                Variant
-              </label>
-              <select
-                value={badgeVariant}
-                onChange={(e) => setBadgeVariant(e.target.value as any)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
-              >
-                <option value="default">Default</option>
-                <option value="info">Info</option>
-                <option value="success">Success</option>
-                <option value="warning">Warning</option>
-                <option value="error">Error</option>
-              </select>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Size
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['small', 'large'] as const).map((size) => (
+                  <Chip
+                    key={size}
+                    size="small"
+                    selected={textFieldSize === size}
+                    onClick={() => setTextFieldSize(size)}
+                  >
+                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                  </Chip>
+                ))}
+              </div>
             </div>
             
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
-                Content
-              </label>
-              <input
-                type="text"
+              <TextField
+                label="Error Message"
+                size="small"
+                value={textFieldError}
+                onChange={(e) => setTextFieldError(e.target.value)}
+                placeholder="Leave empty for no error"
+              />
+            </div>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <Checkbox
+                checked={textFieldDisabled}
+                onCheckedChange={(checked) => setTextFieldDisabled(checked as boolean)}
+                label="Disabled"
+              />
+              <Checkbox
+                checked={textFieldMagic}
+                onCheckedChange={(checked) => setTextFieldMagic(checked as boolean)}
+                label="Magic (AI) State"
+              />
+            </div>
+          </div>
+        );
+      
+      case 'textarea':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Size
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['small', 'large'] as const).map((size) => (
+                  <Chip
+                    key={size}
+                    size="small"
+                    selected={textAreaSize === size}
+                    onClick={() => setTextAreaSize(size)}
+                  >
+                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <Checkbox
+                checked={textAreaDisabled}
+                onCheckedChange={(checked) => setTextAreaDisabled(checked as boolean)}
+                label="Disabled"
+              />
+              <Checkbox
+                checked={textAreaMagic}
+                onCheckedChange={(checked) => setTextAreaMagic(checked as boolean)}
+                label="Magic (AI) State"
+              />
+            </div>
+          </div>
+        );
+      
+      case 'datefield':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <Checkbox
+                checked={dateFieldDisabled}
+                onCheckedChange={(checked) => setDateFieldDisabled(checked as boolean)}
+                label="Disabled"
+              />
+            </div>
+          </div>
+        );
+      
+      case 'select':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Size
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['small', 'large'] as const).map((size) => (
+                  <Chip
+                    key={size}
+                    size="small"
+                    selected={selectSize === size}
+                    onClick={() => setSelectSize(size)}
+                  >
+                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <Checkbox
+                checked={selectDisabled}
+                onCheckedChange={(checked) => setSelectDisabled(checked as boolean)}
+                label="Disabled"
+              />
+            </div>
+          </div>
+        );
+      
+      case 'switch':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <Checkbox
+                checked={switchDisabled}
+                onCheckedChange={(checked) => setSwitchDisabled(checked as boolean)}
+                label="Disabled"
+              />
+            </div>
+          </div>
+        );
+      
+      case 'badge':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Variant
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['default', 'info', 'success', 'warning', 'error'] as const).map((variant) => (
+                  <Chip
+                    key={variant}
+                    size="small"
+                    selected={badgeVariant === variant}
+                    onClick={() => setBadgeVariant(variant)}
+                  >
+                    {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <TextField
+                label="Badge Content"
+                size="small"
                 value={badgeContent}
                 onChange={(e) => setBadgeContent(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
               />
             </div>
           </div>
@@ -301,36 +513,31 @@ export default function ComponentTester() {
       
       case 'chip':
         return (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
-                Text
-              </label>
-              <input
-                type="text"
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Size
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['small', 'medium'] as const).map((size) => (
+                  <Chip
+                    key={size}
+                    size="small"
+                    selected={chipSize === size}
+                    onClick={() => setChipSize(size)}
+                  >
+                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <TextField
+                label="Chip Text"
+                size="small"
                 value={chipText}
                 onChange={(e) => setChipText(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
-              />
-            </div>
-            
-            <div>
-              <Checkbox
-                checked={chipSelected}
-                onCheckedChange={(checked) => setChipSelected(checked as boolean)}
-                label="Selected"
               />
             </div>
           </div>
@@ -338,60 +545,41 @@ export default function ComponentTester() {
       
       case 'filterchip':
         return (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
-                Text
-              </label>
-              <input
-                type="text"
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Size
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['small', 'medium', 'large'] as const).map((size) => (
+                  <Chip
+                    key={size}
+                    size="small"
+                    selected={filterChipSize === size}
+                    onClick={() => setFilterChipSize(size)}
+                  >
+                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <TextField
+                label="Filter Text"
+                size="small"
                 value={filterChipText}
                 onChange={(e) => setFilterChipText(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
               />
             </div>
             
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
-                Count
-              </label>
-              <input
+              <TextField
+                label="Count"
+                size="small"
                 type="number"
-                value={filterChipCount}
+                value={String(filterChipCount)}
                 onChange={(e) => setFilterChipCount(Number(e.target.value))}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
-              />
-            </div>
-            
-            <div>
-              <Checkbox
-                checked={filterChipSelected}
-                onCheckedChange={(checked) => setFilterChipSelected(checked as boolean)}
-                label="Selected"
               />
             </div>
           </div>
@@ -399,104 +587,49 @@ export default function ComponentTester() {
       
       case 'tag':
         return (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
                 Variant
-              </label>
-              <select
-                value={tagVariant}
-                onChange={(e) => setTagVariant(e.target.value as any)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
-              >
-                <option value="primary">Primary</option>
-                <option value="secondary">Secondary</option>
-                <option value="tertiary">Tertiary</option>
-              </select>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['primary', 'secondary', 'tertiary'] as const).map((variant) => (
+                  <Chip
+                    key={variant}
+                    size="small"
+                    selected={tagVariant === variant}
+                    onClick={() => setTagVariant(variant)}
+                  >
+                    {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                  </Chip>
+                ))}
+              </div>
             </div>
-
+            
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
                 Color
-              </label>
-              <select
-                value={tagColor}
-                onChange={(e) => setTagColor(e.target.value as any)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
-              >
-                <option value="brand">Brand</option>
-                <option value="positive">Positive</option>
-                <option value="negative">Negative</option>
-                <option value="warning">Warning</option>
-                <option value="info">Info</option>
-                <option value="edited">Edited</option>
-                <option value="blue">Blue</option>
-                <option value="spark">Spark</option>
-                <option value="green">Green</option>
-                <option value="red">Red</option>
-                <option value="purple">Purple</option>
-                <option value="gray">Gray</option>
-                <option value="cyan">Cyan</option>
-                <option value="orange">Orange</option>
-                <option value="pink">Pink</option>
-                <option value="yellow">Yellow</option>
-                <option value="teal">Teal</option>
-              </select>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['brand', 'positive', 'negative', 'warning', 'info'] as const).map((color) => (
+                  <Chip
+                    key={color}
+                    size="small"
+                    selected={tagColor === color}
+                    onClick={() => setTagColor(color)}
+                  >
+                    {color.charAt(0).toUpperCase() + color.slice(1)}
+                  </Chip>
+                ))}
+              </div>
             </div>
-
+            
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
-                Text
-              </label>
-              <input
-                type="text"
+              <TextField
+                label="Tag Text"
+                size="small"
                 value={tagText}
                 onChange={(e) => setTagText(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
-              />
-            </div>
-
-            <div>
-              <Checkbox
-                checked={tagHasIcon}
-                onCheckedChange={(checked) => setTagHasIcon(checked as boolean)}
-                label="Show leading icon"
               />
             </div>
           </div>
@@ -504,216 +637,202 @@ export default function ComponentTester() {
       
       case 'olqtag':
         return (
-          <div>
-            <label style={{
-              display: 'block',
-              fontSize: '14px',
-              fontWeight: '600',
-              marginBottom: '8px',
-              color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-            }}>
-              Percentage (0-100)
-            </label>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={olqPercentage}
-              onChange={(e) => setOlqPercentage(Number(e.target.value))}
-              style={{ width: '100%', marginBottom: '8px' }}
-            />
-            <div style={{
-              fontSize: '14px',
-              color: 'var(--ld-semantic-color-text-secondary, #74767C)'
-            }}>
-              {olqPercentage}%
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <TextField
+                label="Percentage"
+                size="small"
+                type="number"
+                value={String(olqPercentage)}
+                onChange={(e) => setOlqPercentage(Number(e.target.value))}
+                inputProps={{ min: 0, max: 100 }}
+              />
             </div>
           </div>
         );
       
       case 'iconbutton':
         return (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
                 Variant
-              </label>
-              <select
-                value={iconButtonVariant}
-                onChange={(e) => setIconButtonVariant(e.target.value as any)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
-              >
-                <option value="ghost">Ghost</option>
-                <option value="primary">Primary</option>
-                <option value="secondary">Secondary</option>
-                <option value="destructive">Destructive</option>
-              </select>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['ghost', 'primary', 'secondary', 'destructive'] as const).map((variant) => (
+                  <Chip
+                    key={variant}
+                    size="small"
+                    selected={iconButtonVariant === variant}
+                    onClick={() => setIconButtonVariant(variant)}
+                  >
+                    {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                  </Chip>
+                ))}
+              </div>
             </div>
             
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
                 Size
-              </label>
-              <select
-                value={iconButtonSize}
-                onChange={(e) => setIconButtonSize(e.target.value as any)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
-              >
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-              </select>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['small', 'medium', 'large'] as const).map((size) => (
+                  <Chip
+                    key={size}
+                    size="small"
+                    selected={iconButtonSize === size}
+                    onClick={() => setIconButtonSize(size)}
+                  >
+                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                  </Chip>
+                ))}
+              </div>
             </div>
           </div>
         );
       
-      case 'checkbox':
+      case 'spoticon':
         return (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '600',
-                marginBottom: '8px',
-                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-              }}>
-                Label
-              </label>
-              <input
-                type="text"
-                value={checkboxLabel}
-                onChange={(e) => setCheckboxLabel(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  boxShadow: 'var(--ld-semantic-elevation-100)',
-                  fontSize: '14px'
-                }}
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Size
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['small', 'medium', 'large'] as const).map((size) => (
+                  <Chip
+                    key={size}
+                    size="small"
+                    selected={spotIconSize === size}
+                    onClick={() => setSpotIconSize(size)}
+                  >
+                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Color
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['brand', 'neutral'] as const).map((color) => (
+                  <Chip
+                    key={color}
+                    size="small"
+                    selected={spotIconColor === color}
+                    onClick={() => setSpotIconColor(color)}
+                  >
+                    {color.charAt(0).toUpperCase() + color.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      
+      case 'rating':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <TextField
+                label="Value"
+                size="small"
+                type="number"
+                value={String(ratingValue)}
+                onChange={(e) => setRatingValue(Number(e.target.value))}
+                inputProps={{ min: 0, max: ratingMax }}
+              />
+            </div>
+            
+            <div>
+              <TextField
+                label="Max Stars"
+                size="small"
+                type="number"
+                value={String(ratingMax)}
+                onChange={(e) => setRatingMax(Number(e.target.value))}
+                inputProps={{ min: 1, max: 10 }}
               />
             </div>
           </div>
         );
       
-      case 'radio':
+      case 'divider':
         return (
-          <div style={{
-            padding: '16px',
-            backgroundColor: 'var(--ld-semantic-color-fill-surface-secondary, #F7F7F8)',
-            borderRadius: '6px',
-            fontSize: '14px',
-            color: 'var(--ld-semantic-color-text-secondary, #74767C)'
-          }}>
-            Click the radio buttons in the preview to change the selection
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Orientation
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['horizontal', 'vertical'] as const).map((orientation) => (
+                  <Chip
+                    key={orientation}
+                    size="small"
+                    selected={dividerOrientation === orientation}
+                    onClick={() => setDividerOrientation(orientation)}
+                  >
+                    {orientation.charAt(0).toUpperCase() + orientation.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      
+      case 'checkbox':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <TextField
+                label="Label Text"
+                size="small"
+                value={checkboxLabel}
+                onChange={(e) => setCheckboxLabel(e.target.value)}
+              />
+            </div>
           </div>
         );
       
       default:
-        return null;
+        return (
+          <div style={{
+            padding: '32px',
+            textAlign: 'center',
+            color: 'var(--ld-semantic-color-text-subtle)',
+            fontSize: '14px'
+          }}>
+            Select a component to configure its properties
+          </div>
+        );
     }
   };
 
-  const getCodeSnippet = () => {
-    switch (selectedComponent) {
-      case 'button':
-        return `<Button
-  variant="${buttonVariant}"
-  size="${buttonSize}"${buttonDisabled ? '\n  disabled' : ''}
->
-  ${buttonText}
-</Button>`;
-      
-      case 'badge':
-        return `<Badge variant="${badgeVariant}">${badgeContent}</Badge>`;
-      
-      case 'chip':
-        return `<Chip${chipSelected ? ' selected' : ''}>
-  ${chipText}
-</Chip>`;
-      
-      case 'filterchip':
-        return `<FilterChip${filterChipSelected ? ' selected' : ''}
-  count={${filterChipCount}}
->
-  ${filterChipText}
-</FilterChip>`;
-      
-      case 'tag':
-        return `<Tag
-  variant="${tagVariant}"
-  color="${tagColor}"${tagHasIcon ? '\n  leading={<Icon size={14} />}' : ''}
->
-  ${tagText}
-</Tag>`;
-      
-      case 'olqtag':
-        return `<OLQTag value="${olqPercentage}%" />`;
-      
-      case 'iconbutton':
-        return `<IconButton
-  variant="${iconButtonVariant}"
-  size="${iconButtonSize}"
-  aria-label="Settings"
->
-  <Icons.Settings size={20} />
-</IconButton>`;
-      
-      case 'checkbox':
-        return `<Checkbox
-  checked={checked}
-  onCheckedChange={setChecked}
-  label="${checkboxLabel}"
-/>`;
-      
-      case 'radio':
-        return `<RadioGroup value={value} onValueChange={setValue}>
-  <Radio value="option1" label="Option 1" />
-  <Radio value="option2" label="Option 2" />
-  <Radio value="option3" label="Option 3" />
-</RadioGroup>`;
-      
-      default:
-        return '';
+  // Group components by category
+  const groupedComponents = components.reduce((acc, component) => {
+    if (!acc[component.category]) {
+      acc[component.category] = [];
     }
-  };
+    acc[component.category].push(component);
+    return acc;
+  }, {} as Record<string, typeof components>);
 
   return (
     <div style={{
-      padding: '48px',
+      padding: 'clamp(24px, 4vw, 48px)',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
+      {/* Header */}
       <div style={{ marginBottom: '32px' }}>
         <h1 style={{
           fontSize: '32px',
           fontWeight: '700',
           fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
+          color: 'var(--ld-semantic-color-text)',
           marginBottom: '12px'
         }}>
           Component Sandbox
@@ -721,111 +840,180 @@ export default function ComponentTester() {
         <p style={{
           fontSize: '16px',
           lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
+          color: 'var(--ld-semantic-color-text-subtlest)',
           maxWidth: '800px'
         }}>
-          Interactive testing environment for Living Design 3.5 components. Select a component and adjust its properties to see live updates.
+          Interactive testing environment for Living Design 3.5 components. Select a component and adjust its properties in real-time.
         </p>
       </div>
 
       {/* Component Selector */}
-      <div style={{ marginBottom: '32px' }}>
-        <label style={{
-          display: 'block',
-          fontSize: '14px',
-          fontWeight: '600',
-          marginBottom: '12px',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-        }}>
-          Select Component
-        </label>
-        <select
+      <div style={{ marginBottom: '32px', maxWidth: '500px' }}>
+        <Select
+          label="Select Component to Test"
           value={selectedComponent}
-          onChange={(e) => setSelectedComponent(e.target.value as ComponentType)}
-          style={{
-            padding: '12px 16px',
-            borderRadius: '8px',
-            border: '2px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
-            fontSize: '16px',
-            fontWeight: '600',
-            backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-            cursor: 'pointer',
-            minWidth: '200px'
-          }}
+          onValueChange={(value) => setSelectedComponent(value as ComponentType)}
+          size="large"
         >
-          {components.map((comp) => (
-            <option key={comp.id} value={comp.id}>
-              {comp.name}
-            </option>
+          {Object.entries(groupedComponents).map(([category, items]) => (
+            <React.Fragment key={category}>
+              <SelectItem value={`category-${category}`} disabled>
+                {category}
+              </SelectItem>
+              {items.map((component) => (
+                <SelectItem key={component.id} value={component.id}>
+                  {component.name}
+                </SelectItem>
+              ))}
+            </React.Fragment>
           ))}
-        </select>
+        </Select>
       </div>
 
-      {/* Main Content */}
+      {/* Main Content Grid */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: '300px 1fr',
-        gap: '24px'
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(400px, 100%), 1fr))',
+        gap: '32px'
       }}>
-        {/* Controls Panel */}
-        <div>
-          <div style={{
-            backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-            padding: '24px',
-            borderRadius: '8px',
-            boxShadow: 'var(--ld-semantic-elevation-100)'
+        {/* Component Preview */}
+        <div style={{
+          backgroundColor: 'var(--ld-semantic-color-surface)',
+          padding: '32px',
+          borderRadius: '8px',
+          boxShadow: 'var(--ld-semantic-elevation-100)'
+        }}>
+          <h2 style={{
+            fontSize: '20px',
+            fontWeight: '700',
+            color: 'var(--ld-semantic-color-text)',
+            marginBottom: '24px',
+            paddingBottom: '16px',
+            borderBottom: '2px solid var(--ld-semantic-color-border-subtle)'
           }}>
-            <h3 style={{
-              fontSize: '16px',
-              fontWeight: '600',
-              marginBottom: '16px',
-              color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-            }}>
-              Properties
-            </h3>
-            {renderControls()}
-          </div>
-        </div>
-
-        {/* Preview & Code */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          {/* Preview */}
+            Preview
+          </h2>
+          
           <div style={{
-            backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-            padding: '48px',
-            borderRadius: '8px',
-            boxShadow: 'var(--ld-semantic-elevation-100)',
             minHeight: '200px',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            padding: '32px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '8px'
           }}>
             {renderComponent()}
           </div>
+        </div>
 
-          {/* Code Snippet */}
-          <div>
-            <h3 style={{
-              fontSize: '16px',
-              fontWeight: '600',
-              marginBottom: '12px',
-              color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-            }}>
-              Code
-            </h3>
-            <div style={{
-              backgroundColor: 'var(--ld-semantic-color-fill-surface-tertiary, #2E2F32)',
-              padding: '20px',
-              borderRadius: '8px',
-              fontFamily: 'monospace',
-              fontSize: '14px',
-              color: '#E6E6E8',
-              overflowX: 'auto',
-              whiteSpace: 'pre'
-            }}>
-              {getCodeSnippet()}
-            </div>
-          </div>
+        {/* Property Controls */}
+        <div style={{
+          backgroundColor: 'var(--ld-semantic-color-surface)',
+          padding: '32px',
+          borderRadius: '8px',
+          boxShadow: 'var(--ld-semantic-elevation-100)'
+        }}>
+          <h2 style={{
+            fontSize: '20px',
+            fontWeight: '700',
+            color: 'var(--ld-semantic-color-text)',
+            marginBottom: '24px',
+            paddingBottom: '16px',
+            borderBottom: '2px solid var(--ld-semantic-color-border-subtle)'
+          }}>
+            Properties
+          </h2>
+          
+          {renderControls()}
+        </div>
+      </div>
+
+      {/* Usage Code */}
+      <div style={{
+        marginTop: '32px',
+        backgroundColor: 'var(--ld-semantic-color-surface)',
+        padding: '32px',
+        borderRadius: '8px',
+        boxShadow: 'var(--ld-semantic-elevation-100)'
+      }}>
+        <h2 style={{
+          fontSize: '20px',
+          fontWeight: '700',
+          color: 'var(--ld-semantic-color-text)',
+          marginBottom: '16px'
+        }}>
+          Code Example
+        </h2>
+        
+        <div style={{
+          backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+          padding: '20px',
+          borderRadius: '6px',
+          fontFamily: 'var(--ld-semantic-font-family-mono)',
+          fontSize: '13px',
+          lineHeight: '1.6',
+          color: 'var(--ld-semantic-color-text)',
+          overflowX: 'auto'
+        }}>
+          {selectedComponent === 'button' && (
+            <pre style={{ margin: 0 }}>
+              {`<Button
+  variant="${buttonVariant}"
+  size="${buttonSize}"${buttonDisabled ? '\n  disabled' : ''}
+>
+  ${buttonText}
+</Button>`}
+            </pre>
+          )}
+          {selectedComponent === 'textfield' && (
+            <pre style={{ margin: 0 }}>
+              {`<TextField
+  label="Label"
+  size="${textFieldSize}"${textFieldError ? `\n  error="${textFieldError}"` : ''}${textFieldDisabled ? '\n  disabled' : ''}${textFieldMagic ? '\n  isMagic' : ''}
+  placeholder="Enter text..."
+/>`}
+            </pre>
+          )}
+          {selectedComponent === 'textarea' && (
+            <pre style={{ margin: 0 }}>
+              {`<TextArea
+  label="Label"
+  size="${textAreaSize}"${textAreaDisabled ? '\n  disabled' : ''}${textAreaMagic ? '\n  isMagic' : ''}
+  maxLength={200}
+/>`}
+            </pre>
+          )}
+          {selectedComponent === 'chip' && (
+            <pre style={{ margin: 0 }}>
+              {`<Chip
+  size="${chipSize}"
+  selected={${chipSelected}}
+  onClick={handleClick}
+>
+  ${chipText}
+</Chip>`}
+            </pre>
+          )}
+          {selectedComponent === 'tag' && (
+            <pre style={{ margin: 0 }}>
+              {`<Tag
+  variant="${tagVariant}"
+  color="${tagColor}"
+>
+  ${tagText}
+</Tag>`}
+            </pre>
+          )}
+          {selectedComponent === 'switch' && (
+            <pre style={{ margin: 0 }}>
+              {`<Switch
+  checked={${switchChecked}}
+  onCheckedChange={setChecked}${switchDisabled ? '\n  disabled' : ''}
+  label="Toggle option"
+/>`}
+            </pre>
+          )}
         </div>
       </div>
     </div>
