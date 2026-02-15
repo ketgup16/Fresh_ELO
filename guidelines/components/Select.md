@@ -26,11 +26,10 @@ Choose one value from a list.
 Select should support documented sizes (names may differ in your API).
 
 ## React usage (example)
-Update import path after wiring in `guidelines/components/overview-components.md`.
 
 ```tsx
 import * as React from "react";
-import { Select } from "REPLACE_ME_COMPONENT_IMPORT_PATH";
+import { Select, SelectItem } from "@/components/ui/Select";
 
 export function SelectExample() {
   const [value, setValue] = React.useState<string>("");
@@ -38,24 +37,68 @@ export function SelectExample() {
   return (
     <Select
       label="Country"
-      // Common Select props (adapt names to your actual API):
-      // value={value}
-      // onValueChange={setValue}
-      // helperText="Choose your shipping destination."
-      // errorMessage="Please select a country."
-      // disabled={false}
-      // leadingIcon={<GlobeIcon />} // 24x24, non-interactive
-      // size="sm" | "md" | "lg"
-      // state="default" | "magic" // Magic = AI-selected state
       value={value}
       onValueChange={setValue}
+      size="large"  // "small" | "large" (default: "large")
+      placeholder="Select option..."
+      helperText="Choose your shipping destination."
+      // errorMessage="Please select a country."
+      // error={true}
+      // disabled={false}
+      // isMagic={false}  // Set to true for AI-assisted variant
+      // required={false}
     >
-      {/* If your API uses children options, it may look like: */}
-      {/* <Select.Option value="">Select option…</Select.Option> */}
-      {/* <Select.Option value="us">United States</Select.Option> */}
-      {/* <Select.Option value="ca">Canada</Select.Option> */}
+      <SelectItem value="us">United States</SelectItem>
+      <SelectItem value="ca">Canada</SelectItem>
+      <SelectItem value="mx">Mexico</SelectItem>
     </Select>
   );
+}
+```
+
+### Grouped Options Example
+
+```tsx
+import { Select, SelectItem, SelectGroup, SelectLabel, SelectSeparator } from "@/components/ui/Select";
+
+<Select label="Product Category" value={value} onValueChange={setValue}>
+  <SelectGroup>
+    <SelectLabel>Electronics</SelectLabel>
+    <SelectItem value="laptop">Laptops</SelectItem>
+    <SelectItem value="phone">Smartphones</SelectItem>
+  </SelectGroup>
+
+  <SelectSeparator />
+
+  <SelectGroup>
+    <SelectLabel>Clothing</SelectLabel>
+    <SelectItem value="mens">Men's Clothing</SelectItem>
+    <SelectItem value="womens">Women's Clothing</SelectItem>
+  </SelectGroup>
+</Select>
+```
+
+### Component API
+
+```typescript
+interface SelectProps {
+  label: string;              // Required label text
+  value?: string;             // Controlled value
+  onValueChange?: (value: string) => void;  // Value change handler
+  placeholder?: string;       // Placeholder text (default: "Select option...")
+  disabled?: boolean;         // Disabled state (default: false)
+  size?: 'small' | 'large';  // Size variant (default: "large")
+  error?: boolean;            // Error state (default: false)
+  errorMessage?: string;      // Error message to display
+  isMagic?: boolean;          // AI-assisted variant (default: false)
+  helperText?: string;        // Helper text below select
+  leadingIcon?: React.ReactNode;  // Leading icon element
+  children: React.ReactNode;  // SelectItem components
+  className?: string;         // Additional CSS classes
+  id?: string;                // HTML id attribute
+  name?: string;              // HTML name attribute
+  required?: boolean;         // Required field indicator
+  defaultValue?: string;      // Default value for uncontrolled usage
 }
 ```
 

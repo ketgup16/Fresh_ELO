@@ -78,6 +78,11 @@ const navigationSections = [
         path: '/component-library/radio-buttons'
       },
       {
+        id: 'select',
+        name: 'Select',
+        path: '/component-library/select'
+      },
+      {
         id: 'form-groups',
         name: 'Form Groups',
         path: '/component-library/form-groups'
@@ -291,11 +296,6 @@ const navigationSections = [
         id: 'scroll-area',
         name: 'Scroll Area',
         path: '/component-library/scroll-area'
-      },
-      {
-        id: 'select',
-        name: 'Select',
-        path: '/component-library/select'
       },
       {
         id: 'separator',

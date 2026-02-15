@@ -21,3 +21,5 @@ export { Rating } from './Rating';
 export type { RatingProps } from './Rating';
 export { Scrim } from './Scrim';
 export type { ScrimProps, ScrimVariant } from './Scrim';
+export { Select, SelectItem, SelectLabel, SelectSeparator, SelectRoot, SelectGroup, SelectValue } from './Select';
+export type { SelectProps, SelectItemProps } from './Select';

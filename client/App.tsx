@@ -34,6 +34,7 @@ import LinkButtonsPage from "./pages/component-library/LinkButtons";
 import IconButtonsPage from "./pages/component-library/IconButtons";
 import CheckboxesPage from "./pages/component-library/Checkboxes";
 import RadioButtonsPage from "./pages/component-library/RadioButtons";
+import SelectPage from "./pages/component-library/Select";
 import FormGroupsPage from "./pages/component-library/FormGroups";
 import ChipsPage from "./pages/component-library/Chips";
 import FilterChipsPage from "./pages/component-library/FilterChips";
@@ -86,6 +87,7 @@ const App = () => (
                 <Route path="icon-buttons" element={<IconButtonsPage />} />
                 <Route path="checkboxes" element={<CheckboxesPage />} />
                 <Route path="radio-buttons" element={<RadioButtonsPage />} />
+                <Route path="select" element={<SelectPage />} />
                 <Route path="form-groups" element={<FormGroupsPage />} />
                 <Route path="chips" element={<ChipsPage />} />
                 <Route path="filter-chips" element={<FilterChipsPage />} />

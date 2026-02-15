@@ -58,14 +58,20 @@ const componentSections = [
     path: '/component-library/checkboxes',
     icon: 'Check'
   },
-  { 
-    title: 'Radio Buttons', 
+  {
+    title: 'Radio Buttons',
     description: 'Mutually exclusive selection within a group',
     path: '/component-library/radio-buttons',
     icon: 'Circle'
   },
-  { 
-    title: 'Form Groups', 
+  {
+    title: 'Select',
+    description: 'Dropdown select component with error states, AI-assisted variant, and full accessibility',
+    path: '/component-library/select',
+    icon: 'ChevronDown'
+  },
+  {
+    title: 'Form Groups',
     description: 'Fieldset containers for checkbox and radio groups',
     path: '/component-library/form-groups',
     icon: 'List'
