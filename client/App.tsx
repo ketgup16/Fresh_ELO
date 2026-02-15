@@ -1,9 +1,9 @@
 import "./global.css";
 
-import { Toaster } from "@/components/ui/toaster";
 import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SnackbarContainer } from "@/components/ui/SnackbarContainer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MartyProvider } from "@/contexts/MartyContext";
@@ -62,6 +62,7 @@ import PopoverPage from "./pages/component-library/Popover";
 import ProgressIndicatorPage from "./pages/component-library/ProgressIndicator";
 import ProgressTrackerPage from "./pages/component-library/ProgressTracker";
 import SkeletonPage from "./pages/component-library/Skeleton";
+import SnackbarsPage from "./pages/component-library/Snackbars";
 
 const queryClient = new QueryClient();
 
@@ -70,8 +71,8 @@ const App = () => (
   <ThemeProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
         <Sonner />
+        <SnackbarContainer />
         <MartyProvider>
           <BrowserRouter>
             <Routes>
@@ -114,6 +115,7 @@ const App = () => (
                 <Route path="popover" element={<PopoverPage />} />
                 <Route path="progress-indicator" element={<ProgressIndicatorPage />} />
                 <Route path="skeleton" element={<SkeletonPage />} />
+                <Route path="snackbars" element={<SnackbarsPage />} />
                 <Route path="progress-tracker" element={<ProgressTrackerPage />} />
               </Route>
 

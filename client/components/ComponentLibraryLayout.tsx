@@ -182,6 +182,11 @@ const navigationSections = [
         name: 'Progress Tracker',
         path: '/component-library/progress-tracker'
       },
+      {
+        id: 'snackbars',
+        name: 'Snackbars',
+        path: '/component-library/snackbars'
+      },
     ]
   },
   {
