@@ -57,6 +57,7 @@ import GuidelinesPage from "./pages/component-library/Guidelines";
 // Shadcn/Radix component pages
 import DialogPage from "./pages/component-library/Dialog";
 import SheetPage from "./pages/component-library/Sheet";
+import PopoverPage from "./pages/component-library/Popover";
 
 const queryClient = new QueryClient();
 
@@ -105,6 +106,7 @@ const App = () => (
                 {/* Shadcn/Radix Components */}
                 <Route path="dialog" element={<DialogPage />} />
                 <Route path="sheet" element={<SheetPage />} />
+                <Route path="popover" element={<PopoverPage />} />
               </Route>
 
               <Route path="/" element={<Index />} />
