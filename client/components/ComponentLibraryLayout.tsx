@@ -27,11 +27,6 @@ const navigationSections = [
         name: 'Guidelines',
         path: '/component-library/guidelines'
       },
-      {
-        id: 'settings',
-        name: 'Settings',
-        path: '/settings'
-      },
     ]
   },
   {
