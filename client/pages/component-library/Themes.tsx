@@ -1,5 +1,19 @@
 import React from 'react';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from '@/components/ui/table';
+import { Button } from '@/components/ui/Button';
+import * as Icons from '@/components/icons';
+
+const ChevronDown = Icons.ChevronDown;
+const ChevronUp = Icons.ChevronUp;
+const ArrowUp = Icons.ArrowUp;
 
 // Extract all CSS custom properties from the document
 function extractTokens(prefix: string): Array<{ name: string; value: string; computed: string }> {
@@ -44,22 +58,28 @@ export default function ThemesPage() {
   const [otherTokens, setOtherTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
   const [copiedToken, setCopiedToken] = React.useState<string | null>(null);
   const [currentFontFamily, setCurrentFontFamily] = React.useState<string>('');
+  
+  const [colorExpanded, setColorExpanded] = React.useState(true);
+  const [spaceExpanded, setSpaceExpanded] = React.useState(false);
+  const [textExpanded, setTextExpanded] = React.useState(false);
+  const [otherExpanded, setOtherExpanded] = React.useState(false);
+  const [showBackToTop, setShowBackToTop] = React.useState(false);
 
   React.useEffect(() => {
     // Extract tokens on mount and when theme changes
     const colors = extractTokens('--ld-semantic-color');
     const wcpColors = extractTokens('--wcp-semantic-color');
     const allColors = [...colors, ...wcpColors];
-
+    
     const spaces = extractTokens('--ld-semantic-spacing');
     const primitiveSpaces = extractTokens('--ld-primitive-scale-space');
     const allSpaces = [...spaces, ...primitiveSpaces];
-
+    
     // Extract text/typography tokens separately
     const textFonts = extractTokens('--ld-semantic-font');
     const textPrimitive = extractTokens('--ld-primitive-font');
     const allText = [...textFonts, ...textPrimitive];
-
+    
     // Get other useful tokens (borders, elevation, duration, etc)
     const borders = extractTokens('--ld-semantic-border');
     const elevation = extractTokens('--ld-semantic-elevation');
@@ -67,33 +87,48 @@ export default function ThemesPage() {
     const opacity = extractTokens('--ld-semantic-opacity');
     const zIndex = extractTokens('--ld-semantic-z-index');
     const allOther = [...borders, ...elevation, ...duration, ...opacity, ...zIndex];
-
+    
     setColorTokens(allColors);
     setSpaceTokens(allSpaces);
     setTextTokens(allText);
     setOtherTokens(allOther);
-
+    
     // Get current font family
     const styles = getComputedStyle(document.documentElement);
     const fontFamily = styles.getPropertyValue('--ld-semantic-font-family-sans').trim();
     setCurrentFontFamily(fontFamily);
-
+    
     // Re-run when theme changes (listen to CSS variable changes)
     const observer = new MutationObserver(() => {
       const newStyles = getComputedStyle(document.documentElement);
       const newFontFamily = newStyles.getPropertyValue('--ld-semantic-font-family-sans').trim();
       if (newFontFamily !== currentFontFamily) {
         setCurrentFontFamily(newFontFamily);
+        
+        // Re-extract all tokens when theme changes
+        const newColors = extractTokens('--ld-semantic-color');
+        const newWcpColors = extractTokens('--wcp-semantic-color');
+        setColorTokens([...newColors, ...newWcpColors]);
       }
     });
-
+    
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class', 'style']
     });
-
+    
     return () => observer.disconnect();
   }, [currentFontFamily]);
+
+  // Handle scroll for back-to-top button
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const copyToken = (tokenName: string) => {
     navigator.clipboard.writeText(`var(${tokenName})`);
@@ -101,13 +136,23 @@ export default function ThemesPage() {
     setTimeout(() => setCopiedToken(null), 2000);
   };
 
-  const isColorToken = (name: string) => name.includes('color');
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <div style={{
+    <div id="top" style={{
       padding: '48px',
       maxWidth: '100%',
-      margin: '0 auto'
+      margin: '0 auto',
+      position: 'relative'
     }}>
       {/* Header */}
       <div style={{ marginBottom: '32px' }}>
@@ -132,14 +177,74 @@ export default function ThemesPage() {
         </p>
       </div>
 
-      {/* Theme Selector - Full Width Card */}
+      {/* Quick Navigation */}
       <div style={{
+        backgroundColor: 'var(--ld-semantic-color-surface)',
+        padding: '20px 24px',
+        borderRadius: '8px',
+        boxShadow: 'var(--ld-semantic-elevation-100)',
+        marginBottom: '32px'
+      }}>
+        <div style={{
+          fontSize: '14px',
+          fontWeight: '700',
+          color: 'var(--ld-semantic-color-text-subtle)',
+          marginBottom: '12px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.5px'
+        }}>
+          Quick Navigate
+        </div>
+        <div style={{
+          display: 'flex',
+          gap: '12px',
+          flexWrap: 'wrap'
+        }}>
+          <Button
+            variant="secondary"
+            size="small"
+            onClick={() => scrollToSection('theme-selector')}
+          >
+            Theme Selector
+          </Button>
+          <Button
+            variant="secondary"
+            size="small"
+            onClick={() => scrollToSection('color-tokens')}
+          >
+            Color Tokens ({colorTokens.length})
+          </Button>
+          <Button
+            variant="secondary"
+            size="small"
+            onClick={() => scrollToSection('space-tokens')}
+          >
+            Space Tokens ({spaceTokens.length})
+          </Button>
+          <Button
+            variant="secondary"
+            size="small"
+            onClick={() => scrollToSection('text-tokens')}
+          >
+            Text Tokens ({textTokens.length})
+          </Button>
+          <Button
+            variant="secondary"
+            size="small"
+            onClick={() => scrollToSection('other-tokens')}
+          >
+            Other Tokens ({otherTokens.length})
+          </Button>
+        </div>
+      </div>
+
+      {/* Theme Selector - Full Width Card */}
+      <div id="theme-selector" style={{
         backgroundColor: 'var(--ld-semantic-color-surface)',
         padding: '32px',
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)',
-        marginBottom: '48px',
-        boxShadow: 'var(--ld-semantic-elevation-100)'
+        marginBottom: '48px'
       }}>
         <div style={{
           display: 'grid',
@@ -172,7 +277,7 @@ export default function ThemesPage() {
             }}>
               Current Theme Details
             </h2>
-
+            
             {/* Font Family Display */}
             <div style={{
               padding: '12px 16px',
@@ -222,7 +327,7 @@ export default function ThemesPage() {
               Themes are complete sets of design tokens that define the visual appearance of components.
               When you switch themes, all components automatically update to match the new color palette and typography.
             </p>
-
+            
             <div style={{
               padding: '12px 16px',
               backgroundColor: 'var(--ld-semantic-color-fill-info-subtle)',
@@ -244,669 +349,440 @@ export default function ThemesPage() {
         </div>
       </div>
 
-      {/* Color Tokens Table */}
-      <div style={{ marginBottom: '48px' }}>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '16px'
-        }}>
-          <h2 style={{
-            fontSize: '24px',
-            fontWeight: '700',
-            color: 'var(--ld-semantic-color-text)',
-          }}>
-            Color Tokens
-          </h2>
-          <div style={{
-            fontSize: '14px',
-            color: 'var(--ld-semantic-color-text-subtlest)',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-          }}>
-            {colorTokens.length} tokens
-          </div>
-        </div>
-        
-        <div style={{
-          backgroundColor: 'var(--ld-semantic-color-surface)',
-          borderRadius: '8px',
-          boxShadow: 'var(--ld-semantic-elevation-100)',
-          overflow: 'hidden'
-        }}>
-          <table style={{
+      {/* Color Tokens Section */}
+      <div id="color-tokens" style={{ marginBottom: '48px' }}>
+        <button
+          onClick={() => setColorExpanded(!colorExpanded)}
+          style={{
             width: '100%',
-            borderCollapse: 'collapse',
-            fontSize: '13px',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-          }}>
-            <thead>
-              <tr style={{
-                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
-                borderBottom: '2px solid var(--ld-semantic-color-border-subtle)'
-              }}>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                  width: '60px'
-                }}>
-                  Color
-                </th>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                }}>
-                  Token Name
-                </th>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                  width: '200px'
-                }}>
-                  Computed Value
-                </th>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                  width: '100px'
-                }}>
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {colorTokens.map((token, index) => (
-                <tr
-                  key={token.name}
-                  style={{
-                    borderBottom: index < colorTokens.length - 1 ? '1px solid var(--ld-semantic-color-border-subtlest)' : 'none',
-                    transition: 'background-color 0.15s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                  }}
-                >
-                  <td style={{ padding: '10px 16px' }}>
-                    <div style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '4px',
-                      backgroundColor: token.computed || `var(${token.name})`,
-                      boxShadow: 'var(--ld-semantic-elevation-100)',
-                    }} />
-                  </td>
-                  <td style={{
-                    padding: '10px 16px',
-                    fontFamily: 'var(--ld-semantic-font-family-mono)',
-                    fontSize: '12px',
-                    color: 'var(--ld-semantic-color-text)',
-                  }}>
-                    {token.name}
-                  </td>
-                  <td style={{
-                    padding: '10px 16px',
-                    fontFamily: 'var(--ld-semantic-font-family-mono)',
-                    fontSize: '12px',
-                    color: 'var(--ld-semantic-color-text-subtlest)',
-                  }}>
-                    {token.computed || token.value}
-                  </td>
-                  <td style={{ padding: '10px 16px' }}>
-                    <button
-                      onClick={() => copyToken(token.name)}
-                      style={{
-                        padding: '6px 12px',
-                        fontSize: '12px',
-                        fontWeight: '600',
-                        color: copiedToken === token.name 
-                          ? 'var(--ld-semantic-color-text-positive)' 
-                          : 'var(--ld-semantic-color-text-brand)',
-                        backgroundColor: 'transparent',
-                        border: '1px solid currentColor',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s',
-                        fontFamily: 'var(--ld-semantic-font-family-sans)',
-                      }}
-                      onMouseEnter={(e) => {
-                        if (copiedToken !== token.name) {
-                          e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-brand-subtle)';
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'transparent';
-                      }}
-                    >
-                      {copiedToken === token.name ? '✓ Copied' : 'Copy'}
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* Space Tokens Table */}
-      <div style={{ marginBottom: '48px' }}>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '16px'
-        }}>
-          <h2 style={{
-            fontSize: '24px',
-            fontWeight: '700',
-            color: 'var(--ld-semantic-color-text)',
-          }}>
-            Space Tokens
-          </h2>
-          <div style={{
-            fontSize: '14px',
-            color: 'var(--ld-semantic-color-text-subtlest)',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-          }}>
-            {spaceTokens.length} tokens
-          </div>
-        </div>
-        
-        <div style={{
-          backgroundColor: 'var(--ld-semantic-color-surface)',
-          borderRadius: '8px',
-          boxShadow: 'var(--ld-semantic-elevation-100)',
-          overflow: 'hidden'
-        }}>
-          <table style={{
-            width: '100%',
-            borderCollapse: 'collapse',
-            fontSize: '13px',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-          }}>
-            <thead>
-              <tr style={{
-                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
-                borderBottom: '2px solid var(--ld-semantic-color-border-subtle)'
-              }}>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                  width: '100px'
-                }}>
-                  Size
-                </th>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                }}>
-                  Token Name
-                </th>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                  width: '150px'
-                }}>
-                  Value
-                </th>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                  width: '100px'
-                }}>
-                  Pixels
-                </th>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                  width: '100px'
-                }}>
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {spaceTokens.map((token, index) => {
-                const remValue = token.computed || token.value;
-                const pixels = remValue.includes('rem') 
-                  ? `${parseFloat(remValue) * 16}px` 
-                  : remValue;
-                
-                return (
-                  <tr
-                    key={token.name}
-                    style={{
-                      borderBottom: index < spaceTokens.length - 1 ? '1px solid var(--ld-semantic-color-border-subtlest)' : 'none',
-                      transition: 'background-color 0.15s'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                    }}
-                  >
-                    <td style={{ padding: '10px 16px' }}>
-                      <div style={{
-                        width: token.computed || token.value,
-                        height: '24px',
-                        backgroundColor: 'var(--ld-semantic-color-action-fill-primary)',
-                        borderRadius: '2px',
-                        minWidth: '4px'
-                      }} />
-                    </td>
-                    <td style={{
-                      padding: '10px 16px',
-                      fontFamily: 'var(--ld-semantic-font-family-mono)',
-                      fontSize: '12px',
-                      color: 'var(--ld-semantic-color-text)',
-                    }}>
-                      {token.name}
-                    </td>
-                    <td style={{
-                      padding: '10px 16px',
-                      fontFamily: 'var(--ld-semantic-font-family-mono)',
-                      fontSize: '12px',
-                      color: 'var(--ld-semantic-color-text-subtlest)',
-                    }}>
-                      {remValue}
-                    </td>
-                    <td style={{
-                      padding: '10px 16px',
-                      fontFamily: 'var(--ld-semantic-font-family-mono)',
-                      fontSize: '12px',
-                      color: 'var(--ld-semantic-color-text-subtlest)',
-                      fontWeight: '600'
-                    }}>
-                      {pixels}
-                    </td>
-                    <td style={{ padding: '10px 16px' }}>
-                      <button
-                        onClick={() => copyToken(token.name)}
-                        style={{
-                          padding: '6px 12px',
-                          fontSize: '12px',
-                          fontWeight: '600',
-                          color: copiedToken === token.name 
-                            ? 'var(--ld-semantic-color-text-positive)' 
-                            : 'var(--ld-semantic-color-text-brand)',
-                          backgroundColor: 'transparent',
-                          border: '1px solid currentColor',
-                          borderRadius: '4px',
-                          cursor: 'pointer',
-                          transition: 'all 0.2s',
-                          fontFamily: 'var(--ld-semantic-font-family-sans)',
-                        }}
-                        onMouseEnter={(e) => {
-                          if (copiedToken !== token.name) {
-                            e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-brand-subtle)';
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = 'transparent';
-                        }}
-                      >
-                        {copiedToken === token.name ? '✓' : 'Copy'}
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* Text/Typography Tokens Table */}
-      <div style={{ marginBottom: '48px' }}>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '16px'
-        }}>
-          <h2 style={{
-            fontSize: '24px',
-            fontWeight: '700',
-            color: 'var(--ld-semantic-color-text)',
-          }}>
-            Text Tokens
-          </h2>
-          <div style={{
-            fontSize: '14px',
-            color: 'var(--ld-semantic-color-text-subtlest)',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-          }}>
-            {textTokens.length} tokens (font families, sizes, weights, line heights)
-          </div>
-        </div>
-
-        <div style={{
-          backgroundColor: 'var(--ld-semantic-color-surface)',
-          borderRadius: '8px',
-          boxShadow: 'var(--ld-semantic-elevation-100)',
-          overflow: 'hidden'
-        }}>
-          <table style={{
-            width: '100%',
-            borderCollapse: 'collapse',
-            fontSize: '13px',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-          }}>
-            <thead>
-              <tr style={{
-                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
-                borderBottom: '2px solid var(--ld-semantic-color-border-subtle)'
-              }}>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                  width: '150px'
-                }}>
-                  Preview
-                </th>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                }}>
-                  Token Name
-                </th>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                  width: '250px'
-                }}>
-                  Value
-                </th>
-                <th style={{
-                  padding: '12px 16px',
-                  textAlign: 'left',
-                  fontWeight: '700',
-                  color: 'var(--ld-semantic-color-text)',
-                  width: '100px'
-                }}>
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {textTokens.map((token, index) => {
-                const isFontFamily = token.name.includes('family');
-                const isFontSize = token.name.includes('size');
-                const isFontWeight = token.name.includes('weight');
-                const isLineHeight = token.name.includes('line-height') || token.name.includes('lineheight');
-
-                return (
-                  <tr
-                    key={token.name}
-                    style={{
-                      borderBottom: index < textTokens.length - 1 ? '1px solid var(--ld-semantic-color-border-subtlest)' : 'none',
-                      transition: 'background-color 0.15s'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                    }}
-                  >
-                    <td style={{ padding: '10px 16px' }}>
-                      {isFontFamily && (
-                        <div style={{
-                          fontSize: '14px',
-                          fontFamily: `var(${token.name})`,
-                          color: 'var(--ld-semantic-color-text)',
-                        }}>
-                          Abc 123
-                        </div>
-                      )}
-                      {isFontSize && (
-                        <div style={{
-                          fontSize: `var(${token.name})`,
-                          color: 'var(--ld-semantic-color-text)',
-                        }}>
-                          Aa
-                        </div>
-                      )}
-                      {isFontWeight && (
-                        <div style={{
-                          fontSize: '14px',
-                          fontWeight: `var(${token.name})`,
-                          color: 'var(--ld-semantic-color-text)',
-                        }}>
-                          Weight
-                        </div>
-                      )}
-                      {isLineHeight && (
-                        <div style={{
-                          fontSize: '12px',
-                          lineHeight: `var(${token.name})`,
-                          color: 'var(--ld-semantic-color-text)',
-                          border: '1px dashed var(--ld-semantic-color-border-subtle)',
-                          padding: '4px'
-                        }}>
-                          Line<br/>Height
-                        </div>
-                      )}
-                    </td>
-                    <td style={{
-                      padding: '10px 16px',
-                      fontFamily: 'var(--ld-semantic-font-family-mono)',
-                      fontSize: '12px',
-                      color: 'var(--ld-semantic-color-text)',
-                    }}>
-                      {token.name}
-                    </td>
-                    <td style={{
-                      padding: '10px 16px',
-                      fontFamily: 'var(--ld-semantic-font-family-mono)',
-                      fontSize: '12px',
-                      color: 'var(--ld-semantic-color-text-subtlest)',
-                      wordBreak: 'break-all'
-                    }}>
-                      {token.computed || token.value}
-                    </td>
-                    <td style={{ padding: '10px 16px' }}>
-                      <button
-                        onClick={() => copyToken(token.name)}
-                        style={{
-                          padding: '6px 12px',
-                          fontSize: '12px',
-                          fontWeight: '600',
-                          color: copiedToken === token.name
-                            ? 'var(--ld-semantic-color-text-positive)'
-                            : 'var(--ld-semantic-color-text-brand)',
-                          backgroundColor: 'transparent',
-                          border: '1px solid currentColor',
-                          borderRadius: '4px',
-                          cursor: 'pointer',
-                          transition: 'all 0.2s',
-                          fontFamily: 'var(--ld-semantic-font-family-sans)',
-                        }}
-                        onMouseEnter={(e) => {
-                          if (copiedToken !== token.name) {
-                            e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-brand-subtle)';
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = 'transparent';
-                        }}
-                      >
-                        {copiedToken === token.name ? '✓' : 'Copy'}
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* Other Tokens Table (Border, Elevation, Duration, etc) */}
-      {otherTokens.length > 0 && (
-        <div>
-          <div style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            marginBottom: '16px'
-          }}>
+            padding: '16px 24px',
+            backgroundColor: 'var(--ld-semantic-color-surface)',
+            border: 'none',
+            borderRadius: '8px',
+            boxShadow: 'var(--ld-semantic-elevation-100)',
+            cursor: 'pointer',
+            marginBottom: colorExpanded ? '16px' : '0',
+            transition: 'all 0.2s'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.boxShadow = 'var(--ld-semantic-elevation-200)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.boxShadow = 'var(--ld-semantic-elevation-100)';
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <h2 style={{
               fontSize: '24px',
               fontWeight: '700',
               color: 'var(--ld-semantic-color-text)',
+              margin: 0
             }}>
-              Other Tokens
+              Color Tokens
             </h2>
-            <div style={{
+            <span style={{
               fontSize: '14px',
-            color: 'var(--ld-semantic-color-text-subtlest)',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-          }}>
-            {otherTokens.length} tokens (borders, elevation, duration, opacity, z-index)
-            </div>
+              color: 'var(--ld-semantic-color-text-subtlest)',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}>
+              {colorTokens.length} tokens
+            </span>
           </div>
-          
+          {colorExpanded ? <ChevronUp /> : <ChevronDown />}
+        </button>
+        
+        {colorExpanded && (
           <div style={{
             backgroundColor: 'var(--ld-semantic-color-surface)',
             borderRadius: '8px',
             boxShadow: 'var(--ld-semantic-elevation-100)',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            maxHeight: '800px',
+            overflowY: 'auto'
           }}>
-            <table style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-              fontSize: '13px',
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[120px] sticky top-0 bg-muted z-10">Color</TableHead>
+                  <TableHead className="sticky top-0 bg-muted z-10">Token Name</TableHead>
+                  <TableHead className="w-[280px] sticky top-0 bg-muted z-10">Computed Value</TableHead>
+                  <TableHead className="w-[120px] text-right sticky top-0 bg-muted z-10">Action</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {colorTokens.map((token) => (
+                  <TableRow key={token.name}>
+                    <TableCell>
+                      <div style={{
+                        width: '80px',
+                        height: '40px',
+                        backgroundColor: token.computed || `var(${token.name})`,
+                        borderRadius: '4px',
+                        border: '1px solid var(--ld-semantic-color-border-subtle)',
+                      }} />
+                    </TableCell>
+                    <TableCell className="font-mono text-xs">
+                      {token.name}
+                    </TableCell>
+                    <TableCell className="font-mono text-xs text-muted-foreground">
+                      {token.computed || token.value}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button
+                        variant={copiedToken === token.name ? "primary" : "secondary"}
+                        size="small"
+                        onClick={() => copyToken(token.name)}
+                      >
+                        {copiedToken === token.name ? '✓ Copied' : 'Copy'}
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        )}
+      </div>
+
+      {/* Space Tokens Section */}
+      <div id="space-tokens" style={{ marginBottom: '48px' }}>
+        <button
+          onClick={() => setSpaceExpanded(!spaceExpanded)}
+          style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '16px 24px',
+            backgroundColor: 'var(--ld-semantic-color-surface)',
+            border: 'none',
+            borderRadius: '8px',
+            boxShadow: 'var(--ld-semantic-elevation-100)',
+            cursor: 'pointer',
+            marginBottom: spaceExpanded ? '16px' : '0',
+            transition: 'all 0.2s'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.boxShadow = 'var(--ld-semantic-elevation-200)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.boxShadow = 'var(--ld-semantic-elevation-100)';
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <h2 style={{
+              fontSize: '24px',
+              fontWeight: '700',
+              color: 'var(--ld-semantic-color-text)',
+              margin: 0
+            }}>
+              Space Tokens
+            </h2>
+            <span style={{
+              fontSize: '14px',
+              color: 'var(--ld-semantic-color-text-subtlest)',
               fontFamily: 'var(--ld-semantic-font-family-sans)',
             }}>
-              <thead>
-                <tr style={{
-                  backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
-                  borderBottom: '2px solid var(--ld-semantic-color-border-subtle)'
-                }}>
-                  <th style={{
-                    padding: '12px 16px',
-                    textAlign: 'left',
-                    fontWeight: '700',
-                    color: 'var(--ld-semantic-color-text)',
-                  }}>
-                    Token Name
-                  </th>
-                  <th style={{
-                    padding: '12px 16px',
-                    textAlign: 'left',
-                    fontWeight: '700',
-                    color: 'var(--ld-semantic-color-text)',
-                    width: '300px'
-                  }}>
-                    Value
-                  </th>
-                  <th style={{
-                    padding: '12px 16px',
-                    textAlign: 'left',
-                    fontWeight: '700',
-                    color: 'var(--ld-semantic-color-text)',
-                    width: '100px'
-                  }}>
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {otherTokens.map((token, index) => (
-                  <tr
-                    key={token.name}
-                    style={{
-                      borderBottom: index < otherTokens.length - 1 ? '1px solid var(--ld-semantic-color-border-subtlest)' : 'none',
-                      transition: 'background-color 0.15s'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                    }}
-                  >
-                    <td style={{
-                      padding: '10px 16px',
-                      fontFamily: 'var(--ld-semantic-font-family-mono)',
-                      fontSize: '12px',
-                      color: 'var(--ld-semantic-color-text)',
-                    }}>
+              {spaceTokens.length} tokens
+            </span>
+          </div>
+          {spaceExpanded ? <ChevronUp /> : <ChevronDown />}
+        </button>
+        
+        {spaceExpanded && (
+          <div style={{
+            backgroundColor: 'var(--ld-semantic-color-surface)',
+            borderRadius: '8px',
+            boxShadow: 'var(--ld-semantic-elevation-100)',
+            overflow: 'hidden',
+            maxHeight: '800px',
+            overflowY: 'auto'
+          }}>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[150px] sticky top-0 bg-muted z-10">Size</TableHead>
+                  <TableHead className="sticky top-0 bg-muted z-10">Token Name</TableHead>
+                  <TableHead className="w-[180px] sticky top-0 bg-muted z-10">Value</TableHead>
+                  <TableHead className="w-[120px] sticky top-0 bg-muted z-10">Pixels</TableHead>
+                  <TableHead className="w-[120px] text-right sticky top-0 bg-muted z-10">Action</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {spaceTokens.map((token) => {
+                  const remValue = token.computed || token.value;
+                  const pixels = remValue.includes('rem') 
+                    ? `${parseFloat(remValue) * 16}px` 
+                    : remValue;
+                  
+                  return (
+                    <TableRow key={token.name}>
+                      <TableCell>
+                        <div style={{
+                          width: token.computed || token.value,
+                          height: '24px',
+                          backgroundColor: 'var(--ld-semantic-color-action-fill-primary)',
+                          borderRadius: '2px',
+                          minWidth: '4px'
+                        }} />
+                      </TableCell>
+                      <TableCell className="font-mono text-xs">
+                        {token.name}
+                      </TableCell>
+                      <TableCell className="font-mono text-xs text-muted-foreground">
+                        {remValue}
+                      </TableCell>
+                      <TableCell className="font-mono text-xs text-muted-foreground font-semibold">
+                        {pixels}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <Button
+                          variant={copiedToken === token.name ? "primary" : "secondary"}
+                          size="small"
+                          onClick={() => copyToken(token.name)}
+                        >
+                          {copiedToken === token.name ? '✓' : 'Copy'}
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </div>
+        )}
+      </div>
+
+      {/* Text/Typography Tokens Section */}
+      <div id="text-tokens" style={{ marginBottom: '48px' }}>
+        <button
+          onClick={() => setTextExpanded(!textExpanded)}
+          style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '16px 24px',
+            backgroundColor: 'var(--ld-semantic-color-surface)',
+            border: 'none',
+            borderRadius: '8px',
+            boxShadow: 'var(--ld-semantic-elevation-100)',
+            cursor: 'pointer',
+            marginBottom: textExpanded ? '16px' : '0',
+            transition: 'all 0.2s'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.boxShadow = 'var(--ld-semantic-elevation-200)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.boxShadow = 'var(--ld-semantic-elevation-100)';
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <h2 style={{
+              fontSize: '24px',
+              fontWeight: '700',
+              color: 'var(--ld-semantic-color-text)',
+              margin: 0
+            }}>
+              Text Tokens
+            </h2>
+            <span style={{
+              fontSize: '14px',
+              color: 'var(--ld-semantic-color-text-subtlest)',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}>
+              {textTokens.length} tokens (font families, sizes, weights, line heights)
+            </span>
+          </div>
+          {textExpanded ? <ChevronUp /> : <ChevronDown />}
+        </button>
+        
+        {textExpanded && (
+          <div style={{
+            backgroundColor: 'var(--ld-semantic-color-surface)',
+            borderRadius: '8px',
+            boxShadow: 'var(--ld-semantic-elevation-100)',
+            overflow: 'hidden',
+            maxHeight: '800px',
+            overflowY: 'auto'
+          }}>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[180px] sticky top-0 bg-muted z-10">Preview</TableHead>
+                  <TableHead className="sticky top-0 bg-muted z-10">Token Name</TableHead>
+                  <TableHead className="w-[300px] sticky top-0 bg-muted z-10">Value</TableHead>
+                  <TableHead className="w-[120px] text-right sticky top-0 bg-muted z-10">Action</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {textTokens.map((token) => {
+                  const isFontFamily = token.name.includes('family');
+                  const isFontSize = token.name.includes('size');
+                  const isFontWeight = token.name.includes('weight');
+                  const isLineHeight = token.name.includes('line-height') || token.name.includes('lineheight');
+                  
+                  return (
+                    <TableRow key={token.name}>
+                      <TableCell>
+                        {isFontFamily && (
+                          <div style={{
+                            fontSize: '14px',
+                            fontFamily: `var(${token.name})`,
+                            color: 'var(--ld-semantic-color-text)',
+                          }}>
+                            Abc 123
+                          </div>
+                        )}
+                        {isFontSize && (
+                          <div style={{
+                            fontSize: `var(${token.name})`,
+                            color: 'var(--ld-semantic-color-text)',
+                          }}>
+                            Aa
+                          </div>
+                        )}
+                        {isFontWeight && (
+                          <div style={{
+                            fontSize: '14px',
+                            fontWeight: `var(${token.name})`,
+                            color: 'var(--ld-semantic-color-text)',
+                          }}>
+                            Weight
+                          </div>
+                        )}
+                        {isLineHeight && (
+                          <div style={{
+                            fontSize: '12px',
+                            lineHeight: `var(${token.name})`,
+                            color: 'var(--ld-semantic-color-text)',
+                            border: '1px dashed var(--ld-semantic-color-border-subtle)',
+                            padding: '4px',
+                            display: 'inline-block'
+                          }}>
+                            Line<br/>Height
+                          </div>
+                        )}
+                      </TableCell>
+                      <TableCell className="font-mono text-xs">
+                        {token.name}
+                      </TableCell>
+                      <TableCell className="font-mono text-xs text-muted-foreground">
+                        <div style={{ wordBreak: 'break-all' }}>
+                          {token.computed || token.value}
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <Button
+                          variant={copiedToken === token.name ? "primary" : "secondary"}
+                          size="small"
+                          onClick={() => copyToken(token.name)}
+                        >
+                          {copiedToken === token.name ? '✓' : 'Copy'}
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </div>
+        )}
+      </div>
+
+      {/* Other Tokens Section */}
+      <div id="other-tokens">
+        <button
+          onClick={() => setOtherExpanded(!otherExpanded)}
+          style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '16px 24px',
+            backgroundColor: 'var(--ld-semantic-color-surface)',
+            border: 'none',
+            borderRadius: '8px',
+            boxShadow: 'var(--ld-semantic-elevation-100)',
+            cursor: 'pointer',
+            marginBottom: otherExpanded ? '16px' : '0',
+            transition: 'all 0.2s'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.boxShadow = 'var(--ld-semantic-elevation-200)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.boxShadow = 'var(--ld-semantic-elevation-100)';
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <h2 style={{
+              fontSize: '24px',
+              fontWeight: '700',
+              color: 'var(--ld-semantic-color-text)',
+              margin: 0
+            }}>
+              Other Tokens
+            </h2>
+            <span style={{
+              fontSize: '14px',
+              color: 'var(--ld-semantic-color-text-subtlest)',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}>
+              {otherTokens.length} tokens (borders, elevation, duration, opacity, z-index)
+            </span>
+          </div>
+          {otherExpanded ? <ChevronUp /> : <ChevronDown />}
+        </button>
+        
+        {otherExpanded && (
+          <div style={{
+            backgroundColor: 'var(--ld-semantic-color-surface)',
+            borderRadius: '8px',
+            boxShadow: 'var(--ld-semantic-elevation-100)',
+            overflow: 'hidden',
+            maxHeight: '800px',
+            overflowY: 'auto'
+          }}>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="sticky top-0 bg-muted z-10">Token Name</TableHead>
+                  <TableHead className="w-[350px] sticky top-0 bg-muted z-10">Value</TableHead>
+                  <TableHead className="w-[120px] text-right sticky top-0 bg-muted z-10">Action</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {otherTokens.map((token) => (
+                  <TableRow key={token.name}>
+                    <TableCell className="font-mono text-xs">
                       {token.name}
-                    </td>
-                    <td style={{
-                      padding: '10px 16px',
-                      fontFamily: 'var(--ld-semantic-font-family-mono)',
-                      fontSize: '12px',
-                      color: 'var(--ld-semantic-color-text-subtlest)',
-                      wordBreak: 'break-all'
-                    }}>
-                      {token.computed || token.value}
-                    </td>
-                    <td style={{ padding: '10px 16px' }}>
-                      <button
+                    </TableCell>
+                    <TableCell className="font-mono text-xs text-muted-foreground">
+                      <div style={{ wordBreak: 'break-all' }}>
+                        {token.computed || token.value}
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button
+                        variant={copiedToken === token.name ? "primary" : "secondary"}
+                        size="small"
                         onClick={() => copyToken(token.name)}
-                        style={{
-                          padding: '6px 12px',
-                          fontSize: '12px',
-                          fontWeight: '600',
-                          color: copiedToken === token.name 
-                            ? 'var(--ld-semantic-color-text-positive)' 
-                            : 'var(--ld-semantic-color-text-brand)',
-                          backgroundColor: 'transparent',
-                          border: '1px solid currentColor',
-                          borderRadius: '4px',
-                          cursor: 'pointer',
-                          transition: 'all 0.2s',
-                          fontFamily: 'var(--ld-semantic-font-family-sans)',
-                        }}
-                        onMouseEnter={(e) => {
-                          if (copiedToken !== token.name) {
-                            e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-brand-subtle)';
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = 'transparent';
-                        }}
                       >
                         {copiedToken === token.name ? '✓' : 'Copy'}
-                      </button>
-                    </td>
-                  </tr>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Usage Note */}
       <div style={{
@@ -972,6 +848,42 @@ export default function ThemesPage() {
           </div>
         </div>
       </div>
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          style={{
+            position: 'fixed',
+            bottom: '32px',
+            right: '32px',
+            width: '48px',
+            height: '48px',
+            borderRadius: '50%',
+            backgroundColor: 'var(--ld-semantic-color-action-fill-primary)',
+            color: 'var(--ld-semantic-color-action-text-on-fill-primary)',
+            border: 'none',
+            boxShadow: 'var(--ld-semantic-elevation-300)',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'all 0.2s',
+            zIndex: 1000
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-action-fill-primary-hovered)';
+            e.currentTarget.style.transform = 'scale(1.1)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-action-fill-primary)';
+            e.currentTarget.style.transform = 'scale(1)';
+          }}
+          aria-label="Back to top"
+        >
+          <ArrowUp style={{ width: 24, height: 24 }} />
+        </button>
+      )}
     </div>
   );
 }
