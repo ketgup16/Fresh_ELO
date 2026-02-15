@@ -162,6 +162,11 @@ const navigationSections = [
         name: 'Panels',
         path: '/component-library/panels'
       },
+      {
+        id: 'popover',
+        name: 'Popover',
+        path: '/component-library/popover'
+      },
     ]
   },
   {
@@ -261,11 +266,6 @@ const navigationSections = [
         id: 'pagination',
         name: 'Pagination',
         path: '/component-library/pagination'
-      },
-      {
-        id: 'popover',
-        name: 'Popover',
-        path: '/component-library/popover'
       },
       {
         id: 'progress',
