@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/Checkbox";
 import { Alert } from "@/components/ui/Alert";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from "@/components/ui/table";
+import { Tabs, TabList, Tab, TabPanel } from "@/components/ui/tabs";
 import { toast } from "sonner";
 
 interface RecommendationsContentProps {
@@ -682,39 +683,20 @@ export function RecommendationsContent({ campaignGoal = "Awareness", onClose }: 
   return (
     <div className="flex flex-col h-full">
       {/* Tabs */}
-      <div className="border-b border-[#E3E4E5] overflow-x-auto -mx-6 px-6 mb-4">
-        <div className="flex gap-0 min-w-max">
-          <button
-            onClick={() => setSelectedTab("active")}
-            className={`px-3 pb-2 pt-4 text-sm relative ${
-              selectedTab === "active"
-                ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0053E2] after:rounded-t"
-                : "font-normal text-[#2E2F32]"
-            }`}
-          >
-            Active recommendations ({totalRecommendations})
-          </button>
-          <button
-            onClick={() => setSelectedTab("applied")}
-            className={`px-3 pb-2 pt-4 text-sm relative ${
-              selectedTab === "applied"
-                ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0053E2] after:rounded-t"
-                : "font-normal text-[#2E2F32]"
-            }`}
-          >
-            Applied (8)
-          </button>
-          <button
-            onClick={() => setSelectedTab("dismissed")}
-            className={`px-3 pb-2 pt-4 text-sm relative ${
-              selectedTab === "dismissed"
-                ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0053E2] after:rounded-t"
-                : "font-normal text-[#2E2F32]"
-            }`}
-          >
-            Dismissed (4)
-          </button>
-        </div>
+      <div className="overflow-x-auto -mx-6 px-6 mb-4">
+        <Tabs value={selectedTab} onValueChange={setSelectedTab}>
+          <TabList>
+            <Tab value="active">
+              Active recommendations ({totalRecommendations})
+            </Tab>
+            <Tab value="applied">
+              Applied (8)
+            </Tab>
+            <Tab value="dismissed">
+              Dismissed (4)
+            </Tab>
+          </TabList>
+        </Tabs>
       </div>
 
       {/* Filter Dropdowns - Only show on active tab */}

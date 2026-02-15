@@ -10,6 +10,7 @@ import { Button } from "../components/ui/Button";
 import { Checkbox } from "../components/ui/Checkbox";
 import { Divider } from "../components/ui/Divider";
 import { Scrim } from "../components/ui/Scrim";
+import { Tabs, TabList, Tab } from "../components/ui/tabs";
 
 interface Campaign {
   id: string;
@@ -2362,29 +2363,17 @@ export default function DisplayAdvertisingCampaigns() {
             </div>
 
             {/* Tabs */}
-            <div className="border-b border-[#E3E4E5]">
-              <div className="flex gap-0">
-                <button
-                  onClick={() => setSelectedTab("onsite")}
-                  className={`px-0 py-3 text-sm relative ${
-                    selectedTab === "onsite"
-                      ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:bg-[#0053E2] after:rounded-t"
-                      : "font-normal text-[#2E2F32] hover:bg-gray-50"
-                  }`}
-                >
-                  Onsite auction
-                </button>
-                <button
-                  onClick={() => setSelectedTab("archive")}
-                  className={`ml-6 px-0 py-3 text-sm relative ${
-                    selectedTab === "archive"
-                      ? "font-bold text-[#2E2F32] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:bg-[#0053E2] after:rounded-t"
-                      : "font-normal text-[#2E2F32] hover:bg-gray-50"
-                  }`}
-                >
-                  Archive
-                </button>
-              </div>
+            <div>
+              <Tabs value={selectedTab} onValueChange={setSelectedTab}>
+                <TabList>
+                  <Tab value="onsite">
+                    Onsite auction
+                  </Tab>
+                  <Tab value="archive">
+                    Archive
+                  </Tab>
+                </TabList>
+              </Tabs>
             </div>
           </div>
 

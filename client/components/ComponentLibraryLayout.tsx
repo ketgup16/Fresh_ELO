@@ -192,6 +192,11 @@ const navigationSections = [
         name: 'Spot Icons',
         path: '/component-library/spot-icons'
       },
+      {
+        id: 'tabs',
+        name: 'Tab Navigation',
+        path: '/component-library/tabs'
+      },
     ]
   },
   {
@@ -336,11 +341,6 @@ const navigationSections = [
         id: 'table',
         name: 'Table',
         path: '/component-library/table'
-      },
-      {
-        id: 'tabs',
-        name: 'Tabs',
-        path: '/component-library/tabs'
       },
       {
         id: 'textarea',
