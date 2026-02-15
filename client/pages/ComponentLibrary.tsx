@@ -12,6 +12,7 @@ const CalloutExample = React.lazy(() => import('@/components/examples/CalloutExa
 const CardHeaderExample = React.lazy(() => import('@/components/examples/CardHeaderExample').then(m => ({ default: m.CardHeaderExample })));
 const CheckboxExample = React.lazy(() => import('@/components/examples/CheckboxExample').then(m => ({ default: m.CheckboxExample })));
 const RadioExample = React.lazy(() => import('@/components/examples/RadioExample').then(m => ({ default: m.RadioExample })));
+const RatingExample = React.lazy(() => import('@/components/examples/RatingExample').then(m => ({ default: m.RatingExample })));
 const FormGroupExample = React.lazy(() => import('@/components/examples/FormGroupExample').then(m => ({ default: m.FormGroupExample })));
 const ChipExample = React.lazy(() => import('@/components/examples/ChipExample').then(m => ({ default: m.ChipExample })));
 const FilterChipExample = React.lazy(() => import('@/components/examples/FilterChipExample').then(m => ({ default: m.FilterChipExample })));
@@ -67,6 +68,7 @@ export default function ComponentLibrary() {
     { id: 'icon-buttons', name: 'Icon Buttons', keywords: ['icon button', 'icon', 'action'] },
     { id: 'checkboxes', name: 'Checkboxes', keywords: ['checkbox', 'check', 'select', 'form', 'input', 'indeterminate'] },
     { id: 'radio-buttons', name: 'Radio Buttons', keywords: ['radio', 'radio button', 'radio group', 'select', 'form', 'input', 'option'] },
+    { id: 'ratings', name: 'Ratings', keywords: ['rating', 'star', 'review', 'score', 'stars', 'feedback'] },
     { id: 'form-groups', name: 'Form Groups', keywords: ['form', 'group', 'fieldset', 'legend', 'checkbox group', 'radio group'] },
     { id: 'chips', name: 'Chips', keywords: ['chip', 'select', 'toggle', 'tag', 'interactive', 'category'] },
     { id: 'filter-chips', name: 'Filter Chips', keywords: ['filter chip', 'filter', 'pill', 'select', 'toggle'] },
@@ -538,6 +540,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="radio-buttons" title="Radio Buttons" description="Mutually exclusive selection within a group. Uses LD 3.5 input tokens with bold label when selected.">
         <ComponentShowcase>
           <RadioExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Ratings Section */}
+      <Section id="ratings" title="Ratings" description="Star ratings with support for whole and half-star values. Two size variants using LD 3.5 semantic tokens.">
+        <ComponentShowcase>
+          <RatingExample />
         </ComponentShowcase>
       </Section>
 

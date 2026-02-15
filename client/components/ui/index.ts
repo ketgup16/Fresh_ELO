@@ -17,3 +17,5 @@ export { MagicBox } from './MagicBox';
 export type { MagicBoxProps, MagicBoxState } from './MagicBox';
 export { ProgressTracker } from './ProgressTracker';
 export type { ProgressTrackerProps, ProgressTrackerStatus } from './ProgressTracker';
+export { Rating } from './Rating';
+export type { RatingProps } from './Rating';
