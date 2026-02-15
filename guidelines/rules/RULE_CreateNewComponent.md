@@ -121,20 +121,141 @@ export const ComponentName = React.forwardRef<HTMLElement, ComponentNameProps>(
 
 ---
 
-### Step 5: Add to Component Library
+### Step 5: Integrate into Component Library (MANDATORY)
 
-**MANDATORY: Add to ComponentLibrary.tsx**
+**ALL new UI components MUST be accessible in the component library UI.**
 
-#### 5a. Import Component
+This step has FOUR mandatory sub-steps that make components discoverable, accessible, and documented:
 
+---
+
+#### 5a. Create Dedicated Library Page (REQUIRED)
+
+**File**: `client/pages/component-library/[ComponentName]s.tsx`
+
+**Purpose**: Provides dedicated space for component documentation and interactive demos
+
+**Template**:
+```tsx
+import React from 'react';
+import ComponentNameExample from '@/components/examples/ComponentNameExample';
+
+export default function ComponentNamesPage() {
+  return (
+    <div style={{
+      padding: '48px',
+      maxWidth: '1400px',
+      margin: '0 auto'
+    }}>
+      <div style={{ marginBottom: '32px' }}>
+        <h1 style={{
+          fontSize: '32px',
+          fontWeight: '700',
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
+          marginBottom: '12px'
+        }}>
+          Component Names
+        </h1>
+        <p style={{
+          fontSize: '16px',
+          lineHeight: '1.6',
+          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
+          maxWidth: '800px'
+        }}>
+          Brief description of the component, its purpose, and key features.
+        </p>
+      </div>
+
+      <div style={{
+        backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
+        padding: '32px',
+        borderRadius: '8px',
+        border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)'
+      }}>
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <ComponentNameExample />
+        </React.Suspense>
+      </div>
+    </div>
+  );
+}
+```
+
+**Reference Examples**: `client/pages/component-library/Buttons.tsx`, `client/pages/component-library/Panels.tsx`
+
+---
+
+#### 5b. Register Route (REQUIRED)
+
+**File**: `client/App.tsx`
+
+**Actions**:
+
+1. Add import at top of file:
+```tsx
+import ComponentNamesPage from "./pages/component-library/ComponentNames";
+```
+
+2. Add route inside ComponentLibraryLayout section:
+```tsx
+<Route path="/component-library" element={<ComponentLibraryLayout />}>
+  {/* ... existing routes ... */}
+  <Route path="component-names" element={<ComponentNamesPage />} />
+</Route>
+```
+
+**Naming Convention**:
+- URL path: kebab-case, plural (`component-names`)
+- Component import: PascalCase, plural (`ComponentNamesPage`)
+- File name: PascalCase, plural (`ComponentNames.tsx`)
+
+**Purpose**: Makes component accessible via direct URL navigation (e.g., `/component-library/panels`)
+
+---
+
+#### 5c. Add to Overview Page (REQUIRED)
+
+**File**: `client/pages/component-library/Overview.tsx`
+
+**Action**: Add entry to `componentSections` array (maintain alphabetical order):
+
+```typescript
+const componentSections = [
+  // ... other components ...
+  {
+    title: 'Component Names',
+    description: 'Brief description matching the library page description',
+    path: '/component-library/component-names',
+    icon: 'IconName' // Choose appropriate icon from @/components/icons
+  },
+  // ... more components ...
+];
+```
+
+**Icon Selection Guidelines**:
+- Choose from existing icon library (303+ icons available)
+- View icons at `/component-library/icons`
+- Select semantically appropriate icon for component type
+
+**Purpose**: Makes component discoverable from the component library overview/index page
+
+---
+
+#### 5d. Add to ComponentLibrary.tsx (REQUIRED - Interactive Testing)
+
+**File**: `client/pages/ComponentLibrary.tsx`
+
+This enables interactive property testing and code generation.
+
+**Import Component**:
 ```tsx
 // At top of ComponentLibrary.tsx
 import { ComponentNameExample } from '@/components/examples/ComponentNameExample';
 import { ComponentName } from '@/components/ui/ComponentName';
 ```
 
-#### 5b. Add to Search Sections
-
+**Add to Search Sections**:
 ```tsx
 const allSections = [
   // ... existing sections
@@ -142,23 +263,21 @@ const allSections = [
 ];
 ```
 
-#### 5c. Add Component Section
-
+**Add Component Section**:
 ```tsx
-<Section 
-  id="component-name" 
-  title="Component Name" 
+<Section
+  id="component-name"
+  title="Component Name"
   description="Description from Figma/guidelines"
 >
   <ComponentNameExample />
 </Section>
 ```
 
-#### 5d. Add to Property Tester
-
+**Add to Property Tester**:
 ```tsx
 // Add to ComponentType union
-type ComponentType = 
+type ComponentType =
   | 'Button'
   | 'Badge'
   | 'ComponentName' // ← Add here
@@ -199,6 +318,28 @@ case 'ComponentName':
     </ComponentName>
   );
 ```
+
+**Purpose**: Enables interactive testing and code generation in the property testing tool
+
+---
+
+#### Step 5 Summary Checklist
+
+Before proceeding to Step 6, verify ALL of these exist:
+
+- [ ] Dedicated library page created: `client/pages/component-library/ComponentNames.tsx`
+- [ ] Route registered in `client/App.tsx`
+- [ ] Entry added to Overview.tsx `componentSections` array
+- [ ] Component section added to ComponentLibrary.tsx
+- [ ] Property Tester integration complete
+- [ ] Component accessible at `/component-library/component-names`
+- [ ] Component appears in Overview page list
+
+**Result**: New component is now:
+- ✅ Discoverable (visible in overview list)
+- ✅ Accessible (direct URL navigation)
+- ✅ Documented (dedicated page with description)
+- ✅ Testable (Property Tester integration)
 
 ---
 
