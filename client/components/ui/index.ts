@@ -23,3 +23,5 @@ export { Scrim } from './Scrim';
 export type { ScrimProps, ScrimVariant } from './Scrim';
 export { Select, SelectItem, SelectLabel, SelectSeparator, SelectRoot, SelectGroup, SelectValue } from './Select';
 export type { SelectProps, SelectItemProps } from './Select';
+export { SpotIcon } from './SpotIcon';
+export type { SpotIconProps, SpotIconSize, SpotIconColor } from './SpotIcon';

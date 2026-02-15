@@ -179,6 +179,12 @@ const componentSections = [
     icon: 'Loader'
   },
   {
+    title: 'Spot Icons',
+    description: 'Decorative icon containers with brand and neutral color variants',
+    path: '/component-library/spot-icons',
+    icon: 'Circle'
+  },
+  {
     title: 'Progress Tracker',
     description: 'Step-by-step progress visualization for multi-step processes and workflows',
     path: '/component-library/progress-tracker',

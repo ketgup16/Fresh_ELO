@@ -187,6 +187,11 @@ const navigationSections = [
         name: 'Snackbars',
         path: '/component-library/snackbars'
       },
+      {
+        id: 'spot-icons',
+        name: 'Spot Icons',
+        path: '/component-library/spot-icons'
+      },
     ]
   },
   {
