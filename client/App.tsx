@@ -58,6 +58,7 @@ import GuidelinesPage from "./pages/component-library/Guidelines";
 import DialogPage from "./pages/component-library/Dialog";
 import SheetPage from "./pages/component-library/Sheet";
 import PopoverPage from "./pages/component-library/Popover";
+import ProgressIndicatorPage from "./pages/component-library/ProgressIndicator";
 
 const queryClient = new QueryClient();
 
@@ -107,6 +108,7 @@ const App = () => (
                 <Route path="dialog" element={<DialogPage />} />
                 <Route path="sheet" element={<SheetPage />} />
                 <Route path="popover" element={<PopoverPage />} />
+                <Route path="progress-indicator" element={<ProgressIndicatorPage />} />
               </Route>
 
               <Route path="/" element={<Index />} />

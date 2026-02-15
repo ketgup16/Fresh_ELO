@@ -167,6 +167,11 @@ const navigationSections = [
         name: 'Popover',
         path: '/component-library/popover'
       },
+      {
+        id: 'progress-indicator',
+        name: 'Progress Indicator',
+        path: '/component-library/progress-indicator'
+      },
     ]
   },
   {
