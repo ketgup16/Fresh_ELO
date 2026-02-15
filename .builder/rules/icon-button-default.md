@@ -1,13 +1,15 @@
 # IconButton Default Variant Rule
 
-## CRITICAL RULE: Always Use Ghost Variant for IconButton
+## CRITICAL RULE: Always Use Ghost Variant and Rounded Style for IconButton
 
-When using IconButton components, ALWAYS use the `ghost` variant as the default unless explicitly specified otherwise.
+When using IconButton components, ALWAYS use:
+- **Variant**: `ghost` (default, unless explicitly specified otherwise)
+- **Shape**: Rounded/circular (default style for icon buttons)
 
-## ✅ CORRECT - Use Ghost Variant
+## ✅ CORRECT - Use Ghost Variant with Rounded Shape
 
 ```tsx
-// Default - Use ghost
+// Default - Use ghost variant with rounded/circular style
 <IconButton
   variant="ghost"
   size="medium"
@@ -16,12 +18,24 @@ When using IconButton components, ALWAYS use the `ghost` variant as the default 
   <SettingsIcon />
 </IconButton>
 
-// Or rely on default (if ghost is the default prop)
+// Explicitly specify shape if needed (though rounded is default)
 <IconButton
+  variant="ghost"
   size="medium"
-  aria-label="Menu"
+  shape="rounded"
+  aria-label="Close"
 >
-  <MenuIcon />
+  <XIcon />
+</IconButton>
+
+// Panel/Modal header close buttons
+<IconButton
+  variant="ghost"
+  size="medium"
+  aria-label="Close panel"
+  onClick={onClose}
+>
+  <XIcon />
 </IconButton>
 ```
 

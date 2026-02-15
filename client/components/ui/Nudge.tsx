@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { X } from '@/components/icons';
+import { IconButton } from '@/components/ui/IconButton';
 import { cn } from '@/lib/utils';
 import styles from './Nudge.module.css';
 
@@ -74,15 +75,15 @@ export const Nudge = React.forwardRef<HTMLDivElement, NudgeProps>(
             <div className={styles.title}>{title}</div>
           </div>
           {onClose && (
-            <button
-              type="button"
+            <IconButton
+              variant="ghost"
+              size="medium"
               onClick={onClose}
-              className={styles.closeButton}
               aria-label="Close"
-              {...closeButtonProps}
+              UNSAFE_className={styles.closeButton}
             >
-              <X className={styles.closeIcon} />
-            </button>
+              <X style={{ width: 20, height: 20 }} />
+            </IconButton>
           )}
         </div>
 

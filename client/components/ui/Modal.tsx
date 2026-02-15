@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from '@/components/icons';
+import { IconButton } from '@/components/ui/IconButton';
 import { cn } from '@/lib/utils';
 import styles from './Modal.module.css';
 
@@ -62,9 +63,15 @@ export const ModalContent = React.forwardRef<
       >
         {children}
         {!hideClose && (
-          <DialogPrimitive.Close className={styles.closeButton}>
-            <X className={styles.closeIcon} />
-            <span className="sr-only">Close</span>
+          <DialogPrimitive.Close asChild>
+            <IconButton
+              variant="ghost"
+              size="medium"
+              aria-label="Close"
+              className={styles.closeButton}
+            >
+              <X style={{ width: 20, height: 20 }} />
+            </IconButton>
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Content>
