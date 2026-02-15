@@ -347,8 +347,8 @@ export default function ComponentLibraryOverview() {
                 }}>
                   {/* Icon Box - Always present with brand blue subtle background */}
                   <div style={{
-                    width: '64px',
-                    height: '64px',
+                    width: '48px',
+                    height: '48px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -358,9 +358,9 @@ export default function ComponentLibraryOverview() {
                   }}>
                     <div style={{ color: 'var(--ld-semantic-color-text-brand-bold)' }}>
                       {IconComponent ? (
-                        <IconComponent size={32} />
+                        <IconComponent size={24} />
                       ) : (
-                        <FallbackIcon size={32} />
+                        <FallbackIcon size={24} />
                       )}
                     </div>
                   </div>
