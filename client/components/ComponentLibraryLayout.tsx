@@ -197,6 +197,11 @@ const navigationSections = [
         name: 'Tab Navigation',
         path: '/component-library/tabs'
       },
+      {
+        id: 'textarea',
+        name: 'Text Area',
+        path: '/component-library/textarea'
+      },
     ]
   },
   {
@@ -341,11 +346,6 @@ const navigationSections = [
         id: 'table',
         name: 'Table',
         path: '/component-library/table'
-      },
-      {
-        id: 'textarea',
-        name: 'Textarea',
-        path: '/component-library/textarea'
       },
       {
         id: 'toast',

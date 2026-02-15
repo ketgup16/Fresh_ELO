@@ -66,6 +66,7 @@ import SnackbarsPage from "./pages/component-library/Snackbars";
 import SpinnersPage from "./pages/component-library/Spinners";
 import SpotIconsPage from "./pages/component-library/SpotIcons";
 import SwitchesPage from "./pages/component-library/Switches";
+import TextAreaPage from "./pages/component-library/TextArea";
 
 const queryClient = new QueryClient();
 
@@ -110,6 +111,7 @@ const App = () => (
                 <Route path="modals" element={<ModalsPage />} />
                 <Route path="nudges" element={<NudgesPage />} />
                 <Route path="panels" element={<PanelsPage />} />
+                <Route path="textarea" element={<TextAreaPage />} />
                 <Route path="design-tokens" element={<DesignTokensPage />} />
                 <Route path="guidelines" element={<GuidelinesPage />} />
                 {/* Shadcn/Radix Components */}
