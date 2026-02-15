@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Chip } from '@/components/ui/Chip';
 import { FilterChip } from '@/components/ui/FilterChip';
-import { Tag } from '@/components/ui/tag';
+import { Tag } from '@/components/ui/Tag';
 import { OLQTag } from '@/components/ui/olq-tag';
 import { IconButton } from '@/components/ui/IconButton';
 import { Checkbox } from '@/components/ui/Checkbox';
@@ -47,8 +47,10 @@ export default function ComponentTester() {
   const [filterChipCount, setFilterChipCount] = React.useState(12);
   
   // Tag props
-  const [tagVariant, setTagVariant] = React.useState<'default' | 'success' | 'warning' | 'error' | 'info'>('default');
+  const [tagVariant, setTagVariant] = React.useState<'primary' | 'secondary' | 'tertiary'>('secondary');
+  const [tagColor, setTagColor] = React.useState<'brand' | 'positive' | 'negative' | 'warning' | 'info' | 'edited' | 'blue' | 'spark' | 'green' | 'red' | 'purple' | 'gray' | 'cyan' | 'orange' | 'pink' | 'yellow' | 'teal'>('brand');
   const [tagText, setTagText] = React.useState('Tag Label');
+  const [tagHasIcon, setTagHasIcon] = React.useState(true);
   
   // OLQ Tag props
   const [olqPercentage, setOlqPercentage] = React.useState(85);
@@ -102,10 +104,14 @@ export default function ComponentTester() {
         );
       
       case 'tag':
-        return <Tag variant={tagVariant}>{tagText}</Tag>;
+        return (
+          <Tag variant={tagVariant} color={tagColor} leading={tagHasIcon ? <Icons.Check size={14} /> : undefined}>
+            {tagText}
+          </Tag>
+        );
       
       case 'olqtag':
-        return <OLQTag percentage={olqPercentage} />;
+        return <OLQTag value={`${olqPercentage}%`} />;
       
       case 'iconbutton':
         return (
@@ -415,14 +421,53 @@ export default function ComponentTester() {
                   fontSize: '14px'
                 }}
               >
-                <option value="default">Default</option>
-                <option value="success">Success</option>
-                <option value="warning">Warning</option>
-                <option value="error">Error</option>
-                <option value="info">Info</option>
+                <option value="primary">Primary</option>
+                <option value="secondary">Secondary</option>
+                <option value="tertiary">Tertiary</option>
               </select>
             </div>
-            
+
+            <div>
+              <label style={{
+                display: 'block',
+                fontSize: '14px',
+                fontWeight: '600',
+                marginBottom: '8px',
+                color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
+              }}>
+                Color
+              </label>
+              <select
+                value={tagColor}
+                onChange={(e) => setTagColor(e.target.value as any)}
+                style={{
+                  width: '100%',
+                  padding: '8px 12px',
+                  borderRadius: '6px',
+                  border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
+                  fontSize: '14px'
+                }}
+              >
+                <option value="brand">Brand</option>
+                <option value="positive">Positive</option>
+                <option value="negative">Negative</option>
+                <option value="warning">Warning</option>
+                <option value="info">Info</option>
+                <option value="edited">Edited</option>
+                <option value="blue">Blue</option>
+                <option value="spark">Spark</option>
+                <option value="green">Green</option>
+                <option value="red">Red</option>
+                <option value="purple">Purple</option>
+                <option value="gray">Gray</option>
+                <option value="cyan">Cyan</option>
+                <option value="orange">Orange</option>
+                <option value="pink">Pink</option>
+                <option value="yellow">Yellow</option>
+                <option value="teal">Teal</option>
+              </select>
+            </div>
+
             <div>
               <label style={{
                 display: 'block',
@@ -444,6 +489,14 @@ export default function ComponentTester() {
                   border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
                   fontSize: '14px'
                 }}
+              />
+            </div>
+
+            <div>
+              <Checkbox
+                checked={tagHasIcon}
+                onCheckedChange={(checked) => setTagHasIcon(checked as boolean)}
+                label="Show leading icon"
               />
             </div>
           </div>
@@ -611,10 +664,15 @@ export default function ComponentTester() {
 </FilterChip>`;
       
       case 'tag':
-        return `<Tag variant="${tagVariant}">${tagText}</Tag>`;
+        return `<Tag
+  variant="${tagVariant}"
+  color="${tagColor}"${tagHasIcon ? '\n  leading={<Icon size={14} />}' : ''}
+>
+  ${tagText}
+</Tag>`;
       
       case 'olqtag':
-        return `<OLQTag percentage={${olqPercentage}} />`;
+        return `<OLQTag value="${olqPercentage}%" />`;
       
       case 'iconbutton':
         return `<IconButton

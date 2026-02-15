@@ -16,6 +16,7 @@ const RatingExample = React.lazy(() => import('@/components/examples/RatingExamp
 const FormGroupExample = React.lazy(() => import('@/components/examples/FormGroupExample').then(m => ({ default: m.FormGroupExample })));
 const ChipExample = React.lazy(() => import('@/components/examples/ChipExample').then(m => ({ default: m.ChipExample })));
 const FilterChipExample = React.lazy(() => import('@/components/examples/FilterChipExample').then(m => ({ default: m.FilterChipExample })));
+const TagExample = React.lazy(() => import('@/components/examples/TagExample').then(m => ({ default: m.TagExample })));
 const ContentMessageExample = React.lazy(() => import('@/components/examples/ContentMessageExample').then(m => ({ default: m.ContentMessageExample })));
 const DateFieldExample = React.lazy(() => import('@/components/examples/DateFieldExample').then(m => ({ default: m.DateFieldExample })));
 const DatePickerExample = React.lazy(() => import('@/components/examples/DatePickerExample').then(m => ({ default: m.DatePickerExample })));
@@ -31,7 +32,7 @@ import { Badge } from '@/components/ui/Badge';
 import { IconButton } from '@/components/ui/IconButton';
 import { Link } from '@/components/ui/Link';
 import { LinkButton } from '@/components/ui/LinkButton';
-import { Tag } from '@/components/ui/tag';
+import { Tag } from '@/components/ui/Tag';
 import { Chip } from '@/components/ui/Chip';
 import { FilterChip } from '@/components/ui/FilterChip';
 import { OLQTag } from '@/components/ui/olq-tag';
@@ -76,6 +77,7 @@ export default function ComponentLibrary() {
     { id: 'form-groups', name: 'Form Groups', keywords: ['form', 'group', 'fieldset', 'legend', 'checkbox group', 'radio group'] },
     { id: 'chips', name: 'Chips', keywords: ['chip', 'select', 'toggle', 'tag', 'interactive', 'category'] },
     { id: 'filter-chips', name: 'Filter Chips', keywords: ['filter chip', 'filter', 'pill', 'select', 'toggle'] },
+    { id: 'tags', name: 'Tags', keywords: ['tag', 'label', 'category', 'attribute', 'status', 'metadata'] },
     { id: 'callouts', name: 'Callouts', keywords: ['callout', 'tooltip', 'nubbin', 'coaching', 'onboarding', 'pointer'] },
     { id: 'cards', name: 'Cards', keywords: ['card', 'container', 'panel'] },
     { id: 'alerts', name: 'Alerts', keywords: ['alert', 'notification', 'info', 'success', 'warning', 'error', 'message', 'banner'] },
@@ -575,6 +577,13 @@ import { Search, Settings, Cart, User } from '@/components/icons';
       <Section id="filter-chips" title="Filter Chips" description="Pill-shaped (fully rounded) filter chips for filtering interfaces. Use same INPUT tokens as Chip but with different border-radius">
         <ComponentShowcase>
           <FilterChipExample />
+        </ComponentShowcase>
+      </Section>
+
+      {/* Tags Section */}
+      <Section id="tags" title="Tags" description="Non-interactive labels for highlighting item attributes. 3 variants (Primary, Secondary, Tertiary) × 17 colors = 51 combinations. Uses LD 3.5 caption tokens.">
+        <ComponentShowcase>
+          <TagExample />
         </ComponentShowcase>
       </Section>
 
@@ -1194,15 +1203,15 @@ function InteractiveComponentTester() {
       supportsOLQPercentage: false,
     },
     Tag: {
-      variants: ['default', 'primary', 'secondary', 'success', 'warning', 'destructive', 'info'],
-      sizes: ['sm', 'md', 'lg'],
+      variants: ['primary', 'secondary', 'tertiary'],
+      sizes: [],
       supportsFullWidth: false,
       supportsIcons: true,
       supportsValue: false,
       supportsShape: false,
       supportsUnderline: false,
-      supportsDismissible: true,
-      supportsClickable: true,
+      supportsDismissible: false,
+      supportsClickable: false,
       supportsOLQPercentage: false,
     },
     OLQTag: {
@@ -1356,7 +1365,7 @@ function InteractiveComponentTester() {
       case 'Tag':
         return `<Tag
   variant="${variant}"
-  size="${size}"${disabled ? '\n  disabled' : ''}${dismissible ? '\n  dismissible\n  onDismiss={() => console.log("Dismissed")}' : ''}${clickable ? '\n  clickable\n  onClick={() => console.log("Clicked")}' : ''}${withIcon ? '\n  icon={<Star />}' : ''}
+  color="brand"${withIcon ? '\n  leading={<Icon size={14} />}' : ''}
 >
   ${variant.charAt(0).toUpperCase() + variant.slice(1)} Tag
 </Tag>`;
@@ -1503,17 +1512,12 @@ function InteractiveComponentTester() {
         return linkContent;
 
       case 'Tag':
-        const StarIcon = (Icons as any).Star;
+        const CheckIcon = (Icons as any).Check;
         return (
           <Tag
             variant={variant as any}
-            size={size as any}
-            disabled={disabled}
-            dismissible={dismissible}
-            onDismiss={() => console.log('Dismissed')}
-            clickable={clickable}
-            onClick={() => console.log('Clicked')}
-            icon={withIcon ? <StarIcon style={{ width: 16, height: 16 }} /> : undefined}
+            color="brand"
+            leading={withIcon && CheckIcon ? <CheckIcon style={{ width: 14, height: 14 }} /> : undefined}
           >
             {variant.charAt(0).toUpperCase() + variant.slice(1)} Tag
           </Tag>
