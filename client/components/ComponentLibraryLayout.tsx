@@ -208,6 +208,11 @@ const navigationSections = [
         path: '/component-library/tabs'
       },
       {
+        id: 'tags',
+        name: 'Tags',
+        path: '/component-library/tags'
+      },
+      {
         id: 'textarea',
         name: 'Text Area',
         path: '/component-library/textarea'

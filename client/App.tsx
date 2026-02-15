@@ -66,9 +66,10 @@ import SnackbarsPage from "./pages/component-library/Snackbars";
 import SpinnersPage from "./pages/component-library/Spinners";
 import SpotIconsPage from "./pages/component-library/SpotIcons";
 import SwitchesPage from "./pages/component-library/Switches";
+import TabsPage from "./pages/component-library/Tabs";
+import TagsPage from "./pages/component-library/Tags";
 import TextAreaPage from "./pages/component-library/TextArea";
 import TextFieldsPage from "./pages/component-library/TextFields";
-import TabsPage from "./pages/component-library/Tabs";
 import ThemesPage from "./pages/component-library/Themes";
 
 const queryClient = new QueryClient();
@@ -129,6 +130,7 @@ const App = () => (
                 <Route path="spot-icons" element={<SpotIconsPage />} />
                 <Route path="switches" element={<SwitchesPage />} />
                 <Route path="tabs" element={<TabsPage />} />
+                <Route path="tags" element={<TagsPage />} />
                 <Route path="progress-tracker" element={<ProgressTrackerPage />} />
               </Route>
 
