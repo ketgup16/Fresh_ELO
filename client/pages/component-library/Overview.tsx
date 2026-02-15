@@ -179,6 +179,12 @@ const componentSections = [
     icon: 'Loader'
   },
   {
+    title: 'Switches',
+    description: 'Toggle controls for binary on/off settings with immediate state changes',
+    path: '/component-library/switches',
+    icon: 'ToggleLeft'
+  },
+  {
     title: 'Spot Icons',
     description: 'Decorative icon containers with brand and neutral color variants',
     path: '/component-library/spot-icons',

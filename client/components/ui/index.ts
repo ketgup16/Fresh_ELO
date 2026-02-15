@@ -25,3 +25,5 @@ export { Select, SelectItem, SelectLabel, SelectSeparator, SelectRoot, SelectGro
 export type { SelectProps, SelectItemProps } from './Select';
 export { SpotIcon } from './SpotIcon';
 export type { SpotIconProps, SpotIconSize, SpotIconColor } from './SpotIcon';
+export { Switch } from './Switch';
+export type { SwitchProps } from './Switch';

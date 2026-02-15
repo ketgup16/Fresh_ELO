@@ -65,6 +65,7 @@ import SkeletonPage from "./pages/component-library/Skeleton";
 import SnackbarsPage from "./pages/component-library/Snackbars";
 import SpinnersPage from "./pages/component-library/Spinners";
 import SpotIconsPage from "./pages/component-library/SpotIcons";
+import SwitchesPage from "./pages/component-library/Switches";
 
 const queryClient = new QueryClient();
 
@@ -120,6 +121,7 @@ const App = () => (
                 <Route path="snackbars" element={<SnackbarsPage />} />
                 <Route path="spinners" element={<SpinnersPage />} />
                 <Route path="spot-icons" element={<SpotIconsPage />} />
+                <Route path="switches" element={<SwitchesPage />} />
                 <Route path="progress-tracker" element={<ProgressTrackerPage />} />
               </Route>
 

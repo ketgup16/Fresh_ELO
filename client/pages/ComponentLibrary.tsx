@@ -39,6 +39,7 @@ import { DatePicker } from '@/components/ui/DatePicker';
 import { Radio } from '@/components/ui/Radio';
 import { RadioGroup } from '@/components/ui/radio-group';
 import { Spinner } from '@/components/ui/Spinner';
+import { Switch } from '@/components/ui/Switch';
 import * as Icons from '@/components/icons';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 
@@ -87,6 +88,7 @@ export default function ComponentLibrary() {
     { id: 'menu', name: 'Menu', keywords: ['menu', 'dropdown', 'overlay', 'actions', 'menuitem', 'popup', 'context'] },
     { id: 'scrim', name: 'Scrim', keywords: ['scrim', 'overlay', 'backdrop', 'modal', 'panel', 'dimmer', 'background'] },
     { id: 'spinners', name: 'Spinners', keywords: ['spinner', 'loading', 'loader', 'progress', 'indeterminate', 'processing', 'waiting', 'busy'] },
+    { id: 'switches', name: 'Switches', keywords: ['switch', 'toggle', 'on', 'off', 'boolean', 'binary', 'checkbox'] },
     { id: 'design-tokens', name: 'Design Tokens', keywords: ['token', 'color', 'spacing', 'typography', 'css', 'variable'] },
   ];
 
@@ -1090,7 +1092,7 @@ function SearchableComponentSelect({ selectedComponent, onComponentChange, avail
 
 // Interactive Component Tester - Supports multiple component types
 function InteractiveComponentTester() {
-  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'LinkButton' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip' | 'DatePicker' | 'Radio' | 'Spinner';
+  type ComponentType = 'Button' | 'Badge' | 'IconButton' | 'Link' | 'LinkButton' | 'Tag' | 'OLQTag' | 'Chip' | 'FilterChip' | 'DatePicker' | 'Radio' | 'Spinner' | 'Switch';
 
   const [selectedComponent, setSelectedComponent] = React.useState<ComponentType>('Button');
   const [variant, setVariant] = React.useState<string>('primary');
@@ -1107,6 +1109,7 @@ function InteractiveComponentTester() {
   const [chipSelected, setChipSelected] = React.useState(false);
   const [radioValue, setRadioValue] = React.useState('option-a');
   const [radioShowLabel, setRadioShowLabel] = React.useState(true);
+  const [switchChecked, setSwitchChecked] = React.useState(false);
 
   // DatePicker state
   const [datePickerDate, setDatePickerDate] = React.useState<Date>();
@@ -1274,6 +1277,18 @@ function InteractiveComponentTester() {
       supportsClickable: false,
       supportsOLQPercentage: false,
     },
+    Switch: {
+      variants: [],
+      sizes: [],
+      supportsFullWidth: false,
+      supportsIcons: false,
+      supportsValue: false,
+      supportsShape: false,
+      supportsUnderline: false,
+      supportsDismissible: false,
+      supportsClickable: false,
+      supportsOLQPercentage: false,
+    },
   };
 
   const config = componentConfigs[selectedComponent];
@@ -1373,6 +1388,13 @@ function InteractiveComponentTester() {
   color="${variant}"
   size="${size}"
   a11yLabel="Loading…"
+/>`;
+
+      case 'Switch':
+        return `<Switch
+  label="Enable notifications"${disabled ? '\n  disabled' : ''}
+  checked={enabled}
+  onChange={setEnabled}
 />`;
 
       default:
@@ -1567,6 +1589,16 @@ function InteractiveComponentTester() {
             color={variant as any}
             size={size as any}
             a11yLabel="Loading…"
+          />
+        );
+
+      case 'Switch':
+        return (
+          <Switch
+            label="Enable notifications"
+            checked={switchChecked}
+            onChange={setSwitchChecked}
+            disabled={disabled}
           />
         );
 
