@@ -252,28 +252,45 @@ export default function DisplayAdvertisingSidebar({
       <div style={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        alignItems: 'stretch',
         gap: '8px',
         padding: '12px 0'
       }}>
-        {/* Settings Icon Button */}
-        <IconButton
-          variant="ghost"
-          size="medium"
+        {/* Settings Button */}
+        <button
           onClick={() => navigate('/settings')}
+          className={`flex items-center ${
+            sidebarExpanded ? 'gap-3 px-3' : 'justify-center'
+          } w-full h-9 rounded hover:bg-gray-100 transition-colors`}
           aria-label="Settings"
         >
-          <Icons.Gear style={{ width: 20, height: 20 }} />
-        </IconButton>
+          {sidebarExpanded ? (
+            <>
+              <Icons.Gear style={{ width: 20, height: 20 }} />
+              <span className="text-sm truncate text-[#2E2F32]">Settings</span>
+            </>
+          ) : (
+            <Icons.Gear style={{ width: 20, height: 20 }} />
+          )}
+        </button>
 
         {/* Lock/Toggle button */}
         <button
           onClick={handleToggle}
-          className="flex items-center justify-center w-10 h-9 rounded hover:bg-gray-100 transition-colors"
+          className={`flex items-center ${
+            sidebarExpanded ? 'gap-3 px-3' : 'justify-center'
+          } w-full h-9 rounded hover:bg-gray-100 transition-colors`}
           aria-label={sidebarLocked ? 'Collapse sidebar' : 'Lock sidebar open'}
           aria-expanded={sidebarLocked}
         >
-          {sidebarExpanded ? <ArrowLeftIcon /> : <ArrowRightLineIcon />}
+          {sidebarExpanded ? (
+            <>
+              <ArrowLeftIcon />
+              <span className="text-sm truncate text-[#2E2F32]">Lock</span>
+            </>
+          ) : (
+            <ArrowRightLineIcon />
+          )}
         </button>
       </div>
 
