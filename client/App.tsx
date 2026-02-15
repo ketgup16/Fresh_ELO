@@ -50,6 +50,7 @@ import MenuPage from "./pages/component-library/Menu";
 import MetricsPage from "./pages/component-library/Metrics";
 import ModalsPage from "./pages/component-library/Modals";
 import NudgesPage from "./pages/component-library/Nudges";
+import PanelsPage from "./pages/component-library/Panels";
 import DesignTokensPage from "./pages/component-library/DesignTokens";
 import GuidelinesPage from "./pages/component-library/Guidelines";
 
@@ -94,6 +95,7 @@ const App = () => (
                 <Route path="metrics" element={<MetricsPage />} />
                 <Route path="modals" element={<ModalsPage />} />
                 <Route path="nudges" element={<NudgesPage />} />
+                <Route path="panels" element={<PanelsPage />} />
                 <Route path="design-tokens" element={<DesignTokensPage />} />
                 <Route path="guidelines" element={<GuidelinesPage />} />
               </Route>

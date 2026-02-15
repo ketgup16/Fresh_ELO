@@ -4,7 +4,8 @@ import { ChevronRight, ChevronDown, ChevronUp, Search, Settings, Download, Bell,
 import MartyFloatingPanel from "../features/marty/MartyFloatingPanel";
 import DisplayAdvertisingSidebar from "../features/advertising/DisplayAdvertisingSidebar";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import RecommendationsPanel from "../components/shared/RecommendationsPanel";
+import { Panel } from "../components/ui/Panel";
+import { RecommendationsContent } from "../components/recommendations/RecommendationsContent";
 import { Button } from "../components/ui/Button";
 import { Checkbox } from "../components/ui/Checkbox";
 import { Divider } from "../components/ui/Divider";
@@ -3195,34 +3196,19 @@ export default function DisplayAdvertisingCampaigns() {
         </main>
       </div>
 
-      {/* Scrim Overlay */}
-      {showPanel && (
-        <div
-          className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 ${
-            panelClosing ? "opacity-0" : "opacity-100"
-          }`}
-          onClick={closePanel}
-        />
-      )}
-
       {/* Recommendations Panel */}
-      {showPanel && (
-        <RecommendationsPanel
-          isOpen={showPanel}
-          isClosing={panelClosing}
-          isOpening={panelOpening}
-          selectedCampaign={selectedCampaign}
-          showDetailView={showDetailView}
-          keywordsExpanded={keywordsExpanded}
-          showApplyAlert={showApplyAlert}
-          showConfirmation={showConfirmation}
+      <Panel
+        isOpen={showPanel}
+        onClose={closePanel}
+        title="Recommendations"
+        size="large"
+        position="right"
+      >
+        <RecommendationsContent
+          campaignGoal="Awareness"
           onClose={closePanel}
-          onBackToList={backToList}
-          onShowDetails={showDetails}
-          onToggleKeywords={() => setKeywordsExpanded(!keywordsExpanded)}
-          onApplyClick={handleApplyClick}
         />
-      )}
+      </Panel>
 
       {/* Marty Floating Panel */}
       {showMartyPanel && (

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import RecommendationsPanel from '@/components/shared/RecommendationsPanel';
+import { Panel } from '@/components/ui/Panel';
+import { RecommendationsContent } from '@/components/recommendations/RecommendationsContent';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 import { Link } from '@/components/ui/Link';
@@ -887,11 +888,18 @@ export default function DisplayDashboard() {
       </div>
 
       {/* Recommendations Panel */}
-      <RecommendationsPanel
+      <Panel
         isOpen={recommendationsPanelOpen}
         onClose={() => setRecommendationsPanelOpen(false)}
-        campaignGoal={campaignGoal}
-      />
+        title="Recommendations"
+        size="large"
+        position="right"
+      >
+        <RecommendationsContent
+          campaignGoal={campaignGoal}
+          onClose={() => setRecommendationsPanelOpen(false)}
+        />
+      </Panel>
 
       {/* View More Modal */}
       <Dialog open={viewMoreModalOpen} onOpenChange={setViewMoreModalOpen}>

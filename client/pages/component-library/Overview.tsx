@@ -161,6 +161,12 @@ const componentSections = [
     icon: 'Info'
   },
   {
+    title: 'Panels',
+    description: 'Slide-out panels for supplemental content and forms with three size variants',
+    path: '/component-library/panels',
+    icon: 'Sidebar'
+  },
+  {
     title: 'Design Tokens', 
     description: 'CSS custom properties for colors, spacing, and typography',
     path: '/component-library/design-tokens',
