@@ -248,11 +248,11 @@ export default function DisplayAdvertisingSidebar({
         })}
       </div>
 
-      {/* Bottom Actions - Settings and Lock */}
+      {/* Bottom Actions - Settings and Lock (Stacked) */}
       <div style={{
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
         gap: '8px',
         padding: '12px 0'
       }}>
