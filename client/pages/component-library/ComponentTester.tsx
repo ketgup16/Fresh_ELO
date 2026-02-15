@@ -77,7 +77,7 @@ export default function ComponentTester() {
   const [selectDisabled, setSelectDisabled] = React.useState(false);
   
   // Badge props
-  const [badgeVariant, setBadgeVariant] = React.useState<'default' | 'info' | 'success' | 'warning' | 'error'>('default');
+  const [badgeVariant, setBadgeVariant] = React.useState<'info' | 'success' | 'warning' | 'error' | 'neutral'>('info');
   const [badgeContent, setBadgeContent] = React.useState('5');
   
   // Chip props
@@ -86,7 +86,6 @@ export default function ComponentTester() {
   const [chipText, setChipText] = React.useState('Chip Label');
   
   // Filter Chip props
-  const [filterChipSize, setFilterChipSize] = React.useState<'small' | 'medium' | 'large'>('medium');
   const [filterChipSelected, setFilterChipSelected] = React.useState(false);
   const [filterChipText, setFilterChipText] = React.useState('Filter');
   const [filterChipCount, setFilterChipCount] = React.useState(12);
@@ -104,12 +103,11 @@ export default function ComponentTester() {
   const [iconButtonSize, setIconButtonSize] = React.useState<'small' | 'medium' | 'large'>('medium');
   
   // SpotIcon props
-  const [spotIconSize, setSpotIconSize] = React.useState<'small' | 'medium' | 'large'>('medium');
+  const [spotIconSize, setSpotIconSize] = React.useState<'small' | 'large'>('small');
   const [spotIconColor, setSpotIconColor] = React.useState<'brand' | 'neutral'>('brand');
   
   // Rating props
   const [ratingValue, setRatingValue] = React.useState(4);
-  const [ratingMax, setRatingMax] = React.useState(5);
   
   // Checkbox props
   const [checkboxChecked, setCheckboxChecked] = React.useState(false);
@@ -190,14 +188,14 @@ export default function ComponentTester() {
         return (
           <Switch
             checked={switchChecked}
-            onCheckedChange={setSwitchChecked}
+            onChange={setSwitchChecked}
             disabled={switchDisabled}
             label="Toggle option"
           />
         );
       
       case 'badge':
-        return <Badge variant={badgeVariant}>{badgeContent}</Badge>;
+        return <Badge variant={badgeVariant} value={badgeContent} />;
       
       case 'chip':
         return (
@@ -213,7 +211,6 @@ export default function ComponentTester() {
       case 'filterchip':
         return (
           <FilterChip
-            size={filterChipSize}
             selected={filterChipSelected}
             count={filterChipCount}
             onClick={() => setFilterChipSelected(!filterChipSelected)}
@@ -230,7 +227,7 @@ export default function ComponentTester() {
         );
       
       case 'olqtag':
-        return <OLQTag percentage={olqPercentage} />;
+        return <OLQTag value={`${olqPercentage}%`} />;
       
       case 'iconbutton':
         return (
@@ -245,17 +242,18 @@ export default function ComponentTester() {
       
       case 'spoticon':
         return (
-          <SpotIcon size={spotIconSize} color={spotIconColor}>
-            <Icons.Star style={{ width: 24, height: 24 }} />
-          </SpotIcon>
+          <SpotIcon
+            size={spotIconSize as 'small' | 'large'}
+            color={spotIconColor}
+            icon={<Icons.Star style={{ width: 24, height: 24 }} />}
+          />
         );
       
       case 'rating':
         return (
           <Rating
             value={ratingValue}
-            max={ratingMax}
-            onChange={setRatingValue}
+            size="large"
           />
         );
       
@@ -487,7 +485,7 @@ export default function ComponentTester() {
                 Variant
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {(['default', 'info', 'success', 'warning', 'error'] as const).map((variant) => (
+                {(['neutral', 'info', 'success', 'warning', 'error'] as const).map((variant) => (
                   <Chip
                     key={variant}
                     size="small"
@@ -547,24 +545,6 @@ export default function ComponentTester() {
         return (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Size
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {(['small', 'medium', 'large'] as const).map((size) => (
-                  <Chip
-                    key={size}
-                    size="small"
-                    selected={filterChipSize === size}
-                    onClick={() => setFilterChipSize(size)}
-                  >
-                    {size.charAt(0).toUpperCase() + size.slice(1)}
-                  </Chip>
-                ))}
-              </div>
-            </div>
-            
-            <div>
               <TextField
                 label="Filter Text"
                 size="small"
@@ -572,7 +552,7 @@ export default function ComponentTester() {
                 onChange={(e) => setFilterChipText(e.target.value)}
               />
             </div>
-            
+
             <div>
               <TextField
                 label="Count"
@@ -700,7 +680,7 @@ export default function ComponentTester() {
                 Size
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {(['small', 'medium', 'large'] as const).map((size) => (
+                {(['small', 'large'] as const).map((size) => (
                   <Chip
                     key={size}
                     size="small"
@@ -738,24 +718,23 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <TextField
-                label="Value"
+                label="Value (0-5, supports 0.5 increments)"
                 size="small"
                 type="number"
                 value={String(ratingValue)}
                 onChange={(e) => setRatingValue(Number(e.target.value))}
-                inputProps={{ min: 0, max: ratingMax }}
+                inputProps={{ min: 0, max: 5, step: 0.5 }}
               />
             </div>
-            
-            <div>
-              <TextField
-                label="Max Stars"
-                size="small"
-                type="number"
-                value={String(ratingMax)}
-                onChange={(e) => setRatingMax(Number(e.target.value))}
-                inputProps={{ min: 1, max: 10 }}
-              />
+
+            <div style={{
+              padding: '12px',
+              backgroundColor: 'var(--ld-semantic-color-fill-info-subtle)',
+              borderRadius: '6px',
+              fontSize: '13px',
+              color: 'var(--ld-semantic-color-text-subtle)'
+            }}>
+              Rating is display-only (not interactive). Shows 0-5 stars with half-star support.
             </div>
           </div>
         );

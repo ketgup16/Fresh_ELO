@@ -356,23 +356,13 @@ export default function ComponentLibraryOverview() {
                     borderRadius: '8px',
                     flexShrink: 0
                   }}>
-                    {IconComponent ? (
-                      <IconComponent
-                        style={{
-                          width: 24,
-                          height: 24,
-                          color: 'var(--ld-semantic-color-text-brand-bold)'
-                        }}
-                      />
-                    ) : (
-                      <FallbackIcon
-                        style={{
-                          width: 24,
-                          height: 24,
-                          color: 'var(--ld-semantic-color-text-brand-bold)'
-                        }}
-                      />
-                    )}
+                    <div style={{ color: 'var(--ld-semantic-color-text-brand-bold)' }}>
+                      {IconComponent ? (
+                        <IconComponent size={24} />
+                      ) : (
+                        <FallbackIcon size={24} />
+                      )}
+                    </div>
                   </div>
                   <div style={{ flex: 1 }}>
                     <h3 style={{
