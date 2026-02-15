@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { IconButton } from '@/components/ui/IconButton';
+import * as Icons from '@/components/icons';
 
 const HomeIcon = ({ isActive }: { isActive: boolean }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -244,6 +246,23 @@ export default function DisplayAdvertisingSidebar({
             </div>
           );
         })}
+      </div>
+
+      {/* Settings Icon Button */}
+      <div style={{
+        padding: '12px 0',
+        borderTop: '2px solid var(--ld-semantic-color-border-subtle)',
+        display: 'flex',
+        justifyContent: 'center'
+      }}>
+        <IconButton
+          variant="ghost"
+          size="medium"
+          onClick={() => navigate('/settings')}
+          aria-label="Settings"
+        >
+          <Icons.Gear style={{ width: 20, height: 20 }} />
+        </IconButton>
       </div>
 
       {/* Toggle button at bottom */}
