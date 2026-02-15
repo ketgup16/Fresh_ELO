@@ -172,6 +172,11 @@ const navigationSections = [
         name: 'Progress Indicator',
         path: '/component-library/progress-indicator'
       },
+      {
+        id: 'progress-tracker',
+        name: 'Progress Tracker',
+        path: '/component-library/progress-tracker'
+      },
     ]
   },
   {

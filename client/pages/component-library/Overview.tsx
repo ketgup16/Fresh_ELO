@@ -167,7 +167,13 @@ const componentSections = [
     icon: 'Sidebar'
   },
   {
-    title: 'Design Tokens', 
+    title: 'Progress Tracker',
+    description: 'Step-by-step progress visualization for multi-step processes and workflows',
+    path: '/component-library/progress-tracker',
+    icon: 'TrendingUp'
+  },
+  {
+    title: 'Design Tokens',
     description: 'CSS custom properties for colors, spacing, and typography',
     path: '/component-library/design-tokens',
     icon: 'Palette'
