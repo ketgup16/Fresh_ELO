@@ -96,10 +96,21 @@ export default function ThemesPage() {
     setTextTokens(allText);
     setOtherTokens(allOther);
 
-    // Get current font family
+    // Get ACTUAL computed font family from a real element
+    // This will resolve the full font stack including Gibson, EverydaySans, etc.
+    const tempElement = document.createElement('div');
+    tempElement.style.fontFamily = 'var(--ld-semantic-font-family-sans)';
+    document.body.appendChild(tempElement);
+    const computedStyle = window.getComputedStyle(tempElement);
+    const actualFont = computedStyle.fontFamily;
+    document.body.removeChild(tempElement);
+
+    // Also get the CSS variable value for reference
     const styles = getComputedStyle(document.documentElement);
-    const fontFamily = styles.getPropertyValue('--ld-semantic-font-family-sans').trim();
-    setCurrentFontFamily(fontFamily);
+    const cssVarValue = styles.getPropertyValue('--ld-semantic-font-family-sans').trim();
+
+    // Use the actual computed font family (will show Gibson for Sam's Club, EverydaySans for Walmart, etc)
+    setCurrentFontFamily(actualFont || cssVarValue);
   }, []);
 
   React.useEffect(() => {
@@ -317,18 +328,29 @@ export default function ThemesPage() {
                 fontSize: '12px',
                 fontWeight: '700',
                 color: 'var(--ld-semantic-color-text-subtlest)',
-                marginBottom: '6px',
+                marginBottom: '8px',
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px'
               }}>
                 Active Font Family
               </div>
               <div style={{
+                fontSize: '24px',
+                fontWeight: '700',
+                fontFamily: 'var(--ld-semantic-font-family-sans)',
+                color: 'var(--ld-semantic-color-text)',
+                marginBottom: '8px'
+              }}>
+                {currentFontFamily.split(',')[0].trim().replace(/['"]/g, '')}
+              </div>
+              <div style={{
                 fontSize: '16px',
                 fontWeight: '400',
                 fontFamily: 'var(--ld-semantic-font-family-sans)',
                 color: 'var(--ld-semantic-color-text)',
-                marginBottom: '4px'
+                marginBottom: '8px',
+                paddingBottom: '8px',
+                borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)'
               }}>
                 The quick brown fox jumps over the lazy dog
               </div>
@@ -336,12 +358,12 @@ export default function ThemesPage() {
                 fontSize: '11px',
                 fontFamily: 'var(--ld-semantic-font-family-mono)',
                 color: 'var(--ld-semantic-color-text-subtle)',
-                marginTop: '8px',
                 padding: '8px',
                 backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
-                borderRadius: '4px'
+                borderRadius: '4px',
+                wordBreak: 'break-all'
               }}>
-                {currentFontFamily || 'EverydaySans, Helvetica Neue, Arial, sans-serif'}
+                {currentFontFamily}
               </div>
             </div>
 
