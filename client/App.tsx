@@ -68,6 +68,8 @@ import SpotIconsPage from "./pages/component-library/SpotIcons";
 import SwitchesPage from "./pages/component-library/Switches";
 import TextAreaPage from "./pages/component-library/TextArea";
 import TextFieldsPage from "./pages/component-library/TextFields";
+import TabsPage from "./pages/component-library/Tabs";
+import ThemesPage from "./pages/component-library/Themes";
 
 const queryClient = new QueryClient();
 
@@ -84,6 +86,7 @@ const App = () => (
               {/* Component Library with nested routes */}
               <Route path="/component-library" element={<ComponentLibraryLayout />}>
                 <Route index element={<ComponentLibraryOverview />} />
+                <Route path="themes" element={<ThemesPage />} />
                 <Route path="component-tester" element={<ComponentTester />} />
                 <Route path="icons" element={<IconsPage />} />
                 <Route path="buttons" element={<ButtonsPage />} />
@@ -126,6 +129,7 @@ const App = () => (
                 <Route path="spinners" element={<SpinnersPage />} />
                 <Route path="spot-icons" element={<SpotIconsPage />} />
                 <Route path="switches" element={<SwitchesPage />} />
+                <Route path="tabs" element={<TabsPage />} />
                 <Route path="progress-tracker" element={<ProgressTrackerPage />} />
               </Route>
 

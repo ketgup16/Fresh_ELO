@@ -1,119 +1,70 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as Icons from '@/components/icons';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 
 const componentSections = [
-  { 
-    title: 'Component Sandbox', 
-    description: 'Interactive testing environment for all components with live property controls',
-    path: '/component-library/component-tester',
-    icon: 'Settings'
+  {
+    title: 'Alerts',
+    description: 'Banner messages for info, success, warning, and error states',
+    path: '/component-library/alerts',
+    icon: 'AlertCircle'
   },
-  { 
-    title: 'Icons', 
-    description: 'Complete icon library with 100+ React components organized by category',
-    path: '/component-library/icons',
-    icon: 'Star'
-  },
-  { 
-    title: 'Buttons', 
-    description: 'Primary, secondary, tertiary, and destructive button variants with full accessibility',
-    path: '/component-library/buttons',
-    icon: 'Target'
-  },
-  { 
-    title: 'Badges', 
+  {
+    title: 'Badges',
     description: 'Count badges, status indicators, and semantic color variants',
     path: '/component-library/badges',
     icon: 'Tag'
   },
-  { 
-    title: 'Breadcrumbs', 
+  {
+    title: 'Breadcrumbs',
     description: 'Navigation breadcrumbs with support for 2-5 levels and custom separators',
     path: '/component-library/breadcrumbs',
     icon: 'ArrowRight'
   },
-  { 
-    title: 'Links', 
-    description: 'Text links with icon support and semantic color variants',
-    path: '/component-library/links',
-    icon: 'Link'
+  {
+    title: 'Buttons',
+    description: 'Primary, secondary, tertiary, and destructive button variants with full accessibility',
+    path: '/component-library/buttons',
+    icon: 'Target'
   },
-  { 
-    title: 'Link Buttons', 
-    description: 'Link-styled interactive elements with icon support and multiple sizes',
-    path: '/component-library/link-buttons',
-    icon: 'Link'
+  {
+    title: 'Callouts',
+    description: 'Contextual tooltips with directional arrows for onboarding',
+    path: '/component-library/callouts',
+    icon: 'Info'
   },
-  { 
-    title: 'Icon Buttons', 
-    description: 'Icon-only buttons for compact actions with ghost, primary, secondary variants',
-    path: '/component-library/icon-buttons',
-    icon: 'Star'
+  {
+    title: 'Cards',
+    description: 'Card containers with headers, actions, and content areas',
+    path: '/component-library/cards',
+    icon: 'Square'
   },
-  { 
-    title: 'Checkboxes', 
+  {
+    title: 'Checkboxes',
     description: 'Single and grouped checkboxes with indeterminate state support',
     path: '/component-library/checkboxes',
     icon: 'Check'
   },
   {
-    title: 'Radio Buttons',
-    description: 'Mutually exclusive selection within a group',
-    path: '/component-library/radio-buttons',
-    icon: 'Circle'
-  },
-  {
-    title: 'Select',
-    description: 'Dropdown select component with error states, AI-assisted variant, and full accessibility',
-    path: '/component-library/select',
-    icon: 'ChevronDown'
-  },
-  {
-    title: 'Form Groups',
-    description: 'Fieldset containers for checkbox and radio groups',
-    path: '/component-library/form-groups',
-    icon: 'List'
-  },
-  { 
-    title: 'Chips', 
+    title: 'Chips',
     description: 'Interactive, selectable buttons for categories and selections',
     path: '/component-library/chips',
     icon: 'Tag'
   },
-  { 
-    title: 'Filter Chips', 
-    description: 'Pill-shaped toggleable chips with counts for filtering',
-    path: '/component-library/filter-chips',
-    icon: 'Filter'
+  {
+    title: 'Component Sandbox',
+    description: 'Interactive testing environment for all components with live property controls',
+    path: '/component-library/component-tester',
+    icon: 'Settings'
   },
-  { 
-    title: 'Callouts', 
-    description: 'Contextual tooltips with directional arrows for onboarding',
-    path: '/component-library/callouts',
-    icon: 'Info'
-  },
-  { 
-    title: 'Cards', 
-    description: 'Card containers with headers, actions, and content areas',
-    path: '/component-library/cards',
-    icon: 'Square'
-  },
-  { 
-    title: 'Alerts', 
-    description: 'Banner messages for info, success, warning, and error states',
-    path: '/component-library/alerts',
-    icon: 'AlertCircle'
-  },
-  { 
-    title: 'Content Messages', 
+  {
+    title: 'Content Messages',
     description: 'Full-page state messages for errors, permissions, and loading',
     path: '/component-library/content-messages',
     icon: 'MessageSquare'
   },
-  { 
-    title: 'Date Fields', 
+  {
+    title: 'Date Fields',
     description: 'Text input fields for date entry with validation',
     path: '/component-library/date-fields',
     icon: 'Calendar'
@@ -125,10 +76,10 @@ const componentSections = [
     icon: 'Calendar'
   },
   {
-    title: 'Text Fields',
-    description: 'Single-line text inputs with labels, error states, helper text, icons, and AI-generated content indicators',
-    path: '/component-library/text-fields',
-    icon: 'Edit'
+    title: 'Design Tokens',
+    description: 'CSS custom properties for colors, spacing, and typography',
+    path: '/component-library/design-tokens',
+    icon: 'Palette'
   },
   {
     title: 'Dividers',
@@ -136,14 +87,50 @@ const componentSections = [
     path: '/component-library/dividers',
     icon: 'Minus'
   },
-  { 
-    title: 'Lists', 
+  {
+    title: 'Filter Chips',
+    description: 'Pill-shaped toggleable chips with counts for filtering',
+    path: '/component-library/filter-chips',
+    icon: 'Filter'
+  },
+  {
+    title: 'Form Groups',
+    description: 'Fieldset containers for checkbox and radio groups',
+    path: '/component-library/form-groups',
+    icon: 'List'
+  },
+  {
+    title: 'Icon Buttons',
+    description: 'Icon-only buttons for compact actions with ghost, primary, secondary variants',
+    path: '/component-library/icon-buttons',
+    icon: 'Star'
+  },
+  {
+    title: 'Icons',
+    description: 'Complete icon library with 100+ React components organized by category',
+    path: '/component-library/icons',
+    icon: 'Star'
+  },
+  {
+    title: 'Link Buttons',
+    description: 'Link-styled interactive elements with icon support and multiple sizes',
+    path: '/component-library/link-buttons',
+    icon: 'Link'
+  },
+  {
+    title: 'Links',
+    description: 'Text links with icon support and semantic color variants',
+    path: '/component-library/links',
+    icon: 'Link'
+  },
+  {
+    title: 'Lists',
     description: 'Vertical lists with leading icons and trailing content',
     path: '/component-library/lists',
     icon: 'List'
   },
-  { 
-    title: 'Magic Box', 
+  {
+    title: 'Magic Box',
     description: 'AI-powered loading animation with sparkle effects',
     path: '/component-library/magic-box',
     icon: 'Sparkles'
@@ -179,16 +166,28 @@ const componentSections = [
     icon: 'Sidebar'
   },
   {
+    title: 'Progress Tracker',
+    description: 'Step-by-step progress visualization for multi-step processes and workflows',
+    path: '/component-library/progress-tracker',
+    icon: 'TrendingUp'
+  },
+  {
+    title: 'Radio Buttons',
+    description: 'Mutually exclusive selection within a group',
+    path: '/component-library/radio-buttons',
+    icon: 'Circle'
+  },
+  {
+    title: 'Select',
+    description: 'Dropdown select component with error states, AI-assisted variant, and full accessibility',
+    path: '/component-library/select',
+    icon: 'ChevronDown'
+  },
+  {
     title: 'Spinners',
     description: 'Loading indicators for indeterminate processes with color and size variants',
     path: '/component-library/spinners',
     icon: 'Loader'
-  },
-  {
-    title: 'Switches',
-    description: 'Toggle controls for binary on/off settings with immediate state changes',
-    path: '/component-library/switches',
-    icon: 'ToggleLeft'
   },
   {
     title: 'Spot Icons',
@@ -197,16 +196,28 @@ const componentSections = [
     icon: 'Circle'
   },
   {
-    title: 'Progress Tracker',
-    description: 'Step-by-step progress visualization for multi-step processes and workflows',
-    path: '/component-library/progress-tracker',
-    icon: 'TrendingUp'
+    title: 'Switches',
+    description: 'Toggle controls for binary on/off settings with immediate state changes',
+    path: '/component-library/switches',
+    icon: 'ToggleLeft'
   },
   {
-    title: 'Design Tokens',
-    description: 'CSS custom properties for colors, spacing, and typography',
-    path: '/component-library/design-tokens',
-    icon: 'Palette'
+    title: 'Tab Navigation',
+    description: 'Page-level navigation tabs with selected state and icon support',
+    path: '/component-library/tabs',
+    icon: 'List'
+  },
+  {
+    title: 'Text Area',
+    description: 'Multi-line text input with character counting and AI-generated content indicators',
+    path: '/component-library/textarea',
+    icon: 'FileText'
+  },
+  {
+    title: 'Text Fields',
+    description: 'Single-line text inputs with labels, error states, helper text, icons, and AI-generated content indicators',
+    path: '/component-library/text-fields',
+    icon: 'Edit'
   },
 ];
 
@@ -229,39 +240,26 @@ export default function ComponentLibraryOverview() {
     }}>
       {/* Header */}
       <div style={{ marginBottom: '48px' }}>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          marginBottom: '24px',
-          gap: '24px'
-        }}>
-          <div style={{ flex: 1 }}>
-            <h1 style={{
-              fontSize: '36px',
-              fontWeight: '700',
-              fontFamily: 'var(--ld-semantic-font-family-sans)',
-              color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-              marginBottom: '16px'
-            }}>
-              Living Design 3.5
-            </h1>
-            <p style={{
-              fontSize: '18px',
-              lineHeight: '1.6',
-              color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-              maxWidth: '800px'
-            }}>
-              A comprehensive component library for the Walmart Connect Ad Center.
-              Each component follows the Living Design 3.5 specification with proper accessibility,
-              semantic tokens, and responsive behavior.
-            </p>
-          </div>
-
-          {/* Theme Switcher */}
-          <div style={{ minWidth: '280px' }}>
-            <ThemeSwitcher />
-          </div>
+        <div style={{ marginBottom: '24px' }}>
+          <h1 style={{
+            fontSize: '36px',
+            fontWeight: '700',
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+            color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
+            marginBottom: '16px'
+          }}>
+            Living Design 3.5
+          </h1>
+          <p style={{
+            fontSize: '18px',
+            lineHeight: '1.6',
+            color: 'var(--ld-semantic-color-text-secondary, #74767C)',
+            maxWidth: '800px'
+          }}>
+            A comprehensive component library for the Walmart Connect Ad Center.
+            Each component follows the Living Design 3.5 specification with proper accessibility,
+            semantic tokens, and responsive behavior.
+          </p>
         </div>
 
         {/* Search Bar */}

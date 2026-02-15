@@ -13,6 +13,11 @@ const navigationSections = [
         path: '/component-library'
       },
       {
+        id: 'themes',
+        name: 'Themes',
+        path: '/component-library/themes'
+      },
+      {
         id: 'component-tester',
         name: 'Component Sandbox',
         path: '/component-library/component-tester'
@@ -33,14 +38,9 @@ const navigationSections = [
     title: 'Components',
     items: [
       {
-        id: 'icons',
-        name: 'Icons',
-        path: '/component-library/icons'
-      },
-      {
-        id: 'buttons',
-        name: 'Buttons',
-        path: '/component-library/buttons'
+        id: 'alerts',
+        name: 'Alerts',
+        path: '/component-library/alerts'
       },
       {
         id: 'badges',
@@ -53,49 +53,9 @@ const navigationSections = [
         path: '/component-library/breadcrumbs'
       },
       {
-        id: 'links',
-        name: 'Links',
-        path: '/component-library/links'
-      },
-      {
-        id: 'link-buttons',
-        name: 'Link Buttons',
-        path: '/component-library/link-buttons'
-      },
-      {
-        id: 'icon-buttons',
-        name: 'Icon Buttons',
-        path: '/component-library/icon-buttons'
-      },
-      {
-        id: 'checkboxes',
-        name: 'Checkboxes',
-        path: '/component-library/checkboxes'
-      },
-      {
-        id: 'radio-buttons',
-        name: 'Radio Buttons',
-        path: '/component-library/radio-buttons'
-      },
-      {
-        id: 'select',
-        name: 'Select',
-        path: '/component-library/select'
-      },
-      {
-        id: 'form-groups',
-        name: 'Form Groups',
-        path: '/component-library/form-groups'
-      },
-      {
-        id: 'chips',
-        name: 'Chips',
-        path: '/component-library/chips'
-      },
-      {
-        id: 'filter-chips',
-        name: 'Filter Chips',
-        path: '/component-library/filter-chips'
+        id: 'buttons',
+        name: 'Buttons',
+        path: '/component-library/buttons'
       },
       {
         id: 'callouts',
@@ -108,9 +68,14 @@ const navigationSections = [
         path: '/component-library/cards'
       },
       {
-        id: 'alerts',
-        name: 'Alerts',
-        path: '/component-library/alerts'
+        id: 'checkboxes',
+        name: 'Checkboxes',
+        path: '/component-library/checkboxes'
+      },
+      {
+        id: 'chips',
+        name: 'Chips',
+        path: '/component-library/chips'
       },
       {
         id: 'content-messages',
@@ -131,6 +96,36 @@ const navigationSections = [
         id: 'dividers',
         name: 'Dividers',
         path: '/component-library/dividers'
+      },
+      {
+        id: 'filter-chips',
+        name: 'Filter Chips',
+        path: '/component-library/filter-chips'
+      },
+      {
+        id: 'form-groups',
+        name: 'Form Groups',
+        path: '/component-library/form-groups'
+      },
+      {
+        id: 'icon-buttons',
+        name: 'Icon Buttons',
+        path: '/component-library/icon-buttons'
+      },
+      {
+        id: 'icons',
+        name: 'Icons',
+        path: '/component-library/icons'
+      },
+      {
+        id: 'link-buttons',
+        name: 'Link Buttons',
+        path: '/component-library/link-buttons'
+      },
+      {
+        id: 'links',
+        name: 'Links',
+        path: '/component-library/links'
       },
       {
         id: 'lists',
@@ -183,6 +178,16 @@ const navigationSections = [
         path: '/component-library/progress-tracker'
       },
       {
+        id: 'radio-buttons',
+        name: 'Radio Buttons',
+        path: '/component-library/radio-buttons'
+      },
+      {
+        id: 'select',
+        name: 'Select',
+        path: '/component-library/select'
+      },
+      {
         id: 'snackbars',
         name: 'Snackbars',
         path: '/component-library/snackbars'
@@ -193,7 +198,12 @@ const navigationSections = [
         path: '/component-library/spot-icons'
       },
       {
-        id: 'tabs',
+        id: 'switches',
+        name: 'Switches',
+        path: '/component-library/switches'
+      },
+      {
+        id: 'tab-navigation',
         name: 'Tab Navigation',
         path: '/component-library/tabs'
       },
@@ -201,6 +211,11 @@ const navigationSections = [
         id: 'textarea',
         name: 'Text Area',
         path: '/component-library/textarea'
+      },
+      {
+        id: 'text-fields',
+        name: 'Text Fields',
+        path: '/component-library/text-fields'
       },
     ]
   },
