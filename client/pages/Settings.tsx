@@ -462,13 +462,12 @@ export default function SettingsPage() {
                       </div>
 
                       {/* Role Select */}
-                      <div style={{ flexShrink: 0 }}>
+                      <div style={{ flexShrink: 0, minWidth: '140px' }}>
                         <Select
                           label=""
                           size="small"
                           value={user.role}
                           onValueChange={(role) => handleChangeRole(app.id, user.id, role as 'admin' | 'editor' | 'viewer')}
-                          UNSAFE_style={{ minWidth: '120px' }}
                         >
                           <SelectItem value="admin">Admin</SelectItem>
                           <SelectItem value="editor">Editor</SelectItem>
