@@ -54,6 +54,10 @@ import PanelsPage from "./pages/component-library/Panels";
 import DesignTokensPage from "./pages/component-library/DesignTokens";
 import GuidelinesPage from "./pages/component-library/Guidelines";
 
+// Shadcn/Radix component pages
+import DialogPage from "./pages/component-library/Dialog";
+import SheetPage from "./pages/component-library/Sheet";
+
 const queryClient = new QueryClient();
 
 // Main App component with routing
@@ -98,6 +102,9 @@ const App = () => (
                 <Route path="panels" element={<PanelsPage />} />
                 <Route path="design-tokens" element={<DesignTokensPage />} />
                 <Route path="guidelines" element={<GuidelinesPage />} />
+                {/* Shadcn/Radix Components */}
+                <Route path="dialog" element={<DialogPage />} />
+                <Route path="sheet" element={<SheetPage />} />
               </Route>
 
               <Route path="/" element={<Index />} />
