@@ -163,6 +163,186 @@ const navigationSections = [
         path: '/component-library/panels'
       },
     ]
+  },
+  {
+    title: 'Shadcn/Radix Components',
+    items: [
+      {
+        id: 'accordion',
+        name: 'Accordion',
+        path: '/component-library/accordion'
+      },
+      {
+        id: 'alert-dialog',
+        name: 'Alert Dialog',
+        path: '/component-library/alert-dialog'
+      },
+      {
+        id: 'avatar',
+        name: 'Avatar',
+        path: '/component-library/avatar'
+      },
+      {
+        id: 'calendar',
+        name: 'Calendar',
+        path: '/component-library/calendar'
+      },
+      {
+        id: 'carousel',
+        name: 'Carousel',
+        path: '/component-library/carousel'
+      },
+      {
+        id: 'chart',
+        name: 'Chart',
+        path: '/component-library/chart'
+      },
+      {
+        id: 'collapsible',
+        name: 'Collapsible',
+        path: '/component-library/collapsible'
+      },
+      {
+        id: 'command',
+        name: 'Command',
+        path: '/component-library/command'
+      },
+      {
+        id: 'context-menu',
+        name: 'Context Menu',
+        path: '/component-library/context-menu'
+      },
+      {
+        id: 'dialog',
+        name: 'Dialog',
+        path: '/component-library/dialog'
+      },
+      {
+        id: 'drawer',
+        name: 'Drawer',
+        path: '/component-library/drawer'
+      },
+      {
+        id: 'dropdown-menu',
+        name: 'Dropdown Menu',
+        path: '/component-library/dropdown-menu'
+      },
+      {
+        id: 'form',
+        name: 'Form',
+        path: '/component-library/form'
+      },
+      {
+        id: 'hover-card',
+        name: 'Hover Card',
+        path: '/component-library/hover-card'
+      },
+      {
+        id: 'input',
+        name: 'Input',
+        path: '/component-library/input'
+      },
+      {
+        id: 'label',
+        name: 'Label',
+        path: '/component-library/label'
+      },
+      {
+        id: 'menubar',
+        name: 'Menubar',
+        path: '/component-library/menubar'
+      },
+      {
+        id: 'navigation-menu',
+        name: 'Navigation Menu',
+        path: '/component-library/navigation-menu'
+      },
+      {
+        id: 'pagination',
+        name: 'Pagination',
+        path: '/component-library/pagination'
+      },
+      {
+        id: 'popover',
+        name: 'Popover',
+        path: '/component-library/popover'
+      },
+      {
+        id: 'progress',
+        name: 'Progress',
+        path: '/component-library/progress'
+      },
+      {
+        id: 'radio-group',
+        name: 'Radio Group',
+        path: '/component-library/radio-group'
+      },
+      {
+        id: 'scroll-area',
+        name: 'Scroll Area',
+        path: '/component-library/scroll-area'
+      },
+      {
+        id: 'select',
+        name: 'Select',
+        path: '/component-library/select'
+      },
+      {
+        id: 'separator',
+        name: 'Separator',
+        path: '/component-library/separator'
+      },
+      {
+        id: 'sheet',
+        name: 'Sheet',
+        path: '/component-library/sheet'
+      },
+      {
+        id: 'skeleton',
+        name: 'Skeleton',
+        path: '/component-library/skeleton'
+      },
+      {
+        id: 'slider',
+        name: 'Slider',
+        path: '/component-library/slider'
+      },
+      {
+        id: 'switch',
+        name: 'Switch',
+        path: '/component-library/switch'
+      },
+      {
+        id: 'table',
+        name: 'Table',
+        path: '/component-library/table'
+      },
+      {
+        id: 'tabs',
+        name: 'Tabs',
+        path: '/component-library/tabs'
+      },
+      {
+        id: 'textarea',
+        name: 'Textarea',
+        path: '/component-library/textarea'
+      },
+      {
+        id: 'toast',
+        name: 'Toast',
+        path: '/component-library/toast'
+      },
+      {
+        id: 'toggle',
+        name: 'Toggle',
+        path: '/component-library/toggle'
+      },
+      {
+        id: 'tooltip',
+        name: 'Tooltip',
+        path: '/component-library/tooltip'
+      },
+    ]
   }
 ];
 
