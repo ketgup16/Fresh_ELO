@@ -76,12 +76,6 @@ const componentSections = [
     icon: 'Calendar'
   },
   {
-    title: 'Design Tokens',
-    description: 'CSS custom properties for colors, spacing, and typography',
-    path: '/component-library/design-tokens',
-    icon: 'Palette'
-  },
-  {
     title: 'Dividers',
     description: 'Horizontal and vertical separators for content sections',
     path: '/component-library/dividers',

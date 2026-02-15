@@ -14,18 +14,13 @@ const navigationSections = [
       },
       {
         id: 'themes',
-        name: 'Themes',
+        name: 'Themes & Tokens',
         path: '/component-library/themes'
       },
       {
         id: 'component-tester',
         name: 'Component Sandbox',
         path: '/component-library/component-tester'
-      },
-      {
-        id: 'design-tokens',
-        name: 'Design Tokens',
-        path: '/component-library/design-tokens'
       },
       {
         id: 'guidelines',

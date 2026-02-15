@@ -52,7 +52,6 @@ import MetricsPage from "./pages/component-library/Metrics";
 import ModalsPage from "./pages/component-library/Modals";
 import NudgesPage from "./pages/component-library/Nudges";
 import PanelsPage from "./pages/component-library/Panels";
-import DesignTokensPage from "./pages/component-library/DesignTokens";
 import GuidelinesPage from "./pages/component-library/Guidelines";
 
 // Shadcn/Radix component pages
@@ -117,7 +116,6 @@ const App = () => (
                 <Route path="panels" element={<PanelsPage />} />
                 <Route path="text-fields" element={<TextFieldsPage />} />
                 <Route path="textarea" element={<TextAreaPage />} />
-                <Route path="design-tokens" element={<DesignTokensPage />} />
                 <Route path="guidelines" element={<GuidelinesPage />} />
                 {/* Shadcn/Radix Components */}
                 <Route path="dialog" element={<DialogPage />} />

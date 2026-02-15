@@ -1,162 +1,710 @@
 import React from 'react';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 
+// Extract all CSS custom properties from the document
+function extractTokens(prefix: string): Array<{ name: string; value: string; computed: string }> {
+  const tokens: Array<{ name: string; value: string; computed: string }> = [];
+  const styles = getComputedStyle(document.documentElement);
+  
+  // Get all CSS custom properties
+  for (let i = 0; i < document.styleSheets.length; i++) {
+    try {
+      const sheet = document.styleSheets[i];
+      if (!sheet.cssRules) continue;
+      
+      for (let j = 0; j < sheet.cssRules.length; j++) {
+        const rule = sheet.cssRules[j];
+        if (rule instanceof CSSStyleRule && rule.selectorText === ':root') {
+          const styleDeclaration = rule.style;
+          for (let k = 0; k < styleDeclaration.length; k++) {
+            const propName = styleDeclaration[k];
+            if (propName.startsWith(prefix)) {
+              const value = styleDeclaration.getPropertyValue(propName).trim();
+              const computed = styles.getPropertyValue(propName).trim();
+              tokens.push({ name: propName, value, computed });
+            }
+          }
+        }
+      }
+    } catch (e) {
+      // Skip inaccessible stylesheets (CORS)
+      continue;
+    }
+  }
+  
+  // Remove duplicates and sort
+  const unique = Array.from(new Map(tokens.map(t => [t.name, t])).values());
+  return unique.sort((a, b) => a.name.localeCompare(b.name));
+}
+
 export default function ThemesPage() {
+  const [colorTokens, setColorTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
+  const [spaceTokens, setSpaceTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
+  const [otherTokens, setOtherTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
+  const [copiedToken, setCopiedToken] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    // Extract tokens on mount and when theme changes
+    const colors = extractTokens('--ld-semantic-color');
+    const wcpColors = extractTokens('--wcp-semantic-color');
+    const allColors = [...colors, ...wcpColors];
+    
+    const spaces = extractTokens('--ld-semantic-spacing');
+    const primitiveSpaces = extractTokens('--ld-primitive-scale-space');
+    const allSpaces = [...spaces, ...primitiveSpaces];
+    
+    // Get other useful tokens
+    const fonts = extractTokens('--ld-semantic-font');
+    const borders = extractTokens('--ld-semantic-border');
+    const elevation = extractTokens('--ld-semantic-elevation');
+    const duration = extractTokens('--ld-semantic-duration');
+    const allOther = [...fonts, ...borders, ...elevation, ...duration];
+    
+    setColorTokens(allColors);
+    setSpaceTokens(allSpaces);
+    setOtherTokens(allOther);
+  }, []);
+
+  const copyToken = (tokenName: string) => {
+    navigator.clipboard.writeText(`var(${tokenName})`);
+    setCopiedToken(tokenName);
+    setTimeout(() => setCopiedToken(null), 2000);
+  };
+
+  const isColorToken = (name: string) => name.includes('color');
+
   return (
     <div style={{
       padding: '48px',
-      maxWidth: '1400px',
+      maxWidth: '100%',
       margin: '0 auto'
     }}>
+      {/* Header */}
       <div style={{ marginBottom: '32px' }}>
         <h1 style={{
           fontSize: '32px',
           fontWeight: '700',
           fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
+          color: 'var(--ld-semantic-color-text)',
           marginBottom: '12px'
         }}>
-          Themes
+          Themes & Design Tokens
         </h1>
         <p style={{
           fontSize: '16px',
           lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          maxWidth: '800px',
-          marginBottom: '32px'
+          color: 'var(--ld-semantic-color-text-subtlest)',
+          maxWidth: '900px',
+          marginBottom: '24px'
         }}>
-          Switch between different brand themes to see how components adapt to different design tokens
-          and color palettes. Each theme provides a complete set of semantic tokens for a consistent experience.
+          Switch between brand themes and explore all Living Design 3.5 design tokens.
+          All components use these semantic tokens to ensure consistent theming across the application.
         </p>
       </div>
 
+      {/* Theme Selector - Full Width Card */}
       <div style={{
-        backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
+        backgroundColor: 'var(--ld-semantic-color-surface)',
         padding: '32px',
         borderRadius: '8px',
-        border: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
-        maxWidth: '600px'
+        border: '1px solid var(--ld-semantic-color-border-subtle)',
+        marginBottom: '48px',
+        boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <h2 style={{
-          fontSize: '20px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-          marginBottom: '24px'
-        }}>
-          Select Theme
-        </h2>
-        
-        <ThemeSwitcher />
-
         <div style={{
-          marginTop: '32px',
-          padding: '16px',
-          backgroundColor: 'var(--ld-semantic-color-fill-info-subtle, #F0F7FF)',
-          borderRadius: '6px',
-          borderLeft: '4px solid var(--ld-semantic-color-border-info, #0071DC)'
+          display: 'grid',
+          gridTemplateColumns: '400px 1fr',
+          gap: '32px',
+          alignItems: 'start'
         }}>
-          <p style={{
-            fontSize: '14px',
-            lineHeight: '1.5',
-            color: 'var(--ld-semantic-color-text)',
-            margin: 0
-          }}>
-            <strong>Note:</strong> Theme changes are applied globally across all component examples.
-            Design tokens automatically update to match the selected theme's color palette and styling.
-          </p>
+          {/* Theme Switcher */}
+          <div>
+            <h2 style={{
+              fontSize: '20px',
+              fontWeight: '700',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+              color: 'var(--ld-semantic-color-text)',
+              marginBottom: '16px'
+            }}>
+              Select Theme
+            </h2>
+            <ThemeSwitcher />
+          </div>
+
+          {/* Theme Info */}
+          <div>
+            <h2 style={{
+              fontSize: '20px',
+              fontWeight: '700',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+              color: 'var(--ld-semantic-color-text)',
+              marginBottom: '16px'
+            }}>
+              About Themes
+            </h2>
+            <p style={{
+              fontSize: '14px',
+              lineHeight: '1.6',
+              color: 'var(--ld-semantic-color-text-subtle)',
+              marginBottom: '16px'
+            }}>
+              Themes are complete sets of design tokens that define the visual appearance of components.
+              When you switch themes, all components automatically update to match the new color palette.
+            </p>
+            <div style={{
+              padding: '12px 16px',
+              backgroundColor: 'var(--ld-semantic-color-fill-info-subtle)',
+              borderRadius: '6px',
+              borderLeft: '4px solid var(--ld-semantic-color-border-info)'
+            }}>
+              <p style={{
+                fontSize: '13px',
+                lineHeight: '1.5',
+                color: 'var(--ld-semantic-color-text)',
+                margin: 0,
+                fontFamily: 'var(--ld-semantic-font-family-mono)',
+              }}>
+                ✅ Always use semantic tokens: <code>var(--ld-semantic-color-action-fill-primary)</code><br/>
+                ❌ Never use hard-coded values: <code style={{ color: 'var(--ld-semantic-color-text-negative)' }}>#0071DC</code>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Theme Information */}
-      <div style={{ marginTop: '48px', maxWidth: '800px' }}>
-        <h2 style={{
-          fontSize: '24px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
+      {/* Color Tokens Table */}
+      <div style={{ marginBottom: '48px' }}>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
           marginBottom: '16px'
         }}>
-          About Themes
-        </h2>
+          <h2 style={{
+            fontSize: '24px',
+            fontWeight: '700',
+            color: 'var(--ld-semantic-color-text)',
+          }}>
+            Color Tokens
+          </h2>
+          <div style={{
+            fontSize: '14px',
+            color: 'var(--ld-semantic-color-text-subtlest)',
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+          }}>
+            {colorTokens.length} tokens
+          </div>
+        </div>
         
         <div style={{
+          backgroundColor: 'var(--ld-semantic-color-surface)',
+          borderRadius: '8px',
+          border: '1px solid var(--ld-semantic-color-border-subtle)',
+          overflow: 'hidden'
+        }}>
+          <table style={{
+            width: '100%',
+            borderCollapse: 'collapse',
+            fontSize: '13px',
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+          }}>
+            <thead>
+              <tr style={{
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                borderBottom: '2px solid var(--ld-semantic-color-border-subtle)'
+              }}>
+                <th style={{
+                  padding: '12px 16px',
+                  textAlign: 'left',
+                  fontWeight: '700',
+                  color: 'var(--ld-semantic-color-text)',
+                  width: '60px'
+                }}>
+                  Color
+                </th>
+                <th style={{
+                  padding: '12px 16px',
+                  textAlign: 'left',
+                  fontWeight: '700',
+                  color: 'var(--ld-semantic-color-text)',
+                }}>
+                  Token Name
+                </th>
+                <th style={{
+                  padding: '12px 16px',
+                  textAlign: 'left',
+                  fontWeight: '700',
+                  color: 'var(--ld-semantic-color-text)',
+                  width: '200px'
+                }}>
+                  Computed Value
+                </th>
+                <th style={{
+                  padding: '12px 16px',
+                  textAlign: 'left',
+                  fontWeight: '700',
+                  color: 'var(--ld-semantic-color-text)',
+                  width: '100px'
+                }}>
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {colorTokens.map((token, index) => (
+                <tr
+                  key={token.name}
+                  style={{
+                    borderBottom: index < colorTokens.length - 1 ? '1px solid var(--ld-semantic-color-border-subtlest)' : 'none',
+                    transition: 'background-color 0.15s'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }}
+                >
+                  <td style={{ padding: '10px 16px' }}>
+                    <div style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '4px',
+                      backgroundColor: token.computed || `var(${token.name})`,
+                      border: '1px solid var(--ld-semantic-color-border-subtle)',
+                    }} />
+                  </td>
+                  <td style={{
+                    padding: '10px 16px',
+                    fontFamily: 'var(--ld-semantic-font-family-mono)',
+                    fontSize: '12px',
+                    color: 'var(--ld-semantic-color-text)',
+                  }}>
+                    {token.name}
+                  </td>
+                  <td style={{
+                    padding: '10px 16px',
+                    fontFamily: 'var(--ld-semantic-font-family-mono)',
+                    fontSize: '12px',
+                    color: 'var(--ld-semantic-color-text-subtlest)',
+                  }}>
+                    {token.computed || token.value}
+                  </td>
+                  <td style={{ padding: '10px 16px' }}>
+                    <button
+                      onClick={() => copyToken(token.name)}
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '12px',
+                        fontWeight: '600',
+                        color: copiedToken === token.name 
+                          ? 'var(--ld-semantic-color-text-positive)' 
+                          : 'var(--ld-semantic-color-text-brand)',
+                        backgroundColor: 'transparent',
+                        border: '1px solid currentColor',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s',
+                        fontFamily: 'var(--ld-semantic-font-family-sans)',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (copiedToken !== token.name) {
+                          e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-brand-subtle)';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                      }}
+                    >
+                      {copiedToken === token.name ? '✓ Copied' : 'Copy'}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Space Tokens Table */}
+      <div style={{ marginBottom: '48px' }}>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '16px'
+        }}>
+          <h2 style={{
+            fontSize: '24px',
+            fontWeight: '700',
+            color: 'var(--ld-semantic-color-text)',
+          }}>
+            Space Tokens
+          </h2>
+          <div style={{
+            fontSize: '14px',
+            color: 'var(--ld-semantic-color-text-subtlest)',
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+          }}>
+            {spaceTokens.length} tokens
+          </div>
+        </div>
+        
+        <div style={{
+          backgroundColor: 'var(--ld-semantic-color-surface)',
+          borderRadius: '8px',
+          border: '1px solid var(--ld-semantic-color-border-subtle)',
+          overflow: 'hidden'
+        }}>
+          <table style={{
+            width: '100%',
+            borderCollapse: 'collapse',
+            fontSize: '13px',
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+          }}>
+            <thead>
+              <tr style={{
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                borderBottom: '2px solid var(--ld-semantic-color-border-subtle)'
+              }}>
+                <th style={{
+                  padding: '12px 16px',
+                  textAlign: 'left',
+                  fontWeight: '700',
+                  color: 'var(--ld-semantic-color-text)',
+                  width: '100px'
+                }}>
+                  Size
+                </th>
+                <th style={{
+                  padding: '12px 16px',
+                  textAlign: 'left',
+                  fontWeight: '700',
+                  color: 'var(--ld-semantic-color-text)',
+                }}>
+                  Token Name
+                </th>
+                <th style={{
+                  padding: '12px 16px',
+                  textAlign: 'left',
+                  fontWeight: '700',
+                  color: 'var(--ld-semantic-color-text)',
+                  width: '150px'
+                }}>
+                  Value
+                </th>
+                <th style={{
+                  padding: '12px 16px',
+                  textAlign: 'left',
+                  fontWeight: '700',
+                  color: 'var(--ld-semantic-color-text)',
+                  width: '100px'
+                }}>
+                  Pixels
+                </th>
+                <th style={{
+                  padding: '12px 16px',
+                  textAlign: 'left',
+                  fontWeight: '700',
+                  color: 'var(--ld-semantic-color-text)',
+                  width: '100px'
+                }}>
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {spaceTokens.map((token, index) => {
+                const remValue = token.computed || token.value;
+                const pixels = remValue.includes('rem') 
+                  ? `${parseFloat(remValue) * 16}px` 
+                  : remValue;
+                
+                return (
+                  <tr
+                    key={token.name}
+                    style={{
+                      borderBottom: index < spaceTokens.length - 1 ? '1px solid var(--ld-semantic-color-border-subtlest)' : 'none',
+                      transition: 'background-color 0.15s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    <td style={{ padding: '10px 16px' }}>
+                      <div style={{
+                        width: token.computed || token.value,
+                        height: '24px',
+                        backgroundColor: 'var(--ld-semantic-color-action-fill-primary)',
+                        borderRadius: '2px',
+                        minWidth: '4px'
+                      }} />
+                    </td>
+                    <td style={{
+                      padding: '10px 16px',
+                      fontFamily: 'var(--ld-semantic-font-family-mono)',
+                      fontSize: '12px',
+                      color: 'var(--ld-semantic-color-text)',
+                    }}>
+                      {token.name}
+                    </td>
+                    <td style={{
+                      padding: '10px 16px',
+                      fontFamily: 'var(--ld-semantic-font-family-mono)',
+                      fontSize: '12px',
+                      color: 'var(--ld-semantic-color-text-subtlest)',
+                    }}>
+                      {remValue}
+                    </td>
+                    <td style={{
+                      padding: '10px 16px',
+                      fontFamily: 'var(--ld-semantic-font-family-mono)',
+                      fontSize: '12px',
+                      color: 'var(--ld-semantic-color-text-subtlest)',
+                      fontWeight: '600'
+                    }}>
+                      {pixels}
+                    </td>
+                    <td style={{ padding: '10px 16px' }}>
+                      <button
+                        onClick={() => copyToken(token.name)}
+                        style={{
+                          padding: '6px 12px',
+                          fontSize: '12px',
+                          fontWeight: '600',
+                          color: copiedToken === token.name 
+                            ? 'var(--ld-semantic-color-text-positive)' 
+                            : 'var(--ld-semantic-color-text-brand)',
+                          backgroundColor: 'transparent',
+                          border: '1px solid currentColor',
+                          borderRadius: '4px',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s',
+                          fontFamily: 'var(--ld-semantic-font-family-sans)',
+                        }}
+                        onMouseEnter={(e) => {
+                          if (copiedToken !== token.name) {
+                            e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-brand-subtle)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
+                      >
+                        {copiedToken === token.name ? '✓' : 'Copy'}
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Other Tokens Table (Typography, Border, Elevation, Duration) */}
+      {otherTokens.length > 0 && (
+        <div>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '16px'
+          }}>
+            <h2 style={{
+              fontSize: '24px',
+              fontWeight: '700',
+              color: 'var(--ld-semantic-color-text)',
+            }}>
+              Other Tokens
+            </h2>
+            <div style={{
+              fontSize: '14px',
+              color: 'var(--ld-semantic-color-text-subtlest)',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}>
+              {otherTokens.length} tokens (typography, borders, elevation, duration)
+            </div>
+          </div>
+          
+          <div style={{
+            backgroundColor: 'var(--ld-semantic-color-surface)',
+            borderRadius: '8px',
+            border: '1px solid var(--ld-semantic-color-border-subtle)',
+            overflow: 'hidden'
+          }}>
+            <table style={{
+              width: '100%',
+              borderCollapse: 'collapse',
+              fontSize: '13px',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}>
+              <thead>
+                <tr style={{
+                  backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                  borderBottom: '2px solid var(--ld-semantic-color-border-subtle)'
+                }}>
+                  <th style={{
+                    padding: '12px 16px',
+                    textAlign: 'left',
+                    fontWeight: '700',
+                    color: 'var(--ld-semantic-color-text)',
+                  }}>
+                    Token Name
+                  </th>
+                  <th style={{
+                    padding: '12px 16px',
+                    textAlign: 'left',
+                    fontWeight: '700',
+                    color: 'var(--ld-semantic-color-text)',
+                    width: '300px'
+                  }}>
+                    Value
+                  </th>
+                  <th style={{
+                    padding: '12px 16px',
+                    textAlign: 'left',
+                    fontWeight: '700',
+                    color: 'var(--ld-semantic-color-text)',
+                    width: '100px'
+                  }}>
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {otherTokens.map((token, index) => (
+                  <tr
+                    key={token.name}
+                    style={{
+                      borderBottom: index < otherTokens.length - 1 ? '1px solid var(--ld-semantic-color-border-subtlest)' : 'none',
+                      transition: 'background-color 0.15s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    <td style={{
+                      padding: '10px 16px',
+                      fontFamily: 'var(--ld-semantic-font-family-mono)',
+                      fontSize: '12px',
+                      color: 'var(--ld-semantic-color-text)',
+                    }}>
+                      {token.name}
+                    </td>
+                    <td style={{
+                      padding: '10px 16px',
+                      fontFamily: 'var(--ld-semantic-font-family-mono)',
+                      fontSize: '12px',
+                      color: 'var(--ld-semantic-color-text-subtlest)',
+                      wordBreak: 'break-all'
+                    }}>
+                      {token.computed || token.value}
+                    </td>
+                    <td style={{ padding: '10px 16px' }}>
+                      <button
+                        onClick={() => copyToken(token.name)}
+                        style={{
+                          padding: '6px 12px',
+                          fontSize: '12px',
+                          fontWeight: '600',
+                          color: copiedToken === token.name 
+                            ? 'var(--ld-semantic-color-text-positive)' 
+                            : 'var(--ld-semantic-color-text-brand)',
+                          backgroundColor: 'transparent',
+                          border: '1px solid currentColor',
+                          borderRadius: '4px',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s',
+                          fontFamily: 'var(--ld-semantic-font-family-sans)',
+                        }}
+                        onMouseEnter={(e) => {
+                          if (copiedToken !== token.name) {
+                            e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-brand-subtle)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
+                      >
+                        {copiedToken === token.name ? '✓' : 'Copy'}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Usage Note */}
+      <div style={{
+        marginTop: '48px',
+        padding: '24px',
+        backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+        borderRadius: '8px',
+        borderLeft: '4px solid var(--ld-semantic-color-border-brand)'
+      }}>
+        <h3 style={{
+          fontSize: '16px',
+          fontWeight: '700',
+          color: 'var(--ld-semantic-color-text)',
+          marginBottom: '12px',
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+        }}>
+          How to Use Design Tokens
+        </h3>
+        <div style={{
           display: 'grid',
-          gap: '24px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '16px',
+          fontSize: '14px',
+          lineHeight: '1.6',
+          color: 'var(--ld-semantic-color-text-subtle)',
         }}>
           <div>
-            <h3 style={{
-              fontSize: '18px',
-              fontWeight: '700',
-              marginBottom: '8px',
-              color: 'var(--ld-semantic-color-text)',
-            }}>
-              What are themes?
-            </h3>
-            <p style={{
-              fontSize: '16px',
-              lineHeight: '1.6',
-              color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-            }}>
-              Themes are complete sets of design tokens (colors, typography, spacing) that define
-              the visual appearance of the component library. Each theme represents a different
-              brand or product within the Walmart ecosystem.
-            </p>
-          </div>
-
-          <div>
-            <h3 style={{
-              fontSize: '18px',
-              fontWeight: '700',
-              marginBottom: '8px',
-              color: 'var(--ld-semantic-color-text)',
-            }}>
-              How do themes work?
-            </h3>
-            <p style={{
-              fontSize: '16px',
-              lineHeight: '1.6',
-              color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-            }}>
-              All components use semantic design tokens (CSS custom properties) instead of hard-coded
-              values. When you switch themes, these token values update globally, causing all components
-              to instantly adapt to the new theme's colors and styles.
-            </p>
-          </div>
-
-          <div>
-            <h3 style={{
-              fontSize: '18px',
-              fontWeight: '700',
-              marginBottom: '8px',
-              color: 'var(--ld-semantic-color-text)',
-            }}>
-              Using themes in your code
-            </h3>
-            <p style={{
-              fontSize: '16px',
-              lineHeight: '1.6',
-              color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-              marginBottom: '12px'
-            }}>
-              Always use semantic tokens in your components. Never hard-code colors or values:
-            </p>
-            <div style={{
-              backgroundColor: 'var(--ld-primitive-color-gray-5)',
-              padding: '16px',
-              borderRadius: '6px',
+            <strong style={{ color: 'var(--ld-semantic-color-text)' }}>In CSS:</strong><br />
+            <code style={{
+              display: 'block',
+              marginTop: '8px',
+              padding: '8px 12px',
+              backgroundColor: 'var(--ld-semantic-color-surface)',
+              borderRadius: '4px',
               fontFamily: 'var(--ld-semantic-font-family-mono)',
-              fontSize: '14px',
+              fontSize: '12px',
             }}>
-              <div style={{ marginBottom: '12px' }}>
-                <span style={{ color: '#22863a' }}>/* ✅ CORRECT - Uses semantic tokens */</span><br />
-                <span>background: <span style={{ color: '#005cc5' }}>var(--ld-semantic-color-action-fill-primary)</span>;</span>
-              </div>
-              <div>
-                <span style={{ color: '#d73a49' }}>/* ❌ WRONG - Hard-coded color */</span><br />
-                <span>background: <span style={{ color: '#d73a49' }}>#0071DC</span>;</span>
-              </div>
-            </div>
+              color: var(--ld-semantic-color-text);
+            </code>
+          </div>
+          <div>
+            <strong style={{ color: 'var(--ld-semantic-color-text)' }}>In inline styles:</strong><br />
+            <code style={{
+              display: 'block',
+              marginTop: '8px',
+              padding: '8px 12px',
+              backgroundColor: 'var(--ld-semantic-color-surface)',
+              borderRadius: '4px',
+              fontFamily: 'var(--ld-semantic-font-family-mono)',
+              fontSize: '12px',
+            }}>
+              style=&#123;&#123; color: 'var(--ld-semantic-color-text)' &#125;&#125;
+            </code>
+          </div>
+          <div>
+            <strong style={{ color: 'var(--ld-semantic-color-text)' }}>Why tokens matter:</strong><br />
+            <ul style={{ marginTop: '8px', paddingLeft: '20px' }}>
+              <li>Enables theme switching</li>
+              <li>Ensures brand consistency</li>
+              <li>Centralizes design updates</li>
+              <li>Maintains accessibility</li>
+            </ul>
           </div>
         </div>
       </div>
