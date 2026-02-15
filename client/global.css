@@ -5,7 +5,6 @@
 @import "./styles/themes/base/primitive.css";
 @import "./styles/themes/base/semantic.css";
 /* Theme overrides loaded dynamically via ThemeProvider - see client/contexts/ThemeContext.tsx */
-@import "./styles/tag.css";
 
 @tailwind base;
 @tailwind components;
