@@ -248,13 +248,15 @@ export default function DisplayAdvertisingSidebar({
         })}
       </div>
 
-      {/* Settings Icon Button */}
+      {/* Bottom Actions - Settings and Lock */}
       <div style={{
-        padding: '12px 0',
-        borderTop: '2px solid var(--ld-semantic-color-border-subtle)',
         display: 'flex',
-        justifyContent: 'center'
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '8px',
+        padding: '12px 0'
       }}>
+        {/* Settings Icon Button */}
         <IconButton
           variant="ghost"
           size="medium"
@@ -263,26 +265,15 @@ export default function DisplayAdvertisingSidebar({
         >
           <Icons.Gear style={{ width: 20, height: 20 }} />
         </IconButton>
-      </div>
 
-      {/* Toggle button at bottom */}
-      <div>
+        {/* Lock/Toggle button */}
         <button
           onClick={handleToggle}
-          className={`flex items-center ${
-            sidebarExpanded ? 'gap-3 px-3 w-full' : 'justify-center w-10 mx-auto'
-          } h-9 rounded hover:bg-gray-100 transition-colors`}
+          className="flex items-center justify-center w-10 h-9 rounded hover:bg-gray-100 transition-colors"
           aria-label={sidebarLocked ? 'Collapse sidebar' : 'Lock sidebar open'}
           aria-expanded={sidebarLocked}
         >
-          {sidebarExpanded ? (
-            <>
-              <ArrowLeftIcon />
-              <span className="text-sm truncate text-[#2E2F32]">Lock</span>
-            </>
-          ) : (
-            <ArrowRightLineIcon />
-          )}
+          {sidebarExpanded ? <ArrowLeftIcon /> : <ArrowRightLineIcon />}
         </button>
       </div>
 
