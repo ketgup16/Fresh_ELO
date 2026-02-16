@@ -9,7 +9,8 @@ import { Divider } from '@/components/ui/Divider';
 import { MastHead } from '@/components/ui/MastHead';
 import { MediaSolution } from '@/components/ui/MediaSolutionsDropdown';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
-import * as Icons from '@/components/icons';
+import { Grid, Settings, Plus, X, ChevronUp, ChevronDown } from '@/components/icons';
+import styles from './Settings.module.css';
 
 interface User {
   id: string;
@@ -179,7 +180,7 @@ export default function SettingsPage() {
             <SideNavigationItem
               href="#applications"
               isCurrent={activeSection === 'applications'}
-              leading={<Icons.Grid style={{ width: 20, height: 20 }} />}
+              leading={<Grid style={{ width: 20, height: 20 }} />}
               onClick={(e) => {
                 e.preventDefault();
                 setActiveSection('applications');
@@ -190,7 +191,7 @@ export default function SettingsPage() {
             <SideNavigationItem
               href="#global-settings"
               isCurrent={activeSection === 'global'}
-              leading={<Icons.Settings style={{ width: 20, height: 20 }} />}
+              leading={<Settings style={{ width: 20, height: 20 }} />}
               onClick={(e) => {
                 e.preventDefault();
                 setActiveSection('global');
@@ -242,23 +243,8 @@ export default function SettingsPage() {
         {applications.map((app) => (
           <div
             key={app.id}
-            style={{
-              backgroundColor: 'var(--ld-semantic-color-surface)',
-              padding: '24px',
-              borderRadius: '8px',
-              boxShadow: 'var(--ld-semantic-elevation-100)',
-              transition: 'box-shadow 0.2s, transform 0.2s',
-              cursor: 'pointer'
-            }}
+            className={styles.appCard}
             onClick={() => setSelectedApp(app.id === selectedApp ? null : app.id)}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = 'var(--ld-semantic-elevation-200)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = 'var(--ld-semantic-elevation-100)';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}
           >
             {/* App Header */}
             <div style={{
@@ -395,7 +381,7 @@ export default function SettingsPage() {
                       setIsAddingUser(!isAddingUser);
                     }}
                   >
-                    <Icons.Plus style={{ width: 16, height: 16, marginRight: 6 }} />
+                    <Plus style={{ width: 16, height: 16, marginRight: 6 }} />
                     Add User
                   </Button>
                 </div>
@@ -541,7 +527,7 @@ export default function SettingsPage() {
                           }}
                           aria-label="Remove user"
                         >
-                          <Icons.X style={{ width: 16, height: 16 }} />
+                          <X style={{ width: 16, height: 16 }} />
                         </Button>
                       )}
                     </div>
@@ -559,9 +545,9 @@ export default function SettingsPage() {
               justifyContent: 'center'
             }}>
               {selectedApp === app.id ? (
-                <Icons.ChevronUp style={{ width: 20, height: 20, color: 'var(--ld-semantic-color-text-subtle)' }} />
+                <ChevronUp style={{ width: 20, height: 20, color: 'var(--ld-semantic-color-text-subtle)' }} />
               ) : (
-                <Icons.ChevronDown style={{ width: 20, height: 20, color: 'var(--ld-semantic-color-text-subtle)' }} />
+                <ChevronDown style={{ width: 20, height: 20, color: 'var(--ld-semantic-color-text-subtle)' }} />
               )}
             </div>
           </div>
