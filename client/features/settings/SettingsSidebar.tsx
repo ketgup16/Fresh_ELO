@@ -94,7 +94,7 @@ export default function SettingsSidebar({
 
   return (
     <aside
-      className="border-r border-[#E3E4E5] bg-white flex flex-col justify-between p-3 h-auto self-stretch overflow-hidden relative"
+      className="border-r border-[#E3E4E5] bg-white flex flex-col justify-between h-auto self-stretch overflow-hidden relative"
       style={{
         width: sidebarExpanded ? `${sidebarWidth}px` : '64px',
         transition: isResizingSidebar ? 'none' : 'width 300ms ease-in-out'
@@ -114,7 +114,7 @@ export default function SettingsSidebar({
               onClick={() => onSectionChange(item.id)}
               className={`flex items-center ${
                 sidebarExpanded ? 'gap-3 px-3 w-full justify-start' : 'justify-center w-10 mx-auto'
-              } h-9 rounded ${
+              } h-9 ${sidebarExpanded ? '' : 'rounded'} ${
                 isActive && sidebarExpanded ? 'bg-[#E9F1FE]' : ''
               } ${!isActive ? 'hover:bg-gray-100' : ''} transition-colors`}
               aria-label={item.label}
