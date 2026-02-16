@@ -8,6 +8,7 @@ import { Checkbox } from '@/components/ui/Checkbox';
 import { Divider } from '@/components/ui/Divider';
 import { MastHead } from '@/components/ui/MastHead';
 import { MediaSolution } from '@/components/ui/MediaSolutionsDropdown';
+import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
 import * as Icons from '@/components/icons';
 
 interface User {
@@ -172,78 +173,33 @@ export default function SettingsPage() {
           backgroundColor: 'var(--ld-semantic-color-surface)',
           display: 'flex',
           flexDirection: 'column',
-          overflowY: 'auto'
+          overflowY: 'auto',
+          padding: '24px 16px'
         }}>
-          <nav style={{ padding: '24px 16px' }}>
-            <button
-              onClick={() => setActiveSection('applications')}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                width: '100%',
-                padding: '12px 16px',
-                backgroundColor: activeSection === 'applications' ? 'var(--ld-semantic-color-fill-brand-subtlest)' : 'transparent',
-                color: activeSection === 'applications' ? 'var(--ld-semantic-color-text-brand)' : 'var(--ld-semantic-color-text)',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '14px',
-                fontWeight: activeSection === 'applications' ? 700 : 400,
-                fontFamily: 'var(--ld-semantic-font-family-sans)',
-                cursor: 'pointer',
-                textAlign: 'left',
-                transition: 'all 0.2s'
-              }}
-              onMouseEnter={(e) => {
-                if (activeSection !== 'applications') {
-                  e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeSection !== 'applications') {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                }
+          <SideNavigation aria-label="Settings navigation">
+            <SideNavigationItem
+              href="#applications"
+              isCurrent={activeSection === 'applications'}
+              leading={<Icons.Grid style={{ width: 20, height: 20 }} />}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveSection('applications');
               }}
             >
-              <Icons.Grid style={{ width: 20, height: 20 }} />
               Applications
-            </button>
-
-            <button
-              onClick={() => setActiveSection('global')}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                width: '100%',
-                padding: '12px 16px',
-                marginTop: '8px',
-                backgroundColor: activeSection === 'global' ? 'var(--ld-semantic-color-fill-brand-subtlest)' : 'transparent',
-                color: activeSection === 'global' ? 'var(--ld-semantic-color-text-brand)' : 'var(--ld-semantic-color-text)',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '14px',
-                fontWeight: activeSection === 'global' ? 700 : 400,
-                fontFamily: 'var(--ld-semantic-font-family-sans)',
-                cursor: 'pointer',
-                textAlign: 'left',
-                transition: 'all 0.2s'
-              }}
-              onMouseEnter={(e) => {
-                if (activeSection !== 'global') {
-                  e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeSection !== 'global') {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                }
+            </SideNavigationItem>
+            <SideNavigationItem
+              href="#global-settings"
+              isCurrent={activeSection === 'global'}
+              leading={<Icons.Settings style={{ width: 20, height: 20 }} />}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveSection('global');
               }}
             >
-              <Icons.Settings style={{ width: 20, height: 20 }} />
               Global Settings
-            </button>
-          </nav>
+            </SideNavigationItem>
+          </SideNavigation>
         </aside>
 
         {/* Main Content */}
