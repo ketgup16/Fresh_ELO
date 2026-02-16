@@ -14,6 +14,89 @@ import {
 export function ContentMessageExample() {
   return (
     <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '48px' }}>
+      {/* Error states with illustrations */}
+      <ExampleSection
+        title="Error States with Illustrations (Small Size)"
+        description="Common error states using illustrative imagery for better user engagement."
+      >
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '24px' }}>
+          <ContentMessage
+            size="small"
+            variant="neutral"
+            title="[Information] isn't available right now"
+            media={
+              <img
+                src="/illustrations/walmart-associate-waving.webp"
+                alt="Walmart associate"
+                style={{ width: 160, height: 160, objectFit: 'cover' }}
+              />
+            }
+          >
+            Refresh this page to try again.
+          </ContentMessage>
+
+          <ContentMessage
+            size="small"
+            variant="error"
+            title="No internet connection"
+            media={
+              <img
+                src="/illustrations/no-internet-connection.webp"
+                alt="No internet connection"
+                style={{ width: 160, height: 160, objectFit: 'cover' }}
+              />
+            }
+          >
+            Make sure you're connected to WiFi or data and try again.
+          </ContentMessage>
+
+          <ContentMessage
+            size="small"
+            variant="error"
+            title="We couldn't find this page"
+            media={
+              <img
+                src="/illustrations/walmart-associate-glasses.webp"
+                alt="Page not found"
+                style={{ width: 160, height: 160, objectFit: 'cover' }}
+              />
+            }
+          >
+            Try searching or go to the homepage.
+          </ContentMessage>
+
+          <ContentMessage
+            size="small"
+            variant="error"
+            title="Something went wrong"
+            media={
+              <img
+                src="/illustrations/no-internet-connection.webp"
+                alt="Error occurred"
+                style={{ width: 160, height: 160, objectFit: 'cover' }}
+              />
+            }
+          >
+            Try restarting the app.
+          </ContentMessage>
+
+          <ContentMessage
+            size="small"
+            variant="neutral"
+            title="There was a issue"
+            media={
+              <img
+                src="/illustrations/walmart-associate-waving.webp"
+                alt="Technical issue"
+                style={{ width: 160, height: 160, objectFit: 'cover' }}
+              />
+            }
+          >
+            Refresh this page to try again.
+          </ContentMessage>
+        </div>
+      </ExampleSection>
+
       {/* Variant showcase */}
       <ExampleSection
         title="Variants"
@@ -242,7 +325,7 @@ export function ContentMessageExample() {
 {`import { ContentMessage } from '@/components/ui/ContentMessage';
 import { Button } from '@/components/ui/Button';
 
-// Error state
+// Error state with icon
 <ContentMessage
   variant="error"
   title="We can't load your orders"
@@ -250,6 +333,22 @@ import { Button } from '@/components/ui/Button';
   actions={<Button variant="primary" size="small">Reload page</Button>}
 >
   Check your connection, then try again.
+</ContentMessage>
+
+// Error state with illustration (small size)
+<ContentMessage
+  size="small"
+  variant="error"
+  title="No internet connection"
+  media={
+    <img
+      src="/illustrations/no-internet-connection.webp"
+      alt="No internet connection"
+      style={{ width: 160, height: 160, objectFit: 'cover' }}
+    />
+  }
+>
+  Make sure you're connected to WiFi or data and try again.
 </ContentMessage>
 
 // Success state
