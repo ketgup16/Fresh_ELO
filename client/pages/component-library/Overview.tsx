@@ -272,7 +272,7 @@ export default function ComponentLibraryOverview() {
             width: '24px',
             height: '24px'
           }}>
-            <Icons.Search size={24} style={{ color: 'var(--ld-semantic-color-text-secondary, #74767C)' }} />
+            <Icons.Search size={24} style={{ width: '24px', height: '24px', color: 'var(--ld-semantic-color-text-secondary, #74767C)' }} />
           </div>
           <input
             type="text"
@@ -361,11 +361,18 @@ export default function ComponentLibraryOverview() {
                     borderRadius: '8px',
                     flexShrink: 0
                   }}>
-                    <div style={{ color: 'var(--ld-semantic-color-text-brand-bold)' }}>
+                    <div style={{
+                      color: 'var(--ld-semantic-color-text-brand-bold)',
+                      width: '24px',
+                      height: '24px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
                       {IconComponent ? (
-                        <IconComponent size={24} />
+                        <IconComponent size={24} style={{ width: '24px', height: '24px' }} />
                       ) : (
-                        <FallbackIcon size={24} />
+                        <FallbackIcon size={24} style={{ width: '24px', height: '24px' }} />
                       )}
                     </div>
                   </div>
@@ -398,7 +405,7 @@ export default function ComponentLibraryOverview() {
             padding: '64px 32px',
             color: 'var(--ld-semantic-color-text-secondary, #74767C)'
           }}>
-            <Icons.Search size={24} style={{ margin: '0 auto 16px', opacity: 0.5 }} />
+            <Icons.Search size={24} style={{ width: '24px', height: '24px', margin: '0 auto 16px', opacity: 0.5 }} />
             <p style={{ fontSize: '16px', marginBottom: '8px' }}>No components found</p>
             <p style={{ fontSize: '14px' }}>Try a different search term</p>
           </div>
