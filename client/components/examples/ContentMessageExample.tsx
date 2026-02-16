@@ -2,14 +2,6 @@ import * as React from 'react';
 import { ContentMessage } from '@/components/ui/ContentMessage';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
-import {
-  ExclamationCircle,
-  CheckCircleFill,
-  InfoCircleFill,
-  Warning,
-  Lock,
-  Refresh,
-} from '@/components/icons';
 
 export function ContentMessageExample() {
   return (
@@ -189,7 +181,14 @@ export function ContentMessageExample() {
           <ContentMessage
             variant="error"
             title="We can't load your orders"
-            media={<ExclamationCircle style={{ width: 48, height: 48 }} />}
+            media={
+              <div style={{
+                width: 160,
+                height: 160,
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+                borderRadius: '8px'
+              }} />
+            }
             actions={
               <ButtonGroup>
                 <Button variant="primary" size="small" onClick={() => window.location.reload()}>
@@ -207,7 +206,14 @@ export function ContentMessageExample() {
           <ContentMessage
             variant="success"
             title="Payment confirmed"
-            media={<CheckCircleFill style={{ width: 48, height: 48 }} />}
+            media={
+              <div style={{
+                width: 160,
+                height: 160,
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+                borderRadius: '8px'
+              }} />
+            }
             actions={
               <Button variant="primary" size="small">
                 Continue shopping
@@ -220,7 +226,14 @@ export function ContentMessageExample() {
           <ContentMessage
             variant="info"
             title="New features available"
-            media={<InfoCircleFill style={{ width: 48, height: 48 }} />}
+            media={
+              <div style={{
+                width: 160,
+                height: 160,
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+                borderRadius: '8px'
+              }} />
+            }
             actions={
               <Button variant="secondary" size="small">
                 Learn more
@@ -233,7 +246,14 @@ export function ContentMessageExample() {
           <ContentMessage
             variant="warning"
             title="Your session is expiring"
-            media={<Warning style={{ width: 48, height: 48 }} />}
+            media={
+              <div style={{
+                width: 160,
+                height: 160,
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+                borderRadius: '8px'
+              }} />
+            }
             actions={
               <Button variant="primary" size="small">
                 Stay signed in
@@ -264,7 +284,14 @@ export function ContentMessageExample() {
               size="small"
               variant="error"
               title="Service unavailable"
-              media={<ExclamationCircle style={{ width: 40, height: 40 }} />}
+              media={
+                <div style={{
+                  width: 160,
+                  height: 160,
+                  backgroundColor: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+                  borderRadius: '8px'
+                }} />
+              }
               actions={
                 <Button variant="primary" size="small">
                   Retry
@@ -280,7 +307,14 @@ export function ContentMessageExample() {
               size="large"
               variant="error"
               title="Service unavailable"
-              media={<ExclamationCircle style={{ width: 64, height: 64 }} />}
+              media={
+                <div style={{
+                  width: 240,
+                  height: 240,
+                  backgroundColor: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+                  borderRadius: '8px'
+                }} />
+              }
               actions={
                 <ButtonGroup>
                   <Button variant="primary" size="medium">
@@ -307,7 +341,14 @@ export function ContentMessageExample() {
           <ContentMessage
             variant="info"
             title="Camera access required"
-            media={<Lock style={{ width: 48, height: 48 }} />}
+            media={
+              <div style={{
+                width: 160,
+                height: 160,
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+                borderRadius: '8px'
+              }} />
+            }
             actions={
               <Button variant="primary" size="small">
                 Open settings
@@ -340,7 +381,14 @@ export function ContentMessageExample() {
           <ContentMessage
             variant="error"
             title="This page didn't load"
-            media={<Refresh style={{ width: 48, height: 48 }} />}
+            media={
+              <div style={{
+                width: 160,
+                height: 160,
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+                borderRadius: '8px'
+              }} />
+            }
             actions={
               <ButtonGroup>
                 <Button variant="primary" size="small" onClick={() => window.location.reload()}>
@@ -408,11 +456,18 @@ export function ContentMessageExample() {
 {`import { ContentMessage } from '@/components/ui/ContentMessage';
 import { Button } from '@/components/ui/Button';
 
-// Error state with icon
+// Error state with gray placeholder
 <ContentMessage
   variant="error"
   title="We can't load your orders"
-  media={<ExclamationCircle style={{ width: 48, height: 48 }} />}
+  media={
+    <div style={{
+      width: 160,
+      height: 160,
+      backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+      borderRadius: '8px'
+    }} />
+  }
   actions={<Button variant="primary" size="small">Reload page</Button>}
 >
   Check your connection, then try again.
