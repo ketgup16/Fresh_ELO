@@ -173,8 +173,7 @@ export default function SettingsPage() {
           backgroundColor: 'var(--ld-semantic-color-surface)',
           display: 'flex',
           flexDirection: 'column',
-          overflowY: 'auto',
-          padding: '24px 16px'
+          overflowY: 'auto'
         }}>
           <SideNavigation aria-label="Settings navigation">
             <SideNavigationItem
