@@ -6,6 +6,8 @@ import { Select, SelectItem } from '@/components/ui/Select';
 import { Tag } from '@/components/ui/Tag';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Divider } from '@/components/ui/Divider';
+import { MastHead } from '@/components/ui/MastHead';
+import { MediaSolution } from '@/components/ui/MediaSolutionsDropdown';
 import * as Icons from '@/components/icons';
 
 interface User {
@@ -96,6 +98,8 @@ export default function SettingsPage() {
   const [isAddingUser, setIsAddingUser] = React.useState(false);
   const [newUserEmail, setNewUserEmail] = React.useState('');
   const [newUserRole, setNewUserRole] = React.useState<'admin' | 'editor' | 'viewer'>('viewer');
+  const [selectedMediaSolution, setSelectedMediaSolution] = React.useState<MediaSolution>('Display Advertising');
+  const [activeSection, setActiveSection] = React.useState<'applications' | 'global'>('applications');
 
   const selectedApplication = applications.find(app => app.id === selectedApp);
 
@@ -151,31 +155,127 @@ export default function SettingsPage() {
   };
 
   return (
-    <div style={{
-      padding: 'clamp(24px, 4vw, 48px)',
-      maxWidth: '1400px',
-      margin: '0 auto'
-    }}>
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{
-          fontSize: '32px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text)',
-          marginBottom: '12px'
+      <MastHead
+        companyName="Coca Cola"
+        currentSolution={selectedMediaSolution}
+        onSolutionChange={setSelectedMediaSolution}
+      />
+
+      <div className="flex h-[calc(100vh-54px)]">
+        {/* Sidebar */}
+        <aside style={{
+          width: '280px',
+          flexShrink: 0,
+          borderRight: '1px solid var(--ld-semantic-color-border-subtlest)',
+          backgroundColor: 'var(--ld-semantic-color-surface)',
+          display: 'flex',
+          flexDirection: 'column',
+          overflowY: 'auto'
         }}>
-          Settings & Administration
-        </h1>
-        <p style={{
-          fontSize: '16px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-subtlest)',
-          maxWidth: '800px'
-        }}>
-          Manage applications, users, and permissions across Walmart Connect Ad Center.
-        </p>
-      </div>
+          <nav style={{ padding: '24px 16px' }}>
+            <button
+              onClick={() => setActiveSection('applications')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                width: '100%',
+                padding: '12px 16px',
+                backgroundColor: activeSection === 'applications' ? 'var(--ld-semantic-color-fill-brand-subtlest)' : 'transparent',
+                color: activeSection === 'applications' ? 'var(--ld-semantic-color-text-brand)' : 'var(--ld-semantic-color-text)',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: activeSection === 'applications' ? 700 : 400,
+                fontFamily: 'var(--ld-semantic-font-family-sans)',
+                cursor: 'pointer',
+                textAlign: 'left',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                if (activeSection !== 'applications') {
+                  e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeSection !== 'applications') {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }
+              }}
+            >
+              <Icons.Grid style={{ width: 20, height: 20 }} />
+              Applications
+            </button>
+
+            <button
+              onClick={() => setActiveSection('global')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                width: '100%',
+                padding: '12px 16px',
+                marginTop: '8px',
+                backgroundColor: activeSection === 'global' ? 'var(--ld-semantic-color-fill-brand-subtlest)' : 'transparent',
+                color: activeSection === 'global' ? 'var(--ld-semantic-color-text-brand)' : 'var(--ld-semantic-color-text)',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: activeSection === 'global' ? 700 : 400,
+                fontFamily: 'var(--ld-semantic-font-family-sans)',
+                cursor: 'pointer',
+                textAlign: 'left',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                if (activeSection !== 'global') {
+                  e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-fill-subtle)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeSection !== 'global') {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }
+              }}
+            >
+              <Icons.Settings style={{ width: 20, height: 20 }} />
+              Global Settings
+            </button>
+          </nav>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 overflow-auto">
+          <div style={{
+            padding: 'clamp(24px, 4vw, 48px)',
+            maxWidth: '1400px',
+            margin: '0 auto'
+          }}>
+            {/* Header */}
+            <div style={{ marginBottom: '32px' }}>
+              <h1 style={{
+                fontSize: '32px',
+                fontWeight: '700',
+                fontFamily: 'var(--ld-semantic-font-family-sans)',
+                color: 'var(--ld-semantic-color-text)',
+                marginBottom: '12px'
+              }}>
+                {activeSection === 'applications' ? 'Applications' : 'Global Settings'}
+              </h1>
+              <p style={{
+                fontSize: '16px',
+                lineHeight: '1.6',
+                color: 'var(--ld-semantic-color-text-subtlest)',
+                maxWidth: '800px'
+              }}>
+                {activeSection === 'applications'
+                  ? 'Manage applications, users, and permissions across Walmart Connect Ad Center.'
+                  : 'Configure global settings and preferences for your account.'
+                }
+              </p>
+            </div>
 
       {/* Applications Grid */}
       <div style={{
@@ -619,6 +719,9 @@ export default function SettingsPage() {
             </div>
           </div>
         </div>
+      </div>
+          </div>
+        </main>
       </div>
     </div>
   );
