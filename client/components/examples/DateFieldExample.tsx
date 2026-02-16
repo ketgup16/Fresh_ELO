@@ -136,28 +136,109 @@ export function DateFieldExample() {
         </div>
       </ExampleSection>
 
+      {/* Read-only State */}
+      <ExampleSection
+        title="Read-only State"
+        description="A read-only date field displays a value but doesn't allow editing. No focus outline appears."
+      >
+        <div style={{ width: 296 }}>
+          <DateField
+            label="Choose date (mm/dd/yyyy)"
+            readOnly
+            defaultValue="02/16/2026"
+            showCalendarIcon
+          />
+        </div>
+      </ExampleSection>
+
       {/* All States Side-by-Side */}
       <ExampleSection
         title="All States"
-        description="Default, focused (click into it), error, and disabled states displayed side-by-side."
+        description="Default, with helper text, error, disabled, and read-only states displayed together."
       >
-        <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
-          <div style={{ width: 220 }}>
-            <DateField label="Default" showCalendarIcon />
-          </div>
-          <div style={{ width: 220 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+          <div style={{ width: 400 }}>
+            <h4 style={{
+              fontSize: '14px',
+              fontWeight: 700,
+              margin: '0 0 16px 0',
+              color: 'var(--ld-semantic-color-text)',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}>
+              Default
+            </h4>
             <DateField
-              label="Error"
-              error="Invalid date"
-              defaultValue="13/01/2025"
+              label="Choose date (mm/dd/yyyy)"
               showCalendarIcon
             />
           </div>
-          <div style={{ width: 220 }}>
+
+          <div style={{ width: 400 }}>
+            <h4 style={{
+              fontSize: '14px',
+              fontWeight: 700,
+              margin: '0 0 16px 0',
+              color: 'var(--ld-semantic-color-text)',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}>
+              With Helper Text
+            </h4>
             <DateField
-              label="Disabled"
+              label="Choose date (mm/dd/yyyy)"
+              helperText="Select a date from the calendar or type manually"
+              showCalendarIcon
+            />
+          </div>
+
+          <div style={{ width: 400 }}>
+            <h4 style={{
+              fontSize: '14px',
+              fontWeight: 700,
+              margin: '0 0 16px 0',
+              color: 'var(--ld-semantic-color-text)',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}>
+              Error State
+            </h4>
+            <DateField
+              label="Choose date (mm/dd/yyyy)"
+              error="Please select a valid date"
+              showCalendarIcon
+            />
+          </div>
+
+          <div style={{ width: 400 }}>
+            <h4 style={{
+              fontSize: '14px',
+              fontWeight: 700,
+              margin: '0 0 16px 0',
+              color: 'var(--ld-semantic-color-text)',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}>
+              Disabled State
+            </h4>
+            <DateField
+              label="Choose date (mm/dd/yyyy)"
               disabled
-              defaultValue="01/15/2026"
+              defaultValue="02/16/2026"
+              showCalendarIcon
+            />
+          </div>
+
+          <div style={{ width: 400 }}>
+            <h4 style={{
+              fontSize: '14px',
+              fontWeight: 700,
+              margin: '0 0 16px 0',
+              color: 'var(--ld-semantic-color-text)',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}>
+              Read-only State
+            </h4>
+            <DateField
+              label="Choose date (mm/dd/yyyy)"
+              readOnly
+              defaultValue="02/16/2026"
               showCalendarIcon
             />
           </div>

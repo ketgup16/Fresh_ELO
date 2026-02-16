@@ -21,9 +21,9 @@
   position: relative;
   display: flex;
   align-items: center;
-  height: 2.5rem; /* 40px */
-  padding: 0 0.75rem;
-  gap: 0.75rem;
+  min-height: 2.5rem; /* 40px */
+  padding: 0.625rem 0.75rem; /* 10px vertical, 12px horizontal */
+  gap: 0.5rem;
   border: 1px solid var(--ld-semantic-color-border-strong, #909196);
   border-radius: var(--ld-primitive-scale-border-radius-50, 0.25rem);
   background-color: var(--ld-semantic-color-surface, #fff);
@@ -49,6 +49,7 @@
   color: var(--ld-semantic-color-text, #2e2f32);
   padding: 0;
   min-width: 0;
+  height: auto;
 }
 
 .dateField__input::placeholder {
@@ -57,15 +58,19 @@
 
 /* ── Calendar icon (decorative) ── */
 .dateField__icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
   color: var(--ld-semantic-color-text, #2e2f32);
   pointer-events: none;
+  line-height: 0;
 }
 
 .dateField__icon svg {
+  display: block;
   width: 20px;
   height: 20px;
 }
@@ -136,4 +141,19 @@
 
 .dateField--disabled .dateField__icon {
   color: var(--ld-semantic-color-text-disabled, #babbbe);
+}
+
+/* ── Read-only state ── */
+.dateField__inputWrapper:has(input[readonly]) {
+  border-color: var(--ld-semantic-color-border, #babbbe);
+  background-color: var(--ld-semantic-color-surface, #fff);
+}
+
+.dateField__inputWrapper:has(input[readonly]):focus-within {
+  border-color: var(--ld-semantic-color-border, #babbbe);
+  outline: none;
+}
+
+.dateField__input[readonly] {
+  cursor: default;
 }
