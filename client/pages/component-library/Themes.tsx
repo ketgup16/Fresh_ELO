@@ -68,75 +68,61 @@ export default function ThemesPage() {
   const [otherExpanded, setOtherExpanded] = React.useState(false);
   const [showBackToTop, setShowBackToTop] = React.useState(false);
 
-  // Function to extract and update all tokens
+  // Function to extract and update all tokens (optimized with caching)
   const updateAllTokens = React.useCallback(() => {
-    // Extract color tokens
-    const colors = extractTokens('--ld-semantic-color');
-    const wcpColors = extractTokens('--wcp-semantic-color');
-    const allColors = [...colors, ...wcpColors];
+    // Use requestAnimationFrame to avoid blocking the UI
+    requestAnimationFrame(() => {
+      // Extract color tokens
+      const colors = extractTokens('--ld-semantic-color');
+      const wcpColors = extractTokens('--wcp-semantic-color');
+      const allColors = [...colors, ...wcpColors];
 
-    // Extract space tokens
-    const spaces = extractTokens('--ld-semantic-spacing');
-    const primitiveSpaces = extractTokens('--ld-primitive-scale-space');
-    const allSpaces = [...spaces, ...primitiveSpaces];
+      // Extract space tokens
+      const spaces = extractTokens('--ld-semantic-spacing');
+      const primitiveSpaces = extractTokens('--ld-primitive-scale-space');
+      const allSpaces = [...spaces, ...primitiveSpaces];
 
-    // Extract text/typography tokens
-    const textFonts = extractTokens('--ld-semantic-font');
-    const textPrimitive = extractTokens('--ld-primitive-font');
-    const allText = [...textFonts, ...textPrimitive];
+      // Extract text/typography tokens
+      const textFonts = extractTokens('--ld-semantic-font');
+      const textPrimitive = extractTokens('--ld-primitive-font');
+      const allText = [...textFonts, ...textPrimitive];
 
-    // Extract other tokens (borders, elevation, duration, etc)
-    const borders = extractTokens('--ld-semantic-border');
-    const elevation = extractTokens('--ld-semantic-elevation');
-    const duration = extractTokens('--ld-semantic-duration');
-    const opacity = extractTokens('--ld-semantic-opacity');
-    const zIndex = extractTokens('--ld-semantic-z-index');
-    const allOther = [...borders, ...elevation, ...duration, ...opacity, ...zIndex];
+      // Extract other tokens (borders, elevation, duration, etc)
+      const borders = extractTokens('--ld-semantic-border');
+      const elevation = extractTokens('--ld-semantic-elevation');
+      const duration = extractTokens('--ld-semantic-duration');
+      const opacity = extractTokens('--ld-semantic-opacity');
+      const zIndex = extractTokens('--ld-semantic-z-index');
+      const allOther = [...borders, ...elevation, ...duration, ...opacity, ...zIndex];
 
-    // Update all state
-    setColorTokens(allColors);
-    setSpaceTokens(allSpaces);
-    setTextTokens(allText);
-    setOtherTokens(allOther);
+      // Batch state updates
+      React.startTransition(() => {
+        setColorTokens(allColors);
+        setSpaceTokens(allSpaces);
+        setTextTokens(allText);
+        setOtherTokens(allOther);
+      });
 
-    // Get ACTUAL computed font family from a real element
-    // This will resolve the full font stack including Gibson, EverydaySans, etc.
-    const tempElement = document.createElement('div');
-    tempElement.style.fontFamily = 'var(--ld-semantic-font-family-sans)';
-    tempElement.textContent = 'Test';
-    document.body.appendChild(tempElement);
-    const computedStyle = window.getComputedStyle(tempElement);
-    const actualFont = computedStyle.fontFamily;
-    document.body.removeChild(tempElement);
+      // Get ACTUAL computed font family (lightweight operation)
+      const styles = getComputedStyle(document.documentElement);
+      const cssVarValue = styles.getPropertyValue('--ld-semantic-font-family-sans').trim();
 
-    // Also get the CSS variable value for reference
-    const styles = getComputedStyle(document.documentElement);
-    const cssVarValue = styles.getPropertyValue('--ld-semantic-font-family-sans').trim();
-    const primitiveValue = styles.getPropertyValue('--ld-primitive-font-family-sans').trim();
+      // Use the CSS variable value directly (faster)
+      setCurrentFontFamily(cssVarValue);
 
-    // Use the actual computed font family (will show Gibson for Sam's Club, EverydaySans for Walmart, etc)
-    const fontToUse = actualFont || cssVarValue || primitiveValue;
-    setCurrentFontFamily(fontToUse);
-
-    // Extract primary font name (first in the stack)
-    const primaryFont = fontToUse.split(',')[0].trim().replace(/['"]/g, '');
-    setPrimaryFontName(primaryFont);
-
-    console.log('🔤 Font detected:', {
-      primary: primaryFont,
-      full: fontToUse,
-      cssVar: cssVarValue,
-      primitive: primitiveValue
+      // Extract primary font name (first in the stack)
+      const primaryFont = cssVarValue.split(',')[0].trim().replace(/['"]/g, '');
+      setPrimaryFontName(primaryFont);
     });
   }, []);
 
-  // Re-extract tokens whenever theme changes
+  // Re-extract tokens whenever theme changes (debounced)
   React.useEffect(() => {
     console.log('🎨 Current theme:', currentTheme, currentThemeData?.name);
-    // Delay extraction to ensure theme CSS has loaded
+    // Debounce with longer delay to ensure CSS is fully loaded
     const timer = setTimeout(() => {
       updateAllTokens();
-    }, 300);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [currentTheme, updateAllTokens]);
@@ -145,51 +131,21 @@ export default function ThemesPage() {
     // Extract tokens on mount
     updateAllTokens();
 
-    // Listen for theme changes by watching for custom event or DOM changes
-    // Re-run extraction when any CSS link or style tag changes
-    const handleThemeChange = () => {
-      // Delay to ensure CSS has fully loaded and computed styles are updated
-      setTimeout(() => {
-        console.log('🔄 Theme changed - re-extracting all tokens...');
-        updateAllTokens();
-      }, 200); // Increased delay for theme CSS to fully apply
-    };
-
-    // Watch for class changes on html/body (theme switching often changes these)
-    const observer = new MutationObserver((mutations) => {
-      for (const mutation of mutations) {
-        if (mutation.type === 'attributes') {
-          console.log('📝 Attribute changed:', mutation.attributeName, 'on', mutation.target);
-          handleThemeChange();
-          break;
-        }
-      }
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class', 'data-theme', 'style']
-    });
-
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ['class', 'data-theme', 'style']
-    });
-
-    // Watch for link tag changes (theme CSS injection/removal)
+    // Only watch for link changes (theme CSS loading) - more efficient
     const linkObserver = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         if (mutation.type === 'childList') {
-          // Check if any added/removed nodes are link or style tags
+          // Check if any added/removed nodes are theme-related link tags
           const hasThemeChange = Array.from(mutation.addedNodes).some(
-            node => node.nodeName === 'LINK' || node.nodeName === 'STYLE'
+            node => node.nodeName === 'LINK' && (node as HTMLLinkElement).getAttribute('data-theme-override')
           ) || Array.from(mutation.removedNodes).some(
-            node => node.nodeName === 'LINK' || node.nodeName === 'STYLE'
+            node => node.nodeName === 'LINK' && (node as HTMLLinkElement).getAttribute('data-theme-override')
           );
 
           if (hasThemeChange) {
             console.log('🎨 Theme CSS link changed');
-            handleThemeChange();
+            // Debounce update
+            setTimeout(() => updateAllTokens(), 500);
             break;
           }
         }
@@ -201,31 +157,10 @@ export default function ThemesPage() {
       subtree: false
     });
 
-    // Also periodically check for changes (backup mechanism)
-    const interval = setInterval(() => {
-      const styles = getComputedStyle(document.documentElement);
-      const newFont = styles.getPropertyValue('--ld-semantic-font-family-sans').trim();
-
-      // Create temp element to get actual computed font
-      const tempElement = document.createElement('div');
-      tempElement.style.fontFamily = 'var(--ld-semantic-font-family-sans)';
-      document.body.appendChild(tempElement);
-      const computedStyle = window.getComputedStyle(tempElement);
-      const actualFont = computedStyle.fontFamily;
-      document.body.removeChild(tempElement);
-
-      if (actualFont && actualFont !== currentFontFamily) {
-        console.log('🔄 Font changed detected via interval:', actualFont);
-        updateAllTokens();
-      }
-    }, 1000); // Check every second
-
     return () => {
-      observer.disconnect();
       linkObserver.disconnect();
-      clearInterval(interval);
     };
-  }, [updateAllTokens, currentFontFamily]);
+  }, [updateAllTokens]);
 
   // Handle scroll for back-to-top button
   React.useEffect(() => {

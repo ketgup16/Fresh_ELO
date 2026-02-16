@@ -24,6 +24,7 @@ import NotFound from "./pages/NotFound";
 import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
 
 // Component library pages
+import React from 'react';
 import ComponentLibraryOverview from "./pages/component-library/Overview";
 import ComponentTester from "./pages/component-library/ComponentTester";
 import IconsPage from "./pages/component-library/Icons";
@@ -87,8 +88,16 @@ const App = () => (
               {/* Component Library with nested routes */}
               <Route path="/component-library" element={<ComponentLibraryLayout />}>
                 <Route index element={<ComponentLibraryOverview />} />
-                <Route path="themes" element={<ThemesPage />} />
-                <Route path="component-tester" element={<ComponentTester />} />
+                <Route path="themes" element={
+                  <React.Suspense fallback={<div style={{ padding: '48px', textAlign: 'center' }}>Loading...</div>}>
+                    <ThemesPage />
+                  </React.Suspense>
+                } />
+                <Route path="component-tester" element={
+                  <React.Suspense fallback={<div style={{ padding: '48px', textAlign: 'center' }}>Loading...</div>}>
+                    <ComponentTester />
+                  </React.Suspense>
+                } />
                 <Route path="icons" element={<IconsPage />} />
                 <Route path="buttons" element={<ButtonsPage />} />
                 <Route path="badges" element={<BadgesPage />} />
