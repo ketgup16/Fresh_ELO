@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { MastHead } from "../components/ui/MastHead";
 import { Button } from "../components/ui/Button";
 import { ButtonGroup } from "../components/ui/ButtonGroup";
+import { IconButton } from "../components/ui/IconButton";
 import * as Icons from "../components/icons";
 import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
 
@@ -96,7 +97,7 @@ const NotFound = () => {
           </div>
 
           {/* Navigation Buttons */}
-          <ButtonGroup>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', alignItems: 'center' }}>
             <Button
               variant="secondary"
               size="large"
@@ -105,15 +106,15 @@ const NotFound = () => {
               <ArrowLeft style={{ width: 20, height: 20, marginRight: 8 }} />
               Go Back
             </Button>
-            <Button
+            <IconButton
+              aria-label="Go to home page"
               variant="primary"
               size="large"
               onClick={handleGoHome}
             >
-              <Home style={{ width: 20, height: 20, marginRight: 8 }} />
-              Go to Home
-            </Button>
-          </ButtonGroup>
+              <Home style={{ width: 24, height: 24 }} />
+            </IconButton>
+          </div>
         </div>
       </div>
     </div>
