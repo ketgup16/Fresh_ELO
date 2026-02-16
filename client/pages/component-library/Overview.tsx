@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Icons from '@/components/icons';
+import { Button } from '@/components/ui/Button';
 
 const FallbackIcon = Icons.Box || Icons.Circle;
 
@@ -218,6 +219,7 @@ const componentSections = [
 ];
 
 export default function ComponentLibraryOverview() {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = React.useState('');
 
   // Filter components based on search query
@@ -234,6 +236,18 @@ export default function ComponentLibraryOverview() {
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
+      {/* Back Button */}
+      <div style={{ marginBottom: '24px' }}>
+        <Button
+          variant="secondary"
+          size="small"
+          onClick={() => navigate('/')}
+        >
+          <Icons.ArrowLeft style={{ width: 16, height: 16, marginRight: 8 }} />
+          Back to Home
+        </Button>
+      </div>
+
       {/* Header */}
       <div style={{ marginBottom: '48px' }}>
         <div style={{ marginBottom: '24px' }}>

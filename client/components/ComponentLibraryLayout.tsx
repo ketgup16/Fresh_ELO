@@ -457,6 +457,22 @@ export function ComponentLibraryLayout() {
               </SideNavigation>
             </div>
           ))}
+
+          {/* Back to Home - Bottom of Navigation */}
+          <div style={{
+            marginTop: 'auto',
+            paddingTop: '24px',
+            borderTop: '2px solid var(--ld-semantic-color-border-subtle)'
+          }}>
+            <SideNavigation aria-label="Main Navigation">
+              <SideNavigationItem
+                href="/"
+                onClick={(e) => handleNavClick(e, '/')}
+              >
+                ← Back to Home
+              </SideNavigationItem>
+            </SideNavigation>
+          </div>
         </div>
       </aside>
 
