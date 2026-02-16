@@ -265,7 +265,12 @@ export default function ComponentLibraryOverview() {
             left: '16px',
             top: '50%',
             transform: 'translateY(-50%)',
-            pointerEvents: 'none'
+            pointerEvents: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '24px',
+            height: '24px'
           }}>
             <Icons.Search size={24} style={{ color: 'var(--ld-semantic-color-text-secondary, #74767C)' }} />
           </div>
@@ -276,7 +281,7 @@ export default function ComponentLibraryOverview() {
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
               width: '100%',
-              padding: '12px 16px 12px 48px',
+              padding: '12px 16px 12px 52px',
               fontSize: '16px',
               fontFamily: 'var(--ld-semantic-font-family-sans)',
               border: '2px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
