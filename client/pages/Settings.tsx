@@ -8,8 +8,8 @@ import { Checkbox } from '@/components/ui/Checkbox';
 import { Divider } from '@/components/ui/Divider';
 import { MastHead } from '@/components/ui/MastHead';
 import { MediaSolution } from '@/components/ui/MediaSolutionsDropdown';
-import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
-import { Grid, Settings, Plus, X, ChevronUp, ChevronDown } from '@/components/icons';
+import SettingsSidebar from '@/features/settings/SettingsSidebar';
+import { Plus, X, ChevronUp, ChevronDown } from '@/components/icons';
 import styles from './Settings.module.css';
 
 interface User {
@@ -167,47 +167,18 @@ export default function SettingsPage() {
 
       <div className="flex h-[calc(100vh-54px)]">
         {/* Sidebar */}
-        <aside style={{
-          width: '280px',
-          flexShrink: 0,
-          borderRight: '1px solid var(--ld-semantic-color-border-subtlest)',
-          backgroundColor: 'var(--ld-semantic-color-surface)',
-          display: 'flex',
-          flexDirection: 'column',
-          overflowY: 'auto'
-        }}>
-          <SideNavigation aria-label="Settings navigation">
-            <SideNavigationItem
-              href="#applications"
-              isCurrent={activeSection === 'applications'}
-              leading={<Grid style={{ width: 20, height: 20 }} />}
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveSection('applications');
-              }}
-            >
-              Applications
-            </SideNavigationItem>
-            <SideNavigationItem
-              href="#global-settings"
-              isCurrent={activeSection === 'global'}
-              leading={<Settings style={{ width: 20, height: 20 }} />}
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveSection('global');
-              }}
-            >
-              Global Settings
-            </SideNavigationItem>
-          </SideNavigation>
-        </aside>
+        <SettingsSidebar
+          activeSection={activeSection}
+          onSectionChange={setActiveSection}
+        />
 
         {/* Main Content */}
-        <main className="flex-1 overflow-auto">
+        <main className="flex-1 h-auto self-stretch flex flex-col overflow-auto">
           <div style={{
             padding: 'clamp(24px, 4vw, 48px)',
             maxWidth: '1400px',
-            margin: '0 auto'
+            margin: '0 auto',
+            width: '100%'
           }}>
             {/* Header */}
             <div style={{ marginBottom: '32px' }}>
