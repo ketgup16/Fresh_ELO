@@ -267,7 +267,7 @@ export default function ComponentLibraryOverview() {
             transform: 'translateY(-50%)',
             pointerEvents: 'none'
           }}>
-            <Icons.Search style={{ width: 20, height: 20, color: 'var(--ld-semantic-color-text-secondary, #74767C)' }} />
+            <Icons.Search size={24} style={{ color: 'var(--ld-semantic-color-text-secondary, #74767C)' }} />
           </div>
           <input
             type="text"
@@ -393,7 +393,7 @@ export default function ComponentLibraryOverview() {
             padding: '64px 32px',
             color: 'var(--ld-semantic-color-text-secondary, #74767C)'
           }}>
-            <Icons.Search style={{ width: 48, height: 48, margin: '0 auto 16px', opacity: 0.5 }} />
+            <Icons.Search size={24} style={{ margin: '0 auto 16px', opacity: 0.5 }} />
             <p style={{ fontSize: '16px', marginBottom: '8px' }}>No components found</p>
             <p style={{ fontSize: '14px' }}>Try a different search term</p>
           </div>
