@@ -86,6 +86,21 @@ export function ContentMessageExample() {
           >
             Refresh this page to try again.
           </ContentMessage>
+
+          <ContentMessage
+            size="small"
+            variant="neutral"
+            title="No items available"
+            media={
+              <img
+                src="/illustrations/toys.svg"
+                alt="No items available"
+                style={{ width: 160, height: 160 }}
+              />
+            }
+          >
+            Check back later for new items.
+          </ContentMessage>
         </div>
       </ExampleSection>
 
@@ -168,6 +183,21 @@ export function ContentMessageExample() {
             }
           >
             Refresh this page to try again.
+          </ContentMessage>
+
+          <ContentMessage
+            size="large"
+            variant="neutral"
+            title="No items available"
+            media={
+              <img
+                src="/illustrations/toys.svg"
+                alt="No items available"
+                style={{ width: 240, height: 240 }}
+              />
+            }
+          >
+            Check back later for new items.
           </ContentMessage>
         </div>
       </ExampleSection>
