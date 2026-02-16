@@ -26,9 +26,9 @@ export function ContentMessageExample() {
             title="[Information] isn't available right now"
             media={
               <img
-                src="/illustrations/walmart-associate-waving.webp"
+                src="/illustrations/associate-waving.svg"
                 alt="Walmart associate"
-                style={{ width: 160, height: 160, objectFit: 'cover' }}
+                style={{ width: 160, height: 160 }}
               />
             }
           >
@@ -41,9 +41,9 @@ export function ContentMessageExample() {
             title="No internet connection"
             media={
               <img
-                src="/illustrations/no-internet-connection.webp"
+                src="/illustrations/network-issue.svg"
                 alt="No internet connection"
-                style={{ width: 160, height: 160, objectFit: 'cover' }}
+                style={{ width: 160, height: 160 }}
               />
             }
           >
@@ -56,9 +56,9 @@ export function ContentMessageExample() {
             title="We couldn't find this page"
             media={
               <img
-                src="/illustrations/walmart-associate-glasses.webp"
+                src="/illustrations/associate-glasses.svg"
                 alt="Page not found"
-                style={{ width: 160, height: 160, objectFit: 'cover' }}
+                style={{ width: 160, height: 160 }}
               />
             }
           >
@@ -71,9 +71,9 @@ export function ContentMessageExample() {
             title="Something went wrong"
             media={
               <img
-                src="/illustrations/no-internet-connection.webp"
+                src="/illustrations/network-issue.svg"
                 alt="Error occurred"
-                style={{ width: 160, height: 160, objectFit: 'cover' }}
+                style={{ width: 160, height: 160 }}
               />
             }
           >
@@ -86,9 +86,9 @@ export function ContentMessageExample() {
             title="There was a issue"
             media={
               <img
-                src="/illustrations/walmart-associate-waving.webp"
+                src="/illustrations/associate-waving.svg"
                 alt="Technical issue"
-                style={{ width: 160, height: 160, objectFit: 'cover' }}
+                style={{ width: 160, height: 160 }}
               />
             }
           >
@@ -342,9 +342,9 @@ import { Button } from '@/components/ui/Button';
   title="No internet connection"
   media={
     <img
-      src="/illustrations/no-internet-connection.webp"
+      src="/illustrations/network-issue.svg"
       alt="No internet connection"
-      style={{ width: 160, height: 160, objectFit: 'cover' }}
+      style={{ width: 160, height: 160 }}
     />
   }
 >

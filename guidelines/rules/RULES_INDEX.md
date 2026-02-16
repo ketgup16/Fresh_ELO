@@ -92,6 +92,42 @@ import { Search } from '@/components/icons';
 
 ---
 
+### 4. Figma Exportable Asset Extraction
+**File**: `RULE_FigmaAssetExtraction.md` 🆕
+
+**When**: Implementing Figma designs, extracting assets from design files
+
+**Key Requirements**:
+- ✅ ONLY extract assets marked as "exportable" in Figma
+- ✅ Use exact names provided by designer
+- ✅ Preserve specified file formats (SVG, PNG, WebP)
+- ❌ NEVER extract every visible image/graphic
+- ❌ NEVER rename assets without approval
+- ❌ NEVER convert formats arbitrarily
+
+**Quick Check**:
+```tsx
+/* ✅ CORRECT - Exportable assets with semantic names */
+associate-waving.svg
+network-issue.svg
+associate-glasses.svg
+
+/* ❌ WRONG - Auto-generated or non-exportable */
+Rectangle 123.png
+Untitled.jpg
+temp-image-xyz.webp
+```
+
+**Asset Organization**:
+```
+public/
+  illustrations/  # Production illustrations (exportable)
+  icons/         # Production icons (exportable)
+  images/        # Production images (exportable)
+```
+
+---
+
 ## 📚 Component Guidelines
 
 ### 3. Living Design Component API Reference
