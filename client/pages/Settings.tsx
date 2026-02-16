@@ -326,11 +326,9 @@ export default function SettingsPage() {
 
             {/* User Management - Expanded State */}
             {selectedApp === app.id && (
-              <div style={{
-                marginTop: '20px',
-                paddingTop: '20px',
-                borderTop: '2px solid var(--ld-semantic-color-border-subtle)'
-              }}>
+              <div style={{ marginTop: '20px' }}>
+                <Divider />
+                <div style={{ paddingTop: '20px' }}>
                 <div style={{
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -504,22 +502,24 @@ export default function SettingsPage() {
                     </div>
                   ))}
                 </div>
+                </div>
               </div>
             )}
 
             {/* Expand Indicator */}
-            <div style={{
-              marginTop: '12px',
-              paddingTop: '12px',
-              borderTop: '1px solid var(--ld-semantic-color-border-subtlest)',
-              display: 'flex',
-              justifyContent: 'center'
-            }}>
+            <div style={{ marginTop: '12px' }}>
+              <Divider />
+              <div style={{
+                paddingTop: '12px',
+                display: 'flex',
+                justifyContent: 'center'
+              }}>
               {selectedApp === app.id ? (
                 <ChevronUp style={{ width: 20, height: 20, color: 'var(--ld-semantic-color-text-subtle)' }} />
               ) : (
                 <ChevronDown style={{ width: 20, height: 20, color: 'var(--ld-semantic-color-text-subtle)' }} />
               )}
+              </div>
             </div>
           </div>
         ))}
