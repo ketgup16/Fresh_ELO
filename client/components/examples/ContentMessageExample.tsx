@@ -97,6 +97,89 @@ export function ContentMessageExample() {
         </div>
       </ExampleSection>
 
+      {/* Error states with illustrations - LARGE */}
+      <ExampleSection
+        title="Error States with Illustrations (Large Size)"
+        description="Full-page error states with larger illustrations for desktop and prominent displays."
+      >
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '32px' }}>
+          <ContentMessage
+            size="large"
+            variant="neutral"
+            title="[Information] isn't available right now"
+            media={
+              <img
+                src="/illustrations/associate-waving.svg"
+                alt="Walmart associate"
+                style={{ width: 240, height: 240 }}
+              />
+            }
+          >
+            Refresh this page to try again.
+          </ContentMessage>
+
+          <ContentMessage
+            size="large"
+            variant="error"
+            title="No internet connection"
+            media={
+              <img
+                src="/illustrations/network-issue.svg"
+                alt="No internet connection"
+                style={{ width: 240, height: 240 }}
+              />
+            }
+          >
+            Make sure you're connected to WiFi or data and try again.
+          </ContentMessage>
+
+          <ContentMessage
+            size="large"
+            variant="error"
+            title="We couldn't find this page"
+            media={
+              <img
+                src="/illustrations/associate-glasses.svg"
+                alt="Page not found"
+                style={{ width: 240, height: 240 }}
+              />
+            }
+          >
+            Try searching or go to the homepage.
+          </ContentMessage>
+
+          <ContentMessage
+            size="large"
+            variant="error"
+            title="Something went wrong"
+            media={
+              <img
+                src="/illustrations/network-issue.svg"
+                alt="Error occurred"
+                style={{ width: 240, height: 240 }}
+              />
+            }
+          >
+            Try restarting the app.
+          </ContentMessage>
+
+          <ContentMessage
+            size="large"
+            variant="neutral"
+            title="There was a issue"
+            media={
+              <img
+                src="/illustrations/associate-waving.svg"
+                alt="Technical issue"
+                style={{ width: 240, height: 240 }}
+              />
+            }
+          >
+            Refresh this page to try again.
+          </ContentMessage>
+        </div>
+      </ExampleSection>
+
       {/* Variant showcase */}
       <ExampleSection
         title="Variants"
@@ -360,7 +443,23 @@ import { Button } from '@/components/ui/Button';
   You can continue to the next step.
 </ContentMessage>
 
-// Large, full-page blocking state
+// Large variant with illustration
+<ContentMessage
+  size="large"
+  variant="error"
+  title="No internet connection"
+  media={
+    <img
+      src="/illustrations/network-issue.svg"
+      alt="No internet connection"
+      style={{ width: 240, height: 240 }}
+    />
+  }
+>
+  Make sure you're connected to WiFi or data and try again.
+</ContentMessage>
+
+// Large, full-page blocking state (no media)
 <ContentMessage
   size="large"
   variant="error"
