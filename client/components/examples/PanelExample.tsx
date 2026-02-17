@@ -308,21 +308,23 @@ export default function PanelExample() {
                 />
               </div>
 
-              <div className="space-y-3">
-                <label className="text-sm font-bold text-[#2E2F32]">
+              <div>
+                <label className="block text-sm font-bold text-[#2E2F32] mb-3">
                   Preferences
                 </label>
-                <Checkbox
-                  label="Receive email notifications"
-                  defaultChecked
-                />
-                <Checkbox
-                  label="Enable two-factor authentication"
-                />
-                <Checkbox
-                  label="Show online status"
-                  defaultChecked
-                />
+                <div className="flex flex-col gap-3">
+                  <Checkbox
+                    label="Receive email notifications"
+                    defaultChecked
+                  />
+                  <Checkbox
+                    label="Enable two-factor authentication"
+                  />
+                  <Checkbox
+                    label="Show online status"
+                    defaultChecked
+                  />
+                </div>
               </div>
 
               <div className="space-y-2">
