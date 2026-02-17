@@ -61,6 +61,7 @@ const AccordionPage = React.lazy(() => import("./pages/component-library/Accordi
 const AlertDialogPage = React.lazy(() => import("./pages/component-library/AlertDialog"));
 const AvatarPage = React.lazy(() => import("./pages/component-library/Avatar"));
 const CalendarPage = React.lazy(() => import("./pages/component-library/Calendar"));
+const DateRangePickerPage = React.lazy(() => import("./pages/component-library/DateRangePicker"));
 const CarouselPage = React.lazy(() => import("./pages/component-library/Carousel"));
 const ChartPage = React.lazy(() => import("./pages/component-library/Chart"));
 const CollapsiblePage = React.lazy(() => import("./pages/component-library/Collapsible"));
@@ -147,6 +148,7 @@ const App = () => (
                 <Route path="content-messages" element={<ContentMessagesPage />} />
                 <Route path="date-fields" element={<DateFieldsPage />} />
                 <Route path="date-pickers" element={<DatePickersPage />} />
+                <Route path="date-range-picker" element={<React.Suspense fallback={LazyFallback}><DateRangePickerPage /></React.Suspense>} />
                 <Route path="dividers" element={<DividersPage />} />
                 <Route path="lists" element={<ListsPage />} />
                 <Route path="magic-box" element={<MagicBoxPage />} />

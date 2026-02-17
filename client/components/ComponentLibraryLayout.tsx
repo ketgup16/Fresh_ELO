@@ -83,9 +83,19 @@ const navigationSections = [
         path: '/component-library/date-fields'
       },
       {
+        id: 'date-picker-calendar',
+        name: 'Date Picker Calendar',
+        path: '/component-library/calendar'
+      },
+      {
         id: 'date-pickers',
         name: 'Date Pickers',
         path: '/component-library/date-pickers'
+      },
+      {
+        id: 'date-range-picker',
+        name: 'Date Range Picker',
+        path: '/component-library/date-range-picker'
       },
       {
         id: 'dividers',
@@ -236,11 +246,6 @@ const navigationSections = [
         id: 'avatar',
         name: 'Avatar',
         path: '/component-library/avatar'
-      },
-      {
-        id: 'calendar',
-        name: 'Calendar',
-        path: '/component-library/calendar'
       },
       {
         id: 'carousel',
