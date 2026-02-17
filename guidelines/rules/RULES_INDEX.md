@@ -6,6 +6,19 @@
 
 ## 🎯 Critical Rules (ALWAYS ENFORCE)
 
+### 0. Dev Server Health Check
+**File**: `RULE_DevServerHealthCheck.md`
+
+**When**: After completing ANY code changes
+
+**Key Requirements**:
+- ✅ ALWAYS check dev server logs after finishing changes
+- ✅ ALWAYS restart if compilation errors are found
+- ✅ NEVER wait for the user to report a blank page
+- ✅ Verify clean startup after any restart
+
+---
+
 ### 1. Design System Enforcement (Tokens + Icons)
 **File**: `RULE_DesignSystemEnforcement.md` 🆕
 
