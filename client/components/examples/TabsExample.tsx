@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/tabs';
 
 export default function TabsExample() {
   return (
@@ -9,32 +9,32 @@ export default function TabsExample() {
           fontSize: '20px',
           fontWeight: '700',
           fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)',
+          color: 'var(--ld-semantic-color-text)',
           marginBottom: '16px'
         }}>
           Basic Tabs
         </h3>
-        <Tabs defaultValue="account" style={{ maxWidth: '600px' }}>
-          <TabsList>
-            <TabsTrigger value="account">Account</TabsTrigger>
-            <TabsTrigger value="password">Password</TabsTrigger>
-          </TabsList>
-          <TabsContent value="account">
-            <div style={{ padding: '24px', border: '1px solid var(--ld-semantic-color-border-moderate)', borderRadius: '8px' }}>
+        <Tabs defaultValue="account">
+          <TabList>
+            <Tab value="account">Account</Tab>
+            <Tab value="password">Password</Tab>
+          </TabList>
+          <TabPanel value="account">
+            <div style={{ padding: '24px', border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)', borderRadius: '8px' }}>
               <h4 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '8px' }}>Account Settings</h4>
-              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
+              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)' }}>
                 Make changes to your account here. Click save when you're done.
               </p>
             </div>
-          </TabsContent>
-          <TabsContent value="password">
-            <div style={{ padding: '24px', border: '1px solid var(--ld-semantic-color-border-moderate)', borderRadius: '8px' }}>
+          </TabPanel>
+          <TabPanel value="password">
+            <div style={{ padding: '24px', border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)', borderRadius: '8px' }}>
               <h4 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '8px' }}>Password Settings</h4>
-              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
+              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)' }}>
                 Change your password here. After saving, you'll be logged out.
               </p>
             </div>
-          </TabsContent>
+          </TabPanel>
         </Tabs>
       </section>
 
@@ -43,46 +43,46 @@ export default function TabsExample() {
           fontSize: '20px',
           fontWeight: '700',
           fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)',
+          color: 'var(--ld-semantic-color-text)',
           marginBottom: '16px'
         }}>
           Multiple Tabs
         </h3>
-        <Tabs defaultValue="overview" style={{ maxWidth: '800px' }}>
-          <TabsList>
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics</TabsTrigger>
-            <TabsTrigger value="reports">Reports</TabsTrigger>
-            <TabsTrigger value="notifications">Notifications</TabsTrigger>
-          </TabsList>
-          <TabsContent value="overview">
-            <div style={{ padding: '24px', border: '1px solid var(--ld-semantic-color-border-moderate)', borderRadius: '8px' }}>
-              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
+        <Tabs defaultValue="overview">
+          <TabList>
+            <Tab value="overview">Overview</Tab>
+            <Tab value="analytics">Analytics</Tab>
+            <Tab value="reports">Reports</Tab>
+            <Tab value="notifications">Notifications</Tab>
+          </TabList>
+          <TabPanel value="overview">
+            <div style={{ padding: '24px', border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)', borderRadius: '8px' }}>
+              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)' }}>
                 Overview content goes here.
               </p>
             </div>
-          </TabsContent>
-          <TabsContent value="analytics">
-            <div style={{ padding: '24px', border: '1px solid var(--ld-semantic-color-border-moderate)', borderRadius: '8px' }}>
-              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
+          </TabPanel>
+          <TabPanel value="analytics">
+            <div style={{ padding: '24px', border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)', borderRadius: '8px' }}>
+              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)' }}>
                 Analytics content goes here.
               </p>
             </div>
-          </TabsContent>
-          <TabsContent value="reports">
-            <div style={{ padding: '24px', border: '1px solid var(--ld-semantic-color-border-moderate)', borderRadius: '8px' }}>
-              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
+          </TabPanel>
+          <TabPanel value="reports">
+            <div style={{ padding: '24px', border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)', borderRadius: '8px' }}>
+              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)' }}>
                 Reports content goes here.
               </p>
             </div>
-          </TabsContent>
-          <TabsContent value="notifications">
-            <div style={{ padding: '24px', border: '1px solid var(--ld-semantic-color-border-moderate)', borderRadius: '8px' }}>
-              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
+          </TabPanel>
+          <TabPanel value="notifications">
+            <div style={{ padding: '24px', border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)', borderRadius: '8px' }}>
+              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)' }}>
                 Notifications content goes here.
               </p>
             </div>
-          </TabsContent>
+          </TabPanel>
         </Tabs>
       </section>
     </div>
