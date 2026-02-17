@@ -21,8 +21,8 @@ export const MetricExample: React.FC = () => {
           href="https://digitaltoolkit.livingdesign.walmart.com/components/metric/"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ 
-            color: 'var(--ld-semantic-color-action-fill-primary, #0071DC)',
+          style={{
+            color: 'var(--ld-semantic-color-link-text, #2e2f32)',
             textDecoration: 'underline'
           }}
         >

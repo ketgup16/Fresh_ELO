@@ -477,20 +477,23 @@ export default function ComponentLibrary() {
 {`// Import icons from the centralized library
 import { Search, Settings, Cart, User } from '@/components/icons';
 
-// Use with className (Tailwind or custom classes)
-<Search className="w-5 h-5 text-blue-600" />
+// Use with LD design tokens (preferred)
+<Search style={{
+  color: 'var(--ld-semantic-color-text)',
+  width: 'var(--ld-semantic-scale-icon-small)'
+}} />
 
-// Use with inline styles
-<Settings style={{ width: 20, height: 20, color: '#0071DC' }} />
+// Use with inline styles and tokens
+<Settings style={{ width: 20, height: 20, color: 'var(--ld-semantic-color-text)' }} />
 
-// Use with design tokens
+// Icons support currentColor for semantic theming
 <Cart style={{
   color: 'var(--ld-semantic-color-action-fill-primary)',
   width: 'var(--ld-semantic-scale-icon-small)'
 }} />
 
-// All icons support currentColor for semantic theming
-<User className="text-gray-600 hover:text-blue-600" />`}
+// Use className with LD utility classes
+<User className="w-5 h-5 text-ld-primary" />`}
             </pre>
           </div>
         </div>

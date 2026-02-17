@@ -94,9 +94,10 @@ export default function EditMetricsModal({ open, onOpenChange }: EditMetricsModa
                 onClick={() => setSelectedCategory('all')}
                 className={`flex items-center justify-between px-6 py-3 text-left transition-colors ${
                   selectedCategory === 'all'
-                    ? 'bg-[#F0F5FF] text-[#0053E2] font-bold'
-                    : 'text-[#2E2F32] hover:bg-[#F8F8F8]'
+                    ? 'bg-[var(--ld-semantic-color-fill-subtle,#F1F1F2)] font-bold'
+                    : 'hover:bg-[var(--ld-semantic-color-fill-subtle,#F1F1F2)]'
                 }`}
+                style={{ color: selectedCategory === 'all' ? 'var(--ld-semantic-color-text, #2E2F32)' : 'var(--ld-semantic-color-text, #2E2F32)' }}
               >
                 <span className="text-base leading-6">All</span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,9 +108,10 @@ export default function EditMetricsModal({ open, onOpenChange }: EditMetricsModa
                 onClick={() => setSelectedCategory('performance')}
                 className={`flex items-center justify-between px-6 py-3 text-left transition-colors ${
                   selectedCategory === 'performance'
-                    ? 'bg-[#F0F5FF] text-[#0053E2] font-bold'
-                    : 'text-[#2E2F32] hover:bg-[#F8F8F8]'
+                    ? 'bg-[var(--ld-semantic-color-fill-subtle,#F1F1F2)] font-bold'
+                    : 'hover:bg-[var(--ld-semantic-color-fill-subtle,#F1F1F2)]'
                 }`}
+                style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}
               >
                 <span className="text-base leading-6">Performance</span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,9 +122,10 @@ export default function EditMetricsModal({ open, onOpenChange }: EditMetricsModa
                 onClick={() => setSelectedCategory('conversion')}
                 className={`flex items-center justify-between px-6 py-3 text-left transition-colors ${
                   selectedCategory === 'conversion'
-                    ? 'bg-[#F0F5FF] text-[#0053E2] font-bold'
-                    : 'text-[#2E2F32] hover:bg-[#F8F8F8]'
+                    ? 'bg-[var(--ld-semantic-color-fill-subtle,#F1F1F2)] font-bold'
+                    : 'hover:bg-[var(--ld-semantic-color-fill-subtle,#F1F1F2)]'
                 }`}
+                style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}
               >
                 <span className="text-base leading-6">Conversion</span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

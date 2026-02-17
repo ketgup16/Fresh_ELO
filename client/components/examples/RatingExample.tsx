@@ -16,7 +16,7 @@ export const RatingExample: React.FC = () => {
           href="https://digitaltoolkit.livingdesign.walmart.com/components/rating/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#0071DC] hover:underline text-sm"
+          style={{ color: 'var(--ld-semantic-color-link-text, #2e2f32)', textDecoration: 'underline', fontSize: '0.875rem' }}
         >
           View Living Design 3.5 Documentation →
         </a>
@@ -180,7 +180,7 @@ export const RatingExample: React.FC = () => {
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-2 text-sm font-mono text-[#0071DC]">
+                <td className="px-4 py-2 text-sm font-mono" style={{ color: 'var(--ld-semantic-color-text, #2e2f32)' }}>
                   aria-label
                 </td>
                 <td className="px-4 py-2 text-sm text-[#46474A]">
