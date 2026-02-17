@@ -5,46 +5,52 @@ import styles from './DatePickerCalendar.module.css';
 export interface DatePickerCalendarProps {
   /** Selected date */
   value?: Date;
-  
+
   /** Callback when a date is selected */
   onSelect?: (date: Date | undefined) => void;
-  
+
   /** Selection mode */
   mode?: 'single' | 'multiple' | 'range';
-  
+
   /** Multiple selected dates (for mode="multiple") */
   selected?: Date | Date[] | { from?: Date; to?: Date };
-  
+
   /** Disable specific dates */
   disabled?: ((date: Date) => boolean) | Date | Date[];
-  
+
   /** Minimum selectable date */
   fromDate?: Date;
-  
+
   /** Maximum selectable date */
   toDate?: Date;
-  
+
   /** Show week numbers */
   showWeekNumbers?: boolean;
-  
+
   /** First day of week (0 = Sunday, 1 = Monday, etc.) */
   weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-  
+
   /** Number of months to display */
   numberOfMonths?: number;
-  
+
   /** Default month to display */
   defaultMonth?: Date;
-  
+
   /** Current month (controlled) */
   month?: Date;
-  
+
   /** Callback when month changes */
   onMonthChange?: (month: Date) => void;
-  
+
+  /** Variant - 'standalone' includes elevation and is self-contained, 'embedded' is for use within other components */
+  variant?: 'standalone' | 'embedded';
+
+  /** Hide navigation buttons (useful when parent controls navigation) */
+  hideNavigation?: boolean;
+
   /** Additional CSS class */
   className?: string;
-  
+
   /** Escape hatch for inline styles */
   UNSAFE_style?: React.CSSProperties;
 }
@@ -82,6 +88,8 @@ export const DatePickerCalendar = React.forwardRef<HTMLDivElement, DatePickerCal
       defaultMonth,
       month: controlledMonth,
       onMonthChange,
+      variant = 'standalone',
+      hideNavigation = false,
       className,
       UNSAFE_style,
     } = props;
@@ -233,20 +241,49 @@ export const DatePickerCalendar = React.forwardRef<HTMLDivElement, DatePickerCal
         const selectedDate = (selected as Date) || value;
         return selectedDate ? date.toDateString() === selectedDate.toDateString() : false;
       }
-      
+
       if (mode === 'multiple' && Array.isArray(selected)) {
         return selected.some(d => date.toDateString() === d.toDateString());
       }
-      
+
       if (mode === 'range' && selected && typeof selected === 'object' && 'from' in selected) {
         const { from, to } = selected as { from?: Date; to?: Date };
         if (!from) return false;
         if (!to) return date.toDateString() === from.toDateString();
         return date >= from && date <= to;
       }
-      
+
       return false;
     }, [mode, selected, value]);
+
+    // Check if date is range start
+    const isRangeStart = React.useCallback((date: Date): boolean => {
+      if (mode !== 'range' || !selected || typeof selected !== 'object' || !('from' in selected)) {
+        return false;
+      }
+      const { from } = selected as { from?: Date; to?: Date };
+      return from ? date.toDateString() === from.toDateString() : false;
+    }, [mode, selected]);
+
+    // Check if date is range end
+    const isRangeEnd = React.useCallback((date: Date): boolean => {
+      if (mode !== 'range' || !selected || typeof selected !== 'object' || !('from' in selected)) {
+        return false;
+      }
+      const { from, to } = selected as { from?: Date; to?: Date };
+      if (!from || !to) return false;
+      return date.toDateString() === to.toDateString();
+    }, [mode, selected]);
+
+    // Check if date is in range (but not start or end)
+    const isInRange = React.useCallback((date: Date): boolean => {
+      if (mode !== 'range' || !selected || typeof selected !== 'object' || !('from' in selected)) {
+        return false;
+      }
+      const { from, to } = selected as { from?: Date; to?: Date };
+      if (!from || !to) return false;
+      return date > from && date < to;
+    }, [mode, selected]);
 
     // Check if date is today
     const isToday = React.useCallback((date: Date): boolean => {
@@ -263,6 +300,7 @@ export const DatePickerCalendar = React.forwardRef<HTMLDivElement, DatePickerCal
 
     const calendarClassName = [
       styles.calendar,
+      variant === 'embedded' && styles['calendar--embedded'],
       className,
     ]
       .filter(Boolean)
@@ -272,25 +310,29 @@ export const DatePickerCalendar = React.forwardRef<HTMLDivElement, DatePickerCal
       <div ref={ref} className={calendarClassName} style={UNSAFE_style}>
         {/* Header */}
         <div className={styles.header}>
-          <button
-            type="button"
-            className={`${styles.navButton} ${styles['navButton--prev']}`}
-            onClick={goToPreviousMonth}
-            aria-label="Previous month"
-          >
-            <ChevronLeft />
-          </button>
-          
+          {!hideNavigation && (
+            <button
+              type="button"
+              className={`${styles.navButton} ${styles['navButton--prev']}`}
+              onClick={goToPreviousMonth}
+              aria-label="Previous month"
+            >
+              <ChevronLeft />
+            </button>
+          )}
+
           <div className={styles.monthYear}>{monthYear}</div>
-          
-          <button
-            type="button"
-            className={`${styles.navButton} ${styles['navButton--next']}`}
-            onClick={goToNextMonth}
-            aria-label="Next month"
-          >
-            <ChevronRight />
-          </button>
+
+          {!hideNavigation && (
+            <button
+              type="button"
+              className={`${styles.navButton} ${styles['navButton--next']}`}
+              onClick={goToNextMonth}
+              aria-label="Next month"
+            >
+              <ChevronRight />
+            </button>
+          )}
         </div>
 
         {/* Calendar Grid */}
@@ -325,13 +367,19 @@ export const DatePickerCalendar = React.forwardRef<HTMLDivElement, DatePickerCal
                   const selected = isDateSelected(day.date);
                   const disabled = isDateDisabled(day.date);
                   const today = isToday(day.date);
-                  
+                  const rangeStart = isRangeStart(day.date);
+                  const rangeEnd = isRangeEnd(day.date);
+                  const inRange = isInRange(day.date);
+
                   const dayClassName = [
                     styles.day,
                     !day.isCurrentMonth && styles['day--outside'],
-                    selected && styles['day--selected'],
+                    selected && !rangeStart && !rangeEnd && !inRange && styles['day--selected'],
                     disabled && styles['day--disabled'],
                     today && styles['day--today'],
+                    rangeStart && styles['day--rangeStart'],
+                    rangeEnd && styles['day--rangeEnd'],
+                    inRange && styles['day--inRange'],
                   ]
                     .filter(Boolean)
                     .join(' ');

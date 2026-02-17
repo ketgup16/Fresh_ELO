@@ -15,6 +15,14 @@
   width: fit-content;
 }
 
+/* Embedded variant - no elevation or background, used within other components */
+.calendar--embedded {
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
 /* Header with month/year and navigation */
 .header {
   display: flex;
@@ -189,20 +197,31 @@
   font-weight: 700;
 }
 
-/* Range selection styles (for future use) */
-.day--rangeStart,
+/* Range selection styles */
+.day--rangeStart {
+  border-color: var(--ld-semantic-color-action-fill-primary, #0071dc);
+  background-color: transparent;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-weight: 400;
+}
+
 .day--rangeEnd {
   background-color: var(--ld-semantic-color-action-fill-primary, #0071dc);
   color: var(--ld-primitive-color-white, #ffffff);
   border-color: var(--ld-semantic-color-action-fill-primary, #0071dc);
 }
 
-.day--inRange {
-  background-color: var(--ld-semantic-color-action-fill-subtle, #e5f0ff);
-  border-radius: 0;
-  color: var(--ld-semantic-color-text, #2e2f32);
+.day--rangeEnd:hover:not(.day--disabled) {
+  background-color: var(--ld-semantic-color-action-fill-primary-hovered, #0060b8);
 }
 
-.day--inRange:hover {
+.day--inRange {
+  background-color: var(--ld-semantic-color-action-fill-subtle, #e5f0ff);
+  border-radius: 50%;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  border-color: transparent;
+}
+
+.day--inRange:hover:not(.day--disabled) {
   background-color: var(--ld-semantic-color-action-fill-subtle-hovered, #cce0ff);
 }
