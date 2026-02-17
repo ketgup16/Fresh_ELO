@@ -2,8 +2,8 @@
 .snackbar {
   display: flex;
   width: 288px;
-  height: 52px;
-  align-items: flex-start;
+  min-height: 52px;
+  align-items: stretch;
   position: fixed;
   z-index: var(--ld-semantic-z-index-notification, 1080);
   
@@ -68,7 +68,6 @@
 /* Action Button */
 .action {
   display: flex;
-  height: 52px;
   padding: var(--ld-primitive-scale-space-200, 16px) var(--ld-primitive-scale-space-100, 8px);
   align-items: flex-start;
   
@@ -106,7 +105,6 @@
 .close {
   display: flex;
   width: var(--ld-primitive-scale-space-600, 48px);
-  height: 52px;
   padding: var(--ld-primitive-scale-space-200, 16px);
   justify-content: center;
   align-items: flex-start;
