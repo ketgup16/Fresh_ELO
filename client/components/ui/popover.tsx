@@ -9,10 +9,14 @@ const PopoverTrigger = PopoverPrimitive.Trigger;
 
 const PopoverArrow = PopoverPrimitive.Arrow;
 
+interface PopoverContentProps extends React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content> {
+  showArrow?: boolean;
+}
+
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
->(({ className, align = "center", sideOffset = 4, ...props }, ref) => (
+  PopoverContentProps
+>(({ className, align = "center", sideOffset = 4, showArrow = false, children, ...props }, ref) => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
       ref={ref}
@@ -24,13 +28,23 @@ const PopoverContent = React.forwardRef<
         className,
       )}
       style={{
-        backgroundColor: 'var(--ld-semantic-color-surface-overlay, hsl(var(--popover)))',
-        color: 'var(--ld-semantic-color-text, hsl(var(--popover-foreground)))',
+        backgroundColor: 'var(--ld-semantic-color-surface-overlay, #FFFFFF)',
+        color: 'var(--ld-semantic-color-text, #2E2F32)',
         boxShadow: 'var(--ld-semantic-elevation-200)',
         fontFamily: 'var(--ld-semantic-font-family-sans)',
+        border: 'none',
       }}
       {...props}
-    />
+    >
+      {children}
+      {showArrow && (
+        <PopoverPrimitive.Arrow
+          className="fill-[var(--ld-semantic-color-surface-overlay,#FFFFFF)]"
+          width={12}
+          height={6}
+        />
+      )}
+    </PopoverPrimitive.Content>
   </PopoverPrimitive.Portal>
 ));
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
