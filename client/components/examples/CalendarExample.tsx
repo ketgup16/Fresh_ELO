@@ -28,18 +28,12 @@ export default function CalendarExample() {
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
           gap: '24px'
         }}>
-          <div style={{
-            border: '1px solid var(--ld-semantic-color-border-subtle)',
-            borderRadius: '8px',
-            width: 'fit-content'
-          }}>
-            <DatePickerCalendar
-              mode="single"
-              value={date}
-              onSelect={setDate}
-              weekStartsOn={0}
-            />
-          </div>
+          <DatePickerCalendar
+            mode="single"
+            value={date}
+            onSelect={setDate}
+            weekStartsOn={0}
+          />
         </div>
         {date && (
           <p style={{
@@ -72,19 +66,13 @@ export default function CalendarExample() {
           gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
           gap: '24px'
         }}>
-          <div style={{
-            border: '1px solid var(--ld-semantic-color-border-subtle)',
-            borderRadius: '8px',
-            width: 'fit-content'
-          }}>
-            <DatePickerCalendar
-              mode="single"
-              value={date}
-              onSelect={setDate}
-              showWeekNumbers
-              weekStartsOn={6}
-            />
-          </div>
+          <DatePickerCalendar
+            mode="single"
+            value={date}
+            onSelect={setDate}
+            showWeekNumbers
+            weekStartsOn={6}
+          />
         </div>
         {date && (
           <p style={{
@@ -127,18 +115,12 @@ export default function CalendarExample() {
             }}>
               Standard (Sun-Sat)
             </h4>
-            <div style={{
-              border: '1px solid var(--ld-semantic-color-border-subtle)',
-              borderRadius: '8px',
-              width: 'fit-content'
-            }}>
-              <DatePickerCalendar
-                mode="single"
-                value={date}
-                onSelect={setDate}
-                weekStartsOn={0}
-              />
-            </div>
+            <DatePickerCalendar
+              mode="single"
+              value={date}
+              onSelect={setDate}
+              weekStartsOn={0}
+            />
           </div>
 
           {/* With Week Numbers */}
@@ -151,19 +133,13 @@ export default function CalendarExample() {
             }}>
               With Week Numbers (Sat-Fri)
             </h4>
-            <div style={{
-              border: '1px solid var(--ld-semantic-color-border-subtle)',
-              borderRadius: '8px',
-              width: 'fit-content'
-            }}>
-              <DatePickerCalendar
-                mode="single"
-                value={date}
-                onSelect={setDate}
-                showWeekNumbers
-                weekStartsOn={6}
-              />
-            </div>
+            <DatePickerCalendar
+              mode="single"
+              value={date}
+              onSelect={setDate}
+              showWeekNumbers
+              weekStartsOn={6}
+            />
           </div>
         </div>
       </section>
