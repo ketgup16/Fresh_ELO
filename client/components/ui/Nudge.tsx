@@ -16,7 +16,7 @@ export interface NudgeProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 
   children?: React.ReactNode;
   
   /**
-   * The leading content for the nudge (icon, spot icon, illustration).
+   * The leading content for the nudge (typically a SpotIcon component).
    */
   leading?: React.ReactNode;
   
@@ -26,7 +26,7 @@ export interface NudgeProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 
   onClose?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   
   /**
-   * The actions for the nudge (buttons, links, etc).
+   * The actions for the nudge (buttons, links, ButtonGroup, etc).
    */
   actions?: React.ReactNode;
   
@@ -46,6 +46,25 @@ export interface NudgeProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 
   UNSAFE_style?: React.CSSProperties;
 }
 
+/**
+ * Nudge component for Living Design 3.5
+ * 
+ * Nudges provide in-context guidance, tips, or prompts for user action.
+ * They use the surface-brand background color and can include a leading SpotIcon,
+ * title, content, actions, and an optional close button.
+ * 
+ * @example
+ * ```tsx
+ * <Nudge
+ *   title="Try our new feature"
+ *   leading={<SpotIcon icon={<Star />} size="small" color="brand" />}
+ *   actions={<Button variant="primary">Get started</Button>}
+ *   onClose={() => handleDismiss()}
+ * >
+ *   Discover powerful new tools to help you work faster.
+ * </Nudge>
+ * ```
+ */
 export const Nudge = React.forwardRef<HTMLDivElement, NudgeProps>(
   (
     {
@@ -68,31 +87,36 @@ export const Nudge = React.forwardRef<HTMLDivElement, NudgeProps>(
         style={UNSAFE_style}
         {...rest}
       >
-        {/* Header Section: Leading + Title + Close */}
+        {/* Leading Section (Spot Icon) */}
+        {leading && <div className={styles.leading}>{leading}</div>}
+
+        {/* Contents Section: Title + Content + Actions */}
         <div className={styles.header}>
           <div className={styles.headerContent}>
-            {leading && <div className={styles.leading}>{leading}</div>}
             <div className={styles.title}>{title}</div>
           </div>
-          {onClose && (
-            <IconButton
-              variant="ghost"
-              size="medium"
-              shape="rounded"
-              onClick={onClose}
-              aria-label="Close"
-              UNSAFE_className={styles.closeButton}
-            >
-              <X style={{ width: 20, height: 20 }} />
-            </IconButton>
-          )}
+          
+          {/* Content */}
+          {children && <div className={styles.content}>{children}</div>}
+
+          {/* Actions */}
+          {actions && <div className={styles.actions}>{actions}</div>}
         </div>
 
-        {/* Content Section */}
-        {children && <div className={styles.content}>{children}</div>}
-
-        {/* Actions Section */}
-        {actions && <div className={styles.actions}>{actions}</div>}
+        {/* Close Button */}
+        {onClose && (
+          <IconButton
+            variant="ghost"
+            size="medium"
+            shape="rounded"
+            onClick={onClose}
+            aria-label="Close"
+            UNSAFE_className={styles.closeButton}
+            {...closeButtonProps}
+          >
+            <X />
+          </IconButton>
+        )}
       </div>
     );
   }

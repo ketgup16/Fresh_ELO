@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Nudge } from '@/components/ui/Nudge';
+import { SpotIcon } from '@/components/ui/SpotIcon';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { LinkButton } from '@/components/ui/LinkButton';
-import { InfoCircle, LightBulb, Star, Gift } from '@/components/icons';
+import { InfoCircle, LightBulb, Star, Gift, Bell, Settings, Article, User } from '@/components/icons';
 
 export function NudgeExample() {
   const [dismissedNudges, setDismissedNudges] = React.useState<Set<string>>(new Set());
@@ -17,10 +18,17 @@ export function NudgeExample() {
   };
 
   return (
-    <div className="space-y-12">
+    <div style={{ 
+      padding: '48px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '48px',
+      fontFamily: 'var(--ld-semantic-font-family-sans)'
+    }}>
+      
       {/* Reset Button */}
       {dismissedNudges.size > 0 && (
-        <div className="flex justify-end">
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button variant="secondary" size="small" onClick={resetAll}>
             Reset All Nudges
           </Button>
@@ -29,13 +37,22 @@ export function NudgeExample() {
 
       {/* Basic Usage */}
       <section>
-        <h3 className="text-lg font-bold mb-4" style={{ 
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)'
+        <h2 style={{ 
+          marginBottom: '16px',
+          fontSize: '20px',
+          fontWeight: 700,
+          color: 'var(--ld-semantic-color-text)'
         }}>
           Basic Usage
-        </h3>
-        <div className="space-y-4">
+        </h2>
+        <p style={{
+          marginBottom: '24px',
+          fontSize: '16px',
+          color: 'var(--ld-semantic-color-text-subtle)'
+        }}>
+          Nudges provide contextual guidance and prompts. They use the surface-brand background color.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
           <Nudge title="Quick tip">
             Use keyboard shortcuts to work faster and more efficiently.
           </Nudge>
@@ -46,84 +63,77 @@ export function NudgeExample() {
         </div>
       </section>
 
-      {/* With Leading Icons */}
+      {/* With Spot Icons */}
       <section>
-        <h3 className="text-lg font-bold mb-4" style={{ 
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)'
+        <h2 style={{ 
+          marginBottom: '16px',
+          fontSize: '20px',
+          fontWeight: 700,
+          color: 'var(--ld-semantic-color-text)'
         }}>
-          With Leading Icons
-        </h3>
-        <div className="space-y-4">
+          With Spot Icons
+        </h2>
+        <p style={{
+          marginBottom: '24px',
+          fontSize: '16px',
+          color: 'var(--ld-semantic-color-text-subtle)'
+        }}>
+          Use SpotIcon components in the leading slot to add visual interest and context.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
           <Nudge 
             title="Helpful information" 
-            leading={
-              <div style={{
-                color: 'var(--ld-semantic-color-action-fill-primary, #0071DC)',
-                display: 'flex',
-                alignItems: 'center'
-              }}>
-                <InfoCircle style={{ width: 24, height: 24 }} />
-              </div>
-            }
+            leading={<SpotIcon icon={<InfoCircle />} size="small" color="brand" />}
           >
             This feature can help you save time on repetitive tasks.
           </Nudge>
 
           <Nudge 
             title="Pro tip" 
-            leading={
-              <div style={{
-                color: 'var(--ld-semantic-color-text-warning, #F59E0B)',
-                display: 'flex',
-                alignItems: 'center'
-              }}>
-                <LightBulb style={{ width: 24, height: 24 }} />
-              </div>
-            }
+            leading={<SpotIcon icon={<LightBulb />} size="small" color="brand" />}
           >
             Enable auto-save to prevent losing your work.
           </Nudge>
 
           <Nudge 
             title="New feature available" 
-            leading={
-              <div style={{ 
-                color: 'var(--ld-semantic-color-text-positive, #2A8703)',
-                display: 'flex',
-                alignItems: 'center'
-              }}>
-                <Star style={{ width: 24, height: 24 }} />
-              </div>
-            }
+            leading={<SpotIcon icon={<Star />} size="small" color="brand" />}
           >
             Try out our new collaboration tools to work better with your team.
+          </Nudge>
+
+          <Nudge 
+            title="Stay updated" 
+            leading={<SpotIcon icon={<Bell />} size="small" color="brand" />}
+          >
+            Turn on notifications to get real-time updates on your projects.
           </Nudge>
         </div>
       </section>
 
-      {/* Dismissible Nudges */}
+      {/* Dismissible Nudges with Close Button */}
       <section>
-        <h3 className="text-lg font-bold mb-4" style={{ 
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)'
+        <h2 style={{ 
+          marginBottom: '16px',
+          fontSize: '20px',
+          fontWeight: 700,
+          color: 'var(--ld-semantic-color-text)'
         }}>
           Dismissible Nudges
-        </h3>
-        <div className="space-y-4">
+        </h2>
+        <p style={{
+          marginBottom: '24px',
+          fontSize: '16px',
+          color: 'var(--ld-semantic-color-text-subtle)'
+        }}>
+          Add onClose prop to show a close button that allows users to dismiss the nudge.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
           {!dismissedNudges.has('tip-1') && (
             <Nudge 
               title="First-time user tip" 
+              leading={<SpotIcon icon={<InfoCircle />} size="small" color="brand" />}
               onClose={() => handleDismiss('tip-1')}
-              leading={
-                <div style={{
-                color: 'var(--ld-semantic-color-action-fill-primary, #0071DC)',
-                display: 'flex',
-                alignItems: 'center'
-              }}>
-                <InfoCircle style={{ width: 24, height: 24 }} />
-              </div>
-              }
             >
               Click the settings icon to customize your workspace preferences.
             </Nudge>
@@ -132,45 +142,87 @@ export function NudgeExample() {
           {!dismissedNudges.has('tip-2') && (
             <Nudge 
               title="Did you know?" 
+              leading={<SpotIcon icon={<LightBulb />} size="small" color="brand" />}
               onClose={() => handleDismiss('tip-2')}
             >
               You can drag and drop items to reorder them in your list.
             </Nudge>
           )}
+
+          {!dismissedNudges.has('tip-3') && (
+            <Nudge 
+              title="Customize your experience" 
+              leading={<SpotIcon icon={<Settings />} size="small" color="brand" />}
+              onClose={() => handleDismiss('tip-3')}
+            >
+              Adjust your preferences in the settings menu to personalize your workflow.
+            </Nudge>
+          )}
         </div>
       </section>
 
-      {/* With Actions */}
+      {/* With Single Action Button */}
       <section>
-        <h3 className="text-lg font-bold mb-4" style={{ 
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)'
+        <h2 style={{ 
+          marginBottom: '16px',
+          fontSize: '20px',
+          fontWeight: 700,
+          color: 'var(--ld-semantic-color-text)'
         }}>
-          With Actions
-        </h3>
-        <div className="space-y-4">
+          With Single Action Button
+        </h2>
+        <p style={{
+          marginBottom: '24px',
+          fontSize: '16px',
+          color: 'var(--ld-semantic-color-text-subtle)'
+        }}>
+          Add action buttons to encourage user engagement.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
           <Nudge 
             title="Save your progress" 
-            actions={<Button variant="primary">Save now</Button>}
+            leading={<SpotIcon icon={<Article />} size="small" color="brand" />}
+            actions={<Button variant="primary" size="small">Save now</Button>}
           >
             Your work will be saved automatically, but you can save manually at any time.
           </Nudge>
 
           <Nudge 
-            title="Try the premium features" 
-            leading={
-              <div style={{ 
-                color: 'var(--ld-semantic-color-text-warning, #F59E0B)',
-                display: 'flex',
-                alignItems: 'center'
-              }}>
-                <Gift style={{ width: 24, height: 24 }} />
-              </div>
-            }
+            title="Welcome to the platform" 
+            leading={<SpotIcon icon={<User />} size="small" color="brand" />}
+            actions={<Button variant="primary" size="small">Get started</Button>}
+            onClose={() => {}}
+          >
+            Let's set up your profile and explore the features available to you.
+          </Nudge>
+        </div>
+      </section>
+
+      {/* With Button Groups */}
+      <section>
+        <h2 style={{ 
+          marginBottom: '16px',
+          fontSize: '20px',
+          fontWeight: 700,
+          color: 'var(--ld-semantic-color-text)'
+        }}>
+          With Button Groups
+        </h2>
+        <p style={{
+          marginBottom: '24px',
+          fontSize: '16px',
+          color: 'var(--ld-semantic-color-text-subtle)'
+        }}>
+          Use ButtonGroup to provide multiple action options.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
+          <Nudge 
+            title="Try premium features" 
+            leading={<SpotIcon icon={<Gift />} size="small" color="brand" />}
             actions={
               <ButtonGroup>
-                <Button variant="primary">Start free trial</Button>
-                <LinkButton>Learn more</LinkButton>
+                <Button variant="primary" size="small">Start free trial</Button>
+                <Button variant="secondary" size="small">Learn more</Button>
               </ButtonGroup>
             }
           >
@@ -179,90 +231,108 @@ export function NudgeExample() {
 
           <Nudge 
             title="Unsaved changes" 
+            leading={<SpotIcon icon={<InfoCircle />} size="small" color="brand" />}
             actions={
               <ButtonGroup>
-                <Button variant="primary">Save changes</Button>
-                <Button variant="secondary">Discard</Button>
+                <Button variant="primary" size="small">Save changes</Button>
+                <Button variant="secondary" size="small">Discard</Button>
               </ButtonGroup>
             }
+            onClose={() => {}}
           >
             You have unsaved changes that will be lost if you leave this page.
+          </Nudge>
+
+          <Nudge 
+            title="Update available" 
+            leading={<SpotIcon icon={<Bell />} size="small" color="brand" />}
+            actions={
+              <ButtonGroup>
+                <Button variant="primary" size="small">Update now</Button>
+                <Button variant="tertiary" size="small">Remind me later</Button>
+              </ButtonGroup>
+            }
+            onClose={() => {}}
+          >
+            A new version is available with bug fixes and performance improvements.
           </Nudge>
         </div>
       </section>
 
-      {/* Complete Examples (All Features) */}
+      {/* With Link Buttons */}
       <section>
-        <h3 className="text-lg font-bold mb-4" style={{ 
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)'
+        <h2 style={{ 
+          marginBottom: '16px',
+          fontSize: '20px',
+          fontWeight: 700,
+          color: 'var(--ld-semantic-color-text)'
         }}>
-          Complete Examples (All Features)
-        </h3>
-        <div className="space-y-4">
-          {!dismissedNudges.has('complete-1') && (
-            <Nudge 
-              title="Complete your setup" 
-              leading={
-                <div style={{ 
-                  color: 'var(--ld-semantic-color-action-fill-primary, #0071DC)',
-                  display: 'flex',
-                  alignItems: 'center'
-                }}>
-                  <Star style={{ width: 24, height: 24 }} />
-                </div>
-              }
-              actions={
-                <ButtonGroup>
-                  <Button variant="primary">Continue setup</Button>
-                  <LinkButton>Skip for now</LinkButton>
-                </ButtonGroup>
-              }
-              onClose={() => handleDismiss('complete-1')}
-            >
-              Add your team information to unlock collaboration features and improve your experience.
-            </Nudge>
-          )}
+          With Link Buttons
+        </h2>
+        <p style={{
+          marginBottom: '24px',
+          fontSize: '16px',
+          color: 'var(--ld-semantic-color-text-subtle)'
+        }}>
+          Combine regular buttons with LinkButtons for primary and secondary actions.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
+          <Nudge 
+            title="Complete your setup" 
+            leading={<SpotIcon icon={<Star />} size="small" color="brand" />}
+            actions={
+              <ButtonGroup>
+                <Button variant="primary" size="small">Continue setup</Button>
+                <LinkButton size="small">Skip for now</LinkButton>
+              </ButtonGroup>
+            }
+            onClose={() => {}}
+          >
+            Add your team information to unlock collaboration features and improve your experience.
+          </Nudge>
 
-          {!dismissedNudges.has('complete-2') && (
-            <Nudge 
-              title="Special offer" 
-              leading={
-                <div style={{ 
-                  color: 'var(--ld-semantic-color-text-positive, #2A8703)',
-                  display: 'flex',
-                  alignItems: 'center'
-                }}>
-                  <Gift style={{ width: 24, height: 24 }} />
-                </div>
-              }
-              actions={
-                <ButtonGroup>
-                  <Button variant="primary">Claim offer</Button>
-                  <LinkButton>View details</LinkButton>
-                </ButtonGroup>
-              }
-              onClose={() => handleDismiss('complete-2')}
-            >
-              Get 30% off your first month when you upgrade to our premium plan today.
-            </Nudge>
-          )}
+          <Nudge 
+            title="Special offer" 
+            leading={<SpotIcon icon={<Gift />} size="small" color="brand" />}
+            actions={
+              <ButtonGroup>
+                <Button variant="primary" size="small">Claim offer</Button>
+                <LinkButton size="small">View details</LinkButton>
+              </ButtonGroup>
+            }
+            onClose={() => {}}
+          >
+            Get 30% off your first month when you upgrade to our premium plan today.
+          </Nudge>
         </div>
       </section>
 
-      {/* Without Content (Title Only) */}
+      {/* Title Only (No Content) */}
       <section>
-        <h3 className="text-lg font-bold mb-4" style={{ 
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)'
+        <h2 style={{ 
+          marginBottom: '16px',
+          fontSize: '20px',
+          fontWeight: 700,
+          color: 'var(--ld-semantic-color-text)'
         }}>
           Title Only (No Content)
-        </h3>
-        <div className="space-y-4">
-          <Nudge title="Quick reminder: Save your work frequently" />
+        </h2>
+        <p style={{
+          marginBottom: '24px',
+          fontSize: '16px',
+          color: 'var(--ld-semantic-color-text-subtle)'
+        }}>
+          Nudges can have just a title for brief messages.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
+          <Nudge 
+            title="Quick reminder: Save your work frequently" 
+            leading={<SpotIcon icon={<InfoCircle />} size="small" color="brand" />}
+          />
           
           <Nudge 
             title="Pro tip: Use keyboard shortcuts to work faster" 
+            leading={<SpotIcon icon={<LightBulb />} size="small" color="brand" />}
             onClose={() => {}}
           />
         </div>
@@ -270,36 +340,81 @@ export function NudgeExample() {
 
       {/* Long Content */}
       <section>
-        <h3 className="text-lg font-bold mb-4" style={{ 
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)'
+        <h2 style={{ 
+          marginBottom: '16px',
+          fontSize: '20px',
+          fontWeight: 700,
+          color: 'var(--ld-semantic-color-text)'
         }}>
           Long Content
-        </h3>
-        <Nudge 
-          title="Important information about data privacy" 
-          leading={
-            <div style={{
-              color: 'var(--ld-semantic-color-action-fill-primary, #0071DC)',
-              display: 'flex',
-              alignItems: 'center'
-            }}>
-              <InfoCircle style={{ width: 24, height: 24 }} />
-            </div>
-          }
-          actions={
-            <ButtonGroup>
-              <Button variant="primary">Review settings</Button>
-              <LinkButton>Learn more</LinkButton>
-            </ButtonGroup>
-          }
-          onClose={() => {}}
-        >
-          We take your privacy seriously. Your data is encrypted and stored securely. You have full control
-          over your information and can export or delete it at any time. We never share your personal data
-          with third parties without your explicit consent. Review your privacy settings to customize how
-          your information is used within the platform.
-        </Nudge>
+        </h2>
+        <p style={{
+          marginBottom: '24px',
+          fontSize: '16px',
+          color: 'var(--ld-semantic-color-text-subtle)'
+        }}>
+          Nudges automatically handle longer content with proper text wrapping.
+        </p>
+        <div style={{ maxWidth: '600px' }}>
+          <Nudge 
+            title="Important information about data privacy" 
+            leading={<SpotIcon icon={<InfoCircle />} size="small" color="brand" />}
+            actions={
+              <ButtonGroup>
+                <Button variant="primary" size="small">Review settings</Button>
+                <LinkButton size="small">Learn more</LinkButton>
+              </ButtonGroup>
+            }
+            onClose={() => {}}
+          >
+            We take your privacy seriously. Your data is encrypted and stored securely. You have full control
+            over your information and can export or delete it at any time. We never share your personal data
+            with third parties without your explicit consent. Review your privacy settings to customize how
+            your information is used within the platform.
+          </Nudge>
+        </div>
+      </section>
+
+      {/* Neutral Color Variant */}
+      <section>
+        <h2 style={{ 
+          marginBottom: '16px',
+          fontSize: '20px',
+          fontWeight: 700,
+          color: 'var(--ld-semantic-color-text)'
+        }}>
+          Neutral Spot Icon Variant
+        </h2>
+        <p style={{
+          marginBottom: '24px',
+          fontSize: '16px',
+          color: 'var(--ld-semantic-color-text-subtle)'
+        }}>
+          SpotIcons can also use the neutral color variant for a more subdued appearance.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
+          <Nudge 
+            title="System notification" 
+            leading={<SpotIcon icon={<Bell />} size="small" color="neutral" />}
+            actions={<Button variant="secondary" size="small">View all</Button>}
+          >
+            You have 3 unread notifications waiting for you.
+          </Nudge>
+
+          <Nudge 
+            title="Documentation updated" 
+            leading={<SpotIcon icon={<Article />} size="small" color="neutral" />}
+            actions={
+              <ButtonGroup>
+                <Button variant="secondary" size="small">Read now</Button>
+                <LinkButton size="small">Dismiss</LinkButton>
+              </ButtonGroup>
+            }
+            onClose={() => {}}
+          >
+            The user guide has been updated with new tutorials and examples.
+          </Nudge>
+        </div>
       </section>
     </div>
   );
