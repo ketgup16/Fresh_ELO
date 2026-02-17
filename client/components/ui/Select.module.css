@@ -61,12 +61,15 @@
    MAGIC ICON
    ======================================== */
 .magicIcon {
-  width: var(--ld-semantic-scale-icon-medium, 24px);
-  height: var(--ld-semantic-scale-icon-medium, 24px);
   flex-shrink: 0;
 }
 
-.magicIconSvg {
+.magicIcon--small {
+  width: var(--ld-semantic-scale-icon-small, 16px);
+  height: var(--ld-semantic-scale-icon-small, 16px);
+}
+
+.magicIcon--large {
   width: var(--ld-semantic-scale-icon-medium, 24px);
   height: var(--ld-semantic-scale-icon-medium, 24px);
 }

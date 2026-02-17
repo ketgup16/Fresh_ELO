@@ -114,10 +114,10 @@ export function Select({
       {/* Label with optional magic icon */}
       <div className={styles.labelContainer}>
         {isMagic && (
-          <MagicIcon 
-            size={size} 
+          <MagicIcon
+            size={size}
             disabled={disabled}
-            className={styles.magicIcon}
+            className={cn(styles.magicIcon, styles[`magicIcon--${size}`])}
           />
         )}
         <label
@@ -321,10 +321,12 @@ function MagicIcon({
   disabled?: boolean;
   className?: string;
 }) {
+  const iconSize = size === 'small' ? 16 : 24;
+
   return (
     <svg
-      width="24"
-      height="24"
+      width={iconSize}
+      height={iconSize}
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
