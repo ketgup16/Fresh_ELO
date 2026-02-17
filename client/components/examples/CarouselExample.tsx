@@ -6,6 +6,48 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { Card } from '@/components/ui/Card';
+
+const sampleCards = [
+  { title: 'Getting Started', description: 'Learn the basics of our platform and set up your first campaign.' },
+  { title: 'Performance', description: 'Track your campaign metrics and optimize for better results.' },
+  { title: 'Analytics', description: 'Dive deep into data insights and reporting dashboards.' },
+  { title: 'Integrations', description: 'Connect with third-party tools and services seamlessly.' },
+  { title: 'Settings', description: 'Configure your account preferences and team access.' },
+  { title: 'Resources', description: 'Access documentation, guides, and support materials.' },
+];
+
+function SampleCard({ title, description }: { title: string; description: string }) {
+  return (
+    <Card size="small" UNSAFE_style={{ height: '100%' }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '8px',
+        padding: '16px',
+      }}>
+        <h4 style={{
+          fontSize: '16px',
+          fontWeight: '700',
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          color: 'var(--ld-semantic-color-text, #2e2f32)',
+          margin: 0,
+        }}>
+          {title}
+        </h4>
+        <p style={{
+          fontSize: '14px',
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          color: 'var(--ld-semantic-color-text-subtle, #515357)',
+          margin: 0,
+          lineHeight: '20px',
+        }}>
+          {description}
+        </p>
+      </div>
+    </Card>
+  );
+}
 
 export default function CarouselExample() {
   return (
@@ -15,33 +57,17 @@ export default function CarouselExample() {
           fontSize: '20px',
           fontWeight: '700',
           fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)',
+          color: 'var(--ld-semantic-color-text)',
           marginBottom: '16px'
         }}>
           Basic Carousel
         </h3>
-        <Carousel className="w-full max-w-xs mx-auto">
+        <Carousel className="w-full max-w-sm mx-auto">
           <CarouselContent>
-            {Array.from({ length: 5 }).map((_, index) => (
+            {sampleCards.map((card, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '200px',
-                    border: '1px solid var(--ld-semantic-color-border-moderate)',
-                    borderRadius: '8px',
-                    backgroundColor: 'var(--ld-semantic-color-fill-surface-primary)'
-                  }}>
-                    <span style={{
-                      fontSize: '48px',
-                      fontWeight: '700',
-                      color: 'var(--ld-semantic-color-text-primary)'
-                    }}>
-                      {index + 1}
-                    </span>
-                  </div>
+                  <SampleCard title={card.title} description={card.description} />
                 </div>
               </CarouselItem>
             ))}
@@ -56,33 +82,17 @@ export default function CarouselExample() {
           fontSize: '20px',
           fontWeight: '700',
           fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)',
+          color: 'var(--ld-semantic-color-text)',
           marginBottom: '16px'
         }}>
           Multiple Items
         </h3>
         <Carousel className="w-full max-w-2xl mx-auto">
           <CarouselContent className="-ml-1">
-            {Array.from({ length: 8 }).map((_, index) => (
+            {sampleCards.map((card, index) => (
               <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
                 <div className="p-1">
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '120px',
-                    border: '1px solid var(--ld-semantic-color-border-moderate)',
-                    borderRadius: '8px',
-                    backgroundColor: 'var(--ld-semantic-color-fill-surface-primary)'
-                  }}>
-                    <span style={{
-                      fontSize: '24px',
-                      fontWeight: '700',
-                      color: 'var(--ld-semantic-color-text-primary)'
-                    }}>
-                      {index + 1}
-                    </span>
-                  </div>
+                  <SampleCard title={card.title} description={card.description} />
                 </div>
               </CarouselItem>
             ))}
