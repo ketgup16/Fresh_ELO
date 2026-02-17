@@ -1,6 +1,8 @@
 import React from 'react';
 import { TextField } from '@/components/ui/TextField';
 import { Button } from '@/components/ui/Button';
+import { IconButton } from '@/components/ui/IconButton';
+import { Eye, Search, X } from '@/components/icons';
 
 export function TextFieldExample() {
   const [controlledValue, setControlledValue] = React.useState('');
@@ -68,11 +70,7 @@ export function TextFieldExample() {
           <TextField
             label="Search campaigns"
             placeholder="Type to search..."
-            leadingIcon={
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M8.5 3C5.46243 3 3 5.46243 3 8.5C3 11.5376 5.46243 14 8.5 14C9.83879 14 11.0659 13.5217 12.0196 12.7266L15.6464 16.3536C15.8417 16.5488 16.1583 16.5488 16.3536 16.3536C16.5488 16.1583 16.5488 15.8417 16.3536 15.6464L12.7266 12.0196C13.5217 11.0659 14 9.83879 14 8.5C14 5.46243 11.5376 3 8.5 3ZM4 8.5C4 6.01472 6.01472 4 8.5 4C10.9853 4 13 6.01472 13 8.5C13 10.9853 10.9853 13 8.5 13C6.01472 13 4 10.9853 4 8.5Z" />
-              </svg>
-            }
+            leadingIcon={<Search />}
           />
         </div>
       </ExampleSection>
@@ -89,23 +87,17 @@ export function TextFieldExample() {
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Search items..."
-            leadingIcon={
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M8.5 3C5.46243 3 3 5.46243 3 8.5C3 11.5376 5.46243 14 8.5 14C9.83879 14 11.0659 13.5217 12.0196 12.7266L15.6464 16.3536C15.8417 16.5488 16.1583 16.5488 16.3536 16.3536C16.5488 16.1583 16.5488 15.8417 16.3536 15.6464L12.7266 12.0196C13.5217 11.0659 14 9.83879 14 8.5C14 5.46243 11.5376 3 8.5 3ZM4 8.5C4 6.01472 6.01472 4 8.5 4C10.9853 4 13 6.01472 13 8.5C13 10.9853 10.9853 13 8.5 13C6.01472 13 4 10.9853 4 8.5Z" />
-              </svg>
-            }
+            leadingIcon={<Search />}
             trailingContent={
               searchValue ? (
-                <Button 
-                  variant="tertiary" 
-                  size="small" 
+                <IconButton
+                  variant="ghost"
+                  size="small"
+                  aria-label="Clear search"
                   onClick={() => setSearchValue('')}
-                  UNSAFE_style={{ marginRight: '-4px' }}
                 >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                  </svg>
-                </Button>
+                  <X />
+                </IconButton>
               ) : null
             }
           />
@@ -125,22 +117,14 @@ export function TextFieldExample() {
             onChange={(e) => setPasswordValue(e.target.value)}
             placeholder="Enter password"
             trailingContent={
-              <Button
-                variant="tertiary"
+              <IconButton
+                variant="ghost"
                 size="small"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
                 onClick={() => setShowPassword(!showPassword)}
-                UNSAFE_style={{ marginRight: '-4px' }}
               >
-                {showPassword ? (
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M3.28 2.22a.75.75 0 00-1.06 1.06l2.54 2.55A9.955 9.955 0 002 10c0 5.523 4.477 10 8 10a9.954 9.954 0 004.17-2.76l2.55 2.54a.75.75 0 101.06-1.06l-15-15zM10 16c-3.314 0-6-2.686-6-6 0-1.408.486-2.705 1.299-3.73l8.431 8.431A5.961 5.961 0 0110 16zm8-6c0 1.408-.486 2.705-1.299 3.73l-1.061-1.061A5.961 5.961 0 0016 10c0-3.314-2.686-6-6-6-1.061 0-2.054.275-2.917.757L5.832 3.506A7.963 7.963 0 0110 2c4 0 8 4.477 8 8z"/>
-                  </svg>
-                ) : (
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M10 4C6 4 2 8.477 2 10s4 6 8 6 8-4.477 8-6-4-6-8-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5z"/>
-                  </svg>
-                )}
-              </Button>
+                <Eye />
+              </IconButton>
             }
           />
         </div>
@@ -405,23 +389,17 @@ export function TextFieldExample() {
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Search by name, SKU, or category..."
-            leadingIcon={
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M8.5 3C5.46243 3 3 5.46243 3 8.5C3 11.5376 5.46243 14 8.5 14C9.83879 14 11.0659 13.5217 12.0196 12.7266L15.6464 16.3536C15.8417 16.5488 16.1583 16.5488 16.3536 16.3536C16.5488 16.1583 16.5488 15.8417 16.3536 15.6464L12.7266 12.0196C13.5217 11.0659 14 9.83879 14 8.5C14 5.46243 11.5376 3 8.5 3ZM4 8.5C4 6.01472 6.01472 4 8.5 4C10.9853 4 13 6.01472 13 8.5C13 10.9853 10.9853 13 8.5 13C6.01472 13 4 10.9853 4 8.5Z" />
-              </svg>
-            }
+            leadingIcon={<Search />}
             trailingContent={
               searchValue ? (
-                <Button
-                  variant="tertiary"
+                <IconButton
+                  variant="ghost"
                   size="small"
+                  aria-label="Clear search"
                   onClick={() => setSearchValue('')}
-                  UNSAFE_style={{ marginRight: '-4px' }}
                 >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                  </svg>
-                </Button>
+                  <X />
+                </IconButton>
               ) : null
             }
           />
