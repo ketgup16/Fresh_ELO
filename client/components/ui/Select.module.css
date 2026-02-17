@@ -63,11 +63,12 @@
 .magicIcon {
   width: var(--ld-semantic-scale-icon-medium, 24px);
   height: var(--ld-semantic-scale-icon-medium, 24px);
+  flex-shrink: 0;
 }
 
 .magicIconSvg {
-  width: 100%;
-  height: 100%;
+  width: var(--ld-semantic-scale-icon-medium, 24px);
+  height: var(--ld-semantic-scale-icon-medium, 24px);
 }
 
 .magicIconSvg--disabled {
