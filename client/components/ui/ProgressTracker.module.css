@@ -121,37 +121,43 @@
 }
 
 /* Active indicator circles */
+/* Outer circle should only have stroke (border), no fill */
 .stopIndicator--active .activeOuterCircle {
+  fill: white;
+  stroke-width: 2;
+}
+
+.stopIndicator--active.stopIndicator--info .activeOuterCircle {
   stroke: var(--ld-semantic-color-progress-fill-info);
 }
 
-.stopIndicator--active.stopIndicator--info .activeOuterCircle,
+.stopIndicator--active.stopIndicator--warning .activeOuterCircle {
+  stroke: var(--ld-semantic-color-progress-fill-warning);
+}
+
+.stopIndicator--active.stopIndicator--success .activeOuterCircle {
+  stroke: var(--ld-semantic-color-progress-fill-positive);
+}
+
+.stopIndicator--active.stopIndicator--error .activeOuterCircle {
+  stroke: var(--ld-semantic-color-progress-fill-negative);
+}
+
+/* Inner circle should be filled with status color */
 .stopIndicator--active.stopIndicator--info .activeInnerCircle {
-  stroke: var(--ld-semantic-color-progress-fill-info);
   fill: var(--ld-semantic-color-progress-fill-info);
 }
 
-.stopIndicator--active.stopIndicator--warning .activeOuterCircle,
 .stopIndicator--active.stopIndicator--warning .activeInnerCircle {
-  stroke: var(--ld-semantic-color-progress-fill-warning);
   fill: var(--ld-semantic-color-progress-fill-warning);
 }
 
-.stopIndicator--active.stopIndicator--success .activeOuterCircle,
 .stopIndicator--active.stopIndicator--success .activeInnerCircle {
-  stroke: var(--ld-semantic-color-progress-fill-positive);
   fill: var(--ld-semantic-color-progress-fill-positive);
 }
 
-.stopIndicator--active.stopIndicator--error .activeOuterCircle,
 .stopIndicator--active.stopIndicator--error .activeInnerCircle {
-  stroke: var(--ld-semantic-color-progress-fill-negative);
   fill: var(--ld-semantic-color-progress-fill-negative);
-}
-
-/* Active inner circle keeps the fill */
-.stopIndicator--active .activeInnerCircle {
-  /* Fill set by status classes above */
 }
 
 /* Stop labels */
