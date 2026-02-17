@@ -29,6 +29,10 @@
   background: var(--ld-semantic-color-fill-brand-subtle);
 }
 
+.spotIcon--white {
+  background: #FFFFFF;
+}
+
 /* Icon Inner Wrapper - Base Styles */
 .spotIconInner {
   display: flex;
@@ -55,4 +59,8 @@
 
 .spotIconInner--neutral {
   color: var(--ld-semantic-color-text-onfill);
+}
+
+.spotIconInner--white {
+  color: var(--ld-semantic-color-text-onfill-brand-subtle);
 }

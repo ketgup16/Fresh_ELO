@@ -2,7 +2,7 @@ import * as React from 'react';
 import styles from './SpotIcon.module.css';
 
 export type SpotIconSize = 'small' | 'large';
-export type SpotIconColor = 'brand' | 'neutral';
+export type SpotIconColor = 'brand' | 'neutral' | 'white';
 
 export interface SpotIconProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   /**
@@ -22,6 +22,7 @@ export interface SpotIconProps extends Omit<React.ComponentPropsWithoutRef<'div'
    * The color variant of the spot icon.
    * - brand: Uses brand background and text colors
    * - neutral: Uses neutral text color with same container
+   * - white: Uses white background with brand icon color
    * @default "brand"
    */
   color?: SpotIconColor;

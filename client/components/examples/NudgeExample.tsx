@@ -83,28 +83,28 @@ export function NudgeExample() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
           <Nudge 
             title="Helpful information" 
-            leading={<SpotIcon icon={<InfoCircle />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<InfoCircle />} size="small" color="white" />}
           >
             This feature can help you save time on repetitive tasks.
           </Nudge>
 
           <Nudge 
             title="Pro tip" 
-            leading={<SpotIcon icon={<LightBulb />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<LightBulb />} size="small" color="white" />}
           >
             Enable auto-save to prevent losing your work.
           </Nudge>
 
           <Nudge 
             title="New feature available" 
-            leading={<SpotIcon icon={<Star />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<Star />} size="small" color="white" />}
           >
             Try out our new collaboration tools to work better with your team.
           </Nudge>
 
           <Nudge 
             title="Stay updated" 
-            leading={<SpotIcon icon={<Bell />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<Bell />} size="small" color="white" />}
           >
             Turn on notifications to get real-time updates on your projects.
           </Nudge>
@@ -132,7 +132,7 @@ export function NudgeExample() {
           {!dismissedNudges.has('tip-1') && (
             <Nudge 
               title="First-time user tip" 
-              leading={<SpotIcon icon={<InfoCircle />} size="small" color="brand" />}
+              leading={<SpotIcon icon={<InfoCircle />} size="small" color="white" />}
               onClose={() => handleDismiss('tip-1')}
             >
               Click the settings icon to customize your workspace preferences.
@@ -142,7 +142,7 @@ export function NudgeExample() {
           {!dismissedNudges.has('tip-2') && (
             <Nudge 
               title="Did you know?" 
-              leading={<SpotIcon icon={<LightBulb />} size="small" color="brand" />}
+              leading={<SpotIcon icon={<LightBulb />} size="small" color="white" />}
               onClose={() => handleDismiss('tip-2')}
             >
               You can drag and drop items to reorder them in your list.
@@ -152,7 +152,7 @@ export function NudgeExample() {
           {!dismissedNudges.has('tip-3') && (
             <Nudge 
               title="Customize your experience" 
-              leading={<SpotIcon icon={<Settings />} size="small" color="brand" />}
+              leading={<SpotIcon icon={<Settings />} size="small" color="white" />}
               onClose={() => handleDismiss('tip-3')}
             >
               Adjust your preferences in the settings menu to personalize your workflow.
@@ -181,7 +181,7 @@ export function NudgeExample() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
           <Nudge 
             title="Save your progress" 
-            leading={<SpotIcon icon={<Article />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<Article />} size="small" color="white" />}
             actions={<Button variant="primary" size="small">Save now</Button>}
           >
             Your work will be saved automatically, but you can save manually at any time.
@@ -189,7 +189,7 @@ export function NudgeExample() {
 
           <Nudge 
             title="Welcome to the platform" 
-            leading={<SpotIcon icon={<User />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<User />} size="small" color="white" />}
             actions={<Button variant="primary" size="small">Get started</Button>}
             onClose={() => {}}
           >
@@ -218,7 +218,7 @@ export function NudgeExample() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
           <Nudge 
             title="Try premium features" 
-            leading={<SpotIcon icon={<Gift />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<Gift />} size="small" color="white" />}
             actions={
               <ButtonGroup>
                 <Button variant="primary" size="small">Start free trial</Button>
@@ -231,7 +231,7 @@ export function NudgeExample() {
 
           <Nudge 
             title="Unsaved changes" 
-            leading={<SpotIcon icon={<InfoCircle />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<InfoCircle />} size="small" color="white" />}
             actions={
               <ButtonGroup>
                 <Button variant="primary" size="small">Save changes</Button>
@@ -245,7 +245,7 @@ export function NudgeExample() {
 
           <Nudge 
             title="Update available" 
-            leading={<SpotIcon icon={<Bell />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<Bell />} size="small" color="white" />}
             actions={
               <ButtonGroup>
                 <Button variant="primary" size="small">Update now</Button>
@@ -279,7 +279,7 @@ export function NudgeExample() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
           <Nudge 
             title="Complete your setup" 
-            leading={<SpotIcon icon={<Star />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<Star />} size="small" color="white" />}
             actions={
               <ButtonGroup>
                 <Button variant="primary" size="small">Continue setup</Button>
@@ -293,7 +293,7 @@ export function NudgeExample() {
 
           <Nudge 
             title="Special offer" 
-            leading={<SpotIcon icon={<Gift />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<Gift />} size="small" color="white" />}
             actions={
               <ButtonGroup>
                 <Button variant="primary" size="small">Claim offer</Button>
@@ -327,12 +327,12 @@ export function NudgeExample() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
           <Nudge 
             title="Quick reminder: Save your work frequently" 
-            leading={<SpotIcon icon={<InfoCircle />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<InfoCircle />} size="small" color="white" />}
           />
           
           <Nudge 
             title="Pro tip: Use keyboard shortcuts to work faster" 
-            leading={<SpotIcon icon={<LightBulb />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<LightBulb />} size="small" color="white" />}
             onClose={() => {}}
           />
         </div>
@@ -358,7 +358,7 @@ export function NudgeExample() {
         <div style={{ maxWidth: '600px' }}>
           <Nudge 
             title="Important information about data privacy" 
-            leading={<SpotIcon icon={<InfoCircle />} size="small" color="brand" />}
+            leading={<SpotIcon icon={<InfoCircle />} size="small" color="white" />}
             actions={
               <ButtonGroup>
                 <Button variant="primary" size="small">Review settings</Button>
