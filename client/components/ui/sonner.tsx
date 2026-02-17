@@ -14,7 +14,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
         closeButton: true,
         classNames: {
           toast:
-            "group toast bg-[#3C3E42] text-white border-0 shadow-lg rounded-lg px-4 py-4 flex items-center gap-4",
+            "group toast border-0 shadow-lg rounded-lg px-4 py-4 flex items-center gap-4",
           description: "group-[.toast]:text-white",
           icon: "group-[.toast]:flex group-[.toast]:items-center group-[.toast]:justify-center",
           content: "group-[.toast]:flex group-[.toast]:items-center",
@@ -26,7 +26,12 @@ const Toaster = ({ ...props }: ToasterProps) => {
           closeButton:
             "group-[.toast]:bg-transparent group-[.toast]:border-0 group-[.toast]:text-white group-[.toast]:hover:bg-white/10 group-[.toast]:static group-[.toast]:ml-auto group-[.toast]:flex group-[.toast]:items-center group-[.toast]:justify-center group-[.toast]:self-center group-[.toast]:h-5 group-[.toast]:w-5 group-[.toast]:p-0 group-[.toast]:m-0",
           success:
-            "bg-[#3C3E42] text-white border-0",
+            "border-0",
+        },
+        style: {
+          backgroundColor: 'var(--ld-semantic-color-surface-inverted, #2E2F32)',
+          color: 'var(--ld-semantic-color-text-inverted, #FFFFFF)',
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
         },
       }}
       {...props}
