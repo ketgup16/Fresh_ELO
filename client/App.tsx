@@ -57,21 +57,49 @@ import PanelsPage from "./pages/component-library/Panels";
 import GuidelinesPage from "./pages/component-library/Guidelines";
 
 // Shadcn/Radix component pages
+import AccordionPage from "./pages/component-library/Accordion";
+import AlertDialogPage from "./pages/component-library/AlertDialog";
+import AvatarPage from "./pages/component-library/Avatar";
+import CalendarPage from "./pages/component-library/Calendar";
+import CarouselPage from "./pages/component-library/Carousel";
+import ChartPage from "./pages/component-library/Chart";
+import CollapsiblePage from "./pages/component-library/Collapsible";
+import CommandPage from "./pages/component-library/Command";
+import ContextMenuPage from "./pages/component-library/ContextMenu";
 import DialogPage from "./pages/component-library/Dialog";
-import SheetPage from "./pages/component-library/Sheet";
+import DrawerPage from "./pages/component-library/Drawer";
+import DropdownMenuPage from "./pages/component-library/DropdownMenu";
+import FormPage from "./pages/component-library/Form";
+import HoverCardPage from "./pages/component-library/HoverCard";
+import InputPage from "./pages/component-library/Input";
+import LabelPage from "./pages/component-library/Label";
+import MenubarPage from "./pages/component-library/Menubar";
+import NavigationMenuPage from "./pages/component-library/NavigationMenu";
+import PaginationPage from "./pages/component-library/Pagination";
 import PopoverPage from "./pages/component-library/Popover";
+import ProgressPage from "./pages/component-library/Progress";
 import ProgressIndicatorPage from "./pages/component-library/ProgressIndicator";
 import ProgressTrackerPage from "./pages/component-library/ProgressTracker";
+import RadioGroupPage from "./pages/component-library/RadioGroup";
+import ScrollAreaPage from "./pages/component-library/ScrollArea";
+import SeparatorPage from "./pages/component-library/Separator";
+import SheetPage from "./pages/component-library/Sheet";
 import SkeletonPage from "./pages/component-library/Skeleton";
+import SliderPage from "./pages/component-library/Slider";
 import SnackbarsPage from "./pages/component-library/Snackbars";
 import SpinnersPage from "./pages/component-library/Spinners";
 import SpotIconsPage from "./pages/component-library/SpotIcons";
+import SwitchPage from "./pages/component-library/Switch";
 import SwitchesPage from "./pages/component-library/Switches";
+import TablePage from "./pages/component-library/Table";
 import TabsPage from "./pages/component-library/Tabs";
 import TagsPage from "./pages/component-library/Tags";
 import TextAreaPage from "./pages/component-library/TextArea";
 import TextFieldsPage from "./pages/component-library/TextFields";
 import ThemesPage from "./pages/component-library/Themes";
+import ToastPage from "./pages/component-library/Toast";
+import TogglePage from "./pages/component-library/Toggle";
+import TooltipPage from "./pages/component-library/Tooltip";
 
 const queryClient = new QueryClient();
 
@@ -129,18 +157,46 @@ const App = () => (
                 <Route path="textarea" element={<TextAreaPage />} />
                 <Route path="guidelines" element={<GuidelinesPage />} />
                 {/* Shadcn/Radix Components */}
+                <Route path="accordion" element={<AccordionPage />} />
+                <Route path="alert-dialog" element={<AlertDialogPage />} />
+                <Route path="avatar" element={<AvatarPage />} />
+                <Route path="calendar" element={<CalendarPage />} />
+                <Route path="carousel" element={<CarouselPage />} />
+                <Route path="chart" element={<ChartPage />} />
+                <Route path="collapsible" element={<CollapsiblePage />} />
+                <Route path="command" element={<CommandPage />} />
+                <Route path="context-menu" element={<ContextMenuPage />} />
                 <Route path="dialog" element={<DialogPage />} />
-                <Route path="sheet" element={<SheetPage />} />
+                <Route path="drawer" element={<DrawerPage />} />
+                <Route path="dropdown-menu" element={<DropdownMenuPage />} />
+                <Route path="form" element={<FormPage />} />
+                <Route path="hover-card" element={<HoverCardPage />} />
+                <Route path="input" element={<InputPage />} />
+                <Route path="label" element={<LabelPage />} />
+                <Route path="menubar" element={<MenubarPage />} />
+                <Route path="navigation-menu" element={<NavigationMenuPage />} />
+                <Route path="pagination" element={<PaginationPage />} />
                 <Route path="popover" element={<PopoverPage />} />
+                <Route path="progress" element={<ProgressPage />} />
                 <Route path="progress-indicator" element={<ProgressIndicatorPage />} />
+                <Route path="progress-tracker" element={<ProgressTrackerPage />} />
+                <Route path="radio-group" element={<RadioGroupPage />} />
+                <Route path="scroll-area" element={<ScrollAreaPage />} />
+                <Route path="separator" element={<SeparatorPage />} />
+                <Route path="sheet" element={<SheetPage />} />
                 <Route path="skeleton" element={<SkeletonPage />} />
+                <Route path="slider" element={<SliderPage />} />
                 <Route path="snackbars" element={<SnackbarsPage />} />
                 <Route path="spinners" element={<SpinnersPage />} />
                 <Route path="spot-icons" element={<SpotIconsPage />} />
+                <Route path="switch" element={<SwitchPage />} />
                 <Route path="switches" element={<SwitchesPage />} />
+                <Route path="table" element={<TablePage />} />
                 <Route path="tabs" element={<TabsPage />} />
                 <Route path="tags" element={<TagsPage />} />
-                <Route path="progress-tracker" element={<ProgressTrackerPage />} />
+                <Route path="toast" element={<ToastPage />} />
+                <Route path="toggle" element={<TogglePage />} />
+                <Route path="tooltip" element={<TooltipPage />} />
               </Route>
 
               <Route path="/" element={<Index />} />
