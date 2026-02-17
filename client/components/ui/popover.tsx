@@ -30,7 +30,7 @@ const PopoverContent = React.forwardRef<
       style={{
         backgroundColor: 'var(--ld-semantic-color-surface-overlay, #FFFFFF)',
         color: 'var(--ld-semantic-color-text, #2E2F32)',
-        boxShadow: 'var(--ld-semantic-elevation-200, 0 3px 5px 2px #00000026, 0 -1px 3px 0 #0000001a)',
+        filter: 'drop-shadow(0 3px 5px rgba(0, 0, 0, 0.15)) drop-shadow(0 -1px 3px rgba(0, 0, 0, 0.1))',
         fontFamily: 'var(--ld-semantic-font-family-sans)',
         border: 'none',
         ...style,
@@ -40,10 +40,7 @@ const PopoverContent = React.forwardRef<
       {children}
       {showArrow && (
         <PopoverPrimitive.Arrow
-          style={{
-            fill: 'var(--ld-semantic-color-surface-overlay, #FFFFFF)',
-            filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15))',
-          }}
+          style={{ fill: 'var(--ld-semantic-color-surface-overlay, #FFFFFF)' }}
           width={12}
           height={6}
         />
