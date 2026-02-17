@@ -58,32 +58,11 @@
   }
 }
 
-/* Close Button */
+/* Close Button - positioning only; styling handled by IconButton component */
 .closeButton {
   position: absolute;
   right: var(--ld-primitive-scale-space-400, 16px);
   top: var(--ld-primitive-scale-space-400, 16px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: var(--ld-semantic-border-radius-small, 4px);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--ld-semantic-color-text-subtlest, #74767C);
-  transition: all 150ms ease;
-}
-
-.closeButton:hover {
-  background: var(--ld-semantic-color-fill-surface-secondary, #F4F4F5);
-  color: var(--ld-semantic-color-text, #2E2F32);
-}
-
-.closeButton:focus {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071DC);
-  outline-offset: 2px;
 }
 
 .closeIcon {
