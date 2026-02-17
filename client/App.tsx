@@ -56,50 +56,52 @@ import NudgesPage from "./pages/component-library/Nudges";
 import PanelsPage from "./pages/component-library/Panels";
 import GuidelinesPage from "./pages/component-library/Guidelines";
 
-// Shadcn/Radix component pages
-import AccordionPage from "./pages/component-library/Accordion";
-import AlertDialogPage from "./pages/component-library/AlertDialog";
-import AvatarPage from "./pages/component-library/Avatar";
-import CalendarPage from "./pages/component-library/Calendar";
-import CarouselPage from "./pages/component-library/Carousel";
-import ChartPage from "./pages/component-library/Chart";
-import CollapsiblePage from "./pages/component-library/Collapsible";
-import CommandPage from "./pages/component-library/Command";
-import ContextMenuPage from "./pages/component-library/ContextMenu";
-import DialogPage from "./pages/component-library/Dialog";
-import DrawerPage from "./pages/component-library/Drawer";
-import DropdownMenuPage from "./pages/component-library/DropdownMenu";
-import FormPage from "./pages/component-library/Form";
-import HoverCardPage from "./pages/component-library/HoverCard";
-import InputPage from "./pages/component-library/Input";
-import LabelPage from "./pages/component-library/Label";
-import MenubarPage from "./pages/component-library/Menubar";
-import NavigationMenuPage from "./pages/component-library/NavigationMenu";
-import PaginationPage from "./pages/component-library/Pagination";
-import PopoverPage from "./pages/component-library/Popover";
-import ProgressPage from "./pages/component-library/Progress";
-import ProgressIndicatorPage from "./pages/component-library/ProgressIndicator";
-import ProgressTrackerPage from "./pages/component-library/ProgressTracker";
-import RadioGroupPage from "./pages/component-library/RadioGroup";
-import ScrollAreaPage from "./pages/component-library/ScrollArea";
-import SeparatorPage from "./pages/component-library/Separator";
-import SheetPage from "./pages/component-library/Sheet";
-import SkeletonPage from "./pages/component-library/Skeleton";
-import SliderPage from "./pages/component-library/Slider";
-import SnackbarsPage from "./pages/component-library/Snackbars";
-import SpinnersPage from "./pages/component-library/Spinners";
-import SpotIconsPage from "./pages/component-library/SpotIcons";
-import SwitchPage from "./pages/component-library/Switch";
-import SwitchesPage from "./pages/component-library/Switches";
-import TablePage from "./pages/component-library/Table";
-import TabsPage from "./pages/component-library/Tabs";
-import TagsPage from "./pages/component-library/Tags";
+// Shadcn/Radix component pages (lazy loaded to avoid blocking initial render)
+const AccordionPage = React.lazy(() => import("./pages/component-library/Accordion"));
+const AlertDialogPage = React.lazy(() => import("./pages/component-library/AlertDialog"));
+const AvatarPage = React.lazy(() => import("./pages/component-library/Avatar"));
+const CalendarPage = React.lazy(() => import("./pages/component-library/Calendar"));
+const CarouselPage = React.lazy(() => import("./pages/component-library/Carousel"));
+const ChartPage = React.lazy(() => import("./pages/component-library/Chart"));
+const CollapsiblePage = React.lazy(() => import("./pages/component-library/Collapsible"));
+const CommandPage = React.lazy(() => import("./pages/component-library/Command"));
+const ContextMenuPage = React.lazy(() => import("./pages/component-library/ContextMenu"));
+const DialogPage = React.lazy(() => import("./pages/component-library/Dialog"));
+const DrawerPage = React.lazy(() => import("./pages/component-library/Drawer"));
+const DropdownMenuPage = React.lazy(() => import("./pages/component-library/DropdownMenu"));
+const FormPage = React.lazy(() => import("./pages/component-library/Form"));
+const HoverCardPage = React.lazy(() => import("./pages/component-library/HoverCard"));
+const InputPage = React.lazy(() => import("./pages/component-library/Input"));
+const LabelPage = React.lazy(() => import("./pages/component-library/Label"));
+const MenubarPage = React.lazy(() => import("./pages/component-library/Menubar"));
+const NavigationMenuPage = React.lazy(() => import("./pages/component-library/NavigationMenu"));
+const PaginationPage = React.lazy(() => import("./pages/component-library/Pagination"));
+const PopoverPage = React.lazy(() => import("./pages/component-library/Popover"));
+const ProgressPage = React.lazy(() => import("./pages/component-library/Progress"));
+const ProgressIndicatorPage = React.lazy(() => import("./pages/component-library/ProgressIndicator"));
+const ProgressTrackerPage = React.lazy(() => import("./pages/component-library/ProgressTracker"));
+const RadioGroupPage = React.lazy(() => import("./pages/component-library/RadioGroup"));
+const ScrollAreaPage = React.lazy(() => import("./pages/component-library/ScrollArea"));
+const SeparatorPage = React.lazy(() => import("./pages/component-library/Separator"));
+const SheetPage = React.lazy(() => import("./pages/component-library/Sheet"));
+const SkeletonPage = React.lazy(() => import("./pages/component-library/Skeleton"));
+const SliderPage = React.lazy(() => import("./pages/component-library/Slider"));
+const SnackbarsPage = React.lazy(() => import("./pages/component-library/Snackbars"));
+const SpinnersPage = React.lazy(() => import("./pages/component-library/Spinners"));
+const SpotIconsPage = React.lazy(() => import("./pages/component-library/SpotIcons"));
+const SwitchPage = React.lazy(() => import("./pages/component-library/Switch"));
+const SwitchesPage = React.lazy(() => import("./pages/component-library/Switches"));
+const TablePage = React.lazy(() => import("./pages/component-library/Table"));
+const TabsPage = React.lazy(() => import("./pages/component-library/Tabs"));
+const TagsPage = React.lazy(() => import("./pages/component-library/Tags"));
 import TextAreaPage from "./pages/component-library/TextArea";
 import TextFieldsPage from "./pages/component-library/TextFields";
-import ThemesPage from "./pages/component-library/Themes";
-import ToastPage from "./pages/component-library/Toast";
-import TogglePage from "./pages/component-library/Toggle";
-import TooltipPage from "./pages/component-library/Tooltip";
+const ThemesPage = React.lazy(() => import("./pages/component-library/Themes"));
+const ToastPage = React.lazy(() => import("./pages/component-library/Toast"));
+const TogglePage = React.lazy(() => import("./pages/component-library/Toggle"));
+const TooltipPage = React.lazy(() => import("./pages/component-library/Tooltip"));
+
+const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
 const queryClient = new QueryClient();
 
@@ -156,47 +158,47 @@ const App = () => (
                 <Route path="text-fields" element={<TextFieldsPage />} />
                 <Route path="textarea" element={<TextAreaPage />} />
                 <Route path="guidelines" element={<GuidelinesPage />} />
-                {/* Shadcn/Radix Components */}
-                <Route path="accordion" element={<AccordionPage />} />
-                <Route path="alert-dialog" element={<AlertDialogPage />} />
-                <Route path="avatar" element={<AvatarPage />} />
-                <Route path="calendar" element={<CalendarPage />} />
-                <Route path="carousel" element={<CarouselPage />} />
-                <Route path="chart" element={<ChartPage />} />
-                <Route path="collapsible" element={<CollapsiblePage />} />
-                <Route path="command" element={<CommandPage />} />
-                <Route path="context-menu" element={<ContextMenuPage />} />
-                <Route path="dialog" element={<DialogPage />} />
-                <Route path="drawer" element={<DrawerPage />} />
-                <Route path="dropdown-menu" element={<DropdownMenuPage />} />
-                <Route path="form" element={<FormPage />} />
-                <Route path="hover-card" element={<HoverCardPage />} />
-                <Route path="input" element={<InputPage />} />
-                <Route path="label" element={<LabelPage />} />
-                <Route path="menubar" element={<MenubarPage />} />
-                <Route path="navigation-menu" element={<NavigationMenuPage />} />
-                <Route path="pagination" element={<PaginationPage />} />
-                <Route path="popover" element={<PopoverPage />} />
-                <Route path="progress" element={<ProgressPage />} />
-                <Route path="progress-indicator" element={<ProgressIndicatorPage />} />
-                <Route path="progress-tracker" element={<ProgressTrackerPage />} />
-                <Route path="radio-group" element={<RadioGroupPage />} />
-                <Route path="scroll-area" element={<ScrollAreaPage />} />
-                <Route path="separator" element={<SeparatorPage />} />
-                <Route path="sheet" element={<SheetPage />} />
-                <Route path="skeleton" element={<SkeletonPage />} />
-                <Route path="slider" element={<SliderPage />} />
-                <Route path="snackbars" element={<SnackbarsPage />} />
-                <Route path="spinners" element={<SpinnersPage />} />
-                <Route path="spot-icons" element={<SpotIconsPage />} />
-                <Route path="switch" element={<SwitchPage />} />
-                <Route path="switches" element={<SwitchesPage />} />
-                <Route path="table" element={<TablePage />} />
-                <Route path="tabs" element={<TabsPage />} />
-                <Route path="tags" element={<TagsPage />} />
-                <Route path="toast" element={<ToastPage />} />
-                <Route path="toggle" element={<TogglePage />} />
-                <Route path="tooltip" element={<TooltipPage />} />
+                {/* Shadcn/Radix Components (lazy loaded) */}
+                <Route path="accordion" element={<React.Suspense fallback={LazyFallback}><AccordionPage /></React.Suspense>} />
+                <Route path="alert-dialog" element={<React.Suspense fallback={LazyFallback}><AlertDialogPage /></React.Suspense>} />
+                <Route path="avatar" element={<React.Suspense fallback={LazyFallback}><AvatarPage /></React.Suspense>} />
+                <Route path="calendar" element={<React.Suspense fallback={LazyFallback}><CalendarPage /></React.Suspense>} />
+                <Route path="carousel" element={<React.Suspense fallback={LazyFallback}><CarouselPage /></React.Suspense>} />
+                <Route path="chart" element={<React.Suspense fallback={LazyFallback}><ChartPage /></React.Suspense>} />
+                <Route path="collapsible" element={<React.Suspense fallback={LazyFallback}><CollapsiblePage /></React.Suspense>} />
+                <Route path="command" element={<React.Suspense fallback={LazyFallback}><CommandPage /></React.Suspense>} />
+                <Route path="context-menu" element={<React.Suspense fallback={LazyFallback}><ContextMenuPage /></React.Suspense>} />
+                <Route path="dialog" element={<React.Suspense fallback={LazyFallback}><DialogPage /></React.Suspense>} />
+                <Route path="drawer" element={<React.Suspense fallback={LazyFallback}><DrawerPage /></React.Suspense>} />
+                <Route path="dropdown-menu" element={<React.Suspense fallback={LazyFallback}><DropdownMenuPage /></React.Suspense>} />
+                <Route path="form" element={<React.Suspense fallback={LazyFallback}><FormPage /></React.Suspense>} />
+                <Route path="hover-card" element={<React.Suspense fallback={LazyFallback}><HoverCardPage /></React.Suspense>} />
+                <Route path="input" element={<React.Suspense fallback={LazyFallback}><InputPage /></React.Suspense>} />
+                <Route path="label" element={<React.Suspense fallback={LazyFallback}><LabelPage /></React.Suspense>} />
+                <Route path="menubar" element={<React.Suspense fallback={LazyFallback}><MenubarPage /></React.Suspense>} />
+                <Route path="navigation-menu" element={<React.Suspense fallback={LazyFallback}><NavigationMenuPage /></React.Suspense>} />
+                <Route path="pagination" element={<React.Suspense fallback={LazyFallback}><PaginationPage /></React.Suspense>} />
+                <Route path="popover" element={<React.Suspense fallback={LazyFallback}><PopoverPage /></React.Suspense>} />
+                <Route path="progress" element={<React.Suspense fallback={LazyFallback}><ProgressPage /></React.Suspense>} />
+                <Route path="progress-indicator" element={<React.Suspense fallback={LazyFallback}><ProgressIndicatorPage /></React.Suspense>} />
+                <Route path="progress-tracker" element={<React.Suspense fallback={LazyFallback}><ProgressTrackerPage /></React.Suspense>} />
+                <Route path="radio-group" element={<React.Suspense fallback={LazyFallback}><RadioGroupPage /></React.Suspense>} />
+                <Route path="scroll-area" element={<React.Suspense fallback={LazyFallback}><ScrollAreaPage /></React.Suspense>} />
+                <Route path="separator" element={<React.Suspense fallback={LazyFallback}><SeparatorPage /></React.Suspense>} />
+                <Route path="sheet" element={<React.Suspense fallback={LazyFallback}><SheetPage /></React.Suspense>} />
+                <Route path="skeleton" element={<React.Suspense fallback={LazyFallback}><SkeletonPage /></React.Suspense>} />
+                <Route path="slider" element={<React.Suspense fallback={LazyFallback}><SliderPage /></React.Suspense>} />
+                <Route path="snackbars" element={<React.Suspense fallback={LazyFallback}><SnackbarsPage /></React.Suspense>} />
+                <Route path="spinners" element={<React.Suspense fallback={LazyFallback}><SpinnersPage /></React.Suspense>} />
+                <Route path="spot-icons" element={<React.Suspense fallback={LazyFallback}><SpotIconsPage /></React.Suspense>} />
+                <Route path="switch" element={<React.Suspense fallback={LazyFallback}><SwitchPage /></React.Suspense>} />
+                <Route path="switches" element={<React.Suspense fallback={LazyFallback}><SwitchesPage /></React.Suspense>} />
+                <Route path="table" element={<React.Suspense fallback={LazyFallback}><TablePage /></React.Suspense>} />
+                <Route path="tabs" element={<React.Suspense fallback={LazyFallback}><TabsPage /></React.Suspense>} />
+                <Route path="tags" element={<React.Suspense fallback={LazyFallback}><TagsPage /></React.Suspense>} />
+                <Route path="toast" element={<React.Suspense fallback={LazyFallback}><ToastPage /></React.Suspense>} />
+                <Route path="toggle" element={<React.Suspense fallback={LazyFallback}><TogglePage /></React.Suspense>} />
+                <Route path="tooltip" element={<React.Suspense fallback={LazyFallback}><TooltipPage /></React.Suspense>} />
               </Route>
 
               <Route path="/" element={<Index />} />
