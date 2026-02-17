@@ -9,7 +9,7 @@
   
   /* LD 3.5 Tokens */
   border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
-  background: var(--ld-semantic-color-fill-inverse);
+  background: var(--ld-semantic-color-text, #2e2f32);
   box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.10), 0 5px 10px 3px rgba(0, 0, 0, 0.15);
   
   /* Initial state for animation */
@@ -56,7 +56,7 @@
 
 .message {
   flex: 1 0 0;
-  color: var(--ld-semantic-color-text-onfill-inverse);
+  color: var(--ld-primitive-color-white, #ffffff);
   font-family: var(--ld-semantic-font-body-small-family);
   font-size: var(--ld-semantic-font-body-small-size);
   font-weight: var(--ld-semantic-font-body-small-weight-default);
@@ -75,8 +75,8 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  
-  color: var(--ld-semantic-color-text-onfill-inverse);
+
+  color: var(--ld-primitive-color-white, #ffffff);
   font-family: var(--ld-semantic-font-body-small-family);
   font-size: var(--ld-semantic-font-body-small-size);
   font-weight: var(--ld-semantic-font-body-small-weight-default);
@@ -115,7 +115,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--ld-semantic-color-text-onfill-inverse);
+  color: var(--ld-primitive-color-white, #ffffff);
   
   transition: opacity 0.2s ease;
 }
