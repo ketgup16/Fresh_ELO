@@ -66,7 +66,7 @@ export default function CarouselExample() {
           <CarouselContent>
             {sampleCards.map((card, index) => (
               <CarouselItem key={index}>
-                <div className="p-1">
+                <div className="p-1 h-full">
                   <SampleCard title={card.title} description={card.description} />
                 </div>
               </CarouselItem>
@@ -91,7 +91,7 @@ export default function CarouselExample() {
           <CarouselContent className="-ml-1">
             {sampleCards.map((card, index) => (
               <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
-                <div className="p-1">
+                <div className="p-1 h-full">
                   <SampleCard title={card.title} description={card.description} />
                 </div>
               </CarouselItem>
