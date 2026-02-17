@@ -1,6 +1,5 @@
 import React from 'react';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
+import { RadioGroup, Radio } from '@/components/ui/radio-group';
 
 export default function RadioGroupExample() {
   const [value, setValue] = React.useState('comfortable');
@@ -18,18 +17,9 @@ export default function RadioGroupExample() {
           Basic Radio Group
         </h3>
         <RadioGroup value={value} onValueChange={setValue}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <RadioGroupItem value="default" id="r1" />
-            <Label htmlFor="r1" style={{ cursor: 'pointer' }}>Default</Label>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <RadioGroupItem value="comfortable" id="r2" />
-            <Label htmlFor="r2" style={{ cursor: 'pointer' }}>Comfortable</Label>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <RadioGroupItem value="compact" id="r3" />
-            <Label htmlFor="r3" style={{ cursor: 'pointer' }}>Compact</Label>
-          </div>
+          <Radio value="default" label="Default" />
+          <Radio value="comfortable" label="Comfortable" />
+          <Radio value="compact" label="Compact" />
         </RadioGroup>
         <p style={{ marginTop: '16px', fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
           Selected: {value}
