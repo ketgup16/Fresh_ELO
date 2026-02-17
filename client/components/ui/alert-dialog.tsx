@@ -47,7 +47,7 @@ const AlertDialogContent = React.forwardRef<
         padding: 'var(--ld-primitive-scale-space-300, 1.5rem)',
         gap: 'var(--ld-primitive-scale-space-200, 1rem)',
         fontFamily: 'var(--ld-semantic-font-family-sans)',
-        borderRadius: 'var(--ld-semantic-border-radius-large, 12px)',
+        borderRadius: 'var(--ld-primitive-scale-borderradius-100, 16px)',
       }}
       {...props}
     />
