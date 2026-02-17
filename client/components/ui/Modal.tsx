@@ -67,8 +67,9 @@ export const ModalContent = React.forwardRef<
             <IconButton
               variant="ghost"
               size="medium"
+              shape="rounded"
               aria-label="Close"
-              className={styles.closeButton}
+              UNSAFE_className={styles.closeButton}
             >
               <X style={{ width: 20, height: 20 }} />
             </IconButton>

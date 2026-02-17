@@ -33,7 +33,7 @@ interface IconButtonBaseProps extends CommonProps {
 
   /**
    * The shape for the icon button.
-   * @default "square"
+   * @default "rounded"
    */
   shape?: IconButtonShape;
 }
@@ -97,7 +97,7 @@ export const IconButton = React.forwardRef<
     children,
     size = 'medium',
     variant = 'ghost',
-    shape = 'square',
+    shape = 'rounded',
     'aria-label': ariaLabel,
     UNSAFE_className,
     UNSAFE_style,
@@ -185,6 +185,6 @@ const iconButtonVariants = cva('', {
   defaultVariants: {
     size: 'medium',
     variant: 'ghost',
-    shape: 'square',
+    shape: 'rounded',
   },
 });

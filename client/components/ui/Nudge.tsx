@@ -78,6 +78,7 @@ export const Nudge = React.forwardRef<HTMLDivElement, NudgeProps>(
             <IconButton
               variant="ghost"
               size="medium"
+              shape="rounded"
               onClick={onClose}
               aria-label="Close"
               UNSAFE_className={styles.closeButton}
