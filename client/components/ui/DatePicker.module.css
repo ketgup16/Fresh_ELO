@@ -14,12 +14,8 @@
 }
 
 .datePicker__iconButton {
-  position: absolute;
-  right: var(--ld-primitive-scale-space-100, 8px);
-  top: 50%;
-  transform: translateY(-50%);
+  flex-shrink: 0;
   pointer-events: auto;
-  z-index: 1;
 }
 
 .datePicker__popoverContent {

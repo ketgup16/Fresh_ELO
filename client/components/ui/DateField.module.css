@@ -56,6 +56,11 @@
   color: var(--ld-semantic-color-text-subtle, #74767c);
 }
 
+/* ── Input wrapper with end adornment (e.g. icon button) ── */
+.dateField__inputWrapper--withEndAdornment {
+  padding-right: var(--ld-primitive-scale-space-050, 4px);
+}
+
 /* ── Calendar icon (decorative) ── */
 .dateField__icon {
   display: inline-flex;

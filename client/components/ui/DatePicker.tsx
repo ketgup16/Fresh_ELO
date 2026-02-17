@@ -236,23 +236,24 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
               placeholder={dateFormat.toLowerCase()}
               aria-haspopup="dialog"
               aria-expanded={isOpen}
+              endAdornment={
+                <PopoverTrigger asChild>
+                  <IconButton
+                    aria-label={a11yLabels?.calendarIconButton || 'Open calendar'}
+                    variant="ghost"
+                    size="medium"
+                    shape="square"
+                    onClick={handleIconButtonClick}
+                    disabled={disabled || readOnly}
+                    UNSAFE_className={styles.datePicker__iconButton}
+                    tabIndex={-1}
+                  >
+                    <CalendarIcon />
+                  </IconButton>
+                </PopoverTrigger>
+              }
               {...textFieldProps}
             />
-            
-            <PopoverTrigger asChild>
-              <IconButton
-                aria-label={a11yLabels?.calendarIconButton || 'Open calendar'}
-                variant="ghost"
-                size={size === 'small' ? 'small' : size === 'large' ? 'large' : 'medium'}
-                shape="square"
-                onClick={handleIconButtonClick}
-                disabled={disabled || readOnly}
-                UNSAFE_className={styles.datePicker__iconButton}
-                tabIndex={-1}
-              >
-                <CalendarIcon />
-              </IconButton>
-            </PopoverTrigger>
           </div>
 
           <PopoverContent 

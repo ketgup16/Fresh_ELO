@@ -26,6 +26,9 @@ export interface DateFieldProps
 
   /** Escape hatch for inline styles */
   UNSAFE_style?: React.CSSProperties;
+
+  /** End adornment rendered inside the input wrapper (e.g. icon button) */
+  endAdornment?: React.ReactNode;
 }
 
 /**
@@ -80,6 +83,7 @@ export const DateField = React.forwardRef<HTMLInputElement, DateFieldProps>(
       placeholder = 'mm/dd/yyyy',
       UNSAFE_className,
       UNSAFE_style,
+      endAdornment,
       onBlur,
       ...restProps
     } = props;
@@ -132,7 +136,10 @@ export const DateField = React.forwardRef<HTMLInputElement, DateFieldProps>(
           <label className={styles.dateField__label}>{label}</label>
         )}
 
-        <div className={styles.dateField__inputWrapper}>
+        <div className={[
+          styles.dateField__inputWrapper,
+          endAdornment && styles['dateField__inputWrapper--withEndAdornment'],
+        ].filter(Boolean).join(' ')}>
           <input
             ref={ref}
             type="text"
@@ -177,6 +184,7 @@ export const DateField = React.forwardRef<HTMLInputElement, DateFieldProps>(
               </svg>
             </span>
           )}
+          {endAdornment}
         </div>
 
         {hasError && (
