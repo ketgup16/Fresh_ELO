@@ -26,9 +26,9 @@ export function LinkButtonExample() {
           </LinkButton>
           <div
             style={{
-              backgroundColor: 'var(--ld-semantic-color-surface-inverse)',
-              padding: '12px 20px',
-              borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+              backgroundColor: '#2e2f32',
+            padding: '12px 20px',
+            borderRadius: 'var(--ld-primitive-scale-borderradius-100, 8px)',
             }}
           >
             <LinkButton color="white" href="/white">
@@ -182,9 +182,9 @@ export function LinkButtonExample() {
         </h2>
         <div
           style={{
-            backgroundColor: 'var(--ld-semantic-color-surface-inverse)',
+            backgroundColor: '#2e2f32',
             padding: '24px',
-            borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+            borderRadius: 'var(--ld-primitive-scale-borderradius-100, 8px)',
             display: 'flex',
             gap: '32px',
             flexWrap: 'wrap',

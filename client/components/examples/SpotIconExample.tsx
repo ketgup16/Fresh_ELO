@@ -52,13 +52,13 @@ export function SpotIconExample() {
         }}>
           Colors
         </h2>
-        <p style={{ 
+        <p style={{
           marginBottom: '24px',
           fontSize: '16px',
           color: 'var(--ld-semantic-color-text)',
           fontFamily: 'var(--ld-semantic-font-family-sans)'
         }}>
-          SpotIcon supports brand and neutral color variants.
+          SpotIcon supports brand, neutral, and white color variants.
         </p>
         <div style={{ display: 'flex', gap: '24px', alignItems: 'center', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
@@ -68,6 +68,10 @@ export function SpotIconExample() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
             <SpotIcon icon={<Bell />} size="small" color="neutral" />
             <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text)' }}>Neutral</span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center', backgroundColor: '#2e2f32', padding: '16px', borderRadius: '8px' }}>
+            <SpotIcon icon={<Bell />} size="small" color="white" />
+            <span style={{ fontSize: '14px', color: '#ffffff' }}>White</span>
           </div>
         </div>
       </section>
@@ -113,6 +117,18 @@ export function SpotIconExample() {
             <SpotIcon icon={<Settings />} size="large" color="neutral" />
             <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text)', textAlign: 'center' }}>
               Large / Neutral
+            </span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center', backgroundColor: '#2e2f32', padding: '16px', borderRadius: '8px' }}>
+            <SpotIcon icon={<Settings />} size="small" color="white" />
+            <span style={{ fontSize: '14px', color: '#ffffff', textAlign: 'center' }}>
+              Small / White
+            </span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center', backgroundColor: '#2e2f32', padding: '16px', borderRadius: '8px' }}>
+            <SpotIcon icon={<Settings />} size="large" color="white" />
+            <span style={{ fontSize: '14px', color: '#ffffff', textAlign: 'center' }}>
+              Large / White
             </span>
           </div>
         </div>
