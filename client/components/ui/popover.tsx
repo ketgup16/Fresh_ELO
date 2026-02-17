@@ -16,7 +16,7 @@ interface PopoverContentProps extends React.ComponentPropsWithoutRef<typeof Popo
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
   PopoverContentProps
->(({ className, align = "center", sideOffset = 4, showArrow = false, children, ...props }, ref) => (
+>(({ className, align = "center", sideOffset = 8, showArrow = true, children, style, ...props }, ref) => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
       ref={ref}
@@ -33,6 +33,7 @@ const PopoverContent = React.forwardRef<
         boxShadow: 'var(--ld-semantic-elevation-200)',
         fontFamily: 'var(--ld-semantic-font-family-sans)',
         border: 'none',
+        ...style,
       }}
       {...props}
     >

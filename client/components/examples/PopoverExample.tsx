@@ -44,7 +44,7 @@ export function PopoverExample() {
           <PopoverTrigger asChild>
             <Button variant="secondary">Open with Arrow</Button>
           </PopoverTrigger>
-          <PopoverContent showArrow align="start">
+          <PopoverContent align="start">
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               <h4 style={{ fontWeight: 700, fontSize: "14px", margin: 0 }}>
                 Helpful Tip
@@ -66,7 +66,7 @@ export function PopoverExample() {
           <PopoverTrigger asChild>
             <Button variant="secondary">More Options</Button>
           </PopoverTrigger>
-          <PopoverContent showArrow>
+          <PopoverContent>
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               <div>
                 <h4 style={{ fontWeight: 700, fontSize: "14px", margin: 0, marginBottom: "8px" }}>
@@ -113,7 +113,7 @@ export function PopoverExample() {
             <PopoverTrigger asChild>
               <Button variant="tertiary" size="small">Align Start</Button>
             </PopoverTrigger>
-            <PopoverContent align="start" showArrow>
+            <PopoverContent align="start">
               <p style={{ margin: 0, fontSize: "14px" }}>
                 Aligned to the start
               </p>
@@ -124,7 +124,7 @@ export function PopoverExample() {
             <PopoverTrigger asChild>
               <Button variant="tertiary" size="small">Align Center</Button>
             </PopoverTrigger>
-            <PopoverContent align="center" showArrow>
+            <PopoverContent align="center">
               <p style={{ margin: 0, fontSize: "14px" }}>
                 Aligned to the center
               </p>
@@ -135,7 +135,7 @@ export function PopoverExample() {
             <PopoverTrigger asChild>
               <Button variant="tertiary" size="small">Align End</Button>
             </PopoverTrigger>
-            <PopoverContent align="end" showArrow>
+            <PopoverContent align="end">
               <p style={{ margin: 0, fontSize: "14px" }}>
                 Aligned to the end
               </p>
@@ -155,7 +155,7 @@ export function PopoverExample() {
           </PopoverTrigger>
           <PopoverContent 
             style={{ minWidth: "320px" }}
-            showArrow
+           
           >
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               <h4 style={{ fontWeight: 700, fontSize: "14px", margin: 0 }}>
