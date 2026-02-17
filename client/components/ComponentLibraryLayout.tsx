@@ -396,7 +396,6 @@ export function ComponentLibraryLayout() {
       <aside
         style={{
           width: '280px',
-          borderRight: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
           backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
           display: 'flex',
           flexDirection: 'column',
