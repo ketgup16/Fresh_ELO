@@ -186,7 +186,7 @@ export const MagicBoxExample: React.FC = () => {
             </div>
           </MagicBox>
           
-          <MagicBox active={true} state="active">
+          <MagicBox active={true} state="loading">
             <div
               style={{
                 padding: '20px',
