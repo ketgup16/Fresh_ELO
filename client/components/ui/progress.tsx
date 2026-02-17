@@ -14,7 +14,7 @@ const Progress = React.forwardRef<
       className,
     )}
     style={{
-      backgroundColor: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+      backgroundColor: 'var(--ld-semantic-color-progress-fill-subtle, #e3e4e5)',
     }}
     {...props}
   >
