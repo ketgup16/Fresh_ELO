@@ -4,7 +4,7 @@
  */
 
 .calendar {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   gap: var(--ld-primitive-scale-space-200, 16px);
   padding: var(--ld-primitive-scale-space-200, 16px);
@@ -12,6 +12,7 @@
   border-radius: var(--ld-primitive-scale-border-radius-100, 8px);
   box-shadow: var(--ld-semantic-elevation-100);
   background: var(--ld-semantic-color-surface, #ffffff);
+  width: fit-content;
 }
 
 /* Header with month/year and navigation */
