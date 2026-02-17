@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { format, parse, isValid } from 'date-fns';
 import { DateField } from './DateField';
-import { Calendar } from './calendar';
+import { DatePickerCalendar } from './DatePickerCalendar';
 import { IconButton } from './IconButton';
 import { Popover, PopoverTrigger, PopoverContent } from './popover';
 import { Calendar as CalendarIcon } from '@/components/icons/Calendar';
@@ -256,17 +256,18 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             />
           </div>
 
-          <PopoverContent 
+          <PopoverContent
             className={styles.datePicker__popoverContent}
             align="start"
             sideOffset={8}
           >
-            <Calendar
+            <DatePickerCalendar
               mode="single"
-              selected={value}
+              value={value}
               onSelect={handleCalendarSelect}
               disabled={getDisabledDates()}
-              initialFocus
+              fromDate={minDate}
+              toDate={maxDate}
             />
           </PopoverContent>
         </Popover>

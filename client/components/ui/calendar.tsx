@@ -7,6 +7,16 @@ import { buttonVariants } from "@/components/ui/Button";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
+/**
+ * @deprecated This component is deprecated. Use DatePickerCalendar from '@/components/ui/DatePickerCalendar' instead.
+ * This component will be removed in a future version.
+ *
+ * The new DatePickerCalendar component:
+ * - Follows LD 3.5 design specifications exactly
+ * - Has better token usage and styling
+ * - Supports week numbers variant
+ * - Has improved accessibility
+ */
 function Calendar({
   className,
   classNames,

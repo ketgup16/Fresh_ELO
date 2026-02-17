@@ -1,31 +1,58 @@
 import React from 'react';
-import { Calendar } from '@/components/ui/calendar';
+import { DatePickerCalendar } from '@/components/ui/DatePickerCalendar';
 
 export default function CalendarExample() {
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const [date, setDate] = React.useState<Date | undefined>(new Date(2024, 8, 15)); // Sep 15, 2024
   const [multipleDate, setMultipleDate] = React.useState<Date[] | undefined>([]);
 
   return (
-    <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '48px' }}>
+    <div style={{
+      padding: '32px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '48px',
+      fontFamily: 'var(--ld-semantic-font-family-sans)',
+    }}>
       <section>
         <h3 style={{
           fontSize: '20px',
           fontWeight: '700',
           fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)',
-          marginBottom: '16px'
+          color: 'var(--ld-semantic-color-text)',
+          marginBottom: '24px'
         }}>
-          Single Date Selection
+          Date Picker Calendar - Standard Week (Sun-Sat)
         </h3>
-        <Calendar
-          mode="single"
-          selected={date}
-          onSelect={setDate}
-          className="rounded-md border"
-        />
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '24px'
+        }}>
+          <div style={{
+            border: '1px solid var(--ld-semantic-color-border-subtle)',
+            borderRadius: '8px',
+            width: 'fit-content'
+          }}>
+            <DatePickerCalendar
+              mode="single"
+              value={date}
+              onSelect={setDate}
+              weekStartsOn={0}
+            />
+          </div>
+        </div>
         {date && (
-          <p style={{ marginTop: '16px', color: 'var(--ld-semantic-color-text-secondary)' }}>
-            Selected: {date.toLocaleDateString()}
+          <p style={{
+            marginTop: '16px',
+            color: 'var(--ld-semantic-color-text-subtle)',
+            fontSize: '14px'
+          }}>
+            Selected: {date.toLocaleDateString('en-US', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
           </p>
         )}
       </section>
@@ -35,22 +62,110 @@ export default function CalendarExample() {
           fontSize: '20px',
           fontWeight: '700',
           fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)',
-          marginBottom: '16px'
+          color: 'var(--ld-semantic-color-text)',
+          marginBottom: '24px'
         }}>
-          Multiple Date Selection
+          Date Picker Calendar - With Week Numbers (Sat-Fri)
         </h3>
-        <Calendar
-          mode="multiple"
-          selected={multipleDate}
-          onSelect={setMultipleDate}
-          className="rounded-md border"
-        />
-        {multipleDate && multipleDate.length > 0 && (
-          <p style={{ marginTop: '16px', color: 'var(--ld-semantic-color-text-secondary)' }}>
-            Selected {multipleDate.length} date(s)
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
+          gap: '24px'
+        }}>
+          <div style={{
+            border: '1px solid var(--ld-semantic-color-border-subtle)',
+            borderRadius: '8px',
+            width: 'fit-content'
+          }}>
+            <DatePickerCalendar
+              mode="single"
+              value={date}
+              onSelect={setDate}
+              showWeekNumbers
+              weekStartsOn={6}
+            />
+          </div>
+        </div>
+        {date && (
+          <p style={{
+            marginTop: '16px',
+            color: 'var(--ld-semantic-color-text-subtle)',
+            fontSize: '14px'
+          }}>
+            Selected: {date.toLocaleDateString('en-US', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
           </p>
         )}
+      </section>
+
+      <section>
+        <h3 style={{
+          fontSize: '20px',
+          fontWeight: '700',
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          color: 'var(--ld-semantic-color-text)',
+          marginBottom: '24px'
+        }}>
+          Multiple Variants Comparison
+        </h3>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '24px'
+        }}>
+          {/* Standard */}
+          <div>
+            <h4 style={{
+              fontSize: '16px',
+              fontWeight: '700',
+              color: 'var(--ld-semantic-color-text)',
+              marginBottom: '12px'
+            }}>
+              Standard (Sun-Sat)
+            </h4>
+            <div style={{
+              border: '1px solid var(--ld-semantic-color-border-subtle)',
+              borderRadius: '8px',
+              width: 'fit-content'
+            }}>
+              <DatePickerCalendar
+                mode="single"
+                value={date}
+                onSelect={setDate}
+                weekStartsOn={0}
+              />
+            </div>
+          </div>
+
+          {/* With Week Numbers */}
+          <div>
+            <h4 style={{
+              fontSize: '16px',
+              fontWeight: '700',
+              color: 'var(--ld-semantic-color-text)',
+              marginBottom: '12px'
+            }}>
+              With Week Numbers (Sat-Fri)
+            </h4>
+            <div style={{
+              border: '1px solid var(--ld-semantic-color-border-subtle)',
+              borderRadius: '8px',
+              width: 'fit-content'
+            }}>
+              <DatePickerCalendar
+                mode="single"
+                value={date}
+                onSelect={setDate}
+                showWeekNumbers
+                weekStartsOn={6}
+              />
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );
