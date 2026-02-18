@@ -1,14 +1,10 @@
 import React from 'react';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { useTheme } from '@/contexts/ThemeContext';
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-} from '@/components/ui/table';
+import { DataTable, DataTableHead, DataTableBody } from '@/components/ui/DataTable';
+import { DataTableRow } from '@/components/ui/DataTableRow';
+import { DataTableHeader } from '@/components/ui/DataTableHeader';
+import { DataTableCell } from '@/components/ui/DataTableCellText';
 import { Button } from '@/components/ui/Button';
 import * as Icons from '@/components/icons';
 
@@ -490,19 +486,19 @@ export default function ThemesPage() {
             maxHeight: '800px',
             overflowY: 'auto'
           }}>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[120px] sticky top-0 bg-muted z-10">Color</TableHead>
-                  <TableHead className="sticky top-0 bg-muted z-10">Token Name</TableHead>
-                  <TableHead className="w-[280px] sticky top-0 bg-muted z-10">Computed Value</TableHead>
-                  <TableHead className="w-[120px] text-right sticky top-0 bg-muted z-10">Action</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+            <DataTable>
+              <DataTableHead>
+                <DataTableRow>
+                  <DataTableHeader width="120px">Color</DataTableHeader>
+                  <DataTableHeader>Token Name</DataTableHeader>
+                  <DataTableHeader width="280px">Computed Value</DataTableHeader>
+                  <DataTableHeader alignment="right" width="120px">Action</DataTableHeader>
+                </DataTableRow>
+              </DataTableHead>
+              <DataTableBody>
                 {colorTokens.map((token) => (
-                  <TableRow key={token.name}>
-                    <TableCell>
+                  <DataTableRow key={token.name}>
+                    <DataTableCell>
                       <div style={{
                         width: '80px',
                         height: '40px',
@@ -510,14 +506,14 @@ export default function ThemesPage() {
                         borderRadius: '4px',
                         border: '1px solid var(--ld-semantic-color-border-subtle)',
                       }} />
-                    </TableCell>
-                    <TableCell className="font-mono text-xs">
+                    </DataTableCell>
+                    <DataTableCell UNSAFE_className="font-mono text-xs">
                       {token.name}
-                    </TableCell>
-                    <TableCell className="font-mono text-xs text-muted-foreground">
+                    </DataTableCell>
+                    <DataTableCell UNSAFE_className="font-mono text-xs text-muted-foreground">
                       {token.computed || token.value}
-                    </TableCell>
-                    <TableCell className="text-right">
+                    </DataTableCell>
+                    <DataTableCell variant="numeric">
                       <Button
                         variant={copiedToken === token.name ? "primary" : "secondary"}
                         size="small"
@@ -525,11 +521,11 @@ export default function ThemesPage() {
                       >
                         {copiedToken === token.name ? '✓ Copied' : 'Copy'}
                       </Button>
-                    </TableCell>
-                  </TableRow>
+                    </DataTableCell>
+                  </DataTableRow>
                 ))}
-              </TableBody>
-            </Table>
+              </DataTableBody>
+            </DataTable>
           </div>
         )}
       </div>
@@ -588,26 +584,26 @@ export default function ThemesPage() {
             maxHeight: '800px',
             overflowY: 'auto'
           }}>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[150px] sticky top-0 bg-muted z-10">Size</TableHead>
-                  <TableHead className="sticky top-0 bg-muted z-10">Token Name</TableHead>
-                  <TableHead className="w-[180px] sticky top-0 bg-muted z-10">Value</TableHead>
-                  <TableHead className="w-[120px] sticky top-0 bg-muted z-10">Pixels</TableHead>
-                  <TableHead className="w-[120px] text-right sticky top-0 bg-muted z-10">Action</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+            <DataTable>
+              <DataTableHead>
+                <DataTableRow>
+                  <DataTableHeader width="150px">Size</DataTableHeader>
+                  <DataTableHeader>Token Name</DataTableHeader>
+                  <DataTableHeader width="180px">Value</DataTableHeader>
+                  <DataTableHeader width="120px">Pixels</DataTableHeader>
+                  <DataTableHeader alignment="right" width="120px">Action</DataTableHeader>
+                </DataTableRow>
+              </DataTableHead>
+              <DataTableBody>
                 {spaceTokens.map((token) => {
                   const remValue = token.computed || token.value;
-                  const pixels = remValue.includes('rem') 
-                    ? `${parseFloat(remValue) * 16}px` 
+                  const pixels = remValue.includes('rem')
+                    ? `${parseFloat(remValue) * 16}px`
                     : remValue;
-                  
+
                   return (
-                    <TableRow key={token.name}>
-                      <TableCell>
+                    <DataTableRow key={token.name}>
+                      <DataTableCell>
                         <div style={{
                           width: token.computed || token.value,
                           height: '24px',
@@ -615,17 +611,17 @@ export default function ThemesPage() {
                           borderRadius: '2px',
                           minWidth: '4px'
                         }} />
-                      </TableCell>
-                      <TableCell className="font-mono text-xs">
+                      </DataTableCell>
+                      <DataTableCell UNSAFE_className="font-mono text-xs">
                         {token.name}
-                      </TableCell>
-                      <TableCell className="font-mono text-xs text-muted-foreground">
+                      </DataTableCell>
+                      <DataTableCell UNSAFE_className="font-mono text-xs text-muted-foreground">
                         {remValue}
-                      </TableCell>
-                      <TableCell className="font-mono text-xs text-muted-foreground font-semibold">
+                      </DataTableCell>
+                      <DataTableCell UNSAFE_className="font-mono text-xs text-muted-foreground font-semibold">
                         {pixels}
-                      </TableCell>
-                      <TableCell className="text-right">
+                      </DataTableCell>
+                      <DataTableCell variant="numeric">
                         <Button
                           variant={copiedToken === token.name ? "primary" : "secondary"}
                           size="small"
@@ -633,12 +629,12 @@ export default function ThemesPage() {
                         >
                           {copiedToken === token.name ? '✓' : 'Copy'}
                         </Button>
-                      </TableCell>
-                    </TableRow>
+                      </DataTableCell>
+                    </DataTableRow>
                   );
                 })}
-              </TableBody>
-            </Table>
+              </DataTableBody>
+            </DataTable>
           </div>
         )}
       </div>
@@ -697,25 +693,25 @@ export default function ThemesPage() {
             maxHeight: '800px',
             overflowY: 'auto'
           }}>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[180px] sticky top-0 bg-muted z-10">Preview</TableHead>
-                  <TableHead className="sticky top-0 bg-muted z-10">Token Name</TableHead>
-                  <TableHead className="w-[300px] sticky top-0 bg-muted z-10">Value</TableHead>
-                  <TableHead className="w-[120px] text-right sticky top-0 bg-muted z-10">Action</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+            <DataTable>
+              <DataTableHead>
+                <DataTableRow>
+                  <DataTableHeader width="180px">Preview</DataTableHeader>
+                  <DataTableHeader>Token Name</DataTableHeader>
+                  <DataTableHeader width="300px">Value</DataTableHeader>
+                  <DataTableHeader alignment="right" width="120px">Action</DataTableHeader>
+                </DataTableRow>
+              </DataTableHead>
+              <DataTableBody>
                 {textTokens.map((token) => {
                   const isFontFamily = token.name.includes('family');
                   const isFontSize = token.name.includes('size');
                   const isFontWeight = token.name.includes('weight');
                   const isLineHeight = token.name.includes('line-height') || token.name.includes('lineheight');
-                  
+
                   return (
-                    <TableRow key={token.name}>
-                      <TableCell>
+                    <DataTableRow key={token.name}>
+                      <DataTableCell>
                         {isFontFamily && (
                           <div style={{
                             fontSize: '14px',
@@ -754,16 +750,16 @@ export default function ThemesPage() {
                             Line<br/>Height
                           </div>
                         )}
-                      </TableCell>
-                      <TableCell className="font-mono text-xs">
+                      </DataTableCell>
+                      <DataTableCell UNSAFE_className="font-mono text-xs">
                         {token.name}
-                      </TableCell>
-                      <TableCell className="font-mono text-xs text-muted-foreground">
+                      </DataTableCell>
+                      <DataTableCell UNSAFE_className="font-mono text-xs text-muted-foreground">
                         <div style={{ wordBreak: 'break-all' }}>
                           {token.computed || token.value}
                         </div>
-                      </TableCell>
-                      <TableCell className="text-right">
+                      </DataTableCell>
+                      <DataTableCell variant="numeric">
                         <Button
                           variant={copiedToken === token.name ? "primary" : "secondary"}
                           size="small"
@@ -771,12 +767,12 @@ export default function ThemesPage() {
                         >
                           {copiedToken === token.name ? '✓' : 'Copy'}
                         </Button>
-                      </TableCell>
-                    </TableRow>
+                      </DataTableCell>
+                    </DataTableRow>
                   );
                 })}
-              </TableBody>
-            </Table>
+              </DataTableBody>
+            </DataTable>
           </div>
         )}
       </div>
@@ -835,26 +831,26 @@ export default function ThemesPage() {
             maxHeight: '800px',
             overflowY: 'auto'
           }}>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="sticky top-0 bg-muted z-10">Token Name</TableHead>
-                  <TableHead className="w-[350px] sticky top-0 bg-muted z-10">Value</TableHead>
-                  <TableHead className="w-[120px] text-right sticky top-0 bg-muted z-10">Action</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+            <DataTable>
+              <DataTableHead>
+                <DataTableRow>
+                  <DataTableHeader>Token Name</DataTableHeader>
+                  <DataTableHeader width="350px">Value</DataTableHeader>
+                  <DataTableHeader alignment="right" width="120px">Action</DataTableHeader>
+                </DataTableRow>
+              </DataTableHead>
+              <DataTableBody>
                 {otherTokens.map((token) => (
-                  <TableRow key={token.name}>
-                    <TableCell className="font-mono text-xs">
+                  <DataTableRow key={token.name}>
+                    <DataTableCell UNSAFE_className="font-mono text-xs">
                       {token.name}
-                    </TableCell>
-                    <TableCell className="font-mono text-xs text-muted-foreground">
+                    </DataTableCell>
+                    <DataTableCell UNSAFE_className="font-mono text-xs text-muted-foreground">
                       <div style={{ wordBreak: 'break-all' }}>
                         {token.computed || token.value}
                       </div>
-                    </TableCell>
-                    <TableCell className="text-right">
+                    </DataTableCell>
+                    <DataTableCell variant="numeric">
                       <Button
                         variant={copiedToken === token.name ? "primary" : "secondary"}
                         size="small"
@@ -862,11 +858,11 @@ export default function ThemesPage() {
                       >
                         {copiedToken === token.name ? '✓' : 'Copy'}
                       </Button>
-                    </TableCell>
-                  </TableRow>
+                    </DataTableCell>
+                  </DataTableRow>
                 ))}
-              </TableBody>
-            </Table>
+              </DataTableBody>
+            </DataTable>
           </div>
         )}
       </div>

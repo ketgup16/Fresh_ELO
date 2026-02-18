@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+import { DataTable, DataTableHead, DataTableBody } from '@/components/ui/DataTable';
+import { DataTableRow } from '@/components/ui/DataTableRow';
+import { DataTableHeader } from '@/components/ui/DataTableHeader';
+import { DataTableCell } from '@/components/ui/DataTableCellText';
 
 const invoices = [
   { invoice: 'INV001', paymentStatus: 'Paid', totalAmount: '$250.00', paymentMethod: 'Credit Card' },
@@ -27,32 +22,31 @@ export default function TableExample() {
           fontSize: '20px',
           fontWeight: '700',
           fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary)',
+          color: 'var(--ld-semantic-color-text, #2E2F32)',
           marginBottom: '16px'
         }}>
           Data Table
         </h3>
-        <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Invoice</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
+        <DataTable>
+          <DataTableHead>
+            <DataTableRow>
+              <DataTableHeader>Invoice</DataTableHeader>
+              <DataTableHeader>Status</DataTableHeader>
+              <DataTableHeader>Method</DataTableHeader>
+              <DataTableHeader alignment="right">Amount</DataTableHeader>
+            </DataTableRow>
+          </DataTableHead>
+          <DataTableBody>
             {invoices.map((invoice) => (
-              <TableRow key={invoice.invoice}>
-                <TableCell className="font-medium">{invoice.invoice}</TableCell>
-                <TableCell>{invoice.paymentStatus}</TableCell>
-                <TableCell>{invoice.paymentMethod}</TableCell>
-                <TableCell className="text-right">{invoice.totalAmount}</TableCell>
-              </TableRow>
+              <DataTableRow key={invoice.invoice}>
+                <DataTableCell>{invoice.invoice}</DataTableCell>
+                <DataTableCell>{invoice.paymentStatus}</DataTableCell>
+                <DataTableCell>{invoice.paymentMethod}</DataTableCell>
+                <DataTableCell variant="numeric">{invoice.totalAmount}</DataTableCell>
+              </DataTableRow>
             ))}
-          </TableBody>
-        </Table>
+          </DataTableBody>
+        </DataTable>
       </section>
     </div>
   );

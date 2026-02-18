@@ -1,0 +1,21 @@
+/* DataTableCell - Basic data cell */
+.cell {
+  padding: var(--ld-primitive-scale-space-200, 16px);
+  vertical-align: middle;
+  font-family: var(--ld-semantic-font-body-medium-family, var(--ld-semantic-font-family-sans));
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-medium-line-height, 1.5);
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+/* Alphanumeric variant — left-aligned */
+.cellAlphanumeric {
+  text-align: left;
+}
+
+/* Numeric variant — right-aligned, monospace font */
+.cellNumeric {
+  text-align: right;
+  font-family: var(--ld-semantic-font-body-mono-medium-family, 'Everyday Sans Mono TT', monospace);
+}
