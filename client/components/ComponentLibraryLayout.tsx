@@ -293,11 +293,6 @@ const navigationSections = [
         path: '/component-library/form'
       },
       {
-        id: 'hover-card',
-        name: 'Hover Card',
-        path: '/component-library/hover-card'
-      },
-      {
         id: 'input',
         name: 'Input',
         path: '/component-library/input'

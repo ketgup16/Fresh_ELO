@@ -121,7 +121,6 @@ const componentSections: ComponentEntry[] = [
   { title: 'Drawer', description: 'Slide-out drawer that overlays from any edge of the screen', path: '/component-library/drawer', icon: 'PanelLeft', section: 'shadcn' },
   { title: 'Dropdown Menu', description: 'Dropdown menu with submenus, checkbox, and radio items', path: '/component-library/dropdown-menu', icon: 'ChevronDown', section: 'shadcn' },
   { title: 'Form', description: 'Form components with validation, error handling, and accessible labels', path: '/component-library/form', icon: 'Edit', section: 'shadcn' },
-  { title: 'Hover Card', description: 'Card that appears on hover to preview content', path: '/component-library/hover-card', icon: 'Box', section: 'shadcn' },
   { title: 'Input', description: 'Basic text input field with various states', path: '/component-library/input', icon: 'Edit', section: 'shadcn' },
   { title: 'Label', description: 'Accessible label component for form controls', path: '/component-library/label', icon: 'Tag', section: 'shadcn' },
   { title: 'Menubar', description: 'Horizontal menu bar with dropdown menus and keyboard navigation', path: '/component-library/menubar', icon: 'Menu', section: 'shadcn' },
