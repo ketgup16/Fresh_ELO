@@ -278,9 +278,9 @@ const navigationSections = [
         path: '/component-library/dialog'
       },
       {
-        id: 'drawer',
-        name: 'Drawer',
-        path: '/component-library/drawer'
+        id: 'bottom-sheet',
+        name: 'Bottom Sheet',
+        path: '/component-library/bottom-sheet'
       },
       {
         id: 'dropdown-menu',

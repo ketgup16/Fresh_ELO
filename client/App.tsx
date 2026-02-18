@@ -58,6 +58,7 @@ import GuidelinesPage from "./pages/component-library/Guidelines";
 const AccordionPage = React.lazy(() => import("./pages/component-library/Accordion"));
 const AlertDialogPage = React.lazy(() => import("./pages/component-library/AlertDialog"));
 const AvatarPage = React.lazy(() => import("./pages/component-library/Avatar"));
+const BottomSheetPage = React.lazy(() => import("./pages/component-library/BottomSheet"));
 const CalendarPage = React.lazy(() => import("./pages/component-library/Calendar"));
 const DateRangePickerPage = React.lazy(() => import("./pages/component-library/DateRangePicker"));
 const CarouselPage = React.lazy(() => import("./pages/component-library/Carousel"));
@@ -153,6 +154,7 @@ const App = () => (
                 <Route path="accordion" element={<React.Suspense fallback={LazyFallback}><AccordionPage /></React.Suspense>} />
                 <Route path="alert-dialog" element={<React.Suspense fallback={LazyFallback}><AlertDialogPage /></React.Suspense>} />
                 <Route path="avatar" element={<React.Suspense fallback={LazyFallback}><AvatarPage /></React.Suspense>} />
+                <Route path="bottom-sheet" element={<React.Suspense fallback={LazyFallback}><BottomSheetPage /></React.Suspense>} />
                 <Route path="calendar" element={<React.Suspense fallback={LazyFallback}><CalendarPage /></React.Suspense>} />
                 <Route path="carousel" element={<React.Suspense fallback={LazyFallback}><CarouselPage /></React.Suspense>} />
                 <Route path="chart" element={<React.Suspense fallback={LazyFallback}><ChartPage /></React.Suspense>} />

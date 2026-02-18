@@ -118,7 +118,7 @@ const componentSections: ComponentEntry[] = [
   { title: 'Command', description: 'Command palette for fast keyboard-driven search and navigation', path: '/component-library/command', icon: 'Search', section: 'shadcn' },
   { title: 'Context Menu', description: 'Right-click context menu with submenus and keyboard navigation', path: '/component-library/context-menu', icon: 'Menu', section: 'shadcn' },
   { title: 'Dialog', description: 'Modal overlay dialog for focused interactions', path: '/component-library/dialog', icon: 'Box', section: 'shadcn' },
-  { title: 'Drawer', description: 'Slide-out drawer that overlays from any edge of the screen', path: '/component-library/drawer', icon: 'PanelLeft', section: 'shadcn' },
+  { title: 'Bottom Sheet', description: 'Mobile-friendly modal that slides up from the bottom with LD 3.5 tokens', path: '/component-library/bottom-sheet', icon: 'PanelLeft', section: 'shadcn' },
   { title: 'Dropdown Menu', description: 'Dropdown menu with submenus, checkbox, and radio items', path: '/component-library/dropdown-menu', icon: 'ChevronDown', section: 'shadcn' },
   { title: 'Form', description: 'Form components with validation, error handling, and accessible labels', path: '/component-library/form', icon: 'Edit', section: 'shadcn' },
   { title: 'Input', description: 'Basic text input field with various states', path: '/component-library/input', icon: 'Edit', section: 'shadcn' },

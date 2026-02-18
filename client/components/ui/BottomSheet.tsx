@@ -1,269 +1,188 @@
 import * as React from 'react';
-import { createPortal } from 'react-dom';
+import { Drawer as DrawerPrimitive } from 'vaul';
 import styles from './BottomSheet.module.css';
 import { IconButton } from './IconButton';
-import { Divider } from './Divider';
-import { Scrim } from './Scrim';
-
-export type BottomSheetCloseEvent =
-  | React.MouseEvent<HTMLButtonElement, MouseEvent>
-  | KeyboardEvent
-  | MouseEvent
-  | PointerEvent
-  | TouchEvent;
-
-export interface BottomSheetCloseButtonProps
-  extends Omit<
-    React.ComponentPropsWithoutRef<'button'>,
-    'className' | 'style' | 'aria-label' | 'children' | 'disabled' | 'type'
-  > {
-  'aria-label'?: string;
-}
+import { X } from '@/components/icons';
 
 export interface BottomSheetProps {
   /**
-   * Main content of the bottom sheet
-   */
-  children: React.ReactNode;
-
-  /**
-   * Title displayed in the header
-   */
-  title?: React.ReactNode;
-
-  /**
-   * Optional action buttons (typically ButtonGroup)
-   */
-  actions?: React.ReactNode;
-
-  /**
-   * Controls visibility of the bottom sheet
-   * @default false
+   * Whether the bottom sheet is open.
    */
   isOpen?: boolean;
-
+  
   /**
-   * Callback when sheet should close
+   * Alternative prop name for controlling open state (matches Vaul API).
    */
-  onClose: (event: BottomSheetCloseEvent) => void;
-
+  open?: boolean;
+  
   /**
-   * Callback after close transition completes
+   * Callback fired when the bottom sheet should close.
    */
-  onClosed?: () => void;
-
+  onClose?: () => void;
+  
   /**
-   * Accessibility label when title is not provided
+   * Alternative callback name (matches Vaul API).
    */
-  a11yLabel?: string;
-
+  onOpenChange?: (open: boolean) => void;
+  
   /**
-   * Props for the close button
+   * The title displayed in the header.
    */
-  closeButtonProps?: BottomSheetCloseButtonProps;
-
+  title: string;
+  
   /**
-   * Custom z-index for the overlay
+   * The main content of the bottom sheet.
    */
-  zIndex?: number;
-
+  children: React.ReactNode;
+  
   /**
-   * Escape hatch for additional CSS classes
+   * Optional action buttons displayed in the footer.
+   * Pass a ButtonGroup component with your action buttons.
    */
-  UNSAFE_className?: string;
+  actions?: React.ReactNode;
+  
+  /**
+   * Whether to show the actions section.
+   * @default true if actions are provided
+   */
+  showActions?: boolean;
+  
+  /**
+   * Height adjustment mode.
+   * - "fixed": Content area fills available space (80vh)
+   * - "content": Content area adjusts to content size
+   * @default "content"
+   */
+  adjustHeight?: 'fixed' | 'content';
+  
+  /**
+   * Whether background should scale when sheet is open.
+   * @default true
+   */
+  shouldScaleBackground?: boolean;
 }
 
 /**
  * BottomSheet component for Living Design 3.5
- *
- * A mobile-friendly modal component that slides up from the bottom of the screen
- * to display supplementary content without leaving the current context.
- *
+ * 
+ * A mobile-friendly modal component that slides up from the bottom of the screen.
+ * Replaces the previous Drawer component with LD 3.5 design tokens and styling.
+ * 
+ * Uses Vaul library for accessibility and gesture support.
+ * 
  * @example
  * ```tsx
  * <BottomSheet
  *   isOpen={isOpen}
  *   onClose={() => setIsOpen(false)}
- *   title="Settings"
+ *   title="Confirm Action"
  *   actions={
  *     <ButtonGroup>
- *       <Button variant="secondary" onClick={() => setIsOpen(false)}>
- *         Cancel
- *       </Button>
- *       <Button variant="primary">Save</Button>
+ *       <Button variant="secondary" onClick={() => setIsOpen(false)}>Cancel</Button>
+ *       <Button variant="primary" onClick={handleSubmit}>Submit</Button>
  *     </ButtonGroup>
  *   }
  * >
- *   <p>Sheet content here</p>
+ *   <p>Are you sure you want to continue?</p>
  * </BottomSheet>
  * ```
  */
 export const BottomSheet = React.forwardRef<HTMLDivElement, BottomSheetProps>(
-  (props, ref) => {
-    const {
-      children,
-      title,
-      actions,
-      isOpen = false,
+  (
+    {
+      isOpen,
+      open,
       onClose,
-      onClosed,
-      a11yLabel,
-      closeButtonProps,
-      zIndex = 1000,
-      UNSAFE_className,
-    } = props;
-
-    const [isVisible, setIsVisible] = React.useState(false);
-    const [isClosing, setIsClosing] = React.useState(false);
-    const [isMounted, setIsMounted] = React.useState(false);
-    const sheetRef = React.useRef<HTMLDivElement>(null);
-    const titleId = React.useId();
-
-    // Sync visibility state with isOpen prop
-    React.useEffect(() => {
-      if (isOpen) {
-        setIsMounted(true);
-        // Use RAF to ensure DOM is ready before animating
-        requestAnimationFrame(() => {
-          setIsVisible(true);
-        });
-      } else if (isVisible) {
-        setIsClosing(true);
-        setIsVisible(false);
-        // Wait for animation to complete before unmounting
-        const timer = setTimeout(() => {
-          setIsMounted(false);
-          setIsClosing(false);
-          onClosed?.();
-        }, 300); // Match CSS transition duration
-        return () => clearTimeout(timer);
+      onOpenChange,
+      title,
+      children,
+      actions,
+      showActions,
+      adjustHeight = 'content',
+      shouldScaleBackground = true,
+    },
+    ref
+  ) => {
+    // Support both isOpen/onClose and open/onOpenChange APIs
+    const isControlled = open !== undefined || isOpen !== undefined;
+    const isSheetOpen = open ?? isOpen ?? false;
+    
+    const handleOpenChange = React.useCallback((newOpen: boolean) => {
+      if (!newOpen) {
+        onClose?.();
       }
-    }, [isOpen, isVisible, onClosed]);
-
-    // Lock body scroll when open
-    React.useEffect(() => {
-      if (isOpen) {
-        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-        document.body.style.overflow = 'hidden';
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
-        
-        return () => {
-          document.body.style.overflow = '';
-          document.body.style.paddingRight = '';
-        };
-      }
-    }, [isOpen]);
-
-    // Handle ESC key
-    React.useEffect(() => {
-      if (!isOpen) return;
-
-      const handleKeyDown = (event: KeyboardEvent) => {
-        if (event.key === 'Escape') {
-          onClose(event);
-        }
-      };
-
-      document.addEventListener('keydown', handleKeyDown);
-      return () => document.removeEventListener('keydown', handleKeyDown);
-    }, [isOpen, onClose]);
-
-    // Handle backdrop click
-    const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
-      if (event.target === event.currentTarget) {
-        onClose(event as any);
-      }
-    };
-
-    // Handle close button click
-    const handleCloseClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      onClose(event);
-    };
-
-    if (!isMounted) {
-      return null;
-    }
-
-    const content = (
-      <div
-        className={styles.bottomSheetOverlay}
-        style={{ zIndex }}
-        onClick={handleBackdropClick}
+      onOpenChange?.(newOpen);
+    }, [onClose, onOpenChange]);
+    
+    // Determine if actions should be shown
+    const shouldShowActions = showActions ?? (actions != null);
+    
+    const contentClassName = [
+      styles.content,
+      adjustHeight === 'fixed' ? styles['content--fixedHeight'] : styles['content--contentHeight'],
+    ].filter(Boolean).join(' ');
+    
+    const contentContainerClassName = [
+      styles.contentContainer,
+      adjustHeight === 'fixed' ? styles['contentContainer--fixed'] : styles['contentContainer--content'],
+    ].filter(Boolean).join(' ');
+    
+    return (
+      <DrawerPrimitive.Root
+        open={isSheetOpen}
+        onOpenChange={handleOpenChange}
+        shouldScaleBackground={shouldScaleBackground}
       >
-        <Scrim isOpen={isVisible} isClosing={isClosing} />
-        <div
-          ref={ref || sheetRef}
-          className={[
-            styles.bottomSheet,
-            isVisible && !isClosing ? styles['bottomSheet--open'] : '',
-            isClosing ? styles['bottomSheet--closing'] : '',
-            UNSAFE_className,
-          ]
-            .filter(Boolean)
-            .join(' ')}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby={title ? titleId : undefined}
-          aria-label={!title ? a11yLabel : undefined}
-        >
-          {/* Header */}
-          <div className={styles.bottomSheet__header}>
-            <div className={styles.bottomSheet__titleContainer}>
-              <div className={styles.bottomSheet__titleFrame}>
-                {title && (
-                  <h2 id={titleId} className={styles.bottomSheet__title}>
+        <DrawerPrimitive.Portal>
+          <DrawerPrimitive.Overlay className={styles.overlay} />
+          <DrawerPrimitive.Content
+            ref={ref}
+            className={contentClassName}
+          >
+            {/* Header */}
+            <div className={styles.header}>
+              <div className={styles.titleContainer}>
+                <div className={styles.titleFrame}>
+                  <DrawerPrimitive.Title className={styles.title}>
                     {title}
-                  </h2>
-                )}
-              </div>
-              <IconButton
-                aria-label={closeButtonProps?.['aria-label'] || 'Close dialog'}
-                variant="ghost"
-                size="medium"
-                shape="rounded"
-                onClick={handleCloseClick}
-                {...closeButtonProps}
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M11.7803 13.0787L18 19.2983L19.0607 18.2377L12.841 12.018L19.0607 5.79833L18 4.73767L11.7803 10.9573L5.56066 4.73767L4.5 5.79833L10.7197 12.018L4.5 18.2377L5.56066 19.2983L11.7803 13.0787Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </IconButton>
-            </div>
-          </div>
-
-          {/* Content */}
-          <div className={styles.bottomSheet__content}>{children}</div>
-
-          {/* Actions */}
-          {actions && (
-            <div className={styles.bottomSheet__actions}>
-              <Divider decorative />
-              <div className={styles.bottomSheet__actionsContainer}>
-                {actions}
+                  </DrawerPrimitive.Title>
+                </div>
+                <DrawerPrimitive.Close asChild>
+                  <IconButton
+                    variant="ghost"
+                    shape="rounded"
+                    aria-label="Close"
+                  >
+                    <X />
+                  </IconButton>
+                </DrawerPrimitive.Close>
               </div>
             </div>
-          )}
-        </div>
-      </div>
+            
+            {/* Content Container */}
+            <div className={contentContainerClassName}>
+              {children}
+            </div>
+            
+            {/* Actions */}
+            {shouldShowActions && (
+              <div className={styles.actions}>
+                <div className={styles.divider} />
+                <div className={styles.actionContainer}>
+                  {actions}
+                </div>
+              </div>
+            )}
+          </DrawerPrimitive.Content>
+        </DrawerPrimitive.Portal>
+      </DrawerPrimitive.Root>
     );
-
-    // Portal to body
-    if (typeof document !== 'undefined') {
-      return createPortal(content, document.body);
-    }
-
-    return null;
   }
 );
 
 BottomSheet.displayName = 'BottomSheet';
+
+// Export drawer primitives for advanced use cases
+export const BottomSheetTrigger = DrawerPrimitive.Trigger;
+export const BottomSheetClose = DrawerPrimitive.Close;
+export const BottomSheetPortal = DrawerPrimitive.Portal;
