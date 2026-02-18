@@ -435,7 +435,7 @@ export function ComponentLibraryLayout() {
       <main style={{
         flex: 1,
         overflowY: 'auto',
-        backgroundColor: 'var(--ld-semantic-color-fill-surface-secondary, #F7F7F8)'
+        backgroundColor: '#ffffff'
       }}>
         <Outlet />
       </main>
