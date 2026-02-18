@@ -693,7 +693,7 @@ function TablePreview() {
   return (
     <PreviewFrame>
       <div style={{ width: '100%', fontSize: '11px' }}>
-        <div style={{ display: 'flex', borderBottom: '1px solid var(--ld-semantic-color-separator)', fontWeight: 700, color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
+        <div style={{ display: 'flex', borderBottom: '1px solid var(--ld-semantic-color-separator)', fontWeight: 700, color: 'var(--ld-semantic-color-text, #2E2F32)', background: 'var(--ld-semantic-color-fill-subtle, #f8f8f8)' }}>
           <div style={{ flex: 1, padding: '4px 6px' }}>Name</div>
           <div style={{ width: '50px', padding: '4px 6px', textAlign: 'right' }}>Value</div>
         </div>
