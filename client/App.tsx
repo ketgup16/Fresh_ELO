@@ -70,7 +70,6 @@ const DialogPage = React.lazy(() => import("./pages/component-library/Dialog"));
 const DrawerPage = React.lazy(() => import("./pages/component-library/Drawer"));
 const DropdownMenuPage = React.lazy(() => import("./pages/component-library/DropdownMenu"));
 const FormPage = React.lazy(() => import("./pages/component-library/Form"));
-const InputPage = React.lazy(() => import("./pages/component-library/Input"));
 const LabelPage = React.lazy(() => import("./pages/component-library/Label"));
 const MenubarPage = React.lazy(() => import("./pages/component-library/Menubar"));
 const NavigationMenuPage = React.lazy(() => import("./pages/component-library/NavigationMenu"));
@@ -165,7 +164,6 @@ const App = () => (
                 <Route path="drawer" element={<React.Suspense fallback={LazyFallback}><DrawerPage /></React.Suspense>} />
                 <Route path="dropdown-menu" element={<React.Suspense fallback={LazyFallback}><DropdownMenuPage /></React.Suspense>} />
                 <Route path="form" element={<React.Suspense fallback={LazyFallback}><FormPage /></React.Suspense>} />
-                <Route path="input" element={<React.Suspense fallback={LazyFallback}><InputPage /></React.Suspense>} />
                 <Route path="label" element={<React.Suspense fallback={LazyFallback}><LabelPage /></React.Suspense>} />
                 <Route path="menubar" element={<React.Suspense fallback={LazyFallback}><MenubarPage /></React.Suspense>} />
                 <Route path="navigation-menu" element={<React.Suspense fallback={LazyFallback}><NavigationMenuPage /></React.Suspense>} />
