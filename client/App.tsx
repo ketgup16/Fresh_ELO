@@ -1,7 +1,6 @@
 import "./global.css";
 
 import { createRoot } from "react-dom/client";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SnackbarContainer } from "@/components/ui/SnackbarContainer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -78,19 +77,14 @@ const MenubarPage = React.lazy(() => import("./pages/component-library/Menubar")
 const NavigationMenuPage = React.lazy(() => import("./pages/component-library/NavigationMenu"));
 const PaginationPage = React.lazy(() => import("./pages/component-library/Pagination"));
 const PopoverPage = React.lazy(() => import("./pages/component-library/Popover"));
-const ProgressPage = React.lazy(() => import("./pages/component-library/Progress"));
 const ProgressIndicatorPage = React.lazy(() => import("./pages/component-library/ProgressIndicator"));
 const ProgressTrackerPage = React.lazy(() => import("./pages/component-library/ProgressTracker"));
-const RadioGroupPage = React.lazy(() => import("./pages/component-library/RadioGroup"));
 const ScrollAreaPage = React.lazy(() => import("./pages/component-library/ScrollArea"));
-const SeparatorPage = React.lazy(() => import("./pages/component-library/Separator"));
-const SheetPage = React.lazy(() => import("./pages/component-library/Sheet"));
 const SkeletonPage = React.lazy(() => import("./pages/component-library/Skeleton"));
 const SliderPage = React.lazy(() => import("./pages/component-library/Slider"));
 const SnackbarsPage = React.lazy(() => import("./pages/component-library/Snackbars"));
 const SpinnersPage = React.lazy(() => import("./pages/component-library/Spinners"));
 const SpotIconsPage = React.lazy(() => import("./pages/component-library/SpotIcons"));
-const SwitchPage = React.lazy(() => import("./pages/component-library/Switch"));
 const SwitchesPage = React.lazy(() => import("./pages/component-library/Switches"));
 const TablePage = React.lazy(() => import("./pages/component-library/Table"));
 const TabsPage = React.lazy(() => import("./pages/component-library/Tabs"));
@@ -98,7 +92,6 @@ const TagsPage = React.lazy(() => import("./pages/component-library/Tags"));
 import TextAreaPage from "./pages/component-library/TextArea";
 import TextFieldsPage from "./pages/component-library/TextFields";
 const ThemesPage = React.lazy(() => import("./pages/component-library/Themes"));
-const ToastPage = React.lazy(() => import("./pages/component-library/Toast"));
 const TogglePage = React.lazy(() => import("./pages/component-library/Toggle"));
 const TooltipPage = React.lazy(() => import("./pages/component-library/Tooltip"));
 
@@ -111,7 +104,6 @@ const App = () => (
   <ThemeProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Sonner />
         <SnackbarContainer />
         <MartyProvider>
           <BrowserRouter>
@@ -181,24 +173,18 @@ const App = () => (
                 <Route path="navigation-menu" element={<React.Suspense fallback={LazyFallback}><NavigationMenuPage /></React.Suspense>} />
                 <Route path="pagination" element={<React.Suspense fallback={LazyFallback}><PaginationPage /></React.Suspense>} />
                 <Route path="popover" element={<React.Suspense fallback={LazyFallback}><PopoverPage /></React.Suspense>} />
-                <Route path="progress" element={<React.Suspense fallback={LazyFallback}><ProgressPage /></React.Suspense>} />
                 <Route path="progress-indicator" element={<React.Suspense fallback={LazyFallback}><ProgressIndicatorPage /></React.Suspense>} />
                 <Route path="progress-tracker" element={<React.Suspense fallback={LazyFallback}><ProgressTrackerPage /></React.Suspense>} />
-                <Route path="radio-group" element={<React.Suspense fallback={LazyFallback}><RadioGroupPage /></React.Suspense>} />
                 <Route path="scroll-area" element={<React.Suspense fallback={LazyFallback}><ScrollAreaPage /></React.Suspense>} />
-                <Route path="separator" element={<React.Suspense fallback={LazyFallback}><SeparatorPage /></React.Suspense>} />
-                <Route path="sheet" element={<React.Suspense fallback={LazyFallback}><SheetPage /></React.Suspense>} />
                 <Route path="skeleton" element={<React.Suspense fallback={LazyFallback}><SkeletonPage /></React.Suspense>} />
                 <Route path="slider" element={<React.Suspense fallback={LazyFallback}><SliderPage /></React.Suspense>} />
                 <Route path="snackbars" element={<React.Suspense fallback={LazyFallback}><SnackbarsPage /></React.Suspense>} />
                 <Route path="spinners" element={<React.Suspense fallback={LazyFallback}><SpinnersPage /></React.Suspense>} />
                 <Route path="spot-icons" element={<React.Suspense fallback={LazyFallback}><SpotIconsPage /></React.Suspense>} />
-                <Route path="switch" element={<React.Suspense fallback={LazyFallback}><SwitchPage /></React.Suspense>} />
                 <Route path="switches" element={<React.Suspense fallback={LazyFallback}><SwitchesPage /></React.Suspense>} />
                 <Route path="table" element={<React.Suspense fallback={LazyFallback}><TablePage /></React.Suspense>} />
                 <Route path="tabs" element={<React.Suspense fallback={LazyFallback}><TabsPage /></React.Suspense>} />
                 <Route path="tags" element={<React.Suspense fallback={LazyFallback}><TagsPage /></React.Suspense>} />
-                <Route path="toast" element={<React.Suspense fallback={LazyFallback}><ToastPage /></React.Suspense>} />
                 <Route path="toggle" element={<React.Suspense fallback={LazyFallback}><TogglePage /></React.Suspense>} />
                 <Route path="tooltip" element={<React.Suspense fallback={LazyFallback}><TooltipPage /></React.Suspense>} />
               </Route>

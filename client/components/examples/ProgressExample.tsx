@@ -1,5 +1,5 @@
 import React from 'react';
-import { Progress } from '@/components/ui/progress';
+import { ProgressIndicator } from '@/components/ui/ProgressIndicator';
 import { Button } from '@/components/ui/Button';
 
 export default function ProgressExample() {
@@ -23,7 +23,7 @@ export default function ProgressExample() {
           Progress Bar
         </h3>
         <div style={{ maxWidth: '600px' }}>
-          <Progress value={progress} />
+          <ProgressIndicator value={progress} showValue />
           <p style={{ marginTop: '12px', fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
             Progress: {progress}%
           </p>
@@ -41,7 +41,7 @@ export default function ProgressExample() {
           Interactive Progress
         </h3>
         <div style={{ maxWidth: '600px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <Progress value={progress} />
+          <ProgressIndicator value={progress} showValue />
           <div style={{ display: 'flex', gap: '8px' }}>
             <Button variant="secondary" size="small" onClick={() => setProgress(Math.max(0, progress - 10))}>
               -10%

@@ -323,29 +323,9 @@ const navigationSections = [
         path: '/component-library/pagination'
       },
       {
-        id: 'progress',
-        name: 'Progress',
-        path: '/component-library/progress'
-      },
-      {
-        id: 'radio-group',
-        name: 'Radio Group',
-        path: '/component-library/radio-group'
-      },
-      {
         id: 'scroll-area',
         name: 'Scroll Area',
         path: '/component-library/scroll-area'
-      },
-      {
-        id: 'separator',
-        name: 'Separator',
-        path: '/component-library/separator'
-      },
-      {
-        id: 'sheet',
-        name: 'Sheet',
-        path: '/component-library/sheet'
       },
       {
         id: 'skeleton',
@@ -358,19 +338,9 @@ const navigationSections = [
         path: '/component-library/slider'
       },
       {
-        id: 'switch',
-        name: 'Switch',
-        path: '/component-library/switch'
-      },
-      {
         id: 'table',
         name: 'Table',
         path: '/component-library/table'
-      },
-      {
-        id: 'toast',
-        name: 'Toast',
-        path: '/component-library/toast'
       },
       {
         id: 'toggle',

@@ -6,8 +6,8 @@ import { PanelLeft } from "@/components/icons";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
-import { Separator } from "@/components/ui/separator";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { Divider } from "@/components/ui/Divider";
+import { Panel } from "@/components/ui/Panel";
 import { Skeleton } from "@/components/ui/Skeleton";
 import {
   Tooltip,
@@ -199,21 +199,27 @@ const Sidebar = React.forwardRef<
 
     if (isMobile) {
       return (
-        <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
-          <SheetContent
+        <Panel
+          isOpen={openMobile}
+          onClose={() => setOpenMobile(false)}
+          title=""
+          position={side}
+          size="small"
+          ariaLabel="Mobile sidebar"
+        >
+          <div
             data-sidebar="sidebar"
             data-mobile="true"
-            className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+            className="flex h-full w-full flex-col bg-sidebar text-sidebar-foreground"
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
               } as React.CSSProperties
             }
-            side={side}
           >
-            <div className="flex h-full w-full flex-col">{children}</div>
-          </SheetContent>
-        </Sheet>
+            {children}
+          </div>
+        </Panel>
       );
     }
 
@@ -386,14 +392,14 @@ const SidebarFooter = React.forwardRef<
 SidebarFooter.displayName = "SidebarFooter";
 
 const SidebarSeparator = React.forwardRef<
-  React.ElementRef<typeof Separator>,
-  React.ComponentProps<typeof Separator>
->(({ className, ...props }, ref) => {
+  HTMLHRElement,
+  React.ComponentPropsWithoutRef<typeof Divider>
+>(({ UNSAFE_className, ...props }, ref) => {
   return (
-    <Separator
+    <Divider
       ref={ref}
       data-sidebar="separator"
-      className={cn("mx-2 w-auto bg-sidebar-border", className)}
+      UNSAFE_className={cn("mx-2 w-auto", UNSAFE_className)}
       {...props}
     />
   );

@@ -9,7 +9,7 @@ import { Alert } from "@/components/ui/Alert";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from "@/components/ui/table";
 import { Tabs, TabList, Tab, TabPanel } from "@/components/ui/tabs";
-import { toast } from "sonner";
+import { snackbar } from "@/hooks/use-snackbar";
 
 interface RecommendationsContentProps {
   campaignGoal?: string;
@@ -434,7 +434,7 @@ export function RecommendationsContent({ campaignGoal = "Awareness", onClose }: 
 
   const handleApplySelected = () => {
     setNewlyAppliedIds(prev => new Set([...prev, ...selectedRecommendations]));
-    toast.success('Recommendation applied successfully');
+    snackbar({ message: 'Recommendation applied successfully' });
     setSelectedRecommendations(new Set());
   };
 
@@ -666,7 +666,7 @@ export function RecommendationsContent({ campaignGoal = "Awareness", onClose }: 
                 onClick={() => {
                   if (viewingDetailId) {
                     setNewlyAppliedIds(prev => new Set([...prev, viewingDetailId]));
-                    toast.success('Recommendation applied successfully');
+                    snackbar({ message: 'Recommendation applied successfully' });
                   }
                 }}
               >
