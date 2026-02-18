@@ -868,7 +868,9 @@ export default function DisplayDashboard() {
             <table className="w-full text-sm">
               <thead className="bg-[#F8F8F8]">
                 <tr className="border-t border-b border-[#E3E4E5]">
-                  <th className="px-4 py-3 text-left font-semibold text-[#2E2F32]">Campaign Name</th>
+                  <th className="px-4 py-3 text-left font-semibold text-[#2E2F32]">
+                    {topPerformingTab === 'campaigns' ? 'Campaign Name' : topPerformingTab === 'adgroups' ? 'Ad Group Name' : 'Tactic Name'}
+                  </th>
                   <th className="px-4 py-3 text-left font-semibold text-[#2E2F32]">Spend</th>
                   <th className="px-4 py-3 text-left font-semibold text-[#2E2F32]">ROAS</th>
                   <th className="px-4 py-3 text-left font-semibold text-[#2E2F32]">CTR</th>
@@ -880,19 +882,37 @@ export default function DisplayDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {[1, 2, 3, 4, 5].map((row) => (
-                  <tr key={row} className="border-b border-[#E3E4E5] hover:bg-gray-50">
+                {(topPerformingTab === 'campaigns' ? [
+                  { name: 'FY25_Q4_Holiday_Display_Awareness', spend: '$45,230', roas: '4.8x', ctr: '0.42%', ecpm: '$6.12', impressions: '7,392,105', delivery: '$18,210', inStore: '$12,450', pickup: '$5,760' },
+                  { name: 'Back_to_School_Cross_Device_Aug', spend: '$38,910', roas: '4.2x', ctr: '0.38%', ecpm: '$5.87', impressions: '6,628,450', delivery: '$14,330', inStore: '$10,890', pickup: '$3,440' },
+                  { name: 'Grocery_Essentials_Retargeting', spend: '$29,750', roas: '3.9x', ctr: '0.51%', ecpm: '$4.95', impressions: '6,010,101', delivery: '$11,200', inStore: '$9,780', pickup: '$1,420' },
+                  { name: 'Electronics_Black_Friday_Promo', spend: '$52,400', roas: '3.6x', ctr: '0.33%', ecpm: '$7.45', impressions: '7,033,557', delivery: '$16,890', inStore: '$11,230', pickup: '$5,660' },
+                  { name: 'Home_Improvement_Spring_Push', spend: '$21,880', roas: '3.1x', ctr: '0.29%', ecpm: '$5.22', impressions: '4,191,570', delivery: '$8,450', inStore: '$6,120', pickup: '$2,330' },
+                ] : topPerformingTab === 'adgroups' ? [
+                  { name: 'Holiday_Snacks_18-34_Contextual', spend: '$18,400', roas: '5.2x', ctr: '0.56%', ecpm: '$5.40', impressions: '3,407,407', delivery: '$7,820', inStore: '$5,310', pickup: '$2,510' },
+                  { name: 'Beverages_Parents_Retargeting', spend: '$15,220', roas: '4.9x', ctr: '0.48%', ecpm: '$4.88', impressions: '3,118,852', delivery: '$6,440', inStore: '$4,780', pickup: '$1,660' },
+                  { name: 'Frozen_Foods_Lookalike_Audience', spend: '$12,890', roas: '4.5x', ctr: '0.44%', ecpm: '$5.15', impressions: '2,503,883', delivery: '$5,110', inStore: '$3,890', pickup: '$1,220' },
+                  { name: 'Cleaning_Supplies_InMarket', spend: '$10,340', roas: '4.1x', ctr: '0.39%', ecpm: '$4.62', impressions: '2,238,528', delivery: '$4,230', inStore: '$3,110', pickup: '$1,120' },
+                  { name: 'Baby_Products_New_Parents', spend: '$8,920', roas: '3.7x', ctr: '0.35%', ecpm: '$5.70', impressions: '1,564,912', delivery: '$3,670', inStore: '$2,540', pickup: '$1,130' },
+                ] : [
+                  { name: 'Display_Standard_Desktop_728x90', spend: '$22,100', roas: '5.1x', ctr: '0.61%', ecpm: '$4.30', impressions: '5,139,534', delivery: '$9,450', inStore: '$6,880', pickup: '$2,570' },
+                  { name: 'Display_Native_Mobile_Feed', spend: '$19,870', roas: '4.7x', ctr: '0.53%', ecpm: '$5.10', impressions: '3,894,117', delivery: '$8,120', inStore: '$5,960', pickup: '$2,160' },
+                  { name: 'Video_Pre-Roll_CTV_30s', spend: '$31,400', roas: '4.3x', ctr: '0.22%', ecpm: '$12.80', impressions: '2,453,125', delivery: '$12,780', inStore: '$8,440', pickup: '$4,340' },
+                  { name: 'Display_Interstitial_Mobile_App', spend: '$14,560', roas: '3.8x', ctr: '0.47%', ecpm: '$6.90', impressions: '2,110,144', delivery: '$5,890', inStore: '$4,010', pickup: '$1,880' },
+                  { name: 'Display_Responsive_Cross_Device', spend: '$11,230', roas: '3.4x', ctr: '0.31%', ecpm: '$5.55', impressions: '2,023,423', delivery: '$4,210', inStore: '$2,980', pickup: '$1,230' },
+                ]).map((row) => (
+                  <tr key={row.name} className="border-b border-[#E3E4E5] hover:bg-gray-50">
                     <td className="px-4 py-3">
-                      <Link href="#" className="cursor-pointer">Button label</Link>
+                      <Link href="#" className="cursor-pointer">{row.name}</Link>
                     </td>
-                    <td className="px-4 py-3 text-[#2E2F32]">Data</td>
-                    <td className="px-4 py-3 text-[#2E2F32]">Data</td>
-                    <td className="px-4 py-3 text-[#2E2F32]">Data</td>
-                    <td className="px-4 py-3 text-[#2E2F32]">Data</td>
-                    <td className="px-4 py-3 text-[#2E2F32]">Data</td>
-                    <td className="px-4 py-3 text-[#2E2F32]">Data</td>
-                    <td className="px-4 py-3 text-[#2E2F32]">Data</td>
-                    <td className="px-4 py-3 text-[#2E2F32]">Data</td>
+                    <td className="px-4 py-3 text-[#2E2F32]">{row.spend}</td>
+                    <td className="px-4 py-3 text-[#2E2F32]">{row.roas}</td>
+                    <td className="px-4 py-3 text-[#2E2F32]">{row.ctr}</td>
+                    <td className="px-4 py-3 text-[#2E2F32]">{row.ecpm}</td>
+                    <td className="px-4 py-3 text-[#2E2F32]">{row.impressions}</td>
+                    <td className="px-4 py-3 text-[#2E2F32]">{row.delivery}</td>
+                    <td className="px-4 py-3 text-[#2E2F32]">{row.inStore}</td>
+                    <td className="px-4 py-3 text-[#2E2F32]">{row.pickup}</td>
                   </tr>
                 ))}
               </tbody>
