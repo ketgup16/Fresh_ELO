@@ -1,14 +1,4 @@
 import React from 'react';
-import { Alert } from '@/components/ui/Alert';
-import { Badge } from '@/components/ui/Badge';
-import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
-import { Button } from '@/components/ui/Button';
-import { Checkbox } from '@/components/ui/Checkbox';
-import { Chip } from '@/components/ui/Chip';
-import { FilterChip } from '@/components/ui/FilterChip';
-import { Tag } from '@/components/ui/Tag';
-import { Divider } from '@/components/ui/Divider';
-import { Switch } from '@/components/ui/Switch';
 import { InfoCircle, Star, ChevronDown, ChevronRight, Search, ArrowRight, Check } from '@/components/icons';
 
 /**
@@ -39,8 +29,15 @@ function PreviewFrame({ children }: { children: React.ReactNode }) {
 function AlertsPreview() {
   return (
     <PreviewFrame>
-      <div style={{ width: '100%', transform: 'scale(0.85)', transformOrigin: 'center' }}>
-        <Alert variant="info">This is an informational alert.</Alert>
+      <div style={{
+        width: '100%', display: 'flex', alignItems: 'center', gap: '8px',
+        padding: '8px 12px', borderRadius: '6px',
+        border: '1px solid var(--ld-semantic-color-border-info, #0071DC)',
+        background: 'var(--ld-semantic-color-fill-info-subtle, #E5F0FF)',
+        fontSize: '12px', color: 'var(--ld-semantic-color-text, #2E2F32)',
+      }}>
+        <InfoCircle style={{ width: 14, height: 14, flexShrink: 0, color: 'var(--ld-semantic-color-text-info, #0071DC)' }} />
+        This is an informational alert.
       </div>
     </PreviewFrame>
   );
@@ -50,9 +47,17 @@ function BadgesPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-        <Badge variant="success" value={5} />
-        <Badge variant="info" value={12} />
-        <Badge variant="error" value={3} />
+        {[
+          { bg: '#2A8703', label: '5' },
+          { bg: '#0071DC', label: '12' },
+          { bg: '#C5221F', label: '3' },
+        ].map((b, i) => (
+          <span key={i} style={{
+            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+            minWidth: '22px', height: '22px', borderRadius: '11px', padding: '0 6px',
+            background: b.bg, color: 'white', fontSize: '12px', fontWeight: 700,
+          }}>{b.label}</span>
+        ))}
       </div>
     </PreviewFrame>
   );
@@ -61,12 +66,12 @@ function BadgesPreview() {
 function BreadcrumbsPreview() {
   return (
     <PreviewFrame>
-      <div style={{ transform: 'scale(0.9)', transformOrigin: 'center' }}>
-        <Breadcrumb aria-label="preview">
-          <BreadcrumbItem href="#">Home</BreadcrumbItem>
-          <BreadcrumbItem href="#">Products</BreadcrumbItem>
-          <BreadcrumbItem isCurrent>Current</BreadcrumbItem>
-        </Breadcrumb>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px' }}>
+        <span style={{ color: 'var(--ld-semantic-color-text-brand-bold, #0071DC)', textDecoration: 'underline' }}>Home</span>
+        <span style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>/</span>
+        <span style={{ color: 'var(--ld-semantic-color-text-brand-bold, #0071DC)', textDecoration: 'underline' }}>Products</span>
+        <span style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>/</span>
+        <span style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Current</span>
       </div>
     </PreviewFrame>
   );
@@ -76,8 +81,8 @@ function ButtonsPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-        <Button variant="primary" size="small">Primary</Button>
-        <Button variant="secondary" size="small">Secondary</Button>
+        <span style={{ padding: '6px 16px', borderRadius: '9999px', background: 'var(--ld-semantic-color-action-fill-primary, #0071DC)', color: 'white', fontSize: '14px', fontWeight: 700 }}>Primary</span>
+        <span style={{ padding: '6px 16px', borderRadius: '9999px', border: '1px solid var(--ld-semantic-color-action-border-secondary, #74767C)', color: 'var(--ld-semantic-color-text, #2E2F32)', fontSize: '14px', fontWeight: 700 }}>Secondary</span>
       </div>
     </PreviewFrame>
   );
@@ -103,9 +108,20 @@ function CardsPreview() {
 function CheckboxesPreview() {
   return (
     <PreviewFrame>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <Checkbox checked label="Checked" aria-label="checked" />
-        <Checkbox checked={false} label="Unchecked" aria-label="unchecked" />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        {[{ checked: true, label: 'Checked' }, { checked: false, label: 'Unchecked' }].map((c, i) => (
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{
+              width: '18px', height: '18px', borderRadius: '3px', boxSizing: 'border-box',
+              border: c.checked ? 'none' : '2px solid var(--ld-semantic-color-border-strong, #BABBBE)',
+              background: c.checked ? 'var(--ld-semantic-color-action-fill-primary, #0071DC)' : 'white',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              {c.checked && <Check style={{ width: 12, height: 12, color: 'white' }} />}
+            </div>
+            <span style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>{c.label}</span>
+          </div>
+        ))}
       </div>
     </PreviewFrame>
   );
@@ -115,9 +131,14 @@ function ChipsPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-        <Chip selected size="small">Active</Chip>
-        <Chip size="small">Draft</Chip>
-        <Chip size="small">Archived</Chip>
+        {[{ label: 'Active', selected: true }, { label: 'Draft', selected: false }, { label: 'Archived', selected: false }].map((c, i) => (
+          <span key={i} style={{
+            padding: '4px 12px', borderRadius: '4px', fontSize: '13px', fontWeight: 500,
+            border: c.selected ? '2px solid var(--ld-semantic-color-action-fill-primary, #0071DC)' : '1px solid var(--ld-semantic-color-border-strong, #BABBBE)',
+            background: c.selected ? 'var(--ld-semantic-color-fill-brand-subtle, #E6F1FC)' : 'white',
+            color: 'var(--ld-semantic-color-text, #2E2F32)',
+          }}>{c.label}</span>
+        ))}
       </div>
     </PreviewFrame>
   );
@@ -127,8 +148,8 @@ function FilterChipsPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-        <FilterChip selected>Status</FilterChip>
-        <FilterChip>Type</FilterChip>
+        <span style={{ padding: '4px 14px', borderRadius: '9999px', fontSize: '13px', border: '2px solid var(--ld-semantic-color-action-fill-primary, #0071DC)', background: 'var(--ld-semantic-color-fill-brand-subtle, #E6F1FC)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Status</span>
+        <span style={{ padding: '4px 14px', borderRadius: '9999px', fontSize: '13px', border: '1px solid var(--ld-semantic-color-border-strong, #BABBBE)', background: 'white', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Type</span>
       </div>
     </PreviewFrame>
   );
@@ -138,9 +159,13 @@ function TagsPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-        <Tag variant="tertiary" color="positive">Active</Tag>
-        <Tag variant="tertiary" color="negative">Error</Tag>
-        <Tag variant="tertiary" color="warning">Pending</Tag>
+        {[
+          { label: 'Active', bg: 'var(--ld-semantic-color-fill-positive-subtle, #E6F5E0)', color: 'var(--ld-semantic-color-text-positive, #2A8703)' },
+          { label: 'Error', bg: 'var(--ld-semantic-color-fill-negative-subtle, #FDE8E8)', color: 'var(--ld-semantic-color-text-negative, #C5221F)' },
+          { label: 'Pending', bg: 'var(--ld-semantic-color-fill-warning-subtle, #FFF3E0)', color: 'var(--ld-semantic-color-text-warning, #8C6A0A)' },
+        ].map((t, i) => (
+          <span key={i} style={{ padding: '2px 10px', borderRadius: '4px', fontSize: '12px', fontWeight: 600, background: t.bg, color: t.color }}>{t.label}</span>
+        ))}
       </div>
     </PreviewFrame>
   );
@@ -151,7 +176,7 @@ function DividersPreview() {
     <PreviewFrame>
       <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
         <div style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>Section A</div>
-        <Divider />
+        <hr style={{ width: '100%', border: 'none', borderTop: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)', margin: 0 }} />
         <div style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>Section B</div>
       </div>
     </PreviewFrame>
@@ -162,8 +187,20 @@ function SwitchesPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        <Switch checked label="Enabled" aria-label="on" />
-        <Switch checked={false} label="Disabled" aria-label="off" />
+        {[{ on: true, label: 'Enabled' }, { on: false, label: 'Disabled' }].map((s, i) => (
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{
+              width: '36px', height: '20px', borderRadius: '10px', position: 'relative',
+              background: s.on ? 'var(--ld-semantic-color-action-fill-primary, #0071DC)' : 'var(--ld-semantic-color-border-strong, #BABBBE)',
+            }}>
+              <div style={{
+                width: '16px', height: '16px', borderRadius: '50%', background: 'white',
+                position: 'absolute', top: '2px', left: s.on ? '18px' : '2px',
+              }} />
+            </div>
+            <span style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>{s.label}</span>
+          </div>
+        ))}
       </div>
     </PreviewFrame>
   );
