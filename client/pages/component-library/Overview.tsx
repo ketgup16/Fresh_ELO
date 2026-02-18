@@ -28,6 +28,7 @@ import {
   Tag,
 } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
+import { getComponentPreview } from './ComponentCardPreviews';
 import styles from './Overview.module.css';
 
 type IconComponent = React.ComponentType<{ size?: number; style?: React.CSSProperties }>;
@@ -106,19 +107,21 @@ const componentSections: ComponentEntry[] = [
   { title: 'Tags', description: 'Compact labels for categorization, status, and metadata', path: '/component-library/tags', icon: 'Tag', section: 'ld' },
   { title: 'Text Area', description: 'Multi-line text input with character counting and AI-generated content indicators', path: '/component-library/textarea', icon: 'Note', section: 'ld' },
   { title: 'Text Fields', description: 'Single-line text inputs with labels, error states, helper text, and icons', path: '/component-library/text-fields', icon: 'Edit', section: 'ld' },
+  { title: 'Bottom Sheet', description: 'Mobile-friendly modal that slides up from the bottom with LD 3.5 tokens', path: '/component-library/bottom-sheet', icon: 'PanelLeft', section: 'ld' },
+  { title: 'Collapsible', description: 'Expandable and collapsible content sections', path: '/component-library/collapsible', icon: 'ChevronDown', section: 'ld' },
+  { title: 'Skeleton', description: 'Loading placeholder animations for content', path: '/component-library/skeleton', icon: 'Box', section: 'ld' },
+  { title: 'Table', description: 'Structured data table with header, body, and footer', path: '/component-library/table', icon: 'List', section: 'ld' },
 
-  // ── Shadcn / Radix Components ──
+  // ── Shared Components ──
   { title: 'Accordion', description: 'Vertically stacked collapsible content panels', path: '/component-library/accordion', icon: 'ChevronDown', section: 'shadcn' },
   { title: 'Alert Dialog', description: 'Modal dialog for important confirmations that interrupt user workflow', path: '/component-library/alert-dialog', icon: 'ExclamationCircle', section: 'shadcn' },
   { title: 'Avatar', description: 'User profile image with fallback initials and status indicators', path: '/component-library/avatar', icon: 'Circle', section: 'shadcn' },
   { title: 'Calendar', description: 'Date picker calendar with single and range selection', path: '/component-library/calendar', icon: 'Calendar', section: 'shadcn' },
   { title: 'Carousel', description: 'Horizontal scrolling content carousel with navigation controls', path: '/component-library/carousel', icon: 'ArrowRight', section: 'shadcn' },
   { title: 'Chart', description: 'Data visualization charts with Recharts and LD 3.5 tokens', path: '/component-library/chart', icon: 'BarGraph', section: 'shadcn' },
-  { title: 'Collapsible', description: 'Expandable and collapsible content sections', path: '/component-library/collapsible', icon: 'ChevronDown', section: 'shadcn' },
   { title: 'Command', description: 'Command palette for fast keyboard-driven search and navigation', path: '/component-library/command', icon: 'Search', section: 'shadcn' },
   { title: 'Context Menu', description: 'Right-click context menu with submenus and keyboard navigation', path: '/component-library/context-menu', icon: 'Menu', section: 'shadcn' },
   { title: 'Dialog', description: 'Modal overlay dialog for focused interactions', path: '/component-library/dialog', icon: 'Box', section: 'shadcn' },
-  { title: 'Bottom Sheet', description: 'Mobile-friendly modal that slides up from the bottom with LD 3.5 tokens', path: '/component-library/bottom-sheet', icon: 'PanelLeft', section: 'shadcn' },
   { title: 'Dropdown Menu', description: 'Dropdown menu with submenus, checkbox, and radio items', path: '/component-library/dropdown-menu', icon: 'ChevronDown', section: 'shadcn' },
   { title: 'Form', description: 'Form components with validation, error handling, and accessible labels', path: '/component-library/form', icon: 'Edit', section: 'shadcn' },
   { title: 'Menubar', description: 'Horizontal menu bar with dropdown menus and keyboard navigation', path: '/component-library/menubar', icon: 'Menu', section: 'shadcn' },
@@ -130,61 +133,21 @@ const componentSections: ComponentEntry[] = [
   { title: 'Scroll Area', description: 'Custom scrollable container with styled scrollbars', path: '/component-library/scroll-area', icon: 'List', section: 'shadcn' },
   { title: 'Separator', description: 'Visual divider in horizontal or vertical orientation', path: '/component-library/separator', icon: 'Minus', section: 'shadcn' },
   { title: 'Sheet', description: 'Side sheet overlay for supplemental content', path: '/component-library/sheet', icon: 'PanelLeft', section: 'shadcn' },
-  { title: 'Skeleton', description: 'Loading placeholder animations for content', path: '/component-library/skeleton', icon: 'Box', section: 'shadcn' },
   { title: 'Slider', description: 'Draggable slider for selecting numeric values within a range', path: '/component-library/slider', icon: 'Minus', section: 'shadcn' },
   { title: 'Switch', description: 'Toggle switch built with Radix primitives', path: '/component-library/switch', icon: 'Circle', section: 'shadcn' },
-  { title: 'Table', description: 'Structured data table with header, body, and footer', path: '/component-library/table', icon: 'List', section: 'shadcn' },
   { title: 'Toast', description: 'Brief non-intrusive notifications using Sonner', path: '/component-library/toast', icon: 'Chat', section: 'shadcn' },
   { title: 'Toggle', description: 'Two-state button for toolbar actions and view modes', path: '/component-library/toggle', icon: 'Check', section: 'shadcn' },
 ];
 
 function ComponentCard({ entry }: { entry: ComponentEntry }) {
-  const Icon = ICON_MAP[entry.icon] || Box;
-
   return (
     <Link to={entry.path} className={styles.componentCard}>
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-        <div style={{
-          width: '48px',
-          height: '48px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: entry.section === 'shadcn'
-            ? 'var(--ld-semantic-color-fill-subtle, #F5F5F6)'
-            : 'var(--ld-semantic-color-fill-brand-subtle)',
-          borderRadius: '8px',
-          flexShrink: 0,
-        }}>
-          <Icon
-            size={24}
-            style={{
-              width: '24px',
-              height: '24px',
-              color: entry.section === 'shadcn'
-                ? 'var(--ld-semantic-color-text-subtle, #74767C)'
-                : 'var(--ld-semantic-color-text-brand-bold)',
-            }}
-          />
-        </div>
-        <div style={{ flex: 1 }}>
-          <h3 style={{
-            fontSize: '18px',
-            fontWeight: '600',
-            color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-            marginBottom: '8px',
-          }}>
-            {entry.title}
-          </h3>
-          <p style={{
-            fontSize: '14px',
-            lineHeight: '1.5',
-            color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-            margin: 0,
-          }}>
-            {entry.description}
-          </p>
-        </div>
+      <div className={styles.cardPreview}>
+        {getComponentPreview(entry.title, entry.icon)}
+      </div>
+      <div className={styles.cardBody}>
+        <h3 className={styles.cardTitle}>{entry.title}</h3>
+        <p className={styles.cardDescription}>{entry.description}</p>
       </div>
     </Link>
   );
@@ -312,7 +275,7 @@ export default function ComponentLibraryOverview() {
         </div>
       )}
 
-      {/* Shadcn / Radix Components */}
+      {/* Shared Components */}
       {shadcnComponents.length > 0 && (
         <div>
           <h2 style={{
@@ -323,7 +286,7 @@ export default function ComponentLibraryOverview() {
             color: 'var(--ld-semantic-color-text-secondary, #74767C)',
             marginBottom: '16px',
           }}>
-            Shadcn / Radix Components
+            Shared Components
           </h2>
           <div style={{
             display: 'grid',
