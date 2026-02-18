@@ -70,7 +70,7 @@ export default function Index() {
               Hello World
             </h2>
 
-            <RecommendationsCard />
+            <RecommendationsCards />
 
             <FilterBar />
 
@@ -129,12 +129,22 @@ export default function Index() {
 
 /* ─── Recommendations Card ─── */
 
-function RecommendationsCard() {
+function RecommendationCard({
+  category,
+  heading,
+  body,
+  cta,
+}: {
+  category: string;
+  heading: string;
+  body: string;
+  cta: string;
+}) {
   return (
-    <Card UNSAFE_style={{ marginBottom: "24px" }}>
+    <Card UNSAFE_style={{ flex: "1 1 0" }}>
       <CardContent>
         <Tag color="blue" variant="tertiary" style={{ marginBottom: "12px" }}>
-          Recommendations
+          {category}
         </Tag>
         <h3
           style={{
@@ -145,7 +155,7 @@ function RecommendationsCard() {
             marginBottom: "8px",
           }}
         >
-          Improve your campaign performance
+          {heading}
         </h3>
         <p
           style={{
@@ -155,13 +165,38 @@ function RecommendationsCard() {
             marginBottom: "16px",
           }}
         >
-          Discover opportunities to increase reach, drive engagement, and boost conversions across your campaigns.
+          {body}
         </p>
         <Button variant="secondary" size="small">
-          View Recommendations
+          {cta}
         </Button>
       </CardContent>
     </Card>
+  );
+}
+
+function RecommendationsCards() {
+  return (
+    <div style={{ display: "flex", gap: "16px", marginBottom: "24px" }}>
+      <RecommendationCard
+        category="Category"
+        heading="Heading Text"
+        body="Body Text"
+        cta="Call to Action"
+      />
+      <RecommendationCard
+        category="Category"
+        heading="Heading Text"
+        body="Body Text"
+        cta="Call to Action"
+      />
+      <RecommendationCard
+        category="Category"
+        heading="Heading Text"
+        body="Body Text"
+        cta="Call to Action"
+      />
+    </div>
   );
 }
 
