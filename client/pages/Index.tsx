@@ -133,7 +133,7 @@ function RecommendationsCard() {
   return (
     <Card UNSAFE_style={{ marginBottom: "24px" }}>
       <CardContent>
-        <Tag color="blue" variant="secondary" style={{ marginBottom: "12px" }}>
+        <Tag color="blue" variant="tertiary" style={{ marginBottom: "12px" }}>
           Recommendations
         </Tag>
         <h3
