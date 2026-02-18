@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 import { Link } from '@/components/ui/Link';
 import { Divider } from '@/components/ui/Divider';
+import { Select, SelectItem } from '@/components/ui/Select';
 import {
   Dialog,
   DialogContent,
@@ -21,6 +22,8 @@ export default function DisplayDashboard() {
   const [campaignGoal, setCampaignGoal] = useState<string>('Awareness');
   const [viewMoreModalOpen, setViewMoreModalOpen] = useState(false);
   const [modalTab, setModalTab] = useState<'applied' | 'dismissed'>('applied');
+  const [attributionWindow, setAttributionWindow] = useState('14-day');
+  const [dateRange, setDateRange] = useState('oct-2025');
 
   return (
     <div className="flex-1 overflow-y-auto bg-[#F8F8F8]">
@@ -427,19 +430,30 @@ export default function DisplayDashboard() {
         </div>
 
         {/* Filters */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <Button variant="secondary" className="h-10 px-4 border-[#74767C] rounded bg-white gap-2 text-sm text-[#2E2F32] hover:bg-gray-50">
-            14 day attribution
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path fillRule="evenodd" clipRule="evenodd" d="M3.14645 5.39645C3.32669 5.2162 3.6103 5.20234 3.80645 5.35485L3.85355 5.39645L8 9.5425L12.1464 5.39645C12.3267 5.2162 12.6103 5.20234 12.8064 5.35485L12.8536 5.39645C13.0338 5.57669 13.0477 5.8603 12.8951 6.05645L12.8536 6.10355L8.35355 10.6036C8.17331 10.7838 7.8897 10.7977 7.69355 10.6451L7.64645 10.6036L3.14645 6.10355C2.95118 5.90829 2.95118 5.59171 3.14645 5.39645Z" fill="black"/>
-            </svg>
-          </Button>
-          <Button variant="secondary" className="h-10 px-4 border-[#74767C] rounded bg-white gap-2 text-sm text-[#2E2F32] hover:bg-gray-50 min-w-[225px]">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path fillRule="evenodd" clipRule="evenodd" d="M9.5 0C9.74546 0 9.94961 0.176875 9.99194 0.410124L10 0.5V1H13.25C13.6642 1 14 1.33579 14 1.75V11.25C14 11.6642 13.6642 12 13.25 12H0.75C0.335786 12 0 11.6642 0 11.25V1.75C0 1.33579 0.335786 1 0.75 1H4V0.5C4 0.223858 4.22386 0 4.5 0C4.74546 0 4.94961 0.176875 4.99194 0.410124L5 0.5V1H9V0.5C9 0.223858 9.22386 0 9.5 0ZM13 5H1V11H13V5ZM11.5 7V9H9.5V7H11.5ZM4 2H1V4H13V2H10V2.5C10 2.77614 9.77614 3 9.5 3C9.25454 3 9.05039 2.82312 9.00806 2.58988L9 2.5V2H5V2.5C5 2.77614 4.77614 3 4.5 3C4.25454 3 4.05039 2.82312 4.00806 2.58988L4 2.5V2Z" fill="black"/>
-            </svg>
-            Oct 1, 2025 - Oct 31, 2025
-          </Button>
+        <div className="flex items-center gap-3 flex-wrap">
+          <Select
+            label="Attribution window"
+            value={attributionWindow}
+            onValueChange={setAttributionWindow}
+            size="small"
+          >
+            <SelectItem value="1-day">1 day attribution</SelectItem>
+            <SelectItem value="7-day">7 day attribution</SelectItem>
+            <SelectItem value="14-day">14 day attribution</SelectItem>
+            <SelectItem value="28-day">28 day attribution</SelectItem>
+          </Select>
+          <Select
+            label="Date range"
+            value={dateRange}
+            onValueChange={setDateRange}
+            size="small"
+          >
+            <SelectItem value="last-7">Last 7 days</SelectItem>
+            <SelectItem value="last-30">Last 30 days</SelectItem>
+            <SelectItem value="oct-2025">Oct 1, 2025 - Oct 31, 2025</SelectItem>
+            <SelectItem value="sep-2025">Sep 1, 2025 - Sep 30, 2025</SelectItem>
+            <SelectItem value="q4-2025">Q4 2025</SelectItem>
+          </Select>
         </div>
 
         {/* Metrics Ribbon */}
