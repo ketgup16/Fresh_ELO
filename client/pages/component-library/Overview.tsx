@@ -146,6 +146,9 @@ function ComponentCard({ entry }: { entry: ComponentEntry }) {
         {getComponentPreview(entry.title, entry.icon)}
       </div>
       <div className={styles.cardBody}>
+        {entry.section === 'shadcn' && (
+          <span className={styles.sharedBadge}>Shared</span>
+        )}
         <h3 className={styles.cardTitle}>{entry.title}</h3>
         <p className={styles.cardDescription}>{entry.description}</p>
       </div>

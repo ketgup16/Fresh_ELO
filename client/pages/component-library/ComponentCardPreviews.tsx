@@ -1,5 +1,5 @@
 import React from 'react';
-import { InfoCircle, Star, ChevronDown, ChevronRight, Search, ArrowRight, Check } from '@/components/icons';
+import { InfoCircle, Star, ChevronDown, ChevronRight, Search, ArrowRight, Check, Magic } from '@/components/icons';
 
 /**
  * Wrapper that constrains preview content to a fixed area inside each card.
@@ -112,12 +112,16 @@ function CheckboxesPreview() {
         {[{ checked: true, label: 'Checked' }, { checked: false, label: 'Unchecked' }].map((c, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{
-              width: '18px', height: '18px', borderRadius: '3px', boxSizing: 'border-box',
-              border: c.checked ? 'none' : '2px solid var(--ld-semantic-color-border-strong, #BABBBE)',
-              background: c.checked ? 'var(--ld-semantic-color-action-fill-primary, #0071DC)' : 'white',
+              width: '18px', height: '18px', borderRadius: '2px', boxSizing: 'border-box',
+              border: c.checked ? 'none' : '1px solid var(--ld-semantic-color-input-border, #74767C)',
+              background: c.checked ? 'var(--ld-semantic-color-input-fill-activated, #0071DC)' : 'var(--ld-semantic-color-input-fill, #fff)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
-              {c.checked && <Check style={{ width: 12, height: 12, color: 'white' }} />}
+              {c.checked && (
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 6L5 8.5L9.5 3.5" stroke="var(--ld-semantic-color-input-indicator-activated, #fff)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
             </div>
             <span style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>{c.label}</span>
           </div>
@@ -160,11 +164,18 @@ function TagsPreview() {
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
         {[
-          { label: 'Active', bg: 'var(--ld-semantic-color-fill-positive-subtle, #E6F5E0)', color: 'var(--ld-semantic-color-text-positive, #2A8703)' },
-          { label: 'Error', bg: 'var(--ld-semantic-color-fill-negative-subtle, #FDE8E8)', color: 'var(--ld-semantic-color-text-negative, #C5221F)' },
-          { label: 'Pending', bg: 'var(--ld-semantic-color-fill-warning-subtle, #FFF3E0)', color: 'var(--ld-semantic-color-text-warning, #8C6A0A)' },
+          { label: 'Active', bg: 'var(--ld-semantic-color-fill-positive-subtle)', color: 'var(--ld-semantic-color-text-on-fill-positive-subtle, #2A8703)' },
+          { label: 'Brand', bg: 'var(--ld-semantic-color-fill-brand)', color: 'var(--ld-semantic-color-text-on-fill-brand, #fff)' },
+          { label: 'Warning', bg: 'var(--ld-semantic-color-fill-warning-subtle)', color: 'var(--ld-semantic-color-text-on-fill-warning-subtle, #8C6A0A)' },
         ].map((t, i) => (
-          <span key={i} style={{ padding: '2px 10px', borderRadius: '4px', fontSize: '12px', fontWeight: 600, background: t.bg, color: t.color }}>{t.label}</span>
+          <span key={i} style={{
+            padding: '2px 8px', borderRadius: '4px',
+            fontSize: 'var(--ld-semantic-font-caption-size, 12px)',
+            fontWeight: 'var(--ld-semantic-font-caption-weight, 600)' as any,
+            fontFamily: 'var(--ld-semantic-font-caption-family)',
+            background: t.bg, color: t.color,
+            display: 'inline-flex', alignItems: 'center', gap: '4px',
+          }}>{t.label}</span>
         ))}
       </div>
     </PreviewFrame>
@@ -458,11 +469,24 @@ function MagicBoxPreview() {
   return (
     <PreviewFrame>
       <div style={{
-        width: '120px', height: '50px', borderRadius: '8px',
-        background: 'linear-gradient(135deg, #6B4EFF 0%, #0071DC 50%, #00C2A8 100%)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        position: 'relative', width: '140px', height: '50px',
       }}>
-        <span style={{ fontSize: '18px' }}>&#10024;</span>
+        {/* Glow border */}
+        <div style={{
+          position: 'absolute', inset: '-2px', borderRadius: '18px',
+          background: 'linear-gradient(135deg, var(--ld-semantic-color-border-magic-start, #0053E2), var(--ld-semantic-color-border-magic-middle, #3D90EC), var(--ld-semantic-color-border-magic-stop, #79CDF6))',
+          filter: 'blur(1px)', opacity: 0.8,
+        }} />
+        {/* Inner content */}
+        <div style={{
+          position: 'relative', width: '100%', height: '100%', borderRadius: '16px',
+          background: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+          fontSize: '13px', fontWeight: 600, color: 'var(--ld-semantic-color-text, #2E2F32)',
+        }}>
+          <Magic style={{ width: 16, height: 16, color: 'var(--ld-semantic-color-border-magic-start, #0053E2)' }} />
+          AI Content
+        </div>
       </div>
     </PreviewFrame>
   );
@@ -632,13 +656,13 @@ function SpotIconsPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-        {['var(--ld-semantic-color-fill-brand-subtle, #E6F1FC)', 'var(--ld-semantic-color-fill-positive-subtle, #E6F5E0)', 'var(--ld-semantic-color-fill-negative-subtle, #FDE8E8)'].map((bg, i) => (
+        {[Star, Search, InfoCircle].map((Icon, i) => (
           <div key={i} style={{
-            width: '36px', height: '36px', borderRadius: '50%',
-            background: bg,
+            width: '40px', height: '40px', borderRadius: '9999px',
+            background: 'var(--ld-semantic-color-fill-brand-subtle)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            <Star style={{ width: 18, height: 18, color: 'var(--ld-semantic-color-text, #2E2F32)' }} />
+            <Icon style={{ width: 20, height: 20, color: 'var(--ld-semantic-color-text-onfill-brand-subtle, #0053E2)' }} />
           </div>
         ))}
       </div>
@@ -679,6 +703,57 @@ function TablePreview() {
             <div style={{ width: '50px', padding: '4px 6px', textAlign: 'right' }}>{v}</div>
           </div>
         ))}
+      </div>
+    </PreviewFrame>
+  );
+}
+
+function BottomSheetPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{
+        width: '140px', height: '70px', position: 'relative',
+        background: 'rgba(0,0,0,0.15)', borderRadius: '6px', overflow: 'hidden',
+      }}>
+        {/* Sheet sliding up */}
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, height: '45px',
+          background: 'var(--ld-semantic-color-surface-overlay, #fff)',
+          borderTopLeftRadius: '12px', borderTopRightRadius: '12px',
+          boxShadow: 'var(--ld-semantic-elevation-300)',
+          padding: '6px 10px',
+        }}>
+          <div style={{ width: '24px', height: '3px', borderRadius: '2px', background: 'var(--ld-semantic-color-border-strong, #BABBBE)', margin: '0 auto 6px' }} />
+          <div style={{ fontSize: '10px', fontWeight: 700, color: 'var(--ld-semantic-color-text, #2E2F32)', textAlign: 'center' }}>Sheet Title</div>
+        </div>
+      </div>
+    </PreviewFrame>
+  );
+}
+
+function SkeletonPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ width: '160px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <div style={{
+          width: '100%', height: '12px', borderRadius: '4px',
+          background: 'var(--ld-semantic-color-loading-subtle, #E2E2E3)',
+        }} />
+        <div style={{
+          width: '75%', height: '12px', borderRadius: '4px',
+          background: 'var(--ld-semantic-color-loading-subtle, #E2E2E3)',
+          opacity: 0.7,
+        }} />
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{
+            width: '32px', height: '32px', borderRadius: '9999px',
+            background: 'var(--ld-semantic-color-loading-subtle, #E2E2E3)',
+          }} />
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px', justifyContent: 'center' }}>
+            <div style={{ width: '100%', height: '8px', borderRadius: '4px', background: 'var(--ld-semantic-color-loading-subtle, #E2E2E3)' }} />
+            <div style={{ width: '60%', height: '8px', borderRadius: '4px', background: 'var(--ld-semantic-color-loading-subtle, #E2E2E3)', opacity: 0.7 }} />
+          </div>
+        </div>
       </div>
     </PreviewFrame>
   );
@@ -748,6 +823,8 @@ const PREVIEW_MAP: Record<string, React.FC> = {
   'Text Fields': TextFieldsPreview,
   'Table': TablePreview,
   'Callouts': CalloutsPreview,
+  'Bottom Sheet': BottomSheetPreview,
+  'Skeleton': SkeletonPreview,
 };
 
 export function getComponentPreview(title: string, icon: string): React.ReactNode {
