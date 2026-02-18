@@ -14,7 +14,7 @@ export default function GuidelinesPage() {
     }}>
       <PageHeader section="Getting Started" title="Guidelines" description="Design principles, best practices, and usage guidelines for Living Design 3.5 components." />
 
-      {/* Why This Matters to Walmart Connect */}
+      {/* Why This Matters */}
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle)',
         padding: '32px',
@@ -28,7 +28,7 @@ export default function GuidelinesPage() {
           color: 'var(--ld-semantic-color-text)',
           marginBottom: '12px'
         }}>
-          Why a Component Library Matters for Walmart Connect
+          Living Design 3.5 Portable Kit
         </h2>
         <p style={{
           fontSize: '15px',
@@ -36,10 +36,9 @@ export default function GuidelinesPage() {
           color: 'var(--ld-semantic-color-text-subtle)',
           marginBottom: '16px'
         }}>
-          Walmart Connect serves advertisers, sellers, and internal teams across a complex ecosystem of campaign management,
-          reporting, and media tools. Without a shared component library, every team would build their own buttons, forms,
-          and layouts from scratch -- resulting in visual inconsistencies, duplicated effort, accessibility gaps, and a
-          fragmented user experience that erodes advertiser trust.
+          Every Builder.io project benefits from a shared foundation. Without a portable component library, teams
+          build their own buttons, forms, and layouts from scratch -- resulting in visual inconsistencies, duplicated
+          effort, accessibility gaps, and a fragmented user experience across products.
         </p>
         <p style={{
           fontSize: '15px',
@@ -47,10 +46,11 @@ export default function GuidelinesPage() {
           color: 'var(--ld-semantic-color-text-subtle)',
           marginBottom: '0'
         }}>
-          Our Living Design 3.5 component library is the single source of truth. It enforces Walmart brand standards,
-          bakes in WCAG 2.1 AA accessibility, and uses semantic design tokens so that theming, dark mode, and future
-          rebrands propagate automatically -- no per-component rework required. When every surface in Walmart Connect
-          draws from the same library, we ship faster, stay consistent, and give advertisers a polished, professional platform.
+          The Living Design 3.5 Portable Kit is a self-contained component library designed to travel with any
+          Builder.io project. It bakes in WCAG 2.1 AA accessibility, uses semantic design tokens for theming and
+          dark mode, and provides a consistent visual language that propagates automatically -- no per-component
+          rework required. Drop it into any project, and every surface draws from the same library: you ship faster,
+          stay consistent, and deliver a polished, professional product.
         </p>
       </div>
 
