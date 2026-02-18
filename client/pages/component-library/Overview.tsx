@@ -300,6 +300,14 @@ export default function ComponentLibraryOverview() {
           <p style={{ fontSize: '14px' }}>Try a different search term</p>
         </div>
       )}
+
+      {/* Bottom Back to Home */}
+      <div style={{ marginTop: '48px', display: 'flex', justifyContent: 'center' }}>
+        <Button variant="secondary" size="small" onClick={() => navigate('/')}>
+          <ArrowLeft style={{ width: 16, height: 16, marginRight: 8 }} />
+          Back to Home
+        </Button>
+      </div>
     </div>
   );
 }
