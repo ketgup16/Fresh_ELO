@@ -498,7 +498,7 @@ export default function DataTableExample() {
               {/* ── Child rows (expanded) ── */}
               {expandedIds.has(campaign.id) && campaign.children?.map((child) => (
                 <DataTableRow key={child.id}>
-                  <DataTableCell>{/* checkbox placeholder */}</DataTableCell>
+                  <DataTableCell>{'\u00A0'}</DataTableCell>
                   <DataTableCell>
                     <div style={{ paddingLeft: '40px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <span style={{

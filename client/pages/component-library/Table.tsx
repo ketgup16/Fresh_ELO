@@ -12,8 +12,8 @@ export default function TablePage() {
           Living Design 3.5 Data Table with sortable headers, row selection, bulk actions, status tags, inline editing, and action buttons. Uses LD semantic tokens exclusively.
         </p>
       </div>
-      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)', overflow: 'hidden', border: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)' }}>
+        <React.Suspense fallback={<div style={{ padding: '32px' }}>Loading...</div>}>
           <DataTableExample />
         </React.Suspense>
       </div>
