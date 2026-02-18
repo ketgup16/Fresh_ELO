@@ -36,11 +36,6 @@ export function MediaSolutionsDropdown({
     setOpen(false);
   };
 
-  const getDisplayName = (solution: MediaSolution) => {
-    if (solution === 'Display Advertising') return 'Display';
-    return solution;
-  };
-
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -60,7 +55,7 @@ export function MediaSolutionsDropdown({
             e.currentTarget.style.backgroundColor = 'transparent';
           }}
         >
-          <span>{getDisplayName(currentSolution)}</span>
+          <span>Navigate site</span>
           {open ? (
             <ChevronUp style={{ width: 16, height: 16 }} />
           ) : (

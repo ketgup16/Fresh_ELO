@@ -37,7 +37,7 @@ export default function Index() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100vh", overflow: "hidden" }}>
-      <MastHead companyName="Coca Cola" />
+      <MastHead />
 
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         <DisplayAdvertisingSidebar

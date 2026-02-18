@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
+import { MastHead } from '@/components/ui/MastHead';
 
 // Component library navigation structure with groups
 const navigationSections = [
@@ -346,7 +347,9 @@ export function ComponentLibraryLayout() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <MastHead />
+      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
       {/* Sidebar */}
       <aside
         style={{
@@ -440,6 +443,7 @@ export function ComponentLibraryLayout() {
         <Outlet />
       </main>
 
+      </div>
     </div>
   );
 }

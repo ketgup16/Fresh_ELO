@@ -1,4 +1,4 @@
-import { Bell, HelpCircle, User, ChevronDown, AppSwitcher } from '@/components/icons';
+import { Bell, HelpCircle, User, AppSwitcher } from '@/components/icons';
 import Lottie from 'lottie-react';
 import martyGlassesAnimation from '../../marty-glasses.json';
 import { MediaSolutionsDropdown, MediaSolution } from './MediaSolutionsDropdown';
@@ -7,14 +7,12 @@ import { Divider } from './Divider';
 import styles from './MastHead.module.css';
 
 interface MastHeadProps {
-  companyName?: string;
   appName?: string;
   currentSolution?: MediaSolution;
   onSolutionChange?: (solution: MediaSolution) => void;
 }
 
 export function MastHead({
-  companyName = 'Coca Cola',
   appName = 'PX Template',
   currentSolution = 'Display Advertising',
   onSolutionChange
@@ -34,15 +32,10 @@ export function MastHead({
       </div>
 
       <div className={styles.right}>
-        <MediaSolutionsDropdown 
+        <MediaSolutionsDropdown
           currentSolution={currentSolution}
           onSolutionChange={onSolutionChange}
         />
-        <Divider orientation="vertical" UNSAFE_className={styles.divider} />
-        <div className={styles.companyName}>
-          <span>{companyName}</span>
-          <ChevronDown style={{ width: 16, height: 16 }} />
-        </div>
         <Divider orientation="vertical" UNSAFE_className={styles.divider} />
         <div className={styles.actions}>
           <button className={styles.iconButton} aria-label="Notifications">
