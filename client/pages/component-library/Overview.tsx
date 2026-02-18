@@ -121,7 +121,6 @@ const componentSections: ComponentEntry[] = [
   { title: 'Bottom Sheet', description: 'Mobile-friendly modal that slides up from the bottom with LD 3.5 tokens', path: '/component-library/bottom-sheet', icon: 'PanelLeft', section: 'shadcn' },
   { title: 'Dropdown Menu', description: 'Dropdown menu with submenus, checkbox, and radio items', path: '/component-library/dropdown-menu', icon: 'ChevronDown', section: 'shadcn' },
   { title: 'Form', description: 'Form components with validation, error handling, and accessible labels', path: '/component-library/form', icon: 'Edit', section: 'shadcn' },
-  { title: 'Label', description: 'Accessible label component for form controls', path: '/component-library/label', icon: 'Tag', section: 'shadcn' },
   { title: 'Menubar', description: 'Horizontal menu bar with dropdown menus and keyboard navigation', path: '/component-library/menubar', icon: 'Menu', section: 'shadcn' },
   { title: 'Navigation Menu', description: 'Top-level navigation with multi-column dropdown panels', path: '/component-library/navigation-menu', icon: 'List', section: 'shadcn' },
   { title: 'Pagination', description: 'Navigation controls for paging through large data sets', path: '/component-library/pagination', icon: 'ArrowRight', section: 'shadcn' },

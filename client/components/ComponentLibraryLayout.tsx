@@ -293,11 +293,6 @@ const navigationSections = [
         path: '/component-library/form'
       },
       {
-        id: 'label',
-        name: 'Label',
-        path: '/component-library/label'
-      },
-      {
         id: 'menubar',
         name: 'Menubar',
         path: '/component-library/menubar'
