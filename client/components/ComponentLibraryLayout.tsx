@@ -230,7 +230,7 @@ const navigationSections = [
     ]
   },
   {
-    title: 'Shadcn/Radix Components',
+    title: 'Shared Components',
     items: [
       {
         id: 'accordion',
