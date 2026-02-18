@@ -25,6 +25,62 @@ This document outlines best practices for using Living Design 3.5 semantic token
 
 ---
 
+### 2. Use Separator Token for Default Borders and Dividers
+
+**CRITICAL RULE**: All default/structural borders — card dividers, list separators, table row borders, panel dividers, tab underlines — MUST use the `--ld-semantic-color-separator` token. Do NOT use `--ld-semantic-color-border-subtle` or any other border token for these purposes.
+
+`--ld-semantic-color-separator` maps to `var(--ld-primitive-color-gray-20)` — a light, unobtrusive divider color consistent with the LD Card system (see `CardHeader.module.css` and `CardActions` which use this token internally).
+
+**When to use `--ld-semantic-color-separator`:**
+- Card internal dividers (between header/content/actions)
+- List item separators
+- Table row borders
+- Tab underlines
+- Panel/drawer dividers
+- Metric dividers
+- Any structural/decorative line separating content sections
+
+**When NOT to use it (use specific border tokens instead):**
+- Interactive element borders (inputs, selects) → `--ld-semantic-color-border-strong`
+- Semantic borders (info, error, warning) → `--ld-semantic-color-border-info`, `--ld-semantic-color-border-negative`, etc.
+- Active/selected state borders → `--ld-semantic-color-border-activated`
+- Focus outlines → `--ld-semantic-color-action-focus-outline`
+
+**✅ CORRECT:**
+```css
+/* Card divider */
+border-bottom: 1px solid var(--ld-semantic-color-separator);
+
+/* List separator */
+border-bottom: 1px solid var(--ld-semantic-color-separator);
+
+/* Vertical divider */
+background: var(--ld-semantic-color-separator);
+```
+
+```tsx
+// Inline style separator
+<hr style={{ borderTop: '1px solid var(--ld-semantic-color-separator)' }} />
+
+// Vertical divider
+<div style={{ width: '1px', height: '32px', background: 'var(--ld-semantic-color-separator)' }} />
+```
+
+**❌ WRONG:**
+```css
+/* Too dark for a default separator */
+border-bottom: 1px solid var(--ld-semantic-color-border-subtle);
+border-bottom: 1px solid var(--ld-semantic-color-border);
+
+/* Hard-coded values */
+border-bottom: 1px solid #E2E2E3;
+border-bottom: 1px solid #BABBBE;
+```
+
+**Reference**: The LD Card system already uses `--ld-semantic-color-separator` in `CardHeader.module.css` and `CardActions` — all custom separators should match this pattern.
+
+---
+
 ## 🛠️ Utility Classes
 
 Use the predefined utility classes in `client/global.css`:

@@ -92,11 +92,11 @@ function CardsPreview() {
   return (
     <PreviewFrame>
       <div style={{
-        border: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)',
         borderRadius: '8px',
         padding: '12px 16px',
         width: '160px',
         background: 'white',
+        boxShadow: 'var(--ld-semantic-elevation-100)',
       }}>
         <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ld-semantic-color-text, #2E2F32)', marginBottom: '4px' }}>Card Title</div>
         <div style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>Card content area</div>
@@ -176,7 +176,7 @@ function DividersPreview() {
     <PreviewFrame>
       <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
         <div style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>Section A</div>
-        <hr style={{ width: '100%', border: 'none', borderTop: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)', margin: 0 }} />
+        <hr style={{ width: '100%', border: 'none', borderTop: '1px solid var(--ld-semantic-color-separator)', margin: 0 }} />
         <div style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>Section B</div>
       </div>
     </PreviewFrame>
@@ -244,7 +244,7 @@ function IconButtonsPreview() {
           <div key={i} style={{
             width: '36px', height: '36px', borderRadius: '50%',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            border: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)',
+            border: '1px solid var(--ld-semantic-color-border-strong, #BABBBE)',
           }}>
             <Icon style={{ width: 18, height: 18, color: 'var(--ld-semantic-color-text, #2E2F32)' }} />
           </div>
@@ -338,7 +338,7 @@ function FormGroupsPreview() {
   return (
     <PreviewFrame>
       <div style={{
-        border: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)',
+        border: '1px solid var(--ld-semantic-color-border-strong, #BABBBE)',
         borderRadius: '4px', padding: '10px 12px', width: '160px',
       }}>
         <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--ld-semantic-color-text, #2E2F32)', marginBottom: '6px' }}>Group Label</div>
@@ -412,8 +412,8 @@ function DatePickersPreview() {
   return (
     <PreviewFrame>
       <div style={{
-        border: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)',
         borderRadius: '6px', padding: '8px', background: 'white', width: '160px',
+        boxShadow: 'var(--ld-semantic-elevation-100)',
       }}>
         <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--ld-semantic-color-text, #2E2F32)', textAlign: 'center', marginBottom: '6px' }}>February 2026</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '2px' }}>
@@ -443,7 +443,7 @@ function ListsPreview() {
         {['List item 1', 'List item 2', 'List item 3'].map((t, i) => (
           <div key={i} style={{
             display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 0',
-            borderBottom: i < 2 ? '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)' : 'none',
+            borderBottom: i < 2 ? '1px solid var(--ld-semantic-color-separator)' : 'none',
           }}>
             <ChevronRight style={{ width: 12, height: 12, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
             <span style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>{t}</span>
@@ -472,9 +472,8 @@ function MenuPreview() {
   return (
     <PreviewFrame>
       <div style={{
-        border: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)',
         borderRadius: '6px', padding: '4px', background: 'white', width: '140px',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+        boxShadow: 'var(--ld-semantic-elevation-200)',
       }}>
         {['Edit', 'Duplicate', 'Delete'].map((t, i) => (
           <div key={i} style={{
@@ -498,7 +497,7 @@ function MetricsPreview() {
           <div style={{ fontSize: '20px', fontWeight: 700, color: 'var(--ld-semantic-color-text, #2E2F32)' }}>1.2M</div>
           <div style={{ fontSize: '11px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>Impressions</div>
         </div>
-        <div style={{ width: '1px', height: '32px', background: 'var(--ld-semantic-color-border-subtle, #E2E2E3)' }} />
+        <div style={{ width: '1px', height: '32px', background: 'var(--ld-semantic-color-separator)' }} />
         <div>
           <div style={{ fontSize: '20px', fontWeight: 700, color: 'var(--ld-semantic-color-text-positive, #2A8703)' }}>+12%</div>
           <div style={{ fontSize: '11px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>CTR</div>
@@ -512,9 +511,8 @@ function ModalsPreview() {
   return (
     <PreviewFrame>
       <div style={{
-        border: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)',
         borderRadius: '8px', padding: '10px 14px', background: 'white', width: '160px',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+        boxShadow: 'var(--ld-semantic-elevation-300)',
       }}>
         <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--ld-semantic-color-text, #2E2F32)', marginBottom: '4px' }}>Confirm</div>
         <div style={{ fontSize: '11px', color: 'var(--ld-semantic-color-text-subtle, #74767C)', marginBottom: '8px' }}>Are you sure?</div>
@@ -546,9 +544,9 @@ function NudgesPreview() {
 function PanelsPreview() {
   return (
     <PreviewFrame>
-      <div style={{ display: 'flex', width: '180px', height: '64px', border: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)', borderRadius: '6px', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', width: '180px', height: '64px', borderRadius: '6px', overflow: 'hidden', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
         <div style={{ flex: 1, background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)', padding: '6px', fontSize: '10px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>Main</div>
-        <div style={{ width: '70px', borderLeft: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)', background: 'white', padding: '6px', fontSize: '10px', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Panel</div>
+        <div style={{ width: '70px', borderLeft: '1px solid var(--ld-semantic-color-separator)', background: 'white', padding: '6px', fontSize: '10px', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Panel</div>
       </div>
     </PreviewFrame>
   );
@@ -651,7 +649,7 @@ function SpotIconsPreview() {
 function TabsPreview() {
   return (
     <PreviewFrame>
-      <div style={{ display: 'flex', borderBottom: '2px solid var(--ld-semantic-color-border-subtle, #E2E2E3)' }}>
+      <div style={{ display: 'flex', borderBottom: '2px solid var(--ld-semantic-color-separator)' }}>
         {['Tab 1', 'Tab 2', 'Tab 3'].map((t, i) => (
           <div key={i} style={{
             padding: '6px 12px', fontSize: '12px', fontWeight: i === 0 ? 700 : 400,
@@ -676,7 +674,7 @@ function TablePreview() {
           <div style={{ width: '50px', padding: '4px 6px', textAlign: 'right' }}>Value</div>
         </div>
         {[['Item A', '$12'], ['Item B', '$34']].map(([n, v], i) => (
-          <div key={i} style={{ display: 'flex', borderBottom: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
+          <div key={i} style={{ display: 'flex', borderBottom: '1px solid var(--ld-semantic-color-separator)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
             <div style={{ flex: 1, padding: '4px 6px' }}>{n}</div>
             <div style={{ width: '50px', padding: '4px 6px', textAlign: 'right' }}>{v}</div>
           </div>

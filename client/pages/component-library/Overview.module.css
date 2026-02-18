@@ -18,7 +18,7 @@
 }
 
 .cardPreview {
-  border-bottom: 1px solid var(--ld-semantic-color-border-subtle, #E2E2E3);
+  border-bottom: 1px solid var(--ld-semantic-color-separator);
   background: var(--ld-semantic-color-fill-subtle, #FAFAFA);
 }
 
