@@ -36,21 +36,21 @@ export default function DisplayAdvertisingSidebar({
   const sidebarExpanded = sidebarLocked || sidebarHovered;
 
   const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', Icon: Home },
+    { id: 'dashboard', label: 'Home', Icon: Home },
     {
       id: 'campaigns',
-      label: 'Campaigns',
+      label: 'Notifications',
       Icon: Megaphone,
       submenuItems: [
-        { id: 'campaigns-active', label: 'Active' },
-        { id: 'campaigns-draft', label: 'Draft' },
-        { id: 'campaigns-archived', label: 'Archived' },
+        { id: 'campaigns-sub1', label: 'Sub page' },
+        { id: 'campaigns-sub2', label: 'Sub page' },
+        { id: 'campaigns-sub3', label: 'Sub page' },
       ],
     },
-    { id: 'reports', label: 'Reports', Icon: BarGraph },
+    { id: 'reports', label: 'Charts', Icon: BarGraph },
     { id: 'tools', label: 'Tools', Icon: Toolbox },
-    { id: 'video-manager', label: 'Video manager', Icon: Image },
-    { id: 'bulk-operations', label: 'Bulk operations', Icon: Upload },
+    { id: 'video-manager', label: 'Media', Icon: Image },
+    { id: 'bulk-operations', label: 'Uploads', Icon: Upload },
   ];
 
   useEffect(() => {
