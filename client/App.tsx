@@ -91,7 +91,6 @@ import TextAreaPage from "./pages/component-library/TextArea";
 import TextFieldsPage from "./pages/component-library/TextFields";
 const ThemesPage = React.lazy(() => import("./pages/component-library/Themes"));
 const TogglePage = React.lazy(() => import("./pages/component-library/Toggle"));
-const TooltipPage = React.lazy(() => import("./pages/component-library/Tooltip"));
 
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
@@ -182,7 +181,6 @@ const App = () => (
                 <Route path="tabs" element={<React.Suspense fallback={LazyFallback}><TabsPage /></React.Suspense>} />
                 <Route path="tags" element={<React.Suspense fallback={LazyFallback}><TagsPage /></React.Suspense>} />
                 <Route path="toggle" element={<React.Suspense fallback={LazyFallback}><TogglePage /></React.Suspense>} />
-                <Route path="tooltip" element={<React.Suspense fallback={LazyFallback}><TooltipPage /></React.Suspense>} />
               </Route>
 
               <Route path="/" element={<Index />} />

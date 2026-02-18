@@ -137,7 +137,6 @@ const componentSections: ComponentEntry[] = [
   { title: 'Table', description: 'Structured data table with header, body, and footer', path: '/component-library/table', icon: 'List', section: 'shadcn' },
   { title: 'Toast', description: 'Brief non-intrusive notifications using Sonner', path: '/component-library/toast', icon: 'Chat', section: 'shadcn' },
   { title: 'Toggle', description: 'Two-state button for toolbar actions and view modes', path: '/component-library/toggle', icon: 'Check', section: 'shadcn' },
-  { title: 'Tooltip', description: 'Popup label on hover or focus with brief helper text', path: '/component-library/tooltip', icon: 'InfoCircle', section: 'shadcn' },
 ];
 
 function ComponentCard({ entry }: { entry: ComponentEntry }) {

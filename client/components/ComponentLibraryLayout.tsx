@@ -337,11 +337,6 @@ const navigationSections = [
         name: 'Toggle',
         path: '/component-library/toggle'
       },
-      {
-        id: 'tooltip',
-        name: 'Tooltip',
-        path: '/component-library/tooltip'
-      },
     ]
   }
 ];
