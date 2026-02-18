@@ -98,7 +98,7 @@ export default function DisplayAdvertisingSidebar({
   return (
     <aside
       style={{
-        borderRight: '1px solid var(--ld-semantic-color-border-moderate, #E3E4E5)',
+        borderRight: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #FFFFFF)',
         display: 'flex',
         flexDirection: 'column',

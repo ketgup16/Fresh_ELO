@@ -213,7 +213,7 @@ function RecommendationItem({ tagLabel, tagColor, title, highlight, description,
 
   return (
     <div style={{
-      border: "1px solid var(--ld-semantic-color-border-subtle, #E6E6E8)",
+      border: "1px solid var(--ld-semantic-color-separator, #E3E4E5)",
       borderRadius: "var(--ld-semantic-border-radius-medium, 8px)",
       padding: "var(--ld-semantic-spacing-4, 16px)",
     }}>
@@ -253,7 +253,7 @@ function FilterBar() {
     <div style={{
       display: "flex", alignItems: "center", gap: "var(--ld-semantic-spacing-6, 24px)",
       marginBottom: "16px", paddingBottom: "16px",
-      borderBottom: "1px solid var(--ld-semantic-color-border-subtle, #E6E6E8)",
+      borderBottom: "1px solid var(--ld-semantic-color-separator, #E3E4E5)",
     }}>
       <div>
         <span style={{
@@ -291,7 +291,7 @@ function MetricsRow() {
           display: "grid", gridTemplateColumns: "repeat(5, 1fr)",
           gap: "var(--ld-semantic-spacing-4, 16px)",
           paddingBottom: "var(--ld-semantic-spacing-4, 16px)",
-          borderBottom: "1px solid var(--ld-semantic-color-border-subtle, #E6E6E8)",
+          borderBottom: "1px solid var(--ld-semantic-color-separator, #E3E4E5)",
         }}>
           <Metric title="Impressions" value="21,891,371" variant="positiveUp" textLabel="6%" />
           <Metric title="eCPM" value="$5.52" variant="negativeDown" textLabel="1%" />

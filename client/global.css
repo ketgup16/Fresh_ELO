@@ -238,6 +238,10 @@
     border-color: var(--ld-semantic-color-border-disabled, #babbbe);
   }
 
+  .border-ld-separator {
+    border-color: var(--ld-semantic-color-separator, #e3e4e5);
+  }
+
   /* Interactive/hover utilities */
   .hover-ld-subtle:hover {
     background-color: var(--ld-semantic-color-action-fill-transparent-hovered, #0000001a);

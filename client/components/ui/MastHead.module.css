@@ -1,6 +1,6 @@
 .header {
   height: 54px;
-  border-bottom: 1px solid var(--ld-semantic-color-border-moderate, #E3E4E5);
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
   display: flex;
   align-items: center;
   justify-content: space-between;

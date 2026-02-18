@@ -102,8 +102,13 @@ Use the predefined utility classes in `client/global.css`:
 <p className="text-ld-brand">     {/* Brand/link text (#0053e2) */}
 ```
 
-### Border Classes
+### Border & Separator Classes
 ```tsx
+{/* SEPARATORS — use for all structural dividers, card borders, table rows, list separators */}
+<div className="border border-ld-separator"> {/* Separator (#E3E4E5 — light gray) */}
+<hr style={{ borderTop: '1px solid var(--ld-semantic-color-separator)' }} />
+
+{/* STRONG BORDERS — only for interactive elements (inputs, selects) or emphasis */}
 <div className="border border-ld">          {/* Primary border (#2e2f32) */}
 <div className="border border-ld-subtle">   {/* Subtle border (#515357) */}
 <div className="border border-ld-subtlest"> {/* Subtlest border (#74767c) */}
@@ -159,14 +164,14 @@ Use existing components when available:
 export default function MyPage() {
   return (
     <div className="min-h-screen bg-ld-subtle flex flex-col">
-      {/* Header */}
-      <header className="h-[54px] border-b border-ld-subtlest bg-ld-main px-6">
+      {/* Header — structural border uses separator token */}
+      <header style={{ height: 54, borderBottom: '1px solid var(--ld-semantic-color-separator)', backgroundColor: 'var(--ld-semantic-color-fill-surface-primary)', padding: '0 24px' }}>
         <h1 className="text-ld-primary">Page Title</h1>
       </header>
-      
+
       {/* Content */}
       <main className="flex-1 p-6">
-        <div className="bg-ld-main rounded-lg border border-ld-subtlest p-6">
+        <div style={{ border: '1px solid var(--ld-semantic-color-separator)', borderRadius: 8, padding: 24, backgroundColor: 'var(--ld-semantic-color-fill-surface-primary)' }}>
           <p className="text-ld-primary">Content here</p>
         </div>
       </main>
@@ -177,7 +182,8 @@ export default function MyPage() {
 
 ### Card/Panel
 ```tsx
-<div className="bg-ld-main rounded-lg border border-ld-subtlest p-6 shadow-sm">
+{/* Use the Card component, or if custom, use separator token for borders */}
+<div style={{ border: '1px solid var(--ld-semantic-color-separator)', borderRadius: 8, padding: 24, backgroundColor: 'var(--ld-semantic-color-fill-surface-primary)' }}>
   <h2 className="text-lg font-bold text-ld-primary mb-4">Card Title</h2>
   <p className="text-sm text-ld-subtle">Card content</p>
 </div>
@@ -193,7 +199,8 @@ export default function MyPage() {
       </tr>
     </thead>
     <tbody>
-      <tr className="border-b border-ld-subtlest hover-ld-gray">
+      {/* Table row borders use separator token */}
+      <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-separator)' }} className="hover-ld-gray">
         <td className="text-ld-primary">Cell</td>
       </tr>
     </tbody>
@@ -275,9 +282,9 @@ export default function MyPage() {
 | Secondary/body text | `text-ld-subtle` | Descriptions, labels |
 | Placeholder text | `text-ld-subtlest` | Input placeholders |
 | Link text | `text-ld-brand` | Hyperlinks |
-| Card borders | `border-ld-subtlest` | Dividers, outlines |
+| Separators & dividers | `var(--ld-semantic-color-separator)` | Card borders, table rows, list separators, panel dividers |
 | Input borders | `border-ld-disabled` | Form field borders |
-| Primary borders | `border-ld` | Strong dividers |
+| Strong borders | `border-ld` | Emphasis borders, interactive element outlines |
 | Hover state | `hover-ld-gray` | Button/row hover |
 
 ---
@@ -384,5 +391,5 @@ grep -r "bg-white\|bg-gray-\|text-gray-" client/pages
 
 ---
 
-*Last updated: 2025-02-14*
+*Last updated: 2026-02-18*
 *Living Design 3.5 Token System*

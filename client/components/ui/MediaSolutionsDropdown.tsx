@@ -54,7 +54,7 @@ export function MediaSolutionsDropdown({
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute top-full mt-2 right-0 w-80 rounded-lg shadow-lg z-50" style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary)', border: '1px solid var(--ld-semantic-color-border-moderate)' }}>
+          <div className="absolute top-full mt-2 right-0 w-80 rounded-lg shadow-lg z-50" style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary)', border: '1px solid var(--ld-semantic-color-separator, #E3E4E5)' }}>
             <div className="p-4">
               <h3 className="text-sm font-extrabold mb-2" style={{ color: 'var(--ld-semantic-color-text-primary)' }}>Media solutions</h3>
               <div className="grid grid-cols-2 gap-2 mb-4">
