@@ -7,17 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MartyProvider } from "@/contexts/MartyContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Index from "./pages/Index";
-import SponsoredSearch from "./pages/SponsoredSearch";
-import Campaign from "./pages/Campaign";
-import AllCampaigns from "./pages/AllCampaigns";
-import AllKeywords from "./pages/AllKeywords";
-import KeywordsPlanner from "./pages/KeywordsPlanner";
-import ItemHealth from "./pages/ItemHealth";
-import OmniROAS from "./pages/OmniROAS";
-import DisplayAdvertisingCampaigns from "./pages/DisplayAdvertisingCampaigns";
-import SellerCenter from "./pages/SellerCenter";
-import StoreAds from "./pages/StoreAds";
-import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
 
@@ -181,22 +170,10 @@ const App = () => (
                 <Route path="toggle" element={<React.Suspense fallback={LazyFallback}><TogglePage /></React.Suspense>} />
               </Route>
 
+              {/* Template Homepage */}
               <Route path="/" element={<Index />} />
-              <Route path="/sponsored-search" element={<SponsoredSearch />} />
-              <Route path="/campaign" element={<Campaign />} />
-              <Route path="/all-campaigns" element={<AllCampaigns />} />
-              <Route path="/all-keywords" element={<AllKeywords />} />
-              <Route path="/keywords-planner" element={<KeywordsPlanner />} />
-              <Route path="/reports/item-health" element={<ItemHealth />} />
-              <Route path="/reports/omni-roas" element={<OmniROAS />} />
-              <Route path="/display-advertising/campaigns" element={<DisplayAdvertisingCampaigns />} />
-              <Route path="/seller-center" element={<SellerCenter />} />
-              <Route path="/store-ads" element={<StoreAds />} />
-              <Route path="/store-ads/campaigns" element={<StoreAds />} />
-              <Route path="/store-ads/performance" element={<StoreAds />} />
-              <Route path="/store-ads/inventory" element={<StoreAds />} />
-              <Route path="/settings" element={<Settings />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
+              {/* Catch-all */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
