@@ -1,20 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { MastHead } from "../components/ui/MastHead";
+import { useEffect } from "react";
 import { Button } from "../components/ui/Button";
-import { ButtonGroup } from "../components/ui/ButtonGroup";
 import { IconButton } from "../components/ui/IconButton";
-import * as Icons from "../components/icons";
-import type { MediaSolution } from "../components/ui/MediaSolutionsDropdown";
-
-const ArrowLeft = Icons.ArrowLeft;
-const Home = Icons.Home;
+import { ArrowLeft, Home } from "../components/icons";
 
 const NotFound = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [selectedMediaSolution, setSelectedMediaSolution] = useState<MediaSolution>('Display Advertising');
-
   useEffect(() => {
     console.error(
       "404 Error: User attempted to access non-existent route:",
@@ -36,12 +28,7 @@ const NotFound = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <MastHead
-        companyName="Coca Cola"
-        currentSolution={selectedMediaSolution}
-        onSolutionChange={setSelectedMediaSolution}
-      />
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #fff)' }}>
       <div className="flex-1 flex items-center justify-center" style={{
         backgroundColor: 'var(--ld-semantic-color-background-subtle, #f8f8f8)'
       }}>
