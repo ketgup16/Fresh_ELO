@@ -173,14 +173,6 @@ export default function ComponentLibraryOverview() {
 
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      {/* Back Button */}
-      <div style={{ marginBottom: '24px' }}>
-        <Button variant="secondary" size="small" onClick={() => navigate('/')}>
-          <ArrowLeft style={{ width: 16, height: 16, marginRight: 8 }} />
-          Back to Home
-        </Button>
-      </div>
-
       {/* Header */}
       <PageHeader
         section="Getting Started"
@@ -302,7 +294,7 @@ export default function ComponentLibraryOverview() {
       )}
 
       {/* Bottom Back to Home */}
-      <div style={{ marginTop: '48px', display: 'flex', justifyContent: 'center' }}>
+      <div style={{ marginTop: '48px', display: 'flex', justifyContent: 'flex-end' }}>
         <Button variant="secondary" size="small" onClick={() => navigate('/')}>
           <ArrowLeft style={{ width: 16, height: 16, marginRight: 8 }} />
           Back to Home
