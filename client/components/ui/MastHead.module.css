@@ -22,8 +22,11 @@
   gap: var(--ld-semantic-spacing-2, 8px);
 }
 
-.logoWrap {
-  height: 14px;
+.appName {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text-brand, #001F64);
+  white-space: nowrap;
 }
 
 .iconButton {
