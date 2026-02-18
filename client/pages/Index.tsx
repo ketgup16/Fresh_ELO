@@ -13,8 +13,9 @@ import { DataTableHeader } from "@/components/ui/DataTableHeader";
 import { DataTableRow } from "@/components/ui/DataTableRow";
 import { DataTableCell } from "@/components/ui/DataTableCellText";
 import { MastHead } from "@/components/ui/MastHead";
-import { AppSideNav } from "@/components/ui/AppSideNav";
+import DisplayAdvertisingSidebar from "@/features/advertising/DisplayAdvertisingSidebar";
 import MartyFloatingPanel from "@/features/marty/MartyFloatingPanel";
+import { useState } from "react";
 
 const placeholderTableData = [
   { id: "001", name: "Sample Item Alpha", status: "Active" as const, category: "Category A", value: "$12,450" },
@@ -32,15 +33,19 @@ const statusTagColor: Record<string, "positive" | "warning" | "neutral"> = {
 
 export default function Index() {
   const navigate = useNavigate();
+  const [activeMenuItem, setActiveMenuItem] = useState("dashboard");
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100vh", overflow: "hidden" }}>
       {/* MastHead */}
-      <MastHead companyName="Coca Cola" appName="Ad Center" dropdownLabel="Display" />
+      <MastHead companyName="Coca Cola" />
 
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
-        {/* Icon Side Nav */}
-        <AppSideNav activeId="dashboard" />
+        {/* Side Nav */}
+        <DisplayAdvertisingSidebar
+          activeMenuItem={activeMenuItem}
+          onMenuItemClick={setActiveMenuItem}
+        />
 
         {/* Main content */}
         <main
