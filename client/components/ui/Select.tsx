@@ -81,6 +81,9 @@ export interface SelectProps {
   
   /** Default value when uncontrolled */
   defaultValue?: string;
+
+  /** Whether to hide the border (borderless style) */
+  borderless?: boolean;
 }
 
 /**
@@ -104,6 +107,7 @@ export function Select({
   name,
   required = false,
   defaultValue,
+  borderless = false,
 }: SelectProps) {
   const labelId = id ? `${id}-label` : undefined;
   const errorId = error && errorMessage ? `${id}-error` : undefined;
@@ -148,7 +152,8 @@ export function Select({
             styles[`trigger--size-${size}`],
             error && styles['trigger--error'],
             isMagic && !error && styles['trigger--magic'],
-            disabled && styles['trigger--disabled']
+            disabled && styles['trigger--disabled'],
+            borderless && styles['trigger--borderless']
           )}
           aria-labelledby={labelId}
           aria-describedby={cn(errorId, helperId)}

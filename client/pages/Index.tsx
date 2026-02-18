@@ -223,6 +223,7 @@ function FilterBar() {
           value={attribution}
           onValueChange={setAttribution}
           size="small"
+          borderless
         >
           <SelectItem value="7">7 day attribution</SelectItem>
           <SelectItem value="14">14 day attribution</SelectItem>
@@ -236,6 +237,7 @@ function FilterBar() {
           value={dateRange}
           onValueChange={setDateRange}
           size="small"
+          borderless
         >
           <SelectItem value="oct-2025">Oct 1, 2025 - Oct 31, 2025</SelectItem>
           <SelectItem value="nov-2025">Nov 1, 2025 - Nov 30, 2025</SelectItem>

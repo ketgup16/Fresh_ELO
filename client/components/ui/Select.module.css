@@ -162,6 +162,21 @@
   border-color: var(--ld-semantic-color-field-border-magic-focused, #0053E2);
 }
 
+/* Borderless state */
+.trigger--borderless {
+  border-color: transparent;
+  background: var(--ld-semantic-color-fill-surface-subtle, #F8F8F8);
+}
+
+.trigger--borderless:hover:not([data-disabled]) {
+  border: var(--ld-semantic-scale-borderwidth-interactive-hovered, 2px) solid var(--ld-semantic-color-field-border-hovered, #2e2f32);
+}
+
+.trigger--borderless:focus-visible,
+.trigger--borderless[data-state="open"] {
+  border: var(--ld-semantic-scale-borderwidth-interactive-focused, 2px) solid var(--ld-semantic-color-field-border-focused, #2e2f32);
+}
+
 /* Disabled state */
 .trigger--disabled,
 .trigger[data-disabled] {
