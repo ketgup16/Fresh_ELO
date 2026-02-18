@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/Tab';
 import * as Icons from '@/components/icons';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function GuidelinesPage() {
   return (
@@ -11,25 +12,7 @@ export default function GuidelinesPage() {
       maxWidth: '1200px',
       margin: '0 auto'
     }}>
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{
-          fontSize: '32px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text)',
-          marginBottom: '12px'
-        }}>
-          Guidelines
-        </h1>
-        <p style={{
-          fontSize: '16px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-subtlest)',
-          maxWidth: '800px'
-        }}>
-          Design principles, best practices, and usage guidelines for Living Design 3.5 components.
-        </p>
-      </div>
+      <PageHeader section="Getting Started" title="Guidelines" description="Design principles, best practices, and usage guidelines for Living Design 3.5 components." />
 
       <Tabs defaultValue="principles">
         <TabList>

@@ -1,32 +1,13 @@
 import React from 'react';
 import { TextFieldExample } from '@/components/examples/TextFieldExample';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 const LabelExample = React.lazy(() => import('@/components/examples/LabelExample'));
 
 export default function TextFieldsPage() {
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{
-          fontSize: '32px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-          marginBottom: '12px'
-        }}>
-          Text Fields
-        </h1>
-        <p style={{
-          fontSize: '16px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          maxWidth: '800px'
-        }}>
-          Single-line text inputs with built-in labels, error states, helper text, leading icons, trailing content,
-          and AI-generated content indicators. Text fields support multiple sizes, input types, and accessibility features.
-          This component also replaces the previous standalone Label component.
-        </p>
-      </div>
+      <PageHeader section="Components" title="Text Fields" description="Single-line text inputs with built-in labels, error states, helper text, leading icons, trailing content, and AI-generated content indicators. Text fields support multiple sizes, input types, and accessibility features. This component also replaces the previous standalone Label component." />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',

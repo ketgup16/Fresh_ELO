@@ -16,6 +16,7 @@ import { Divider } from '@/components/ui/Divider';
 import { SpotIcon } from '@/components/ui/SpotIcon';
 import { Rating } from '@/components/ui/Rating';
 import * as Icons from '@/components/icons';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 type ComponentType = 
   | 'button' | 'badge' | 'chip' | 'filterchip' | 'tag' | 'olqtag' 
@@ -806,25 +807,7 @@ export default function ComponentTester() {
       margin: '0 auto'
     }}>
       {/* Header */}
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{
-          fontSize: '32px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text)',
-          marginBottom: '12px'
-        }}>
-          Component Sandbox
-        </h1>
-        <p style={{
-          fontSize: '16px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-subtlest)',
-          maxWidth: '800px'
-        }}>
-          Interactive testing environment for Living Design 3.5 components. Select a component and adjust its properties in real-time.
-        </p>
-      </div>
+      <PageHeader section="Getting Started" title="Component Sandbox" description="Interactive testing environment for Living Design 3.5 components. Select a component and adjust its properties in real-time." />
 
       {/* Component Selector */}
       <div style={{ marginBottom: '32px', maxWidth: '500px' }}>

@@ -29,6 +29,7 @@ import {
 } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { getComponentPreview } from './ComponentCardPreviews';
+import { PageHeader } from '@/components/ui/PageHeader';
 import styles from './Overview.module.css';
 
 type IconComponent = React.ComponentType<{ size?: number; style?: React.CSSProperties }>;
@@ -181,29 +182,13 @@ export default function ComponentLibraryOverview() {
       </div>
 
       {/* Header */}
-      <div style={{ marginBottom: '48px' }}>
-        <div style={{ marginBottom: '24px' }}>
-          <h1 style={{
-            fontSize: '36px',
-            fontWeight: '700',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-            color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-            marginBottom: '16px',
-          }}>
-            Living Design 3.5
-          </h1>
-          <p style={{
-            fontSize: '18px',
-            lineHeight: '1.6',
-            color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-            maxWidth: '800px',
-          }}>
-            A comprehensive component library for the Walmart Connect Ad Center.
-            Each component follows the Living Design 3.5 specification with proper accessibility,
-            semantic tokens, and responsive behavior.
-          </p>
-        </div>
+      <PageHeader
+        section="Getting Started"
+        title="Living Design 3.5"
+        description="A comprehensive component library for the Walmart Connect Ad Center. Each component follows the Living Design 3.5 specification with proper accessibility, semantic tokens, and responsive behavior."
+      />
 
+      <div style={{ marginBottom: '48px' }}>
         {/* Search Bar */}
         <div style={{ position: 'relative', maxWidth: '600px' }}>
           <div style={{

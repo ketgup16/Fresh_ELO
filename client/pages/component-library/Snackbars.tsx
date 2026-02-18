@@ -1,5 +1,6 @@
 import React from 'react';
 import { SnackbarExample } from '@/components/examples/SnackbarExample';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function SnackbarsPage() {
   return (
@@ -8,26 +9,7 @@ export default function SnackbarsPage() {
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{
-          fontSize: '32px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-          marginBottom: '12px'
-        }}>
-          Snackbars
-        </h1>
-        <p style={{
-          fontSize: '16px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          maxWidth: '800px'
-        }}>
-          Brief, non-critical notifications that appear at the bottom of the screen to provide feedback to users.
-          Snackbars support optional action buttons, auto-dismiss functionality, and flexible positioning.
-        </p>
-      </div>
+      <PageHeader section="Components" title="Snackbars" description="Brief, non-critical notifications that appear at the bottom of the screen to provide feedback to users. Snackbars support optional action buttons, auto-dismiss functionality, and flexible positioning." />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',

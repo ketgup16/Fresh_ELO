@@ -1,5 +1,6 @@
 import React from 'react';
 import * as Icons from '@/components/icons';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 // Organize icons by category (same as original ComponentLibrary)
 const iconCategories = {
@@ -99,26 +100,7 @@ export default function IconsPage() {
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{
-          fontSize: '32px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-          marginBottom: '12px'
-        }}>
-          Icons
-        </h1>
-        <p style={{
-          fontSize: '16px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          maxWidth: '800px'
-        }}>
-          Complete icon library with {totalIconCount}+ React components organized by category.
-          All icons support customizable size and color properties.
-        </p>
-      </div>
+      <PageHeader section="Components" title="Icons" description={`Complete icon library with ${totalIconCount}+ React components organized by category. All icons support customizable size and color properties.`} />
 
       {Object.entries(iconCategories).map(([category, iconNames]) => (
         <div

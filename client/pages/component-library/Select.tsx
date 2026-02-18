@@ -1,5 +1,6 @@
 import React from 'react';
 import { SelectExample } from '@/components/SelectExample';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function SelectPage() {
   return (
@@ -8,43 +9,7 @@ export default function SelectPage() {
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{
-          fontSize: '32px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text, #2E2F32)',
-          marginBottom: '12px'
-        }}>
-          Select
-        </h1>
-        <p style={{
-          fontSize: '16px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-subtle, #515357)',
-          maxWidth: '800px',
-          marginBottom: '8px'
-        }}>
-          Dropdown select component for choosing a single option from a list. Supports error states,
-          AI-assisted (magic) variant, helper text, and full keyboard accessibility.
-        </p>
-        <p style={{
-          fontSize: '14px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-subtle, #515357)',
-          maxWidth: '800px'
-        }}>
-          <strong>Documentation:</strong>{' '}
-          <a
-            href="https://digitaltoolkit.livingdesign.walmart.com/components/select/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: 'var(--ld-semantic-color-link-text, #2E2F32)', textDecoration: 'underline' }}
-          >
-            Living Design Toolkit
-          </a>
-        </p>
-      </div>
+      <PageHeader section="Components" title="Select" description="Dropdown select component for choosing a single option from a list. Supports error states, AI-assisted (magic) variant, helper text, and full keyboard accessibility." />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-background, #ffffff)',

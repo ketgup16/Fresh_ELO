@@ -1,5 +1,6 @@
 import React from 'react';
 import { FilterChipExample } from '@/components/examples/FilterChipExample';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function FilterChipsPage() {
   return (
@@ -8,25 +9,7 @@ export default function FilterChipsPage() {
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{
-          fontSize: '32px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-          marginBottom: '12px'
-        }}>
-          Filter Chips
-        </h1>
-        <p style={{
-          fontSize: '16px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          maxWidth: '800px'
-        }}>
-          Pill-shaped toggleable chips with optional counts for filtering UI.
-        </p>
-      </div>
+      <PageHeader section="Components" title="Filter Chips" description="Pill-shaped toggleable chips with optional counts for filtering UI." />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',

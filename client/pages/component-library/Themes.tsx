@@ -7,6 +7,7 @@ import { DataTableHeader } from '@/components/ui/DataTableHeader';
 import { DataTableCell } from '@/components/ui/DataTableCellText';
 import { Button } from '@/components/ui/Button';
 import * as Icons from '@/components/icons';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 const ChevronDown = Icons.ChevronDown;
 const ChevronUp = Icons.ChevronUp;
@@ -193,27 +194,7 @@ export default function ThemesPage() {
       position: 'relative'
     }}>
       {/* Header */}
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{
-          fontSize: '32px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text)',
-          marginBottom: '12px'
-        }}>
-          Themes & Design Tokens
-        </h1>
-        <p style={{
-          fontSize: '16px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-subtlest)',
-          maxWidth: '900px',
-          marginBottom: '24px'
-        }}>
-          Switch between brand themes and explore all Living Design 3.5 design tokens.
-          All components use these semantic tokens to ensure consistent theming across the application.
-        </p>
-      </div>
+      <PageHeader section="Getting Started" title="Themes & Design Tokens" description="Switch between brand themes and explore all Living Design 3.5 design tokens. All components use these semantic tokens to ensure consistent theming across the application." />
 
       {/* Quick Navigation */}
       <div style={{

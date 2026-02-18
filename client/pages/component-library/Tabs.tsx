@@ -1,5 +1,6 @@
 import React from 'react';
 import { TabExample } from '@/components/examples/TabExample';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 /**
  * Tab Navigation Component Library Page
@@ -11,29 +12,7 @@ export default function TabsPage() {
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
       {/* Page Header */}
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          fontSize: 'var(--ld-semantic-font-heading-large-size-b-l, 32px)',
-          fontWeight: 'var(--ld-semantic-font-heading-large-weight-default, 700)',
-          lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-l, 40px)',
-          marginBottom: '16px',
-          color: 'var(--ld-semantic-color-text)',
-        }}>
-          Tab Navigation
-        </h1>
-        <p style={{
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          fontSize: 'var(--ld-semantic-font-body-medium-size, 16px)',
-          lineHeight: 'var(--ld-semantic-font-body-medium-line-height, 24px)',
-          color: 'var(--ld-semantic-color-text)',
-          maxWidth: '800px',
-        }}>
-          Tab Navigation allows for page-level navigation between sets of content, 
-          with a selected state, typically used at the top of the screen. It supports 
-          leading icons, trailing badges, and responsive small-screen modes.
-        </p>
-      </div>
+      <PageHeader section="Components" title="Tab Navigation" description="Tab Navigation allows for page-level navigation between sets of content, with a selected state, typically used at the top of the screen. It supports leading icons, trailing badges, and responsive small-screen modes." />
       
       {/* Documentation Link */}
       <div style={{

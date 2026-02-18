@@ -1,17 +1,11 @@
 import React from 'react';
 import AvatarExample from '@/components/examples/AvatarExample';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function AvatarPage() {
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '32px', fontWeight: '700', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-primary, #2E2F32)', marginBottom: '12px' }}>
-          Avatar
-        </h1>
-        <p style={{ fontSize: '16px', lineHeight: '1.6', color: 'var(--ld-semantic-color-text-secondary, #74767C)', maxWidth: '800px' }}>
-          Circular representation of a user with image fallback support.
-        </p>
-      </div>
+      <PageHeader section="Shared Components" title="Avatar" description="Circular representation of a user with image fallback support." />
       <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
         <React.Suspense fallback={<div>Loading...</div>}>
           <AvatarExample />

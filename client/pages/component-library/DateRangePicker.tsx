@@ -1,28 +1,11 @@
 import React from 'react';
 import DateRangePickerExample from '@/components/examples/DateRangePickerExample';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function DateRangePickerPage() {
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{
-          fontSize: '32px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-          marginBottom: '12px'
-        }}>
-          Date Range Picker
-        </h1>
-        <p style={{
-          fontSize: '16px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          maxWidth: '800px'
-        }}>
-          LD 3.5 date range picker with two side-by-side calendars for selecting start and end dates. Supports standard week view (Sun-Sat) and week numbers variant (Sat-Fri). Includes Cancel and Apply action buttons.
-        </p>
-      </div>
+      <PageHeader section="Components" title="Date Range Picker" description="LD 3.5 date range picker with two side-by-side calendars for selecting start and end dates. Supports standard week view (Sun-Sat) and week numbers variant (Sat-Fri). Includes Cancel and Apply action buttons." />
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
         padding: '32px',

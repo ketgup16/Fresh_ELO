@@ -1,5 +1,6 @@
 import React from 'react';
 import { BreadcrumbExample } from '@/components/examples/BreadcrumbExample';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function BreadcrumbsPage() {
   return (
@@ -8,25 +9,7 @@ export default function BreadcrumbsPage() {
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{
-          fontSize: '32px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-          marginBottom: '12px'
-        }}>
-          Breadcrumbs
-        </h1>
-        <p style={{
-          fontSize: '16px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          maxWidth: '800px'
-        }}>
-          Navigation breadcrumbs with support for 2-5 levels and custom separators.
-        </p>
-      </div>
+      <PageHeader section="Components" title="Breadcrumbs" description="Navigation breadcrumbs with support for 2-5 levels and custom separators." />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
