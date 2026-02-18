@@ -1,17 +1,11 @@
 import React from 'react';
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@/components/ui/drawer';
+import { BottomSheet } from '@/components/ui/BottomSheet';
 import { Button } from '@/components/ui/Button';
+import { ButtonGroup } from '@/components/ui/ButtonGroup';
 
 export default function DrawerExample() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
     <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '48px' }}>
       <section>
@@ -22,30 +16,41 @@ export default function DrawerExample() {
           color: 'var(--ld-semantic-color-text-primary)',
           marginBottom: '16px'
         }}>
-          Bottom Drawer
+          Bottom Sheet (replaces Drawer)
         </h3>
-        <Drawer>
-          <DrawerTrigger asChild>
-            <Button variant="primary">Open Drawer</Button>
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerHeader>
-              <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-              <DrawerDescription>This action cannot be undone.</DrawerDescription>
-            </DrawerHeader>
-            <div style={{ padding: '16px' }}>
-              <p style={{ color: 'var(--ld-semantic-color-text-secondary)' }}>
-                Drawer content goes here. This is a mobile-first drawer component.
-              </p>
-            </div>
-            <DrawerFooter>
-              <Button variant="primary">Submit</Button>
-              <DrawerClose asChild>
-                <Button variant="secondary">Cancel</Button>
-              </DrawerClose>
-            </DrawerFooter>
-          </DrawerContent>
-        </Drawer>
+        <Button variant="primary" onClick={() => setIsOpen(true)}>
+          Open Bottom Sheet
+        </Button>
+
+        <BottomSheet
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          title="Are you absolutely sure?"
+          actions={
+            <ButtonGroup>
+              <Button variant="secondary" onClick={() => setIsOpen(false)}>
+                Cancel
+              </Button>
+              <Button variant="primary" onClick={() => setIsOpen(false)}>
+                Submit
+              </Button>
+            </ButtonGroup>
+          }
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <p style={{
+              color: 'var(--ld-semantic-color-text-secondary)',
+              fontSize: '14px',
+              lineHeight: '1.5'
+            }}>
+              This action cannot be undone.
+            </p>
+            <p style={{ color: 'var(--ld-semantic-color-text-secondary)' }}>
+              Bottom Sheet content goes here. This is a mobile-friendly modal component
+              that slides up from the bottom of the screen.
+            </p>
+          </div>
+        </BottomSheet>
       </section>
     </div>
   );

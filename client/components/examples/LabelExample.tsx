@@ -1,5 +1,4 @@
 import React from 'react';
-import { Label } from '@/components/ui/label';
 import { TextField } from '@/components/ui/TextField';
 import { Checkbox } from '@/components/ui/Checkbox';
 
@@ -29,13 +28,21 @@ export default function LabelExample() {
           color: 'var(--ld-semantic-color-text-primary)',
           marginBottom: '16px'
         }}>
-          Label with Checkbox
+          Label with Checkbox (Native Label)
         </h3>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Checkbox id="terms" />
-          <Label htmlFor="terms" style={{ cursor: 'pointer' }}>
+          <label
+            htmlFor="terms"
+            style={{
+              cursor: 'pointer',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+              fontSize: '14px',
+              color: 'var(--ld-semantic-color-text)',
+            }}
+          >
             Accept terms and conditions
-          </Label>
+          </label>
         </div>
       </section>
 

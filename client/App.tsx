@@ -1,7 +1,6 @@
 import "./global.css";
 
 import { createRoot } from "react-dom/client";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { SnackbarContainer } from "@/components/ui/SnackbarContainer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -103,9 +102,8 @@ const queryClient = new QueryClient();
 const App = () => (
   <ThemeProvider>
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <SnackbarContainer />
-        <MartyProvider>
+      <SnackbarContainer />
+      <MartyProvider>
           <BrowserRouter>
             <Routes>
               {/* Component Library with nested routes */}
@@ -209,7 +207,6 @@ const App = () => (
             </Routes>
           </BrowserRouter>
         </MartyProvider>
-      </TooltipProvider>
     </QueryClientProvider>
   </ThemeProvider>
 );
