@@ -203,8 +203,8 @@ function RecommendationsCards() {
 /* ─── Filter Bar ─── */
 
 function FilterBar() {
-  const [attribution, setAttribution] = useState("14");
-  const [dateRange, setDateRange] = useState("oct-2025");
+  const [daysWindow, setDaysWindow] = useState("14");
+  const [dateRange, setDateRange] = useState("range-1");
 
   return (
     <div
@@ -219,16 +219,16 @@ function FilterBar() {
     >
       <div style={{ width: 220 }}>
         <Select
-          label="Attribution window"
-          value={attribution}
-          onValueChange={setAttribution}
+          label="Days window"
+          value={daysWindow}
+          onValueChange={setDaysWindow}
           size="small"
           borderless
         >
-          <SelectItem value="7">7 day attribution</SelectItem>
-          <SelectItem value="14">14 day attribution</SelectItem>
-          <SelectItem value="28">28 day attribution</SelectItem>
-          <SelectItem value="30">30 day attribution</SelectItem>
+          <SelectItem value="7">7 days</SelectItem>
+          <SelectItem value="14">14 days</SelectItem>
+          <SelectItem value="28">28 days</SelectItem>
+          <SelectItem value="30">30 days</SelectItem>
         </Select>
       </div>
       <div style={{ width: 280 }}>
@@ -239,10 +239,10 @@ function FilterBar() {
           size="small"
           borderless
         >
-          <SelectItem value="oct-2025">Oct 1, 2025 - Oct 31, 2025</SelectItem>
-          <SelectItem value="nov-2025">Nov 1, 2025 - Nov 30, 2025</SelectItem>
-          <SelectItem value="dec-2025">Dec 1, 2025 - Dec 31, 2025</SelectItem>
-          <SelectItem value="jan-2026">Jan 1, 2026 - Jan 31, 2026</SelectItem>
+          <SelectItem value="range-1">Jan 1, 2025 - Jan 31, 2025</SelectItem>
+          <SelectItem value="range-2">Feb 1, 2025 - Feb 28, 2025</SelectItem>
+          <SelectItem value="range-3">Mar 1, 2025 - Mar 31, 2025</SelectItem>
+          <SelectItem value="range-4">Apr 1, 2025 - Apr 30, 2025</SelectItem>
         </Select>
       </div>
     </div>
@@ -264,11 +264,11 @@ function MetricsRow() {
             borderBottom: "1px solid var(--ld-semantic-color-separator, #E3E4E5)",
           }}
         >
-          <Metric title="Impressions" value="21,891,371" variant="positiveUp" textLabel="6%" />
-          <Metric title="eCPM" value="$5.52" variant="negativeDown" textLabel="1%" />
-          <Metric title="Spend" value="$120,869" variant="neutral" textLabel="0%" />
-          <Metric title="Total ROAS" value="$3.13" variant="negativeDown" textLabel="1%" />
-          <Metric title="Total attributed sales" value="$377,588" variant="negativeDown" textLabel="3%" />
+          <Metric title="Eyebrow" value="$0.00" variant="positiveUp" textLabel="0%" />
+          <Metric title="Eyebrow" value="$0.00" variant="negativeDown" textLabel="0%" />
+          <Metric title="Eyebrow" value="$0.00" variant="neutral" textLabel="0%" />
+          <Metric title="Eyebrow" value="0" variant="positiveUp" textLabel="0%" />
+          <Metric title="Eyebrow" value="$0.00" variant="negativeDown" textLabel="0%" />
         </div>
         <div
           style={{
@@ -278,8 +278,8 @@ function MetricsRow() {
             paddingTop: "var(--ld-semantic-spacing-4, 16px)",
           }}
         >
-          <Metric title="Total attributed transactions" value="30,666" variant="positiveUp" textLabel="4%" />
-          <Metric title="Total attributed units" value="21,891,371" variant="positiveUp" textLabel="2%" />
+          <Metric title="Eyebrow" value="0" variant="positiveUp" textLabel="0%" />
+          <Metric title="Eyebrow" value="0" variant="positiveUp" textLabel="0%" />
         </div>
       </CardContent>
     </Card>
