@@ -9,6 +9,7 @@
   align-items: flex-end;
   background: var(--ld-semantic-color-page-nav-fill, transparent);
   position: relative;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, var(--ld-primitive-color-gray-20, #e3e4e5));
 }
 
 /* Small screen mode - tabs fill width evenly */
