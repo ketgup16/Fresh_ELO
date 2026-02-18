@@ -32,7 +32,7 @@ export default function CollapsibleExample() {
             marginBottom: '8px'
           }}>
             <h4 style={{ fontWeight: '600', color: 'var(--ld-semantic-color-text-primary)' }}>
-              @peduarte starred 3 repositories
+              Order #WM-20250218 — 3 items
             </h4>
             <CollapsibleTrigger asChild>
               <Button variant="secondary" size="small">
@@ -41,36 +41,45 @@ export default function CollapsibleExample() {
             </CollapsibleTrigger>
           </div>
           <CollapsibleContent>
-            <div style={{ 
+            <div style={{
               padding: '16px',
               border: '1px solid var(--ld-semantic-color-border-moderate)',
               borderRadius: '8px',
               marginBottom: '8px',
               backgroundColor: 'var(--ld-semantic-color-fill-surface-primary)'
             }}>
-              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
-                @radix-ui/primitives
+              <p style={{ fontSize: '14px', fontWeight: '500', color: 'var(--ld-semantic-color-text-primary)' }}>
+                Organic Whole Milk, 1 Gallon
+              </p>
+              <p style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-secondary)', marginTop: '4px' }}>
+                Qty: 1 &middot; $4.98
               </p>
             </div>
-            <div style={{ 
+            <div style={{
               padding: '16px',
               border: '1px solid var(--ld-semantic-color-border-moderate)',
               borderRadius: '8px',
               marginBottom: '8px',
               backgroundColor: 'var(--ld-semantic-color-fill-surface-primary)'
             }}>
-              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
-                @radix-ui/colors
+              <p style={{ fontSize: '14px', fontWeight: '500', color: 'var(--ld-semantic-color-text-primary)' }}>
+                Fresh Bananas, Each
+              </p>
+              <p style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-secondary)', marginTop: '4px' }}>
+                Qty: 6 &middot; $0.27 each
               </p>
             </div>
-            <div style={{ 
+            <div style={{
               padding: '16px',
               border: '1px solid var(--ld-semantic-color-border-moderate)',
               borderRadius: '8px',
               backgroundColor: 'var(--ld-semantic-color-fill-surface-primary)'
             }}>
-              <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
-                @stitches/react
+              <p style={{ fontSize: '14px', fontWeight: '500', color: 'var(--ld-semantic-color-text-primary)' }}>
+                Great Value Large White Eggs, 12 Count
+              </p>
+              <p style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-secondary)', marginTop: '4px' }}>
+                Qty: 1 &middot; $3.12
               </p>
             </div>
           </CollapsibleContent>
