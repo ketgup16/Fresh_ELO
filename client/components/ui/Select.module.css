@@ -87,7 +87,7 @@
   gap: var(--ld-primitive-scale-space-100, 8px);
   align-self: stretch;
   border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
-  border: var(--ld-semantic-scale-borderwidth-interactive, 1px) solid var(--ld-semantic-color-field-border, #909196);
+  border: var(--ld-semantic-scale-borderwidth-interactive, 1px) solid var(--ld-semantic-color-field-border, #BABBBE);
   background: var(--ld-semantic-color-field-fill, #ffffff);
   overflow: hidden;
   position: relative;
@@ -98,7 +98,7 @@
 }
 
 .trigger:hover:not([data-disabled]) {
-  border: var(--ld-semantic-scale-borderwidth-interactive-hovered, 2px) solid var(--ld-semantic-color-field-border-hovered, #2e2f32);
+  border: var(--ld-semantic-scale-borderwidth-interactive-hovered, 2px) solid var(--ld-semantic-color-field-border-hovered, #909196);
   background: var(--ld-semantic-color-field-fill-hovered, #ffffff);
   padding: calc(var(--trigger-padding-vertical, 16px) - 1px) calc(var(--trigger-padding-horizontal, 16px) - 1px);
 }
@@ -106,7 +106,7 @@
 .trigger:focus-visible,
 .trigger[data-state="open"] {
   outline: none;
-  border: var(--ld-semantic-scale-borderwidth-interactive-focused, 2px) solid var(--ld-semantic-color-field-border-focused, #2e2f32);
+  border: var(--ld-semantic-scale-borderwidth-interactive-focused, 2px) solid var(--ld-semantic-color-field-border-focused, #909196);
   background: var(--ld-semantic-color-field-fill-focused, #ffffff);
   padding: calc(var(--trigger-padding-vertical, 16px) - 1px) calc(var(--trigger-padding-horizontal, 16px) - 1px);
 }
@@ -169,12 +169,12 @@
 }
 
 .trigger--borderless:hover:not([data-disabled]) {
-  border: var(--ld-semantic-scale-borderwidth-interactive-hovered, 2px) solid var(--ld-semantic-color-field-border-hovered, #2e2f32);
+  border: var(--ld-semantic-scale-borderwidth-interactive-hovered, 2px) solid var(--ld-semantic-color-field-border-hovered, #909196);
 }
 
 .trigger--borderless:focus-visible,
 .trigger--borderless[data-state="open"] {
-  border: var(--ld-semantic-scale-borderwidth-interactive-focused, 2px) solid var(--ld-semantic-color-field-border-focused, #2e2f32);
+  border: var(--ld-semantic-scale-borderwidth-interactive-focused, 2px) solid var(--ld-semantic-color-field-border-focused, #909196);
 }
 
 /* Disabled state */
@@ -253,7 +253,7 @@
   min-width: var(--radix-select-trigger-width);
   overflow: hidden;
   border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
-  border: var(--ld-semantic-scale-borderwidth-interactive, 1px) solid var(--ld-semantic-color-border-subtlest, #74767c);
+  border: var(--ld-semantic-scale-borderwidth-interactive, 1px) solid var(--ld-semantic-color-separator, #E3E4E5);
   background: var(--ld-semantic-color-background, #ffffff);
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
   animation: slideDownAndFade 0.15s cubic-bezier(0.16, 1, 0.3, 1);

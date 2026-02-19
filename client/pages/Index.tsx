@@ -222,7 +222,7 @@ function FilterBar() {
           label="Days window"
           value={daysWindow}
           onValueChange={setDaysWindow}
-          size="small"
+          size="large"
         >
           <SelectItem value="7">7 days</SelectItem>
           <SelectItem value="14">14 days</SelectItem>
@@ -235,7 +235,7 @@ function FilterBar() {
           label="Date range"
           value={dateRange}
           onValueChange={setDateRange}
-          size="small"
+          size="large"
         >
           <SelectItem value="range-1">Jan 1, 2025 - Jan 31, 2025</SelectItem>
           <SelectItem value="range-2">Feb 1, 2025 - Feb 28, 2025</SelectItem>
