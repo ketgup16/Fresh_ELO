@@ -5,3 +5,8 @@
   width: 48px;
   text-align: center;
 }
+
+/* Header select cell inherits the same gray background as other header cells */
+th.cell {
+  background: var(--ld-semantic-color-fill-surface-subtle, #F8F8F8);
+}

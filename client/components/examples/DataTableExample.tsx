@@ -502,7 +502,7 @@ export default function DataTableExample() {
                   <DataTableCell>
                     <div style={{ paddingLeft: '40px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <span style={{
-                        fontSize: '11px',
+                        fontSize: '16px',
                         fontWeight: 600,
                         textTransform: 'uppercase' as const,
                         letterSpacing: '0.5px',
@@ -597,11 +597,11 @@ function Pagination({
           <ChevronLeft style={{ width: 16, height: 16 }} />
         </button>
 
-        <span style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text, #2E2F32)', padding: '0 4px' }}>
+        <span style={{ fontSize: '16px', color: 'var(--ld-semantic-color-text, #2E2F32)', padding: '0 4px' }}>
           Page
         </span>
         <span style={styles.pageIndicator}>{currentPage}</span>
-        <span style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text, #2E2F32)', padding: '0 4px' }}>
+        <span style={{ fontSize: '16px', color: 'var(--ld-semantic-color-text, #2E2F32)', padding: '0 4px' }}>
           of {totalPages}
         </span>
 
@@ -655,10 +655,10 @@ const INLINE_STYLES = {
     border: '1px solid var(--ld-semantic-color-border-strong, #2E2F32)',
     borderRadius: '9999px',
     background: 'var(--ld-semantic-color-surface-primary, #fff)',
-    fontSize: '14px',
+    fontSize: '16px',
   },
   searchLabel: {
-    fontSize: '13px',
+    fontSize: '16px',
     color: 'var(--ld-semantic-color-text-subtle, #74767C)',
     whiteSpace: 'nowrap' as const,
     flexShrink: 0,
@@ -667,7 +667,7 @@ const INLINE_STYLES = {
     display: 'inline-flex',
     alignItems: 'center',
     gap: '2px',
-    fontSize: '13px',
+    fontSize: '16px',
     fontWeight: 700,
     color: 'var(--ld-semantic-color-text, #2E2F32)',
     background: 'none',
@@ -695,7 +695,7 @@ const INLINE_STYLES = {
     width: '100%',
     textAlign: 'left' as const,
     padding: '8px 12px',
-    fontSize: '13px',
+    fontSize: '16px',
     color: 'var(--ld-semantic-color-text, #2E2F32)',
     background: 'none',
     border: 'none',
@@ -703,7 +703,7 @@ const INLINE_STYLES = {
   },
   searchInput: {
     flex: 1,
-    fontSize: '13px',
+    fontSize: '16px',
     border: 'none',
     outline: 'none',
     background: 'transparent',
@@ -741,10 +741,10 @@ const INLINE_STYLES = {
     color: 'var(--ld-semantic-color-text, #2E2F32)',
     textDecoration: 'underline',
     cursor: 'pointer',
-    fontSize: '14px',
+    fontSize: '16px',
   },
   campaignId: {
-    fontSize: '12px',
+    fontSize: '16px',
     color: 'var(--ld-semantic-color-text-subtle, #74767C)',
     marginTop: '2px',
   },
@@ -754,7 +754,7 @@ const INLINE_STYLES = {
     gap: '4px',
     padding: '2px 8px',
     borderRadius: '4px',
-    fontSize: '12px',
+    fontSize: '16px',
     fontWeight: 500,
     background: 'var(--ld-semantic-color-fill-negative-subtle, #FDE7F3)',
     color: '#8C1E64',
@@ -769,7 +769,7 @@ const INLINE_STYLES = {
     background: 'var(--ld-semantic-color-surface-primary, #fff)',
   },
   paginationInfo: {
-    fontSize: '13px',
+    fontSize: '16px',
     color: 'var(--ld-semantic-color-text, #2E2F32)',
   },
   paginationButton: {
@@ -792,7 +792,7 @@ const INLINE_STYLES = {
     height: '24px',
     border: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
     borderRadius: '4px',
-    fontSize: '13px',
+    fontSize: '16px',
     color: 'var(--ld-semantic-color-text, #2E2F32)',
     padding: '0 4px',
   },
