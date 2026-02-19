@@ -4,6 +4,7 @@ import martyGlassesAnimation from '../../marty-glasses.json';
 import { MediaSolutionsDropdown, MediaSolution } from './MediaSolutionsDropdown';
 import { useMarty } from '@/contexts/MartyContext';
 import { Divider } from './Divider';
+import { LanguageSelector } from './LanguageSelector';
 import styles from './MastHead.module.css';
 
 interface MastHeadProps {
@@ -37,6 +38,7 @@ export function MastHead({
           onSolutionChange={onSolutionChange}
         />
         <Divider orientation="vertical" UNSAFE_className={styles.divider} />
+        <LanguageSelector />
         <div className={styles.actions}>
           <button className={styles.iconButton} aria-label="Notifications">
             <Bell style={{ width: 16, height: 16 }} />
