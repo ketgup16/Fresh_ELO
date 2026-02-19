@@ -13,7 +13,7 @@ import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
 import {
   Home,
   ListBox,
-  TagIcon,
+  Tag as TagIcon,
   Cart,
   BoxSpark,
   CreditCard,
@@ -39,9 +39,6 @@ import {
 } from '@/components/icons';
 import styles from '@/styles/detailItem.module.css';
 
-// Re-export TagIcon under a usable alias
-const Tag2 = TagIcon ?? ListBox;
-
 const menuItems: SidebarMenuItem[] = [
   { id: 'home', label: 'Home', Icon: Home, route: '/' },
   { id: 'catalog', label: 'Catalog', Icon: ListBox, route: '/catalog' },
@@ -64,7 +61,7 @@ export default function DetailItem() {
 
   return (
     <div className={styles.root}>
-      <MastHead currentSolution="Detail Item Template" />
+      <MastHead currentSolution="Detail Item" />
 
       <div className={styles.appRow}>
         <AppSidebar menuItems={menuItems} />

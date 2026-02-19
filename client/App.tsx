@@ -9,6 +9,8 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import Index from "./pages/Index";
 import Catalog from "./pages/Catalog";
 import PageTemplate from "./pages/PageTemplate";
+import LandingConnection from "./pages/LandingConnection";
+import DetailItem from "./pages/DetailItem";
 import NotFound from "./pages/NotFound";
 import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
 
@@ -176,6 +178,8 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/catalog" element={<Catalog />} />
               <Route path="/page-template" element={<PageTemplate />} />
+              <Route path="/landing-connection" element={<LandingConnection />} />
+              <Route path="/detail-item" element={<DetailItem />} />
 
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />

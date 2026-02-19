@@ -6,7 +6,9 @@ import { useState } from 'react';
 export type MediaSolution =
   | 'Page Template'
   | 'Dashboard Template'
-  | 'Catalog Template';
+  | 'Catalog Template'
+  | 'Detail Item'
+  | 'Landing Connection';
 
 interface MediaSolutionsDropdownProps {
   currentSolution?: MediaSolution;
@@ -17,6 +19,8 @@ const solutions: { id: MediaSolution; label: string; route: string }[] = [
   { id: 'Page Template',       label: 'Page Template',       route: '/page-template' },
   { id: 'Dashboard Template',  label: 'Dashboard Template',  route: '/' },
   { id: 'Catalog Template',    label: 'Catalog Template',    route: '/catalog' },
+  { id: 'Detail Item',         label: 'Detail Item',         route: '/detail-item' },
+  { id: 'Landing Connection',  label: 'Landing Connection',  route: '/landing-connection' },
 ];
 
 export function MediaSolutionsDropdown({
