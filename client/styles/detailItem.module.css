@@ -15,7 +15,7 @@
 .main {
   flex: 1;
   overflow-y: auto;
-  background-color: var(--ld-semantic-color-background-subtle, #F5F6F6);
+  background-color: var(--ld-semantic-color-background-subtle, #f8f8f8);
 }
 
 /* ─── Page inner wrapper ─── */
@@ -148,7 +148,7 @@
 }
 
 .sectionHeader:hover {
-  background-color: var(--ld-semantic-color-fill-surface-secondary, #F2F3F3);
+  background-color: var(--ld-semantic-color-surface-hovered, #f1f1f2);
 }
 
 .sectionChevron {
@@ -405,7 +405,7 @@
 }
 
 .moreBtn:hover {
-  background-color: var(--ld-semantic-color-fill-surface-secondary, #F2F3F3);
+  background-color: var(--ld-semantic-color-surface-hovered, #f1f1f2);
 }
 
 .customerDetails {
@@ -484,7 +484,7 @@
 }
 
 .copyBtn:hover {
-  background-color: var(--ld-semantic-color-fill-surface-secondary, #F2F3F3);
+  background-color: var(--ld-semantic-color-surface-hovered, #f1f1f2);
 }
 
 .shippingCaption {

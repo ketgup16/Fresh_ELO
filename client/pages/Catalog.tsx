@@ -48,55 +48,26 @@ const catalogMenuItems: SidebarMenuItem[] = [
 
 export default function Catalog() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+    <div className={styles.root}>
       <MastHead />
 
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+      <div className={styles.appRow}>
         <AppSidebar menuItems={catalogMenuItems} />
 
-        <main
-          style={{
-            flex: 1,
-            overflowY: 'auto',
-            backgroundColor: 'var(--ld-semantic-color-background-subtle, #F5F6F6)',
-          }}
-        >
+        <main className={styles.main}>
           {/* Branded background bar */}
-          <div
-            style={{
-              height: 200,
-              borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-              background: 'var(--ld-semantic-color-surface-brand, #E9F1FE)',
-            }}
-          />
+          <div className={styles.catalogBrandBar} />
 
           {/* Centered page content */}
           <div className={styles.catalogPageInner}>
             {/* Page header — overlaps the branded bar */}
             <div className={styles.catalogHeader}>
-              <h1
-                style={{
-                  fontFamily: "var(--ld-semantic-font-heading-large-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif)",
-                  fontSize: 'var(--ld-semantic-font-heading-large-size, 32px)',
-                  fontWeight: 'var(--ld-semantic-font-heading-large-weight-default, 700)',
-                  lineHeight: 'var(--ld-semantic-font-heading-large-lineheight, 1.25)',
-                  color: 'var(--ld-semantic-color-text, #2E2F32)',
-                }}
-              >
-                Catalog
-              </h1>
+              <h1 className={styles.pageTitle}>Catalog</h1>
             </div>
 
             {/* Page content — fills available width */}
             <div className={styles.catalogContent}>
-              <div
-                style={{
-                  borderRadius: 'var(--ld-primitive-scale-borderRadius-100, 8px)',
-                  background: 'var(--ld-semantic-color-surface, #FFFFFF)',
-                  boxShadow: '0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15)',
-                  overflow: 'hidden',
-                }}
-              >
+              <div className={styles.catalogCard}>
                 <CatalogHero />
                 <CatalogTodoList />
               </div>

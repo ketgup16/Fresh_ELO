@@ -48,43 +48,26 @@ export default function Index() {
   const [activeMenuItem, setActiveMenuItem] = useState("dashboard");
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh", overflow: "hidden" }}>
+    <div className={styles.root}>
       <MastHead />
 
-      <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
+      <div className={styles.appRow}>
         <AppSidebar
           menuItems={dashboardMenuItems}
           activeMenuItem={activeMenuItem}
           onMenuItemClick={setActiveMenuItem}
         />
 
-        <main
-          style={{
-            flex: 1,
-            overflowY: "auto",
-            backgroundColor: "var(--ld-semantic-color-fill-surface-subtle, #F8F8F8)",
-          }}
-        >
+        <main className={styles.main}>
           <div className={styles.pageContent}>
-            <div style={{ marginBottom: "24px" }}>
+            <div className={styles.alertWrapper}>
               <Alert variant="info">
                 This is a template -- replace this content with your application.
                 Use the Component Library to explore all available LD 3.5 components.
               </Alert>
             </div>
 
-            <h2
-              style={{
-                fontSize: "var(--ld-semantic-font-heading-large-size, 32px)",
-                fontWeight: "var(--ld-semantic-font-heading-large-weight-default, 700)",
-                fontFamily: "var(--ld-semantic-font-heading-large-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif)",
-                lineHeight: "var(--ld-semantic-font-heading-large-lineheight, 1.25)",
-                color: "var(--ld-semantic-color-text-primary, #2E2F32)",
-                marginBottom: "24px",
-              }}
-            >
-              Hello World
-            </h2>
+            <h2 className={styles.pageTitle}>Hello World</h2>
 
             <RecommendationsCards />
 
@@ -97,14 +80,7 @@ export default function Index() {
             {/* Section header — 8px hierarchy rule: title 24px above tabs/content, 16px below divider */}
             <SectionHeader title="Top performing by ROAS" />
 
-            <div
-              className={styles.tableWrapper}
-              style={{
-                backgroundColor: "var(--ld-semantic-color-fill-surface-primary, #ffffff)",
-                borderRadius: "8px",
-                border: "1px solid var(--ld-semantic-color-separator, #E3E4E5)",
-              }}
-            >
+            <div className={styles.tableCard}>
               <DataTableExample />
             </div>
           </div>
@@ -135,27 +111,8 @@ function RecommendationCard({
         <Tag color="blue" variant="tertiary" style={{ marginBottom: "12px" }}>
           {category}
         </Tag>
-        <h3
-          style={{
-            fontSize: "16px",
-            fontWeight: "700",
-            fontFamily: "var(--ld-semantic-font-family-sans)",
-            color: "var(--ld-semantic-color-text-primary, #2E2F32)",
-            marginBottom: "8px",
-          }}
-        >
-          {heading}
-        </h3>
-        <p
-          style={{
-            fontSize: "16px",
-            fontFamily: "var(--ld-semantic-font-family-sans)",
-            color: "var(--ld-semantic-color-text-secondary, #74767C)",
-            marginBottom: "16px",
-          }}
-        >
-          {body}
-        </p>
+        <h3 className={styles.cardHeading}>{heading}</h3>
+        <p className={styles.cardBody}>{body}</p>
         <Button variant="secondary" size="small">
           {cta}
         </Button>
@@ -197,7 +154,7 @@ function FilterBar() {
 
   return (
     <div className={styles.filterBar}>
-      <div style={{ width: 220, minWidth: 180, flex: '0 1 220px' }}>
+      <div className={styles.selectField}>
         <Select
           label="Days window"
           value={daysWindow}
@@ -210,7 +167,7 @@ function FilterBar() {
           <SelectItem value="30">30 days</SelectItem>
         </Select>
       </div>
-      <div style={{ width: 280, minWidth: 200, flex: '0 1 280px' }}>
+      <div className={styles.selectFieldWide}>
         <Select
           label="Date range"
           value={dateRange}
@@ -235,19 +192,8 @@ function FilterBar() {
 
 function SectionHeader({ title }: { title: string }) {
   return (
-    <div style={{ marginTop: 32, marginBottom: 24 }}>
-      <h3
-        style={{
-          fontFamily: "var(--ld-semantic-font-heading-small-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif)",
-          fontSize: "var(--ld-semantic-font-heading-small-size, 20px)",
-          fontWeight: "var(--ld-semantic-font-heading-small-weight-default, 700)",
-          lineHeight: "var(--ld-semantic-font-heading-small-lineheight, 1.4)",
-          color: "var(--ld-semantic-color-text, #2E2F32)",
-          margin: 0,
-        }}
-      >
-        {title}
-      </h3>
+    <div className={styles.sectionHeader}>
+      <h3 className={styles.sectionTitle}>{title}</h3>
     </div>
   );
 }

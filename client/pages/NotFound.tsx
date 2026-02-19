@@ -5,6 +5,7 @@ import { IconButton } from "../components/ui/IconButton";
 import { MastHead } from "../components/ui/MastHead";
 import { AppSidebar } from "../components/ui/AppSidebar";
 import { ArrowLeft, Home } from "../components/icons";
+import styles from "@/styles/notFound.module.css";
 
 const NotFound = () => {
   const location = useLocation();
@@ -29,75 +30,21 @@ const NotFound = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+    <div className={styles.root}>
       <MastHead />
 
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+      <div className={styles.appRow}>
         <AppSidebar />
 
-        <main
-          style={{
-            flex: 1,
-            overflowY: 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'var(--ld-semantic-color-background-subtle, #f8f8f8)',
-          }}
-        >
-          <div style={{
-            textAlign: 'center',
-            maxWidth: '600px',
-            padding: '48px'
-          }}>
-            {/* 404 Icon/Number */}
-            <div style={{
-              fontSize: '120px',
-              fontWeight: '700',
-              color: 'var(--ld-semantic-color-text-subtlest)',
-              marginBottom: '24px',
-              fontFamily: 'var(--ld-semantic-font-family-sans)',
-              lineHeight: '1'
-            }}>
-              404
-            </div>
-
-            {/* Error Message */}
-            <h1 style={{
-              fontSize: '32px',
-              fontWeight: '700',
-              color: 'var(--ld-semantic-color-text)',
-              marginBottom: '16px',
-              fontFamily: 'var(--ld-semantic-font-family-sans)'
-            }}>
-              Page Not Found
-            </h1>
-
-            <p style={{
-              fontSize: '18px',
-              color: 'var(--ld-semantic-color-text-subtle)',
-              marginBottom: '32px',
-              lineHeight: '1.6'
-            }}>
+        <main className={styles.main}>
+          <div className={styles.content}>
+            <div className={styles.errorCode}>404</div>
+            <h1 className={styles.heading}>Page Not Found</h1>
+            <p className={styles.description}>
               The page you're looking for doesn't exist or has been moved.
             </p>
-
-            {/* Path Info */}
-            <div style={{
-              padding: '12px 16px',
-              backgroundColor: 'var(--ld-semantic-color-surface)',
-              borderRadius: '6px',
-              marginBottom: '32px',
-              fontSize: '14px',
-              fontFamily: 'var(--ld-semantic-font-family-mono)',
-              color: 'var(--ld-semantic-color-text-subtle)',
-              wordBreak: 'break-all'
-            }}>
-              {location.pathname}
-            </div>
-
-            {/* Navigation Buttons */}
-            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', alignItems: 'center' }}>
+            <div className={styles.pathInfo}>{location.pathname}</div>
+            <div className={styles.actions}>
               <Button
                 variant="secondary"
                 size="large"
