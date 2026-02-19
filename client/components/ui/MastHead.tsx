@@ -1,6 +1,4 @@
-import { Bell, HelpCircle, User, AppSwitcher } from '@/components/icons';
-import Lottie from 'lottie-react';
-import martyGlassesAnimation from '../../marty-glasses.json';
+import { Bell, HelpCircle, User, AppSwitcher, Spark } from '@/components/icons';
 import { MediaSolutionsDropdown, MediaSolution } from './MediaSolutionsDropdown';
 import { useMarty } from '@/contexts/MartyContext';
 import { Divider } from './Divider';
@@ -90,13 +88,7 @@ export function MastHead({
               className={styles.iconButton}
               aria-label="Open Marty"
             >
-              <div style={{ width: 28, height: 28 }}>
-                <Lottie
-                  animationData={martyGlassesAnimation}
-                  loop={true}
-                  style={{ width: '100%', height: '100%' }}
-                />
-              </div>
+              <Spark style={{ width: 20, height: 20 }} />
             </button>
           )}
         </div>
