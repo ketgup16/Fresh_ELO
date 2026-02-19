@@ -82,7 +82,7 @@ function TodoItem({
       <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
         <span
           style={{
-            fontFamily: "var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif)",
+            fontFamily: "var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif)",
             fontSize: 'var(--ld-semantic-font-body-medium-size, 16px)',
             fontWeight: 'var(--ld-semantic-font-body-medium-weight-alt, 700)',
             lineHeight: 'var(--ld-semantic-font-body-medium-lineheight, 1.5)',
@@ -93,7 +93,7 @@ function TodoItem({
         </span>
         <span
           style={{
-            fontFamily: "var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif)",
+            fontFamily: "var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif)",
             fontSize: 'var(--ld-semantic-font-body-small-size, 14px)',
             fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)',
             lineHeight: 'var(--ld-semantic-font-body-small-lineheight, 1.43)',

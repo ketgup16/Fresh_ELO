@@ -138,7 +138,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif;
+    font-family: 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
   }
 
   /* Reset default link styles to allow component styles to take precedence */
@@ -303,7 +303,7 @@
   display: flex !important;
   align-items: center !important;
   font-size: 14px !important;
-  font-family: 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif !important;
+  font-family: 'Everyday Sans UI', -apple-system, Roboto, sans-serif !important;
   max-width: 317px !important;
   width: auto !important;
   gap: 0 !important;

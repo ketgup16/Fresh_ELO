@@ -45,5 +45,5 @@
   --ld-primitive-color-gray-80: #75889a;
   --ld-primitive-color-gray-90: #667a8c;
   --ld-primitive-font-family-mono: 'Bogle Mono', 'Courier New', monospace;
-  --ld-primitive-font-family-sans: Gibson, 'Helvetica Neue', 'Arial', sans-serif;
+  --ld-primitive-font-family-sans: Gibson, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
 }

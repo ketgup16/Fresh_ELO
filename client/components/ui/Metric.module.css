@@ -13,7 +13,7 @@
 /* Title */
 .title {
   color: var(--ld-semantic-color-text, #2E2F32);
-  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 150%);
@@ -22,7 +22,7 @@
 /* Time */
 .time {
   color: var(--ld-semantic-color-text-subtlest, #74767C);
-  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 150%);
@@ -39,7 +39,7 @@
 /* Value */
 .value {
   color: var(--ld-semantic-color-text, #2E2F32);
-  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 150%);
@@ -48,7 +48,7 @@
 /* Unit */
 .unit {
   color: var(--ld-semantic-color-text, #2E2F32);
-  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 150%);
@@ -76,7 +76,7 @@
 /* Text Label */
 .textLabel {
   flex: 1 0 0;
-  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 150%);

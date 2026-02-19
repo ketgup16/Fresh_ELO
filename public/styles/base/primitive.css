@@ -282,7 +282,7 @@
 
   /* Font family tokens */
   --ld-primitive-font-family-mono: EverydaySansMono, 'Courier New', 'monospace';
-  --ld-primitive-font-family-sans: EverydaySans, 'Helvetica Neue', 'Arial', 'sans-serif';
+  --ld-primitive-font-family-sans: 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
 
   /* Font line height tokens */
   --ld-primitive-font-line-height-200: 1rem;

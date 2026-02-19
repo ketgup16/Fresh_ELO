@@ -22,18 +22,18 @@
   --ld-semantic-color-top-nav-fill: var(--ld-primitive-color-blue-100, #0071dc);
 
   /* Legacy Font Family - Bogle (override primitive) */
-  --ld-primitive-font-family-sans: Bogle, 'Helvetica Neue', 'Arial', sans-serif;
+  --ld-primitive-font-family-sans: Bogle, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
 
   /* Semantic font overrides */
-  --ld-semantic-font-body-large-family: Bogle, 'Helvetica Neue', 'Arial', sans-serif;
-  --ld-semantic-font-body-medium-family: Bogle, 'Helvetica Neue', 'Arial', sans-serif;
-  --ld-semantic-font-body-small-family: Bogle, 'Helvetica Neue', 'Arial', sans-serif;
-  --ld-semantic-font-caption-family: Bogle, 'Helvetica Neue', 'Arial', sans-serif;
-  --ld-semantic-font-display-large-family: Bogle, 'Helvetica Neue', 'Arial', sans-serif;
-  --ld-semantic-font-display-small-family: Bogle, 'Helvetica Neue', 'Arial', sans-serif;
-  --ld-semantic-font-heading-large-family: Bogle, 'Helvetica Neue', 'Arial', sans-serif;
-  --ld-semantic-font-heading-medium-family: Bogle, 'Helvetica Neue', 'Arial', sans-serif;
-  --ld-semantic-font-heading-small-family: Bogle, 'Helvetica Neue', 'Arial', sans-serif;
+  --ld-semantic-font-body-large-family: Bogle, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
+  --ld-semantic-font-body-medium-family: Bogle, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
+  --ld-semantic-font-body-small-family: Bogle, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
+  --ld-semantic-font-caption-family: Bogle, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
+  --ld-semantic-font-display-large-family: Bogle, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
+  --ld-semantic-font-display-small-family: Bogle, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
+  --ld-semantic-font-heading-large-family: Bogle, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
+  --ld-semantic-font-heading-medium-family: Bogle, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
+  --ld-semantic-font-heading-small-family: Bogle, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
   --ld-semantic-font-body-mono-large-family: 'Bogle Mono', 'Courier New', monospace;
   --ld-semantic-font-body-mono-medium-family: 'Bogle Mono', 'Courier New', monospace;
   --ld-semantic-font-body-mono-small-family: 'Bogle Mono', 'Courier New', monospace;

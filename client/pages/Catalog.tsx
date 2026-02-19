@@ -45,7 +45,7 @@ export default function Catalog() {
             <div style={{ marginBottom: 24 }}>
               <h1
                 style={{
-                  fontFamily: "var(--ld-semantic-font-heading-large-family, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif)",
+                  fontFamily: "var(--ld-semantic-font-heading-large-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif)",
                   fontSize: 'var(--ld-semantic-font-heading-large-size, 32px)',
                   fontWeight: 'var(--ld-semantic-font-heading-large-weight-default, 700)',
                   lineHeight: 'var(--ld-semantic-font-heading-large-lineheight, 1.25)',

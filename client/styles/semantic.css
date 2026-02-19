@@ -541,26 +541,26 @@
      TYPOGRAPHY TOKENS
      ======================================== */
   /* Font families */
-  --ld-semantic-font-family-sans: var(--ld-primitive-font-family-sans, EverydaySans, 'Helvetica Neue', 'Arial', 'sans-serif');
+  --ld-semantic-font-family-sans: var(--ld-primitive-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   --ld-semantic-font-family-mono: var(--ld-primitive-font-family-mono, EverydaySansMono, 'Courier New', 'monospace');
 
   /* Action text (buttons, links) */
   --ld-semantic-font-action-weight: var(--ld-primitive-font-weight-700, 700);
 
   /* Body text styles */
-  --ld-semantic-font-body-large-family: var(--ld-primitive-font-family-sans, EverydaySans, 'Helvetica Neue', 'Arial', 'sans-serif');
+  --ld-semantic-font-body-large-family: var(--ld-primitive-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   --ld-semantic-font-body-large-line-height: var(--ld-primitive-font-line-height-300, 1.5rem);
   --ld-semantic-font-body-large-size: var(--ld-primitive-font-size-150, 1.125rem);
   --ld-semantic-font-body-large-weight-alt: var(--ld-primitive-font-weight-700, 700);
   --ld-semantic-font-body-large-weight-default: var(--ld-primitive-font-weight-400, 400);
 
-  --ld-semantic-font-body-medium-family: var(--ld-primitive-font-family-sans, EverydaySans, 'Helvetica Neue', 'Arial', 'sans-serif');
+  --ld-semantic-font-body-medium-family: var(--ld-primitive-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   --ld-semantic-font-body-medium-line-height: var(--ld-primitive-font-line-height-300, 1.5rem);
   --ld-semantic-font-body-medium-size: var(--ld-primitive-font-size-100, 1rem);
   --ld-semantic-font-body-medium-weight-alt: var(--ld-primitive-font-weight-700, 700);
   --ld-semantic-font-body-medium-weight-default: var(--ld-primitive-font-weight-400, 400);
 
-  --ld-semantic-font-body-small-family: var(--ld-primitive-font-family-sans, EverydaySans, 'Helvetica Neue', 'Arial', 'sans-serif');
+  --ld-semantic-font-body-small-family: var(--ld-primitive-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   --ld-semantic-font-body-small-line-height: var(--ld-primitive-font-line-height-250, 1.25rem);
   --ld-semantic-font-body-small-size: var(--ld-primitive-font-size-50, 0.875rem);
   --ld-semantic-font-body-small-weight-alt: var(--ld-primitive-font-weight-700, 700);
@@ -572,7 +572,7 @@
   --ld-semantic-font-body-mono-small-family: var(--ld-primitive-font-family-mono, EverydaySansMono, 'Courier New', 'monospace');
 
   /* Caption text */
-  --ld-semantic-font-caption-family: var(--ld-primitive-font-family-sans, EverydaySans, 'Helvetica Neue', 'Arial', 'sans-serif');
+  --ld-semantic-font-caption-family: var(--ld-primitive-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   --ld-semantic-font-caption-line-height: var(--ld-primitive-font-line-height-200, 1rem);
   --ld-semantic-font-caption-mono-family: var(--ld-primitive-font-family-mono, EverydaySansMono, 'Courier New', 'monospace');
   --ld-semantic-font-caption-size: var(--ld-primitive-font-size-25, 0.75rem);
@@ -580,7 +580,7 @@
   --ld-semantic-font-caption-weight-default: var(--ld-primitive-font-weight-400, 400);
 
   /* Display text (largest headings) */
-  --ld-semantic-font-display-large-family: var(--ld-primitive-font-family-sans, EverydaySans, 'Helvetica Neue', 'Arial', 'sans-serif');
+  --ld-semantic-font-display-large-family: var(--ld-primitive-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   --ld-semantic-font-display-large-line-height-b-s: var(--ld-primitive-font-line-height-500, 2.5rem);
   --ld-semantic-font-display-large-line-height-b-l: var(--ld-primitive-font-line-height-650, 3.25rem);
   --ld-semantic-font-display-large-size-b-s: var(--ld-primitive-font-size-500, 2rem);
@@ -588,7 +588,7 @@
   --ld-semantic-font-display-large-weight-alt: var(--ld-primitive-font-weight-700, 700);
   --ld-semantic-font-display-large-weight-default: var(--ld-primitive-font-weight-400, 400);
 
-  --ld-semantic-font-display-small-family: var(--ld-primitive-font-family-sans, EverydaySans, 'Helvetica Neue', 'Arial', 'sans-serif');
+  --ld-semantic-font-display-small-family: var(--ld-primitive-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   --ld-semantic-font-display-small-line-height-b-s: var(--ld-primitive-font-line-height-450, 2.25rem);
   --ld-semantic-font-display-small-line-height-b-l: var(--ld-primitive-font-line-height-600, 3rem);
   --ld-semantic-font-display-small-size-b-s: var(--ld-primitive-font-size-400, 1.75rem);
@@ -597,7 +597,7 @@
   --ld-semantic-font-display-small-weight-default: var(--ld-primitive-font-weight-400, 400);
 
   /* Heading text */
-  --ld-semantic-font-heading-large-family: var(--ld-primitive-font-family-sans, EverydaySans, 'Helvetica Neue', 'Arial', 'sans-serif');
+  --ld-semantic-font-heading-large-family: var(--ld-primitive-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   --ld-semantic-font-heading-large-line-height-b-s: var(--ld-primitive-font-line-height-400, 2rem);
   --ld-semantic-font-heading-large-line-height-b-l: var(--ld-primitive-font-line-height-500, 2.5rem);
   --ld-semantic-font-heading-large-size-b-s: var(--ld-primitive-font-size-300, 1.5rem);
@@ -605,7 +605,7 @@
   --ld-semantic-font-heading-large-weight-alt: var(--ld-primitive-font-weight-400, 400);
   --ld-semantic-font-heading-large-weight-default: var(--ld-primitive-font-weight-700, 700);
 
-  --ld-semantic-font-heading-medium-family: var(--ld-primitive-font-family-sans, EverydaySans, 'Helvetica Neue', 'Arial', 'sans-serif');
+  --ld-semantic-font-heading-medium-family: var(--ld-primitive-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   --ld-semantic-font-heading-medium-line-height-b-s: var(--ld-primitive-font-line-height-350, 1.75rem);
   --ld-semantic-font-heading-medium-line-height-b-l: var(--ld-primitive-font-line-height-450, 2.25rem);
   --ld-semantic-font-heading-medium-size-b-s: var(--ld-primitive-font-size-200, 1.25rem);
@@ -613,7 +613,7 @@
   --ld-semantic-font-heading-medium-weight-alt: var(--ld-primitive-font-weight-400, 400);
   --ld-semantic-font-heading-medium-weight-default: var(--ld-primitive-font-weight-700, 700);
 
-  --ld-semantic-font-heading-small-family: var(--ld-primitive-font-family-sans, EverydaySans, 'Helvetica Neue', 'Arial', 'sans-serif');
+  --ld-semantic-font-heading-small-family: var(--ld-primitive-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   --ld-semantic-font-heading-small-line-height-b-s: var(--ld-primitive-font-line-height-300, 1.5rem);
   --ld-semantic-font-heading-small-line-height-b-l: var(--ld-primitive-font-line-height-350, 1.75rem);
   --ld-semantic-font-heading-small-size-b-s: var(--ld-primitive-font-size-150, 1.125rem);

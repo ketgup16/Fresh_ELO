@@ -42,7 +42,7 @@ export default function Index() {
               style={{
                 fontSize: "var(--ld-semantic-font-heading-large-size, 32px)",
                 fontWeight: "var(--ld-semantic-font-heading-large-weight-default, 700)",
-                fontFamily: "var(--ld-semantic-font-heading-large-family, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif)",
+                fontFamily: "var(--ld-semantic-font-heading-large-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif)",
                 lineHeight: "var(--ld-semantic-font-heading-large-lineheight, 1.25)",
                 color: "var(--ld-semantic-color-text-primary, #2E2F32)",
                 marginBottom: "24px",
