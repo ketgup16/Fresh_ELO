@@ -652,7 +652,7 @@ const INLINE_STYLES = {
     maxWidth: '460px',
     height: '32px',
     padding: '0 12px',
-    border: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
+    border: '1px solid var(--ld-semantic-color-border-strong, #2E2F32)',
     borderRadius: '9999px',
     background: 'var(--ld-semantic-color-surface-primary, #fff)',
     fontSize: '14px',
