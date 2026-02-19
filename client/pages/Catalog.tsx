@@ -55,7 +55,7 @@ export default function Catalog() {
       <MastHead />
 
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-        <AppSidebar menuItems={catalogMenuItems} />
+        <AppSidebar menuItems={catalogMenuItems} defaultLocked />
 
         <main
           style={{

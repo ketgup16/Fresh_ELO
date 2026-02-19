@@ -60,14 +60,44 @@ interface SidebarMenuItem {
 }
 ```
 
+## HARD RULE: Always Search Icon Library First
+
+**Before importing any icon from an external package, you MUST search `client/components/icons/` first.**
+
+```bash
+# Check what's available before reaching for an external library
+ls client/components/icons/
+```
+
+The project has 300+ icons covering all common use cases. External icon imports are forbidden unless the icon genuinely does not exist in the library after a thorough search.
+
+### Icon search process (required for every new icon usage):
+
+1. Search `client/components/icons/` by name or concept (e.g., "Cart" for orders, "Tag" for pricing)
+2. Check `client/components/icons/index.tsx` for the full export list
+3. Import only from `@/components/icons` — never from `lucide-react`, `react-icons`, `heroicons`, etc.
+4. If no match exists, use the closest semantic equivalent from the library
+
+### Example — correct icon usage:
+
+```tsx
+// ✅ CORRECT — search the project library first
+import { ListBox, Upload, ScanDocument, CheckCircle } from '@/components/icons';
+
+// ❌ WRONG — never import from external icon packages
+import { FileText } from 'lucide-react';
+import { FiUpload } from 'react-icons/fi';
+```
+
 ## Figma / Design Plugin Rule
 
 When generating new pages from Figma designs or the Builder plugin:
 
 1. **Read the sidebar navigation items from the design.** The Figma design specifies which navigation items belong to each page.
-2. **Map Figma icon names to the project icon library** in `client/components/icons/`.
-3. **Define the menu items array in the page file**, not in AppSidebar.
-4. **Never copy menu items from another page.** Each page has its own navigation context.
+2. **Search `client/components/icons/` first** before mapping any Figma icon to an import.
+3. **Map Figma icon names to the project icon library** in `client/components/icons/`.
+4. **Define the menu items array in the page file**, not in AppSidebar.
+5. **Never copy menu items from another page.** Each page has its own navigation context.
 
 ## Reference implementations
 

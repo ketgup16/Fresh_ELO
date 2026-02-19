@@ -1,14 +1,28 @@
 import { Button } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
 import { Divider } from '@/components/ui/Divider';
+import { ListBox, Upload, ScanDocument, CheckCircle } from '@/components/icons';
 
-const todoItems = [
+// BUILD RULE: Always search client/components/icons/ for existing icons before importing new ones.
+// Map Figma icon names to project icon exports — never add external icon packages.
+
+type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
+
+const todoItems: {
+  id: string;
+  title: string;
+  description: string;
+  label: string;
+  cta: string;
+  Icon: IconComponent;
+}[] = [
   {
     id: '1',
     title: 'Title',
     description: 'A short description of the action that a user needs to complete, character count 120.',
     label: 'Label',
     cta: 'Button label',
+    Icon: ListBox,
   },
   {
     id: '2',
@@ -16,6 +30,7 @@ const todoItems = [
     description: 'A short description of the action that a user needs to complete, character count 120.',
     label: 'Label',
     cta: 'Button label',
+    Icon: Upload,
   },
   {
     id: '3',
@@ -23,6 +38,7 @@ const todoItems = [
     description: 'A short description of the action that a user needs to complete, character count 120.',
     label: 'Label',
     cta: 'Button label',
+    Icon: ScanDocument,
   },
   {
     id: '4',
@@ -30,6 +46,7 @@ const todoItems = [
     description: 'A short description of the action that a user needs to complete, character count 120.',
     label: 'Label',
     cta: 'Button label',
+    Icon: CheckCircle,
   },
 ];
 
@@ -43,6 +60,7 @@ export function CatalogTodoList() {
             description={item.description}
             label={item.label}
             cta={item.cta}
+            Icon={item.Icon}
           />
           {index < todoItems.length - 1 && (
             <div style={{ padding: '12px 0' }}>
@@ -60,11 +78,13 @@ function TodoItem({
   description,
   label,
   cta,
+  Icon,
 }: {
   title: string;
   description: string;
   label: string;
   cta: string;
+  Icon: IconComponent;
 }) {
   return (
     <div
@@ -75,8 +95,8 @@ function TodoItem({
         alignSelf: 'stretch',
       }}
     >
-      {/* Spot icon */}
-      <SpotIcon />
+      {/* Spot icon — uses icons from client/components/icons/ */}
+      <SpotIcon Icon={Icon} />
 
       {/* Text content */}
       <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
@@ -126,7 +146,7 @@ function TodoItem({
   );
 }
 
-function SpotIcon() {
+function SpotIcon({ Icon }: { Icon: IconComponent }) {
   return (
     <div
       style={{
@@ -141,9 +161,11 @@ function SpotIcon() {
         flexShrink: 0,
       }}
     >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M21 21V3H1.5V1.5H22.5V22.5H1.5V3H3V21H21Z" fill="var(--ld-semantic-color-text-onfill-brand-subtle, #002E99)" />
-      </svg>
+      <Icon
+        width={24}
+        height={24}
+        style={{ color: 'var(--ld-semantic-color-text-onfill-brand-subtle, #002E99)' }}
+      />
     </div>
   );
 }

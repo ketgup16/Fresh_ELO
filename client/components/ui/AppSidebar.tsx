@@ -27,6 +27,8 @@ export interface AppSidebarProps {
   onMenuItemClick?: (itemId: string) => void;
   /** Custom menu items — if not provided, uses default set */
   menuItems?: SidebarMenuItem[];
+  /** Start the sidebar locked open (showing labels). Defaults to false. */
+  defaultLocked?: boolean;
 }
 
 const iconStyle = { width: 16, height: 16 };
@@ -53,6 +55,7 @@ export function AppSidebar({
   activeMenuItem: controlledActive,
   onMenuItemClick,
   menuItems = defaultMenuItems,
+  defaultLocked = false,
 }: AppSidebarProps) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,13 +63,22 @@ export function AppSidebar({
   const [internalActive, setInternalActive] = useState('dashboard');
   const activeMenuItem = controlledActive ?? internalActive;
 
-  const [sidebarLocked, setSidebarLocked] = useState(false);
+  const [sidebarLocked, setSidebarLocked] = useState(defaultLocked);
   const [sidebarHovered, setSidebarHovered] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(220);
   const [isResizingSidebar, setIsResizingSidebar] = useState(false);
   const [sidebarResizeStartX, setSidebarResizeStartX] = useState(0);
   const [sidebarResizeStartWidth, setSidebarResizeStartWidth] = useState(0);
-  const [expandedSubmenus, setExpandedSubmenus] = useState<Record<string, boolean>>({ campaigns: true });
+  const [expandedSubmenus, setExpandedSubmenus] = useState<Record<string, boolean>>(() => {
+    // Auto-expand the submenu for the active item on mount
+    const initial: Record<string, boolean> = {};
+    menuItems.forEach((item) => {
+      if (item.submenuItems && item.submenuItems.length > 0) {
+        initial[item.id] = true;
+      }
+    });
+    return initial;
+  });
 
   const sidebarExpanded = sidebarLocked || sidebarHovered;
 
