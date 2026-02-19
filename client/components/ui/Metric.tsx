@@ -175,8 +175,8 @@ export const Metric: React.FC<MetricProps> = ({
       {showTextLabel && (
         <div className={styles.labelContainer}>
           {trendIndicator && (
-            <div 
-              className={styles.trendIndicator}
+            <div
+              className={`${styles.trendIndicator} ${trendIndicator.colorClass}`}
               aria-label={trendIndicator.label}
               role="img"
             >
