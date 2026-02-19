@@ -94,6 +94,26 @@ export function MediaSolutionsDropdown({
               );
             })}
           </div>
+
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: 800,
+              margin: 'var(--ld-semantic-spacing-4, 16px) 0 var(--ld-semantic-spacing-2, 8px)',
+              color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}
+          >
+            Tools and help
+          </h3>
+
+          <ToolLink
+            label="Component Library"
+            onClick={() => {
+              navigate('/component-library');
+              setOpen(false);
+            }}
+          />
         </div>
       </PopoverContent>
     </Popover>
@@ -155,6 +175,53 @@ function SolutionCard({
         style={{
           fontSize: '12px',
           textAlign: 'center',
+          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
+        }}
+      >
+        {label}
+      </span>
+    </button>
+  );
+}
+
+/* ─── Tool Link ─── */
+
+function ToolLink({ label, onClick }: { label: string; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 'var(--ld-semantic-spacing-2, 8px)',
+        padding: 'var(--ld-semantic-spacing-2, 8px)',
+        width: '100%',
+        borderRadius: 'var(--ld-semantic-border-radius-small, 4px)',
+        border: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
+        backgroundColor: 'transparent',
+        cursor: 'pointer',
+        fontFamily: 'var(--ld-semantic-font-family-sans)',
+        transition: 'border-color 150ms',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = 'var(--ld-semantic-color-action-border-primary, #0053E2)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = 'var(--ld-semantic-color-separator, #E3E4E5)';
+      }}
+    >
+      <div
+        style={{
+          width: 20,
+          height: 20,
+          borderRadius: 'var(--ld-semantic-border-radius-full, 9999px)',
+          backgroundColor: 'var(--ld-semantic-color-fill-surface-secondary, #F2F3F3)',
+          flexShrink: 0,
+        }}
+      />
+      <span
+        style={{
+          fontSize: '12px',
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
         }}
       >

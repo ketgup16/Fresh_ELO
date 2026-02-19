@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MartyProvider } from "@/contexts/MartyContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Index from "./pages/Index";
+import Catalog from "./pages/Catalog";
 import NotFound from "./pages/NotFound";
 import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
 
@@ -172,6 +173,7 @@ const App = () => (
 
               {/* Template Homepage */}
               <Route path="/" element={<Index />} />
+              <Route path="/catalog" element={<Catalog />} />
 
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />

@@ -14,7 +14,7 @@ interface MastHeadProps {
 
 export function MastHead({
   appName = 'PX Template',
-  currentSolution = 'Display Advertising',
+  currentSolution = 'Dashboard Template',
   onSolutionChange
 }: MastHeadProps) {
   const { isMinimized, isDocked, setIsMinimized, setIsDocked, setInitialPosition } = useMarty();
