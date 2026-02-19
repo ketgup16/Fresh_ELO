@@ -6,6 +6,7 @@ import type { SidebarMenuItem } from '@/components/ui/AppSidebar';
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Tag } from '@/components/ui/Tag';
+import { Rating } from '@/components/ui/Rating';
 import { Card } from '@/components/ui/Card';
 import { CardContent } from '@/components/ui/CardContent';
 import { Divider } from '@/components/ui/Divider';
@@ -32,9 +33,6 @@ import {
   ExclamationCircleFill,
   MoreHorizontal,
   ExternalLink,
-  StarFill,
-  StarHalf,
-  Star,
   Clipboard,
 } from '@/components/icons';
 import styles from '@/styles/detailItem.module.css';
@@ -244,11 +242,7 @@ function ListingPreviewCard() {
             <Tag variant="tertiary" color="gray" style={{ alignSelf: 'flex-start' }}>Primary</Tag>
             <p className={styles.listingProductName}>Product Name</p>
             <div className={styles.listingRating}>
-              <StarFill style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-fill-accent-spark, #ffc220)' }} />
-              <StarFill style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-fill-accent-spark, #ffc220)' }} />
-              <StarFill style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-fill-accent-spark, #ffc220)' }} />
-              <StarFill style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-fill-accent-spark, #ffc220)' }} />
-              <StarHalf style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-fill-accent-spark, #ffc220)' }} />
+              <Rating value={4.4} size="small" />
               <span className={styles.listingRatingText}>(4.4) 248 reviews</span>
             </div>
             <p className={styles.listingPrice}>$4.96</p>
