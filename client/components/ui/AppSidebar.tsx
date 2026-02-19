@@ -82,9 +82,20 @@ export function AppSidebar({
 
   const sidebarExpanded = sidebarLocked || sidebarHovered;
 
-  // Auto-detect active item from route
+  // Auto-detect active item from route (checks submenu items first for dot state)
   useEffect(() => {
     if (controlledActive !== undefined) return;
+    // Check submenu items first for more specific match
+    for (const item of menuItems) {
+      if (item.submenuItems) {
+        const subMatch = item.submenuItems.find((sub) => sub.route && location.pathname === sub.route);
+        if (subMatch) {
+          setInternalActive(subMatch.id);
+          return;
+        }
+      }
+    }
+    // Fall back to top-level match
     const match = menuItems.find((item) => item.route && location.pathname === item.route);
     if (match) {
       setInternalActive(match.id);
@@ -251,58 +262,108 @@ export function AppSidebar({
                 )}
               </button>
 
-              {/* Submenu items */}
+              {/* Submenu items — expanded labels */}
               {hasSubmenu && isExpanded && sidebarExpanded && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '4px' }}>
-                  {item.submenuItems!.map((subItem) => (
-                    <button
-                      key={subItem.id}
-                      onClick={() => {
-                        onMenuItemClick?.(subItem.id);
-                        setInternalActive(subItem.id);
-                        if (subItem.route) navigate(subItem.route);
-                      }}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 'var(--ld-semantic-spacing-3, 12px)',
-                        paddingLeft: '48px',
-                        paddingRight: 'var(--ld-semantic-spacing-3, 12px)',
-                        width: '100%',
-                        height: '36px',
-                        borderRadius: 'var(--ld-semantic-border-radius-small, 4px)',
-                        backgroundColor: 'transparent',
-                        border: 'none',
-                        cursor: 'pointer',
-                        fontFamily: 'var(--ld-semantic-font-family-sans)',
-                        transition: 'background-color 150ms',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor =
-                          'var(--ld-semantic-color-fill-surface-secondary, #F5F5F6)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'transparent';
-                      }}
-                      aria-label={subItem.label}
-                    >
-                      <span style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-primary, #2E2F32)' }}>
-                        ○
-                      </span>
-                      <span
-                        style={{
-                          fontSize: '14px',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-                          fontFamily: 'var(--ld-semantic-font-family-sans)',
+                  {item.submenuItems!.map((subItem) => {
+                    const isSubActive = activeMenuItem === subItem.id;
+                    return (
+                      <button
+                        key={subItem.id}
+                        onClick={() => {
+                          onMenuItemClick?.(subItem.id);
+                          setInternalActive(subItem.id);
+                          if (subItem.route) navigate(subItem.route);
                         }}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 'var(--ld-semantic-spacing-3, 12px)',
+                          paddingLeft: '48px',
+                          paddingRight: 'var(--ld-semantic-spacing-3, 12px)',
+                          width: '100%',
+                          height: '36px',
+                          borderRadius: 'var(--ld-semantic-border-radius-small, 4px)',
+                          backgroundColor: 'transparent',
+                          border: 'none',
+                          cursor: 'pointer',
+                          fontFamily: 'var(--ld-semantic-font-family-sans)',
+                          transition: 'background-color 150ms',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor =
+                            'var(--ld-semantic-color-fill-surface-secondary, #F5F5F6)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
+                        aria-label={subItem.label}
                       >
-                        {subItem.label}
-                      </span>
-                    </button>
-                  ))}
+                        <svg width="6" height="6" viewBox="0 0 6 6" style={{ flexShrink: 0 }}>
+                          {isSubActive ? (
+                            <circle cx="3" cy="3" r="3" fill="var(--ld-semantic-color-action-fill-primary, #0053E2)" />
+                          ) : (
+                            <circle cx="3" cy="3" r="2.5" stroke="var(--ld-semantic-color-text-primary, #2E2F32)" fill="none" />
+                          )}
+                        </svg>
+                        <span
+                          style={{
+                            fontSize: '14px',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            color: isSubActive
+                              ? 'var(--ld-semantic-color-action-fill-primary, #0053E2)'
+                              : 'var(--ld-semantic-color-text-primary, #2E2F32)',
+                            fontFamily: 'var(--ld-semantic-font-family-sans)',
+                          }}
+                        >
+                          {subItem.label}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* Submenu dots — collapsed state */}
+              {hasSubmenu && !sidebarExpanded && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '4px' }}>
+                  {item.submenuItems!.map((subItem) => {
+                    const isSubActive = activeMenuItem === subItem.id;
+                    return (
+                      <button
+                        key={subItem.id}
+                        onClick={() => {
+                          onMenuItemClick?.(subItem.id);
+                          setInternalActive(subItem.id);
+                          if (subItem.route) navigate(subItem.route);
+                        }}
+                        style={{
+                          display: 'flex',
+                          width: '40px',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          height: '28px',
+                          borderRadius: 'var(--ld-semantic-border-radius-small, 4px)',
+                          backgroundColor: 'transparent',
+                          border: 'none',
+                          cursor: 'pointer',
+                          margin: '0 auto',
+                        }}
+                        aria-label={subItem.label}
+                        title={subItem.label}
+                      >
+                        <svg width="6" height="6" viewBox="0 0 6 6">
+                          {isSubActive ? (
+                            <circle cx="3" cy="3" r="3" fill="var(--ld-semantic-color-action-fill-primary, #0053E2)" />
+                          ) : (
+                            <circle cx="3" cy="3" r="2.5" stroke="var(--ld-semantic-color-text-primary, #2E2F32)" fill="none" />
+                          )}
+                        </svg>
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </div>

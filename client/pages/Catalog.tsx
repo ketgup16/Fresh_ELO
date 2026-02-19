@@ -1,8 +1,4 @@
-import React from 'react';
 import { MastHead } from '@/components/ui/MastHead';
-import { Button } from '@/components/ui/Button';
-import { Tag } from '@/components/ui/Tag';
-import { Divider } from '@/components/ui/Divider';
 import { AppSidebar } from '@/components/ui/AppSidebar';
 import type { SidebarMenuItem } from '@/components/ui/AppSidebar';
 import { CatalogHero } from '@/features/catalog/CatalogHero';
@@ -55,7 +51,7 @@ export default function Catalog() {
       <MastHead />
 
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-        <AppSidebar menuItems={catalogMenuItems} defaultLocked />
+        <AppSidebar menuItems={catalogMenuItems} />
 
         <main
           style={{
