@@ -69,7 +69,6 @@ export default function LandingSummary() {
                 <div className={styles.secondaryColumn}>
                   <SecondaryListCard />
                   <SecondaryAccordionCard />
-                  <div className={styles.placeholderCard} />
                 </div>
               </div>
             </div>
