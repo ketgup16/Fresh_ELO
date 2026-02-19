@@ -10,7 +10,38 @@ import { Select, SelectItem } from "@/components/ui/Select";
 import DataTableExample from "@/components/examples/DataTableExample";
 import { MastHead } from "@/components/ui/MastHead";
 import { AppSidebar } from "@/components/ui/AppSidebar";
+import type { SidebarMenuItem } from "@/components/ui/AppSidebar";
 import MartyFloatingPanel from "@/features/marty/MartyFloatingPanel";
+import {
+  Home,
+  Megaphone,
+  BarGraph,
+  Toolbox,
+  Image,
+  Upload,
+} from "@/components/icons";
+
+/**
+ * Dashboard page sidebar menu items — Advertising / Home navigation.
+ * Each page defines its own menu items relevant to that page's context.
+ */
+const dashboardMenuItems: SidebarMenuItem[] = [
+  { id: "dashboard", label: "Home", Icon: Home, route: "/" },
+  {
+    id: "campaigns",
+    label: "Notifications",
+    Icon: Megaphone,
+    submenuItems: [
+      { id: "campaigns-sub1", label: "Sub page" },
+      { id: "campaigns-sub2", label: "Sub page" },
+      { id: "campaigns-sub3", label: "Sub page" },
+    ],
+  },
+  { id: "reports", label: "Charts", Icon: BarGraph },
+  { id: "tools", label: "Tools", Icon: Toolbox },
+  { id: "video-manager", label: "Media", Icon: Image },
+  { id: "bulk-operations", label: "Uploads", Icon: Upload },
+];
 
 export default function Index() {
   const [activeMenuItem, setActiveMenuItem] = useState("dashboard");
@@ -21,6 +52,7 @@ export default function Index() {
 
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         <AppSidebar
+          menuItems={dashboardMenuItems}
           activeMenuItem={activeMenuItem}
           onMenuItemClick={setActiveMenuItem}
         />
