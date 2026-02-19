@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
 import { Divider } from '@/components/ui/Divider';
 import { ListBox, Upload, ScanDocument, CheckCircle } from '@/components/icons';
+import styles from '@/styles/responsive.module.css';
 
 // BUILD RULE: Always search client/components/icons/ for existing icons before importing new ones.
 // Map Figma icon names to project icon exports — never add external icon packages.
@@ -52,7 +53,7 @@ const todoItems: {
 
 export function CatalogTodoList() {
   return (
-    <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 0 }}>
+    <div className={styles.catalogTodoList}>
       {todoItems.map((item, index) => (
         <div key={item.id}>
           <TodoItem
@@ -87,14 +88,7 @@ function TodoItem({
   Icon: IconComponent;
 }) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 16,
-        alignSelf: 'stretch',
-      }}
-    >
+    <div className={styles.todoItem}>
       {/* Spot icon — uses icons from client/components/icons/ */}
       <SpotIcon Icon={Icon} />
 
@@ -125,16 +119,7 @@ function TodoItem({
       </div>
 
       {/* Trailing: tag + button */}
-      <div
-        style={{
-          display: 'flex',
-          padding: '8px 0',
-          justifyContent: 'flex-end',
-          alignItems: 'center',
-          gap: 12,
-          flexShrink: 0,
-        }}
-      >
+      <div className={styles.todoTrailing}>
         <Tag color="blue" variant="tertiary">
           {label}
         </Tag>

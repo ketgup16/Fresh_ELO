@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "@/styles/responsive.module.css";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { CardContent } from "@/components/ui/CardContent";
@@ -64,7 +65,7 @@ export default function Index() {
             backgroundColor: "var(--ld-semantic-color-fill-surface-subtle, #F8F8F8)",
           }}
         >
-          <div style={{ padding: "24px 32px" }}>
+          <div className={styles.pageContent}>
             <div style={{ marginBottom: "24px" }}>
               <Alert variant="info">
                 This is a template -- replace this content with your application.
@@ -97,11 +98,11 @@ export default function Index() {
             <SectionHeader title="Top performing by ROAS" />
 
             <div
+              className={styles.tableWrapper}
               style={{
                 backgroundColor: "var(--ld-semantic-color-fill-surface-primary, #ffffff)",
                 borderRadius: "8px",
                 border: "1px solid var(--ld-semantic-color-separator, #E3E4E5)",
-                overflow: "hidden",
               }}
             >
               <DataTableExample />
@@ -165,7 +166,7 @@ function RecommendationCard({
 
 function RecommendationsCards() {
   return (
-    <div style={{ display: "flex", gap: "16px", marginBottom: "24px" }}>
+    <div className={styles.threeColGrid}>
       <RecommendationCard
         category="Category"
         heading="Heading Text"
@@ -195,17 +196,8 @@ function FilterBar() {
   const [dateRange, setDateRange] = useState("range-1");
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "flex-end",
-        gap: "var(--ld-semantic-spacing-4, 16px)",
-        marginBottom: "16px",
-        paddingBottom: "16px",
-        borderBottom: "1px solid var(--ld-semantic-color-separator, #E3E4E5)",
-      }}
-    >
-      <div style={{ width: 220 }}>
+    <div className={styles.filterBar}>
+      <div style={{ width: 220, minWidth: 180, flex: '0 1 220px' }}>
         <Select
           label="Days window"
           value={daysWindow}
@@ -218,7 +210,7 @@ function FilterBar() {
           <SelectItem value="30">30 days</SelectItem>
         </Select>
       </div>
-      <div style={{ width: 280 }}>
+      <div style={{ width: 280, minWidth: 200, flex: '0 1 280px' }}>
         <Select
           label="Date range"
           value={dateRange}
@@ -266,13 +258,7 @@ function MetricsRow() {
   return (
     <Card UNSAFE_style={{ marginBottom: "24px" }}>
       <CardContent>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
-            gap: "var(--ld-semantic-spacing-4, 16px)",
-          }}
-        >
+        <div className={styles.metricsGrid5}>
           <Metric title="Metric Category" value="$0.00" variant="positiveUp" textLabel="0%" />
           <Metric title="Metric Category" value="$0.00" variant="negativeDown" textLabel="0%" />
           <Metric title="Metric Category" value="$0.00" variant="neutral" textLabel="0%" />

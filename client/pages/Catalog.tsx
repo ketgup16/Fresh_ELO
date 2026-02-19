@@ -1,3 +1,4 @@
+import styles from '@/styles/responsive.module.css';
 import { MastHead } from '@/components/ui/MastHead';
 import { AppSidebar } from '@/components/ui/AppSidebar';
 import type { SidebarMenuItem } from '@/components/ui/AppSidebar';
@@ -70,15 +71,7 @@ export default function Catalog() {
           />
 
           {/* Page content overlapping the branded bar */}
-          <div
-            style={{
-              maxWidth: 1280,
-              margin: '0 auto',
-              padding: '0 24px 24px',
-              marginTop: -176,
-              position: 'relative',
-            }}
-          >
+          <div className={styles.catalogContent}>
             {/* Page header */}
             <div style={{ marginBottom: 24 }}>
               <h1

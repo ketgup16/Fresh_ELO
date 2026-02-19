@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "@/styles/responsive.module.css";
 import { MastHead } from "@/components/ui/MastHead";
 import { AppSidebar } from "@/components/ui/AppSidebar";
 import type { SidebarMenuItem } from "@/components/ui/AppSidebar";
@@ -57,7 +58,7 @@ export default function PageTemplate() {
             backgroundColor: "var(--ld-semantic-color-fill-surface-subtle, #F8F8F8)",
           }}
         >
-          <div style={{ padding: "24px 32px" }}>
+          <div className={styles.pageContent}>
             {/* Alert banner */}
             <div style={{ marginBottom: "24px" }}>
               <Alert variant="success" action={<a href="#">Action button</a>}>
@@ -151,12 +152,7 @@ function MetricsRow() {
   return (
     <Card UNSAFE_style={{ marginBottom: "24px" }}>
       <CardContent>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-          }}
-        >
+        <div className={styles.metricsGrid4}>
           <Metric title="Label" value="Value" variant="neutral" textLabel="0%" />
           <Metric title="Label" value="Value" variant="neutral" textLabel="0%" />
           <Metric title="Label" value="Value" variant="neutral" textLabel="0%" />
@@ -170,14 +166,7 @@ function MetricsRow() {
 /* ─── Hero Section ─── */
 function HeroSection() {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "16px",
-        marginBottom: "32px",
-      }}
-    >
+    <div className={styles.heroGrid}>
       {/* Hero card (dark blue promo) */}
       <div
         style={{
@@ -331,13 +320,7 @@ function PrimarySection() {
       </div>
 
       {/* 4-column card grid */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "16px",
-        }}
-      >
+      <div className={styles.primaryCardsGrid}>
         {[1, 2, 3, 4].map((i) => (
           <PrimaryCard key={i} />
         ))}
