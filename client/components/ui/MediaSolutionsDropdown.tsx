@@ -212,13 +212,15 @@ function ToolLink({ label, onClick }: { label: string; onClick: () => void }) {
         e.currentTarget.style.borderColor = 'var(--ld-semantic-color-separator, #E3E4E5)';
       }}
     >
-      <div
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fe663bb9ecfe245cd8c1cdb8a20fd945c"
+        alt={label}
         style={{
           width: 20,
           height: 20,
           borderRadius: 'var(--ld-semantic-border-radius-full, 9999px)',
-          backgroundColor: 'var(--ld-semantic-color-fill-surface-secondary, #F2F3F3)',
           flexShrink: 0,
+          objectFit: 'contain',
         }}
       />
       <span
