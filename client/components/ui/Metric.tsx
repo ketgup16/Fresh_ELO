@@ -1,4 +1,5 @@
 import React from 'react';
+import { InfoCircle } from '@/components/icons';
 import styles from './Metric.module.css';
 
 /**
@@ -47,6 +48,9 @@ export interface MetricProps {
    */
   variant?: 'neutral' | 'positiveUp' | 'negativeUp' | 'positiveDown' | 'negativeDown';
   
+  /** Show an info circle icon next to the title */
+  showInfoIcon?: boolean;
+
   /** Optional additional CSS classes */
   className?: string;
 }
@@ -132,6 +136,7 @@ export const Metric: React.FC<MetricProps> = ({
   time,
   textLabel,
   variant = 'neutral',
+  showInfoIcon,
   className = '',
 }) => {
   const trendIndicator = getTrendIndicator(variant);
@@ -142,6 +147,9 @@ export const Metric: React.FC<MetricProps> = ({
       {/* Title */}
       <div className={styles.title}>
         {title}
+        {showInfoIcon && (
+          <InfoCircle style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-text-subtlest, #74767C)' }} />
+        )}
       </div>
 
       {/* Time (optional) */}

@@ -258,12 +258,14 @@ function MetricsRow() {
   return (
     <Card UNSAFE_style={{ marginBottom: "24px" }}>
       <CardContent>
-        <div className={styles.metricsGrid5}>
-          <Metric title="Metric Category" value="$0.00" variant="positiveUp" textLabel="0%" />
-          <Metric title="Metric Category" value="$0.00" variant="negativeDown" textLabel="0%" />
-          <Metric title="Metric Category" value="$0.00" variant="neutral" textLabel="0%" />
-          <Metric title="Metric Category" value="0" variant="positiveUp" textLabel="0%" />
-          <Metric title="Metric Category" value="$0.00" variant="negativeDown" textLabel="0%" />
+        <div className={styles.metricsGrid7}>
+          <Metric title="Impressions" value="21,891,371" variant="positiveUp" textLabel="6%" showInfoIcon />
+          <Metric title="eCPM" value="$5.52" variant="negativeDown" textLabel="1%" showInfoIcon />
+          <Metric title="Spend" value="$120,869" variant="neutral" textLabel="0%" showInfoIcon />
+          <Metric title="Total ROAS" value="$3.13" variant="positiveUp" textLabel="1%" showInfoIcon />
+          <Metric title="Total attributed sales" value="$377,588" variant="positiveUp" textLabel="3%" showInfoIcon />
+          <Metric title="Total attributed orders" value="30,666" variant="positiveUp" textLabel="4%" showInfoIcon />
+          <Metric title="Total attributed units" value="21,891,371" variant="positiveUp" textLabel="2%" showInfoIcon />
         </div>
       </CardContent>
     </Card>
