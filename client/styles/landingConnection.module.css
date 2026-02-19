@@ -97,7 +97,6 @@
 .cardImageArea {
   position: relative;
   height: 140px;
-  background: var(--ld-semantic-color-fill-surface-secondary, #F2F3F3);
   display: flex;
   align-items: center;
   justify-content: flex-start;
