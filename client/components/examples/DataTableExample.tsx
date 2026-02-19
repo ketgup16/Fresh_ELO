@@ -59,7 +59,10 @@ const CAMPAIGNS: Campaign[] = [
     targetingStrategy: 'Behavioral targeting',
     impressions: '3,200,332',
     pacing: { value: '123%', trend: 'warning' },
-    children: [],
+    children: [
+      { id: 'ag-2', name: 'Display Banner Group A', type: 'adgroup', status: 'Scheduled', recommendations: 0 },
+      { id: 'cr-2', name: 'Video Ad - Product Showcase', type: 'creative', status: 'Scheduled', recommendations: 1 },
+    ],
   },
   {
     id: '10003',
@@ -71,7 +74,9 @@ const CAMPAIGNS: Campaign[] = [
     targetingStrategy: 'Contextual targeting',
     impressions: '2,500,000',
     pacing: { value: '105%', trend: 'positive' },
-    children: [],
+    children: [
+      { id: 'ag-3', name: 'Seasonal Shoppers 25-44', type: 'adgroup', status: 'Live', recommendations: 0 },
+    ],
   },
   {
     id: '10004',
@@ -83,7 +88,11 @@ const CAMPAIGNS: Campaign[] = [
     targetingStrategy: 'Behavioral targeting',
     impressions: '5,000,000',
     pacing: { value: '98%', trend: 'positive' },
-    children: [],
+    children: [
+      { id: 'ag-4', name: 'Gift Buyers Segment', type: 'adgroup', status: 'Scheduled', recommendations: 1 },
+      { id: 'cr-4a', name: 'Holiday Hero Banner', type: 'creative', status: 'Scheduled', recommendations: 0 },
+      { id: 'cr-4b', name: 'Countdown Timer Ad', type: 'creative', status: 'Scheduled', recommendations: 2 },
+    ],
   },
   {
     id: '10005',
@@ -107,7 +116,10 @@ const CAMPAIGNS: Campaign[] = [
     targetingStrategy: 'Contextual targeting',
     impressions: '4,200,000',
     pacing: { value: '108%', trend: 'positive' },
-    children: [],
+    children: [
+      { id: 'ag-6', name: 'Electronics Enthusiasts', type: 'adgroup', status: 'Live', recommendations: 1 },
+      { id: 'cr-6', name: 'Flash Sale Carousel Ad', type: 'creative', status: 'Live', recommendations: 0 },
+    ],
   },
   {
     id: '10007',
@@ -131,7 +143,10 @@ const CAMPAIGNS: Campaign[] = [
     targetingStrategy: 'Run of site',
     impressions: '1,800,000',
     pacing: { value: '110%', trend: 'positive' },
-    children: [],
+    children: [
+      { id: 'ag-8', name: 'Parents & Students', type: 'adgroup', status: 'Live', recommendations: 0 },
+      { id: 'cr-8', name: 'School Supplies Banner', type: 'creative', status: 'Live', recommendations: 1 },
+    ],
   },
 ];
 
