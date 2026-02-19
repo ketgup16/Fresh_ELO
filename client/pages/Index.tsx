@@ -91,9 +91,11 @@ export default function Index() {
 
             <Divider />
 
+            {/* Section header — 8px hierarchy rule: title 24px above tabs/content, 16px below divider */}
+            <SectionHeader title="Top performing by ROAS" />
+
             <div
               style={{
-                marginTop: "24px",
                 backgroundColor: "var(--ld-semantic-color-fill-surface-primary, #ffffff)",
                 borderRadius: "8px",
                 border: "1px solid var(--ld-semantic-color-separator, #E3E4E5)",
@@ -231,6 +233,31 @@ function FilterBar() {
   );
 }
 
+/* ─── Section Header ─── */
+/* 8px HIERARCHY RULE: Use multiples of 8px for spacing between content sections.
+   - 24px (3×8) between section title and content below
+   - 16px (2×8) between divider and section title
+   - 32px (4×8) between major page sections */
+
+function SectionHeader({ title }: { title: string }) {
+  return (
+    <div style={{ marginTop: 32, marginBottom: 24 }}>
+      <h3
+        style={{
+          fontFamily: "var(--ld-semantic-font-heading-small-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif)",
+          fontSize: "var(--ld-semantic-font-heading-small-size, 20px)",
+          fontWeight: "var(--ld-semantic-font-heading-small-weight-default, 700)",
+          lineHeight: "var(--ld-semantic-font-heading-small-lineheight, 1.4)",
+          color: "var(--ld-semantic-color-text, #2E2F32)",
+          margin: 0,
+        }}
+      >
+        {title}
+      </h3>
+    </div>
+  );
+}
+
 /* ─── Metrics Row ─── */
 
 function MetricsRow() {
@@ -244,11 +271,11 @@ function MetricsRow() {
             gap: "var(--ld-semantic-spacing-4, 16px)",
           }}
         >
-          <Metric title="Eyebrow" value="$0.00" variant="positiveUp" textLabel="0%" />
-          <Metric title="Eyebrow" value="$0.00" variant="negativeDown" textLabel="0%" />
-          <Metric title="Eyebrow" value="$0.00" variant="neutral" textLabel="0%" />
-          <Metric title="Eyebrow" value="0" variant="positiveUp" textLabel="0%" />
-          <Metric title="Eyebrow" value="$0.00" variant="negativeDown" textLabel="0%" />
+          <Metric title="Metric Category" value="$0.00" variant="positiveUp" textLabel="0%" />
+          <Metric title="Metric Category" value="$0.00" variant="negativeDown" textLabel="0%" />
+          <Metric title="Metric Category" value="$0.00" variant="neutral" textLabel="0%" />
+          <Metric title="Metric Category" value="0" variant="positiveUp" textLabel="0%" />
+          <Metric title="Metric Category" value="$0.00" variant="negativeDown" textLabel="0%" />
         </div>
       </CardContent>
     </Card>

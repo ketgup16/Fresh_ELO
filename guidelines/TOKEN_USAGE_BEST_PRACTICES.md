@@ -212,6 +212,40 @@ Use existing components when available:
 
 ---
 
+## 📐 8px Spacing Hierarchy Rule
+
+**HARD RULE**: All vertical spacing between content sections must use multiples of 8px. This creates consistent visual hierarchy across the application.
+
+| Spacing | Value | Use Case |
+|---------|-------|----------|
+| 1× (8px) | `8px` | Tightest grouping — related inline elements, icon-to-label gaps |
+| 2× (16px) | `16px` | Between closely related items — list items, form fields, divider to content |
+| 3× (24px) | `24px` | Between section title and its content below (e.g., heading → tabs, heading → card) |
+| 4× (32px) | `32px` | Between major page sections (e.g., metrics card → data table section) |
+| 6× (48px) | `48px` | Between top-level page regions (rare, used for major visual breaks) |
+
+**Section header pattern:**
+```tsx
+{/* 32px above section title (gap from previous section) */}
+{/* 24px below section title (gap to content/tabs below) */}
+<div style={{ marginTop: 32, marginBottom: 24 }}>
+  <h3 style={{
+    fontFamily: "var(--ld-semantic-font-heading-small-family)",
+    fontSize: "var(--ld-semantic-font-heading-small-size, 20px)",
+    fontWeight: "var(--ld-semantic-font-heading-small-weight-default, 700)",
+    lineHeight: "var(--ld-semantic-font-heading-small-lineheight, 1.4)",
+    color: "var(--ld-semantic-color-text, #2E2F32)",
+    margin: 0,
+  }}>
+    Section Title
+  </h3>
+</div>
+```
+
+**Why 8px?** The 8px grid ensures visual rhythm and consistency. Designers and developers can communicate spacing using multipliers (1×, 2×, 3×, 4×) instead of arbitrary pixel values.
+
+---
+
 ## 🎨 Common Patterns
 
 ### Page Layout
