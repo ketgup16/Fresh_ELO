@@ -8,6 +8,7 @@ import { MartyProvider } from "@/contexts/MartyContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Index from "./pages/Index";
 import Catalog from "./pages/Catalog";
+import PageTemplate from "./pages/PageTemplate";
 import NotFound from "./pages/NotFound";
 import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
 
@@ -174,6 +175,7 @@ const App = () => (
               {/* Template Homepage */}
               <Route path="/" element={<Index />} />
               <Route path="/catalog" element={<Catalog />} />
+              <Route path="/page-template" element={<PageTemplate />} />
 
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />

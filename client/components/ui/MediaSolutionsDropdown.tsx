@@ -4,7 +4,7 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover
 import { useState } from 'react';
 
 export type MediaSolution =
-  | 'Page Templates'
+  | 'Page Template'
   | 'Dashboard Template'
   | 'Catalog Template';
 
@@ -14,7 +14,7 @@ interface MediaSolutionsDropdownProps {
 }
 
 const solutions: { id: MediaSolution; label: string; route: string }[] = [
-  { id: 'Page Templates',      label: 'Page Templates',      route: '/' },
+  { id: 'Page Template',       label: 'Page Template',       route: '/page-template' },
   { id: 'Dashboard Template',  label: 'Dashboard Template',  route: '/' },
   { id: 'Catalog Template',    label: 'Catalog Template',    route: '/catalog' },
 ];
@@ -51,7 +51,7 @@ export function MediaSolutionsDropdown({
             e.currentTarget.style.backgroundColor = 'transparent';
           }}
         >
-          <span>Navigate site</span>
+          <span>Navigate Templates</span>
           {open ? (
             <ChevronUp style={{ width: 16, height: 16 }} />
           ) : (
