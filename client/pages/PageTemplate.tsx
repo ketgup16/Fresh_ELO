@@ -84,20 +84,21 @@ export default function PageTemplate() {
             <Card UNSAFE_style={{ marginBottom: "16px" }}>
               <CardContent>
                 <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                  {/* Spot icon placeholder */}
+                  {/* Spot icon */}
                   <div
                     style={{
                       width: 48,
                       height: 48,
-                      borderRadius: "var(--ld-semantic-border-radius-small, 4px)",
-                      backgroundColor: "var(--ld-semantic-color-fill-surface-secondary, #F2F3F3)",
+                      padding: 12,
+                      borderRadius: "50%",
+                      background: "var(--ld-semantic-color-fill-brand-subtle, #E9F1FE)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       flexShrink: 0,
                     }}
                   >
-                    <Placeholder style={{ width: 24, height: 24, color: "var(--ld-semantic-color-text-secondary, #74767C)" }} />
+                    <Placeholder style={{ width: 24, height: 24, color: "var(--ld-semantic-color-text-onfill-brand-subtle, #002E99)" }} />
                   </div>
 
                   {/* Text */}
