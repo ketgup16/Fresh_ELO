@@ -241,7 +241,7 @@ function ListingPreviewCard() {
           />
           <div className={styles.listingDetails}>
             <p className={styles.listingBrand}>Brand</p>
-            <Tag variant="primary" color="brand">Primary</Tag>
+            <Tag variant="tertiary" color="gray" style={{ alignSelf: 'flex-start' }}>Primary</Tag>
             <p className={styles.listingProductName}>Product Name</p>
             <div className={styles.listingRating}>
               <StarFill style={{ width: 14, height: 14, color: '#FFC220' }} />

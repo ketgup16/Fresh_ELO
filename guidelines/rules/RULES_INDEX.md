@@ -216,7 +216,40 @@ import { Card, CardHeader, CardContent } from '@livingdesign/react'
 
 ---
 
-### 5. Panel Design Requirements
+### 5. Responsive Layout & Page Structure
+**File**: `RULE_ResponsiveLayout.md`
+
+**When**: Creating ANY new page, view, or layout component
+
+**Key Requirements**:
+- ✅ MUST use standard shell (MastHead + AppSidebar + scrollable main)
+- ✅ MUST center content with `max-width: 1280px`
+- ✅ MUST use standard breakpoints: 1024px, 768px, 480px
+- ✅ MUST reduce padding at each breakpoint (32 → 24 → 16 → 12)
+- ✅ MUST stack multi-column layouts at 768px
+- ✅ MUST reduce grid columns at 1024px and 768px
+- ✅ MUST scale page title to 24px at 768px
+- ✅ MUST stack form rows vertically at 768px
+- ✅ MUST use 8px spacing multiples
+- ❌ NEVER invent new breakpoints
+- ❌ NEVER omit responsive media queries from grids or multi-column layouts
+
+**Quick Check**:
+```css
+/* ❌ WRONG — No max-width, no breakpoints */
+.page { padding: 40px 60px; }
+.grid { grid-template-columns: repeat(4, 1fr); }
+
+/* ✅ CORRECT — Centered, responsive */
+.page { max-width: 1280px; margin: 0 auto; padding: 24px 32px; }
+.grid { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .page { padding: 16px; } .grid { grid-template-columns: 1fr; } }
+```
+
+---
+
+### 6. Panel Design Requirements
 **File**: `Panel.md`
 
 **When**: Creating any panel, drawer, or sidebar component
