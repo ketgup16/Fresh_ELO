@@ -191,13 +191,12 @@
 .catalogPageInner {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
 }
 
 /* Catalog page title area — sits on top of the branded bar */
 .catalogHeader {
   width: 100%;
-  max-width: 1280px;
   padding: 24px 24px 0;
   position: relative;
   margin-top: -176px;
@@ -206,7 +205,6 @@
 /* Catalog page content area — fills width */
 .catalogContent {
   width: 100%;
-  max-width: 1280px;
   padding: 24px 24px 24px;
   position: relative;
 }
