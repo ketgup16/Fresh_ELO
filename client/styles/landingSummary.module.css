@@ -29,7 +29,7 @@
 .pageHeader {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   align-self: stretch;
   padding-top: var(--ld-semantic-spacing-6, 24px);
 }
@@ -39,7 +39,6 @@
   align-items: center;
   gap: 16px;
   width: 100%;
-  max-width: 1280px;
   padding: 0 24px;
   min-height: 40px;
 }
@@ -65,7 +64,7 @@
 .contentArea {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   flex: 1;
   padding: var(--ld-semantic-spacing-6, 24px) 0;
 }
@@ -74,7 +73,6 @@
   display: flex;
   gap: var(--ld-semantic-spacing-6, 24px);
   width: 100%;
-  max-width: 1280px;
   padding: 0 var(--ld-semantic-spacing-6, 24px);
   align-items: flex-start;
 }
