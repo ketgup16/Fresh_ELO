@@ -210,8 +210,6 @@ function MetricsRow() {
             display: "grid",
             gridTemplateColumns: "repeat(5, 1fr)",
             gap: "var(--ld-semantic-spacing-4, 16px)",
-            paddingBottom: "var(--ld-semantic-spacing-4, 16px)",
-            borderBottom: "1px solid var(--ld-semantic-color-separator, #E3E4E5)",
           }}
         >
           <Metric title="Eyebrow" value="$0.00" variant="positiveUp" textLabel="0%" />
@@ -219,17 +217,6 @@ function MetricsRow() {
           <Metric title="Eyebrow" value="$0.00" variant="neutral" textLabel="0%" />
           <Metric title="Eyebrow" value="0" variant="positiveUp" textLabel="0%" />
           <Metric title="Eyebrow" value="$0.00" variant="negativeDown" textLabel="0%" />
-        </div>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
-            gap: "var(--ld-semantic-spacing-4, 16px)",
-            paddingTop: "var(--ld-semantic-spacing-4, 16px)",
-          }}
-        >
-          <Metric title="Eyebrow" value="0" variant="positiveUp" textLabel="0%" />
-          <Metric title="Eyebrow" value="0" variant="positiveUp" textLabel="0%" />
         </div>
       </CardContent>
     </Card>
