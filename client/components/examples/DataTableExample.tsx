@@ -13,7 +13,7 @@ import { FilterChip } from '@/components/ui/FilterChip';
 import { Tag } from '@/components/ui/Tag';
 import {
   Search, X, ChevronDown, ChevronUp, ChevronRight, ChevronLeft,
-  MoreHorizontal, Settings, Download,
+  MoreHorizontal, Sliders, Download,
 } from '@/components/icons';
 
 /* ================================================================
@@ -376,7 +376,7 @@ export default function DataTableExample() {
         {/* Action icons */}
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginLeft: 'auto' }}>
           <IconButton aria-label="Table settings" variant="secondary">
-            <Settings />
+            <Sliders />
           </IconButton>
           <IconButton aria-label="Download" variant="secondary">
             <Download />
