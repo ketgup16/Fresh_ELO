@@ -64,12 +64,14 @@ export default function Index() {
             backgroundColor: "var(--ld-semantic-color-fill-surface-subtle, #F8F8F8)",
           }}
         >
-          <Alert variant="info">
-            This is a template -- replace this content with your application.
-            Use the Component Library to explore all available LD 3.5 components.
-          </Alert>
-
           <div style={{ padding: "24px 32px" }}>
+            <div style={{ marginBottom: "24px" }}>
+              <Alert variant="info">
+                This is a template -- replace this content with your application.
+                Use the Component Library to explore all available LD 3.5 components.
+              </Alert>
+            </div>
+
             <h2
               style={{
                 fontSize: "var(--ld-semantic-font-heading-large-size, 32px)",

@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   gap: var(--ld-primitive-scale-space-100, 0.5rem);
-  padding: var(--ld-primitive-scale-space-100, 0.5rem) var(--ld-primitive-scale-space-200, 1rem);
+  padding: var(--ld-primitive-scale-space-200, 1rem) var(--ld-primitive-scale-space-300, 1.5rem);
   border-radius: var(--ld-primitive-scale-border-radius-50, 0.25rem);
   flex-wrap: wrap;
   justify-content: flex-start;

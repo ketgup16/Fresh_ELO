@@ -162,13 +162,15 @@ function SolutionCard({
         }
       }}
     >
-      <div
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fabedae4e18b740e6b7363e567a29025e"
+        alt={label}
         style={{
           width: 48,
           height: 48,
           borderRadius: 'var(--ld-semantic-border-radius-small, 4px)',
-          backgroundColor: 'var(--ld-semantic-color-fill-surface-secondary, #F2F3F3)',
           marginBottom: 'var(--ld-semantic-spacing-2, 8px)',
+          objectFit: 'contain',
         }}
       />
       <span
