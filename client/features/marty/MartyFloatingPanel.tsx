@@ -1,12 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Lottie from "lottie-react";
 import Reports from "@/components/icons/Reports";
 import { Button } from "@/components/ui/Button";
 import { DateField } from "@/components/ui/DateField";
 import { Checkbox } from "@/components/ui/Checkbox";
-import martyAnimation from "@/marty-thinking.json";
-import martyGlassesAnimation from "@/marty-glasses.json";
+import { MartyAvatar } from "./MartyAvatar";
 import { useMarty } from "@/contexts/MartyContext";
 
 type ViewState = 'welcome' | 'chat' | 'campaignSetup' | 'campaignForm' | 'campaignReady' | 'campaignScheduled';
@@ -540,13 +538,9 @@ export default function MartyFloatingPanel() {
                     transition: 'transform 0.1s ease-out'
                   }}
                 >
-                  <Lottie
-                    animationData={hasMoved ? martyGlassesAnimation : martyAnimation}
-                    loop={true}
-                    style={{
-                      width: '100%',
-                      height: '100%'
-                    }}
+                  <MartyAvatar
+                    size={hasMoved ? 42 : 38}
+                    variant={hasMoved ? 'glasses' : 'default'}
                   />
                 </div>
               </div>
@@ -621,11 +615,7 @@ export default function MartyFloatingPanel() {
           <div className="flex h-9 items-center gap-1.5 bg-white">
             {/* Marty Mascot Animation */}
             <div className="flex w-8 h-8 justify-center items-center">
-              <Lottie
-                animationData={martyAnimation}
-                loop={true}
-                style={{ width: 32, height: 32 }}
-              />
+              <MartyAvatar size={32} variant="default" />
             </div>
 
             <div className="text-[#2E2F32] font-bold text-lg leading-6">Marty</div>
