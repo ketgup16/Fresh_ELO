@@ -87,7 +87,7 @@
 
 /* Catalog page content area — fills width */
 .catalogContent {
-  padding: 0 24px 24px;
+  padding: 24px 24px 24px;
   position: relative;
 }
 
@@ -159,7 +159,7 @@
   }
 
   .catalogContent {
-    padding: 0 12px 16px;
+    padding: 16px 12px 16px;
   }
 
   .catalogTodoList {
