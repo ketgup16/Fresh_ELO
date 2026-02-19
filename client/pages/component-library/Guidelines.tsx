@@ -1216,7 +1216,88 @@ export default function GuidelinesPage() {
               </div>
             </div>
 
-            {/* Section 5 – Figma-to-Code Agent Workflow */}
+            {/* Section 5 – Design System Compliance */}
+            <div style={{
+              backgroundColor: 'var(--ld-semantic-color-surface)',
+              padding: '32px',
+              borderRadius: '8px',
+              boxShadow: 'var(--ld-semantic-elevation-100)'
+            }}>
+              <h3 style={{
+                fontSize: '20px',
+                fontWeight: '700',
+                color: 'var(--ld-semantic-color-text)',
+                marginBottom: '24px'
+              }}>
+                Design System Compliance Rules
+              </h3>
+              <p style={{
+                fontSize: '14px',
+                lineHeight: '1.6',
+                color: 'var(--ld-semantic-color-text-subtle)',
+                marginBottom: '20px'
+              }}>
+                These rules govern how agents handle layout, tokens, styling, and component usage when generating or modifying pages.
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px' }}>
+                {[{
+                  title: 'Layout Rules',
+                  items: [
+                    'Pages must fill the full available width -- never constrain with max-width on content containers',
+                    'Use align-items: stretch (not center) on flex column parents so children expand',
+                    'Content containers must use flex: 1 to fill available height',
+                    'Padding uses LD spacing tokens: var(--ld-semantic-spacing-*) or var(--ld-primitive-scale-space-*)',
+                  ]
+                }, {
+                  title: 'Token Rules',
+                  items: [
+                    'Every color must use a semantic token with a hex fallback: var(--ld-semantic-color-text, #2E2F32)',
+                    'Never hard-code hex colors (#0071DC) -- always resolve to the nearest semantic token',
+                    'Elevation uses box-shadow tokens: var(--ld-semantic-elevation-100)',
+                    'Typography uses font tokens: var(--ld-semantic-font-heading-large-family)',
+                  ]
+                }, {
+                  title: 'Styling Rules',
+                  items: [
+                    'Use CSS Modules (.module.css) for all layout and component styles',
+                    'No inline styles for colors, spacing, or layout -- only for truly dynamic values',
+                    'No Tailwind utility classes for colors or spacing -- use token-based CSS Modules',
+                    'Responsive breakpoints at 1024px, 768px, 480px with progressive enhancement',
+                  ]
+                }, {
+                  title: 'Component Rules',
+                  items: [
+                    'Always import Button from uppercase path: @/components/ui/Button',
+                    'Use ButtonGroup for multiple buttons -- never manual flex containers',
+                    'Use Tag/OLQTag for labels and badges -- never custom styled spans',
+                    'Use existing LD components before creating new ones: Reuse > Adapt > Create',
+                  ]
+                }].map((card) => (
+                  <div key={card.title} style={{
+                    padding: '20px',
+                    backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                    borderRadius: '8px'
+                  }}>
+                    <div style={{ fontWeight: '700', fontSize: '15px', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                      {card.title}
+                    </div>
+                    <ul style={{
+                      fontSize: '14px',
+                      lineHeight: '1.8',
+                      color: 'var(--ld-semantic-color-text-subtle)',
+                      paddingLeft: '20px',
+                      margin: 0
+                    }}>
+                      {card.items.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Section 6 – Figma-to-Code Agent Workflow */}
             <div style={{
               backgroundColor: 'var(--ld-semantic-color-surface)',
               padding: '32px',

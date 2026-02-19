@@ -340,7 +340,7 @@
   background: var(--ld-semantic-color-surface, #FFFFFF);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
-  height: 140px;
+  height: 415px;
 }
 
 /* ─── Responsive ─── */
