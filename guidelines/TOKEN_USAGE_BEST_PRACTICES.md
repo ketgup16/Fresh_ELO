@@ -148,12 +148,71 @@ import { Button } from '@/components/ui/Button';
 </Button>
 ```
 
+### Dropdowns - ALWAYS Use Select or DropdownMenu
+
+**CRITICAL RULE**: All dropdown interactions MUST use either the **LD Select** component or the **DropdownMenu** component. NEVER build custom dropdown/popover-based menus.
+
+**When to use Select** (`@/components/ui/Select`):
+- Choosing a value from a list (form fields, filters)
+- The selected value is displayed in the trigger
+- Single-selection use cases
+
+**When to use DropdownMenu** (`@/components/ui/dropdown-menu`):
+- Navigation menus (triggering actions or page navigation)
+- Action menus (edit, delete, etc.)
+- Grouped menu items with labels and separators
+- No "selected value" needs to be shown — just actions
+
+**✅ CORRECT:**
+```tsx
+// For value selection (filters, forms)
+import { Select, SelectItem } from '@/components/ui/Select';
+
+<Select label="Days window" value={value} onValueChange={setValue} size="small">
+  <SelectItem value="7">7 days</SelectItem>
+  <SelectItem value="14">14 days</SelectItem>
+</Select>
+
+// For navigation or action menus
+import {
+  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
+  DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
+
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="tertiary" size="small">Open Menu</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuLabel>Pages</DropdownMenuLabel>
+    <DropdownMenuItem onSelect={() => navigate('/')}>Home</DropdownMenuItem>
+    <DropdownMenuItem onSelect={() => navigate('/settings')}>Settings</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+
+**❌ WRONG:**
+```tsx
+// Never build custom dropdowns with Popover
+<Popover>
+  <PopoverTrigger><button>Open</button></PopoverTrigger>
+  <PopoverContent>
+    <div onClick={...}>Option 1</div>
+    <div onClick={...}>Option 2</div>
+  </PopoverContent>
+</Popover>
+
+// Never build custom dropdown with useState + absolute positioning
+const [open, setOpen] = useState(false);
+{open && <div style={{ position: 'absolute' }}>...</div>}
+```
+
 ### Other Components
 
 Use existing components when available:
 - **Tags/Badges**: `<Tag variant="success">` or `<OLQTag percentage={85} />`
 - **Button Groups**: `<ButtonGroup>` for multiple buttons
-- **Popovers**: `<Popover>` with `<PopoverArrow />`
+- **Popovers**: `<Popover>` with `<PopoverArrow />` — for tooltips and informational overlays only, NOT for menus
 
 ---
 
