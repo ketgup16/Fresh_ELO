@@ -44,7 +44,7 @@
   color: var(--ld-semantic-color-text, #2E2F32);
   font-family: var(--ld-semantic-font-display-small-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
   font-size: var(--ld-semantic-font-display-small-size, 24px);
-  font-weight: var(--ld-semantic-font-display-small-weight-default, 700);
+  font-weight: 700;
   line-height: var(--ld-semantic-font-display-small-lineheight, 1.25);
 }
 
