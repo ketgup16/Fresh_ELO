@@ -755,7 +755,7 @@ const INLINE_STYLES = {
     padding: '2px 8px',
     borderRadius: '4px',
     fontSize: '12px',
-    fontWeight: 500,
+    fontWeight: 400,
     background: 'var(--ld-semantic-color-fill-negative-subtle, #FDE7F3)',
     color: '#8C1E64',
     cursor: 'pointer',
