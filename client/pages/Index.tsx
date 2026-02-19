@@ -59,7 +59,15 @@ export default function Index() {
 
             <Divider />
 
-            <div style={{ marginTop: "24px" }}>
+            <div
+              style={{
+                marginTop: "24px",
+                backgroundColor: "var(--ld-semantic-color-fill-surface-primary, #ffffff)",
+                borderRadius: "8px",
+                border: "1px solid var(--ld-semantic-color-separator, #E3E4E5)",
+                overflow: "hidden",
+              }}
+            >
               <DataTableExample />
             </div>
           </div>
