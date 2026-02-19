@@ -4,34 +4,30 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover
 import { useState } from 'react';
 
 export type MediaSolution =
-  | 'Sponsored Search'
-  | 'Display Advertising'
-  | 'Shop Builder'
-  | 'Store Ads'
-  | 'Unified Reports';
+  | 'Page Templates'
+  | 'Dashboard Template'
+  | 'Catalog Template';
 
 interface MediaSolutionsDropdownProps {
   currentSolution?: MediaSolution;
   onSolutionChange?: (solution: MediaSolution) => void;
 }
 
-const solutions: { id: MediaSolution; label: string; route?: string }[] = [
-  { id: 'Sponsored Search', label: 'Sponsored Search', route: '/sponsored-search' },
-  { id: 'Display Advertising', label: 'Display Advertising', route: '/' },
-  { id: 'Shop Builder', label: 'Shop Builder' },
-  { id: 'Store Ads', label: 'Store Ads', route: '/store-ads' },
-  { id: 'Unified Reports', label: 'Unified Reports' },
+const solutions: { id: MediaSolution; label: string; route: string }[] = [
+  { id: 'Page Templates',      label: 'Page Templates',      route: '/component-library' },
+  { id: 'Dashboard Template',  label: 'Dashboard Template',  route: '/' },
+  { id: 'Catalog Template',    label: 'Catalog Template',    route: '/catalog' },
 ];
 
 export function MediaSolutionsDropdown({
-  currentSolution = 'Display Advertising',
+  currentSolution = 'Dashboard Template',
   onSolutionChange,
 }: MediaSolutionsDropdownProps) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleSolutionClick = (solution: MediaSolution, route?: string) => {
-    if (route) navigate(route);
+  const handleSolutionClick = (solution: MediaSolution, route: string) => {
+    navigate(route);
     onSolutionChange?.(solution);
     setOpen(false);
   };
@@ -80,67 +76,27 @@ export function MediaSolutionsDropdown({
               fontFamily: 'var(--ld-semantic-font-family-sans)',
             }}
           >
-            Media solutions
+            Page templates
           </h3>
 
-          <SolutionGrid
-            solutions={solutions}
-            currentSolution={currentSolution}
-            onSelect={handleSolutionClick}
-          />
-
-          <h3
-            style={{
-              fontSize: '14px',
-              fontWeight: 800,
-              margin: 'var(--ld-semantic-spacing-4, 16px) 0 var(--ld-semantic-spacing-2, 8px)',
-              color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-              fontFamily: 'var(--ld-semantic-font-family-sans)',
-            }}
-          >
-            Tools and help
-          </h3>
-
-          <ToolLink
-            label="Component Library"
-            onClick={() => {
-              navigate('/component-library');
-              setOpen(false);
-            }}
-          />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+            {solutions.map((s) => {
+              const isActive = currentSolution === s.id;
+              const isLastOdd = s.id === solutions[solutions.length - 1]?.id && solutions.length % 2 !== 0;
+              return (
+                <SolutionCard
+                  key={s.id}
+                  label={s.label}
+                  isActive={isActive}
+                  fullWidth={isLastOdd}
+                  onClick={() => handleSolutionClick(s.id, s.route)}
+                />
+              );
+            })}
+          </div>
         </div>
       </PopoverContent>
     </Popover>
-  );
-}
-
-/* ─── Solution Grid ─── */
-
-function SolutionGrid({
-  solutions,
-  currentSolution,
-  onSelect,
-}: {
-  solutions: { id: MediaSolution; label: string; route?: string }[];
-  currentSolution: MediaSolution;
-  onSelect: (solution: MediaSolution, route?: string) => void;
-}) {
-  return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-      {solutions.map((s) => {
-        const isActive = currentSolution === s.id;
-        const isLastOdd = s.id === solutions[solutions.length - 1]?.id && solutions.length % 2 !== 0;
-        return (
-          <SolutionCard
-            key={s.id}
-            label={s.label}
-            isActive={isActive}
-            fullWidth={isLastOdd}
-            onClick={() => onSelect(s.id, s.route)}
-          />
-        );
-      })}
-    </div>
   );
 }
 
@@ -186,7 +142,6 @@ function SolutionCard({
         }
       }}
     >
-      {/* Gray placeholder square */}
       <div
         style={{
           width: 48,
@@ -200,53 +155,6 @@ function SolutionCard({
         style={{
           fontSize: '12px',
           textAlign: 'center',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-        }}
-      >
-        {label}
-      </span>
-    </button>
-  );
-}
-
-/* ─── Tool Link ─── */
-
-function ToolLink({ label, onClick }: { label: string; onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 'var(--ld-semantic-spacing-2, 8px)',
-        padding: 'var(--ld-semantic-spacing-2, 8px)',
-        width: '100%',
-        borderRadius: 'var(--ld-semantic-border-radius-small, 4px)',
-        border: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-        backgroundColor: 'transparent',
-        cursor: 'pointer',
-        fontFamily: 'var(--ld-semantic-font-family-sans)',
-        transition: 'border-color 150ms',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = 'var(--ld-semantic-color-action-border-primary, #0053E2)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'var(--ld-semantic-color-separator, #E3E4E5)';
-      }}
-    >
-      <div
-        style={{
-          width: 20,
-          height: 20,
-          borderRadius: 'var(--ld-semantic-border-radius-full, 9999px)',
-          backgroundColor: 'var(--ld-semantic-color-fill-surface-secondary, #F2F3F3)',
-          flexShrink: 0,
-        }}
-      />
-      <span
-        style={{
-          fontSize: '12px',
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
         }}
       >
