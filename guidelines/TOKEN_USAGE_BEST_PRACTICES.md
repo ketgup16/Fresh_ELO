@@ -148,9 +148,9 @@ import { Button } from '@/components/ui/Button';
 </Button>
 ```
 
-### Dropdowns - ALWAYS Use Select or DropdownMenu
+### Dropdowns - Use Select or DropdownMenu
 
-**CRITICAL RULE**: All dropdown interactions MUST use either the **LD Select** component or the **DropdownMenu** component. NEVER build custom dropdown/popover-based menus.
+**RULE**: For dropdown interactions, use the appropriate LD component. The dropdown panel should render as a clean list with labels, items, and separators (matching the DropdownMenu visual style).
 
 **When to use Select** (`@/components/ui/Select`):
 - Choosing a value from a list (form fields, filters)
@@ -158,22 +158,25 @@ import { Button } from '@/components/ui/Button';
 - Single-selection use cases
 
 **When to use DropdownMenu** (`@/components/ui/dropdown-menu`):
-- Navigation menus (triggering actions or page navigation)
 - Action menus (edit, delete, etc.)
 - Grouped menu items with labels and separators
 - No "selected value" needs to be shown — just actions
+
+**When Popover is acceptable:**
+- Complex custom content (e.g., grids, cards, rich layouts inside a dropdown)
+- The MastHead navigation uses Popover because it contains a solution card grid — this is fine
 
 **✅ CORRECT:**
 ```tsx
 // For value selection (filters, forms)
 import { Select, SelectItem } from '@/components/ui/Select';
 
-<Select label="Days window" value={value} onValueChange={setValue} size="small">
+<Select label="Days window" value={value} onValueChange={setValue} size="large">
   <SelectItem value="7">7 days</SelectItem>
   <SelectItem value="14">14 days</SelectItem>
 </Select>
 
-// For navigation or action menus
+// For action/navigation menus
 import {
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
   DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator,
@@ -184,24 +187,17 @@ import {
     <Button variant="tertiary" size="small">Open Menu</Button>
   </DropdownMenuTrigger>
   <DropdownMenuContent>
-    <DropdownMenuLabel>Pages</DropdownMenuLabel>
-    <DropdownMenuItem onSelect={() => navigate('/')}>Home</DropdownMenuItem>
-    <DropdownMenuItem onSelect={() => navigate('/settings')}>Settings</DropdownMenuItem>
+    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Billing</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Settings</DropdownMenuItem>
   </DropdownMenuContent>
 </DropdownMenu>
 ```
 
 **❌ WRONG:**
 ```tsx
-// Never build custom dropdowns with Popover
-<Popover>
-  <PopoverTrigger><button>Open</button></PopoverTrigger>
-  <PopoverContent>
-    <div onClick={...}>Option 1</div>
-    <div onClick={...}>Option 2</div>
-  </PopoverContent>
-</Popover>
-
 // Never build custom dropdown with useState + absolute positioning
 const [open, setOpen] = useState(false);
 {open && <div style={{ position: 'absolute' }}>...</div>}
@@ -212,7 +208,7 @@ const [open, setOpen] = useState(false);
 Use existing components when available:
 - **Tags/Badges**: `<Tag variant="success">` or `<OLQTag percentage={85} />`
 - **Button Groups**: `<ButtonGroup>` for multiple buttons
-- **Popovers**: `<Popover>` with `<PopoverArrow />` — for tooltips and informational overlays only, NOT for menus
+- **Popovers**: `<Popover>` with `<PopoverArrow />` — for tooltips, informational overlays, or complex custom dropdown content
 
 ---
 
