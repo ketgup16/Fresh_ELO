@@ -240,22 +240,7 @@ function HeroSection() {
           Supporting text...
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px", position: "relative" }}>
-          <Button variant="primary" size="medium">Button label</Button>
-          <button
-            style={{
-              background: "none",
-              border: "none",
-              color: "rgba(255,255,255,0.85)",
-              fontSize: "14px",
-              fontFamily: "var(--ld-semantic-font-family-sans)",
-              cursor: "pointer",
-              textDecoration: "underline",
-              padding: 0,
-              textAlign: "left",
-            }}
-          >
-            Button label
-          </button>
+          <LinkButton label="Button label" inverted />
         </div>
       </div>
 
@@ -310,21 +295,7 @@ function SecondaryCard() {
             >
               Include a short description here that speaks to the value prop of the feature. Character limit of 120.
             </div>
-            <button
-              style={{
-                background: "none",
-                border: "none",
-                color: "var(--ld-semantic-color-action-text-primary, #0053E2)",
-                fontSize: "14px",
-                fontWeight: 700,
-                fontFamily: "var(--ld-semantic-font-family-sans)",
-                cursor: "pointer",
-                textDecoration: "underline",
-                padding: 0,
-              }}
-            >
-              Button label
-            </button>
+            <LinkButton label="Button label" />
           </div>
         </div>
       </CardContent>
@@ -356,21 +327,7 @@ function PrimarySection() {
         >
           Primary section
         </h2>
-        <button
-          style={{
-            background: "none",
-            border: "none",
-            color: "var(--ld-semantic-color-action-text-primary, #0053E2)",
-            fontSize: "14px",
-            fontWeight: 700,
-            fontFamily: "var(--ld-semantic-font-family-sans)",
-            cursor: "pointer",
-            textDecoration: "underline",
-            padding: 0,
-          }}
-        >
-          Link button
-        </button>
+        <LinkButton label="Link button" />
       </div>
 
       {/* 4-column card grid */}
@@ -430,24 +387,34 @@ function PrimaryCard() {
           >
             Include a short description here that speaks to the value prop of the feature. Character limit of 120.
           </div>
-          <button
-            style={{
-              background: "none",
-              border: "none",
-              color: "var(--ld-semantic-color-action-text-primary, #0053E2)",
-              fontSize: "14px",
-              fontWeight: 700,
-              fontFamily: "var(--ld-semantic-font-family-sans)",
-              cursor: "pointer",
-              textDecoration: "underline",
-              padding: 0,
-            }}
-          >
-            Button label
-          </button>
+          <LinkButton label="Button label" />
         </div>
       </CardContent>
     </Card>
+  );
+}
+
+/* ─── Link Button ─── */
+function LinkButton({ label, inverted = false }: { label: string; inverted?: boolean }) {
+  return (
+    <button
+      style={{
+        background: "none",
+        border: "none",
+        color: inverted
+          ? "rgba(255,255,255,0.85)"
+          : "var(--ld-semantic-color-action-text-primary, #0053E2)",
+        fontSize: "14px",
+        fontWeight: 700,
+        fontFamily: "var(--ld-semantic-font-family-sans)",
+        cursor: "pointer",
+        textDecoration: "underline",
+        padding: 0,
+        textAlign: "left",
+      }}
+    >
+      {label}
+    </button>
   );
 }
 
