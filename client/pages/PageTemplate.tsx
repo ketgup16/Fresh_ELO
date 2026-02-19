@@ -5,6 +5,7 @@ import { AppSidebar } from "@/components/ui/AppSidebar";
 import type { SidebarMenuItem } from "@/components/ui/AppSidebar";
 import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
+import { LinkButton } from "@/components/ui/LinkButton";
 import { Card } from "@/components/ui/Card";
 import { CardContent } from "@/components/ui/CardContent";
 import Metric from "@/components/ui/Metric";
@@ -230,7 +231,7 @@ function HeroSection() {
           Supporting text...
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px", position: "relative" }}>
-          <LinkButton label="Button label" inverted />
+          <LinkButton color="white">Button label</LinkButton>
         </div>
       </div>
 
@@ -285,7 +286,7 @@ function SecondaryCard() {
             >
               Include a short description here that speaks to the value prop of the feature. Character limit of 120.
             </div>
-            <LinkButton label="Button label" />
+            <LinkButton>Button label</LinkButton>
           </div>
         </div>
       </CardContent>
@@ -317,7 +318,7 @@ function PrimarySection() {
         >
           Primary section
         </h2>
-        <LinkButton label="Link button" />
+        <LinkButton>Link button</LinkButton>
       </div>
 
       {/* 4-column card grid */}
@@ -371,34 +372,10 @@ function PrimaryCard() {
           >
             Include a short description here that speaks to the value prop of the feature. Character limit of 120.
           </div>
-          <LinkButton label="Button label" />
+          <LinkButton>Button label</LinkButton>
         </div>
       </CardContent>
     </Card>
-  );
-}
-
-/* ─── Link Button ─── */
-function LinkButton({ label, inverted = false }: { label: string; inverted?: boolean }) {
-  return (
-    <button
-      style={{
-        background: "none",
-        border: "none",
-        color: inverted
-          ? "rgba(255,255,255,0.85)"
-          : "var(--ld-semantic-color-action-text-primary, #0053E2)",
-        fontSize: "14px",
-        fontWeight: 700,
-        fontFamily: "var(--ld-semantic-font-family-sans)",
-        cursor: "pointer",
-        textDecoration: "underline",
-        padding: 0,
-        textAlign: "left",
-      }}
-    >
-      {label}
-    </button>
   );
 }
 
