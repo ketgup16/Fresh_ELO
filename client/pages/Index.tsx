@@ -9,7 +9,7 @@ import Metric from "@/components/ui/Metric";
 import { Select, SelectItem } from "@/components/ui/Select";
 import DataTableExample from "@/components/examples/DataTableExample";
 import { MastHead } from "@/components/ui/MastHead";
-import DisplayAdvertisingSidebar from "@/features/advertising/DisplayAdvertisingSidebar";
+import { AppSidebar } from "@/components/ui/AppSidebar";
 import MartyFloatingPanel from "@/features/marty/MartyFloatingPanel";
 
 export default function Index() {
@@ -20,7 +20,7 @@ export default function Index() {
       <MastHead />
 
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
-        <DisplayAdvertisingSidebar
+        <AppSidebar
           activeMenuItem={activeMenuItem}
           onMenuItemClick={setActiveMenuItem}
         />

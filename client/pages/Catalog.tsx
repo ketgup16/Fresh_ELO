@@ -3,7 +3,7 @@ import { MastHead } from '@/components/ui/MastHead';
 import { Button } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
 import { Divider } from '@/components/ui/Divider';
-import { CatalogSidebar } from '@/features/catalog/CatalogSidebar';
+import { AppSidebar } from '@/components/ui/AppSidebar';
 import { CatalogHero } from '@/features/catalog/CatalogHero';
 import { CatalogTodoList } from '@/features/catalog/CatalogTodoList';
 
@@ -13,7 +13,7 @@ export default function Catalog() {
       <MastHead />
 
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-        <CatalogSidebar />
+        <AppSidebar />
 
         <main
           style={{

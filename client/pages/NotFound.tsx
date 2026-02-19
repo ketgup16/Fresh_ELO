@@ -2,6 +2,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "../components/ui/Button";
 import { IconButton } from "../components/ui/IconButton";
+import { MastHead } from "../components/ui/MastHead";
+import { AppSidebar } from "../components/ui/AppSidebar";
 import { ArrowLeft, Home } from "../components/icons";
 
 const NotFound = () => {
@@ -15,7 +17,6 @@ const NotFound = () => {
   }, [location.pathname]);
 
   const handleGoBack = () => {
-    // Go back in browser history, or to home if no history
     if (window.history.length > 1) {
       navigate(-1);
     } else {
@@ -28,81 +29,94 @@ const NotFound = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #fff)' }}>
-      <div className="flex-1 flex items-center justify-center" style={{
-        backgroundColor: 'var(--ld-semantic-color-background-subtle, #f8f8f8)'
-      }}>
-        <div style={{
-          textAlign: 'center',
-          maxWidth: '600px',
-          padding: '48px'
-        }}>
-          {/* 404 Icon/Number */}
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <MastHead />
+
+      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+        <AppSidebar />
+
+        <main
+          style={{
+            flex: 1,
+            overflowY: 'auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'var(--ld-semantic-color-background-subtle, #f8f8f8)',
+          }}
+        >
           <div style={{
-            fontSize: '120px',
-            fontWeight: '700',
-            color: 'var(--ld-semantic-color-text-subtlest)',
-            marginBottom: '24px',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-            lineHeight: '1'
+            textAlign: 'center',
+            maxWidth: '600px',
+            padding: '48px'
           }}>
-            404
+            {/* 404 Icon/Number */}
+            <div style={{
+              fontSize: '120px',
+              fontWeight: '700',
+              color: 'var(--ld-semantic-color-text-subtlest)',
+              marginBottom: '24px',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+              lineHeight: '1'
+            }}>
+              404
+            </div>
+
+            {/* Error Message */}
+            <h1 style={{
+              fontSize: '32px',
+              fontWeight: '700',
+              color: 'var(--ld-semantic-color-text)',
+              marginBottom: '16px',
+              fontFamily: 'var(--ld-semantic-font-family-sans)'
+            }}>
+              Page Not Found
+            </h1>
+
+            <p style={{
+              fontSize: '18px',
+              color: 'var(--ld-semantic-color-text-subtle)',
+              marginBottom: '32px',
+              lineHeight: '1.6'
+            }}>
+              The page you're looking for doesn't exist or has been moved.
+            </p>
+
+            {/* Path Info */}
+            <div style={{
+              padding: '12px 16px',
+              backgroundColor: 'var(--ld-semantic-color-surface)',
+              borderRadius: '6px',
+              marginBottom: '32px',
+              fontSize: '14px',
+              fontFamily: 'var(--ld-semantic-font-family-mono)',
+              color: 'var(--ld-semantic-color-text-subtle)',
+              wordBreak: 'break-all'
+            }}>
+              {location.pathname}
+            </div>
+
+            {/* Navigation Buttons */}
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', alignItems: 'center' }}>
+              <Button
+                variant="secondary"
+                size="large"
+                onClick={handleGoBack}
+              >
+                <ArrowLeft style={{ width: 20, height: 20, marginRight: 8 }} />
+                Go Back
+              </Button>
+              <IconButton
+                aria-label="Go to home page"
+                variant="primary"
+                size="large"
+                onClick={handleGoHome}
+              >
+                <Home style={{ width: 24, height: 24 }} />
+              </IconButton>
+            </div>
           </div>
-
-          {/* Error Message */}
-          <h1 style={{
-            fontSize: '32px',
-            fontWeight: '700',
-            color: 'var(--ld-semantic-color-text)',
-            marginBottom: '16px',
-            fontFamily: 'var(--ld-semantic-font-family-sans)'
-          }}>
-            Page Not Found
-          </h1>
-
-          <p style={{
-            fontSize: '18px',
-            color: 'var(--ld-semantic-color-text-subtle)',
-            marginBottom: '32px',
-            lineHeight: '1.6'
-          }}>
-            The page you're looking for doesn't exist or has been moved.
-          </p>
-
-          {/* Path Info */}
-          <div style={{
-            padding: '12px 16px',
-            backgroundColor: 'var(--ld-semantic-color-surface)',
-            borderRadius: '6px',
-            marginBottom: '32px',
-            fontSize: '14px',
-            fontFamily: 'var(--ld-semantic-font-family-mono)',
-            color: 'var(--ld-semantic-color-text-subtle)',
-            wordBreak: 'break-all'
-          }}>
-            {location.pathname}
-          </div>
-
-          {/* Navigation Buttons */}
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', alignItems: 'center' }}>
-            <Button
-              variant="secondary"
-              size="large"
-              onClick={handleGoBack}
-            >
-              <ArrowLeft style={{ width: 20, height: 20, marginRight: 8 }} />
-              Go Back
-            </Button>
-            <IconButton
-              aria-label="Go to home page"
-              variant="primary"
-              size="large"
-              onClick={handleGoHome}
-            >
-              <Home style={{ width: 24, height: 24 }} />
-            </IconButton>
-          </div>
-        </div>
+        </main>
       </div>
     </div>
   );
