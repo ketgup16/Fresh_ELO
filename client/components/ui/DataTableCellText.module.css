@@ -14,8 +14,8 @@
   text-align: left;
 }
 
-/* Numeric variant — right-aligned, monospace font */
+/* Numeric variant — right-aligned */
 .cellNumeric {
   text-align: right;
-  font-family: var(--ld-semantic-font-body-mono-medium-family, 'Everyday Sans Mono TT', monospace);
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif);
 }
