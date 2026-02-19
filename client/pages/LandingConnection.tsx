@@ -98,10 +98,7 @@ function LandingCard() {
       {/* Card image area */}
       <div className={styles.cardImageArea}>
         <ImagePlaceholder />
-        <div className={styles.cardLabelBadge}>
-          <ImageIcon style={{ width: 12, height: 12, color: 'var(--ld-semantic-color-text-subtlest, #74767C)' }} />
-          <span className={styles.cardLabelText}>Label</span>
-        </div>
+        <Tag variant="tertiary" color="gray" leading={<ImageIcon style={{ width: 16, height: 16 }} />} className={styles.cardLabelBadge}>Label</Tag>
       </div>
 
       {/* Card body */}

@@ -107,20 +107,6 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: var(--ld-semantic-color-surface, #FFFFFF);
-  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
-}
-
-.cardLabelText {
-  font-family: var(--ld-semantic-font-caption-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
 }
 
 .cardBody {
