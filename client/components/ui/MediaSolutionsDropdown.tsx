@@ -8,7 +8,8 @@ export type MediaSolution =
   | 'Dashboard Template'
   | 'Catalog Template'
   | 'Detail Item'
-  | 'Landing Connection';
+  | 'Landing Connection'
+  | 'Landing Summary';
 
 interface MediaSolutionsDropdownProps {
   currentSolution?: MediaSolution;
@@ -21,6 +22,7 @@ const solutions: { id: MediaSolution; label: string; route: string }[] = [
   { id: 'Catalog Template',    label: 'Catalog Template',    route: '/catalog' },
   { id: 'Detail Item',         label: 'Detail Item',         route: '/detail-item' },
   { id: 'Landing Connection',  label: 'Landing Connection',  route: '/landing-connection' },
+  { id: 'Landing Summary',     label: 'Landing Summary',     route: '/landing-summary' },
 ];
 
 export function MediaSolutionsDropdown({
