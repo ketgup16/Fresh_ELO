@@ -14,7 +14,7 @@ interface MediaSolutionsDropdownProps {
 }
 
 const solutions: { id: MediaSolution; label: string; route: string }[] = [
-  { id: 'Page Templates',      label: 'Page Templates',      route: '/component-library' },
+  { id: 'Page Templates',      label: 'Page Templates',      route: '/' },
   { id: 'Dashboard Template',  label: 'Dashboard Template',  route: '/' },
   { id: 'Catalog Template',    label: 'Catalog Template',    route: '/catalog' },
 ];
