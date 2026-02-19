@@ -105,7 +105,30 @@ import { Search } from '@/components/icons';
 
 ---
 
-### 4. Figma Exportable Asset Extraction
+### 4. LinkButton and Spot Icon Usage
+**File**: `RULE_LinkButtonAndSpotIcon.md`
+
+**When**: Adding link-styled buttons or icon indicators to todo items, action rows, or cards
+
+**Key Requirements**:
+- ✅ ALWAYS use `LinkButton` from `@/components/ui/LinkButton` — never custom inline link buttons
+- ✅ ALWAYS use round Spot Icon pattern (brand-subtle background, `borderRadius: 50%`) — never square placeholders
+- ❌ NEVER override LinkButton color or weight with custom CSS
+- ❌ NEVER use blue bold text for link buttons (LD 3.5 uses regular weight, black text)
+
+**Quick Check**:
+```tsx
+/* ❌ WRONG */
+<button style={{ color: '#0053E2', fontWeight: 700, textDecoration: 'underline' }}>Link</button>
+
+/* ✅ CORRECT */
+import { LinkButton } from '@/components/ui/LinkButton';
+<LinkButton>Link</LinkButton>
+```
+
+---
+
+### 5. Figma Exportable Asset Extraction
 **File**: `RULE_FigmaAssetExtraction.md` 🆕
 
 **When**: Implementing Figma designs, extracting assets from design files
