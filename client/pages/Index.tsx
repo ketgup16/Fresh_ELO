@@ -60,7 +60,7 @@ export default function Index() {
           <div style={{ padding: "24px 32px" }}>
             <h2
               style={{
-                fontSize: "28px",
+                fontSize: "16px",
                 fontWeight: "700",
                 fontFamily: "var(--ld-semantic-font-family-sans)",
                 color: "var(--ld-semantic-color-text-primary, #2E2F32)",
@@ -159,7 +159,7 @@ function RecommendationCard({
         </h3>
         <p
           style={{
-            fontSize: "14px",
+            fontSize: "16px",
             fontFamily: "var(--ld-semantic-font-family-sans)",
             color: "var(--ld-semantic-color-text-secondary, #74767C)",
             marginBottom: "16px",

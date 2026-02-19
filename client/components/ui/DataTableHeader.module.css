@@ -8,7 +8,7 @@
   line-height: var(--ld-semantic-font-body-medium-line-height, 1.5);
   color: var(--ld-semantic-color-text, #2E2F32);
   white-space: nowrap;
-  background: var(--ld-semantic-color-surface-primary, #FFFFFF);
+  background: var(--ld-semantic-color-fill-surface-subtle, #F8F8F8);
 }
 
 .headerLeft {

@@ -20,12 +20,12 @@
 }
 
 .head tr {
-  border-bottom: var(--ld-semantic-scale-border-width-default, 1px) solid var(--ld-semantic-color-border-strong, #BABBBE);
+  border-bottom: var(--ld-semantic-scale-border-width-default, 1px) solid var(--ld-semantic-color-separator, #E3E4E5);
 }
 
 /* DataTableBody */
 .body tr {
-  border-bottom: var(--ld-semantic-scale-border-width-default, 1px) solid var(--ld-semantic-color-border-subtle, #E2E2E3);
+  border-bottom: var(--ld-semantic-scale-border-width-default, 1px) solid var(--ld-semantic-color-separator, #E3E4E5);
 }
 
 .body tr:last-child {
