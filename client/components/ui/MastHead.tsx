@@ -1,4 +1,5 @@
-import { Bell, HelpCircle, User, AppSwitcher, Spark } from '@/components/icons';
+import { Bell, HelpCircle, User, AppSwitcher } from '@/components/icons';
+import { MartyAvatar } from '@/features/marty/MartyAvatar';
 import { MediaSolutionsDropdown, MediaSolution } from './MediaSolutionsDropdown';
 import { useMarty } from '@/contexts/MartyContext';
 import { Divider } from './Divider';
@@ -88,7 +89,7 @@ export function MastHead({
               className={styles.iconButton}
               aria-label="Open Marty"
             >
-              <Spark style={{ width: 20, height: 20 }} />
+              <MartyAvatar size={20} />
             </button>
           )}
         </div>
