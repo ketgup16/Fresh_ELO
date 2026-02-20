@@ -52,11 +52,11 @@ export default function LandingSummary() {
             {/* Page header */}
             <div className={styles.pageHeader}>
               <div className={styles.pageHeaderContainer}>
-                <h1 className={styles.pageTitle}>Landing summary</h1>
+                <h1 className={styles.pageTitle}>{t('templates.landingSummary')}</h1>
                 <div className={styles.titleActions}>
-                  <LinkButton size="medium">Button label</LinkButton>
-                  <LinkButton size="medium">Button label</LinkButton>
-                  <Button variant="secondary" size="medium">Button label</Button>
+                  <LinkButton size="medium">{t('shared.buttonLabel')}</LinkButton>
+                  <LinkButton size="medium">{t('shared.buttonLabel')}</LinkButton>
+                  <Button variant="secondary" size="medium">{t('shared.buttonLabel')}</Button>
                 </div>
               </div>
             </div>
@@ -87,31 +87,32 @@ export default function LandingSummary() {
 /* ─── Primary Card ─── */
 
 function PrimaryCard() {
+  const { t } = useTranslation();
   return (
     <div className={styles.primaryCard}>
       {/* Primary section header */}
       <div className={styles.primaryCardHeader}>
-        <h2 className={styles.primarySectionTitle}>Primary section</h2>
-        <Button variant="secondary" size="small">Button label</Button>
+        <h2 className={styles.primarySectionTitle}>{t('shared.primarySection')}</h2>
+        <Button variant="secondary" size="small">{t('shared.buttonLabel')}</Button>
       </div>
 
       {/* Secondary section */}
       <div className={styles.secondarySectionHeader}>
-        <h3 className={styles.secondarySectionTitle}>Secondary section</h3>
-        <LinkButton size="medium">Link button</LinkButton>
+        <h3 className={styles.secondarySectionTitle}>{t('shared.secondarySection')}</h3>
+        <LinkButton size="medium">{t('shared.linkButton')}</LinkButton>
       </div>
 
       {/* Tertiary section */}
       <div className={styles.tertiarySectionHeader}>
-        <h4 className={styles.tertiarySectionTitle}>Tertiary section</h4>
+        <h4 className={styles.tertiarySectionTitle}>{t('shared.tertiarySection')}</h4>
       </div>
 
       {/* List items */}
       <div className={styles.listSection}>
         {Array.from({ length: 8 }).map((_, i) => (
           <div key={i} className={styles.listItem}>
-            <span className={styles.listItemText}>List item text</span>
-            <span className={styles.listItemTrailing}>Trailing</span>
+            <span className={styles.listItemText}>{t('shared.listItemText')}</span>
+            <span className={styles.listItemTrailing}>{t('shared.trailing')}</span>
           </div>
         ))}
       </div>
@@ -122,19 +123,20 @@ function PrimaryCard() {
 /* ─── Secondary List Card ─── */
 
 function SecondaryListCard() {
+  const { t } = useTranslation();
   return (
     <div className={styles.secondaryCard}>
       <div className={styles.secondaryCardHeader}>
-        <h3 className={styles.secondaryCardTitle}>Secondary section</h3>
-        <button className={styles.moreBtn} aria-label="More options">
+        <h3 className={styles.secondaryCardTitle}>{t('shared.secondarySection')}</h3>
+        <button className={styles.moreBtn} aria-label={t('shared.moreOptions')}>
           <MoreHorizontal style={{ width: 16, height: 16 }} />
         </button>
       </div>
       <div className={styles.secondaryListSection}>
         {Array.from({ length: 8 }).map((_, i) => (
           <div key={i} className={styles.secondaryListItem}>
-            <span className={styles.secondaryListItemText}>List item text</span>
-            <span className={styles.secondaryListItemTrailing}>Trailing</span>
+            <span className={styles.secondaryListItemText}>{t('shared.listItemText')}</span>
+            <span className={styles.secondaryListItemTrailing}>{t('shared.trailing')}</span>
           </div>
         ))}
       </div>
@@ -144,12 +146,10 @@ function SecondaryListCard() {
 
 /* ─── Secondary Accordion Card ─── */
 
-const accordionItems = Array.from({ length: 8 }, (_, i) => ({
-  id: String(i),
-  title: 'Accordion title',
-}));
+const accordionIds = Array.from({ length: 8 }, (_, i) => String(i));
 
 function SecondaryAccordionCard() {
+  const { t } = useTranslation();
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
 
   const toggle = (id: string) => {
@@ -164,22 +164,22 @@ function SecondaryAccordionCard() {
   return (
     <div className={styles.secondaryCard}>
       <div className={styles.secondaryCardHeader}>
-        <h3 className={styles.secondaryCardTitle}>Secondary section</h3>
-        <button className={styles.moreBtn} aria-label="More options">
+        <h3 className={styles.secondaryCardTitle}>{t('shared.secondarySection')}</h3>
+        <button className={styles.moreBtn} aria-label={t('shared.moreOptions')}>
           <MoreHorizontal style={{ width: 16, height: 16 }} />
         </button>
       </div>
       <div className={styles.accordionSection}>
-        {accordionItems.map((item, idx) => {
-          const isOpen = openItems.has(item.id);
+        {accordionIds.map((id, idx) => {
+          const isOpen = openItems.has(id);
           return (
-            <div key={item.id} className={styles.accordionItem}>
+            <div key={id} className={styles.accordionItem}>
               <button
                 className={styles.accordionTrigger}
-                onClick={() => toggle(item.id)}
+                onClick={() => toggle(id)}
                 aria-expanded={isOpen}
               >
-                <span className={styles.accordionTitle}>{item.title}</span>
+                <span className={styles.accordionTitle}>{t('shared.accordionTitle')}</span>
                 <span className={`${styles.accordionChevron}${isOpen ? ` ${styles.open}` : ''}`}>
                   <ChevronDown style={{ width: 16, height: 16 }} />
                 </span>
@@ -189,7 +189,7 @@ function SecondaryAccordionCard() {
                   Content for accordion item {idx + 1}
                 </div>
               )}
-              {idx < accordionItems.length - 1 && (
+              {idx < accordionIds.length - 1 && (
                 <div className={styles.accordionDivider} />
               )}
             </div>

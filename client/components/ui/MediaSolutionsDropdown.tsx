@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ChevronUp, ChevronDown } from '@/components/icons';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { useState } from 'react';
@@ -16,13 +17,13 @@ interface MediaSolutionsDropdownProps {
   onSolutionChange?: (solution: MediaSolution) => void;
 }
 
-const solutions: { id: MediaSolution; label: string; route: string }[] = [
-  { id: 'Page Template',       label: 'Page Template',       route: '/page-template' },
-  { id: 'Dashboard Template',  label: 'Dashboard Template',  route: '/' },
-  { id: 'Catalog Template',    label: 'Catalog Template',    route: '/catalog' },
-  { id: 'Detail Item',         label: 'Detail Item',         route: '/detail-item' },
-  { id: 'Landing Connection',  label: 'Landing Connection',  route: '/landing-connection' },
-  { id: 'Landing Summary',     label: 'Landing Summary',     route: '/landing-summary' },
+const solutions: { id: MediaSolution; labelKey: string; route: string }[] = [
+  { id: 'Page Template',       labelKey: 'templates.pageTemplate',       route: '/page-template' },
+  { id: 'Dashboard Template',  labelKey: 'templates.dashboardTemplate',  route: '/' },
+  { id: 'Catalog Template',    labelKey: 'templates.catalogTemplate',    route: '/catalog' },
+  { id: 'Detail Item',         labelKey: 'templates.detailItem',         route: '/detail-item' },
+  { id: 'Landing Connection',  labelKey: 'templates.landingConnection',  route: '/landing-connection' },
+  { id: 'Landing Summary',     labelKey: 'templates.landingSummary',     route: '/landing-summary' },
 ];
 
 export function MediaSolutionsDropdown({
@@ -31,6 +32,7 @@ export function MediaSolutionsDropdown({
 }: MediaSolutionsDropdownProps) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSolutionClick = (solution: MediaSolution, route: string) => {
     navigate(route);
@@ -57,7 +59,7 @@ export function MediaSolutionsDropdown({
             e.currentTarget.style.backgroundColor = 'transparent';
           }}
         >
-          <span>Navigate Templates</span>
+          <span>{t('templates.navigate')}</span>
           {open ? (
             <ChevronUp style={{ width: 16, height: 16 }} />
           ) : (
@@ -82,7 +84,7 @@ export function MediaSolutionsDropdown({
               fontFamily: 'var(--ld-semantic-font-family-sans)',
             }}
           >
-            Page templates
+            {t('templates.pageTemplates')}
           </h3>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
@@ -92,7 +94,7 @@ export function MediaSolutionsDropdown({
               return (
                 <SolutionCard
                   key={s.id}
-                  label={s.label}
+                  label={t(s.labelKey)}
                   isActive={isActive}
                   fullWidth={isLastOdd}
                   onClick={() => handleSolutionClick(s.id, s.route)}
@@ -110,11 +112,11 @@ export function MediaSolutionsDropdown({
               fontFamily: 'var(--ld-semantic-font-family-sans)',
             }}
           >
-            Tools and help
+            {t('templates.toolsAndHelp')}
           </h3>
 
           <ToolLink
-            label="Component Library"
+            label={t('templates.componentLibrary')}
             onClick={() => {
               navigate('/component-library');
               setOpen(false);

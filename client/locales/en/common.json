@@ -40,11 +40,44 @@
     "notifications": "Notifications",
     "help": "Help",
     "account": "Account",
-    "openMarty": "Open Marty"
+    "openMarty": "Open Marty",
+    "appName": "PX Template"
   },
   "sidebar": {
     "expand": "Expand sidebar",
     "collapse": "Collapse sidebar",
     "lock": "Lock"
+  },
+  "templates": {
+    "navigate": "Navigate Templates",
+    "pageTemplates": "Page templates",
+    "toolsAndHelp": "Tools and help",
+    "componentLibrary": "Component Library",
+    "pageTemplate": "Page Template",
+    "dashboardTemplate": "Dashboard Template",
+    "catalogTemplate": "Catalog Template",
+    "detailItem": "Detail Item",
+    "landingConnection": "Landing Connection",
+    "landingSummary": "Landing Summary"
+  },
+  "shared": {
+    "title": "Title",
+    "description": "A short description of the action that a user needs to complete, character count 120.",
+    "buttonLabel": "Button label",
+    "linkButton": "Link button",
+    "label": "Label",
+    "alertMessage": "Alert message",
+    "actionButton": "Action button",
+    "supportingText": "Supporting text...",
+    "primarySection": "Primary section",
+    "secondarySection": "Secondary section",
+    "tertiarySection": "Tertiary section",
+    "listItemText": "List item text",
+    "trailing": "Trailing",
+    "accordionTitle": "Accordion title",
+    "moreOptions": "More options",
+    "learnMore": "Learn more",
+    "cardDescription": "Include a short description here that speaks to the value prop of the feature. Character limit of 120.",
+    "value": "Value"
   }
 }

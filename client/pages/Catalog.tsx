@@ -62,7 +62,7 @@ export default function Catalog() {
           <div className={styles.catalogPageInner}>
             {/* Page header — overlaps the branded bar */}
             <div className={styles.catalogHeader}>
-              <h1 className={styles.pageTitle}>Catalog</h1>
+              <h1 className={styles.pageTitle}>{t('nav.catalog')}</h1>
             </div>
 
             {/* Page content — fills available width */}

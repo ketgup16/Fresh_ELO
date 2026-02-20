@@ -40,11 +40,44 @@
     "notifications": "Notifications",
     "help": "Aide",
     "account": "Compte",
-    "openMarty": "Ouvrir Marty"
+    "openMarty": "Ouvrir Marty",
+    "appName": "Modèle PX"
   },
   "sidebar": {
     "expand": "Développer la barre latérale",
     "collapse": "Réduire la barre latérale",
     "lock": "Verrouiller"
+  },
+  "templates": {
+    "navigate": "Parcourir les modèles",
+    "pageTemplates": "Modèles de page",
+    "toolsAndHelp": "Outils et aide",
+    "componentLibrary": "Bibliothèque de composants",
+    "pageTemplate": "Modèle de page",
+    "dashboardTemplate": "Modèle de tableau de bord",
+    "catalogTemplate": "Modèle de catalogue",
+    "detailItem": "Détail de l'article",
+    "landingConnection": "Page de connexion",
+    "landingSummary": "Page de résumé"
+  },
+  "shared": {
+    "title": "Titre",
+    "description": "Une brève description de l'action qu'un utilisateur doit effectuer, limite de 120 caractères.",
+    "buttonLabel": "Libellé du bouton",
+    "linkButton": "Bouton lien",
+    "label": "Libellé",
+    "alertMessage": "Message d'alerte",
+    "actionButton": "Bouton d'action",
+    "supportingText": "Texte d'accompagnement...",
+    "primarySection": "Section principale",
+    "secondarySection": "Section secondaire",
+    "tertiarySection": "Section tertiaire",
+    "listItemText": "Texte de l'élément",
+    "trailing": "Final",
+    "accordionTitle": "Titre de l'accordéon",
+    "moreOptions": "Plus d'options",
+    "learnMore": "En savoir plus",
+    "cardDescription": "Incluez une brève description qui parle de la proposition de valeur de la fonctionnalité. Limite de 120 caractères.",
+    "value": "Valeur"
   }
 }

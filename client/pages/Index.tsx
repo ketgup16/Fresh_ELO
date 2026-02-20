@@ -119,10 +119,22 @@ function RecommendationsCards() {
 
 /* ─── Filter Bar ─── */
 
+const DATE_RANGES = [
+  { value: 'range-1', start: new Date(2025, 0, 1), end: new Date(2025, 0, 31) },
+  { value: 'range-2', start: new Date(2025, 1, 1), end: new Date(2025, 1, 28) },
+  { value: 'range-3', start: new Date(2025, 2, 1), end: new Date(2025, 2, 31) },
+  { value: 'range-4', start: new Date(2025, 3, 1), end: new Date(2025, 3, 30) },
+];
+
+function formatDateRange(start: Date, end: Date, lng: string) {
+  const fmt = new Intl.DateTimeFormat(lng, { month: 'short', day: 'numeric', year: 'numeric' });
+  return `${fmt.format(start)} - ${fmt.format(end)}`;
+}
+
 function FilterBar() {
   const [daysWindow, setDaysWindow] = useState("14");
   const [dateRange, setDateRange] = useState("range-1");
-  const { t } = useTranslation('pages');
+  const { t, i18n } = useTranslation('pages');
 
   return (
     <div className={styles.filterBar}>
@@ -146,10 +158,11 @@ function FilterBar() {
           onValueChange={setDateRange}
           size="large"
         >
-          <SelectItem value="range-1">Jan 1, 2025 - Jan 31, 2025</SelectItem>
-          <SelectItem value="range-2">Feb 1, 2025 - Feb 28, 2025</SelectItem>
-          <SelectItem value="range-3">Mar 1, 2025 - Mar 31, 2025</SelectItem>
-          <SelectItem value="range-4">Apr 1, 2025 - Apr 30, 2025</SelectItem>
+          {DATE_RANGES.map((r) => (
+            <SelectItem key={r.value} value={r.value}>
+              {formatDateRange(r.start, r.end, i18n.resolvedLanguage || 'en')}
+            </SelectItem>
+          ))}
         </Select>
       </div>
     </div>

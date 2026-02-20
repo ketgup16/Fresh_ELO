@@ -61,13 +61,13 @@ export default function PageTemplate() {
           <div className={styles.pageContent}>
             {/* Alert banner */}
             <div className={styles.alertWrapper}>
-              <Alert variant="success" action={<a href="#">Action button</a>}>
-                Alert message
+              <Alert variant="success" action={<a href="#">{t('shared.actionButton')}</a>}>
+                {t('shared.alertMessage')}
               </Alert>
             </div>
 
             {/* Page title */}
-            <h1 className={styles.pageTitle}>Home</h1>
+            <h1 className={styles.pageTitle}>{t('nav.home')}</h1>
 
             {/* Todo / action card */}
             <Card UNSAFE_style={{ marginBottom: "16px" }}>
@@ -77,12 +77,12 @@ export default function PageTemplate() {
                     <Placeholder style={{ width: 24, height: 24, color: "var(--ld-semantic-color-text-onfill-brand-subtle, #002E99)" }} />
                   </div>
                   <div className={styles.actionTextGroup}>
-                    <p className={styles.actionTitle}>Title</p>
+                    <p className={styles.actionTitle}>{t('shared.title')}</p>
                     <p className={styles.actionDescription}>
-                      A short description of the action that a user needs to complete, character count 120.
+                      {t('shared.description')}
                     </p>
                   </div>
-                  <Button variant="secondary" size="small">Button label</Button>
+                  <Button variant="secondary" size="small">{t('shared.buttonLabel')}</Button>
                 </div>
               </CardContent>
             </Card>
@@ -106,14 +106,15 @@ export default function PageTemplate() {
 
 /* ─── Metrics Row ─── */
 function MetricsRow() {
+  const { t } = useTranslation();
   return (
     <Card UNSAFE_style={{ marginBottom: "24px" }}>
       <CardContent>
         <div className={gridStyles.metricsGrid4}>
-          <Metric title="Label" value="Value" variant="neutral" textLabel="0%" />
-          <Metric title="Label" value="Value" variant="neutral" textLabel="0%" />
-          <Metric title="Label" value="Value" variant="neutral" textLabel="0%" />
-          <Metric title="Label" value="Value" variant="neutral" textLabel="0%" />
+          <Metric title={t('shared.label')} value={t('shared.value')} variant="neutral" textLabel="0%" />
+          <Metric title={t('shared.label')} value={t('shared.value')} variant="neutral" textLabel="0%" />
+          <Metric title={t('shared.label')} value={t('shared.value')} variant="neutral" textLabel="0%" />
+          <Metric title={t('shared.label')} value={t('shared.value')} variant="neutral" textLabel="0%" />
         </div>
       </CardContent>
     </Card>
@@ -122,16 +123,17 @@ function MetricsRow() {
 
 /* ─── Hero Section ─── */
 function HeroSection() {
+  const { t } = useTranslation();
   return (
     <div className={gridStyles.heroGrid}>
       {/* Hero card (dark blue promo) */}
       <div className={styles.heroCard}>
         <div className={styles.heroCircle1} />
         <div className={styles.heroCircle2} />
-        <h2 className={styles.heroTitle}>Title</h2>
-        <p className={styles.heroSubtitle}>Supporting text...</p>
+        <h2 className={styles.heroTitle}>{t('shared.title')}</h2>
+        <p className={styles.heroSubtitle}>{t('shared.supportingText')}</p>
         <div className={styles.heroActions}>
-          <LinkButton color="white">Button label</LinkButton>
+          <LinkButton color="white">{t('shared.buttonLabel')}</LinkButton>
         </div>
       </div>
 
@@ -145,6 +147,7 @@ function HeroSection() {
 }
 
 function SecondaryCard() {
+  const { t } = useTranslation();
   return (
     <Card>
       <CardContent>
@@ -153,11 +156,11 @@ function SecondaryCard() {
             <ImagePlaceholderIcon />
           </div>
           <div className={styles.secondaryCardText}>
-            <p className={styles.secondaryCardTitle}>Title</p>
+            <p className={styles.secondaryCardTitle}>{t('shared.title')}</p>
             <p className={styles.secondaryCardDescription}>
-              Include a short description here that speaks to the value prop of the feature. Character limit of 120.
+              {t('shared.cardDescription')}
             </p>
-            <LinkButton>Button label</LinkButton>
+            <LinkButton>{t('shared.buttonLabel')}</LinkButton>
           </div>
         </div>
       </CardContent>
@@ -167,11 +170,12 @@ function SecondaryCard() {
 
 /* ─── Primary Section ─── */
 function PrimarySection() {
+  const { t } = useTranslation();
   return (
     <div>
       <div className={styles.primarySectionHeader}>
-        <h2 className={styles.primarySectionTitle}>Primary section</h2>
-        <LinkButton>Link button</LinkButton>
+        <h2 className={styles.primarySectionTitle}>{t('shared.primarySection')}</h2>
+        <LinkButton>{t('shared.linkButton')}</LinkButton>
       </div>
 
       <div className={gridStyles.primaryCardsGrid}>
@@ -184,6 +188,7 @@ function PrimarySection() {
 }
 
 function PrimaryCard() {
+  const { t } = useTranslation();
   return (
     <Card>
       <CardContent>
@@ -191,11 +196,11 @@ function PrimaryCard() {
           <div className={styles.primaryCardImage}>
             <ImagePlaceholderIcon size={48} />
           </div>
-          <p className={styles.primaryCardTitle}>Title</p>
+          <p className={styles.primaryCardTitle}>{t('shared.title')}</p>
           <p className={styles.primaryCardDescription}>
-            Include a short description here that speaks to the value prop of the feature. Character limit of 120.
+            {t('shared.cardDescription')}
           </p>
-          <LinkButton>Button label</LinkButton>
+          <LinkButton>{t('shared.buttonLabel')}</LinkButton>
         </div>
       </CardContent>
     </Card>

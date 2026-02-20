@@ -36,10 +36,42 @@
     "title": "Landing connection"
   },
   "catalog": {
-    "title": "Catalog"
+    "title": "Catalog",
+    "heroAlt": "Get set up for success in any market"
   },
   "detailItem": {
-    "title": "Detail item"
+    "title": "Detail item",
+    "detailForm": "Detail form",
+    "complete": "Complete",
+    "warning": "Warning",
+    "error": "Error",
+    "incomplete": "Incomplete",
+    "content": "Content",
+    "listingPreview": "Listing preview",
+    "brand": "Brand",
+    "primary": "Primary",
+    "productName": "Product Name",
+    "reviews": "(4.4) 248 reviews",
+    "offers": "4 offers from $00.00 - $00.00",
+    "viewOnWalmart": "View on Walmart.com",
+    "address": "Address",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "streetAddress1": "Street address line 1",
+    "streetAddress2": "Street address line 2",
+    "state": "State",
+    "zipCode": "ZIP code",
+    "creditCardInfo": "Credit card info",
+    "cardholderName": "Cardholder name",
+    "cardNumber": "Card number",
+    "expiryDate": "Expiry date",
+    "cvv": "CVC/CVV",
+    "customerDetails": "Customer details",
+    "emailCustomer": "Email customer",
+    "shippingAddress": "Shipping address",
+    "phoneDisclaimer": "*Phone number for carrier use only.",
+    "policyLink": "Per Walmart Marketplace's Customer Care Policy",
+    "policyWarning": ", unsolicited text messages, emails or telephone calls to customers are prohibited and may result in account suspension."
   },
   "dataTable": {
     "searchBy": "Search by",

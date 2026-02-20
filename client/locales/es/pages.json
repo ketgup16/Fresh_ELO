@@ -36,10 +36,42 @@
     "title": "Conexión de landing"
   },
   "catalog": {
-    "title": "Catálogo"
+    "title": "Catálogo",
+    "heroAlt": "Prepárate para el éxito en cualquier mercado"
   },
   "detailItem": {
-    "title": "Detalle del artículo"
+    "title": "Detalle del artículo",
+    "detailForm": "Formulario de detalle",
+    "complete": "Completo",
+    "warning": "Advertencia",
+    "error": "Error",
+    "incomplete": "Incompleto",
+    "content": "Contenido",
+    "listingPreview": "Vista previa del listado",
+    "brand": "Marca",
+    "primary": "Principal",
+    "productName": "Nombre del producto",
+    "reviews": "(4.4) 248 reseñas",
+    "offers": "4 ofertas desde $00.00 - $00.00",
+    "viewOnWalmart": "Ver en Walmart.com",
+    "address": "Dirección",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "streetAddress1": "Dirección línea 1",
+    "streetAddress2": "Dirección línea 2",
+    "state": "Estado",
+    "zipCode": "Código postal",
+    "creditCardInfo": "Información de tarjeta de crédito",
+    "cardholderName": "Nombre del titular",
+    "cardNumber": "Número de tarjeta",
+    "expiryDate": "Fecha de vencimiento",
+    "cvv": "CVC/CVV",
+    "customerDetails": "Detalles del cliente",
+    "emailCustomer": "Enviar email al cliente",
+    "shippingAddress": "Dirección de envío",
+    "phoneDisclaimer": "*Número de teléfono solo para uso del transportista.",
+    "policyLink": "Según la Política de Atención al Cliente de Walmart Marketplace",
+    "policyWarning": ", los mensajes de texto, correos electrónicos o llamadas telefónicas no solicitadas a los clientes están prohibidos y pueden resultar en la suspensión de la cuenta."
   },
   "dataTable": {
     "searchBy": "Buscar por",

@@ -91,19 +91,22 @@ interface Section {
   defaultOpen: boolean;
 }
 
-const sections: Section[] = [
-  { id: '1', title: 'Primary section', status: 'complete', defaultOpen: false },
-  { id: '2', title: 'Primary section', status: 'complete', defaultOpen: false },
-  { id: '3', title: 'Primary section', status: 'warning', defaultOpen: true },
-  { id: '4', title: 'Primary section', status: 'error', defaultOpen: true },
-  { id: '5', title: 'Primary section', status: 'incomplete', defaultOpen: true },
-  { id: '6', title: 'Primary section', status: 'incomplete', defaultOpen: true },
+const sectionDefs: { id: string; status: SectionStatus; defaultOpen: boolean }[] = [
+  { id: '1', status: 'complete', defaultOpen: false },
+  { id: '2', status: 'complete', defaultOpen: false },
+  { id: '3', status: 'warning', defaultOpen: true },
+  { id: '4', status: 'error', defaultOpen: true },
+  { id: '5', status: 'incomplete', defaultOpen: true },
+  { id: '6', status: 'incomplete', defaultOpen: true },
 ];
 
 function DetailItemView({ onNavigateToForm }: { onNavigateToForm: () => void }) {
+  const { t } = useTranslation();
+  const { t: tp } = useTranslation('pages');
   const [openSections, setOpenSections] = useState<Set<string>>(
-    new Set(sections.filter((s) => s.defaultOpen).map((s) => s.id))
+    new Set(sectionDefs.filter((s) => s.defaultOpen).map((s) => s.id))
   );
+  const sections: Section[] = sectionDefs.map((s) => ({ ...s, title: t('shared.primarySection') }));
 
   const toggle = (id: string) => {
     setOpenSections((prev) => {
@@ -120,14 +123,14 @@ function DetailItemView({ onNavigateToForm }: { onNavigateToForm: () => void }) 
       <div className={styles.pageHeader}>
         <div className={styles.pageHeaderContainer}>
           <Breadcrumb>
-            <BreadcrumbItem href="/">Home</BreadcrumbItem>
-            <BreadcrumbItem isCurrent>Detail form</BreadcrumbItem>
+            <BreadcrumbItem href="/">{t('nav.home')}</BreadcrumbItem>
+            <BreadcrumbItem isCurrent>{tp('detailItem.detailForm')}</BreadcrumbItem>
           </Breadcrumb>
           <div className={styles.titleRow}>
-            <button className={styles.backBtn} onClick={onNavigateToForm} aria-label="Back">
+            <button className={styles.backBtn} onClick={onNavigateToForm} aria-label={t('actions.back')}>
               <ArrowLeft style={{ width: 20, height: 20 }} />
             </button>
-            <h1 className={styles.pageTitle}>Detail item</h1>
+            <h1 className={styles.pageTitle}>{tp('detailItem.title')}</h1>
           </div>
         </div>
       </div>
@@ -192,38 +195,40 @@ function CollapsibleSection({
 }
 
 function StatusTag({ status }: { status: SectionStatus }) {
+  const { t } = useTranslation('pages');
   if (status === 'complete') {
     return (
       <Tag variant="tertiary" color="positive" leading={<CheckCircleFill style={{ width: 16, height: 16 }} />}>
-        Complete
+        {t('detailItem.complete')}
       </Tag>
     );
   }
   if (status === 'warning') {
     return (
       <Tag variant="tertiary" color="warning" leading={<WarningFill style={{ width: 16, height: 16 }} />}>
-        Warning
+        {t('detailItem.warning')}
       </Tag>
     );
   }
   if (status === 'error') {
     return (
       <Tag variant="tertiary" color="negative" leading={<ExclamationCircleFill style={{ width: 16, height: 16 }} />}>
-        Error
+        {t('detailItem.error')}
       </Tag>
     );
   }
   return (
     <Tag variant="tertiary" color="gray" leading={<CheckCircle style={{ width: 16, height: 16 }} />}>
-      Incomplete
+      {t('detailItem.incomplete')}
     </Tag>
   );
 }
 
 function ContentPlaceholder() {
+  const { t } = useTranslation('pages');
   return (
     <div className={styles.contentPlaceholder}>
-      <span className={styles.contentPlaceholderLabel}>Content</span>
+      <span className={styles.contentPlaceholderLabel}>{t('detailItem.content')}</span>
     </div>
   );
 }
@@ -231,31 +236,32 @@ function ContentPlaceholder() {
 /* ─── Listing Preview Card ─── */
 
 function ListingPreviewCard() {
+  const { t } = useTranslation('pages');
   return (
     <Card>
       <CardContent>
         <div className={styles.listingPreview}>
-          <p className={styles.listingPreviewLabel}>Listing preview</p>
+          <p className={styles.listingPreviewLabel}>{t('detailItem.listingPreview')}</p>
           <img
             src="https://api.builder.io/api/v1/image/assets/TEMP/1e88dc1099f51ce6b50137341a6af4875348b4b5?width=544"
-            alt="Product preview"
+            alt={t('detailItem.productName')}
             className={styles.listingPreviewImg}
           />
           <div className={styles.listingDetails}>
-            <p className={styles.listingBrand}>Brand</p>
-            <Tag variant="tertiary" color="gray" style={{ alignSelf: 'flex-start' }}>Primary</Tag>
-            <p className={styles.listingProductName}>Product Name</p>
+            <p className={styles.listingBrand}>{t('detailItem.brand')}</p>
+            <Tag variant="tertiary" color="gray" style={{ alignSelf: 'flex-start' }}>{t('detailItem.primary')}</Tag>
+            <p className={styles.listingProductName}>{t('detailItem.productName')}</p>
             <div className={styles.listingRating}>
               <Rating value={4.4} size="small" />
-              <span className={styles.listingRatingText}>(4.4) 248 reviews</span>
+              <span className={styles.listingRatingText}>{t('detailItem.reviews')}</span>
             </div>
             <p className={styles.listingPrice}>$4.96</p>
-            <p className={styles.listingOffers}>4 offers from $00.00 - $00.00</p>
+            <p className={styles.listingOffers}>{t('detailItem.offers')}</p>
             <a
               href="#"
               className={styles.listingLink}
             >
-              View on Walmart.com
+              {t('detailItem.viewOnWalmart')}
               <ExternalLink style={{ width: 12, height: 12, marginLeft: 4 }} />
             </a>
           </div>
@@ -268,26 +274,28 @@ function ListingPreviewCard() {
 /* ─── Detail Form View ─── */
 
 function DetailFormView({ onBack }: { onBack: () => void }) {
+  const { t } = useTranslation();
+  const { t: tp } = useTranslation('pages');
   return (
     <div className={styles.pageInner}>
       {/* Page header */}
       <div className={styles.pageHeader}>
         <div className={styles.pageHeaderContainer}>
           <Breadcrumb>
-            <BreadcrumbItem href="/">Home</BreadcrumbItem>
-            <BreadcrumbItem isCurrent>Detail form</BreadcrumbItem>
+            <BreadcrumbItem href="/">{t('nav.home')}</BreadcrumbItem>
+            <BreadcrumbItem isCurrent>{tp('detailItem.detailForm')}</BreadcrumbItem>
           </Breadcrumb>
           <div className={styles.titleRow}>
             <div className={styles.titleLeading}>
-              <button className={styles.backBtn} onClick={onBack} aria-label="Back">
+              <button className={styles.backBtn} onClick={onBack} aria-label={t('actions.back')}>
                 <ArrowLeft style={{ width: 20, height: 20 }} />
               </button>
-              <h1 className={styles.pageTitle}>Detail form</h1>
+              <h1 className={styles.pageTitle}>{tp('detailItem.detailForm')}</h1>
             </div>
             <div className={styles.titleActions}>
-              <LinkButton size="medium">Button label</LinkButton>
-              <LinkButton size="medium">Button label</LinkButton>
-              <Button variant="primary" size="medium">Button label</Button>
+              <LinkButton size="medium">{t('shared.buttonLabel')}</LinkButton>
+              <LinkButton size="medium">{t('shared.buttonLabel')}</LinkButton>
+              <Button variant="primary" size="medium">{t('shared.buttonLabel')}</Button>
             </div>
           </div>
         </div>
@@ -301,19 +309,19 @@ function DetailFormView({ onBack }: { onBack: () => void }) {
             {/* Address form card */}
             <div className={styles.formCard}>
               <div className={styles.formCardHeader}>
-                <h2 className={styles.formCardTitle}>Address</h2>
-                <Button variant="secondary" size="small">Button label</Button>
+                <h2 className={styles.formCardTitle}>{tp('detailItem.address')}</h2>
+                <Button variant="secondary" size="small">{t('shared.buttonLabel')}</Button>
               </div>
               <div className={styles.formBody}>
                 <div className={styles.formRow}>
-                  <FormField label="First name" value="Jane" />
-                  <FormField label="Last name" value="Doe" />
+                  <FormField label={tp('detailItem.firstName')} value="Jane" />
+                  <FormField label={tp('detailItem.lastName')} value="Doe" />
                 </div>
-                <FormField label="Street address line 1" value="1234 Main Street" fullWidth />
-                <FormField label="Street address line 2" value="Apt 123" fullWidth />
+                <FormField label={tp('detailItem.streetAddress1')} value="1234 Main Street" fullWidth />
+                <FormField label={tp('detailItem.streetAddress2')} value="Apt 123" fullWidth />
                 <div className={styles.formRow}>
-                  <FormSelect label="State" value="Arkansas" />
-                  <FormField label="ZIP code" value="94066" />
+                  <FormSelect label={tp('detailItem.state')} value="Arkansas" />
+                  <FormField label={tp('detailItem.zipCode')} value="94066" />
                 </div>
               </div>
             </div>
@@ -321,15 +329,15 @@ function DetailFormView({ onBack }: { onBack: () => void }) {
             {/* Credit card form card */}
             <div className={styles.formCard}>
               <div className={styles.formCardHeader}>
-                <h2 className={styles.formCardTitle}>Credit card info</h2>
-                <Button variant="secondary" size="small">Button label</Button>
+                <h2 className={styles.formCardTitle}>{tp('detailItem.creditCardInfo')}</h2>
+                <Button variant="secondary" size="small">{t('shared.buttonLabel')}</Button>
               </div>
               <div className={styles.formBody}>
-                <FormField label="Cardholder name" value="Jane Doe" fullWidth />
-                <FormField label="Card number" value="1234 5678 9012 3456" fullWidth />
+                <FormField label={tp('detailItem.cardholderName')} value="Jane Doe" fullWidth />
+                <FormField label={tp('detailItem.cardNumber')} value="1234 5678 9012 3456" fullWidth />
                 <div className={styles.formRow}>
-                  <FormField label="Expiry date" value="12/12" />
-                  <FormField label="CVC/CVV" value="•••" />
+                  <FormField label={tp('detailItem.expiryDate')} value="12/12" />
+                  <FormField label={tp('detailItem.cvv')} value="•••" />
                 </div>
               </div>
             </div>
@@ -341,19 +349,19 @@ function DetailFormView({ onBack }: { onBack: () => void }) {
             <Card>
               <CardContent>
                 <div className={styles.secondaryCardHeader}>
-                  <h3 className={styles.secondaryCardTitle}>Customer details</h3>
-                  <button className={styles.moreBtn} aria-label="More options">
+                  <h3 className={styles.secondaryCardTitle}>{tp('detailItem.customerDetails')}</h3>
+                  <button className={styles.moreBtn} aria-label={t('shared.moreOptions')}>
                     <MoreHorizontal style={{ width: 16, height: 16 }} />
                   </button>
                 </div>
                 <div className={styles.customerDetails}>
                   <p className={styles.customerName}>Gordon Ramsey</p>
                   <p className={styles.customerPhone}>(444) 248-4840*</p>
-                  <a href="#" className={styles.customerLink}>Email customer</a>
+                  <a href="#" className={styles.customerLink}>{tp('detailItem.emailCustomer')}</a>
                 </div>
                 <Divider />
                 <div className={styles.shippingSection}>
-                  <h4 className={styles.shippingTitle}>Shipping address</h4>
+                  <h4 className={styles.shippingTitle}>{tp('detailItem.shippingAddress')}</h4>
                   <div className={styles.shippingRow}>
                     <p className={styles.shippingAddress}>
                       123 Pine Ave<br />Bentonville, AR 72712
@@ -363,11 +371,11 @@ function DetailFormView({ onBack }: { onBack: () => void }) {
                     </button>
                   </div>
                   <p className={styles.shippingCaption}>
-                    *Phone number for carrier use only.{' '}
+                    {tp('detailItem.phoneDisclaimer')}{' '}
                     <a href="#" className={styles.shippingLink}>
-                      Per Walmart Marketplace's Customer Care Policy
+                      {tp('detailItem.policyLink')}
                     </a>
-                    , unsolicited text messages, emails or telephone calls to customers are prohibited and may result in account suspension.
+                    {tp('detailItem.policyWarning')}
                   </p>
                 </div>
               </CardContent>
@@ -377,16 +385,16 @@ function DetailFormView({ onBack }: { onBack: () => void }) {
             <Card>
               <CardContent>
                 <div className={styles.secondaryCardHeader}>
-                  <h3 className={styles.secondaryCardTitle}>Secondary section</h3>
-                  <button className={styles.moreBtn} aria-label="More options">
+                  <h3 className={styles.secondaryCardTitle}>{t('shared.secondarySection')}</h3>
+                  <button className={styles.moreBtn} aria-label={t('shared.moreOptions')}>
                     <MoreHorizontal style={{ width: 16, height: 16 }} />
                   </button>
                 </div>
                 <div className={styles.listSection}>
                   {Array.from({ length: 8 }).map((_, i) => (
                     <div key={i} className={styles.listItem}>
-                      <span className={styles.listItemText}>List item text</span>
-                      <span className={styles.listItemTrailing}>Trailing</span>
+                      <span className={styles.listItemText}>{t('shared.listItemText')}</span>
+                      <span className={styles.listItemTrailing}>{t('shared.trailing')}</span>
                     </div>
                   ))}
                 </div>

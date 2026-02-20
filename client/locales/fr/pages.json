@@ -36,10 +36,42 @@
     "title": "Connexion de la page"
   },
   "catalog": {
-    "title": "Catalogue"
+    "title": "Catalogue",
+    "heroAlt": "Préparez-vous au succès sur tous les marchés"
   },
   "detailItem": {
-    "title": "Détail de l'article"
+    "title": "Détail de l'article",
+    "detailForm": "Formulaire de détail",
+    "complete": "Terminé",
+    "warning": "Avertissement",
+    "error": "Erreur",
+    "incomplete": "Incomplet",
+    "content": "Contenu",
+    "listingPreview": "Aperçu de l'annonce",
+    "brand": "Marque",
+    "primary": "Principal",
+    "productName": "Nom du produit",
+    "reviews": "(4.4) 248 avis",
+    "offers": "4 offres à partir de 00,00 $ - 00,00 $",
+    "viewOnWalmart": "Voir sur Walmart.com",
+    "address": "Adresse",
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "streetAddress1": "Adresse ligne 1",
+    "streetAddress2": "Adresse ligne 2",
+    "state": "État",
+    "zipCode": "Code postal",
+    "creditCardInfo": "Informations de carte de crédit",
+    "cardholderName": "Nom du titulaire",
+    "cardNumber": "Numéro de carte",
+    "expiryDate": "Date d'expiration",
+    "cvv": "CVC/CVV",
+    "customerDetails": "Détails du client",
+    "emailCustomer": "Envoyer un e-mail au client",
+    "shippingAddress": "Adresse de livraison",
+    "phoneDisclaimer": "*Numéro de téléphone réservé au transporteur.",
+    "policyLink": "Conformément à la politique de service client de Walmart Marketplace",
+    "policyWarning": ", les messages texte, e-mails ou appels téléphoniques non sollicités aux clients sont interdits et peuvent entraîner la suspension du compte."
   },
   "dataTable": {
     "searchBy": "Rechercher par",

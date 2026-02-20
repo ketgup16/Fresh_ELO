@@ -40,11 +40,44 @@
     "notifications": "Notificaciones",
     "help": "Ayuda",
     "account": "Cuenta",
-    "openMarty": "Abrir Marty"
+    "openMarty": "Abrir Marty",
+    "appName": "Plantilla PX"
   },
   "sidebar": {
     "expand": "Expandir barra lateral",
     "collapse": "Contraer barra lateral",
     "lock": "Fijar"
+  },
+  "templates": {
+    "navigate": "Navegar plantillas",
+    "pageTemplates": "Plantillas de página",
+    "toolsAndHelp": "Herramientas y ayuda",
+    "componentLibrary": "Biblioteca de componentes",
+    "pageTemplate": "Plantilla de página",
+    "dashboardTemplate": "Plantilla de panel",
+    "catalogTemplate": "Plantilla de catálogo",
+    "detailItem": "Detalle del artículo",
+    "landingConnection": "Conexión de landing",
+    "landingSummary": "Resumen de landing"
+  },
+  "shared": {
+    "title": "Título",
+    "description": "Una breve descripción de la acción que un usuario debe completar, límite de 120 caracteres.",
+    "buttonLabel": "Etiqueta del botón",
+    "linkButton": "Botón de enlace",
+    "label": "Etiqueta",
+    "alertMessage": "Mensaje de alerta",
+    "actionButton": "Botón de acción",
+    "supportingText": "Texto de apoyo...",
+    "primarySection": "Sección principal",
+    "secondarySection": "Sección secundaria",
+    "tertiarySection": "Sección terciaria",
+    "listItemText": "Texto del elemento",
+    "trailing": "Final",
+    "accordionTitle": "Título del acordeón",
+    "moreOptions": "Más opciones",
+    "learnMore": "Más información",
+    "cardDescription": "Incluye una breve descripción que hable de la propuesta de valor de la función. Límite de 120 caracteres.",
+    "value": "Valor"
   }
 }

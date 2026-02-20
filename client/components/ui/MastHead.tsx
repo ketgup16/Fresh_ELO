@@ -15,11 +15,12 @@ interface MastHeadProps {
 }
 
 export function MastHead({
-  appName = 'PX Template',
+  appName,
   currentSolution = 'Dashboard Template',
   onSolutionChange
 }: MastHeadProps) {
   const { t } = useTranslation();
+  const displayAppName = appName ?? t('masthead.appName');
   const { isMinimized, isDocked, setIsMinimized, setIsDocked, setInitialPosition } = useMarty();
   const dragListenersRef = useRef<{ move: (e: MouseEvent) => void; up: () => void } | null>(null);
 
@@ -43,7 +44,7 @@ export function MastHead({
         </button>
         
         {/* App Name */}
-        <span className={styles.appName}>{appName}</span>
+        <span className={styles.appName}>{displayAppName}</span>
       </div>
 
       <div className={styles.right}>

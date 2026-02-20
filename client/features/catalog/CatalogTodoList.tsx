@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
 import { Divider } from '@/components/ui/Divider';
@@ -9,61 +10,22 @@ import styles from '@/styles/responsive.module.css';
 
 type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
-const todoItems: {
-  id: string;
-  title: string;
-  description: string;
-  label: string;
-  cta: string;
-  Icon: IconComponent;
-}[] = [
-  {
-    id: '1',
-    title: 'Title',
-    description: 'A short description of the action that a user needs to complete, character count 120.',
-    label: 'Label',
-    cta: 'Button label',
-    Icon: ListBox,
-  },
-  {
-    id: '2',
-    title: 'Title',
-    description: 'A short description of the action that a user needs to complete, character count 120.',
-    label: 'Label',
-    cta: 'Button label',
-    Icon: Upload,
-  },
-  {
-    id: '3',
-    title: 'Title',
-    description: 'A short description of the action that a user needs to complete, character count 120.',
-    label: 'Label',
-    cta: 'Button label',
-    Icon: ScanDocument,
-  },
-  {
-    id: '4',
-    title: 'Title',
-    description: 'A short description of the action that a user needs to complete, character count 120.',
-    label: 'Label',
-    cta: 'Button label',
-    Icon: CheckCircle,
-  },
-];
+const todoIcons: IconComponent[] = [ListBox, Upload, ScanDocument, CheckCircle];
 
 export function CatalogTodoList() {
+  const { t } = useTranslation();
   return (
     <div className={styles.catalogTodoList}>
-      {todoItems.map((item, index) => (
-        <div key={item.id}>
+      {todoIcons.map((Icon, index) => (
+        <div key={index}>
           <TodoItem
-            title={item.title}
-            description={item.description}
-            label={item.label}
-            cta={item.cta}
-            Icon={item.Icon}
+            title={t('shared.title')}
+            description={t('shared.description')}
+            label={t('shared.label')}
+            cta={t('shared.buttonLabel')}
+            Icon={Icon}
           />
-          {index < todoItems.length - 1 && (
+          {index < todoIcons.length - 1 && (
             <div style={{ padding: '12px 0' }}>
               <Divider />
             </div>

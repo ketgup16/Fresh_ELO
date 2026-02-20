@@ -39,11 +39,7 @@ function getSellerCenterMenuItems(t: (key: string) => string): SidebarMenuItem[]
   ];
 }
 
-const sections = [
-  { id: '1', title: 'Primary section' },
-  { id: '2', title: 'Primary section' },
-  { id: '3', title: 'Primary section' },
-];
+const sectionIds = ['1', '2', '3'];
 
 export default function LandingConnection() {
   const { t } = useTranslation();
@@ -58,13 +54,13 @@ export default function LandingConnection() {
           <div className={styles.pageContent}>
             {/* Page header */}
             <div className={styles.pageHeader}>
-              <h1 className={styles.pageTitle}>Landing connection</h1>
-              <p className={styles.pageSubtitle}>Supporting text...</p>
+              <h1 className={styles.pageTitle}>{t('templates.landingConnection')}</h1>
+              <p className={styles.pageSubtitle}>{t('shared.supportingText')}</p>
             </div>
 
             {/* Sections */}
-            {sections.map((section) => (
-              <LandingSection key={section.id} title={section.title} />
+            {sectionIds.map((id) => (
+              <LandingSection key={id} />
             ))}
           </div>
         </main>
@@ -75,13 +71,14 @@ export default function LandingConnection() {
 
 /* ─── Landing Section ─── */
 
-function LandingSection({ title }: { title: string }) {
+function LandingSection() {
+  const { t } = useTranslation();
   return (
     <section className={styles.section}>
       {/* Section header */}
       <div className={styles.sectionHeader}>
-        <h2 className={styles.sectionTitle}>{title}</h2>
-        <LinkButton size="medium">Link button</LinkButton>
+        <h2 className={styles.sectionTitle}>{t('shared.primarySection')}</h2>
+        <LinkButton size="medium">{t('shared.linkButton')}</LinkButton>
       </div>
 
       {/* 3-column card grid */}
@@ -97,20 +94,21 @@ function LandingSection({ title }: { title: string }) {
 /* ─── Landing Card ─── */
 
 function LandingCard() {
+  const { t } = useTranslation();
   return (
     <div className={styles.card}>
       {/* Card image area */}
       <div className={styles.cardImageArea}>
         <ImagePlaceholder />
-        <Tag variant="tertiary" color="gray" leading={<ImageIcon style={{ width: 16, height: 16 }} />} className={styles.cardLabelBadge}>Label</Tag>
+        <Tag variant="tertiary" color="gray" leading={<ImageIcon style={{ width: 16, height: 16 }} />} className={styles.cardLabelBadge}>{t('shared.label')}</Tag>
       </div>
 
       {/* Card body */}
       <div className={styles.cardBody}>
-        <h3 className={styles.cardTitle}>Title</h3>
+        <h3 className={styles.cardTitle}>{t('shared.title')}</h3>
         <p className={styles.cardDescription}>
-          Include a short description here that speaks to the value prop of the card. Character limit of 120.{' '}
-          <a href="#" className={styles.cardLearnMore}>Learn more</a>
+          {t('shared.cardDescription')}{' '}
+          <a href="#" className={styles.cardLearnMore}>{t('shared.learnMore')}</a>
         </p>
       </div>
 
@@ -118,8 +116,8 @@ function LandingCard() {
       <div className={styles.cardFooter}>
         <div className={styles.cardDivider} />
         <div className={styles.cardActions}>
-          <LinkButton size="medium">Button label</LinkButton>
-          <Button variant="secondary" size="small">Button label</Button>
+          <LinkButton size="medium">{t('shared.buttonLabel')}</LinkButton>
+          <Button variant="secondary" size="small">{t('shared.buttonLabel')}</Button>
         </div>
       </div>
     </div>
