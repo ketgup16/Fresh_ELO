@@ -67,9 +67,9 @@ function BreadcrumbsPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px' }}>
-        <span style={{ color: 'var(--ld-semantic-color-text-brand-bold, #0071DC)', textDecoration: 'underline' }}>Home</span>
+        <span style={{ color: 'var(--ld-semantic-color-link-text-subtle, #515357)', textDecoration: 'underline' }}>Home</span>
         <span style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>/</span>
-        <span style={{ color: 'var(--ld-semantic-color-text-brand-bold, #0071DC)', textDecoration: 'underline' }}>Products</span>
+        <span style={{ color: 'var(--ld-semantic-color-link-text-subtle, #515357)', textDecoration: 'underline' }}>Products</span>
         <span style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>/</span>
         <span style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Current</span>
       </div>
@@ -138,7 +138,7 @@ function ChipsPreview() {
         {[{ label: 'Active', selected: true }, { label: 'Draft', selected: false }, { label: 'Archived', selected: false }].map((c, i) => (
           <span key={i} style={{
             padding: '4px 12px', borderRadius: '4px', fontSize: '13px', fontWeight: 500,
-            border: c.selected ? '2px solid var(--ld-semantic-color-action-fill-primary, #0071DC)' : '1px solid var(--ld-semantic-color-border-strong, #BABBBE)',
+            border: c.selected ? '2px solid var(--ld-semantic-color-input-border-activated, #2e2f32)' : '1px solid var(--ld-semantic-color-border-strong, #BABBBE)',
             background: c.selected ? 'var(--ld-semantic-color-fill-brand-subtle, #E6F1FC)' : 'white',
             color: 'var(--ld-semantic-color-text, #2E2F32)',
           }}>{c.label}</span>
@@ -221,7 +221,7 @@ function LinksPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center' }}>
-        <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-brand-bold, #0071DC)', textDecoration: 'underline' }}>
+        <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-link-text, #2e2f32)', textDecoration: 'underline' }}>
           Default link
         </span>
         <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle, #74767C)', textDecoration: 'underline' }}>
@@ -236,10 +236,10 @@ function LinkButtonsPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-        <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-brand-bold, #0071DC)', textDecoration: 'underline', fontWeight: 600 }}>
+        <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-link-text, #2e2f32)', textDecoration: 'underline', fontWeight: 600 }}>
           Action
         </span>
-        <span style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-brand-bold, #0071DC)', textDecoration: 'underline' }}>
+        <span style={{ fontSize: '12px', color: 'var(--ld-semantic-color-link-text, #2e2f32)', textDecoration: 'underline' }}>
           Small
         </span>
       </div>
@@ -677,7 +677,7 @@ function TabsPreview() {
         {['Tab 1', 'Tab 2', 'Tab 3'].map((t, i) => (
           <div key={i} style={{
             padding: '6px 12px', fontSize: '12px', fontWeight: i === 0 ? 700 : 400,
-            color: i === 0 ? 'var(--ld-semantic-color-text-brand-bold, #0071DC)' : 'var(--ld-semantic-color-text-subtle, #74767C)',
+            color: i === 0 ? 'var(--ld-semantic-color-text, #2e2f32)' : 'var(--ld-semantic-color-text-subtle, #74767C)',
             borderBottom: i === 0 ? '2px solid var(--ld-semantic-color-action-fill-primary, #0071DC)' : '2px solid transparent',
             marginBottom: '-2px',
           }}>
