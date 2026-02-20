@@ -1,0 +1,397 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { PageHeader } from '@/components/ui/PageHeader';
+
+const prerequisites = [
+  { name: 'Node.js', version: '18+', desc: 'JavaScript runtime' },
+  { name: 'pnpm', version: 'See packageManager in package.json', desc: 'Package manager' },
+];
+
+const coreDeps = [
+  { pkg: 'react, react-dom', purpose: 'UI framework' },
+  { pkg: 'react-router-dom', purpose: 'Client routing' },
+  { pkg: 'typescript', purpose: 'Type safety' },
+  { pkg: 'vite, @vitejs/plugin-react-swc', purpose: 'Build tooling' },
+];
+
+const designDeps = [
+  { pkg: '@radix-ui/react-* (20+ packages)', purpose: 'Accessible headless UI primitives' },
+  { pkg: 'class-variance-authority', purpose: 'Component variant management' },
+  { pkg: 'clsx, tailwind-merge', purpose: 'Class name utilities' },
+  { pkg: 'tailwindcss, postcss, autoprefixer', purpose: 'Styling framework' },
+];
+
+const featureDeps = [
+  { pkg: 'i18next, react-i18next', purpose: 'Internationalization (en, es, fr)' },
+  { pkg: 'recharts', purpose: 'Charts and graphs' },
+  { pkg: 'lottie-react', purpose: 'Lottie animations' },
+  { pkg: 'react-day-picker, date-fns', purpose: 'Calendar and date formatting' },
+  { pkg: 'react-hook-form', purpose: 'Form management' },
+  { pkg: 'embla-carousel-react', purpose: 'Carousel' },
+  { pkg: 'vaul', purpose: 'Drawer and bottom sheet' },
+  { pkg: 'express, cors', purpose: 'API server' },
+];
+
+const projectStructure = [
+  { path: 'client/App.tsx', desc: 'Entry point with routing' },
+  { path: 'client/components/ui/', desc: 'Living Design 3.5 components' },
+  { path: 'client/pages/', desc: 'Application pages and routes' },
+  { path: 'client/styles/themes/', desc: 'Theme token CSS files' },
+  { path: 'client/contexts/', desc: 'React contexts (Theme, Marty)' },
+  { path: 'client/locales/', desc: 'i18n translation files (en, es, fr)' },
+  { path: 'client/components/icons/', desc: 'Icon library' },
+  { path: 'guidelines/', desc: 'Design system rules and docs' },
+  { path: 'server/', desc: 'Express API server' },
+  { path: 'public/fonts/', desc: 'Brand fonts (Everyday Sans)' },
+];
+
+const setupSteps = [
+  {
+    title: 'Install dependencies',
+    code: 'pnpm install',
+    detail: 'Installs all packages including React, Radix UI primitives, Tailwind, and the Express server.',
+  },
+  {
+    title: 'Start the dev server',
+    code: 'pnpm dev',
+    detail: 'Launches Vite with the Express API server as middleware. The app is available on the local dev port with hot module replacement.',
+  },
+  {
+    title: 'Explore the component library',
+    code: null,
+    detail: 'Navigate to /component-library to browse all available Living Design 3.5 components, view live examples, and test properties in the Component Sandbox.',
+  },
+  {
+    title: 'Build for production',
+    code: 'pnpm build',
+    detail: 'Produces a client SPA bundle (dist/spa/) and a server bundle (dist/server/). The client build is optimized with code splitting.',
+  },
+  {
+    title: 'Start the production server',
+    code: 'pnpm start',
+    detail: 'Runs the built Express server which serves the SPA and handles API routes.',
+  },
+];
+
+function SectionCard({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div style={{
+      backgroundColor: 'var(--ld-semantic-color-surface)',
+      padding: '32px',
+      borderRadius: '8px',
+      boxShadow: 'var(--ld-semantic-elevation-100)',
+    }}>
+      <h3 style={{
+        fontSize: '20px',
+        fontWeight: 700,
+        color: 'var(--ld-semantic-color-text)',
+        marginBottom: '20px',
+      }}>
+        {title}
+      </h3>
+      {children}
+    </div>
+  );
+}
+
+function DepTable({ rows }: { rows: { pkg: string; purpose: string }[] }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      {rows.map((row) => (
+        <div key={row.pkg} style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '16px',
+          padding: '12px 16px',
+          backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+          borderRadius: '6px',
+          fontSize: '14px',
+          alignItems: 'center',
+        }}>
+          <code style={{
+            fontFamily: 'var(--ld-semantic-font-family-mono)',
+            fontSize: '13px',
+            color: 'var(--ld-semantic-color-text)',
+          }}>
+            {row.pkg}
+          </code>
+          <span style={{ color: 'var(--ld-semantic-color-text-subtle)' }}>{row.purpose}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default function GettingStartedPage() {
+  const { t } = useTranslation();
+
+  return (
+    <div style={{ padding: '48px', maxWidth: '1200px', margin: '0 auto' }}>
+      <PageHeader
+        section={t('componentLibrary.gettingStarted')}
+        title={t('componentLibrary.gettingStartedTitle')}
+        description={t('componentLibrary.gettingStartedDesc')}
+      />
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+
+        {/* Intro Callout */}
+        <div style={{
+          backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle)',
+          padding: '24px 32px',
+          borderRadius: '8px',
+          borderLeft: '5px solid var(--ld-semantic-color-border-brand)',
+        }}>
+          <h3 style={{
+            fontSize: '18px',
+            fontWeight: 700,
+            color: 'var(--ld-semantic-color-text)',
+            marginBottom: '8px',
+          }}>
+            Living Design 3.5 Portable Kit
+          </h3>
+          <p style={{
+            fontSize: '15px',
+            lineHeight: 1.7,
+            color: 'var(--ld-semantic-color-text-subtle)',
+            margin: 0,
+          }}>
+            A self-contained component library and starter kit built on Living Design 3.5 tokens.
+            It includes WCAG 2.1 AA accessible components, semantic design tokens for theming,
+            internationalization (English, Spanish, French), and an Express API server &mdash;
+            ready to use in any Builder.io project.
+          </p>
+        </div>
+
+        {/* Prerequisites */}
+        <SectionCard title="Prerequisites">
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            {prerequisites.map((p) => (
+              <div key={p.name} style={{
+                flex: '1 1 240px',
+                padding: '16px',
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                borderRadius: '6px',
+              }}>
+                <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '4px', color: 'var(--ld-semantic-color-text)' }}>
+                  {p.name}
+                </div>
+                <div style={{
+                  fontFamily: 'var(--ld-semantic-font-family-mono)',
+                  fontSize: '13px',
+                  color: 'var(--ld-semantic-color-text-brand-bold)',
+                  marginBottom: '4px',
+                }}>
+                  {p.version}
+                </div>
+                <div style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)' }}>{p.desc}</div>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+
+        {/* Setup Steps */}
+        <SectionCard title="Setup Steps">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {setupSteps.map((step, i) => (
+              <div key={i} style={{
+                display: 'flex',
+                gap: '16px',
+                padding: '20px',
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                borderRadius: '8px',
+              }}>
+                <div style={{
+                  minWidth: '36px',
+                  height: '36px',
+                  backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontWeight: 700,
+                  fontSize: '16px',
+                  color: 'var(--ld-semantic-color-text-brand-bold)',
+                }}>
+                  {i + 1}
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '6px', color: 'var(--ld-semantic-color-text)' }}>
+                    {step.title}
+                  </div>
+                  {step.code && (
+                    <div style={{
+                      fontFamily: 'var(--ld-semantic-font-family-mono)',
+                      fontSize: '13px',
+                      backgroundColor: 'var(--ld-semantic-color-surface)',
+                      padding: '8px 14px',
+                      borderRadius: '4px',
+                      marginBottom: '8px',
+                      color: 'var(--ld-semantic-color-text)',
+                      border: '1px solid var(--ld-semantic-color-border-moderate)',
+                      display: 'inline-block',
+                    }}>
+                      $ {step.code}
+                    </div>
+                  )}
+                  <div style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                    {step.detail}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+
+        {/* Project Structure */}
+        <SectionCard title="Project Structure">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            {projectStructure.map((item) => (
+              <div key={item.path} style={{
+                display: 'grid',
+                gridTemplateColumns: '260px 1fr',
+                gap: '16px',
+                padding: '10px 16px',
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                borderRadius: '6px',
+                fontSize: '14px',
+                alignItems: 'center',
+              }}>
+                <code style={{
+                  fontFamily: 'var(--ld-semantic-font-family-mono)',
+                  fontSize: '13px',
+                  color: 'var(--ld-semantic-color-text)',
+                }}>
+                  {item.path}
+                </code>
+                <span style={{ color: 'var(--ld-semantic-color-text-subtle)' }}>{item.desc}</span>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+
+        {/* Core Dependencies */}
+        <SectionCard title="Core Dependencies">
+          <DepTable rows={coreDeps} />
+        </SectionCard>
+
+        {/* Design System Dependencies */}
+        <SectionCard title="Design System Primitives">
+          <DepTable rows={designDeps} />
+        </SectionCard>
+
+        {/* Feature Libraries */}
+        <SectionCard title="Feature Libraries">
+          <DepTable rows={featureDeps} />
+        </SectionCard>
+
+        {/* Adding to an Existing Project */}
+        <SectionCard title="Using in an Existing Project">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {[
+              {
+                title: 'Use existing components',
+                detail: 'Check client/components/ui/ before creating anything new. Import with: import { Button } from \'@/components/ui/Button\'',
+              },
+              {
+                title: 'Add new pages',
+                detail: 'Create route files in client/pages/ and register them in client/App.tsx under <Routes>.',
+              },
+              {
+                title: 'Add translations',
+                detail: 'Add strings to client/locales/en/common.json, es/common.json, and fr/common.json.',
+              },
+              {
+                title: 'Add API routes',
+                detail: 'Create handlers in server/routes/ and register them in server/index.ts.',
+              },
+              {
+                title: 'Follow the design system',
+                detail: 'Always use semantic tokens (var(--ld-semantic-color-*)) for colors, spacing, and typography. Never hard-code hex values.',
+              },
+            ].map((item, i) => (
+              <div key={i} style={{
+                display: 'flex',
+                gap: '12px',
+                padding: '16px 20px',
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                borderRadius: '6px',
+                alignItems: 'flex-start',
+              }}>
+                <div style={{
+                  minWidth: '24px',
+                  height: '24px',
+                  backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontWeight: 700,
+                  fontSize: '12px',
+                  color: 'var(--ld-semantic-color-text-brand-bold)',
+                  flexShrink: 0,
+                  marginTop: '2px',
+                }}>
+                  {i + 1}
+                </div>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '4px', color: 'var(--ld-semantic-color-text)' }}>
+                    {item.title}
+                  </div>
+                  <div style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                    {item.detail}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+
+        {/* Deployment */}
+        <SectionCard title="Deployment">
+          <p style={{
+            fontSize: '14px',
+            lineHeight: 1.6,
+            color: 'var(--ld-semantic-color-text-subtle)',
+            marginBottom: '16px',
+          }}>
+            The project is pre-configured for Netlify deployment via <code style={{
+              fontFamily: 'var(--ld-semantic-font-family-mono)',
+              fontSize: '13px',
+              backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+              padding: '2px 6px',
+              borderRadius: '4px',
+            }}>netlify.toml</code>:
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {[
+              { label: 'Build command', value: 'npm run build:client' },
+              { label: 'Publish directory', value: 'dist/spa' },
+              { label: 'API routes', value: 'Redirected to Netlify Functions via /api/*' },
+            ].map((item) => (
+              <div key={item.label} style={{
+                display: 'grid',
+                gridTemplateColumns: '180px 1fr',
+                gap: '16px',
+                padding: '10px 16px',
+                backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                borderRadius: '6px',
+                fontSize: '14px',
+                alignItems: 'center',
+              }}>
+                <strong style={{ color: 'var(--ld-semantic-color-text)' }}>{item.label}</strong>
+                <code style={{
+                  fontFamily: 'var(--ld-semantic-font-family-mono)',
+                  fontSize: '13px',
+                  color: 'var(--ld-semantic-color-text-subtle)',
+                }}>
+                  {item.value}
+                </code>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+      </div>
+    </div>
+  );
+}
