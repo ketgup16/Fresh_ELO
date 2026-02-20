@@ -51,7 +51,7 @@ export default function ComponentTester() {
   const [buttonVariant, setButtonVariant] = React.useState<'primary' | 'secondary' | 'tertiary' | 'destructive'>('primary');
   const [buttonSize, setButtonSize] = React.useState<'small' | 'medium' | 'large'>('medium');
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
-  const [buttonText, setButtonText] = React.useState('Click me');
+  const [buttonText, setButtonText] = React.useState(t('componentLibrary.defaultButtonText'));
   
   // TextField props
   const [textFieldSize, setTextFieldSize] = React.useState<'small' | 'large'>('large');
@@ -86,17 +86,17 @@ export default function ComponentTester() {
   // Chip props
   const [chipSize, setChipSize] = React.useState<'small' | 'medium'>('medium');
   const [chipSelected, setChipSelected] = React.useState(false);
-  const [chipText, setChipText] = React.useState('Chip Label');
+  const [chipText, setChipText] = React.useState(t('componentLibrary.chipLabel'));
   
   // Filter Chip props
   const [filterChipSelected, setFilterChipSelected] = React.useState(false);
-  const [filterChipText, setFilterChipText] = React.useState('Filter');
+  const [filterChipText, setFilterChipText] = React.useState(t('componentLibrary.filterLabel'));
   const [filterChipCount, setFilterChipCount] = React.useState(12);
   
   // Tag props
   const [tagVariant, setTagVariant] = React.useState<'primary' | 'secondary' | 'tertiary'>('secondary');
   const [tagColor, setTagColor] = React.useState<'brand' | 'positive' | 'negative' | 'warning' | 'info'>('brand');
-  const [tagText, setTagText] = React.useState('Tag Label');
+  const [tagText, setTagText] = React.useState(t('componentLibrary.tagLabel'));
   
   // OLQ Tag props
   const [olqPercentage, setOlqPercentage] = React.useState(85);
@@ -114,7 +114,7 @@ export default function ComponentTester() {
   
   // Checkbox props
   const [checkboxChecked, setCheckboxChecked] = React.useState(false);
-  const [checkboxLabel, setCheckboxLabel] = React.useState('Checkbox Label');
+  const [checkboxLabel, setCheckboxLabel] = React.useState(t('componentLibrary.checkboxLabel'));
   
   // Divider props
   const [dividerOrientation, setDividerOrientation] = React.useState<'horizontal' | 'vertical'>('horizontal');
@@ -135,28 +135,28 @@ export default function ComponentTester() {
       case 'textfield':
         return (
           <TextField
-            label="Label"
+            label={t('componentLibrary.fieldLabel')}
             size={textFieldSize}
             value={textFieldValue}
             onChange={(e) => setTextFieldValue(e.target.value)}
             error={textFieldError || undefined}
             disabled={textFieldDisabled}
             isMagic={textFieldMagic}
-            placeholder="Enter text..."
-            helperText="Helper text goes here"
+            placeholder={t('componentLibrary.enterText')}
+            helperText={t('componentLibrary.helperText')}
           />
         );
       
       case 'textarea':
         return (
           <TextArea
-            label="Label"
+            label={t('componentLibrary.fieldLabel')}
             size={textAreaSize}
             value={textAreaValue}
             onChange={(e) => setTextAreaValue(e.target.value)}
             disabled={textAreaDisabled}
             isMagic={textAreaMagic}
-            placeholder="Enter text..."
+            placeholder={t('componentLibrary.enterText')}
             maxLength={200}
           />
         );
@@ -164,7 +164,7 @@ export default function ComponentTester() {
       case 'datefield':
         return (
           <DateField
-            label="Date"
+            label={t('componentLibrary.dateLabel')}
             value={dateFieldValue}
             onChange={(e) => setDateFieldValue(e.target.value)}
             disabled={dateFieldDisabled}
@@ -175,15 +175,15 @@ export default function ComponentTester() {
       case 'select':
         return (
           <Select
-            label="Select Option"
+            label={t('componentLibrary.selectOptionLabel')}
             value={selectValue}
             onValueChange={setSelectValue}
             size={selectSize}
             disabled={selectDisabled}
           >
-            <SelectItem value="option1">Option 1</SelectItem>
-            <SelectItem value="option2">Option 2</SelectItem>
-            <SelectItem value="option3">Option 3</SelectItem>
+            <SelectItem value="option1">{t('componentLibrary.option1')}</SelectItem>
+            <SelectItem value="option2">{t('componentLibrary.option2')}</SelectItem>
+            <SelectItem value="option3">{t('componentLibrary.option3')}</SelectItem>
           </Select>
         );
       
@@ -193,7 +193,7 @@ export default function ComponentTester() {
             checked={switchChecked}
             onChange={setSwitchChecked}
             disabled={switchDisabled}
-            label="Toggle option"
+            label={t('componentLibrary.toggleOption')}
           />
         );
       
@@ -237,7 +237,7 @@ export default function ComponentTester() {
           <IconButton
             variant={iconButtonVariant}
             size={iconButtonSize}
-            aria-label="Settings"
+            aria-label={t('componentLibrary.settingsAriaLabel')}
           >
             <Icons.Settings style={{ width: 20, height: 20 }} />
           </IconButton>
@@ -324,7 +324,7 @@ export default function ComponentTester() {
             
             <div>
               <TextField
-                label="Button Text"
+                label={t('componentLibrary.buttonTextLabel')}
                 size="small"
                 value={buttonText}
                 onChange={(e) => setButtonText(e.target.value)}
@@ -335,7 +335,7 @@ export default function ComponentTester() {
               <Checkbox
                 checked={buttonDisabled}
                 onCheckedChange={(checked) => setButtonDisabled(checked as boolean)}
-                label="Disabled"
+                label={t('componentLibrary.disabled')}
               />
             </div>
           </div>
@@ -364,11 +364,11 @@ export default function ComponentTester() {
             
             <div>
               <TextField
-                label="Error Message"
+                label={t('componentLibrary.errorMessageLabel')}
                 size="small"
                 value={textFieldError}
                 onChange={(e) => setTextFieldError(e.target.value)}
-                placeholder="Leave empty for no error"
+                placeholder={t('componentLibrary.leaveEmptyPlaceholder')}
               />
             </div>
             
@@ -376,12 +376,12 @@ export default function ComponentTester() {
               <Checkbox
                 checked={textFieldDisabled}
                 onCheckedChange={(checked) => setTextFieldDisabled(checked as boolean)}
-                label="Disabled"
+                label={t('componentLibrary.disabled')}
               />
               <Checkbox
                 checked={textFieldMagic}
                 onCheckedChange={(checked) => setTextFieldMagic(checked as boolean)}
-                label="Magic (AI) State"
+                label={t('componentLibrary.magicAIState')}
               />
             </div>
           </div>
@@ -412,12 +412,12 @@ export default function ComponentTester() {
               <Checkbox
                 checked={textAreaDisabled}
                 onCheckedChange={(checked) => setTextAreaDisabled(checked as boolean)}
-                label="Disabled"
+                label={t('componentLibrary.disabled')}
               />
               <Checkbox
                 checked={textAreaMagic}
                 onCheckedChange={(checked) => setTextAreaMagic(checked as boolean)}
-                label="Magic (AI) State"
+                label={t('componentLibrary.magicAIState')}
               />
             </div>
           </div>
@@ -430,7 +430,7 @@ export default function ComponentTester() {
               <Checkbox
                 checked={dateFieldDisabled}
                 onCheckedChange={(checked) => setDateFieldDisabled(checked as boolean)}
-                label="Disabled"
+                label={t('componentLibrary.disabled')}
               />
             </div>
           </div>
@@ -461,7 +461,7 @@ export default function ComponentTester() {
               <Checkbox
                 checked={selectDisabled}
                 onCheckedChange={(checked) => setSelectDisabled(checked as boolean)}
-                label="Disabled"
+                label={t('componentLibrary.disabled')}
               />
             </div>
           </div>
@@ -474,7 +474,7 @@ export default function ComponentTester() {
               <Checkbox
                 checked={switchDisabled}
                 onCheckedChange={(checked) => setSwitchDisabled(checked as boolean)}
-                label="Disabled"
+                label={t('componentLibrary.disabled')}
               />
             </div>
           </div>
@@ -503,7 +503,7 @@ export default function ComponentTester() {
             
             <div>
               <TextField
-                label="Badge Content"
+                label={t('componentLibrary.badgeContentLabel')}
                 size="small"
                 value={badgeContent}
                 onChange={(e) => setBadgeContent(e.target.value)}
@@ -535,7 +535,7 @@ export default function ComponentTester() {
             
             <div>
               <TextField
-                label="Chip Text"
+                label={t('componentLibrary.chipTextLabel')}
                 size="small"
                 value={chipText}
                 onChange={(e) => setChipText(e.target.value)}
@@ -549,7 +549,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <TextField
-                label="Filter Text"
+                label={t('componentLibrary.filterTextLabel')}
                 size="small"
                 value={filterChipText}
                 onChange={(e) => setFilterChipText(e.target.value)}
@@ -558,7 +558,7 @@ export default function ComponentTester() {
 
             <div>
               <TextField
-                label="Count"
+                label={t('componentLibrary.countLabel')}
                 size="small"
                 type="number"
                 value={String(filterChipCount)}
@@ -609,7 +609,7 @@ export default function ComponentTester() {
             
             <div>
               <TextField
-                label="Tag Text"
+                label={t('componentLibrary.tagTextLabel')}
                 size="small"
                 value={tagText}
                 onChange={(e) => setTagText(e.target.value)}
@@ -623,7 +623,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <TextField
-                label="Percentage"
+                label={t('componentLibrary.percentageLabel')}
                 size="small"
                 type="number"
                 value={String(olqPercentage)}
@@ -721,7 +721,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <TextField
-                label="Value (0-5, supports 0.5 increments)"
+                label={t('componentLibrary.ratingValueLabel')}
                 size="small"
                 type="number"
                 value={String(ratingValue)}
@@ -770,7 +770,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <TextField
-                label="Label Text"
+                label={t('componentLibrary.labelTextLabel')}
                 size="small"
                 value={checkboxLabel}
                 onChange={(e) => setCheckboxLabel(e.target.value)}

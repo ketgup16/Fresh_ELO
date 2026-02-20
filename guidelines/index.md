@@ -98,6 +98,7 @@ Design system enforcement rules and best practices.
 - [Theme Switcher](rules/RULE_ThemeSwitcher.md) - Theme management rules
 - [Theme Addition](rules/RULE_ThemeAddition.md) - Process for adding new themes
 - [Markdown Organization](rules/RULE_MarkdownOrganization.md) - Markdown file organization
+- [**Internationalization (i18n)**](Internationalization.md) - **HARD RULE: All user-facing strings must be translatable**
 
 ## Quick Links
 
