@@ -10,7 +10,7 @@
   gap: 4px;
   padding: 3px 6px 3px 4px;
   border-radius: 9999px;
-  border: 1px solid var(--ld-semantic-color-border-disabled, #BABBBE);
+  border: 2px solid var(--ld-semantic-color-border-disabled, #BABBBE);
   background: var(--ld-semantic-color-action-fill-secondary, #FFFFFF);
   cursor: pointer;
   color: var(--ld-semantic-color-text, #2E2F32);
