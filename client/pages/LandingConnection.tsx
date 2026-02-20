@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { MastHead } from '@/components/ui/MastHead';
 import { AppSidebar } from '@/components/ui/AppSidebar';
 import type { SidebarMenuItem } from '@/components/ui/AppSidebar';
@@ -22,19 +23,21 @@ import {
 } from '@/components/icons';
 import styles from '@/styles/landingConnection.module.css';
 
-const menuItems: SidebarMenuItem[] = [
-  { id: 'home', label: 'Home', Icon: Home, route: '/' },
-  { id: 'catalog', label: 'Catalog', Icon: ListBox, route: '/catalog' },
-  { id: 'pricing', label: 'Pricing', Icon: TagIcon },
-  { id: 'orders', label: 'Orders', Icon: Cart },
-  { id: 'wfs', label: 'WFS', Icon: BoxSpark },
-  { id: 'payments', label: 'Payments', Icon: CreditCard },
-  { id: 'performance', label: 'Performance', Icon: Speedometer },
-  { id: 'analytics', label: 'Analytics', Icon: BarGraph },
-  { id: 'growth', label: 'Growth & Experiments', Icon: Rocket },
-  { id: 'advertising', label: 'Advertising', Icon: TargetArrow },
-  { id: 'apps', label: 'Apps', Icon: Services },
-];
+function getSellerCenterMenuItems(t: (key: string) => string): SidebarMenuItem[] {
+  return [
+    { id: 'home', label: t('nav.home'), Icon: Home, route: '/' },
+    { id: 'catalog', label: t('nav.catalog'), Icon: ListBox, route: '/catalog' },
+    { id: 'pricing', label: t('nav.pricing'), Icon: TagIcon },
+    { id: 'orders', label: t('nav.orders'), Icon: Cart },
+    { id: 'wfs', label: t('nav.wfs'), Icon: BoxSpark },
+    { id: 'payments', label: t('nav.payments'), Icon: CreditCard },
+    { id: 'performance', label: t('nav.performance'), Icon: Speedometer },
+    { id: 'analytics', label: t('nav.analytics'), Icon: BarGraph },
+    { id: 'growth', label: t('nav.growth'), Icon: Rocket },
+    { id: 'advertising', label: t('nav.advertising'), Icon: TargetArrow },
+    { id: 'apps', label: t('nav.apps'), Icon: Services },
+  ];
+}
 
 const sections = [
   { id: '1', title: 'Primary section' },
@@ -43,12 +46,13 @@ const sections = [
 ];
 
 export default function LandingConnection() {
+  const { t } = useTranslation();
   return (
     <div className={styles.root}>
       <MastHead currentSolution="Landing Connection" />
 
       <div className={styles.appRow}>
-        <AppSidebar menuItems={menuItems} />
+        <AppSidebar menuItems={getSellerCenterMenuItems(t)} />
 
         <main className={styles.main}>
           <div className={styles.pageContent}>

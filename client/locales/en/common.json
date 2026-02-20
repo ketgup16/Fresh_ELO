@@ -9,7 +9,14 @@
     "subPage": "Sub page",
     "catalog": "Catalog",
     "pricing": "Pricing",
-    "orders": "Orders"
+    "orders": "Orders",
+    "wfs": "WFS",
+    "payments": "Payments",
+    "performance": "Performance",
+    "analytics": "Analytics",
+    "growth": "Growth & Experiments",
+    "advertising": "Advertising",
+    "apps": "Apps"
   },
   "actions": {
     "save": "Save",

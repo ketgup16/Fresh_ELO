@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styles from '@/styles/responsive.module.css';
 import { MastHead } from '@/components/ui/MastHead';
 import { AppSidebar } from '@/components/ui/AppSidebar';
@@ -18,41 +19,40 @@ import {
   Services,
 } from '@/components/icons';
 
-/**
- * Catalog page sidebar menu items — Seller Center navigation.
- * Each page defines its own menu items relevant to that page's context.
- */
-const catalogMenuItems: SidebarMenuItem[] = [
-  { id: 'home', label: 'Home', Icon: Home, route: '/' },
-  {
-    id: 'catalog',
-    label: 'Catalog',
-    Icon: ListBox,
-    route: '/catalog',
-    submenuItems: [
-      { id: 'catalog-sub1', label: 'Sub page', route: '/catalog' },
-      { id: 'catalog-sub2', label: 'Sub page' },
-      { id: 'catalog-sub3', label: 'Sub page' },
-    ],
-  },
-  { id: 'pricing', label: 'Pricing', Icon: TagIcon },
-  { id: 'orders', label: 'Orders', Icon: Cart },
-  { id: 'wfs', label: 'WFS', Icon: BoxSpark },
-  { id: 'payments', label: 'Payments', Icon: CreditCard },
-  { id: 'performance', label: 'Performance', Icon: Speedometer },
-  { id: 'analytics', label: 'Analytics', Icon: BarGraph },
-  { id: 'growth', label: 'Growth & Experiments', Icon: Rocket },
-  { id: 'advertising', label: 'Advertising', Icon: TargetArrow },
-  { id: 'apps', label: 'Apps', Icon: Services },
-];
+function getSellerCenterMenuItems(t: (key: string) => string): SidebarMenuItem[] {
+  return [
+    { id: 'home', label: t('nav.home'), Icon: Home, route: '/' },
+    {
+      id: 'catalog',
+      label: t('nav.catalog'),
+      Icon: ListBox,
+      route: '/catalog',
+      submenuItems: [
+        { id: 'catalog-sub1', label: t('nav.subPage'), route: '/catalog' },
+        { id: 'catalog-sub2', label: t('nav.subPage') },
+        { id: 'catalog-sub3', label: t('nav.subPage') },
+      ],
+    },
+    { id: 'pricing', label: t('nav.pricing'), Icon: TagIcon },
+    { id: 'orders', label: t('nav.orders'), Icon: Cart },
+    { id: 'wfs', label: t('nav.wfs'), Icon: BoxSpark },
+    { id: 'payments', label: t('nav.payments'), Icon: CreditCard },
+    { id: 'performance', label: t('nav.performance'), Icon: Speedometer },
+    { id: 'analytics', label: t('nav.analytics'), Icon: BarGraph },
+    { id: 'growth', label: t('nav.growth'), Icon: Rocket },
+    { id: 'advertising', label: t('nav.advertising'), Icon: TargetArrow },
+    { id: 'apps', label: t('nav.apps'), Icon: Services },
+  ];
+}
 
 export default function Catalog() {
+  const { t } = useTranslation();
   return (
     <div className={styles.root}>
       <MastHead />
 
       <div className={styles.appRow}>
-        <AppSidebar menuItems={catalogMenuItems} />
+        <AppSidebar menuItems={getSellerCenterMenuItems(t)} />
 
         <main className={styles.main}>
           {/* Branded background bar */}

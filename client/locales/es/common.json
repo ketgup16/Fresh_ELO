@@ -9,7 +9,14 @@
     "subPage": "Subpágina",
     "catalog": "Catálogo",
     "pricing": "Precios",
-    "orders": "Pedidos"
+    "orders": "Pedidos",
+    "wfs": "WFS",
+    "payments": "Pagos",
+    "performance": "Rendimiento",
+    "analytics": "Analítica",
+    "growth": "Crecimiento y Experimentos",
+    "advertising": "Publicidad",
+    "apps": "Aplicaciones"
   },
   "actions": {
     "save": "Guardar",

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import gridStyles from "@/styles/responsive.module.css";
 import styles from "@/styles/pageTemplate.module.css";
 import { MastHead } from "@/components/ui/MastHead";
@@ -21,26 +22,29 @@ import {
   Placeholder,
 } from "@/components/icons";
 
-const menuItems: SidebarMenuItem[] = [
-  { id: "home", label: "Home", Icon: Home, route: "/" },
-  {
-    id: "notifications",
-    label: "Notifications",
-    Icon: Megaphone,
-    submenuItems: [
-      { id: "notif-sub1", label: "Sub page" },
-      { id: "notif-sub2", label: "Sub page" },
-      { id: "notif-sub3", label: "Sub page" },
-    ],
-  },
-  { id: "charts", label: "Charts", Icon: BarGraph },
-  { id: "tools", label: "Tools", Icon: Toolbox },
-  { id: "media", label: "Media", Icon: Image },
-  { id: "uploads", label: "Uploads", Icon: Upload },
-];
+function getPageTemplateMenuItems(t: (key: string) => string): SidebarMenuItem[] {
+  return [
+    { id: "home", label: t('nav.home'), Icon: Home, route: "/" },
+    {
+      id: "notifications",
+      label: t('nav.notifications'),
+      Icon: Megaphone,
+      submenuItems: [
+        { id: "notif-sub1", label: t('nav.subPage') },
+        { id: "notif-sub2", label: t('nav.subPage') },
+        { id: "notif-sub3", label: t('nav.subPage') },
+      ],
+    },
+    { id: "charts", label: t('nav.charts'), Icon: BarGraph },
+    { id: "tools", label: t('nav.tools'), Icon: Toolbox },
+    { id: "media", label: t('nav.media'), Icon: Image },
+    { id: "uploads", label: t('nav.uploads'), Icon: Upload },
+  ];
+}
 
 export default function PageTemplate() {
   const [activeMenuItem, setActiveMenuItem] = useState("home");
+  const { t } = useTranslation();
 
   return (
     <div className={styles.root}>
@@ -48,7 +52,7 @@ export default function PageTemplate() {
 
       <div className={styles.appRow}>
         <AppSidebar
-          menuItems={menuItems}
+          menuItems={getPageTemplateMenuItems(t)}
           activeMenuItem={activeMenuItem}
           onMenuItemClick={setActiveMenuItem}
         />
