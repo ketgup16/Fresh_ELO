@@ -33,7 +33,7 @@ export default function CalloutsPage() {
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
           marginBottom: '8px'
         }}>
-          Interactive Examples
+          {t('componentLibrary.interactiveExamples')}
         </h2>
         <p style={{
           fontSize: '14px',
@@ -41,7 +41,7 @@ export default function CalloutsPage() {
           color: 'var(--ld-semantic-color-text-secondary, #74767C)',
           maxWidth: '800px'
         }}>
-          Click-triggered callouts anchored to buttons, demonstrating real-world usage patterns.
+          {t('componentLibrary.interactiveExamplesDesc')}
         </p>
       </div>
       <div style={{

@@ -1,13 +1,15 @@
 import React from 'react';
 import { TextFieldExample } from '@/components/examples/TextFieldExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 const LabelExample = React.lazy(() => import('@/components/examples/LabelExample'));
 
 export default function TextFieldsPage() {
+  const { t } = useTranslation();
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader section="Components" title="Text Fields" description="Single-line text inputs with built-in labels, error states, helper text, leading icons, trailing content, and AI-generated content indicators. Text fields support multiple sizes, input types, and accessibility features. This component also replaces the previous standalone Label component." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navTextFields')} description={t('componentLibrary.textFieldsPageDesc')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -16,7 +18,7 @@ export default function TextFieldsPage() {
         boxShadow: 'var(--ld-semantic-elevation-100)',
         marginBottom: '32px'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <TextFieldExample />
         </React.Suspense>
       </div>
@@ -30,7 +32,7 @@ export default function TextFieldsPage() {
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
           marginBottom: '8px'
         }}>
-          Labels
+          {t('componentLibrary.labelsHeading')}
         </h2>
         <p style={{
           fontSize: '14px',
@@ -38,7 +40,7 @@ export default function TextFieldsPage() {
           color: 'var(--ld-semantic-color-text-secondary, #74767C)',
           maxWidth: '800px'
         }}>
-          TextField includes integrated labels. For standalone labels (e.g., with checkboxes), use native HTML label elements.
+          {t('componentLibrary.labelsDesc')}
         </p>
       </div>
       <div style={{
@@ -47,7 +49,7 @@ export default function TextFieldsPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <LabelExample />
         </React.Suspense>
       </div>

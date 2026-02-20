@@ -17,84 +17,84 @@ export default function ProgressTrackerPage() {
 
       <div style={{ marginTop: '48px' }}>
         <h2 style={{ fontSize: '24px', fontWeight: '700', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-primary, #2E2F32)', marginBottom: '16px' }}>
-          Guidelines
+          {t('componentLibrary.guidelinesHeading')}
         </h2>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <div>
-            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>When to use</h3>
+            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>{t('componentLibrary.whenToUse')}</h3>
             <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ld-semantic-color-text-secondary, #74767C)' }}>
-              <li>Multi-step forms and wizards</li>
-              <li>Checkout processes (e.g., Cart → Shipping → Payment → Review)</li>
-              <li>Onboarding flows</li>
-              <li>Order fulfillment tracking</li>
-              <li>Application review processes</li>
-              <li>Account setup workflows</li>
-              <li>Any process with discrete, sequential steps</li>
+              <li>{t('componentLibrary.trackerWhenToUse1')}</li>
+              <li>{t('componentLibrary.trackerWhenToUse2')}</li>
+              <li>{t('componentLibrary.trackerWhenToUse3')}</li>
+              <li>{t('componentLibrary.trackerWhenToUse4')}</li>
+              <li>{t('componentLibrary.trackerWhenToUse5')}</li>
+              <li>{t('componentLibrary.trackerWhenToUse6')}</li>
+              <li>{t('componentLibrary.trackerWhenToUse7')}</li>
             </ul>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>When NOT to use</h3>
+            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>{t('componentLibrary.whenNotToUse')}</h3>
             <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ld-semantic-color-text-secondary, #74767C)' }}>
-              <li>For continuous progress (0-100%) - use <strong>ProgressIndicator</strong> instead</li>
-              <li>For file uploads or downloads - use <strong>ProgressIndicator</strong> instead</li>
-              <li>For loading states - use <strong>ProgressIndicator</strong> or Spinner instead</li>
-              <li>For processes without clear, distinct steps</li>
+              <li>{t('componentLibrary.trackerWhenNotToUse1')}</li>
+              <li>{t('componentLibrary.trackerWhenNotToUse2')}</li>
+              <li>{t('componentLibrary.trackerWhenNotToUse3')}</li>
+              <li>{t('componentLibrary.trackerWhenNotToUse4')}</li>
             </ul>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>Status Variants</h3>
+            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>{t('componentLibrary.statusVariants')}</h3>
             <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ld-semantic-color-text-secondary, #74767C)' }}>
-              <li><strong>Info (default):</strong> Standard process tracking (blue)</li>
-              <li><strong>Success:</strong> Completed or successful processes (green)</li>
-              <li><strong>Warning:</strong> Processes requiring attention (orange)</li>
-              <li><strong>Error:</strong> Failed or problematic processes (red)</li>
+              <li><strong>Info:</strong> {t('componentLibrary.trackerStatusInfo')}</li>
+              <li><strong>Success:</strong> {t('componentLibrary.trackerStatusSuccess')}</li>
+              <li><strong>Warning:</strong> {t('componentLibrary.trackerStatusWarning')}</li>
+              <li><strong>Error:</strong> {t('componentLibrary.trackerStatusError')}</li>
             </ul>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>Step States</h3>
+            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>{t('componentLibrary.stepStates')}</h3>
             <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ld-semantic-color-text-secondary, #74767C)' }}>
-              <li><strong>Completed:</strong> Steps before the active step (filled circle in status color)</li>
-              <li><strong>Active:</strong> Current step (double-circle indicator in status color)</li>
-              <li><strong>Future:</strong> Steps after the active step (filled circle in gray)</li>
+              <li><strong>Completed:</strong> {t('componentLibrary.trackerStepCompleted')}</li>
+              <li><strong>Active:</strong> {t('componentLibrary.trackerStepActive')}</li>
+              <li><strong>Future:</strong> {t('componentLibrary.trackerStepFuture')}</li>
             </ul>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>Best Practices</h3>
+            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>{t('componentLibrary.bestPractices')}</h3>
             <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ld-semantic-color-text-secondary, #74767C)' }}>
-              <li>Keep labels short and clear (1-3 words)</li>
-              <li>Use 3-5 steps for optimal UX (maximum 7)</li>
-              <li>Choose status based on process state</li>
-              <li>Ensure steps are sequential and logical</li>
-              <li>Consider mobile layout with 6+ steps</li>
+              <li>{t('componentLibrary.trackerBest1')}</li>
+              <li>{t('componentLibrary.trackerBest2')}</li>
+              <li>{t('componentLibrary.trackerBest3')}</li>
+              <li>{t('componentLibrary.trackerBest4')}</li>
+              <li>{t('componentLibrary.trackerBest5')}</li>
             </ul>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>Accessibility</h3>
+            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>{t('componentLibrary.accessibility')}</h3>
             <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ld-semantic-color-text-secondary, #74767C)' }}>
-              <li>Component is visual-only (non-interactive)</li>
-              <li>Ensure parent context provides accessible announcements for step changes</li>
-              <li>Consider using <code>aria-live</code> region in parent component for dynamic updates</li>
-              <li>Labels should be clear and concise for screen readers</li>
-              <li>Color alone should not convey information - use labels</li>
+              <li>{t('componentLibrary.trackerA11y1')}</li>
+              <li>{t('componentLibrary.trackerA11y2')}</li>
+              <li>{t('componentLibrary.trackerA11y3')}</li>
+              <li>{t('componentLibrary.trackerA11y4')}</li>
+              <li>{t('componentLibrary.trackerA11y5')}</li>
             </ul>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>Props</h3>
+            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>{t('componentLibrary.props')}</h3>
             <div style={{ overflowX: 'auto' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
                 <thead>
                   <tr style={{ borderBottom: '2px solid var(--ld-semantic-color-border-moderate, #E6E6E8)' }}>
-                    <th style={{ textAlign: 'left', padding: '12px 8px', fontWeight: '700' }}>Prop</th>
-                    <th style={{ textAlign: 'left', padding: '12px 8px', fontWeight: '700' }}>Type</th>
-                    <th style={{ textAlign: 'left', padding: '12px 8px', fontWeight: '700' }}>Default</th>
-                    <th style={{ textAlign: 'left', padding: '12px 8px', fontWeight: '700' }}>Description</th>
+                    <th style={{ textAlign: 'left', padding: '12px 8px', fontWeight: '700' }}>{t('componentLibrary.propName')}</th>
+                    <th style={{ textAlign: 'left', padding: '12px 8px', fontWeight: '700' }}>{t('componentLibrary.propType')}</th>
+                    <th style={{ textAlign: 'left', padding: '12px 8px', fontWeight: '700' }}>{t('componentLibrary.propDefault')}</th>
+                    <th style={{ textAlign: 'left', padding: '12px 8px', fontWeight: '700' }}>{t('componentLibrary.propDescription')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -102,25 +102,25 @@ export default function ProgressTrackerPage() {
                     <td style={{ padding: '12px 8px' }}><code>steps</code></td>
                     <td style={{ padding: '12px 8px' }}>string[]</td>
                     <td style={{ padding: '12px 8px' }}>required</td>
-                    <td style={{ padding: '12px 8px' }}>Array of step labels (minimum 2, maximum 7)</td>
+                    <td style={{ padding: '12px 8px' }}>{t('componentLibrary.trackerStepsDesc')}</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle, #F1F1F2)' }}>
                     <td style={{ padding: '12px 8px' }}><code>activeStep</code></td>
                     <td style={{ padding: '12px 8px' }}>number</td>
                     <td style={{ padding: '12px 8px' }}>required</td>
-                    <td style={{ padding: '12px 8px' }}>Index of current step (0-indexed)</td>
+                    <td style={{ padding: '12px 8px' }}>{t('componentLibrary.trackerActiveStepDesc')}</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle, #F1F1F2)' }}>
                     <td style={{ padding: '12px 8px' }}><code>status</code></td>
                     <td style={{ padding: '12px 8px' }}>"info" | "warning" | "success" | "error"</td>
                     <td style={{ padding: '12px 8px' }}>"info"</td>
-                    <td style={{ padding: '12px 8px' }}>Visual status variant</td>
+                    <td style={{ padding: '12px 8px' }}>{t('componentLibrary.trackerStatusDesc')}</td>
                   </tr>
                   <tr>
                     <td style={{ padding: '12px 8px' }}><code>className</code></td>
                     <td style={{ padding: '12px 8px' }}>string</td>
                     <td style={{ padding: '12px 8px' }}>-</td>
-                    <td style={{ padding: '12px 8px' }}>Optional custom className</td>
+                    <td style={{ padding: '12px 8px' }}>{t('componentLibrary.trackerClassNameDesc')}</td>
                   </tr>
                 </tbody>
               </table>
@@ -128,9 +128,9 @@ export default function ProgressTrackerPage() {
           </div>
 
           <div>
-            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>Design Tokens</h3>
+            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>{t('componentLibrary.designTokens')}</h3>
             <p style={{ marginBottom: '12px', color: 'var(--ld-semantic-color-text-secondary, #74767C)' }}>
-              This component uses Living Design 3.5 semantic tokens exclusively:
+              {t('componentLibrary.trackerTokensDesc')}
             </p>
             <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ld-semantic-color-text-secondary, #74767C)' }}>
               <li><strong>Progress colors:</strong> <code>--ld-semantic-color-progress-fill-*</code> (info, warning, positive, negative)</li>
@@ -141,11 +141,11 @@ export default function ProgressTrackerPage() {
           </div>
 
           <div>
-            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>Related Components</h3>
+            <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '8px' }}>{t('componentLibrary.relatedComponents')}</h3>
             <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ld-semantic-color-text-secondary, #74767C)' }}>
-              <li><strong>ProgressIndicator:</strong> For continuous progress (0-100%)</li>
-              <li><strong>ButtonGroup:</strong> Often used with Progress Tracker for step navigation</li>
-              <li><strong>Tag:</strong> Can complement status indication</li>
+              <li><strong>ProgressIndicator:</strong> {t('componentLibrary.trackerRelatedProgress')}</li>
+              <li><strong>ButtonGroup:</strong> {t('componentLibrary.trackerRelatedButtonGroup')}</li>
+              <li><strong>Tag:</strong> {t('componentLibrary.trackerRelatedTag')}</li>
             </ul>
           </div>
         </div>

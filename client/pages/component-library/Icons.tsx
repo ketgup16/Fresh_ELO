@@ -1,10 +1,11 @@
 import React from 'react';
 import * as Icons from '@/components/icons';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
-// Organize icons by category (same as original ComponentLibrary)
-const iconCategories = {
-  'Navigation & Arrows': [
+// Organize icons by category key (maps to translation keys)
+const iconCategories: Record<string, string[]> = {
+  'iconCatNavigation': [
     'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
     'ArrowUpDown', 'ArrowUpLeft', 'ArrowUpRight',
     'ArrowDownLeft', 'ArrowDownRight', 'ChevronUp',
@@ -12,7 +13,7 @@ const iconCategories = {
     'ExpandLess', 'ExpandMore', 'CaretDown', 'CaretUp',
     'Home', 'HomeFill', 'External'
   ],
-  'Actions & Controls': [
+  'iconCatActions': [
     'Plus', 'Minus', 'Close', 'Check', 'X',
     'Edit', 'Trash', 'Copy', 'Duplicate', 'Download',
     'Upload', 'Save', 'Refresh', 'Undo', 'Redo',
@@ -21,38 +22,38 @@ const iconCategories = {
     'Stop', 'StopFill', 'Previous', 'Next', 'Replay',
     'Pin', 'PinFill', 'Unpin'
   ],
-  'Communication': [
+  'iconCatCommunication': [
     'Mail', 'MailFill', 'Send', 'Phone', 'PhoneFill',
     'Chat', 'ChatFill', 'Message', 'MessageFill',
     'MessageSquare', 'MessageSquareFill', 'Bell',
     'BellFill', 'Announcement'
   ],
-  'Content & Files': [
+  'iconCatContent': [
     'File', 'FileFill', 'FileText', 'FileTextFill',
     'Folder', 'FolderFill', 'FolderOpen', 'Image',
     'ImageFill', 'Video', 'VideoFill', 'Attachment',
     'Paperclip', 'Document'
   ],
-  'UI Elements': [
+  'iconCatUI': [
     'Search', 'Filter', 'FilterFill', 'SortUp', 'SortDown',
     'SortingArrows', 'Columns', 'Eye', 'EyeSlash',
     'Lock', 'LockFill', 'Unlock', 'UnlockFill',
     'Menu', 'Grid', 'GridFill', 'List', 'BulletList',
     'Maximize', 'Minimize', 'Fullscreen', 'ExitFullscreen'
   ],
-  'Status & Alerts': [
+  'iconCatStatus': [
     'Info', 'InfoFill', 'Warning', 'WarningFill',
     'Error', 'ErrorFill', 'Success', 'SuccessFill',
     'Help', 'HelpFill', 'AlertCircle', 'AlertCircleFill',
     'AlertTriangle', 'AlertTriangleFill', 'CheckCircle',
     'CheckCircleFill', 'XCircle', 'XCircleFill'
   ],
-  'Users & People': [
+  'iconCatUsers': [
     'User', 'UserFill', 'Users', 'UsersFill',
     'UserCircle', 'UserCircleFill', 'UserPlus',
     'UserMinus', 'UserCheck', 'UserX'
   ],
-  'Business & Commerce': [
+  'iconCatBusiness': [
     'Cart', 'CartFill', 'Store', 'StoreFill',
     'Tag', 'TagFill', 'Barcode', 'BarcodeFill',
     'CreditCard', 'CreditCardFill', 'Dollar',
@@ -62,23 +63,23 @@ const iconCategories = {
     'PieChart', 'PieChartFill', 'BarChart', 'BarChartFill',
     'LineChart', 'LineChartFill'
   ],
-  'Time & Calendar': [
+  'iconCatTime': [
     'Calendar', 'CalendarFill', 'Clock', 'ClockFill',
     'Timer', 'Stopwatch', 'Hourglass'
   ],
-  'Location & Map': [
+  'iconCatLocation': [
     'Map', 'MapFill', 'MapPin', 'MapPinFill',
     'Navigation', 'NavigationFill', 'Compass',
     'CompassFill', 'Globe', 'GlobeFill'
   ],
-  'Advertising Specific': [
+  'iconCatAdvertising': [
     'Campaign', 'CampaignFill', 'Keyword', 'KeywordFill',
     'Ads', 'AdsFill', 'Sponsored', 'SponsoredFill',
     'SponsoredBrandsCard', 'SponsoredProductsCard', 'SponsoredVideosCard',
     'SGShareImpact', 'CardsHashtag', 'CardsStar',
     'Megaphone', 'MegaphoneFill', 'TargetArrow', 'TargetArrowFill'
   ],
-  'Miscellaneous': [
+  'iconCatMiscellaneous': [
     'Dot', 'Circle', 'Square', 'Star', 'StarFill',
     'Heart', 'HeartFill', 'Bookmark', 'BookmarkFill',
     'Share', 'ShareFill', 'Link', 'LinkExternal',
@@ -92,6 +93,7 @@ const iconCategories = {
 };
 
 export default function IconsPage() {
+  const { t } = useTranslation();
   const totalIconCount = Object.values(iconCategories).flat().length;
 
   return (
@@ -100,11 +102,11 @@ export default function IconsPage() {
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Icons" description={`Complete icon library with ${totalIconCount}+ React components organized by category. All icons support customizable size and color properties.`} />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.iconsTitle')} description={t('componentLibrary.iconsDesc', { count: totalIconCount })} />
 
-      {Object.entries(iconCategories).map(([category, iconNames]) => (
+      {Object.entries(iconCategories).map(([categoryKey, iconNames]) => (
         <div
-          key={category}
+          key={categoryKey}
           style={{
             backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
             padding: '32px',
@@ -119,7 +121,7 @@ export default function IconsPage() {
             marginBottom: '24px',
             color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
           }}>
-            {category}
+            {t(`componentLibrary.${categoryKey}`)}
           </h2>
           <div style={{
             display: 'grid',

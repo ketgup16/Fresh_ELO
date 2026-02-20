@@ -15,11 +15,10 @@ export default function DrawerPage() {
         borderRadius: '4px'
       }}>
         <h2 style={{ fontSize: '16px', fontWeight: '700', marginBottom: '8px', color: 'var(--ld-primitive-color-purple-100)' }}>
-          ⚠️ Component Replaced
+          ⚠️ {t('componentLibrary.componentReplaced')}
         </h2>
         <p style={{ fontSize: '14px', lineHeight: '1.5', color: 'var(--ld-semantic-color-text)' }}>
-          The SHADCN/Radix Drawer component has been replaced with <strong>BottomSheet</strong> from Living Design 3.5.
-          The example below demonstrates the new BottomSheet component.
+          <span dangerouslySetInnerHTML={{ __html: t('componentLibrary.drawerReplacedDesc') }} />
         </p>
       </div>
       <PageHeader section={t('componentLibrary.sharedSection')} title={t('componentLibrary.navBottomSheet')} description={t('componentLibrary.descBottomSheet')} />

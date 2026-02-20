@@ -8,6 +8,7 @@ import { DataTableCell } from '@/components/ui/DataTableCellText';
 import { Button } from '@/components/ui/Button';
 import * as Icons from '@/components/icons';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 const ChevronDown = Icons.ChevronDown;
 const ChevronUp = Icons.ChevronUp;
@@ -50,6 +51,7 @@ function extractTokens(prefix: string): Array<{ name: string; value: string; com
 }
 
 export default function ThemesPage() {
+  const { t } = useTranslation();
   const { currentTheme, currentThemeData } = useTheme();
   const [colorTokens, setColorTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
   const [spaceTokens, setSpaceTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
@@ -194,7 +196,7 @@ export default function ThemesPage() {
       position: 'relative'
     }}>
       {/* Header */}
-      <PageHeader section="Getting Started" title="Themes & Design Tokens" description="Switch between brand themes and explore all Living Design 3.5 design tokens. All components use these semantic tokens to ensure consistent theming across the application." />
+      <PageHeader section={t('componentLibrary.gettingStarted')} title={t('componentLibrary.themesTitle')} description={t('componentLibrary.themesDesc')} />
 
       {/* Quick Navigation */}
       <div style={{
@@ -212,7 +214,7 @@ export default function ThemesPage() {
           textTransform: 'uppercase',
           letterSpacing: '0.5px'
         }}>
-          Quick Navigate
+          {t('componentLibrary.quickNavigate')}
         </div>
         <div style={{
           display: 'grid',
@@ -224,35 +226,35 @@ export default function ThemesPage() {
             size="small"
             onClick={() => scrollToSection('theme-selector')}
           >
-            Theme Selector
+            {t('componentLibrary.themeSelector')}
           </Button>
           <Button
             variant="secondary"
             size="small"
             onClick={() => scrollToSection('color-tokens')}
           >
-            Color Tokens ({colorTokens.length})
+            {t('componentLibrary.colorTokens')} ({colorTokens.length})
           </Button>
           <Button
             variant="secondary"
             size="small"
             onClick={() => scrollToSection('space-tokens')}
           >
-            Space Tokens ({spaceTokens.length})
+            {t('componentLibrary.spaceTokens')} ({spaceTokens.length})
           </Button>
           <Button
             variant="secondary"
             size="small"
             onClick={() => scrollToSection('text-tokens')}
           >
-            Text Tokens ({textTokens.length})
+            {t('componentLibrary.textTokens')} ({textTokens.length})
           </Button>
           <Button
             variant="secondary"
             size="small"
             onClick={() => scrollToSection('other-tokens')}
           >
-            Other Tokens ({otherTokens.length})
+            {t('componentLibrary.otherTokens')} ({otherTokens.length})
           </Button>
         </div>
       </div>
@@ -280,7 +282,7 @@ export default function ThemesPage() {
               color: 'var(--ld-semantic-color-text)',
               marginBottom: '16px'
             }}>
-              Select Theme
+              {t('componentLibrary.selectTheme')}
             </h2>
             <ThemeSwitcher />
           </div>
@@ -294,7 +296,7 @@ export default function ThemesPage() {
               color: 'var(--ld-semantic-color-text)',
               marginBottom: '16px'
             }}>
-              Current Theme Details
+              {t('componentLibrary.currentThemeDetails')}
             </h2>
             
             {/* Current Theme Display */}
@@ -313,7 +315,7 @@ export default function ThemesPage() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px'
               }}>
-                Current Theme
+                {t('componentLibrary.currentTheme')}
               </div>
               <div style={{
                 fontSize: '20px',
@@ -347,7 +349,7 @@ export default function ThemesPage() {
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px'
               }}>
-                Active Font Family
+                {t('componentLibrary.activeFontFamily')}
               </div>
               <div style={{
                 fontSize: '24px',
@@ -388,8 +390,7 @@ export default function ThemesPage() {
               color: 'var(--ld-semantic-color-text-subtle)',
               marginBottom: '16px'
             }}>
-              Themes are complete sets of design tokens that define the visual appearance of components.
-              When you switch themes, all components automatically update to match the new color palette and typography.
+              {t('componentLibrary.themesExplanation')}
             </p>
             
             <div style={{
@@ -445,7 +446,7 @@ export default function ThemesPage() {
               color: 'var(--ld-semantic-color-text)',
               margin: 0
             }}>
-              Color Tokens
+              {t('componentLibrary.colorTokens')}
             </h2>
             <span style={{
               fontSize: '14px',
@@ -500,7 +501,7 @@ export default function ThemesPage() {
                         size="small"
                         onClick={() => copyToken(token.name)}
                       >
-                        {copiedToken === token.name ? '✓ Copied' : 'Copy'}
+                        {copiedToken === token.name ? `✓ ${t('componentLibrary.copied')}` : t('componentLibrary.copy')}
                       </Button>
                     </DataTableCell>
                   </DataTableRow>
@@ -543,7 +544,7 @@ export default function ThemesPage() {
               color: 'var(--ld-semantic-color-text)',
               margin: 0
             }}>
-              Space Tokens
+              {t('componentLibrary.spaceTokens')}
             </h2>
             <span style={{
               fontSize: '14px',
@@ -608,7 +609,7 @@ export default function ThemesPage() {
                           size="small"
                           onClick={() => copyToken(token.name)}
                         >
-                          {copiedToken === token.name ? '✓' : 'Copy'}
+                          {copiedToken === token.name ? '✓' : t('componentLibrary.copy')}
                         </Button>
                       </DataTableCell>
                     </DataTableRow>
@@ -652,7 +653,7 @@ export default function ThemesPage() {
               color: 'var(--ld-semantic-color-text)',
               margin: 0
             }}>
-              Text Tokens
+              {t('componentLibrary.textTokens')}
             </h2>
             <span style={{
               fontSize: '14px',
@@ -746,7 +747,7 @@ export default function ThemesPage() {
                           size="small"
                           onClick={() => copyToken(token.name)}
                         >
-                          {copiedToken === token.name ? '✓' : 'Copy'}
+                          {copiedToken === token.name ? '✓' : t('componentLibrary.copy')}
                         </Button>
                       </DataTableCell>
                     </DataTableRow>
@@ -790,7 +791,7 @@ export default function ThemesPage() {
               color: 'var(--ld-semantic-color-text)',
               margin: 0
             }}>
-              Other Tokens
+              {t('componentLibrary.otherTokens')}
             </h2>
             <span style={{
               fontSize: '14px',
@@ -837,7 +838,7 @@ export default function ThemesPage() {
                         size="small"
                         onClick={() => copyToken(token.name)}
                       >
-                        {copiedToken === token.name ? '✓' : 'Copy'}
+                        {copiedToken === token.name ? '✓' : t('componentLibrary.copy')}
                       </Button>
                     </DataTableCell>
                   </DataTableRow>
@@ -863,7 +864,7 @@ export default function ThemesPage() {
           marginBottom: '12px',
           fontFamily: 'var(--ld-semantic-font-family-sans)',
         }}>
-          How to Use Design Tokens
+          {t('componentLibrary.howToUseTokens')}
         </h3>
         <div style={{
           display: 'grid',
@@ -943,7 +944,7 @@ export default function ThemesPage() {
             e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-action-fill-primary)';
             e.currentTarget.style.transform = 'scale(1)';
           }}
-          aria-label="Back to top"
+          aria-label={t('componentLibrary.backToTop')}
         >
           <ArrowUp style={{ width: 24, height: 24 }} />
         </button>

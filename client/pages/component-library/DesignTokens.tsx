@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/Button';
+import { useTranslation } from 'react-i18next';
 
 const colorTokens = [
   {
@@ -79,6 +80,7 @@ const borderRadiusTokens = [
 ];
 
 const ColorSwatch: React.FC<{ tokenName: string; description: string }> = ({ tokenName, description }) => {
+  const { t } = useTranslation();
   const [copied, setCopied] = React.useState(false);
   
   const copyToClipboard = () => {
@@ -144,7 +146,7 @@ const ColorSwatch: React.FC<{ tokenName: string; description: string }> = ({ tok
           color: 'var(--ld-semantic-color-action-fill-primary, #0071DC)',
           fontWeight: '600'
         }}>
-          Copied!
+          {t('componentLibrary.copied')}!
         </div>
       )}
     </div>
@@ -152,6 +154,7 @@ const ColorSwatch: React.FC<{ tokenName: string; description: string }> = ({ tok
 };
 
 export default function DesignTokensPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
@@ -166,7 +169,7 @@ export default function DesignTokensPage() {
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
           marginBottom: '12px'
         }}>
-          Design Tokens
+          {t('componentLibrary.designTokensTitle')}
         </h1>
         <p style={{
           fontSize: '16px',
@@ -174,8 +177,7 @@ export default function DesignTokensPage() {
           color: 'var(--ld-semantic-color-text-secondary, #74767C)',
           maxWidth: '800px'
         }}>
-          CSS custom properties for colors, spacing, typography, and other design values. 
-          Click any token to copy its CSS variable to clipboard.
+          {t('componentLibrary.designTokensDesc')}
         </p>
       </div>
 
@@ -187,7 +189,7 @@ export default function DesignTokensPage() {
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
           marginBottom: '24px'
         }}>
-          Color Tokens
+          {t('componentLibrary.colorTokens')}
         </h2>
         
         {colorTokens.map((group) => (
@@ -230,7 +232,7 @@ export default function DesignTokensPage() {
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
           marginBottom: '24px'
         }}>
-          Spacing Tokens
+          {t('componentLibrary.spacingTokens')}
         </h2>
         
         <div style={{
@@ -296,7 +298,7 @@ export default function DesignTokensPage() {
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
           marginBottom: '24px'
         }}>
-          Typography Tokens
+          {t('componentLibrary.typographyTokens')}
         </h2>
         
         <div style={{
@@ -353,7 +355,7 @@ export default function DesignTokensPage() {
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
           marginBottom: '24px'
         }}>
-          Border Radius Tokens
+          {t('componentLibrary.borderRadiusTokens')}
         </h2>
         
         <div style={{

@@ -19,7 +19,7 @@ export default function SelectPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <SelectExample />
         </React.Suspense>
       </div>
@@ -32,50 +32,50 @@ export default function SelectPage() {
           color: 'var(--ld-semantic-color-text, #2E2F32)',
           marginBottom: '16px'
         }}>
-          Usage Guidelines
+          {t('componentLibrary.usageGuidelines')}
         </h2>
         
         <div style={{ maxWidth: '800px' }}>
           <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', marginTop: '24px' }}>
-            When to use
+            {t('componentLibrary.whenToUse')}
           </h3>
           <ul style={{ paddingLeft: '24px', lineHeight: '1.8', color: 'var(--ld-semantic-color-text-subtle, #515357)' }}>
-            <li>When users need to choose a single option from 5-15 options</li>
-            <li>For forms where screen space is limited</li>
-            <li>When options need to be organized into groups</li>
-            <li>For AI-powered recommendations (use magic variant)</li>
+            <li>{t('componentLibrary.selectWhenToUse1')}</li>
+            <li>{t('componentLibrary.selectWhenToUse2')}</li>
+            <li>{t('componentLibrary.selectWhenToUse3')}</li>
+            <li>{t('componentLibrary.selectWhenToUse4')}</li>
           </ul>
 
           <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', marginTop: '24px' }}>
-            When not to use
+            {t('componentLibrary.whenNotToUse')}
           </h3>
           <ul style={{ paddingLeft: '24px', lineHeight: '1.8', color: 'var(--ld-semantic-color-text-subtle, #515357)' }}>
-            <li>For 2-4 options, use radio buttons instead for better visibility</li>
-            <li>For multiple selections, use checkboxes or a multi-select component</li>
-            <li>For more than 15 options, consider using an autocomplete/combobox</li>
+            <li>{t('componentLibrary.selectWhenNotToUse1')}</li>
+            <li>{t('componentLibrary.selectWhenNotToUse2')}</li>
+            <li>{t('componentLibrary.selectWhenNotToUse3')}</li>
           </ul>
 
           <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', marginTop: '24px' }}>
-            Accessibility
+            {t('componentLibrary.accessibility')}
           </h3>
           <ul style={{ paddingLeft: '24px', lineHeight: '1.8', color: 'var(--ld-semantic-color-text-subtle, #515357)' }}>
-            <li>Fully keyboard navigable (Tab, Enter, Arrow keys)</li>
-            <li>ARIA labels and descriptions for screen readers</li>
-            <li>Error states announced to assistive technologies</li>
-            <li>Focus indicators meet WCAG 2.1 AA standards</li>
+            <li>{t('componentLibrary.selectA11y1')}</li>
+            <li>{t('componentLibrary.selectA11y2')}</li>
+            <li>{t('componentLibrary.selectA11y3')}</li>
+            <li>{t('componentLibrary.selectA11y4')}</li>
           </ul>
 
           <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', marginTop: '24px' }}>
-            Best Practices
+            {t('componentLibrary.bestPractices')}
           </h3>
           <ul style={{ paddingLeft: '24px', lineHeight: '1.8', color: 'var(--ld-semantic-color-text-subtle, #515357)' }}>
-            <li>Always provide a clear, descriptive label</li>
-            <li>Use error messages that explain how to fix the issue</li>
-            <li>Provide helpful helper text for complex or important fields</li>
-            <li>Use the magic variant sparingly for AI-powered features</li>
-            <li>Group related options together for easier scanning</li>
-            <li>Use the small size for compact layouts (typically desktop)</li>
-            <li>Use the large size (default) for most use cases</li>
+            <li>{t('componentLibrary.selectBest1')}</li>
+            <li>{t('componentLibrary.selectBest2')}</li>
+            <li>{t('componentLibrary.selectBest3')}</li>
+            <li>{t('componentLibrary.selectBest4')}</li>
+            <li>{t('componentLibrary.selectBest5')}</li>
+            <li>{t('componentLibrary.selectBest6')}</li>
+            <li>{t('componentLibrary.selectBest7')}</li>
           </ul>
         </div>
       </div>

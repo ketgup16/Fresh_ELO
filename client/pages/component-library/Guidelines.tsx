@@ -4,25 +4,27 @@ import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/Tab';
 import * as Icons from '@/components/icons';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function GuidelinesPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1200px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Getting Started" title="Guidelines" description="Design principles, best practices, and usage guidelines for Living Design 3.5 components." />
+      <PageHeader section={t('componentLibrary.gettingStarted')} title={t('componentLibrary.guidelinesTitle')} description={t('componentLibrary.guidelinesDesc')} />
 
       <Tabs defaultValue="overview">
         <TabList>
-          <Tab value="overview">Overview</Tab>
-          <Tab value="principles">Design Principles</Tab>
-          <Tab value="components">Component Usage</Tab>
-          <Tab value="accessibility">Accessibility</Tab>
-          <Tab value="code">Code Standards</Tab>
-          <Tab value="tokens">Token Usage</Tab>
-          <Tab value="agent">Agent Rules</Tab>
+          <Tab value="overview">{t('componentLibrary.tabOverview')}</Tab>
+          <Tab value="principles">{t('componentLibrary.tabDesignPrinciples')}</Tab>
+          <Tab value="components">{t('componentLibrary.tabComponentUsage')}</Tab>
+          <Tab value="accessibility">{t('componentLibrary.tabAccessibility')}</Tab>
+          <Tab value="code">{t('componentLibrary.tabCodeStandards')}</Tab>
+          <Tab value="tokens">{t('componentLibrary.tabTokenUsage')}</Tab>
+          <Tab value="agent">{t('componentLibrary.tabAgentRules')}</Tab>
         </TabList>
 
         {/* Overview Tab */}

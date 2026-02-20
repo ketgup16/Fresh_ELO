@@ -19,7 +19,7 @@ export default function TagsPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <TagExample />
         </React.Suspense>
       </div>

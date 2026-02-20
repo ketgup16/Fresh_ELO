@@ -31,7 +31,7 @@ export default function TabsPage() {
           color: 'var(--ld-semantic-color-text)',
           margin: 0,
         }}>
-          <strong>Living Design 3.5 Documentation:</strong>{' '}
+          <strong>{t('componentLibrary.ldDocumentation')}</strong>{' '}
           <a 
             href="https://digitaltoolkit.livingdesign.walmart.com/components/tab-navigation/"
             target="_blank"
@@ -41,7 +41,7 @@ export default function TabsPage() {
               textDecoration: 'underline',
             }}
           >
-            Tab Navigation Component
+            {t('componentLibrary.navTabNavigation')}
           </a>
         </p>
       </div>
@@ -61,7 +61,7 @@ export default function TabsPage() {
             minHeight: '400px',
             color: 'var(--ld-semantic-color-text-subtle)',
           }}>
-            Loading examples...
+            {t('componentLibrary.loadingExamples')}
           </div>
         }>
           <TabExample />
@@ -78,14 +78,13 @@ export default function TabsPage() {
           marginBottom: '16px',
           color: 'var(--ld-semantic-color-text)',
         }}>
-          Usage Guidelines
+          {t('componentLibrary.usageGuidelines')}
         </h2>
         
         <div style={{
           display: 'grid',
           gap: '24px',
         }}>
-          {/* When to use */}
           <div>
             <h3 style={{
               fontFamily: 'var(--ld-semantic-font-family-sans)',
@@ -94,7 +93,7 @@ export default function TabsPage() {
               marginBottom: '8px',
               color: 'var(--ld-semantic-color-text)',
             }}>
-              When to Use
+              {t('componentLibrary.whenToUse')}
             </h3>
             <ul style={{
               fontFamily: 'var(--ld-semantic-font-family-sans)',
@@ -103,14 +102,13 @@ export default function TabsPage() {
               color: 'var(--ld-semantic-color-text)',
               paddingLeft: '24px',
             }}>
-              <li>For page-level navigation between different content views</li>
-              <li>When you need to show/hide large sections of related content</li>
-              <li>To organize content that doesn't fit in a single view</li>
-              <li>For filtering data tables or lists (e.g., "Active" vs "Archived")</li>
+              <li>{t('componentLibrary.tabsWhenToUse1')}</li>
+              <li>{t('componentLibrary.tabsWhenToUse2')}</li>
+              <li>{t('componentLibrary.tabsWhenToUse3')}</li>
+              <li>{t('componentLibrary.tabsWhenToUse4')}</li>
             </ul>
           </div>
 
-          {/* Best practices */}
           <div>
             <h3 style={{
               fontFamily: 'var(--ld-semantic-font-family-sans)',
@@ -119,7 +117,7 @@ export default function TabsPage() {
               marginBottom: '8px',
               color: 'var(--ld-semantic-color-text)',
             }}>
-              Best Practices
+              {t('componentLibrary.bestPractices')}
             </h3>
             <ul style={{
               fontFamily: 'var(--ld-semantic-font-family-sans)',
@@ -128,16 +126,15 @@ export default function TabsPage() {
               color: 'var(--ld-semantic-color-text)',
               paddingLeft: '24px',
             }}>
-              <li>Keep tab labels short and descriptive (1-2 words preferred)</li>
-              <li>Use 2-5 tabs maximum for optimal usability</li>
-              <li>Enable smallScreen mode for mobile-responsive layouts</li>
-              <li>Use trailing badges to show counts or status indicators</li>
-              <li>Avoid nesting tabs within tabs</li>
-              <li>Use TabPanel to properly associate content with each tab</li>
+              <li>{t('componentLibrary.tabsBest1')}</li>
+              <li>{t('componentLibrary.tabsBest2')}</li>
+              <li>{t('componentLibrary.tabsBest3')}</li>
+              <li>{t('componentLibrary.tabsBest4')}</li>
+              <li>{t('componentLibrary.tabsBest5')}</li>
+              <li>{t('componentLibrary.tabsBest6')}</li>
             </ul>
           </div>
 
-          {/* Accessibility */}
           <div>
             <h3 style={{
               fontFamily: 'var(--ld-semantic-font-family-sans)',
@@ -146,7 +143,7 @@ export default function TabsPage() {
               marginBottom: '8px',
               color: 'var(--ld-semantic-color-text)',
             }}>
-              Accessibility
+              {t('componentLibrary.accessibility')}
             </h3>
             <ul style={{
               fontFamily: 'var(--ld-semantic-font-family-sans)',
@@ -155,11 +152,11 @@ export default function TabsPage() {
               color: 'var(--ld-semantic-color-text)',
               paddingLeft: '24px',
             }}>
-              <li>Tabs support keyboard navigation (Tab, Arrow keys, Enter)</li>
-              <li>Active tab is indicated with aria-selected="true"</li>
-              <li>Each tab panel has role="tabpanel" for screen readers</li>
-              <li>Focus states are clearly visible with LD 3.5 focus rings</li>
-              <li>Disabled tabs are announced properly to assistive technology</li>
+              <li>{t('componentLibrary.tabsA11y1')}</li>
+              <li>{t('componentLibrary.tabsA11y2')}</li>
+              <li>{t('componentLibrary.tabsA11y3')}</li>
+              <li>{t('componentLibrary.tabsA11y4')}</li>
+              <li>{t('componentLibrary.tabsA11y5')}</li>
             </ul>
           </div>
         </div>
