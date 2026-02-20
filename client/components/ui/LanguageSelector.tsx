@@ -135,7 +135,8 @@ const LANGUAGES: Language[] = [
 
 export function LanguageSelector() {
   const { i18n } = useTranslation();
-  const currentLang = LANGUAGES.find(l => l.code === i18n.language) || LANGUAGES[0];
+  const resolvedLng = i18n.resolvedLanguage || i18n.language?.split('-')[0] || 'en';
+  const currentLang = LANGUAGES.find(l => l.code === resolvedLng) || LANGUAGES[0];
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Home,
@@ -61,8 +61,7 @@ export function AppSidebar({
   defaultLocked = false,
 }: AppSidebarProps) {
   const { t } = useTranslation();
-  const defaultItems = useMemo(() => getDefaultMenuItems(t), [t]);
-  const menuItems = menuItemsProp ?? defaultItems;
+  const menuItems = menuItemsProp ?? getDefaultMenuItems(t);
   const navigate = useNavigate();
   const location = useLocation();
 

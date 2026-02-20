@@ -35,17 +35,24 @@ i18n
         marty: frMarty,
       },
     },
+    lng: undefined, // let detector decide
     fallbackLng: 'en',
+    load: 'languageOnly', // 'en-US' → 'en'
+    supportedLngs: ['en', 'es', 'fr'],
     defaultNS: 'common',
     ns: ['common', 'pages', 'marty'],
     interpolation: {
-      escapeValue: false, // React already escapes by default
+      escapeValue: false,
     },
     detection: {
       order: ['localStorage', 'navigator'],
       lookupLocalStorage: 'i18nextLng',
       caches: ['localStorage'],
     },
+    react: {
+      useSuspense: false,
+    },
+    initImmediate: false, // synchronous init since resources are bundled
   });
 
 export default i18n;
