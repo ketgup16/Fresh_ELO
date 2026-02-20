@@ -1,0 +1,26 @@
+{
+  "index": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "alertTitle": "Action needed",
+    "alertDescription": "You have items that require your attention."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "Sorry, the page you are looking for doesn't exist or has been moved.",
+    "backHome": "Back to home"
+  },
+  "landingSummary": {
+    "title": "Landing summary",
+    "buttonLabel": "Button label"
+  },
+  "landingConnection": {
+    "title": "Landing connection"
+  },
+  "catalog": {
+    "title": "Catalog"
+  },
+  "detailItem": {
+    "title": "Detail item"
+  }
+}

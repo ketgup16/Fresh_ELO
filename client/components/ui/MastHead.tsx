@@ -1,3 +1,5 @@
+import { useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Bell, HelpCircle, User, AppSwitcher } from '@/components/icons';
 import { MartyAvatar } from '@/features/marty/MartyAvatar';
 import { MediaSolutionsDropdown, MediaSolution } from './MediaSolutionsDropdown';
@@ -17,13 +19,26 @@ export function MastHead({
   currentSolution = 'Dashboard Template',
   onSolutionChange
 }: MastHeadProps) {
+  const { t } = useTranslation();
   const { isMinimized, isDocked, setIsMinimized, setIsDocked, setInitialPosition } = useMarty();
+  const dragListenersRef = useRef<{ move: (e: MouseEvent) => void; up: () => void } | null>(null);
+
+  // Cleanup window listeners on unmount to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      if (dragListenersRef.current) {
+        window.removeEventListener('mousemove', dragListenersRef.current.move);
+        window.removeEventListener('mouseup', dragListenersRef.current.up);
+        dragListenersRef.current = null;
+      }
+    };
+  }, []);
 
   return (
     <header className={styles.header}>
       <div className={styles.left}>
         {/* App Switcher */}
-        <button className={styles.iconButton} aria-label="App switcher">
+        <button className={styles.iconButton} aria-label={t('masthead.appSwitcher')}>
           <AppSwitcher style={{ width: 16, height: 16 }} />
         </button>
         
@@ -39,14 +54,14 @@ export function MastHead({
         <Divider orientation="vertical" UNSAFE_className={styles.divider} />
         <LanguageSelector />
         <div className={styles.actions}>
-          <button className={styles.iconButton} aria-label="Notifications">
+          <button className={styles.iconButton} aria-label={t('masthead.notifications')}>
             <Bell style={{ width: 16, height: 16 }} />
             <span className={styles.notifDot}></span>
           </button>
-          <button className={styles.iconButton} aria-label="Help">
+          <button className={styles.iconButton} aria-label={t('masthead.help')}>
             <HelpCircle style={{ width: 16, height: 16 }} />
           </button>
-          <button className={styles.iconButton} aria-label="Account">
+          <button className={styles.iconButton} aria-label={t('masthead.account')}>
             <User style={{ width: 16, height: 16 }} />
           </button>
           {isDocked && isMinimized && (
@@ -64,7 +79,17 @@ export function MastHead({
                 e.preventDefault();
                 const startX = e.clientX;
                 const startY = e.clientY;
+                const buttonEl = e.currentTarget;
                 let hasMoved = false;
+
+                const cleanup = () => {
+                  if (dragListenersRef.current) {
+                    window.removeEventListener('mousemove', dragListenersRef.current.move);
+                    window.removeEventListener('mouseup', dragListenersRef.current.up);
+                    dragListenersRef.current = null;
+                  }
+                };
+
                 const handleMouseMove = (moveEvent: MouseEvent) => {
                   const deltaX = Math.abs(moveEvent.clientX - startX);
                   const deltaY = Math.abs(moveEvent.clientY - startY);
@@ -72,22 +97,24 @@ export function MastHead({
                     hasMoved = true;
                     setInitialPosition({ x: moveEvent.clientX - 25, y: moveEvent.clientY - 25 });
                     setIsDocked(false);
-                    window.removeEventListener('mousemove', handleMouseMove);
-                    window.removeEventListener('mouseup', handleMouseUp);
+                    cleanup();
                   }
                 };
                 const handleMouseUp = () => {
-                  window.removeEventListener('mousemove', handleMouseMove);
-                  window.removeEventListener('mouseup', handleMouseUp);
+                  cleanup();
                   if (hasMoved) {
-                    (e.currentTarget as any).wasDragged = true;
+                    (buttonEl as any).wasDragged = true;
                   }
                 };
+
+                // Clean up any existing listeners first
+                cleanup();
+                dragListenersRef.current = { move: handleMouseMove, up: handleMouseUp };
                 window.addEventListener('mousemove', handleMouseMove);
                 window.addEventListener('mouseup', handleMouseUp);
               }}
               className={styles.iconButton}
-              aria-label="Open Marty"
+              aria-label={t('masthead.openMarty')}
             >
               <MartyAvatar size={20} />
             </button>

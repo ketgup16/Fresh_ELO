@@ -247,8 +247,38 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>((props, ref) =>
   };
   
   const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    // Arrow key navigation would go here in a full implementation
-    // For now, we'll rely on basic keyboard navigation
+    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft' && event.key !== 'Home' && event.key !== 'End') return;
+
+    event.preventDefault();
+    const tablist = event.currentTarget.closest('[role="tablist"]');
+    if (!tablist) return;
+
+    const tabs = Array.from(
+      tablist.querySelectorAll<HTMLButtonElement>('[role="tab"]:not([disabled])')
+    );
+    const currentIndex = tabs.indexOf(event.currentTarget);
+    if (currentIndex === -1) return;
+
+    let nextIndex: number;
+    switch (event.key) {
+      case 'ArrowRight':
+        nextIndex = (currentIndex + 1) % tabs.length;
+        break;
+      case 'ArrowLeft':
+        nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+        break;
+      case 'Home':
+        nextIndex = 0;
+        break;
+      case 'End':
+        nextIndex = tabs.length - 1;
+        break;
+      default:
+        return;
+    }
+
+    tabs[nextIndex].focus();
+    tabs[nextIndex].click();
   };
   
   const className = [

@@ -1,5 +1,4 @@
 /** @import must precede all other statements */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
 @import url("/fonts/fonts.css"); /* Custom brand fonts (Gibson, Bogle) */
 /* Base theme loaded statically - ensures tokens available immediately */
 @import "./styles/themes/base/primitive.css";

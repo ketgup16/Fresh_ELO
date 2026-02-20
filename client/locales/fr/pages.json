@@ -1,0 +1,26 @@
+{
+  "index": {
+    "title": "Tableau de bord",
+    "welcome": "Bon retour",
+    "alertTitle": "Action requise",
+    "alertDescription": "Vous avez des éléments qui nécessitent votre attention."
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "Désolé, la page que vous recherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
+  },
+  "landingSummary": {
+    "title": "Résumé de la page",
+    "buttonLabel": "Libellé du bouton"
+  },
+  "landingConnection": {
+    "title": "Connexion de la page"
+  },
+  "catalog": {
+    "title": "Catalogue"
+  },
+  "detailItem": {
+    "title": "Détail de l'article"
+  }
+}

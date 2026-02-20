@@ -4,7 +4,7 @@
  * Themes are loaded dynamically by injecting/removing <link> tags
  */
 
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { AVAILABLE_THEMES, DEFAULT_THEME, getThemeById, type Theme } from './theme-registry';
 
 interface ThemeContextValue {
@@ -28,10 +28,7 @@ function loadThemeCSS(theme: Theme): Promise<void> {
   return new Promise((resolve, reject) => {
     // Remove existing theme override links
     const existingOverrides = document.querySelectorAll('link[data-theme-override]');
-    console.log(`🗑️ Removing ${existingOverrides.length} existing override link(s)`);
     existingOverrides.forEach(link => link.remove());
-
-    console.log(`🎨 Loading theme: ${theme.name} (inherits: ${theme.inherits || 'none'})`);
 
     // Determine which CSS files to load based on inheritance
     const cssFilesToLoad: Array<{href: string, type: 'primitive' | 'semantic', source: string}> = [];
@@ -81,13 +78,9 @@ function loadThemeCSS(theme: Theme): Promise<void> {
 
     // If no files to load, just resolve
     if (cssFilesToLoad.length === 0) {
-      console.log('✅ No override files needed - using base theme only');
       resolve();
       return;
     }
-
-    console.log(`📥 Loading ${cssFilesToLoad.length} CSS file(s):`);
-    cssFilesToLoad.forEach(file => console.log(`  - ${file.type}: ${file.href} (from ${file.source})`));
 
     // Add cache-busting timestamp
     const cacheBust = `?v=${Date.now()}`;
@@ -110,21 +103,13 @@ function loadThemeCSS(theme: Theme): Promise<void> {
 
     const checkAllLoaded = () => {
       if (loadedCount === linkElements.length && !hasError) {
-        console.log(`✅ All ${linkElements.length} theme CSS files loaded successfully`);
-
-        // Log final computed values for debugging
-        const primaryColor = getComputedStyle(document.documentElement)
-          .getPropertyValue('--ld-semantic-color-action-fill-primary').trim();
-        console.log(`🔍 Primary action color:`, primaryColor || 'NOT FOUND');
-
         resolve();
       }
     };
 
-    const handleError = (error: Event, file: {href: string, source: string}) => {
+    const handleError = (_error: Event, _file: {href: string, source: string}) => {
       if (!hasError) {
         hasError = true;
-        console.error('❌ Failed to load theme CSS:', file.href, 'from', file.source);
         reject(new Error(`Failed to load theme: ${theme.name}`));
       }
     };
@@ -135,7 +120,6 @@ function loadThemeCSS(theme: Theme): Promise<void> {
 
       link.onload = () => {
         loadedCount++;
-        console.log(`✅ Loaded (${loadedCount}/${linkElements.length}): ${file.source} ${file.type}`);
         checkAllLoaded();
       };
 
@@ -170,15 +154,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    console.log(`🎨 Switching theme to: ${theme.name} (${themeId})`);
     setIsLoading(true);
 
     loadThemeCSS(theme)
       .then(() => {
-        console.log(`✅ Theme loaded successfully: ${theme.name}`);
-        console.log(`🎨 Primary button color should now be:`,
-          themeId === 'base' ? '#0053e2 (Walmart blue)' : '#002e99 (Navy blue)');
-
         // Force a small delay and reflow to ensure CSS is fully applied
         setTimeout(() => {
           // Force browser to recalculate styles
@@ -194,22 +173,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
           }
 
           setIsLoading(false);
-
-          // Log computed style for debugging
-          const computedColor = getComputedStyle(document.documentElement)
-            .getPropertyValue('--ld-semantic-color-action-fill-primary').trim();
-          console.log(`🔍 Computed primary color after switch:`, computedColor || 'NOT FOUND');
-
-          // Check if override files are in the DOM
-          const overrideLinks = document.querySelectorAll('link[data-theme-override]');
-          console.log(`🔗 Override links in DOM:`, overrideLinks.length);
-          overrideLinks.forEach(link => {
-            console.log(`  - ${link.getAttribute('data-theme-override')}:`, (link as HTMLLinkElement).href);
-          });
         }, 100);
       })
       .catch((error) => {
-        console.error('❌ Theme loading failed:', error);
         setIsLoading(false);
 
         // Fallback to default theme on error
@@ -230,7 +196,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       loadThemeCSS(theme)
         .then(() => setIsLoading(false))
         .catch((error) => {
-          console.error('Initial theme loading failed:', error);
           setIsLoading(false);
         });
     }
@@ -238,13 +203,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const currentThemeData = getThemeById(currentTheme);
 
-  const value: ThemeContextValue = {
+  const value = useMemo<ThemeContextValue>(() => ({
     currentTheme,
     currentThemeData,
     availableThemes: AVAILABLE_THEMES,
     switchTheme,
     isLoading,
-  };
+  }), [currentTheme, currentThemeData, switchTheme, isLoading]);
 
   return (
     <ThemeContext.Provider value={value}>

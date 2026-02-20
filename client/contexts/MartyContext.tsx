@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useMemo, ReactNode } from 'react';
 
 interface MartyContextValue {
   isMinimized: boolean;
@@ -74,14 +74,14 @@ export function MartyProvider({ children }: MartyProviderProps) {
     }
   }, [initialPosition]);
 
-  const value: MartyContextValue = {
+  const value = useMemo<MartyContextValue>(() => ({
     isMinimized,
     isDocked,
     initialPosition,
     setIsMinimized,
     setIsDocked,
     setInitialPosition,
-  };
+  }), [isMinimized, isDocked, initialPosition]);
 
   return (
     <MartyContext.Provider value={value}>

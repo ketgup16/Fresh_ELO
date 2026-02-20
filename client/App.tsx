@@ -1,52 +1,56 @@
 import "./global.css";
 
+import "./i18n";
 import { createRoot } from "react-dom/client";
 import { SnackbarContainer } from "@/components/ui/SnackbarContainer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MartyProvider } from "@/contexts/MartyContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import Index from "./pages/Index";
-import Catalog from "./pages/Catalog";
-import PageTemplate from "./pages/PageTemplate";
-import LandingConnection from "./pages/LandingConnection";
-import DetailItem from "./pages/DetailItem";
-import LandingSummary from "./pages/LandingSummary";
-import NotFound from "./pages/NotFound";
 import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
 
-// Component library pages
 import React from 'react';
-import ComponentLibraryOverview from "./pages/component-library/Overview";
-import ComponentTester from "./pages/component-library/ComponentTester";
-import IconsPage from "./pages/component-library/Icons";
-import ButtonsPage from "./pages/component-library/Buttons";
-import BadgesPage from "./pages/component-library/Badges";
-import BreadcrumbsPage from "./pages/component-library/Breadcrumbs";
-import LinksPage from "./pages/component-library/Links";
-import LinkButtonsPage from "./pages/component-library/LinkButtons";
-import IconButtonsPage from "./pages/component-library/IconButtons";
-import CheckboxesPage from "./pages/component-library/Checkboxes";
-import RadioButtonsPage from "./pages/component-library/RadioButtons";
-import SelectPage from "./pages/component-library/Select";
-import FormGroupsPage from "./pages/component-library/FormGroups";
-import ChipsPage from "./pages/component-library/Chips";
-import FilterChipsPage from "./pages/component-library/FilterChips";
-import CalloutsPage from "./pages/component-library/Callouts";
-import CardsPage from "./pages/component-library/Cards";
-import AlertsPage from "./pages/component-library/Alerts";
-import ContentMessagesPage from "./pages/component-library/ContentMessages";
-import DateFieldsPage from "./pages/component-library/DateFields";
-import DatePickersPage from "./pages/component-library/DatePickers";
-import DividersPage from "./pages/component-library/Dividers";
-import ListsPage from "./pages/component-library/Lists";
-import MagicBoxPage from "./pages/component-library/MagicBox";
-import MenuPage from "./pages/component-library/Menu";
-import MetricsPage from "./pages/component-library/Metrics";
-import ModalsPage from "./pages/component-library/Modals";
-import NudgesPage from "./pages/component-library/Nudges";
-import PanelsPage from "./pages/component-library/Panels";
-import GuidelinesPage from "./pages/component-library/Guidelines";
+
+// Main app pages (lazy loaded for code splitting)
+const Index = React.lazy(() => import("./pages/Index"));
+const Catalog = React.lazy(() => import("./pages/Catalog"));
+const PageTemplate = React.lazy(() => import("./pages/PageTemplate"));
+const LandingConnection = React.lazy(() => import("./pages/LandingConnection"));
+const DetailItem = React.lazy(() => import("./pages/DetailItem"));
+const LandingSummary = React.lazy(() => import("./pages/LandingSummary"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
+
+// Component library pages (lazy loaded)
+const ComponentLibraryOverview = React.lazy(() => import("./pages/component-library/Overview"));
+const ComponentTester = React.lazy(() => import("./pages/component-library/ComponentTester"));
+const IconsPage = React.lazy(() => import("./pages/component-library/Icons"));
+const ButtonsPage = React.lazy(() => import("./pages/component-library/Buttons"));
+const BadgesPage = React.lazy(() => import("./pages/component-library/Badges"));
+const BreadcrumbsPage = React.lazy(() => import("./pages/component-library/Breadcrumbs"));
+const LinksPage = React.lazy(() => import("./pages/component-library/Links"));
+const LinkButtonsPage = React.lazy(() => import("./pages/component-library/LinkButtons"));
+const IconButtonsPage = React.lazy(() => import("./pages/component-library/IconButtons"));
+const CheckboxesPage = React.lazy(() => import("./pages/component-library/Checkboxes"));
+const RadioButtonsPage = React.lazy(() => import("./pages/component-library/RadioButtons"));
+const SelectPage = React.lazy(() => import("./pages/component-library/Select"));
+const FormGroupsPage = React.lazy(() => import("./pages/component-library/FormGroups"));
+const ChipsPage = React.lazy(() => import("./pages/component-library/Chips"));
+const FilterChipsPage = React.lazy(() => import("./pages/component-library/FilterChips"));
+const CalloutsPage = React.lazy(() => import("./pages/component-library/Callouts"));
+const CardsPage = React.lazy(() => import("./pages/component-library/Cards"));
+const AlertsPage = React.lazy(() => import("./pages/component-library/Alerts"));
+const ContentMessagesPage = React.lazy(() => import("./pages/component-library/ContentMessages"));
+const DateFieldsPage = React.lazy(() => import("./pages/component-library/DateFields"));
+const DatePickersPage = React.lazy(() => import("./pages/component-library/DatePickers"));
+const DividersPage = React.lazy(() => import("./pages/component-library/Dividers"));
+const ListsPage = React.lazy(() => import("./pages/component-library/Lists"));
+const MagicBoxPage = React.lazy(() => import("./pages/component-library/MagicBox"));
+const MenuPage = React.lazy(() => import("./pages/component-library/Menu"));
+const MetricsPage = React.lazy(() => import("./pages/component-library/Metrics"));
+const ModalsPage = React.lazy(() => import("./pages/component-library/Modals"));
+const NudgesPage = React.lazy(() => import("./pages/component-library/Nudges"));
+const PanelsPage = React.lazy(() => import("./pages/component-library/Panels"));
+const GuidelinesPage = React.lazy(() => import("./pages/component-library/Guidelines"));
 
 // Shadcn/Radix component pages (lazy loaded to avoid blocking initial render)
 const AccordionPage = React.lazy(() => import("./pages/component-library/Accordion"));
@@ -80,8 +84,8 @@ const SwitchesPage = React.lazy(() => import("./pages/component-library/Switches
 const TablePage = React.lazy(() => import("./pages/component-library/Table"));
 const TabsPage = React.lazy(() => import("./pages/component-library/Tabs"));
 const TagsPage = React.lazy(() => import("./pages/component-library/Tags"));
-import TextAreaPage from "./pages/component-library/TextArea";
-import TextFieldsPage from "./pages/component-library/TextFields";
+const TextAreaPage = React.lazy(() => import("./pages/component-library/TextArea"));
+const TextFieldsPage = React.lazy(() => import("./pages/component-library/TextFields"));
 const ThemesPage = React.lazy(() => import("./pages/component-library/Themes"));
 const TogglePage = React.lazy(() => import("./pages/component-library/Toggle"));
 
@@ -96,20 +100,13 @@ const App = () => (
       <SnackbarContainer />
       <MartyProvider>
           <BrowserRouter>
+            <React.Suspense fallback={LazyFallback}>
             <Routes>
               {/* Component Library with nested routes */}
               <Route path="/component-library" element={<ComponentLibraryLayout />}>
                 <Route index element={<ComponentLibraryOverview />} />
-                <Route path="themes" element={
-                  <React.Suspense fallback={<div style={{ padding: '48px', textAlign: 'center' }}>Loading...</div>}>
-                    <ThemesPage />
-                  </React.Suspense>
-                } />
-                <Route path="component-tester" element={
-                  <React.Suspense fallback={<div style={{ padding: '48px', textAlign: 'center' }}>Loading...</div>}>
-                    <ComponentTester />
-                  </React.Suspense>
-                } />
+                <Route path="themes" element={<ThemesPage />} />
+                <Route path="component-tester" element={<ComponentTester />} />
                 <Route path="icons" element={<IconsPage />} />
                 <Route path="buttons" element={<ButtonsPage />} />
                 <Route path="badges" element={<BadgesPage />} />
@@ -129,7 +126,7 @@ const App = () => (
                 <Route path="content-messages" element={<ContentMessagesPage />} />
                 <Route path="date-fields" element={<DateFieldsPage />} />
                 <Route path="date-pickers" element={<DatePickersPage />} />
-                <Route path="date-range-picker" element={<React.Suspense fallback={LazyFallback}><DateRangePickerPage /></React.Suspense>} />
+                <Route path="date-range-picker" element={<DateRangePickerPage />} />
                 <Route path="dividers" element={<DividersPage />} />
                 <Route path="lists" element={<ListsPage />} />
                 <Route path="magic-box" element={<MagicBoxPage />} />
@@ -141,38 +138,38 @@ const App = () => (
                 <Route path="text-fields" element={<TextFieldsPage />} />
                 <Route path="textarea" element={<TextAreaPage />} />
                 <Route path="guidelines" element={<GuidelinesPage />} />
-                {/* Shadcn/Radix Components (lazy loaded) */}
-                <Route path="accordion" element={<React.Suspense fallback={LazyFallback}><AccordionPage /></React.Suspense>} />
-                <Route path="alert-dialog" element={<React.Suspense fallback={LazyFallback}><AlertDialogPage /></React.Suspense>} />
-                <Route path="avatar" element={<React.Suspense fallback={LazyFallback}><AvatarPage /></React.Suspense>} />
-                <Route path="bottom-sheet" element={<React.Suspense fallback={LazyFallback}><BottomSheetPage /></React.Suspense>} />
-                <Route path="calendar" element={<React.Suspense fallback={LazyFallback}><CalendarPage /></React.Suspense>} />
-                <Route path="carousel" element={<React.Suspense fallback={LazyFallback}><CarouselPage /></React.Suspense>} />
-                <Route path="chart" element={<React.Suspense fallback={LazyFallback}><ChartPage /></React.Suspense>} />
-                <Route path="collapsible" element={<React.Suspense fallback={LazyFallback}><CollapsiblePage /></React.Suspense>} />
-                <Route path="command" element={<React.Suspense fallback={LazyFallback}><CommandPage /></React.Suspense>} />
-                <Route path="context-menu" element={<React.Suspense fallback={LazyFallback}><ContextMenuPage /></React.Suspense>} />
-                <Route path="dialog" element={<React.Suspense fallback={LazyFallback}><DialogPage /></React.Suspense>} />
-                <Route path="drawer" element={<React.Suspense fallback={LazyFallback}><DrawerPage /></React.Suspense>} />
-                <Route path="dropdown-menu" element={<React.Suspense fallback={LazyFallback}><DropdownMenuPage /></React.Suspense>} />
-                <Route path="form" element={<React.Suspense fallback={LazyFallback}><FormPage /></React.Suspense>} />
-                <Route path="menubar" element={<React.Suspense fallback={LazyFallback}><MenubarPage /></React.Suspense>} />
-                <Route path="navigation-menu" element={<React.Suspense fallback={LazyFallback}><NavigationMenuPage /></React.Suspense>} />
-                <Route path="pagination" element={<React.Suspense fallback={LazyFallback}><PaginationPage /></React.Suspense>} />
-                <Route path="popover" element={<React.Suspense fallback={LazyFallback}><PopoverPage /></React.Suspense>} />
-                <Route path="progress-indicator" element={<React.Suspense fallback={LazyFallback}><ProgressIndicatorPage /></React.Suspense>} />
-                <Route path="progress-tracker" element={<React.Suspense fallback={LazyFallback}><ProgressTrackerPage /></React.Suspense>} />
-                <Route path="scroll-area" element={<React.Suspense fallback={LazyFallback}><ScrollAreaPage /></React.Suspense>} />
-                <Route path="skeleton" element={<React.Suspense fallback={LazyFallback}><SkeletonPage /></React.Suspense>} />
-                <Route path="slider" element={<React.Suspense fallback={LazyFallback}><SliderPage /></React.Suspense>} />
-                <Route path="snackbars" element={<React.Suspense fallback={LazyFallback}><SnackbarsPage /></React.Suspense>} />
-                <Route path="spinners" element={<React.Suspense fallback={LazyFallback}><SpinnersPage /></React.Suspense>} />
-                <Route path="spot-icons" element={<React.Suspense fallback={LazyFallback}><SpotIconsPage /></React.Suspense>} />
-                <Route path="switches" element={<React.Suspense fallback={LazyFallback}><SwitchesPage /></React.Suspense>} />
-                <Route path="table" element={<React.Suspense fallback={LazyFallback}><TablePage /></React.Suspense>} />
-                <Route path="tabs" element={<React.Suspense fallback={LazyFallback}><TabsPage /></React.Suspense>} />
-                <Route path="tags" element={<React.Suspense fallback={LazyFallback}><TagsPage /></React.Suspense>} />
-                <Route path="toggle" element={<React.Suspense fallback={LazyFallback}><TogglePage /></React.Suspense>} />
+                {/* Shadcn/Radix Components */}
+                <Route path="accordion" element={<AccordionPage />} />
+                <Route path="alert-dialog" element={<AlertDialogPage />} />
+                <Route path="avatar" element={<AvatarPage />} />
+                <Route path="bottom-sheet" element={<BottomSheetPage />} />
+                <Route path="calendar" element={<CalendarPage />} />
+                <Route path="carousel" element={<CarouselPage />} />
+                <Route path="chart" element={<ChartPage />} />
+                <Route path="collapsible" element={<CollapsiblePage />} />
+                <Route path="command" element={<CommandPage />} />
+                <Route path="context-menu" element={<ContextMenuPage />} />
+                <Route path="dialog" element={<DialogPage />} />
+                <Route path="drawer" element={<DrawerPage />} />
+                <Route path="dropdown-menu" element={<DropdownMenuPage />} />
+                <Route path="form" element={<FormPage />} />
+                <Route path="menubar" element={<MenubarPage />} />
+                <Route path="navigation-menu" element={<NavigationMenuPage />} />
+                <Route path="pagination" element={<PaginationPage />} />
+                <Route path="popover" element={<PopoverPage />} />
+                <Route path="progress-indicator" element={<ProgressIndicatorPage />} />
+                <Route path="progress-tracker" element={<ProgressTrackerPage />} />
+                <Route path="scroll-area" element={<ScrollAreaPage />} />
+                <Route path="skeleton" element={<SkeletonPage />} />
+                <Route path="slider" element={<SliderPage />} />
+                <Route path="snackbars" element={<SnackbarsPage />} />
+                <Route path="spinners" element={<SpinnersPage />} />
+                <Route path="spot-icons" element={<SpotIconsPage />} />
+                <Route path="switches" element={<SwitchesPage />} />
+                <Route path="table" element={<TablePage />} />
+                <Route path="tabs" element={<TabsPage />} />
+                <Route path="tags" element={<TagsPage />} />
+                <Route path="toggle" element={<TogglePage />} />
               </Route>
 
               {/* Template Homepage */}
@@ -186,6 +183,7 @@ const App = () => (
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            </React.Suspense>
           </BrowserRouter>
         </MartyProvider>
     </QueryClientProvider>

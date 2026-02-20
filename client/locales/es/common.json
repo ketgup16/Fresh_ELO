@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "notifications": "Notificaciones",
+    "charts": "Gráficos",
+    "tools": "Herramientas",
+    "media": "Medios",
+    "uploads": "Subidas",
+    "subPage": "Subpágina",
+    "catalog": "Catálogo",
+    "pricing": "Precios",
+    "orders": "Pedidos"
+  },
+  "actions": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "close": "Cerrar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "submit": "Enviar",
+    "viewEdit": "Ver/editar"
+  },
+  "language": {
+    "label": "Idioma",
+    "english": "English (US)",
+    "french": "Français",
+    "spanish": "Español"
+  },
+  "masthead": {
+    "appSwitcher": "Selector de aplicaciones",
+    "notifications": "Notificaciones",
+    "help": "Ayuda",
+    "account": "Cuenta",
+    "openMarty": "Abrir Marty"
+  },
+  "sidebar": {
+    "expand": "Expandir barra lateral",
+    "collapse": "Contraer barra lateral"
+  }
+}

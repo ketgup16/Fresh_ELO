@@ -6,6 +6,7 @@ import { DateField } from "@/components/ui/DateField";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { MartyAvatar } from "./MartyAvatar";
 import { useMarty } from "@/contexts/MartyContext";
+import { generateMockResponse } from "./marty-utils";
 
 type ViewState = 'welcome' | 'chat' | 'campaignSetup' | 'campaignForm' | 'campaignReady' | 'campaignScheduled';
 
@@ -29,6 +30,25 @@ export default function MartyFloatingPanel() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const isDraggingRef = useRef(false);
+  const timersRef = useRef<Set<ReturnType<typeof setTimeout>>>(new Set());
+
+  // Helper to track setTimeout calls and auto-cleanup
+  const safeTimeout = (fn: () => void, delay: number) => {
+    const id = setTimeout(() => {
+      timersRef.current.delete(id);
+      fn();
+    }, delay);
+    timersRef.current.add(id);
+    return id;
+  };
+
+  // Cleanup all tracked timers on unmount
+  useEffect(() => {
+    return () => {
+      timersRef.current.forEach(id => clearTimeout(id));
+      timersRef.current.clear();
+    };
+  }, []);
 
   const handleFeedback = (messageId: string, feedback: 'up' | 'down') => {
     setMessages(prev => prev.map(msg =>
@@ -61,9 +81,20 @@ export default function MartyFloatingPanel() {
   const [hasMoved, setHasMoved] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
+  // Refs to avoid stale closures in window event listeners
+  const dragStartRef = useRef(dragStart);
+  const dragStartPosRef = useRef(dragStartPos);
+  const isDockedRef = useRef(isDocked);
+  const hasMovedRef = useRef(hasMoved);
   const [tooltipPosition, setTooltipPosition] = useState<'top' | 'left' | 'right' | 'bottom'>('top');
   const fabButtonRef = useRef<HTMLButtonElement>(null);
   const [eyePosition, setEyePosition] = useState({ x: 0, y: 0 });
+
+  // Keep refs in sync with state
+  useEffect(() => { dragStartRef.current = dragStart; }, [dragStart]);
+  useEffect(() => { dragStartPosRef.current = dragStartPos; }, [dragStartPos]);
+  useEffect(() => { isDockedRef.current = isDocked; }, [isDocked]);
+  useEffect(() => { hasMovedRef.current = hasMoved; }, [hasMoved]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -164,122 +195,58 @@ export default function MartyFloatingPanel() {
     setDragStartPos({ x: e.clientX, y: e.clientY });
   };
 
-  const handleMouseMove = (e: MouseEvent) => {
+  useEffect(() => {
     if (!isDragging) return;
 
-    // Calculate distance from start position
-    const deltaX = Math.abs(e.clientX - dragStartPos.x);
-    const deltaY = Math.abs(e.clientY - dragStartPos.y);
-    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    const handleMouseMove = (e: MouseEvent) => {
+      const dsp = dragStartPosRef.current;
+      const ds = dragStartRef.current;
 
-    // Only consider it a drag if moved more than 3 pixels
-    if (distance > 3) {
-      isDraggingRef.current = true; // Mark as dragged
+      // Calculate distance from start position
+      const deltaX = Math.abs(e.clientX - dsp.x);
+      const deltaY = Math.abs(e.clientY - dsp.y);
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-      // Center the FAB on the cursor
-      const newX = e.clientX - dragStart.x;
-      const newY = e.clientY - dragStart.y;
+      // Only consider it a drag if moved more than 3 pixels
+      if (distance > 3) {
+        isDraggingRef.current = true; // Mark as dragged
 
-      setFabPosition({ x: newX, y: newY });
-      setHasMoved(true);
+        // Center the FAB on the cursor
+        const newX = e.clientX - ds.x;
+        const newY = e.clientY - ds.y;
 
-      // Check if dragging into masthead area (top 54px + some buffer)
-      if (isDocked && e.clientY > 100) {
-        // Dragging out of masthead - undock
-        setIsDocked(false);
+        setFabPosition({ x: newX, y: newY });
+        setHasMoved(true);
+
+        // Check if dragging into masthead area (top 54px + some buffer)
+        if (isDockedRef.current && e.clientY > 100) {
+          // Dragging out of masthead - undock
+          setIsDocked(false);
+        }
       }
-    }
-  };
+    };
 
-  const handleMouseUp = (e?: MouseEvent) => {
-    setIsDragging(false);
+    const handleMouseUp = (e: MouseEvent) => {
+      setIsDragging(false);
 
-    // Check if we should dock (in masthead area)
-    if (!isDocked && hasMoved && e && e.clientY < 80) {
-      // Snap to docked position
-      setIsDocked(true);
-    }
-  };
+      // Check if we should dock (in masthead area)
+      if (!isDockedRef.current && hasMovedRef.current && e.clientY < 80) {
+        // Snap to docked position
+        setIsDocked(true);
+      }
+    };
 
-  useEffect(() => {
-    if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
 
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseup', handleMouseUp);
-      };
-    }
-  }, [isDragging]);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging, setIsDocked]);
 
   const handleExpand = (e?: React.MouseEvent) => {
     setIsMinimized(false);
-  };
-
-  const generateMockResponse = (userInput: string): string => {
-    const input = userInput.toLowerCase();
-    
-    // Campaign-related questions
-    if (input.includes('campaign') && (input.includes('create') || input.includes('make') || input.includes('start'))) {
-      return "I can help you create a campaign! I'll guide you through setting up a new campaign with the right targeting, budget, and items. Would you like to start creating a Sponsored Products or Display campaign?";
-    }
-    
-    if (input.includes('budget')) {
-      return "Campaign budgets are important for controlling your ad spend. I recommend starting with a daily budget of at least $50-100 for Display campaigns to gather enough data. You can adjust this at any time based on performance. Would you like help setting up a campaign with a specific budget?";
-    }
-    
-    if (input.includes('targeting')) {
-      return "There are several targeting strategies available:\n\n• **Contextual targeting** - Shows ads based on page content\n• **Behavioral targeting** - Targets based on user behavior\n• **Run of site** - Shows ads across all available placements\n\nEach has different performance characteristics. What type of campaign are you planning?";
-    }
-    
-    if (input.includes('recommend') || input.includes('suggestion')) {
-      return "Based on your account activity, I recommend:\n\n1. **Optimize high-performing campaigns** - I noticed 3 campaigns with 113%+ pacing that could use budget increases\n2. **Review paused campaigns** - You have 4 paused campaigns that might be ready to reactivate\n3. **Add negative keywords** - This could reduce wasted spend by 8-12%\n\nWhich would you like to explore first?";
-    }
-    
-    if (input.includes('pacing') || input.includes('pace')) {
-      return "Campaign pacing shows how quickly your budget is being spent. A pacing of 100% means you're on track. Above 100% means you're spending faster than planned, and below 100% means slower.\n\nGreen indicators (100-115%) are generally good. Orange (115%+) means you might exhaust your budget early. Would you like me to help adjust any campaign budgets?";
-    }
-    
-    if (input.includes('impression')) {
-      return "Impressions are the number of times your ad was displayed. Your campaigns are currently generating strong impression volume. To increase impressions, consider:\n\n• Increasing daily budget\n• Expanding targeting criteria\n• Adding more items to your campaigns\n• Using broader match types\n\nWhat would you like to focus on?";
-    }
-    
-    if (input.includes('performance') || input.includes('metrics')) {
-      return "I can show you key performance metrics! Your current overview:\n\n• **Total Impressions**: 156M+ across all active campaigns\n• **Average CTR**: Data shows strong engagement on contextual targeting\n• **Top Performers**: Campaigns with behavioral targeting are showing 10-15% better results\n\nWould you like a detailed breakdown of any specific campaign?";
-    }
-    
-    if (input.includes('help') || input.includes('?')) {
-      return "I'm here to help! I can assist with:\n\n• **Creating campaigns** - I'll guide you through the setup\n• **Optimizing performance** - Get recommendations for your active campaigns\n• **Understanding metrics** - Learn what your data means\n• **Managing budgets** - Adjust spending across campaigns\n• **Answering questions** - Ask me anything about Walmart advertising\n\nWhat would you like help with?";
-    }
-    
-    if (input.includes('status') || input.includes('live') || input.includes('pause')) {
-      return "Campaign statuses indicate their current state:\n\n• **Live** - Currently running and serving ads\n• **Scheduled** - Set to start on a future date\n• **Paused** - Temporarily stopped (you can resume anytime)\n• **Completed** - Reached end date or budget limit\n\nYou can change status anytime from the campaign manager. Need help with a specific campaign?";
-    }
-    
-    if (input.includes('item') || input.includes('product')) {
-      return "I can help you select the best items to advertise! I analyze:\n\n• Sales performance\n• Inventory levels\n• Competitive positioning\n• Seasonal trends\n\nFor best results, I recommend advertising items with high margins, good reviews, and strong conversion rates. Would you like me to suggest items for a new campaign?";
-    }
-    
-    if (input.includes('report') || input.includes('analytics')) {
-      return "I can help you access detailed reports and analytics. Available reports include:\n\n• Campaign performance over time\n• Item-level metrics\n• Audience insights\n• Budget utilization\n• Attribution analysis\n\nWhat specific metrics are you interested in tracking?";
-    }
-    
-    if (input.includes('thank') || input.includes('thanks')) {
-      return "You're welcome! I'm always here to help. Feel free to ask me anything about your campaigns, or I can help you create a new one whenever you're ready! 😊";
-    }
-    
-    if (input.includes('hi') || input.includes('hello') || input.includes('hey')) {
-      return "Hi there! 👋 I'm Marty, your advertising assistant. I'm here to help you create campaigns, optimize performance, and answer any questions you have about Walmart advertising. What can I help you with today?";
-    }
-
-    // Birthday message (easter egg from original)
-    if (input.includes('birthday')) {
-      return "🎉 Happy Birthday! 🎂 While I can't help with party planning, I can definitely help make your campaigns more successful! Want to create a special promotional campaign to celebrate? 🎈";
-    }
-    
-    // Default response
-    return "That's a great question! While I'm still learning, I can help you with:\n\n• Creating and managing campaigns\n• Understanding your performance metrics\n• Optimizing your advertising strategy\n• Answering questions about Walmart advertising\n\nCould you rephrase your question or let me know which of these areas you'd like to explore?";
   };
 
   const simulateTyping = async (response: string): Promise<void> => {
@@ -352,7 +319,7 @@ export default function MartyFloatingPanel() {
       setMessages(prev => [...prev, responseMsg]);
       
       // Transition to campaign setup
-      setTimeout(() => {
+      safeTimeout(() => {
         setViewState('campaignSetup');
       }, 1000);
       return;
@@ -415,13 +382,13 @@ export default function MartyFloatingPanel() {
       setIsTyping(false);
       
       // Show campaign setup view
-      setTimeout(() => {
+      safeTimeout(() => {
         setViewState('campaignSetup');
       }, 800);
       
     } else if (action === 'help') {
       setUserMessage('Help & FAQs');
-      setTimeout(() => handleSendMessage(), 100);
+      safeTimeout(() => handleSendMessage(), 100);
     }
   };
 
@@ -453,7 +420,7 @@ export default function MartyFloatingPanel() {
     setIsTyping(false);
     
     // Transition to form
-    setTimeout(() => {
+    safeTimeout(() => {
       setViewState('campaignForm');
     }, 800);
   };
@@ -505,7 +472,7 @@ export default function MartyFloatingPanel() {
               handleExpand(e);
             }
             // Reset the ref after handling click
-            setTimeout(() => {
+            safeTimeout(() => {
               isDraggingRef.current = false;
             }, 100);
           }}

@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Home",
+    "notifications": "Notifications",
+    "charts": "Charts",
+    "tools": "Tools",
+    "media": "Media",
+    "uploads": "Uploads",
+    "subPage": "Sub page",
+    "catalog": "Catalog",
+    "pricing": "Pricing",
+    "orders": "Orders"
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "viewEdit": "View/edit"
+  },
+  "language": {
+    "label": "Language",
+    "english": "English (US)",
+    "french": "Français",
+    "spanish": "Español"
+  },
+  "masthead": {
+    "appSwitcher": "App switcher",
+    "notifications": "Notifications",
+    "help": "Help",
+    "account": "Account",
+    "openMarty": "Open Marty"
+  },
+  "sidebar": {
+    "expand": "Expand sidebar",
+    "collapse": "Collapse sidebar"
+  }
+}

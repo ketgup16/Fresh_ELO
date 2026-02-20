@@ -15,6 +15,8 @@ export interface DataTableCellSelectProps
     CommonProps {
   /** ID(s) of visible label element(s) for a11y. */
   a11yLabelledBy: string;
+  /** Row identifier for unique aria-label (e.g. row index or item name). */
+  rowLabel?: string | number;
   checked?: boolean;
   disabled?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -26,6 +28,7 @@ export const DataTableCellSelect = React.forwardRef<HTMLTableCellElement, DataTa
   (
     {
       a11yLabelledBy,
+      rowLabel,
       checked = false,
       disabled = false,
       onChange,
@@ -57,7 +60,7 @@ export const DataTableCellSelect = React.forwardRef<HTMLTableCellElement, DataTa
           onCheckedChange={handleCheckedChange}
           name={name}
           value={value}
-          aria-label={`Select row`}
+          aria-label={rowLabel != null ? `Select row ${rowLabel}` : 'Select row'}
         />
       </td>
     );

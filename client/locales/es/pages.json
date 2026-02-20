@@ -1,0 +1,26 @@
+{
+  "index": {
+    "title": "Panel de control",
+    "welcome": "Bienvenido de nuevo",
+    "alertTitle": "Acción necesaria",
+    "alertDescription": "Tienes elementos que requieren tu atención."
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "Lo sentimos, la página que buscas no existe o ha sido movida.",
+    "backHome": "Volver al inicio"
+  },
+  "landingSummary": {
+    "title": "Resumen de landing",
+    "buttonLabel": "Etiqueta del botón"
+  },
+  "landingConnection": {
+    "title": "Conexión de landing"
+  },
+  "catalog": {
+    "title": "Catálogo"
+  },
+  "detailItem": {
+    "title": "Detalle del artículo"
+  }
+}

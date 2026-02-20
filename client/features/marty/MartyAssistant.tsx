@@ -1,5 +1,5 @@
 import { ArrowLeft, Calendar } from "@/components/icons";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 
@@ -10,11 +10,16 @@ export default function MartyAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [viewState, setViewState] = useState<ViewState>("welcome");
   const [dailyBudget, setDailyBudget] = useState("");
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  useEffect(() => {
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, []);
 
   const handleCreateCampaign = () => {
     setViewState("thinking");
     // Simulate thinking delay
-    setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setViewState("campaign-form");
     }, 1500);
   };
@@ -252,16 +257,16 @@ export default function MartyAssistant() {
               <div className="flex flex-col items-start gap-2.5 self-stretch">
                 <div className="flex items-center gap-3 self-stretch">
                   <div className="flex h-[69px] flex-col justify-center items-center gap-2 flex-1 aspect-square rounded-lg border border-[#E3E4E5]">
-                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/b6b4cdf9361b1ac23ec99887ba61e7a25ca3b0ca?width=106" alt="" className="w-[53px] h-[53px] mix-blend-multiply" />
+                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/b6b4cdf9361b1ac23ec99887ba61e7a25ca3b0ca?width=106" alt="Free Rein Coffee product 1" className="w-[53px] h-[53px] mix-blend-multiply" />
                   </div>
                   <div className="flex h-[69px] flex-col justify-center items-center gap-2 flex-1 aspect-square rounded-lg border border-[#E3E4E5]">
-                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/2a290bc40ba4ec7f8f862e2a3a3faad72e8d3d18?width=106" alt="" className="w-[53px] h-[53px] mix-blend-multiply" />
+                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/2a290bc40ba4ec7f8f862e2a3a3faad72e8d3d18?width=106" alt="Free Rein Coffee product 2" className="w-[53px] h-[53px] mix-blend-multiply" />
                   </div>
                   <div className="flex h-[69px] flex-col justify-center items-center gap-2 flex-1 aspect-square rounded-lg border border-[#E3E4E5]">
-                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/4af3fdb6e6f24421ca5071fdbd5ba9c3bcc9bde3?width=106" alt="" className="w-[53px] h-[53px] mix-blend-multiply" />
+                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/4af3fdb6e6f24421ca5071fdbd5ba9c3bcc9bde3?width=106" alt="Free Rein Coffee product 3" className="w-[53px] h-[53px] mix-blend-multiply" />
                   </div>
                   <div className="flex h-[69px] flex-col justify-center items-center gap-2 flex-1 aspect-square rounded-lg border border-[#E3E4E5]">
-                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/58079636d483927c7a6b8c0fd5f2a2c348acd83e?width=106" alt="" className="w-[53px] h-[53px] mix-blend-multiply" />
+                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/58079636d483927c7a6b8c0fd5f2a2c348acd83e?width=106" alt="Free Rein Coffee product 4" className="w-[53px] h-[53px] mix-blend-multiply" />
                   </div>
                   <div className="h-[69px] flex-1 aspect-square rounded-lg border border-[#E3E4E5] relative">
                     <div className="w-[53px] text-[#74767C] text-center text-base font-bold leading-6 absolute left-2 top-2.5">+16</div>

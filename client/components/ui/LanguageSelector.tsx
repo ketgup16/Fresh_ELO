@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './LanguageSelector.module.css';
 
 // Inline SVG flag components with circular clip
@@ -133,7 +134,8 @@ const LANGUAGES: Language[] = [
 ];
 
 export function LanguageSelector() {
-  const [selected, setSelected] = useState(LANGUAGES[0]);
+  const { i18n } = useTranslation();
+  const currentLang = LANGUAGES.find(l => l.code === i18n.language) || LANGUAGES[0];
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -154,10 +156,10 @@ export function LanguageSelector() {
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-label={`Language: ${selected.label}`}
+        aria-label={`Language: ${currentLang.label}`}
       >
         <span className={styles.flagIcon}>
-          <selected.FlagSmall />
+          <currentLang.FlagSmall />
         </span>
         <CaretDown />
       </button>
@@ -168,10 +170,10 @@ export function LanguageSelector() {
             <button
               key={lang.code}
               role="option"
-              aria-selected={selected.code === lang.code}
-              className={`${styles.option} ${selected.code === lang.code ? styles.optionSelected : ''}`}
+              aria-selected={currentLang.code === lang.code}
+              className={`${styles.option} ${currentLang.code === lang.code ? styles.optionSelected : ''}`}
               onClick={() => {
-                setSelected(lang);
+                i18n.changeLanguage(lang.code);
                 setOpen(false);
               }}
             >
