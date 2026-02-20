@@ -96,8 +96,8 @@ export function GettingStartedDesigner() {
           margin: 0,
         }}>
           This guide walks you through dropping the Living Design 3.5 Portable Kit into a new or
-          existing Builder.io project. No coding experience required &mdash; just follow the steps
-          below and the kit handles the rest.
+          existing project &mdash; whether you're using Builder.io, Cursor, Figma Make, or any other
+          tool. No coding experience required &mdash; just follow the steps below and the kit handles the rest.
         </p>
       </div>
 
@@ -250,6 +250,209 @@ export function GettingStartedDesigner() {
               are built into the components themselves.
             </div>
           </div>
+        </div>
+      </SectionCard>
+
+      {/* Using Outside Builder.io */}
+      <SectionCard title="Using Outside Builder.io & Fusion">
+        <p style={{
+          fontSize: '14px',
+          lineHeight: 1.6,
+          color: 'var(--ld-semantic-color-text-subtle)',
+          marginBottom: '20px',
+        }}>
+          This kit is fully portable. You can download the code and use it in any environment
+          that supports React. Here are the most common external workflows:
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+
+          {/* Cursor */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '6px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-brand)',
+          }}>
+            <div style={{ fontWeight: 700, marginBottom: '8px', fontSize: '15px', color: 'var(--ld-semantic-color-text)' }}>
+              Cursor (AI Code Editor)
+            </div>
+            <div style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', marginBottom: '12px' }}>
+              Download the project and open it in Cursor. The AI will be able to read the
+              component library and generate code that uses the design system correctly.
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {[
+                'Download the project as a zip and extract it to a local folder',
+                'Open the folder in Cursor',
+                'Run pnpm install in the terminal to install dependencies',
+                'Run pnpm dev to start the dev server and preview in your browser',
+                'Point Cursor\'s AI at the guidelines/ folder — add it to your .cursorrules or project context so the AI knows the design system rules',
+                'Copy the contents of design-system-docs/AGENTS.md into your .cursorrules file for component reference',
+                'When prompting, reference component names (e.g., "use a Button with variant primary") and the AI will use the correct imports',
+              ].map((step, i) => (
+                <div key={i} style={{
+                  display: 'flex',
+                  gap: '10px',
+                  fontSize: '13px',
+                  lineHeight: 1.5,
+                  color: 'var(--ld-semantic-color-text-subtle)',
+                  alignItems: 'flex-start',
+                }}>
+                  <span style={{
+                    minWidth: '22px',
+                    height: '22px',
+                    backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontWeight: 700,
+                    fontSize: '11px',
+                    color: 'var(--ld-semantic-color-text-brand-bold)',
+                    flexShrink: 0,
+                    marginTop: '1px',
+                  }}>
+                    {i + 1}
+                  </span>
+                  <span>{step}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Figma Make */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '6px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-brand)',
+          }}>
+            <div style={{ fontWeight: 700, marginBottom: '8px', fontSize: '15px', color: 'var(--ld-semantic-color-text)' }}>
+              Figma Make (Figma-to-Code)
+            </div>
+            <div style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', marginBottom: '12px' }}>
+              Export designs from Figma and use this kit as the target component library.
+              Figma Make can generate code that maps to the existing LD 3.5 components.
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {[
+                'Download the project and open it in your code editor of choice',
+                'In Figma, use the Make plugin or export your designs as code',
+                'Map Figma component names to the kit components (e.g., Figma "[LD 3.5] Button" maps to the Button component in client/components/ui/Button.tsx)',
+                'Replace any hard-coded colors in the generated code with semantic tokens (var(--ld-semantic-color-*))',
+                'Replace raw HTML elements (<button>, <input>) with kit components (<Button>, <TextField>)',
+                'Verify all interactive states (hover, focus, disabled) are handled — the kit components include these automatically',
+              ].map((step, i) => (
+                <div key={i} style={{
+                  display: 'flex',
+                  gap: '10px',
+                  fontSize: '13px',
+                  lineHeight: 1.5,
+                  color: 'var(--ld-semantic-color-text-subtle)',
+                  alignItems: 'flex-start',
+                }}>
+                  <span style={{
+                    minWidth: '22px',
+                    height: '22px',
+                    backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontWeight: 700,
+                    fontSize: '11px',
+                    color: 'var(--ld-semantic-color-text-brand-bold)',
+                    flexShrink: 0,
+                    marginTop: '1px',
+                  }}>
+                    {i + 1}
+                  </span>
+                  <span>{step}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Any Editor */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '6px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-brand)',
+          }}>
+            <div style={{ fontWeight: 700, marginBottom: '8px', fontSize: '15px', color: 'var(--ld-semantic-color-text)' }}>
+              Any Code Editor (VS Code, WebStorm, etc.)
+            </div>
+            <div style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+              The kit is a standard React + Vite project. Download it, run <code style={{
+                fontFamily: 'var(--ld-semantic-font-family-mono)',
+                fontSize: '13px',
+                backgroundColor: 'var(--ld-semantic-color-surface)',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                border: '1px solid var(--ld-semantic-color-border-moderate)',
+              }}>pnpm install</code> and <code style={{
+                fontFamily: 'var(--ld-semantic-font-family-mono)',
+                fontSize: '13px',
+                backgroundColor: 'var(--ld-semantic-color-surface)',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                border: '1px solid var(--ld-semantic-color-border-moderate)',
+              }}>pnpm dev</code>, and start building.
+              All components, tokens, icons, and translations work identically regardless of your editor.
+              Reference the <code style={{
+                fontFamily: 'var(--ld-semantic-font-family-mono)',
+                fontSize: '13px',
+                backgroundColor: 'var(--ld-semantic-color-surface)',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                border: '1px solid var(--ld-semantic-color-border-moderate)',
+              }}>guidelines/</code> folder for component documentation and design system rules.
+            </div>
+          </div>
+        </div>
+      </SectionCard>
+
+      {/* Key Files for External Use */}
+      <SectionCard title="Key Files to Know (For Any Tool)">
+        <p style={{
+          fontSize: '14px',
+          lineHeight: 1.6,
+          color: 'var(--ld-semantic-color-text-subtle)',
+          marginBottom: '16px',
+        }}>
+          Regardless of which tool you use, these are the important locations in the project:
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+          {[
+            { path: 'client/components/ui/', desc: 'All 50+ pre-built components (Button, TextField, Card, Modal, etc.)' },
+            { path: 'client/styles/themes/', desc: 'Theme files — switch brands by swapping the active theme CSS' },
+            { path: 'client/components/icons/', desc: '300+ icons ready to import and use' },
+            { path: 'guidelines/', desc: 'Design system rules, component docs, and enforcement rules' },
+            { path: 'design-system-docs/AGENTS.md', desc: 'AI agent reference — paste into .cursorrules or AI system prompts' },
+            { path: 'client/locales/', desc: 'Translation files for English, Spanish, and French' },
+            { path: 'public/fonts/', desc: 'Brand fonts (Everyday Sans) — must be included for correct rendering' },
+          ].map((item) => (
+            <div key={item.path} style={{
+              display: 'grid',
+              gridTemplateColumns: '280px 1fr',
+              gap: '16px',
+              padding: '10px 16px',
+              backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+              borderRadius: '6px',
+              fontSize: '14px',
+              alignItems: 'center',
+            }}>
+              <code style={{
+                fontFamily: 'var(--ld-semantic-font-family-mono)',
+                fontSize: '13px',
+                color: 'var(--ld-semantic-color-text)',
+              }}>
+                {item.path}
+              </code>
+              <span style={{ color: 'var(--ld-semantic-color-text-subtle)' }}>{item.desc}</span>
+            </div>
+          ))}
         </div>
       </SectionCard>
 

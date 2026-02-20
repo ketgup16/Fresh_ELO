@@ -341,6 +341,94 @@ export default function GettingStartedPage() {
               </div>
             </SectionCard>
 
+            {/* Standalone Setup */}
+            <SectionCard title="Standalone Setup (Outside Builder.io)">
+              <p style={{
+                fontSize: '14px',
+                lineHeight: 1.6,
+                color: 'var(--ld-semantic-color-text-subtle)',
+                marginBottom: '16px',
+              }}>
+                This kit is a standard React + Vite project that works anywhere. Here's how to use it
+                outside of Builder.io and Fusion:
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {[
+                  {
+                    title: 'Download the project',
+                    detail: 'Use the Download button in Builder.io, or clone the git repo. You\'ll get the full project with all components, tokens, icons, and translations.',
+                  },
+                  {
+                    title: 'Open in your editor',
+                    detail: 'Works with any editor: Cursor, VS Code, WebStorm, Zed, etc. Open the root folder as a project.',
+                  },
+                  {
+                    title: 'Install & run',
+                    code: 'pnpm install && pnpm dev',
+                    detail: 'Standard Node.js setup. The dev server starts with hot module replacement on localhost.',
+                  },
+                  {
+                    title: 'Configure AI context (Cursor / Copilot / Windsurf)',
+                    detail: 'Copy the contents of design-system-docs/AGENTS.md and guidelines/rules/ into your AI editor\'s context file (.cursorrules, .github/copilot-instructions.md, etc.). This teaches the AI to use LD 3.5 components and tokens correctly instead of generating raw HTML.',
+                  },
+                  {
+                    title: 'Figma Make integration',
+                    detail: 'When using Figma Make to generate code, point it at this project as the target. Map Figma component names (e.g., "[LD 3.5] Button") to the kit components (client/components/ui/Button.tsx). Post-process the output to replace hard-coded colors with semantic tokens.',
+                  },
+                  {
+                    title: 'No Builder.io dependency',
+                    detail: 'The kit has zero runtime dependencies on Builder.io. All components, themes, icons, and i18n work standalone. The only Builder.io-specific feature is the Fusion AI agent integration, which is optional.',
+                  },
+                ].map((item, i) => (
+                  <div key={i} style={{
+                    display: 'flex',
+                    gap: '16px',
+                    padding: '20px',
+                    backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                    borderRadius: '8px',
+                  }}>
+                    <div style={{
+                      minWidth: '36px',
+                      height: '36px',
+                      backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle)',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 700,
+                      fontSize: '16px',
+                      color: 'var(--ld-semantic-color-text-brand-bold)',
+                    }}>
+                      {i + 1}
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '6px', color: 'var(--ld-semantic-color-text)' }}>
+                        {item.title}
+                      </div>
+                      {'code' in item && item.code && (
+                        <div style={{
+                          fontFamily: 'var(--ld-semantic-font-family-mono)',
+                          fontSize: '13px',
+                          backgroundColor: 'var(--ld-semantic-color-surface)',
+                          padding: '8px 14px',
+                          borderRadius: '4px',
+                          marginBottom: '8px',
+                          color: 'var(--ld-semantic-color-text)',
+                          border: '1px solid var(--ld-semantic-color-border-moderate)',
+                          display: 'inline-block',
+                        }}>
+                          $ {item.code}
+                        </div>
+                      )}
+                      <div style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                        {item.detail}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </SectionCard>
+
             {/* Deployment */}
             <SectionCard title="Deployment">
               <p style={{
