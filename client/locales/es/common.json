@@ -37,6 +37,7 @@
   },
   "sidebar": {
     "expand": "Expandir barra lateral",
-    "collapse": "Contraer barra lateral"
+    "collapse": "Contraer barra lateral",
+    "lock": "Fijar"
   }
 }

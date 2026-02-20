@@ -1,14 +1,32 @@
 {
   "index": {
-    "title": "Panel de control",
-    "welcome": "Bienvenido de nuevo",
-    "alertTitle": "Acción necesaria",
-    "alertDescription": "Tienes elementos que requieren tu atención."
+    "alertMessage": "Esta es una plantilla: reemplaza este contenido con tu aplicación. Usa la Biblioteca de Componentes para explorar todos los componentes LD 3.5 disponibles.",
+    "helloWorld": "Hola Mundo",
+    "category": "Categoría",
+    "headingText": "Texto de encabezado",
+    "bodyText": "Texto del cuerpo",
+    "callToAction": "Llamada a la acción",
+    "daysWindow": "Ventana de días",
+    "dateRange": "Rango de fechas",
+    "days_7": "7 días",
+    "days_14": "14 días",
+    "days_28": "28 días",
+    "days_30": "30 días",
+    "topPerformingByROAS": "Mejor rendimiento por ROAS",
+    "impressions": "Impresiones",
+    "eCPM": "eCPM",
+    "spend": "Gasto",
+    "totalROAS": "ROAS total",
+    "totalAttributedSales": "Ventas atribuidas totales",
+    "totalAttributedOrders": "Pedidos atribuidos totales",
+    "totalAttributedUnits": "Unidades atribuidas totales"
   },
   "notFound": {
-    "title": "Página no encontrada",
-    "description": "Lo sentimos, la página que buscas no existe o ha sido movida.",
-    "backHome": "Volver al inicio"
+    "errorCode": "404",
+    "heading": "Página no encontrada",
+    "description": "La página que buscas no existe o ha sido movida.",
+    "goBack": "Volver",
+    "goHome": "Ir a la página de inicio"
   },
   "landingSummary": {
     "title": "Resumen de landing",

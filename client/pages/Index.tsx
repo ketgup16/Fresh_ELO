@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
+import { useTranslation } from 'react-i18next';
 import styles from "@/styles/responsive.module.css";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -22,30 +23,10 @@ import {
   Upload,
 } from "@/components/icons";
 
-/**
- * Dashboard page sidebar menu items — Advertising / Home navigation.
- * Each page defines its own menu items relevant to that page's context.
- */
-const dashboardMenuItems: SidebarMenuItem[] = [
-  { id: "dashboard", label: "Home", Icon: Home, route: "/" },
-  {
-    id: "campaigns",
-    label: "Notifications",
-    Icon: Megaphone,
-    submenuItems: [
-      { id: "campaigns-sub1", label: "Sub page" },
-      { id: "campaigns-sub2", label: "Sub page" },
-      { id: "campaigns-sub3", label: "Sub page" },
-    ],
-  },
-  { id: "reports", label: "Charts", Icon: BarGraph },
-  { id: "tools", label: "Tools", Icon: Toolbox },
-  { id: "video-manager", label: "Media", Icon: Image },
-  { id: "bulk-operations", label: "Uploads", Icon: Upload },
-];
-
 export default function Index() {
   const [activeMenuItem, setActiveMenuItem] = useState("dashboard");
+  const { t } = useTranslation();
+  const { t: tp } = useTranslation('pages');
 
   return (
     <div className={styles.root}>
@@ -53,7 +34,6 @@ export default function Index() {
 
       <div className={styles.appRow}>
         <AppSidebar
-          menuItems={dashboardMenuItems}
           activeMenuItem={activeMenuItem}
           onMenuItemClick={setActiveMenuItem}
         />
@@ -62,12 +42,11 @@ export default function Index() {
           <div className={styles.pageContent}>
             <div className={styles.alertWrapper}>
               <Alert variant="info">
-                This is a template -- replace this content with your application.
-                Use the Component Library to explore all available LD 3.5 components.
+                {tp('index.alertMessage')}
               </Alert>
             </div>
 
-            <h2 className={styles.pageTitle}>Hello World</h2>
+            <h2 className={styles.pageTitle}>{tp('index.helloWorld')}</h2>
 
             <RecommendationsCards />
 
@@ -78,7 +57,7 @@ export default function Index() {
             <Divider />
 
             {/* Section header — 8px hierarchy rule: title 24px above tabs/content, 16px below divider */}
-            <SectionHeader title="Top performing by ROAS" />
+            <SectionHeader title={tp('index.topPerformingByROAS')} />
 
             <div className={styles.tableCard}>
               <DataTableExample />
@@ -122,25 +101,26 @@ function RecommendationCard({
 }
 
 function RecommendationsCards() {
+  const { t } = useTranslation('pages');
   return (
     <div className={styles.threeColGrid}>
       <RecommendationCard
-        category="Category"
-        heading="Heading Text"
-        body="Body Text"
-        cta="Call to Action"
+        category={t('index.category')}
+        heading={t('index.headingText')}
+        body={t('index.bodyText')}
+        cta={t('index.callToAction')}
       />
       <RecommendationCard
-        category="Category"
-        heading="Heading Text"
-        body="Body Text"
-        cta="Call to Action"
+        category={t('index.category')}
+        heading={t('index.headingText')}
+        body={t('index.bodyText')}
+        cta={t('index.callToAction')}
       />
       <RecommendationCard
-        category="Category"
-        heading="Heading Text"
-        body="Body Text"
-        cta="Call to Action"
+        category={t('index.category')}
+        heading={t('index.headingText')}
+        body={t('index.bodyText')}
+        cta={t('index.callToAction')}
       />
     </div>
   );
@@ -151,25 +131,26 @@ function RecommendationsCards() {
 function FilterBar() {
   const [daysWindow, setDaysWindow] = useState("14");
   const [dateRange, setDateRange] = useState("range-1");
+  const { t } = useTranslation('pages');
 
   return (
     <div className={styles.filterBar}>
       <div className={styles.selectField}>
         <Select
-          label="Days window"
+          label={t('index.daysWindow')}
           value={daysWindow}
           onValueChange={setDaysWindow}
           size="large"
         >
-          <SelectItem value="7">7 days</SelectItem>
-          <SelectItem value="14">14 days</SelectItem>
-          <SelectItem value="28">28 days</SelectItem>
-          <SelectItem value="30">30 days</SelectItem>
+          <SelectItem value="7">{t('index.days_7')}</SelectItem>
+          <SelectItem value="14">{t('index.days_14')}</SelectItem>
+          <SelectItem value="28">{t('index.days_28')}</SelectItem>
+          <SelectItem value="30">{t('index.days_30')}</SelectItem>
         </Select>
       </div>
       <div className={styles.selectFieldWide}>
         <Select
-          label="Date range"
+          label={t('index.dateRange')}
           value={dateRange}
           onValueChange={setDateRange}
           size="large"
@@ -201,17 +182,18 @@ function SectionHeader({ title }: { title: string }) {
 /* ─── Metrics Row ─── */
 
 function MetricsRow() {
+  const { t } = useTranslation('pages');
   return (
     <Card UNSAFE_style={{ marginBottom: "24px" }}>
       <CardContent>
         <div className={styles.metricsGrid7}>
-          <Metric title="Impressions" value="21,891,371" variant="positiveUp" textLabel="6%" showInfoIcon />
-          <Metric title="eCPM" value="$5.52" variant="negativeDown" textLabel="1%" showInfoIcon />
-          <Metric title="Spend" value="$120,869" variant="neutral" textLabel="0%" showInfoIcon />
-          <Metric title="Total ROAS" value="$3.13" variant="positiveUp" textLabel="1%" showInfoIcon />
-          <Metric title="Total attributed sales" value="$377,588" variant="positiveUp" textLabel="3%" showInfoIcon />
-          <Metric title="Total attributed orders" value="30,666" variant="positiveUp" textLabel="4%" showInfoIcon />
-          <Metric title="Total attributed units" value="21,891,371" variant="positiveUp" textLabel="2%" showInfoIcon />
+          <Metric title={t('index.impressions')} value="21,891,371" variant="positiveUp" textLabel="6%" showInfoIcon />
+          <Metric title={t('index.eCPM')} value="$5.52" variant="negativeDown" textLabel="1%" showInfoIcon />
+          <Metric title={t('index.spend')} value="$120,869" variant="neutral" textLabel="0%" showInfoIcon />
+          <Metric title={t('index.totalROAS')} value="$3.13" variant="positiveUp" textLabel="1%" showInfoIcon />
+          <Metric title={t('index.totalAttributedSales')} value="$377,588" variant="positiveUp" textLabel="3%" showInfoIcon />
+          <Metric title={t('index.totalAttributedOrders')} value="30,666" variant="positiveUp" textLabel="4%" showInfoIcon />
+          <Metric title={t('index.totalAttributedUnits')} value="21,891,371" variant="positiveUp" textLabel="2%" showInfoIcon />
         </div>
       </CardContent>
     </Card>

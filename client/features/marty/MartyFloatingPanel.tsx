@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import Reports from "@/components/icons/Reports";
 import { Button } from "@/components/ui/Button";
 import { DateField } from "@/components/ui/DateField";
@@ -20,6 +21,7 @@ interface Message {
 }
 
 export default function MartyFloatingPanel() {
+  const { t } = useTranslation('marty');
   const { isMinimized, setIsMinimized, isDocked, setIsDocked, initialPosition, setInitialPosition } = useMarty();
   const navigate = useNavigate();
   const location = useLocation();
@@ -523,7 +525,7 @@ export default function MartyFloatingPanel() {
                   }`}
                 >
                   <div className="bg-white rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.15)] px-3 py-2 relative whitespace-nowrap">
-                    <span className="text-sm text-[#2E2F32] font-normal">I have something to show you</span>
+                    <span className="text-sm text-[#2E2F32] font-normal">{t('tooltip')}</span>
                     {/* Speech bubble arrow - position changes based on tooltip location */}
                     {tooltipPosition === 'top' && (
                       <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white drop-shadow-sm" />
@@ -548,11 +550,11 @@ export default function MartyFloatingPanel() {
             }`}>
               {!hasMoved ? (
                 <>
-                  <span className="inline-block max-w-0 opacity-0 group-hover:max-w-[150px] group-hover:opacity-100 font-normal overflow-hidden transition-all duration-200 ease-out">Have a question?</span>
-                  <span className="font-bold">Ask Marty</span>
+                  <span className="inline-block max-w-0 opacity-0 group-hover:max-w-[150px] group-hover:opacity-100 font-normal overflow-hidden transition-all duration-200 ease-out">{t('haveQuestion')}</span>
+                  <span className="font-bold">{t('askMarty')}</span>
                 </>
               ) : (
-                <span className="font-normal whitespace-nowrap">Have a question? <span className="font-bold">Ask Marty</span></span>
+                <span className="font-normal whitespace-nowrap">{t('haveQuestion')} <span className="font-bold">{t('askMarty')}</span></span>
               )}
             </div>
           </div>
@@ -644,7 +646,7 @@ export default function MartyFloatingPanel() {
           <div className="flex flex-col items-start gap-6 self-stretch bg-white">
             {/* Welcome Section */}
             <div className="flex flex-col items-start gap-4 self-stretch bg-white">
-              <h1 
+              <h1
                 className="self-stretch font-bold text-2xl leading-8"
                 style={{
                   background: 'linear-gradient(134deg, #993EF4 10.5%, #3F7FCF 71.77%, #00AD9F 102.41%)',
@@ -653,10 +655,10 @@ export default function MartyFloatingPanel() {
                   WebkitTextFillColor: 'transparent'
                 }}
               >
-                Hi, Gabriela
+                {t('greeting')}
               </h1>
               <p className="self-stretch text-[#2E2F32] text-sm leading-5">
-                I'm your smart assistant, here to help you launch campaigns, get insights and find answers. What can I help you with today?
+                {t('welcomeMessage')}
               </p>
             </div>
 
@@ -667,14 +669,14 @@ export default function MartyFloatingPanel() {
                 variant="tertiary"
                 UNSAFE_className="max-w-[318px] text-sm"
               >
-                Create campaign
+                {t('createCampaign')}
               </Button>
               <Button
                 onClick={() => handleQuickAction('help')}
                 variant="tertiary"
                 UNSAFE_className="max-w-[318px] text-sm"
               >
-                Help & FAQs
+                {t('helpFaq')}
               </Button>
             </div>
           </div>
@@ -687,7 +689,7 @@ export default function MartyFloatingPanel() {
           <div className="flex-1 overflow-y-auto px-4 py-4">
             {messages.length === 0 ? (
               <div className="flex flex-col items-start gap-4 h-full justify-center">
-                <h1 
+                <h1
                   className="self-stretch font-bold text-2xl leading-8"
                   style={{
                     background: 'linear-gradient(134deg, #993EF4 10.5%, #3F7FCF 71.77%, #00AD9F 102.41%)',
@@ -696,10 +698,10 @@ export default function MartyFloatingPanel() {
                     WebkitTextFillColor: 'transparent'
                   }}
                 >
-                  Hi, Gabriela
+                  {t('greeting')}
                 </h1>
                 <p className="self-stretch text-[#2E2F32] text-sm leading-5">
-                  I'm your smart assistant, here to help you launch campaigns, get insights and find answers. What can I help you with today?
+                  {t('welcomeMessage')}
                 </p>
               </div>
             ) : (
@@ -771,7 +773,7 @@ export default function MartyFloatingPanel() {
                       <path d="M9.92434 4.52583C10.3358 4.91494 8.37747 6.14766 8.17175 5.95151C8.32166 5.1988 9.08552 4.35042 9.92434 4.52583Z" fill="#011B56"/>
                     </svg>
                     <div className="text-[#2E2F32] text-sm leading-5">
-                      Thinking<span className="inline-flex">
+                      {t('thinking')}<span className="inline-flex">
                         <span className="animate-[bounce_1.4s_ease-in-out_infinite]" style={{ animationDelay: '0ms' }}>.</span>
                         <span className="animate-[bounce_1.4s_ease-in-out_infinite]" style={{ animationDelay: '200ms' }}>.</span>
                         <span className="animate-[bounce_1.4s_ease-in-out_infinite]" style={{ animationDelay: '400ms' }}>.</span>
@@ -851,25 +853,25 @@ export default function MartyFloatingPanel() {
                 <div className="flex w-full justify-start">
                   <div className="flex flex-col gap-2 max-w-[85%]">
                     <Button
-                      onClick={() => handleCampaignTypeSelection('Sponsored Products Automatic')}
+                      onClick={() => handleCampaignTypeSelection(t('campaignTypes.sponsoredAutomatic'))}
                       variant="tertiary"
                       UNSAFE_className="text-sm"
                     >
-                      Sponsored Products Automatic
+                      {t('campaignTypes.sponsoredAutomatic')}
                     </Button>
                     <Button
-                      onClick={() => handleCampaignTypeSelection('Sponsored Products Manual')}
+                      onClick={() => handleCampaignTypeSelection(t('campaignTypes.sponsoredManual'))}
                       variant="tertiary"
                       UNSAFE_className="text-sm"
                     >
-                      Sponsored Products Manual
+                      {t('campaignTypes.sponsoredManual')}
                     </Button>
                     <Button
-                      onClick={() => handleCampaignTypeSelection('Display Campaign')}
+                      onClick={() => handleCampaignTypeSelection(t('campaignTypes.display'))}
                       variant="tertiary"
                       UNSAFE_className="text-sm"
                     >
-                      Display Campaign
+                      {t('campaignTypes.display')}
                     </Button>
                   </div>
                 </div>
@@ -887,7 +889,7 @@ export default function MartyFloatingPanel() {
                     <path d="M9.92434 4.52583C10.3358 4.91494 8.37747 6.14766 8.17175 5.95151C8.32166 5.1988 9.08552 4.35042 9.92434 4.52583Z" fill="#011B56"/>
                   </svg>
                   <div className="text-[#2E2F32] text-sm leading-5">
-                    Thinking<span className="inline-flex">
+                    {t('thinking')}<span className="inline-flex">
                       <span className="animate-[bounce_1.4s_ease-in-out_infinite]" style={{ animationDelay: '0ms' }}>.</span>
                       <span className="animate-[bounce_1.4s_ease-in-out_infinite]" style={{ animationDelay: '200ms' }}>.</span>
                       <span className="animate-[bounce_1.4s_ease-in-out_infinite]" style={{ animationDelay: '400ms' }}>.</span>
@@ -908,7 +910,7 @@ export default function MartyFloatingPanel() {
                 value={userMessage}
                 onChange={(e) => setUserMessage(e.target.value)}
                 onKeyDown={handleKeyPress}
-                placeholder="Ask Marty anything..."
+                placeholder={t('inputPlaceholder')}
                 rows={1}
                 className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C] resize-none overflow-y-auto max-h-[152px] py-0.5 self-stretch my-auto"
               disabled={isTyping}
@@ -953,7 +955,7 @@ export default function MartyFloatingPanel() {
 
             {/* Disclaimer */}
             <div className="w-full text-[#74767C] text-center text-xs leading-4">
-              This smart assistant is powered by AI. It may make mistakes or use data from outside Walmart. Never share personally sensitive info. View <span className="underline hover:no-underline cursor-pointer">Disclaimer</span>.
+              {t('disclaimer')} <span className="underline hover:no-underline cursor-pointer">{t('disclaimerLink')}</span>.
             </div>
           </div>
         </div>
@@ -966,7 +968,7 @@ export default function MartyFloatingPanel() {
             <div className="flex flex-col items-start gap-1 self-stretch">
               <div className="flex pb-1 items-center gap-1 self-stretch">
                 <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
-                  Campaign type
+                  {t('campaign.type')}
                 </div>
               </div>
               <div className="flex h-10 px-3 py-2 items-center gap-2 self-stretch rounded-lg border border-[#909196] bg-white focus-within:border-[#0053E2] transition-colors">
@@ -985,7 +987,7 @@ export default function MartyFloatingPanel() {
             <div className="flex flex-col items-start gap-1 self-stretch">
               <div className="flex pb-1 items-center gap-1 self-stretch">
                 <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
-                  Campaign name
+                  {t('campaign.name')}
                 </div>
               </div>
               <div className="flex h-10 px-3 py-2 items-center gap-2 self-stretch rounded-lg border border-[#909196] bg-white focus-within:border-[#0053E2] transition-colors">
@@ -1003,7 +1005,7 @@ export default function MartyFloatingPanel() {
             {/* Start Date */}
             <div className="flex flex-col items-start gap-1 self-stretch">
               <div className="self-stretch text-[#2E2F32] text-xs font-bold leading-4">
-                Start date (mm/dd/yyyy)
+                {t('campaign.startDate')}
               </div>
               <div className="flex h-10 px-3 py-0 pr-1 items-center gap-3 self-stretch rounded-lg border border-[#909196] bg-white focus-within:border-[#0053E2] transition-colors">
                 <input
@@ -1028,7 +1030,7 @@ export default function MartyFloatingPanel() {
             <div className="flex flex-col items-start gap-1 self-stretch">
               <div className="flex pb-1 items-center gap-1 self-stretch">
                 <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
-                  Daily budget
+                  {t('campaign.dailyBudget')}
                 </div>
               </div>
               <div className="flex h-10 px-3 py-2 items-center gap-2 self-stretch rounded-lg border border-[#909196] bg-white focus-within:border-[#0053E2] transition-colors">
@@ -1051,17 +1053,17 @@ export default function MartyFloatingPanel() {
             <div className="flex flex-col items-start gap-1 self-stretch">
               <div className="flex pb-1 items-center gap-1 self-stretch">
                 <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
-                  Item list
+                  {t('campaign.itemList')}
                 </div>
               </div>
               <div className="flex h-10 pl-3 pr-3 items-center gap-2 self-stretch rounded-lg border border-[#909196] bg-white">
                 <div className="flex h-6 py-0.5 justify-center items-center flex-1">
                   <div className="w-full text-[#2E2F32] text-sm leading-5">
-                    Top suggestions from your catalog
+                    {t('campaign.topSuggestions')}
                   </div>
                 </div>
                 <button className="text-sm leading-5 underline hover:no-underline">
-                  Edit
+                  {t('actions.edit', { ns: 'common' })}
                 </button>
               </div>
             </div>
@@ -1075,7 +1077,7 @@ export default function MartyFloatingPanel() {
                 <div className="flex flex-col justify-center items-start gap-1 flex-1">
                   <div className="flex items-center self-stretch">
                     <div className="text-[#2E2F32] font-bold text-base leading-6">
-                      Additional settings
+                      {t('campaign.additionalSettings')}
                     </div>
                   </div>
                 </div>
@@ -1103,22 +1105,22 @@ export default function MartyFloatingPanel() {
                   <div className="flex flex-col items-start gap-2 self-stretch">
                     <div className="flex pb-1 items-center gap-1 self-stretch">
                       <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
-                        Expanded targeting
+                        {t('campaign.expandedTargeting')}
                       </div>
                     </div>
                     <div className="text-[#000] text-xs leading-4">
-                      Choose when customers see your ads. <span className="underline hover:no-underline cursor-pointer">Learn more</span>
+                      {t('campaign.expandedTargetingDesc')} <span className="underline hover:no-underline cursor-pointer">{t('campaign.learnMore')}</span>
                     </div>
 
                     {/* Checkboxes */}
                     <div className="flex flex-col items-start gap-2 mt-2">
                       <Checkbox
-                        label="Brand term targeting"
+                        label={t('campaign.brandTermTargeting')}
                         checked={campaignData.brandTermTargeting}
                         onCheckedChange={(checked) => setCampaignData({...campaignData, brandTermTargeting: !!checked})}
                       />
                       <Checkbox
-                        label="Complementary targeting"
+                        label={t('campaign.complementaryTargeting')}
                         checked={campaignData.complementaryTargeting}
                         onCheckedChange={(checked) => setCampaignData({...campaignData, complementaryTargeting: !!checked})}
                       />
@@ -1127,7 +1129,7 @@ export default function MartyFloatingPanel() {
 
                   {/* End Date */}
                   <DateField
-                    label="End date"
+                    label={t('campaign.endDate')}
                     value={campaignData.endDate}
                     onChange={(e) => setCampaignData({...campaignData, endDate: e.target.value})}
                     showCalendarIcon
@@ -1137,11 +1139,11 @@ export default function MartyFloatingPanel() {
                   <div className="flex flex-col items-start gap-2 self-stretch">
                     <div className="flex pb-1 items-center gap-1 self-stretch">
                       <div className="flex-1 text-[#2E2F32] text-xs font-bold leading-4">
-                        Bidding strategy
+                        {t('campaign.biddingStrategy')}
                       </div>
                     </div>
                     <div className="text-[#000] text-xs leading-4">
-                      Choose the strategy that best suits your business goals. <span className="underline hover:no-underline cursor-pointer">Learn more</span>
+                      {t('campaign.biddingStrategyDesc')} <span className="underline hover:no-underline cursor-pointer">{t('campaign.learnMore')}</span>
                     </div>
 
                     {/* Info Alert */}
@@ -1153,7 +1155,7 @@ export default function MartyFloatingPanel() {
                         <circle cx="8" cy="11.5" r="0.75" fill="#0053E2"/>
                       </svg>
                       <div className="flex-1 text-[#002E99] text-sm leading-5">
-                        When you switch to Dynamic or Fixed bidding we will apply the platform suggested bids to your items. You can change your bids at any time
+                        {t('campaign.biddingInfo')}
                       </div>
                     </div>
 
@@ -1180,7 +1182,7 @@ export default function MartyFloatingPanel() {
                           onChange={(e) => setCampaignData({...campaignData, biddingStrategy: 'dynamic'})}
                           className="sr-only"
                         />
-                        <span className="text-[#2E2F32] text-sm font-bold leading-5">Dynamic bidding</span>
+                        <span className="text-[#2E2F32] text-sm font-bold leading-5">{t('campaign.dynamicBidding')}</span>
                       </label>
 
                       <label className="flex items-center gap-3 cursor-pointer">
@@ -1204,7 +1206,7 @@ export default function MartyFloatingPanel() {
                           onChange={(e) => setCampaignData({...campaignData, biddingStrategy: 'fixed'})}
                           className="sr-only"
                         />
-                        <span className="text-[#2E2F32] text-sm leading-5">Fixed bidding</span>
+                        <span className="text-[#2E2F32] text-sm leading-5">{t('campaign.fixedBidding')}</span>
                       </label>
                     </div>
                   </div>
@@ -1217,7 +1219,7 @@ export default function MartyFloatingPanel() {
           <div className="flex flex-col items-start self-stretch bg-white">
             <div className="flex h-6 px-4 justify-center items-center gap-2.5 self-stretch">
               <div className="flex-1 text-[#74767C] text-center text-xs leading-4">
-                Click "Save and review" to view item list and all campaign creation options
+                {t('campaign.saveReviewHint')}
               </div>
             </div>
             <div className="flex px-4 py-4 flex-col justify-center items-end gap-3 self-stretch border-t border-[#E3E4E5] bg-white">
@@ -1227,14 +1229,14 @@ export default function MartyFloatingPanel() {
                   variant="secondary"
                   UNSAFE_className="text-base"
                 >
-                  Save and review
+                  {t('campaign.saveAndReview')}
                 </Button>
                 <Button
                   onClick={handleLaunchCampaign}
                   variant="primary"
                   UNSAFE_className="text-base"
                 >
-                  Launch campaign
+                  {t('campaign.launchCampaign')}
                 </Button>
               </div>
             </div>
@@ -1251,7 +1253,7 @@ export default function MartyFloatingPanel() {
                 <div className="flex w-full flex-col items-start gap-1 bg-white">
                   <div className="flex flex-col items-start gap-2 self-stretch">
                     <div className="self-stretch text-[#2E2F32] text-sm leading-5">
-                      I have added your selections and <span className="font-bold">your campaign is ready to launch.</span> You can still take a moment to review your campaign and make and final changes. When you're ready, click the<span className="font-bold"> "Launch campaign"</span> button in the top-right corner.
+                      {t('campaign.readyMessage')}
                     </div>
                   </div>
                 </div>
@@ -1260,13 +1262,13 @@ export default function MartyFloatingPanel() {
               {/* Prompt Suggestions */}
               <div className="flex w-full flex-col items-start gap-2 bg-white px-4">
                 <Button variant="tertiary" UNSAFE_className="max-w-[393px] text-sm">
-                  What can Marty help me do on this page?
+                  {t('campaign.whatCanMartyDo')}
                 </Button>
                 <Button variant="tertiary" UNSAFE_className="max-w-[393px] text-sm">
-                  How do I set up a Sponsored Products campaign?
+                  {t('campaign.howToSetup')}
                 </Button>
                 <Button variant="tertiary" UNSAFE_className="max-w-[393px] text-sm">
-                  Which items do you recommend I advertise?
+                  {t('campaign.whichItems')}
                 </Button>
               </div>
             </div>
@@ -1278,7 +1280,7 @@ export default function MartyFloatingPanel() {
               {/* Input Field */}
               <div className="flex max-h-44 px-4 py-3 items-end justify-start gap-6 self-stretch rounded-[30px] border border-[#4A4A4A] bg-white transition-colors focus-within:border-[#0053E2] focus-within:shadow-[0_0_0_1px_#0053E2]">
                 <div className="flex flex-col justify-center flex-1 self-stretch text-[#74767C] text-sm leading-5">
-                  Ask Marty anything...
+                  {t('inputPlaceholder')}
                 </div>
                 <button disabled className="flex p-2 flex-shrink-0 items-center justify-center rounded-full border border-transparent" style={{ backgroundColor: 'var(--ld-primitive-color-gray-50)' }}>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1290,7 +1292,7 @@ export default function MartyFloatingPanel() {
 
               {/* Disclaimer */}
               <div className="w-full text-[#74767C] text-center text-xs leading-4">
-                This smart assistant is powered by AI. It may make mistakes or use data from outside Walmart. Never share personally sensitive info. View <span className="underline hover:no-underline cursor-pointer">Disclaimer</span>.
+                {t('disclaimer')} <span className="underline hover:no-underline cursor-pointer">{t('disclaimerLink')}</span>.
               </div>
             </div>
           </div>
@@ -1304,7 +1306,7 @@ export default function MartyFloatingPanel() {
             <div className="flex w-full pl-20 flex-col items-end gap-1">
               <div className="flex max-w-[608px] px-4 py-2 flex-col items-start gap-2 rounded-lg [background:var(--ld-semantic-color-background-subtle)]">
                 <div className="self-stretch text-[#2E2F32] text-sm leading-5">
-                  Launch campaign
+                  {t('campaign.launchCampaign')}
                 </div>
               </div>
             </div>
@@ -1334,14 +1336,14 @@ export default function MartyFloatingPanel() {
               {/* Title and Message */}
               <div className="flex items-start self-stretch">
                 <div className="flex-1 text-[#000] font-bold text-[32px] leading-10">
-                  Campaign scheduled
+                  {t('campaign.scheduled')}
                 </div>
               </div>
 
               <div className="flex min-w-[393px] flex-col items-start gap-1 self-stretch bg-white">
                 <div className="flex flex-col items-start gap-2 self-stretch">
                   <div className="self-stretch text-[#2E2F32] text-sm leading-5">
-                    <span className="font-extrabold">Free Rein Coffee Campaign Fall 2025</span> is scheduled to start Oct 1, 2025. You can make changes anytime before it goes live.
+                    {t('campaign.scheduledMessage', { name: campaignData.campaignName, date: campaignData.startDate })}
                   </div>
                 </div>
               </div>
@@ -1354,7 +1356,7 @@ export default function MartyFloatingPanel() {
                 variant="tertiary"
                 UNSAFE_className="max-w-[318px] text-sm"
               >
-                View campaign
+                {t('campaign.viewCampaign')}
               </Button>
             </div>
           </div>
@@ -1366,7 +1368,7 @@ export default function MartyFloatingPanel() {
               {/* Input Field */}
               <div className="flex max-h-44 px-4 py-3 items-end justify-start gap-6 self-stretch rounded-[30px] border border-[#4A4A4A] bg-white transition-colors focus-within:border-[#0053E2] focus-within:shadow-[0_0_0_1px_#0053E2]">
                 <div className="flex flex-col justify-center flex-1 self-stretch text-[#74767C] text-sm leading-5">
-                  Ask Marty anything...
+                  {t('inputPlaceholder')}
                 </div>
                 <button className="flex p-2 flex-shrink-0 items-center justify-center rounded-full border border-transparent" style={{ backgroundColor: 'var(--ld-primitive-color-gray-50)' }}>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1378,7 +1380,7 @@ export default function MartyFloatingPanel() {
 
               {/* Disclaimer */}
               <div className="w-full text-[#74767C] text-center text-xs leading-4">
-                This smart assistant is powered by AI. It may make mistakes or use data from outside Walmart. Never share personally sensitive info. View <span className="underline hover:no-underline cursor-pointer">Disclaimer</span>.
+                {t('disclaimer')} <span className="underline hover:no-underline cursor-pointer">{t('disclaimerLink')}</span>.
               </div>
               </div>
             </div>
@@ -1396,7 +1398,7 @@ export default function MartyFloatingPanel() {
               value={userMessage}
               onChange={(e) => setUserMessage(e.target.value)}
               onKeyDown={handleKeyPress}
-              placeholder="Ask Marty anything..."
+              placeholder={t('inputPlaceholder')}
               rows={1}
               className="flex-1 text-[#2E2F32] text-sm leading-5 outline-none bg-transparent placeholder:text-[#74767C] resize-none overflow-y-auto max-h-[152px] py-0.5 self-stretch my-auto"
               disabled={isTyping}

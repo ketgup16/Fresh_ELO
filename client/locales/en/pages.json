@@ -1,14 +1,32 @@
 {
   "index": {
-    "title": "Dashboard",
-    "welcome": "Welcome back",
-    "alertTitle": "Action needed",
-    "alertDescription": "You have items that require your attention."
+    "alertMessage": "This is a template -- replace this content with your application. Use the Component Library to explore all available LD 3.5 components.",
+    "helloWorld": "Hello World",
+    "category": "Category",
+    "headingText": "Heading Text",
+    "bodyText": "Body Text",
+    "callToAction": "Call to Action",
+    "daysWindow": "Days window",
+    "dateRange": "Date range",
+    "days_7": "7 days",
+    "days_14": "14 days",
+    "days_28": "28 days",
+    "days_30": "30 days",
+    "topPerformingByROAS": "Top performing by ROAS",
+    "impressions": "Impressions",
+    "eCPM": "eCPM",
+    "spend": "Spend",
+    "totalROAS": "Total ROAS",
+    "totalAttributedSales": "Total attributed sales",
+    "totalAttributedOrders": "Total attributed orders",
+    "totalAttributedUnits": "Total attributed units"
   },
   "notFound": {
-    "title": "Page not found",
-    "description": "Sorry, the page you are looking for doesn't exist or has been moved.",
-    "backHome": "Back to home"
+    "errorCode": "404",
+    "heading": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "goBack": "Go Back",
+    "goHome": "Go to home page"
   },
   "landingSummary": {
     "title": "Landing summary",

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Home,
@@ -11,6 +11,7 @@ import {
   ArrowLeftLine,
   ChevronDown,
 } from '@/components/icons';
+import { useTranslation } from 'react-i18next';
 
 export interface SidebarMenuItem {
   id: string;
@@ -33,30 +34,35 @@ export interface AppSidebarProps {
 
 const iconStyle = { width: 16, height: 16 };
 
-const defaultMenuItems: SidebarMenuItem[] = [
-  { id: 'dashboard', label: 'Home', Icon: Home, route: '/' },
-  {
-    id: 'campaigns',
-    label: 'Notifications',
-    Icon: Megaphone,
-    submenuItems: [
-      { id: 'campaigns-sub1', label: 'Sub page' },
-      { id: 'campaigns-sub2', label: 'Sub page' },
-      { id: 'campaigns-sub3', label: 'Sub page' },
-    ],
-  },
-  { id: 'reports', label: 'Charts', Icon: BarGraph },
-  { id: 'tools', label: 'Tools', Icon: Toolbox },
-  { id: 'video-manager', label: 'Media', Icon: Image },
-  { id: 'bulk-operations', label: 'Uploads', Icon: Upload },
-];
+function getDefaultMenuItems(t: (key: string) => string): SidebarMenuItem[] {
+  return [
+    { id: 'dashboard', label: t('nav.home'), Icon: Home, route: '/' },
+    {
+      id: 'campaigns',
+      label: t('nav.notifications'),
+      Icon: Megaphone,
+      submenuItems: [
+        { id: 'campaigns-sub1', label: t('nav.subPage') },
+        { id: 'campaigns-sub2', label: t('nav.subPage') },
+        { id: 'campaigns-sub3', label: t('nav.subPage') },
+      ],
+    },
+    { id: 'reports', label: t('nav.charts'), Icon: BarGraph },
+    { id: 'tools', label: t('nav.tools'), Icon: Toolbox },
+    { id: 'video-manager', label: t('nav.media'), Icon: Image },
+    { id: 'bulk-operations', label: t('nav.uploads'), Icon: Upload },
+  ];
+}
 
 export function AppSidebar({
   activeMenuItem: controlledActive,
   onMenuItemClick,
-  menuItems = defaultMenuItems,
+  menuItems: menuItemsProp,
   defaultLocked = false,
 }: AppSidebarProps) {
+  const { t } = useTranslation();
+  const defaultItems = useMemo(() => getDefaultMenuItems(t), [t]);
+  const menuItems = menuItemsProp ?? defaultItems;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -400,7 +406,7 @@ export function AppSidebar({
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor = 'transparent';
           }}
-          aria-label={sidebarLocked ? 'Collapse sidebar' : 'Lock sidebar open'}
+          aria-label={sidebarLocked ? t('sidebar.collapse') : t('sidebar.expand')}
           aria-expanded={sidebarLocked}
         >
           {sidebarExpanded ? (
@@ -416,7 +422,7 @@ export function AppSidebar({
                   fontFamily: 'var(--ld-semantic-font-family-sans)',
                 }}
               >
-                Lock
+                {t('sidebar.lock')}
               </span>
             </>
           ) : (

@@ -37,6 +37,7 @@
   },
   "sidebar": {
     "expand": "Développer la barre latérale",
-    "collapse": "Réduire la barre latérale"
+    "collapse": "Réduire la barre latérale",
+    "lock": "Verrouiller"
   }
 }
