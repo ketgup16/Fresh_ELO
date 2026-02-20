@@ -1,15 +1,17 @@
 import React from 'react';
 import { TagExample } from '@/components/examples/TagExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function TagsPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Tags" description="Tags are compact labels for categorizing and organizing content. They support multiple variants (primary, secondary, tertiary), semantic colors, and optional leading icons. Tags are non-interactive display elements." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navTags')} description={t('componentLibrary.descTags')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-surface)',

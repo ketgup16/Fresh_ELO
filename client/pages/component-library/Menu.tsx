@@ -1,15 +1,17 @@
 import React from 'react';
 import { MenuExample } from '@/components/examples/MenuExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function MenuPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Menu" description="Dropdown menus with keyboard navigation, positioning options, and menu items." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navMenu')} description={t('componentLibrary.descMenu')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -17,7 +19,7 @@ export default function MenuPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <MenuExample />
         </React.Suspense>
       </div>

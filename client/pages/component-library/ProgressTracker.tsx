@@ -1,14 +1,16 @@
 import React from 'react';
 import { ProgressTrackerExample } from '@/components/examples/ProgressTrackerExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function ProgressTrackerPage() {
+  const { t } = useTranslation();
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader section="Components" title="Progress Tracker" description="A visual representation of a user's progress through a set of steps. Progress Trackers show the steps of a process and highlight completed, current, and future steps. They can be used for both user and system tasks." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navProgressTracker')} description={t('componentLibrary.descProgressTracker')} />
 
       <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <ProgressTrackerExample />
         </React.Suspense>
       </div>

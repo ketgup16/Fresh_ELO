@@ -1,15 +1,17 @@
 import React from 'react';
 import { SelectExample } from '@/components/SelectExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function SelectPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Select" description="Dropdown select component for choosing a single option from a list. Supports error states, AI-assisted (magic) variant, helper text, and full keyboard accessibility." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navSelect')} description={t('componentLibrary.descSelect')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-background, #ffffff)',

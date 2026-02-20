@@ -1,14 +1,16 @@
 import React from 'react';
 import { ProgressIndicatorExample } from '@/components/examples/ProgressIndicatorExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function ProgressIndicatorPage() {
+  const { t } = useTranslation();
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader section="Components" title="Progress Indicator" description="A visual indicator that displays the completion status of a task or process. Use Progress Indicators to communicate system activity, loading states, file uploads, or task completion to users." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navProgressIndicator')} description={t('componentLibrary.descProgressIndicator')} />
 
       <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <ProgressIndicatorExample />
         </React.Suspense>
       </div>

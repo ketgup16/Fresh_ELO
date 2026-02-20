@@ -1,15 +1,17 @@
 import React from 'react';
 import SwitchExample from '@/components/examples/SwitchExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function SwitchesPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Switches" description="Toggle controls for binary on/off settings with immediate state changes. Switches use Living Design 3.5 semantic tokens and provide full accessibility support including keyboard navigation and screen reader announcements." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navSwitches')} description={t('componentLibrary.descSwitches')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -17,7 +19,7 @@ export default function SwitchesPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <SwitchExample />
         </React.Suspense>
       </div>

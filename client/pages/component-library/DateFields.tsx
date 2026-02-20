@@ -1,15 +1,17 @@
 import React from 'react';
 import { DateFieldExample } from '@/components/examples/DateFieldExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function DateFieldsPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Date Fields" description="Text input fields for date entry with validation and formatting." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navDateFields')} description={t('componentLibrary.descDateFields')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -17,7 +19,7 @@ export default function DateFieldsPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <DateFieldExample />
         </React.Suspense>
       </div>

@@ -1,15 +1,17 @@
 import React from 'react';
 import { SpotIconExample } from '@/components/examples/SpotIconExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function SpotIconsPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Spot Icons" description="Decorative icon containers used to add visual interest and direct user attention to interface elements. Available in small and large sizes with brand and neutral color variants. Spot Icons are not interactive." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navSpotIcons')} description={t('componentLibrary.descSpotIcons')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -17,7 +19,7 @@ export default function SpotIconsPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <SpotIconExample />
         </React.Suspense>
       </div>

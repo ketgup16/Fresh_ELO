@@ -1,15 +1,17 @@
 import React from 'react';
 import { NudgeExample } from '@/components/examples/NudgeExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function NudgesPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Nudge" description="Provides non-critical, supportive information such as reminders, tips, or gentle prompts without blocking the user's workflow. Built with Living Design 3.5 tokens and supports leading icons, actions, and dismissible states." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navNudges')} description={t('componentLibrary.descNudges')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -17,7 +19,7 @@ export default function NudgesPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <NudgeExample />
         </React.Suspense>
       </div>

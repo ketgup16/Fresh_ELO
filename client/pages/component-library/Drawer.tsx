@@ -1,8 +1,10 @@
 import React from 'react';
 import DrawerExample from '@/components/examples/DrawerExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function DrawerPage() {
+  const { t } = useTranslation();
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
       <div style={{
@@ -20,9 +22,9 @@ export default function DrawerPage() {
           The example below demonstrates the new BottomSheet component.
         </p>
       </div>
-      <PageHeader section="Shared Components" title="Bottom Sheet (LD 3.5)" description="A mobile-friendly modal component that slides up from the bottom of the screen to display supplementary content without leaving the current context." />
+      <PageHeader section={t('componentLibrary.sharedSection')} title={t('componentLibrary.navBottomSheet')} description={t('componentLibrary.descBottomSheet')} />
       <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <DrawerExample />
         </React.Suspense>
       </div>

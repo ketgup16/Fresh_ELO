@@ -1,14 +1,16 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 const IconButtonExample = React.lazy(() => import('@/components/examples/IconButtonExample'));
 
 export default function IconButtonsPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Icon Buttons" description="Icon-only buttons for compact actions with ghost, primary, secondary, and destructive variants." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navIconButtons')} description={t('componentLibrary.descIconButtons')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -16,7 +18,7 @@ export default function IconButtonsPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <IconButtonExample />
         </React.Suspense>
       </div>

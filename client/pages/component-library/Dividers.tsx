@@ -1,15 +1,17 @@
 import React from 'react';
 import { DividerExample } from '@/components/examples/DividerExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function DividersPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Dividers" description="Horizontal and vertical separators for content sections and lists." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navDividers')} description={t('componentLibrary.descDividers')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -17,7 +19,7 @@ export default function DividersPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <DividerExample />
         </React.Suspense>
       </div>

@@ -1,15 +1,17 @@
 import React from 'react';
 import { ListExample } from '@/components/examples/ListExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function ListsPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Lists" description="Vertical lists with leading icons, spot icons, and trailing content." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navLists')} description={t('componentLibrary.descLists')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -17,7 +19,7 @@ export default function ListsPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <ListExample />
         </React.Suspense>
       </div>

@@ -1,15 +1,17 @@
 import React from 'react';
 import { RadioExample } from '@/components/examples/RadioExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function RadioButtonsPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Radio Buttons" description="Mutually exclusive selection within a group with bold label when selected." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navRadioButtons')} description={t('componentLibrary.descRadioButtons')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -17,7 +19,7 @@ export default function RadioButtonsPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <RadioExample />
         </React.Suspense>
       </div>

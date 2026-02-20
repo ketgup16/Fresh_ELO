@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Chip } from '@/components/ui/Chip';
@@ -43,6 +44,7 @@ const components = [
 ];
 
 export default function ComponentTester() {
+  const { t } = useTranslation();
   const [selectedComponent, setSelectedComponent] = React.useState<ComponentType>('button');
   
   // Button props
@@ -286,7 +288,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Variant
+                {t('componentLibrary.variant')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['primary', 'secondary', 'tertiary', 'destructive'] as const).map((variant) => (
@@ -304,7 +306,7 @@ export default function ComponentTester() {
             
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Size
+                {t('componentLibrary.size')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['small', 'medium', 'large'] as const).map((size) => (
@@ -344,7 +346,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Size
+                {t('componentLibrary.size')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['small', 'large'] as const).map((size) => (
@@ -390,7 +392,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Size
+                {t('componentLibrary.size')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['small', 'large'] as const).map((size) => (
@@ -439,7 +441,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Size
+                {t('componentLibrary.size')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['small', 'large'] as const).map((size) => (
@@ -483,7 +485,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Variant
+                {t('componentLibrary.variant')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['neutral', 'info', 'success', 'warning', 'error'] as const).map((variant) => (
@@ -515,7 +517,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Size
+                {t('componentLibrary.size')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['small', 'medium'] as const).map((size) => (
@@ -571,7 +573,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Variant
+                {t('componentLibrary.variant')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['primary', 'secondary', 'tertiary'] as const).map((variant) => (
@@ -589,7 +591,7 @@ export default function ComponentTester() {
             
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Color
+                {t('componentLibrary.color')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['brand', 'positive', 'negative', 'warning', 'info'] as const).map((color) => (
@@ -637,7 +639,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Variant
+                {t('componentLibrary.variant')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['ghost', 'primary', 'secondary', 'destructive'] as const).map((variant) => (
@@ -655,7 +657,7 @@ export default function ComponentTester() {
             
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Size
+                {t('componentLibrary.size')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['small', 'medium', 'large'] as const).map((size) => (
@@ -678,7 +680,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Size
+                {t('componentLibrary.size')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['small', 'large'] as const).map((size) => (
@@ -696,7 +698,7 @@ export default function ComponentTester() {
             
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Color
+                {t('componentLibrary.color')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['brand', 'neutral'] as const).map((color) => (
@@ -735,7 +737,7 @@ export default function ComponentTester() {
               fontSize: '13px',
               color: 'var(--ld-semantic-color-text-subtle)'
             }}>
-              Rating is display-only (not interactive). Shows 0-5 stars with half-star support.
+              {t('componentLibrary.ratingNote')}
             </div>
           </div>
         );
@@ -745,7 +747,7 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Orientation
+                {t('componentLibrary.orientation')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {(['horizontal', 'vertical'] as const).map((orientation) => (
@@ -785,7 +787,7 @@ export default function ComponentTester() {
             color: 'var(--ld-semantic-color-text-subtle)',
             fontSize: '14px'
           }}>
-            Select a component to configure its properties
+            {t('componentLibrary.selectToConfig')}
           </div>
         );
     }
@@ -807,12 +809,12 @@ export default function ComponentTester() {
       margin: '0 auto'
     }}>
       {/* Header */}
-      <PageHeader section="Getting Started" title="Component Sandbox" description="Interactive testing environment for Living Design 3.5 components. Select a component and adjust its properties in real-time." />
+      <PageHeader section={t('componentLibrary.gettingStarted')} title={t('componentLibrary.sandboxTitle')} description={t('componentLibrary.sandboxDescription')} />
 
       {/* Component Selector */}
       <div style={{ marginBottom: '32px', maxWidth: '500px' }}>
         <Select
-          label="Select Component to Test"
+          label={t('componentLibrary.selectComponent')}
           value={selectedComponent}
           onValueChange={(value) => setSelectedComponent(value as ComponentType)}
           size="large"
@@ -853,7 +855,7 @@ export default function ComponentTester() {
             paddingBottom: '16px',
             borderBottom: '2px solid var(--ld-semantic-color-border-subtle)'
           }}>
-            Preview
+            {t('componentLibrary.preview')}
           </h2>
           
           <div style={{
@@ -884,7 +886,7 @@ export default function ComponentTester() {
             paddingBottom: '16px',
             borderBottom: '2px solid var(--ld-semantic-color-border-subtle)'
           }}>
-            Properties
+            {t('componentLibrary.properties')}
           </h2>
           
           {renderControls()}
@@ -905,7 +907,7 @@ export default function ComponentTester() {
           color: 'var(--ld-semantic-color-text)',
           marginBottom: '16px'
         }}>
-          Code Example
+          {t('componentLibrary.codeExample')}
         </h2>
         
         <div style={{

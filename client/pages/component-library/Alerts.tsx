@@ -1,15 +1,17 @@
 import React from 'react';
 import { AlertExample } from '@/components/examples/AlertExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function AlertsPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Alerts" description="Banner messages for info, success, warning, and error states with optional close button." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navAlerts')} description={t('componentLibrary.descAlerts')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -17,7 +19,7 @@ export default function AlertsPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <AlertExample />
         </React.Suspense>
       </div>

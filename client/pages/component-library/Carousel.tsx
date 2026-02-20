@@ -1,13 +1,15 @@
 import React from 'react';
 import CarouselExample from '@/components/examples/CarouselExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function CarouselPage() {
+  const { t } = useTranslation();
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader section="Shared Components" title="Carousel" description="Slideshow component for cycling through images or content panels." />
+      <PageHeader section={t('componentLibrary.sharedSection')} title={t('componentLibrary.navCarousel')} description={t('componentLibrary.descCarousel')} />
       <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <CarouselExample />
         </React.Suspense>
       </div>

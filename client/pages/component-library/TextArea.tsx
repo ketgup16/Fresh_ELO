@@ -1,15 +1,17 @@
 import React from 'react';
 import TextareaExample from '@/components/examples/TextareaExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function TextAreaPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Text Area" description="Multi-line text input component with support for labels, error states, helper text, character counting, and AI-generated content indicators. Built with Living Design 3.5 semantic tokens for consistent styling across all states and sizes." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navTextArea')} description={t('componentLibrary.descTextArea')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -17,7 +19,7 @@ export default function TextAreaPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <TextareaExample />
         </React.Suspense>
       </div>

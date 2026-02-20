@@ -1,13 +1,15 @@
 import React from 'react';
 import DropdownMenuExample from '@/components/examples/DropdownMenuExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function DropdownMenuPage() {
+  const { t } = useTranslation();
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader section="Shared Components" title="Dropdown Menu" description="A dropdown menu with keyboard navigation, submenus, checkbox and radio items." />
+      <PageHeader section={t('componentLibrary.sharedSection')} title={t('componentLibrary.navDropdownMenu')} description={t('componentLibrary.descDropdownMenu')} />
       <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <DropdownMenuExample />
         </React.Suspense>
       </div>

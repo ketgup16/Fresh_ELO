@@ -1,338 +1,98 @@
 import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
 import { MastHead } from '@/components/ui/MastHead';
 
-// Component library navigation structure with groups
-const navigationSections = [
+// Navigation item definition (nameKey references componentLibrary.* translation keys)
+interface NavItem {
+  id: string;
+  nameKey: string;
+  path: string;
+}
+
+interface NavSection {
+  titleKey: string;
+  items: NavItem[];
+}
+
+const navigationSections: NavSection[] = [
   {
-    title: 'Getting Started',
+    titleKey: 'componentLibrary.gettingStarted',
     items: [
-      {
-        id: 'overview',
-        name: 'Overview',
-        path: '/component-library'
-      },
-      {
-        id: 'themes',
-        name: 'Themes & Tokens',
-        path: '/component-library/themes'
-      },
-      {
-        id: 'component-tester',
-        name: 'Component Sandbox',
-        path: '/component-library/component-tester'
-      },
-      {
-        id: 'guidelines',
-        name: 'Guidelines',
-        path: '/component-library/guidelines'
-      },
+      { id: 'overview', nameKey: 'componentLibrary.overview', path: '/component-library' },
+      { id: 'themes', nameKey: 'componentLibrary.themesTokens', path: '/component-library/themes' },
+      { id: 'component-tester', nameKey: 'componentLibrary.componentSandbox', path: '/component-library/component-tester' },
+      { id: 'guidelines', nameKey: 'componentLibrary.guidelines', path: '/component-library/guidelines' },
     ]
   },
   {
-    title: 'Components',
+    titleKey: 'componentLibrary.components',
     items: [
-      {
-        id: 'alerts',
-        name: 'Alerts',
-        path: '/component-library/alerts'
-      },
-      {
-        id: 'badges',
-        name: 'Badges',
-        path: '/component-library/badges'
-      },
-      {
-        id: 'breadcrumbs',
-        name: 'Breadcrumbs',
-        path: '/component-library/breadcrumbs'
-      },
-      {
-        id: 'buttons',
-        name: 'Buttons',
-        path: '/component-library/buttons'
-      },
-      {
-        id: 'callouts',
-        name: 'Callouts',
-        path: '/component-library/callouts'
-      },
-      {
-        id: 'cards',
-        name: 'Cards',
-        path: '/component-library/cards'
-      },
-      {
-        id: 'checkboxes',
-        name: 'Checkboxes',
-        path: '/component-library/checkboxes'
-      },
-      {
-        id: 'chips',
-        name: 'Chips',
-        path: '/component-library/chips'
-      },
-      {
-        id: 'content-messages',
-        name: 'Content Messages',
-        path: '/component-library/content-messages'
-      },
-      {
-        id: 'date-fields',
-        name: 'Date Fields',
-        path: '/component-library/date-fields'
-      },
-      {
-        id: 'date-picker-calendar',
-        name: 'Date Picker Calendar',
-        path: '/component-library/calendar'
-      },
-      {
-        id: 'date-pickers',
-        name: 'Date Pickers',
-        path: '/component-library/date-pickers'
-      },
-      {
-        id: 'date-range-picker',
-        name: 'Date Range Picker',
-        path: '/component-library/date-range-picker'
-      },
-      {
-        id: 'dividers',
-        name: 'Dividers',
-        path: '/component-library/dividers'
-      },
-      {
-        id: 'filter-chips',
-        name: 'Filter Chips',
-        path: '/component-library/filter-chips'
-      },
-      {
-        id: 'form-groups',
-        name: 'Form Groups',
-        path: '/component-library/form-groups'
-      },
-      {
-        id: 'icon-buttons',
-        name: 'Icon Buttons',
-        path: '/component-library/icon-buttons'
-      },
-      {
-        id: 'icons',
-        name: 'Icons',
-        path: '/component-library/icons'
-      },
-      {
-        id: 'link-buttons',
-        name: 'Link Buttons',
-        path: '/component-library/link-buttons'
-      },
-      {
-        id: 'links',
-        name: 'Links',
-        path: '/component-library/links'
-      },
-      {
-        id: 'lists',
-        name: 'Lists',
-        path: '/component-library/lists'
-      },
-      {
-        id: 'magic-box',
-        name: 'Magic Box',
-        path: '/component-library/magic-box'
-      },
-      {
-        id: 'menu',
-        name: 'Menu',
-        path: '/component-library/menu'
-      },
-      {
-        id: 'metrics',
-        name: 'Metrics',
-        path: '/component-library/metrics'
-      },
-      {
-        id: 'modals',
-        name: 'Modals',
-        path: '/component-library/modals'
-      },
-      {
-        id: 'nudges',
-        name: 'Nudges',
-        path: '/component-library/nudges'
-      },
-      {
-        id: 'panels',
-        name: 'Panels',
-        path: '/component-library/panels'
-      },
-      {
-        id: 'popover',
-        name: 'Popover',
-        path: '/component-library/popover'
-      },
-      {
-        id: 'progress-indicator',
-        name: 'Progress Indicator',
-        path: '/component-library/progress-indicator'
-      },
-      {
-        id: 'progress-tracker',
-        name: 'Progress Tracker',
-        path: '/component-library/progress-tracker'
-      },
-      {
-        id: 'radio-buttons',
-        name: 'Radio Buttons',
-        path: '/component-library/radio-buttons'
-      },
-      {
-        id: 'select',
-        name: 'Select',
-        path: '/component-library/select'
-      },
-      {
-        id: 'snackbars',
-        name: 'Snackbars',
-        path: '/component-library/snackbars'
-      },
-      {
-        id: 'spot-icons',
-        name: 'Spot Icons',
-        path: '/component-library/spot-icons'
-      },
-      {
-        id: 'switches',
-        name: 'Switches',
-        path: '/component-library/switches'
-      },
-      {
-        id: 'tab-navigation',
-        name: 'Tab Navigation',
-        path: '/component-library/tabs'
-      },
-      {
-        id: 'tags',
-        name: 'Tags',
-        path: '/component-library/tags'
-      },
-      {
-        id: 'textarea',
-        name: 'Text Area',
-        path: '/component-library/textarea'
-      },
-      {
-        id: 'text-fields',
-        name: 'Text Fields',
-        path: '/component-library/text-fields'
-      },
+      { id: 'alerts', nameKey: 'componentLibrary.navAlerts', path: '/component-library/alerts' },
+      { id: 'badges', nameKey: 'componentLibrary.navBadges', path: '/component-library/badges' },
+      { id: 'breadcrumbs', nameKey: 'componentLibrary.navBreadcrumbs', path: '/component-library/breadcrumbs' },
+      { id: 'buttons', nameKey: 'componentLibrary.navButtons', path: '/component-library/buttons' },
+      { id: 'callouts', nameKey: 'componentLibrary.navCallouts', path: '/component-library/callouts' },
+      { id: 'cards', nameKey: 'componentLibrary.navCards', path: '/component-library/cards' },
+      { id: 'checkboxes', nameKey: 'componentLibrary.navCheckboxes', path: '/component-library/checkboxes' },
+      { id: 'chips', nameKey: 'componentLibrary.navChips', path: '/component-library/chips' },
+      { id: 'content-messages', nameKey: 'componentLibrary.navContentMessages', path: '/component-library/content-messages' },
+      { id: 'date-fields', nameKey: 'componentLibrary.navDateFields', path: '/component-library/date-fields' },
+      { id: 'date-picker-calendar', nameKey: 'componentLibrary.navDatePickerCalendar', path: '/component-library/calendar' },
+      { id: 'date-pickers', nameKey: 'componentLibrary.navDatePickers', path: '/component-library/date-pickers' },
+      { id: 'date-range-picker', nameKey: 'componentLibrary.navDateRangePicker', path: '/component-library/date-range-picker' },
+      { id: 'dividers', nameKey: 'componentLibrary.navDividers', path: '/component-library/dividers' },
+      { id: 'filter-chips', nameKey: 'componentLibrary.navFilterChips', path: '/component-library/filter-chips' },
+      { id: 'form-groups', nameKey: 'componentLibrary.navFormGroups', path: '/component-library/form-groups' },
+      { id: 'icon-buttons', nameKey: 'componentLibrary.navIconButtons', path: '/component-library/icon-buttons' },
+      { id: 'icons', nameKey: 'componentLibrary.navIcons', path: '/component-library/icons' },
+      { id: 'link-buttons', nameKey: 'componentLibrary.navLinkButtons', path: '/component-library/link-buttons' },
+      { id: 'links', nameKey: 'componentLibrary.navLinks', path: '/component-library/links' },
+      { id: 'lists', nameKey: 'componentLibrary.navLists', path: '/component-library/lists' },
+      { id: 'magic-box', nameKey: 'componentLibrary.navMagicBox', path: '/component-library/magic-box' },
+      { id: 'menu', nameKey: 'componentLibrary.navMenu', path: '/component-library/menu' },
+      { id: 'metrics', nameKey: 'componentLibrary.navMetrics', path: '/component-library/metrics' },
+      { id: 'modals', nameKey: 'componentLibrary.navModals', path: '/component-library/modals' },
+      { id: 'nudges', nameKey: 'componentLibrary.navNudges', path: '/component-library/nudges' },
+      { id: 'panels', nameKey: 'componentLibrary.navPanels', path: '/component-library/panels' },
+      { id: 'popover', nameKey: 'componentLibrary.navPopover', path: '/component-library/popover' },
+      { id: 'progress-indicator', nameKey: 'componentLibrary.navProgressIndicator', path: '/component-library/progress-indicator' },
+      { id: 'progress-tracker', nameKey: 'componentLibrary.navProgressTracker', path: '/component-library/progress-tracker' },
+      { id: 'radio-buttons', nameKey: 'componentLibrary.navRadioButtons', path: '/component-library/radio-buttons' },
+      { id: 'select', nameKey: 'componentLibrary.navSelect', path: '/component-library/select' },
+      { id: 'snackbars', nameKey: 'componentLibrary.navSnackbars', path: '/component-library/snackbars' },
+      { id: 'spot-icons', nameKey: 'componentLibrary.navSpotIcons', path: '/component-library/spot-icons' },
+      { id: 'switches', nameKey: 'componentLibrary.navSwitches', path: '/component-library/switches' },
+      { id: 'tab-navigation', nameKey: 'componentLibrary.navTabNavigation', path: '/component-library/tabs' },
+      { id: 'tags', nameKey: 'componentLibrary.navTags', path: '/component-library/tags' },
+      { id: 'textarea', nameKey: 'componentLibrary.navTextArea', path: '/component-library/textarea' },
+      { id: 'text-fields', nameKey: 'componentLibrary.navTextFields', path: '/component-library/text-fields' },
     ]
   },
   {
-    title: 'Shared Components',
+    titleKey: 'componentLibrary.sharedSection',
     items: [
-      {
-        id: 'accordion',
-        name: 'Accordion',
-        path: '/component-library/accordion'
-      },
-      {
-        id: 'alert-dialog',
-        name: 'Alert Dialog',
-        path: '/component-library/alert-dialog'
-      },
-      {
-        id: 'avatar',
-        name: 'Avatar',
-        path: '/component-library/avatar'
-      },
-      {
-        id: 'carousel',
-        name: 'Carousel',
-        path: '/component-library/carousel'
-      },
-      {
-        id: 'chart',
-        name: 'Chart',
-        path: '/component-library/chart'
-      },
-      {
-        id: 'collapsible',
-        name: 'Collapsible',
-        path: '/component-library/collapsible'
-      },
-      {
-        id: 'command',
-        name: 'Command',
-        path: '/component-library/command'
-      },
-      {
-        id: 'context-menu',
-        name: 'Context Menu',
-        path: '/component-library/context-menu'
-      },
-      {
-        id: 'dialog',
-        name: 'Dialog',
-        path: '/component-library/dialog'
-      },
-      {
-        id: 'bottom-sheet',
-        name: 'Bottom Sheet',
-        path: '/component-library/bottom-sheet'
-      },
-      {
-        id: 'dropdown-menu',
-        name: 'Dropdown Menu',
-        path: '/component-library/dropdown-menu'
-      },
-      {
-        id: 'form',
-        name: 'Form',
-        path: '/component-library/form'
-      },
-      {
-        id: 'menubar',
-        name: 'Menubar',
-        path: '/component-library/menubar'
-      },
-      {
-        id: 'navigation-menu',
-        name: 'Navigation Menu',
-        path: '/component-library/navigation-menu'
-      },
-      {
-        id: 'pagination',
-        name: 'Pagination',
-        path: '/component-library/pagination'
-      },
-      {
-        id: 'scroll-area',
-        name: 'Scroll Area',
-        path: '/component-library/scroll-area'
-      },
-      {
-        id: 'skeleton',
-        name: 'Skeleton',
-        path: '/component-library/skeleton'
-      },
-      {
-        id: 'slider',
-        name: 'Slider',
-        path: '/component-library/slider'
-      },
-      {
-        id: 'table',
-        name: 'Table',
-        path: '/component-library/table'
-      },
-      {
-        id: 'toggle',
-        name: 'Toggle',
-        path: '/component-library/toggle'
-      },
+      { id: 'accordion', nameKey: 'componentLibrary.navAccordion', path: '/component-library/accordion' },
+      { id: 'alert-dialog', nameKey: 'componentLibrary.navAlertDialog', path: '/component-library/alert-dialog' },
+      { id: 'avatar', nameKey: 'componentLibrary.navAvatar', path: '/component-library/avatar' },
+      { id: 'carousel', nameKey: 'componentLibrary.navCarousel', path: '/component-library/carousel' },
+      { id: 'chart', nameKey: 'componentLibrary.navChart', path: '/component-library/chart' },
+      { id: 'collapsible', nameKey: 'componentLibrary.navCollapsible', path: '/component-library/collapsible' },
+      { id: 'command', nameKey: 'componentLibrary.navCommand', path: '/component-library/command' },
+      { id: 'context-menu', nameKey: 'componentLibrary.navContextMenu', path: '/component-library/context-menu' },
+      { id: 'dialog', nameKey: 'componentLibrary.navDialog', path: '/component-library/dialog' },
+      { id: 'bottom-sheet', nameKey: 'componentLibrary.navBottomSheet', path: '/component-library/bottom-sheet' },
+      { id: 'dropdown-menu', nameKey: 'componentLibrary.navDropdownMenu', path: '/component-library/dropdown-menu' },
+      { id: 'form', nameKey: 'componentLibrary.navForm', path: '/component-library/form' },
+      { id: 'menubar', nameKey: 'componentLibrary.navMenubar', path: '/component-library/menubar' },
+      { id: 'navigation-menu', nameKey: 'componentLibrary.navNavigationMenu', path: '/component-library/navigation-menu' },
+      { id: 'pagination', nameKey: 'componentLibrary.navPagination', path: '/component-library/pagination' },
+      { id: 'scroll-area', nameKey: 'componentLibrary.navScrollArea', path: '/component-library/scroll-area' },
+      { id: 'skeleton', nameKey: 'componentLibrary.navSkeleton', path: '/component-library/skeleton' },
+      { id: 'slider', nameKey: 'componentLibrary.navSlider', path: '/component-library/slider' },
+      { id: 'table', nameKey: 'componentLibrary.navTable', path: '/component-library/table' },
+      { id: 'toggle', nameKey: 'componentLibrary.navToggle', path: '/component-library/toggle' },
     ]
   }
 ];
@@ -340,6 +100,7 @@ const navigationSections = [
 export function ComponentLibraryLayout() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
@@ -374,14 +135,14 @@ export function ComponentLibraryLayout() {
             marginBottom: '8px',
             color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
           }}>
-            Component Library
+            {t('componentLibrary.title')}
           </h1>
-          <p style={{ 
-            fontSize: '14px', 
+          <p style={{
+            fontSize: '14px',
             color: 'var(--ld-semantic-color-text-secondary, #74767C)',
             marginBottom: '24px'
           }}>
-            Living Design 3.5 Components
+            {t('componentLibrary.subtitle')}
           </p>
           
           {navigationSections.map((section, sectionIndex) => (
@@ -395,9 +156,9 @@ export function ComponentLibraryLayout() {
                 marginBottom: '8px',
                 paddingLeft: '16px'
               }}>
-                {section.title}
+                {t(section.titleKey)}
               </h2>
-              <SideNavigation aria-label={`${section.title} Navigation`}>
+              <SideNavigation aria-label={`${t(section.titleKey)} Navigation`}>
                 {section.items.map((item) => {
                   const isActive = location.pathname === item.path;
 
@@ -408,7 +169,7 @@ export function ComponentLibraryLayout() {
                       isCurrent={isActive}
                       onClick={(e) => handleNavClick(e, item.path)}
                     >
-                      {item.name}
+                      {t(item.nameKey)}
                     </SideNavigationItem>
                   );
                 })}
@@ -427,7 +188,7 @@ export function ComponentLibraryLayout() {
                 href="/"
                 onClick={(e) => handleNavClick(e, '/')}
               >
-                ← Back to Home
+                ← {t('componentLibrary.backToHome')}
               </SideNavigationItem>
             </SideNavigation>
           </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { TabExample } from '@/components/examples/TabExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Tab Navigation Component Library Page
@@ -9,10 +10,11 @@ import { PageHeader } from '@/components/ui/PageHeader';
  * showing all variants, states, and usage patterns.
  */
 export default function TabsPage() {
+  const { t } = useTranslation();
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
       {/* Page Header */}
-      <PageHeader section="Components" title="Tab Navigation" description="Tab Navigation allows for page-level navigation between sets of content, with a selected state, typically used at the top of the screen. It supports leading icons, trailing badges, and responsive small-screen modes." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navTabNavigation')} description={t('componentLibrary.descTabNavigation')} />
       
       {/* Documentation Link */}
       <div style={{

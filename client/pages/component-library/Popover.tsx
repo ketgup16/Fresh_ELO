@@ -1,14 +1,16 @@
 import React from 'react';
 import { PopoverExample } from '@/components/examples/PopoverExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function PopoverPage() {
+  const { t } = useTranslation();
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader section="Components" title="Popover" description="A non-modal dialog that displays supporting content anchored to a trigger. Use for instructions, short lists of options, and lightweight actions without taking the user away from the current context." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navPopover')} description={t('componentLibrary.descPopover')} />
 
       <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <PopoverExample />
         </React.Suspense>
       </div>

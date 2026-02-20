@@ -1,13 +1,15 @@
 import React from 'react';
 import SliderExample from '@/components/examples/SliderExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function SliderPage() {
+  const { t } = useTranslation();
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader section="Shared Components" title="Slider" description="A draggable slider control for selecting numeric values within a range." />
+      <PageHeader section={t('componentLibrary.sharedSection')} title={t('componentLibrary.navSlider')} description={t('componentLibrary.descSlider')} />
       <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <SliderExample />
         </React.Suspense>
       </div>

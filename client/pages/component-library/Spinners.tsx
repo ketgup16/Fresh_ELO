@@ -1,15 +1,17 @@
 import React from 'react';
 import { SpinnerExample } from '@/components/examples/SpinnerExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 export default function SpinnersPage() {
+  const { t } = useTranslation();
   return (
     <div style={{
       padding: '48px',
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section="Components" title="Spinners" description="Loading indicators for indeterminate processes. Spinners inform users of ongoing processes including data retrieval, loading states, and saving. They provide visual feedback for operations with unknown duration." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navSpotIcons')} description={t('componentLibrary.descSpinners')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -17,7 +19,7 @@ export default function SpinnersPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <SpinnerExample />
         </React.Suspense>
       </div>

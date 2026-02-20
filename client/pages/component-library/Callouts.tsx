@@ -1,13 +1,15 @@
 import React from 'react';
 import { CalloutExample } from '@/components/examples/CalloutExample';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 const TooltipExample = React.lazy(() => import('@/components/examples/TooltipExample'));
 
 export default function CalloutsPage() {
+  const { t } = useTranslation();
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader section="Components" title="Callouts" description="Contextual coaching and onboarding messages with directional arrows (nubbins). Callouts replace the previous Tooltip component with a click-based interaction that works better on mobile devices." />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navCallouts')} description={t('componentLibrary.descCallouts')} />
 
       {/* Nubbin Positions & Static Examples */}
       <div style={{
@@ -17,7 +19,7 @@ export default function CalloutsPage() {
         boxShadow: 'var(--ld-semantic-elevation-100)',
         marginBottom: '32px'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <CalloutExample />
         </React.Suspense>
       </div>
@@ -48,7 +50,7 @@ export default function CalloutsPage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)'
       }}>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <TooltipExample />
         </React.Suspense>
       </div>
