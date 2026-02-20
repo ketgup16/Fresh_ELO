@@ -62,7 +62,7 @@ const coreDeps = [
 ];
 
 const designDeps = [
-  { pkg: '@radix-ui/react-* (20+ packages)', purpose: 'Accessible headless UI primitives' },
+  { pkg: 'Standalone UI primitives (no external deps)', purpose: 'Accessible headless UI components built in-house' },
   { pkg: 'class-variance-authority', purpose: 'Component variant management' },
   { pkg: 'clsx, tailwind-merge', purpose: 'Class name utilities' },
   { pkg: 'tailwindcss, postcss, autoprefixer', purpose: 'Styling framework' },

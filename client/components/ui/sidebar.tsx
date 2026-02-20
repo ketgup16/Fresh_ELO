@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot } from "@/components/ui/slot";
 import { VariantProps, cva } from "class-variance-authority";
 import { PanelLeft } from "@/components/icons";
 
@@ -271,23 +271,22 @@ const Sidebar = React.forwardRef<
 Sidebar.displayName = "Sidebar";
 
 const SidebarTrigger = React.forwardRef<
-  React.ElementRef<typeof Button>,
-  React.ComponentProps<typeof Button>
+  HTMLButtonElement,
+  React.ButtonHTMLAttributes<HTMLButtonElement>
 >(({ className, onClick, ...props }, ref) => {
   const { toggleSidebar } = useSidebar();
 
   return (
     <Button
-      ref={ref}
+      ref={ref as any}
       data-sidebar="trigger"
-      variant="ghost"
-      size="icon"
-      className={cn("h-7 w-7", className)}
-      onClick={(event) => {
+      variant="tertiary"
+      size="small"
+      UNSAFE_className={cn("h-7 w-7", className)}
+      onClick={(event: any) => {
         onClick?.(event);
         toggleSidebar();
       }}
-      {...props}
     >
       <PanelLeft />
       <span className="sr-only">Toggle Sidebar</span>

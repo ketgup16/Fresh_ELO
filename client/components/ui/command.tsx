@@ -1,10 +1,13 @@
 import * as React from "react";
-import { type DialogProps } from "@radix-ui/react-dialog";
 import { Command as CommandPrimitive } from "cmdk";
 import { Search } from "@/components/icons";
 
 import { cn } from "@/lib/utils";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  Modal,
+  ModalContent,
+  type ModalProps,
+} from "@/components/ui/Modal";
 import styles from "./Command.module.css";
 
 const Command = React.forwardRef<
@@ -19,17 +22,17 @@ const Command = React.forwardRef<
 ));
 Command.displayName = CommandPrimitive.displayName;
 
-interface CommandDialogProps extends DialogProps {}
+interface CommandDialogProps extends ModalProps {}
 
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
-    <Dialog {...props}>
-      <DialogContent className={styles.dialog}>
+    <Modal {...props}>
+      <ModalContent className={styles.dialog} hideClose>
         <Command>
           {children}
         </Command>
-      </DialogContent>
-    </Dialog>
+      </ModalContent>
+    </Modal>
   );
 };
 

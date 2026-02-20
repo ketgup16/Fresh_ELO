@@ -1,69 +1,41 @@
 import * as React from 'react';
-import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import styles from './Radio.module.css';
+import { useRadioGroupContext } from './radio-group';
 
 export interface RadioProps {
-  /**
-   * The value for this radio option (required for Radix RadioGroup coordination).
-   */
+  /** The value for this radio option. */
   value: string;
-
-  /**
-   * Optional visible label text rendered beside the radio circle.
-   */
+  /** Optional visible label text. */
   label?: React.ReactNode;
-
-  /**
-   * Whether to show the label. When false, the label is visually hidden.
-   * @default true
-   */
+  /** Whether to show the label. @default true */
   showLabel?: boolean;
-
-  /**
-   * Whether the radio button is disabled.
-   * @default false
-   */
+  /** Whether the radio button is disabled. @default false */
   disabled?: boolean;
-
-  /**
-   * HTML id for label association.
-   */
+  /** HTML id for label association. */
   id?: string;
-
-  /**
-   * Accessible label (when no visible label is provided).
-   */
+  /** Accessible label (when no visible label is provided). */
   'aria-label'?: string;
-
-  /**
-   * Escape hatch for additional CSS classes on the radio root.
-   */
+  /** Escape hatch for additional CSS classes. */
   UNSAFE_className?: string;
-
-  /**
-   * Escape hatch for inline styles on the radio root.
-   */
+  /** Escape hatch for inline styles. */
   UNSAFE_style?: React.CSSProperties;
 }
 
 /**
- * LD 3.5 Radio component.
+ * LD 3.5 Radio component - Standalone (no Radix dependency).
  *
- * Built on Radix UI RadioGroup.Item for accessibility and state management.
- * Uses CSS modules with LD 3.5 semantic input tokens exclusively.
+ * Uses native button with role="radio" and data-state attributes
+ * for CSS compatibility with existing Radio.module.css.
  *
  * Must be used inside a `<RadioGroup>` container.
  */
-export const Radio = React.forwardRef<
-  React.ElementRef<typeof RadioGroupPrimitive.Item>,
-  RadioProps
->(
+export const Radio = React.forwardRef<HTMLButtonElement, RadioProps>(
   (
     {
       value,
       label,
       showLabel = true,
-      disabled = false,
+      disabled: disabledProp = false,
       id,
       'aria-label': ariaLabel,
       UNSAFE_className,
@@ -71,34 +43,68 @@ export const Radio = React.forwardRef<
     },
     ref,
   ) => {
+    const ctx = useRadioGroupContext();
+    const isChecked = ctx ? ctx.value === value : false;
+    const isDisabled = disabledProp || (ctx?.disabled ?? false);
+    const dataState = isChecked ? 'checked' : 'unchecked';
+
+    const handleClick = () => {
+      if (isDisabled) return;
+      ctx?.onValueChange(value);
+    };
+
     const radioClassName = [styles.radio, UNSAFE_className]
       .filter(Boolean)
       .join(' ');
 
     const radio = (
-      <RadioGroupPrimitive.Item
+      <button
         ref={ref}
+        type="button"
+        role="radio"
         id={id}
-        value={value}
-        disabled={disabled}
+        aria-checked={isChecked}
         aria-label={!label || !showLabel ? ariaLabel : undefined}
+        aria-disabled={isDisabled || undefined}
+        disabled={isDisabled}
+        data-state={dataState}
+        data-disabled={isDisabled || undefined}
+        tabIndex={isChecked ? 0 : -1}
         className={radioClassName}
         style={UNSAFE_style}
+        onClick={handleClick}
       >
-        <RadioGroupPrimitive.Indicator className={styles.indicator}>
-          <span className={styles.dot} />
-        </RadioGroupPrimitive.Indicator>
-      </RadioGroupPrimitive.Item>
+        {isChecked && (
+          <span className={styles.indicator}>
+            <span className={styles.dot} />
+          </span>
+        )}
+      </button>
     );
 
     if (label && showLabel) {
+      const wrapperClassName = [
+        styles.wrapper,
+        isDisabled && styles['wrapper--disabled'],
+      ]
+        .filter(Boolean)
+        .join(' ');
+
+      const labelClassName = [
+        styles.label,
+        isChecked && styles['label--checked'],
+        isDisabled && styles['label--disabled'],
+      ]
+        .filter(Boolean)
+        .join(' ');
+
       return (
-        <RadioLabel disabled={disabled} value={value}>
+        <label className={wrapperClassName}>
           {radio}
-          <span className={styles.label} data-radio-label="">
+          <span className={labelClassName} data-radio-label="">
             {label}
           </span>
-        </RadioLabel>
+        </label>
       );
     }
 
@@ -107,75 +113,3 @@ export const Radio = React.forwardRef<
 );
 
 Radio.displayName = 'Radio';
-
-/**
- * Internal wrapper that handles the checked-label-bold logic.
- * Reads the RadioGroup context to know if this value is selected.
- */
-function RadioLabel({
-  children,
-  disabled,
-  value,
-}: {
-  children: React.ReactNode;
-  disabled: boolean;
-  value: string;
-}) {
-  const wrapperRef = React.useRef<HTMLLabelElement>(null);
-
-  // Observe the data-state attribute on the Radix Item to toggle label weight.
-  // Radix sets data-state="checked"|"unchecked" on the Item element.
-  React.useEffect(() => {
-    const wrapper = wrapperRef.current;
-    if (!wrapper) return;
-
-    const radioButton = wrapper.querySelector<HTMLButtonElement>(
-      '[role="radio"]',
-    );
-    if (!radioButton) return;
-
-    const updateLabel = () => {
-      const labelEl = wrapper.querySelector<HTMLElement>('[data-radio-label]');
-      if (!labelEl) return;
-
-      const isChecked = radioButton.getAttribute('data-state') === 'checked';
-
-      if (isChecked) {
-        labelEl.classList.add(styles['label--checked']);
-      } else {
-        labelEl.classList.remove(styles['label--checked']);
-      }
-
-      if (radioButton.hasAttribute('data-disabled')) {
-        labelEl.classList.add(styles['label--disabled']);
-      } else {
-        labelEl.classList.remove(styles['label--disabled']);
-      }
-    };
-
-    // Initial update
-    updateLabel();
-
-    // Watch for attribute changes (Radix toggles data-state on click/keyboard)
-    const observer = new MutationObserver(updateLabel);
-    observer.observe(radioButton, {
-      attributes: true,
-      attributeFilter: ['data-state', 'data-disabled'],
-    });
-
-    return () => observer.disconnect();
-  }, [value, disabled]);
-
-  const wrapperClassName = [
-    styles.wrapper,
-    disabled && styles['wrapper--disabled'],
-  ]
-    .filter(Boolean)
-    .join(' ');
-
-  return (
-    <label ref={wrapperRef} className={wrapperClassName}>
-      {children}
-    </label>
-  );
-}
