@@ -12,6 +12,8 @@ import { IconButton } from '@/components/ui/IconButton';
 import { Button } from '@/components/ui/Button';
 import { FilterChip } from '@/components/ui/FilterChip';
 import { Tag } from '@/components/ui/Tag';
+import { Menu } from '@/components/ui/Menu';
+import { MenuItem } from '@/components/ui/MenuItem';
 import {
   Search, X, ChevronDown, ChevronUp, ChevronRight, ChevronLeft,
   MoreHorizontal, Sliders, Download,
@@ -385,20 +387,23 @@ export default function DataTableExample() {
                 : <ChevronDown style={{ width: 16, height: 16 }} />
               }
             </button>
-            {showScopeDropdown && (
-              <div style={styles.scopeDropdown}>
-                {(['Campaign name', 'ID'] as const).map((s) => (
-                  <button
-                    key={s}
-                    type="button"
-                    style={styles.scopeOption}
-                    onClick={() => { setSearchScope(s); setShowScopeDropdown(false); }}
-                  >
-                    {s === 'Campaign name' ? t('dataTable.campaignName') : t('dataTable.id')}
-                  </button>
-                ))}
-              </div>
-            )}
+            <div style={{ position: 'absolute', left: 0, top: '100%', marginTop: '4px', zIndex: 50 }}>
+            <Menu
+              isOpen={showScopeDropdown}
+              onClose={() => setShowScopeDropdown(false)}
+              position="bottomLeft"
+            >
+              {(['Campaign name', 'ID'] as const).map((s) => (
+                <MenuItem
+                  key={s}
+                  selected={searchScope === s}
+                  onClick={() => { setSearchScope(s); setShowScopeDropdown(false); }}
+                >
+                  {s === 'Campaign name' ? t('dataTable.campaignName') : t('dataTable.id')}
+                </MenuItem>
+              ))}
+            </Menu>
+            </div>
           </div>
           <input
             type="text"
@@ -731,30 +736,6 @@ const INLINE_STYLES = {
     padding: '2px 4px',
     borderRadius: '4px',
     whiteSpace: 'nowrap' as const,
-  },
-  scopeDropdown: {
-    position: 'absolute' as const,
-    left: 0,
-    top: '100%',
-    marginTop: '4px',
-    width: '160px',
-    background: 'var(--ld-semantic-color-surface-primary, #fff)',
-    border: '1px solid var(--ld-semantic-color-border-subtle, #E2E2E3)',
-    borderRadius: '6px',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.12)',
-    zIndex: 50,
-    padding: '4px 0',
-  },
-  scopeOption: {
-    display: 'block',
-    width: '100%',
-    textAlign: 'left' as const,
-    padding: '8px 12px',
-    fontSize: '14px',
-    color: 'var(--ld-semantic-color-text, #2E2F32)',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
   },
   searchInput: {
     flex: 1,
