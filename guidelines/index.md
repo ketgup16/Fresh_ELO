@@ -99,6 +99,7 @@ Design system enforcement rules and best practices.
 - [Theme Addition](rules/RULE_ThemeAddition.md) - Process for adding new themes
 - [Markdown Organization](rules/RULE_MarkdownOrganization.md) - Markdown file organization
 - [**Internationalization (i18n)**](Internationalization.md) - **HARD RULE: All user-facing strings must be translatable**
+- [**Design System Terminology**](DesignSystemTerminology.md) - **Official translation standard for all LD 3.5 terms (EN/ES/FR)**
 
 ## Quick Links
 
