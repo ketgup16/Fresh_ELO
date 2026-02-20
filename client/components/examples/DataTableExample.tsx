@@ -165,6 +165,35 @@ const STATUS_KEYS: Record<string, string> = {
   Completed: 'dataTable.statusCompleted',
 };
 
+const CAMPAIGN_NAME_KEYS: Record<string, string> = {
+  '10001': 'dataTable.campaign_10001',
+  '10002': 'dataTable.campaign_10002',
+  '10003': 'dataTable.campaign_10003',
+  '10004': 'dataTable.campaign_10004',
+  '10005': 'dataTable.campaign_10005',
+  '10006': 'dataTable.campaign_10006',
+  '10007': 'dataTable.campaign_10007',
+  '10008': 'dataTable.campaign_10008',
+  'ag-1': 'dataTable.child_ag1',
+  'cr-1': 'dataTable.child_cr1',
+  'ag-2': 'dataTable.child_ag2',
+  'cr-2': 'dataTable.child_cr2',
+  'ag-3': 'dataTable.child_ag3',
+  'ag-4': 'dataTable.child_ag4',
+  'cr-4a': 'dataTable.child_cr4a',
+  'cr-4b': 'dataTable.child_cr4b',
+  'ag-6': 'dataTable.child_ag6',
+  'cr-6': 'dataTable.child_cr6',
+  'ag-8': 'dataTable.child_ag8',
+  'cr-8': 'dataTable.child_cr8',
+};
+
+const TARGETING_KEYS: Record<string, string> = {
+  'Contextual targeting': 'dataTable.targetContextual',
+  'Behavioral targeting': 'dataTable.targetBehavioral',
+  'Run of site': 'dataTable.targetRunOfSite',
+};
+
 type SortField = 'name' | 'status' | 'totalBudget' | 'impressions' | 'pacing';
 type SortDir = 'ascending' | 'descending' | 'none';
 
@@ -479,8 +508,8 @@ export default function DataTableExample() {
                       <span style={{ width: '24px', flexShrink: 0 }} />
                     )}
                     <div style={{ flex: 1 }}>
-                      <span style={styles.campaignLink}>{campaign.name}</span>
-                      <div style={styles.campaignId}>ID: {campaign.id}</div>
+                      <span style={styles.campaignLink}>{CAMPAIGN_NAME_KEYS[campaign.id] ? t(CAMPAIGN_NAME_KEYS[campaign.id]) : campaign.name}</span>
+                      <div style={styles.campaignId}>{t('dataTable.idLabel')}: {campaign.id}</div>
                     </div>
                   </div>
                 </DataTableCell>
@@ -499,7 +528,7 @@ export default function DataTableExample() {
                   )}
                 </DataTableCell>
                 <DataTableCell variant="numeric">{campaign.totalBudget ?? '-'}</DataTableCell>
-                <DataTableCell>{campaign.targetingStrategy ?? '-'}</DataTableCell>
+                <DataTableCell>{campaign.targetingStrategy ? t(TARGETING_KEYS[campaign.targetingStrategy] ?? campaign.targetingStrategy) : '-'}</DataTableCell>
                 <DataTableCell variant="numeric">{campaign.impressions ?? '-'}</DataTableCell>
                 <DataTableCell variant="numeric">
                   {campaign.pacing ? (
@@ -534,9 +563,9 @@ export default function DataTableExample() {
                         color: 'var(--ld-semantic-color-text-subtle, #74767C)',
                         flexShrink: 0,
                       }}>
-                        {child.type === 'adgroup' ? 'AG' : 'CR'}
+                        {child.type === 'adgroup' ? t('dataTable.adGroupLabel') : t('dataTable.creativeLabel')}
                       </span>
-                      <span style={styles.campaignLink}>{child.name}</span>
+                      <span style={styles.campaignLink}>{CAMPAIGN_NAME_KEYS[child.id] ? t(CAMPAIGN_NAME_KEYS[child.id]) : child.name}</span>
                     </div>
                   </DataTableCell>
                   <DataTableCellStatus>
