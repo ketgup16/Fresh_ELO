@@ -425,6 +425,7 @@
     "tabCodeStandards": "Standards de code",
     "tabTokenUsage": "Utilisation des jetons",
     "tabAgentRules": "Règles de l'agent",
+    "tabDocIndex": "Index de documentation",
     "designTokensTitle": "Jetons de design",
     "designTokensDesc": "Propriétés personnalisées CSS pour les couleurs, l'espacement, la typographie et autres valeurs de design. Cliquez sur un jeton pour copier sa variable CSS dans le presse-papiers.",
     "spacingTokens": "Jetons d'espacement",

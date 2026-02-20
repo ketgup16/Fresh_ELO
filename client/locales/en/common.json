@@ -425,6 +425,7 @@
     "tabCodeStandards": "Code Standards",
     "tabTokenUsage": "Token Usage",
     "tabAgentRules": "Agent Rules",
+    "tabDocIndex": "Documentation Index",
     "designTokensTitle": "Design Tokens",
     "designTokensDesc": "CSS custom properties for colors, spacing, typography, and other design values. Click any token to copy its CSS variable to clipboard.",
     "spacingTokens": "Spacing Tokens",

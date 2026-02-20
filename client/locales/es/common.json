@@ -425,6 +425,7 @@
     "tabCodeStandards": "Estándares de código",
     "tabTokenUsage": "Uso de tokens",
     "tabAgentRules": "Reglas del agente",
+    "tabDocIndex": "Índice de documentación",
     "designTokensTitle": "Tokens de diseño",
     "designTokensDesc": "Propiedades personalizadas CSS para colores, espaciado, tipografía y otros valores de diseño. Haz clic en cualquier token para copiar su variable CSS al portapapeles.",
     "spacingTokens": "Tokens de espaciado",

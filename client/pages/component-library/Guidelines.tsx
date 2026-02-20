@@ -5,6 +5,7 @@ import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/Tab';
 import * as Icons from '@/components/icons';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { useTranslation } from 'react-i18next';
+import { GuidelinesDocIndex } from './GuidelinesDocIndex';
 
 export default function GuidelinesPage() {
   const { t } = useTranslation();
@@ -25,6 +26,7 @@ export default function GuidelinesPage() {
           <Tab value="code">{t('componentLibrary.tabCodeStandards')}</Tab>
           <Tab value="tokens">{t('componentLibrary.tabTokenUsage')}</Tab>
           <Tab value="agent">{t('componentLibrary.tabAgentRules')}</Tab>
+          <Tab value="docs">{t('componentLibrary.tabDocIndex')}</Tab>
         </TabList>
 
         {/* Overview Tab */}
@@ -1360,6 +1362,10 @@ export default function GuidelinesPage() {
             </div>
 
           </div>
+        </TabPanel>
+        {/* Documentation Index Tab */}
+        <TabPanel value="docs">
+          <GuidelinesDocIndex />
         </TabPanel>
       </Tabs>
     </div>

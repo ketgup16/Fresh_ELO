@@ -164,6 +164,19 @@ public/
 
 ---
 
+### 2b. Guidelines Page Sync
+**File**: `RULE_GuidelinesPageSync.md`
+
+**When**: After ANY change to files in the `guidelines/` directory
+
+**Key Requirements**:
+- ✅ ALWAYS update `client/pages/component-library/GuidelinesDocIndex.tsx` when adding/removing/renaming guideline files
+- ✅ Add new entries with `name`, `path`, and `purpose` to the correct section in `docSections`
+- ✅ Remove entries for deleted files
+- ✅ Keep the Documentation Index tab on the Guidelines page in sync with actual files
+
+---
+
 ## 📚 Component Guidelines
 
 ### 3. Living Design Component API Reference
