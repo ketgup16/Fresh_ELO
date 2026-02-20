@@ -153,7 +153,7 @@ export function LanguageSelector() {
   return (
     <div className={styles.root} ref={ref}>
       <button
-        className={styles.trigger}
+        className={`${styles.trigger} ${open ? styles.triggerOpen : ''}`}
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="listbox"
         aria-expanded={open}
