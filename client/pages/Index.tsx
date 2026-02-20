@@ -16,7 +16,7 @@ import MartyFloatingPanel from "@/features/marty/MartyFloatingPanel";
 
 export default function Index() {
   const [activeMenuItem, setActiveMenuItem] = useState("dashboard");
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { t: tp } = useTranslation('pages');
 
   return (
@@ -31,11 +31,6 @@ export default function Index() {
 
         <main className={styles.main}>
           <div className={styles.pageContent}>
-            {/* DEBUG: temporary language indicator — remove after testing */}
-            <div style={{ padding: '8px 16px', background: '#FFF3CD', borderRadius: 8, marginBottom: 12, fontFamily: 'monospace', fontSize: 13 }}>
-              i18n.language: <strong>{i18n.language}</strong> | resolvedLanguage: <strong>{i18n.resolvedLanguage}</strong> | t('nav.home'): <strong>{t('nav.home')}</strong>
-            </div>
-
             <div className={styles.alertWrapper}>
               <Alert variant="info">
                 {tp('index.alertMessage')}

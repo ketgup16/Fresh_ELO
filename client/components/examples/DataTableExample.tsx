@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DataTable, DataTableHead, DataTableBody } from '@/components/ui/DataTable';
 import { DataTableRow } from '@/components/ui/DataTableRow';
 import { DataTableHeader } from '@/components/ui/DataTableHeader';
@@ -150,11 +151,18 @@ const CAMPAIGNS: Campaign[] = [
   },
 ];
 
-const STATUS_TAG: Record<string, { color: 'positive' | 'negative' | 'warning' | 'info'; label: string }> = {
-  Live: { color: 'positive', label: 'Live' },
-  Scheduled: { color: 'info', label: 'Scheduled' },
-  Paused: { color: 'warning', label: 'Paused' },
-  Completed: { color: 'info', label: 'Completed' },
+const STATUS_TAG_COLORS: Record<string, 'positive' | 'negative' | 'warning' | 'info'> = {
+  Live: 'positive',
+  Scheduled: 'info',
+  Paused: 'warning',
+  Completed: 'info',
+};
+
+const STATUS_KEYS: Record<string, string> = {
+  Live: 'dataTable.statusLive',
+  Scheduled: 'dataTable.statusScheduled',
+  Paused: 'dataTable.statusPaused',
+  Completed: 'dataTable.statusCompleted',
 };
 
 type SortField = 'name' | 'status' | 'totalBudget' | 'impressions' | 'pacing';
@@ -167,6 +175,8 @@ const RESULTS_PER_PAGE = 5;
    ================================================================ */
 
 export default function DataTableExample() {
+  const { t } = useTranslation('pages');
+
   /* ── Search ── */
   const [searchQuery, setSearchQuery] = React.useState('');
   const [searchScope, setSearchScope] = React.useState<'Campaign name' | 'ID'>('Campaign name');
@@ -322,7 +332,7 @@ export default function DataTableExample() {
           onClearSelected={() => setSelectedIds(new Set())}
           actionContent={
             <Button variant="secondary" size="small">
-              Archive Selected
+              {t('dataTable.archiveSelected')}
             </Button>
           }
         />
@@ -333,14 +343,14 @@ export default function DataTableExample() {
         {/* Search */}
         <div style={styles.searchBar}>
           <Search style={{ width: 16, height: 16, flexShrink: 0, color: 'var(--ld-semantic-color-text, #2E2F32)' }} />
-          <span style={styles.searchLabel}>Search by</span>
+          <span style={styles.searchLabel}>{t('dataTable.searchBy')}</span>
           <div style={{ position: 'relative' }}>
             <button
               type="button"
               style={styles.scopeButton}
               onClick={() => setShowScopeDropdown((p) => !p)}
             >
-              {searchScope}
+              {searchScope === 'Campaign name' ? t('dataTable.campaignName') : t('dataTable.id')}
               {showScopeDropdown
                 ? <ChevronUp style={{ width: 16, height: 16 }} />
                 : <ChevronDown style={{ width: 16, height: 16 }} />
@@ -355,7 +365,7 @@ export default function DataTableExample() {
                     style={styles.scopeOption}
                     onClick={() => { setSearchScope(s); setShowScopeDropdown(false); }}
                   >
-                    {s}
+                    {s === 'Campaign name' ? t('dataTable.campaignName') : t('dataTable.id')}
                   </button>
                 ))}
               </div>
@@ -369,7 +379,7 @@ export default function DataTableExample() {
             placeholder=""
           />
           {searchQuery && (
-            <button type="button" onClick={() => setSearchQuery('')} style={styles.clearButton} aria-label="Clear search">
+            <button type="button" onClick={() => setSearchQuery('')} style={styles.clearButton} aria-label={t('dataTable.clearSearch')}>
               <X style={{ width: 14, height: 14 }} />
             </button>
           )}
@@ -383,17 +393,17 @@ export default function DataTableExample() {
               selected={statusFilters.has(s)}
               onSelectedChange={() => toggleStatusFilter(s)}
             >
-              {s}
+              {t(STATUS_KEYS[s])}
             </FilterChip>
           ))}
         </div>
 
         {/* Action icons */}
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginLeft: 'auto' }}>
-          <IconButton aria-label="Table settings" variant="secondary">
+          <IconButton aria-label={t('dataTable.tableSettings')} variant="secondary">
             <Sliders />
           </IconButton>
-          <IconButton aria-label="Download" variant="secondary">
+          <IconButton aria-label={t('dataTable.download')} variant="secondary">
             <Download />
           </IconButton>
         </div>
@@ -409,28 +419,28 @@ export default function DataTableExample() {
               onChange={toggleAll}
             />
             <DataTableHeader onSort={handleSort('name')} sort={sortFor('name')}>
-              Campaign / Ad group / Creative
+              {t('dataTable.colCampaign')}
             </DataTableHeader>
             <DataTableHeader onSort={handleSort('status')} sort={sortFor('status')}>
-              Status
+              {t('dataTable.colStatus')}
             </DataTableHeader>
             <DataTableHeader>
-              Recommendations
+              {t('dataTable.colRecommendations')}
             </DataTableHeader>
             <DataTableHeader alignment="right" onSort={handleSort('totalBudget')} sort={sortFor('totalBudget')}>
-              Total budget
+              {t('dataTable.colTotalBudget')}
             </DataTableHeader>
             <DataTableHeader>
-              Targeting Strategy
+              {t('dataTable.colTargetingStrategy')}
             </DataTableHeader>
             <DataTableHeader alignment="right" onSort={handleSort('impressions')} sort={sortFor('impressions')}>
-              Impressions
+              {t('dataTable.colImpressions')}
             </DataTableHeader>
             <DataTableHeader alignment="right" onSort={handleSort('pacing')} sort={sortFor('pacing')}>
-              Pacing
+              {t('dataTable.colPacing')}
             </DataTableHeader>
             <DataTableHeader alignment="right">
-              Actions
+              {t('dataTable.colActions')}
             </DataTableHeader>
           </DataTableRow>
         </DataTableHead>
@@ -438,7 +448,7 @@ export default function DataTableExample() {
           {paginatedData.length === 0 && (
             <DataTableRow>
               <DataTableCell UNSAFE_style={{ textAlign: 'center', padding: '32px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} colSpan={9}>
-                No campaigns match your search or filters.
+                {t('dataTable.noResults')}
               </DataTableCell>
             </DataTableRow>
           )}
@@ -458,7 +468,7 @@ export default function DataTableExample() {
                         type="button"
                         onClick={() => toggleExpand(campaign.id)}
                         style={styles.expandButton}
-                        aria-label={expandedIds.has(campaign.id) ? 'Collapse' : 'Expand'}
+                        aria-label={expandedIds.has(campaign.id) ? t('dataTable.collapse') : t('dataTable.expand')}
                       >
                         {expandedIds.has(campaign.id)
                           ? <ChevronDown style={{ width: 20, height: 20 }} />
@@ -475,14 +485,14 @@ export default function DataTableExample() {
                   </div>
                 </DataTableCell>
                 <DataTableCellStatus>
-                  <Tag variant="tertiary" color={STATUS_TAG[campaign.status].color}>
-                    {STATUS_TAG[campaign.status].label}
+                  <Tag variant="tertiary" color={STATUS_TAG_COLORS[campaign.status]}>
+                    {t(STATUS_KEYS[campaign.status])}
                   </Tag>
                 </DataTableCellStatus>
                 <DataTableCell>
                   {campaign.recommendations > 0 ? (
                     <span style={styles.recBadge}>
-                      {campaign.recommendations} recommendation{campaign.recommendations !== 1 ? 's' : ''}
+                      {t('dataTable.recommendation', { count: campaign.recommendations })}
                     </span>
                   ) : (
                     '-'
@@ -504,7 +514,7 @@ export default function DataTableExample() {
                   ) : '-'}
                 </DataTableCell>
                 <DataTableCellActions>
-                  <IconButton aria-label={`Actions for ${campaign.name}`} variant="ghost">
+                  <IconButton aria-label={t('dataTable.actionsFor', { name: campaign.name })} variant="ghost">
                     <MoreHorizontal />
                   </IconButton>
                 </DataTableCellActions>
@@ -530,8 +540,8 @@ export default function DataTableExample() {
                     </div>
                   </DataTableCell>
                   <DataTableCellStatus>
-                    <Tag variant="tertiary" color={STATUS_TAG[child.status].color}>
-                      {STATUS_TAG[child.status].label}
+                    <Tag variant="tertiary" color={STATUS_TAG_COLORS[child.status]}>
+                      {t(STATUS_KEYS[child.status])}
                     </Tag>
                   </DataTableCellStatus>
                   <DataTableCell>
@@ -544,7 +554,7 @@ export default function DataTableExample() {
                   <DataTableCell variant="numeric">-</DataTableCell>
                   <DataTableCell variant="numeric">-</DataTableCell>
                   <DataTableCellActions>
-                    <IconButton aria-label={`Actions for ${child.name}`} variant="ghost">
+                    <IconButton aria-label={t('dataTable.actionsFor', { name: child.name })} variant="ghost">
                       <MoreHorizontal />
                     </IconButton>
                   </DataTableCellActions>
@@ -585,11 +595,12 @@ function Pagination({
   onPageChange: (page: number) => void;
 }) {
   const styles = INLINE_STYLES;
+  const { t } = useTranslation('pages');
 
   return (
     <div style={styles.paginationBar}>
       <span style={styles.paginationInfo}>
-        Results per page: {resultsPerPage} &middot; {totalResults} total
+        {t('dataTable.resultsPerPage', { count: resultsPerPage })} &middot; {t('dataTable.totalResults', { count: totalResults })}
       </span>
       <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
         <button
@@ -597,7 +608,7 @@ function Pagination({
           style={styles.paginationButton}
           disabled={currentPage <= 1}
           onClick={() => onPageChange(1)}
-          aria-label="First page"
+          aria-label={t('dataTable.firstPage')}
         >
           <ChevronLeft style={{ width: 16, height: 16 }} />
           <ChevronLeft style={{ width: 16, height: 16, marginLeft: -10 }} />
@@ -607,17 +618,17 @@ function Pagination({
           style={styles.paginationButton}
           disabled={currentPage <= 1}
           onClick={() => onPageChange(currentPage - 1)}
-          aria-label="Previous page"
+          aria-label={t('dataTable.previousPage')}
         >
           <ChevronLeft style={{ width: 16, height: 16 }} />
         </button>
 
         <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text, #2E2F32)', padding: '0 4px' }}>
-          Page
+          {t('dataTable.page')}
         </span>
         <span style={styles.pageIndicator}>{currentPage}</span>
         <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text, #2E2F32)', padding: '0 4px' }}>
-          of {totalPages}
+          {t('dataTable.of', { count: totalPages })}
         </span>
 
         <button
@@ -625,7 +636,7 @@ function Pagination({
           style={styles.paginationButton}
           disabled={currentPage >= totalPages}
           onClick={() => onPageChange(currentPage + 1)}
-          aria-label="Next page"
+          aria-label={t('dataTable.nextPage')}
         >
           <ChevronRight style={{ width: 16, height: 16 }} />
         </button>
@@ -634,7 +645,7 @@ function Pagination({
           style={styles.paginationButton}
           disabled={currentPage >= totalPages}
           onClick={() => onPageChange(totalPages)}
-          aria-label="Last page"
+          aria-label={t('dataTable.lastPage')}
         >
           <ChevronRight style={{ width: 16, height: 16 }} />
           <ChevronRight style={{ width: 16, height: 16, marginLeft: -10 }} />
