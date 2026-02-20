@@ -247,11 +247,14 @@
    DROPDOWN CONTENT
    ======================================== */
 .content {
-  position: relative;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   z-index: 50;
   max-height: 360px;
-  min-width: var(--radix-select-trigger-width);
   overflow: hidden;
+  overflow-y: auto;
   border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
   border: var(--ld-semantic-scale-borderwidth-interactive, 1px) solid var(--ld-semantic-color-separator, #E3E4E5);
   background: var(--ld-semantic-color-background, #ffffff);
@@ -261,6 +264,18 @@
 
 .content[data-side="top"] {
   animation: slideUpAndFade 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Placeholder text */
+.placeholder {
+  color: var(--ld-semantic-color-field-text-subtle-on-fill, #74767c);
+}
+
+/* Highlighted item (keyboard navigation) */
+.item[data-highlighted="true"] {
+  background: var(--ld-semantic-color-fill-subtle, #f1f1f2);
+  outline: var(--ld-semantic-scale-borderwidth-interactive-focused, 2px) solid var(--ld-semantic-color-action-focus-outline, #0071DC);
+  outline-offset: -2px;
 }
 
 .viewport {

@@ -1,21 +1,15 @@
 'use client';
 
 import * as React from 'react';
-import * as SelectPrimitive from '@radix-ui/react-select';
 import { cn } from '@/lib/utils';
 import styles from './Select.module.css';
 
 /**
  * Living Design 3.5 Select Component
- * 
- * A dropdown select component with support for:
- * - Two sizes (small, large)
- * - Error states with error messages
- * - Magic (AI) variant with gradient styling
- * - Helper text
- * - Leading icons
- * - Full keyboard accessibility via Radix UI
- * 
+ *
+ * Standalone implementation with no external dependencies.
+ * Custom listbox pattern with full keyboard accessibility.
+ *
  * @example
  * ```tsx
  * <Select label="Choose option" value={value} onValueChange={setValue}>
@@ -25,73 +19,111 @@ import styles from './Select.module.css';
  * ```
  */
 
-// Re-export Radix primitives for advanced usage
-export const SelectRoot = SelectPrimitive.Root;
-export const SelectGroup = SelectPrimitive.Group;
-export const SelectValue = SelectPrimitive.Value;
+/* ─── Context ─── */
+
+interface SelectContextValue {
+  value: string | undefined;
+  onSelect: (value: string, label: string) => void;
+  highlightedIndex: number;
+  setHighlightedIndex: (i: number) => void;
+}
+
+const SelectContext = React.createContext<SelectContextValue | null>(null);
+
+function useSelectContext() {
+  const ctx = React.useContext(SelectContext);
+  if (!ctx) throw new Error('SelectItem must be used within a Select');
+  return ctx;
+}
+
+/* ─── SelectItem ─── */
+
+export interface SelectItemProps {
+  children: React.ReactNode;
+  value: string;
+  disabled?: boolean;
+  className?: string;
+}
+
+export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
+  ({ children, value, disabled, className }, ref) => {
+    const ctx = useSelectContext();
+    const isSelected = ctx.value === value;
+
+    return (
+      <div
+        ref={ref}
+        role="option"
+        aria-selected={isSelected}
+        aria-disabled={disabled || undefined}
+        data-state={isSelected ? 'checked' : 'unchecked'}
+        data-disabled={disabled || undefined}
+        data-value={value}
+        className={cn(styles.item, className)}
+        onClick={() => {
+          if (!disabled) {
+            ctx.onSelect(value, typeof children === 'string' ? children : '');
+          }
+        }}
+      >
+        <span>{children}</span>
+        {isSelected && (
+          <span className={styles.itemIndicator}>
+            <CheckIcon />
+          </span>
+        )}
+      </div>
+    );
+  },
+);
+SelectItem.displayName = 'SelectItem';
+
+/* ─── SelectSeparator ─── */
+
+export const SelectSeparator = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn(styles.separator, className)} {...props} />
+));
+SelectSeparator.displayName = 'SelectSeparator';
+
+/* ─── SelectLabel ─── */
+
+export const SelectLabel = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn(styles.groupLabel, className)} {...props} />
+));
+SelectLabel.displayName = 'SelectLabel';
+
+/* ─── Main Select ─── */
 
 export interface SelectProps {
-  /** Label text displayed above the select */
   label: string;
-  
-  /** Currently selected value */
   value?: string;
-  
-  /** Callback when value changes */
   onValueChange?: (value: string) => void;
-  
-  /** Placeholder text when no value selected */
   placeholder?: string;
-  
-  /** Whether the select is disabled */
   disabled?: boolean;
-  
-  /** Size variant - large is default */
   size?: 'small' | 'large';
-  
-  /** Whether the select has an error */
   error?: boolean;
-  
-  /** Error message to display */
   errorMessage?: string;
-  
-  /** Whether to show magic (AI) variant styling */
   isMagic?: boolean;
-  
-  /** Helper text displayed below the select */
   helperText?: string;
-  
-  /** Leading icon element */
   leadingIcon?: React.ReactNode;
-  
-  /** SelectItem children */
   children: React.ReactNode;
-  
-  /** Additional className for the container */
   className?: string;
-  
-  /** HTML id attribute */
   id?: string;
-  
-  /** HTML name attribute */
   name?: string;
-  
-  /** Whether the field is required */
   required?: boolean;
-  
-  /** Default value when uncontrolled */
   defaultValue?: string;
-
-  /** Whether to hide the border (borderless style) */
   borderless?: boolean;
 }
 
-/**
- * Main Select component following LD 3.5 design specifications
- */
 export function Select({
   label,
-  value,
+  value: controlledValue,
   onValueChange,
   placeholder = 'Select option...',
   disabled = false,
@@ -109,13 +141,161 @@ export function Select({
   defaultValue,
   borderless = false,
 }: SelectProps) {
+  const isControlled = controlledValue !== undefined;
+  const [internalValue, setInternalValue] = React.useState(defaultValue ?? '');
+  const currentValue = isControlled ? controlledValue : internalValue;
+
+  const [open, setOpen] = React.useState(false);
+  const [displayLabel, setDisplayLabel] = React.useState('');
+  const [highlightedIndex, setHighlightedIndex] = React.useState(-1);
+
+  const triggerRef = React.useRef<HTMLButtonElement>(null);
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  // Build a flat list of item values for keyboard navigation
+  const itemValues = React.useMemo(() => {
+    const values: string[] = [];
+    React.Children.forEach(children, (child) => {
+      if (React.isValidElement<SelectItemProps>(child) && child.type === SelectItem) {
+        if (!child.props.disabled) {
+          values.push(child.props.value);
+        }
+      }
+    });
+    return values;
+  }, [children]);
+
+  // Resolve display label from children on mount and when value changes
+  React.useEffect(() => {
+    let found = '';
+    React.Children.forEach(children, (child) => {
+      if (React.isValidElement<SelectItemProps>(child) && child.type === SelectItem) {
+        if (child.props.value === currentValue) {
+          found = typeof child.props.children === 'string'
+            ? child.props.children
+            : currentValue;
+        }
+      }
+    });
+    setDisplayLabel(found);
+  }, [currentValue, children]);
+
+  // Close on click outside
+  React.useEffect(() => {
+    if (!open) return;
+    function handleClickOutside(e: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [open]);
+
+  // Close on Escape
+  React.useEffect(() => {
+    if (!open) return;
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
+    }
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [open]);
+
+  const handleSelect = (val: string, lbl: string) => {
+    if (!isControlled) {
+      setInternalValue(val);
+    }
+    onValueChange?.(val);
+    setDisplayLabel(lbl || val);
+    setOpen(false);
+    triggerRef.current?.focus();
+  };
+
+  const handleTriggerClick = () => {
+    if (disabled) return;
+    setOpen((o) => !o);
+    if (!open) {
+      // Highlight the currently selected item when opening
+      const idx = itemValues.indexOf(currentValue ?? '');
+      setHighlightedIndex(idx >= 0 ? idx : 0);
+    }
+  };
+
+  const handleTriggerKeyDown = (e: React.KeyboardEvent) => {
+    if (disabled) return;
+
+    switch (e.key) {
+      case 'ArrowDown':
+      case 'ArrowUp':
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        if (!open) {
+          setOpen(true);
+          const idx = itemValues.indexOf(currentValue ?? '');
+          setHighlightedIndex(idx >= 0 ? idx : 0);
+        } else if (e.key === 'Enter' || e.key === ' ') {
+          // Select the highlighted item
+          if (highlightedIndex >= 0 && highlightedIndex < itemValues.length) {
+            const val = itemValues[highlightedIndex];
+            // Find label
+            let lbl = val;
+            React.Children.forEach(children, (child) => {
+              if (React.isValidElement<SelectItemProps>(child) && child.type === SelectItem) {
+                if (child.props.value === val) {
+                  lbl = typeof child.props.children === 'string' ? child.props.children : val;
+                }
+              }
+            });
+            handleSelect(val, lbl);
+          }
+        } else if (e.key === 'ArrowDown') {
+          setHighlightedIndex((i) => Math.min(i + 1, itemValues.length - 1));
+        } else if (e.key === 'ArrowUp') {
+          setHighlightedIndex((i) => Math.max(i - 1, 0));
+        }
+        break;
+      case 'Home':
+        if (open) {
+          e.preventDefault();
+          setHighlightedIndex(0);
+        }
+        break;
+      case 'End':
+        if (open) {
+          e.preventDefault();
+          setHighlightedIndex(itemValues.length - 1);
+        }
+        break;
+    }
+  };
+
+  // Scroll highlighted item into view
+  React.useEffect(() => {
+    if (!open || highlightedIndex < 0) return;
+    const items = contentRef.current?.querySelectorAll('[role="option"]:not([data-disabled])');
+    if (items && items[highlightedIndex]) {
+      items[highlightedIndex].scrollIntoView({ block: 'nearest' });
+      // Add visual focus
+      items.forEach((item, i) => {
+        (item as HTMLElement).setAttribute('data-highlighted', i === highlightedIndex ? 'true' : '');
+      });
+    }
+  }, [open, highlightedIndex]);
+
   const labelId = id ? `${id}-label` : undefined;
   const errorId = error && errorMessage ? `${id}-error` : undefined;
   const helperId = helperText ? `${id}-helper` : undefined;
+  const listboxId = id ? `${id}-listbox` : undefined;
 
   return (
-    <div className={cn(styles.select, className)}>
-      {/* Label with optional magic icon */}
+    <div className={cn(styles.select, className)} ref={containerRef}>
+      {/* Label */}
       <div className={styles.labelContainer}>
         {isMagic && (
           <MagicIcon
@@ -129,7 +309,7 @@ export function Select({
           className={cn(
             styles.label,
             styles[`label--size-${size}`],
-            disabled && styles['label--disabled']
+            disabled && styles['label--disabled'],
           )}
         >
           {label}
@@ -137,52 +317,73 @@ export function Select({
         </label>
       </div>
 
-      {/* Select trigger */}
-      <SelectPrimitive.Root
-        value={value}
-        onValueChange={onValueChange}
+      {/* Trigger */}
+      <button
+        ref={triggerRef}
+        type="button"
+        role="combobox"
+        id={id}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+        aria-controls={listboxId}
+        aria-labelledby={labelId}
+        aria-describedby={cn(errorId, helperId) || undefined}
+        aria-invalid={error || undefined}
+        aria-required={required || undefined}
         disabled={disabled}
-        name={name}
-        defaultValue={defaultValue}
+        data-state={open ? 'open' : 'closed'}
+        data-disabled={disabled || undefined}
+        className={cn(
+          styles.trigger,
+          styles[`trigger--size-${size}`],
+          error && styles['trigger--error'],
+          isMagic && !error && styles['trigger--magic'],
+          disabled && styles['trigger--disabled'],
+          borderless && styles['trigger--borderless'],
+        )}
+        onClick={handleTriggerClick}
+        onKeyDown={handleTriggerKeyDown}
       >
-        <SelectPrimitive.Trigger
-          id={id}
-          className={cn(
-            styles.trigger,
-            styles[`trigger--size-${size}`],
-            error && styles['trigger--error'],
-            isMagic && !error && styles['trigger--magic'],
-            disabled && styles['trigger--disabled'],
-            borderless && styles['trigger--borderless']
+        <div className={styles.valueContainer}>
+          {leadingIcon && (
+            <span className={styles.leadingIcon}>{leadingIcon}</span>
           )}
-          aria-labelledby={labelId}
-          aria-describedby={cn(errorId, helperId)}
-          aria-invalid={error}
-          aria-required={required}
-        >
-          <div className={styles.valueContainer}>
-            {leadingIcon && (
-              <span className={styles.leadingIcon}>{leadingIcon}</span>
-            )}
-            <SelectPrimitive.Value placeholder={placeholder} />
-          </div>
-          <SelectPrimitive.Icon asChild>
-            <ChevronDownIcon className={styles.chevron} />
-          </SelectPrimitive.Icon>
-        </SelectPrimitive.Trigger>
+          <span className={displayLabel ? undefined : styles.placeholder}>
+            {displayLabel || placeholder}
+          </span>
+        </div>
+        <ChevronDownIcon className={styles.chevron} />
+      </button>
 
-        <SelectPrimitive.Portal>
-          <SelectPrimitive.Content
-            className={styles.content}
-            position="popper"
-            sideOffset={4}
-          >
-            <SelectPrimitive.Viewport className={styles.viewport}>
+      {/* Dropdown */}
+      {open && (
+        <div
+          ref={contentRef}
+          role="listbox"
+          id={listboxId}
+          aria-labelledby={labelId}
+          className={styles.content}
+          data-side="bottom"
+        >
+          <div className={styles.viewport}>
+            <SelectContext.Provider
+              value={{
+                value: currentValue,
+                onSelect: handleSelect,
+                highlightedIndex,
+                setHighlightedIndex,
+              }}
+            >
               {children}
-            </SelectPrimitive.Viewport>
-          </SelectPrimitive.Content>
-        </SelectPrimitive.Portal>
-      </SelectPrimitive.Root>
+            </SelectContext.Provider>
+          </div>
+        </div>
+      )}
+
+      {/* Hidden input for form submission */}
+      {name && (
+        <input type="hidden" name={name} value={currentValue ?? ''} disabled={disabled} />
+      )}
 
       {/* Error message */}
       {error && errorMessage && (
@@ -202,62 +403,8 @@ export function Select({
   );
 }
 
-/**
- * SelectItem component for individual options
- */
-export interface SelectItemProps extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item> {
-  children: React.ReactNode;
-  value: string;
-}
+/* ─── Icons ─── */
 
-export const SelectItem = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Item>,
-  SelectItemProps
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Item
-    ref={ref}
-    className={cn(styles.item, className)}
-    {...props}
-  >
-    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-    <SelectPrimitive.ItemIndicator className={styles.itemIndicator}>
-      <CheckIcon />
-    </SelectPrimitive.ItemIndicator>
-  </SelectPrimitive.Item>
-));
-SelectItem.displayName = 'SelectItem';
-
-/**
- * SelectSeparator for grouping options
- */
-export const SelectSeparator = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Separator
-    ref={ref}
-    className={cn(styles.separator, className)}
-    {...props}
-  />
-));
-SelectSeparator.displayName = 'SelectSeparator';
-
-/**
- * SelectLabel for option groups
- */
-export const SelectLabel = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Label
-    ref={ref}
-    className={cn(styles.groupLabel, className)}
-    {...props}
-  />
-));
-SelectLabel.displayName = 'SelectLabel';
-
-// Icon components
 function ChevronDownIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -317,12 +464,12 @@ function ErrorIcon({ className }: { className?: string }) {
   );
 }
 
-function MagicIcon({ 
-  size, 
+function MagicIcon({
+  size,
   disabled,
-  className 
-}: { 
-  size: 'small' | 'large'; 
+  className,
+}: {
+  size: 'small' | 'large';
   disabled?: boolean;
   className?: string;
 }) {
@@ -338,7 +485,7 @@ function MagicIcon({
       className={cn(
         styles.magicIconSvg,
         disabled && styles['magicIconSvg--disabled'],
-        className
+        className,
       )}
       aria-label="AI-assisted"
     >
@@ -360,3 +507,8 @@ function MagicIcon({
     </svg>
   );
 }
+
+/* ─── Legacy re-exports for backward compatibility ─── */
+export const SelectRoot = Select;
+export const SelectGroup = 'div' as unknown as React.FC<React.HTMLAttributes<HTMLDivElement>>;
+export const SelectValue = 'span' as unknown as React.FC<React.HTMLAttributes<HTMLSpanElement>>;

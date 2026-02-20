@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import styles from './Checkbox.module.css';
 
 export interface CheckboxProps {
@@ -103,57 +102,101 @@ const IndeterminateIcon = () => (
 /**
  * LD 3.5 Checkbox component.
  *
- * Built on Radix UI Checkbox primitive for accessibility and state management.
+ * Standalone implementation with no external dependencies.
+ * Uses native HTML + React state for accessibility and state management.
  * Uses CSS modules with LD 3.5 semantic input tokens exclusively.
  */
-export const Checkbox = React.forwardRef<
-  React.ElementRef<typeof CheckboxPrimitive.Root>,
-  CheckboxProps
->(
+export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
   (
     {
-      checked,
-      defaultChecked,
+      checked: controlledChecked,
+      defaultChecked = false,
       disabled = false,
       onCheckedChange,
       label,
       'aria-label': ariaLabel,
       id,
       name,
-      value,
+      value = 'on',
       required,
       UNSAFE_className,
       UNSAFE_style,
     },
     ref,
   ) => {
+    const isControlled = controlledChecked !== undefined;
+    const [internalChecked, setInternalChecked] = React.useState<boolean | 'indeterminate'>(
+      defaultChecked
+    );
+
+    const checkedState = isControlled ? controlledChecked : internalChecked;
+    const isChecked = checkedState === true;
+    const isIndeterminate = checkedState === 'indeterminate';
+
+    const dataState = isIndeterminate
+      ? 'indeterminate'
+      : isChecked
+        ? 'checked'
+        : 'unchecked';
+
+    const handleClick = () => {
+      if (disabled) return;
+
+      const nextChecked = isIndeterminate ? true : !isChecked;
+
+      if (!isControlled) {
+        setInternalChecked(nextChecked);
+      }
+      onCheckedChange?.(nextChecked);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      // Space and Enter toggle the checkbox
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        handleClick();
+      }
+    };
+
     const checkboxClassName = [styles.checkbox, UNSAFE_className]
       .filter(Boolean)
       .join(' ');
 
     const checkbox = (
-      <CheckboxPrimitive.Root
-        ref={ref}
-        id={id}
-        name={name}
-        value={value}
-        required={required}
-        checked={checked}
-        defaultChecked={defaultChecked}
-        disabled={disabled}
-        onCheckedChange={onCheckedChange}
-        aria-label={!label ? ariaLabel : undefined}
-        className={checkboxClassName}
-        style={UNSAFE_style}
-      >
-        <CheckboxPrimitive.Indicator className={styles.indicator}>
-          {checked === 'indeterminate' ? (
-            <IndeterminateIcon />
-          ) : (
-            <CheckIcon />
+      <>
+        <button
+          ref={ref}
+          type="button"
+          role="checkbox"
+          aria-checked={isIndeterminate ? 'mixed' : isChecked}
+          aria-label={!label ? ariaLabel : undefined}
+          aria-required={required || undefined}
+          aria-disabled={disabled || undefined}
+          id={id}
+          disabled={disabled}
+          data-state={dataState}
+          data-disabled={disabled || undefined}
+          className={checkboxClassName}
+          style={UNSAFE_style}
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
+        >
+          {(isChecked || isIndeterminate) && (
+            <span className={styles.indicator}>
+              {isIndeterminate ? <IndeterminateIcon /> : <CheckIcon />}
+            </span>
           )}
-        </CheckboxPrimitive.Indicator>
-      </CheckboxPrimitive.Root>
+        </button>
+        {/* Hidden native input for form submission */}
+        {name && (
+          <input
+            type="hidden"
+            name={name}
+            value={isChecked ? value : ''}
+            disabled={disabled}
+          />
+        )}
+      </>
     );
 
     if (label) {
