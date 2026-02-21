@@ -1,4 +1,4 @@
-/* QuantityStepper.module.css — Unified animated pill structure */
+/* QuantityStepper.module.css — Clean three-mode animation */
 
 .quantityStepper {
   display: inline-flex;
@@ -7,8 +7,7 @@
 }
 
 /* ═══════════════════════════════════════════════
-   PILL — the single container that morphs between
-   circle (collapsed) and pill (expanded) states
+   PILL — shared base for all three modes
    ═══════════════════════════════════════════════ */
 
 .pill {
@@ -16,13 +15,21 @@
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  overflow: hidden;
   font-family: inherit;
   font-weight: 700;
   cursor: pointer;
   border: none;
-  padding: 2px;
-  transition: background-color 0.18s ease, border-color 0.18s ease;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.pill:hover:not(:disabled):not(.pillExpanded) {
+  transform: scale(1.03);
+}
+
+.pill:active:not(:disabled):not(.pillExpanded) {
+  transform: scale(0.97);
 }
 
 .pill:focus-visible {
@@ -30,38 +37,37 @@
   outline-offset: 2px;
 }
 
+.pill:disabled,
+.pill[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 .pillExpanded {
   cursor: default;
 }
 
-.pill[aria-disabled="true"] {
-  cursor: not-allowed;
+.pillExpanded:hover {
+  transform: none;
 }
 
 /* ── Sizes ── */
 
 .pill--small {
-  min-height: 32px;
   height: 32px;
   font-size: 14px;
   line-height: 1.43;
-  box-sizing: border-box;
 }
 
 .pill--medium {
-  min-height: 40px;
   height: 40px;
   font-size: 16px;
   line-height: 1.5;
-  box-sizing: border-box;
 }
 
 .pill--large {
-  min-height: 52px;
   height: 52px;
   font-size: 18px;
   line-height: 1.33;
-  box-sizing: border-box;
 }
 
 /* ── Primary variant ── */
@@ -71,15 +77,15 @@
   color: var(--ld-semantic-color-action-text-onfill-primary, #ffffff);
 }
 
-.pill--primary:not(.pillExpanded):hover:not([aria-disabled="true"]) {
+.pill--primary:hover:not(:disabled):not(.pillExpanded) {
   background: var(--ld-semantic-color-action-fill-primary-hovered, #0060b8);
 }
 
-.pill--primary:not(.pillExpanded):active:not([aria-disabled="true"]) {
+.pill--primary:active:not(:disabled):not(.pillExpanded) {
   background: var(--ld-semantic-color-action-fill-primary-pressed, #004c94);
 }
 
-.pill--primary[aria-disabled="true"] {
+.pill--primary:disabled {
   background: var(--ld-semantic-color-action-fill-primary-disabled, #c2dcf7);
   color: var(--ld-semantic-color-action-text-onfill-primary-disabled, #ffffff);
 }
@@ -92,15 +98,15 @@
   border: 1.5px solid var(--ld-semantic-color-action-border-secondary, #2e2f32);
 }
 
-.pill--secondary:not(.pillExpanded):hover:not([aria-disabled="true"]) {
+.pill--secondary:hover:not(:disabled):not(.pillExpanded) {
   background: var(--ld-semantic-color-action-fill-secondary-hovered, #f0f0f1);
 }
 
-.pill--secondary:not(.pillExpanded):active:not([aria-disabled="true"]) {
+.pill--secondary:active:not(:disabled):not(.pillExpanded) {
   background: var(--ld-semantic-color-action-fill-secondary-pressed, #e0e0e2);
 }
 
-.pill--secondary[aria-disabled="true"] {
+.pill--secondary:disabled {
   color: var(--ld-semantic-color-action-text-onfill-secondary-disabled, #babbbe);
   border-color: var(--ld-semantic-color-action-border-secondary-disabled, #babbbe);
 }
@@ -113,53 +119,69 @@
   border: 1.5px solid var(--ld-semantic-color-action-border-tertiary, #74767c);
 }
 
-.pill--tertiary:not(.pillExpanded):hover:not([aria-disabled="true"]) {
+.pill--tertiary:hover:not(:disabled):not(.pillExpanded) {
   background: var(--ld-semantic-color-action-fill-tertiary-hovered, #f0f0f1);
 }
 
-.pill--tertiary:not(.pillExpanded):active:not([aria-disabled="true"]) {
+.pill--tertiary:active:not(:disabled):not(.pillExpanded) {
   background: var(--ld-semantic-color-action-fill-tertiary-pressed, #e0e0e2);
 }
 
-.pill--tertiary[aria-disabled="true"] {
+.pill--tertiary:disabled {
   color: var(--ld-semantic-color-action-text-onfill-tertiary-disabled, #babbbe);
   border-color: var(--ld-semantic-color-action-border-tertiary-disabled, #e6e6e8);
 }
 
-/* ═══════════════════════════════════════════
-   SIDE SLOTS — minus (left) and plus (right)
-   Animate from 0 width to full icon-button width
-   ═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   MODE: Initial — "+ Add" or "Add to cart"
+   ═══════════════════════════════════════ */
 
-.slotSide {
+.pillInitial {
+  padding: 0 16px;
+  gap: 4px;
+}
+
+.pill--small.pillInitial  { padding: 0 12px; }
+.pill--medium.pillInitial { padding: 0 16px; }
+.pill--large.pillInitial  { padding: 0 20px; }
+
+.pillContent {
   display: flex;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  flex-shrink: 0;
-  /* DEFAULT = collapsed → COLLAPSING transition.
-     Delay the width collapse so the label disappears first. */
-  max-width: 0;
-  opacity: 0;
-  transition:
-    max-width 0.28s cubic-bezier(0.4, 0, 0.6, 1) 0.12s,
-    opacity 0.12s ease;
+  gap: 4px;
 }
 
-/* EXPANDING transition params (applied when pill is expanded) */
-.pillExpanded .slotSide {
-  opacity: 1;
-  transition:
-    max-width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.2s ease 0.06s;
+.addText {
+  white-space: nowrap;
 }
-
-.pillExpanded .slotSide--small  { max-width: 28px; }
-.pillExpanded .slotSide--medium { max-width: 36px; }
-.pillExpanded .slotSide--large  { max-width: 48px; }
 
 /* ═══════════════════════════════════════
-   ICON BUTTONS — inside the side slots
+   MODE: Circle — collapsed count or icon-only
+   ═══════════════════════════════════════ */
+
+.pillCircle {
+  padding: 0;
+}
+
+.pill--small.pillCircle  { width: 32px; }
+.pill--medium.pillCircle { width: 40px; }
+.pill--large.pillCircle  { width: 52px; }
+
+/* ═══════════════════════════════════════
+   MODE: Expanded — full stepper
+   ═══════════════════════════════════════ */
+
+.pillExpanded {
+  padding: 4px;
+  gap: 2px;
+}
+
+.pill--small.pillExpanded  { min-width: 112px; padding: 2px; }
+.pill--medium.pillExpanded { min-width: 136px; padding: 2px; }
+.pill--large.pillExpanded  { min-width: 168px; padding: 2px; }
+
+/* ═══════════════════════════════════════
+   ICON BUTTONS — inside expanded stepper
    ═══════════════════════════════════════ */
 
 .iconBtn {
@@ -186,14 +208,11 @@
   opacity: 0.4;
 }
 
-/* Trash icon variant — same fill/hover behavior as minus/plus buttons.
-   Inherits color from parent (white on primary, dark on secondary/tertiary). */
-
 .iconBtn--small  { width: 28px; height: 28px; }
 .iconBtn--medium { width: 36px; height: 36px; }
 .iconBtn--large  { width: 48px; height: 48px; }
 
-/* Icon button hover — scoped per variant */
+/* Icon button hover — per variant */
 .pill--primary .iconBtn:hover:not(:disabled) {
   background: var(--ld-semantic-color-action-fill-primary-hovered, #0060b8);
 }
@@ -216,97 +235,42 @@
 }
 
 /* ═══════════════════════════════════
-   CENTER SLOT — count, label, or icon
+   CENTER SLOT — count + label
    ═══════════════════════════════════ */
 
-.slotCenter {
+.centerSlot {
   display: flex;
+  flex: 1;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  overflow: hidden;
-  flex-shrink: 0;
-  min-width: 0;
-  /* COLLAPSING: delay width/padding shrink so label disappears first */
-  transition:
-    padding 0.28s cubic-bezier(0.4, 0, 0.6, 1) 0.12s,
-    min-width 0.28s cubic-bezier(0.4, 0, 0.6, 1) 0.12s;
-}
-
-/* Default (collapsed) center padding — sized for pill shape */
-.slotCenter--small  { padding: 0 8px; }
-.slotCenter--medium { padding: 0 8px; }
-.slotCenter--large  { padding: 0 10px; }
-
-/* Expanded stepper center — expand immediately */
-.pillExpanded .slotCenter {
-  transition:
-    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    min-width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.pillExpanded .slotCenter--small  { padding: 0 2px; min-width: 48px; }
-.pillExpanded .slotCenter--medium { padding: 0 2px; min-width: 60px; }
-.pillExpanded .slotCenter--large  { padding: 0 4px; min-width: 72px; }
-
-/* Circle mode (icon-only collapsed) — enforce perfect circle */
-.pillCircle {
-  aspect-ratio: 1;
-  justify-content: center;
-}
-
-.pillCircle.pill--small  { min-width: 32px; width: 32px; }
-.pillCircle.pill--medium { min-width: 40px; width: 40px; }
-.pillCircle.pill--large  { min-width: 52px; width: 52px; }
-
-.pillCircle .slotCenter--small  { min-width: auto; padding: 0; }
-.pillCircle .slotCenter--medium { min-width: auto; padding: 0; }
-.pillCircle .slotCenter--large  { min-width: auto; padding: 0; }
-
-/* ═══════════════════════════════════════
-   LABEL TEXT — "added" / "Max" — animates
-   in/out with the expansion
-   ═══════════════════════════════════════ */
-
-.labelText {
-  overflow: hidden;
-  white-space: nowrap;
-  display: inline-block;
-  /* Spacing is inside the element (padding-left) so it collapses
-     with max-width → 0, preventing the count from shifting. */
-  max-width: 0;
-  padding-left: 0;
-  opacity: 0;
-  /* COLLAPSING: label fades out FIRST, then width collapses */
-  transition:
-    max-width 0.2s cubic-bezier(0.4, 0, 0.6, 1) 0.04s,
-    padding-left 0.2s cubic-bezier(0.4, 0, 0.6, 1) 0.04s,
-    opacity 0.1s ease;
-}
-
-/* EXPANDING transition — label appears after sides have opened */
-.pillExpanded .labelText {
-  max-width: 100px;
-  padding-left: 4px;
-  opacity: 1;
-  transition:
-    max-width 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
-    padding-left 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
-    opacity 0.2s ease 0.18s;
-}
-
-/* Add label text (always visible when count=0, not animated) */
-.addText {
+  gap: 4px;
   white-space: nowrap;
 }
-
-/* ═══════════════════════════════════════
-   COUNT VALUE — stays in place, no animation
-   ═══════════════════════════════════════ */
 
 .countValue {
   display: inline-block;
-  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   ENTRANCE ANIMATIONS
+   ═══════════════════════════════════════ */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes expandWidth {
+  from { opacity: 0; min-width: 32px; }
+  to { opacity: 1; }
+}
+
+.fadeIn {
+  animation: fadeIn 0.2s ease-out both;
+}
+
+.expandIn {
+  animation: expandWidth 0.3s ease-out both;
 }
 
 /* ═══════════════════════════════════════
@@ -314,16 +278,17 @@
    ═══════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
-  .pill,
-  .slotSide,
-  .slotCenter,
-  .labelText,
-  .iconBtn {
+  .pill {
     transition: none !important;
   }
 
-  .pillExpanded .slotSide,
-  .pillExpanded .labelText {
-    transition: none !important;
+  .fadeIn,
+  .expandIn {
+    animation: none !important;
+  }
+
+  .pill:hover:not(:disabled):not(.pillExpanded),
+  .pill:active:not(:disabled):not(.pillExpanded) {
+    transform: none !important;
   }
 }
