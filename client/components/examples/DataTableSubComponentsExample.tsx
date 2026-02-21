@@ -9,6 +9,7 @@ import { DataTableCellActions } from '@/components/ui/DataTableCellActions';
 import { DataTableBulkActions } from '@/components/ui/DataTableBulkActions';
 import { DataTableTitle } from '@/components/ui/DataTableTitle';
 import { DataTableConfigPanel, ColumnConfig } from '@/components/ui/DataTableConfigPanel';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { IconButton } from '@/components/ui/IconButton';
 import { Button } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
@@ -42,40 +43,71 @@ function TitleExample() {
 }
 
 /* ================================================================
-   2. DataTableHeader Variants Example
+   2. DataTableHeader — All Variants (Sort × Alignment × Two-lined)
    ================================================================ */
-function HeaderExample() {
-  const [sort, setSort] = React.useState<'ascending' | 'descending' | 'none'>('none');
-
-  const toggleSort = () => {
-    setSort((prev) =>
-      prev === 'none' ? 'ascending' : prev === 'ascending' ? 'descending' : 'ascending',
-    );
-  };
-
+function HeaderVariantsExample() {
   return (
     <div className={styles.exampleCard}>
+      <div className={styles.variantLabel}>Left-aligned · One-line</div>
       <DataTable>
         <DataTableHead>
           <DataTableRow>
-            <DataTableHeader width={200}>Plain Header</DataTableHeader>
-            <DataTableHeader width={200} onSort={toggleSort} sort={sort}>
-              Sortable Header
+            <DataTableHeader width={160}>Label</DataTableHeader>
+            <DataTableHeader width={160} sort="ascending" onSort={() => {}}>
+              Label
             </DataTableHeader>
-            <DataTableHeader width={200} alignment="right">
-              Right-Aligned
-            </DataTableHeader>
-            <DataTableHeader width={200} resizable onResize={() => {}}>
-              Resizable Header
+            <DataTableHeader width={160} sort="descending" onSort={() => {}}>
+              Label
             </DataTableHeader>
           </DataTableRow>
         </DataTableHead>
         <DataTableBody>
           <DataTableRow>
-            <DataTableCell>Cell value</DataTableCell>
-            <DataTableCell>Cell value</DataTableCell>
-            <DataTableCell variant="numeric">$1,234.56</DataTableCell>
-            <DataTableCell>Drag the right edge</DataTableCell>
+            <DataTableCell>—</DataTableCell>
+            <DataTableCell>Sort ascending</DataTableCell>
+            <DataTableCell>Sort descending</DataTableCell>
+          </DataTableRow>
+        </DataTableBody>
+      </DataTable>
+
+      <div className={styles.variantDivider} />
+
+      <div className={styles.variantLabel}>Right-aligned · One-line</div>
+      <DataTable>
+        <DataTableHead>
+          <DataTableRow>
+            <DataTableHeader width={160} alignment="right">Label</DataTableHeader>
+            <DataTableHeader width={160} alignment="right" sort="ascending" onSort={() => {}}>
+              Label
+            </DataTableHeader>
+            <DataTableHeader width={160} alignment="right" sort="descending" onSort={() => {}}>
+              Label
+            </DataTableHeader>
+          </DataTableRow>
+        </DataTableHead>
+        <DataTableBody>
+          <DataTableRow>
+            <DataTableCell variant="numeric">—</DataTableCell>
+            <DataTableCell variant="numeric">Sort ascending</DataTableCell>
+            <DataTableCell variant="numeric">Sort descending</DataTableCell>
+          </DataTableRow>
+        </DataTableBody>
+      </DataTable>
+
+      <div className={styles.variantDivider} />
+
+      <div className={styles.variantLabel}>Interactive Sort (click to cycle)</div>
+      <DataTable>
+        <DataTableHead>
+          <DataTableRow>
+            <HeaderSortDemo alignment="left" label="Left sort" />
+            <HeaderSortDemo alignment="right" label="Right sort" />
+          </DataTableRow>
+        </DataTableHead>
+        <DataTableBody>
+          <DataTableRow>
+            <DataTableCell>Click header to sort</DataTableCell>
+            <DataTableCell variant="numeric">Click header to sort</DataTableCell>
           </DataTableRow>
         </DataTableBody>
       </DataTable>
@@ -83,8 +115,155 @@ function HeaderExample() {
   );
 }
 
+function HeaderSortDemo({
+  alignment,
+  label,
+}: {
+  alignment: 'left' | 'right';
+  label: string;
+}) {
+  const [sort, setSort] = React.useState<'none' | 'ascending' | 'descending'>('none');
+  const toggle = () =>
+    setSort((s) => (s === 'none' ? 'ascending' : s === 'ascending' ? 'descending' : 'none'));
+  return (
+    <DataTableHeader width={200} alignment={alignment} sort={sort} onSort={toggle}>
+      {label}
+    </DataTableHeader>
+  );
+}
+
 /* ================================================================
-   3. Cell Variants Example
+   3. DataTableHeaderSelect — Checkbox State Grid
+   ================================================================ */
+function HeaderSelectVariantsExample() {
+  return (
+    <div className={styles.exampleCard}>
+      <div className={styles.checkboxGrid}>
+        {/* Column labels */}
+        <div className={styles.checkboxGridLabel}>State</div>
+        <div className={styles.checkboxGridLabel}>Unchecked</div>
+        <div className={styles.checkboxGridLabel}>Checked</div>
+        <div className={styles.checkboxGridLabel}>Indeterminate</div>
+
+        {/* Enabled row */}
+        <div className={styles.checkboxGridState}>Enabled</div>
+        <CheckboxCell checked={false} indeterminate={false} />
+        <CheckboxCell checked={true} indeterminate={false} />
+        <CheckboxCell checked={false} indeterminate={true} />
+
+        {/* Disabled row */}
+        <div className={styles.checkboxGridState}>Disabled</div>
+        <CheckboxCell checked={false} indeterminate={false} disabled />
+        <CheckboxCell checked={true} indeterminate={false} disabled />
+        <CheckboxCell checked={false} indeterminate={true} disabled />
+      </div>
+
+      <div className={styles.variantDivider} />
+      <div className={styles.variantLabel}>Interactive (select all / indeterminate / clear)</div>
+
+      <DataTable>
+        <DataTableHead>
+          <DataTableRow>
+            <DataTableHeaderSelectDemo />
+            <DataTableHeader width={200}>Campaign</DataTableHeader>
+            <DataTableHeader width={140} alignment="right">Budget</DataTableHeader>
+          </DataTableRow>
+        </DataTableHead>
+        <DataTableBody>
+          {['Alpha', 'Beta', 'Gamma'].map((name, i) => (
+            <DataTableRow key={name}>
+              <DataTableCellSelect
+                a11yLabelledBy={`hs-name-${i}`}
+                checked={false}
+                onChange={() => {}}
+              />
+              <DataTableCell id={`hs-name-${i}`}>{name}</DataTableCell>
+              <DataTableCell variant="numeric">${(i + 1) * 10_000}</DataTableCell>
+            </DataTableRow>
+          ))}
+        </DataTableBody>
+      </DataTable>
+    </div>
+  );
+}
+
+function CheckboxCell({
+  checked,
+  indeterminate,
+  disabled = false,
+}: {
+  checked: boolean;
+  indeterminate: boolean;
+  disabled?: boolean;
+}) {
+  return (
+    <div className={styles.checkboxCell}>
+      <Checkbox
+        checked={indeterminate ? 'indeterminate' : checked}
+        disabled={disabled}
+        onCheckedChange={() => {}}
+      />
+    </div>
+  );
+}
+
+function DataTableHeaderSelectDemo() {
+  const [selected, setSelected] = React.useState<Set<number>>(new Set());
+  const total = 3;
+  const allSelected = selected.size === total;
+  const someSelected = selected.size > 0 && !allSelected;
+  return (
+    <DataTableHeaderSelect
+      checked={allSelected}
+      indeterminate={someSelected}
+      onChange={() => {
+        if (allSelected || someSelected) setSelected(new Set());
+        else setSelected(new Set([0, 1, 2]));
+      }}
+    />
+  );
+}
+
+/* ================================================================
+   4. Action Content — Bulk action button variants (1–5 actions)
+   ================================================================ */
+function ActionContentExample() {
+  const MORE_ICON = (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+      <path d="M8 6.99976C8.55228 6.99976 9 7.44747 9 7.99976C9 8.55204 8.55228 8.99976 8 8.99976C7.44772 8.99976 7 8.55204 7 7.99976C7 7.44747 7.44772 6.99976 8 6.99976ZM3.5 6.99976C4.05228 6.99976 4.5 7.44747 4.5 7.99976C4.5 8.55204 4.05228 8.99976 3.5 8.99976C2.94772 8.99976 2.5 8.55204 2.5 7.99976C2.5 7.44747 2.94772 6.99976 3.5 6.99976ZM12.5 6.99976C13.0523 6.99976 13.5 7.44747 13.5 7.99976C13.5 8.55204 13.0523 8.99976 12.5 8.99976C11.9477 8.99976 11.5 8.55204 11.5 7.99976C11.5 7.44747 11.9477 6.99976 12.5 6.99976Z" fill="currentColor"/>
+    </svg>
+  );
+
+  const rows = [1, 2, 3, 4, 5] as const;
+
+  return (
+    <div className={styles.exampleCard}>
+      <div className={styles.actionContentList}>
+        {rows.map((count) => (
+          <div key={count} className={styles.actionContentRow}>
+            {/* Secondary buttons (all but last) */}
+            {Array.from({ length: count - 1 }, (_, i) => (
+              <Button key={i} variant="secondary" size="small">
+                Button label
+              </Button>
+            ))}
+            {/* Last button is always primary */}
+            <Button variant="primary" size="small">
+              Button label
+            </Button>
+            {/* Overflow "..." */}
+            <IconButton aria-label="More actions" variant="ghost" size="small">
+              {MORE_ICON}
+            </IconButton>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ================================================================
+   5. Cell Variants Example
    ================================================================ */
 function CellVariantsExample() {
   return (
@@ -126,9 +305,8 @@ function CellVariantsExample() {
 }
 
 /* ================================================================
-   4. Selection & Bulk Actions Example
+   6. Selection & Bulk Actions Example
    ================================================================ */
-
 const SELECTION_DATA = [
   { id: '1', name: 'Campaign Alpha', budget: '$50,000' },
   { id: '2', name: 'Campaign Beta', budget: '$35,000' },
@@ -143,11 +321,8 @@ function SelectionExample() {
   const someSelected = allIds.some((id) => selected.has(id)) && !allSelected;
 
   const toggleAll = () => {
-    if (allSelected || someSelected) {
-      setSelected(new Set());
-    } else {
-      setSelected(new Set(allIds));
-    }
+    if (allSelected || someSelected) setSelected(new Set());
+    else setSelected(new Set(allIds));
   };
 
   const toggleRow = (id: string) => {
@@ -201,7 +376,7 @@ function SelectionExample() {
 }
 
 /* ================================================================
-   5. Frozen Columns Example
+   7. Frozen Columns Example
    ================================================================ */
 function FrozenColumnsExample() {
   return (
@@ -242,9 +417,8 @@ function FrozenColumnsExample() {
 }
 
 /* ================================================================
-   6. Config Panel Example
+   8. Config Panel Example
    ================================================================ */
-
 const PANEL_COLUMNS: ColumnConfig[] = [
   { id: 'name', label: 'Item name', visible: true, pinned: false, alwaysVisible: true },
   { id: 'sku', label: 'SKU', visible: true, pinned: false },
@@ -316,7 +490,7 @@ function ConfigPanelExample() {
 }
 
 /* ================================================================
-   7. Table Options (Rounded, Elevated, Text Style) Example
+   9. Table Options (Rounded, Elevated, Text Style)
    ================================================================ */
 function TableOptionsExample() {
   return (
@@ -360,9 +534,8 @@ function TableOptionsExample() {
 }
 
 /* ================================================================
-   MAIN EXPORT
+   SECTION WRAPPER
    ================================================================ */
-
 interface SectionProps {
   title: string;
   description: string;
@@ -379,54 +552,71 @@ function Section({ title, description, children }: SectionProps) {
   );
 }
 
+/* ================================================================
+   MAIN EXPORT
+   ================================================================ */
 export default function DataTableSubComponentsExample() {
   return (
     <div className={styles.root}>
       <Section
         title="DataTableTitle"
-        description="Header bar displayed above the table with title, subtitle, and action buttons."
+        description="Header bar above the table with title, subtitle, and action buttons slot."
       >
         <TitleExample />
       </Section>
 
       <Section
-        title="DataTableHeader"
-        description="Column headers with optional sorting, right-alignment, and resize handles."
+        title="DataTableHeader Variants"
+        description="Column headers with left/right alignment and ascending/descending sort states. Click a sortable header to cycle through states."
       >
-        <HeaderExample />
+        <HeaderVariantsExample />
+      </Section>
+
+      <Section
+        title="DataTableHeaderSelect Variants"
+        description="Select-all checkbox for the table header row. Supports unchecked, checked, and indeterminate states. Use DataTableCellSelect for individual row checkboxes."
+      >
+        <HeaderSelectVariantsExample />
+      </Section>
+
+      <Section
+        title="Action Content"
+        description="Bulk action toolbar button patterns — 1 to 5 actions with the last always primary and an overflow icon button at the end."
+      >
+        <ActionContentExample />
       </Section>
 
       <Section
         title="Cell Variants"
-        description="Different cell types: alphanumeric, numeric, status (Tag), and actions (Menu)."
+        description="Different cell types: alphanumeric, numeric, status (Tag), and actions (row menu)."
       >
         <CellVariantsExample />
       </Section>
 
       <Section
         title="Selection & Bulk Actions"
-        description="Row selection with header checkbox (select all / indeterminate) and bulk action toolbar."
+        description="Row selection with header checkbox (select all / indeterminate) and bulk action toolbar. Select a row to see the toolbar appear."
       >
         <SelectionExample />
       </Section>
 
       <Section
         title="Frozen Columns"
-        description="Columns can be frozen (sticky) to the left or right edge. Scroll horizontally to see the effect."
+        description="Columns sticky to left or right edge. Scroll the table horizontally to see frozen columns stay in place."
       >
         <FrozenColumnsExample />
       </Section>
 
       <Section
         title="Configure Panel"
-        description="Column configuration panel for show/hide, pin/freeze, and drag-to-reorder columns."
+        description="Right-side overlay panel for column visibility, pinning, and drag-to-reorder."
       >
         <ConfigPanelExample />
       </Section>
 
       <Section
         title="Table Options"
-        description="Optional rounded corners, elevation, and text style variants."
+        description="Optional rounded corners, elevation, and body-medium text style variants on the DataTable container."
       >
         <TableOptionsExample />
       </Section>

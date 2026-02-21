@@ -162,6 +162,121 @@ const [columnWidths, setColumnWidths] = useState({ name: 200, price: 140 });
 
 Text in cells automatically truncates with ellipsis when the column is narrower than the content.
 
+### DataTableHeader Sort + Alignment Variants
+
+The header supports three sort states and two alignment modes:
+
+| Variant | Description |
+|---------|-------------|
+| `sort="none"` + `alignment="left"` | Default — plain label, no sort icon |
+| `sort="ascending"` + `alignment="left"` | Label + ↑ icon on the right |
+| `sort="descending"` + `alignment="left"` | Label + ↓ icon on the right |
+| `sort="none"` + `alignment="right"` | Plain label right-aligned |
+| `sort="ascending"` + `alignment="right"` | ↑ icon on the left + label |
+| `sort="descending"` + `alignment="right"` | ↓ icon on the left + label |
+
+The sort icon placement flips based on alignment (right-aligned headers show the icon before the label).
+
+```tsx
+{/* Left-aligned, cycling sort */}
+const [sort, setSort] = useState<'none' | 'ascending' | 'descending'>('none');
+const toggleSort = () =>
+  setSort((s) => s === 'none' ? 'ascending' : s === 'ascending' ? 'descending' : 'none');
+
+<DataTableHeader sort={sort} onSort={toggleSort}>Campaign</DataTableHeader>
+
+{/* Right-aligned, descending */}
+<DataTableHeader alignment="right" sort="descending" onSort={handleSort}>
+  Budget
+</DataTableHeader>
+```
+
+## DataTableHeaderSelect
+
+The select-all checkbox in the table header row. Supports three visual states:
+
+| State | Description |
+|-------|-------------|
+| Unchecked | No rows selected |
+| Checked | All rows selected |
+| Indeterminate | Some rows selected (partial) |
+
+```tsx
+<DataTableHeaderSelect
+  checked={allSelected}
+  indeterminate={someSelected}  // partial selection
+  onChange={handleToggleAll}
+  frozen="left"                  // optional — stick to left edge
+/>
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `checked` | `boolean` | `false` | All rows selected |
+| `indeterminate` | `boolean` | `false` | Partial selection (overrides `checked` visually) |
+| `disabled` | `boolean` | `false` | Disable the checkbox |
+| `onChange` | `(event) => void` | — | Change handler |
+| `frozen` | `'left' \| 'right'` | — | Freeze to left or right edge |
+| `a11yCheckboxLabel` | `string` | `'Toggle all rows'` | Screen reader label |
+
+Always pair `DataTableHeaderSelect` with `DataTableCellSelect` in body rows:
+
+```tsx
+// Compute states from selection set
+const allSelected = rowIds.every((id) => selected.has(id));
+const someSelected = rowIds.some((id) => selected.has(id)) && !allSelected;
+
+// Header row
+<DataTableHeaderSelect
+  checked={allSelected}
+  indeterminate={someSelected}
+  onChange={toggleAll}
+  frozen="left"
+/>
+
+// Body rows
+<DataTableCellSelect
+  a11yLabelledBy={`name-${item.id}`}
+  checked={selected.has(item.id)}
+  onChange={() => toggleRow(item.id)}
+  frozen="left"
+/>
+```
+
+## Action Content
+
+The `actionContent` prop on `DataTableBulkActions` accepts any ReactNode for the right side of the bulk actions toolbar. The standard LD 3.5 pattern is:
+
+- N secondary buttons (for secondary actions)
+- 1 primary button (for the main action)
+- 1 overflow `...` icon button (for additional actions)
+
+```tsx
+{/* 1 action */}
+actionContent={
+  <>
+    <Button variant="primary" size="small">Archive</Button>
+    <IconButton aria-label="More actions" variant="ghost" size="small">
+      <MoreHorizontal />
+    </IconButton>
+  </>
+}
+
+{/* 3 actions */}
+actionContent={
+  <>
+    <Button variant="secondary" size="small">Duplicate</Button>
+    <Button variant="secondary" size="small">Pause</Button>
+    <Button variant="primary" size="small">Archive</Button>
+    <IconButton aria-label="More actions" variant="ghost" size="small">
+      <MoreHorizontal />
+    </IconButton>
+  </>
+}
+```
+
+As the number of selected actions grows, secondary buttons appear before the primary. The overflow `...` button is always present for additional actions not shown inline.
+
 ## Cell Variants
 
 | Component | Purpose | Key Props |
