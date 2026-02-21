@@ -19,6 +19,8 @@
 }
 
 .datePicker__popoverContent {
+  width: auto !important;
+  min-width: 320px;
   padding: var(--ld-primitive-scale-space-200, 16px);
   background: var(--ld-semantic-color-surface-overlay, #ffffff);
   border-radius: var(--ld-primitive-scale-border-radius-100, 8px);

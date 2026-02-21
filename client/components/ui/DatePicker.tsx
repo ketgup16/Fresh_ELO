@@ -260,6 +260,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             className={styles.datePicker__popoverContent}
             align="start"
             sideOffset={8}
+            showArrow={false}
           >
             <DatePickerCalendar
               mode="single"
