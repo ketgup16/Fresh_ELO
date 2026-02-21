@@ -109,6 +109,10 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
     const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
     const iconSize = ICON_SIZES[size];
     const isAtMax = maxQuantity !== undefined && count >= maxQuantity;
+    const isExpanded = mode === 'expanded';
+    const isInitial = mode === 'initial';
+    const isCollapsed = mode === 'collapsed';
+    const isClickable = isInitial || isCollapsed;
 
     // Clear timeout on unmount
     useEffect(() => {
@@ -137,7 +141,8 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       onChange?.(1);
     }, [disabled, onChange]);
 
-    const handleIncrement = useCallback(() => {
+    const handleIncrement = useCallback((e: React.MouseEvent) => {
+      e.stopPropagation();
       if (disabled || isAtMax) return;
       const next = count + 1;
       setCount(next);
@@ -145,7 +150,8 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       onChange?.(next);
     }, [disabled, isAtMax, count, onChange]);
 
-    const handleDecrement = useCallback(() => {
+    const handleDecrement = useCallback((e: React.MouseEvent) => {
+      e.stopPropagation();
       if (disabled) return;
       const next = Math.max(0, count - 1);
       setCount(next);
@@ -162,135 +168,126 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       setMode('expanded');
     }, [disabled]);
 
-    // ── Shared style classes ──
+    const handlePillClick = useCallback(() => {
+      if (isInitial) handleInitialClick();
+      else if (isCollapsed) handleCollapsedClick();
+    }, [isInitial, isCollapsed, handleInitialClick, handleCollapsedClick]);
+
+    const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handlePillClick();
+      }
+    }, [handlePillClick]);
+
+    // ── Style classes ──
     const variantClass = styles[`pill--${variant}`];
     const sizeClass = styles[`pill--${size}`];
+    const modeClass = isExpanded
+      ? styles.modeExpanded
+      : isCollapsed
+        ? styles.modeCollapsed
+        : styles.modeInitial;
 
     const iconBtnClass = [
       styles.iconBtn,
       styles[`iconBtn--${size}`],
     ].join(' ');
 
-    // ── INITIAL STATE: Add button ──
-    if (mode === 'initial') {
-      // Cart label mode: text-only button
+    // ── Center content ──
+    let centerContent: React.ReactNode;
+    if (isInitial) {
       if (cartLabel) {
-        return (
-          <div ref={ref} className={styles.quantityStepper}>
-            <button
-              className={[styles.pill, variantClass, sizeClass, styles.pillInitial].join(' ')}
-              onClick={handleInitialClick}
-              disabled={disabled}
-              aria-label={cartLabel}
-              aria-disabled={disabled || undefined}
-            >
-              <span className={styles.pillContent}>{cartLabel}</span>
-            </button>
-          </div>
+        centerContent = <span className={styles.labelText}>{cartLabel}</span>;
+      } else if (!showAddLabel) {
+        centerContent = <PlusIcon size={iconSize} />;
+      } else {
+        centerContent = (
+          <span className={styles.pillContent}>
+            <PlusIcon size={iconSize} />
+            <span className={styles.labelText}>{addLabel}</span>
+          </span>
         );
       }
-
-      // Icon-only mode: just the + icon in a circle
-      if (!showAddLabel) {
-        return (
-          <div ref={ref} className={styles.quantityStepper}>
-            <button
-              className={[styles.pill, variantClass, sizeClass, styles.pillCircle].join(' ')}
-              onClick={handleInitialClick}
-              disabled={disabled}
-              aria-label={`${addLabel} item`}
-              aria-disabled={disabled || undefined}
-            >
-              <PlusIcon size={iconSize} />
-            </button>
-          </div>
-        );
-      }
-
-      // Standard "+ Add" mode
-      return (
-        <div ref={ref} className={styles.quantityStepper}>
-          <button
-            className={[styles.pill, variantClass, sizeClass, styles.pillInitial].join(' ')}
-            onClick={handleInitialClick}
-            disabled={disabled}
-            aria-label={`${addLabel} item`}
-            aria-disabled={disabled || undefined}
-          >
-            <span className={styles.pillContent}>
-              <PlusIcon size={iconSize} />
-              <span className={styles.addText}>{addLabel}</span>
-            </span>
-          </button>
-        </div>
+    } else if (isAtMax) {
+      centerContent = (
+        <>
+          <span className={styles.labelText}>Max</span>
+          <span className={styles.countValue}>{count}</span>
+        </>
       );
+    } else if (isExpanded) {
+      centerContent = (
+        <>
+          <span className={styles.countValue}>{count}</span>
+          <span className={styles.labelText}>{countLabel}</span>
+        </>
+      );
+    } else {
+      // collapsed: just count
+      centerContent = <span className={styles.countValue}>{count}</span>;
     }
 
-    // ── COLLAPSED STATE: Just the count in a circle ──
-    if (mode === 'collapsed') {
-      return (
-        <div ref={ref} className={styles.quantityStepper}>
-          <button
-            className={[styles.pill, variantClass, sizeClass, styles.pillCircle, styles.fadeIn].join(' ')}
-            onClick={handleCollapsedClick}
-            disabled={disabled}
-            aria-label={`${count} items, click to edit`}
-            aria-disabled={disabled || undefined}
-          >
-            <span className={styles.countValue}>{count}</span>
-          </button>
-        </div>
-      );
+    // ── Aria label ──
+    let ariaLabel: string;
+    if (isInitial) {
+      ariaLabel = cartLabel || `${addLabel} item`;
+    } else if (isCollapsed) {
+      ariaLabel = `${count} items, click to edit`;
+    } else {
+      ariaLabel = 'Quantity stepper';
     }
-
-    // ── EXPANDED STATE: Full stepper with −/count/+ ──
-    const centerLabel = isAtMax ? (
-      <>
-        <span>Max</span>
-        <span className={styles.countValue}>{count}</span>
-      </>
-    ) : (
-      <>
-        <span className={styles.countValue}>{count}</span>
-        <span>{countLabel}</span>
-      </>
-    );
 
     return (
       <div ref={ref} className={styles.quantityStepper}>
         <div
-          className={[styles.pill, variantClass, sizeClass, styles.pillExpanded, styles.expandIn].join(' ')}
-          role="group"
-          aria-label="Quantity stepper"
+          className={[styles.pill, variantClass, sizeClass, modeClass].join(' ')}
+          onClick={isClickable ? handlePillClick : undefined}
+          onKeyDown={isClickable ? handleKeyDown : undefined}
+          role={isClickable ? 'button' : 'group'}
+          tabIndex={isClickable ? 0 : undefined}
+          aria-label={ariaLabel}
           aria-disabled={disabled || undefined}
         >
-          {/* Decrement button */}
-          <button
-            className={[iconBtnClass, styles.fadeIn].join(' ')}
-            onClick={handleDecrement}
-            disabled={disabled}
-            aria-label={showTrashOnRemove && count === 1 ? 'Remove item' : 'Decrease quantity'}
+          {/* Left slot: decrement button */}
+          <div
+            className={[styles.slotSide, isExpanded ? styles.slotVisible : styles.slotHidden].join(' ')}
+            aria-hidden={!isExpanded}
           >
-            {showTrashOnRemove && count === 1
-              ? <Trash width={iconSize} height={iconSize} aria-hidden="true" />
-              : <MinusIcon size={iconSize} />
-            }
-          </button>
-
-          {/* Count display */}
-          <div className={styles.centerSlot}>
-            {centerLabel}
+            <button
+              className={iconBtnClass}
+              onClick={isExpanded ? handleDecrement : undefined}
+              disabled={disabled}
+              tabIndex={isExpanded ? 0 : -1}
+              aria-label={showTrashOnRemove && count === 1 ? 'Remove item' : 'Decrease quantity'}
+            >
+              {showTrashOnRemove && count === 1
+                ? <Trash width={iconSize} height={iconSize} aria-hidden="true" />
+                : <MinusIcon size={iconSize} />
+              }
+            </button>
           </div>
 
-          {/* Increment button */}
-          <button
-            className={[iconBtnClass, styles.fadeIn].join(' ')}
-            onClick={handleIncrement}
-            disabled={disabled || isAtMax}
-            aria-label="Increase quantity"
+          {/* Center slot */}
+          <div className={styles.slotCenter}>
+            {centerContent}
+          </div>
+
+          {/* Right slot: increment button */}
+          <div
+            className={[styles.slotSide, isExpanded ? styles.slotVisible : styles.slotHidden].join(' ')}
+            aria-hidden={!isExpanded}
           >
-            <PlusIcon size={iconSize} />
-          </button>
+            <button
+              className={iconBtnClass}
+              onClick={isExpanded ? handleIncrement : undefined}
+              disabled={disabled || isAtMax}
+              tabIndex={isExpanded ? 0 : -1}
+              aria-label="Increase quantity"
+            >
+              <PlusIcon size={iconSize} />
+            </button>
+          </div>
         </div>
       </div>
     );

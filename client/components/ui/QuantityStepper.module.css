@@ -1,4 +1,4 @@
-/* QuantityStepper.module.css — Clean three-mode animation */
+/* QuantityStepper.module.css — Smooth slot-based transitions */
 
 .quantityStepper {
   display: inline-flex;
@@ -7,7 +7,7 @@
 }
 
 /* ═══════════════════════════════════════════════
-   PILL — shared base for all three modes
+   PILL — single persistent wrapper for all modes
    ═══════════════════════════════════════════════ */
 
 .pill {
@@ -17,19 +17,12 @@
   border-radius: 9999px;
   font-family: inherit;
   font-weight: 700;
-  cursor: pointer;
   border: none;
   padding: 0;
   box-sizing: border-box;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.pill:hover:not(:disabled):not(.pillExpanded) {
-  transform: scale(1.03);
-}
-
-.pill:active:not(:disabled):not(.pillExpanded) {
-  transform: scale(0.97);
+  overflow: hidden;
+  /* Smooth transitions for background and transform */
+  transition: background-color 0.25s ease, transform 0.15s ease;
 }
 
 .pill:focus-visible {
@@ -37,17 +30,8 @@
   outline-offset: 2px;
 }
 
-.pill:disabled,
 .pill[aria-disabled="true"] {
   cursor: not-allowed;
-}
-
-.pillExpanded {
-  cursor: default;
-}
-
-.pillExpanded:hover {
-  transform: none;
 }
 
 /* ── Sizes ── */
@@ -77,15 +61,15 @@
   color: var(--ld-semantic-color-action-text-onfill-primary, #ffffff);
 }
 
-.pill--primary:hover:not(:disabled):not(.pillExpanded) {
+.pill--primary:hover:not([aria-disabled="true"]) {
   background: var(--ld-semantic-color-action-fill-primary-hovered, #0060b8);
 }
 
-.pill--primary:active:not(:disabled):not(.pillExpanded) {
+.pill--primary:active:not([aria-disabled="true"]) {
   background: var(--ld-semantic-color-action-fill-primary-pressed, #004c94);
 }
 
-.pill--primary:disabled {
+.pill--primary[aria-disabled="true"] {
   background: var(--ld-semantic-color-action-fill-primary-disabled, #c2dcf7);
   color: var(--ld-semantic-color-action-text-onfill-primary-disabled, #ffffff);
 }
@@ -98,15 +82,15 @@
   border: 1.5px solid var(--ld-semantic-color-action-border-secondary, #2e2f32);
 }
 
-.pill--secondary:hover:not(:disabled):not(.pillExpanded) {
+.pill--secondary:hover:not([aria-disabled="true"]) {
   background: var(--ld-semantic-color-action-fill-secondary-hovered, #f0f0f1);
 }
 
-.pill--secondary:active:not(:disabled):not(.pillExpanded) {
+.pill--secondary:active:not([aria-disabled="true"]) {
   background: var(--ld-semantic-color-action-fill-secondary-pressed, #e0e0e2);
 }
 
-.pill--secondary:disabled {
+.pill--secondary[aria-disabled="true"] {
   color: var(--ld-semantic-color-action-text-onfill-secondary-disabled, #babbbe);
   border-color: var(--ld-semantic-color-action-border-secondary-disabled, #babbbe);
 }
@@ -119,66 +103,102 @@
   border: 1.5px solid var(--ld-semantic-color-action-border-tertiary, #74767c);
 }
 
-.pill--tertiary:hover:not(:disabled):not(.pillExpanded) {
+.pill--tertiary:hover:not([aria-disabled="true"]) {
   background: var(--ld-semantic-color-action-fill-tertiary-hovered, #f0f0f1);
 }
 
-.pill--tertiary:active:not(:disabled):not(.pillExpanded) {
+.pill--tertiary:active:not([aria-disabled="true"]) {
   background: var(--ld-semantic-color-action-fill-tertiary-pressed, #e0e0e2);
 }
 
-.pill--tertiary:disabled {
+.pill--tertiary[aria-disabled="true"] {
   color: var(--ld-semantic-color-action-text-onfill-tertiary-disabled, #babbbe);
   border-color: var(--ld-semantic-color-action-border-tertiary-disabled, #e6e6e8);
 }
 
 /* ═══════════════════════════════════════
-   MODE: Initial — "+ Add" or "Add to cart"
+   MODE CLASSES — control pill behavior
    ═══════════════════════════════════════ */
 
-.pillInitial {
+/* Initial & Collapsed: pill is clickable */
+.modeInitial,
+.modeCollapsed {
+  cursor: pointer;
+}
+
+.modeInitial:hover:not([aria-disabled="true"]),
+.modeCollapsed:hover:not([aria-disabled="true"]) {
+  transform: scale(1.03);
+}
+
+.modeInitial:active:not([aria-disabled="true"]),
+.modeCollapsed:active:not([aria-disabled="true"]) {
+  transform: scale(0.97);
+}
+
+/* Initial mode: padding for label content */
+.modeInitial {
   padding: 0 16px;
   gap: 4px;
 }
 
-.pill--small.pillInitial  { padding: 0 12px; }
-.pill--medium.pillInitial { padding: 0 16px; }
-.pill--large.pillInitial  { padding: 0 20px; }
+.pill--small.modeInitial { padding: 0 12px; }
+.pill--medium.modeInitial { padding: 0 16px; }
+.pill--large.modeInitial { padding: 0 20px; }
 
-.pillContent {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.addText {
-  white-space: nowrap;
-}
-
-/* ═══════════════════════════════════════
-   MODE: Circle — collapsed count or icon-only
-   ═══════════════════════════════════════ */
-
-.pillCircle {
+/* Collapsed mode: force circle shape */
+.modeCollapsed {
   padding: 0;
 }
 
-.pill--small.pillCircle  { width: 32px; }
-.pill--medium.pillCircle { width: 40px; }
-.pill--large.pillCircle  { width: 52px; }
+.pill--small.modeCollapsed { width: 32px; }
+.pill--medium.modeCollapsed { width: 40px; }
+.pill--large.modeCollapsed { width: 52px; }
 
-/* ═══════════════════════════════════════
-   MODE: Expanded — full stepper
-   ═══════════════════════════════════════ */
-
-.pillExpanded {
-  padding: 4px;
+/* Expanded mode: stepper layout */
+.modeExpanded {
+  cursor: default;
+  padding: 2px;
   gap: 2px;
 }
 
-.pill--small.pillExpanded  { min-width: 112px; padding: 2px; }
-.pill--medium.pillExpanded { min-width: 136px; padding: 2px; }
-.pill--large.pillExpanded  { min-width: 168px; padding: 2px; }
+.pill--small.modeExpanded { min-width: 112px; }
+.pill--medium.modeExpanded { min-width: 136px; }
+.pill--large.modeExpanded { min-width: 168px; }
+
+.modeExpanded:hover {
+  transform: none;
+}
+
+/* ═══════════════════════════════════════
+   SLOT SIDE — left/right icon button slots
+   Smoothly expand/collapse with transitions
+   ═══════════════════════════════════════ */
+
+.slotSide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  /* Smooth transition for expand/collapse */
+  transition: max-width 0.3s ease, opacity 0.3s ease;
+}
+
+.slotVisible {
+  opacity: 1;
+}
+
+/* Size-specific max-widths when visible */
+.pill--small .slotVisible { max-width: 28px; }
+.pill--medium .slotVisible { max-width: 36px; }
+.pill--large .slotVisible { max-width: 48px; }
+
+.slotHidden {
+  max-width: 0;
+  opacity: 0;
+  pointer-events: none;
+}
 
 /* ═══════════════════════════════════════
    ICON BUTTONS — inside expanded stepper
@@ -238,7 +258,7 @@
    CENTER SLOT — count + label
    ═══════════════════════════════════ */
 
-.centerSlot {
+.slotCenter {
   display: flex;
   flex: 1;
   justify-content: center;
@@ -247,30 +267,18 @@
   white-space: nowrap;
 }
 
+.pillContent {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.labelText {
+  white-space: nowrap;
+}
+
 .countValue {
   display: inline-block;
-}
-
-/* ═══════════════════════════════════════
-   ENTRANCE ANIMATIONS
-   ═══════════════════════════════════════ */
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes expandWidth {
-  from { opacity: 0; min-width: 32px; }
-  to { opacity: 1; }
-}
-
-.fadeIn {
-  animation: fadeIn 0.2s ease-out both;
-}
-
-.expandIn {
-  animation: expandWidth 0.3s ease-out both;
 }
 
 /* ═══════════════════════════════════════
@@ -282,13 +290,14 @@
     transition: none !important;
   }
 
-  .fadeIn,
-  .expandIn {
-    animation: none !important;
+  .slotSide {
+    transition: none !important;
   }
 
-  .pill:hover:not(:disabled):not(.pillExpanded),
-  .pill:active:not(:disabled):not(.pillExpanded) {
+  .modeInitial:hover:not([aria-disabled="true"]),
+  .modeCollapsed:hover:not([aria-disabled="true"]),
+  .modeInitial:active:not([aria-disabled="true"]),
+  .modeCollapsed:active:not([aria-disabled="true"]) {
     transform: none !important;
   }
 }
