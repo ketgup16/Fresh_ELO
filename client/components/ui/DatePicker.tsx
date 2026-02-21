@@ -263,6 +263,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           >
             <DatePickerCalendar
               mode="single"
+              variant="embedded"
               value={value}
               onSelect={handleCalendarSelect}
               disabled={getDisabledDates()}

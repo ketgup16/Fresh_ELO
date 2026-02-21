@@ -164,7 +164,7 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
         }
       }
 
-      setPos({ top: top + window.scrollY, left: left + window.scrollX });
+      setPos({ top, left });
     }, [open, side, align, sideOffset, triggerRef]);
 
     // Close on click outside
@@ -213,7 +213,7 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
           className,
         )}
         style={{
-          position: "absolute",
+          position: "fixed",
           top: pos.top,
           left: pos.left,
           backgroundColor: 'var(--ld-semantic-color-surface-overlay, #FFFFFF)',
