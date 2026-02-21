@@ -210,23 +210,25 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
           </span>
         );
       }
+    } else if (isCollapsed) {
+      // Collapsed circle: always just the count number (even if at max)
+      centerContent = <span className={styles.countValue}>{count}</span>;
     } else if (isAtMax) {
+      // Expanded at max: show "Max {count}"
       centerContent = (
         <>
           <span className={styles.labelText}>Max</span>
           <span className={styles.countValue}>{count}</span>
         </>
       );
-    } else if (isExpanded) {
+    } else {
+      // Expanded normal: show "{count} added"
       centerContent = (
         <>
           <span className={styles.countValue}>{count}</span>
           <span className={styles.labelText}>{countLabel}</span>
         </>
       );
-    } else {
-      // collapsed: just count
-      centerContent = <span className={styles.countValue}>{count}</span>;
     }
 
     // ── Aria label ──
