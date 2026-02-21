@@ -194,3 +194,50 @@
   width: 24px;
   height: 24px;
 }
+
+/* Loading State */
+.button--loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+/* Override disabled opacity so loading button appears at full opacity */
+.button--loading:disabled {
+  opacity: 1;
+}
+
+/* Spinner animation */
+@keyframes button-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.button__spinner {
+  display: block;
+  flex-shrink: 0;
+  animation: button-spin 0.75s linear infinite;
+  transform-origin: center;
+  /* Conic gradient mask replicates the LD 3.5 angular gradient fade:
+     transparent at the trailing edge (3 o'clock), solid through the arc body,
+     fading back to transparent at the leading tip */
+  -webkit-mask-image: conic-gradient(
+    from 90deg at 50% 50%,
+    transparent 0deg,
+    black 138.6deg,
+    black 270deg,
+    transparent 360deg
+  );
+  mask-image: conic-gradient(
+    from 90deg at 50% 50%,
+    transparent 0deg,
+    black 138.6deg,
+    black 270deg,
+    transparent 360deg
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button__spinner {
+    animation: none;
+  }
+}

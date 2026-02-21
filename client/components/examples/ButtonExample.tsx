@@ -109,6 +109,46 @@ export const ButtonExample: React.FC = () => {
 
       <section>
         <h2 style={{ marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>
+          Loading State
+        </h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '14px', color: '#666' }}>All variants (large)</p>
+            <ButtonGroup>
+              <Button variant="primary" size="large" isLoading>Primary</Button>
+              <Button variant="secondary" size="large" isLoading>Secondary</Button>
+              <Button variant="destructive" size="large" isLoading>Destructive</Button>
+            </ButtonGroup>
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '14px', color: '#666' }}>All sizes (primary)</p>
+            <ButtonGroup>
+              <Button variant="primary" size="small" isLoading>Small</Button>
+              <Button variant="primary" size="medium" isLoading>Medium</Button>
+              <Button variant="primary" size="large" isLoading>Large</Button>
+            </ButtonGroup>
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '14px', color: '#666' }}>Interactive — click to toggle loading</p>
+            <ButtonGroup>
+              <Button variant="tertiary" type="button" onClick={() => setLoading(false)}>
+                Cancel
+              </Button>
+              <Button
+                variant="primary"
+                type="button"
+                isLoading={loading}
+                onClick={handleSubmit}
+              >
+                Submit
+              </Button>
+            </ButtonGroup>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style={{ marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>
           Form Actions
         </h2>
         <form
@@ -135,8 +175,8 @@ export const ButtonExample: React.FC = () => {
             <Button variant="tertiary" type="button">
               Cancel
             </Button>
-            <Button variant="primary" type="submit" disabled={loading}>
-              {loading ? 'Submitting...' : 'Submit'}
+            <Button variant="primary" type="submit" isLoading={loading}>
+              Submit
             </Button>
           </ButtonGroup>
         </form>
