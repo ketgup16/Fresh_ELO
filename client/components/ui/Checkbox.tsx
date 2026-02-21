@@ -76,9 +76,9 @@ const CheckIcon = () => (
     <path
       d="M2.5 6L5 8.5L9.5 3.5"
       stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      strokeWidth="2"
+      strokeLinecap="square"
+      strokeLinejoin="miter"
     />
   </svg>
 );
@@ -94,7 +94,7 @@ const IndeterminateIcon = () => (
       d="M1 5H9"
       stroke="currentColor"
       strokeWidth="2"
-      strokeLinecap="round"
+      strokeLinecap="square"
     />
   </svg>
 );
