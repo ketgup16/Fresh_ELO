@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { MastHead } from '@/components/ui/MastHead';
 import { AppSidebar } from '@/components/ui/AppSidebar';
 import type { SidebarMenuItem } from '@/components/ui/AppSidebar';
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
+import { Card } from '@/components/ui/Card';
 import {
   Home,
   ListBox,
@@ -17,9 +18,10 @@ import {
   Rocket,
   TargetArrow,
   Services,
-  MoreHorizontal,
-  ChevronDown,
 } from '@/components/icons';
+import { PrimaryCard } from './landing-summary/PrimaryCard';
+import { SecondaryListCard } from './landing-summary/SecondaryListCard';
+import { SecondaryAccordionCard } from './landing-summary/SecondaryAccordionCard';
 import styles from '@/styles/landingSummary.module.css';
 
 function getSellerCenterMenuItems(t: (key: string) => string): SidebarMenuItem[] {
@@ -73,128 +75,17 @@ export default function LandingSummary() {
                 <div className={styles.secondaryColumn}>
                   <SecondaryListCard />
                   <SecondaryAccordionCard />
-                  <div className={styles.placeholderCard} />
+                  <Card
+                    UNSAFE_className={styles.placeholderCard}
+                    aria-label={t('shared.placeholder')}
+                  >
+                    <span />
+                  </Card>
                 </div>
               </div>
             </div>
           </div>
         </main>
-      </div>
-    </div>
-  );
-}
-
-/* ─── Primary Card ─── */
-
-function PrimaryCard() {
-  const { t } = useTranslation();
-  return (
-    <div className={styles.primaryCard}>
-      {/* Primary section header */}
-      <div className={styles.primaryCardHeader}>
-        <h2 className={styles.primarySectionTitle}>{t('shared.primarySection')}</h2>
-        <Button variant="secondary" size="small">{t('shared.buttonLabel')}</Button>
-      </div>
-
-      {/* Secondary section */}
-      <div className={styles.secondarySectionHeader}>
-        <h3 className={styles.secondarySectionTitle}>{t('shared.secondarySection')}</h3>
-        <LinkButton size="medium">{t('shared.linkButton')}</LinkButton>
-      </div>
-
-      {/* Tertiary section */}
-      <div className={styles.tertiarySectionHeader}>
-        <h4 className={styles.tertiarySectionTitle}>{t('shared.tertiarySection')}</h4>
-      </div>
-
-      {/* List items */}
-      <div className={styles.listSection}>
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className={styles.listItem}>
-            <span className={styles.listItemText}>{t('shared.listItemText')}</span>
-            <span className={styles.listItemTrailing}>{t('shared.trailing')}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ─── Secondary List Card ─── */
-
-function SecondaryListCard() {
-  const { t } = useTranslation();
-  return (
-    <div className={styles.secondaryCard}>
-      <div className={styles.secondaryCardHeader}>
-        <h3 className={styles.secondaryCardTitle}>{t('shared.secondarySection')}</h3>
-        <button className={styles.moreBtn} aria-label={t('shared.moreOptions')}>
-          <MoreHorizontal style={{ width: 16, height: 16 }} />
-        </button>
-      </div>
-      <div className={styles.secondaryListSection}>
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className={styles.secondaryListItem}>
-            <span className={styles.secondaryListItemText}>{t('shared.listItemText')}</span>
-            <span className={styles.secondaryListItemTrailing}>{t('shared.trailing')}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ─── Secondary Accordion Card ─── */
-
-const accordionIds = Array.from({ length: 8 }, (_, i) => String(i));
-
-function SecondaryAccordionCard() {
-  const { t } = useTranslation();
-  const [openItems, setOpenItems] = useState<Set<string>>(new Set());
-
-  const toggle = (id: string) => {
-    setOpenItems((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  };
-
-  return (
-    <div className={styles.secondaryCard}>
-      <div className={styles.secondaryCardHeader}>
-        <h3 className={styles.secondaryCardTitle}>{t('shared.secondarySection')}</h3>
-        <button className={styles.moreBtn} aria-label={t('shared.moreOptions')}>
-          <MoreHorizontal style={{ width: 16, height: 16 }} />
-        </button>
-      </div>
-      <div className={styles.accordionSection}>
-        {accordionIds.map((id, idx) => {
-          const isOpen = openItems.has(id);
-          return (
-            <div key={id} className={styles.accordionItem}>
-              <button
-                className={styles.accordionTrigger}
-                onClick={() => toggle(id)}
-                aria-expanded={isOpen}
-              >
-                <span className={styles.accordionTitle}>{t('shared.accordionTitle')}</span>
-                <span className={`${styles.accordionChevron}${isOpen ? ` ${styles.open}` : ''}`}>
-                  <ChevronDown style={{ width: 16, height: 16 }} />
-                </span>
-              </button>
-              {isOpen && (
-                <div className={styles.accordionContent}>
-                  Content for accordion item {idx + 1}
-                </div>
-              )}
-              {idx < accordionIds.length - 1 && (
-                <div className={styles.accordionDivider} />
-              )}
-            </div>
-          );
-        })}
       </div>
     </div>
   );
