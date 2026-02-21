@@ -70,6 +70,7 @@ const navigationSections: NavSection[] = [
       { id: 'snackbars', nameKey: 'componentLibrary.navSnackbars', path: '/component-library/snackbars' },
       { id: 'spinners', nameKey: 'componentLibrary.navSpinners', path: '/component-library/spinners' },
       { id: 'spot-icons', nameKey: 'componentLibrary.navSpotIcons', path: '/component-library/spot-icons' },
+      { id: 'segmented-control', nameKey: 'componentLibrary.navSegmentedControl', path: '/component-library/segmented-control' },
       { id: 'switches', nameKey: 'componentLibrary.navSwitches', path: '/component-library/switches' },
       { id: 'tab-navigation', nameKey: 'componentLibrary.navTabNavigation', path: '/component-library/tabs' },
       { id: 'tags', nameKey: 'componentLibrary.navTags', path: '/component-library/tags' },

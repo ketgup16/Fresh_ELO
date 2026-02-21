@@ -78,6 +78,7 @@ const ProgressTrackerPage = React.lazy(() => import("./pages/component-library/P
 const ScrollAreaPage = React.lazy(() => import("./pages/component-library/ScrollArea"));
 const SkeletonPage = React.lazy(() => import("./pages/component-library/Skeleton"));
 const SliderPage = React.lazy(() => import("./pages/component-library/Slider"));
+const SegmentedControlsPage = React.lazy(() => import("./pages/component-library/SegmentedControls"));
 const SnackbarsPage = React.lazy(() => import("./pages/component-library/Snackbars"));
 const SpinnersPage = React.lazy(() => import("./pages/component-library/Spinners"));
 const SpotIconsPage = React.lazy(() => import("./pages/component-library/SpotIcons"));
@@ -167,6 +168,7 @@ const App = () => (
                 <Route path="snackbars" element={<SnackbarsPage />} />
                 <Route path="spinners" element={<SpinnersPage />} />
                 <Route path="spot-icons" element={<SpotIconsPage />} />
+                <Route path="segmented-control" element={<SegmentedControlsPage />} />
                 <Route path="switches" element={<SwitchesPage />} />
                 <Route path="table" element={<TablePage />} />
                 <Route path="tabs" element={<TabsPage />} />
