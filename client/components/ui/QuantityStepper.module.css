@@ -240,9 +240,18 @@
 .pillExpanded .slotCenter--large  { padding: 0 6px; min-width: 88px; }
 
 /* Circle mode (icon-only collapsed) — enforce perfect circle */
-.pillCircle .slotCenter--small  { min-width: 16px; padding: 0 8px; }
-.pillCircle .slotCenter--medium { min-width: 24px; padding: 0 8px; }
-.pillCircle .slotCenter--large  { min-width: 32px; padding: 0 10px; }
+.pillCircle {
+  aspect-ratio: 1;
+  justify-content: center;
+}
+
+.pillCircle.pill--small  { min-width: 32px; width: 32px; }
+.pillCircle.pill--medium { min-width: 40px; width: 40px; }
+.pillCircle.pill--large  { min-width: 52px; width: 52px; }
+
+.pillCircle .slotCenter--small  { min-width: auto; padding: 0; }
+.pillCircle .slotCenter--medium { min-width: auto; padding: 0; }
+.pillCircle .slotCenter--large  { min-width: auto; padding: 0; }
 
 /* ═══════════════════════════════════════
    LABEL TEXT — "added" / "Max" — animates
