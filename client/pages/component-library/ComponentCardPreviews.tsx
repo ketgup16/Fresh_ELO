@@ -2,6 +2,9 @@ import React from 'react';
 import { InfoCircle, Star, ChevronDown, ChevronRight, Search, ArrowRight, Check, Magic } from '@/components/icons';
 import { Tag } from '@/components/ui/Tag';
 import { Badge } from '@/components/ui/Badge';
+import { Alert } from '@/components/ui/Alert';
+import { Chip } from '@/components/ui/Chip';
+import { FilterChip } from '@/components/ui/FilterChip';
 
 /**
  * Wrapper that constrains preview content to a fixed area inside each card.
@@ -31,15 +34,8 @@ function PreviewFrame({ children }: { children: React.ReactNode }) {
 function AlertsPreview() {
   return (
     <PreviewFrame>
-      <div style={{
-        width: '100%', display: 'flex', alignItems: 'center', gap: '8px',
-        padding: '8px 12px', borderRadius: '6px',
-        border: '1px solid var(--ld-semantic-color-border-info, #0071DC)',
-        background: 'var(--ld-semantic-color-fill-info-subtle, #E5F0FF)',
-        fontSize: '12px', color: 'var(--ld-semantic-color-text, #2E2F32)',
-      }}>
-        <InfoCircle style={{ width: 14, height: 14, flexShrink: 0, color: 'var(--ld-semantic-color-text-info, #0071DC)' }} />
-        This is an informational alert.
+      <div style={{ width: '100%', transform: 'scale(0.85)', transformOrigin: 'center' }}>
+        <Alert variant="info">This is an informational alert.</Alert>
       </div>
     </PreviewFrame>
   );
@@ -129,14 +125,9 @@ function ChipsPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-        {[{ label: 'Active', selected: true }, { label: 'Draft', selected: false }, { label: 'Archived', selected: false }].map((c, i) => (
-          <span key={i} style={{
-            padding: '4px 12px', borderRadius: '4px', fontSize: '13px', fontWeight: 500,
-            border: c.selected ? '2px solid var(--ld-semantic-color-input-border-activated, #2e2f32)' : '1px solid var(--ld-semantic-color-border-strong, #BABBBE)',
-            background: c.selected ? 'var(--ld-semantic-color-fill-brand-subtle, #E6F1FC)' : 'white',
-            color: 'var(--ld-semantic-color-text, #2E2F32)',
-          }}>{c.label}</span>
-        ))}
+        <Chip selected size="small">Active</Chip>
+        <Chip size="small">Draft</Chip>
+        <Chip size="small">Archived</Chip>
       </div>
     </PreviewFrame>
   );
@@ -146,8 +137,8 @@ function FilterChipsPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-        <span style={{ padding: '4px 14px', borderRadius: '9999px', fontSize: '13px', border: '2px solid var(--ld-semantic-color-action-fill-primary, #0071DC)', background: 'var(--ld-semantic-color-fill-brand-subtle, #E6F1FC)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Status</span>
-        <span style={{ padding: '4px 14px', borderRadius: '9999px', fontSize: '13px', border: '1px solid var(--ld-semantic-color-border-strong, #BABBBE)', background: 'white', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Type</span>
+        <FilterChip selected>Status</FilterChip>
+        <FilterChip>Type</FilterChip>
       </div>
     </PreviewFrame>
   );
@@ -357,11 +348,9 @@ function CalloutsPreview() {
     <PreviewFrame>
       <div style={{ position: 'relative', maxWidth: '180px' }}>
         <div style={{
-          background: 'var(--ld-semantic-color-surface, #FFFFFF)',
-          border: '1px solid var(--ld-semantic-color-border-moderate, #CECED0)',
+          background: 'var(--ld-semantic-color-text, #2E2F32)',
           borderRadius: '6px', padding: '8px 12px',
-          fontSize: '12px', color: 'var(--ld-semantic-color-text, #2E2F32)',
-          boxShadow: 'var(--ld-semantic-elevation-100)',
+          fontSize: '12px', color: '#FFFFFF',
         }}>
           Helpful tip for the user
         </div>
@@ -372,8 +361,7 @@ function CalloutsPreview() {
         }}>
           <div style={{
             width: '8px', height: '8px',
-            background: 'var(--ld-semantic-color-surface, #FFFFFF)',
-            border: '1px solid var(--ld-semantic-color-border-moderate, #CECED0)',
+            background: 'var(--ld-semantic-color-text, #2E2F32)',
             transform: 'rotate(45deg)', position: 'absolute', top: '-4px', left: '1px',
           }} />
         </div>
