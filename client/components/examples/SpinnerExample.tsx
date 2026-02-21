@@ -96,9 +96,9 @@ export const SpinnerExample: React.FC = () => {
         </div>
       </section>
 
-      {/* ── Woof Animation ─────────────────────────────────────── */}
+      {/* ── Spinner Animation ─────────────────────────────────── */}
       <section>
-        <h3 style={sectionHeadingStyle}>Woof Animation</h3>
+        <h3 style={sectionHeadingStyle}>Spinner</h3>
         <p style={{ ...sublabelStyle, marginBottom: '24px', fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
           A single dot orbiting the center — a minimal, smooth loading indicator.
         </p>
