@@ -26,6 +26,12 @@ export interface DataTableHeaderProps
   sort?: DataTableHeaderSort;
   /** Column width. */
   width?: number | string;
+  /** Enable column resizing via drag handle. */
+  resizable?: boolean;
+  /** Callback fired during resize with the new width in pixels. */
+  onResize?: (newWidth: number) => void;
+  /** Minimum column width in pixels when resizing. @default 60 */
+  minWidth?: number;
 }
 
 /**
@@ -39,12 +45,45 @@ export const DataTableHeader = React.forwardRef<HTMLTableCellElement, DataTableH
       onSort,
       sort = 'none',
       width,
+      resizable,
+      onResize,
+      minWidth = 60,
       UNSAFE_className,
       UNSAFE_style,
       ...props
     },
     ref,
   ) => {
+    const thRef = React.useRef<HTMLTableCellElement | null>(null);
+
+    const handleMouseDown = React.useCallback(
+      (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const startX = e.clientX;
+        const startWidth = thRef.current?.getBoundingClientRect().width ?? 0;
+
+        const handleMouseMove = (moveEvent: MouseEvent) => {
+          const delta = moveEvent.clientX - startX;
+          const newWidth = Math.max(minWidth, startWidth + delta);
+          onResize?.(newWidth);
+        };
+
+        const handleMouseUp = () => {
+          document.removeEventListener('mousemove', handleMouseMove);
+          document.removeEventListener('mouseup', handleMouseUp);
+          document.body.style.cursor = '';
+          document.body.style.userSelect = '';
+        };
+
+        document.body.style.cursor = 'col-resize';
+        document.body.style.userSelect = 'none';
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+      },
+      [minWidth, onResize],
+    );
+
     const alignClass =
       alignment === 'right' ? styles.headerRight : styles.headerLeft;
 
@@ -68,7 +107,11 @@ export const DataTableHeader = React.forwardRef<HTMLTableCellElement, DataTableH
 
     return (
       <th
-        ref={ref}
+        ref={(node) => {
+          thRef.current = node;
+          if (typeof ref === 'function') ref(node);
+          else if (ref) (ref as React.MutableRefObject<HTMLTableCellElement | null>).current = node;
+        }}
         className={className}
         style={style}
         scope="col"
@@ -81,11 +124,19 @@ export const DataTableHeader = React.forwardRef<HTMLTableCellElement, DataTableH
             className={styles.sortButton}
             onClick={onSort}
           >
-            {children}
+            <span className={styles.sortLabel}>{children}</span>
             <span className={styles.sortIcon}>{sortIcon}</span>
           </button>
         ) : (
-          children
+          <span className={styles.headerLabel}>{children}</span>
+        )}
+        {resizable && (
+          <span
+            role="separator"
+            aria-orientation="vertical"
+            className={styles.resizeHandle}
+            onMouseDown={handleMouseDown}
+          />
         )}
       </th>
     );

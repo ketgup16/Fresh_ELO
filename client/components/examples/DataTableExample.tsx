@@ -229,6 +229,23 @@ export default function DataTableExample() {
   /* ── Pagination ── */
   const [currentPage, setCurrentPage] = React.useState(1);
 
+  /* ── Column widths (resizable) ── */
+  const [columnWidths, setColumnWidths] = React.useState<Record<string, number>>({
+    select: 48,
+    campaign: 280,
+    status: 120,
+    recommendations: 160,
+    totalBudget: 140,
+    targetingStrategy: 170,
+    impressions: 140,
+    pacing: 110,
+    actions: 80,
+  });
+
+  const handleColumnResize = React.useCallback((column: string) => (newWidth: number) => {
+    setColumnWidths((prev) => ({ ...prev, [column]: newWidth }));
+  }, []);
+
   /* ────────────────────────────────────────────
      Derived data: filter → search → sort → paginate
      ──────────────────────────────────────────── */
@@ -451,29 +468,30 @@ export default function DataTableExample() {
               checked={allSelected}
               indeterminate={someSelected}
               onChange={toggleAll}
+              UNSAFE_style={{ width: columnWidths.select }}
             />
-            <DataTableHeader onSort={handleSort('name')} sort={sortFor('name')}>
+            <DataTableHeader onSort={handleSort('name')} sort={sortFor('name')} width={columnWidths.campaign} resizable onResize={handleColumnResize('campaign')}>
               {t('dataTable.colCampaign')}
             </DataTableHeader>
-            <DataTableHeader onSort={handleSort('status')} sort={sortFor('status')}>
+            <DataTableHeader onSort={handleSort('status')} sort={sortFor('status')} width={columnWidths.status} resizable onResize={handleColumnResize('status')}>
               {t('dataTable.colStatus')}
             </DataTableHeader>
-            <DataTableHeader>
+            <DataTableHeader width={columnWidths.recommendations} resizable onResize={handleColumnResize('recommendations')}>
               {t('dataTable.colRecommendations')}
             </DataTableHeader>
-            <DataTableHeader alignment="right" onSort={handleSort('totalBudget')} sort={sortFor('totalBudget')}>
+            <DataTableHeader alignment="right" onSort={handleSort('totalBudget')} sort={sortFor('totalBudget')} width={columnWidths.totalBudget} resizable onResize={handleColumnResize('totalBudget')}>
               {t('dataTable.colTotalBudget')}
             </DataTableHeader>
-            <DataTableHeader>
+            <DataTableHeader width={columnWidths.targetingStrategy} resizable onResize={handleColumnResize('targetingStrategy')}>
               {t('dataTable.colTargetingStrategy')}
             </DataTableHeader>
-            <DataTableHeader alignment="right" onSort={handleSort('impressions')} sort={sortFor('impressions')}>
+            <DataTableHeader alignment="right" onSort={handleSort('impressions')} sort={sortFor('impressions')} width={columnWidths.impressions} resizable onResize={handleColumnResize('impressions')}>
               {t('dataTable.colImpressions')}
             </DataTableHeader>
-            <DataTableHeader alignment="right" onSort={handleSort('pacing')} sort={sortFor('pacing')}>
+            <DataTableHeader alignment="right" onSort={handleSort('pacing')} sort={sortFor('pacing')} width={columnWidths.pacing} resizable onResize={handleColumnResize('pacing')}>
               {t('dataTable.colPacing')}
             </DataTableHeader>
-            <DataTableHeader alignment="right">
+            <DataTableHeader alignment="right" width={columnWidths.actions}>
               {t('dataTable.colActions')}
             </DataTableHeader>
           </DataTableRow>

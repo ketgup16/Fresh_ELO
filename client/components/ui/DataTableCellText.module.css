@@ -7,6 +7,10 @@
   font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
   color: var(--ld-semantic-color-text, #2E2F32);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 0;
 }
 
 /* Alphanumeric variant — left-aligned */
