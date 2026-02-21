@@ -120,11 +120,13 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       onChange?.(next);
     };
 
+    const isIconOnly = !cartLabel && !showAddLabel;
     const addBtnClass = [
       styles.addButton,
       styles[`addButton--${variant}`],
       styles[`addButton--${size}`],
       cartLabel ? styles.cartMode : '',
+      isIconOnly ? styles.iconOnly : '',
     ]
       .filter(Boolean)
       .join(' ');

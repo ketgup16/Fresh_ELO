@@ -44,6 +44,13 @@
   padding: 4px 12px;
 }
 
+.addButton--small.iconOnly {
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+}
+
 .addButton--medium {
   padding: 6px 14px 6px 10px;
   min-height: 32px;
@@ -55,6 +62,13 @@
   padding: 6px 16px;
 }
 
+.addButton--medium.iconOnly {
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  min-height: 40px;
+}
+
 .addButton--large {
   padding: 8px 18px 8px 12px;
   min-height: 40px;
@@ -64,6 +78,13 @@
 
 .addButton--large.cartMode {
   padding: 8px 20px;
+}
+
+.addButton--large.iconOnly {
+  padding: 0;
+  width: 52px;
+  height: 52px;
+  min-height: 52px;
 }
 
 /* ── Primary variant ── */
