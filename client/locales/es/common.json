@@ -180,6 +180,7 @@
     "navSkeleton": "Esqueleto",
     "navSlider": "Deslizador",
     "navTable": "Tabla",
+    "navDataTable": "Tabla de datos",
     "navToggle": "Alternar",
     "descAlerts": "Mensajes de banner para estados de información, éxito, advertencia y error",
     "descBadges": "Insignias de conteo, indicadores de estado y variantes de color semántico",

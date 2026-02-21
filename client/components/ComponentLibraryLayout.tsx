@@ -30,8 +30,10 @@ const navigationSections: NavSection[] = [
   {
     titleKey: 'componentLibrary.components',
     items: [
+      { id: 'accordion', nameKey: 'componentLibrary.navAccordion', path: '/component-library/accordion' },
       { id: 'alerts', nameKey: 'componentLibrary.navAlerts', path: '/component-library/alerts' },
       { id: 'badges', nameKey: 'componentLibrary.navBadges', path: '/component-library/badges' },
+      { id: 'bottom-sheet', nameKey: 'componentLibrary.navBottomSheet', path: '/component-library/bottom-sheet' },
       { id: 'breadcrumbs', nameKey: 'componentLibrary.navBreadcrumbs', path: '/component-library/breadcrumbs' },
       { id: 'buttons', nameKey: 'componentLibrary.navButtons', path: '/component-library/buttons' },
       { id: 'callouts', nameKey: 'componentLibrary.navCallouts', path: '/component-library/callouts' },
@@ -39,10 +41,12 @@ const navigationSections: NavSection[] = [
       { id: 'checkboxes', nameKey: 'componentLibrary.navCheckboxes', path: '/component-library/checkboxes' },
       { id: 'chips', nameKey: 'componentLibrary.navChips', path: '/component-library/chips' },
       { id: 'content-messages', nameKey: 'componentLibrary.navContentMessages', path: '/component-library/content-messages' },
+      { id: 'data-table', nameKey: 'componentLibrary.navDataTable', path: '/component-library/table' },
       { id: 'date-fields', nameKey: 'componentLibrary.navDateFields', path: '/component-library/date-fields' },
       { id: 'date-picker-calendar', nameKey: 'componentLibrary.navDatePickerCalendar', path: '/component-library/calendar' },
       { id: 'date-pickers', nameKey: 'componentLibrary.navDatePickers', path: '/component-library/date-pickers' },
       { id: 'date-range-picker', nameKey: 'componentLibrary.navDateRangePicker', path: '/component-library/date-range-picker' },
+      { id: 'dialog', nameKey: 'componentLibrary.navDialog', path: '/component-library/dialog' },
       { id: 'dividers', nameKey: 'componentLibrary.navDividers', path: '/component-library/dividers' },
       { id: 'filter-chips', nameKey: 'componentLibrary.navFilterChips', path: '/component-library/filter-chips' },
       { id: 'form-groups', nameKey: 'componentLibrary.navFormGroups', path: '/component-library/form-groups' },
@@ -62,6 +66,7 @@ const navigationSections: NavSection[] = [
       { id: 'progress-tracker', nameKey: 'componentLibrary.navProgressTracker', path: '/component-library/progress-tracker' },
       { id: 'radio-buttons', nameKey: 'componentLibrary.navRadioButtons', path: '/component-library/radio-buttons' },
       { id: 'select', nameKey: 'componentLibrary.navSelect', path: '/component-library/select' },
+      { id: 'skeleton', nameKey: 'componentLibrary.navSkeleton', path: '/component-library/skeleton' },
       { id: 'snackbars', nameKey: 'componentLibrary.navSnackbars', path: '/component-library/snackbars' },
       { id: 'spinners', nameKey: 'componentLibrary.navSpinners', path: '/component-library/spinners' },
       { id: 'spot-icons', nameKey: 'componentLibrary.navSpotIcons', path: '/component-library/spot-icons' },
@@ -75,7 +80,6 @@ const navigationSections: NavSection[] = [
   {
     titleKey: 'componentLibrary.sharedSection',
     items: [
-      { id: 'accordion', nameKey: 'componentLibrary.navAccordion', path: '/component-library/accordion' },
       { id: 'alert-dialog', nameKey: 'componentLibrary.navAlertDialog', path: '/component-library/alert-dialog' },
       { id: 'avatar', nameKey: 'componentLibrary.navAvatar', path: '/component-library/avatar' },
       { id: 'carousel', nameKey: 'componentLibrary.navCarousel', path: '/component-library/carousel' },
@@ -83,17 +87,13 @@ const navigationSections: NavSection[] = [
       { id: 'collapsible', nameKey: 'componentLibrary.navCollapsible', path: '/component-library/collapsible' },
       { id: 'command', nameKey: 'componentLibrary.navCommand', path: '/component-library/command' },
       { id: 'context-menu', nameKey: 'componentLibrary.navContextMenu', path: '/component-library/context-menu' },
-      { id: 'dialog', nameKey: 'componentLibrary.navDialog', path: '/component-library/dialog' },
-      { id: 'bottom-sheet', nameKey: 'componentLibrary.navBottomSheet', path: '/component-library/bottom-sheet' },
       { id: 'dropdown-menu', nameKey: 'componentLibrary.navDropdownMenu', path: '/component-library/dropdown-menu' },
       { id: 'form', nameKey: 'componentLibrary.navForm', path: '/component-library/form' },
       { id: 'menubar', nameKey: 'componentLibrary.navMenubar', path: '/component-library/menubar' },
       { id: 'navigation-menu', nameKey: 'componentLibrary.navNavigationMenu', path: '/component-library/navigation-menu' },
       { id: 'pagination', nameKey: 'componentLibrary.navPagination', path: '/component-library/pagination' },
       { id: 'scroll-area', nameKey: 'componentLibrary.navScrollArea', path: '/component-library/scroll-area' },
-      { id: 'skeleton', nameKey: 'componentLibrary.navSkeleton', path: '/component-library/skeleton' },
       { id: 'slider', nameKey: 'componentLibrary.navSlider', path: '/component-library/slider' },
-      { id: 'table', nameKey: 'componentLibrary.navTable', path: '/component-library/table' },
       { id: 'toggle', nameKey: 'componentLibrary.navToggle', path: '/component-library/toggle' },
     ]
   }

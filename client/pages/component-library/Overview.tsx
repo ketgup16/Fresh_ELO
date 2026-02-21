@@ -72,8 +72,10 @@ interface ComponentEntry {
 
 const componentSections: ComponentEntry[] = [
   // ── Living Design 3.5 Components ──
+  { titleKey: 'componentLibrary.navAccordion', descKey: 'componentLibrary.descAccordion', path: '/component-library/accordion', icon: 'ChevronDown', section: 'ld' },
   { titleKey: 'componentLibrary.navAlerts', descKey: 'componentLibrary.descAlerts', path: '/component-library/alerts', icon: 'ExclamationCircle', section: 'ld' },
   { titleKey: 'componentLibrary.navBadges', descKey: 'componentLibrary.descBadges', path: '/component-library/badges', icon: 'Tag', section: 'ld' },
+  { titleKey: 'componentLibrary.navBottomSheet', descKey: 'componentLibrary.descBottomSheet', path: '/component-library/bottom-sheet', icon: 'PanelLeft', section: 'ld' },
   { titleKey: 'componentLibrary.navBreadcrumbs', descKey: 'componentLibrary.descBreadcrumbs', path: '/component-library/breadcrumbs', icon: 'ArrowRight', section: 'ld' },
   { titleKey: 'componentLibrary.navButtons', descKey: 'componentLibrary.descButtons', path: '/component-library/buttons', icon: 'Circle', section: 'ld' },
   { titleKey: 'componentLibrary.navCallouts', descKey: 'componentLibrary.descCallouts', path: '/component-library/callouts', icon: 'InfoCircle', section: 'ld' },
@@ -81,8 +83,10 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navCheckboxes', descKey: 'componentLibrary.descCheckboxes', path: '/component-library/checkboxes', icon: 'Check', section: 'ld' },
   { titleKey: 'componentLibrary.navChips', descKey: 'componentLibrary.descChips', path: '/component-library/chips', icon: 'Tag', section: 'ld' },
   { titleKey: 'componentLibrary.navContentMessages', descKey: 'componentLibrary.descContentMessages', path: '/component-library/content-messages', icon: 'Chat', section: 'ld' },
+  { titleKey: 'componentLibrary.navDataTable', descKey: 'componentLibrary.descTable', path: '/component-library/table', icon: 'List', section: 'ld' },
   { titleKey: 'componentLibrary.navDateFields', descKey: 'componentLibrary.descDateFields', path: '/component-library/date-fields', icon: 'Calendar', section: 'ld' },
   { titleKey: 'componentLibrary.navDatePickers', descKey: 'componentLibrary.descDatePickers', path: '/component-library/date-pickers', icon: 'Calendar', section: 'ld' },
+  { titleKey: 'componentLibrary.navDialog', descKey: 'componentLibrary.descDialog', path: '/component-library/dialog', icon: 'Box', section: 'ld' },
   { titleKey: 'componentLibrary.navDividers', descKey: 'componentLibrary.descDividers', path: '/component-library/dividers', icon: 'Minus', section: 'ld' },
   { titleKey: 'componentLibrary.navFilterChips', descKey: 'componentLibrary.descFilterChips', path: '/component-library/filter-chips', icon: 'Filter', section: 'ld' },
   { titleKey: 'componentLibrary.navFormGroups', descKey: 'componentLibrary.descFormGroups', path: '/component-library/form-groups', icon: 'List', section: 'ld' },
@@ -101,6 +105,7 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navProgressTracker', descKey: 'componentLibrary.descProgressTracker', path: '/component-library/progress-tracker', icon: 'ArrowRight', section: 'ld' },
   { titleKey: 'componentLibrary.navRadioButtons', descKey: 'componentLibrary.descRadioButtons', path: '/component-library/radio-buttons', icon: 'Circle', section: 'ld' },
   { titleKey: 'componentLibrary.navSelect', descKey: 'componentLibrary.descSelect', path: '/component-library/select', icon: 'ChevronDown', section: 'ld' },
+  { titleKey: 'componentLibrary.navSkeleton', descKey: 'componentLibrary.descSkeleton', path: '/component-library/skeleton', icon: 'Box', section: 'ld' },
   { titleKey: 'componentLibrary.navSnackbars', descKey: 'componentLibrary.descSnackbars', path: '/component-library/snackbars', icon: 'Chat', section: 'ld' },
   { titleKey: 'componentLibrary.navSpinners', descKey: 'componentLibrary.descSpinners', path: '/component-library/spinners', icon: 'Refresh', section: 'ld' },
   { titleKey: 'componentLibrary.navSpotIcons', descKey: 'componentLibrary.descSpotIcons', path: '/component-library/spot-icons', icon: 'Star', section: 'ld' },
@@ -109,13 +114,7 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navTags', descKey: 'componentLibrary.descTags', path: '/component-library/tags', icon: 'Tag', section: 'ld' },
   { titleKey: 'componentLibrary.navTextArea', descKey: 'componentLibrary.descTextArea', path: '/component-library/textarea', icon: 'Note', section: 'ld' },
   { titleKey: 'componentLibrary.navTextFields', descKey: 'componentLibrary.descTextFields', path: '/component-library/text-fields', icon: 'Edit', section: 'ld' },
-  { titleKey: 'componentLibrary.navBottomSheet', descKey: 'componentLibrary.descBottomSheet', path: '/component-library/bottom-sheet', icon: 'PanelLeft', section: 'ld' },
-  { titleKey: 'componentLibrary.navCollapsible', descKey: 'componentLibrary.descCollapsible', path: '/component-library/collapsible', icon: 'ChevronDown', section: 'ld' },
-  { titleKey: 'componentLibrary.navSkeleton', descKey: 'componentLibrary.descSkeleton', path: '/component-library/skeleton', icon: 'Box', section: 'ld' },
-  { titleKey: 'componentLibrary.navTable', descKey: 'componentLibrary.descTable', path: '/component-library/table', icon: 'List', section: 'ld' },
-
   // ── Shared Components ──
-  { titleKey: 'componentLibrary.navAccordion', descKey: 'componentLibrary.descAccordion', path: '/component-library/accordion', icon: 'ChevronDown', section: 'shadcn' },
   { titleKey: 'componentLibrary.navAlertDialog', descKey: 'componentLibrary.descAlertDialog', path: '/component-library/alert-dialog', icon: 'ExclamationCircle', section: 'shadcn' },
   { titleKey: 'componentLibrary.navAvatar', descKey: 'componentLibrary.descAvatar', path: '/component-library/avatar', icon: 'Circle', section: 'shadcn' },
   { titleKey: 'componentLibrary.navCalendar', descKey: 'componentLibrary.descCalendar', path: '/component-library/calendar', icon: 'Calendar', section: 'shadcn' },
@@ -123,7 +122,6 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navChart', descKey: 'componentLibrary.descChart', path: '/component-library/chart', icon: 'BarGraph', section: 'shadcn' },
   { titleKey: 'componentLibrary.navCommand', descKey: 'componentLibrary.descCommand', path: '/component-library/command', icon: 'Search', section: 'shadcn' },
   { titleKey: 'componentLibrary.navContextMenu', descKey: 'componentLibrary.descContextMenu', path: '/component-library/context-menu', icon: 'Menu', section: 'shadcn' },
-  { titleKey: 'componentLibrary.navDialog', descKey: 'componentLibrary.descDialog', path: '/component-library/dialog', icon: 'Box', section: 'shadcn' },
   { titleKey: 'componentLibrary.navDropdownMenu', descKey: 'componentLibrary.descDropdownMenu', path: '/component-library/dropdown-menu', icon: 'ChevronDown', section: 'shadcn' },
   { titleKey: 'componentLibrary.navForm', descKey: 'componentLibrary.descForm', path: '/component-library/form', icon: 'Edit', section: 'shadcn' },
   { titleKey: 'componentLibrary.navMenubar', descKey: 'componentLibrary.descMenubar', path: '/component-library/menubar', icon: 'Menu', section: 'shadcn' },
