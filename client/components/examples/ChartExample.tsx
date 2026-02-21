@@ -48,35 +48,44 @@ const revenueData = [
   { month: 'Dec', revenue: 314, cost: 140 },
 ];
 
+// Chart colors use LD data visualization palette tokens
+const CHART_COLORS = {
+  primary: 'var(--ld-semantic-color-data-viz-1, #0071DC)',
+  secondary: 'var(--ld-semantic-color-data-viz-2, #993EF4)',
+  tertiary: 'var(--ld-semantic-color-data-viz-3, #4DBDF5)',
+  quaternary: 'var(--ld-semantic-color-text, #2E2F32)',
+  muted: 'var(--ld-semantic-color-text-subtle, #74767C)',
+};
+
 const channelData = [
-  { name: 'Sponsored Search', value: 42, fill: '#0071DC' },
-  { name: 'Display', value: 28, fill: '#993EF4' },
-  { name: 'In-Store', value: 18, fill: '#4DBDF5' },
-  { name: 'Social', value: 12, fill: '#2E2F32' },
+  { name: 'Sponsored Search', value: 42, fill: CHART_COLORS.primary },
+  { name: 'Display', value: 28, fill: CHART_COLORS.secondary },
+  { name: 'In-Store', value: 18, fill: CHART_COLORS.tertiary },
+  { name: 'Social', value: 12, fill: CHART_COLORS.quaternary },
 ];
 
 // ── Chart Configs ──
 
 const lineChartConfig: ChartConfig = {
-  impressions: { label: 'Impressions (M)', color: '#993EF4' },
-  clicks: { label: 'Clicks (K)', color: '#4DBDF5' },
+  impressions: { label: 'Impressions (M)', color: CHART_COLORS.secondary },
+  clicks: { label: 'Clicks (K)', color: CHART_COLORS.tertiary },
 };
 
 const barChartConfig: ChartConfig = {
-  revenue: { label: 'Revenue', color: '#0071DC' },
-  cost: { label: 'Cost', color: '#74767C' },
+  revenue: { label: 'Revenue', color: CHART_COLORS.primary },
+  cost: { label: 'Cost', color: CHART_COLORS.muted },
 };
 
 const areaChartConfig: ChartConfig = {
-  impressions: { label: 'Impressions (M)', color: '#0071DC' },
-  clicks: { label: 'Clicks (K)', color: '#993EF4' },
+  impressions: { label: 'Impressions (M)', color: CHART_COLORS.primary },
+  clicks: { label: 'Clicks (K)', color: CHART_COLORS.secondary },
 };
 
 const pieChartConfig: ChartConfig = {
-  'Sponsored Search': { label: 'Sponsored Search', color: '#0071DC' },
-  Display: { label: 'Display', color: '#993EF4' },
-  'In-Store': { label: 'In-Store', color: '#4DBDF5' },
-  Social: { label: 'Social', color: '#2E2F32' },
+  'Sponsored Search': { label: 'Sponsored Search', color: CHART_COLORS.primary },
+  Display: { label: 'Display', color: CHART_COLORS.secondary },
+  'In-Store': { label: 'In-Store', color: CHART_COLORS.tertiary },
+  Social: { label: 'Social', color: CHART_COLORS.quaternary },
 };
 
 // ── Section wrapper ──

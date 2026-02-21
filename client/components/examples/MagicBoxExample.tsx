@@ -34,15 +34,15 @@ export const MagicBoxExample: React.FC = () => {
           <div
             style={{
               padding: '24px',
-              backgroundColor: '#ffffff',
+              backgroundColor: 'var(--ld-semantic-color-surface, #ffffff)',
               borderRadius: '16px',
-              border: '1px solid #e0e0e0',
+              border: '1px solid var(--ld-semantic-color-border-subtle, #e0e0e0)',
             }}
           >
             <h3 style={{ marginBottom: '12px', fontSize: '18px', fontWeight: 600 }}>
               AI-Generated Content
             </h3>
-            <p style={{ color: '#666', lineHeight: 1.6 }}>
+            <p style={{ color: 'var(--ld-semantic-color-text-subtle, #666)', lineHeight: 1.6 }}>
               This content is being processed by AI. The magic glow effect indicates active AI operations.
             </p>
           </div>
@@ -80,21 +80,21 @@ export const MagicBoxExample: React.FC = () => {
           <div
             style={{
               padding: '32px',
-              backgroundColor: '#ffffff',
+              backgroundColor: 'var(--ld-semantic-color-surface, #ffffff)',
               borderRadius: '16px',
-              border: '1px solid #e0e0e0',
+              border: '1px solid var(--ld-semantic-color-border-subtle, #e0e0e0)',
               textAlign: 'center',
             }}
           >
             <div style={{ marginBottom: '12px' }}>
-              <StarFill style={{ width: 32, height: 32, color: '#0071DC' }} />
+              <StarFill style={{ width: 32, height: 32, color: 'var(--ld-semantic-color-action-fill-primary, #0071DC)' }} />
             </div>
             <h3 style={{ marginBottom: '8px', fontSize: '18px', fontWeight: 600 }}>
               {loadingState === 'idle' && 'Idle - Static Glow'}
               {loadingState === 'loading' && 'Loading - Pulsing Animation'}
               {loadingState === 'active' && 'Active - Subtle Shimmer'}
             </h3>
-            <p style={{ color: '#666' }}>
+            <p style={{ color: 'var(--ld-semantic-color-text-subtle, #666)' }}>
               {loadingState === 'idle' && 'Subtle static glow when AI is ready'}
               {loadingState === 'loading' && 'Pulsing effect while AI is processing'}
               {loadingState === 'active' && 'Gentle shimmer for active AI enhancement'}
@@ -124,9 +124,9 @@ export const MagicBoxExample: React.FC = () => {
           <div
             style={{
               padding: '24px',
-              backgroundColor: '#ffffff',
+              backgroundColor: 'var(--ld-semantic-color-surface, #ffffff)',
               borderRadius: '16px',
-              border: '1px solid #e0e0e0',
+              border: '1px solid var(--ld-semantic-color-border-subtle, #e0e0e0)',
             }}
           >
             <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
@@ -134,7 +134,7 @@ export const MagicBoxExample: React.FC = () => {
                 style={{
                   width: '80px',
                   height: '80px',
-                  backgroundColor: '#f5f5f5',
+                  backgroundColor: 'var(--ld-semantic-color-fill-subtle, #f5f5f5)',
                   borderRadius: '8px',
                   flexShrink: 0,
                   display: 'flex',
@@ -142,13 +142,13 @@ export const MagicBoxExample: React.FC = () => {
                   justifyContent: 'center',
                 }}
               >
-                <StarFill style={{ width: 32, height: 32, color: '#0071DC' }} />
+                <StarFill style={{ width: 32, height: 32, color: 'var(--ld-semantic-color-action-fill-primary, #0071DC)' }} />
               </div>
               <div style={{ flex: 1 }}>
                 <h3 style={{ marginBottom: '8px', fontSize: '16px', fontWeight: 600 }}>
                   AI-Powered Recommendation
                 </h3>
-                <p style={{ color: '#666', fontSize: '14px', lineHeight: 1.6, marginBottom: '12px' }}>
+                <p style={{ color: 'var(--ld-semantic-color-text-subtle, #666)', fontSize: '14px', lineHeight: 1.6, marginBottom: '12px' }}>
                   Based on your browsing history and preferences, we recommend this product
                   tailored specifically for you.
                 </p>

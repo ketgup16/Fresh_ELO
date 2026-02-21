@@ -2,6 +2,7 @@ import { ArrowLeft, Calendar } from "@/components/icons";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
+import { Tag } from "@/components/ui/Tag";
 
 type ViewState = "welcome" | "thinking" | "campaign-form";
 
@@ -100,15 +101,13 @@ export default function MartyAssistant() {
             </div>
 
             {/* Beta Tag */}
-            <div className="flex px-2 py-1 items-start gap-1 rounded border border-[#515357] bg-white">
-              <span className="text-[#515357] text-xs leading-4">Beta</span>
-            </div>
+            <Tag variant="secondary" color="gray">Beta</Tag>
           </div>
         ) : (
           <div className="flex h-9 items-center gap-3">
-            <button onClick={handleBackToWelcome} className="hover:bg-gray-100 rounded p-0.5 transition-colors">
-              <ArrowLeft className="w-6 h-6 text-[#2E2F32]" strokeWidth={1.5} />
-            </button>
+            <Button variant="tertiary" onClick={handleBackToWelcome} UNSAFE_className="p-0.5 min-h-0 h-auto">
+              <ArrowLeft className="w-6 h-6" strokeWidth={1.5} />
+            </Button>
             <div className="flex justify-center items-center gap-2.5">
               <div className="text-[#2E2F32] font-bold text-lg leading-6">Create campaign</div>
             </div>
@@ -118,34 +117,35 @@ export default function MartyAssistant() {
         {/* Actions */}
         <div className="flex justify-end items-center gap-4">
           {/* Reports Icon with Notification */}
-          <button className="flex w-6 h-6 justify-center items-center relative hover:bg-gray-100 rounded transition-colors">
+          <Button variant="tertiary" UNSAFE_className="p-0 min-h-0 h-6 w-6">
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/1835b749ef39843ef58643bf8eaf007c6cbe63ff?width=24"
               alt="Reports"
               className="w-6 h-6"
             />
-          </button>
+          </Button>
 
           {/* Expand Icon */}
-          <button className="flex w-6 h-6 justify-center items-center hover:bg-gray-100 rounded transition-colors">
+          <Button variant="tertiary" UNSAFE_className="p-0 min-h-0 h-6 w-6">
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/4b9543883bac0cc8b18c7c87ebc16153e09ba6ae?width=24"
               alt="Expand"
               className="w-6 h-6"
             />
-          </button>
+          </Button>
 
           {/* Minimize Icon */}
-          <button
+          <Button
             onClick={() => setIsOpen(false)}
-            className="flex w-6 h-6 justify-center items-center hover:bg-gray-100 rounded transition-colors"
+            variant="tertiary"
+            UNSAFE_className="p-0 min-h-0 h-6 w-6"
           >
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/e7b3a2f3ac0042faea6b580042a0890da69e644e?width=24"
               alt="Minimize"
               className="w-6 h-6"
             />
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -167,16 +167,17 @@ export default function MartyAssistant() {
 
             {/* Prompt Suggestions */}
             <div className="flex w-full flex-col items-start gap-2 bg-white">
-              <button 
+              <Button
                 onClick={handleCreateCampaign}
-                className="flex max-w-[318px] max-h-14 px-4 py-2 justify-center items-center gap-2 rounded-lg border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors"
+                variant="tertiary"
+                UNSAFE_className="max-w-[318px] text-sm"
               >
-                <div className="text-[#2E2F32] text-sm font-bold leading-5">Create a campaign</div>
-              </button>
-              
-              <button className="flex max-w-[318px] max-h-14 px-4 py-2 justify-center items-center gap-2 rounded-lg border border-[#2E2F32] bg-white hover:bg-gray-50 transition-colors">
-                <div className="text-[#2E2F32] text-sm font-bold leading-5">Help & FAQs</div>
-              </button>
+                Create a campaign
+              </Button>
+
+              <Button variant="tertiary" UNSAFE_className="max-w-[318px] text-sm">
+                Help & FAQs
+              </Button>
             </div>
           </div>
         )}

@@ -1,5 +1,7 @@
 import React from 'react';
 import { InfoCircle, Star, ChevronDown, ChevronRight, Search, ArrowRight, Check, Magic } from '@/components/icons';
+import { Tag } from '@/components/ui/Tag';
+import { Badge } from '@/components/ui/Badge';
 
 /**
  * Wrapper that constrains preview content to a fixed area inside each card.
@@ -47,17 +49,9 @@ function BadgesPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-        {[
-          { bg: '#2A8703', label: '5' },
-          { bg: '#0071DC', label: '12' },
-          { bg: '#C5221F', label: '3' },
-        ].map((b, i) => (
-          <span key={i} style={{
-            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-            minWidth: '22px', height: '22px', borderRadius: '11px', padding: '0 6px',
-            background: b.bg, color: 'white', fontSize: '12px', fontWeight: 700,
-          }}>{b.label}</span>
-        ))}
+        <Badge variant="green" value={5} aria-label="5 items" />
+        <Badge variant="blue" value={12} aria-label="12 items" />
+        <Badge variant="red" value={3} aria-label="3 items" />
       </div>
     </PreviewFrame>
   );
@@ -163,20 +157,9 @@ function TagsPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-        {[
-          { label: 'Active', bg: 'var(--ld-semantic-color-fill-positive-subtle)', color: 'var(--ld-semantic-color-text-on-fill-positive-subtle, #2A8703)' },
-          { label: 'Brand', bg: 'var(--ld-semantic-color-fill-brand)', color: 'var(--ld-semantic-color-text-on-fill-brand, #fff)' },
-          { label: 'Warning', bg: 'var(--ld-semantic-color-fill-warning-subtle)', color: 'var(--ld-semantic-color-text-on-fill-warning-subtle, #8C6A0A)' },
-        ].map((t, i) => (
-          <span key={i} style={{
-            padding: '2px 8px', borderRadius: '4px',
-            fontSize: 'var(--ld-semantic-font-caption-size, 12px)',
-            fontWeight: 'var(--ld-semantic-font-caption-weight, 600)' as any,
-            fontFamily: 'var(--ld-semantic-font-caption-family)',
-            background: t.bg, color: t.color,
-            display: 'inline-flex', alignItems: 'center', gap: '4px',
-          }}>{t.label}</span>
-        ))}
+        <Tag variant="secondary" color="positive">Active</Tag>
+        <Tag variant="primary" color="brand">Brand</Tag>
+        <Tag variant="secondary" color="warning">Warning</Tag>
       </div>
     </PreviewFrame>
   );

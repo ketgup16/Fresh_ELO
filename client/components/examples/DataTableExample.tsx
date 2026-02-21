@@ -637,53 +637,53 @@ function Pagination({
         {t('dataTable.resultsPerPage', { count: resultsPerPage })} &middot; {t('dataTable.totalResults', { count: totalResults })}
       </span>
       <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-        <button
-          type="button"
-          style={styles.paginationButton}
+        <IconButton
+          aria-label={t('dataTable.firstPage')}
+          variant="ghost"
+          size="small"
           disabled={currentPage <= 1}
           onClick={() => onPageChange(1)}
-          aria-label={t('dataTable.firstPage')}
         >
           <ChevronLeft style={{ width: 16, height: 16 }} />
           <ChevronLeft style={{ width: 16, height: 16, marginLeft: -10 }} />
-        </button>
-        <button
-          type="button"
-          style={styles.paginationButton}
+        </IconButton>
+        <IconButton
+          aria-label={t('dataTable.previousPage')}
+          variant="ghost"
+          size="small"
           disabled={currentPage <= 1}
           onClick={() => onPageChange(currentPage - 1)}
-          aria-label={t('dataTable.previousPage')}
         >
           <ChevronLeft style={{ width: 16, height: 16 }} />
-        </button>
+        </IconButton>
 
-        <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text, #2E2F32)', padding: '0 4px' }}>
+        <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text)', padding: '0 4px' }}>
           {t('dataTable.page')}
         </span>
         <span style={styles.pageIndicator}>{currentPage}</span>
-        <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text, #2E2F32)', padding: '0 4px' }}>
+        <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text)', padding: '0 4px' }}>
           {t('dataTable.of', { count: totalPages })}
         </span>
 
-        <button
-          type="button"
-          style={styles.paginationButton}
+        <IconButton
+          aria-label={t('dataTable.nextPage')}
+          variant="ghost"
+          size="small"
           disabled={currentPage >= totalPages}
           onClick={() => onPageChange(currentPage + 1)}
-          aria-label={t('dataTable.nextPage')}
         >
           <ChevronRight style={{ width: 16, height: 16 }} />
-        </button>
-        <button
-          type="button"
-          style={styles.paginationButton}
+        </IconButton>
+        <IconButton
+          aria-label={t('dataTable.lastPage')}
+          variant="ghost"
+          size="small"
           disabled={currentPage >= totalPages}
           onClick={() => onPageChange(totalPages)}
-          aria-label={t('dataTable.lastPage')}
         >
           <ChevronRight style={{ width: 16, height: 16 }} />
           <ChevronRight style={{ width: 16, height: 16, marginLeft: -10 }} />
-        </button>
+        </IconButton>
       </div>
     </div>
   );

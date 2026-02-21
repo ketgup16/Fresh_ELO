@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from '@/components/ui/Button';
 
 const sidebarItems = [
   { id: 'home', icon: 'home' },
@@ -44,21 +45,15 @@ export function CatalogSidebar() {
       </div>
 
       {/* Expand control */}
-      <button
-        style={{
-          display: 'flex',
-          padding: 10,
-          alignItems: 'center',
-          borderRadius: 4,
-          background: 'var(--ld-semantic-color-fill, #FFFFFF)',
-          border: 'none',
-          cursor: 'pointer',
-        }}
+      <Button
+        variant="tertiary"
+        UNSAFE_className="p-2.5 min-h-0 h-auto"
+        aria-label="Expand navigation"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 1.99902L5 1.99902L5 7.51367L10.3662 7.51269L8.38672 5.4082L9.12305 4.75L11.8691 7.6709C12.0439 7.85698 12.0439 8.14302 11.8691 8.3291L9.12305 11.25L8.38672 10.5918L10.3662 8.48633L5 8.4873L5 14H4L4 1.99902Z" fill="#2E2F32"/>
+          <path d="M4 1.99902L5 1.99902L5 7.51367L10.3662 7.51269L8.38672 5.4082L9.12305 4.75L11.8691 7.6709C12.0439 7.85698 12.0439 8.14302 11.8691 8.3291L9.12305 11.25L8.38672 10.5918L10.3662 8.48633L5 8.4873L5 14H4L4 1.99902Z" fill="currentColor"/>
         </svg>
-      </button>
+      </Button>
     </nav>
   );
 }
@@ -87,9 +82,9 @@ function ChildDot({ active }: { active?: boolean }) {
     <div style={{ display: 'flex', width: 40, justifyContent: 'center', alignItems: 'center' }}>
       <svg width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         {active ? (
-          <circle cx="18" cy="14" r="3" fill="#0053E2" />
+          <circle cx="18" cy="14" r="3" fill="var(--ld-semantic-color-text-brand, #0053E2)" />
         ) : (
-          <circle cx="18" cy="14" r="2.5" stroke="#2E2F32" />
+          <circle cx="18" cy="14" r="2.5" stroke="var(--ld-semantic-color-text, #2E2F32)" />
         )}
       </svg>
     </div>
@@ -99,9 +94,9 @@ function ChildDot({ active }: { active?: boolean }) {
 function PlaceholderIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="14" height="14" rx="2" stroke="#2E2F32" strokeWidth="1" fill="none" />
-      <line x1="1" y1="1" x2="15" y2="15" stroke="#2E2F32" strokeWidth="0.75" />
-      <line x1="15" y1="1" x2="1" y2="15" stroke="#2E2F32" strokeWidth="0.75" />
+      <rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="1" fill="none" />
+      <line x1="1" y1="1" x2="15" y2="15" stroke="currentColor" strokeWidth="0.75" />
+      <line x1="15" y1="1" x2="1" y2="15" stroke="currentColor" strokeWidth="0.75" />
     </svg>
   );
 }

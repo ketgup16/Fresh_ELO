@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/Checkbox";
 import { MartyAvatar } from "./MartyAvatar";
 import { useMarty } from "@/contexts/MartyContext";
 import { generateMockResponse } from "./marty-utils";
+import { Tag } from "@/components/ui/Tag";
 
 type ViewState = 'welcome' | 'chat' | 'campaignSetup' | 'campaignForm' | 'campaignReady' | 'campaignScheduled';
 
@@ -590,9 +591,7 @@ export default function MartyFloatingPanel() {
             <div className="text-[#2E2F32] font-bold text-lg leading-6">Marty</div>
 
             {/* Beta Tag */}
-            <div className="flex px-2 py-1 items-start gap-1 rounded border border-[#515357] bg-white">
-              <span className="text-[#515357] text-xs leading-4">Beta</span>
-            </div>
+            <Tag variant="secondary" color="gray">Beta</Tag>
           </div>
         )}
 
