@@ -223,7 +223,7 @@ background: #F8F8F8;
 
 ### Component Rules
 
-- **Never modify existing shared components.** If a user requests a change to a component's behavior or appearance, do not edit the original component file. Instead, create a new variant or a new shared component that extends or wraps the original. The original component must remain untouched so other consumers are not affected.
+- **Never modify existing components — especially LD components.** Files in `client/components/ui/` are the design system source of truth. Never edit them, even if a user asks for a change. Instead, create a new variant or a new wrapper component that composes the original. The original component files must remain untouched so other consumers and the design system contract are not affected.
 - **Always use existing LD components** before creating custom elements. Search `client/components/ui/` first.
 - **Import paths** — uppercase for LD 3.5 components, lowercase for Shadcn/Radix:
 
