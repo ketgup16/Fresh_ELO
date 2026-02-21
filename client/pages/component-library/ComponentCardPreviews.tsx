@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Alert } from '@/components/ui/Alert';
 import { Chip } from '@/components/ui/Chip';
 import { FilterChip } from '@/components/ui/FilterChip';
+import { Spinner } from '@/components/ui/Spinner';
 
 /**
  * Wrapper that constrains preview content to a fixed area inside each card.
@@ -625,14 +626,9 @@ function SnackbarsPreview() {
 function SpinnersPreview() {
   return (
     <PreviewFrame>
-      <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-        {[28, 22, 16].map((s, i) => (
-          <div key={i} style={{
-            width: s, height: s, borderRadius: '50%',
-            border: '3px solid var(--ld-semantic-color-fill-subtle, #E2E2E3)',
-            borderTopColor: 'var(--ld-semantic-color-action-fill-primary, #0071DC)',
-          }} />
-        ))}
+      <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+        <Spinner animation="petal-build" size="large" />
+        <Spinner animation="petal-build" size="small" />
       </div>
     </PreviewFrame>
   );

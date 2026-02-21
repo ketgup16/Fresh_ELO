@@ -63,6 +63,7 @@ const navigationSections: NavSection[] = [
       { id: 'radio-buttons', nameKey: 'componentLibrary.navRadioButtons', path: '/component-library/radio-buttons' },
       { id: 'select', nameKey: 'componentLibrary.navSelect', path: '/component-library/select' },
       { id: 'snackbars', nameKey: 'componentLibrary.navSnackbars', path: '/component-library/snackbars' },
+      { id: 'spinners', nameKey: 'componentLibrary.navSpinners', path: '/component-library/spinners' },
       { id: 'spot-icons', nameKey: 'componentLibrary.navSpotIcons', path: '/component-library/spot-icons' },
       { id: 'switches', nameKey: 'componentLibrary.navSwitches', path: '/component-library/switches' },
       { id: 'tab-navigation', nameKey: 'componentLibrary.navTabNavigation', path: '/component-library/tabs' },

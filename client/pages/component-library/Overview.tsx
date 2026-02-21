@@ -102,6 +102,7 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navRadioButtons', descKey: 'componentLibrary.descRadioButtons', path: '/component-library/radio-buttons', icon: 'Circle', section: 'ld' },
   { titleKey: 'componentLibrary.navSelect', descKey: 'componentLibrary.descSelect', path: '/component-library/select', icon: 'ChevronDown', section: 'ld' },
   { titleKey: 'componentLibrary.navSnackbars', descKey: 'componentLibrary.descSnackbars', path: '/component-library/snackbars', icon: 'Chat', section: 'ld' },
+  { titleKey: 'componentLibrary.navSpinners', descKey: 'componentLibrary.descSpinners', path: '/component-library/spinners', icon: 'Refresh', section: 'ld' },
   { titleKey: 'componentLibrary.navSpotIcons', descKey: 'componentLibrary.descSpotIcons', path: '/component-library/spot-icons', icon: 'Star', section: 'ld' },
   { titleKey: 'componentLibrary.navSwitches', descKey: 'componentLibrary.descSwitches', path: '/component-library/switches', icon: 'Circle', section: 'ld' },
   { titleKey: 'componentLibrary.navTabNavigation', descKey: 'componentLibrary.descTabNavigation', path: '/component-library/tabs', icon: 'List', section: 'ld' },

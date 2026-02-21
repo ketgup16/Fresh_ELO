@@ -11,7 +11,7 @@ export default function SpinnersPage() {
       maxWidth: '1400px',
       margin: '0 auto'
     }}>
-      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navSpotIcons')} description={t('componentLibrary.descSpinners')} />
+      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navSpinners')} description={t('componentLibrary.descSpinners')} />
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
