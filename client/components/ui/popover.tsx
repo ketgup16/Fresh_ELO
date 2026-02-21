@@ -94,36 +94,54 @@ PopoverTrigger.displayName = "PopoverTrigger";
 interface PopoverArrowProps extends React.SVGAttributes<SVGSVGElement> {
   /** Which side the popover is on (arrow points opposite) */
   side?: "top" | "right" | "bottom" | "left";
+  /** Alignment of the popover relative to trigger */
+  align?: "start" | "center" | "end";
 }
 
 const PopoverArrow = React.forwardRef<SVGSVGElement, PopoverArrowProps>(
-  ({ className, side = "bottom", style: styleProp, ...props }, ref) => {
+  ({ className, side = "bottom", align = "center", style: styleProp, ...props }, ref) => {
     // Arrow points toward the trigger (opposite of the popover side)
     const arrowSize = { width: 16, height: 8 };
-    let rotation = 0;
     let positionStyle: React.CSSProperties = {};
+
+    // Horizontal alignment for top/bottom sides
+    const hAlign = align === 'start' ? { left: 24 }
+                 : align === 'end' ? { right: 24 }
+                 : { left: '50%', transform: 'translateX(-50%)' };
+
+    // Vertical alignment for left/right sides
+    const vAlign = align === 'start' ? { top: 24 }
+                 : align === 'end' ? { bottom: 24 }
+                 : { top: '50%', transform: 'translateY(-50%)' };
 
     switch (side) {
       case "bottom":
-        // Popover is below trigger, arrow points up from top edge
-        rotation = 0;
-        positionStyle = { position: 'absolute', top: -7, left: '50%', transform: 'translateX(-50%)' };
+        positionStyle = { position: 'absolute', top: -7, ...hAlign };
         break;
-      case "top":
-        // Popover is above trigger, arrow points down from bottom edge
-        rotation = 180;
-        positionStyle = { position: 'absolute', bottom: -7, left: '50%', transform: 'translateX(-50%) rotate(180deg)' };
+      case "top": {
+        const base = align === 'start' ? { left: 24 }
+                   : align === 'end' ? { right: 24 }
+                   : { left: '50%' };
+        const rotateTransform = align === 'center' ? 'translateX(-50%) rotate(180deg)' : 'rotate(180deg)';
+        positionStyle = { position: 'absolute', bottom: -7, ...base, transform: rotateTransform };
         break;
-      case "left":
-        // Popover is left of trigger, arrow points right from right edge
-        rotation = 90;
-        positionStyle = { position: 'absolute', right: -10, top: '50%', transform: 'translateY(-50%) rotate(90deg)' };
+      }
+      case "left": {
+        const base = align === 'start' ? { top: 24 }
+                   : align === 'end' ? { bottom: 24 }
+                   : { top: '50%' };
+        const rotateTransform = align === 'center' ? 'translateY(-50%) rotate(90deg)' : 'rotate(90deg)';
+        positionStyle = { position: 'absolute', right: -10, ...base, transform: rotateTransform };
         break;
-      case "right":
-        // Popover is right of trigger, arrow points left from left edge
-        rotation = -90;
-        positionStyle = { position: 'absolute', left: -10, top: '50%', transform: 'translateY(-50%) rotate(-90deg)' };
+      }
+      case "right": {
+        const base = align === 'start' ? { top: 24 }
+                   : align === 'end' ? { bottom: 24 }
+                   : { top: '50%' };
+        const rotateTransform = align === 'center' ? 'translateY(-50%) rotate(-90deg)' : 'rotate(-90deg)';
+        positionStyle = { position: 'absolute', left: -10, ...base, transform: rotateTransform };
         break;
+      }
     }
 
     return (
@@ -203,6 +221,18 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
         }
       }
 
+      if (side === "left" || side === "right") {
+        switch (align) {
+          case "start":
+            top = tRect.top;
+            break;
+          case "end":
+            top = tRect.bottom - cRect.height;
+            break;
+          // default already centered above
+        }
+      }
+
       setPos({ top, left });
     }, [open, side, align, sideOffset, triggerRef]);
 
@@ -269,6 +299,7 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
         {showArrow && (
           <PopoverArrow
             side={side}
+            align={align}
             style={{ fill: 'var(--ld-semantic-color-surface-overlay, #FFFFFF)' }}
           />
         )}
