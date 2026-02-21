@@ -1,10 +1,170 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
 } from '@/components/ui/accordion';
+
+/* ── Prompt data ── */
+
+interface Prompt {
+  label: string;
+  full: string;
+}
+
+const PROMPT_CATEGORIES: { category: string; value: string; prompts: Prompt[] }[] = [
+  {
+    category: 'Project Setup',
+    value: 'setup',
+    prompts: [
+      { label: 'New project with LD 3.5', full: 'Set up a new project using the Living Design 3.5 Portable Kit. Install dependencies, start the dev server, and navigate to the component library so I can start building.' },
+      { label: 'React + routing + theme', full: 'Create a new React project with the LD 3.5 design system, set up routing with react-router, add the Walmart theme, and create a blank home page with the MastHead and AppSidebar components.' },
+      { label: 'Add i18n (EN/ES/FR)', full: 'Add i18n support to my project with English, Spanish, and French. Set up the translation files and wrap the app with the i18n provider.' },
+      { label: 'Theme switcher', full: 'Set up the theme switcher so I can toggle between Walmart, Sam\'s Club, and custom themes. Add the ThemeSwitcher component to the masthead.' },
+      { label: 'Netlify deployment', full: 'Configure the project for Netlify deployment. Make sure the build command, publish directory, and API redirects are all set up correctly.' },
+    ],
+  },
+  {
+    category: 'Generate Pages',
+    value: 'pages',
+    prompts: [
+      { label: 'Campaign dashboard', full: 'Create a new dashboard page with a page header titled "Campaign Overview", a row of 4 metric cards showing impressions, clicks, spend, and CTR, and a data table below with campaign data.' },
+      { label: 'Settings page', full: 'Build a settings page with a sidebar navigation for General, Notifications, and Security sections. Each section should have form fields using TextField and Select components inside Cards.' },
+      { label: 'Product detail page', full: 'Create a product detail page with breadcrumbs, a two-column layout (image gallery on left, product info on right), a tabbed section for Description/Reviews/Specs, and a sticky add-to-cart bar at the bottom.' },
+      { label: 'Marketing landing page', full: 'Design a landing page with a hero section, a 3-column feature grid using Cards, a testimonial carousel, and a CTA section with a primary Button.' },
+    ],
+  },
+  {
+    category: 'Create Components',
+    value: 'components',
+    prompts: [
+      { label: 'Stat card with sparkline', full: 'Create a stat card component that shows a metric label, a large number value, a percentage change badge (positive green or negative red using Tag), and a small sparkline area. Use Card, Heading, and Tag from the design system.' },
+      { label: 'User profile header', full: 'Build a user profile header component with an avatar circle, user name heading, role tag, and action buttons (Edit Profile, Settings) in a ButtonGroup. Make it responsive.' },
+      { label: 'Notification item', full: 'Create a notification item component with a leading icon, title, description, timestamp, and an unread indicator dot. Use ListItem patterns and semantic tokens for the styling.' },
+      { label: 'File upload dropzone', full: 'Build a file upload dropzone component with a dashed border, upload icon, instructional text, and a secondary Button. Show a progress bar state and a completed state with a file name and remove IconButton.' },
+    ],
+  },
+  {
+    category: 'Theming & Styling',
+    value: 'theming',
+    prompts: [
+      { label: 'Switch to Sam\'s Club', full: 'Switch the current theme to Sam\'s Club and verify all components render correctly with the new brand colors.' },
+      { label: 'Custom "Holiday" theme', full: 'Create a new custom theme called "Holiday" with a red primary action color, green accents, and warm neutrals. Apply it to the theme switcher so I can preview it.' },
+      { label: 'Dark mode', full: 'Update the current page to use dark mode tokens. Make sure all text, backgrounds, borders, and cards adapt properly.' },
+      { label: 'Token audit', full: 'Audit the current page for any hard-coded colors or font sizes and replace them with the correct LD semantic tokens.' },
+    ],
+  },
+  {
+    category: 'Edit & Refine',
+    value: 'edits',
+    prompts: [
+      { label: 'Page header + breadcrumbs', full: 'Change the page header to include breadcrumbs, a subtitle description, and move the action buttons into a dropdown menu using the Menu component.' },
+      { label: 'Data table with sorting', full: 'Replace the current plain list with an interactive data table that has sortable columns, row selection checkboxes, status tags, pagination, and a search toolbar.' },
+      { label: 'Slide-in detail panel', full: 'Add a side panel that slides in from the right when a table row is clicked. It should show item details using a Card with CardHeader and CardContent, and have a close IconButton.' },
+      { label: 'Responsive card grid', full: 'Make the cards on this page responsive. On desktop show 3 columns, tablet show 2 columns, and mobile show 1 column. Add proper spacing using semantic tokens.' },
+      { label: 'Form validation', full: 'Add form validation to the current form. Show error states on required fields with helper text when the user clicks submit without filling them in.' },
+      { label: 'Empty state for table', full: 'Add an empty state to the data table with an illustration area, a heading saying "No results found", a description, and a primary action Button to reset filters.' },
+    ],
+  },
+  {
+    category: 'Accessibility & Polish',
+    value: 'a11y',
+    prompts: [
+      { label: 'A11y review', full: 'Review the current page for accessibility issues. Make sure all interactive elements have proper aria-labels, focus states are visible, and color contrast meets WCAG 2.1 AA.' },
+      { label: 'Keyboard nav for cards', full: 'Add keyboard navigation support to the card grid so users can tab between cards and press Enter to select them.' },
+      { label: 'Loading skeletons', full: 'Add loading skeleton states to all the cards and the data table on this page so content doesn\'t flash in.' },
+      { label: 'Modal focus trap', full: 'Add proper focus management to the modal dialog. Focus should trap inside the modal when open and return to the trigger button when closed.' },
+    ],
+  },
+];
+
+/* ── Prompt chip with copy ── */
+
+function PromptChip({ prompt }: { prompt: Prompt }) {
+  const [copied, setCopied] = useState(false);
+  const [showFull, setShowFull] = useState(false);
+
+  const handleCopy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(prompt.full);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Fallback: select text for manual copy
+    }
+  }, [prompt.full]);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+      <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+        <button
+          onClick={handleCopy}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            padding: '6px 14px',
+            backgroundColor: copied
+              ? 'var(--ld-semantic-color-fill-positive-subtle)'
+              : 'var(--ld-semantic-color-fill-subtle)',
+            border: `1px solid ${copied ? 'var(--ld-semantic-color-border-positive)' : 'var(--ld-semantic-color-border-moderate)'}`,
+            borderRadius: '9999px',
+            fontSize: '13px',
+            fontWeight: 500,
+            color: copied
+              ? 'var(--ld-semantic-color-text-positive)'
+              : 'var(--ld-semantic-color-text)',
+            cursor: 'pointer',
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+            lineHeight: '20px',
+            transition: 'all 150ms ease',
+            whiteSpace: 'nowrap',
+          }}
+          title="Click to copy full prompt"
+        >
+          <span style={{ fontSize: '12px', flexShrink: 0 }}>
+            {copied ? '\u2713' : '\u2398'}
+          </span>
+          {copied ? 'Copied!' : prompt.label}
+        </button>
+        <button
+          onClick={() => setShowFull(!showFull)}
+          style={{
+            background: 'none',
+            border: 'none',
+            padding: '2px',
+            cursor: 'pointer',
+            color: 'var(--ld-semantic-color-text-subtle)',
+            fontSize: '11px',
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+            lineHeight: 1,
+            opacity: 0.6,
+          }}
+          title={showFull ? 'Hide full prompt' : 'Show full prompt'}
+        >
+          {showFull ? '\u25B2' : '\u25BC'}
+        </button>
+      </div>
+      {showFull && (
+        <div style={{
+          marginTop: '6px',
+          marginLeft: '8px',
+          padding: '10px 14px',
+          backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+          borderRadius: '6px',
+          borderLeft: '3px solid var(--ld-semantic-color-border-brand)',
+          fontSize: '13px',
+          lineHeight: 1.6,
+          color: 'var(--ld-semantic-color-text-subtle)',
+          fontStyle: 'italic',
+        }}>
+          &ldquo;{prompt.full}&rdquo;
+        </div>
+      )}
+    </div>
+  );
+}
 
 /* ── Helpers ── */
 
@@ -53,37 +213,6 @@ function CollapsibleSection({ title, children, defaultOpen = false }: { title: s
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    </div>
-  );
-}
-
-function PromptCategory({ title, prompts }: { title: string; prompts: string[] }) {
-  return (
-    <div>
-      <div style={{
-        fontWeight: 700,
-        fontSize: '15px',
-        color: 'var(--ld-semantic-color-text)',
-        marginBottom: '10px',
-      }}>
-        {title}
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        {prompts.map((prompt, i) => (
-          <div key={i} style={{
-            padding: '14px 16px',
-            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
-            borderRadius: '6px',
-            borderLeft: '3px solid var(--ld-semantic-color-border-brand)',
-            fontSize: '14px',
-            lineHeight: 1.6,
-            color: 'var(--ld-semantic-color-text)',
-            fontStyle: 'italic',
-          }}>
-            &ldquo;{prompt}&rdquo;
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
@@ -152,114 +281,29 @@ export function GettingStartedDesigner() {
         </div>
       </SectionCard>
 
-      {/* Example Prompts — right after What You Get */}
-      <SectionCard title="Example Prompts for Designers">
+      {/* Quick-Start Prompts */}
+      <SectionCard title="Quick-Start Prompts">
         <p style={{
           fontSize: '14px',
           lineHeight: 1.6,
           color: 'var(--ld-semantic-color-text-subtle)',
           marginBottom: '20px',
         }}>
-          Copy and paste these prompts into the chat to quickly generate pages, components, and design changes.
-          Customize the details to match your specific needs.
+          Click any chip to copy the full prompt to your clipboard. Use the arrow to preview the prompt before copying.
         </p>
         <Accordion type="multiple" defaultValue={['setup']}>
-
-          {/* Project Setup prompts */}
-          <AccordionItem value="setup">
-            <AccordionTrigger>Project Setup</AccordionTrigger>
-            <AccordionContent>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                {[
-                  'Set up a new project using the Living Design 3.5 Portable Kit. Install dependencies, start the dev server, and navigate to the component library so I can start building.',
-                  'Create a new React project with the LD 3.5 design system, set up routing with react-router, add the Walmart theme, and create a blank home page with the MastHead and AppSidebar components.',
-                  'Add i18n support to my project with English, Spanish, and French. Set up the translation files and wrap the app with the i18n provider.',
-                  'Set up the theme switcher so I can toggle between Walmart, Sam\'s Club, and custom themes. Add the ThemeSwitcher component to the masthead.',
-                  'Configure the project for Netlify deployment. Make sure the build command, publish directory, and API redirects are all set up correctly.',
-                ].map((prompt, i) => (
-                  <div key={i} style={{
-                    padding: '14px 16px',
-                    backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
-                    borderRadius: '6px',
-                    borderLeft: '3px solid var(--ld-semantic-color-border-brand)',
-                    fontSize: '14px',
-                    lineHeight: 1.6,
-                    color: 'var(--ld-semantic-color-text)',
-                    fontStyle: 'italic',
-                  }}>
-                    &ldquo;{prompt}&rdquo;
-                  </div>
-                ))}
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-
-          {/* Generate New Pages */}
-          <AccordionItem value="pages">
-            <AccordionTrigger>Generate New Pages</AccordionTrigger>
-            <AccordionContent>
-              <PromptCategory title="" prompts={[
-                'Create a new dashboard page with a page header titled "Campaign Overview", a row of 4 metric cards showing impressions, clicks, spend, and CTR, and a data table below with campaign data.',
-                'Build a settings page with a sidebar navigation for General, Notifications, and Security sections. Each section should have form fields using TextField and Select components inside Cards.',
-                'Create a product detail page with breadcrumbs, a two-column layout (image gallery on left, product info on right), a tabbed section for Description/Reviews/Specs, and a sticky add-to-cart bar at the bottom.',
-                'Design a landing page with a hero section, a 3-column feature grid using Cards, a testimonial carousel, and a CTA section with a primary Button.',
-              ]} />
-            </AccordionContent>
-          </AccordionItem>
-
-          {/* Create New Components */}
-          <AccordionItem value="components">
-            <AccordionTrigger>Create New Components</AccordionTrigger>
-            <AccordionContent>
-              <PromptCategory title="" prompts={[
-                'Create a stat card component that shows a metric label, a large number value, a percentage change badge (positive green or negative red using Tag), and a small sparkline area. Use Card, Heading, and Tag from the design system.',
-                'Build a user profile header component with an avatar circle, user name heading, role tag, and action buttons (Edit Profile, Settings) in a ButtonGroup. Make it responsive.',
-                'Create a notification item component with a leading icon, title, description, timestamp, and an unread indicator dot. Use ListItem patterns and semantic tokens for the styling.',
-                'Build a file upload dropzone component with a dashed border, upload icon, instructional text, and a secondary Button. Show a progress bar state and a completed state with a file name and remove IconButton.',
-              ]} />
-            </AccordionContent>
-          </AccordionItem>
-
-          {/* Theming & Styling */}
-          <AccordionItem value="theming">
-            <AccordionTrigger>Theming & Styling</AccordionTrigger>
-            <AccordionContent>
-              <PromptCategory title="" prompts={[
-                'Switch the current theme to Sam\'s Club and verify all components render correctly with the new brand colors.',
-                'Create a new custom theme called "Holiday" with a red primary action color, green accents, and warm neutrals. Apply it to the theme switcher so I can preview it.',
-                'Update the current page to use dark mode tokens. Make sure all text, backgrounds, borders, and cards adapt properly.',
-                'Audit the current page for any hard-coded colors or font sizes and replace them with the correct LD semantic tokens.',
-              ]} />
-            </AccordionContent>
-          </AccordionItem>
-
-          {/* Edit & Refine */}
-          <AccordionItem value="edits">
-            <AccordionTrigger>Edit & Refine Existing Designs</AccordionTrigger>
-            <AccordionContent>
-              <PromptCategory title="" prompts={[
-                'Change the page header to include breadcrumbs, a subtitle description, and move the action buttons into a dropdown menu using the Menu component.',
-                'Replace the current plain list with an interactive data table that has sortable columns, row selection checkboxes, status tags, pagination, and a search toolbar.',
-                'Add a side panel that slides in from the right when a table row is clicked. It should show item details using a Card with CardHeader and CardContent, and have a close IconButton.',
-                'Make the cards on this page responsive. On desktop show 3 columns, tablet show 2 columns, and mobile show 1 column. Add proper spacing using semantic tokens.',
-                'Add form validation to the current form. Show error states on required fields with helper text when the user clicks submit without filling them in.',
-                'Add an empty state to the data table with an illustration area, a heading saying "No results found", a description, and a primary action Button to reset filters.',
-              ]} />
-            </AccordionContent>
-          </AccordionItem>
-
-          {/* Accessibility */}
-          <AccordionItem value="a11y">
-            <AccordionTrigger>Accessibility & Polish</AccordionTrigger>
-            <AccordionContent>
-              <PromptCategory title="" prompts={[
-                'Review the current page for accessibility issues. Make sure all interactive elements have proper aria-labels, focus states are visible, and color contrast meets WCAG 2.1 AA.',
-                'Add keyboard navigation support to the card grid so users can tab between cards and press Enter to select them.',
-                'Add loading skeleton states to all the cards and the data table on this page so content doesn\'t flash in.',
-                'Add proper focus management to the modal dialog. Focus should trap inside the modal when open and return to the trigger button when closed.',
-              ]} />
-            </AccordionContent>
-          </AccordionItem>
+          {PROMPT_CATEGORIES.map(({ category, value, prompts }) => (
+            <AccordionItem key={value} value={value}>
+              <AccordionTrigger>{category}</AccordionTrigger>
+              <AccordionContent>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', flexDirection: 'column' }}>
+                  {prompts.map((prompt) => (
+                    <PromptChip key={prompt.label} prompt={prompt} />
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
         </Accordion>
       </SectionCard>
 
@@ -327,7 +371,7 @@ export function GettingStartedDesigner() {
               <NumberedList items={[
                 'Download the project and open it in your code editor of choice',
                 'In Figma, use the Make plugin or export your designs as code',
-                'Map Figma component names to the kit components (e.g., "[LD 3.5] Button" → Button.tsx)',
+                'Map Figma component names to the kit components (e.g., "[LD 3.5] Button" \u2192 Button.tsx)',
                 'Replace any hard-coded colors with semantic tokens (var(--ld-semantic-color-*))',
                 'Replace raw HTML elements with kit components (<Button>, <TextField>)',
                 'Verify all interactive states are handled — the kit components include these automatically',
