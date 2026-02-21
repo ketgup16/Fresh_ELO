@@ -23,7 +23,7 @@ const PROMPT_CATEGORIES: { category: string; value: string; prompts: Prompt[] }[
       { label: 'Add i18n (EN/ES/FR)', full: 'Add i18n support to my project with English, Spanish, and French. Set up the translation files and wrap the app with the i18n provider.' },
       { label: 'Theme switcher', full: 'Set up the theme switcher so I can toggle between Walmart, Sam\'s Club, and custom themes. Add the ThemeSwitcher component to the masthead.' },
       { label: 'Netlify deployment', full: 'Configure the project for Netlify deployment. Make sure the build command, publish directory, and API redirects are all set up correctly.' },
-      { label: 'Remove template pages', full: 'I don\'t need the template application pages (Landing Summary, Catalog, Detail Item, Page Template, Home). Remove them from the project, clean up the routes in App.tsx, and point the home route to the Component Library.' },
+      { label: 'Remove template pages\', full: \'I\\\'m not using this for Partner Experiences. Remove the template application pages (Landing Summary, Catalog, Detail Item, Page Template, Home) from the project, clean up the routes in App.tsx, and point the home route to the Component Library.' },
     ],
   },
   {
@@ -248,9 +248,9 @@ export function GettingStartedDesigner() {
           This guide walks you through dropping the Living Design 3.5 Portable Kit into a new or
           existing project &mdash; whether you&rsquo;re using Builder.io, Cursor, Figma Make, or any other
           tool. No coding experience required &mdash; just follow the steps below and the kit handles the rest.
-          The kit ships with template application pages (Home, Catalog, Landing Summary, etc.) to show
-          how components work together. If you don&rsquo;t need them, use the &ldquo;Remove template pages&rdquo;
-          prompt below to clean them out.
+          When you drag and drop this zip into a project, the AI agent will ask:
+          &ldquo;Are you using this for Partner Experiences?&rdquo; If yes, the template pages
+          (Landing Summary, Catalog, etc.) stay. If no, they get removed automatically.
         </p>
       </div>
 

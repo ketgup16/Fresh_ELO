@@ -82,10 +82,60 @@ export function GettingStartedAgent() {
           <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
             Required: Ask before installing
           </div>
-          <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: 0 }}>
-            When setting up this package in a new or existing project, the agent <strong>must ask the user</strong> whether
-            they want to keep the template application pages. These are demo pages that showcase how to build
-            with the kit — they are not part of the design system itself. If the user says no, delete them.
+          <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 16px' }}>
+            When a user drags and drops the zip file of this template into a project, or sets up the package
+            for the first time, the agent <strong>must immediately ask:</strong>
+          </p>
+          <div style={{
+            padding: '16px 20px',
+            backgroundColor: 'var(--ld-semantic-color-surface)',
+            borderRadius: '8px',
+            border: '2px solid var(--ld-semantic-color-border-brand)',
+            marginBottom: '12px',
+          }}>
+            <div style={{ fontSize: '16px', fontWeight: 700, color: 'var(--ld-semantic-color-text)', marginBottom: '12px' }}>
+              &ldquo;Are you using this for Partner Experiences?&rdquo;
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <div style={{
+                display: 'flex',
+                gap: '10px',
+                alignItems: 'flex-start',
+                fontSize: '14px',
+                lineHeight: 1.6,
+              }}>
+                <span style={{
+                  fontWeight: 700,
+                  color: 'var(--ld-semantic-color-text-positive)',
+                  flexShrink: 0,
+                }}>Yes</span>
+                <span style={{ color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  Keep the template application pages. They serve as reference implementations
+                  for Partner Experiences workflows (Landing Summary, Catalog, Detail Item, etc.).
+                </span>
+              </div>
+              <div style={{
+                display: 'flex',
+                gap: '10px',
+                alignItems: 'flex-start',
+                fontSize: '14px',
+                lineHeight: 1.6,
+              }}>
+                <span style={{
+                  fontWeight: 700,
+                  color: 'var(--ld-semantic-color-text-negative)',
+                  flexShrink: 0,
+                }}>No</span>
+                <span style={{ color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  Delete the template pages. Only keep the Component Library (components, tokens,
+                  icons, themes, and documentation).
+                </span>
+              </div>
+            </div>
+          </div>
+          <p style={{ fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: 0 }}>
+            This question must be asked <strong>before</strong> any other setup steps. Do not skip it.
+            Do not assume the answer. The agent must wait for the user&rsquo;s response before proceeding.
           </p>
         </div>
 
