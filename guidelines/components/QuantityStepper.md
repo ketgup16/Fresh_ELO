@@ -130,11 +130,13 @@ The stepper morphs between a circle (collapsed) and a pill (expanded) using CSS 
 - **Expand**: 400ms with a snappy overshoot curve (`cubic-bezier(0.22, 1, 0.36, 1)`)
 - **Collapse**: 320ms with a smooth departure curve (`cubic-bezier(0.4, 0, 0.6, 1)`)
 
-### Icon-only auto-collapse
-In icon-only mode, the stepper automatically collapses 500ms after the mouse leaves. Moving the mouse back cancels the timer. This prevents accidental collapse while the user is still interacting.
+### Auto-collapse (all modes)
+After 5 seconds of inactivity, the expanded stepper automatically collapses to a circle showing only the count. Clicking the circle re-expands it. Each increment or decrement resets the 5-second timer.
+
+In icon-only mode, the stepper also collapses on mouse leave (500ms) and on blur (300ms) for quicker interaction in dense layouts. Hovering or focusing cancels those timers.
 
 ### Count at 0
-When the count returns to 0, the stepper always collapses back to the Add button state, regardless of mode.
+When the count returns to 0, the stepper always collapses back to the Add button state immediately, regardless of mode.
 
 ---
 

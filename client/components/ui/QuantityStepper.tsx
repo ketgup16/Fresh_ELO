@@ -105,23 +105,38 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
     const [count, setCount] = useState(defaultCount);
     const isIconOnly = !cartLabel && !showAddLabel;
 
-    // For icon-only mode: controls whether the stepper is expanded or collapsed to a circle.
-    // For non-icon-only: stepper is always expanded when count > 0.
-    const [isOpen, setIsOpen] = useState(false);
+    // Controls whether the stepper is expanded (showing −/count/+) or collapsed.
+    // When count > 0 and isOpen is false, shows just the count in a circle.
+    const [isOpen, setIsOpen] = useState(defaultCount > 0);
+    const collapseTimerRef = useRef<ReturnType<typeof setTimeout>>();
     const closeTimerRef = useRef<ReturnType<typeof setTimeout>>();
     const plusBtnRef = useRef<HTMLButtonElement>(null);
     const pillRef = useRef<HTMLDivElement>(null);
 
-    const isExpanded = isIconOnly ? (isOpen && count > 0) : (count > 0);
+    const isExpanded = isOpen && count > 0;
     const iconSize = ICON_SIZES[size];
     const isAtMax = maxQuantity !== undefined && count >= maxQuantity;
 
-    // Cleanup close timer on unmount
+    // Cleanup timers on unmount
     useEffect(() => {
       return () => {
         if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+        if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
       };
     }, []);
+
+    // Auto-collapse after 5 seconds when expanded
+    useEffect(() => {
+      if (isExpanded && count > 0) {
+        if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
+        collapseTimerRef.current = setTimeout(() => {
+          setIsOpen(false);
+        }, 5000);
+      }
+      return () => {
+        if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
+      };
+    }, [isExpanded, count]);
 
     const handleAdd = useCallback(() => {
       if (disabled) return;
@@ -163,12 +178,12 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       if (count === 0) {
         handleAdd();
       } else {
-        // Icon-only mode, count > 0, collapsed → expand
+        // Count > 0, collapsed circle → re-expand
         setIsOpen(true);
       }
     }, [disabled, isExpanded, count, handleAdd]);
 
-    // Auto-collapse for icon-only mode
+    // Hover to re-expand when collapsed with count > 0 (icon-only mode)
     const handleMouseEnter = useCallback(() => {
       if (closeTimerRef.current) {
         clearTimeout(closeTimerRef.current);
@@ -179,6 +194,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       }
     }, [isIconOnly, count, isOpen]);
 
+    // Quick collapse on mouse leave (icon-only only — other modes use the 5s timer)
     const handleMouseLeave = useCallback(() => {
       if (!isIconOnly || !isOpen) return;
       closeTimerRef.current = setTimeout(() => {
@@ -214,7 +230,8 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
 
     // ── Build class names ──
 
-    const shouldBeCircle = isIconOnly && !isExpanded;
+    // Show circle when collapsed with count > 0 (any mode), or icon-only with count = 0
+    const shouldBeCircle = (!isExpanded && count > 0) || (isIconOnly && !isExpanded);
 
     const pillClass = [
       styles.pill,

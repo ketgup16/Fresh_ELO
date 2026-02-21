@@ -1,5 +1,6 @@
 import React from 'react';
 import { QuantityStepper } from '@/components/ui/QuantityStepper';
+import { QuantityStepperAccessibilityDocs } from './QuantityStepperDocs';
 
 const sectionStyle: React.CSSProperties = {
   marginBottom: '40px',
@@ -191,6 +192,9 @@ export function QuantityStepperExample() {
           <QuantityStepper variant="tertiary" size="large" defaultCount={5} maxQuantity={5} />
         </div>
       </div>
+
+      {/* ── Accessibility, Animation & Guidelines Documentation ── */}
+      <QuantityStepperAccessibilityDocs />
     </div>
   );
 }
