@@ -16,7 +16,7 @@ import { Tag } from '@/components/ui/Tag';
 import { Menu } from '@/components/ui/Menu';
 import { MenuItem } from '@/components/ui/MenuItem';
 import { RowActionsMenu } from './DataTableRowActionsMenu';
-import { DataTableConfigPanel, ColumnConfig } from './DataTableConfigPanel';
+import { DataTableConfigPanel, ColumnConfig } from '@/components/ui/DataTableConfigPanel';
 import {
   Search, X, ChevronDown, ChevronUp, ChevronRight, ChevronLeft,
   Sliders, Download,

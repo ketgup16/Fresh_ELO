@@ -5,11 +5,15 @@ Living Design 3.5 Data Table component system for displaying and interacting wit
 ## Component Hierarchy
 
 ```
+DataTableTitle (header bar above the table)
+DataTableBulkActions (toolbar when rows are selected)
+DataTableConfigPanel (column config overlay panel)
+
 DataTable (root <table>)
 ├── DataTableHead (<thead>)
 │   └── DataTableRow (<tr>)
 │       ├── DataTableHeaderSelect (<th> with checkbox for select-all)
-│       └── DataTableHeader (<th> with optional sorting)
+│       └── DataTableHeader (<th> with sorting, resizing, frozen)
 └── DataTableBody (<tbody>)
     └── DataTableRow (<tr> with optional selected state)
         ├── DataTableCellSelect (<td> with row checkbox)
@@ -18,8 +22,6 @@ DataTable (root <table>)
         ├── DataTableCellActions (<td> — wraps IconButton/Menu)
         ├── DataTableCellInlineEditTextArea (<td> — inline edit dialog)
         └── DataTableCellBulkEditTextArea (<td> — always-visible textarea)
-
-DataTableBulkActions (standalone <div> — placed above DataTable)
 ```
 
 ## Import Paths
@@ -40,8 +42,14 @@ import { DataTableCellSelect, DataTableHeaderSelect } from '@/components/ui/Data
 import { DataTableCellInlineEditTextArea } from '@/components/ui/DataTableCellInlineEdit';
 import { DataTableCellBulkEditTextArea } from '@/components/ui/DataTableCellBulkEdit';
 
+// Title header bar
+import { DataTableTitle } from '@/components/ui/DataTableTitle';
+
 // Bulk actions toolbar
 import { DataTableBulkActions } from '@/components/ui/DataTableBulkActions';
+
+// Column configuration panel
+import { DataTableConfigPanel, ColumnConfig } from '@/components/ui/DataTableConfigPanel';
 ```
 
 ## Basic Usage
@@ -65,18 +73,65 @@ import { DataTableBulkActions } from '@/components/ui/DataTableBulkActions';
 </DataTable>
 ```
 
-## Cell Variants
+## DataTable Props
 
-| Component | Purpose | Key Props |
-|-----------|---------|-----------|
-| `DataTableCell` | Text display | `variant: 'alphanumeric' \| 'numeric'` |
-| `DataTableCellStatus` | Status tags | Children: `<Tag>` components |
-| `DataTableCellActions` | Row actions | Children: `<IconButton>` components |
-| `DataTableCellSelect` | Row checkbox | `checked`, `onChange`, `a11yLabelledBy` |
-| `DataTableCellInlineEditTextArea` | Inline editing | `value`, `isOpen`, `onOpen`, `onSave`, `onCancel`, `onChange` |
-| `DataTableCellBulkEditTextArea` | Bulk editing | `value`, `onChange`, `isEdited`, `error` |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `rounded` | `boolean` | `false` | Adds rounded corners to the table container |
+| `elevated` | `boolean` | `false` | Adds box-shadow elevation to the table container |
+| `textStyle` | `'body-small' \| 'body-medium'` | `'body-small'` | Default text style for all cells |
 
-## Sorting
+```tsx
+<DataTable rounded elevated textStyle="body-medium">
+  {/* ... */}
+</DataTable>
+```
+
+## DataTableTitle
+
+Header bar displayed above the table with title, optional subtitle, and action buttons.
+
+```tsx
+<DataTableTitle
+  subtitle="12 total results"
+  actions={
+    <>
+      <IconButton aria-label="Settings" variant="secondary">
+        <Sliders />
+      </IconButton>
+      <IconButton aria-label="Download" variant="secondary">
+        <Download />
+      </IconButton>
+    </>
+  }
+>
+  Campaigns
+</DataTableTitle>
+```
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `children` | `ReactNode` | Title text |
+| `subtitle` | `ReactNode` | Optional subtitle below the title |
+| `actions` | `ReactNode` | Optional action buttons on the right side |
+
+## DataTableHeader
+
+Column header with optional sorting, resizing, and frozen (sticky) positioning.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `string` | — | Header label text |
+| `alignment` | `'left' \| 'right'` | `'left'` | Text alignment |
+| `sort` | `'ascending' \| 'descending' \| 'none'` | `'none'` | Current sort state |
+| `onSort` | `(event) => void` | — | Sort callback (enables sort button) |
+| `width` | `number \| string` | — | Column width |
+| `resizable` | `boolean` | `false` | Enable drag-to-resize handle |
+| `onResize` | `(newWidth: number) => void` | — | Resize callback |
+| `minWidth` | `number` | `60` | Minimum width when resizing |
+| `frozen` | `'left' \| 'right'` | — | Freeze column to left or right edge |
+
+### Sorting
 
 Headers become sortable when `onSort` is provided:
 
@@ -89,6 +144,59 @@ Headers become sortable when `onSort` is provided:
 </DataTableHeader>
 ```
 
+### Column Resizing
+
+Enable drag-to-resize with `resizable` and `onResize`:
+
+```tsx
+const [columnWidths, setColumnWidths] = useState({ name: 200, price: 140 });
+
+<DataTableHeader
+  width={columnWidths.name}
+  resizable
+  onResize={(newWidth) => setColumnWidths((prev) => ({ ...prev, name: newWidth }))}
+>
+  Name
+</DataTableHeader>
+```
+
+Text in cells automatically truncates with ellipsis when the column is narrower than the content.
+
+## Cell Variants
+
+| Component | Purpose | Key Props |
+|-----------|---------|-----------|
+| `DataTableCell` | Text display | `variant: 'alphanumeric' \| 'numeric'`, `frozen` |
+| `DataTableCellStatus` | Status tags | Children: `<Tag>` components, `frozen` |
+| `DataTableCellActions` | Row actions | Children: `<IconButton>` / Menu, `frozen` |
+| `DataTableCellSelect` | Row checkbox | `checked`, `onChange`, `a11yLabelledBy`, `frozen` |
+| `DataTableCellInlineEditTextArea` | Inline editing | `value`, `isOpen`, `onOpen`, `onSave`, `onCancel`, `onChange` |
+| `DataTableCellBulkEditTextArea` | Bulk editing | `value`, `onChange`, `isEdited`, `error` |
+
+## Frozen (Sticky) Columns
+
+Freeze columns to the left or right edge using the `frozen` prop. Available on both headers and cells.
+
+```tsx
+{/* Frozen left */}
+<DataTableHeader frozen="left" width={200}>Name</DataTableHeader>
+<DataTableCell frozen="left">Campaign Alpha</DataTableCell>
+
+{/* Frozen right */}
+<DataTableHeader frozen="right" width={80} alignment="right">Actions</DataTableHeader>
+<DataTableCellActions frozen="right">
+  <RowActionsMenu name="Campaign" />
+</DataTableCellActions>
+```
+
+### Z-index Layering
+
+- Frozen headers: `z-index: 3` (above frozen body cells)
+- Frozen body cells: `z-index: 1`
+- Actions cell with open menu: `z-index: 10` (auto-elevated via `:has([data-menu-open])`)
+
+The actions menu automatically elevates its parent cell when open to prevent other rows from covering the dropdown.
+
 ## Selection
 
 Use `DataTableHeaderSelect` + `DataTableCellSelect` together:
@@ -98,12 +206,14 @@ Use `DataTableHeaderSelect` + `DataTableCellSelect` together:
   checked={allSelected}
   indeterminate={someSelected}
   onChange={handleToggleAll}
+  frozen="left"
 />
 
 <DataTableCellSelect
   a11yLabelledBy={`cell-${item.id}`}
   checked={selectedIds.includes(item.id)}
   onChange={() => toggleRow(item.id)}
+  frozen="left"
 />
 ```
 
@@ -120,12 +230,101 @@ Rendered **above** the DataTable when rows are selected:
 />
 ```
 
+## DataTableConfigPanel
+
+Right-side overlay panel for column configuration. Supports show/hide, pin/freeze, and drag-to-reorder.
+
+```tsx
+import { DataTableConfigPanel, ColumnConfig } from '@/components/ui/DataTableConfigPanel';
+
+const columns: ColumnConfig[] = [
+  { id: 'name',    label: 'Item name',  visible: true,  pinned: false, alwaysVisible: true },
+  { id: 'sku',     label: 'SKU',        visible: true,  pinned: false },
+  { id: 'price',   label: 'Price',      visible: true,  pinned: false },
+  { id: 'status',  label: 'Status',     visible: false, pinned: false },
+  { id: 'actions', label: 'Actions',    visible: true,  pinned: true,  alwaysPinned: true },
+];
+
+<DataTableConfigPanel
+  isOpen={isPanelOpen}
+  onClose={() => setIsPanelOpen(false)}
+  title="Customize Columns"
+  columns={columns}
+  onApply={(updatedColumns) => setColumns(updatedColumns)}
+/>
+```
+
+### ColumnConfig Interface
+
+```tsx
+interface ColumnConfig {
+  id: string;          // Unique column identifier
+  label: string;       // Display name in the panel
+  visible: boolean;    // Whether column is shown in the table
+  pinned: boolean;     // Whether column is frozen/pinned
+  alwaysVisible?: boolean;  // Cannot be hidden (e.g. primary name column)
+  alwaysPinned?: boolean;   // Always pinned, cannot be changed (e.g. Actions)
+}
+```
+
+### Panel Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isOpen` | `boolean` | — | Controls panel visibility |
+| `onClose` | `() => void` | — | Called when panel is closed/cancelled |
+| `title` | `string` | `'Customize Columns'` | Panel header title |
+| `columns` | `ColumnConfig[]` | — | Current column configuration |
+| `onApply` | `(columns: ColumnConfig[]) => void` | — | Called with updated config on Apply |
+
+### Panel Features
+
+- **Select all / Clear selected** — Link buttons at top toggle all column visibility
+- **Checkbox per column** — Show/hide individual columns
+- **Pin button** — Pin icon appears on hover; filled when active. `alwaysPinned` columns show a permanent pin
+- **Drag to reorder** — Drag handle on hover for visible columns. `alwaysVisible` stays at top, `alwaysPinned` stays at bottom
+- **Cancel / Apply** — Footer buttons. Cancel reverts changes, Apply calls `onApply`
+
+### Integrating with DataTable
+
+Use `orderedVisibleCols` derived from column configs to dynamically render headers and cells:
+
+```tsx
+const orderedVisibleCols = useMemo(() => {
+  const nonActions = columnConfigs.filter((c) => c.id !== 'actions' && c.visible);
+  return [
+    ...nonActions.filter((c) => c.pinned),
+    ...nonActions.filter((c) => !c.pinned),
+  ];
+}, [columnConfigs]);
+
+// In render:
+{orderedVisibleCols.map((col) => (
+  <DataTableHeader key={col.id} frozen={col.pinned ? 'left' : undefined}>
+    {col.label}
+  </DataTableHeader>
+))}
+```
+
+## Row Actions Menu
+
+Use `DataTableCellActions` with a custom menu component wrapping `IconButton` + `Menu`:
+
+```tsx
+<DataTableCellActions frozen="right">
+  <RowActionsMenu name={item.name} />
+</DataTableCellActions>
+```
+
+The `RowActionsMenu` component uses `data-menu-open` attribute to auto-elevate the frozen cell's z-index when the dropdown is open, preventing other rows from covering the menu.
+
 ## Design Tokens
 
 All components use LD semantic tokens exclusively:
 
-- **Typography**: `--ld-semantic-font-body-medium-*`, `--ld-semantic-font-body-mono-medium-*`
-- **Colors**: `--ld-semantic-color-text`, `--ld-semantic-color-border-subtle`
+- **Typography**: `--ld-semantic-font-body-small-*` (default), `--ld-semantic-font-body-medium-*`
+- **Colors**: `--ld-semantic-color-text`, `--ld-semantic-color-border-subtle`, `--ld-semantic-color-separator`
+- **Surfaces**: `--ld-semantic-color-surface-primary`, `--ld-semantic-color-fill-surface-subtle`
 - **Spacing**: `--ld-primitive-scale-space-*`
 - **Focus**: `--ld-semantic-color-action-focus-outline`
 
@@ -140,3 +339,29 @@ All components accept `UNSAFE_className` and `UNSAFE_style` for escape-hatch sty
 - `DataTableHeaderSelect` provides a visually hidden label (default: "Toggle all rows")
 - `DataTableCellInlineEditTextArea` requires `a11yDialogLabel` and `a11yTextAreaLabel`
 - `DataTableBulkActions` renders as a `role="region"` with configurable `a11yLabel`
+- `DataTableConfigPanel` renders as `role="dialog"` with `aria-modal` and `aria-label`
+- Pin buttons include descriptive `aria-label` (e.g. "Pin Campaign column")
+- Drag handles are hidden from screen readers with `aria-hidden`
+
+## File Locations
+
+| Component | Path |
+|-----------|------|
+| DataTable, DataTableHead, DataTableBody | `client/components/ui/DataTable.tsx` |
+| DataTableRow | `client/components/ui/DataTableRow.tsx` |
+| DataTableHeader | `client/components/ui/DataTableHeader.tsx` |
+| DataTableCell | `client/components/ui/DataTableCellText.tsx` |
+| DataTableCellStatus | `client/components/ui/DataTableCellStatus.tsx` |
+| DataTableCellActions | `client/components/ui/DataTableCellActions.tsx` |
+| DataTableCellSelect, DataTableHeaderSelect | `client/components/ui/DataTableCellSelect.tsx` |
+| DataTableCellInlineEditTextArea | `client/components/ui/DataTableCellInlineEdit.tsx` |
+| DataTableCellBulkEditTextArea | `client/components/ui/DataTableCellBulkEdit.tsx` |
+| DataTableTitle | `client/components/ui/DataTableTitle.tsx` |
+| DataTableBulkActions | `client/components/ui/DataTableBulkActions.tsx` |
+| DataTableConfigPanel | `client/components/ui/DataTableConfigPanel.tsx` |
+
+## Example
+
+See the full working example in `client/components/examples/DataTableExample.tsx` and the sub-component showcase in `client/components/examples/DataTableSubComponentsExample.tsx`.
+
+View in the component library at `/component-library/table`.
