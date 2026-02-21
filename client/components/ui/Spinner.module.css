@@ -36,51 +36,56 @@
   fill: var(--ld-semantic-color-loading-white, #ffffff);
 }
 
+/* The entire SVG rotates to create the chasing spinner effect */
+.container svg {
+  animation: spinnerRotate 0.9s steps(6, end) infinite;
+  will-change: transform;
+}
+
 /* Each pill is a petal of the spark, rotated 60° apart around the center.
-   The first pill (no numbered class) is at 0° (top).
-   A staggered fade animation creates the chasing effect. */
+   Static opacity stagger creates the "tail" effect as the SVG rotates. */
 .pill {
   transform-origin: 24px 24px;
-  animation: spinnerFade 1s linear infinite;
+  opacity: 1;
 }
 
 .pill2 {
   transform: rotate(60deg);
-  animation-delay: -0.833s;
+  opacity: 0.85;
 }
 
 .pill3 {
   transform: rotate(120deg);
-  animation-delay: -0.667s;
+  opacity: 0.7;
 }
 
 .pill4 {
   transform: rotate(180deg);
-  animation-delay: -0.5s;
+  opacity: 0.5;
 }
 
 .pill5 {
   transform: rotate(240deg);
-  animation-delay: -0.333s;
+  opacity: 0.35;
 }
 
 .pill6 {
   transform: rotate(300deg);
-  animation-delay: -0.167s;
+  opacity: 0.15;
 }
 
-@keyframes spinnerFade {
-  0%, 100% {
-    opacity: 1;
+@keyframes spinnerRotate {
+  0% {
+    transform: rotate(0deg);
   }
-  50% {
-    opacity: 0.25;
+  100% {
+    transform: rotate(360deg);
   }
 }
 
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .pill {
-    animation-duration: 2s;
+  .container svg {
+    animation-duration: 1.8s;
   }
 }
