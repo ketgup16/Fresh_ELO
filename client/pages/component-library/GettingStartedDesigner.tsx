@@ -56,6 +56,41 @@ function StepItem({ num, title, detail }: { num: number; title: string; detail: 
   );
 }
 
+function PromptCategory({ title, prompts }: { title: string; prompts: string[] }) {
+  return (
+    <div>
+      <div style={{
+        fontWeight: 700,
+        fontSize: '15px',
+        color: 'var(--ld-semantic-color-text)',
+        marginBottom: '10px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+      }}>
+        {title}
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        {prompts.map((prompt, i) => (
+          <div key={i} style={{
+            padding: '14px 16px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '6px',
+            borderLeft: '3px solid var(--ld-semantic-color-border-brand)',
+            fontSize: '14px',
+            lineHeight: 1.6,
+            color: 'var(--ld-semantic-color-text)',
+            fontStyle: 'italic',
+            cursor: 'default',
+          }}>
+            &ldquo;{prompt}&rdquo;
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function CodeSnippet({ children }: { children: string }) {
   return (
     <code style={{
@@ -453,6 +488,68 @@ export function GettingStartedDesigner() {
               <span style={{ color: 'var(--ld-semantic-color-text-subtle)' }}>{item.desc}</span>
             </div>
           ))}
+        </div>
+      </SectionCard>
+
+      {/* Example Prompts */}
+      <SectionCard title="Example Prompts for Designers">
+        <p style={{
+          fontSize: '14px',
+          lineHeight: 1.6,
+          color: 'var(--ld-semantic-color-text-subtle)',
+          marginBottom: '20px',
+        }}>
+          Copy and paste these prompts into the chat to quickly generate pages, components, and design changes.
+          Customize the details to match your specific needs.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <PromptCategory
+            title="Generate New Pages"
+            prompts={[
+              'Create a new dashboard page with a page header titled "Campaign Overview", a row of 4 metric cards showing impressions, clicks, spend, and CTR, and a data table below with campaign data.',
+              'Build a settings page with a sidebar navigation for General, Notifications, and Security sections. Each section should have form fields using TextField and Select components inside Cards.',
+              'Create a product detail page with breadcrumbs, a two-column layout (image gallery on left, product info on right), a tabbed section for Description/Reviews/Specs, and a sticky add-to-cart bar at the bottom.',
+              'Design a landing page with a hero section, a 3-column feature grid using Cards, a testimonial carousel, and a CTA section with a primary Button.',
+            ]}
+          />
+          <PromptCategory
+            title="Create New Components"
+            prompts={[
+              'Create a stat card component that shows a metric label, a large number value, a percentage change badge (positive green or negative red using Tag), and a small sparkline area. Use Card, Heading, and Tag from the design system.',
+              'Build a user profile header component with an avatar circle, user name heading, role tag, and action buttons (Edit Profile, Settings) in a ButtonGroup. Make it responsive.',
+              'Create a notification item component with a leading icon, title, description, timestamp, and an unread indicator dot. Use ListItem patterns and semantic tokens for the styling.',
+              'Build a file upload dropzone component with a dashed border, upload icon, instructional text, and a secondary Button. Show a progress bar state and a completed state with a file name and remove IconButton.',
+            ]}
+          />
+          <PromptCategory
+            title="Theming & Styling"
+            prompts={[
+              'Switch the current theme to Sam\'s Club and verify all components render correctly with the new brand colors.',
+              'Create a new custom theme called "Holiday" with a red primary action color, green accents, and warm neutrals. Apply it to the theme switcher so I can preview it.',
+              'Update the current page to use dark mode tokens. Make sure all text, backgrounds, borders, and cards adapt properly.',
+              'Audit the current page for any hard-coded colors or font sizes and replace them with the correct LD semantic tokens.',
+            ]}
+          />
+          <PromptCategory
+            title="Edit & Refine Existing Designs"
+            prompts={[
+              'Change the page header to include breadcrumbs, a subtitle description, and move the action buttons into a dropdown menu using the Menu component.',
+              'Replace the current plain list with an interactive data table that has sortable columns, row selection checkboxes, status tags, pagination, and a search toolbar.',
+              'Add a side panel that slides in from the right when a table row is clicked. It should show item details using a Card with CardHeader and CardContent, and have a close IconButton.',
+              'Make the cards on this page responsive. On desktop show 3 columns, tablet show 2 columns, and mobile show 1 column. Add proper spacing using semantic tokens.',
+              'Add form validation to the current form. Show error states on required fields with helper text when the user clicks submit without filling them in.',
+              'Add an empty state to the data table with an illustration area, a heading saying "No results found", a description, and a primary action Button to reset filters.',
+            ]}
+          />
+          <PromptCategory
+            title="Accessibility & Polish"
+            prompts={[
+              'Review the current page for accessibility issues. Make sure all interactive elements have proper aria-labels, focus states are visible, and color contrast meets WCAG 2.1 AA.',
+              'Add keyboard navigation support to the card grid so users can tab between cards and press Enter to select them.',
+              'Add loading skeleton states to all the cards and the data table on this page so content doesn\'t flash in.',
+              'Add proper focus management to the modal dialog. Focus should trap inside the modal when open and return to the trigger button when closed.',
+            ]}
+          />
         </div>
       </SectionCard>
 
