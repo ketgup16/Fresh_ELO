@@ -21,6 +21,7 @@
   font-weight: 700;
   cursor: pointer;
   border: none;
+  padding: 2px;
   transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 
@@ -44,6 +45,7 @@
   height: 32px;
   font-size: 14px;
   line-height: 1.43;
+  box-sizing: border-box;
 }
 
 .pill--medium {
@@ -51,6 +53,7 @@
   height: 40px;
   font-size: 16px;
   line-height: 1.5;
+  box-sizing: border-box;
 }
 
 .pill--large {
@@ -58,6 +61,7 @@
   height: 52px;
   font-size: 18px;
   line-height: 1.33;
+  box-sizing: border-box;
 }
 
 /* ── Primary variant ── */
@@ -149,9 +153,9 @@
     opacity 0.28s ease 0.08s;
 }
 
-.pillExpanded .slotSide--small  { max-width: 32px; }
-.pillExpanded .slotSide--medium { max-width: 40px; }
-.pillExpanded .slotSide--large  { max-width: 52px; }
+.pillExpanded .slotSide--small  { max-width: 28px; }
+.pillExpanded .slotSide--medium { max-width: 36px; }
+.pillExpanded .slotSide--large  { max-width: 48px; }
 
 /* ═══════════════════════════════════════
    ICON BUTTONS — inside the side slots
@@ -181,9 +185,9 @@
   opacity: 0.4;
 }
 
-.iconBtn--small  { width: 32px; height: 32px; }
-.iconBtn--medium { width: 40px; height: 40px; }
-.iconBtn--large  { width: 52px; height: 52px; }
+.iconBtn--small  { width: 28px; height: 28px; }
+.iconBtn--medium { width: 36px; height: 36px; }
+.iconBtn--large  { width: 48px; height: 48px; }
 
 /* Icon button hover — scoped per variant */
 .pill--primary .iconBtn:hover:not(:disabled) {
