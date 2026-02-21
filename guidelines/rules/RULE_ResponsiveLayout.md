@@ -52,13 +52,11 @@ Every page MUST use the standard shell: `MastHead` + `AppSidebar` + scrollable `
 
 ## Content Container
 
-All page content MUST be centered with a max-width constraint.
+All page content MUST fill the full available width within the shell. **Never use `max-width` constraints** on page content containers.
 
 ```css
 .contentContainer {
-  max-width: 1280px;
   width: 100%;
-  margin: 0 auto;
   padding: 24px;
 }
 ```
@@ -67,11 +65,12 @@ For landing/overview pages with more breathing room:
 
 ```css
 .pageContent {
-  max-width: 1280px;
-  margin: 0 auto;
+  width: 100%;
   padding: 32px 32px 48px;
 }
 ```
+
+Use `align-items: stretch` (not `center`) on flex column containers that hold page content.
 
 ---
 
@@ -94,8 +93,7 @@ Use these three breakpoints consistently. Do NOT invent new breakpoints.
 
 ```css
 .pageContent {
-  max-width: 1280px;
-  margin: 0 auto;
+  width: 100%;
   padding: 32px 32px 48px;
   display: flex;
   flex-direction: column;
@@ -119,7 +117,6 @@ Use these three breakpoints consistently. Do NOT invent new breakpoints.
   display: flex;
   gap: 24px;
   width: 100%;
-  max-width: 1280px;
   padding: 24px;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -214,7 +211,7 @@ Use these three breakpoints consistently. Do NOT invent new breakpoints.
 
 ## Page Header
 
-Page headers sit inside the centered container and MUST include breadcrumbs.
+Page headers sit inside the content area and MUST include breadcrumbs.
 
 ```css
 .pageHeaderContainer {
@@ -222,7 +219,6 @@ Page headers sit inside the centered container and MUST include breadcrumbs.
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  max-width: 1280px;
   padding: 0 24px;
 }
 
@@ -337,7 +333,7 @@ For page-specific layouts, create a dedicated CSS module in `client/styles/` (e.
 Before submitting any new page or view:
 
 - [ ] Uses standard shell (MastHead + AppSidebar + scrollable main)
-- [ ] Content is centered with `max-width: 1280px`
+- [ ] Content fills full available width (no max-width constraints)
 - [ ] Padding reduces at each breakpoint (32 -> 24 -> 16 -> 12)
 - [ ] Multi-column layouts stack at `768px`
 - [ ] Card grids reduce columns at `1024px` and `768px`
@@ -354,11 +350,11 @@ Before submitting any new page or view:
 ## Common Violations
 
 ```css
-/* WRONG — Missing max-width, content stretches full width */
-.page { padding: 24px; }
-
-/* CORRECT */
+/* WRONG — max-width constrains content */
 .page { max-width: 1280px; margin: 0 auto; padding: 24px; }
+
+/* CORRECT — full width within shell */
+.page { width: 100%; padding: 24px; }
 ```
 
 ```css

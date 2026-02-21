@@ -236,7 +236,7 @@ import { Card, CardHeader, CardContent } from '@livingdesign/react'
 
 **Key Requirements**:
 - ✅ MUST use standard shell (MastHead + AppSidebar + scrollable main)
-- ✅ MUST center content with `max-width: 1280px`
+- ✅ MUST fill full available width within the shell (no max-width constraints)
 - ✅ MUST use standard breakpoints: 1024px, 768px, 480px
 - ✅ MUST reduce padding at each breakpoint (32 → 24 → 16 → 12)
 - ✅ MUST stack multi-column layouts at 768px
@@ -249,12 +249,12 @@ import { Card, CardHeader, CardContent } from '@livingdesign/react'
 
 **Quick Check**:
 ```css
-/* ❌ WRONG — No max-width, no breakpoints */
-.page { padding: 40px 60px; }
+/* ❌ WRONG — max-width constrains content, no breakpoints */
+.page { max-width: 1280px; margin: 0 auto; padding: 40px 60px; }
 .grid { grid-template-columns: repeat(4, 1fr); }
 
-/* ✅ CORRECT — Centered, responsive */
-.page { max-width: 1280px; margin: 0 auto; padding: 24px 32px; }
+/* ✅ CORRECT — Full width within shell, responsive */
+.page { width: 100%; padding: 24px 32px; }
 .grid { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 768px) { .page { padding: 16px; } .grid { grid-template-columns: 1fr; } }
