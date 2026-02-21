@@ -331,6 +331,7 @@ font-family: Arial, sans-serif;`}</CodeBlock>
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           {[
+            { label: 'Check .figmaignore', detail: 'Before importing, verify the .figmaignore file exists in the project root. This file excludes binary fonts, images, build output, lockfiles, and server code that cause parsing errors in Figma Make. If the file is missing, create it.' },
             { label: 'Component Mapping', detail: 'Replace raw HTML elements with library components. A Figma "button" must become <Button variant="..." size="...">.' },
             { label: 'Token Resolution', detail: 'Map all Figma color, spacing, and typography values to the nearest semantic token. Flag any that don\'t have an exact match.' },
             { label: 'Icon Substitution', detail: 'Replace inline SVGs with matching icons from client/components/icons/. Create new ones in icons-custom/ if needed.' },
