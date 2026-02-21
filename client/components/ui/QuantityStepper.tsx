@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { Trash } from '@/components/icons/Trash';
 import styles from './QuantityStepper.module.css';
 
 export type QuantityStepperVariant = 'primary' | 'secondary' | 'tertiary';
@@ -83,27 +84,6 @@ function MinusIcon({ size }: { size: number }) {
   );
 }
 
-function TrashIcon({ size }: { size: number }) {
-  if (size === 16) {
-    return (
-      <svg width={16} height={16} viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M6.5 1.5h3a.5.5 0 0 1 .5.5v.5H6V2a.5.5 0 0 1 .5-.5ZM5 2.5V2a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 11 2v.5h2a.5.5 0 0 1 0 1h-.541l-.5 9A1.5 1.5 0 0 1 10.463 14H5.537A1.5 1.5 0 0 1 4.04 12.5l-.5-9H3a.5.5 0 0 1 0-1h2Zm1 0h4v-.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.5Zm-1.96 1 .494 8.917A.5.5 0 0 0 5.537 13h4.926a.5.5 0 0 0 .499-.583L11.46 3.5H4.54Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"/>
-      </svg>
-    );
-  }
-  if (size === 24) {
-    return (
-      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M9.75 2.25h4.5a1.5 1.5 0 0 1 1.5 1.5V4.5H21a.75.75 0 0 1 0 1.5h-.81l-.72 13.5A1.5 1.5 0 0 1 17.973 21H6.027A1.5 1.5 0 0 1 4.53 19.5L3.81 6H3a.75.75 0 0 1 0-1.5h5.25V3.75a1.5 1.5 0 0 1 1.5-1.5Zm0 1.5v.75h4.5V3.75h-4.5Zm-4.428 2.25.712 13.333A.001.001 0 0 0 6.027 19.5h11.946l.713-13.5H5.322Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"/>
-      </svg>
-    );
-  }
-  return (
-    <svg width={32} height={32} viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <path d="M13 3h6a2 2 0 0 1 2 2v1h5a1 1 0 1 1 0 2h-1.073l-.954 17.938A2 2 0 0 1 22 28H10a2 2 0 0 1-1.973-2.062L7.073 8H6a1 1 0 0 1 0-2h5V5a2 2 0 0 1 2-2Zm0 3h6V5h-6v1ZM9.08 8l.947 17.813A.001.001 0 0 0 10 26h12a.001.001 0 0 0 .973-.938L23.919 8H9.081Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"/>
-    </svg>
-  );
-}
 
 export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperProps>(
   (
@@ -311,7 +291,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
               tabIndex={isExpanded ? 0 : -1}
             >
               {showTrashOnRemove && count === 1
-                ? <TrashIcon size={iconSize} />
+                ? <Trash width={iconSize} height={iconSize} aria-hidden="true" />
                 : <MinusIcon size={iconSize} />
               }
             </button>

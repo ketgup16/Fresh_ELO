@@ -185,13 +185,19 @@
   opacity: 0.4;
 }
 
-/* Trash icon variant — subtle color shift to signal destructive action */
+/* Trash icon variant — inherits parent color by default (white on primary) */
 .iconBtnTrash {
-  color: var(--ld-semantic-color-text-subtle, #74767c);
   transition: color 0.15s ease, background-color 0.15s ease;
 }
 
-.iconBtnTrash:hover:not(:disabled) {
+/* On secondary/tertiary, use subtle color and red hover */
+.pill--secondary .iconBtnTrash,
+.pill--tertiary .iconBtnTrash {
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+}
+
+.pill--secondary .iconBtnTrash:hover:not(:disabled),
+.pill--tertiary .iconBtnTrash:hover:not(:disabled) {
   color: var(--ld-semantic-color-text-negative, #cc0000) !important;
   background: transparent !important;
 }
@@ -246,9 +252,9 @@
 .slotCenter--large  { padding: 0 10px; }
 
 /* Expanded stepper center */
-.pillExpanded .slotCenter--small  { padding: 0 4px; min-width: 56px; }
-.pillExpanded .slotCenter--medium { padding: 0 4px; min-width: 72px; }
-.pillExpanded .slotCenter--large  { padding: 0 6px; min-width: 88px; }
+.pillExpanded .slotCenter--small  { padding: 0 2px; min-width: 48px; }
+.pillExpanded .slotCenter--medium { padding: 0 2px; min-width: 60px; }
+.pillExpanded .slotCenter--large  { padding: 0 4px; min-width: 72px; }
 
 /* Circle mode (icon-only collapsed) — enforce perfect circle */
 .pillCircle {
