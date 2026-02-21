@@ -96,6 +96,66 @@ export const SpinnerExample: React.FC = () => {
         </div>
       </section>
 
+      {/* ── Woof Animation ─────────────────────────────────────── */}
+      <section>
+        <h3 style={sectionHeadingStyle}>Woof Animation</h3>
+        <p style={{ ...sublabelStyle, marginBottom: '24px', fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
+          A single dot orbiting the center — a minimal, smooth loading indicator.
+        </p>
+
+        <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+          <div
+            style={{
+              ...cardStyle,
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '16px',
+              minWidth: '160px',
+            }}
+          >
+            <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <Spinner animation="woof" color="neutral" size="large" />
+                <span style={labelStyle}>Large</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <Spinner animation="woof" color="neutral" size="small" />
+                <span style={labelStyle}>Small</span>
+              </div>
+            </div>
+            <span style={sublabelStyle}>Gray · Light background</span>
+          </div>
+
+          <div
+            style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '16px',
+              padding: '24px',
+              backgroundColor: 'var(--ld-semantic-color-fill-primary, #0071DC)',
+              borderRadius: '8px',
+              minWidth: '160px',
+            }}
+          >
+            <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <Spinner animation="woof" color="white" size="large" />
+                <span style={{ ...labelStyle, color: 'rgba(255,255,255,0.8)' }}>Large</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <Spinner animation="woof" color="white" size="small" />
+                <span style={{ ...labelStyle, color: 'rgba(255,255,255,0.8)' }}>Small</span>
+              </div>
+            </div>
+            <span style={{ ...sublabelStyle, color: 'rgba(255,255,255,0.6)' }}>White · Dark background</span>
+          </div>
+        </div>
+      </section>
+
       {/* ── Rotate Animation (Classic) ───────────────────────────── */}
       <section>
         <h3 style={sectionHeadingStyle}>Rotate Animation (Classic)</h3>

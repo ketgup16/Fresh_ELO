@@ -3,7 +3,7 @@ import styles from './Spinner.module.css';
 
 export type SpinnerColor = 'neutral' | 'white';
 export type SpinnerSize = 'large' | 'small';
-export type SpinnerAnimation = 'rotate' | 'petal-build';
+export type SpinnerAnimation = 'rotate' | 'petal-build' | 'woof';
 
 export interface SpinnerProps
   extends Omit<React.ComponentPropsWithoutRef<'span'>, 'className' | 'style'> {
@@ -29,6 +29,7 @@ export interface SpinnerProps
    * Animation style of the spinner
    * - 'rotate': full spinner rotates (default)
    * - 'petal-build': petals appear one by one then disappear, cycling from 1 → all → 1
+   * - 'woof': single dot orbiting the center
    * @default "rotate"
    */
   animation?: SpinnerAnimation;
@@ -126,6 +127,7 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
     }, [animation]);
 
     const isPetalBuild = animation === 'petal-build';
+    const isWoof = animation === 'woof';
     const visibleCount = isPetalBuild ? getVisibleCount(frame) : 6;
 
     const className = [
@@ -133,6 +135,7 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
       styles[`spinner--color-${color}`],
       styles[`spinner--size-${size}`],
       isPetalBuild ? styles['spinner--petal-build'] : '',
+      isWoof ? styles['spinner--woof'] : '',
       UNSAFE_className,
     ]
       .filter(Boolean)
@@ -154,27 +157,35 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
           xmlns="http://www.w3.org/2000/svg"
           {...spinnerProps}
         >
-          {PETAL_PATHS.map((d, pathIndex) => {
-            // In petal-build mode, determine visibility based on the ordered build sequence
-            let petalOpacity: number | undefined = undefined;
-            if (isPetalBuild) {
-              const buildPosition = PETAL_ORDER.indexOf(pathIndex);
-              petalOpacity = buildPosition < visibleCount ? 1 : 0;
-            }
+          {isWoof ? (
+            <circle
+              className={styles['spinner__dot']}
+              cx="24"
+              cy="9"
+              r="4.5"
+            />
+          ) : (
+            PETAL_PATHS.map((d, pathIndex) => {
+              let petalOpacity: number | undefined = undefined;
+              if (isPetalBuild) {
+                const buildPosition = PETAL_ORDER.indexOf(pathIndex);
+                petalOpacity = buildPosition < visibleCount ? 1 : 0;
+              }
 
-            return (
-              <path
-                key={pathIndex}
-                className={styles['spinner__path']}
-                style={
-                  isPetalBuild
-                    ? ({ opacity: petalOpacity } as React.CSSProperties)
-                    : ({ '--path-index': pathIndex } as React.CSSProperties)
-                }
-                d={d}
-              />
-            );
-          })}
+              return (
+                <path
+                  key={pathIndex}
+                  className={styles['spinner__path']}
+                  style={
+                    isPetalBuild
+                      ? ({ opacity: petalOpacity } as React.CSSProperties)
+                      : ({ '--path-index': pathIndex } as React.CSSProperties)
+                  }
+                  d={d}
+                />
+              );
+            })
+          )}
         </svg>
       </span>
     );

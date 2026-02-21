@@ -13,7 +13,7 @@
 }
 
 /* Rotate animation mode (default) */
-.spinner:not(.spinner--petal-build) .spinner__svg {
+.spinner:not(.spinner--petal-build):not(.spinner--woof) .spinner__svg {
   animation: spinnerRotate 1s linear infinite;
   will-change: transform;
 }
@@ -49,7 +49,7 @@
 }
 
 /* Rotate mode: path opacity stagger for "chasing" effect */
-.spinner:not(.spinner--petal-build) .spinner__path {
+.spinner:not(.spinner--petal-build):not(.spinner--woof) .spinner__path {
   opacity: calc(1 - (var(--path-index) * 0.15));
   transform-origin: center;
 }
@@ -70,7 +70,28 @@
   opacity: 0;
 }
 
-/* Rotation animation (for rotate mode) */
+/* ──────────────────────────────────────────────────────────
+   Woof animation mode
+   A single dot orbiting the center of the spinner.
+   ────────────────────────────────────────────────────────── */
+.spinner--woof .spinner__svg {
+  animation: spinnerRotate 1.4s linear infinite;
+  will-change: transform;
+}
+
+.spinner--woof .spinner__dot {
+  fill: currentColor;
+}
+
+.spinner--woof.spinner--color-neutral .spinner__dot {
+  fill: var(--ld-semantic-color-loading, #74767c);
+}
+
+.spinner--woof.spinner--color-white .spinner__dot {
+  fill: var(--ld-semantic-color-loading-white, #ffffff);
+}
+
+/* Rotation animation */
 @keyframes spinnerRotate {
   0% {
     transform: rotate(0deg);
@@ -83,7 +104,7 @@
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .spinner:not(.spinner--petal-build) .spinner__svg {
-    animation-duration: 2s;
+    animation-duration: 2.8s;
   }
 
   /* Slow down petal transitions for reduced motion */
