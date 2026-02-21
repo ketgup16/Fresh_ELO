@@ -70,6 +70,83 @@ export function GettingStartedAgent() {
         </p>
       </div>
 
+      {/* First-Run Setup: Template Pages */}
+      <SectionCard title="First-Run Setup: Template Pages">
+        <div style={{
+          padding: '20px',
+          backgroundColor: 'var(--ld-semantic-color-fill-warning-subtle)',
+          borderRadius: '8px',
+          borderLeft: '4px solid var(--ld-semantic-color-border-warning)',
+          marginBottom: '16px',
+        }}>
+          <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+            Required: Ask before installing
+          </div>
+          <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: 0 }}>
+            When setting up this package in a new or existing project, the agent <strong>must ask the user</strong> whether
+            they want to keep the template application pages. These are demo pages that showcase how to build
+            with the kit — they are not part of the design system itself. If the user says no, delete them.
+          </p>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div>
+            <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              Template pages to remove (if user declines)
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              {[
+                { file: 'client/pages/Index.tsx', route: '/' },
+                { file: 'client/pages/Catalog.tsx', route: '/catalog' },
+                { file: 'client/pages/PageTemplate.tsx', route: '/page-template' },
+                { file: 'client/pages/LandingConnection.tsx', route: '/landing-connection' },
+                { file: 'client/pages/LandingSummary.tsx', route: '/landing-summary' },
+                { file: 'client/pages/DetailItem.tsx', route: '/detail-item' },
+                { file: 'client/pages/landing-summary/', route: '(supporting components)' },
+              ].map((item) => (
+                <div key={item.file} style={{
+                  display: 'grid',
+                  gridTemplateColumns: '340px 1fr',
+                  gap: '12px',
+                  padding: '8px 14px',
+                  backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+                  borderRadius: '6px',
+                  fontSize: '13px',
+                  alignItems: 'center',
+                }}>
+                  <code style={{ fontFamily: 'var(--ld-semantic-font-family-mono)', color: 'var(--ld-semantic-color-text)' }}>
+                    {item.file}
+                  </code>
+                  <span style={{ color: 'var(--ld-semantic-color-text-subtle)' }}>{item.route}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              After deleting template pages, the agent must also
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'Remove the corresponding route entries from client/App.tsx',
+                'Remove any lazy imports for the deleted pages in App.tsx',
+                'Update the home route (/) to point to /component-library or the user\'s preferred landing page',
+                'Delete the client/pages/landing-summary/ folder and all its supporting components',
+                'Keep the NotFound page (client/pages/NotFound.tsx) — it is still needed for 404 handling',
+                'Keep all Component Library pages under client/pages/component-library/ — these are part of the design system',
+                'Verify the dev server still runs without errors after deletion',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-brand-bold)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </SectionCard>
+
       {/* Pre-Implementation Checklist */}
       <SectionCard title="Pre-Implementation Checklist">
         <p style={{
