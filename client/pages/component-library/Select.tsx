@@ -1,5 +1,5 @@
 import React from 'react';
-import { SelectExample } from '@/components/SelectExample';
+import SelectExample from '@/components/examples/SelectExample';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { useTranslation } from 'react-i18next';
 

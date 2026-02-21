@@ -242,8 +242,36 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover
 - **Buttons**: Always use `<Button variant="primary|secondary|tertiary|destructive" size="small|medium|large">`. Never create `<button>` elements with inline styles.
 - **Tags**: Use `<Tag variant="..." color="...">`, never `<span>` with custom badge styles.
 - **Button groups**: Use `<ButtonGroup>`, never manual flex containers for buttons.
-- **Checkboxes**: Always use `<Checkbox />` from `@/components/ui/Checkbox`. Never create custom checkbox inputs with `<input type="checkbox">` or styled `<div>` elements.
-- **Radio buttons**: Always use the existing radio component from `@/components/ui/`. Never create custom radio inputs with `<input type="radio">` or styled circles/dots.
+- **Checkboxes**: Always use `<Checkbox />` from `@/components/ui/Checkbox`. Never create custom checkbox inputs with `<input type="checkbox">` or styled `<div>` elements. Use large checkboxes (`size="large"`) for confirmation messages, terms acceptance, consent flows, or any prominent single-checkbox interaction. Default `small` size is for data tables, filters, and multi-select lists.
+- **Radio buttons**: Always use `<Radio />` and `<RadioGroup />` from `@/components/ui/Radio` and `@/components/ui/RadioGroup`. Never create custom radio inputs with `<input type="radio">`, styled circles/dots, or custom toggle groups.
+- **DataTable (No Exceptions)**:
+  - Never create custom/hardcoded `<table>` elements. All tabular data must use the DataTable component system.
+  - New cell variants are allowed (following existing patterns), but net-new table structures are forbidden.
+  - Rounding: standalone DataTables use the `rounded` prop. DataTables inside cards/containers should NOT use `rounded` — the parent card provides the frame.
+  - **Never customize DataTable colors or visual styling.** DataTable must look identical everywhere. Even if a Figma design shows alternate row colors, tinted headers, striped rows, or any color variation — ignore those differences and use the default DataTable styling. Do not override with custom backgrounds, border colors, font colors, or `UNSAFE_className`/`UNSAFE_style` overrides.
+- **Tabs (No Exceptions)**: Never create custom tab components. Always use `Tabs`, `TabList`, `Tab`, `TabPanel` from the Tab component.
+- **Links (No Exceptions)**: Never create raw `<a>` tags or custom hyperlink styles. All text links must use the LD `Link` component. Variants: `default` (brand-colored), `subtle` (gray), `white` (for dark backgrounds). The Link component auto-detects internal vs external links.
+- **Button Width (No Exceptions)**: If a button hugs its text in Figma, use the default Button behavior — no `isFullWidth`, no width overrides. If a button is full-width in Figma, use `<Button isFullWidth>`. Never force button widths with inline styles, custom classes, or `UNSAFE_style`. The only two width modes are: default (hug text) and `isFullWidth` (stretch).
+- **Side Navigation (No Exceptions)**: Always use the existing `AppSidebar` component from `@/components/ui/AppSidebar`. Never create a new sidebar or side navigation component. When building new pages, pass different `menuItems` to configure the links and content — do not duplicate or recreate the sidebar structure. The same applies to `SideNavigation` and `SideNavigationItem` for secondary navigation patterns.
+- **Overlays — Popovers, Dropdowns, Tooltips, Dialogs (No Exceptions)**:
+  - All overlay elements must render on top of everything and never be clipped or cut off.
+  - Always use Radix/Shadcn portal-based components (`Popover`, `DropdownMenu`, `Dialog`, `Tooltip`, `Select`, `ContextMenu`, `Command`) which portal to `document.body` and escape `overflow: hidden` ancestors.
+  - Never set `overflow: hidden` on containers holding overlay triggers unless the overlay portals out.
+  - Never create custom absolute-positioned dropdown menus.
+
+### File Naming Conventions
+
+| File type | Convention | Examples |
+|---|---|---|
+| All UI components (LD + Shadcn/Radix) | **PascalCase** | `Button.tsx`, `Dialog.tsx`, `ScrollArea.tsx`, `AlertDialog.tsx` |
+| CSS modules | **PascalCase** (match component) | `Button.module.css`, `DataTable.module.css` |
+| Pages | **PascalCase** | `Index.tsx`, `Catalog.tsx` |
+| Page CSS modules | **camelCase** | `detailItem.module.css` |
+| React hooks | **camelCase** with `use` prefix | `useMobile.tsx`, `useSnackbar.ts` |
+| Context files | **PascalCase** | `ThemeRegistry.ts` |
+| Feature utilities | **PascalCase** | `MartyUtils.ts` |
+| Example files | **PascalCase** + `Example` suffix | `ButtonExample.tsx`, `TabExample.tsx` |
+| Token CSS files | **lowercase** | `semantic.css`, `primitive.css` |
 
 ### Styling Rules
 
@@ -259,9 +287,9 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover
 - **Border radius**: Use `var(--ld-primitive-scale-borderradius-100, 8px)` for cards, `9999px` for pills/circles.
 - **Box shadows** for elevated cards: `0 -1px 2px 0 rgba(0,0,0,0.10), 0 1px 2px 1px rgba(0,0,0,0.15)`.
 
-## Designer Getting Started — Figma Best Practices
+## Designer Getting Started — Figma Best Practices (HARD RULES)
 
-These rules ensure your Figma files translate cleanly into code when processed by the AI agent.
+These rules ensure Figma designs translate cleanly into code. Designers MUST follow these before handing off.
 
 ### 1. Always use Auto Layout
 
@@ -298,6 +326,28 @@ Set every top-level frame to **"Hug contents"** rather than a fixed size with cl
 - **Do not** group shapes, rectangles, and text to mimic a Button, Tag, Chip, or any other Living Design component. The AI relies on the Figma component name (e.g., `WCP / Button`) to map it to the correct code component (`<Button />`).
 - **Never detach** a component instance. Detached instances lose their component metadata and the AI treats them as anonymous layers.
 - If the component you need doesn't exist in the LD library, annotate it clearly (e.g., "Custom component — not in LD") so the AI knows to build it from scratch rather than attempting a faulty match.
+
+### Onboarding & Support
+
+- **Figma onboarding to Fusion**: https://www.figma.com/slides/qZtLPYOsWk3uhWGC24iGRx/Builder-Demo?node-id=9-1277&t=tD5pX6YDZskvrDLP-0
+- **Slack support**: #builderio-support — https://walmart.enterprise.slack.com/archives/C09AZQZPD9D
+
+---
+
+## Design System Package Ingestion Process
+
+When a designer drops a new design system package into the project:
+
+1. Create a staging folder `design-system-package/` at project root
+2. Read ALL documentation in the package before touching any files
+3. Reorganize files to match the project's existing structure:
+   - Components → `client/components/ui/`
+   - Icons → `client/components/icons/`
+   - Tokens → `public/styles/themes/` (runtime) and `client/styles/themes/base/` (build-time base only)
+   - Docs → `guidelines/`
+4. Replace old components with new ones, checking for breaking API changes and updating all usages
+5. Clean up: delete the staging folder, remove duplicates, remove markdown from component folders, run typecheck
+6. Report a summary of what was added, updated, or removed
 
 ---
 

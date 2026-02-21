@@ -1,0 +1,6 @@
+/* TruncatedTextField — single-line text truncation with ellipsis */
+.truncated input {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
