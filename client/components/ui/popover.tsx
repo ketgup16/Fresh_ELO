@@ -91,20 +91,59 @@ PopoverTrigger.displayName = "PopoverTrigger";
 
 /* ── Arrow ── */
 
-const PopoverArrow = React.forwardRef<SVGSVGElement, React.SVGAttributes<SVGSVGElement>>(
-  ({ className, ...props }, ref) => (
-    <svg
-      ref={ref}
-      width={12}
-      height={6}
-      viewBox="0 0 12 6"
-      className={className}
-      style={{ fill: 'var(--ld-semantic-color-surface-overlay, #FFFFFF)' }}
-      {...props}
-    >
-      <polygon points="0,6 6,0 12,6" />
-    </svg>
-  ),
+interface PopoverArrowProps extends React.SVGAttributes<SVGSVGElement> {
+  /** Which side the popover is on (arrow points opposite) */
+  side?: "top" | "right" | "bottom" | "left";
+}
+
+const PopoverArrow = React.forwardRef<SVGSVGElement, PopoverArrowProps>(
+  ({ className, side = "bottom", style: styleProp, ...props }, ref) => {
+    // Arrow points toward the trigger (opposite of the popover side)
+    const arrowSize = { width: 16, height: 8 };
+    let rotation = 0;
+    let positionStyle: React.CSSProperties = {};
+
+    switch (side) {
+      case "bottom":
+        // Popover is below trigger, arrow points up from top edge
+        rotation = 0;
+        positionStyle = { position: 'absolute', top: -7, left: '50%', transform: 'translateX(-50%)' };
+        break;
+      case "top":
+        // Popover is above trigger, arrow points down from bottom edge
+        rotation = 180;
+        positionStyle = { position: 'absolute', bottom: -7, left: '50%', transform: 'translateX(-50%) rotate(180deg)' };
+        break;
+      case "left":
+        // Popover is left of trigger, arrow points right from right edge
+        rotation = 90;
+        positionStyle = { position: 'absolute', right: -10, top: '50%', transform: 'translateY(-50%) rotate(90deg)' };
+        break;
+      case "right":
+        // Popover is right of trigger, arrow points left from left edge
+        rotation = -90;
+        positionStyle = { position: 'absolute', left: -10, top: '50%', transform: 'translateY(-50%) rotate(-90deg)' };
+        break;
+    }
+
+    return (
+      <svg
+        ref={ref}
+        width={arrowSize.width}
+        height={arrowSize.height}
+        viewBox={`0 0 ${arrowSize.width} ${arrowSize.height}`}
+        className={className}
+        style={{
+          fill: 'var(--ld-semantic-color-surface-overlay, #FFFFFF)',
+          ...positionStyle,
+          ...styleProp,
+        }}
+        {...props}
+      >
+        <polygon points={`0,${arrowSize.height} ${arrowSize.width / 2},0 ${arrowSize.width},${arrowSize.height}`} />
+      </svg>
+    );
+  },
 );
 PopoverArrow.displayName = "PopoverArrow";
 
@@ -216,6 +255,7 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
           position: "fixed",
           top: pos.top,
           left: pos.left,
+          overflow: 'visible',
           backgroundColor: 'var(--ld-semantic-color-surface-overlay, #FFFFFF)',
           color: 'var(--ld-semantic-color-text, #2E2F32)',
           filter: 'drop-shadow(0 3px 5px rgba(0, 0, 0, 0.15)) drop-shadow(0 -1px 3px rgba(0, 0, 0, 0.1))',
@@ -228,6 +268,7 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
         {children}
         {showArrow && (
           <PopoverArrow
+            side={side}
             style={{ fill: 'var(--ld-semantic-color-surface-overlay, #FFFFFF)' }}
           />
         )}
