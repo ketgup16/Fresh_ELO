@@ -241,6 +241,8 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover
 - **Buttons**: Always use `<Button variant="primary|secondary|tertiary|destructive" size="small|medium|large">`. Never create `<button>` elements with inline styles.
 - **Tags**: Use `<Tag variant="..." color="...">`, never `<span>` with custom badge styles.
 - **Button groups**: Use `<ButtonGroup>`, never manual flex containers for buttons.
+- **Checkboxes**: Always use `<Checkbox />` from `@/components/ui/Checkbox`. Never create custom checkbox inputs with `<input type="checkbox">` or styled `<div>` elements.
+- **Radio buttons**: Always use the existing radio component from `@/components/ui/`. Never create custom radio inputs with `<input type="radio">` or styled circles/dots.
 
 ### Styling Rules
 
