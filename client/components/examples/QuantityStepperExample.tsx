@@ -115,6 +115,41 @@ export function QuantityStepperExample() {
         </div>
       </div>
 
+      {/* ── Trash on Remove ── */}
+      <div style={sectionStyle}>
+        <p style={headingStyle}>Trash on Remove</p>
+        <p style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle, #74767c)', marginBottom: '16px', lineHeight: '1.5' }}>
+          Use <code>showTrashOnRemove</code> in cart/bag contexts. When count = 1, the − button becomes a trash icon — clicking it removes the item entirely.
+        </p>
+
+        <p style={{ ...labelStyle, marginBottom: '8px' }}>Secondary (small / medium / large) — start at 1</p>
+        <div style={rowStyle}>
+          <QuantityStepper variant="secondary" size="small" defaultCount={1} showTrashOnRemove />
+          <QuantityStepper variant="secondary" size="medium" defaultCount={1} showTrashOnRemove />
+          <QuantityStepper variant="secondary" size="large" defaultCount={1} showTrashOnRemove />
+        </div>
+
+        <p style={{ ...labelStyle, marginBottom: '8px' }}>Tertiary — start at 1</p>
+        <div style={rowStyle}>
+          <QuantityStepper variant="tertiary" size="small" defaultCount={1} showTrashOnRemove />
+          <QuantityStepper variant="tertiary" size="medium" defaultCount={1} showTrashOnRemove />
+          <QuantityStepper variant="tertiary" size="large" defaultCount={1} showTrashOnRemove />
+        </div>
+
+        <p style={{ ...labelStyle, marginBottom: '8px' }}>Primary — start at 1</p>
+        <div style={rowStyle}>
+          <QuantityStepper variant="primary" size="small" defaultCount={1} showTrashOnRemove />
+          <QuantityStepper variant="primary" size="medium" defaultCount={1} showTrashOnRemove />
+          <QuantityStepper variant="primary" size="large" defaultCount={1} showTrashOnRemove />
+        </div>
+
+        <p style={{ ...labelStyle, marginBottom: '8px' }}>Count &gt; 1 — shows − button (not trash)</p>
+        <div style={rowStyle}>
+          <QuantityStepper variant="secondary" size="medium" defaultCount={3} showTrashOnRemove />
+          <QuantityStepper variant="tertiary" size="medium" defaultCount={5} maxQuantity={5} showTrashOnRemove />
+        </div>
+      </div>
+
       {/* ── Tertiary ── */}
       <div style={sectionStyle}>
         <p style={headingStyle}>Tertiary</p>

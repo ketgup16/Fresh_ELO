@@ -185,6 +185,17 @@
   opacity: 0.4;
 }
 
+/* Trash icon variant — subtle color shift to signal destructive action */
+.iconBtnTrash {
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.iconBtnTrash:hover:not(:disabled) {
+  color: var(--ld-semantic-color-text-negative, #cc0000) !important;
+  background: transparent !important;
+}
+
 .iconBtn--small  { width: 28px; height: 28px; }
 .iconBtn--medium { width: 36px; height: 36px; }
 .iconBtn--large  { width: 48px; height: 48px; }
