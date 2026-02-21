@@ -796,6 +796,248 @@ font-family: Arial, sans-serif;`}</CodeBlock>
         </div>
       </SectionCard>
 
+      {/* Environment Compatibility */}
+      <SectionCard title="Environment Compatibility">
+        <p style={{
+          fontSize: '14px',
+          lineHeight: 1.6,
+          color: 'var(--ld-semantic-color-text-subtle)',
+          marginBottom: '16px',
+        }}>
+          When integrating the kit into a target project, the agent must check for and resolve
+          these common compatibility issues.
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+
+          {/* CSS Framework Conflicts */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-negative)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              CSS Framework Conflicts
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              If the target project uses Tailwind, Bootstrap, MUI, or another CSS framework, styles can clash
+              with the kit&rsquo;s semantic tokens and component CSS modules.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'Check for global CSS resets that override the kit\'s base styles (e.g., Tailwind\'s preflight)',
+                'If Tailwind is present, add the kit\'s component folders to Tailwind\'s content config so classes are not purged',
+                'Ensure Tailwind\'s @layer base does not reset font-family, line-height, or color on elements the kit styles',
+                'If Bootstrap is present, check for conflicting .btn, .card, .modal class names — the kit uses CSS modules to avoid this, but global Bootstrap styles can still leak in',
+                'Test all kit components visually after integration — look for unexpected padding, margins, or font changes',
+                'If conflicts exist, scope the kit\'s CSS using a wrapper class or adjust the framework\'s config to exclude kit files',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-negative)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Package Manager */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-brand)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              Package Manager Adaptation
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              The kit ships with pnpm, but the target project may use npm or yarn. The agent must adapt.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'Detect the target project\'s package manager: check for package-lock.json (npm), yarn.lock (yarn), or pnpm-lock.yaml (pnpm)',
+                'If the target uses npm: run npm install instead of pnpm install, and remove pnpm-lock.yaml',
+                'If the target uses yarn: run yarn install instead, and remove pnpm-lock.yaml',
+                'Update any scripts in package.json that reference pnpm (e.g., pnpm run dev → npm run dev)',
+                'If the target project has no lockfile, ask the user which package manager they prefer',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-brand-bold)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* React Version */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-warning)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              React Version Compatibility
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              The kit is built on React 18. Check the target project&rsquo;s React version and handle mismatches.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'Check the target project\'s React version in package.json (react and react-dom)',
+                'React 18: fully compatible — no changes needed',
+                'React 19: test all components — some APIs may have deprecation warnings. Update createRoot, useId, or Suspense usage if needed',
+                'React 17 or earlier: the kit uses React 18 features (useId, Suspense boundaries). Upgrade the target project to React 18+ before integrating',
+                'If the target uses Next.js, Remix, or Gatsby, verify that the kit\'s client-side components work with the framework\'s rendering model (SSR/SSG). Add "use client" directives if needed for Next.js App Router',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-warning)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Version Tracking */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-info)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              Version Tracking
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              The kit includes versioning files so teams know which version they have.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'The VERSION file in the project root contains the current kit version (e.g., 1.0.0)',
+                'The CHANGELOG.md file documents what changed in each version',
+                'When upgrading, compare the VERSION file in the existing project against the new zip to determine what changed',
+                'After a successful upgrade, update the VERSION file to match the new version',
+                'Never delete the VERSION or CHANGELOG.md files during integration',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-info)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </SectionCard>
+
+      {/* Custom Brand Theme Creation */}
+      <SectionCard title="Custom Brand Theme Creation">
+        <p style={{
+          fontSize: '14px',
+          lineHeight: 1.6,
+          color: 'var(--ld-semantic-color-text-subtle)',
+          marginBottom: '16px',
+        }}>
+          The kit ships with Walmart and Sam&rsquo;s Club themes. To create a new brand theme,
+          the agent must follow this process.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {[
+            { step: 'Copy an existing theme file', detail: 'Duplicate client/styles/themes/walmart.css (or sams-club.css) and rename it to the new brand name (e.g., custom-brand.css).' },
+            { step: 'Update token overrides', detail: 'Replace the color values with the new brand\'s colors. At minimum, update: action-fill-primary (brand blue/primary), text-brand, border-brand, fill-brand-subtle, and surface colors.' },
+            { step: 'Update typography if needed', detail: 'If the brand uses a different font, update --ld-semantic-font-family-sans and add the font files to public/fonts/. Update public/fonts/fonts.css with the new @font-face declaration.' },
+            { step: 'Register the theme', detail: 'Add the new theme to the theme switcher so it can be selected at runtime. Update the theme list in the ThemeSwitcher component.' },
+            { step: 'Test all components', detail: 'Switch to the new theme and visually verify every component renders correctly. Pay special attention to contrast ratios (WCAG 2.1 AA) on buttons, text, and links.' },
+            { step: 'Test dark mode (if applicable)', detail: 'If the brand needs dark mode, create a dark variant of the theme file with appropriate dark background and inverted text tokens.' },
+          ].map((item, i) => (
+            <div key={i} style={{
+              display: 'flex',
+              gap: '16px',
+              padding: '16px 20px',
+              backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+              borderRadius: '8px',
+            }}>
+              <div style={{
+                minWidth: '32px',
+                height: '32px',
+                backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 700,
+                fontSize: '14px',
+                color: 'var(--ld-semantic-color-text-brand-bold)',
+              }}>
+                {i + 1}
+              </div>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '4px', color: 'var(--ld-semantic-color-text)' }}>
+                  {item.step}
+                </div>
+                <div style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  {item.detail}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </SectionCard>
+
+      {/* Contributing Components Back */}
+      <SectionCard title="Contributing Components Back">
+        <p style={{
+          fontSize: '14px',
+          lineHeight: 1.6,
+          color: 'var(--ld-semantic-color-text-subtle)',
+          marginBottom: '16px',
+        }}>
+          If a team builds a reusable component that could benefit other projects using the kit,
+          follow this process to contribute it back.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {[
+            { step: 'Confirm it\'s generic', detail: 'The component must not contain project-specific logic, data, or API calls. It should work in any project that uses the kit.' },
+            { step: 'Follow the component creation checklist', detail: 'The component must have: a TSX file, a CSS module using only semantic tokens, an example file, a guideline doc, a Component Library page, and sandbox registration.' },
+            { step: 'Use only kit dependencies', detail: 'The component must not introduce new npm dependencies. It should only use React, existing kit components, semantic tokens, and the icon library.' },
+            { step: 'Include all states and variants', detail: 'Default, hover, focus, active, disabled, loading, error, and empty states must all be implemented.' },
+            { step: 'Add i18n strings', detail: 'All user-facing text must use translation keys with entries in all 3 locales (en, es, fr).' },
+            { step: 'Update the VERSION and CHANGELOG', detail: 'Bump the patch version in the VERSION file and add an entry to CHANGELOG.md describing the new component.' },
+          ].map((item, i) => (
+            <div key={i} style={{
+              display: 'flex',
+              gap: '16px',
+              padding: '16px 20px',
+              backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+              borderRadius: '8px',
+            }}>
+              <div style={{
+                minWidth: '32px',
+                height: '32px',
+                backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 700,
+                fontSize: '14px',
+                color: 'var(--ld-semantic-color-text-brand-bold)',
+              }}>
+                {i + 1}
+              </div>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '4px', color: 'var(--ld-semantic-color-text)' }}>
+                  {item.step}
+                </div>
+                <div style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  {item.detail}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </SectionCard>
+
       {/* Enforcement Rules Reference */}
       <SectionCard title="Enforcement Rules Reference">
         <p style={{

@@ -254,6 +254,55 @@ export function GettingStartedDesigner() {
         </p>
       </div>
 
+      {/* Before You Start */}
+      <SectionCard title="Before You Start">
+        <p style={{
+          fontSize: '14px',
+          lineHeight: 1.6,
+          color: 'var(--ld-semantic-color-text-subtle)',
+          marginBottom: '16px',
+        }}>
+          Quick checklist before dropping this kit into a project:
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {[
+            { check: 'Partner Experiences?', detail: 'When you drag and drop the zip, the AI will ask if this is for Partner Experiences. Answer yes to keep the template pages, or no to remove them.' },
+            { check: 'Existing UI components?', detail: 'If your project already has buttons, forms, or modals, the AI will find them and replace them with kit equivalents. Custom components get updated to use design tokens.' },
+            { check: 'Existing icons?', detail: 'Duplicate icons will be merged into the kit\'s icon library. Third-party icon packages (react-icons, heroicons) will be replaced and removed.' },
+            { check: 'CSS framework in use?', detail: 'If your project uses Tailwind, Bootstrap, or another CSS framework, the AI will check for style conflicts and resolve them so the kit renders correctly.' },
+            { check: 'Which package manager?', detail: 'The kit ships with pnpm. If your project uses npm or yarn, the AI will adapt the setup commands and lockfiles automatically.' },
+            { check: 'React version?', detail: 'The kit requires React 18+. If your project is on an older version, it will need to be upgraded first.' },
+            { check: 'Custom brand needed?', detail: 'The kit includes Walmart and Sam\'s Club themes. If you need a different brand, the AI can create a custom theme from your brand colors.' },
+          ].map((item, i) => (
+            <div key={i} style={{
+              display: 'flex',
+              gap: '14px',
+              padding: '14px 18px',
+              backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+              borderRadius: '8px',
+              alignItems: 'flex-start',
+            }}>
+              <span style={{
+                minWidth: '20px',
+                height: '20px',
+                border: '2px solid var(--ld-semantic-color-border-brand)',
+                borderRadius: '4px',
+                flexShrink: 0,
+                marginTop: '2px',
+              }} />
+              <div>
+                <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '2px', color: 'var(--ld-semantic-color-text)' }}>
+                  {item.check}
+                </div>
+                <div style={{ fontSize: '13px', lineHeight: 1.5, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  {item.detail}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </SectionCard>
+
       {/* What You Get */}
       <SectionCard title="What You Get">
         <div style={{
