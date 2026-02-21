@@ -71,12 +71,11 @@ const PETAL_PATHS = [
 // Each petal rotates this many degrees clockwise to converge at the top (petal 5)
 // Petal 5 (top) is static; others rotate by their angular distance from the top
 const WOOF_GATHER_ANGLES: Record<number, number> = {
-  0: 60,   // top-left
-  1: 120,  // bottom-left
-  2: 180,  // bottom
-  3: 240,  // bottom-right
-  4: 300,  // top-right
-  5: 0,    // top (static)
+  0: 60,
+  1: 120,
+  2: 180,
+  3: 240,
+  4: 300,
 };
 
 // Petal build-up animation order (clockwise from top)
@@ -191,12 +190,11 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
               />
             );
 
-            if (isWoof && WOOF_GATHER_ANGLES[pathIndex] !== 0) {
+            if (isWoof && pathIndex in WOOF_GATHER_ANGLES) {
               return (
                 <g
                   key={pathIndex}
-                  className={styles['spinner__petal-group']}
-                  style={{ '--gather-angle': `${WOOF_GATHER_ANGLES[pathIndex]}deg` } as React.CSSProperties}
+                  className={`${styles['spinner__petal-group']} ${styles[`spinner__petal-group--${WOOF_GATHER_ANGLES[pathIndex]}`]}`}
                 >
                   {pathEl}
                 </g>

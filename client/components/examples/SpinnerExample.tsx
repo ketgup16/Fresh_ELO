@@ -100,7 +100,7 @@ export const SpinnerExample: React.FC = () => {
       <section>
         <h3 style={sectionHeadingStyle}>Spinner</h3>
         <p style={{ ...sublabelStyle, marginBottom: '24px', fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
-          A single dot orbiting the center — a minimal, smooth loading indicator.
+          Spark petals gather together then spread back out — a smooth, looping loading indicator.
         </p>
 
         <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>

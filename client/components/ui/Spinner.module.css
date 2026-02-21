@@ -80,9 +80,8 @@
      200–600ms : gather — petals rotate to converge at the top
      600–1200ms: spread — petals continue rotating back to start
 
-   Each petal rotates a full 360° per cycle. The --gather-angle
-   custom property controls how much rotation happens in the
-   gather phase vs the spread phase.
+   Each petal rotates a full 360° per cycle. Dedicated keyframes
+   per petal control gather vs spread proportion.
    ────────────────────────────────────────────────────────── */
 .spinner--woof .spinner__svg {
   animation: none;
@@ -90,29 +89,59 @@
 
 .spinner--woof .spinner__petal-group {
   transform-origin: 24px 24px;
-  animation: sparkGather 1.2s linear infinite;
   will-change: transform;
 }
 
-/* Woof gather-and-spread animation.
-   Uses --gather-angle (set per petal) to control how far
-   each petal rotates in the gather phase. All petals complete
-   a full 360° per cycle for a seamless loop. */
-@keyframes sparkGather {
-  /* Idle: petals stay in their normal spark position */
-  0%, 16.67% {
-    transform: rotate(0deg);
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  /* Gather: petals converge to the top */
-  50% {
-    transform: rotate(var(--gather-angle));
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  /* Spread: petals continue rotating back to start (360° = 0°) */
-  100% {
-    transform: rotate(360deg);
-  }
+/* Per-petal animation assignments */
+.spinner--woof .spinner__petal-group--60 {
+  animation: sparkGather60 1.2s ease-in-out infinite;
+}
+.spinner--woof .spinner__petal-group--120 {
+  animation: sparkGather120 1.2s ease-in-out infinite;
+}
+.spinner--woof .spinner__petal-group--180 {
+  animation: sparkGather180 1.2s ease-in-out infinite;
+}
+.spinner--woof .spinner__petal-group--240 {
+  animation: sparkGather240 1.2s ease-in-out infinite;
+}
+.spinner--woof .spinner__petal-group--300 {
+  animation: sparkGather300 1.2s ease-in-out infinite;
+}
+
+/* Top-left petal: 60° gather, 300° spread */
+@keyframes sparkGather60 {
+  0%, 16.67% { transform: rotate(0deg); }
+  50%        { transform: rotate(60deg); }
+  100%       { transform: rotate(360deg); }
+}
+
+/* Bottom-left petal: 120° gather, 240° spread */
+@keyframes sparkGather120 {
+  0%, 16.67% { transform: rotate(0deg); }
+  50%        { transform: rotate(120deg); }
+  100%       { transform: rotate(360deg); }
+}
+
+/* Bottom petal: 180° gather, 180° spread */
+@keyframes sparkGather180 {
+  0%, 16.67% { transform: rotate(0deg); }
+  50%        { transform: rotate(180deg); }
+  100%       { transform: rotate(360deg); }
+}
+
+/* Bottom-right petal: 240° gather, 120° spread */
+@keyframes sparkGather240 {
+  0%, 16.67% { transform: rotate(0deg); }
+  50%        { transform: rotate(240deg); }
+  100%       { transform: rotate(360deg); }
+}
+
+/* Top-right petal: 300° gather, 60° spread */
+@keyframes sparkGather300 {
+  0%, 16.67% { transform: rotate(0deg); }
+  50%        { transform: rotate(300deg); }
+  100%       { transform: rotate(360deg); }
 }
 
 /* Rotation animation */
