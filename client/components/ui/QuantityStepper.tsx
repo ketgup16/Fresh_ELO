@@ -109,6 +109,8 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
     // For non-icon-only: stepper is always expanded when count > 0.
     const [isOpen, setIsOpen] = useState(false);
     const closeTimerRef = useRef<ReturnType<typeof setTimeout>>();
+    const plusBtnRef = useRef<HTMLButtonElement>(null);
+    const pillRef = useRef<HTMLDivElement>(null);
 
     const isExpanded = isIconOnly ? (isOpen && count > 0) : (count > 0);
     const iconSize = ICON_SIZES[size];
@@ -126,6 +128,10 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       setCount(1);
       setIsOpen(true);
       onChange?.(1);
+      // A11y: When "Add" is pressed, move focus to the + button
+      requestAnimationFrame(() => {
+        plusBtnRef.current?.focus();
+      });
     }, [disabled, onChange]);
 
     const handleIncrement = useCallback((e: React.MouseEvent) => {
@@ -144,6 +150,10 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       onChange?.(next);
       if (next === 0) {
         setIsOpen(false);
+        // A11y: When count reaches 0, move focus back to the add/pill trigger
+        requestAnimationFrame(() => {
+          pillRef.current?.focus();
+        });
       }
     }, [disabled, count, onChange]);
 
@@ -263,6 +273,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
     return (
       <div ref={ref} className={styles.quantityStepper}>
         <div
+          ref={pillRef}
           className={pillClass}
           onClick={!isExpanded ? handlePillClick : undefined}
           onMouseEnter={isIconOnly ? handleMouseEnter : undefined}
@@ -284,7 +295,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
           {/* Left slot: trash or minus button */}
           <div className={sideSlotClass}>
             <button
-              className={`${iconBtnClass}${showTrashOnRemove && count === 1 ? ` ${styles.iconBtnTrash}` : ''}`}
+              className={iconBtnClass}
               onClick={handleDecrement}
               disabled={disabled}
               aria-label={showTrashOnRemove && count === 1 ? 'Remove item' : 'Decrease quantity'}
@@ -306,6 +317,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
           <div className={sideSlotClass}>
             <button
               className={iconBtnClass}
+              ref={plusBtnRef}
               onClick={handleIncrement}
               disabled={disabled || isAtMax}
               aria-label="Increase quantity"

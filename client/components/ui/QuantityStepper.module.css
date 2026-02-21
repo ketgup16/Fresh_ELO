@@ -137,20 +137,21 @@
   justify-content: center;
   overflow: hidden;
   flex-shrink: 0;
-  /* DEFAULT = collapsed → these are the COLLAPSING transition params */
+  /* DEFAULT = collapsed → COLLAPSING transition.
+     Delay the width collapse so the label disappears first. */
   max-width: 0;
   opacity: 0;
   transition:
-    max-width 0.32s cubic-bezier(0.4, 0, 0.6, 1),
-    opacity 0.18s ease;
+    max-width 0.28s cubic-bezier(0.4, 0, 0.6, 1) 0.12s,
+    opacity 0.12s ease;
 }
 
 /* EXPANDING transition params (applied when pill is expanded) */
 .pillExpanded .slotSide {
   opacity: 1;
   transition:
-    max-width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.28s ease 0.08s;
+    max-width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease 0.06s;
 }
 
 .pillExpanded .slotSide--small  { max-width: 28px; }
@@ -185,22 +186,8 @@
   opacity: 0.4;
 }
 
-/* Trash icon variant — inherits parent color by default (white on primary) */
-.iconBtnTrash {
-  transition: color 0.15s ease, background-color 0.15s ease;
-}
-
-/* On secondary/tertiary, use subtle color and red hover */
-.pill--secondary .iconBtnTrash,
-.pill--tertiary .iconBtnTrash {
-  color: var(--ld-semantic-color-text-subtle, #74767c);
-}
-
-.pill--secondary .iconBtnTrash:hover:not(:disabled),
-.pill--tertiary .iconBtnTrash:hover:not(:disabled) {
-  color: var(--ld-semantic-color-text-negative, #cc0000) !important;
-  background: transparent !important;
-}
+/* Trash icon variant — same fill/hover behavior as minus/plus buttons.
+   Inherits color from parent (white on primary, dark on secondary/tertiary). */
 
 .iconBtn--small  { width: 28px; height: 28px; }
 .iconBtn--medium { width: 36px; height: 36px; }
@@ -241,9 +228,10 @@
   overflow: hidden;
   flex-shrink: 0;
   min-width: 0;
+  /* COLLAPSING: delay width/padding shrink so label disappears first */
   transition:
-    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    min-width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    padding 0.28s cubic-bezier(0.4, 0, 0.6, 1) 0.12s,
+    min-width 0.28s cubic-bezier(0.4, 0, 0.6, 1) 0.12s;
 }
 
 /* Default (collapsed) center padding — sized for pill shape */
@@ -251,7 +239,13 @@
 .slotCenter--medium { padding: 0 8px; }
 .slotCenter--large  { padding: 0 10px; }
 
-/* Expanded stepper center */
+/* Expanded stepper center — expand immediately */
+.pillExpanded .slotCenter {
+  transition:
+    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    min-width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .pillExpanded .slotCenter--small  { padding: 0 2px; min-width: 48px; }
 .pillExpanded .slotCenter--medium { padding: 0 2px; min-width: 60px; }
 .pillExpanded .slotCenter--large  { padding: 0 4px; min-width: 72px; }
@@ -279,21 +273,23 @@
   overflow: hidden;
   white-space: nowrap;
   display: inline-block;
-  /* DEFAULT = collapsed → COLLAPSING transition */
+  /* DEFAULT = collapsed → COLLAPSING transition.
+     Label fades out FIRST (immediately, fast), then width collapses.
+     This ensures label disappears before the side slots start collapsing. */
   max-width: 0;
   opacity: 0;
   transition:
-    max-width 0.28s cubic-bezier(0.4, 0, 0.6, 1),
-    opacity 0.15s ease;
+    max-width 0.2s cubic-bezier(0.4, 0, 0.6, 1) 0.04s,
+    opacity 0.1s ease;
 }
 
-/* EXPANDING transition */
+/* EXPANDING transition — label appears after sides have opened */
 .pillExpanded .labelText {
   max-width: 100px;
   opacity: 1;
   transition:
-    max-width 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.06s,
-    opacity 0.25s ease 0.12s;
+    max-width 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
+    opacity 0.2s ease 0.18s;
 }
 
 /* Add label text (always visible when count=0, not animated) */
