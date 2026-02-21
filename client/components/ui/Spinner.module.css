@@ -36,9 +36,9 @@
   fill: var(--ld-semantic-color-loading-white, #ffffff);
 }
 
-/* The entire SVG rotates to create the chasing spinner effect */
+/* The entire SVG rotates smoothly to create the chasing spinner effect */
 .container svg {
-  animation: spinnerRotate 0.9s steps(6, end) infinite;
+  animation: spinnerRotate 2.025s linear infinite;
   will-change: transform;
 }
 
@@ -86,6 +86,6 @@
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .container svg {
-    animation-duration: 1.8s;
+    animation-duration: 4s;
   }
 }
