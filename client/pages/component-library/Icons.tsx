@@ -75,7 +75,6 @@ const iconCategories: Record<string, string[]> = {
   'iconCatAdvertising': [
     'Campaign', 'CampaignFill', 'Keyword', 'KeywordFill',
     'Ads', 'AdsFill', 'Sponsored', 'SponsoredFill',
-    'SponsoredBrandsCard', 'SponsoredProductsCard', 'SponsoredVideosCard',
     'SGShareImpact', 'CardsHashtag', 'CardsStar',
     'Megaphone', 'MegaphoneFill', 'TargetArrow', 'TargetArrowFill'
   ],
