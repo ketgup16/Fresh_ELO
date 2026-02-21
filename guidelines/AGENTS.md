@@ -256,6 +256,48 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover
 - **Border radius**: Use `var(--ld-primitive-scale-borderradius-100, 8px)` for cards, `9999px` for pills/circles.
 - **Box shadows** for elevated cards: `0 -1px 2px 0 rgba(0,0,0,0.10), 0 1px 2px 1px rgba(0,0,0,0.15)`.
 
+## Designer Getting Started — Figma Best Practices
+
+These rules ensure your Figma files translate cleanly into code when processed by the AI agent.
+
+### 1. Always use Auto Layout
+
+Never use absolute positioning or free-floating layers. Every frame, section, and component must use Figma's Auto Layout so the AI can infer the correct flexbox/grid structure. Absolute layers are ignored or misinterpreted during export.
+
+### 2. Always make images exportable
+
+Mark every image, illustration, and icon layer as exportable in Figma (right panel → Export section → add an export setting). If an image isn't marked exportable, the AI cannot extract it and will render a blank placeholder.
+
+### 3. Be explicit in annotations
+
+Don't assume the AI will guess interactions. Spell out:
+- **Hover states** — what changes on hover (color, shadow, underline, etc.)
+- **Click/tap behavior** — what happens on click (navigate to X, open modal, toggle state)
+- **Error and loading states** — show separate frames for error, empty, and loading variations
+- **Transitions/animations** — describe any motion (e.g., "slide in from right, 200ms ease")
+
+Use Figma comments or a dedicated annotations layer to document these.
+
+### 4. Name layers and artboards sequentially
+
+Use clear, sequential naming for screens and frames:
+- `01 — Login`, `02 — Dashboard`, `03 — Settings`
+- `Button / Primary / Default`, `Button / Primary / Hover`, `Button / Primary / Loading`
+
+Sequential naming helps the AI process multi-screen exports in the correct order and understand state progressions.
+
+### 5. All screens must hug content, never clip
+
+Set every top-level frame to **"Hug contents"** rather than a fixed size with clipping. If a frame clips its content, anything outside the visible bounds is invisible to the AI and will be lost in the export. Scroll regions should be annotated, not simulated by clipping.
+
+### 6. Use actual LD Components, never fake them
+
+- **Do not** group shapes, rectangles, and text to mimic a Button, Tag, Chip, or any other Living Design component. The AI relies on the Figma component name (e.g., `WCP / Button`) to map it to the correct code component (`<Button />`).
+- **Never detach** a component instance. Detached instances lose their component metadata and the AI treats them as anonymous layers.
+- If the component you need doesn't exist in the LD library, annotate it clearly (e.g., "Custom component — not in LD") so the AI knows to build it from scratch rather than attempting a faulty match.
+
+---
+
 ### Figma Import Rules
 
 - **Convert absolute positioning** from Figma to flexbox/grid layouts. Never use `position: absolute` for page layout.
