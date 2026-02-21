@@ -357,6 +357,147 @@ font-family: Arial, sans-serif;`}</CodeBlock>
         </div>
       </SectionCard>
 
+      {/* Existing Project Integration */}
+      <SectionCard title="Existing Project Integration">
+        <p style={{
+          fontSize: '14px',
+          lineHeight: 1.6,
+          color: 'var(--ld-semantic-color-text-subtle)',
+          marginBottom: '16px',
+        }}>
+          When the kit is added to a project that already has UI components, icons, or styles,
+          the agent must audit the existing codebase and create a migration plan. This is not optional.
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+
+          {/* Step 1: Component Audit */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-brand)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              Step 1: Component Audit — Find & Replace
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              Scan the entire project for UI components that have an equivalent in the Component Library.
+              Replace them directly — do not keep both versions.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'Search for custom buttons, inputs, selects, modals, tags, cards, and alerts',
+                'Check for third-party UI libraries (MUI, Chakra, Ant Design, etc.) that overlap with LD 3.5 components',
+                'Map each existing component to its LD 3.5 equivalent (e.g., custom <PrimaryButton> → <Button variant="primary">)',
+                'Replace all usages across the project — update imports, props, and any wrapper logic',
+                'Delete the old component files after all references are updated',
+                'Run the dev server to verify nothing is broken after each replacement',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-brand-bold)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Step 2: Token & Style Migration */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-warning)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              Step 2: Token & Style Migration Plan
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              For components that are unique to the project (no LD 3.5 equivalent), create a migration plan
+              to update them to use the library&rsquo;s tokens, text styles, icons, and theming.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'Identify all components that don\'t have a direct LD 3.5 match',
+                'Replace hard-coded colors with var(--ld-semantic-color-*) tokens',
+                'Replace hard-coded font families, sizes, and weights with var(--ld-semantic-font-*) tokens',
+                'Replace hard-coded spacing and border-radius with var(--ld-semantic-spacing-*) and var(--ld-primitive-scale-borderradius-*) tokens',
+                'Replace hard-coded elevation/shadows with var(--ld-semantic-elevation-*) tokens',
+                'Ensure all components respond to theme switching (Walmart, Sam\'s Club, dark mode)',
+                'Add CSS modules (.module.css) if the component uses global CSS or inline styles',
+                'Install any missing dependencies that the token system or theme switching requires',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-warning)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Step 3: Icon Deduplication */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-accent-purple)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              Step 3: Icon Deduplication Plan
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              Duplicate icons waste bundle size and cause visual inconsistency. The agent must merge all icons
+              into the project&rsquo;s icon library.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'Scan for inline SVGs, imported SVG files, and third-party icon libraries (react-icons, heroicons, lucide, etc.)',
+                'For each icon found, check if an equivalent exists in client/components/icons/',
+                'If a match exists: replace the usage with the library icon import and delete the duplicate',
+                'If no match exists: move the SVG into client/components/icons-custom/ following the project\'s icon format (20x20 viewBox, currentColor fill)',
+                'Remove any third-party icon library dependencies from package.json after all icons are migrated',
+                'Update the icon index file so all new custom icons are importable from @/components/icons-custom',
+                'Verify icon sizes and colors render correctly via semantic tokens (not hard-coded fills)',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-accent-purple)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Migration Plan Output */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-info-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-info)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              Migration Plan Output
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              After completing the audit, the agent must produce a migration plan that includes:
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'A list of all components that will be replaced with their LD 3.5 equivalents',
+                'A list of unique components that need token migration (with the specific tokens to apply)',
+                'A list of duplicate icons with their replacement mappings',
+                'Any dependencies to install or remove',
+                'An execution order that avoids breaking the app (replace one component at a time, verify, continue)',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-info)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </SectionCard>
+
       {/* Enforcement Rules Reference */}
       <SectionCard title="Enforcement Rules Reference">
         <p style={{
