@@ -9,8 +9,13 @@
 /* SVG element */
 .spinner__svg {
   display: block;
-  animation: spinnerRotate 1s linear infinite;
   shape-rendering: geometricPrecision;
+}
+
+/* Rotate animation mode (default) */
+.spinner:not(.spinner--petal-build) .spinner__svg {
+  animation: spinnerRotate 1s linear infinite;
+  will-change: transform;
 }
 
 /* Size variants */
@@ -43,13 +48,29 @@
   fill: var(--ld-semantic-color-loading-white, #ffffff);
 }
 
-/* Path opacity stagger for "chasing" effect */
-.spinner__path {
+/* Rotate mode: path opacity stagger for "chasing" effect */
+.spinner:not(.spinner--petal-build) .spinner__path {
   opacity: calc(1 - (var(--path-index) * 0.15));
   transform-origin: center;
 }
 
-/* Rotation animation */
+/* ──────────────────────────────────────────────────────────
+   Petal-build animation mode
+   Petals are revealed one by one via JavaScript-controlled
+   opacity, smoothly transitioning with CSS.
+   ────────────────────────────────────────────────────────── */
+.spinner--petal-build .spinner__svg {
+  animation: none;
+}
+
+.spinner--petal-build .spinner__path {
+  /* Smooth crossfade between visible/invisible states */
+  transition: opacity 0.12s ease-in-out;
+  /* Override stagger opacity from rotate mode */
+  opacity: 0;
+}
+
+/* Rotation animation (for rotate mode) */
 @keyframes spinnerRotate {
   0% {
     transform: rotate(0deg);
@@ -61,12 +82,12 @@
 
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .spinner__svg {
+  .spinner:not(.spinner--petal-build) .spinner__svg {
     animation-duration: 2s;
   }
-}
 
-/* Performance optimization */
-.spinner__svg {
-  will-change: transform;
+  /* Slow down petal transitions for reduced motion */
+  .spinner--petal-build .spinner__path {
+    transition-duration: 0.3s;
+  }
 }
