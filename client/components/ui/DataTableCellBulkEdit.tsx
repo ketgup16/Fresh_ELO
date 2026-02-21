@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ExclamationCircleFill } from '@/components/icons/ExclamationCircleFill';
 import styles from './DataTableCellBulkEdit.module.css';
 
 interface CommonProps {
@@ -29,8 +30,10 @@ export interface DataTableCellBulkEditTextAreaProps
 }
 
 /**
- * Bulk-editable cell with an always-visible textarea. Shows "Edited" helper
- * text when modified and error text when invalid.
+ * Bulk-editable cell (LD 3.5 DT Cell: Bulk Edit Text Area).
+ *
+ * Always visible as an editable area. Shows "Edited" helper text in purple
+ * when modified, and error icon + text in red when invalid.
  */
 export const DataTableCellBulkEditTextArea = React.forwardRef<
   HTMLTableCellElement,
@@ -64,23 +67,26 @@ export const DataTableCellBulkEditTextArea = React.forwardRef<
       }
     }, [value]);
 
-    const cellClassName = [styles.cell, UNSAFE_className]
+    const cellClassName = [styles.cell, UNSAFE_className].filter(Boolean).join(' ');
+
+    const wrapperClassName = [
+      styles.wrapper,
+      error && styles.wrapperError,
+      !error && isEdited && styles.wrapperEdited,
+    ]
       .filter(Boolean)
       .join(' ');
 
     const textareaClassName = [
       styles.textarea,
       isNumeric && styles.textareaNumeric,
-      error && styles.textareaError,
     ]
       .filter(Boolean)
       .join(' ');
 
-    const showHelper = isEdited || error;
-
     return (
       <td ref={ref} className={cellClassName} style={UNSAFE_style} {...props}>
-        <div className={styles.wrapper}>
+        <div className={wrapperClassName}>
           <textarea
             ref={textareaRef}
             className={textareaClassName}
@@ -95,16 +101,21 @@ export const DataTableCellBulkEditTextArea = React.forwardRef<
             rows={1}
             {...textAreaProps}
           />
-          {showHelper && (
-            <span
-              className={[
-                styles.helperText,
-                error ? styles.errorText : styles.editedText,
-              ]
-                .filter(Boolean)
-                .join(' ')}
-            >
-              {error || editedHelperTextLabel}
+
+          {/* Error helper text with icon */}
+          {error && (
+            <span className={`${styles.helperText} ${styles.errorText}`}>
+              <span className={styles.helperIcon} aria-hidden>
+                <ExclamationCircleFill />
+              </span>
+              {error}
+            </span>
+          )}
+
+          {/* Edited label (only when edited and no error) */}
+          {!error && isEdited && (
+            <span className={`${styles.helperText} ${styles.editedText}`}>
+              {editedHelperTextLabel}
             </span>
           )}
         </div>

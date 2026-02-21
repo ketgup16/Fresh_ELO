@@ -1,14 +1,19 @@
-/* DataTableCellActions */
+/* LD 3.5 DT Cell: Actions */
+
+/* ── Cell container ───────────────────────────────────────────────────── */
+/* Figma: padding space-150 (12px) space-200 (16px), right-aligned */
 .cell {
-  padding: var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-200, 16px);
+  padding: var(--ld-primitive-scale-space-150, 12px) var(--ld-primitive-scale-space-200, 16px);
   vertical-align: middle;
   text-align: right;
   white-space: nowrap;
 }
 
+/* ── Actions row — icon buttons grouped with tight gap ───────────────── */
+/* Figma: gap space-50 (4px) between icon buttons */
 .actions {
   display: inline-flex;
   align-items: center;
-  gap: var(--ld-primitive-scale-space-100, 8px);
+  gap: var(--ld-primitive-scale-space-50, 4px);
   justify-content: flex-end;
 }

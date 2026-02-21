@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Pencil } from '@/components/icons/Pencil';
 import { CheckCircleFill } from '@/components/icons/CheckCircleFill';
+import { ExclamationCircleFill } from '@/components/icons/ExclamationCircleFill';
 import styles from './DataTableCellInlineEdit.module.css';
 
 interface CommonProps {
@@ -45,8 +46,12 @@ export interface DataTableCellInlineEditTextAreaProps
 }
 
 /**
- * Inline editable cell. Displays the value with a hover edit icon, and opens
- * a dialog with a textarea + Save/Cancel when activated.
+ * Inline editable cell (LD 3.5 DT Cell: Inline Edit Text Area).
+ *
+ * - Alphanumeric: text left, icons (saved ✓ + pencil ✎) on right, shown on hover
+ * - Numeric: icons (pencil ✎ + saved ✓) on left, text right-aligned, shown on hover
+ * - Error (closed): pink background + red border + error icon+text below value
+ * - Open: floating dialog with textarea, error state, Cancel+Save actions
  */
 export const DataTableCellInlineEditTextArea = React.forwardRef<
   HTMLTableCellElement,
@@ -75,14 +80,16 @@ export const DataTableCellInlineEditTextArea = React.forwardRef<
     ref,
   ) => {
     const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+    const isNumeric = variant === 'numeric';
 
-    // Auto-resize textarea
+    // Auto-focus and resize textarea when dialog opens
     React.useEffect(() => {
       if (isOpen && textareaRef.current) {
         const el = textareaRef.current;
         el.style.height = 'auto';
         el.style.height = `${el.scrollHeight}px`;
         el.focus();
+        el.setSelectionRange(el.value.length, el.value.length);
       }
     }, [isOpen, value]);
 
@@ -90,17 +97,43 @@ export const DataTableCellInlineEditTextArea = React.forwardRef<
     React.useEffect(() => {
       if (!isOpen) return;
       const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          onCancel(e);
-        }
+        if (e.key === 'Escape') onCancel(e);
       };
       document.addEventListener('keydown', handleKeyDown);
       return () => document.removeEventListener('keydown', handleKeyDown);
     }, [isOpen, onCancel]);
 
-    const isNumeric = variant === 'numeric';
+    // ── Icons ─────────────────────────────────────────────────────────────
+    // Alphanumeric: [saved?, pencil]   Numeric: [pencil, saved?]
+    // Icons are hidden by default; the CSS .trigger:hover makes .icons visible.
+    const iconsAlphanumeric = (
+      <span className={styles.icons}>
+        {isSaved && (
+          <span className={styles.savedIconWrapper}>
+            <CheckCircleFill aria-hidden />
+          </span>
+        )}
+        <span className={styles.editIconWrapper}>
+          <Pencil aria-hidden />
+        </span>
+      </span>
+    );
 
-    const triggerClassName = [
+    const iconsNumeric = (
+      <span className={styles.icons}>
+        <span className={styles.editIconWrapper}>
+          <Pencil aria-hidden />
+        </span>
+        {isSaved && (
+          <span className={styles.savedIconWrapper}>
+            <CheckCircleFill aria-hidden />
+          </span>
+        )}
+      </span>
+    );
+
+    // ── Trigger class ─────────────────────────────────────────────────────
+    const triggerClass = [
       styles.trigger,
       isNumeric && styles.triggerNumeric,
       error && styles.triggerError,
@@ -108,11 +141,10 @@ export const DataTableCellInlineEditTextArea = React.forwardRef<
       .filter(Boolean)
       .join(' ');
 
-    const cellClassName = [styles.cell, UNSAFE_className]
-      .filter(Boolean)
-      .join(' ');
+    const cellClass = [styles.cell, UNSAFE_className].filter(Boolean).join(' ');
 
-    const textareaClassName = [
+    // ── Textarea class (inside dialog) ────────────────────────────────────
+    const textareaClass = [
       styles.textarea,
       isNumeric && styles.textareaNumeric,
       error && styles.textareaError,
@@ -121,34 +153,49 @@ export const DataTableCellInlineEditTextArea = React.forwardRef<
       .join(' ');
 
     return (
-      <td ref={ref} className={cellClassName} style={UNSAFE_style} {...props}>
-        {/* Trigger button — visible when not editing */}
+      <td ref={ref} className={cellClass} style={UNSAFE_style} {...props}>
+        {/* ── Closed / trigger state ── */}
         {!isOpen && (
-          <button
-            type="button"
-            className={triggerClassName}
-            onClick={onOpen}
-            aria-label={isSaved ? `Saved: ${value}` : `${value}, Edit Cell`}
-          >
-            <span className={styles.triggerValue}>{value}</span>
-            {isSaved ? (
-              <span className={styles.savedIcon}>
-                <CheckCircleFill aria-hidden />
-              </span>
-            ) : (
-              <span className={styles.editIcon}>
-                <Pencil aria-hidden />
-              </span>
+          <div className={styles.triggerWrapper}>
+            <button
+              type="button"
+              className={triggerClass}
+              onClick={onOpen}
+              aria-label={
+                isSaved
+                  ? `Saved: ${value}. Click to edit.`
+                  : `${value}. Click to edit.`
+              }
+            >
+              {isNumeric ? (
+                <>
+                  {iconsNumeric}
+                  <span className={styles.triggerValue}>{value}</span>
+                </>
+              ) : (
+                <>
+                  <span className={styles.triggerValue}>{value}</span>
+                  {iconsAlphanumeric}
+                </>
+              )}
+            </button>
+
+            {/* Error helper text shown below the trigger when not open */}
+            {error && (
+              <div className={styles.triggerHelperText}>
+                <span className={styles.triggerHelperIcon} aria-hidden>
+                  <ExclamationCircleFill />
+                </span>
+                <span>{error}</span>
+              </div>
             )}
-            {error && !isOpen && (
-              <span className={styles.triggerErrorText}>{error}</span>
-            )}
-          </button>
+          </div>
         )}
 
-        {/* Edit dialog */}
+        {/* ── Open / edit dialog ── */}
         {isOpen && (
           <>
+            {/* Click-away overlay */}
             <div
               className={styles.dialogOverlay}
               onClick={(e) =>
@@ -161,13 +208,13 @@ export const DataTableCellInlineEditTextArea = React.forwardRef<
               role="dialog"
               aria-label={a11yDialogLabel}
             >
+              {/* Textarea */}
               <textarea
                 ref={textareaRef}
-                className={textareaClassName}
+                className={textareaClass}
                 value={value}
                 onChange={(e) => {
                   onChange(e);
-                  // Auto-resize
                   const el = e.target;
                   el.style.height = 'auto';
                   el.style.height = `${el.scrollHeight}px`;
@@ -176,7 +223,18 @@ export const DataTableCellInlineEditTextArea = React.forwardRef<
                 rows={1}
                 {...textAreaProps}
               />
-              {error && <div className={styles.dialogError}>{error}</div>}
+
+              {/* Error helper text inside dialog */}
+              {error && (
+                <div className={styles.dialogError}>
+                  <span className={styles.dialogErrorIcon} aria-hidden>
+                    <ExclamationCircleFill />
+                  </span>
+                  <span>{error}</span>
+                </div>
+              )}
+
+              {/* Cancel / Save actions */}
               <div className={styles.dialogActions}>
                 <LinkButton
                   size="small"
