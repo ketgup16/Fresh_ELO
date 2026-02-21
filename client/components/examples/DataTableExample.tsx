@@ -8,15 +8,17 @@ import { DataTableCellStatus } from '@/components/ui/DataTableCellStatus';
 import { DataTableCellSelect, DataTableHeaderSelect } from '@/components/ui/DataTableCellSelect';
 import { DataTableCellActions } from '@/components/ui/DataTableCellActions';
 import { DataTableBulkActions } from '@/components/ui/DataTableBulkActions';
+import { DataTableTitle } from '@/components/ui/DataTableTitle';
 import { IconButton } from '@/components/ui/IconButton';
 import { Button } from '@/components/ui/Button';
 import { FilterChip } from '@/components/ui/FilterChip';
 import { Tag } from '@/components/ui/Tag';
 import { Menu } from '@/components/ui/Menu';
 import { MenuItem } from '@/components/ui/MenuItem';
+import { RowActionsMenu } from './DataTableRowActionsMenu';
 import {
   Search, X, ChevronDown, ChevronUp, ChevronRight, ChevronLeft,
-  MoreHorizontal, Sliders, Download,
+  Sliders, Download,
 } from '@/components/icons';
 
 /* ================================================================
@@ -386,6 +388,23 @@ export default function DataTableExample() {
         />
       )}
 
+      {/* ── Table Title ── */}
+      <DataTableTitle
+        subtitle={t('dataTable.totalResults', { count: sortedData.length })}
+        actions={
+          <>
+            <IconButton aria-label={t('dataTable.tableSettings')} variant="secondary">
+              <Sliders />
+            </IconButton>
+            <IconButton aria-label={t('dataTable.download')} variant="secondary">
+              <Download />
+            </IconButton>
+          </>
+        }
+      >
+        {t('dataTable.colCampaign', 'Campaigns')}
+      </DataTableTitle>
+
       {/* ── Toolbar: Search + Filters + Actions ── */}
       <div style={styles.toolbar}>
         {/* Search */}
@@ -449,25 +468,17 @@ export default function DataTableExample() {
           ))}
         </div>
 
-        {/* Action icons */}
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginLeft: 'auto' }}>
-          <IconButton aria-label={t('dataTable.tableSettings')} variant="secondary">
-            <Sliders />
-          </IconButton>
-          <IconButton aria-label={t('dataTable.download')} variant="secondary">
-            <Download />
-          </IconButton>
-        </div>
       </div>
 
       {/* ── Table ── */}
-      <DataTable>
+      <DataTable rounded elevated>
         <DataTableHead>
           <DataTableRow>
             <DataTableHeaderSelect
               checked={allSelected}
               indeterminate={someSelected}
               onChange={toggleAll}
+              frozen="left"
               UNSAFE_style={{ width: columnWidths.select }}
             />
             <DataTableHeader onSort={handleSort('name')} sort={sortFor('name')} width={columnWidths.campaign} resizable onResize={handleColumnResize('campaign')}>
@@ -491,7 +502,7 @@ export default function DataTableExample() {
             <DataTableHeader alignment="right" onSort={handleSort('pacing')} sort={sortFor('pacing')} width={columnWidths.pacing} resizable onResize={handleColumnResize('pacing')}>
               {t('dataTable.colPacing')}
             </DataTableHeader>
-            <DataTableHeader alignment="right" width={columnWidths.actions}>
+            <DataTableHeader alignment="right" width={columnWidths.actions} frozen="right">
               {t('dataTable.colActions')}
             </DataTableHeader>
           </DataTableRow>
@@ -512,6 +523,7 @@ export default function DataTableExample() {
                   a11yLabelledBy={`name-${campaign.id}`}
                   checked={selectedIds.has(campaign.id)}
                   onChange={() => toggleRow(campaign.id)}
+                  frozen="left"
                 />
                 <DataTableCell id={`name-${campaign.id}`}>
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px' }}>
@@ -565,17 +577,15 @@ export default function DataTableExample() {
                     </span>
                   ) : '-'}
                 </DataTableCell>
-                <DataTableCellActions>
-                  <IconButton aria-label={t('dataTable.actionsFor', { name: campaign.name })} variant="ghost">
-                    <MoreHorizontal />
-                  </IconButton>
+                <DataTableCellActions frozen="right">
+                  <RowActionsMenu name={campaign.name} />
                 </DataTableCellActions>
               </DataTableRow>
 
               {/* ── Child rows (expanded) ── */}
               {expandedIds.has(campaign.id) && campaign.children?.map((child) => (
                 <DataTableRow key={child.id}>
-                  <DataTableCell>{'\u00A0'}</DataTableCell>
+                  <DataTableCell frozen="left">{'\u00A0'}</DataTableCell>
                   <DataTableCell>
                     <div style={{ paddingLeft: '40px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <span style={{
@@ -605,10 +615,8 @@ export default function DataTableExample() {
                   <DataTableCell>-</DataTableCell>
                   <DataTableCell variant="numeric">-</DataTableCell>
                   <DataTableCell variant="numeric">-</DataTableCell>
-                  <DataTableCellActions>
-                    <IconButton aria-label={t('dataTable.actionsFor', { name: child.name })} variant="ghost">
-                      <MoreHorizontal />
-                    </IconButton>
+                  <DataTableCellActions frozen="right">
+                    <RowActionsMenu name={child.name} />
                   </DataTableCellActions>
                 </DataTableRow>
               ))}

@@ -13,6 +13,8 @@ interface CommonProps {
 export type DataTableHeaderAlignment = 'left' | 'right';
 export type DataTableHeaderSort = 'ascending' | 'descending' | 'none';
 
+export type DataTableFrozen = 'left' | 'right';
+
 export interface DataTableHeaderProps
   extends Omit<React.ComponentPropsWithoutRef<'th'>, 'align' | 'className' | 'style'>,
     CommonProps {
@@ -32,6 +34,8 @@ export interface DataTableHeaderProps
   onResize?: (newWidth: number) => void;
   /** Minimum column width in pixels when resizing. @default 60 */
   minWidth?: number;
+  /** Freeze (sticky) this column to the left or right edge. */
+  frozen?: DataTableFrozen;
 }
 
 /**
@@ -48,6 +52,7 @@ export const DataTableHeader = React.forwardRef<HTMLTableCellElement, DataTableH
       resizable,
       onResize,
       minWidth = 60,
+      frozen,
       UNSAFE_className,
       UNSAFE_style,
       ...props
@@ -87,13 +92,18 @@ export const DataTableHeader = React.forwardRef<HTMLTableCellElement, DataTableH
     const alignClass =
       alignment === 'right' ? styles.headerRight : styles.headerLeft;
 
-    const className = [styles.header, alignClass, UNSAFE_className]
-      .filter(Boolean)
-      .join(' ');
+    const className = [
+      styles.header,
+      alignClass,
+      frozen && styles.frozen,
+      UNSAFE_className,
+    ].filter(Boolean).join(' ');
 
     const style: React.CSSProperties = {
       ...UNSAFE_style,
       ...(width != null ? { width } : {}),
+      ...(frozen === 'left' ? { left: 0 } : {}),
+      ...(frozen === 'right' ? { right: 0 } : {}),
     };
 
     const sortIcon =

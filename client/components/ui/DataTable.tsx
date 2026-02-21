@@ -8,19 +8,39 @@ interface CommonProps {
   UNSAFE_style?: React.CSSProperties;
 }
 
+/* ─── Shared text style type ─── */
+export type DataTableTextStyle = 'body-small' | 'body-medium';
+
 /* ─── DataTable (root) ─── */
 export interface DataTableProps
   extends Omit<React.ComponentPropsWithoutRef<'table'>, 'className' | 'style'>,
     CommonProps {
   children: React.ReactNode;
+  /** Add rounded corners to the table container. */
+  rounded?: boolean;
+  /** Add elevation (box-shadow) to the table container. */
+  elevated?: boolean;
+  /** Text style for cells. @default "body-small" */
+  textStyle?: DataTableTextStyle;
 }
 
 export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>(
-  ({ children, UNSAFE_className, UNSAFE_style, ...props }, ref) => {
-    const className = [styles.table, UNSAFE_className].filter(Boolean).join(' ');
+  ({ children, rounded, elevated, textStyle = 'body-small', UNSAFE_className, UNSAFE_style, ...props }, ref) => {
+    const tableClassName = [
+      styles.table,
+      textStyle === 'body-medium' && styles.textMedium,
+      UNSAFE_className,
+    ].filter(Boolean).join(' ');
+
+    const wrapperClassName = [
+      styles.wrapper,
+      rounded && styles.rounded,
+      elevated && styles.elevated,
+    ].filter(Boolean).join(' ');
+
     return (
-      <div className={styles.wrapper}>
-        <table ref={ref} className={className} style={UNSAFE_style} {...props}>
+      <div className={wrapperClassName}>
+        <table ref={ref} className={tableClassName} style={UNSAFE_style} {...props}>
           {children}
         </table>
       </div>

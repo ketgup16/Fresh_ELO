@@ -10,3 +10,15 @@
 th.cell {
   background: var(--ld-semantic-color-fill-surface-subtle, #F8F8F8);
 }
+
+/* Frozen (sticky) cell */
+.frozen {
+  position: sticky;
+  z-index: 1;
+  background: var(--ld-semantic-color-surface-primary, #fff);
+}
+
+.frozenHeader {
+  z-index: 3;
+  background: var(--ld-semantic-color-fill-surface-subtle, #F8F8F8);
+}

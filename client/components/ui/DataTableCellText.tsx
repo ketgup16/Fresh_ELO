@@ -8,6 +8,7 @@ interface CommonProps {
 }
 
 export type DataTableCellVariant = 'alphanumeric' | 'numeric';
+export type DataTableFrozen = 'left' | 'right';
 
 export interface DataTableCellProps
   extends Omit<React.ComponentPropsWithoutRef<'td'>, 'align' | 'className' | 'style'>,
@@ -15,6 +16,8 @@ export interface DataTableCellProps
   children: React.ReactNode;
   /** Content type styling. @default "alphanumeric" */
   variant?: DataTableCellVariant;
+  /** Freeze (sticky) this cell to the left or right edge. */
+  frozen?: DataTableFrozen;
 }
 
 /**
@@ -22,16 +25,25 @@ export interface DataTableCellProps
  * numeric (right-aligned, monospace) variants.
  */
 export const DataTableCell = React.forwardRef<HTMLTableCellElement, DataTableCellProps>(
-  ({ children, variant = 'alphanumeric', UNSAFE_className, UNSAFE_style, ...props }, ref) => {
+  ({ children, variant = 'alphanumeric', frozen, UNSAFE_className, UNSAFE_style, ...props }, ref) => {
     const variantClass =
       variant === 'numeric' ? styles.cellNumeric : styles.cellAlphanumeric;
 
-    const className = [styles.cell, variantClass, UNSAFE_className]
-      .filter(Boolean)
-      .join(' ');
+    const className = [
+      styles.cell,
+      variantClass,
+      frozen && styles.frozen,
+      UNSAFE_className,
+    ].filter(Boolean).join(' ');
+
+    const style: React.CSSProperties = {
+      ...UNSAFE_style,
+      ...(frozen === 'left' ? { left: 0 } : {}),
+      ...(frozen === 'right' ? { right: 0 } : {}),
+    };
 
     return (
-      <td ref={ref} className={className} style={UNSAFE_style} {...props}>
+      <td ref={ref} className={className} style={style} {...props}>
         {children}
       </td>
     );

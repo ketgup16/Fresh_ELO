@@ -13,6 +13,12 @@
   background: var(--ld-semantic-color-fill-surface-subtle, #F8F8F8);
 }
 
+/* Frozen (sticky) column — z-index 3 so header stays above frozen body cells */
+.frozen {
+  position: sticky;
+  z-index: 3;
+}
+
 .headerLeft {
   text-align: left;
 }

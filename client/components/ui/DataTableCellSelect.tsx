@@ -8,6 +8,8 @@ interface CommonProps {
   UNSAFE_style?: React.CSSProperties;
 }
 
+export type DataTableFrozen = 'left' | 'right';
+
 /* ─── DataTableCellSelect (body row checkbox) ─── */
 
 export interface DataTableCellSelectProps
@@ -22,6 +24,8 @@ export interface DataTableCellSelectProps
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   value?: string;
+  /** Freeze (sticky) this cell to the left or right edge. */
+  frozen?: DataTableFrozen;
 }
 
 export const DataTableCellSelect = React.forwardRef<HTMLTableCellElement, DataTableCellSelectProps>(
@@ -34,17 +38,27 @@ export const DataTableCellSelect = React.forwardRef<HTMLTableCellElement, DataTa
       onChange,
       name,
       value,
+      frozen,
       UNSAFE_className,
       UNSAFE_style,
       ...props
     },
     ref,
   ) => {
-    const className = [styles.cell, UNSAFE_className].filter(Boolean).join(' ');
+    const className = [
+      styles.cell,
+      frozen && styles.frozen,
+      UNSAFE_className,
+    ].filter(Boolean).join(' ');
+
+    const style: React.CSSProperties = {
+      ...UNSAFE_style,
+      ...(frozen === 'left' ? { left: 0 } : {}),
+      ...(frozen === 'right' ? { right: 0 } : {}),
+    };
 
     const handleCheckedChange = React.useCallback(
       (newChecked: boolean | 'indeterminate') => {
-        // Synthesize a change-like event for the consumer
         onChange({
           target: { checked: newChecked === true, name, value },
         } as unknown as React.ChangeEvent<HTMLInputElement>);
@@ -53,7 +67,7 @@ export const DataTableCellSelect = React.forwardRef<HTMLTableCellElement, DataTa
     );
 
     return (
-      <td ref={ref} className={className} style={UNSAFE_style} {...props}>
+      <td ref={ref} className={className} style={style} {...props}>
         <Checkbox
           checked={checked}
           disabled={disabled}
@@ -80,6 +94,8 @@ export interface DataTableHeaderSelectProps
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   value?: string;
+  /** Freeze (sticky) this header cell to the left or right edge. */
+  frozen?: DataTableFrozen;
 }
 
 export const DataTableHeaderSelect = React.forwardRef<HTMLTableCellElement, DataTableHeaderSelectProps>(
@@ -92,13 +108,25 @@ export const DataTableHeaderSelect = React.forwardRef<HTMLTableCellElement, Data
       onChange,
       name,
       value,
+      frozen,
       UNSAFE_className,
       UNSAFE_style,
       ...props
     },
     ref,
   ) => {
-    const className = [styles.cell, UNSAFE_className].filter(Boolean).join(' ');
+    const className = [
+      styles.cell,
+      frozen && styles.frozen,
+      frozen && styles.frozenHeader,
+      UNSAFE_className,
+    ].filter(Boolean).join(' ');
+
+    const style: React.CSSProperties = {
+      ...UNSAFE_style,
+      ...(frozen === 'left' ? { left: 0 } : {}),
+      ...(frozen === 'right' ? { right: 0 } : {}),
+    };
 
     const handleCheckedChange = React.useCallback(
       (newChecked: boolean | 'indeterminate') => {
@@ -110,7 +138,7 @@ export const DataTableHeaderSelect = React.forwardRef<HTMLTableCellElement, Data
     );
 
     return (
-      <th ref={ref} className={className} style={UNSAFE_style} scope="col" {...props}>
+      <th ref={ref} className={className} style={style} scope="col" {...props}>
         <Checkbox
           checked={indeterminate ? 'indeterminate' : checked}
           disabled={disabled}
