@@ -156,6 +156,8 @@
     "navSpinners": "Indicadores de carga",
     "navSpotIcons": "Iconos destacados",
     "navSegmentedControl": "Control segmentado",
+    "navQuantityStepper": "Selector de cantidad",
+    "quantityStepperDesc": "Permite a los clientes incrementar o decrementar la cantidad de un artículo específico.",
     "navSwitches": "Interruptores",
     "navTabNavigation": "Navegación por pestañas",
     "navTags": "Etiquetas",

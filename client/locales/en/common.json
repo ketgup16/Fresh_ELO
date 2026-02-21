@@ -156,6 +156,8 @@
     "navSpinners": "Spinners",
     "navSpotIcons": "Spot Icons",
     "navSegmentedControl": "Segmented Control",
+    "navQuantityStepper": "Quantity Stepper",
+    "quantityStepperDesc": "Enable customers to increment or decrement the quantity of a specific item, supporting primary, secondary, and tertiary visual styles.",
     "navSwitches": "Switches",
     "navTabNavigation": "Tab Navigation",
     "navTags": "Tags",

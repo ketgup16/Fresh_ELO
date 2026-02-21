@@ -79,6 +79,7 @@ const ScrollAreaPage = React.lazy(() => import("./pages/component-library/Scroll
 const SkeletonPage = React.lazy(() => import("./pages/component-library/Skeleton"));
 const SliderPage = React.lazy(() => import("./pages/component-library/Slider"));
 const SegmentedControlsPage = React.lazy(() => import("./pages/component-library/SegmentedControls"));
+const QuantityStepperPage = React.lazy(() => import("./pages/component-library/QuantityStepperPage"));
 const SnackbarsPage = React.lazy(() => import("./pages/component-library/Snackbars"));
 const SpinnersPage = React.lazy(() => import("./pages/component-library/Spinners"));
 const SpotIconsPage = React.lazy(() => import("./pages/component-library/SpotIcons"));
@@ -169,6 +170,7 @@ const App = () => (
                 <Route path="spinners" element={<SpinnersPage />} />
                 <Route path="spot-icons" element={<SpotIconsPage />} />
                 <Route path="segmented-control" element={<SegmentedControlsPage />} />
+                <Route path="quantity-stepper" element={<QuantityStepperPage />} />
                 <Route path="switches" element={<SwitchesPage />} />
                 <Route path="table" element={<TablePage />} />
                 <Route path="tabs" element={<TabsPage />} />

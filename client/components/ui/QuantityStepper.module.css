@@ -1,0 +1,320 @@
+/* QuantityStepper.module.css */
+
+.quantityStepper {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif);
+}
+
+/* ─── ADD BUTTON (initial state) ─── */
+
+.addButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.addButton:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0053e2);
+  outline-offset: 2px;
+}
+
+.addButton:disabled {
+  cursor: not-allowed;
+}
+
+/* ── Size ── */
+
+.addButton--small {
+  padding: 4px 10px 4px 6px;
+  min-height: 24px;
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+.addButton--small.cartMode {
+  padding: 4px 12px;
+}
+
+.addButton--medium {
+  padding: 6px 14px 6px 10px;
+  min-height: 32px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.addButton--medium.cartMode {
+  padding: 6px 16px;
+}
+
+.addButton--large {
+  padding: 8px 18px 8px 12px;
+  min-height: 40px;
+  font-size: 18px;
+  line-height: 1.33;
+}
+
+.addButton--large.cartMode {
+  padding: 8px 20px;
+}
+
+/* ── Primary variant ── */
+
+.addButton--primary {
+  background: var(--ld-semantic-color-action-fill-primary, #0071dc);
+  color: var(--ld-semantic-color-action-text-onfill-primary, #ffffff);
+  border: none;
+}
+
+.addButton--primary:hover:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-primary-hovered, #0060b8);
+}
+
+.addButton--primary:active:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-primary-pressed, #004c94);
+}
+
+.addButton--primary:disabled {
+  background: var(--ld-semantic-color-action-fill-primary-disabled, #c2dcf7);
+  color: var(--ld-semantic-color-action-text-onfill-primary-disabled, #ffffff);
+}
+
+/* ── Secondary variant ── */
+
+.addButton--secondary {
+  background: var(--ld-semantic-color-action-fill-secondary, #ffffff);
+  color: var(--ld-semantic-color-action-text-onfill-secondary, #2e2f32);
+  border: 1.5px solid var(--ld-semantic-color-action-border-secondary, #2e2f32);
+}
+
+.addButton--secondary:hover:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-secondary-hovered, #f0f0f1);
+}
+
+.addButton--secondary:active:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-secondary-pressed, #e0e0e2);
+}
+
+.addButton--secondary:disabled {
+  color: var(--ld-semantic-color-action-text-onfill-secondary-disabled, #babbbe);
+  border-color: var(--ld-semantic-color-action-border-secondary-disabled, #babbbe);
+  background: var(--ld-semantic-color-action-fill-secondary, #ffffff);
+}
+
+/* ── Tertiary variant ── */
+
+.addButton--tertiary {
+  background: var(--ld-semantic-color-action-fill-tertiary, transparent);
+  color: var(--ld-semantic-color-action-text-onfill-tertiary, #2e2f32);
+  border: 1.5px solid var(--ld-semantic-color-action-border-tertiary, #74767c);
+}
+
+.addButton--tertiary:hover:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-tertiary-hovered, #f0f0f1);
+}
+
+.addButton--tertiary:active:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-tertiary-pressed, #e0e0e2);
+}
+
+.addButton--tertiary:disabled {
+  color: var(--ld-semantic-color-action-text-onfill-tertiary-disabled, #babbbe);
+  border-color: var(--ld-semantic-color-action-border-tertiary-disabled, #e6e6e8);
+  background: var(--ld-semantic-color-action-fill-tertiary, transparent);
+}
+
+/* ─── STEPPER (active state) ─── */
+
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+}
+
+/* Stepper sizes */
+
+.stepper--small {
+  min-height: 24px;
+}
+
+.stepper--medium {
+  min-height: 32px;
+}
+
+.stepper--large {
+  min-height: 40px;
+}
+
+/* Stepper variant fills */
+
+.stepper--primary {
+  background: var(--ld-semantic-color-action-fill-primary, #0071dc);
+}
+
+.stepper--secondary {
+  background: var(--ld-semantic-color-action-fill-secondary, #ffffff);
+  border: 1.5px solid var(--ld-semantic-color-action-border-secondary, #2e2f32);
+}
+
+.stepper--tertiary {
+  background: var(--ld-semantic-color-action-fill-tertiary, transparent);
+  border: 1.5px solid var(--ld-semantic-color-action-border-tertiary, #74767c);
+}
+
+/* ─── ICON BUTTONS inside stepper ─── */
+
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease;
+  padding: 4px;
+  background: transparent;
+}
+
+.iconBtn:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0053e2);
+  outline-offset: 2px;
+}
+
+.iconBtn:disabled {
+  cursor: not-allowed;
+}
+
+/* Icon button size */
+
+.iconBtn--small {
+  width: 24px;
+  height: 24px;
+}
+
+.iconBtn--medium {
+  width: 32px;
+  height: 32px;
+}
+
+.iconBtn--large {
+  width: 40px;
+  height: 40px;
+}
+
+/* ── Primary icon buttons ── */
+
+.iconBtn--primary {
+  color: var(--ld-semantic-color-action-text-onfill-primary, #ffffff);
+}
+
+.iconBtn--primary:hover:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-primary-hovered, #0060b8);
+}
+
+.iconBtn--primary:active:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-primary-pressed, #004c94);
+}
+
+.iconBtn--primary:disabled {
+  color: var(--ld-semantic-color-action-text-onfill-primary, #ffffff);
+  opacity: 0.4;
+}
+
+/* ── Secondary icon buttons ── */
+
+.iconBtn--secondary {
+  color: var(--ld-semantic-color-action-text-onfill-secondary, #2e2f32);
+}
+
+.iconBtn--secondary:hover:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-secondary-hovered, #f0f0f1);
+}
+
+.iconBtn--secondary:active:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-secondary-pressed, #e0e0e2);
+}
+
+.iconBtn--secondary:disabled {
+  color: var(--ld-semantic-color-action-text-onfill-secondary-disabled, #babbbe);
+}
+
+/* ── Tertiary icon buttons ── */
+
+.iconBtn--tertiary {
+  color: var(--ld-semantic-color-action-text-onfill-tertiary, #2e2f32);
+}
+
+.iconBtn--tertiary:hover:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-tertiary-hovered, #f0f0f1);
+}
+
+.iconBtn--tertiary:active:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-tertiary-pressed, #e0e0e2);
+}
+
+.iconBtn--tertiary:disabled {
+  color: var(--ld-semantic-color-action-text-onfill-tertiary-disabled, #babbbe);
+}
+
+/* ─── STEPPER CENTER LABEL ─── */
+
+.stepperCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stepperCenter--small {
+  padding: 0 6px;
+  min-width: 60px;
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+.stepperCenter--medium {
+  padding: 0 8px;
+  min-width: 76px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.stepperCenter--large {
+  padding: 0 10px;
+  min-width: 92px;
+  font-size: 18px;
+  line-height: 1.33;
+}
+
+.stepperCenter--primary {
+  color: var(--ld-semantic-color-action-text-onfill-primary, #ffffff);
+}
+
+.stepperCenter--secondary {
+  color: var(--ld-semantic-color-action-text-onfill-secondary, #2e2f32);
+}
+
+.stepperCenter--tertiary {
+  color: var(--ld-semantic-color-action-text-onfill-tertiary, #2e2f32);
+}
+
+/* ─── REDUCED MOTION ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  .addButton,
+  .iconBtn {
+    transition: none;
+  }
+}
