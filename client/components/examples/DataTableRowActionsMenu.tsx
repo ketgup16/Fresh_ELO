@@ -18,7 +18,7 @@ export function RowActionsMenu({ name }: RowActionsMenuProps) {
   const triggerRef = React.useRef<HTMLButtonElement>(null);
 
   return (
-    <div style={{ position: 'relative', display: 'inline-flex' }}>
+    <div data-menu-open={isOpen || undefined} style={{ position: 'relative', display: 'inline-flex' }}>
       <IconButton
         ref={triggerRef}
         aria-label={t('dataTable.actionsFor', { name })}
