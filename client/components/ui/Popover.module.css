@@ -7,7 +7,7 @@
   
   /* Visual */
   background-color: var(--ld-semantic-color-fill-surface-primary, #ffffff);
-  border: 1px solid var(--ld-semantic-color-border-subtle, #e6e6e7);
+  border: none;
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   
   /* Elevation */
