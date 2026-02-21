@@ -355,13 +355,28 @@ function FormGroupsPreview() {
 function CalloutsPreview() {
   return (
     <PreviewFrame>
-      <div style={{
-        background: 'var(--ld-semantic-color-fill-info-subtle, #E5F0FF)',
-        border: '1px solid var(--ld-semantic-color-border-info, #0071DC)',
-        borderRadius: '6px', padding: '8px 12px', maxWidth: '180px',
-        fontSize: '12px', color: 'var(--ld-semantic-color-text, #2E2F32)',
-      }}>
-        Helpful tip for the user
+      <div style={{ position: 'relative', maxWidth: '180px' }}>
+        <div style={{
+          background: 'var(--ld-semantic-color-surface, #FFFFFF)',
+          border: '1px solid var(--ld-semantic-color-border-moderate, #CECED0)',
+          borderRadius: '6px', padding: '8px 12px',
+          fontSize: '12px', color: 'var(--ld-semantic-color-text, #2E2F32)',
+          boxShadow: 'var(--ld-semantic-elevation-100)',
+        }}>
+          Helpful tip for the user
+        </div>
+        {/* Arrow */}
+        <div style={{
+          position: 'absolute', bottom: '-5px', left: '24px',
+          width: '10px', height: '5px', overflow: 'hidden',
+        }}>
+          <div style={{
+            width: '8px', height: '8px',
+            background: 'var(--ld-semantic-color-surface, #FFFFFF)',
+            border: '1px solid var(--ld-semantic-color-border-moderate, #CECED0)',
+            transform: 'rotate(45deg)', position: 'absolute', top: '-4px', left: '1px',
+          }} />
+        </div>
       </div>
     </PreviewFrame>
   );
@@ -1056,11 +1071,11 @@ function PaginationPreview() {
         {[1, 2, 3].map(n => (
           <div key={n} style={{
             width: '24px', height: '24px', borderRadius: '4px',
-            background: n === 1 ? 'var(--ld-semantic-color-action-fill-primary, #0053e2)' : 'transparent',
-            border: n !== 1 ? '1px solid var(--ld-semantic-color-border-subtle, #BABBBE)' : 'none',
+            background: n === 1 ? 'var(--ld-semantic-color-fill-subtle, #F5F5F6)' : 'transparent',
+            border: '1px solid var(--ld-semantic-color-border-subtle, #BABBBE)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: '11px', fontWeight: n === 1 ? 700 : 400,
-            color: n === 1 ? 'white' : 'var(--ld-semantic-color-text, #2E2F32)',
+            color: 'var(--ld-semantic-color-text, #2E2F32)',
           }}>{n}</div>
         ))}
         <div style={{
