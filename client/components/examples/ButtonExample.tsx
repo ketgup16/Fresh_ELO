@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
-import { Plus, ChevronRight, Download, Trash, X, Settings } from '@/components/icons';
+import { Plus, ChevronRight, Download, Trash } from '@/components/icons';
 
 /**
  * Example component demonstrating Button usage with Living Design 3.5
@@ -117,6 +117,7 @@ export const ButtonExample: React.FC = () => {
             <ButtonGroup>
               <Button variant="primary" size="large" isLoading>Primary</Button>
               <Button variant="secondary" size="large" isLoading>Secondary</Button>
+              <Button variant="tertiary" size="large" isLoading>Tertiary</Button>
               <Button variant="destructive" size="large" isLoading>Destructive</Button>
             </ButtonGroup>
           </div>
@@ -194,24 +195,6 @@ export const ButtonExample: React.FC = () => {
           >
             Delete Permanently
           </Button>
-        </ButtonGroup>
-      </section>
-
-      <section>
-        <h2 style={{ marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>
-          Icon-Only Button
-        </h2>
-        <ButtonGroup>
-          <Button
-            variant="tertiary"
-            aria-label="Close"
-            leading={<X style={{ width: 20, height: 20 }} />}
-          />
-          <Button
-            variant="secondary"
-            aria-label="Settings"
-            leading={<Settings style={{ width: 20, height: 20 }} />}
-          />
         </ButtonGroup>
       </section>
     </div>
