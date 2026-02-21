@@ -185,7 +185,7 @@ export function TabExample() {
             <Tab 
               value="active"
               trailing={
-                <Tag variant="neutral" size="small">
+                <Tag variant="secondary">
                   24
                 </Tag>
               }
@@ -195,7 +195,7 @@ export function TabExample() {
             <Tab 
               value="paused"
               trailing={
-                <Tag variant="neutral" size="small">
+                <Tag variant="secondary">
                   8
                 </Tag>
               }
@@ -205,7 +205,7 @@ export function TabExample() {
             <Tab 
               value="completed"
               trailing={
-                <Tag variant="neutral" size="small">
+                <Tag variant="secondary">
                   156
                 </Tag>
               }

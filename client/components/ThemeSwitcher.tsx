@@ -19,7 +19,7 @@ export function ThemeSwitcher() {
       <Select
         label="Theme"
         value={currentTheme}
-        onValueChange={(value) => switchTheme(value)}
+        onValueChange={(value) => switchTheme(value as Parameters<typeof switchTheme>[0])}
         disabled={isLoading}
         placeholder={isLoading ? 'Loading...' : 'Select Theme'}
       >

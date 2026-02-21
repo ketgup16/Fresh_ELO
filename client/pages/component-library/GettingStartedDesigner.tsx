@@ -23,7 +23,7 @@ const PROMPT_CATEGORIES: { category: string; value: string; prompts: Prompt[] }[
       { label: 'Add i18n (EN/ES/FR)', full: 'Add i18n support to my project with English, Spanish, and French. Set up the translation files and wrap the app with the i18n provider.' },
       { label: 'Theme switcher', full: 'Set up the theme switcher so I can toggle between Walmart, Sam\'s Club, and custom themes. Add the ThemeSwitcher component to the masthead.' },
       { label: 'Netlify deployment', full: 'Configure the project for Netlify deployment. Make sure the build command, publish directory, and API redirects are all set up correctly.' },
-      { label: 'Remove template pages\', full: \'I\\\'m not using this for Partner Experiences. Remove the template application pages (Landing Summary, Catalog, Detail Item, Page Template, Home) from the project, clean up the routes in App.tsx, and point the home route to the Component Library.' },
+      { label: 'Remove template pages', full: "I'm not using this for Partner Experiences. Remove the template application pages (Landing Summary, Catalog, Detail Item, Page Template, Home) from the project, clean up the routes in App.tsx, and point the home route to the Component Library." },
     ],
   },
   {

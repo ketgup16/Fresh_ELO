@@ -197,7 +197,7 @@ export default function ComponentLibraryOverview() {
             width: '24px',
             height: '24px',
           }}>
-            <Search size={24} style={{ width: '24px', height: '24px', color: 'var(--ld-semantic-color-text-secondary, #74767C)' }} />
+            <Search style={{ width: '24px', height: '24px', color: 'var(--ld-semantic-color-text-secondary, #74767C)' }} />
           </div>
           <input
             type="text"
@@ -289,7 +289,7 @@ export default function ComponentLibraryOverview() {
           padding: '64px 32px',
           color: 'var(--ld-semantic-color-text-secondary, #74767C)',
         }}>
-          <Search size={24} style={{ width: '24px', height: '24px', margin: '0 auto 16px', opacity: 0.5 }} />
+          <Search style={{ width: '24px', height: '24px', margin: '0 auto 16px', opacity: 0.5 }} />
           <p style={{ fontSize: '16px', marginBottom: '8px' }}>{t('componentLibrary.noComponentsFound')}</p>
           <p style={{ fontSize: '14px' }}>{t('componentLibrary.tryDifferentSearch')}</p>
         </div>

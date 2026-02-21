@@ -2,7 +2,7 @@ import * as React from "react";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "@/components/icons";
 
 import { cn } from "@/lib/utils";
-import { ButtonProps, buttonVariants } from "@/components/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 import styles from "./Pagination.module.css";
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
@@ -37,8 +37,8 @@ PaginationItem.displayName = "PaginationItem";
 
 type PaginationLinkProps = {
   isActive?: boolean;
-} & Pick<ButtonProps, "size"> &
-  React.ComponentProps<"a">;
+  size?: "default" | "sm" | "lg" | "icon";
+} & React.ComponentProps<"a">;
 
 const PaginationLink = ({
   className,

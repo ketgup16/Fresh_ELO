@@ -7,9 +7,10 @@ import styles from "./Toggle.module.css";
 
 /* ── Context ── */
 
-const ToggleGroupContext = React.createContext<
-  VariantProps<typeof toggleVariants>
->({
+const ToggleGroupContext = React.createContext<{
+  size?: string | null;
+  variant?: string | null;
+}>({
   size: "default",
   variant: "default",
 });
@@ -70,8 +71,8 @@ ToggleGroup.displayName = "ToggleGroup";
 /* ── Single ── */
 
 interface ToggleGroupInternalProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: string | null;
-  size?: string | null;
+  variant?: ToggleVariant | string | null;
+  size?: ToggleSize | string | null;
 }
 
 const ToggleGroupSingleCtx = React.createContext<{

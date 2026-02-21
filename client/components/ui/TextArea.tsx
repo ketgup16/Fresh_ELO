@@ -64,6 +64,11 @@ export interface TextAreaProps {
   maxLength?: number;
   
   /**
+   * Placeholder text for the textarea
+   */
+  placeholder?: string;
+
+  /**
    * ID for the textarea element
    */
   id?: string;
@@ -115,6 +120,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       error,
       maxLength,
       id: providedId,
+      placeholder,
       a11yMagicLabel = 'AI Generated',
       maxLengthA11yAnnouncement,
       textAreaProps,
@@ -211,6 +217,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
           disabled={disabled}
           readOnly={readOnly}
           maxLength={maxLength}
+          placeholder={placeholder}
           aria-describedby={describedBy.length > 0 ? describedBy.join(' ') : undefined}
           aria-invalid={error ? 'true' : 'false'}
           {...textAreaProps}

@@ -150,7 +150,7 @@ export function ComponentLibraryLayout() {
           </p>
           
           {navigationSections.map((section, sectionIndex) => (
-            <div key={section.title} style={{ marginBottom: sectionIndex < navigationSections.length - 1 ? '24px' : '0' }}>
+            <div key={section.titleKey} style={{ marginBottom: sectionIndex < navigationSections.length - 1 ? '24px' : '0' }}>
               <h2 style={{
                 fontSize: '11px',
                 fontWeight: '700',

@@ -333,7 +333,7 @@ export default function MartyAssistant() {
           <div className="flex items-center gap-4">
             <Button
               variant="secondary"
-              className="text-base"
+              UNSAFE_className="text-base"
             >
               Save and review
             </Button>
@@ -341,7 +341,7 @@ export default function MartyAssistant() {
               disabled={!dailyBudget}
               onClick={() => navigate('/campaign')}
               variant="primary"
-              className="text-base"
+              UNSAFE_className="text-base"
             >
               Launch campaign
             </Button>

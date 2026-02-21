@@ -50,22 +50,46 @@ function Popover({ children, open: controlledOpen, defaultOpen = false, onOpenCh
 
 /* ── Trigger ── */
 
-const PopoverTrigger = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
-  ({ children, onClick, ...props }, ref) => {
+interface PopoverTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  asChild?: boolean;
+}
+
+const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
+  ({ children, onClick, asChild, ...props }, ref) => {
     const { open, setOpen, triggerRef } = usePopoverCtx();
+
+    const setRef = (node: HTMLElement | null) => {
+      (triggerRef as React.MutableRefObject<HTMLElement | null>).current = node;
+      if (typeof ref === 'function') ref(node as HTMLButtonElement | null);
+      else if (ref) (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node as HTMLButtonElement | null;
+    };
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      setOpen(!open);
+      onClick?.(e);
+    };
+
+    if (asChild && React.isValidElement(children)) {
+      return React.cloneElement(children as React.ReactElement<any>, {
+        ref: setRef,
+        'aria-expanded': open,
+        'aria-haspopup': 'dialog',
+        'data-state': open ? 'open' : 'closed',
+        onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+          handleClick(e);
+          (children as React.ReactElement<any>).props?.onClick?.(e);
+        },
+      });
+    }
 
     return (
       <button
-        ref={(node) => {
-          (triggerRef as React.MutableRefObject<HTMLElement | null>).current = node;
-          if (typeof ref === 'function') ref(node);
-          else if (ref) (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
-        }}
+        ref={setRef as React.Ref<HTMLButtonElement>}
         type="button"
         aria-expanded={open}
         aria-haspopup="dialog"
         data-state={open ? "open" : "closed"}
-        onClick={(e) => { setOpen(!open); onClick?.(e); }}
+        onClick={handleClick}
         {...props}
       >
         {children}

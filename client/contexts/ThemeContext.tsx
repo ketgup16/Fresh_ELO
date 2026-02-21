@@ -107,7 +107,7 @@ function loadThemeCSS(theme: Theme): Promise<void> {
       }
     };
 
-    const handleError = (_error: Event, _file: {href: string, source: string}) => {
+    const handleError = (_error: string | Event, _file: {href: string, source: string}) => {
       if (!hasError) {
         hasError = true;
         reject(new Error(`Failed to load theme: ${theme.name}`));
@@ -123,7 +123,7 @@ function loadThemeCSS(theme: Theme): Promise<void> {
         checkAllLoaded();
       };
 
-      link.onerror = (error) => handleError(error, file);
+      link.onerror = (error: string | Event) => handleError(error, file);
 
       document.head.appendChild(link);
     });
@@ -191,7 +191,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // Load initial theme on mount (if not base, since base is already in global.css)
   useEffect(() => {
     const theme = getThemeById(currentTheme);
-    if (theme && theme.id !== 'base') {
+    if (theme && (theme.id as string) !== 'base') {
       setIsLoading(true);
       loadThemeCSS(theme)
         .then(() => setIsLoading(false))
