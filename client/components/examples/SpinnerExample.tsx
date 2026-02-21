@@ -34,15 +34,15 @@ export const SpinnerExample: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
 
-      {/* ── Petal-Build Animation ────────────────────────────────── */}
+      {/* ── Sizes & Colors ───────────────────────────────────────── */}
       <section>
-        <h3 style={sectionHeadingStyle}>Petal-Build Animation</h3>
+        <h3 style={sectionHeadingStyle}>Spinner</h3>
         <p style={{ ...sublabelStyle, marginBottom: '24px', fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
-          Petals appear one-by-one to form the full spark, then disappear in reverse — cycling continuously.
+          A pulsing spark that indicates a loading state. Available in two sizes and two color variants.
         </p>
 
         <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-          {/* Gray on light */}
+          {/* Neutral on light */}
           <div
             style={{
               ...cardStyle,
@@ -56,15 +56,15 @@ export const SpinnerExample: React.FC = () => {
           >
             <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="petal-build" color="neutral" size="large" />
+                <Spinner color="neutral" size="large" />
                 <span style={labelStyle}>Large</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="petal-build" color="neutral" size="small" />
+                <Spinner color="neutral" size="small" />
                 <span style={labelStyle}>Small</span>
               </div>
             </div>
-            <span style={sublabelStyle}>Gray · Light background</span>
+            <span style={sublabelStyle}>Neutral · Light background</span>
           </div>
 
           {/* White on dark */}
@@ -83,125 +83,11 @@ export const SpinnerExample: React.FC = () => {
           >
             <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="petal-build" color="white" size="large" />
+                <Spinner color="white" size="large" />
                 <span style={{ ...labelStyle, color: 'rgba(255,255,255,0.8)' }}>Large</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="petal-build" color="white" size="small" />
-                <span style={{ ...labelStyle, color: 'rgba(255,255,255,0.8)' }}>Small</span>
-              </div>
-            </div>
-            <span style={{ ...sublabelStyle, color: 'rgba(255,255,255,0.6)' }}>White · Dark background</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Spinner Animation ─────────────────────────────────── */}
-      <section>
-        <h3 style={sectionHeadingStyle}>Spinner</h3>
-        <p style={{ ...sublabelStyle, marginBottom: '24px', fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary)' }}>
-          Spark petals gather together then spread back out — a smooth, looping loading indicator.
-        </p>
-
-        <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-          <div
-            style={{
-              ...cardStyle,
-              flex: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '16px',
-              minWidth: '160px',
-            }}
-          >
-            <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="woof" color="neutral" size="large" />
-                <span style={labelStyle}>Large</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="woof" color="neutral" size="small" />
-                <span style={labelStyle}>Small</span>
-              </div>
-            </div>
-            <span style={sublabelStyle}>Gray · Light background</span>
-          </div>
-
-          <div
-            style={{
-              flex: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '16px',
-              padding: '24px',
-              backgroundColor: 'var(--ld-semantic-color-fill-primary, #0071DC)',
-              borderRadius: '8px',
-              minWidth: '160px',
-            }}
-          >
-            <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="woof" color="white" size="large" />
-                <span style={{ ...labelStyle, color: 'rgba(255,255,255,0.8)' }}>Large</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="woof" color="white" size="small" />
-                <span style={{ ...labelStyle, color: 'rgba(255,255,255,0.8)' }}>Small</span>
-              </div>
-            </div>
-            <span style={{ ...sublabelStyle, color: 'rgba(255,255,255,0.6)' }}>White · Dark background</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Rotate Animation (Classic) ───────────────────────────── */}
-      <section>
-        <h3 style={sectionHeadingStyle}>Rotate Animation (Classic)</h3>
-
-        <div style={{ display: 'flex', gap: '24px' }}>
-          <div
-            style={{
-              ...cardStyle,
-              flex: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '8px',
-            }}
-          >
-            <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="rotate" color="neutral" size="large" />
-                <span style={labelStyle}>Large</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="rotate" color="neutral" size="small" />
-                <span style={labelStyle}>Small</span>
-              </div>
-            </div>
-            <span style={sublabelStyle}>Gray · Light background</span>
-          </div>
-          <div
-            style={{
-              flex: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '24px',
-              backgroundColor: 'var(--ld-semantic-color-fill-primary, #0071DC)',
-              borderRadius: '8px',
-            }}
-          >
-            <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="rotate" color="white" size="large" />
-                <span style={{ ...labelStyle, color: 'rgba(255,255,255,0.8)' }}>Large</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="rotate" color="white" size="small" />
+                <Spinner color="white" size="small" />
                 <span style={{ ...labelStyle, color: 'rgba(255,255,255,0.8)' }}>Small</span>
               </div>
             </div>
@@ -224,7 +110,7 @@ export const SpinnerExample: React.FC = () => {
               gap: '12px',
             }}
           >
-            <Spinner animation="petal-build" size="small" />
+            <Spinner size="small" />
             <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px', color: 'var(--ld-semantic-color-text-primary)' }}>
               Loading your data…
             </span>
@@ -234,13 +120,13 @@ export const SpinnerExample: React.FC = () => {
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             <Button variant="primary" disabled>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="petal-build" color="white" size="small" />
+                <Spinner color="white" size="small" />
                 <span>Saving…</span>
               </div>
             </Button>
             <Button variant="secondary" disabled>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Spinner animation="petal-build" size="small" />
+                <Spinner size="small" />
                 <span>Processing…</span>
               </div>
             </Button>
@@ -258,7 +144,7 @@ export const SpinnerExample: React.FC = () => {
               minHeight: '200px',
             }}
           >
-            <Spinner animation="petal-build" size="large" a11yLabel="Loading content…" />
+            <Spinner size="large" a11yLabel="Loading content…" />
             <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '16px', color: 'var(--ld-semantic-color-text-primary)' }}>
               Loading content…
             </span>
@@ -278,11 +164,11 @@ export const SpinnerExample: React.FC = () => {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <Spinner animation="petal-build" size="small" a11yLabel="Saving your changes…" />
+            <Spinner size="small" a11yLabel="Saving your changes…" />
             <span style={labelStyle}>aria-label: "Saving your changes…"</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <Spinner animation="petal-build" size="small" a11yLabel="Uploading file…" />
+            <Spinner size="small" a11yLabel="Uploading file…" />
             <span style={labelStyle}>aria-label: "Uploading file…"</span>
           </div>
           <p style={{ ...sublabelStyle, marginTop: '8px', fontStyle: 'italic' }}>

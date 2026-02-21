@@ -1,171 +1,86 @@
-/* Base spinner container */
-.spinner {
+/* Container */
+.container {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   vertical-align: middle;
 }
 
-/* SVG element */
-.spinner__svg {
-  display: block;
-  shape-rendering: geometricPrecision;
-}
-
-/* Rotate animation mode (default) */
-.spinner:not(.spinner--petal-build):not(.spinner--woof) .spinner__svg {
-  animation: spinnerRotate 1s linear infinite;
-  will-change: transform;
-}
-
 /* Size variants */
-.spinner--size-large {
+.large {
   width: 48px;
   height: 48px;
 }
 
-.spinner--size-large .spinner__svg {
+.large svg {
   width: 48px;
   height: 48px;
 }
 
-.spinner--size-small {
+.small {
   width: 24px;
   height: 24px;
 }
 
-.spinner--size-small .spinner__svg {
+.small svg {
   width: 24px;
   height: 24px;
 }
 
-/* Color variants using LD 3.5 semantic tokens */
-.spinner--color-neutral .spinner__path {
+/* Color variants using LD semantic tokens */
+.neutral .pill {
   fill: var(--ld-semantic-color-loading, #74767c);
 }
 
-.spinner--color-white .spinner__path {
+.white .pill {
   fill: var(--ld-semantic-color-loading-white, #ffffff);
 }
 
-/* Rotate mode: path opacity stagger for "chasing" effect */
-.spinner:not(.spinner--petal-build):not(.spinner--woof) .spinner__path {
-  opacity: calc(1 - (var(--path-index) * 0.15));
-  transform-origin: center;
-}
-
-/* ──────────────────────────────────────────────────────────
-   Petal-build animation mode
-   Petals are revealed one by one via JavaScript-controlled
-   opacity, smoothly transitioning with CSS.
-   ────────────────────────────────────────────────────────── */
-.spinner--petal-build .spinner__svg {
-  animation: none;
-}
-
-.spinner--petal-build .spinner__path {
-  /* Smooth crossfade between visible/invisible states */
-  transition: opacity 0.12s ease-in-out;
-  /* Override stagger opacity from rotate mode */
-  opacity: 0;
-}
-
-/* ──────────────────────────────────────────────────────────
-   Woof animation mode
-   Spark petals gather to the top then spread back out.
-   Based on the Android animated-vector spec.
-
-   Timeline (1200ms total, looping):
-     0–200ms   : idle (petals in normal spark positions)
-     200–600ms : gather — petals rotate to converge at the top
-     600–1200ms: spread — petals continue rotating back to start
-
-   Each petal rotates a full 360° per cycle. Dedicated keyframes
-   per petal control gather vs spread proportion.
-   ────────────────────────────────────────────────────────── */
-.spinner--woof .spinner__svg {
-  animation: none;
-}
-
-.spinner--woof .spinner__petal-group {
+/* Each pill is a petal of the spark, rotated 60° apart around the center.
+   The first pill (no numbered class) is at 0° (top).
+   A staggered fade animation creates the chasing effect. */
+.pill {
   transform-origin: 24px 24px;
-  will-change: transform;
+  animation: spinnerFade 1s linear infinite;
 }
 
-/* Per-petal animation assignments */
-.spinner--woof .spinner__petal-group--60 {
-  animation: sparkGather60 1.2s ease-in-out infinite;
-}
-.spinner--woof .spinner__petal-group--120 {
-  animation: sparkGather120 1.2s ease-in-out infinite;
-}
-.spinner--woof .spinner__petal-group--180 {
-  animation: sparkGather180 1.2s ease-in-out infinite;
-}
-.spinner--woof .spinner__petal-group--240 {
-  animation: sparkGather240 1.2s ease-in-out infinite;
-}
-.spinner--woof .spinner__petal-group--300 {
-  animation: sparkGather300 1.2s ease-in-out infinite;
+.pill2 {
+  transform: rotate(60deg);
+  animation-delay: -0.833s;
 }
 
-/* Top-left petal: 60° gather, 300° spread */
-@keyframes sparkGather60 {
-  0%, 16.67% { transform: rotate(0deg); }
-  50%        { transform: rotate(60deg); }
-  100%       { transform: rotate(360deg); }
+.pill3 {
+  transform: rotate(120deg);
+  animation-delay: -0.667s;
 }
 
-/* Bottom-left petal: 120° gather, 240° spread */
-@keyframes sparkGather120 {
-  0%, 16.67% { transform: rotate(0deg); }
-  50%        { transform: rotate(120deg); }
-  100%       { transform: rotate(360deg); }
+.pill4 {
+  transform: rotate(180deg);
+  animation-delay: -0.5s;
 }
 
-/* Bottom petal: 180° gather, 180° spread */
-@keyframes sparkGather180 {
-  0%, 16.67% { transform: rotate(0deg); }
-  50%        { transform: rotate(180deg); }
-  100%       { transform: rotate(360deg); }
+.pill5 {
+  transform: rotate(240deg);
+  animation-delay: -0.333s;
 }
 
-/* Bottom-right petal: 240° gather, 120° spread */
-@keyframes sparkGather240 {
-  0%, 16.67% { transform: rotate(0deg); }
-  50%        { transform: rotate(240deg); }
-  100%       { transform: rotate(360deg); }
+.pill6 {
+  transform: rotate(300deg);
+  animation-delay: -0.167s;
 }
 
-/* Top-right petal: 300° gather, 60° spread */
-@keyframes sparkGather300 {
-  0%, 16.67% { transform: rotate(0deg); }
-  50%        { transform: rotate(300deg); }
-  100%       { transform: rotate(360deg); }
-}
-
-/* Rotation animation */
-@keyframes spinnerRotate {
-  0% {
-    transform: rotate(0deg);
+@keyframes spinnerFade {
+  0%, 100% {
+    opacity: 1;
   }
-  100% {
-    transform: rotate(360deg);
+  50% {
+    opacity: 0.25;
   }
 }
 
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .spinner:not(.spinner--petal-build):not(.spinner--woof) .spinner__svg {
-    animation-duration: 2.8s;
-  }
-
-  .spinner--woof .spinner__petal-group {
-    animation-duration: 2.4s;
-  }
-
-  /* Slow down petal transitions for reduced motion */
-  .spinner--petal-build .spinner__path {
-    transition-duration: 0.3s;
+  .pill {
+    animation-duration: 2s;
   }
 }

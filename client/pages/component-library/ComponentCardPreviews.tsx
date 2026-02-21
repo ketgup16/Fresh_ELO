@@ -627,8 +627,8 @@ function SpinnersPreview() {
   return (
     <PreviewFrame>
       <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-        <Spinner animation="petal-build" size="large" />
-        <Spinner animation="petal-build" size="small" />
+        <Spinner size="large" />
+        <Spinner size="small" />
       </div>
     </PreviewFrame>
   );
