@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styles from './QuantityStepper.module.css';
 
 export type QuantityStepperVariant = 'primary' | 'secondary' | 'tertiary';
@@ -94,131 +94,214 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
     ref
   ) => {
     const [count, setCount] = useState(defaultCount);
-  // Track which animation class to apply to stepper/addButton on transition
-  const [stepperAnimClass, setStepperAnimClass] = useState('');
-  const [addBtnAnimClass, setAddBtnAnimClass] = useState('');
-
-  const iconSize = ICON_SIZES[size];
-  const isAtMax = maxQuantity !== undefined && count >= maxQuantity;
-  const isInAddMode = count === 0;
-
-  const handleAdd = () => {
-    if (disabled) return;
-    // Arm the expand animation — fires when stepper mounts
-    setStepperAnimClass(styles[`stepperAnimate--${size}`]);
-    setCount(1);
-    onChange?.(1);
-  };
-
-  const handleIncrement = () => {
-    if (disabled || isAtMax) return;
-    const next = count + 1;
-    setCount(next);
-    onChange?.(next);
-  };
-
-  const handleDecrement = () => {
-    if (disabled) return;
-    const next = Math.max(0, count - 1);
-    if (next === 0) {
-      // Arm the return animation — fires when add button remounts
-      setAddBtnAnimClass(styles.addBtnReturn);
-    }
-    setCount(next);
-    onChange?.(next);
-  };
-
     const isIconOnly = !cartLabel && !showAddLabel;
-    const addBtnClass = [
-      styles.addButton,
-      styles[`addButton--${variant}`],
-      styles[`addButton--${size}`],
-      cartLabel ? styles.cartMode : '',
-      isIconOnly ? styles.iconOnly : '',
-      addBtnAnimClass,
-    ]
-      .filter(Boolean)
-      .join(' ');
 
-    const stepperClass = [
-      styles.stepper,
-      styles[`stepper--${variant}`],
-      styles[`stepper--${size}`],
-      stepperAnimClass,
-    ]
-      .filter(Boolean)
-      .join(' ');
+    // For icon-only mode: controls whether the stepper is expanded or collapsed to a circle.
+    // For non-icon-only: stepper is always expanded when count > 0.
+    const [isOpen, setIsOpen] = useState(false);
+    const closeTimerRef = useRef<ReturnType<typeof setTimeout>>();
+
+    const isExpanded = isIconOnly ? (isOpen && count > 0) : (count > 0);
+    const iconSize = ICON_SIZES[size];
+    const isAtMax = maxQuantity !== undefined && count >= maxQuantity;
+
+    // Cleanup close timer on unmount
+    useEffect(() => {
+      return () => {
+        if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+      };
+    }, []);
+
+    const handleAdd = useCallback(() => {
+      if (disabled) return;
+      setCount(1);
+      setIsOpen(true);
+      onChange?.(1);
+    }, [disabled, onChange]);
+
+    const handleIncrement = useCallback((e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (disabled || isAtMax) return;
+      const next = count + 1;
+      setCount(next);
+      onChange?.(next);
+    }, [disabled, isAtMax, count, onChange]);
+
+    const handleDecrement = useCallback((e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (disabled) return;
+      const next = Math.max(0, count - 1);
+      setCount(next);
+      onChange?.(next);
+      if (next === 0) {
+        setIsOpen(false);
+      }
+    }, [disabled, count, onChange]);
+
+    // Click on the pill container when collapsed
+    const handlePillClick = useCallback(() => {
+      if (disabled || isExpanded) return;
+      if (count === 0) {
+        handleAdd();
+      } else {
+        // Icon-only mode, count > 0, collapsed → expand
+        setIsOpen(true);
+      }
+    }, [disabled, isExpanded, count, handleAdd]);
+
+    // Auto-collapse for icon-only mode
+    const handleMouseEnter = useCallback(() => {
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+        closeTimerRef.current = undefined;
+      }
+      if (isIconOnly && count > 0 && !isOpen) {
+        setIsOpen(true);
+      }
+    }, [isIconOnly, count, isOpen]);
+
+    const handleMouseLeave = useCallback(() => {
+      if (!isIconOnly || !isOpen) return;
+      closeTimerRef.current = setTimeout(() => {
+        setIsOpen(false);
+      }, 500);
+    }, [isIconOnly, isOpen]);
+
+    // Keyboard support for collapsed pill
+    const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+      if (isExpanded) return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handlePillClick();
+      }
+    }, [isExpanded, handlePillClick]);
+
+    // Blur handling for icon-only auto-collapse
+    const handleBlur = useCallback((e: React.FocusEvent) => {
+      if (!isIconOnly || !isOpen) return;
+      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+        closeTimerRef.current = setTimeout(() => {
+          setIsOpen(false);
+        }, 300);
+      }
+    }, [isIconOnly, isOpen]);
+
+    const handleFocus = useCallback(() => {
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+        closeTimerRef.current = undefined;
+      }
+    }, []);
+
+    // ── Build class names ──
+
+    const shouldBeCircle = isIconOnly && !isExpanded;
+
+    const pillClass = [
+      styles.pill,
+      styles[`pill--${variant}`],
+      styles[`pill--${size}`],
+      isExpanded ? styles.pillExpanded : '',
+      shouldBeCircle ? styles.pillCircle : '',
+    ].filter(Boolean).join(' ');
+
+    const sideSlotClass = [
+      styles.slotSide,
+      styles[`slotSide--${size}`],
+    ].filter(Boolean).join(' ');
 
     const iconBtnClass = [
       styles.iconBtn,
-      styles[`iconBtn--${variant}`],
       styles[`iconBtn--${size}`],
-    ]
-      .filter(Boolean)
-      .join(' ');
+    ].filter(Boolean).join(' ');
 
-    const centerClass = [
-      styles.stepperCenter,
-      styles[`stepperCenter--${size}`],
-      styles[`stepperCenter--${variant}`],
-    ]
-      .filter(Boolean)
-      .join(' ');
+    const centerSlotClass = [
+      styles.slotCenter,
+      styles[`slotCenter--${size}`],
+    ].filter(Boolean).join(' ');
 
-    // Render the Add button (initial state)
-    if (isInAddMode) {
-      return (
-        <div ref={ref} className={styles.quantityStepper}>
-          <button
-            className={addBtnClass}
-            onClick={handleAdd}
-            disabled={disabled}
-            aria-label={cartLabel ?? `${addLabel} item`}
-          >
-            {!cartLabel && (
-              <PlusIcon size={iconSize} />
-            )}
-            {cartLabel ? cartLabel : (showAddLabel ? addLabel : null)}
-          </button>
-        </div>
+    // ── Center content ──
+
+    let centerContent: React.ReactNode;
+
+    if (count === 0) {
+      if (cartLabel) {
+        centerContent = <span>{cartLabel}</span>;
+      } else {
+        centerContent = (
+          <>
+            <PlusIcon size={iconSize} />
+            {showAddLabel && <span className={styles.addText}>{addLabel}</span>}
+          </>
+        );
+      }
+    } else if (isAtMax) {
+      centerContent = (
+        <>
+          <span className={styles.labelText}>Max</span>
+          <span key={count} className={styles.countValue}>{count}</span>
+        </>
+      );
+    } else {
+      centerContent = (
+        <>
+          <span key={count} className={styles.countValue}>{count}</span>
+          <span className={styles.labelText}>{countLabel}</span>
+        </>
       );
     }
 
-    // Render the stepper (active state)
-    const centerContent = isAtMax ? (
-      <>
-        <span>Max</span>
-        <span key={count} className={styles.countValue}>{count}</span>
-      </>
-    ) : (
-      <>
-        <span key={count} className={styles.countValue}>{count}</span>
-        <span>{countLabel}</span>
-      </>
-    );
-
     return (
       <div ref={ref} className={styles.quantityStepper}>
-        <div className={stepperClass} role="group" aria-label="Quantity stepper">
-          <button
-            className={iconBtnClass}
-            onClick={handleDecrement}
-            disabled={disabled}
-            aria-label="Decrease quantity"
-          >
-            <MinusIcon size={iconSize} />
-          </button>
-          <div className={centerClass}>
+        <div
+          className={pillClass}
+          onClick={!isExpanded ? handlePillClick : undefined}
+          onMouseEnter={isIconOnly ? handleMouseEnter : undefined}
+          onMouseLeave={isIconOnly ? handleMouseLeave : undefined}
+          onBlur={isIconOnly ? handleBlur : undefined}
+          onFocus={isIconOnly ? handleFocus : undefined}
+          onKeyDown={!isExpanded ? handleKeyDown : undefined}
+          role={isExpanded ? 'group' : 'button'}
+          tabIndex={isExpanded ? undefined : 0}
+          aria-label={
+            isExpanded
+              ? 'Quantity stepper'
+              : count === 0
+                ? cartLabel ?? `${addLabel} item`
+                : `${count} items, click to edit`
+          }
+          aria-disabled={disabled || undefined}
+        >
+          {/* Left slot: minus button */}
+          <div className={sideSlotClass}>
+            <button
+              className={iconBtnClass}
+              onClick={handleDecrement}
+              disabled={disabled}
+              aria-label="Decrease quantity"
+              tabIndex={isExpanded ? 0 : -1}
+            >
+              <MinusIcon size={iconSize} />
+            </button>
+          </div>
+
+          {/* Center content */}
+          <div className={centerSlotClass}>
             {centerContent}
           </div>
-          <button
-            className={iconBtnClass}
-            onClick={handleIncrement}
-            disabled={disabled || isAtMax}
-            aria-label="Increase quantity"
-          >
-            <PlusIcon size={iconSize} />
-          </button>
+
+          {/* Right slot: plus button */}
+          <div className={sideSlotClass}>
+            <button
+              className={iconBtnClass}
+              onClick={handleIncrement}
+              disabled={disabled || isAtMax}
+              aria-label="Increase quantity"
+              tabIndex={isExpanded ? 0 : -1}
+            >
+              <PlusIcon size={iconSize} />
+            </button>
+          </div>
         </div>
       </div>
     );
