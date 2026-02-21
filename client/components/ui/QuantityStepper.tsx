@@ -121,9 +121,10 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       };
     }, []);
 
-    // Auto-collapse after 5 seconds when expanded
+    // Auto-collapse after 5 seconds — only for icon-only variant
+    const isIconOnly = !showAddLabel && !cartLabel;
     useEffect(() => {
-      if (mode === 'expanded' && count > 0) {
+      if (isIconOnly && mode === 'expanded' && count > 0) {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(() => {
           setMode('collapsed');
@@ -132,7 +133,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       return () => {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
       };
-    }, [mode, count]);
+    }, [isIconOnly, mode, count]);
 
     const handleInitialClick = useCallback(() => {
       if (disabled) return;
