@@ -498,6 +498,176 @@ font-family: Arial, sans-serif;`}</CodeBlock>
         </div>
       </SectionCard>
 
+      {/* Package Version Upgrade */}
+      <SectionCard title="Package Version Upgrade">
+        <p style={{
+          fontSize: '14px',
+          lineHeight: 1.6,
+          color: 'var(--ld-semantic-color-text-subtle)',
+          marginBottom: '16px',
+        }}>
+          When a project already has an older version of the Living Design 3.5 Portable Kit,
+          the agent must not overwrite blindly. It must review what exists, compare against
+          the latest version, and produce a merge plan.
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+
+          {/* Phase 1: Inventory */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-brand)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              Phase 1: Inventory What Exists
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              Before touching any files, catalog the current state of the installed package.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'List all components in client/components/ui/ and record which ones exist',
+                'List all icons in client/components/icons/ and client/components/icons-custom/',
+                'Record the current token files: semantic.css, primitive.css, and any theme overrides in client/styles/themes/',
+                'Check for local modifications — components or tokens the team has customized beyond the kit defaults',
+                'Note any components the project added that are not part of the kit (project-specific components)',
+                'Record the current guidelines/ and rules/ files and their contents',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-brand-bold)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Phase 2: Diff */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-warning)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              Phase 2: Compare Against Latest Version
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              Diff the existing package files against the latest version to identify what changed.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'Identify new components added in the latest version that the project does not have yet',
+                'Identify components that were updated — new props, variants, bug fixes, or accessibility improvements',
+                'Identify new or updated design tokens (new colors, spacing values, elevation levels)',
+                'Identify new or updated icons in the icon library',
+                'Identify changes to theme files that affect theming behavior',
+                'Identify updated guidelines or rules files',
+                'Flag any breaking changes — renamed props, removed components, changed token names',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-warning)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Phase 3: Handle Conflicts */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-negative)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              Phase 3: Handle Local Modifications & Conflicts
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              If the team has customized any kit files, those changes must be preserved or reconciled.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'If a component was locally modified AND updated in the new version — flag it as a conflict',
+                'For conflicts: apply the new version first, then re-apply the local customizations on top',
+                'If local customizations conflict with new behavior, document both versions and ask for a decision',
+                'Never silently overwrite a file that has local changes — always flag and resolve explicitly',
+                'Project-specific components (not part of the kit) should not be touched during the upgrade',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-negative)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Phase 4: Execute Merge */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-positive)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              Phase 4: Execute the Merge
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              Apply updates in a safe order, verifying after each step.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'Update token files first (semantic.css, primitive.css) — these have no dependencies',
+                'Update theme files next — verify theme switching still works',
+                'Update existing components one at a time — verify the dev server after each',
+                'Add new components that did not exist before — register routes and update the overview page',
+                'Update the icon library — add new icons, update changed icons, keep custom icons untouched',
+                'Update guidelines/ and rules/ files to match the latest documentation',
+                'Run a full build to catch any TypeScript or import errors',
+                'Verify all pages render correctly with the updated components',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-positive)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Upgrade Plan Output */}
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'var(--ld-semantic-color-fill-info-subtle)',
+            borderRadius: '8px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-info)',
+          }}>
+            <div style={{ fontWeight: 700, fontSize: '15px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
+              Upgrade Plan Output
+            </div>
+            <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 12px' }}>
+              Before executing, the agent must present the upgrade plan for review:
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                'Summary: number of components to update, add, or skip',
+                'List of updated components with a brief description of what changed',
+                'List of new components being added',
+                'List of token changes (new tokens, renamed tokens, removed tokens)',
+                'List of conflicts requiring manual decision',
+                'Dependencies to install or update',
+                'Execution order with verification checkpoints',
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                  <span style={{ color: 'var(--ld-semantic-color-text-info)', fontWeight: 700, flexShrink: 0 }}>{i + 1}.</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </SectionCard>
+
       {/* Enforcement Rules Reference */}
       <SectionCard title="Enforcement Rules Reference">
         <p style={{
