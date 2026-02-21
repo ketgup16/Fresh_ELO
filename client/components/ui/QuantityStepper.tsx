@@ -94,31 +94,39 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
     ref
   ) => {
     const [count, setCount] = useState(defaultCount);
+  // Track which animation class to apply to stepper/addButton on transition
+  const [stepperAnimClass, setStepperAnimClass] = useState('');
+  const [addBtnAnimClass, setAddBtnAnimClass] = useState('');
 
-    const iconSize = ICON_SIZES[size];
-    const isAtMax = maxQuantity !== undefined && count >= maxQuantity;
-    const isInAddMode = count === 0;
+  const iconSize = ICON_SIZES[size];
+  const isAtMax = maxQuantity !== undefined && count >= maxQuantity;
+  const isInAddMode = count === 0;
 
-    const handleAdd = () => {
-      if (disabled) return;
-      const next = 1;
-      setCount(next);
-      onChange?.(next);
-    };
+  const handleAdd = () => {
+    if (disabled) return;
+    // Arm the expand animation — fires when stepper mounts
+    setStepperAnimClass(styles[`stepperAnimate--${size}`]);
+    setCount(1);
+    onChange?.(1);
+  };
 
-    const handleIncrement = () => {
-      if (disabled || isAtMax) return;
-      const next = count + 1;
-      setCount(next);
-      onChange?.(next);
-    };
+  const handleIncrement = () => {
+    if (disabled || isAtMax) return;
+    const next = count + 1;
+    setCount(next);
+    onChange?.(next);
+  };
 
-    const handleDecrement = () => {
-      if (disabled) return;
-      const next = Math.max(0, count - 1);
-      setCount(next);
-      onChange?.(next);
-    };
+  const handleDecrement = () => {
+    if (disabled) return;
+    const next = Math.max(0, count - 1);
+    if (next === 0) {
+      // Arm the return animation — fires when add button remounts
+      setAddBtnAnimClass(styles.addBtnReturn);
+    }
+    setCount(next);
+    onChange?.(next);
+  };
 
     const isIconOnly = !cartLabel && !showAddLabel;
     const addBtnClass = [
@@ -127,6 +135,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       styles[`addButton--${size}`],
       cartLabel ? styles.cartMode : '',
       isIconOnly ? styles.iconOnly : '',
+      addBtnAnimClass,
     ]
       .filter(Boolean)
       .join(' ');
@@ -135,6 +144,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       styles.stepper,
       styles[`stepper--${variant}`],
       styles[`stepper--${size}`],
+      stepperAnimClass,
     ]
       .filter(Boolean)
       .join(' ');
@@ -178,11 +188,11 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
     const centerContent = isAtMax ? (
       <>
         <span>Max</span>
-        <span>{count}</span>
+        <span key={count} className={styles.countValue}>{count}</span>
       </>
     ) : (
       <>
-        <span>{count}</span>
+        <span key={count} className={styles.countValue}>{count}</span>
         <span>{countLabel}</span>
       </>
     );
