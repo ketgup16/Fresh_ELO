@@ -16,6 +16,7 @@ import { Tag } from '@/components/ui/Tag';
 import { Menu } from '@/components/ui/Menu';
 import { MenuItem } from '@/components/ui/MenuItem';
 import { RowActionsMenu } from './DataTableRowActionsMenu';
+import { DataTableConfigPanel, ColumnConfig } from './DataTableConfigPanel';
 import {
   Search, X, ChevronDown, ChevronUp, ChevronRight, ChevronLeft,
   Sliders, Download,
@@ -204,6 +205,24 @@ type SortDir = 'ascending' | 'descending' | 'none';
 const RESULTS_PER_PAGE = 5;
 
 /* ================================================================
+   INITIAL COLUMN CONFIG
+   Campaign is always visible (alwaysVisible).
+   Actions is always pinned right (alwaysPinned).
+   All other columns are togglable and pinable.
+   ================================================================ */
+
+const INITIAL_COLUMN_CONFIGS: ColumnConfig[] = [
+  { id: 'campaign',          label: 'Campaign',           visible: true,  pinned: false, alwaysVisible: true },
+  { id: 'status',            label: 'Status',             visible: true,  pinned: false },
+  { id: 'recommendations',   label: 'Recommendations',    visible: true,  pinned: false },
+  { id: 'totalBudget',       label: 'Total Budget',       visible: true,  pinned: false },
+  { id: 'targetingStrategy', label: 'Targeting Strategy', visible: true,  pinned: false },
+  { id: 'impressions',       label: 'Impressions',        visible: true,  pinned: false },
+  { id: 'pacing',            label: 'Pacing',             visible: false, pinned: false },
+  { id: 'actions',           label: 'Actions',            visible: true,  pinned: true,  alwaysPinned: true },
+];
+
+/* ================================================================
    MAIN EXAMPLE
    ================================================================ */
 
@@ -248,19 +267,29 @@ export default function DataTableExample() {
     setColumnWidths((prev) => ({ ...prev, [column]: newWidth }));
   }, []);
 
-  /* ────────────────────────────────────────────
-     Derived data: filter → search → sort → paginate
-     ──────────────────────────────────────────── */
+  /* ── Column configuration panel ── */
+  const [isPanelOpen, setIsPanelOpen] = React.useState(false);
+  const [columnConfigs, setColumnConfigs] = React.useState<ColumnConfig[]>(INITIAL_COLUMN_CONFIGS);
 
+  /* Derive ordered visible columns for the table (excluding actions — handled separately) */
+  const orderedVisibleCols = React.useMemo(() => {
+    const nonActions = columnConfigs.filter((c) => c.id !== 'actions' && c.visible);
+    /* Pinned cols first, then unpinned */
+    return [
+      ...nonActions.filter((c) => c.pinned),
+      ...nonActions.filter((c) => !c.pinned),
+    ];
+  }, [columnConfigs]);
+
+  const showActionsCol = columnConfigs.find((c) => c.id === 'actions')?.visible ?? true;
+
+  /* Count visible (non-actions) columns for colSpan on empty state */
+  const totalColSpan = 1 /* select */ + orderedVisibleCols.length + (showActionsCol ? 1 : 0);
+
+  /* ── Derived data ── */
   const filteredData = React.useMemo(() => {
     let data = CAMPAIGNS;
-
-    // Status filter
-    if (statusFilters.size > 0) {
-      data = data.filter((c) => statusFilters.has(c.status));
-    }
-
-    // Search
+    if (statusFilters.size > 0) data = data.filter((c) => statusFilters.has(c.status));
     const q = searchQuery.trim().toLowerCase();
     if (q) {
       data = data.filter((c) =>
@@ -269,7 +298,6 @@ export default function DataTableExample() {
           : c.id.toLowerCase().includes(q),
       );
     }
-
     return data;
   }, [searchQuery, searchScope, statusFilters]);
 
@@ -278,10 +306,8 @@ export default function DataTableExample() {
     return [...filteredData].sort((a, b) => {
       const factor = sortDir === 'ascending' ? 1 : -1;
       switch (sortField) {
-        case 'name':
-          return a.name.localeCompare(b.name) * factor;
-        case 'status':
-          return a.status.localeCompare(b.status) * factor;
+        case 'name':    return a.name.localeCompare(b.name) * factor;
+        case 'status':  return a.status.localeCompare(b.status) * factor;
         case 'totalBudget': {
           const av = parseFloat((a.totalBudget ?? '0').replace(/[$,]/g, ''));
           const bv = parseFloat((b.totalBudget ?? '0').replace(/[$,]/g, ''));
@@ -297,8 +323,7 @@ export default function DataTableExample() {
           const bv = parseFloat((b.pacing?.value ?? '0').replace('%', ''));
           return (av - bv) * factor;
         }
-        default:
-          return 0;
+        default: return 0;
       }
     });
   }, [filteredData, sortField, sortDir]);
@@ -309,11 +334,9 @@ export default function DataTableExample() {
     currentPage * RESULTS_PER_PAGE,
   );
 
-  // Reset page when filters/search change
   React.useEffect(() => { setCurrentPage(1); }, [searchQuery, statusFilters]);
 
-  /* ── Handlers ── */
-
+  /* ── Sort handlers ── */
   const handleSort = (field: SortField) => () => {
     if (sortField === field) {
       setSortDir((prev) => (prev === 'ascending' ? 'descending' : 'ascending'));
@@ -322,33 +345,12 @@ export default function DataTableExample() {
       setSortDir('ascending');
     }
   };
+  const sortFor = (field: SortField): SortDir => (sortField === field ? sortDir : 'none');
 
-  const sortFor = (field: SortField): SortDir =>
-    sortField === field ? sortDir : 'none';
-
-  const toggleExpand = (id: string) => {
-    setExpandedIds((prev) => {
-      const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
-      return next;
-    });
-  };
-
-  const toggleRow = (id: string) => {
-    setSelectedIds((prev) => {
-      const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
-      return next;
-    });
-  };
-
-  const toggleStatusFilter = (status: string) => {
-    setStatusFilters((prev) => {
-      const next = new Set(prev);
-      next.has(status) ? next.delete(status) : next.add(status);
-      return next;
-    });
-  };
+  /* ── Expand / select ── */
+  const toggleExpand = (id: string) => setExpandedIds((prev) => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  const toggleRow = (id: string) => setSelectedIds((prev) => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  const toggleStatusFilter = (status: string) => setStatusFilters((prev) => { const n = new Set(prev); n.has(status) ? n.delete(status) : n.add(status); return n; });
 
   const allPageIds = paginatedData.map((c) => c.id);
   const allSelected = allPageIds.length > 0 && allPageIds.every((id) => selectedIds.has(id));
@@ -356,24 +358,204 @@ export default function DataTableExample() {
 
   const toggleAll = () => {
     if (allSelected || someSelected) {
-      setSelectedIds((prev) => {
-        const next = new Set(prev);
-        allPageIds.forEach((id) => next.delete(id));
-        return next;
-      });
+      setSelectedIds((prev) => { const n = new Set(prev); allPageIds.forEach((id) => n.delete(id)); return n; });
     } else {
-      setSelectedIds((prev) => {
-        const next = new Set(prev);
-        allPageIds.forEach((id) => next.add(id));
-        return next;
-      });
+      setSelectedIds((prev) => { const n = new Set(prev); allPageIds.forEach((id) => n.add(id)); return n; });
     }
   };
 
-  const styles = INLINE_STYLES;
+  /* ================================================================
+     COLUMN HEADER RENDERER
+     ================================================================ */
+  const renderHeader = (col: ColumnConfig) => {
+    const width = columnWidths[col.id] ?? 140;
+    const frozen = col.pinned ? 'left' as const : undefined;
+
+    switch (col.id) {
+      case 'campaign':
+        return (
+          <DataTableHeader key={col.id} onSort={handleSort('name')} sort={sortFor('name')} width={width} resizable onResize={handleColumnResize('campaign')} frozen={frozen}>
+            {t('dataTable.colCampaign')}
+          </DataTableHeader>
+        );
+      case 'status':
+        return (
+          <DataTableHeader key={col.id} onSort={handleSort('status')} sort={sortFor('status')} width={width} resizable onResize={handleColumnResize('status')} frozen={frozen}>
+            {t('dataTable.colStatus')}
+          </DataTableHeader>
+        );
+      case 'recommendations':
+        return (
+          <DataTableHeader key={col.id} width={width} resizable onResize={handleColumnResize('recommendations')} frozen={frozen}>
+            {t('dataTable.colRecommendations')}
+          </DataTableHeader>
+        );
+      case 'totalBudget':
+        return (
+          <DataTableHeader key={col.id} alignment="right" onSort={handleSort('totalBudget')} sort={sortFor('totalBudget')} width={width} resizable onResize={handleColumnResize('totalBudget')} frozen={frozen}>
+            {t('dataTable.colTotalBudget')}
+          </DataTableHeader>
+        );
+      case 'targetingStrategy':
+        return (
+          <DataTableHeader key={col.id} width={width} resizable onResize={handleColumnResize('targetingStrategy')} frozen={frozen}>
+            {t('dataTable.colTargetingStrategy')}
+          </DataTableHeader>
+        );
+      case 'impressions':
+        return (
+          <DataTableHeader key={col.id} alignment="right" onSort={handleSort('impressions')} sort={sortFor('impressions')} width={width} resizable onResize={handleColumnResize('impressions')} frozen={frozen}>
+            {t('dataTable.colImpressions')}
+          </DataTableHeader>
+        );
+      case 'pacing':
+        return (
+          <DataTableHeader key={col.id} alignment="right" onSort={handleSort('pacing')} sort={sortFor('pacing')} width={width} resizable onResize={handleColumnResize('pacing')} frozen={frozen}>
+            {t('dataTable.colPacing')}
+          </DataTableHeader>
+        );
+      default:
+        return null;
+    }
+  };
+
+  /* ================================================================
+     COLUMN CELL RENDERER (parent row)
+     ================================================================ */
+  const renderCell = (col: ColumnConfig, campaign: Campaign) => {
+    const frozen = col.pinned ? 'left' as const : undefined;
+
+    switch (col.id) {
+      case 'campaign':
+        return (
+          <DataTableCell key={col.id} id={`name-${campaign.id}`} frozen={frozen}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px' }}>
+              {campaign.children && campaign.children.length > 0 ? (
+                <button
+                  type="button"
+                  onClick={() => toggleExpand(campaign.id)}
+                  style={INLINE_STYLES.expandButton}
+                  aria-label={expandedIds.has(campaign.id) ? t('dataTable.collapse') : t('dataTable.expand')}
+                >
+                  {expandedIds.has(campaign.id)
+                    ? <ChevronDown style={{ width: 20, height: 20 }} />
+                    : <ChevronRight style={{ width: 20, height: 20 }} />}
+                </button>
+              ) : (
+                <span style={{ width: '24px', flexShrink: 0 }} />
+              )}
+              <div style={{ flex: 1 }}>
+                <span style={INLINE_STYLES.campaignLink}>
+                  {CAMPAIGN_NAME_KEYS[campaign.id] ? t(CAMPAIGN_NAME_KEYS[campaign.id]) : campaign.name}
+                </span>
+                <div style={INLINE_STYLES.campaignId}>{t('dataTable.idLabel')}: {campaign.id}</div>
+              </div>
+            </div>
+          </DataTableCell>
+        );
+      case 'status':
+        return (
+          <DataTableCellStatus key={col.id} frozen={frozen}>
+            <Tag variant="tertiary" color={STATUS_TAG_COLORS[campaign.status]}>
+              {t(STATUS_KEYS[campaign.status])}
+            </Tag>
+          </DataTableCellStatus>
+        );
+      case 'recommendations':
+        return (
+          <DataTableCell key={col.id} frozen={frozen}>
+            {campaign.recommendations > 0 ? (
+              <span style={INLINE_STYLES.recBadge}>
+                {t('dataTable.recommendation', { count: campaign.recommendations })}
+              </span>
+            ) : '-'}
+          </DataTableCell>
+        );
+      case 'totalBudget':
+        return <DataTableCell key={col.id} variant="numeric" frozen={frozen}>{campaign.totalBudget ?? '-'}</DataTableCell>;
+      case 'targetingStrategy':
+        return (
+          <DataTableCell key={col.id} frozen={frozen}>
+            {campaign.targetingStrategy ? t(TARGETING_KEYS[campaign.targetingStrategy] ?? campaign.targetingStrategy) : '-'}
+          </DataTableCell>
+        );
+      case 'impressions':
+        return <DataTableCell key={col.id} variant="numeric" frozen={frozen}>{campaign.impressions ?? '-'}</DataTableCell>;
+      case 'pacing':
+        return (
+          <DataTableCell key={col.id} variant="numeric" frozen={frozen}>
+            {campaign.pacing ? (
+              <span style={{
+                fontWeight: 600,
+                color: campaign.pacing.trend === 'positive'
+                  ? 'var(--ld-semantic-color-text-positive, #2A8703)'
+                  : 'var(--ld-semantic-color-text-warning, #995213)',
+              }}>
+                {campaign.pacing.value}
+              </span>
+            ) : '-'}
+          </DataTableCell>
+        );
+      default:
+        return null;
+    }
+  };
+
+  /* ================================================================
+     COLUMN CELL RENDERER (child row)
+     ================================================================ */
+  const renderChildCell = (col: ColumnConfig, child: Campaign) => {
+    const frozen = col.pinned ? 'left' as const : undefined;
+
+    switch (col.id) {
+      case 'campaign':
+        return (
+          <DataTableCell key={col.id} frozen={frozen}>
+            <div style={{ paddingLeft: '40px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{
+                fontSize: '14px', fontWeight: 600, textTransform: 'uppercase' as const,
+                letterSpacing: '0.5px', color: 'var(--ld-semantic-color-text-subtle, #74767C)', flexShrink: 0,
+              }}>
+                {child.type === 'adgroup' ? t('dataTable.adGroupLabel') : t('dataTable.creativeLabel')}
+              </span>
+              <span style={INLINE_STYLES.campaignLink}>
+                {CAMPAIGN_NAME_KEYS[child.id] ? t(CAMPAIGN_NAME_KEYS[child.id]) : child.name}
+              </span>
+            </div>
+          </DataTableCell>
+        );
+      case 'status':
+        return (
+          <DataTableCellStatus key={col.id} frozen={frozen}>
+            <Tag variant="tertiary" color={STATUS_TAG_COLORS[child.status]}>
+              {t(STATUS_KEYS[child.status])}
+            </Tag>
+          </DataTableCellStatus>
+        );
+      case 'recommendations':
+        return (
+          <DataTableCell key={col.id} frozen={frozen}>
+            {child.recommendations > 0 ? <span style={INLINE_STYLES.recBadge}>{child.recommendations}</span> : '-'}
+          </DataTableCell>
+        );
+      default:
+        return <DataTableCell key={col.id} variant={col.id === 'totalBudget' || col.id === 'impressions' || col.id === 'pacing' ? 'numeric' : 'alphanumeric'} frozen={frozen}>-</DataTableCell>;
+    }
+  };
+
+  const inlineStyles = INLINE_STYLES;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+      {/* ── Column Config Panel ── */}
+      <DataTableConfigPanel
+        isOpen={isPanelOpen}
+        onClose={() => setIsPanelOpen(false)}
+        title="Customize Columns"
+        columns={columnConfigs}
+        onApply={(updated) => setColumnConfigs(updated)}
+      />
+
       {/* ── Bulk Actions Bar ── */}
       {selectedIds.size > 0 && (
         <DataTableBulkActions
@@ -393,7 +575,11 @@ export default function DataTableExample() {
         subtitle={t('dataTable.totalResults', { count: sortedData.length })}
         actions={
           <>
-            <IconButton aria-label={t('dataTable.tableSettings')} variant="secondary">
+            <IconButton
+              aria-label={t('dataTable.tableSettings')}
+              variant="secondary"
+              onClick={() => setIsPanelOpen(true)}
+            >
               <Sliders />
             </IconButton>
             <IconButton aria-label={t('dataTable.download')} variant="secondary">
@@ -405,51 +591,40 @@ export default function DataTableExample() {
         {t('dataTable.colCampaign', 'Campaigns')}
       </DataTableTitle>
 
-      {/* ── Toolbar: Search + Filters + Actions ── */}
-      <div style={styles.toolbar}>
+      {/* ── Toolbar: Search + Filters ── */}
+      <div style={inlineStyles.toolbar}>
         {/* Search */}
-        <div style={styles.searchBar}>
+        <div style={inlineStyles.searchBar}>
           <Search style={{ width: 16, height: 16, flexShrink: 0, color: 'var(--ld-semantic-color-text, #2E2F32)' }} />
-          <span style={styles.searchLabel}>{t('dataTable.searchBy')}</span>
+          <span style={inlineStyles.searchLabel}>{t('dataTable.searchBy')}</span>
           <div style={{ position: 'relative' }}>
             <button
               type="button"
-              style={styles.scopeButton}
+              style={inlineStyles.scopeButton}
               onClick={() => setShowScopeDropdown((p) => !p)}
             >
               {searchScope === 'Campaign name' ? t('dataTable.campaignName') : t('dataTable.id')}
-              {showScopeDropdown
-                ? <ChevronUp style={{ width: 16, height: 16 }} />
-                : <ChevronDown style={{ width: 16, height: 16 }} />
-              }
+              {showScopeDropdown ? <ChevronUp style={{ width: 16, height: 16 }} /> : <ChevronDown style={{ width: 16, height: 16 }} />}
             </button>
             <div style={{ position: 'absolute', left: 0, top: '100%', marginTop: '4px', zIndex: 50 }}>
-            <Menu
-              isOpen={showScopeDropdown}
-              onClose={() => setShowScopeDropdown(false)}
-              position="bottomLeft"
-            >
-              {(['Campaign name', 'ID'] as const).map((s) => (
-                <MenuItem
-                  key={s}
-                  selected={searchScope === s}
-                  onClick={() => { setSearchScope(s); setShowScopeDropdown(false); }}
-                >
-                  {s === 'Campaign name' ? t('dataTable.campaignName') : t('dataTable.id')}
-                </MenuItem>
-              ))}
-            </Menu>
+              <Menu isOpen={showScopeDropdown} onClose={() => setShowScopeDropdown(false)} position="bottomLeft">
+                {(['Campaign name', 'ID'] as const).map((s) => (
+                  <MenuItem key={s} selected={searchScope === s} onClick={() => { setSearchScope(s); setShowScopeDropdown(false); }}>
+                    {s === 'Campaign name' ? t('dataTable.campaignName') : t('dataTable.id')}
+                  </MenuItem>
+                ))}
+              </Menu>
             </div>
           </div>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            style={styles.searchInput}
+            style={inlineStyles.searchInput}
             placeholder=""
           />
           {searchQuery && (
-            <button type="button" onClick={() => setSearchQuery('')} style={styles.clearButton} aria-label={t('dataTable.clearSearch')}>
+            <button type="button" onClick={() => setSearchQuery('')} style={inlineStyles.clearButton} aria-label={t('dataTable.clearSearch')}>
               <X style={{ width: 14, height: 14 }} />
             </button>
           )}
@@ -458,22 +633,18 @@ export default function DataTableExample() {
         {/* Filter Chips */}
         <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
           {(['Live', 'Scheduled', 'Paused', 'Completed'] as const).map((s) => (
-            <FilterChip
-              key={s}
-              selected={statusFilters.has(s)}
-              onSelectedChange={() => toggleStatusFilter(s)}
-            >
+            <FilterChip key={s} selected={statusFilters.has(s)} onSelectedChange={() => toggleStatusFilter(s)}>
               {t(STATUS_KEYS[s])}
             </FilterChip>
           ))}
         </div>
-
       </div>
 
       {/* ── Table ── */}
-      <DataTable rounded elevated>
+      <DataTable>
         <DataTableHead>
           <DataTableRow>
+            {/* Select — always frozen left */}
             <DataTableHeaderSelect
               checked={allSelected}
               indeterminate={someSelected}
@@ -481,40 +652,31 @@ export default function DataTableExample() {
               frozen="left"
               UNSAFE_style={{ width: columnWidths.select }}
             />
-            <DataTableHeader onSort={handleSort('name')} sort={sortFor('name')} width={columnWidths.campaign} resizable onResize={handleColumnResize('campaign')}>
-              {t('dataTable.colCampaign')}
-            </DataTableHeader>
-            <DataTableHeader onSort={handleSort('status')} sort={sortFor('status')} width={columnWidths.status} resizable onResize={handleColumnResize('status')}>
-              {t('dataTable.colStatus')}
-            </DataTableHeader>
-            <DataTableHeader width={columnWidths.recommendations} resizable onResize={handleColumnResize('recommendations')}>
-              {t('dataTable.colRecommendations')}
-            </DataTableHeader>
-            <DataTableHeader alignment="right" onSort={handleSort('totalBudget')} sort={sortFor('totalBudget')} width={columnWidths.totalBudget} resizable onResize={handleColumnResize('totalBudget')}>
-              {t('dataTable.colTotalBudget')}
-            </DataTableHeader>
-            <DataTableHeader width={columnWidths.targetingStrategy} resizable onResize={handleColumnResize('targetingStrategy')}>
-              {t('dataTable.colTargetingStrategy')}
-            </DataTableHeader>
-            <DataTableHeader alignment="right" onSort={handleSort('impressions')} sort={sortFor('impressions')} width={columnWidths.impressions} resizable onResize={handleColumnResize('impressions')}>
-              {t('dataTable.colImpressions')}
-            </DataTableHeader>
-            <DataTableHeader alignment="right" onSort={handleSort('pacing')} sort={sortFor('pacing')} width={columnWidths.pacing} resizable onResize={handleColumnResize('pacing')}>
-              {t('dataTable.colPacing')}
-            </DataTableHeader>
-            <DataTableHeader alignment="right" width={columnWidths.actions} frozen="right">
-              {t('dataTable.colActions')}
-            </DataTableHeader>
+
+            {/* Dynamic columns */}
+            {orderedVisibleCols.map((col) => renderHeader(col))}
+
+            {/* Actions — always frozen right */}
+            {showActionsCol && (
+              <DataTableHeader alignment="right" width={columnWidths.actions} frozen="right">
+                {t('dataTable.colActions')}
+              </DataTableHeader>
+            )}
           </DataTableRow>
         </DataTableHead>
+
         <DataTableBody>
           {paginatedData.length === 0 && (
             <DataTableRow>
-              <DataTableCell UNSAFE_style={{ textAlign: 'center', padding: '32px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} colSpan={9}>
+              <DataTableCell
+                UNSAFE_style={{ textAlign: 'center', padding: '32px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}
+                colSpan={totalColSpan}
+              >
                 {t('dataTable.noResults')}
               </DataTableCell>
             </DataTableRow>
           )}
+
           {paginatedData.map((campaign) => (
             <Fragment key={campaign.id}>
               {/* ── Parent row ── */}
@@ -525,99 +687,25 @@ export default function DataTableExample() {
                   onChange={() => toggleRow(campaign.id)}
                   frozen="left"
                 />
-                <DataTableCell id={`name-${campaign.id}`}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px' }}>
-                    {campaign.children && campaign.children.length > 0 ? (
-                      <button
-                        type="button"
-                        onClick={() => toggleExpand(campaign.id)}
-                        style={styles.expandButton}
-                        aria-label={expandedIds.has(campaign.id) ? t('dataTable.collapse') : t('dataTable.expand')}
-                      >
-                        {expandedIds.has(campaign.id)
-                          ? <ChevronDown style={{ width: 20, height: 20 }} />
-                          : <ChevronRight style={{ width: 20, height: 20 }} />
-                        }
-                      </button>
-                    ) : (
-                      <span style={{ width: '24px', flexShrink: 0 }} />
-                    )}
-                    <div style={{ flex: 1 }}>
-                      <span style={styles.campaignLink}>{CAMPAIGN_NAME_KEYS[campaign.id] ? t(CAMPAIGN_NAME_KEYS[campaign.id]) : campaign.name}</span>
-                      <div style={styles.campaignId}>{t('dataTable.idLabel')}: {campaign.id}</div>
-                    </div>
-                  </div>
-                </DataTableCell>
-                <DataTableCellStatus>
-                  <Tag variant="tertiary" color={STATUS_TAG_COLORS[campaign.status]}>
-                    {t(STATUS_KEYS[campaign.status])}
-                  </Tag>
-                </DataTableCellStatus>
-                <DataTableCell>
-                  {campaign.recommendations > 0 ? (
-                    <span style={styles.recBadge}>
-                      {t('dataTable.recommendation', { count: campaign.recommendations })}
-                    </span>
-                  ) : (
-                    '-'
-                  )}
-                </DataTableCell>
-                <DataTableCell variant="numeric">{campaign.totalBudget ?? '-'}</DataTableCell>
-                <DataTableCell>{campaign.targetingStrategy ? t(TARGETING_KEYS[campaign.targetingStrategy] ?? campaign.targetingStrategy) : '-'}</DataTableCell>
-                <DataTableCell variant="numeric">{campaign.impressions ?? '-'}</DataTableCell>
-                <DataTableCell variant="numeric">
-                  {campaign.pacing ? (
-                    <span style={{
-                      fontWeight: 600,
-                      color: campaign.pacing.trend === 'positive'
-                        ? 'var(--ld-semantic-color-text-positive, #2A8703)'
-                        : 'var(--ld-semantic-color-text-warning, #995213)',
-                    }}>
-                      {campaign.pacing.value}
-                    </span>
-                  ) : '-'}
-                </DataTableCell>
-                <DataTableCellActions frozen="right">
-                  <RowActionsMenu name={campaign.name} />
-                </DataTableCellActions>
+                {orderedVisibleCols.map((col) => renderCell(col, campaign))}
+                {showActionsCol && (
+                  <DataTableCellActions frozen="right">
+                    <RowActionsMenu name={campaign.name} />
+                  </DataTableCellActions>
+                )}
               </DataTableRow>
 
               {/* ── Child rows (expanded) ── */}
               {expandedIds.has(campaign.id) && campaign.children?.map((child) => (
                 <DataTableRow key={child.id}>
+                  {/* Frozen spacer for select column */}
                   <DataTableCell frozen="left">{'\u00A0'}</DataTableCell>
-                  <DataTableCell>
-                    <div style={{ paddingLeft: '40px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{
-                        fontSize: '14px',
-                        fontWeight: 600,
-                        textTransform: 'uppercase' as const,
-                        letterSpacing: '0.5px',
-                        color: 'var(--ld-semantic-color-text-subtle, #74767C)',
-                        flexShrink: 0,
-                      }}>
-                        {child.type === 'adgroup' ? t('dataTable.adGroupLabel') : t('dataTable.creativeLabel')}
-                      </span>
-                      <span style={styles.campaignLink}>{CAMPAIGN_NAME_KEYS[child.id] ? t(CAMPAIGN_NAME_KEYS[child.id]) : child.name}</span>
-                    </div>
-                  </DataTableCell>
-                  <DataTableCellStatus>
-                    <Tag variant="tertiary" color={STATUS_TAG_COLORS[child.status]}>
-                      {t(STATUS_KEYS[child.status])}
-                    </Tag>
-                  </DataTableCellStatus>
-                  <DataTableCell>
-                    {child.recommendations > 0 ? (
-                      <span style={styles.recBadge}>{child.recommendations}</span>
-                    ) : '-'}
-                  </DataTableCell>
-                  <DataTableCell variant="numeric">-</DataTableCell>
-                  <DataTableCell>-</DataTableCell>
-                  <DataTableCell variant="numeric">-</DataTableCell>
-                  <DataTableCell variant="numeric">-</DataTableCell>
-                  <DataTableCellActions frozen="right">
-                    <RowActionsMenu name={child.name} />
-                  </DataTableCellActions>
+                  {orderedVisibleCols.map((col) => renderChildCell(col, child))}
+                  {showActionsCol && (
+                    <DataTableCellActions frozen="right">
+                      <RowActionsMenu name={child.name} />
+                    </DataTableCellActions>
+                  )}
                 </DataTableRow>
               ))}
             </Fragment>
@@ -654,59 +742,28 @@ function Pagination({
   resultsPerPage: number;
   onPageChange: (page: number) => void;
 }) {
-  const styles = INLINE_STYLES;
   const { t } = useTranslation('pages');
 
   return (
-    <div style={styles.paginationBar}>
-      <span style={styles.paginationInfo}>
+    <div style={INLINE_STYLES.paginationBar}>
+      <span style={INLINE_STYLES.paginationInfo}>
         {t('dataTable.resultsPerPage', { count: resultsPerPage })} &middot; {t('dataTable.totalResults', { count: totalResults })}
       </span>
       <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-        <IconButton
-          aria-label={t('dataTable.firstPage')}
-          variant="ghost"
-          size="small"
-          disabled={currentPage <= 1}
-          onClick={() => onPageChange(1)}
-        >
+        <IconButton aria-label={t('dataTable.firstPage')} variant="ghost" size="small" disabled={currentPage <= 1} onClick={() => onPageChange(1)}>
           <ChevronLeft style={{ width: 16, height: 16 }} />
           <ChevronLeft style={{ width: 16, height: 16, marginLeft: -10 }} />
         </IconButton>
-        <IconButton
-          aria-label={t('dataTable.previousPage')}
-          variant="ghost"
-          size="small"
-          disabled={currentPage <= 1}
-          onClick={() => onPageChange(currentPage - 1)}
-        >
+        <IconButton aria-label={t('dataTable.previousPage')} variant="ghost" size="small" disabled={currentPage <= 1} onClick={() => onPageChange(currentPage - 1)}>
           <ChevronLeft style={{ width: 16, height: 16 }} />
         </IconButton>
-
-        <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text)', padding: '0 4px' }}>
-          {t('dataTable.page')}
-        </span>
-        <span style={styles.pageIndicator}>{currentPage}</span>
-        <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text)', padding: '0 4px' }}>
-          {t('dataTable.of', { count: totalPages })}
-        </span>
-
-        <IconButton
-          aria-label={t('dataTable.nextPage')}
-          variant="ghost"
-          size="small"
-          disabled={currentPage >= totalPages}
-          onClick={() => onPageChange(currentPage + 1)}
-        >
+        <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text)', padding: '0 4px' }}>{t('dataTable.page')}</span>
+        <span style={INLINE_STYLES.pageIndicator}>{currentPage}</span>
+        <span style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text)', padding: '0 4px' }}>{t('dataTable.of', { count: totalPages })}</span>
+        <IconButton aria-label={t('dataTable.nextPage')} variant="ghost" size="small" disabled={currentPage >= totalPages} onClick={() => onPageChange(currentPage + 1)}>
           <ChevronRight style={{ width: 16, height: 16 }} />
         </IconButton>
-        <IconButton
-          aria-label={t('dataTable.lastPage')}
-          variant="ghost"
-          size="small"
-          disabled={currentPage >= totalPages}
-          onClick={() => onPageChange(totalPages)}
-        >
+        <IconButton aria-label={t('dataTable.lastPage')} variant="ghost" size="small" disabled={currentPage >= totalPages} onClick={() => onPageChange(totalPages)}>
           <ChevronRight style={{ width: 16, height: 16 }} />
           <ChevronRight style={{ width: 16, height: 16, marginLeft: -10 }} />
         </IconButton>
@@ -716,7 +773,7 @@ function Pagination({
 }
 
 /* ================================================================
-   INLINE STYLES (using LD tokens)
+   INLINE STYLES
    ================================================================ */
 
 const INLINE_STYLES = {
@@ -833,18 +890,6 @@ const INLINE_STYLES = {
   },
   paginationInfo: {
     fontSize: '14px',
-    color: 'var(--ld-semantic-color-text, #2E2F32)',
-  },
-  paginationButton: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '28px',
-    height: '28px',
-    borderRadius: '4px',
-    border: 'none',
-    background: 'none',
-    cursor: 'pointer',
     color: 'var(--ld-semantic-color-text, #2E2F32)',
   },
   pageIndicator: {
