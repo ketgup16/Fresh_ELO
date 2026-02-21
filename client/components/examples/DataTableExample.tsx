@@ -795,6 +795,7 @@ const INLINE_STYLES = {
     background: 'var(--ld-semantic-color-fill-negative-subtle, #FDE7F3)',
     color: '#8C1E64',
     cursor: 'pointer',
+    whiteSpace: 'nowrap' as const,
   },
   paginationBar: {
     display: 'flex',
