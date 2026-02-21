@@ -30,6 +30,7 @@ const navigationSections: NavSection[] = [
   {
     titleKey: 'componentLibrary.components',
     items: [
+      { id: 'icons', nameKey: 'componentLibrary.navIcons', path: '/component-library/icons' },
       { id: 'accordion', nameKey: 'componentLibrary.navAccordion', path: '/component-library/accordion' },
       { id: 'alerts', nameKey: 'componentLibrary.navAlerts', path: '/component-library/alerts' },
       { id: 'badges', nameKey: 'componentLibrary.navBadges', path: '/component-library/badges' },
@@ -51,7 +52,6 @@ const navigationSections: NavSection[] = [
       { id: 'filter-chips', nameKey: 'componentLibrary.navFilterChips', path: '/component-library/filter-chips' },
       { id: 'form-groups', nameKey: 'componentLibrary.navFormGroups', path: '/component-library/form-groups' },
       { id: 'icon-buttons', nameKey: 'componentLibrary.navIconButtons', path: '/component-library/icon-buttons' },
-      { id: 'icons', nameKey: 'componentLibrary.navIcons', path: '/component-library/icons' },
       { id: 'link-buttons', nameKey: 'componentLibrary.navLinkButtons', path: '/component-library/link-buttons' },
       { id: 'links', nameKey: 'componentLibrary.navLinks', path: '/component-library/links' },
       { id: 'lists', nameKey: 'componentLibrary.navLists', path: '/component-library/lists' },
