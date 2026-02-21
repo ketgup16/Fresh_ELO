@@ -298,21 +298,12 @@
 }
 
 /* ═══════════════════════════════════════
-   COUNT VALUE — pops in when number changes
+   COUNT VALUE — stays in place, no animation
    ═══════════════════════════════════════ */
-
-@keyframes countFade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 .countValue {
   display: inline-block;
-  animation: countFade 0.15s ease both;
+  flex-shrink: 0;
 }
 
 /* ═══════════════════════════════════════
@@ -331,9 +322,5 @@
   .pillExpanded .slotSide,
   .pillExpanded .labelText {
     transition: none !important;
-  }
-
-  .countValue {
-    animation: none;
   }
 }

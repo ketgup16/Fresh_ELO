@@ -258,13 +258,13 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
       centerContent = (
         <>
           <span className={styles.labelText}>Max</span>
-          <span key={count} className={styles.countValue}>{count}</span>
+          <span className={styles.countValue}>{count}</span>
         </>
       );
     } else {
       centerContent = (
         <>
-          <span key={count} className={styles.countValue}>{count}</span>
+          <span className={styles.countValue}>{count}</span>
           <span className={styles.labelText}>{countLabel}</span>
         </>
       );
