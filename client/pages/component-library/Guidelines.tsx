@@ -1273,7 +1273,7 @@ export default function GuidelinesPage() {
                   items: [
                     'Always import Button from uppercase path: @/components/ui/Button',
                     'Use ButtonGroup for multiple buttons -- never manual flex containers',
-                    'Use Tag/OLQTag for labels and badges -- never custom styled spans',
+                    'Use Tag for labels and badges -- never custom styled spans',
                     'Use existing LD components before creating new ones: Reuse > Adapt > Create',
                   ]
                 }].map((card) => (

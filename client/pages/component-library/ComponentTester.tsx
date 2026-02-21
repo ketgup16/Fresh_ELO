@@ -5,7 +5,6 @@ import { Badge } from '@/components/ui/Badge';
 import { Chip } from '@/components/ui/Chip';
 import { FilterChip } from '@/components/ui/FilterChip';
 import { Tag } from '@/components/ui/Tag';
-import { OLQTag } from '@/components/ui/olq-tag';
 import { IconButton } from '@/components/ui/IconButton';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Switch } from '@/components/ui/Switch';
@@ -96,8 +95,6 @@ export default function ComponentTester() {
   const [tagVariant, setTagVariant] = React.useState<'primary' | 'secondary' | 'tertiary'>('secondary');
   const [tagColor, setTagColor] = React.useState<'brand' | 'positive' | 'negative' | 'warning' | 'info'>('brand');
   const [tagText, setTagText] = React.useState(t('componentLibrary.tagLabel'));
-  const [tagIsOlq, setTagIsOlq] = React.useState(false);
-  const [olqPercentage, setOlqPercentage] = React.useState(85);
   
   // Icon Button props
   const [iconButtonVariant, setIconButtonVariant] = React.useState<'ghost' | 'primary' | 'secondary' | 'destructive'>('ghost');
@@ -221,13 +218,11 @@ export default function ComponentTester() {
         );
       
       case 'tag':
-        return tagIsOlq
-          ? <OLQTag value={`${olqPercentage}%`} />
-          : (
-            <Tag variant={tagVariant} color={tagColor}>
-              {tagText}
-            </Tag>
-          );
+        return (
+          <Tag variant={tagVariant} color={tagColor}>
+            {tagText}
+          </Tag>
+        );
       
       case 'iconbutton':
         return (
@@ -570,73 +565,48 @@ export default function ComponentTester() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                Mode
+                {t('componentLibrary.variant')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                <Chip size="small" selected={!tagIsOlq} onClick={() => setTagIsOlq(false)}>Tag</Chip>
-                <Chip size="small" selected={tagIsOlq} onClick={() => setTagIsOlq(true)}>OLQ Tag</Chip>
+                {(['primary', 'secondary', 'tertiary'] as const).map((variant) => (
+                  <Chip
+                    key={variant}
+                    size="small"
+                    selected={tagVariant === variant}
+                    onClick={() => setTagVariant(variant)}
+                  >
+                    {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                  </Chip>
+                ))}
               </div>
             </div>
 
-            {tagIsOlq ? (
-              <div>
-                <TextField
-                  label={t('componentLibrary.percentageLabel')}
-                  size="small"
-                  type="number"
-                  value={String(olqPercentage)}
-                  onChange={(e) => setOlqPercentage(Number(e.target.value))}
-                  inputProps={{ min: 0, max: 100 }}
-                />
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                {t('componentLibrary.color')}
               </div>
-            ) : (
-              <>
-                <div>
-                  <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                    {t('componentLibrary.variant')}
-                  </div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                    {(['primary', 'secondary', 'tertiary'] as const).map((variant) => (
-                      <Chip
-                        key={variant}
-                        size="small"
-                        selected={tagVariant === variant}
-                        onClick={() => setTagVariant(variant)}
-                      >
-                        {variant.charAt(0).toUpperCase() + variant.slice(1)}
-                      </Chip>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
-                    {t('componentLibrary.color')}
-                  </div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                    {(['brand', 'positive', 'negative', 'warning', 'info'] as const).map((color) => (
-                      <Chip
-                        key={color}
-                        size="small"
-                        selected={tagColor === color}
-                        onClick={() => setTagColor(color)}
-                      >
-                        {color.charAt(0).toUpperCase() + color.slice(1)}
-                      </Chip>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <TextField
-                    label={t('componentLibrary.tagTextLabel')}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['brand', 'positive', 'negative', 'warning', 'info'] as const).map((color) => (
+                  <Chip
+                    key={color}
                     size="small"
-                    value={tagText}
-                    onChange={(e) => setTagText(e.target.value)}
-                  />
-                </div>
-              </>
-            )}
+                    selected={tagColor === color}
+                    onClick={() => setTagColor(color)}
+                  >
+                    {color.charAt(0).toUpperCase() + color.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <TextField
+                label={t('componentLibrary.tagTextLabel')}
+                size="small"
+                value={tagText}
+                onChange={(e) => setTagText(e.target.value)}
+              />
+            </div>
           </div>
         );
       
