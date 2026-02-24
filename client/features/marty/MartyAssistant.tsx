@@ -101,7 +101,7 @@ export default function MartyAssistant() {
             </div>
 
             {/* Beta Tag */}
-            <Tag variant="secondary" color="gray">Beta</Tag>
+            <Tag variant="secondary" color="brand">Beta</Tag>
           </div>
         ) : (
           <div className="flex h-9 items-center gap-3">

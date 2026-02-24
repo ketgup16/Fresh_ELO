@@ -591,7 +591,7 @@ export default function MartyFloatingPanel() {
             <div className="text-[#2E2F32] font-bold text-lg leading-6">Marty</div>
 
             {/* Beta Tag */}
-            <Tag variant="secondary" color="gray">Beta</Tag>
+            <Tag variant="secondary" color="brand">Beta</Tag>
           </div>
         )}
 
