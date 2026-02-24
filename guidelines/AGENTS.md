@@ -351,7 +351,58 @@ When a designer drops a new design system package into the project:
 
 ---
 
-### Figma Import Rules
+### Figma Import Rules (HARD RULES — NO EXCEPTIONS)
+
+#### Design System First (CRITICAL)
+
+When implementing any Figma design, you MUST use the existing Living Design 3.5 design system. **Never hardcode colors, text styles, or tokens.**
+
+- **Colors**: Every color in the Figma design maps to an `ld-semantic-color-*` token. Use `var(--ld-semantic-color-*)` in CSS — never write hex values like `#0071DC`, `#2E2F32`, `rgba(46,47,50,1)`, etc. Even if the Figma export includes raw hex/rgba values in inline styles, always replace them with the corresponding semantic token.
+- **Typography**: Every font in the Figma design maps to `ld-semantic-font-*` tokens. Use `var(--ld-semantic-font-body-small-family)`, `var(--ld-semantic-font-body-small-size)`, `var(--ld-semantic-font-body-small-weight-alt)`, etc. Never hardcode `font-family: 'Everyday Sans UI'`, `font-size: 14px`, or `font-weight: 700` directly — wrap them in token variables with fallbacks.
+- **Spacing & Sizing**: Use `var(--ld-primitive-scale-space-*)` or `var(--ld-semantic-spacing-*)` tokens. Never use arbitrary pixel values for padding, gap, or margins.
+- **Border radius**: Use `var(--ld-primitive-scale-borderradius-*)` tokens. For pill shapes use `var(--ld-primitive-scale-borderradius-round, 9999px)`.
+- **Border widths**: Use `var(--ld-primitive-scale-borderwidth-*)` tokens, not raw `1px` or `2px`.
+- **Icon sizes**: Use `var(--ld-semantic-scale-icon-small)`, `var(--ld-semantic-scale-icon-medium)`, `var(--ld-semantic-scale-icon-large)` — never hardcode `16px`, `24px`, `32px`.
+
+```css
+/* ❌ WRONG — hardcoded from Figma export */
+.button {
+  background: #0071DC;
+  color: #FFFFFF;
+  font-family: 'Everyday Sans UI', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 1000px;
+  padding: 0 12px;
+  gap: 4px;
+}
+
+/* ✅ CORRECT — mapped to design tokens */
+.button {
+  background: var(--ld-semantic-color-action-fill-primary);
+  color: var(--ld-semantic-color-action-text-onfill-primary);
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size);
+  font-weight: var(--ld-semantic-font-body-small-weight-alt);
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  padding: 0 var(--ld-primitive-scale-space-300, 12px);
+  gap: var(--ld-primitive-scale-space-100, 4px);
+}
+```
+
+#### Figma Component → Code Component Mapping
+
+When a Figma layer is named `[WCP] Button`, `[WCP] Loading Button`, `[LD 3.5] Plus`, etc., it maps directly to an existing LD component. **Always use the existing component** — never rebuild it from scratch with raw HTML elements.
+
+| Figma Component Name | Code Component |
+|---|---|
+| `[WCP] Button` / `[WCP] Loading Button` | `<Button>` from `@/components/ui/Button` |
+| `[WCP] Quantity Stepper *` | Build as wrapper — never hardcode colors |
+| `[WCP] Segmented Control` | Build as wrapper — use LD tokens for all states |
+| `[LD 3.5] Plus` / `[LD 3.5] Minus` | Use existing icon components or SVG with token fills |
+| `[WCP] Generic Spinner` | Use existing spinner or build with token-based gradients |
+
+#### General Figma-to-Code Rules
 
 - **Convert absolute positioning** from Figma to flexbox/grid layouts. Never use `position: absolute` for page layout.
 - **Map Figma token names** directly to CSS custom properties: Figma `ld-semantic-color-text` → CSS `var(--ld-semantic-color-text)`.
@@ -359,6 +410,7 @@ When a designer drops a new design system package into the project:
 - **Preserve SVGs exactly** as designed unless an identical icon already exists in `@/components/icons`.
 - **Circular images/flags**: Use SVG with `<clipPath>` circles, not `border-radius` on `<img>`.
 - When Figma shows multiple frames/breakpoints, implement one responsive component that handles all breakpoints via CSS media queries, not separate components.
+- **State tokens**: Figma hover/focus/pressed/disabled states use semantic state tokens (e.g., `ld-semantic-color-action-fill-primary-hovered`). Always map these to `var(--ld-semantic-color-action-fill-primary-hovered)` in `:hover` pseudo-classes — never approximate with `opacity` or manual color darkening.
 
 ### File Organization
 
