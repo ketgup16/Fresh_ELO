@@ -1,8 +1,14 @@
-# Spinner
+---
+title: Spinner
+scope: component
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
+
+## Purpose
 
 Spinners inform users of processes including data retrieval, loading states, and saving. They visually express an undetermined wait time or unquantifiable task. The spinner dismisses when the process is completed.
-
-## Overview
 
 Spinners are non-interactive loading indicators used to show that a process is ongoing. They provide visual feedback to users that the system is working and they should wait for the operation to complete.
 

@@ -1,6 +1,12 @@
-# Radio & RadioGroup — LD 3.5
+---
+title: Radio and RadioGroup
+scope: component
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 Radio buttons represent a group of mutually exclusive choices. Use the Radio component inside a RadioGroup when only one selection from a group is allowed (as opposed to Checkboxes which allow multiple selections).
 

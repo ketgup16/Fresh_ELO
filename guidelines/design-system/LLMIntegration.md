@@ -1,8 +1,14 @@
-# LLM Integration Instructions: Living Design 3.5 Component Library
-
-This document provides step-by-step instructions for an AI assistant to integrate the Living Design 3.5 (LD 3.5) portable component library into any existing Builder project. Follow each section in order.
-
 ---
+title: LLM Integration Instructions
+scope: design-system
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
+
+## Purpose
+
+Step-by-step instructions for an AI assistant to integrate the Living Design 3.5 (LD 3.5) portable component library into any existing Builder project.
 
 ## Table of Contents
 

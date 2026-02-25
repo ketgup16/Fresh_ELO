@@ -1,6 +1,14 @@
-# Component Visibility and Access
+---
+title: Component Visibility and Access
+scope: design-system
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Private Components
+## Purpose
+
+Defines visibility rules for components. Private components must not be used directly in application code.
 
 **NEVER use components marked as `@private`** in their JSDoc/docblock comments. These are internal implementation details and should not be used directly in application code.
 

@@ -1,6 +1,14 @@
-# Design System Terminology — Official Translation Standard
+---
+title: Design System Terminology
+scope: design-system
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-This document defines the official translations for Living Design 3.5 terminology. It draws a clear line between **code-level terms** (always English) and **user-facing UI text** (translated).
+## Purpose
+
+Defines the official translations for Living Design 3.5 terminology. Draws a clear line between **code-level terms** (always English) and **user-facing UI text** (translated).
 
 ## Core Principle
 

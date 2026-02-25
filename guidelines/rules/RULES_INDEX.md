@@ -59,32 +59,7 @@ import { Search } from '@/components/icons';
 
 ---
 
-### 2. Design Token Enforcement
-**File**: `RULE_DesignTokenEnforcement.md`
-
-**When**: All new designs, Builder.io imports, AI-generated code
-
-**Key Requirements**:
-- ✅ NEVER use hard-coded colors, spacing, or typography
-- ✅ NEVER create new CSS custom properties/tokens
-- ✅ ALWAYS use semantic tokens (not primitive) for colors
-- ✅ ALWAYS include interactive states (hover, focus, active, disabled)
-
-**Quick Check**:
-```css
-/* ❌ WRONG */
-.button { background: #0053e2; padding: 16px; }
-
-/* ✅ CORRECT */
-.button {
-  background: var(--ld-semantic-color-action-fill-primary);
-  padding: var(--ld-primitive-scale-space-200);
-}
-```
-
----
-
-### 3. Icon Usage and Management
+### 2. Icon Usage and Management
 **File**: `RULE_IconUsage.md`
 
 **When**: Adding icons to designs, Builder.io imports, new components
@@ -111,7 +86,7 @@ import { Search } from '@/components/icons';
 
 ---
 
-### 4. LinkButton and Spot Icon Usage
+### 3. LinkButton and Spot Icon Usage
 **File**: `RULE_LinkButtonAndSpotIcon.md`
 
 **When**: Adding link-styled buttons or icon indicators to todo items, action rows, or cards
@@ -134,7 +109,7 @@ import { LinkButton } from '@/components/ui/LinkButton';
 
 ---
 
-### 5. Figma Exportable Asset Extraction
+### 4. Figma Exportable Asset Extraction
 **File**: `RULE_FigmaAssetExtraction.md` 🆕
 
 **When**: Implementing Figma designs, extracting assets from design files
@@ -170,7 +145,7 @@ public/
 
 ---
 
-### 2b. Guidelines Page Sync
+### 5. Guidelines Page Sync
 **File**: `RULE_GuidelinesPageSync.md`
 
 **When**: After ANY change to files in the `guidelines/` directory
@@ -183,59 +158,27 @@ public/
 
 ---
 
-## 📚 Component Guidelines
+## Component and Layout Rules
 
-### 3. Living Design Component API Reference
-**File**: `LivingDesign-Component-Reference.md` 🆕
-
-**When**: Using ANY Living Design component from `@livingdesign/react`
-
-**What's Included**:
-- ✅ 40+ Living Design components with complete API documentation
-- ✅ All prop definitions with types (required vs optional)
-- ✅ Component variants and sizing options
-- ✅ Import statements for each component
-- ✅ Usage guidance and examples
-
-**Quick Reference**:
-```tsx
-// Alert Component
-import { Alert } from '@livingdesign/react'
-<Alert variant="info">Message</Alert>
-
-// Button Component
-import { Button } from '@livingdesign/react'
-<Button variant="primary" size="medium">Click</Button>
-
-// Card Component
-import { Card, CardHeader, CardContent } from '@livingdesign/react'
-<Card>
-  <CardHeader title="Title" />
-  <CardContent>Content</CardContent>
-</Card>
-```
-
-### 4. Component Reuse Policy
-**Reference**: Custom rules in system prompt
+### 6. Component Reuse Policy
+**Reference**: `design-system/ComponentReference.md`
 
 **When**: Creating any new UI component
 
 **Key Requirements**:
-- ✅ Check `LivingDesign-Component-Reference.md` for @livingdesign/react components FIRST
-- ✅ Search `client/components/ui/` for custom components
-- ✅ Use Living Design 3.5 components (Button, Tag, ButtonGroup, etc.)
-- ✅ Never create custom buttons with inline styles
-- ✅ Consolidate duplicates immediately
+- Search `client/components/ui/` for custom components FIRST
+- Use Living Design 3.5 components (Button, Tag, ButtonGroup, etc.)
+- Never create custom buttons with inline styles
+- Consolidate duplicates immediately
 
 **Component Priority**:
-1. Living Design components from `@livingdesign/react` (see Component Reference)
-2. Living Design 3.5 components (`client/components/ui/` with uppercase)
-3. Shadcn/Radix components (lowercase names)
-4. Custom components (only if no equivalent exists)
+1. Living Design 3.5 components (`client/components/ui/` with uppercase)
+2. Shadcn/Radix components (lowercase names)
+3. Custom components (only if no equivalent exists)
 
 ---
 
-### 5. Responsive Layout & Page Structure
+### 7. Responsive Layout and Page Structure
 **File**: `RULE_ResponsiveLayout.md`
 
 **When**: Creating ANY new page, view, or layout component
@@ -268,7 +211,7 @@ import { Card, CardHeader, CardContent } from '@livingdesign/react'
 
 ---
 
-### 6. Panel Design Requirements
+### 8. Panel Design Requirements
 **File**: `Panel.md`
 
 **When**: Creating any panel, drawer, or sidebar component
@@ -283,7 +226,7 @@ import { Card, CardHeader, CardContent } from '@livingdesign/react'
 
 ---
 
-## 🎨 Design System Resources
+## Design System Resources
 
 ### Token Documentation
 - **Primitive tokens**: `styles/primitive.css` (364 lines)
@@ -303,7 +246,7 @@ import { Card, CardHeader, CardContent } from '@livingdesign/react'
 
 ---
 
-## 🚫 Common Violations to Avoid
+## Common Violations to Avoid
 
 ### ❌ Violation #1: Hard-Coded Colors
 ```css
@@ -349,7 +292,7 @@ import { Button } from '@/components/ui/Button';
 
 ---
 
-## 🔍 Pre-Implementation Checklist
+## Pre-Implementation Checklist
 
 Before creating ANY new component, icon, or design:
 
@@ -363,24 +306,23 @@ Before creating ANY new component, icon, or design:
 
 ---
 
-## 📖 Quick Links
+## Quick Links
 
 | Resource | Location |
 |----------|----------|
-| **LD Component API Reference** 🆕 | `guidelines/LivingDesign-Component-Reference.md` |
-| **Design System Enforcement** 🆕 | `guidelines/RULE_DesignSystemEnforcement.md` |
-| Design Token Rule | `guidelines/RULE_DesignTokenEnforcement.md` |
-| Icon Usage Rule | `guidelines/RULE_IconUsage.md` |
-| Token Documentation | `guidelines/DesignTokens.md` |
+| Component API Reference | `guidelines/design-system/ComponentReference.md` |
+| Design System Enforcement | `guidelines/rules/RULE_DesignSystemEnforcement.md` |
+| Icon Usage Rule | `guidelines/rules/RULE_IconUsage.md` |
+| Token Documentation | `guidelines/design-system/DesignTokens.md` |
 | Component Library | `/component-library` |
 | Icon Library (303 icons) | `/component-library#icons` |
 | Primitive Tokens | `styles/primitive.css` |
 | Semantic Tokens | `styles/semantic.css` |
-| Component Guidelines | `guidelines/*.md` (30+ files) |
+| Component Guidelines | `guidelines/components/` (40+ files) |
 
 ---
 
-## 🚀 Workflow for New Designs
+## Workflow for New Designs
 
 ### From Builder.io Plugin
 
@@ -402,7 +344,7 @@ Before creating ANY new component, icon, or design:
 
 ---
 
-## ✅ Success Criteria
+## Success Criteria
 
 Code is ready when:
 

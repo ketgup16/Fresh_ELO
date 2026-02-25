@@ -1,6 +1,14 @@
-# Component Library Integration Checklist
+---
+title: Component Library Integration Checklist
+scope: design-system
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Quick Reference for Component Creation
+## Purpose
+
+Quick reference checklist for integrating new components into the component library.
 
 When creating a new component in `client/components/ui/`, ensure ALL of the following requirements are met before marking the task as complete.
 

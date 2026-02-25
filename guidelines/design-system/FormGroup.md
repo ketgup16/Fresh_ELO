@@ -1,6 +1,12 @@
-# FormGroup - LD 3.5 Component
+---
+title: FormGroup
+scope: design-system
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 `FormGroup` is a semantic wrapper that groups related form controls (checkboxes, radio buttons, etc.) using a `<fieldset>` and `<legend>` structure. It provides a consistent label, optional helper text, and error state with proper accessibility.
 

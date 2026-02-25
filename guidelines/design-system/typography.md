@@ -1,6 +1,14 @@
-# Typography Components (REQUIRED)
+---
+title: Typography Components
+scope: design-system
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-**MUST use Living Design typography components** for all text rendering. Never use plain HTML text elements (`<p>`, `<span>`, `<h1>`, etc.) directly without wrapping them in Living Design typography components.
+## Purpose
+
+All text rendering **MUST** use Living Design typography components. Never use plain HTML text elements (`<p>`, `<span>`, `<h1>`, etc.) directly without wrapping them in Living Design typography components.
 
 ## Available Components
 

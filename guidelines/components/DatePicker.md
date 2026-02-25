@@ -1,6 +1,12 @@
-# DatePicker Component
+---
+title: DatePicker
+scope: component
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 The DatePicker component combines a text input field with a calendar popup for date selection. It supports both manual text entry and calendar-based selection, providing flexibility for users while maintaining data consistency.
 
