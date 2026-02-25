@@ -1,6 +1,10 @@
-# DateField
-
-A text input for manual date entry in **mm/dd/yyyy** format, built to the Living Design 3.5 specification.
+---
+title: DateField
+scope: component
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
 ## Purpose
 

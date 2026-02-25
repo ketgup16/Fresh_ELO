@@ -1,6 +1,14 @@
-# RULE: Icon Usage and Management
+---
+title: Icon Usage and Management
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-**CRITICAL RULE - ALWAYS ENFORCE**
+## Purpose
+
+Enforce correct icon usage and management across the project.
 
 ## When This Rule Applies
 

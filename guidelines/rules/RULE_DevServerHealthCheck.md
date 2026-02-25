@@ -1,11 +1,16 @@
-# Rule: Dev Server Health Check
-
-**Priority**: CRITICAL - ALWAYS ENFORCE  
-**When**: After completing ANY code changes (component updates, style changes, new files, etc.)
-
+---
+title: Dev Server Health Check
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
 ---
 
-## Rule
+## Purpose
+
+Ensure the dev server remains healthy after ANY code changes (component updates, style changes, new files, etc.).
+
+## Rules
 
 After finishing a set of code changes, you MUST:
 

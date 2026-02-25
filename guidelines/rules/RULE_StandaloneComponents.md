@@ -1,8 +1,16 @@
-# RULE: Standalone Components Only - No External Dependencies
+---
+title: Standalone Components Only
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Status: ENFORCED (Hard Rule)
+## Purpose
 
-## Rule
+All UI components must be standalone with zero external component library dependencies.
+
+## Rules
 
 **ALL UI components MUST be standalone with ZERO external component library dependencies.**
 

@@ -1,6 +1,12 @@
-# QuantityStepper Component
+---
+title: QuantityStepper
+scope: component
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 The QuantityStepper lets users increase or decrease a numeric quantity — most commonly a product count in a cart, wishlist, or product detail page. It morphs between an "Add" button state (count = 0) and an expanded stepper state (count > 0) with smooth animated transitions.
 

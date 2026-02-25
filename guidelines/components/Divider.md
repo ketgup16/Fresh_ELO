@@ -1,4 +1,12 @@
-# Divider
+---
+title: Divider
+scope: component
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
+
+## Purpose
 
 A visual separator using the LD 3.5 `--ld-semantic-color-separator` token. Use to separate content sections, list items, or inline elements.
 

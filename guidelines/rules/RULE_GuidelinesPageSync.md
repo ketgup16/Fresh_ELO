@@ -1,9 +1,12 @@
-# Rule: Guidelines Page Sync
+---
+title: Guidelines Page Sync
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-**Priority:** CRITICAL - ALWAYS ENFORCE  
-**When:** After ANY change to files in the `guidelines/` directory
-
-## Overview
+## Purpose
 
 The Component Library Guidelines page (`client/pages/component-library/Guidelines.tsx`) includes a **Documentation Index** tab that lists every guideline document in the project. This tab is powered by the `GuidelinesDocIndex` component (`client/pages/component-library/GuidelinesDocIndex.tsx`).
 

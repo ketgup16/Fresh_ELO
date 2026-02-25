@@ -1,6 +1,12 @@
-# Living Design 3.5 Migration Assessment
+---
+title: Living Design 3.5 Migration Assessment
+scope: migration
+status: draft
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Executive Summary
+## Purpose
 
 **Current Progress**: ~10% complete
 **Estimated Total Effort**: 32-48 hours (4-6 days)

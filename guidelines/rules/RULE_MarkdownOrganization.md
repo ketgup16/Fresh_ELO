@@ -1,6 +1,12 @@
-# RULE: Markdown File Organization
+---
+title: Markdown File Organization
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 All markdown documentation files MUST be organized in the appropriate directories. NO markdown files should exist in the project root except for essential project documentation.
 

@@ -1,6 +1,12 @@
-# Theme Switcher System
+---
+title: Theme Switcher System
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 The theme switcher allows dynamic swapping of design token sets across the entire application. Themes modify CSS custom properties at the `:root` level, enabling visual customization without code changes to components.
 

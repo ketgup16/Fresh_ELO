@@ -1,6 +1,12 @@
-# LinkButton – Living Design 3.5
+---
+title: LinkButton
+scope: component
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 LinkButton is a polymorphic interactive element that provides link-styled text with button-like features (icons, sizes) but **no** pill shape or background. It renders as `<a>` when `href` is provided, `<button>` otherwise.
 

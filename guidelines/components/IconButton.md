@@ -1,6 +1,12 @@
-# IconButton Component - LD 3.5
+---
+title: IconButton
+scope: component
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 The IconButton component is a square, icon-only button following Living Design 3.5 specifications. It provides a consistent way to handle icon-based actions throughout the application.
 

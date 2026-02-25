@@ -1,6 +1,12 @@
-# RULE: Theme Addition Process
+---
+title: Theme Addition Process
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 When adding a new theme to the Living Design 3.5 theme system, you MUST follow this checklist to ensure proper integration and inheritance.
 

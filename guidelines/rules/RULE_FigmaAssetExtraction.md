@@ -1,4 +1,10 @@
-# RULE: Figma Exportable Asset Extraction
+---
+title: Figma Exportable Asset Extraction
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
 ## Purpose
 This rule ensures that only explicitly marked exportable assets from Figma are extracted and used in the codebase, preventing confusion and maintaining design system integrity.

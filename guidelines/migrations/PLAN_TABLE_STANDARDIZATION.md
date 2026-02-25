@@ -1,6 +1,12 @@
-# Table Standardization Implementation Plan
+---
+title: Table Standardization Plan
+scope: migration
+status: draft
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 This plan outlines the systematic approach to standardizing all data tables across the application to match the reference implementation in `client/pages/Index.tsx`.
 
 ## Reference Implementation

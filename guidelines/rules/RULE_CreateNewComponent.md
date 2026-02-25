@@ -1,6 +1,12 @@
-# RULE: Create New Component Process
+---
+title: Create New Component Process
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 When the user says **"Create new component"** or requests a new LD 3.5/WCP component, you MUST follow this complete process to ensure nothing breaks and the component integrates properly.
 

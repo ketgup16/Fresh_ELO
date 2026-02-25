@@ -1,10 +1,16 @@
-# Radix UI Removal — Migration Plan
-
-> **Goal**: Remove all `@radix-ui/react-*` dependencies from the project and replace with native HTML/React implementations that preserve accessibility and behavior.
-
+---
+title: Radix UI Removal Migration Plan
+scope: migration
+status: draft
+owner: design-system
+last_updated: 2025-02-25
 ---
 
-## 1. Current State
+## Purpose
+
+Remove all `@radix-ui/react-*` dependencies from the project and replace with native HTML/React implementations that preserve accessibility and behavior.
+
+## Current State
 
 **27 Radix packages** in `package.json` (devDependencies).  
 **20 component files** under `client/components/ui/` import from `@radix-ui`.  

@@ -1,10 +1,16 @@
-# Design System Rules - Master Index
-
-**Quick reference for all mandatory design system rules and enforcement policies**
-
+---
+title: Design System Rules Index
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
 ---
 
-## 🎯 Critical Rules (ALWAYS ENFORCE)
+## Purpose
+
+Quick reference for all mandatory design system rules and enforcement policies.
+
+## Critical Rules (ALWAYS ENFORCE)
 
 ### 0. Dev Server Health Check
 **File**: `RULE_DevServerHealthCheck.md`

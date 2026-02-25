@@ -1,6 +1,12 @@
-# Theme Switcher Implementation Plan
+---
+title: Theme Switcher Implementation Plan
+scope: migration
+status: draft
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 This plan outlines the implementation of a dynamic theme switching system that allows users to switch between different design token sets (Base Theme and Walmart B2B Theme) on the Component Library page. The system will be extensible for adding additional themes in the future.
 

@@ -1,6 +1,14 @@
-# Attribution Dropdown Implementation Summary
+---
+title: Attribution Dropdown Implementation
+scope: implementation
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## ✅ What Was Built
+## Purpose
+
+A fully functional attribution interval dropdown that dynamically adjusts campaign metrics based on the selected attribution window.
 
 A fully functional attribution interval dropdown that dynamically adjusts campaign metrics based on the selected attribution window.
 

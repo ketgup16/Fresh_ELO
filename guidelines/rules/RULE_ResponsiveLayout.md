@@ -1,10 +1,14 @@
-# Rule: Responsive Layout & Page Structure
-
-**When**: Creating ANY new page, view, or layout component
-
-**Enforcement Level**: CRITICAL — All new pages MUST follow these patterns
-
 ---
+title: Responsive Layout and Page Structure
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
+
+## Purpose
+
+Enforce consistent layout and page structure patterns for all new pages, views, and layout components.
 
 ## Page Shell Structure
 

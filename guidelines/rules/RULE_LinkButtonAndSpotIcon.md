@@ -1,6 +1,12 @@
-# RULE: Always Use LD 3.5 LinkButton and Spot Icon
+---
+title: LinkButton and Spot Icon Usage
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 This rule enforces the use of the Living Design 3.5 `LinkButton` component and the standardized Spot Icon pattern. Custom inline link-styled buttons and square icon placeholders are prohibited.
 
 ---

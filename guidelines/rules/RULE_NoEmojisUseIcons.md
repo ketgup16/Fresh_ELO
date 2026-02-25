@@ -1,6 +1,12 @@
-# RULE: No Emojis, Use Icons - No Random Images
+---
+title: No Emojis, Use Icons
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 When implementing new designs or responding to user prompts, you MUST NOT use emojis or generate random images. Use the icon library and placeholder patterns instead.
 

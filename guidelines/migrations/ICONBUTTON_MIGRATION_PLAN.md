@@ -1,6 +1,12 @@
-# IconButton Component - Migration Plan & Status
+---
+title: IconButton Migration Plan
+scope: migration
+status: draft
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## 📋 Overview
+## Purpose
 
 This document outlines the plan to replace all custom icon button implementations with the new LD 3.5 IconButton component throughout the application.
 

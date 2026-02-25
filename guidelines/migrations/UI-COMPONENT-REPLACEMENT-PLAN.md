@@ -1,6 +1,12 @@
-# UI Component Replacement Plan: shadcn/ui → Living Design
+---
+title: UI Component Replacement Plan
+scope: migration
+status: draft
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Executive Summary
+## Purpose
 
 This document outlines the comprehensive plan to migrate from shadcn/ui components to Living Design components. The migration involves **33 duplicate components** that need careful replacement to avoid breaking existing functionality.
 

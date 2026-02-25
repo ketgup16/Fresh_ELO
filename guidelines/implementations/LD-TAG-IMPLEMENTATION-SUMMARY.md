@@ -1,6 +1,12 @@
-# LD 3.5 Tag Component Implementation
+---
+title: LD 3.5 Tag Component Implementation
+scope: implementation
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Summary
+## Purpose
 
 Successfully created and implemented Living Design 3.5 (LD 3.5) compliant Tag components to replace manual styling in the OLQ (Offer Listing Quality) column across Item Health and Omni ROAS pages.
 

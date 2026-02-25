@@ -1,6 +1,12 @@
-# Internationalization (i18n) Guidelines
+---
+title: Internationalization (i18n)
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 This project uses **react-i18next** for internationalization. Every user-facing string must be translatable. This document defines the rules and patterns all contributors must follow when adding new features, pages, or components.
 

@@ -1,6 +1,12 @@
-# RULE: Component Sandbox Coverage
+---
+title: Component Sandbox Coverage
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
 
-## Overview
+## Purpose
 
 **ALL Living Design 3.5 components MUST be included in the Component Sandbox** on the Component Library page. This ensures every component can be interactively tested with all its variants, sizes, and properties.
 
