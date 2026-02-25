@@ -49,16 +49,8 @@
     "lock": "Verrouiller"
   },
   "templates": {
-    "navigate": "Parcourir les modèles",
-    "pageTemplates": "Modèles de page",
     "toolsAndHelp": "Outils et aide",
-    "componentLibrary": "Bibliothèque de composants",
-    "pageTemplate": "Modèle de page",
-    "dashboardTemplate": "Modèle de tableau de bord",
-    "catalogTemplate": "Modèle de catalogue",
-    "detailItem": "Détail de l'article",
-    "landingConnection": "Page de connexion",
-    "landingSummary": "Page de résumé"
+    "componentLibrary": "Bibliothèque de composants"
   },
   "shared": {
     "title": "Titre",

@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bell, HelpCircle, User, AppSwitcher } from '@/components/icons';
 import { MartyAvatar } from '@/features/marty/MartyAvatar';
-import { MediaSolutionsDropdown, MediaSolution } from './MediaSolutionsDropdown';
+import { MediaSolutionsDropdown } from './MediaSolutionsDropdown';
 import { useMarty } from '@/contexts/MartyContext';
 import { Divider } from './Divider';
 import { LanguageSelector } from './LanguageSelector';
@@ -10,14 +10,10 @@ import styles from './MastHead.module.css';
 
 interface MastHeadProps {
   appName?: string;
-  currentSolution?: MediaSolution;
-  onSolutionChange?: (solution: MediaSolution) => void;
 }
 
 export function MastHead({
   appName,
-  currentSolution = 'Dashboard Template',
-  onSolutionChange
 }: MastHeadProps) {
   const { t } = useTranslation();
   const displayAppName = appName ?? t('masthead.appName');
@@ -48,10 +44,7 @@ export function MastHead({
       </div>
 
       <div className={styles.right}>
-        <MediaSolutionsDropdown
-          currentSolution={currentSolution}
-          onSolutionChange={onSolutionChange}
-        />
+        <MediaSolutionsDropdown />
         <Divider orientation="vertical" UNSAFE_className={styles.divider} />
         <LanguageSelector />
         <div className={styles.actions}>

@@ -49,16 +49,8 @@
     "lock": "Fijar"
   },
   "templates": {
-    "navigate": "Navegar plantillas",
-    "pageTemplates": "Plantillas de página",
     "toolsAndHelp": "Herramientas y ayuda",
-    "componentLibrary": "Biblioteca de componentes",
-    "pageTemplate": "Plantilla de página",
-    "dashboardTemplate": "Plantilla de panel",
-    "catalogTemplate": "Plantilla de catálogo",
-    "detailItem": "Detalle del artículo",
-    "landingConnection": "Conexión de landing",
-    "landingSummary": "Resumen de landing"
+    "componentLibrary": "Biblioteca de componentes"
   },
   "shared": {
     "title": "Título",

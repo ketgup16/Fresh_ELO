@@ -49,16 +49,8 @@
     "lock": "Lock"
   },
   "templates": {
-    "navigate": "Navigate Templates",
-    "pageTemplates": "Page templates",
     "toolsAndHelp": "Tools and help",
-    "componentLibrary": "Component Library",
-    "pageTemplate": "Page Template",
-    "dashboardTemplate": "Dashboard Template",
-    "catalogTemplate": "Catalog Template",
-    "detailItem": "Detail Item",
-    "landingConnection": "Landing Connection",
-    "landingSummary": "Landing Summary"
+    "componentLibrary": "Component Library"
   },
   "shared": {
     "title": "Title",

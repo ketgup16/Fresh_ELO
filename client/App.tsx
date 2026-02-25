@@ -10,14 +10,8 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
 
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 
-// Main app pages (lazy loaded for code splitting)
-const Index = React.lazy(() => import("./pages/Index"));
-const Catalog = React.lazy(() => import("./pages/Catalog"));
-const PageTemplate = React.lazy(() => import("./pages/PageTemplate"));
-const LandingConnection = React.lazy(() => import("./pages/LandingConnection"));
-const DetailItem = React.lazy(() => import("./pages/DetailItem"));
-const LandingSummary = React.lazy(() => import("./pages/LandingSummary"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 // Component library pages (lazy loaded)
@@ -178,13 +172,8 @@ const App = () => (
                 <Route path="toggle" element={<TogglePage />} />
               </Route>
 
-              {/* Template Homepage */}
-              <Route path="/" element={<Index />} />
-              <Route path="/catalog" element={<Catalog />} />
-              <Route path="/page-template" element={<PageTemplate />} />
-              <Route path="/landing-connection" element={<LandingConnection />} />
-              <Route path="/landing-summary" element={<LandingSummary />} />
-              <Route path="/detail-item" element={<DetailItem />} />
+              {/* Redirect home to Component Library */}
+              <Route path="/" element={<Navigate to="/component-library" replace />} />
 
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />
