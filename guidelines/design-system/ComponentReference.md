@@ -1,3 +1,11 @@
+---
+title: Component Reference
+scope: design-system
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
+
 **You are an AI agent building UI with Living Design, start here.**
 
 ---
