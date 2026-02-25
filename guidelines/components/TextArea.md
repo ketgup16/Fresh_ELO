@@ -1,140 +1,96 @@
 ---
-title: Textarea
+title: TextArea
 scope: component
-status: draft
+status: stable
 owner: design-system
-last_updated: 2025-12-19
+last_updated: 2025-02-25
 ---
 
 ## Purpose
-Text Areas collect free form input from the user, unconstrained by validation of content type. They are visually taller than other text inputs to indicate that longer entries are possible and encouraged.
+
+Text Areas collect free-form, multi-line input from the user. They are visually taller than other text inputs to indicate that longer entries are possible and encouraged.
 
 ## Rules
-- **MUST** use the Living Design Text Area/Textarea component.
+
+- **MUST** use the Living Design TextArea component (`import { TextArea } from '@/components/ui/TextArea'`).
 - **MUST** provide a visible label (or an accessible name when visually hidden).
-- **MUST** support error/validation states using documented APIs.
-- **MUST** support disabled and read-only states using documented APIs.
+- **MUST** support error/validation, disabled, and read-only states using documented APIs.
+- **MUST NOT** use placeholder text as a replacement for labels.
+- **MUST NOT** use TextArea for single-line input (use TextField instead).
 - **SHOULD** use helper text to provide supplemental instruction/context.
 
-## States
-- Default
-- Focus-visible
-- Disabled
-- Read-only
-- Error
-- Magic (AI-filled)
-
-## Sizes
-Text Area should support documented sizes (names may differ in your API).
-
-## React usage (example)
-Update import path after wiring in `guidelines/components/overview-components.md`.
+## Usage
 
 ```tsx
-import * as React from "react";
-import { Textarea } from "REPLACE_ME_COMPONENT_IMPORT_PATH";
+import { TextArea } from '@/components/ui/TextArea';
 
-export function TextareaExamples() {
-  const [value, setValue] = React.useState("");
+// Basic
+<TextArea
+  label="Description"
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  textAreaProps={{ placeholder: 'Enter description...' }}
+/>
 
-  return (
-    <>
-      <Textarea
-        label="Additional details"
-        value={value}
-        onValueChange={setValue}
-        helperText="Share anything that will help us resolve your issue."
-        // Adapt prop names to your actual API:
-        // size="sm" | "md" | "lg"
-        // maxLength={280}
-      />
+// With error
+<TextArea label="Input" value={value} onChange={onChange} error="This field is required" />
 
-      <Textarea
-        label="Notes (read-only)"
-        value="This content can be selected and copied."
-        readOnly
-      />
+// With character counter
+<TextArea label="Bio" value={value} onChange={onChange} maxLength={200} />
 
-      <Textarea
-        label="Disabled"
-        value="Disabled fields cannot be edited."
-        disabled
-      />
-
-      <Textarea
-        label="Description"
-        value={value}
-        onValueChange={setValue}
-        // Error replaces helper text with guidance.
-        errorMessage="Please enter at least 20 characters."
-      />
-
-      <Textarea
-        label="AI draft"
-        value="AI generated content…"
-        // Magic = AI-filled state; revert to default after user edits.
-        state="magic"
-        readOnly={false}
-      />
-    </>
-  );
-}
+// AI-generated content
+<TextArea label="AI Response" value={text} onChange={onChange} isMagic />
 ```
 
-## Usage
-Use when free form, longer responses are desired.
+### States
 
-### Disabled
-A disabled Text Area is unable to accept user input. It may require prior information or data to become active.
+- **Default**, **Hover**, **Focus**, **Disabled**, **Read-only**, **Error**, **Magic** (AI-filled)
 
-### Error
-Error state displays when text input isn’t accepted. Error messages replace helper text with additional instructions.
+### Sizes
 
-### Helper text
-Helper text adds context to the Text Area's value and clarifies its use within a form.
+- **large** (default): 128px height, 16px padding
+- **small**: 100px height, condensed padding
 
-### Max length
-Maximum length communicates the Text Area's value count when available characters are limited.
+## Migration
 
-### Read-only
-Read-only Text Areas display information that can't be modified. The content is not disabled so it can be selected and copied.
+```tsx
+// Old (Shadcn)
+import { Textarea } from '@/components/ui/textarea';
+<Label htmlFor="msg">Message</Label>
+<Textarea id="msg" placeholder="Type here..." />
 
-### Magic
-The Magic state is used when AI has automatically filled in the Text Area's content. It provides clear visual feedback to users that the content was AI-generated. Once a user modifies the Text Area's content, it should be reverted to the default state to indicate manual input.
+// New (LD 3.5)
+import { TextArea } from '@/components/ui/TextArea';
+<TextArea label="Message" value={value} onChange={onChange} textAreaProps={{ placeholder: 'Type here...' }} />
+```
 
-The Magic state's colors will respond to the super agent theme of Sparky, Squiggly, Marty, or Wibey.
+Key changes: integrated label, controlled component, built-in error/helper/counter support, LD 3.5 tokens.
 
-## Best practices
-Use labels as the primary Text Area instruction and helper text to provide supplemental instruction.
+## Do / Don't
 
-### Don't use when
-- Don’t use when a specific, validated, type of content is required (e.g. an address). Use an appropriate validated input instead.
+### Do
 
-## Content strategy
-The text label should clearly provide instruction for the field. Add additional copy above the Text Area if more context is needed.
+- Always provide a descriptive label.
+- Use helper text for context or instructions.
+- Show character counter for fields with length limits.
+- Use `isMagic` for AI-generated content.
 
-When an error occurs, make sure the copy clearly explains what happened and how to fix or what to do next.
+### Don't
 
-## Anatomy
-1. Text label
-2. Value
-3. Helper text (optional)
-4. Count (optional)
-5. Container
-
-### Height
-- The Text Area has a minimum height of 128px. It does not grow as the user adds content, but scrolls within instead.
-
-## Behavior
-### Interaction
-- When the Text Area has a `maxLength` defined, the counter starts at 0 and counts up as the user types.
-- When the maximum has been reached, the Text Area will not allow any additional characters to be typed.
+- Use placeholder text as a replacement for labels.
+- Use TextArea for single-line input (use TextField).
+- Override LD semantic tokens with hard-coded values.
+- Use `disabled` when you mean read-only (copyable but not editable).
 
 ## Accessibility
-- Label must be associated to the control (`label` + `id` or equivalent).
-- Errors must be announced and associated (`aria-invalid`, `aria-describedby`) when applicable.
-- For read-only, ensure the field remains focusable/selectable (do not use `disabled` when the intent is “copyable but not editable”).
 
-## Token usage
-- Prefer component defaults (Text Area should be token-wired for color, radius, typography, spacing).
-- Only use tokens for layout around the Text Area (spacing/gaps), not for restyling the Text Area.
+- Label must be associated to the control (`label` + `id`).
+- Errors announced via `aria-invalid` and `aria-describedby`.
+- Character count uses live region with debounced announcements.
+- Read-only fields remain focusable/selectable.
+
+## Related
+
+- [TextArea API reference](../../design-system-docs/TextArea.mdx)
+- [TextField](./TextField.md) for single-line input
+- [Select](./Select.md) for dropdown selections

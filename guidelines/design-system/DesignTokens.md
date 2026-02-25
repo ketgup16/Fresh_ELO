@@ -1,3 +1,11 @@
+---
+title: Design Tokens
+scope: design-system
+status: stable
+owner: design-system
+last_updated: 2025-02-25
+---
+
 # Design Token Usage Guidelines
 
 **Living Design 3.5 Design Token System**
@@ -773,3 +781,81 @@ If you need a token that doesn't exist, **DO NOT create it**. Instead:
 3. Request a token addition through proper channels
 
 **Remember**: The design system is comprehensive. The token you need likely already exists.
+
+---
+
+## Migration: Common Hex-to-Token Mappings
+
+When migrating hard-coded values to tokens:
+
+### Backgrounds
+
+| Hard-coded | Token | Use Case |
+|---|---|---|
+| `bg-white`, `#FFFFFF` | `var(--ld-semantic-color-background)` | Main background |
+| `bg-[#F6F6F6]`, `bg-[#F8F8F8]` | `var(--ld-semantic-color-background-subtle)` | Subtle background |
+| `bg-gray-100` | `var(--ld-semantic-color-fill-subtle)` | Card/surface fills |
+| `bg-[#2E2F32]` | `var(--ld-semantic-color-background-inverse)` | Dark backgrounds |
+
+### Text
+
+| Hard-coded | Token | Use Case |
+|---|---|---|
+| `text-[#2E2F32]`, `text-gray-900` | `var(--ld-semantic-color-text)` | Primary text |
+| `text-[#515357]`, `text-gray-600` | `var(--ld-semantic-color-text-subtle)` | Subtle text |
+| `text-[#74767C]`, `text-gray-500` | `var(--ld-semantic-color-text-subtlest)` | Placeholder text |
+| `text-white` | `var(--ld-semantic-color-text-inverse)` | Text on dark bg |
+
+### Borders
+
+| Hard-coded | Token | Use Case |
+|---|---|---|
+| `border-[#E3E4E5]`, `border-gray-300` | `var(--ld-semantic-color-separator)` | Dividers, separators |
+| `border-[#BABBBE]` | `var(--ld-semantic-color-border-disabled)` | Disabled state |
+
+### Interactive (Use Button component instead)
+
+| Hard-coded | Correct Approach |
+|---|---|
+| `bg-[#0071DC]`, `bg-blue-600` | `<Button variant="primary">` |
+| `hover:bg-gray-100` | `<Button variant="secondary">` |
+| `bg-transparent` | `<Button variant="tertiary">` |
+
+---
+
+## Best Practices: Separator Token
+
+All default/structural borders (card dividers, list separators, table row borders, tab underlines) **MUST** use `--ld-semantic-color-separator`. Do NOT use `--ld-semantic-color-border-subtle` for these.
+
+```css
+/* CORRECT - structural separator */
+border-bottom: 1px solid var(--ld-semantic-color-separator);
+
+/* WRONG - too dark for a default separator */
+border-bottom: 1px solid var(--ld-semantic-color-border-subtle);
+```
+
+Use specific border tokens only for: interactive element borders (inputs), semantic borders (info/error/warning), active/selected states, and focus outlines.
+
+---
+
+## Best Practices: 8px Spacing Hierarchy
+
+All vertical spacing must use multiples of 8px:
+
+| Spacing | Value | Use Case |
+|---|---|---|
+| 1x | 8px | Tightest grouping, icon-to-label gaps |
+| 2x | 16px | Between closely related items |
+| 3x | 24px | Between section title and its content |
+| 4x | 32px | Between major page sections |
+| 6x | 48px | Between top-level page regions (rare) |
+
+---
+
+## Related
+
+- Token source: `client/styles/themes/base/semantic.css` and `primitive.css`
+- [Color tokens reference](../../design-system-docs/color-tokens.mdx)
+- [Font tokens reference](../../design-system-docs/font-tokens.mdx)
+- [Scale tokens reference](../../design-system-docs/scale-tokens.mdx)

@@ -1,124 +1,87 @@
 ---
 title: Card
 scope: component
-status: draft
+status: stable
 owner: design-system
-last_updated: 2025-12-19
+last_updated: 2025-02-25
 ---
 
 ## Purpose
-Cards are used to display content and actions for a single subject or concept. They help users quickly scan information, understand hierarchy, and take associated actions.
+
+Cards display content and actions for a single subject or concept. They help users quickly scan information, understand hierarchy, and take associated actions.
 
 ## Rules
+
 - **MUST** use Living Design Card component when available.
+- **MUST** use elevation (box-shadow) for visual separation, not borders.
 - **MUST** use surface/border/elevation tokens; no raw values.
 - **SHOULD** keep each Card focused on a single subject/concept.
-- **SHOULD** place distinct topics in separate Cards (avoid putting multiple topics inside one Card).
 - **MUST NOT** place Cards within Cards.
+- **MUST NOT** add borders unless explicitly shown in Figma or requested by user.
 
 ## Usage
-Cards can include various forms of media (photos, graphics, illustrations, video), headers, supporting text, dividers, icons, and buttons.
-
-### Size
-Card size (if supported by your API) should control the container’s width and/or padding scale. Use documented sizes only (names may differ in your API).
-
-## React usage (example)
-Update import path after wiring in `guidelines/components/overview-components.md`.
 
 ```tsx
-import * as React from "react";
-import {
-  Card,
-  // If your API exposes subcomponents, it may look like:
-  // CardMedia,
-  // CardHeader,
-  // CardContent,
-  // CardActions,
-  Button,
-} from "REPLACE_ME_COMPONENT_IMPORT_PATH";
+import { Card, CardHeader, CardContent, CardActions } from '@/components/ui/Card';
 
-export function CardExample() {
-  return (
-    <Card
-      // Adapt prop names to your actual API:
-      // size="sm" | "md" | "lg"
-      // interactive={false} // if supported
-    >
-      {/* Media (optional) */}
-      {/* <CardMedia>
-        <img alt="Product" src="/path/to/image.jpg" />
-      </CardMedia> */}
-
-      {/* Header (optional) */}
-      {/* <CardHeader title="Card title" leadingIcon={<Icon />} trailing={<Tag>New</Tag>} /> */}
-
-      {/* Content */}
-      {/* <CardContent> */}
-      <div>
-        <strong>Card title</strong>
-        <div>Supporting text that explains the content and sets context.</div>
-      </div>
-      {/* </CardContent> */}
-
-      {/* Actions (optional) */}
-      {/* <CardActions> */}
-      <div>
-        <Button variant="secondary">Learn more</Button>
-        <Button>Continue</Button>
-      </div>
-      {/* </CardActions> */}
-    </Card>
-  );
-}
+<Card size="small">
+  <CardHeader title="Card Title" />
+  <CardContent>Card content goes here</CardContent>
+  <CardActions>
+    <Button variant="secondary">Learn more</Button>
+    <Button>Continue</Button>
+  </CardActions>
+</Card>
 ```
 
-## Token usage
-- The Card uses the surface color token.
+### Elevation Rule
 
-## Examples
-- Example of Card with header.
-- Example of Cards with full bleed and padded media content.
+Cards use elevation tokens for depth instead of borders:
 
-## Best practices
-### Use when
-- Use when topics need to be organized in a format that is easily consumable by the user.
+```css
+/* CORRECT */
+box-shadow: var(--ld-semantic-elevation-100);  /* Default */
+box-shadow: var(--ld-semantic-elevation-200);  /* Hover */
+box-shadow: var(--ld-semantic-elevation-300);  /* Modal/Overlay */
 
-### Don't use when
-- Don't use when there are multiple topics within a screen. Putting multiple topics within a single Card diminishes its visual impact, hierarchy and actionability. Place distinct topics in separate Cards.
+/* WRONG - never use borders for card separation */
+border: 1px solid var(--ld-semantic-color-border-moderate);
+```
 
-## Placement
-### Do
-Do use Cards together. Align them horizontally, vertically, or both as needed.
+**Exceptions**: Borders on cards are only allowed when explicitly shown in Figma, user explicitly requests it, or for interactive states (hover/focus/selected).
 
-### Don't
-Don't place Cards within Cards.
+### Anatomy
 
-### Caution
-Placing content over media can result in unexpected results, including ADA violations.
-
-## Anatomy
-### Card
 1. Container
 2. CardMedia (optional)
-3. CardHeader (optional)
+3. CardHeader (optional) - includes leading icon, title, trailing
 4. CardContent
 5. CardActions (optional)
 
-### CardMedia
-1. Container
+## Do / Don't
 
-### CardHeader
-1. Container
-2. Leading icon (optional)
-3. Title
-4. Trailing (optional)
+### Do
 
-### CardContent
-1. Container
-2. Content
+- Use Cards together, aligned horizontally, vertically, or both.
+- Keep each Card focused on a single subject.
+- Use elevation tokens for visual hierarchy.
 
-### CardActions
-1. Container
-2. Action content
+### Don't
 
+- Place Cards within Cards.
+- Place content over media without accessibility review.
+- Use borders instead of elevation for card separation.
+- Hard-code colors or shadow values.
 
+## Accessibility
+
+- Placing content over media can result in ADA violations.
+- Ensure sufficient contrast between card content and background.
+
+## Related
+
+- [Card API reference](../../design-system-docs/Card.mdx)
+- [CardActions](../../design-system-docs/CardActions.mdx)
+- [CardContent](../../design-system-docs/CardContent.mdx)
+- [CardHeader](../../design-system-docs/CardHeader.mdx)
+- [CardMedia](../../design-system-docs/CardMedia.mdx)

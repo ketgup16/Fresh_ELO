@@ -1,104 +1,93 @@
 ---
 title: Menu
 scope: component
-status: draft
+status: stable
 owner: design-system
-last_updated: 2025-12-19
+last_updated: 2025-02-25
 ---
 
 ## Purpose
-A Menu reveals additional actions a user can take when space is limited. Menus are intended for **actions** (e.g., edit, export, delete), not for choosing a value from a set of options.
+
+A Menu reveals additional actions a user can take when space is limited. Menus are for **actions** (edit, export, delete), not for choosing a value from options.
 
 ## Rules
-- **MUST** use the Living Design Menu component.
-- **MUST** use Menu for **actions/functions**, not for selection controls.
-- **MUST** provide a clear trigger (most commonly an [Icon Button](/components/icon-button/) or [Button](/components/button/)).
-- **MUST** ensure Menu items have clear, specific labels that describe the action.
-- **MUST** support documented keyboard interactions (open, navigate, activate, dismiss).
-- **MUST NOT** use Menu for main navigation or information architecture; use navigational components (e.g., [Link](/components/link/)) or a purpose-built navigation component.
+
+- **MUST** use the Living Design Menu component (`import { Menu, MenuItem } from '@/components/ui/Menu'`).
+- **MUST** use Menu for actions/functions, not for selection controls (use Select instead).
+- **MUST** provide a clear trigger (Icon Button or Button).
+- **MUST** ensure Menu items have clear, specific labels describing the action.
+- **MUST** support keyboard interactions (open, navigate, activate, dismiss).
+- **MUST NOT** use Menu for main navigation; use navigational components instead.
 - **MUST NOT** use a **primary** Button variant as the Menu trigger.
+- **MUST NOT** nest menus or exceed 7 items without grouping.
 
 ## Usage
-A Menu is used when additional actions or functions are available to the user and space is limited.
-
-### Position
-The Menu can be placed above or below a trigger and will be either left-aligned or right-aligned to the trigger. Prefer placements that:
-- Keep the Menu fully visible within the viewport/container
-- Avoid covering the trigger when possible
-- Follow platform conventions (e.g., align to trigger edge, flip when near edges)
-
-## Best practices
-### Use when
-- Use when multiple actions can be taken, such as editing, exporting, deleting, etc.
-
-### Don’t use when
-- Don’t use when a user is making a selection or picking an option. Use [Select](/components/select/) or platform-native selection controls (e.g., radio group) instead.
-- Don’t use for a product’s main navigation or where SEO is essential; use a [Link](/components/link/) or custom navigation component instead.
-
-## Do / Don’t
-### Do
-- Do use Menu with an [Icon Button](/components/icon-button/) or a [Button](/components/button/) as a trigger.
-
-### Don’t
-- Don’t use Menu with a **primary** variant Button as a trigger.
-
-## Content strategy
-Just like a [Button](/components/button/#content-strategy), the Menu item’s text label should tell the user what action they’re about to take.
-
-- Don’t use “Learn more” or “More details” (too vague).
-- People mostly look at the first 2 words, so start the copy with the most important words.
-- Leading icons (if supported) should provide additional clarity. Reference the [Best Practices](/foundations/icons/#best-practices/) under Icons for guidance on which icons to use.
-
-## Anatomy
-### Menu
-1. Container
-2. Menu item (repeating)
-
-### Menu item
-1. Container
-2. Leading icon (optional)
-3. Text label
-
-## Behavior
-### Opening
-- Menu opens from a trigger (e.g., icon button / button).
-- Menu should anchor to the trigger and adapt (flip/shift) to remain in view.
-
-### Closing
-A Menu can be closed in the following ways:
-1. Clicking on the initial trigger again.
-2. Clicking on a Menu item, triggering the action.
-3. Clicking outside the Menu.
-4. Pressing the Escape key.
-
-## Accessibility
-- The trigger **MUST** be keyboard-focusable and have an accessible name (visible label or `aria-label` for icon-only triggers).
-- Opening the Menu **MUST** be possible via keyboard (typically Enter/Space on the trigger).
-- Users **MUST** be able to navigate items with the keyboard and activate an item with Enter/Space (exact keys depend on the component’s documented behavior).
-- Focus management **MUST** be handled by the component (focus moves into the Menu on open, returns to the trigger on close).
-- Each Menu item **MUST** have a clear accessible name that matches the visible label.
-
-## Token usage
-- Prefer component defaults (Menu should be token-wired for surface, elevation, spacing, typography, and interaction states).
-- Only use tokens for layout around the Menu/trigger, not for restyling Menu internals.
-
-## React usage (example)
-Update import path after wiring in `guidelines/components/overview-components.md`.
 
 ```tsx
-import { Button, Menu, MenuItem } from "REPLACE_ME_COMPONENT_IMPORT_PATH";
+import { Menu, MenuItem } from '@/components/ui/Menu';
+import * as Icons from '@/components/icons';
 
-export function Example() {
-  return (
-    <Menu
-      trigger={<Button variant="secondary">More</Button>}
-      aria-label="More actions"
-    >
-      <MenuItem onSelect={() => {}}>Edit</MenuItem>
-      <MenuItem onSelect={() => {}}>Export</MenuItem>
-      <MenuItem onSelect={() => {}}>Delete</MenuItem>
-    </Menu>
-  );
-}
+<Menu isOpen={isOpen} onClose={() => setIsOpen(false)}>
+  <MenuItem leadingIcon={<Icons.Edit />} onClick={handleEdit}>Edit</MenuItem>
+  <MenuItem leadingIcon={<Icons.Duplicate />} onClick={handleDuplicate}>Duplicate</MenuItem>
+  <MenuItem leadingIcon={<Icons.Delete />} onClick={handleDelete}>Delete</MenuItem>
+</Menu>
 ```
 
+### With Popover (Recommended)
+
+```tsx
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
+
+<Popover open={isOpen} onOpenChange={setIsOpen}>
+  <PopoverTrigger asChild>
+    <IconButton icon="more-vert" aria-label="More options" />
+  </PopoverTrigger>
+  <PopoverContent>
+    <Menu isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <MenuItem leadingIcon={<Icons.Edit />}>Edit</MenuItem>
+      <MenuItem leadingIcon={<Icons.Delete />}>Delete</MenuItem>
+    </Menu>
+  </PopoverContent>
+</Popover>
+```
+
+### Props
+
+- **Menu**: `isOpen`, `onClose`, `position` (`bottomLeft` | `bottomRight` | `topLeft` | `topRight`), `footer` (custom extension)
+- **MenuItem**: `leadingIcon`, `selected`, `disabled`, `onClick`
+
+## Do / Don't
+
+### Do
+
+- Use with an Icon Button or secondary Button as trigger.
+- Keep menu items concise (1-3 words).
+- Use small icons (16x16px) for menu items.
+- Place destructive actions at the bottom.
+- Close menu after user selects an action.
+
+### Don't
+
+- Use Menu with a primary variant Button as trigger.
+- Use Menu for navigation (use Navigation Menu instead).
+- Use Menu for form selects (use Select component).
+- Put more than 7 items without grouping.
+- Override LD 3.5 tokens with hard-coded values.
+
+## Accessibility
+
+- Trigger **MUST** be keyboard-focusable with accessible name (`aria-label` for icon-only).
+- Trigger **MUST** have `aria-haspopup="menu"` and `aria-expanded={isOpen}`.
+- Opening via keyboard (Enter/Space on trigger).
+- Arrow keys navigate items; Home/End jump to first/last.
+- Escape closes menu; focus returns to trigger.
+- Disabled items have `aria-disabled="true"`.
+
+## Related
+
+- [Menu API reference](../../design-system-docs/Menu.mdx)
+- [MenuItem API reference](../../design-system-docs/MenuItem.mdx)
+- [Popover](./Popover.md) for positioning
+- [IconButton](./IconButton.md) for common trigger
+- [Select](./Select.md) for form dropdowns
