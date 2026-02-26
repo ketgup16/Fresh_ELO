@@ -5,7 +5,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: var(--ld-semantic-color-topnav-background, #002E99);
+  background-color: var(--ld-semantic-color-top-nav-fill, #0071dc);
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
 }
 
@@ -36,7 +36,7 @@
 }
 
 .logo:hover {
-  background: var(--ld-semantic-color-topnav-background-hover, #004D99);
+  background: var(--ld-semantic-color-top-nav-fill-hovered, #00000099);
 }
 
 .logoImage {
@@ -50,7 +50,7 @@
   align-items: center;
   height: 52px;
   position: relative;
-  background: var(--ld-semantic-color-topnav-background-hover, #004D99);
+  background: var(--ld-semantic-color-top-nav-fill-hovered, #00000099);
 }
 
 .gicButton {
@@ -63,12 +63,12 @@
   background: transparent;
   border: none;
   padding: 0 12px;
-  color: var(--ld-semantic-color-topnav-text, #FFFFFF);
+  color: var(--ld-semantic-color-top-nav-text-on-fill, #ffffff);
   cursor: pointer;
 }
 
 .gicButton:hover {
-  background: var(--ld-semantic-color-topnav-background-active, #003366);
+  background: var(--ld-semantic-color-top-nav-fill-pressed, #000000cc);
 }
 
 .gicContent {
@@ -104,7 +104,7 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
-  color: var(--ld-semantic-color-topnav-text, #FFFFFF);
+  color: var(--ld-semantic-color-top-nav-text-on-fill, #ffffff);
   white-space: nowrap;
 }
 
@@ -112,7 +112,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  color: var(--ld-semantic-color-topnav-text, #FFFFFF);
+  color: var(--ld-semantic-color-top-nav-text-on-fill, #ffffff);
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -131,7 +131,7 @@
 .gicChevron {
   display: flex;
   align-items: center;
-  color: var(--ld-semantic-color-topnav-text, #FFFFFF);
+  color: var(--ld-semantic-color-top-nav-text-on-fill, #ffffff);
   flex-shrink: 0;
   margin-left: 8px;
 }
@@ -194,8 +194,8 @@
   border: none;
   cursor: pointer;
   transition: all 100ms;
-  background-color: var(--ld-semantic-color-topnav-background-hover);
-  color: var(--ld-semantic-color-topnav-text);
+  background-color: var(--ld-semantic-color-top-nav-fill-hovered);
+  color: var(--ld-semantic-color-top-nav-text-on-fill);
 }
 
 .nav {
@@ -222,13 +222,13 @@
   border: none;
   cursor: pointer;
   transition: all 100ms;
-  color: var(--ld-semantic-color-topnav-text, #FFFFFF);
+  color: var(--ld-semantic-color-top-nav-text-on-fill, #ffffff);
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
   white-space: nowrap;
 }
 
 .navButton:hover {
-  background: var(--ld-semantic-color-topnav-background-hover, #004D99);
+  background: var(--ld-semantic-color-top-nav-fill-hovered, #00000099);
 }
 
 .navButtonContent {
@@ -259,10 +259,10 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--ld-semantic-color-topnav-text, #FFFFFF);
+  color: var(--ld-semantic-color-top-nav-text-on-fill, #ffffff);
   width: 60px;
 }
 
 .cartButton:hover {
-  background: var(--ld-semantic-color-topnav-background-hover, #004D99);
+  background: var(--ld-semantic-color-top-nav-fill-hovered, #00000099);
 }

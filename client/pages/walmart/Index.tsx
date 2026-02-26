@@ -40,7 +40,7 @@ export default function Index() {
     <div className="min-h-screen bg-white font-sans lg:max-w-none mx-auto relative">
       <div className="sticky top-0 z-50">
         {/* Mobile/Tablet Header */}
-        <div className="lg:hidden px-4 md:px-6 pt-4 pb-3 md:py-4" style={{ backgroundColor: 'var(--ld-semantic-color-topnav-background)' }}>
+        <div className="lg:hidden px-4 md:px-6 pt-4 pb-3 md:py-4" style={{ backgroundColor: 'var(--ld-semantic-color-top-nav-fill)' }}>
           <div className="flex items-center gap-3 md:gap-6">
             <button className="text-white flex-shrink-0" aria-label="Menu">
               <Menu className="w-6 h-6" />
@@ -67,7 +67,7 @@ export default function Index() {
                   setHasOpenedSearch(true);
                 }}
                 className="w-8 h-8 rounded-full flex items-center justify-center -mr-1"
-                style={{ backgroundColor: 'var(--ld-semantic-color-topnav-background-hover)' }}
+                style={{ backgroundColor: 'var(--ld-semantic-color-top-nav-fill-hovered)' }}
                 aria-label="Search"
               >
                 <Search className="w-4 h-4 md:w-5 md:h-5 text-white" />
@@ -165,7 +165,7 @@ export default function Index() {
               key={label}
               className="flex-shrink-0 h-8 px-3 py-1.5 bg-white rounded-full whitespace-nowrap transition-all duration-100 hover:opacity-80"
               style={{
-                color: 'var(--ld-semantic-color-topnav-background-active)',
+                color: 'var(--ld-semantic-color-top-nav-fill)',
                 fontSize: '14px',
                 fontWeight: 400
               }}

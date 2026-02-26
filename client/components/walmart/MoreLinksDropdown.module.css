@@ -8,7 +8,7 @@
   border: none;
   cursor: pointer;
   transition: all 100ms;
-  color: var(--ld-semantic-color-topnav-background-active, #002E99);
+  color: var(--ld-semantic-color-top-nav-fill, #0071dc);
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -36,7 +36,7 @@
   width: 16px;
   height: 16px;
   margin-left: 4px;
-  color: var(--ld-semantic-color-topnav-background-active, #002E99);
+  color: var(--ld-semantic-color-top-nav-fill, #0071dc);
   transition: transform 100ms;
 }
 

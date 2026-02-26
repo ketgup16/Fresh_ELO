@@ -110,7 +110,7 @@ export function DesktopHeader() {
             </li>
             <li>
               <button className={styles.cartButton} onClick={() => navigate('/cart')} aria-label="Cart">
-                <CartIcon count={0} price="$0.00" textColor="var(--ld-semantic-color-topnav-text)" />
+                <CartIcon count={0} price="$0.00" textColor="var(--ld-semantic-color-top-nav-text-on-fill)" />
               </button>
             </li>
           </ul>
