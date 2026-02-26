@@ -162,17 +162,14 @@
   margin: 0;
 }
 
-/* Horizontal scroll carousel */
-.carouselViewport {
-  overflow: hidden;
-  /* Expand vertically so box-shadows on cards are not clipped */
-  margin: -8px -4px;
-  padding: 8px 4px;
-}
-
+/* Horizontal scroll carousel
+   NOTE: No outer overflow:hidden wrapper — that would clip card shadows.
+   Instead we add vertical padding here so the box-shadows on cards
+   render inside the scroll container's own padding box and stay visible. */
 .carousel {
   display: flex;
-  padding: 0 16px;
+  /* 8px top/bottom padding gives the box-shadow room to render without clipping */
+  padding: 8px 16px;
   gap: 12px;
   align-items: stretch;
   overflow-x: auto;
@@ -181,9 +178,6 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   cursor: grab;
-  flex-grow: 0;
-  height: auto;
-  margin: 0;
 }
 
 .carousel:active {

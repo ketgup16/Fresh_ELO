@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { X } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
@@ -16,7 +16,7 @@ interface ReviewPromptBannerProps {
   ctaIllustration?: string;
 }
 
-/* ── Sub-components ── */
+/* ── Desktop sub-components ── */
 
 function CtaCard({ ctaIllustration }: { ctaIllustration?: string }) {
   return (
@@ -26,11 +26,7 @@ function CtaCard({ ctaIllustration }: { ctaIllustration?: string }) {
         <Button variant="secondary" size="small">Review more items</Button>
       </div>
       {ctaIllustration && (
-        <img
-          src={ctaIllustration}
-          alt="Review items illustration"
-          className={styles.ctaIllustration}
-        />
+        <img src={ctaIllustration} alt="Review items illustration" className={styles.ctaIllustration} />
       )}
     </div>
   );
@@ -39,22 +35,16 @@ function CtaCard({ ctaIllustration }: { ctaIllustration?: string }) {
 function ProductReviewCard({ product }: { product: ReviewProduct }) {
   return (
     <div className={styles.productCard}>
-      <img
-        src={product.imageSrc}
-        alt={product.name}
-        className={styles.productImg}
-      />
+      <img src={product.imageSrc} alt={product.name} className={styles.productImg} />
       <div className={styles.productInfo}>
         <p className={styles.productName}>{product.name}</p>
-        {product.rating !== undefined && (
-          <Rating value={product.rating} size="small" />
-        )}
+        {product.rating !== undefined && <Rating value={product.rating} size="small" />}
       </div>
     </div>
   );
 }
 
-/* ── Mobile CTA card (first slide) ── */
+/* ── Mobile card sub-components ── */
 
 function MobileCtaCard({ ctaIllustration }: { ctaIllustration?: string }) {
   return (
@@ -72,22 +62,14 @@ function MobileCtaCard({ ctaIllustration }: { ctaIllustration?: string }) {
   );
 }
 
-/* ── Mobile carousel card wrapper ── */
-
 function MobileCard({ product }: { product: ReviewProduct }) {
   return (
     <div className={styles.mobileCard}>
       <div className={styles.mobileCardInner}>
-        <img
-          src={product.imageSrc}
-          alt={product.name}
-          className={styles.mobileProductImg}
-        />
+        <img src={product.imageSrc} alt={product.name} className={styles.mobileProductImg} />
         <div className={styles.mobileProductInfo}>
           <p className={styles.mobileProductName}>{product.name}</p>
-          {product.rating !== undefined && (
-            <Rating value={product.rating} size="small" />
-          )}
+          {product.rating !== undefined && <Rating value={product.rating} size="small" />}
         </div>
       </div>
     </div>
@@ -96,36 +78,70 @@ function MobileCard({ product }: { product: ReviewProduct }) {
 
 /* ── Main component ── */
 
+const AUTO_ADVANCE_MS = 4000;
+
 export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBannerProps) {
   const [dismissed, setDismissed] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const isScrollingProgrammatically = useRef(false);
 
   const totalSlides = products.length + 1; // +1 for CTA card
 
-  const getCardWidth = useCallback(() => {
-    if (!carouselRef.current) return 0;
+  /* ── Measure card step (card width + gap) ── */
+  const getCardStep = useCallback(() => {
     const el = carouselRef.current;
-    const firstCard = el.firstElementChild as HTMLElement | null;
-    if (!firstCard) return 0;
-    return firstCard.offsetWidth + 16; // card width + gap
+    if (!el) return 0;
+    const first = el.firstElementChild as HTMLElement | null;
+    if (!first) return 0;
+    // gap is 12px from CSS
+    return first.offsetWidth + 12;
   }, []);
 
-  const handleScroll = useCallback(() => {
-    if (!carouselRef.current) return;
-    const el = carouselRef.current;
-    const cardWidth = getCardWidth();
-    if (!cardWidth) return;
-    const idx = Math.round(el.scrollLeft / cardWidth);
-    setActiveIndex(Math.min(idx, totalSlides - 1));
-  }, [totalSlides, getCardWidth]);
-
+  /* ── Scroll to a specific slide index ── */
   const scrollToSlide = useCallback((index: number) => {
-    if (!carouselRef.current) return;
-    const cardWidth = getCardWidth();
-    if (!cardWidth) return;
-    carouselRef.current.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
-  }, [getCardWidth]);
+    const el = carouselRef.current;
+    if (!el) return;
+    const step = getCardStep();
+    if (!step) return;
+    isScrollingProgrammatically.current = true;
+    el.scrollTo({ left: index * step, behavior: 'smooth' });
+    // Reset flag after scroll animation (~500ms)
+    setTimeout(() => { isScrollingProgrammatically.current = false; }, 600);
+  }, [getCardStep]);
+
+  /* ── Update active dot on manual scroll ── */
+  const handleScroll = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const step = getCardStep();
+    if (!step) return;
+    const idx = Math.round(el.scrollLeft / step);
+    setActiveIndex(Math.min(idx, totalSlides - 1));
+  }, [totalSlides, getCardStep]);
+
+  /* ── Auto-advance ── */
+  useEffect(() => {
+    if (isPaused || dismissed) return;
+    const id = setInterval(() => {
+      setActiveIndex(prev => {
+        const next = (prev + 1) % totalSlides;
+        scrollToSlide(next);
+        return next;
+      });
+    }, AUTO_ADVANCE_MS);
+    return () => clearInterval(id);
+  }, [isPaused, dismissed, totalSlides, scrollToSlide]);
+
+  /* ── Dot click → also reset auto-advance by unpausing ── */
+  const handleDotClick = (index: number) => {
+    scrollToSlide(index);
+    setActiveIndex(index);
+    // Briefly pause so the auto-advance timer resets from this point
+    setIsPaused(true);
+    setTimeout(() => setIsPaused(false), AUTO_ADVANCE_MS);
+  };
 
   if (dismissed) return null;
 
@@ -135,21 +151,13 @@ export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBa
       <div className={styles.desktop}>
         <div className={styles.titleRow}>
           <p className={styles.subtitle}>Help other customers by writing a review.</p>
-          <IconButton
-            aria-label="Dismiss review prompt"
-            variant="ghost"
-            size="small"
-            onClick={() => setDismissed(true)}
-          >
+          <IconButton aria-label="Dismiss review prompt" variant="ghost" size="small" onClick={() => setDismissed(true)}>
             <X />
           </IconButton>
         </div>
-
         <div className={styles.cardRow}>
           <CtaCard ctaIllustration={ctaIllustration} />
-          {products.map((p, i) => (
-            <ProductReviewCard key={i} product={p} />
-          ))}
+          {products.map((p, i) => <ProductReviewCard key={i} product={p} />)}
         </div>
       </div>
 
@@ -157,27 +165,23 @@ export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBa
       <div className={styles.mobile}>
         <div className={styles.mobileHeader}>
           <h2 className={styles.mobileHeading}>What&rsquo;d you think?</h2>
-          <IconButton
-            aria-label="Dismiss review prompt"
-            variant="ghost"
-            size="small"
-            onClick={() => setDismissed(true)}
-          >
+          <IconButton aria-label="Dismiss review prompt" variant="ghost" size="small" onClick={() => setDismissed(true)}>
             <X />
           </IconButton>
         </div>
 
-        <div className={styles.carouselViewport}>
-          <div
-            className={styles.carousel}
-            ref={carouselRef}
-            onScroll={handleScroll}
-          >
-            <MobileCtaCard ctaIllustration={ctaIllustration} />
-            {products.map((p, i) => (
-              <MobileCard key={i} product={p} />
-            ))}
-          </div>
+        {/* No outer overflow wrapper — vertical padding on the carousel lets shadows breathe */}
+        <div
+          className={styles.carousel}
+          ref={carouselRef}
+          onScroll={handleScroll}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setTimeout(() => setIsPaused(false), AUTO_ADVANCE_MS)}
+        >
+          <MobileCtaCard ctaIllustration={ctaIllustration} />
+          {products.map((p, i) => <MobileCard key={i} product={p} />)}
         </div>
 
         {totalSlides > 1 && (
@@ -186,7 +190,7 @@ export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBa
               <button
                 key={i}
                 className={`${styles.dot} ${i === activeIndex ? styles.dotActive : ''}`}
-                onClick={() => scrollToSlide(i)}
+                onClick={() => handleDotClick(i)}
                 aria-label={`Go to card ${i + 1}`}
               />
             ))}
