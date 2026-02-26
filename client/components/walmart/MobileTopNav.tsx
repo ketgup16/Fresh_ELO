@@ -19,7 +19,11 @@ const mobileSecondaryLinks = [
   { label: 'Walmart+', path: '/walmart-plus' },
 ];
 
-export function MobileTopNav() {
+interface MobileTopNavProps {
+  showHomeExtras?: boolean;
+}
+
+export function MobileTopNav({ showHomeExtras = false }: MobileTopNavProps) {
   const navigate = useNavigate();
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [showCameraModal, setShowCameraModal] = useState(false);
@@ -65,8 +69,8 @@ export function MobileTopNav() {
           </div>
         </div>
 
-        {/* Pickup or Delivery Banner */}
-        <div
+        {/* Pickup or Delivery Banner — homepage only */}
+        {showHomeExtras && <div
           className="lg:hidden px-4 pt-2 pb-2"
           style={{ backgroundColor: 'var(--ld-semantic-color-top-nav-fill)' }}
         >
@@ -140,10 +144,10 @@ export function MobileTopNav() {
               </div>
             </div>
           )}
-        </div>
+        </div>}
 
-        {/* Sub Nav — same components as desktop SubNav */}
-        <div
+        {/* Sub Nav — same components as desktop SubNav, homepage only */}
+        {showHomeExtras && <div
           className={`px-4 py-2 flex items-center gap-2 overflow-x-auto scrollbar-hide${showDeliveryOptions ? ' hidden' : ''}`}
           style={{ backgroundColor: 'var(--ld-semantic-color-fill-accent-blue-subtle)' }}
         >
@@ -164,7 +168,7 @@ export function MobileTopNav() {
           <div className="flex-shrink-0">
             <MoreLinksDropdown />
           </div>
-        </div>
+        </div>}
       </div>
 
       {showSearchModal && (

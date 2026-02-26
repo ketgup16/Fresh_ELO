@@ -23,7 +23,7 @@ export default function Index() {
   };
 
   return (
-    <ResponsiveLayout maxWidth="full">
+    <ResponsiveLayout maxWidth="full" showHomeExtras>
       {/* Main Content */}
       <div className="px-4 pt-6 pb-32 space-y-4">
         {/* Order Status Card — mobile */}

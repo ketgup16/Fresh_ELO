@@ -13,6 +13,7 @@ interface ResponsiveLayoutProps {
   showMobileNav?: boolean;
   showDesktopHeader?: boolean;
   showOrderStatusBanner?: boolean;
+  showHomeExtras?: boolean;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
 }
 
@@ -30,6 +31,7 @@ export function ResponsiveLayout({
   showMobileNav = true,
   showDesktopHeader = true,
   showOrderStatusBanner = false,
+  showHomeExtras = false,
   maxWidth = '2xl',
 }: ResponsiveLayoutProps) {
   const maxWidthClass = maxWidthClassMap[maxWidth] || styles.maxWidth2xl;
@@ -37,7 +39,7 @@ export function ResponsiveLayout({
   return (
     <div className={styles.root}>
       {/* Mobile top nav — hidden on desktop via lg:hidden CSS */}
-      {showMobileNav && <MobileTopNav />}
+      {showMobileNav && <MobileTopNav showHomeExtras={showHomeExtras} />}
       {/* Desktop header — hidden on mobile via CSS */}
       {showDesktopHeader && <DesktopHeader />}
       {showDesktopHeader && <SubNav />}
