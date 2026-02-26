@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Store, Heart, User } from '@/components/icons';
 import { SparkyAnimation } from '@/components/icons-custom';
 import styles from './BottomNav.module.css';
@@ -9,6 +10,7 @@ interface BottomNavProps {
 }
 
 export function BottomNav({ activeTab = 'shop', onTabChange }: BottomNavProps) {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -40,7 +42,7 @@ export function BottomNav({ activeTab = 'shop', onTabChange }: BottomNavProps) {
 
             <button
               className={styles.tab}
-              onClick={() => onTabChange?.('shop')}
+              onClick={() => { onTabChange?.('shop'); navigate('/walmart'); }}
               aria-label="Shop"
             >
               <Store
@@ -50,7 +52,7 @@ export function BottomNav({ activeTab = 'shop', onTabChange }: BottomNavProps) {
 
             <button
               className={styles.tab}
-              onClick={() => onTabChange?.('heart')}
+              onClick={() => { onTabChange?.('heart'); }}
               aria-label="My Items"
             >
               <Heart
@@ -60,7 +62,7 @@ export function BottomNav({ activeTab = 'shop', onTabChange }: BottomNavProps) {
 
             <button
               className={styles.tab}
-              onClick={() => onTabChange?.('user')}
+              onClick={() => { onTabChange?.('user'); navigate('/walmart/purchase-history'); }}
               aria-label="Account"
             >
               <User
