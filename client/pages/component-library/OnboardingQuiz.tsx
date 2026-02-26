@@ -154,43 +154,51 @@ function generateReadingPath(answers: Record<string, string>): ReadingItem[] {
 
   // Experience-based
   if (answers.experience === 'new') {
-    path.push({ label: 'Themes & Tokens', path: '/component-library/themes-tokens' });
-    path.push({ label: 'Button', path: '/component-library/button' });
-    path.push({ label: 'Alert', path: '/component-library/alert' });
+    path.push({ label: 'Themes & Tokens', path: '/component-library/themes' });
+    path.push({ label: 'Buttons', path: '/component-library/buttons' });
+    path.push({ label: 'Alerts', path: '/component-library/alerts' });
   }
 
   // Goal-based
   if (answers.primaryGoal === 'fast') {
-    path.push({ label: 'Button', path: '/component-library/button' });
-    path.push({ label: 'Card', path: '/component-library/card' });
-    path.push({ label: 'Data Table', path: '/component-library/data-table' });
+    path.push({ label: 'Buttons', path: '/component-library/buttons' });
+    path.push({ label: 'Cards', path: '/component-library/cards' });
+    path.push({ label: 'Data Table', path: '/component-library/table' });
   }
   if (answers.primaryGoal === 'fidelity') {
-    path.push({ label: 'Themes & Tokens', path: '/component-library/themes-tokens' });
-    path.push({ label: 'Typography', path: '/component-library/typography' });
-    path.push({ label: 'Spacing & Layout', path: '/component-library/layout' });
+    path.push({ label: 'Themes & Tokens', path: '/component-library/themes' });
+    path.push({ label: 'Guidelines', path: '/component-library/guidelines' });
+    path.push({ label: 'Tags', path: '/component-library/tags' });
   }
   if (answers.primaryGoal === 'audit') {
-    path.push({ label: 'Themes & Tokens', path: '/component-library/themes-tokens' });
-    path.push({ label: 'Accessibility', path: '/component-library/accessibility' });
+    path.push({ label: 'Themes & Tokens', path: '/component-library/themes' });
+    path.push({ label: 'Guidelines', path: '/component-library/guidelines' });
+    path.push({ label: 'Buttons', path: '/component-library/buttons' });
   }
   if (answers.primaryGoal === 'explore') {
-    path.push({ label: 'Component Sandbox', path: '/component-library/sandbox' });
+    path.push({ label: 'Component Sandbox', path: '/component-library/component-tester' });
     path.push({ label: 'Icons', path: '/component-library/icons' });
   }
 
   // Project type-based
   if (answers.projectType === 'px') {
-    path.push({ label: 'Page Templates', path: '/component-library/templates' });
+    path.push({ label: 'Cards', path: '/component-library/cards' });
+    path.push({ label: 'Data Table', path: '/component-library/table' });
   }
   if (answers.projectType === 'consumer') {
-    path.push({ label: 'Navigation', path: '/component-library/navigation' });
-    path.push({ label: 'Form Components', path: '/component-library/forms' });
+    path.push({ label: 'Navigation Menu', path: '/component-library/navigation-menu' });
+    path.push({ label: 'Form Groups', path: '/component-library/form-groups' });
+    path.push({ label: 'Text Fields', path: '/component-library/text-fields' });
+  }
+  if (answers.projectType === 'internal') {
+    path.push({ label: 'Data Table', path: '/component-library/table' });
+    path.push({ label: 'Modals', path: '/component-library/modals' });
+    path.push({ label: 'Filter Chips', path: '/component-library/filter-chips' });
   }
 
   // Environment-based
-  if (answers.environment === 'figma') {
-    path.push({ label: 'Figma Plugin Guide', path: '/component-library/figma-plugin' });
+  if (answers.environment === 'figma' || answers.environment === 'both') {
+    path.push({ label: 'Guidelines', path: '/component-library/guidelines' });
   }
 
   // Always end with icons if not already there
