@@ -74,6 +74,9 @@ export function MobileFilterBottomSheet({
 
         {/* Footer actions */}
         <div className={styles.footer}>
+          <Button variant="primary" size="medium" isFullWidth onClick={onApply}>
+            View results
+          </Button>
           <Link
             href="#"
             variant="subtle"
@@ -81,9 +84,6 @@ export function MobileFilterBottomSheet({
           >
             Clear
           </Link>
-          <Button variant="primary" size="medium" isFullWidth onClick={onApply}>
-            View results
-          </Button>
         </div>
       </div>
     </div>

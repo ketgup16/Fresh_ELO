@@ -15,6 +15,7 @@ interface ResponsiveLayoutProps {
   showOrderStatusBanner?: boolean;
   showHomeExtras?: boolean;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
+  mobileActiveTab?: 'shop' | 'heart' | 'user';
 }
 
 const maxWidthClassMap: Record<string, string> = {
@@ -33,6 +34,7 @@ export function ResponsiveLayout({
   showOrderStatusBanner = false,
   showHomeExtras = false,
   maxWidth = '2xl',
+  mobileActiveTab = 'shop',
 }: ResponsiveLayoutProps) {
   const maxWidthClass = maxWidthClassMap[maxWidth] || styles.maxWidth2xl;
 
@@ -54,7 +56,7 @@ export function ResponsiveLayout({
 
       {showMobileNav && (
         <div className={styles.mobileNavWrapper}>
-          <BottomNav />
+          <BottomNav activeTab={mobileActiveTab} />
         </div>
       )}
 

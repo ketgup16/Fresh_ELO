@@ -140,6 +140,8 @@
   gap: 16px;
   /* Break out of parent 16px padding so carousel reaches screen edges */
   margin: 0 -16px;
+  background: var(--ld-semantic-color-background-subtle, #F2F3F3);
+  padding-top: 16px;
 }
 
 .mobileHeader {

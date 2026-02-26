@@ -85,7 +85,7 @@ function makeSearchText(card: OrderCardProps): string {
 const ORDERS: OrderEntry[] = [
   {
     id: 'curbside-may14',
-    date: new Date(2025, 4, 14),
+    date: new Date(2026, 1, 28),
     orderStatus: 'in-progress',
     hasReturn: false,
     isInStore: false,
@@ -93,10 +93,10 @@ const ORDERS: OrderEntry[] = [
     card: {
       orderType: 'curbside',
       location: 'Carrollton Supercenter at 1213 Trinity Mills Rd',
-      statusHeading: 'Wed, May 14, 5pm–6pm',
+      statusHeading: 'Sat, Feb 28, 5pm–6pm',
       timelineStep: 'placed',
       timelineVariant: 'pickup',
-      addItemsBanner: '2hr 35min left to add to your order',
+      addItemsBanner: '1hr 20min left to add to your order',
       products: [P.milk, P.eggs, P.bananas, P.avocado, P.redOnion, P.blueberries],
       orderTotal: '$85.00',
       actions: [
@@ -108,7 +108,7 @@ const ORDERS: OrderEntry[] = [
   },
   {
     id: 'delivery-delayed-may12',
-    date: new Date(2025, 4, 12),
+    date: new Date(2026, 1, 25),
     orderStatus: 'in-progress',
     hasReturn: false,
     isInStore: false,
@@ -131,7 +131,7 @@ const ORDERS: OrderEntry[] = [
   },
   {
     id: 'delivery-onway-may12',
-    date: new Date(2025, 4, 12),
+    date: new Date(2026, 1, 25),
     orderStatus: 'in-progress',
     hasReturn: false,
     isInStore: false,
@@ -151,14 +151,14 @@ const ORDERS: OrderEntry[] = [
   },
   {
     id: 'delivery-mar4',
-    date: new Date(2025, 2, 4),
+    date: new Date(2026, 1, 15),
     orderStatus: 'completed',
     hasReturn: true,
     isInStore: false,
     isOnline: true,
     card: {
       orderType: 'delivery',
-      statusHeading: 'Delivered on Mar 4',
+      statusHeading: 'Delivered on Feb 15',
       timelineStep: 'delivered',
       products: [P.bananas, P.blackberries, P.avocado, P.milk],
       orderTotal: '$41.90',
@@ -169,14 +169,14 @@ const ORDERS: OrderEntry[] = [
   },
   {
     id: 'delivery-mar8',
-    date: new Date(2025, 2, 8),
+    date: new Date(2026, 1, 10),
     orderStatus: 'completed',
     hasReturn: true,
     isInStore: false,
     isOnline: true,
     card: {
       orderType: 'delivery',
-      statusHeading: 'Delivered on Mar 8',
+      statusHeading: 'Delivered on Feb 10',
       timelineStep: 'delivered',
       products: [P.blueberries, P.strawberries, P.grapefruit, P.bananas, P.milk, P.tide],
       returnNotice: 'You still have items to return in this order',
@@ -187,7 +187,7 @@ const ORDERS: OrderEntry[] = [
   },
   {
     id: 'shipping-mar5-electronics',
-    date: new Date(2025, 2, 5),
+    date: new Date(2026, 0, 28),
     orderStatus: 'completed',
     hasReturn: true,
     isInStore: false,
@@ -196,7 +196,7 @@ const ORDERS: OrderEntry[] = [
       orderType: 'shipping',
       seller: 'WorldWide Inc',
       fulfilledBy: 'Walmart',
-      statusHeading: 'Delivered on Mar 5',
+      statusHeading: 'Delivered on Jan 28',
       timelineStep: 'delivered',
       products: [P.nintendoSwitch, P.marioKart, P.jblSpeaker],
       orderTotal: '$385.00',
@@ -207,7 +207,7 @@ const ORDERS: OrderEntry[] = [
   },
   {
     id: 'shipping-feb28-appliances',
-    date: new Date(2025, 1, 28),
+    date: new Date(2026, 0, 20),
     orderStatus: 'completed',
     hasReturn: false,
     isInStore: false,
@@ -216,7 +216,7 @@ const ORDERS: OrderEntry[] = [
       orderType: 'shipping',
       seller: 'WorldWide Inc',
       fulfilledBy: 'Walmart',
-      statusHeading: 'Delivered on Feb 28',
+      statusHeading: 'Delivered on Jan 20',
       products: [P.kitchenAid, P.nutrBullet],
       orderTotal: '$289.98',
       actions: [{ label: 'View details', variant: 'secondary' }],
@@ -225,7 +225,7 @@ const ORDERS: OrderEntry[] = [
   },
   {
     id: 'curbside-feb25-garden',
-    date: new Date(2025, 1, 25),
+    date: new Date(2026, 0, 15),
     orderStatus: 'completed',
     hasReturn: true,
     isInStore: false,
@@ -233,7 +233,7 @@ const ORDERS: OrderEntry[] = [
     card: {
       orderType: 'curbside',
       location: 'Carrollton Supercenter at 1213 Trinity Mills Rd',
-      statusHeading: 'Picked up on Feb 25',
+      statusHeading: 'Picked up on Jan 15',
       timelineVariant: 'pickup',
       products: [P.wateringCan, P.adirondackChair, P.firePit, P.rug],
       orderTotal: '$247.95',
@@ -244,14 +244,14 @@ const ORDERS: OrderEntry[] = [
   },
   {
     id: 'store-feb19-2024',
-    date: new Date(2024, 1, 19),
+    date: new Date(2026, 0, 10),
     orderStatus: 'completed',
     hasReturn: true,
     isInStore: true,
     isOnline: false,
     card: {
       orderType: 'store',
-      statusHeading: 'Feb 19, 2024 purchase',
+      statusHeading: 'Jan 10 purchase',
       products: [P.milk, P.bananas, P.eggs, P.peanutButter, P.cereal, P.chexMix],
       orderTotal: '$45.08',
       showStartReturn: true,
@@ -302,7 +302,7 @@ export default function PurchaseHistory() {
   const visibleOrders = useMemo(() => applyFilters(ORDERS, filters), [filters]);
 
   return (
-    <ResponsiveLayout maxWidth="full">
+    <ResponsiveLayout maxWidth="full" mobileActiveTab="user">
       <div className={styles.page}>
         {/* Top: breadcrumbs + banner */}
         <div className={styles.topSection}>
