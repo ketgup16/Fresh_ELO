@@ -80,8 +80,8 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  height: 80px;
-  width: auto;
+  width: 300px;
+  height: auto;
   object-fit: contain;
   object-position: right bottom;
   display: block;
