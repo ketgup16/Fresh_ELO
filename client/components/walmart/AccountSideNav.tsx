@@ -153,14 +153,46 @@ export function AccountSideNav() {
           </span>
         </CollapsibleTrigger>
         <CollapsibleContent>
+          {/* Home */}
           <SideNavigation aria-label="Settings">
-            <SideNavigationItem href="/settings/account" onClick={(e) => handleNav(e, '/settings/account')}>
-              Account settings
-            </SideNavigationItem>
-            <SideNavigationItem href="/settings/notifications" onClick={(e) => handleNav(e, '/settings/notifications')}>
-              Notifications
+            <SideNavigationItem href="/" isCurrent={location.pathname === '/'} onClick={(e) => handleNav(e, '/')}>
+              Home
             </SideNavigationItem>
           </SideNavigation>
+
+          {/* Personal information */}
+          <NavGroup
+            title="Personal information"
+            currentPath={location.pathname}
+            onNavigate={handleNav}
+            items={[
+              { label: 'Contact info and password', path: '/settings/contact' },
+              { label: 'Passkeys', path: '/settings/passkeys' },
+              { label: 'Addresses', path: '/settings/addresses' },
+              { label: 'Wallet', path: '/settings/wallet' },
+            ]}
+          />
+
+          {/* Communications and privacy */}
+          <NavGroup
+            title="Communications and privacy"
+            currentPath={location.pathname}
+            onNavigate={handleNav}
+            items={[
+              { label: 'Communication preferences', path: '/settings/communication' },
+              { label: 'Privacy', path: '/settings/privacy' },
+            ]}
+          />
+
+          {/* Shopping settings */}
+          <NavGroup
+            title="Shopping settings"
+            currentPath={location.pathname}
+            onNavigate={handleNav}
+            items={[
+              { label: 'Language settings', path: '/settings/language' },
+            ]}
+          />
         </CollapsibleContent>
       </Collapsible>
 
@@ -170,7 +202,7 @@ export function AccountSideNav() {
       <div className={styles.section}>
         <button className={styles.signOutRow} onClick={() => navigate('/sign-out')}>
           <SpotIcon icon={<SignOut />} size="small" color="brand" />
-          <span className={styles.signOutLabel}>Sign out</span>
+          <span className={styles.signOutLabel}>Sign Out</span>
         </button>
       </div>
     </aside>
