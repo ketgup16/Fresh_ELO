@@ -1,3 +1,34 @@
+
+```
+## Pre-Task Protocol (ALWAYS FOLLOW BEFORE STARTING)
+
+Before starting ANY task:
+
+1. **Read the rules index first**
+- ALWAYS read `guidelines/rules/RULES_INDEX.md` before implementing anything
+- Identify which rules apply to the task
+- Read the full rule file for any rule that applies
+
+2. **Plan before building**
+- For any task with 3+ steps, create a todo list using TodoWrite
+- For complex features, write a plan and confirm with the user before coding
+- Default to planning over immediately writing code
+
+3. **Pre-implementation checklist**
+- [ ] Checked RULES_INDEX.md for applicable rules
+- [ ] Searched existing components before creating new ones
+- [ ] Confirmed using LD semantic tokens only (no hardcoded values)
+- [ ] Confirmed using existing icons (no new SVGs, no emojis)
+- [ ] No black/gray divider lines added
+
+**Active Rules to always enforce:**
+- LD components only (Button, Alert, Tag, etc. — never raw HTML)
+- Semantic tokens only — no hex colors, no hardcoded spacing
+- Icons from icon library only — no emojis, no inline SVGs
+- No divider lines unless explicitly requested
+- All panels must be resizable (420px–800px)
+- All images from Figma must be exported — never use gray boxes
+
 # Builder.io Agent Rules
 
 ## Component Reuse Policy
