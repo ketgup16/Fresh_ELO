@@ -46,7 +46,7 @@
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
   font-size: 12px;
   font-weight: 800;
-  color: var(--ld-semantic-color-text-brand, #001E60);
+  color: var(--ld-semantic-color-text-brand-bold, #001e60);
   line-height: 1.08;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -60,7 +60,7 @@
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
   font-size: 22px;
   font-weight: 800;
-  color: var(--ld-semantic-color-text-brand, #001E60);
+  color: var(--ld-semantic-color-text-brand-bold, #001e60);
   line-height: 1;
   display: -webkit-box;
   -webkit-box-orient: vertical;

@@ -68,7 +68,7 @@ export default function Index() {
                   setHasOpenedSearch(true);
                 }}
                 className="w-8 h-8 rounded-full flex items-center justify-center -mr-1"
-                style={{ backgroundColor: 'var(--ld-semantic-color-top-nav-fill-hovered)' }}
+                style={{ backgroundColor: 'var(--ld-semantic-color-text-brand-bold, #001e60)' }}
                 aria-label="Search"
               >
                 <Search className="w-4 h-4 md:w-5 md:h-5 text-white" />
@@ -79,7 +79,7 @@ export default function Index() {
         </div>
 
         {/* Pickup or Delivery Banner - Mobile/Tablet */}
-        <div className="lg:hidden bg-primary px-4 pt-2 pb-2">
+        <div className="lg:hidden px-4 pt-2 pb-2" style={{ backgroundColor: 'var(--ld-semantic-color-top-nav-fill)' }}>
           {!showDeliveryOptions && (
             <button
               onClick={() => setShowDeliveryOptions(true)}
@@ -115,16 +115,20 @@ export default function Index() {
               </div>
 
               <div className="flex justify-center gap-6">
-                {(['shipping', 'pickup', 'delivery'] as const).map((method) => (
+                {([
+                  { key: 'shipping', label: 'Shipping', icon: '/assets/illustrations/mono-small/fulfillment-shipping.svg' },
+                  { key: 'pickup',   label: 'Pickup',   icon: '/assets/illustrations/mono-small/fulfillment-pickup.svg' },
+                  { key: 'delivery', label: 'Delivery', icon: '/assets/illustrations/mono-small/fulfillment-delivery.svg' },
+                ] as const).map((method) => (
                   <button
-                    key={method}
+                    key={method.key}
                     className="flex flex-col items-center gap-2"
-                    onClick={() => { setSelectedDeliveryOption(method); setShowDeliveryOptions(false); }}
+                    onClick={() => { setSelectedDeliveryOption(method.key); setShowDeliveryOptions(false); }}
                   >
-                    <div className={`w-[60px] h-[60px] rounded-full flex items-center justify-center ${selectedDeliveryOption === method ? 'bg-white/30' : 'bg-white/10'}`}>
-                      <FulfillmentShippingIcon className="w-10 h-10" />
+                    <div className={`w-[60px] h-[60px] rounded-full bg-white flex items-center justify-center ${selectedDeliveryOption === method.key ? 'ring-2 ring-white/80' : ''}`}>
+                      <img src={method.icon} alt={method.label} className="w-10 h-10 object-contain" />
                     </div>
-                    <span className="text-white text-[14px] font-extrabold leading-[17px] text-center capitalize">{method}</span>
+                    <span className="text-white text-[14px] font-extrabold leading-[17px] text-center">{method.label}</span>
                   </button>
                 ))}
               </div>
