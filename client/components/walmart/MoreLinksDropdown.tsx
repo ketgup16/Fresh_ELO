@@ -38,7 +38,7 @@ export function MoreLinksDropdown() {
           aria-haspopup="true"
           aria-expanded={isOpen}
         >
-          <span className={styles.label}>More</span>
+          More
           <ChevronDown className={styles.icon} aria-hidden="true" />
         </button>
       </DropdownMenuTrigger>
