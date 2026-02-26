@@ -115,6 +115,7 @@
 
 .actionBtn {
   width: 100%;
+  min-width: 200px;
   justify-content: center;
 }
 
