@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDownIcon } from '@/components/icons';
+import { ChevronDown } from '@/components/icons';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -39,7 +39,7 @@ export function DepartmentsDropdown() {
           aria-expanded={isOpen}
         >
           Departments
-          <ChevronDownIcon className={styles.icon} aria-hidden="true" />
+          <ChevronDown className={styles.icon} aria-hidden="true" />
         </button>
       </DropdownMenuTrigger>
 

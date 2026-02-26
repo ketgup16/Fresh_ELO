@@ -15,8 +15,8 @@ export default function PharmacyDelivery() {
           <Button
             variant="tertiary"
             size="small"
-            onClick={() => navigate('/')}
-            className="flex-shrink-0 !p-0 !h-auto"
+            onClick={() => navigate('/walmart')}
+            UNSAFE_className="flex-shrink-0 !p-0 !h-auto"
             aria-label="Go back"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -34,7 +34,7 @@ export default function PharmacyDelivery() {
                 <p className="text-[16px] opacity-90">Fast, reliable prescription delivery</p>
               </div>
             </div>
-            <Button variant="secondary" size="medium" className="bg-white !text-[#00A862] hover:bg-gray-50">
+            <Button variant="secondary" size="medium" UNSAFE_className="bg-white !text-[#00A862] hover:bg-gray-50">
               Transfer prescription
             </Button>
           </div>
@@ -87,8 +87,8 @@ export default function PharmacyDelivery() {
             <h3 className="text-[16px] font-bold text-foreground mb-2">Need help?</h3>
             <p className="text-[14px] text-muted-foreground mb-3">Our pharmacy team is here to assist you</p>
             <div className="flex gap-2">
-              <Button variant="primary" size="medium" className="flex-1">Call pharmacy</Button>
-              <Button variant="secondary" size="medium" className="flex-1">Chat now</Button>
+              <Button variant="primary" size="medium" UNSAFE_className="flex-1">Call pharmacy</Button>
+              <Button variant="secondary" size="medium" UNSAFE_className="flex-1">Chat now</Button>
             </div>
           </div>
         </div>

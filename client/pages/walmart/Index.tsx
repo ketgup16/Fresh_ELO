@@ -45,7 +45,7 @@ export default function Index() {
             <button className="text-white flex-shrink-0" aria-label="Menu">
               <Menu className="w-6 h-6" />
             </button>
-            <a href="/" className="flex-shrink-0" aria-label="Walmart Homepage">
+            <a href="/walmart" className="flex-shrink-0" aria-label="Walmart Homepage">
               <img
                 src="https://i5.walmartimages.com/dfw/63fd9f59-14e2/9d304ce6-96de-4331-b8ec-c5191226d378/v1/spark-icon.svg"
                 alt="Walmart"
@@ -198,7 +198,7 @@ export default function Index() {
             <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans, sans-serif)', fontSize: '14px', fontWeight: 700, color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
               Arrives tomorrow by 8pm
             </span>
-            <Link href="/purchase-history" variant="default" underline>
+            <Link href="/walmart/purchase-history" variant="default" underline>
               Track
             </Link>
           </div>

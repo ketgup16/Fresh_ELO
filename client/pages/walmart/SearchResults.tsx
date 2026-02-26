@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ChevronLeft, Filter, SortingArrows, Grid, ChevronDown, Heart, Star, StarFill, StarHalf } from "@/components/icons";
+import { ChevronLeft, Filter, SortingArrows, Grid, ChevronDown, Heart, HeartFill, Star, StarFill, StarHalf } from "@/components/icons";
 import { SparklesIcon } from "@/components/icons-custom";
 import { BottomNav } from "@/components/walmart/BottomNav";
 import { Button } from "@/components/ui/Button";
@@ -20,7 +20,7 @@ function SearchResultsHeader({ query, onBack }: { query: string; onBack: () => v
           variant="tertiary"
           size="small"
           onClick={onBack}
-          className="flex-shrink-0 !p-0 !h-auto"
+          UNSAFE_className="flex-shrink-0 !p-0 !h-auto"
           aria-label="Go back"
         >
           <ChevronLeft className="w-6 h-6" />
@@ -162,7 +162,7 @@ function ProductListItem({ flag, flagColor, price, cents, wasPrice, name, rating
         {stock && (
           <p className="text-[12px] font-bold text-[#A20C00]">{stock}</p>
         )}
-        <Button variant="primary" size="small" className="w-[164px] mt-1">Add to cart</Button>
+        <Button variant="primary" size="small" UNSAFE_className="w-[164px] mt-1">Add to cart</Button>
       </div>
     </div>
   );
@@ -231,7 +231,7 @@ export default function SearchResults() {
 
   return (
     <div className="min-h-screen bg-white font-sans max-w-[430px] mx-auto relative pb-20">
-      <SearchResultsHeader query={query} onBack={() => navigate('/')} />
+      <SearchResultsHeader query={query} onBack={() => navigate('/walmart')} />
       <FilterBar />
       <AIResultsBanner />
 

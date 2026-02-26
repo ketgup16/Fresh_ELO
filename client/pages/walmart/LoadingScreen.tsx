@@ -13,9 +13,9 @@ export default function LoadingScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (query === 'dresses for women') {
-        navigate('/search/dresses', { replace: true });
+        navigate('/walmart/search/dresses', { replace: true });
       } else {
-        navigate(`/search?q=${encodeURIComponent(query)}`, { replace: true });
+        navigate(`/walmart/search?q=${encodeURIComponent(query)}`, { replace: true });
       }
     }, 1500);
 
@@ -29,8 +29,8 @@ export default function LoadingScreen() {
         <Button
           variant="tertiary"
           size="small"
-          onClick={() => navigate('/')}
-          className="flex-shrink-0 !p-0 !h-auto"
+          onClick={() => navigate('/walmart')}
+          UNSAFE_className="flex-shrink-0 !p-0 !h-auto"
           aria-label="Go back"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-foreground">

@@ -109,7 +109,7 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
                 <div key={index}>
                   <button
                     onClick={() => {
-                      navigate(`/loading?q=${encodeURIComponent(suggestion)}`);
+                      navigate(`/walmart/loading?q=${encodeURIComponent(suggestion)}`);
                     }}
                     className="flex items-center gap-2 py-2 w-full"
                   >

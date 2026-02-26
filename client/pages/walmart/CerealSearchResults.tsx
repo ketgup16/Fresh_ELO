@@ -173,7 +173,7 @@ function CerealListItem({ product }: { product: CerealProduct }) {
             Pickup <span className="font-bold">{product.pickup}</span>
           </p>
         )}
-        <Button variant="primary" size="small" className="w-[164px] mt-1">Add to cart</Button>
+        <Button variant="primary" size="small" UNSAFE_className="w-[164px] mt-1">Add to cart</Button>
       </div>
     </div>
   );
@@ -198,8 +198,8 @@ export default function CerealSearchResults() {
           <Button
             variant="tertiary"
             size="small"
-            onClick={() => navigate('/')}
-            className="flex-shrink-0 !p-0 !h-auto"
+            onClick={() => navigate('/walmart')}
+            UNSAFE_className="flex-shrink-0 !p-0 !h-auto"
             aria-label="Go back"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -258,7 +258,7 @@ export default function CerealSearchResults() {
 
       {/* Load more */}
       <div className="px-3 py-4">
-        <Button variant="secondary" size="medium" className="w-full">Load more results</Button>
+        <Button variant="secondary" size="medium" isFullWidth>Load more results</Button>
       </div>
 
       <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />

@@ -26,8 +26,8 @@ export function OrderStatusBanner() {
         <span className={styles.emphasis}>Arrives tomorrow by 8pm</span>
         <span className={styles.separator}>|</span>
         <Link
-          onClick={(e) => { e.preventDefault(); navigate('/purchase-history'); }}
-          href="/purchase-history"
+          onClick={(e) => { e.preventDefault(); navigate('/walmart/purchase-history'); }}
+          href="/walmart/purchase-history"
           variant="default"
           underline
         >

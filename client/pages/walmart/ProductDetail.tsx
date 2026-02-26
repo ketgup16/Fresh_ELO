@@ -57,12 +57,12 @@ export default function ProductDetail() {
             className="w-full aspect-square object-contain bg-white p-4"
           />
           <div className="absolute top-4 right-4 flex flex-col gap-3">
-            <Button variant="secondary" size="medium" className="w-12 h-12 !p-0 shadow-md" aria-label="Share">
+            <Button variant="secondary" size="medium" UNSAFE_className="w-12 h-12 !p-0 shadow-md" aria-label="Share">
               <Share className="w-5 h-5" />
             </Button>
             <Button
               variant="secondary" size="medium"
-              className="w-12 h-12 !p-0 shadow-md"
+              UNSAFE_className="w-12 h-12 !p-0 shadow-md"
               onClick={() => setIsFavorited(!isFavorited)}
               aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
             >
@@ -74,10 +74,10 @@ export default function ProductDetail() {
                 alt="" className="w-5 h-5"
               />
             </Button>
-            <Button variant="secondary" size="medium" className="w-12 h-12 !p-0 shadow-md" aria-label="Zoom in">
+            <Button variant="secondary" size="medium" UNSAFE_className="w-12 h-12 !p-0 shadow-md" aria-label="Zoom in">
               <ZoomIn className="w-5 h-5" />
             </Button>
-            <Button variant="secondary" size="medium" className="w-12 h-12 !p-0 shadow-md" aria-label="Play video">
+            <Button variant="secondary" size="medium" UNSAFE_className="w-12 h-12 !p-0 shadow-md" aria-label="Play video">
               <Play className="w-5 h-5" />
             </Button>
           </div>
@@ -204,8 +204,8 @@ export default function ProductDetail() {
 
       {/* Bottom Action Buttons */}
       <div className="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-background border-t border-input px-4 py-3 flex gap-3">
-        <Button variant="secondary" size="large" className="flex-1">Buy now</Button>
-        <Button variant="primary" size="large" className="flex-1">Add to cart</Button>
+        <Button variant="secondary" size="large" UNSAFE_className="flex-1">Buy now</Button>
+        <Button variant="primary" size="large" UNSAFE_className="flex-1">Add to cart</Button>
       </div>
     </div>
   );

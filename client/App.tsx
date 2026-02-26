@@ -14,6 +14,16 @@ import { Navigate } from 'react-router-dom';
 
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
+// Walmart pages (lazy loaded)
+const WalmartIndex = React.lazy(() => import("./pages/walmart/Index"));
+const WalmartLoadingScreen = React.lazy(() => import("./pages/walmart/LoadingScreen"));
+const WalmartSearchResults = React.lazy(() => import("./pages/walmart/SearchResults"));
+const WalmartDressesSearch = React.lazy(() => import("./pages/walmart/DressesSearchResults"));
+const WalmartCerealSearch = React.lazy(() => import("./pages/walmart/CerealSearchResults"));
+const WalmartProductDetail = React.lazy(() => import("./pages/walmart/ProductDetail"));
+const WalmartPharmacyDelivery = React.lazy(() => import("./pages/walmart/PharmacyDelivery"));
+const WalmartPurchaseHistory = React.lazy(() => import("./pages/walmart/PurchaseHistory"));
+
 // Component library pages (lazy loaded)
 const ComponentLibraryOverview = React.lazy(() => import("./pages/component-library/Overview"));
 const ComponentTester = React.lazy(() => import("./pages/component-library/ComponentTester"));
@@ -171,6 +181,16 @@ const App = () => (
                 <Route path="tags" element={<TagsPage />} />
                 <Route path="toggle" element={<TogglePage />} />
               </Route>
+
+              {/* Walmart pages */}
+              <Route path="/walmart" element={<WalmartIndex />} />
+              <Route path="/walmart/loading" element={<WalmartLoadingScreen />} />
+              <Route path="/walmart/search" element={<WalmartSearchResults />} />
+              <Route path="/walmart/search/dresses" element={<WalmartDressesSearch />} />
+              <Route path="/walmart/search/cereal" element={<WalmartCerealSearch />} />
+              <Route path="/walmart/product/:productId" element={<WalmartProductDetail />} />
+              <Route path="/walmart/pharmacy-delivery" element={<WalmartPharmacyDelivery />} />
+              <Route path="/walmart/purchase-history" element={<WalmartPurchaseHistory />} />
 
               {/* Redirect home to Component Library */}
               <Route path="/" element={<Navigate to="/component-library" replace />} />

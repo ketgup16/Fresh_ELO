@@ -52,7 +52,7 @@ export function MoreProductListings() {
             {product.stock && (
               <div className="text-[12px] font-bold text-[#A20C00]">{product.stock}</div>
             )}
-            <Button variant="primary" size="small" className="w-[164px]">Add to cart</Button>
+            <Button variant="primary" size="small" UNSAFE_className="w-[164px]">Add to cart</Button>
           </div>
         </div>
       ))}

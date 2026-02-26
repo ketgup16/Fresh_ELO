@@ -147,7 +147,7 @@ function DressGridCard({ product }: { product: DressProduct }) {
             Pickup <span className="font-bold">{product.pickup}</span>
           </p>
         )}
-        <Button variant="primary" size="small" className="w-full mt-2">Add to cart</Button>
+        <Button variant="primary" size="small" UNSAFE_className="w-full mt-2">Add to cart</Button>
       </div>
     </div>
   );
@@ -172,8 +172,8 @@ export default function DressesSearchResults() {
           <Button
             variant="tertiary"
             size="small"
-            onClick={() => navigate('/')}
-            className="flex-shrink-0 !p-0 !h-auto"
+            onClick={() => navigate('/walmart')}
+            UNSAFE_className="flex-shrink-0 !p-0 !h-auto"
             aria-label="Go back"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -232,7 +232,7 @@ export default function DressesSearchResults() {
 
       {/* Load more */}
       <div className="px-3 pb-6">
-        <Button variant="secondary" size="medium" className="w-full">Load more results</Button>
+        <Button variant="secondary" size="medium" isFullWidth>Load more results</Button>
       </div>
 
       <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />

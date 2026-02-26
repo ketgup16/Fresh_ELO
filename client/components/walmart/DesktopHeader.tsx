@@ -23,7 +23,7 @@ export function DesktopHeader() {
         {/* Logo */}
         <a
           href="/"
-          onClick={(e) => { e.preventDefault(); navigate('/'); }}
+          onClick={(e) => { e.preventDefault(); navigate('/walmart'); }}
           className={styles.logo}
           aria-label="Walmart Homepage"
         >
@@ -64,9 +64,9 @@ export function DesktopHeader() {
           onSubmit={(e) => {
             e.preventDefault();
             if (searchQuery.trim()) {
-              navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+              navigate(`/walmart/search?q=${encodeURIComponent(searchQuery.trim())}`);
             } else {
-              navigate('/search');
+              navigate('/walmart/search');
             }
           }}
         >

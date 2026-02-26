@@ -25,7 +25,7 @@ export function SearchBar({
       {showBackButton && (
         <button
           className={styles.backButton}
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/walmart')}
           aria-label="Go back"
         >
           <ChevronLeft width={24} height={24} />
