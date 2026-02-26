@@ -3,6 +3,7 @@ import type React from 'react';
 import { DepartmentsDropdown } from '@/components/walmart/DepartmentsDropdown';
 import { ServicesDropdown } from '@/components/walmart/ServicesDropdown';
 import { MoreLinksDropdown } from '@/components/walmart/MoreLinksDropdown';
+import { SubNavButton } from '@/components/walmart/SubNavButton';
 import styles from './SubNav.module.css';
 
 interface SecondaryLink {
@@ -45,17 +46,15 @@ export function SubNav() {
             <ul className={styles.secondaryList}>
               {secondaryLinks.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <SubNavButton
+                    label={link.label}
                     href={link.path}
+                    leadingIcon={link.icon}
                     onClick={(e) => {
                       e.preventDefault();
                       navigate(link.path);
                     }}
-                    className={styles.secondaryLink}
-                  >
-                    {link.icon && <span className={styles.linkIcon}>{link.icon}</span>}
-                    {link.label}
-                  </a>
+                  />
                 </li>
               ))}
             </ul>
