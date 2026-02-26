@@ -378,7 +378,7 @@ export function OnboardingQuiz() {
             {readingPath.map((item, i) => (
               <li key={item.path} className={styles.readingItem}>
                 <span className={styles.readingNumber}>{i + 1}</span>
-                <Link href={item.path}>
+                <Link href={item.path} className={styles.readingLink}>
                   {item.label}
                   <ArrowRight width={12} height={12} aria-hidden="true" style={{ marginLeft: 4 }} />
                 </Link>

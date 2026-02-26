@@ -313,6 +313,12 @@
   gap: 12px;
 }
 
+.readingLink {
+  display: inline-flex !important;
+  align-items: center;
+  white-space: nowrap;
+}
+
 .readingNumber {
   display: flex;
   align-items: center;
