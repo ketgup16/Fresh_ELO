@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { SearchBar } from "@/components/walmart/SearchBar";
 import { ChevronLeft, Share, ZoomIn, Play } from "@/components/icons";
 import { LocationIcon } from "@/components/icons-custom";
+import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { Button } from "@/components/ui/Button";
 
 export default function ProductDetail() {
@@ -43,9 +44,12 @@ export default function ProductDetail() {
   const currentSubscribePrice = currentPrice * 0.95;
 
   return (
-    <div className="min-h-screen bg-white font-sans max-w-[430px] mx-auto relative">
-      {/* Search Bar */}
-      <SearchBar query={product.name} showBackButton={true} cartCount={0} />
+    <ResponsiveLayout maxWidth="full">
+      <div className="bg-white font-sans">
+      {/* Search Bar - mobile only */}
+      <div className="lg:hidden">
+        <SearchBar query={product.name} showBackButton={true} cartCount={0} />
+      </div>
 
       {/* Main Content */}
       <div className="pb-24 overflow-y-auto" style={{ height: 'calc(100vh - 64px)' }}>
@@ -203,10 +207,11 @@ export default function ProductDetail() {
       </div>
 
       {/* Bottom Action Buttons */}
-      <div className="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-background border-t border-input px-4 py-3 flex gap-3">
+      <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-input px-4 py-3 flex gap-3 z-40">
         <Button variant="secondary" size="large" UNSAFE_className="flex-1">Buy now</Button>
         <Button variant="primary" size="large" UNSAFE_className="flex-1">Add to cart</Button>
       </div>
-    </div>
+      </div>
+    </ResponsiveLayout>
   );
 }

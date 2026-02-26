@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, Phone, Clock, Map } from "@/components/icons";
-import { BottomNav } from "@/components/walmart/BottomNav";
+import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 
@@ -9,7 +9,8 @@ export default function PharmacyDelivery() {
   const [activeTab, setActiveTab] = useState<'shop' | 'heart' | 'user'>('shop');
 
   return (
-    <div className="min-h-screen bg-white font-sans max-w-[430px] mx-auto relative">
+    <ResponsiveLayout maxWidth="full">
+      <div className="bg-white font-sans">
       <div className="sticky top-0 z-50 bg-white border-b border-border">
         <div className="flex items-center gap-3 px-4 py-3">
           <Button
@@ -94,7 +95,7 @@ export default function PharmacyDelivery() {
         </div>
       </div>
 
-      <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
-    </div>
+      </div>
+    </ResponsiveLayout>
   );
 }

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, Filter, SortingArrows, Grid, ChevronDown, Heart, HeartFill, StarFill, Star, StarHalf } from "@/components/icons";
 import { SparklesIcon } from "@/components/icons-custom";
-import { BottomNav } from "@/components/walmart/BottomNav";
+import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { Button } from "@/components/ui/Button";
 
 const FILTER_CHIPS = ['In-store', 'EBT eligible', 'Brand', 'Flavor', 'Price', 'Special offers'] as const;
@@ -191,7 +191,8 @@ export default function CerealSearchResults() {
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans max-w-[430px] mx-auto relative pb-20">
+    <ResponsiveLayout maxWidth="full">
+      <div className="bg-white font-sans">
       {/* Header */}
       <div className="sticky top-0 z-50 bg-white">
         <div className="flex items-center gap-1 px-4 pb-3 pt-2">
@@ -261,7 +262,7 @@ export default function CerealSearchResults() {
         <Button variant="secondary" size="medium" isFullWidth>Load more results</Button>
       </div>
 
-      <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
-    </div>
+      </div>
+    </ResponsiveLayout>
   );
 }

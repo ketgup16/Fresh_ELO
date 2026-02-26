@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ChevronLeft, Filter, SortingArrows, Grid, ChevronDown, Heart, HeartFill, Star, StarFill, StarHalf } from "@/components/icons";
 import { SparklesIcon } from "@/components/icons-custom";
-import { BottomNav } from "@/components/walmart/BottomNav";
+import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { Button } from "@/components/ui/Button";
 import { FeatureGuideSection } from "./search-results/FeatureGuideSection";
 import { KnowTypesSection } from "./search-results/KnowTypesSection";
@@ -230,28 +230,28 @@ export default function SearchResults() {
   const [activeTab, setActiveTab] = useState<'shop' | 'heart' | 'user'>('shop');
 
   return (
-    <div className="min-h-screen bg-white font-sans max-w-[430px] mx-auto relative pb-20">
-      <SearchResultsHeader query={query} onBack={() => navigate('/walmart')} />
-      <FilterBar />
-      <AIResultsBanner />
+    <ResponsiveLayout maxWidth="full">
+      <div className="bg-white font-sans">
+        <SearchResultsHeader query={query} onBack={() => navigate('/walmart')} />
+        <FilterBar />
+        <AIResultsBanner />
 
-      {/* Top product results */}
-      <div className="flex flex-col">
-        {TOP_PRODUCTS.map((product, i) => (
-          <ProductListItem key={i} {...product} />
-        ))}
+        {/* Top product results */}
+        <div className="flex flex-col">
+          {TOP_PRODUCTS.map((product, i) => (
+            <ProductListItem key={i} {...product} />
+          ))}
+        </div>
+
+        {/* AI-powered sections */}
+        <FeatureGuideSection />
+        <KnowTypesSection />
+        <TrendingBrandsSection />
+        <PopularByPriceSection />
+
+        {/* More products */}
+        <MoreProductListings />
       </div>
-
-      {/* AI-powered sections */}
-      <FeatureGuideSection />
-      <KnowTypesSection />
-      <TrendingBrandsSection />
-      <PopularByPriceSection />
-
-      {/* More products */}
-      <MoreProductListings />
-
-      <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
-    </div>
+    </ResponsiveLayout>
   );
 }

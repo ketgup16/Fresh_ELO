@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { SparklesIcon } from "@/components/icons-custom";
-import { BottomNav } from "@/components/walmart/BottomNav";
+import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { Button } from "@/components/ui/Button";
 
 export default function LoadingScreen() {
@@ -23,7 +23,8 @@ export default function LoadingScreen() {
   }, [navigate, query]);
 
   return (
-    <div className="min-h-screen bg-white font-sans max-w-[430px] mx-auto relative">
+    <ResponsiveLayout maxWidth="full">
+      <div className="bg-white font-sans">
       {/* Search Bar */}
       <div className="flex items-center gap-1 px-4 pb-3 border-b border-border">
         <Button
@@ -82,7 +83,7 @@ export default function LoadingScreen() {
         ))}
       </div>
 
-      <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
-    </div>
+      </div>
+    </ResponsiveLayout>
   );
 }
