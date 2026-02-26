@@ -167,15 +167,17 @@ export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBa
           </IconButton>
         </div>
 
-        <div
-          className={styles.carousel}
-          ref={carouselRef}
-          onScroll={handleScroll}
-        >
-          <MobileCtaCard ctaIllustration={ctaIllustration} />
-          {products.map((p, i) => (
-            <MobileCard key={i} product={p} />
-          ))}
+        <div className={styles.carouselViewport}>
+          <div
+            className={styles.carousel}
+            ref={carouselRef}
+            onScroll={handleScroll}
+          >
+            <MobileCtaCard ctaIllustration={ctaIllustration} />
+            {products.map((p, i) => (
+              <MobileCard key={i} product={p} />
+            ))}
+          </div>
         </div>
 
         {totalSlides > 1 && (
