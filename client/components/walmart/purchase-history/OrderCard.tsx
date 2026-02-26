@@ -116,9 +116,11 @@ export function OrderCard({
           <div className={styles.orderMeta}>
             <span className={styles.orderTypeChip}>
               <OrderTypeIcon type={orderType} />
-              <span>{ORDER_TYPE_LABELS[orderType]}</span>
+              <span className={styles.orderTypeChipText}>
+                <span>{ORDER_TYPE_LABELS[orderType]}</span>
+                {location && <span className={styles.location}>{location}</span>}
+              </span>
             </span>
-            {location && <span className={styles.location}>{location}</span>}
             {seller && (
               <span className={styles.seller}>
                 Sold by{' '}
