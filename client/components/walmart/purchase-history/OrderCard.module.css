@@ -147,24 +147,69 @@
   color: var(--ld-semantic-color-text, #2E2F32);
 }
 
-@media (max-width: 640px) {
-  .cardBody {
-    flex-direction: column;
+/* Mobile-only chevron — hidden on desktop */
+.mobileChevron {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  /* Show chevron, push it to the far right of the chip row */
+  .mobileChevron {
+    display: block;
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--ld-semantic-color-text-subtle, #74767C);
+    width: 20px;
+    height: 20px;
   }
 
+  /* Smaller fulfillment icon on mobile */
+  .orderTypeChip img {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Status heading smaller */
+  .statusHeading {
+    font-size: 17px;
+    line-height: 24px;
+  }
+
+  /* Card body stays as row on mobile — icon + text + chevron */
+  .cardBody {
+    flex-direction: column;
+    padding: 12px 16px;
+  }
+
+  /* Actions go full-width below */
   .rightCol {
     width: 100%;
     min-width: unset;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 8px;
   }
 
   .actionBtn {
-    flex: 1;
-    min-width: 120px;
+    width: 100%;
+    min-width: unset;
+    justify-content: center;
   }
 
-  .statusHeading {
-    font-size: 17px;
+  /* Tighter product images */
+  .products {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-top: 8px;
+  }
+
+  .products::-webkit-scrollbar {
+    display: none;
+  }
+
+  .productImg {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
   }
 }

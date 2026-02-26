@@ -83,11 +83,20 @@
 
 /* Responsive */
 @media (max-width: 1023px) {
+  .topSection {
+    display: none;
+  }
+
   .body {
     flex-direction: column;
   }
 
   .content {
     padding: 16px;
+  }
+
+  .pageTitle {
+    font-size: 28px;
+    line-height: 36px;
   }
 }

@@ -1,3 +1,4 @@
+import { ChevronRight } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { Divider } from '@/components/ui/Divider';
 import { Alert } from '@/components/ui/Alert';
@@ -123,6 +124,8 @@ export function OrderCard({
                   {statusHeading}
                 </h3>
               </span>
+              {/* Mobile-only chevron */}
+              <ChevronRight className={styles.mobileChevron} aria-hidden="true" />
             </span>
             {seller && (
               <span className={styles.seller}>

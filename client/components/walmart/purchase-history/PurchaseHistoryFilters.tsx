@@ -86,7 +86,7 @@ export function PurchaseHistoryFilters({ filters, onFiltersChange }: PurchaseHis
           <Search className={styles.searchIcon} aria-hidden="true" width={16} height={16} />
           <input
             type="search"
-            placeholder="Search your purchases"
+            placeholder="Search your orders"
             className={styles.searchInput}
             aria-label="Search your purchases"
             value={filters.search}

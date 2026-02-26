@@ -332,7 +332,7 @@ export default function PurchaseHistory() {
 
           <main className={styles.main}>
             <div className={styles.content}>
-              <h1 className={styles.pageTitle}>Purchase history</h1>
+              <h1 className={styles.pageTitle}>Purchase History</h1>
 
               {/* Search + Filters */}
               <PurchaseHistoryFilters filters={filters} onFiltersChange={setFilters} />
