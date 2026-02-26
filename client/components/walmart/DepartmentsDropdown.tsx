@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import type React from 'react';
 import { ChevronDown } from '@/components/icons';
 import {
   DropdownMenu,
@@ -20,7 +21,11 @@ const departments = [
   { label: 'Beauty', path: '/departments/beauty' },
 ];
 
-export function DepartmentsDropdown() {
+interface DepartmentsDropdownProps {
+  leadingIcon?: React.ReactNode;
+}
+
+export function DepartmentsDropdown({ leadingIcon }: DepartmentsDropdownProps = {}) {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -38,6 +43,7 @@ export function DepartmentsDropdown() {
           aria-haspopup="true"
           aria-expanded={isOpen}
         >
+          {leadingIcon && <span className={styles.leadingIcon}>{leadingIcon}</span>}
           Departments
           <ChevronDown className={styles.icon} aria-hidden="true" />
         </button>

@@ -1,26 +1,27 @@
 .trigger {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  gap: 8px;
   height: 32px;
   padding: 4px 12px;
   border-radius: 9999px;
   background: white;
-  border: none;
+  border: 1.5px solid var(--ld-semantic-color-text-brand-bold, #001E60);
   cursor: pointer;
-  transition: all 100ms;
-  color: var(--ld-semantic-color-top-nav-fill, #0071dc);
+  transition: background 100ms;
+  color: var(--ld-semantic-color-text-brand-bold, #001E60);
   font-size: 14px;
-  font-weight: 600;
-  line-height: 17.5px;
+  font-weight: 700;
+  line-height: 20px;
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
 }
 
 .trigger:hover {
-  background: var(--ld-semantic-color-fill-accent-blue-subtle, #F0F3FF);
+  background: rgba(0, 30, 96, 0.06);
 }
 
 .trigger:active {
-  background: var(--ld-semantic-color-fill-accent-blue-subtle, #F0F3FF);
+  background: rgba(0, 30, 96, 0.12);
 }
 
 .trigger:focus-visible {
@@ -28,11 +29,25 @@
   outline-offset: 2px;
 }
 
+.trigger:disabled,
+.trigger[aria-disabled="true"] {
+  color: var(--ld-semantic-color-text-disabled, #BABBBE);
+  border-color: var(--ld-semantic-color-text-disabled, #BABBBE);
+  cursor: not-allowed;
+}
+
+.leadingIcon {
+  display: flex;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
 .icon {
   width: 16px;
   height: 16px;
-  margin-left: 8px;
-  color: var(--ld-semantic-color-top-nav-fill, #0071dc);
+  flex-shrink: 0;
   transition: transform 100ms;
 }
 
