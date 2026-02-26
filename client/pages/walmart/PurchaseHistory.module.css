@@ -16,7 +16,7 @@
 }
 
 .bannerRow {
-  padding: 0 16px 8px;
+  padding: 16px 16px 16px;
 }
 
 /* Body layout: side nav left, main content right */
@@ -38,7 +38,9 @@
   flex-direction: column;
   gap: 16px;
   padding: 20px 24px 40px;
-  max-width: 900px;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .pageTitle {

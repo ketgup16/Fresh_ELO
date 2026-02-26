@@ -69,89 +69,29 @@
       }
     }
   },
-  "pictograms-mono-large": {
-    "description": "Large-format mono pictograms aligned with Walmart's core brand identity. Used in cross-functional contexts where Walmart branding (not Walmart+) is primary. Style: flat, monochromatic blue tones.",
+  "pictograms-mono-small": {
+    "description": "Large-format mono pictograms aligned with Walmart's core brand identity. Used in cross-functional contexts where Walmart branding (not Walmart+) is primary. Style: flat, monochromatic blue tones. All files stored locally in /assets/illustrations/mono-small/.",
     "items": {
-      "fuel": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F4d743129233542dd8977522656039a8e?format=webp&width=800&height=1200",
-        "alt": "Fuel pump pictogram",
-        "usage": "Fuel savings benefits, gas station promotions, Walmart+ fuel discount"
-      },
-      "plant": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F471f5cf6dc0d46dd8905f36bc48227d8?format=webp&width=800&height=1200",
-        "alt": "Potted plant pictogram",
-        "usage": "Home & garden category, sustainability messaging, living products"
-      },
-      "digital-delivery": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fef6b66d4427b49d3b48d724b9f01a920?format=webp&width=800&height=1200",
-        "alt": "Digital delivery / mobile app pictogram",
-        "usage": "Digital products, app downloads, digital gift cards, online order management"
-      },
-      "wplus-delivery": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0da77cacb82a4af79c053c3a3692d3e2?format=webp&width=800&height=1200",
-        "alt": "Walmart+ delivery bag pictogram",
-        "usage": "Walmart+ free delivery benefit, member delivery perks"
-      },
-      "grocery-reorder": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ffdd2ef4255d14742a7e8c2f01befe0e2?format=webp&width=800&height=1200",
-        "alt": "Grocery reorder bag pictogram",
-        "usage": "Grocery reorder feature, recurring grocery orders, subscribe & save"
-      },
-      "pre-schedule": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fa9969de7cffb4c918efac79a75542d8d?format=webp&width=800&height=1200",
-        "alt": "Pre-scheduled delivery calendar pictogram",
-        "usage": "Scheduled delivery slots, advance order booking, delivery time selection"
-      },
-      "discounts": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F02ce53167216481ab40b8cf508342fe5?format=webp&width=800&height=1200",
-        "alt": "Discounts and coupons pictogram",
-        "usage": "Promotions, member discounts, coupon clipping, savings events"
-      },
-      "delivery-united": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F566f38a3e5bc498a871af95d6ad5de69?format=webp&width=800&height=1200",
-        "alt": "Delivery box with Walmart spark pictogram",
-        "usage": "Delivery benefit callouts, order fulfillment, delivery promise messaging"
-      },
-      "ups-dropoff": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fcf59570578d14f94b154819d3f377f49?format=webp&width=800&height=1200",
-        "alt": "UPS drop-off / barcode return package pictogram",
-        "usage": "Returns, UPS drop-off locations, package return flow"
-      },
-      "wine-bottle": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0dac0f469777418ea54e11ab5fc5bf45?format=webp&width=800&height=1200",
-        "alt": "Wine bottle pictogram",
-        "usage": "Alcohol / wine category, adult beverage section, age-gated content"
-      },
-      "reorder": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fea6e65b27b6d466c82d1c066f2c69629?format=webp&width=800&height=1200",
-        "alt": "Reorder box with Walmart spark pictogram",
-        "usage": "Reorder feature, repeat purchase prompts, order history reorder CTA"
-      },
-      "tree": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc94f0da959974532974cee72e073e29d?format=webp&width=800&height=1200",
-        "alt": "Tree / sustainability pictogram",
-        "usage": "Sustainability initiatives, environmental programs, carbon-neutral messaging"
-      },
-      "ev-charging": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8c7535d7521c4f3aa866741474e565ed?format=webp&width=800&height=1200",
-        "alt": "Electric vehicle charging pictogram",
-        "usage": "EV charging stations, electric vehicle benefits, Walmart+ EV perk"
-      },
-      "storefront": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F2e6d016a8841476bb2c7ddb7952efa36?format=webp&width=800&height=1200",
-        "alt": "Walmart storefront large pictogram",
-        "usage": "Store locator, in-store services, curbside pickup, store page headers"
-      },
-      "drone-delivery": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fdc317fa393f241eda114f0b192bc8209?format=webp&width=800&height=1200",
-        "alt": "Drone delivery pictogram",
-        "usage": "Drone delivery feature, future delivery innovation, express drone shipping"
-      },
-      "sports-outdoors": {
-        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fa24b50860c3a4bee8ce406a104a14ca0?format=webp&width=800&height=1200",
-        "alt": "Sports & outdoors / camping tent pictogram",
-        "usage": "Sports & outdoors category, camping gear, seasonal outdoor promotions"
-      }
+      "fulfillment-pickup":  { "path": "/assets/illustrations/mono-small/fulfillment-pickup.svg",  "alt": "Curbside pickup fulfillment icon",        "usage": "Curbside pickup order type indicator in order cards" },
+      "fulfillment-delivery":{ "path": "/assets/illustrations/mono-small/fulfillment-delivery.svg","alt": "Delivery fulfillment icon",               "usage": "Delivery order type indicator in order cards" },
+      "fulfillment-store":   { "path": "/assets/illustrations/mono-small/fulfillment-store.svg",   "alt": "Walmart store fulfillment icon",          "usage": "Store purchase order type indicator in order cards" },
+      "fulfillment-shipping":{ "path": "/assets/illustrations/mono-small/fulfillment-shipping.svg","alt": "Shipping fulfillment icon",               "usage": "Shipping order type indicator in order cards" },
+      "fuel":           { "path": "/assets/illustrations/mono-small/fuel.svg",            "alt": "Fuel pump pictogram",                     "usage": "Fuel savings benefits, gas station promotions, Walmart+ fuel discount" },
+      "plant":          { "path": "/assets/illustrations/mono-small/plant.svg",           "alt": "Potted plant pictogram",                  "usage": "Home & garden category, sustainability messaging, living products" },
+      "digital-delivery":{ "path": "/assets/illustrations/mono-small/digital-delivery.svg","alt": "Digital delivery / mobile app pictogram", "usage": "Digital products, app downloads, digital gift cards" },
+      "wplus-delivery": { "path": "/assets/illustrations/mono-small/wplus-delivery.svg",  "alt": "Walmart+ delivery bag pictogram",          "usage": "Walmart+ free delivery benefit, member delivery perks" },
+      "grocery-reorder":{ "path": "/assets/illustrations/mono-small/grocery-reorder.svg", "alt": "Grocery reorder bag pictogram",            "usage": "Grocery reorder feature, recurring grocery orders, subscribe & save" },
+      "pre-schedule":   { "path": "/assets/illustrations/mono-small/pre-schedule.svg",    "alt": "Pre-scheduled delivery calendar pictogram","usage": "Scheduled delivery slots, advance order booking" },
+      "discounts":      { "path": "/assets/illustrations/mono-small/discounts.svg",       "alt": "Discounts and coupons pictogram",          "usage": "Promotions, member discounts, coupon clipping, savings events" },
+      "delivery-united":{ "path": "/assets/illustrations/mono-small/delivery-united.svg", "alt": "Delivery box with Walmart spark pictogram","usage": "Delivery benefit callouts, order fulfillment messaging" },
+      "ups-dropoff":    { "path": "/assets/illustrations/mono-small/ups-dropoff.svg",     "alt": "UPS drop-off barcode return package",      "usage": "Returns, UPS drop-off locations, package return flow" },
+      "wine-bottle":    { "path": "/assets/illustrations/mono-small/wine-bottle.svg",     "alt": "Wine bottle pictogram",                   "usage": "Alcohol / wine category, adult beverage section, age-gated content" },
+      "reorder":        { "path": "/assets/illustrations/mono-small/reorder.svg",         "alt": "Reorder box with Walmart spark pictogram", "usage": "Reorder feature, repeat purchase prompts, order history reorder CTA" },
+      "tree":           { "path": "/assets/illustrations/mono-small/tree.svg",            "alt": "Tree / sustainability pictogram",          "usage": "Sustainability initiatives, environmental programs, carbon-neutral messaging" },
+      "ev-charging":    { "path": "/assets/illustrations/mono-small/ev-charging.svg",     "alt": "Electric vehicle charging pictogram",      "usage": "EV charging stations, electric vehicle benefits, Walmart+ EV perk" },
+      "storefront":     { "path": "/assets/illustrations/mono-small/storefront.svg",      "alt": "Walmart storefront large pictogram",       "usage": "Store locator, in-store services, curbside pickup, store page headers" },
+      "drone-delivery": { "path": "/assets/illustrations/mono-small/drone-delivery.svg",  "alt": "Drone delivery pictogram",                "usage": "Drone delivery feature, future delivery innovation" },
+      "sports-outdoors":{ "path": "/assets/illustrations/mono-small/sports-outdoors.svg", "alt": "Sports & outdoors / camping tent pictogram","usage": "Sports & outdoors category, camping gear, seasonal outdoor promotions" }
     }
   }
 }

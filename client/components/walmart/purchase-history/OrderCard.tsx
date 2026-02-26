@@ -56,26 +56,26 @@ const STEP_INDEX: Record<TimelineStep, number> = {
 
 const FULFILLMENT_ICONS: Record<OrderType, { src: string; alt: string }> = {
   curbside: {
-    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F20a77fde73794843b77d6549071c1059?format=webp&width=800&height=1200',
+    src: '/assets/illustrations/mono-small/fulfillment-pickup.svg',
     alt: 'Curbside pickup',
   },
   delivery: {
-    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff6eae3d5c71f4fab83eadf53e5671f86?format=webp&width=800&height=1200',
+    src: '/assets/illustrations/mono-small/fulfillment-delivery.svg',
     alt: 'Delivery',
   },
   store: {
-    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff9eff60ebb1749b5bd7ec7f3ac36234d?format=webp&width=800&height=1200',
+    src: '/assets/illustrations/mono-small/fulfillment-store.svg',
     alt: 'Store purchase',
   },
   shipping: {
-    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ffbe89aa828ce42e59e0a7176e1e9377d?format=webp&width=800&height=1200',
+    src: '/assets/illustrations/mono-small/fulfillment-shipping.svg',
     alt: 'Shipping',
   },
 };
 
 function OrderTypeIcon({ type }: { type: OrderType }) {
   const icon = FULFILLMENT_ICONS[type];
-  return <img src={icon.src} alt="" aria-hidden="true" width={32} height={32} />;
+  return <img src={icon.src} alt="" aria-hidden="true" width={64} height={64} />;
 }
 
 export function OrderCard({
