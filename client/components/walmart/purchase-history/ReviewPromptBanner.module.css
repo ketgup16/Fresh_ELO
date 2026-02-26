@@ -79,8 +79,8 @@
 .ctaIllustration {
   position: absolute;
   right: 0;
-  bottom: -8px;
-  height: 115%;
+  bottom: 0;
+  height: 80px;
   width: auto;
   object-fit: contain;
   object-position: right bottom;
