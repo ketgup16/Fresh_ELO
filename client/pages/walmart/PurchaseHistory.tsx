@@ -1,3 +1,4 @@
+import { useState, useMemo } from 'react';
 import { IconButton } from '@/components/ui/IconButton';
 import { ChevronDown } from '@/components/icons';
 import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
@@ -5,9 +6,13 @@ import { Divider } from '@/components/ui/Divider';
 import { ResponsiveLayout } from '@/components/walmart/ResponsiveLayout';
 import { SkylineBanner } from '@/components/walmart/SkylineBanner';
 import { AccountSideNav } from '@/components/walmart/AccountSideNav';
-import { PurchaseHistoryFilters } from '@/components/walmart/purchase-history/PurchaseHistoryFilters';
+import {
+  PurchaseHistoryFilters,
+  FilterState,
+  INITIAL_FILTERS,
+} from '@/components/walmart/purchase-history/PurchaseHistoryFilters';
 import { ReviewPromptBanner } from '@/components/walmart/purchase-history/ReviewPromptBanner';
-import { OrderCard } from '@/components/walmart/purchase-history/OrderCard';
+import { OrderCard, OrderCardProps } from '@/components/walmart/purchase-history/OrderCard';
 import { InlineAdBanner } from '@/components/walmart/purchase-history/InlineAdBanner';
 import styles from './PurchaseHistory.module.css';
 
@@ -17,73 +22,285 @@ function img(hash: string, alt: string) {
   return { src: `${CDN}${hash}?format=webp&width=800&height=1200`, alt };
 }
 
-// ── Product image map ────────────────────────────────────────────────────────
+// ── Product image map ─────────────────────────────────────────────────────────
 const P = {
-  // Fresh Produce
-  bananas:       img('3722ac211f454e0e981b44c68bd71f32', 'Organic Bananas'),
-  banana:        img('93748c8f78944c21b6ae51fe34608254', 'Banana'),
-  avocado:       img('5d243d5fa5384060878d8e665e30b97a', 'Avocado'),
-  blueberries:   img('23fbfba8c5334a6e97499ee2bcbdeeed', 'Blueberries'),
-  strawberries:  img('182fe6cfc6cc4e94935dbbe85d069c17', 'Strawberries'),
-  blackberries:  img('253d78e864f649acb54e079fbeeb861c', 'Blackberries'),
-  grapefruit:    img('32f015c99b914a939d4da0575ea302ef', 'Grapefruit'),
-  apple:         img('2cd68aff6f9b400ea138f8199f6d2212', 'Apple'),
-  greenChili:    img('462eac076149459c8f607f298743b366', 'Green Chili Peppers'),
-  redOnion:      img('c0aac98a03ab445db944c2155809258d', 'Red Onion'),
-  cilantro:      img('c29bad3ebea8458786d700a4242df533', 'Cilantro'),
-
-  // Dairy & Eggs
-  milk:          img('4275c57e09134f118110d61ffaed7f3e', 'Great Value Whole Milk'),
-  eggs:          img('78ef20205e3c4c4d89a0402b3651cfaf', 'Great Value Cage Free Eggs'),
-
-  // Pantry & Snacks
-  peanutButter:  img('49b526ad3c9e44438dccecf8e3a1f030', 'Adams 100% Natural Peanut Butter'),
-  smoresSpread:  img('09092fca09c24496b57e1b0ac474eea0', "bettergoods S'mores Spread"),
-  chexMix:       img('3b1c6c21fa734099a7e94fb02336f7a3', 'Chex Mix Traditional Multipack'),
-  cereal:        img('2e3ad9b09a894c658b053653b52ae341', 'Great Value Frosted Shredded Wheat'),
-  caesarSalad:   img('23784e4b483540e7a03bca9533196ad1', 'Marketside Caesar Salad Kit'),
-
-  // Frozen
-  dinoNuggets:   img('69e01c21e958445fb2017a5c822c9db7', 'Great Value Dino Shaped Chicken Nuggets'),
-  chickenWings:  img('540b9b7e75c7478e8827b5330ad2a61b', 'bettergoods Garlic Butter Chicken Wings'),
-  banquetChicken:img('82f274fed976412d897db9b98de64550', 'Banquet Mega Filets Spicy Crispy Chicken'),
-
-  // Household / Laundry
-  tide:          img('1dc32c7426d2475a943854ef53106014', 'Tide Ultra OXI Detergent'),
-  bounce:        img('439fe5b0b4304c4a921ed8602bb1f23c', 'Bounce Pet Hair & Lint Guard Mega Sheets'),
-  suavitel:      img('01ae669b2324463d8a60af4db27747df', 'Suavitel Field Flowers Fabric Softener'),
-  angelSoft:     img('e07a9fb025044c9bb8479349a197c015', 'Angel Soft Toilet Paper 12 Mega Rolls'),
-  vivaPaperTowels: img('41ab56aab7094eae9aa760136cc98eeb', 'Viva Signature Cloth Paper Towels'),
-
-  // Home & Garden
-  wateringCan:   img('3807f1f88c0f42ab974b5b59ab07ff8b', 'Black Metal Watering Can'),
-  topiary:       img('0f8d5b645e4f46b4ab71f33adda8342a', 'Artificial Boxwood Topiary'),
-  pillow:        img('d731bd4091e54b028f6cd66296ea4ba8', 'Decorative Throw Pillow'),
-  adirondackChair: img('062bc77cad8f44b7b33114eaa7bbaac4', 'Modern Adirondack Chair'),
-  rug:           img('e7df4cf2e5c3498291fbdd29d6a604b7', 'Striped Area Rug'),
-  firePit:       img('0c564c139118430c914ca80d9fe80dc9', 'Outdoor Fire Pit'),
-
-  // Electronics & Appliances
-  jblSpeaker:    img('009b0a2bda494171b74c4d0b9be9467d', 'JBL Clip 3 Portable Bluetooth Speaker'),
-  kitchenAid:    img('871a9d01d15e4344aeddd828e6ad96a4', 'KitchenAid Artisan 5-Qt Stand Mixer'),
-  nutrBullet:    img('d97202fbf7544db59d1672fca554125c', 'NutriBullet Pro Blender'),
-  nintendoSwitch: img('117a3b8c29e94104986149ff470e0f0b', 'Nintendo Switch™ with Neon Blue & Red Joy-Con'),
-  marioKart:     img('f58f628972ee4b62a864595c74d87835', 'Mario Kart 8 Deluxe for Nintendo Switch™'),
+  bananas:        img('3722ac211f454e0e981b44c68bd71f32', 'Organic Bananas'),
+  avocado:        img('5d243d5fa5384060878d8e665e30b97a', 'Avocado'),
+  blueberries:    img('23fbfba8c5334a6e97499ee2bcbdeeed', 'Blueberries'),
+  strawberries:   img('182fe6cfc6cc4e94935dbbe85d069c17', 'Strawberries'),
+  blackberries:   img('253d78e864f649acb54e079fbeeb861c', 'Blackberries'),
+  grapefruit:     img('32f015c99b914a939d4da0575ea302ef', 'Grapefruit'),
+  redOnion:       img('c0aac98a03ab445db944c2155809258d', 'Red Onion'),
+  milk:           img('4275c57e09134f118110d61ffaed7f3e', 'Great Value Whole Milk'),
+  eggs:           img('78ef20205e3c4c4d89a0402b3651cfaf', 'Great Value Cage Free Eggs'),
+  peanutButter:   img('49b526ad3c9e44438dccecf8e3a1f030', 'Adams Peanut Butter'),
+  chexMix:        img('3b1c6c21fa734099a7e94fb02336f7a3', 'Chex Mix Traditional Multipack'),
+  cereal:         img('2e3ad9b09a894c658b053653b52ae341', 'Great Value Frosted Shredded Wheat'),
+  tide:           img('1dc32c7426d2475a943854ef53106014', 'Tide Ultra OXI Detergent'),
+  bounce:         img('439fe5b0b4304c4a921ed8602bb1f23c', 'Bounce Mega Sheets'),
+  angelSoft:      img('e07a9fb025044c9bb8479349a197c015', 'Angel Soft Toilet Paper'),
+  vivaPaperTowels:img('41ab56aab7094eae9aa760136cc98eeb', 'Viva Paper Towels'),
+  wateringCan:    img('3807f1f88c0f42ab974b5b59ab07ff8b', 'Black Metal Watering Can'),
+  adirondackChair:img('062bc77cad8f44b7b33114eaa7bbaac4', 'Modern Adirondack Chair'),
+  rug:            img('e7df4cf2e5c3498291fbdd29d6a604b7', 'Striped Area Rug'),
+  firePit:        img('0c564c139118430c914ca80d9fe80dc9', 'Outdoor Fire Pit'),
+  jblSpeaker:     img('009b0a2bda494171b74c4d0b9be9467d', 'JBL Clip 3 Bluetooth Speaker'),
+  kitchenAid:     img('871a9d01d15e4344aeddd828e6ad96a4', 'KitchenAid Artisan Stand Mixer'),
+  nutrBullet:     img('d97202fbf7544db59d1672fca554125c', 'NutriBullet Pro Blender'),
+  nintendoSwitch: img('117a3b8c29e94104986149ff470e0f0b', 'Nintendo Switch™'),
+  marioKart:      img('f58f628972ee4b62a864595c74d87835', 'Mario Kart 8 Deluxe'),
 };
 
-// ── Ad assets ────────────────────────────────────────────────────────────────
 const GEICO_LOGO = `${CDN}e49854d53dde4904a3644e06872e21b1?format=webp&width=800&height=1200`;
 const GEICO_AD   = `${CDN}b7ecbf94d42b4e7aafd823d851677509?format=webp&width=800&height=1200`;
-
-// ── Review carousel ───────────────────────────────────────────────────────────
-const REVIEW_CTA_ILLUSTRATION = `${CDN}76440250dedc40518f93ea76656ae0eb?format=webp&width=800&height=1200`;
+const REVIEW_CTA = `${CDN}76440250dedc40518f93ea76656ae0eb?format=webp&width=800&height=1200`;
 
 const REVIEW_PRODUCTS = [
   { name: P.nintendoSwitch.alt, imageSrc: P.nintendoSwitch.src, rating: 3.5 },
   { name: P.marioKart.alt,      imageSrc: P.marioKart.src,      rating: 4.5 },
 ];
 
+// ── Order data with filter metadata ──────────────────────────────────────────
+interface OrderEntry {
+  id: string;
+  card: OrderCardProps;
+  date: Date;
+  orderStatus: 'in-progress' | 'completed';
+  hasReturn: boolean;
+  isInStore: boolean;
+  isOnline: boolean;
+  searchText: string;
+}
+
+function makeSearchText(card: OrderCardProps): string {
+  return [
+    card.statusHeading,
+    card.orderType,
+    card.location ?? '',
+    card.seller ?? '',
+    ...(card.products?.map(p => p.alt) ?? []),
+  ].join(' ').toLowerCase();
+}
+
+const ORDERS: OrderEntry[] = [
+  {
+    id: 'curbside-may14',
+    date: new Date(2025, 4, 14),
+    orderStatus: 'in-progress',
+    hasReturn: false,
+    isInStore: false,
+    isOnline: true,
+    card: {
+      orderType: 'curbside',
+      location: 'Carrollton Supercenter at 1213 Trinity Mills Rd',
+      statusHeading: 'Wed, May 14, 5pm–6pm',
+      timelineStep: 'placed',
+      timelineVariant: 'pickup',
+      addItemsBanner: '2hr 35min left to add to your order',
+      products: [P.milk, P.eggs, P.bananas, P.avocado, P.redOnion, P.blueberries],
+      orderTotal: '$85.00',
+      actions: [
+        { label: 'Edit items', variant: 'primary' },
+        { label: 'View details', variant: 'secondary' },
+      ],
+    },
+    get searchText() { return makeSearchText(this.card); },
+  },
+  {
+    id: 'delivery-delayed-may12',
+    date: new Date(2025, 4, 12),
+    orderStatus: 'in-progress',
+    hasReturn: false,
+    isInStore: false,
+    isOnline: true,
+    card: {
+      orderType: 'delivery',
+      statusHeading: 'Delayed, estimated up to 2 hours',
+      timelineStep: 'preparing',
+      isDelayed: true,
+      products: [P.strawberries, P.blueberries, P.bananas],
+      orderTotal: '$32.47',
+      actions: [
+        { label: 'Reschedule delivery', variant: 'secondary' },
+        { label: 'Pickup instead', variant: 'secondary' },
+        { label: 'View details', variant: 'secondary' },
+        { label: 'Cancel order', variant: 'secondary' },
+      ],
+    },
+    get searchText() { return makeSearchText(this.card); },
+  },
+  {
+    id: 'delivery-onway-may12',
+    date: new Date(2025, 4, 12),
+    orderStatus: 'in-progress',
+    hasReturn: false,
+    isInStore: false,
+    isOnline: true,
+    card: {
+      orderType: 'delivery',
+      statusHeading: 'Arrives today, 5pm–6pm',
+      timelineStep: 'on-the-way',
+      products: [P.tide, P.bounce, P.angelSoft, P.vivaPaperTowels],
+      orderTotal: '$67.13',
+      actions: [
+        { label: 'Track order', variant: 'primary' },
+        { label: 'View details', variant: 'secondary' },
+      ],
+    },
+    get searchText() { return makeSearchText(this.card); },
+  },
+  {
+    id: 'delivery-mar4',
+    date: new Date(2025, 2, 4),
+    orderStatus: 'completed',
+    hasReturn: true,
+    isInStore: false,
+    isOnline: true,
+    card: {
+      orderType: 'delivery',
+      statusHeading: 'Delivered on Mar 4',
+      timelineStep: 'delivered',
+      products: [P.bananas, P.blackberries, P.avocado, P.milk],
+      orderTotal: '$41.90',
+      showStartReturn: true,
+      actions: [{ label: 'View details', variant: 'secondary' }],
+    },
+    get searchText() { return makeSearchText(this.card); },
+  },
+  {
+    id: 'delivery-mar8',
+    date: new Date(2025, 2, 8),
+    orderStatus: 'completed',
+    hasReturn: true,
+    isInStore: false,
+    isOnline: true,
+    card: {
+      orderType: 'delivery',
+      statusHeading: 'Delivered on Mar 8',
+      timelineStep: 'delivered',
+      products: [P.blueberries, P.strawberries, P.grapefruit, P.bananas, P.milk, P.tide],
+      returnNotice: 'You still have items to return in this order',
+      returnDeadline: 'Jun 22',
+      actions: [{ label: 'View details', variant: 'secondary' }],
+    },
+    get searchText() { return makeSearchText(this.card); },
+  },
+  {
+    id: 'shipping-mar5-electronics',
+    date: new Date(2025, 2, 5),
+    orderStatus: 'completed',
+    hasReturn: true,
+    isInStore: false,
+    isOnline: true,
+    card: {
+      orderType: 'shipping',
+      seller: 'WorldWide Inc',
+      fulfilledBy: 'Walmart',
+      statusHeading: 'Delivered on Mar 5',
+      timelineStep: 'delivered',
+      products: [P.nintendoSwitch, P.marioKart, P.jblSpeaker],
+      orderTotal: '$385.00',
+      showStartReturn: true,
+      actions: [{ label: 'View details', variant: 'secondary' }],
+    },
+    get searchText() { return makeSearchText(this.card); },
+  },
+  {
+    id: 'shipping-feb28-appliances',
+    date: new Date(2025, 1, 28),
+    orderStatus: 'completed',
+    hasReturn: false,
+    isInStore: false,
+    isOnline: true,
+    card: {
+      orderType: 'shipping',
+      seller: 'WorldWide Inc',
+      fulfilledBy: 'Walmart',
+      statusHeading: 'Delivered on Feb 28',
+      products: [P.kitchenAid, P.nutrBullet],
+      orderTotal: '$289.98',
+      actions: [{ label: 'View details', variant: 'secondary' }],
+    },
+    get searchText() { return makeSearchText(this.card); },
+  },
+  {
+    id: 'curbside-feb25-garden',
+    date: new Date(2025, 1, 25),
+    orderStatus: 'completed',
+    hasReturn: true,
+    isInStore: false,
+    isOnline: true,
+    card: {
+      orderType: 'curbside',
+      location: 'Carrollton Supercenter at 1213 Trinity Mills Rd',
+      statusHeading: 'Picked up on Feb 25',
+      timelineVariant: 'pickup',
+      products: [P.wateringCan, P.adirondackChair, P.firePit, P.rug],
+      orderTotal: '$247.95',
+      showStartReturn: true,
+      actions: [{ label: 'View details', variant: 'secondary' }],
+    },
+    get searchText() { return makeSearchText(this.card); },
+  },
+  {
+    id: 'store-feb19-2024',
+    date: new Date(2024, 1, 19),
+    orderStatus: 'completed',
+    hasReturn: true,
+    isInStore: true,
+    isOnline: false,
+    card: {
+      orderType: 'store',
+      statusHeading: 'Feb 19, 2024 purchase',
+      products: [P.milk, P.bananas, P.eggs, P.peanutButter, P.cereal, P.chexMix],
+      orderTotal: '$45.08',
+      showStartReturn: true,
+      actions: [{ label: 'View details', variant: 'secondary' }],
+    },
+    get searchText() { return makeSearchText(this.card); },
+  },
+];
+
+// ── Filter logic ──────────────────────────────────────────────────────────────
+function applyFilters(orders: OrderEntry[], f: FilterState): OrderEntry[] {
+  return orders.filter(order => {
+    // Text search
+    if (f.search.trim()) {
+      if (!order.searchText.includes(f.search.trim().toLowerCase())) return false;
+    }
+
+    // Date filter
+    if (f.date) {
+      const now = new Date();
+      if (f.date === 'last3m') {
+        const cutoff = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate());
+        if (order.date < cutoff) return false;
+      } else if (f.date === 'last6m') {
+        const cutoff = new Date(now.getFullYear(), now.getMonth() - 6, now.getDate());
+        if (order.date < cutoff) return false;
+      } else {
+        if (order.date.getFullYear().toString() !== f.date) return false;
+      }
+    }
+
+    // Status filter
+    if (f.status.length > 0 && !f.status.includes(order.orderStatus)) return false;
+
+    // Toggle filters
+    if (f.returnsOnly && !order.hasReturn) return false;
+    if (f.inStoreOnly && !order.isInStore) return false;
+    if (f.onlineOnly && !order.isOnline) return false;
+
+    return true;
+  });
+}
+
+// ── Page component ────────────────────────────────────────────────────────────
 export default function PurchaseHistory() {
+  const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
+
+  const visibleOrders = useMemo(() => applyFilters(ORDERS, filters), [filters]);
+
   return (
     <ResponsiveLayout maxWidth="full">
       <div className={styles.page}>
@@ -102,8 +319,8 @@ export default function PurchaseHistory() {
               logoAlt="TANYÉ"
               headline="Enhance your kitchen with top tools"
               subtext="Cook like a pro with the best equipment."
-              imageSrc="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fb9a1addd35da48df88f41a3052039cd0?format=webp&width=800&height=1200"
-              imageAlt="TANYÉ chocolate bar"
+              imageSrc={`${CDN}b9a1addd35da48df88f41a3052039cd0?format=webp&width=800&height=1200`}
+              imageAlt="TANYÉ product"
             />
           </div>
           <Divider />
@@ -118,137 +335,37 @@ export default function PurchaseHistory() {
               <h1 className={styles.pageTitle}>Purchase history</h1>
 
               {/* Search + Filters */}
-              <PurchaseHistoryFilters />
+              <PurchaseHistoryFilters filters={filters} onFiltersChange={setFilters} />
 
               {/* Review Prompt */}
-              <ReviewPromptBanner products={REVIEW_PRODUCTS} ctaIllustration={REVIEW_CTA_ILLUSTRATION} />
+              <ReviewPromptBanner products={REVIEW_PRODUCTS} ctaIllustration={REVIEW_CTA} />
 
               {/* Order list */}
               <div className={styles.orderList}>
-
-                {/* Active order: Curbside pickup — editing window open */}
-                <OrderCard
-                  orderType="curbside"
-                  location="Carrollton Supercenter at 1213 Trinity Mills Rd"
-                  statusHeading="Wed, May 14, 5pm–6pm"
-                  timelineStep="placed"
-                  timelineVariant="pickup"
-                  addItemsBanner="2hr 35min left to add to your order"
-                  products={[P.milk, P.eggs, P.bananas, P.avocado, P.redOnion, P.blueberries]}
-                  orderTotal="$85.00"
-                  actions={[
-                    { label: 'Edit items', variant: 'primary' },
-                    { label: 'View details', variant: 'secondary' },
-                  ]}
-                />
-
-                {/* Active order: Delayed delivery */}
-                <OrderCard
-                  orderType="delivery"
-                  statusHeading="Delayed, estimated up to 2 hours"
-                  timelineStep="preparing"
-                  isDelayed
-                  products={[P.strawberries, P.blueberries, P.bananas]}
-                  orderTotal="$32.47"
-                  actions={[
-                    { label: 'Reschedule delivery', variant: 'secondary' },
-                    { label: 'Pickup instead', variant: 'secondary' },
-                    { label: 'View details', variant: 'secondary' },
-                    { label: 'Cancel order', variant: 'secondary' },
-                  ]}
-                />
-
-                {/* Active order: On the way */}
-                <OrderCard
-                  orderType="delivery"
-                  statusHeading="Arrives today, 5pm–6pm"
-                  timelineStep="on-the-way"
-                  products={[P.tide, P.bounce, P.angelSoft, P.vivaPaperTowels]}
-                  orderTotal="$67.13"
-                  actions={[
-                    { label: 'Track order', variant: 'primary' },
-                    { label: 'View details', variant: 'secondary' },
-                  ]}
-                />
-
-                {/* Inline GEICO ad */}
-                <InlineAdBanner
-                  logoSrc={GEICO_LOGO}
-                  logoAlt="GEICO"
-                  headline="15 minutes could save you on car insurance. Really..."
-                  ctaLabel="Get a quote"
-                  imageSrc={GEICO_AD}
-                  imageAlt="GEICO gecko — 15 minutes could save you on car insurance"
-                />
-
-                {/* Past order: Delivered Mar 4 */}
-                <OrderCard
-                  orderType="delivery"
-                  statusHeading="Delivered on Mar 4"
-                  timelineStep="delivered"
-                  products={[P.bananas, P.blackberries, P.avocado, P.milk]}
-                  orderTotal="$41.90"
-                  showStartReturn
-                  actions={[{ label: 'View details', variant: 'secondary' }]}
-                />
-
-                {/* Past order: Delivered Mar 8 */}
-                <OrderCard
-                  orderType="delivery"
-                  statusHeading="Delivered on Mar 8"
-                  timelineStep="delivered"
-                  products={[P.blueberries, P.strawberries, P.grapefruit, P.bananas, P.milk, P.tide]}
-                  returnNotice="You still have items to return in this order"
-                  returnDeadline="Jun 22"
-                  actions={[{ label: 'View details', variant: 'secondary' }]}
-                />
-
-                {/* Past order: Shipping Mar 5 — electronics */}
-                <OrderCard
-                  orderType="shipping"
-                  seller="WorldWide Inc"
-                  fulfilledBy="Walmart"
-                  statusHeading="Delivered on Mar 5"
-                  timelineStep="delivered"
-                  products={[P.nintendoSwitch, P.marioKart, P.jblSpeaker]}
-                  orderTotal="$385.00"
-                  showStartReturn
-                  actions={[{ label: 'View details', variant: 'secondary' }]}
-                />
-
-                {/* Past order: Shipping Feb 28 — appliances */}
-                <OrderCard
-                  orderType="shipping"
-                  seller="WorldWide Inc"
-                  fulfilledBy="Walmart"
-                  statusHeading="Delivered on Feb 28"
-                  products={[P.kitchenAid, P.nutrBullet]}
-                  orderTotal="$289.98"
-                  actions={[{ label: 'View details', variant: 'secondary' }]}
-                />
-
-                {/* Past order: Curbside pickup Feb 25 — home & garden */}
-                <OrderCard
-                  orderType="curbside"
-                  location="Carrollton Supercenter at 1213 Trinity Mills Rd"
-                  statusHeading="Picked up on Feb 25"
-                  timelineVariant="pickup"
-                  products={[P.wateringCan, P.adirondackChair, P.firePit, P.rug]}
-                  orderTotal="$247.95"
-                  showStartReturn
-                  actions={[{ label: 'View details', variant: 'secondary' }]}
-                />
-
-                {/* Past order: Store purchase Feb 19 */}
-                <OrderCard
-                  orderType="store"
-                  statusHeading="Feb 19, 2024 purchase"
-                  products={[P.milk, P.bananas, P.eggs, P.peanutButter, P.cereal, P.chexMix]}
-                  orderTotal="$45.08"
-                  showStartReturn
-                  actions={[{ label: 'View details', variant: 'secondary' }]}
-                />
-
+                {visibleOrders.length === 0 ? (
+                  <p style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)', fontSize: 14 }}>
+                    No orders match your filters.
+                  </p>
+                ) : (
+                  visibleOrders.map((order, i) => (
+                    <div key={order.id}>
+                      {/* Inline ad after 3rd visible order */}
+                      {i === 3 && (
+                        <div style={{ marginBottom: 16 }}>
+                          <InlineAdBanner
+                            logoSrc={GEICO_LOGO}
+                            logoAlt="GEICO"
+                            headline="15 minutes could save you on car insurance. Really..."
+                            ctaLabel="Get a quote"
+                            imageSrc={GEICO_AD}
+                            imageAlt="GEICO gecko"
+                          />
+                        </div>
+                      )}
+                      <OrderCard {...order.card} />
+                    </div>
+                  ))
+                )}
               </div>
 
               {/* Pagination */}

@@ -53,3 +53,30 @@
   gap: 8px;
   flex-wrap: wrap;
 }
+
+/* Anchor wrapper for popovers — inline-flex so it participates in flex row */
+.chipAnchor {
+  display: inline-flex;
+}
+
+/* Popover panel override — wider than default to fit options */
+.filterPanel {
+  min-width: 280px;
+  padding: 16px;
+}
+
+/* Options list — radio buttons or checkboxes stacked vertically */
+.optionList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+/* Footer: Clear link centered above View results button */
+.panelFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
