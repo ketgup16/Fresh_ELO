@@ -38,7 +38,7 @@
 /* Cards row */
 .cardRow {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 24px;
   align-self: stretch;
 }
