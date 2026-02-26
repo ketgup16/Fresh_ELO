@@ -2,7 +2,8 @@ import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
-import { MastHead } from '@/components/ui/MastHead';
+import { DesktopHeader } from '@/components/walmart/DesktopHeader';
+import { SubNav } from '@/components/walmart/SubNav';
 
 // Navigation item definition (nameKey references componentLibrary.* translation keys)
 interface NavItem {
@@ -113,7 +114,8 @@ export function ComponentLibraryLayout() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
-      <MastHead />
+      <DesktopHeader />
+      <SubNav />
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
       {/* Sidebar */}
       <aside
