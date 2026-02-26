@@ -1,0 +1,207 @@
+.nav {
+  width: 248px;
+  flex-shrink: 0;
+  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  border-right: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* User Header */
+.userHeader {
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+}
+
+.userHeaderTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.greeting {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  line-height: 24px;
+}
+
+.memberSince {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  line-height: 16px;
+  margin: 0;
+  padding-left: 40px;
+}
+
+/* Sections */
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  text-transform: none;
+  letter-spacing: 0;
+  padding: 12px 16px 4px;
+  line-height: 16px;
+}
+
+.sectionList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Nav Items */
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  transition: background 0.1s;
+}
+
+.navItem:hover {
+  background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
+}
+
+.navItemActive {
+  border-left-color: var(--ld-semantic-color-action-fill-primary, #0071DC);
+  background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
+  font-weight: 400;
+}
+
+.navItemLabel {
+  flex: 1;
+}
+
+/* Red dot for messages */
+.redDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #CC0000;
+  flex-shrink: 0;
+}
+
+/* NEW badge */
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 14px;
+  color: #fff;
+  background: var(--ld-semantic-color-fill-warning, #F5A623);
+  border-radius: 3px;
+  padding: 1px 5px;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+/* Collapsible Account header row */
+.collapsibleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.collapsibleHeader:hover {
+  background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
+}
+
+.collapsibleHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sectionTitleText {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+/* Settings row */
+.settingsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.settingsRow:hover {
+  background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
+}
+
+.settingsLabel {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+/* Sign out row */
+.signOutRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.signOutRow:hover {
+  background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
+}
+
+.signOutLabel {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--ld-semantic-color-separator, #E3E4E5);
+  margin: 4px 0;
+}
