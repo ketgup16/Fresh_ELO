@@ -54,6 +54,24 @@ function ProductReviewCard({ product }: { product: ReviewProduct }) {
   );
 }
 
+/* ── Mobile CTA card (first slide) ── */
+
+function MobileCtaCard({ ctaIllustration }: { ctaIllustration?: string }) {
+  return (
+    <div className={styles.mobileCard}>
+      <div className={styles.mobileCtaInner}>
+        <div className={styles.mobileCtaContent}>
+          <p className={styles.ctaHeading}>What&rsquo;d you think?</p>
+          <Button variant="secondary" size="small">Review more items</Button>
+        </div>
+        {ctaIllustration && (
+          <img src={ctaIllustration} alt="" aria-hidden="true" className={styles.mobileCtaIllustration} />
+        )}
+      </div>
+    </div>
+  );
+}
+
 /* ── Mobile carousel card wrapper ── */
 
 function MobileCard({ product }: { product: ReviewProduct }) {
@@ -83,7 +101,7 @@ export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBa
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  const totalSlides = products.length;
+  const totalSlides = products.length + 1; // +1 for CTA card
 
   const getCardWidth = useCallback(() => {
     if (!carouselRef.current) return 0;
@@ -154,6 +172,7 @@ export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBa
           ref={carouselRef}
           onScroll={handleScroll}
         >
+          <MobileCtaCard ctaIllustration={ctaIllustration} />
           {products.map((p, i) => (
             <MobileCard key={i} product={p} />
           ))}
@@ -161,7 +180,7 @@ export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBa
 
         {totalSlides > 1 && (
           <div className={styles.dots}>
-            {products.map((_, i) => (
+            {Array.from({ length: totalSlides }).map((_, i) => (
               <button
                 key={i}
                 className={`${styles.dot} ${i === activeIndex ? styles.dotActive : ''}`}

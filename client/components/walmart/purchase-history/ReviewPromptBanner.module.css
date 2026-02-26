@@ -138,6 +138,8 @@
   display: none;
   flex-direction: column;
   gap: 16px;
+  /* Break out of parent 16px padding so carousel reaches screen edges */
+  margin: 0 -16px;
 }
 
 .mobileHeader {
@@ -161,12 +163,18 @@
 .carousel {
   display: flex;
   padding: 0 16px;
-  gap: 16px;
-  align-items: flex-start;
+  gap: 12px;
+  align-items: stretch;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-padding-left: 16px;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  cursor: grab;
+}
+
+.carousel:active {
+  cursor: grabbing;
 }
 
 .carousel::-webkit-scrollbar {
@@ -175,14 +183,42 @@
 
 /* Individual mobile card */
 .mobileCard {
-  flex-shrink: 0;
-  width: calc(85% - 16px);
-  max-width: 320px;
+  flex: 0 0 calc(100% - 48px);
+  min-width: 0;
   border-radius: 8px;
   background: #FFF;
   box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   scroll-snap-align: start;
+}
+
+/* Mobile CTA card inner layout */
+.mobileCtaInner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  gap: 8px;
+  min-height: 104px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobileCtaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  z-index: 1;
+}
+
+.mobileCtaIllustration {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
+  align-self: flex-end;
 }
 
 .mobileCardInner {

@@ -65,6 +65,15 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     padding-bottom: 2px;
+    /* Break out of parent padding so chips scroll edge-to-edge */
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    cursor: grab;
+  }
+
+  .filterRow:active {
+    cursor: grabbing;
   }
 
   .filterRow::-webkit-scrollbar {
