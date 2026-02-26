@@ -46,8 +46,8 @@
 /* ── CTA Card (desktop) ── */
 .ctaCard {
   display: flex;
-  width: 300px;
-  min-width: 300px;
+  flex: 1 1 0;
+  min-width: 0;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
