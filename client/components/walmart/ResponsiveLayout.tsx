@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { BottomNav } from './BottomNav';
 import { DesktopHeader } from './DesktopHeader';
-import { MobileHeader } from './MobileHeader';
 import { DesktopFooter } from './DesktopFooter';
 import { SubNav } from './SubNav';
 import { PromoBanner } from './PromoBanner';
@@ -36,8 +35,6 @@ export function ResponsiveLayout({
 
   return (
     <div className={styles.root}>
-      {/* Mobile top nav — hidden on desktop via CSS */}
-      {showMobileNav && <MobileHeader />}
       {/* Desktop header — hidden on mobile via CSS */}
       {showDesktopHeader && <DesktopHeader />}
       {showDesktopHeader && <SubNav />}
