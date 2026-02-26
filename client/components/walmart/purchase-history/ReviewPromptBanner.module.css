@@ -142,6 +142,7 @@
   margin: 0 -16px;
   background: var(--ld-semantic-color-background-subtle, #F2F3F3);
   padding-top: 16px;
+  padding-bottom: 8px;
 }
 
 .mobileHeader {
@@ -166,13 +167,16 @@
   display: flex;
   padding: 0 16px;
   gap: 12px;
-  align-items: stretch;
+  align-items: flex-start;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-padding-left: 16px;
   scrollbar-width: none;
   -ms-overflow-style: none;
   cursor: grab;
+  flex-grow: 0;
+  height: auto;
+  margin: 0;
 }
 
 .carousel:active {
