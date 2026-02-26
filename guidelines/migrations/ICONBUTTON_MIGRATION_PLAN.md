@@ -1,374 +1,109 @@
 ---
 title: IconButton Migration Plan
 scope: migration
-status: draft
+status: in-progress
 owner: design-system
-last_updated: 2025-02-25
+last_updated: 2025-02-26
 ---
 
 ## Purpose
 
-This document outlines the plan to replace all custom icon button implementations with the new LD 3.5 IconButton component throughout the application.
+Replace all custom icon button implementations with `IconButton` from `@/components/ui/IconButton`.
 
-## ✅ What's Been Created
+## Rule
 
-### New Components
+NEVER use a raw `<button>` with a manual icon and `p-1 hover:bg-gray-100 rounded-full` pattern. ALWAYS use `IconButton`.
 
-1. **`client/components/ui/IconButton.tsx`** - Main component file
-   - TypeScript types and interfaces
-   - Support for button and anchor elements
-   - 5 variants: ghost, primary, secondary, tertiary, destructive
-   - 3 sizes: small (24px), medium (32px), large (40px)
-   - Full accessibility support with required `aria-label`
-
-2. **`client/components/ui/IconButton.module.css`** - Component styles
-   - Uses LD 3.5 semantic tokens exclusively
-   - All state variations (default, hover, active, disabled, focus)
-   - Proper icon sizing for each size variant
-
-3. **`client/components/IconButtonExample.tsx`** - Usage examples
-   - Comprehensive examples of all variants and sizes
-   - Common use case demonstrations
-   - Code snippets for developers
-
-4. **`guidelines/IconButton.md`** - Component documentation
-   - Complete API reference
-   - Migration guide with before/after examples
-   - Accessibility guidelines
-   - Testing checklist
-
-### Updated Documentation
-
-- **`.fusion/rules/component-composition.md`** - Added IconButton to available atoms list
-
-## 🎯 Component Specifications
-
-### Sizes
-- **Small**: 24×24px (16px icon)
-- **Medium**: 32×32px (20px icon) - Default
-- **Large**: 40×40px (24px icon)
-
-### Variants
-- **Ghost** (default): Transparent, shows background on hover
-- **Primary**: Walmart blue background
-- **Secondary**: White with border
-- **Tertiary**: Light gray
-- **Destructive**: Red for delete actions
-
-### Key Features
-- ✅ Required `aria-label` for accessibility
-- ✅ Uses `currentColor` for icon fills
-- ✅ LD 3.5 semantic tokens throughout
-- ✅ Keyboard navigation support
-- ✅ Focus visible indicators
-- ✅ Disabled state handling
-- ✅ Can render as `<button>` or `<a>`
-
-## 📦 Usage Example
+## Usage
 
 ```tsx
 import { IconButton } from '@/components/ui/IconButton';
 
-// Basic usage (ghost variant)
-<IconButton aria-label="Show information" variant="ghost" size="medium">
-  <InfoIcon />
+// ghost (default) — info tooltips, close buttons, menu toggles
+<IconButton aria-label="Close dialog" variant="ghost" size="medium">
+  <CloseIcon />
 </IconButton>
 
-// Primary action
-<IconButton aria-label="Add item" variant="primary" size="large">
-  <PlusIcon />
-</IconButton>
-
-// Destructive action
-<IconButton aria-label="Delete item" variant="destructive">
+// destructive — delete/remove actions
+<IconButton aria-label="Delete item" variant="destructive" size="small">
   <TrashIcon />
 </IconButton>
 ```
 
-## 🔄 Migration Status
+**Variants**: `ghost` | `primary` | `secondary` | `tertiary` | `destructive`
 
-### ✅ Completed
+**Sizes**: `small` (24px) | `medium` (32px) | `large` (40px)
 
-1. **client/components/DisplayDashboard.tsx** (Partial - 3/7 completed)
-   - ✅ Impressions info button (line ~448)
-   - ✅ eCPM info button (line ~473)
-   - ✅ Spend info button (line ~496)
-   - ⏳ Total ROAS info button (line ~519)
-   - ⏳ Total attributed sales info button (line ~542)
-   - ⏳ Total attributed transactions info button (line ~565)
-   - ⏳ Total attributed units info button (line ~588)
+**Required prop**: `aria-label` — always descriptive ("Close dialog", not "X")
 
-### ⏳ High Priority - To Do
+**Icon SVGs**: must use `fill="currentColor"` or `stroke="currentColor"`, not hard-coded colors.
 
-2. **client/components/ui/MastHead.tsx**
-   - App switcher toggle buttons
-   - Navigation menu buttons
-   - User profile menu trigger
-
-3. **client/components/SponsoredSearchSidebar.tsx** (Line 283)
-   - Sidebar lock/unlock toggle button
-   - Pattern: Custom styled button
-
-4. **client/components/DisplayAdvertisingSidebar.tsx** (Line 256)
-   - Sidebar collapse/expand button
-
-5. **client/components/StoreAdsSidebar.tsx** (Line 165)
-   - Sidebar toggle button
-
-### ⏳ Medium Priority - To Do
-
-6. **client/components/EditMetricsModal.tsx**
-   - Close button in modal header
-   - Info tooltips
-
-7. **client/components/DateRangeFilterDropdown.tsx**
-   - Calendar navigation (prev/next month)
-   - Clear selection button
-
-8. **client/components/BiddingStrategyModal.tsx**
-   - Modal close button
-   - Help icon buttons
-
-9. **client/components/RecommendationsPanel.tsx**
-   - Panel close button
-   - Expand/collapse buttons
-   - Filter/sort action buttons
-
-10. **client/components/MartyAssistant.tsx** (Line 134)
-    - Chat expand/collapse button
-    - Action buttons in chat interface
-
-### ⏳ Low Priority - To Do
-
-11. **client/components/ui/carousel.tsx**
-    - Previous/Next navigation arrows
-
-12. **client/components/ui/pagination.tsx**
-    - Page navigation arrows
-    - First/Last page buttons
-
-## 📝 Migration Process
-
-For each file, follow these steps:
-
-### 1. Import IconButton
+## Migration Pattern
 
 ```tsx
-import { IconButton } from '@/components/ui/IconButton';
-```
-
-### 2. Replace Button Markup
-
-**Before:**
-```tsx
+// WRONG
 <button className="p-1 hover:bg-gray-100 rounded-full transition-colors">
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <svg width="16" height="16" viewBox="0 0 16 16">
     <path d="..." fill="#515357"/>
   </svg>
 </button>
-```
 
-**After:**
-```tsx
+// CORRECT
 <IconButton aria-label="Descriptive action" variant="ghost" size="small">
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <svg width="16" height="16" viewBox="0 0 16 16">
     <path d="..." fill="currentColor"/>
   </svg>
 </IconButton>
 ```
 
-### 3. Key Changes Required
-
-1. **Add `aria-label`**: Always provide descriptive text for screen readers
-2. **Choose variant**: Usually `ghost` for existing transparent buttons
-3. **Choose size**: Based on icon size (16px = small, 20px = medium, 24px = large)
-4. **Update SVG fills**: Change from hard-coded colors to `currentColor`
-5. **Remove className**: IconButton handles all styling internally
-
-### 4. Common Patterns
-
-#### Info Tooltip Button
-```tsx
-<IconButton aria-label="View [metric] information" variant="ghost" size="small">
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-    <path d="..." fill="currentColor"/>
-  </svg>
-</IconButton>
-```
-
-#### Close Dialog Button
-```tsx
-<IconButton aria-label="Close dialog" variant="ghost" size="medium">
-  <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
-    <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" strokeWidth="1.5"/>
-  </svg>
-</IconButton>
-```
-
-#### Menu Toggle
-```tsx
-<IconButton aria-label="Open menu" variant="ghost" size="medium">
-  <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
-    <path d="M2 4H14M2 8H14M2 12H14" stroke="currentColor" strokeWidth="1.5"/>
-  </svg>
-</IconButton>
-```
-
-#### Delete Action
-```tsx
-<IconButton aria-label="Delete item" variant="destructive" size="small">
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-    <path d="..." stroke="currentColor" strokeWidth="1.5"/>
-  </svg>
-</IconButton>
-```
-
-## 🎨 Design Token Alignment
-
-The IconButton component uses these LD 3.5 semantic tokens:
-
-### Colors
-- `--ld-semantic-color-action-fill-*`
-- `--ld-semantic-color-action-text-*`
-- `--ld-semantic-color-action-border-*`
-- `--ld-semantic-color-action-focus-outline`
-
-### Typography
-- `--ld-semantic-font-family-sans`
-
-### Benefits
-- ✅ Automatic theme support
-- ✅ Consistent with design system
-- ✅ Easy to update globally
-- ✅ Light/dark mode ready
-
-## 🧪 Testing Checklist
-
-After migrating each file:
-
-- [ ] All icon buttons have descriptive `aria-label`
-- [ ] Hover states work correctly
-- [ ] Focus indicators are visible (keyboard navigation)
-- [ ] Disabled states render properly
-- [ ] Click handlers still function
-- [ ] Icons are properly sized
-- [ ] Colors match LD 3.5 specifications
-- [ ] No console errors or warnings
-- [ ] Visual regression test passes
-
-## 📊 Progress Tracking
-
-- **Total Files Identified**: 12
-- **Files Completed**: 0.5 (DisplayDashboard partially done)
-- **Files In Progress**: 1
-- **Files Remaining**: 11
-- **Total Buttons**: ~50+ (estimated)
-- **Buttons Migrated**: 3
-- **Progress**: ~6%
-
-## 🚀 Next Steps
-
-### Immediate Actions
-
-1. **Complete DisplayDashboard.tsx**
-   - Migrate remaining 4 info icon buttons
-   - Test all metrics cards
-
-2. **Migrate Sidebar Components**
-   - SponsoredSearchSidebar.tsx
-   - DisplayAdvertisingSidebar.tsx
-   - StoreAdsSidebar.tsx
-   - These are high-visibility components
-
-3. **Migrate Modal Components**
-   - EditMetricsModal.tsx
-   - BiddingStrategyModal.tsx
-   - Common pattern across app
-
-### Long-term Plan
-
-1. **Week 1**: Complete high-priority files (DisplayDashboard, sidebars, modals)
-2. **Week 2**: Complete medium-priority files (filters, recommendations panel)
-3. **Week 3**: Complete low-priority files (carousel, pagination)
-4. **Week 4**: Final testing, visual regression, accessibility audit
-
-## 🛠️ Tools & Resources
-
-### Documentation
-- **Component API**: `guidelines/IconButton.md`
-- **Examples**: `client/components/IconButtonExample.tsx`
-- **Design Tokens**: `guidelines/tokens.md`
-
-### Commands
+## Find Violations
 
 ```bash
-# View IconButton examples
-# Navigate to /icon-button-example route (if added to router)
-
-# Find all custom icon buttons
-grep -r "button.*p-1.*hover:bg-gray-100" client/components/
-
-# Find icon buttons with rounded-full
-grep -r "rounded-full.*transition" client/components/
-
-# Check IconButton usage
-grep -r "import.*IconButton" client/
+grep -r "p-1.*hover:bg-gray-100.*rounded-full" client/components/
+grep -r "rounded-full.*transition.*<svg" client/components/
 ```
 
-## 💡 Tips & Best Practices
+## Migration Status
 
-### Choosing the Right Variant
+**Progress**: ~6% (3 of ~50 buttons migrated)
 
-- **Ghost** (most common): Info tooltips, close buttons, menu toggles
-- **Primary**: Main call-to-action icons (add, create)
-- **Secondary**: Alternative actions (edit, settings)
-- **Tertiary**: Low-emphasis actions
-- **Destructive**: Delete, remove, cancel actions
+### Completed
 
-### Choosing the Right Size
+- `DisplayDashboard.tsx` — 3 of 7 info buttons (Impressions, eCPM, Spend)
 
-- **Small (24px)**: Inline icons, tight spaces, info tooltips
-- **Medium (32px)**: Standard UI actions, most common
-- **Large (40px)**: Primary actions, important interactions
+### High Priority — Remaining
 
-### Writing Good aria-labels
+| File | What to migrate |
+|------|----------------|
+| `DisplayDashboard.tsx` | 4 remaining info buttons (Total ROAS, attributed sales, transactions, units) |
+| `MastHead.tsx` | App switcher toggle, nav menu, user profile trigger |
+| `SponsoredSearchSidebar.tsx` line 283 | Sidebar lock/unlock toggle |
+| `DisplayAdvertisingSidebar.tsx` line 256 | Sidebar collapse/expand |
+| `StoreAdsSidebar.tsx` line 165 | Sidebar toggle |
 
-- ✅ **Good**: "Close dialog", "Delete campaign", "View impressions information"
-- ❌ **Bad**: "Close", "X", "Info", "Icon"
-- Be specific about what action will occur
-- Include context when needed
+### Medium Priority
 
-### SVG Icon Best Practices
+| File | What to migrate |
+|------|----------------|
+| `EditMetricsModal.tsx` | Close button, info tooltips |
+| `DateRangeFilterDropdown.tsx` | Calendar prev/next, clear button |
+| `BiddingStrategyModal.tsx` | Modal close, help icons |
+| `RecommendationsPanel.tsx` | Close, expand/collapse, filter/sort |
+| `MartyAssistant.tsx` line 134 | Chat expand/collapse, action buttons |
 
-- Use `currentColor` for fills and strokes
-- Size icons appropriately for button size
-- Maintain consistent stroke widths (usually 1.5px)
-- Use viewBox="0 0 16 16" for scalability
+### Low Priority
 
-## 📞 Support
+| File | What to migrate |
+|------|----------------|
+| `carousel.tsx` | Prev/Next navigation arrows |
+| `pagination.tsx` | Page arrows, first/last buttons |
 
-If you encounter issues during migration:
+## Per-File Checklist
 
-1. Check `guidelines/IconButton.md` for detailed examples
-2. View `client/components/IconButtonExample.tsx` for live examples
-3. Review LD 3.5 design specifications
-4. Check existing migrations in DisplayDashboard.tsx for patterns
+After migrating each file verify:
 
-## 🎯 Success Criteria
-
-Migration is complete when:
-
-- ✅ All custom icon button implementations are replaced
-- ✅ All icon buttons have proper `aria-label` attributes
-- ✅ All icon buttons use LD 3.5 design tokens
-- ✅ Visual appearance matches LD 3.5 specifications
-- ✅ Accessibility audit passes (WCAG 2.1 AA)
-- ✅ No custom inline styling for icon buttons
-- ✅ Consistent hover, focus, and disabled states
-- ✅ All tests pass
-
----
-
-**Last Updated**: 2025-01-22
-**Status**: In Progress
-**Progress**: 6%
+- [ ] All icon buttons have a descriptive `aria-label`
+- [ ] Hover, focus, and disabled states render correctly
+- [ ] SVG icons use `currentColor`
+- [ ] No `className` or inline style overrides on `IconButton`
+- [ ] Dev server shows no errors

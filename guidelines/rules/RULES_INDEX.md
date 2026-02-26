@@ -3,7 +3,7 @@ title: Design System Rules Index
 scope: rule
 status: stable
 owner: design-system
-last_updated: 2025-02-25
+last_updated: 2025-02-26
 ---
 
 ## Purpose
@@ -25,8 +25,32 @@ Quick reference for all mandatory design system rules and enforcement policies.
 
 ---
 
-### 1. Design System Enforcement (Tokens + Icons)
-**File**: `RULE_DesignSystemEnforcement.md` 🆕
+### 1. Tag and OLQTag Components
+**File**: `RULE_TagComponents.md`
+
+**When**: Any status label, category badge, or percentage-coded quality indicator
+
+**Key Requirements**:
+- ALWAYS use `Tag` from `@/components/ui/tag` for status/category labels
+- ALWAYS use `OLQTag` from `@/components/ui/olq-tag` for percentage quality indicators
+- NEVER write a custom `getXStyle()` function returning inline background/color values
+- NEVER hard-code OLQ color thresholds — built into `OLQTag`
+
+**Quick Check**:
+```tsx
+// WRONG
+const getOLQStyle = (olq: string) => ({ backgroundColor: '#FBD0CC', ... });
+<div style={getOLQStyle(item.olq)}>{item.olq}</div>
+
+// CORRECT
+import { OLQTag } from '@/components/ui/olq-tag';
+<OLQTag percentage={85} />
+```
+
+---
+
+### 3. Design System Enforcement (Tokens + Icons)
+**File**: `RULE_DesignSystemEnforcement.md`
 
 **When**: ALL code - components, pages, styles, and designs
 
@@ -59,7 +83,7 @@ import { Search } from '@/components/icons';
 
 ---
 
-### 2. Icon Usage and Management
+### 4. Icon Usage and Management
 **File**: `RULE_IconUsage.md`
 
 **When**: Adding icons to designs, Builder.io imports, new components
@@ -86,7 +110,7 @@ import { Search } from '@/components/icons';
 
 ---
 
-### 3. LinkButton and Spot Icon Usage
+### 5. LinkButton and Spot Icon Usage
 **File**: `RULE_LinkButtonAndSpotIcon.md`
 
 **When**: Adding link-styled buttons or icon indicators to todo items, action rows, or cards
@@ -109,7 +133,7 @@ import { LinkButton } from '@/components/ui/LinkButton';
 
 ---
 
-### 4. Figma Exportable Asset Extraction
+### 6. Figma Exportable Asset Extraction
 **File**: `RULE_FigmaAssetExtraction.md` 🆕
 
 **When**: Implementing Figma designs, extracting assets from design files
@@ -145,7 +169,7 @@ public/
 
 ---
 
-### 5. Guidelines Page Sync
+### 7. Guidelines Page Sync
 **File**: `RULE_GuidelinesPageSync.md`
 
 **When**: After ANY change to files in the `guidelines/` directory
@@ -160,7 +184,7 @@ public/
 
 ## Component and Layout Rules
 
-### 6. Component Reuse Policy
+### 8. Component Reuse Policy
 **Reference**: `design-system/ComponentReference.md`
 
 **When**: Creating any new UI component
@@ -178,7 +202,7 @@ public/
 
 ---
 
-### 7. Responsive Layout and Page Structure
+### 9. Responsive Layout and Page Structure
 **File**: `RULE_ResponsiveLayout.md`
 
 **When**: Creating ANY new page, view, or layout component
@@ -211,7 +235,7 @@ public/
 
 ---
 
-### 8. Panel Design Requirements
+### 10. Panel Design Requirements
 **File**: `Panel.md`
 
 **When**: Creating any panel, drawer, or sidebar component

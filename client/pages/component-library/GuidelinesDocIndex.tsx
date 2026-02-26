@@ -85,6 +85,7 @@ const docSections: DocSection[] = [
     description: 'Mandatory rules that must be followed by all developers and AI agents when writing code.',
     docs: [
       { name: 'Rules Index', path: 'guidelines/rules/RULES_INDEX.md', purpose: 'Quick reference for all mandatory rules' },
+      { name: 'Tag Components', path: 'guidelines/rules/RULE_TagComponents.md', purpose: 'Use Tag and OLQTag — never manual styled divs for status indicators' },
       { name: 'Design System Enforcement', path: 'guidelines/rules/RULE_DesignSystemEnforcement.md', purpose: 'Tokens, icons, and component enforcement (consolidated)' },
       { name: 'Create New Component', path: 'guidelines/rules/RULE_CreateNewComponent.md', purpose: 'Complete process for adding new LD components' },
       { name: 'Component Sandbox', path: 'guidelines/rules/RULE_ComponentPropertyTester.md', purpose: 'All components must be testable in sandbox' },
@@ -105,17 +106,15 @@ const docSections: DocSection[] = [
   },
   {
     title: 'Migrations & Implementation History',
-    description: 'Completed migration plans and implementation summaries for reference.',
+    description: 'Active migration checklists and archived implementation summaries. Verbose narrative removed — these are concise status trackers.',
     docs: [
-      { name: 'Button Standardization', path: 'guidelines/migrations/BUTTON-STANDARDIZATION-SUMMARY.md', purpose: 'Standardized all buttons to LD 3.5' },
-      { name: 'IconButton Migration', path: 'guidelines/migrations/ICONBUTTON_MIGRATION_PLAN.md', purpose: 'Replace custom icon buttons with LD IconButton' },
-      { name: 'Living Design Migration', path: 'guidelines/migrations/LIVING-DESIGN-MIGRATION-ASSESSMENT.md', purpose: 'Comprehensive shadcn-to-LD migration plan' },
-      { name: 'Table Standardization', path: 'guidelines/migrations/PLAN_TABLE_STANDARDIZATION.md', purpose: 'Table component standardization plan' },
-      { name: 'Theme Switcher Plan', path: 'guidelines/migrations/THEME_SWITCHER_PLAN.md', purpose: 'Dynamic theme switching implementation' },
-      { name: 'UI Component Replacement', path: 'guidelines/migrations/UI-COMPONENT-REPLACEMENT-PLAN.md', purpose: 'Full shadcn-to-LD component replacement plan' },
-      { name: 'Attribution Dropdown', path: 'guidelines/implementations/ATTRIBUTION-DROPDOWN-SUMMARY.md', purpose: 'Attribution interval dropdown implementation' },
-      { name: 'Component Consolidation', path: 'guidelines/implementations/COMPONENT-CONSOLIDATION-SUMMARY.md', purpose: 'Button consolidation to LD component' },
-      { name: 'Tag Implementation', path: 'guidelines/implementations/LD-TAG-IMPLEMENTATION-SUMMARY.md', purpose: 'LD 3.5 Tag component implementation' },
+      { name: 'IconButton Migration', path: 'guidelines/migrations/ICONBUTTON_MIGRATION_PLAN.md', purpose: 'Replace custom icon buttons with LD IconButton (in progress, ~6%)' },
+      { name: 'Living Design Migration', path: 'guidelines/migrations/LIVING-DESIGN-MIGRATION-ASSESSMENT.md', purpose: 'Anti-patterns to fix, completed work, and remaining typography/component work' },
+      { name: 'Table Standardization', path: 'guidelines/migrations/PLAN_TABLE_STANDARDIZATION.md', purpose: 'Per-table checklist: sticky headers, resize handles, Link/Tag/Menu components' },
+      { name: 'Theme Switcher Plan', path: 'guidelines/migrations/THEME_SWITCHER_PLAN.md', purpose: 'Archived — implemented. See RULE_ThemeSwitcher.md and RULE_ThemeAddition.md' },
+      { name: 'UI Component Replacement', path: 'guidelines/migrations/UI-COMPONENT-REPLACEMENT-PLAN.md', purpose: 'shadcn → LD component mapping table, variant name diffs, active file list' },
+      { name: 'Component Consolidation', path: 'guidelines/implementations/COMPONENT-CONSOLIDATION-SUMMARY.md', purpose: 'Button consolidation reference — canonical import path and API diff table' },
+      { name: 'Tag Implementation', path: 'guidelines/implementations/LD-TAG-IMPLEMENTATION-SUMMARY.md', purpose: 'Archived — see RULE_TagComponents.md for active rules' },
     ],
   },
 ];
