@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ChevronDown, ChevronUp, Gear, SignOut, User } from '@/components/icons';
+import { ChevronDown, Gear, SignOut, User } from '@/components/icons';
+import { SpotIcon } from '@/components/ui/SpotIcon';
 import { WalmartPlusLogoIcon } from '@/components/icons-custom';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
 import { Divider } from '@/components/ui/Divider';
@@ -105,7 +106,7 @@ export function AccountSideNav() {
       <Collapsible defaultOpen>
         <CollapsibleTrigger className={styles.collapsibleHeader}>
           <div className={styles.collapsibleHeaderLeft}>
-            <User width={20} height={20} aria-hidden="true" />
+            <SpotIcon icon={<User />} size="small" color="brand" />
             <span className={styles.sectionTitleText}>Account</span>
           </div>
           <span className={styles.chevronIcon}>
@@ -146,7 +147,7 @@ export function AccountSideNav() {
       <Collapsible>
         <CollapsibleTrigger className={styles.collapsibleHeader}>
           <div className={styles.collapsibleHeaderLeft}>
-            <Gear width={20} height={20} aria-hidden="true" />
+            <SpotIcon icon={<Gear />} size="small" color="brand" />
             <span className={styles.settingsLabel}>Settings</span>
           </div>
           <span className={styles.chevronIcon}>
@@ -170,7 +171,7 @@ export function AccountSideNav() {
       {/* Sign Out */}
       <div className={styles.section}>
         <button className={styles.signOutRow} onClick={() => navigate('/sign-out')}>
-          <SignOut width={20} height={20} aria-hidden="true" />
+          <SpotIcon icon={<SignOut />} size="small" color="brand" />
           <span className={styles.signOutLabel}>Sign out</span>
         </button>
       </div>
