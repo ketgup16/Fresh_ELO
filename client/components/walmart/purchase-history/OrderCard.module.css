@@ -41,6 +41,13 @@
   color: var(--ld-semantic-color-text-subtle, #74767C);
 }
 
+.orderTypeChip img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .location {
   font-size: 12px;
   color: var(--ld-semantic-color-text-subtle, #74767C);

@@ -54,27 +54,28 @@ const STEP_INDEX: Record<TimelineStep, number> = {
   delivered: 3,
 };
 
+const FULFILLMENT_ICONS: Record<OrderType, { src: string; alt: string }> = {
+  curbside: {
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F20a77fde73794843b77d6549071c1059?format=webp&width=800&height=1200',
+    alt: 'Curbside pickup',
+  },
+  delivery: {
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff6eae3d5c71f4fab83eadf53e5671f86?format=webp&width=800&height=1200',
+    alt: 'Delivery',
+  },
+  store: {
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff9eff60ebb1749b5bd7ec7f3ac36234d?format=webp&width=800&height=1200',
+    alt: 'Store purchase',
+  },
+  shipping: {
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ffbe89aa828ce42e59e0a7176e1e9377d?format=webp&width=800&height=1200',
+    alt: 'Shipping',
+  },
+};
+
 function OrderTypeIcon({ type }: { type: OrderType }) {
-  if (type === 'curbside' || type === 'store') {
-    return (
-      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path fill="currentColor" d="M28 10h-4V7a3 3 0 0 0-3-3H11a3 3 0 0 0-3 3v3H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h1a3 3 0 0 0 6 0h10a3 3 0 0 0 6 0h1a2 2 0 0 0 2-2V12a2 2 0 0 0-2-2ZM9 26a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm14 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM10 10V7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3H10Z"/>
-      </svg>
-    );
-  }
-  if (type === 'delivery') {
-    return (
-      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path fill="currentColor" d="M28.8 11.4 26 6.8A2 2 0 0 0 24.3 6H20V4H2v18h2a4 4 0 0 0 8 0h8a4 4 0 0 0 8 0h2V16a5 5 0 0 0-1.2-4.6ZM8 24a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm16 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4ZM20 14V8h4.3l2.5 4.2A3 3 0 0 1 28 14h-8Z"/>
-      </svg>
-    );
-  }
-  // shipping
-  return (
-    <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <path fill="currentColor" d="M29 20h-1V12.4a2 2 0 0 0-.6-1.4l-5.4-5.4A2 2 0 0 0 20.6 5H18V3H3v20h2a3 3 0 0 0 6 0h8a3 3 0 0 0 6 0h4v-3ZM8 24a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm14 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM18 7h2.6l5.4 5.4V13H18V7Z"/>
-    </svg>
-  );
+  const icon = FULFILLMENT_ICONS[type];
+  return <img src={icon.src} alt="" aria-hidden="true" width={32} height={32} />;
 }
 
 export function OrderCard({
