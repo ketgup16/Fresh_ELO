@@ -1,11 +1,11 @@
 import Lottie from "lottie-react";
-import searchReadyAnimation from "@/components/icons/search_28px_ready.json";
+import chatListeningAnimation from "@/components/icons/chat_60px_listening.json";
 
 export function SparkyLookingDown({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center justify-center ${className}`}>
       <Lottie
-        animationData={searchReadyAnimation}
+        animationData={chatListeningAnimation}
         loop={true}
         autoplay={true}
         style={{ width: "100%", height: "100%" }}
