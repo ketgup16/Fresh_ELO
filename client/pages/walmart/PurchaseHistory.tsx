@@ -9,17 +9,17 @@ import { OrderCard } from '@/components/walmart/purchase-history/OrderCard';
 import { InlineAdBanner } from '@/components/walmart/purchase-history/InlineAdBanner';
 import styles from './PurchaseHistory.module.css';
 
-// Product image helpers
+// Product image helpers — locally hosted in public/assets/products/
 const PRODUCTS = {
-  tomato: { src: 'https://i5.walmartimages.com/seo/Roma-Tomatoes_8d301408-1ac9-4bb3-9a15-eba6abff7e0b.f01c3e8de6f5c0a8c2aecb6efd66c9aa.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Tomatoes' },
-  milk: { src: 'https://i5.walmartimages.com/seo/Great-Value-Whole-Vitamin-D-Milk-Gallon-Plastic-Jug_f8bde15a-2a1a-4dd3-b18c-4c1427d4e6ad.f5a0fafde5cef22d8e9d64c7d5e16f28.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Milk' },
-  banana: { src: 'https://i5.walmartimages.com/seo/Fresh-Banana-Fruit-Each_2f24d1d7-a973-4177-8a98-cfbf67a67148.49ea92e8ab1f01feec3e5e3b78a9cc5e.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Banana' },
-  berries: { src: 'https://i5.walmartimages.com/seo/Fresh-Blueberries-18-oz_e84b21b8-9d27-40b5-bfaf-f0a05ec87bb4.a4a1b001e27a5dcc7dbe8289f4d62f70.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Blueberries' },
-  orange: { src: 'https://i5.walmartimages.com/seo/Fresh-Navel-Oranges-Bag-3-lb_c2c6d3fa-c3e0-459c-a7d9-a21cbf4ec40f.e97a3f6f4c7ab3a53d0c4dc4a5f4d7f9.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Oranges' },
-  detergent: { src: 'https://i5.walmartimages.com/seo/Arm-Hammer-Liquid-Laundry-Detergent-Plus-OxiClean-Odor-Blasters-Fresh-Burst-scent-90-loads-135-fl-oz_4ea7bf36-27cc-4b64-b2a7-ed4c7e95543e.f31b1fead2d87d0b80c2d6ad6e95f10e.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Laundry Detergent' },
-  switch: { src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F117a3b8c29e94104986149ff470e0f0b?format=webp&width=800&height=1200', alt: 'Nintendo Switch' },
-  mario: { src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff58f628972ee4b62a864595c74d87835?format=webp&width=800&height=1200', alt: 'Mario Kart Deluxe' },
-  watering: { src: 'https://i5.walmartimages.com/seo/2-Gallon-Watering-Can_f2e5a4d6-85e1-4d00-9cad-fd893b41d15e.f2e5a4d6-85e1-4d00-9cad-fd893b41d15e.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Watering Can' },
+  tomato:    { src: '/assets/products/tomato.jpg',      alt: 'Tomatoes' },
+  milk:      { src: '/assets/products/milk.jpg',        alt: 'Milk' },
+  banana:    { src: '/assets/products/banana.jpg',      alt: 'Banana' },
+  berries:   { src: '/assets/products/blueberries.jpg', alt: 'Blueberries' },
+  orange:    { src: '/assets/products/oranges.jpg',     alt: 'Oranges' },
+  detergent: { src: '/assets/products/detergent.jpg',   alt: 'Laundry Detergent' },
+  switch:    { src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F117a3b8c29e94104986149ff470e0f0b?format=webp&width=800&height=1200', alt: 'Nintendo Switch' },
+  mario:     { src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff58f628972ee4b62a864595c74d87835?format=webp&width=800&height=1200', alt: 'Mario Kart Deluxe' },
+  watering:  { src: '/assets/products/watering-can.jpg', alt: 'Watering Can' },
 };
 
 // CTA card illustration — Figma export (gaming items collage)

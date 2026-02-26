@@ -8,15 +8,6 @@
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
 }
 
-/* Add items banner — rendered by LD Alert, no custom styles needed */
-/* Alert is borderless at top to merge with card edge */
-.addItemsBannerWrap > div {
-  border-radius: 0;
-  border-left: 4px solid;
-  border-right: none;
-  border-top: none;
-}
-
 /* Card body */
 .cardBody {
   display: flex;

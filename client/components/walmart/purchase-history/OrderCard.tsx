@@ -3,6 +3,7 @@ import { Divider } from '@/components/ui/Divider';
 import { Alert } from '@/components/ui/Alert';
 import { Link } from '@/components/ui/Link';
 import { ProgressTracker } from '@/components/ui/ProgressTracker';
+import { AmendsBanner } from './AmendsBanner';
 import styles from './OrderCard.module.css';
 
 export type OrderType = 'curbside' | 'delivery' | 'shipping' | 'store';
@@ -102,20 +103,9 @@ export function OrderCard({
 
   return (
     <article className={styles.card}>
-      {/* Add items banner — LD Alert (warning) */}
+      {/* Amends Banner — custom design per Figma */}
       {addItemsBanner && (
-        <div className={styles.addItemsBannerWrap}>
-          <Alert
-            variant="warning"
-            action={
-              <Link href="#" underline>
-                Add items
-              </Link>
-            }
-          >
-            {addItemsBanner}
-          </Alert>
-        </div>
+        <AmendsBanner message={addItemsBanner} />
       )}
 
       <div className={styles.cardBody}>
