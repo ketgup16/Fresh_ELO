@@ -281,6 +281,89 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover
 - **Border radius**: Use `var(--ld-primitive-scale-borderradius-100, 8px)` for cards, `9999px` for pills/circles.
 - **Box shadows** for elevated cards: `0 -1px 2px 0 rgba(0,0,0,0.10), 0 1px 2px 1px rgba(0,0,0,0.15)`.
 
+## Purchase History & Account Page Patterns
+
+### Side Navigation Padding
+
+Collapsible section headers and action rows (e.g., Sign out) in account side navigation must have **zero horizontal padding** so their text aligns flush with the nav item text below them:
+
+```css
+/* ✅ CORRECT — 0 left/right padding on collapsible header buttons */
+.collapsibleHeader {
+  padding: 12px 0;
+}
+
+/* ✅ CORRECT — 0 left/right padding on sign-out row */
+.signOutRow {
+  padding: 12px 0;
+}
+
+/* ❌ WRONG — 12px horizontal padding misaligns with nav items */
+.collapsibleHeader {
+  padding: 12px var(--ld-primitive-scale-space-150, 0.75rem);
+}
+```
+
+### Order Card Layout
+
+Order card meta sections use the **icon-left / text-column-right** pattern. See `RULE_CardMetaLayout.md` for full details.
+
+```tsx
+// ✅ CORRECT — location nested inside chip text column
+<span className={styles.orderTypeChip}>
+  <img src="/assets/illustrations/mono-small/fulfillment-pickup.svg" width={64} height={64} aria-hidden="true" />
+  <span className={styles.orderTypeChipText}>
+    <span>Curbside pickup</span>
+    {location && <span className={styles.location}>{location}</span>}
+  </span>
+</span>
+
+// ❌ WRONG — location as a sibling disconnects it from the icon
+<span className={styles.orderTypeChip}>...</span>
+<span className={styles.location}>Carrollton Supercenter...</span>
+```
+
+### SVG Fulfillment Icons
+
+- Always host SVG pictograms locally in `/public/assets/illustrations/mono-small/`
+- Render fulfillment icons at **64×64** — never smaller
+- Never use CDN URLs with `?format=webp` for SVG files (causes blur)
+- See `RULE_SVGAssets.md` for full management rules
+
+### Review Prompt Carousel (ReviewPromptBanner)
+
+When implementing a product review prompt carousel:
+- **CTA card**: Fixed `width: 300px`, `flex-shrink: 0`. Illustration is `position: absolute; right: 0; bottom: 0; width: 110px`
+- **Product cards**: `flex: 1 1 0`, `width: auto`, equal height via `align-items: stretch` on the card row
+- **Rating stars**: Always use `<Rating value={x} size="small" />` — never custom SVG stars
+- **Desktop layout**: Horizontal scrollable row; **Mobile layout**: Swipeable carousel with pagination dots
+
+### AmendsBanner (Order Edit Countdown)
+
+When an order has an editing window, use an amber-background banner (`#FFF3C4`) with:
+- `CartArrow` icon from `@/components/icons` (never create a custom cart+timer SVG)
+- Message text on the left, link CTA on the right
+- Fixed height: 48px
+- Use the existing `<Link underline>` component for the CTA
+
+### Builder.io Editor Inline Style Overrides
+
+The Builder.io visual editor injects inline styles (e.g., `max-width: 900px !important`) on elements when they are selected or edited in the editor UI. These styles are persisted by the fusion system and can override CSS module rules.
+
+**To counter them, add `!important` to the CSS module property:**
+
+```css
+/* ✅ Overrides Builder editor's inline max-width injection */
+.content {
+  width: 100% !important;
+  max-width: none !important;
+}
+```
+
+This is not a hack — it's the correct pattern when working alongside the visual editor. Apply it to any layout property that the editor persistently overrides.
+
+---
+
 ## Designer Getting Started — Figma Best Practices (HARD RULES)
 
 These rules ensure Figma designs translate cleanly into code. Designers MUST follow these before handing off.

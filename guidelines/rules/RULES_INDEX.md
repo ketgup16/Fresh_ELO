@@ -235,7 +235,60 @@ public/
 
 ---
 
-### 10. Panel Design Requirements
+### 10. SVG Asset Management and Local Hosting
+**File**: `RULE_SVGAssets.md`
+
+**When**: Any SVG illustration or pictogram is referenced from a CDN, or a new illustration asset is added
+
+**Key Requirements**:
+- ✅ ALWAYS host SVG illustrations locally in `/public/assets/illustrations/`
+- ✅ NEVER use CDN URLs with `?format=webp` or `?width=` params for SVG files
+- ✅ Fulfillment/category pictograms must render at 64×64px
+- ✅ Register every asset in `public/assets/asset-library.json` with local path only
+- ❌ NEVER commit download scripts to source control
+
+**Quick Check**:
+```html
+<!-- ❌ WRONG — CDN re-encodes SVG as WebP → blurry -->
+<img src="https://cdn.builder.io/.../icon?format=webp&width=800" />
+
+<!-- ✅ CORRECT — local SVG, crisp at any size -->
+<img src="/assets/illustrations/mono-small/fulfillment-pickup.svg" width="64" height="64" />
+```
+
+---
+
+### 11. Card Meta Layout — Icon + Stacked Text Pattern
+**File**: `RULE_CardMetaLayout.md`
+
+**When**: Building any card with a type icon, primary label, and secondary detail (location, seller, sublabel)
+
+**Key Requirements**:
+- ✅ Secondary text MUST be nested **inside** the chip text column, NOT a sibling of the chip
+- ✅ Use `flex-direction: column` on the text container
+- ✅ Use `align-items: center` on the chip row (icon vertically centers with text block)
+- ✅ Use `gap: 2px` between primary and secondary label
+- ❌ NEVER place secondary details as siblings of the type chip
+
+**Quick Check**:
+```tsx
+// ❌ WRONG — location disconnected from icon
+<span className={styles.chip}><img/><span>Curbside pickup</span></span>
+<span className={styles.location}>Carrollton Supercenter...</span>
+
+// ✅ CORRECT — location stacked under label, inside chip
+<span className={styles.chip}>
+  <img/>
+  <span className={styles.chipText}>
+    <span>Curbside pickup</span>
+    <span className={styles.location}>Carrollton Supercenter...</span>
+  </span>
+</span>
+```
+
+---
+
+### 12. Panel Design Requirements
 **File**: `Panel.md`
 
 **When**: Creating any panel, drawer, or sidebar component
