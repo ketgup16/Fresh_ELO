@@ -19,23 +19,30 @@
   transition: background 100ms;
 }
 
+/* Hovered: neutral gray pill fill */
 .subNavButton:hover {
-  background: rgba(0, 30, 96, 0.06);
+  background: rgba(0, 0, 0, 0.06);
 }
 
-.subNavButton:active {
-  background: rgba(0, 30, 96, 0.12);
-}
-
+/* Focused: same neutral fill + focus ring */
 .subNavButton:focus-visible {
+  background: rgba(0, 0, 0, 0.06);
   outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0053E2);
   outline-offset: 2px;
 }
 
-.subNavButton:disabled {
+/* Pressed: slightly darker neutral pill fill */
+.subNavButton:active {
+  background: rgba(0, 0, 0, 0.10);
+}
+
+/* Disabled: gray text, no interaction */
+.subNavButton:disabled,
+.subNavButton[aria-disabled="true"] {
   color: var(--ld-semantic-color-text-disabled, #BABBBE);
   cursor: not-allowed;
   pointer-events: none;
+  background: transparent;
 }
 
 .leadingIcon {
