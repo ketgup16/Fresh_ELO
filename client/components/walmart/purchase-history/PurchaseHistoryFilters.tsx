@@ -6,6 +6,8 @@ import { RadioGroup, Radio } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Button } from '@/components/ui/Button';
 import { Link } from '@/components/ui/Link';
+import { useIsMobile } from '@/hooks/useIsMobile';
+import { MobileFilterBottomSheet } from './MobileFilterBottomSheet';
 import styles from './PurchaseHistoryFilters.module.css';
 
 export interface FilterState {
@@ -43,6 +45,7 @@ const DATE_OPTIONS = [
 ];
 
 export function PurchaseHistoryFilters({ filters, onFiltersChange }: PurchaseHistoryFiltersProps) {
+  const isMobile = useIsMobile();
   const [dateOpen, setDateOpen] = useState(false);
   const [statusOpen, setStatusOpen] = useState(false);
   // Pending state — applied only when "View results" is clicked
@@ -78,6 +81,34 @@ export function PurchaseHistoryFilters({ filters, onFiltersChange }: PurchaseHis
     filters.onlineOnly,
   ].filter(Boolean).length;
 
+  /* ── Shared option content ── */
+  const dateOptions = (
+    <RadioGroup
+      value={pendingDate}
+      onValueChange={setPendingDate}
+      className={styles.optionList}
+    >
+      {DATE_OPTIONS.map(opt => (
+        <Radio key={opt.value} value={opt.value} label={opt.label} />
+      ))}
+    </RadioGroup>
+  );
+
+  const statusOptions = (
+    <div className={styles.optionList}>
+      <Checkbox
+        checked={pendingStatus.includes('in-progress')}
+        label="In progress"
+        onCheckedChange={checked => togglePendingStatus('in-progress', !!checked)}
+      />
+      <Checkbox
+        checked={pendingStatus.includes('completed')}
+        label="Completed"
+        onCheckedChange={checked => togglePendingStatus('completed', !!checked)}
+      />
+    </div>
+  );
+
   return (
     <div className={styles.wrapper}>
       {/* Search */}
@@ -88,7 +119,7 @@ export function PurchaseHistoryFilters({ filters, onFiltersChange }: PurchaseHis
             type="search"
             placeholder="Search your orders"
             className={styles.searchInput}
-            aria-label="Search your purchases"
+            aria-label="Search your orders"
             value={filters.search}
             onChange={e => update({ search: e.target.value })}
           />
@@ -102,9 +133,9 @@ export function PurchaseHistoryFilters({ filters, onFiltersChange }: PurchaseHis
           All filters{activeCount > 0 ? ` (${activeCount})` : ''}
         </FilterChip>
 
-        {/* By date — radio popover */}
-        <Popover open={dateOpen} onOpenChange={handleDateOpen}>
-          <PopoverAnchor className={styles.chipAnchor}>
+        {/* ── By date ── */}
+        {isMobile ? (
+          <>
             <FilterChip
               isMultiSelect
               isOpen={dateOpen}
@@ -113,31 +144,41 @@ export function PurchaseHistoryFilters({ filters, onFiltersChange }: PurchaseHis
             >
               By date
             </FilterChip>
-          </PopoverAnchor>
-          <PopoverContent align="start" showArrow className={styles.filterPanel}>
-            <RadioGroup
-              value={pendingDate}
-              onValueChange={setPendingDate}
-              className={styles.optionList}
+            <MobileFilterBottomSheet
+              open={dateOpen}
+              title="By date"
+              onClose={() => setDateOpen(false)}
+              onClear={clearDate}
+              onApply={applyDate}
             >
-              {DATE_OPTIONS.map(opt => (
-                <Radio key={opt.value} value={opt.value} label={opt.label} />
-              ))}
-            </RadioGroup>
-            <div className={styles.panelFooter}>
-              <Link
-                href="#"
-                variant="subtle"
-                onClick={e => { e.preventDefault(); clearDate(); }}
+              {dateOptions}
+            </MobileFilterBottomSheet>
+          </>
+        ) : (
+          <Popover open={dateOpen} onOpenChange={handleDateOpen}>
+            <PopoverAnchor className={styles.chipAnchor}>
+              <FilterChip
+                isMultiSelect
+                isOpen={dateOpen}
+                selected={!!filters.date}
+                onClick={() => handleDateOpen(!dateOpen)}
               >
-                Clear
-              </Link>
-              <Button variant="secondary" size="small" isFullWidth onClick={applyDate}>
-                View results
-              </Button>
-            </div>
-          </PopoverContent>
-        </Popover>
+                By date
+              </FilterChip>
+            </PopoverAnchor>
+            <PopoverContent align="start" showArrow className={styles.filterPanel}>
+              {dateOptions}
+              <div className={styles.panelFooter}>
+                <Link href="#" variant="subtle" onClick={e => { e.preventDefault(); clearDate(); }}>
+                  Clear
+                </Link>
+                <Button variant="secondary" size="small" isFullWidth onClick={applyDate}>
+                  View results
+                </Button>
+              </div>
+            </PopoverContent>
+          </Popover>
+        )}
 
         {/* Returns */}
         <FilterChip
@@ -163,9 +204,9 @@ export function PurchaseHistoryFilters({ filters, onFiltersChange }: PurchaseHis
           Online
         </FilterChip>
 
-        {/* By status — checkbox popover */}
-        <Popover open={statusOpen} onOpenChange={handleStatusOpen}>
-          <PopoverAnchor className={styles.chipAnchor}>
+        {/* ── By status ── */}
+        {isMobile ? (
+          <>
             <FilterChip
               isMultiSelect
               isOpen={statusOpen}
@@ -174,34 +215,41 @@ export function PurchaseHistoryFilters({ filters, onFiltersChange }: PurchaseHis
             >
               By status
             </FilterChip>
-          </PopoverAnchor>
-          <PopoverContent align="start" showArrow className={styles.filterPanel}>
-            <div className={styles.optionList}>
-              <Checkbox
-                checked={pendingStatus.includes('in-progress')}
-                label="In progress"
-                onCheckedChange={checked => togglePendingStatus('in-progress', !!checked)}
-              />
-              <Checkbox
-                checked={pendingStatus.includes('completed')}
-                label="Completed"
-                onCheckedChange={checked => togglePendingStatus('completed', !!checked)}
-              />
-            </div>
-            <div className={styles.panelFooter}>
-              <Link
-                href="#"
-                variant="subtle"
-                onClick={e => { e.preventDefault(); clearStatus(); }}
+            <MobileFilterBottomSheet
+              open={statusOpen}
+              title="By status"
+              onClose={() => setStatusOpen(false)}
+              onClear={clearStatus}
+              onApply={applyStatus}
+            >
+              {statusOptions}
+            </MobileFilterBottomSheet>
+          </>
+        ) : (
+          <Popover open={statusOpen} onOpenChange={handleStatusOpen}>
+            <PopoverAnchor className={styles.chipAnchor}>
+              <FilterChip
+                isMultiSelect
+                isOpen={statusOpen}
+                selected={filters.status.length > 0}
+                onClick={() => handleStatusOpen(!statusOpen)}
               >
-                Clear
-              </Link>
-              <Button variant="secondary" size="small" isFullWidth onClick={applyStatus}>
-                View results
-              </Button>
-            </div>
-          </PopoverContent>
-        </Popover>
+                By status
+              </FilterChip>
+            </PopoverAnchor>
+            <PopoverContent align="start" showArrow className={styles.filterPanel}>
+              {statusOptions}
+              <div className={styles.panelFooter}>
+                <Link href="#" variant="subtle" onClick={e => { e.preventDefault(); clearStatus(); }}>
+                  Clear
+                </Link>
+                <Button variant="secondary" size="small" isFullWidth onClick={applyStatus}>
+                  View results
+                </Button>
+              </div>
+            </PopoverContent>
+          </Popover>
+        )}
       </div>
     </div>
   );
