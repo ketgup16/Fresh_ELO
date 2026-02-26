@@ -99,9 +99,9 @@ export function DesktopHeader() {
                 <div className={styles.gicSubtext}>
                   {selectedDeliveryOption === 'none' ? (
                     <>
-                      <span>21 Los Altos Pl</span>
+                      <span>847 Maple Grove Dr</span>
                       <span className={styles.separator}>•</span>
-                      <span className={styles.ellipsis}>Mountain View Supercenter</span>
+                      <span className={styles.ellipsis}>Sunnyvale Supercenter</span>
                     </>
                   ) : selectedDeliveryOption === 'pickup' ? (
                     <span className={styles.ellipsis}>Carrollton Supercenter</span>

@@ -121,7 +121,7 @@ export function AccountSideNav() {
       <div className={styles.userHeader}>
         <div className={styles.userHeaderTop}>
           <WalmartPlusLogoIcon width={32} height={24} aria-hidden="true" />
-          <span className={styles.greeting}>Hi, Mi</span>
+          <span className={styles.greeting}>Hi, Emilia</span>
         </div>
         <p className={styles.memberSince}>Member since 2023</p>
       </div>
