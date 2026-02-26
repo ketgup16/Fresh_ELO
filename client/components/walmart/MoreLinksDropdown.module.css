@@ -1,9 +1,10 @@
 .trigger {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   height: 32px;
   padding: 4px 12px;
+  white-space: nowrap;
   border-radius: 9999px;
   background: white;
   border: 1.5px solid transparent;
