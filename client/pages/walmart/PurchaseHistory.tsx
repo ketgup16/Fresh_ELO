@@ -370,7 +370,7 @@ export default function PurchaseHistory() {
 
               {/* Pagination */}
               <div className={styles.pagination}>
-                <IconButton variant="secondary" size="small" aria-label="Next page">
+                <IconButton variant="secondary" size="large" aria-label="Next page">
                   <ChevronDown style={{ transform: 'rotate(-90deg)' }} />
                 </IconButton>
               </div>

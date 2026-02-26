@@ -106,12 +106,7 @@
 
 /* ── Mobile ── */
 @media (max-width: 1023px) {
-  .linksSection {
-    padding: 16px 24px 32px;
-    gap: 24px;
-  }
-
-  .feedbackContent {
-    padding: 20px 24px;
+  .footer {
+    display: none;
   }
 }

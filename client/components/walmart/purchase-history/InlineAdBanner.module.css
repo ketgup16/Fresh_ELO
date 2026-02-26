@@ -1,3 +1,9 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .banner {
   display: flex;
   align-items: stretch;
@@ -57,17 +63,13 @@
   display: block;
 }
 
-.sponsored {
-  position: absolute;
-  bottom: 6px;
-  right: 8px;
+.sponsoredLabel {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
   font-size: 11px;
-  color: rgba(255,255,255,0.9);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  color: var(--ld-semantic-color-text-subtlest, #74767C);
 }
 
 @media (max-width: 480px) {

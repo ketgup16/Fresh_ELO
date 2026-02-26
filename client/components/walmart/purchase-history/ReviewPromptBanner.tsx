@@ -65,10 +65,12 @@ function MobileCard({ product }: { product: ReviewProduct }) {
           alt={product.name}
           className={styles.mobileProductImg}
         />
-        <p className={styles.mobileProductName}>{product.name}</p>
-        {product.rating !== undefined && (
-          <Rating value={product.rating} size="small" />
-        )}
+        <div className={styles.mobileProductInfo}>
+          <p className={styles.mobileProductName}>{product.name}</p>
+          {product.rating !== undefined && (
+            <Rating value={product.rating} size="small" />
+          )}
+        </div>
       </div>
     </div>
   );
@@ -83,19 +85,29 @@ export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBa
 
   const totalSlides = products.length;
 
+  const getCardWidth = useCallback(() => {
+    if (!carouselRef.current) return 0;
+    const el = carouselRef.current;
+    const firstCard = el.firstElementChild as HTMLElement | null;
+    if (!firstCard) return 0;
+    return firstCard.offsetWidth + 16; // card width + gap
+  }, []);
+
   const handleScroll = useCallback(() => {
     if (!carouselRef.current) return;
     const el = carouselRef.current;
-    const cardWidth = 283 + 16;
+    const cardWidth = getCardWidth();
+    if (!cardWidth) return;
     const idx = Math.round(el.scrollLeft / cardWidth);
     setActiveIndex(Math.min(idx, totalSlides - 1));
-  }, [totalSlides]);
+  }, [totalSlides, getCardWidth]);
 
   const scrollToSlide = useCallback((index: number) => {
     if (!carouselRef.current) return;
-    const cardWidth = 283 + 16;
+    const cardWidth = getCardWidth();
+    if (!cardWidth) return;
     carouselRef.current.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
-  }, []);
+  }, [getCardWidth]);
 
   if (dismissed) return null;
 
