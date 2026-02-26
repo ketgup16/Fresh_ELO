@@ -24,7 +24,7 @@ export default function PurchaseHistory() {
             logoAlt="TANYÉ"
             headline="Enhance your kitchen with top tools"
             subtext="Cook like a pro with the best equipment."
-            imageSrc="https://images.pexels.com/photos/4113291/pexels-photo-4113291.jpeg?auto=compress&cs=tinysrgb&w=400&h=128&fit=crop"
+            imageSrc="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fb9a1addd35da48df88f41a3052039cd0?format=webp&width=800&height=1200"
             imageAlt="TANYÉ chocolate bar"
           />
         </div>
