@@ -1,127 +1,92 @@
 ---
-title: Figma Exportable Asset Extraction
+title: Figma Image Extraction — Hard Rule
 scope: rule
 status: stable
 owner: design-system
-last_updated: 2025-02-25
+last_updated: 2025-05-27
 ---
 
 ## Purpose
-This rule ensures that only explicitly marked exportable assets from Figma are extracted and used in the codebase, preventing confusion and maintaining design system integrity.
+This rule ensures that every image present in a Figma design is extracted and used in the code. No image visible in the Figma file may be replaced with a gray box, a placeholder, a generic stock photo, or simply omitted.
 
-## Rule Statement
+## Rule Statement (NO EXCEPTIONS)
 
-**When extracting assets from Figma designs:**
-- ✅ **ONLY extract assets that are marked as "exportable" in Figma**
-- ✅ Extract assets using the exact names provided by the designer
-- ✅ Preserve the file format specified (SVG, PNG, WebP, etc.)
-- ❌ **DO NOT extract every image or graphic visible in the Figma file**
-- ❌ DO NOT rename assets without designer approval
-- ❌ DO NOT convert file formats arbitrarily
+> **If an `<img>` tag exists in the Figma HTML export, its `src` URL must appear verbatim in the generated code.**
 
-## Rationale
+| Allowed | Not Allowed |
+|---|---|
+| ✅ Use the exact Figma `src` URL (`https://api.builder.io/api/v1/image/assets/TEMP/...`) | ❌ Replace with a gray `<div>` or `background-color` placeholder |
+| ✅ Use every `<img>` found in the Figma HTML regardless of layer name | ❌ Omit images because they seem "decorative" or "non-exportable" |
+| ✅ Use Builder.io TEMP URLs as permanent `src` values | ❌ Substitute with Walmart CDN, Pexels, Unsplash, or any other source |
+| ✅ Preserve exact `width` / `height` / `alt` from the Figma `<img>` | ❌ Use icon components or SVGs in place of raster images |
 
-1. **Designer Intent**: Exportable assets are explicitly marked by designers to indicate which elements should be extracted for development
-2. **Design System Consistency**: Non-exportable elements might be reference images, mockups, or temporary placeholders
-3. **Performance**: Extracting unnecessary assets bloats the codebase and increases bundle size
-4. **Clarity**: Clear distinction between production assets and design reference materials
+## Mandatory Extraction Process
 
-## How to Identify Exportable Assets in Figma
+When reading any Figma design file (`figma-design.html`), before writing any code:
 
-### In Figma Design Files (HTML Export)
-When reading Figma HTML exports, exportable assets are typically:
-- Embedded with `<img>` tags that have specific Builder.io TEMP URLs
-- Referenced multiple times across different frames/variants
-- Have semantic, descriptive layer names (not auto-generated names)
+1. **Scan the full HTML** for every `<img src="...">` occurrence.
+2. **List every unique image URL** found.
+3. **Map each image to its visual context** (which component / card / section it belongs to).
+4. **Verify every URL appears** in the final code output before the task is considered complete.
 
-### Asset Naming Conventions
-Exportable assets usually follow patterns like:
-- `associate-waving.svg` ✅
-- `network-issue.svg` ✅
-- `icon-search.svg` ✅
-- `Rectangle 123` ❌ (auto-generated)
-- `Untitled` ❌ (placeholder)
+Missing even one image from the Figma is a **blocking error** that must be corrected.
 
-## Implementation Guidelines
+## Image URL Formats
 
-### 1. Verify Asset Exportability
-Before extracting any asset:
-```bash
-# Check if the asset is referenced in multiple places
-# Exportable assets are typically reused across variants
+### Builder.io TEMP URLs (primary Figma export format)
+```
+https://api.builder.io/api/v1/image/assets/TEMP/<hash>?width=<n>
+```
+These are valid, permanent production URLs. Use them as-is in `<img src>`.
+
+### Inline / embedded images
+If the Figma HTML uses `data:image/...` base64 inline images, preserve them exactly.
+
+## Examples
+
+### Correct ✅
+```tsx
+// Figma contained: <img src="https://api.builder.io/api/v1/image/assets/TEMP/abc123?width=160" />
+<img
+  src="https://api.builder.io/api/v1/image/assets/TEMP/abc123?width=160"
+  alt="MarioKart Deluxe"
+  width={80}
+  height={80}
+/>
 ```
 
-### 2. Use Provided URLs
-When assets are provided as attachments with semantic names:
-```typescript
-// ✅ CORRECT - Use the provided asset URL
-<img src="/illustrations/associate-waving.svg" alt="Associate waving" />
-
-// ❌ WRONG - Don't extract every visible image
-<img src="/temp/auto-generated-image-123.png" />
+### Wrong ❌ — gray placeholder
+```tsx
+// Figma contained an image but developer used a gray box instead
+<div style={{ width: 80, height: 80, background: '#F2F2F2' }} />
 ```
 
-### 3. Organize Assets Properly
-```
-public/
-  illustrations/     # Illustration SVGs (exportable)
-    associate-waving.svg
-    associate-glasses.svg
-    network-issue.svg
-  icons/            # Icon SVGs (exportable)
-    search.svg
-    filter.svg
-  images/           # Photos/images (exportable)
-    hero-banner.jpg
+### Wrong ❌ — wrong source
+```tsx
+// Figma had a builder.io URL but developer swapped in a Walmart CDN image
+<img src="https://i5.walmartimages.com/seo/some-product.jpeg" />
 ```
 
-## Example: Content Message Illustrations
+### Wrong ❌ — image omitted
+```tsx
+// Figma had a product image in the CTA card but it was skipped entirely
+<div className={styles.ctaCard}>
+  <p>What'd you think?</p>
+  <Button>Review more items</Button>
+  {/* image was here in Figma — must not be omitted */}
+</div>
+```
 
-### Correct Approach ✅
-Designer provides 3 exportable illustrations:
-1. `Associate.svg` → `associate-waving.svg`
-2. `Associate-find.svg` → `associate-glasses.svg`
-3. `Network Issue.svg` → `network-issue.svg`
+## Rationale for Change
 
-These are explicitly provided as attachments with semantic names, indicating they are production-ready exports.
-
-### Incorrect Approach ❌
-Extracting all images visible in the Figma:
-- Background textures
-- Reference photos
-- Design annotations
-- Prototype overlays
-- Auto-generated placeholders
-
-## Validation Checklist
-
-Before committing extracted assets:
-- [ ] Asset was explicitly marked as exportable or provided by designer
-- [ ] Asset has a semantic, descriptive filename
-- [ ] Asset is optimized for production (SVGs are cleaned, images are compressed)
-- [ ] Asset is placed in the correct directory structure
-- [ ] Asset is referenced in code with proper paths
-- [ ] Unused/non-exportable assets are not extracted
-
-## Communication with Designers
-
-When in doubt:
-1. Ask: "Which assets should be exported for production?"
-2. Request: "Can you mark exportable assets in Figma?"
-3. Confirm: "Are these the only illustrations/icons needed?"
+The previous rule (only extract "exportable" assets) caused product images, illustrations, and ad banners embedded in Figma designs to be silently dropped or replaced with placeholders. This broke fidelity to the design and required manual fixes every iteration. The new rule eliminates ambiguity: **all images present in Figma designs are production assets and must appear in code**.
 
 ## Related Rules
 - [RULE_DesignSystemEnforcement](./RULE_DesignSystemEnforcement.md)
 - [RULE_IconUsage](./RULE_IconUsage.md)
 
-## Enforcement
-This rule is enforced through:
-- Code review checks for asset extraction
-- Asset audit during design handoff
-- Documentation of asset provenance
-
 ---
 
-**Last Updated**: 2025-02-16  
-**Status**: Active  
+**Last Updated**: 2025-05-27
+**Status**: Active — Hard Rule
 **Applies To**: All Figma design implementations
