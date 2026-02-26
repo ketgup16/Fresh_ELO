@@ -147,7 +147,7 @@ export interface PopoverContentProps extends React.HTMLAttributes<HTMLDivElement
 }
 
 const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
-  ({ className, align = "center", sideOffset = 8, showArrow = false, children, ...props }, ref) => {
+  ({ className, align = "center", sideOffset = 14, showArrow = false, children, ...props }, ref) => {
     const { open, setOpen, triggerRef, anchorRef } = usePopoverCtx();
     const contentRef = React.useRef<HTMLDivElement | null>(null);
     const [pos, setPos] = React.useState({ top: 0, left: 0 });

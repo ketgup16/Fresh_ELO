@@ -117,8 +117,11 @@ export function OrderCard({
             <span className={styles.orderTypeChip}>
               <OrderTypeIcon type={orderType} />
               <span className={styles.orderTypeChipText}>
-                <span>{ORDER_TYPE_LABELS[orderType]}</span>
+                <span className={styles.eyebrow}>{ORDER_TYPE_LABELS[orderType]}</span>
                 {location && <span className={styles.location}>{location}</span>}
+                <h3 className={`${styles.statusHeading} ${isDelayed ? styles.statusHeadingDelayed : ''}`}>
+                  {statusHeading}
+                </h3>
               </span>
             </span>
             {seller && (
@@ -129,11 +132,6 @@ export function OrderCard({
               </span>
             )}
           </div>
-
-          {/* Status heading */}
-          <h3 className={`${styles.statusHeading} ${isDelayed ? styles.statusHeadingDelayed : ''}`}>
-            {statusHeading}
-          </h3>
 
           {/* LD ProgressTracker */}
           {timelineStep && activeStep !== undefined && (

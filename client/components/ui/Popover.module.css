@@ -22,6 +22,7 @@
   color: var(--ld-semantic-color-text-primary, #2e2f32);
   
   /* Positioning */
+  position: relative;
   z-index: 50;
   outline: none;
   
@@ -58,8 +59,11 @@
 
 /* Arrow/Nubbin Styles */
 .popoverArrow {
+  position: absolute;
+  top: -6px;
+  left: 20px;
   fill: var(--ld-semantic-color-fill-surface-primary, #ffffff);
-  filter: drop-shadow(0px -1px 1px rgba(46, 47, 50, 0.08));
+  filter: drop-shadow(0px -2px 1px rgba(46, 47, 50, 0.10));
 }
 
 /* Keyframe Animations */
