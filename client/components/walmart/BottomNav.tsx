@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Store, Heart, User } from '@/components/icons';
 import { SparkyAnimation } from '@/components/icons-custom';
@@ -9,10 +9,33 @@ interface BottomNavProps {
   onTabChange?: (tab: 'shop' | 'heart' | 'user') => void;
 }
 
+const TAB_X: Record<string, string> = {
+  shop: '-72px',
+  heart: '0px',
+  user: '72px',
+};
+
+const NAV_PATHS: Record<string, string | undefined> = {
+  shop: '/walmart',
+  heart: undefined,
+  user: '/walmart/purchase-history',
+};
+
 export function BottomNav({ activeTab = 'shop', onTabChange }: BottomNavProps) {
   const navigate = useNavigate();
+  // Visual tab drives the indicator position — decoupled from prop so we can
+  // animate first, then trigger the page navigation after the slide completes.
+  const [visualTab, setVisualTab] = useState<'shop' | 'heart' | 'user'>(activeTab);
+  const [isMoving, setIsMoving] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const navTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const moveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Keep visualTab in sync if parent changes activeTab (e.g. on initial mount of a new page).
+  useEffect(() => {
+    setVisualTab(activeTab);
+  }, [activeTab]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +53,29 @@ export function BottomNav({ activeTab = 'shop', onTabChange }: BottomNavProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  const indicatorX = activeTab === 'shop' ? '-72px' : activeTab === 'heart' ? '0px' : '72px';
+  const handleTabClick = (tab: 'shop' | 'heart' | 'user') => {
+    if (tab === visualTab) return;
+
+    // Clear any in-flight navigation/movement timers
+    if (navTimerRef.current) clearTimeout(navTimerRef.current);
+    if (moveTimerRef.current) clearTimeout(moveTimerRef.current);
+
+    // Move indicator immediately — CSS transition handles the slide
+    setVisualTab(tab);
+    setIsMoving(true);
+    onTabChange?.(tab);
+
+    // Clear the "moving" state once the spring has settled (~400ms)
+    moveTimerRef.current = setTimeout(() => setIsMoving(false), 400);
+
+    // Navigate only after the slide animation plays (~320ms)
+    const path = NAV_PATHS[tab];
+    if (path) {
+      navTimerRef.current = setTimeout(() => navigate(path), 320);
+    }
+  };
+
+  const indicatorX = TAB_X[visualTab];
 
   return (
     <>
@@ -38,35 +83,38 @@ export function BottomNav({ activeTab = 'shop', onTabChange }: BottomNavProps) {
       <div className={`${styles.nav} ${!isVisible ? styles.navHidden : ''}`}>
         <div className={styles.navInner}>
           <div className={styles.tabBar}>
-            <div className={styles.indicator} style={{ transform: `translateX(${indicatorX})` }} />
+            <div
+              className={`${styles.indicator} ${isMoving ? styles.indicatorMoving : ''}`}
+              style={{ transform: `translateX(${indicatorX})` }}
+            />
 
             <button
               className={styles.tab}
-              onClick={() => { onTabChange?.('shop'); navigate('/walmart'); }}
+              onClick={() => handleTabClick('shop')}
               aria-label="Shop"
             >
               <Store
-                className={`${styles.tabIcon} ${activeTab === 'shop' ? styles.tabIconActive : styles.tabIconInactive}`}
+                className={`${styles.tabIcon} ${visualTab === 'shop' ? styles.tabIconActive : styles.tabIconInactive}`}
               />
             </button>
 
             <button
               className={styles.tab}
-              onClick={() => { onTabChange?.('heart'); }}
+              onClick={() => handleTabClick('heart')}
               aria-label="My Items"
             >
               <Heart
-                className={`${styles.tabIcon} ${activeTab === 'heart' ? styles.tabIconActive : styles.tabIconInactive}`}
+                className={`${styles.tabIcon} ${visualTab === 'heart' ? styles.tabIconActive : styles.tabIconInactive}`}
               />
             </button>
 
             <button
               className={styles.tab}
-              onClick={() => { onTabChange?.('user'); navigate('/walmart/purchase-history'); }}
+              onClick={() => handleTabClick('user')}
               aria-label="Account"
             >
               <User
-                className={`${styles.tabIcon} ${activeTab === 'user' ? styles.tabIconActive : styles.tabIconInactive}`}
+                className={`${styles.tabIcon} ${visualTab === 'user' ? styles.tabIconActive : styles.tabIconInactive}`}
               />
             </button>
           </div>
