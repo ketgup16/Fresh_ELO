@@ -162,7 +162,7 @@ namespace.section.key
 ### Use `common` when:
 
 - The string is reused across 2+ pages (nav items, action buttons, shared labels)
-- It belongs to the app shell (masthead, sidebar, language selector)
+- It belongs to the app shell (top navigation, sidebar, language selector)
 - It is a generic UI pattern (Save, Cancel, Close, Loading...)
 
 ### Use `pages` when:

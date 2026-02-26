@@ -192,8 +192,8 @@ const App = () => (
               <Route path="/walmart/pharmacy-delivery" element={<WalmartPharmacyDelivery />} />
               <Route path="/walmart/purchase-history" element={<WalmartPurchaseHistory />} />
 
-              {/* Redirect home to Component Library */}
-              <Route path="/" element={<Navigate to="/component-library" replace />} />
+              {/* Redirect home to Walmart */}
+              <Route path="/" element={<Navigate to="/walmart" replace />} />
 
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />

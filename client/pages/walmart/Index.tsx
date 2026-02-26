@@ -8,6 +8,7 @@ import { Link } from "@/components/ui/Link";
 import { IconButton } from "@/components/ui/IconButton";
 import { NewArrivalsCarousel } from "@/components/walmart/NewArrivalsCarousel";
 import { SearchTypeaheadModal } from "./index/SearchTypeaheadModal";
+import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 
 export default function Index() {
   const [showSearchModal, setShowSearchModal] = useState(false);
@@ -37,8 +38,8 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans lg:max-w-none mx-auto relative">
-      <div className="sticky top-0 z-50">
+    <ResponsiveLayout maxWidth="full">
+      <div className="sticky top-0 z-50 lg:hidden">
         {/* Mobile/Tablet Header */}
         <div className="lg:hidden px-4 md:px-6 pt-4 pb-3 md:py-4" style={{ backgroundColor: 'var(--ld-semantic-color-top-nav-fill)' }}>
           <div className="flex items-center gap-3 md:gap-6">
@@ -317,6 +318,6 @@ export default function Index() {
         onClose={() => setShowCameraModal(false)}
         onCapture={handleCameraCapture}
       />
-    </div>
+    </ResponsiveLayout>
   );
 }

@@ -76,7 +76,7 @@ grep -r "rounded-full.*transition.*<svg" client/components/
 | File | What to migrate |
 |------|----------------|
 | `DisplayDashboard.tsx` | 4 remaining info buttons (Total ROAS, attributed sales, transactions, units) |
-| `MastHead.tsx` | App switcher toggle, nav menu, user profile trigger |
+| `DesktopHeader.tsx` | Top navigation flyout triggers, account, delivery icons |
 | `SponsoredSearchSidebar.tsx` line 283 | Sidebar lock/unlock toggle |
 | `DisplayAdvertisingSidebar.tsx` line 256 | Sidebar collapse/expand |
 | `StoreAdsSidebar.tsx` line 165 | Sidebar toggle |

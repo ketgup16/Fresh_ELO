@@ -208,7 +208,7 @@ public/
 **When**: Creating ANY new page, view, or layout component
 
 **Key Requirements**:
-- ✅ MUST use standard shell (MastHead + AppSidebar + scrollable main)
+- ✅ MUST use standard shell (DesktopHeader + SubNav + scrollable main)
 - ✅ MUST fill full available width within the shell (no max-width constraints)
 - ✅ MUST use standard breakpoints: 1024px, 768px, 480px
 - ✅ MUST reduce padding at each breakpoint (32 → 24 → 16 → 12)

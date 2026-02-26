@@ -12,7 +12,7 @@ Enforce consistent layout and page structure patterns for all new pages, views, 
 
 ## Page Shell Structure
 
-Every page MUST use the standard shell: `MastHead` + `AppSidebar` + scrollable `<main>`.
+Every page MUST use the standard shell: `DesktopHeader` + `SubNav` + scrollable `<main>`.
 
 ### Using CSS Modules (preferred)
 
@@ -42,12 +42,11 @@ Every page MUST use the standard shell: `MastHead` + `AppSidebar` + scrollable `
 
 ```tsx
 <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
-  <MastHead />
-  <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-    <AppSidebar menuItems={menuItems} />
-    <main style={{ flex: 1, overflowY: 'auto' }}>
-      {/* page content */}
-    </main>
+  <DesktopHeader />
+  <SubNav />
+  <main style={{ flex: 1, overflowY: 'auto' }}>
+    {/* page content */}
+  </main>
   </div>
 </div>
 ```
@@ -336,7 +335,7 @@ For page-specific layouts, create a dedicated CSS module in `client/styles/` (e.
 
 Before submitting any new page or view:
 
-- [ ] Uses standard shell (MastHead + AppSidebar + scrollable main)
+- [ ] Uses standard shell (DesktopHeader + SubNav + scrollable main)
 - [ ] Content fills full available width (no max-width constraints)
 - [ ] Padding reduces at each breakpoint (32 -> 24 -> 16 -> 12)
 - [ ] Multi-column layouts stack at `768px`

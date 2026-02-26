@@ -112,9 +112,9 @@ The following files contain icon buttons that should be migrated to the new Icon
    - Pattern: `<button className="p-1 hover:bg-gray-100 rounded-full transition-colors">`
    - Replace with: `<IconButton aria-label="Information" variant="ghost" size="small">`
 
-2. **client/components/ui/MastHead.tsx**
-   - App switcher and navigation icons
-   - Menu toggle buttons
+2. **client/components/walmart/DesktopHeader.tsx**
+   - Top navigation icons and flyout triggers
+   - Account, delivery, and cart buttons
 
 3. **client/components/SponsoredSearchSidebar.tsx** (Line 283)
    - Sidebar lock/unlock button

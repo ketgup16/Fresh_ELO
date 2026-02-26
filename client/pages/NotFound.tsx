@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { Button } from "../components/ui/Button";
 import { IconButton } from "../components/ui/IconButton";
-import { MastHead } from "../components/ui/MastHead";
-import { AppSidebar } from "../components/ui/AppSidebar";
+import { DesktopHeader } from "../components/walmart/DesktopHeader";
+import { SubNav } from "../components/walmart/SubNav";
 import { ArrowLeft, Home } from "../components/icons";
 import styles from "@/styles/notFound.module.css";
 
@@ -33,11 +33,10 @@ const NotFound = () => {
 
   return (
     <div className={styles.root}>
-      <MastHead />
+      <DesktopHeader />
+      <SubNav />
 
       <div className={styles.appRow}>
-        <AppSidebar />
-
         <main className={styles.main}>
           <div className={styles.content}>
             <div className={styles.errorCode}>{t('notFound.errorCode')}</div>

@@ -208,7 +208,7 @@ These terms appear as visible text in the running application. They must be tran
 | Draft | Borrador | Brouillon |
 | Archived | Archivado | Archivé |
 
-### Navigation Labels (Sidebar, Masthead, Breadcrumbs)
+### Navigation Labels (Sidebar, Top Navigation, Breadcrumbs)
 
 | English | Español | Français |
 |---------|---------|----------|

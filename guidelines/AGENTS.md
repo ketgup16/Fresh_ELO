@@ -169,20 +169,14 @@ const data: MyRouteResponse = await response.json();
 
 ### Layout Rules
 
-- **Never use `max-width` constraints** on page content containers. All page content (headers, content areas) must fill the full available width within the sidebar + masthead shell.
+- **Never use `max-width` constraints** on page content containers. All page content (headers, content areas) must fill the full available width within the navigation shell.
 - **Use `align-items: stretch`** instead of `align-items: center` on flex column containers that hold page content. Centering causes content to shrink instead of filling width.
 - **Standard page shell pattern** — every page must use this identical structure:
 
 ```tsx
-<div className={styles.root}>       {/* full viewport, flex column */}
-  <MastHead />
-  <div className={styles.appRow}>   {/* flex row: sidebar + main */}
-    <AppSidebar menuItems={...} />
-    <main className={styles.main}>  {/* flex: 1, overflow-y: auto */}
-      {/* page content here */}
-    </main>
-  </div>
-</div>
+<ResponsiveLayout maxWidth="full">
+  {/* page content here */}
+</ResponsiveLayout>
 ```
 
 - Content areas should use `flex: 1` to expand and fill available height.

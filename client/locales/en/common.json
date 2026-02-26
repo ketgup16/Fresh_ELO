@@ -35,14 +35,6 @@
     "french": "Français",
     "spanish": "Español"
   },
-  "masthead": {
-    "appSwitcher": "App switcher",
-    "notifications": "Notifications",
-    "help": "Help",
-    "account": "Account",
-    "openMarty": "Open Marty",
-    "appName": "PX Template"
-  },
   "sidebar": {
     "expand": "Expand sidebar",
     "collapse": "Collapse sidebar",

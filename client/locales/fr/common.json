@@ -35,14 +35,6 @@
     "french": "Français",
     "spanish": "Español"
   },
-  "masthead": {
-    "appSwitcher": "Sélecteur d'applications",
-    "notifications": "Notifications",
-    "help": "Aide",
-    "account": "Compte",
-    "openMarty": "Ouvrir Marty",
-    "appName": "Modèle PX"
-  },
   "sidebar": {
     "expand": "Développer la barre latérale",
     "collapse": "Réduire la barre latérale",
