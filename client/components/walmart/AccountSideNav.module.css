@@ -117,32 +117,3 @@
   line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
   color: var(--ld-semantic-color-fill-brand-bold, #001e60);
 }
-
-/* Sign out row */
-.signOutRow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  padding: 12px 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  color: var(--ld-semantic-color-text, #2E2F32);
-}
-
-.signOutRow:hover {
-  background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
-}
-
-.signOutRow:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071DC);
-  outline-offset: -2px;
-}
-
-.signOutLabel {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-}

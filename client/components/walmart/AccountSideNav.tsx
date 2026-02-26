@@ -82,6 +82,30 @@ function NavGroup({ title, items, currentPath, onNavigate }: NavGroupProps) {
   );
 }
 
+/** Shared inner layout for all three section rows: icon + label + optional chevron */
+interface SectionRowProps {
+  icon: React.ReactNode;
+  label: string;
+  labelClassName?: string;
+  showChevron?: boolean;
+}
+
+function SectionRow({ icon, label, labelClassName, showChevron }: SectionRowProps) {
+  return (
+    <>
+      <div className={styles.collapsibleHeaderLeft}>
+        <SpotIcon icon={icon} size="small" color="brand" />
+        <span className={labelClassName ?? styles.sectionTitleText}>{label}</span>
+      </div>
+      {showChevron && (
+        <span className={styles.chevronIcon}>
+          <ChevronDown width={16} height={16} />
+        </span>
+      )}
+    </>
+  );
+}
+
 export function AccountSideNav() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -102,19 +126,12 @@ export function AccountSideNav() {
         <p className={styles.memberSince}>Member since 2023</p>
       </div>
 
-      {/* Account Section (collapsible) — contains all nav groups */}
+      {/* Account Section (collapsible) */}
       <Collapsible defaultOpen>
         <CollapsibleTrigger className={styles.collapsibleHeader}>
-          <div className={styles.collapsibleHeaderLeft}>
-            <SpotIcon icon={<User />} size="small" color="brand" />
-            <span className={styles.sectionTitleText}>Account</span>
-          </div>
-          <span className={styles.chevronIcon}>
-            <ChevronDown width={16} height={16} />
-          </span>
+          <SectionRow icon={<User />} label="Account" showChevron />
         </CollapsibleTrigger>
         <CollapsibleContent>
-          {/* Account links */}
           <SideNavigation aria-label="Account">
             {accountItems.map((item) => (
               <SideNavigationItem
@@ -127,40 +144,25 @@ export function AccountSideNav() {
               </SideNavigationItem>
             ))}
           </SideNavigation>
-
-          {/* My items */}
           <NavGroup title="My items" items={myItemsItems} currentPath={location.pathname} onNavigate={handleNav} />
-
-          {/* My profile */}
           <NavGroup title="My profile" items={myProfileItems} currentPath={location.pathname} onNavigate={handleNav} />
-
-          {/* Other accounts */}
           <NavGroup title="Other accounts" items={otherAccountsItems} currentPath={location.pathname} onNavigate={handleNav} />
         </CollapsibleContent>
       </Collapsible>
 
       <Divider />
 
-      {/* Settings (collapsible) */}
+      {/* Settings Section (collapsible) */}
       <Collapsible>
         <CollapsibleTrigger className={styles.collapsibleHeader}>
-          <div className={styles.collapsibleHeaderLeft}>
-            <SpotIcon icon={<Gear />} size="small" color="brand" />
-            <span className={styles.settingsLabel}>Settings</span>
-          </div>
-          <span className={styles.chevronIcon}>
-            <ChevronDown width={16} height={16} />
-          </span>
+          <SectionRow icon={<Gear />} label="Settings" labelClassName={styles.settingsLabel} showChevron />
         </CollapsibleTrigger>
         <CollapsibleContent>
-          {/* Home */}
           <SideNavigation aria-label="Settings">
             <SideNavigationItem href="/" isCurrent={location.pathname === '/'} onClick={(e) => handleNav(e, '/')}>
               Home
             </SideNavigationItem>
           </SideNavigation>
-
-          {/* Personal information */}
           <NavGroup
             title="Personal information"
             currentPath={location.pathname}
@@ -172,8 +174,6 @@ export function AccountSideNav() {
               { label: 'Wallet', path: '/settings/wallet' },
             ]}
           />
-
-          {/* Communications and privacy */}
           <NavGroup
             title="Communications and privacy"
             currentPath={location.pathname}
@@ -183,8 +183,6 @@ export function AccountSideNav() {
               { label: 'Privacy', path: '/settings/privacy' },
             ]}
           />
-
-          {/* Shopping settings */}
           <NavGroup
             title="Shopping settings"
             currentPath={location.pathname}
@@ -198,13 +196,10 @@ export function AccountSideNav() {
 
       <Divider />
 
-      {/* Sign Out */}
-      <div className={styles.section}>
-        <button className={styles.signOutRow} onClick={() => navigate('/sign-out')}>
-          <SpotIcon icon={<SignOut />} size="small" color="brand" />
-          <span className={styles.signOutLabel}>Sign Out</span>
-        </button>
-      </div>
+      {/* Sign Out — same collapsibleHeader layout, no chevron */}
+      <button className={styles.collapsibleHeader} onClick={() => navigate('/sign-out')}>
+        <SectionRow icon={<SignOut />} label="Sign Out" />
+      </button>
     </aside>
   );
 }

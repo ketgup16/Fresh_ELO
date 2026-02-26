@@ -303,6 +303,34 @@ public/
 
 ---
 
+### 13. Prompt-Driven Design Generation
+**File**: `RULE_PromptDrivenDesign.md`
+
+**When**: Writing any design prompt OR implementing a design from a text prompt
+
+**Key Requirements**:
+- ✅ Prompts must answer: What, Who, What it contains, How it fits
+- ✅ Always name states (loading, empty, error) in the prompt
+- ✅ Use semantic role descriptions for color (never hex values in prompts)
+- ✅ Reference existing components by name to anchor the design
+- ✅ AI agents must read existing files before touching any code
+- ✅ Use existing icons (303 available) — never create new icons unless explicitly asked
+- ❌ NEVER create a new component without searching existing ones first
+- ❌ NEVER specify hex values in prompts — describe the semantic role instead
+
+**Quick Check**:
+```
+// Wrong prompt
+"make the eyebrow #001e60 with font-size 14px"
+
+// Correct prompt
+"make the eyebrow use brand-bold text color, body-small size"
+```
+
+**Prompt Templates**: New Page, New Card, New Nav Section, New Banner — all in the rule file.
+
+---
+
 ## Design System Resources
 
 ### Token Documentation

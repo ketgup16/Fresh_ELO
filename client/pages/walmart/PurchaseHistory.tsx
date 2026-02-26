@@ -1,4 +1,5 @@
-import { Button } from '@/components/ui/Button';
+import { IconButton } from '@/components/ui/IconButton';
+import { ChevronDown } from '@/components/icons';
 import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
 import { Divider } from '@/components/ui/Divider';
 import { ResponsiveLayout } from '@/components/walmart/ResponsiveLayout';
@@ -252,7 +253,9 @@ export default function PurchaseHistory() {
 
               {/* Pagination */}
               <div className={styles.pagination}>
-                <Button variant="secondary" size="small" aria-label="Next page">›</Button>
+                <IconButton variant="secondary" size="small" aria-label="Next page">
+                  <ChevronDown style={{ transform: 'rotate(-90deg)' }} />
+                </IconButton>
               </div>
             </div>
           </main>
