@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { X, Star, StarFill, StarHalf } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
@@ -28,10 +28,28 @@ function StarRating({ rating }: { rating: number }) {
 
 export function ReviewPromptBanner({ products }: ReviewPromptBannerProps) {
   const [dismissed, setDismissed] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
   if (dismissed) return null;
+
+  // Total number of cards: 1 CTA + product cards
+  const totalCards = 1 + products.length;
+
+  function handleScroll() {
+    if (!carouselRef.current) return;
+    const { scrollLeft, offsetWidth } = carouselRef.current;
+    setActiveIndex(Math.round(scrollLeft / offsetWidth));
+  }
+
+  function scrollToCard(index: number) {
+    if (!carouselRef.current) return;
+    carouselRef.current.scrollTo({ left: index * carouselRef.current.offsetWidth, behavior: 'smooth' });
+  }
 
   return (
     <div className={styles.banner}>
+      {/* Header */}
       <div className={styles.header}>
         <p className={styles.prompt}>Help other customers by writing a review.</p>
         <IconButton
@@ -44,24 +62,83 @@ export function ReviewPromptBanner({ products }: ReviewPromptBannerProps) {
         </IconButton>
       </div>
 
-      <div className={styles.products}>
-        {/* CTA card */}
+      {/* Desktop: static flex row */}
+      <div className={styles.cardsDesktop}>
+        {/* Card 1: CTA */}
         <div className={styles.ctaCard}>
+          <div className={styles.ctaContent}>
+            <p className={styles.ctaHeading}>What'd you think?</p>
+            <Button variant="secondary" size="small">Review more items</Button>
+          </div>
+          {/* product images stacked visually */}
           <div className={styles.ctaImages}>
             {products.slice(0, 2).map((p, i) => (
-              <img key={i} src={p.imageSrc} alt={p.name} className={styles.ctaImg} />
+              <img
+                key={i}
+                src={p.imageSrc}
+                alt={p.name}
+                className={styles.ctaImg}
+                style={{ zIndex: products.length - i }}
+              />
             ))}
           </div>
-          <Button variant="secondary" size="small">Review more items</Button>
         </div>
 
-        {/* Individual review product cards */}
+        {/* Product review cards */}
         {products.map((p, i) => (
           <div key={i} className={styles.productCard}>
-            <img src={p.imageSrc} alt={p.name} className={styles.productImg} />
-            <p className={styles.productName}>{p.name}</p>
-            {p.rating !== undefined && <StarRating rating={p.rating} />}
+            <div className={styles.productRow}>
+              <img src={p.imageSrc} alt={p.name} className={styles.productImg} />
+              <div className={styles.productInfo}>
+                <p className={styles.productName}>{p.name}</p>
+                {p.rating !== undefined && <StarRating rating={p.rating} />}
+              </div>
+            </div>
           </div>
+        ))}
+      </div>
+
+      {/* Mobile: horizontal scroll carousel */}
+      <div
+        className={styles.cardsMobile}
+        ref={carouselRef}
+        onScroll={handleScroll}
+      >
+        {/* CTA card */}
+        <div className={styles.carouselCard}>
+          <div className={styles.ctaContent}>
+            <p className={styles.ctaHeading}>What'd you think?</p>
+            <Button variant="secondary" size="small">Review more items</Button>
+          </div>
+          <div className={styles.ctaImages}>
+            {products.slice(0, 2).map((p, i) => (
+              <img key={i} src={p.imageSrc} alt={p.name} className={styles.ctaImg} style={{ zIndex: products.length - i }} />
+            ))}
+          </div>
+        </div>
+
+        {products.map((p, i) => (
+          <div key={i} className={`${styles.carouselCard} ${styles.carouselProductCard}`}>
+            <div className={styles.productRow}>
+              <img src={p.imageSrc} alt={p.name} className={styles.productImg} />
+              <div className={styles.productInfo}>
+                <p className={styles.productName}>{p.name}</p>
+                {p.rating !== undefined && <StarRating rating={p.rating} />}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile pagination dots */}
+      <div className={styles.dots}>
+        {Array.from({ length: totalCards }).map((_, i) => (
+          <button
+            key={i}
+            className={`${styles.dot} ${i === activeIndex ? styles.dotActive : ''}`}
+            onClick={() => scrollToCard(i)}
+            aria-label={`Go to card ${i + 1}`}
+          />
         ))}
       </div>
     </div>

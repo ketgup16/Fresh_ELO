@@ -1,13 +1,11 @@
 .banner {
-  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
-  border-radius: 8px;
-  padding: 12px 16px;
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
 }
 
+/* Header row */
 .header {
   display: flex;
   align-items: center;
@@ -15,93 +13,229 @@
 }
 
 .prompt {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
   font-size: 14px;
   font-weight: 400;
   color: var(--ld-semantic-color-text, #2E2F32);
   margin: 0;
+  line-height: 20px;
 }
 
-.products {
+/* ── Desktop 3-card row ── */
+.cardsDesktop {
   display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 4px;
+  align-items: stretch;
+  gap: 24px;
 }
 
-/* CTA card (review more items) */
+/* ── Mobile carousel ── */
+.cardsMobile {
+  display: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 12px;
+  /* hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.cardsMobile::-webkit-scrollbar {
+  display: none;
+}
+
+/* Shared card shell */
+.card-shell {
+  border-radius: 8px;
+  background: #FFF;
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* ── CTA card ── */
 .ctaCard {
+  width: 300px;
+  min-width: 300px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #FFF;
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* negative gap creates the overlapping image effect */
+  gap: 0;
+  position: relative;
+}
+
+.ctaContent {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-  padding: 12px;
-  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
-  border-radius: 8px;
-  min-width: 140px;
-  flex-shrink: 0;
+  padding: 16px 24px 0 24px;
+  align-self: stretch;
+  position: relative;
+  z-index: 1;
+}
+
+.ctaHeading {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
 }
 
 .ctaImages {
   display: flex;
-  gap: 4px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 16px 8px 8px;
+  align-self: stretch;
+  flex: 1;
+  gap: -16px; /* slight overlap */
+  position: relative;
 }
 
 .ctaImg {
-  width: 48px;
-  height: 48px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   border-radius: 4px;
-  background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
+  flex-shrink: 0;
+  position: relative;
 }
 
-/* Individual product card */
+.ctaImg:not(:first-child) {
+  margin-left: -16px;
+}
+
+/* ── Product review cards ── */
 .productCard {
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: 8px;
+  background: #FFF;
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  padding: 24px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Image LEFT + info RIGHT */
+.productRow {
+  display: flex;
   align-items: flex-start;
-  gap: 6px;
-  padding: 8px;
-  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
-  border-radius: 8px;
-  min-width: 110px;
-  max-width: 140px;
-  flex-shrink: 0;
+  gap: 16px;
 }
 
 .productImg {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   border-radius: 4px;
+  flex-shrink: 0;
   background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
 }
 
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
 .productName {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
+  line-height: 20px;
   color: var(--ld-semantic-color-text, #2E2F32);
   margin: 0;
+  /* 2-line clamp */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
+/* Stars */
 .stars {
   display: flex;
-  gap: 1px;
+  gap: 2px;
+  align-items: center;
 }
 
 .starFilled {
-  width: 14px;
-  height: 14px;
-  color: var(--ld-semantic-color-fill-warning, #FFC220);
+  width: 16px;
+  height: 16px;
+  color: #FFC220;
+  fill: #FFC220;
 }
 
 .starEmpty {
-  width: 14px;
-  height: 14px;
-  color: var(--ld-semantic-color-border-moderate, #BABBBE);
+  width: 16px;
+  height: 16px;
+  color: #C2C4C9;
+  fill: #C2C4C9;
+}
+
+/* ── Carousel cards (mobile) ── */
+.carouselCard {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 100%;
+  border-radius: 8px;
+  background: #FFF;
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.carouselProductCard {
+  padding: 24px;
+  justify-content: center;
+}
+
+/* ── Dot pagination (mobile only) ── */
+.dots {
+  display: none;
+  justify-content: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ld-semantic-color-border-strong, #74767C);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.dotActive {
+  background: var(--ld-semantic-color-action-fill-primary, #0071DC);
+  transform: scale(1.2);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .cardsDesktop {
+    display: none;
+  }
+
+  .cardsMobile {
+    display: flex;
+  }
+
+  .dots {
+    display: flex;
+  }
 }

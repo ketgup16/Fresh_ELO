@@ -23,8 +23,8 @@ const PRODUCTS = {
 };
 
 const REVIEW_PRODUCTS = [
-  { name: 'Nintendo Switch™ with Neon Blue an...', imageSrc: PRODUCTS.switch.src, rating: 3.5 },
-  { name: 'MarioKart Deluxe for Nintendo Switc...', imageSrc: PRODUCTS.mario.src, rating: 4.5 },
+  { name: 'Nintendo Switch™ with Neon Blue and Neon Red Joy-Con', imageSrc: PRODUCTS.switch.src, rating: 3.5 },
+  { name: 'MarioKart Deluxe for Nintendo Switch™', imageSrc: PRODUCTS.mario.src, rating: 4.5 },
 ];
 
 export default function PurchaseHistory() {
