@@ -273,25 +273,23 @@
 .dots {
   display: flex;
   justify-content: center;
-  /* Negative gap so the invisible tap zones overlap cleanly */
-  gap: 0;
+  align-items: center;
+  gap: 4px;
   padding: 0 16px;
 }
 
 .dot {
-  /* Visible dot is 8×8 rendered via ::before so we can keep a large tap zone */
+  /* 4px padding around the visible pip gives comfortable tap area */
   position: relative;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
   border: none;
   background: transparent;
   cursor: pointer;
-  padding: 0;
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  border-radius: 9999px;
 }
 
 /* The actual visible dot pip */
@@ -299,17 +297,18 @@
   content: '';
   width: 8px;
   height: 8px;
-  border-radius: 50%;
+  border-radius: 9999px;
   border: 1.5px solid var(--ld-semantic-color-text-subtlest, #74767C);
   background: transparent;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  transition: background 0.25s ease, border-color 0.25s ease, width 0.25s cubic-bezier(0.34, 1.2, 0.64, 1);
   display: block;
 }
 
+/* Active dot — pill shape, 2× wider */
 .dotActive::before {
+  width: 16px;
   background: var(--ld-semantic-color-text, #2E2F32);
   border-color: var(--ld-semantic-color-text, #2E2F32);
-  transform: scale(1.25);
 }
 
 /* ── Responsive ── */
