@@ -1,11 +1,12 @@
 import { Button } from '@/components/ui/Button';
-import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { Divider } from '@/components/ui/Divider';
+import { Alert } from '@/components/ui/Alert';
 import { Link } from '@/components/ui/Link';
-import { OrderTimeline, TimelineStep } from './OrderTimeline';
+import { ProgressTracker } from '@/components/ui/ProgressTracker';
 import styles from './OrderCard.module.css';
 
 export type OrderType = 'curbside' | 'delivery' | 'shipping' | 'store';
+export type TimelineStep = 'placed' | 'preparing' | 'on-the-way' | 'delivered';
 
 export interface OrderAction {
   label: string;
@@ -41,6 +42,15 @@ const ORDER_TYPE_LABELS: Record<OrderType, string> = {
   delivery: 'Delivery from store',
   shipping: 'Shipping',
   store: 'Store purchase',
+};
+
+const DELIVERY_STEPS = ['Placed', 'Preparing', 'On the way', 'Delivered'];
+const PICKUP_STEPS = ['Placed', 'Preparing', 'Ready', 'Picked up'];
+const STEP_INDEX: Record<TimelineStep, number> = {
+  placed: 0,
+  preparing: 1,
+  'on-the-way': 2,
+  delivered: 3,
 };
 
 function OrderTypeIcon({ type }: { type: OrderType }) {
@@ -86,13 +96,25 @@ export function OrderCard({
   const primaryActions = actions.filter((a) => a.variant === 'primary');
   const secondaryActions = actions.filter((a) => a.variant === 'secondary');
 
+  const steps = timelineVariant === 'pickup' ? PICKUP_STEPS : DELIVERY_STEPS;
+  const activeStep = timelineStep ? STEP_INDEX[timelineStep] : undefined;
+  const trackerStatus = isDelayed ? 'warning' : 'info';
+
   return (
     <article className={styles.card}>
-      {/* Add items banner */}
+      {/* Add items banner — LD Alert (warning) */}
       {addItemsBanner && (
-        <div className={styles.addItemsBanner}>
-          <span className={styles.addItemsText}>{addItemsBanner}</span>
-          <button className={styles.addItemsBtn}>Add items</button>
+        <div className={styles.addItemsBannerWrap}>
+          <Alert
+            variant="warning"
+            action={
+              <Link href="#" underline>
+                Add items
+              </Link>
+            }
+          >
+            {addItemsBanner}
+          </Alert>
         </div>
       )}
 
@@ -109,7 +131,7 @@ export function OrderCard({
             {seller && (
               <span className={styles.seller}>
                 Sold by{' '}
-                <button className={styles.sellerLink}>{seller}</button>
+                <Link href="#" underline>{seller}</Link>
                 {fulfilledBy && <> | Fulfilled by {fulfilledBy}</>}
               </span>
             )}
@@ -120,31 +142,29 @@ export function OrderCard({
             {statusHeading}
           </h3>
 
-          {/* Timeline */}
-          {timelineStep && (
-            <OrderTimeline
-              currentStep={timelineStep}
-              variant={timelineVariant}
-              isDelayed={isDelayed}
+          {/* LD ProgressTracker */}
+          {timelineStep && activeStep !== undefined && (
+            <ProgressTracker
+              steps={steps}
+              activeStep={activeStep}
+              status={trackerStatus}
+              className={styles.progressTracker}
             />
           )}
 
-          {/* Return notice */}
+          {/* Return notices — LD Alert (info) */}
           {returnNotice && (
-            <div className={styles.returnNotice}>
-              <svg width="16" height="16" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="2"/>
-                <path fill="currentColor" d="M15 10h2v2h-2zm0 4h2v8h-2z"/>
-              </svg>
-              <span>{returnNotice}</span>
+            <div className={styles.returnAlertWrap}>
+              <Alert variant="info">
+                {returnNotice}
+              </Alert>
             </div>
           )}
           {returnDeadline && (
-            <div className={styles.returnDeadline}>
-              <svg width="16" height="16" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                <path fill="currentColor" d="M16 4C9.4 4 4 9.4 4 16s5.4 12 12 12 12-5.4 12-12S22.6 4 16 4zm1 12.4L13.6 20 12 18.4l3-3V8h2v8.4z"/>
-              </svg>
-              <span>Return by {returnDeadline}</span>
+            <div className={styles.returnAlertWrap}>
+              <Alert variant="info">
+                Return by {returnDeadline}
+              </Alert>
             </div>
           )}
 
@@ -174,9 +194,10 @@ export function OrderCard({
       </div>
 
       {/* Footer */}
+      <Divider />
       <div className={styles.cardFooter}>
         {showStartReturn && (
-          <Link href="/returns" variant="default" underline>Start a return</Link>
+          <Link href="/returns" underline>Start a return</Link>
         )}
         <span className={styles.footerSpacer} />
         {orderTotal && (

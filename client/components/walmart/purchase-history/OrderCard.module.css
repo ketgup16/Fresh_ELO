@@ -8,37 +8,13 @@
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
 }
 
-/* Add items banner */
-.addItemsBanner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 16px;
-  background: var(--ld-semantic-color-fill-warning-subtle, #FFF9E6);
-  border-bottom: 1px solid var(--ld-semantic-color-fill-caution, #FFC220);
-  gap: 8px;
-}
-
-.addItemsText {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--ld-semantic-color-text, #2E2F32);
-}
-
-.addItemsBtn {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--ld-semantic-color-action-fill-primary, #0071DC);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.addItemsBtn:hover {
-  text-decoration: underline;
+/* Add items banner — rendered by LD Alert, no custom styles needed */
+/* Alert is borderless at top to merge with card edge */
+.addItemsBannerWrap > div {
+  border-radius: 0;
+  border-left: 4px solid;
+  border-right: none;
+  border-top: none;
 }
 
 /* Card body */
@@ -107,26 +83,15 @@
   color: var(--ld-semantic-color-text, #2E2F32);
 }
 
-/* Return notices */
-.returnNotice,
-.returnDeadline {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  padding: 8px 12px;
-  border-radius: 4px;
+/* Return alert wrapper — provides top margin */
+.returnAlertWrap {
   margin-top: 4px;
 }
 
-.returnNotice {
-  background: var(--ld-semantic-color-fill-info-subtle, #E5F2FF);
-  color: var(--ld-semantic-color-text-info, #0071DC);
-}
-
-.returnDeadline {
-  background: var(--ld-semantic-color-fill-info-subtle, #E5F2FF);
-  color: var(--ld-semantic-color-text-info, #0071DC);
+/* ProgressTracker spacing */
+.progressTracker {
+  margin-top: 8px;
+  margin-bottom: 4px;
 }
 
 /* Products */
@@ -161,11 +126,11 @@
 
 /* Footer */
 .cardFooter {
+  border-top: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
-  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
 }
 
 .footerSpacer {
