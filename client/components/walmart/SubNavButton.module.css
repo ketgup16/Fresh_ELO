@@ -7,7 +7,7 @@
   padding: 4px 12px;
   border-radius: 9999px;
   border: none;
-  background: transparent;
+  background: var(--ld-semantic-color-fill-surface-primary, #fff);
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
