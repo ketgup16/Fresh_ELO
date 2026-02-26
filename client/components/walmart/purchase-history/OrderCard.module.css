@@ -126,6 +126,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
 }
 
 .footerSpacer {
