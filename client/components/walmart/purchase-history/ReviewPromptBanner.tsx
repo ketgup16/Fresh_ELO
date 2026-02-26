@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback } from 'react';
-import { Star, StarFill, StarHalf, X } from '@/components/icons';
+import { X } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
+import { Rating } from '@/components/ui/Rating';
 import styles from './ReviewPromptBanner.module.css';
 
 export interface ReviewProduct {
@@ -16,18 +17,6 @@ interface ReviewPromptBannerProps {
 }
 
 /* ── Sub-components ── */
-
-function StarRating({ rating }: { rating: number }) {
-  return (
-    <div className={styles.stars} aria-label={`${rating} out of 5 stars`}>
-      {[1, 2, 3, 4, 5].map((i) => {
-        if (rating >= i) return <StarFill key={i} className={styles.starFilled} />;
-        if (rating >= i - 0.5) return <StarHalf key={i} className={styles.starFilled} />;
-        return <Star key={i} className={styles.starEmpty} />;
-      })}
-    </div>
-  );
-}
 
 function CtaCard({ ctaIllustration }: { ctaIllustration?: string }) {
   return (
@@ -57,7 +46,9 @@ function ProductReviewCard({ product }: { product: ReviewProduct }) {
       />
       <div className={styles.productInfo}>
         <p className={styles.productName}>{product.name}</p>
-        {product.rating !== undefined && <StarRating rating={product.rating} />}
+        {product.rating !== undefined && (
+          <Rating value={product.rating} size="small" />
+        )}
       </div>
     </div>
   );
@@ -75,7 +66,9 @@ function MobileCard({ product }: { product: ReviewProduct }) {
           className={styles.mobileProductImg}
         />
         <p className={styles.mobileProductName}>{product.name}</p>
-        {product.rating !== undefined && <StarRating rating={product.rating} />}
+        {product.rating !== undefined && (
+          <Rating value={product.rating} size="small" />
+        )}
       </div>
     </div>
   );
@@ -93,7 +86,7 @@ export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBa
   const handleScroll = useCallback(() => {
     if (!carouselRef.current) return;
     const el = carouselRef.current;
-    const cardWidth = 283 + 16; // card width + gap
+    const cardWidth = 283 + 16;
     const idx = Math.round(el.scrollLeft / cardWidth);
     setActiveIndex(Math.min(idx, totalSlides - 1));
   }, [totalSlides]);

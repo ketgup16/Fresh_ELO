@@ -131,27 +131,6 @@
   overflow: hidden;
 }
 
-/* Stars */
-.stars {
-  display: flex;
-  gap: 2px;
-  align-items: center;
-}
-
-.starFilled {
-  width: 16px;
-  height: 16px;
-  color: #FFC220;
-  fill: #FFC220;
-}
-
-.starEmpty {
-  width: 16px;
-  height: 16px;
-  color: #C2C4C9;
-  fill: #C2C4C9;
-}
-
 /* ── Mobile ── */
 .mobile {
   display: none;
