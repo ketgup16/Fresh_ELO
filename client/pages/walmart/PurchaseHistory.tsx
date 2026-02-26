@@ -18,7 +18,7 @@ const PRODUCTS = {
   orange: { src: 'https://i5.walmartimages.com/seo/Fresh-Navel-Oranges-Bag-3-lb_c2c6d3fa-c3e0-459c-a7d9-a21cbf4ec40f.e97a3f6f4c7ab3a53d0c4dc4a5f4d7f9.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Oranges' },
   detergent: { src: 'https://i5.walmartimages.com/seo/Arm-Hammer-Liquid-Laundry-Detergent-Plus-OxiClean-Odor-Blasters-Fresh-Burst-scent-90-loads-135-fl-oz_4ea7bf36-27cc-4b64-b2a7-ed4c7e95543e.f31b1fead2d87d0b80c2d6ad6e95f10e.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Laundry Detergent' },
   switch: { src: 'https://i5.walmartimages.com/seo/Nintendo-Switch-with-Neon-Blue-and-Neon-Red-Joy-Con_0e5c95dc-b39e-4a48-9b44-e3abf41e4ced.bebc7bfb07ba88ccbc879ef462e38e5e.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Nintendo Switch' },
-  mario: { src: 'https://i5.walmartimages.com/seo/Mario-Kart-Deluxe-8_12d93a4a-66fd-4b00-8e9d-a5a9e2474e7f.6f0e95e895c3d9beed4c5d20f3f4e80d.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Mario Kart Deluxe' },
+  mario: { src: 'https://api.builder.io/api/v1/image/assets/TEMP/80e10dba609dd23bb5c9c29ffd3c7d84697f8acd?width=160', alt: 'Mario Kart Deluxe' },
   watering: { src: 'https://i5.walmartimages.com/seo/2-Gallon-Watering-Can_f2e5a4d6-85e1-4d00-9cad-fd893b41d15e.f2e5a4d6-85e1-4d00-9cad-fd893b41d15e.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Watering Can' },
 };
 
