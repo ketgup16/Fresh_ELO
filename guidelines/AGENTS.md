@@ -1,5 +1,71 @@
 # Fusion Starter
 
+---
+
+## MANDATORY PRE-TASK PROTOCOL — Ask Before You Build
+
+**CRITICAL RULE: Before writing a single line of code for any design or UI request, the agent MUST ask the designer/requester the relevant questions from the checklist below. Do not assume. Do not guess. Do not start implementing.**
+
+This applies to every new component, page, feature, or visual change — no exceptions.
+
+### Step 1 — Identify which categories apply to the task
+
+| Task type | Required question categories |
+|---|---|
+| New page or layout | Layout & Spacing, States, Data & Content, Components |
+| New component | Layout & Spacing, States, Touch & Accessibility, Components |
+| Carousel / scrollable list | Shadow / Elevation, Auto-advance, Touch & Accessibility |
+| Interactive element (tabs, nav, buttons) | States, Navigation / Routing, Touch & Accessibility |
+| Data / content update | Data & Content |
+| Animation / transition | Animation feel, Navigation timing |
+
+### Step 2 — Ask only the relevant questions (don't dump the entire list)
+
+Select the questions that apply and ask them in a single message before proceeding.
+
+#### Layout & Spacing
+- What padding does this section inherit from its parent? Does any part need to break out of it (full-bleed / negative margin)?
+- Which breakpoints does this apply to? (Desktop only ≥1024px / mobile only <768px / both)
+
+#### States & Interactions
+- What are ALL states needed? (default, hover, active, disabled, loading, empty, error)
+- What triggers any animation? (click, scroll, auto-advance, on mount)
+- What does the animation feel like? (spring bounce, smooth ease, instant snap, elastic)
+
+#### Carousel / Auto-advance
+- Does this auto-advance? At what interval?
+- Does it pause on hover? On touch? How long until it resumes?
+- Is the card inside a scrollable container? (Shadow clipping risk if yes)
+
+#### Navigation / Routing
+- Do any tabs or buttons navigate to another page? Which route?
+- Should the animation complete before navigation fires? How long to delay?
+- Which tab in the bottom nav is active on this page?
+
+#### Touch & Accessibility
+- Are all interactive elements (dots, chips, icon buttons) at least 44×44px tap target?
+- If not, should we use the padding + `::before` trick to expand the touch area without changing visuals?
+
+#### Data & Content
+- Are dates relative to today? Should the year appear in the label text?
+- Should names/addresses be real, randomized, or from a user profile?
+- What is the max content length before text truncates?
+
+#### Components & Tokens
+- Is this an existing LD component or a new pattern?
+- What semantic token maps to each color in the design? (Never use hex — always a token)
+- Does this duplicate any existing component? Check before creating.
+
+#### Elevation & Shadows
+- Do cards in this section have box-shadow elevation?
+- Is the card inside a scrollable container? (If yes, shadows need padding *inside* the scroll container, not an outer `overflow: hidden` wrapper)
+
+### Step 3 — Get answers, then build
+
+Only after receiving answers to the relevant questions should implementation begin. If the requester says "just go ahead," use the defaults from `RULE_PromptDrivenDesign.md` and document the assumptions made.
+
+---
+
 A production-ready full-stack React application template with integrated Express server, featuring React Router 6 SPA mode, TypeScript, Vitest, Zod and modern tooling.
 
 While the starter comes with a express server, only create endpoint when strictly neccesary, for example to encapsulate logic that must leave in the server, such as private keys handling, or certain DB operations, db...
@@ -364,6 +430,115 @@ This is not a hack — it's the correct pattern when working alongside the visua
 
 ---
 
+## Prompting Fusion — Quick Reference
+
+Use these patterns to get precise output the first time. Most iteration comes from three missing pieces: token names, responsive scope, and animation intent.
+
+### The Three Must-Haves in Every Prompt
+
+**1. Token, not hex**
+```
+// Wrong
+"gray background"
+
+// Right
+"background: var(--ld-semantic-color-background-subtle)"
+```
+
+**2. Responsive scope**
+```
+// Wrong
+"add padding on top"
+
+// Right
+"mobile only (<768px): add padding-top: 16px to .mobile section"
+```
+
+**3. Animation feel**
+```
+// Wrong
+"animate it"
+
+// Right
+"spring bounce like iOS — cubic-bezier(0.34, 1.56, 0.64, 1), 350ms"
+```
+
+---
+
+### Prompt Template — Visual Change
+
+```
+Component: [file path if known, e.g. client/components/walmart/purchase-history/OrderCard.module.css]
+Element: [CSS class or element description]
+Breakpoints affected: [desktop only ≥1024px | mobile only <768px | both]
+
+Changes:
+- [property]: [value using token name, not hex]
+- [property]: [value]
+
+Reason / intent: [one line — e.g. "order total row needs to feel like a footer tray"]
+```
+
+### Prompt Template — Interactive Component
+
+```
+Component: [Name] at [file path]
+Breakpoint: [mobile only | desktop only | both]
+
+Behavior:
+- Trigger: [click | scroll | auto | on mount]
+- Animation feel: [spring | ease | instant | bounce — describe it]
+- Animation timing: [Nms]
+- Navigation: [navigates to /path after Nms delay | stays on page]
+
+Auto-advance (if carousel):
+- Interval: [N]ms
+- Pause on: [hover | touch | both]
+- Resume: [immediately | after Nms]
+
+Touch targets:
+- Min tap size: 44×44px (use padding + ::before for small visual elements)
+```
+
+### Prompt Template — Data / Content Update
+
+```
+Page: [route]
+Component: [file path]
+
+Update:
+- [field name]: "[old value]" → "[new value]"
+- Dates: [year to use, include year in text or not]
+- Names: [real name or randomize]
+- Addresses: [real or plausible fake]
+```
+
+### Prompt Template — Navigation / Routing
+
+```
+Page: [route where this nav lives]
+Component: BottomNav / [component]
+
+Active tab: "[tab name]" should be active on this page
+Tab click behavior:
+- [Tab label] → navigates to [/path], delay [N]ms so animation plays first
+- [Tab label] → [no navigation | navigates to /path]
+```
+
+---
+
+### Shadow / Elevation Gotcha
+
+If cards with `box-shadow` are inside a scrollable container (`overflow-x: auto`), shadows **will be clipped** unless you add vertical padding *inside* the scroll container. Never wrap a scroll container with `overflow: hidden` to fix it — that makes clipping worse.
+
+```
+// Correct prompt
+"The carousel has card elevation. Add padding: 8px 16px to the .carousel
+element itself (not a wrapper) so top/bottom shadows render without clipping."
+```
+
+---
+
 ## Designer Getting Started — Figma Best Practices (HARD RULES)
 
 These rules ensure Figma designs translate cleanly into code. Designers MUST follow these before handing off.
@@ -403,6 +578,39 @@ Set every top-level frame to **"Hug contents"** rather than a fixed size with cl
 - **Do not** group shapes, rectangles, and text to mimic a Button, Tag, Chip, or any other Living Design component. The AI relies on the Figma component name (e.g., `WCP / Button`) to map it to the correct code component (`<Button />`).
 - **Never detach** a component instance. Detached instances lose their component metadata and the AI treats them as anonymous layers.
 - If the component you need doesn't exist in the LD library, annotate it clearly (e.g., "Custom component — not in LD") so the AI knows to build it from scratch rather than attempting a faulty match.
+
+### Pre-Launch Designer Checklist
+
+Answer these before handing off to engineering or Fusion. Unanswered questions = iteration rounds.
+
+#### Layout & Spacing
+- [ ] What padding does this section inherit from its parent? Does any part need to break out of it (full-bleed / negative margin)?
+- [ ] Which breakpoints does this change apply to? (Desktop only ≥1024px / mobile only <768px / both)
+- [ ] Does any card or section inside a scroll area have elevation? (Shadow clipping risk — must be flagged)
+
+#### States & Interactions
+- [ ] What are ALL states? (default, hover, active, disabled, loading, empty, error)
+- [ ] What triggers any animation? (click, scroll, auto-advance, on mount)
+- [ ] What does the animation FEEL like? (spring bounce, ease, instant, elastic)
+- [ ] Does this auto-advance? Pause on hover? Pause on touch? Resume after how long?
+- [ ] Do any tabs or buttons navigate to another page? Which route?
+- [ ] Which tab in the bottom nav is active on this page?
+
+#### Touch & Accessibility
+- [ ] Are all tap targets at least 44×44px? (Dots, chips, icon buttons)
+- [ ] Does this need keyboard navigation or screen reader labels?
+
+#### Data & Content
+- [ ] Are dates relative to today? Include the year in the label or not?
+- [ ] Should names and addresses be real, randomized, or from a user profile?
+- [ ] What's the max content length before text truncates?
+
+#### Components & Tokens
+- [ ] Is this an existing LD component or a new pattern?
+- [ ] What semantic token maps to each color shown in the design?
+- [ ] Does this duplicate an existing component anywhere in the codebase?
+
+---
 
 ### Onboarding & Support
 

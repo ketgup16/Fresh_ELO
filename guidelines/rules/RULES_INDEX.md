@@ -12,6 +12,32 @@ Quick reference for all mandatory design system rules and enforcement policies.
 
 ## Critical Rules (ALWAYS ENFORCE)
 
+### 0.5 — Ask Before You Build (MANDATORY — NO EXCEPTIONS)
+**File**: `guidelines/AGENTS.md` → "MANDATORY PRE-TASK PROTOCOL"
+
+**When**: Before writing ANY code for a design or UI request
+
+**Key Requirements**:
+- ✅ ALWAYS ask the designer/requester the relevant pre-launch questions FIRST
+- ✅ Select only the question categories that apply to the task (don't dump the full list)
+- ✅ Wait for answers before implementing
+- ✅ If told "just go ahead," document the assumptions and use defaults from `RULE_PromptDrivenDesign.md`
+- ❌ NEVER assume breakpoints, animation feel, navigation behavior, token mapping, or tap target requirements
+- ❌ NEVER start coding a carousel without asking about auto-advance, shadow clipping, and touch targets
+- ❌ NEVER start coding navigation without asking which tab is active and whether animation precedes routing
+
+**Question categories by task type**:
+
+| Task | Ask about |
+|---|---|
+| New page / layout | Breakpoints, tokens, states, data freshness |
+| Carousel / scroll list | Shadow clipping, auto-advance, touch targets |
+| Tabs / nav / buttons | Active state per page, navigation route + delay |
+| Animation / transition | Feel (spring? ease? instant?), duration, timing |
+| Data / content update | Year in dates?, real vs randomized names/addresses |
+
+---
+
 ### 0. Dev Server Health Check
 **File**: `RULE_DevServerHealthCheck.md`
 

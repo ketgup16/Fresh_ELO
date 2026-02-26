@@ -562,6 +562,201 @@ Responsive: at 480px [describe mobile behavior].
 
 ---
 
+## Part 7 — Figma-to-Code Session Learnings
+
+Practical patterns distilled from real Figma-to-code sessions. These are the most common sources of back-and-forth and how to eliminate them upfront.
+
+---
+
+### 7.1 — The Three Biggest Time-Savers
+
+**1. Name the token, not the color**
+Don't say "gray background." Say `--ld-semantic-color-background-subtle`. If you don't know the token, describe the semantic role ("page-level subtle surface") so the agent can look it up. This eliminates a full round-trip.
+
+**2. Declare responsive scope explicitly**
+Every request must state which breakpoints it applies to. "Desktop only (≥1024px)" or "Mobile only (<768px)" or "Both." Without this, the agent will guess and often apply the change everywhere.
+
+**3. Describe animation feel, not just duration**
+"0.3s ease" is meaningless without intent. Say what it should feel like:
+- "Spring/elastic bounce, like iOS" → `cubic-bezier(0.34, 1.56, 0.64, 1)`
+- "Smooth fade, no bounce" → `ease-out`
+- "Quick snap" → `cubic-bezier(0.25, 0.46, 0.45, 0.94)` with short duration
+
+---
+
+### 7.2 — Shadow / Elevation Prompts
+
+Always specify how shadows should be rendered relative to their container:
+
+```
+// Too vague
+"add a card shadow"
+
+// Clear
+"card has elevation: box-shadow 0 -1px 2px rgba(0,0,0,0.10), 0 1px 4px 1px rgba(0,0,0,0.15).
+The carousel container must not clip this shadow — use padding inside the scroll container
+(padding: 8px 16px on the carousel itself) rather than an outer overflow:hidden wrapper."
+```
+
+**Rule:** If a scrollable container (overflow-x: auto) wraps elevated cards, the shadow room must come from padding *inside* the scroll container, not from a wrapper with overflow:hidden. Nested overflow contexts clip shadows.
+
+---
+
+### 7.3 — Navigation / Routing Prompts
+
+When tabs or buttons navigate between pages, specify:
+- Which tab is **active** on which page
+- Whether animation should complete **before** navigation fires
+- The exact route path
+
+```
+// Wrong
+"make the account tab active"
+
+// Right
+"On /walmart/purchase-history, the Account tab in BottomNav should be active
+(pass mobileActiveTab='user' to ResponsiveLayout).
+When clicking the Shop tab, slide the indicator first (320ms delay),
+then navigate to /walmart."
+```
+
+---
+
+### 7.4 — Carousel / Auto-Advance Prompts
+
+Specify all four dimensions:
+
+```
+Component: [carousel name]
+Auto-advance: every [N] seconds
+Pause behavior: pause on [hover / touch / both]
+Resume behavior: resume [immediately / after N seconds / after touch-end + delay]
+Indicator style: [dots | pill | numbers]
+Active dot: [2x wide pill / filled circle / custom]
+Touch target: minimum 44x44px (use padding + ::before for small visual pips)
+```
+
+---
+
+### 7.5 — Touch Target Prompts
+
+Any interactive element smaller than 44×44px on mobile needs an explicit tap-area expansion:
+
+```
+// Wrong
+"add pagination dots"
+
+// Right
+"add pagination dots, 8px visual pip, but the button touch target must be
+at least 44×44px — use padding around the pip so the visual stays small
+but the tap area is large."
+```
+
+Use the `::before` trick: button is 44×44, the `::before` renders the visible 8px dot centered inside it.
+
+---
+
+### 7.6 — Prompt Template: Interactive Mobile Component
+
+Use this when building any mobile-only component with motion and touch:
+
+```
+Component: [Name]
+File: client/components/walmart/[feature]/[Name].tsx
+Breakpoint: mobile only (max-width: 768px)
+
+Visual:
+- Background: [token]
+- Padding: [top] [right] [bottom] [left]px
+- Shadow: [elevation description or "none"]
+- Shadow room: [how — carousel padding | wrapper padding | none needed]
+
+Cards:
+- Width: [calc(100% - Npx) or fixed Npx]
+- Height: [equal / content-driven / min-height Npx]
+- Gap between cards: [N]px
+- Snap behavior: [scroll-snap-align: start | none]
+
+Auto-advance:
+- Interval: [N]ms
+- Pause on: [hover / touchstart / both]
+- Resume: [immediately / after Nms]
+
+Indicator dots:
+- Visual pip: [N]px diameter or [N×M]px pill for active
+- Active state: [2× wider pill / filled / scale(1.25)]
+- Touch target: 44×44px minimum (padding + ::before)
+- Dot click: scrolls to slide + resets auto-advance timer
+
+Animation:
+- Slide transition: [duration + easing description]
+- Active icon scale: [scale factor] with [easing]
+```
+
+---
+
+### 7.7 — Data Freshness Prompts
+
+When placeholder data has dates, names, or addresses, specify:
+
+```
+// Wrong
+"use current dates"
+
+// Right
+"All order dates should be in 2026. Since it's currently 2026,
+do NOT include the year in the status heading text.
+Format: 'Delivered on Feb 15' (not 'Delivered on Feb 15, 2026').
+Store purchases: 'Jan 10 purchase' (no year)."
+```
+
+Same for names and addresses:
+```
+"User name: 'Hi, Emilia' — update in AccountSideNav greeting.
+Address: randomize to something plausible (not a real address),
+update in DesktopHeader gicSubtext span."
+```
+
+---
+
+### 7.8 — Pre-Launch Designer Checklist
+
+Questions designers must answer **before** handing off to engineering or Fusion:
+
+#### Layout & Spacing
+- What is the max-width of this container? Does any section break out of it (full-bleed)?
+- What padding does this section inherit? Does it need negative margin to go edge-to-edge?
+- Which breakpoints does this affect? (Desktop only / mobile only / both)
+
+#### States & Interactions
+- What are ALL states? (default, hover, active, disabled, loading, empty, error)
+- What triggers animations? (click, scroll, auto-advance, on mount)
+- What is the animation FEEL? (spring, ease, instant, bounce)
+- Does this auto-advance? Pause on hover? Pause on touch?
+- Do any buttons navigate to other pages? Which route?
+
+#### Touch & Accessibility
+- What is the minimum tap target for each interactive element?
+- Are pagination dots, icon buttons, or chips large enough to tap?
+- Does this component need keyboard navigation?
+
+#### Data & Content
+- What are the max/min content lengths? What happens when text overflows?
+- Are dates relative to "today"? Include year or not?
+- Should names/addresses be real, randomized, or pulled from a user profile?
+- Which tab is "active" in the bottom nav on this page?
+
+#### Elevation & Shadows
+- Do cards in this section have elevation?
+- Is the card inside a scrollable container? (If yes, shadow clipping is a risk — flag it)
+
+#### Component Identity
+- Is this an existing LD component, a new pattern, or a custom one?
+- Which semantic token maps to each color in the design?
+- Are there any existing components this should NOT duplicate?
+
+---
+
 ## Summary Checklist
 
 Before submitting a design prompt, confirm:
