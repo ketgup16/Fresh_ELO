@@ -1,21 +1,14 @@
-import { X, ChevronDown, ChevronUp, Plus, Pause, Menu, Search } from "@/components/icons";
-import { CartIcon, FulfillmentShippingIcon, LocationIcon, StoreIcon, CloseIcon } from "@/components/icons-custom";
-import { CameraModal } from "@/components/walmart/CameraModal";
-import { useState, useEffect } from "react";
+import { Plus, Pause } from "@/components/icons";
+import { CloseIcon } from "@/components/icons-custom";
+import { useState } from "react";
 import { AddToCart } from "@/components/walmart/AddToCart";
 import { Button } from "@/components/ui/Button";
 import { Link } from "@/components/ui/Link";
 import { IconButton } from "@/components/ui/IconButton";
 import { NewArrivalsCarousel } from "@/components/walmart/NewArrivalsCarousel";
-import { SearchTypeaheadModal } from "./index/SearchTypeaheadModal";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 
 export default function Index() {
-  const [showSearchModal, setShowSearchModal] = useState(false);
-  const [hasOpenedSearch, setHasOpenedSearch] = useState(false);
-  const [showCameraModal, setShowCameraModal] = useState(false);
-  const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
-  const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
   const [cartItems, setCartItems] = useState<Record<number, number>>({});
 
   const handleQuantityChange = (productIndex: number, quantity: number) => {
@@ -29,158 +22,8 @@ export default function Index() {
     });
   };
 
-  const handleCameraClick = () => {
-    setShowCameraModal(true);
-  };
-
-  const handleCameraCapture = (imageData: string) => {
-    console.log('Photo captured:', imageData);
-  };
-
   return (
     <ResponsiveLayout maxWidth="full">
-      <div className="sticky top-0 z-50 lg:hidden">
-        {/* Mobile/Tablet Header */}
-        <div className="lg:hidden px-4 md:px-6 pt-4 pb-3 md:py-4" style={{ backgroundColor: 'var(--ld-semantic-color-top-nav-fill)' }}>
-          <div className="flex items-center gap-3 md:gap-6">
-            <button className="text-white flex-shrink-0" aria-label="Menu">
-              <Menu className="w-6 h-6" />
-            </button>
-            <a href="/walmart" className="flex-shrink-0" aria-label="Walmart Homepage">
-              <img
-                src="https://i5.walmartimages.com/dfw/63fd9f59-14e2/9d304ce6-96de-4331-b8ec-c5191226d378/v1/spark-icon.svg"
-                alt="Walmart"
-                className="h-8 w-8 md:h-9 md:w-9"
-              />
-            </a>
-            <div
-              className="flex-1 bg-white rounded-full h-[52px] flex items-center px-4 md:px-6 cursor-pointer"
-              onClick={() => {
-                setShowSearchModal(true);
-                setHasOpenedSearch(true);
-              }}
-            >
-              <span className="text-muted-foreground text-[14px] md:text-[16px] flex-1 truncate">Search Walmart</span>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowSearchModal(true);
-                  setHasOpenedSearch(true);
-                }}
-                className="w-8 h-8 rounded-full flex items-center justify-center -mr-1"
-                style={{ backgroundColor: 'var(--ld-semantic-color-text-brand-bold, #001e60)' }}
-                aria-label="Search"
-              >
-                <Search className="w-4 h-4 md:w-5 md:h-5 text-white" />
-              </button>
-            </div>
-            <CartIcon count={0} price="$0.00" textColor="white" />
-          </div>
-        </div>
-
-        {/* Pickup or Delivery Banner - Mobile/Tablet */}
-        <div className="lg:hidden px-4 pt-2 pb-2" style={{ backgroundColor: 'var(--ld-semantic-color-top-nav-fill)' }}>
-          {!showDeliveryOptions && (
-            <button
-              onClick={() => setShowDeliveryOptions(true)}
-              className="w-full flex items-center justify-between rounded-full px-0 py-2 transition-colors"
-            >
-              <div className="flex items-center gap-2">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fe96ba70bf20a4d59aede84cfd5b0636c"
-                  alt="Global Intent"
-                  className="w-[24px] h-[24px] flex-shrink-0 rounded-full"
-                />
-                <span className="text-white text-[14px] font-semibold">
-                  {selectedDeliveryOption === 'none' && 'How do you want your items?'}
-                  {selectedDeliveryOption === 'delivery' && 'Delivery | 1213 E Trinity Mills Rd'}
-                  {selectedDeliveryOption === 'pickup' && 'Pickup | Carrollton Supercenter'}
-                  {selectedDeliveryOption === 'shipping' && 'Shipping | 1213 E Trinity Mills Rd'}
-                </span>
-              </div>
-              <ChevronDown className="w-4 h-4 text-white" />
-            </button>
-          )}
-
-          {showDeliveryOptions && (
-            <div className="py-2 space-y-4 animate-fade-in">
-              <div className="flex items-center justify-between">
-                <span className="text-white text-[14px] font-semibold">How do you want your items?</span>
-                <button
-                  onClick={() => setShowDeliveryOptions(false)}
-                  className="w-6 h-6 flex items-center justify-center"
-                >
-                  <ChevronUp className="w-4 h-4 text-white" />
-                </button>
-              </div>
-
-              <div className="flex justify-center gap-6">
-                {([
-                  { key: 'shipping', label: 'Shipping', icon: '/assets/illustrations/mono-small/fulfillment-shipping.svg' },
-                  { key: 'pickup',   label: 'Pickup',   icon: '/assets/illustrations/mono-small/fulfillment-pickup.svg' },
-                  { key: 'delivery', label: 'Delivery', icon: '/assets/illustrations/mono-small/fulfillment-delivery.svg' },
-                ] as const).map((method) => (
-                  <button
-                    key={method.key}
-                    className="flex flex-col items-center gap-2"
-                    onClick={() => { setSelectedDeliveryOption(method.key); setShowDeliveryOptions(false); }}
-                  >
-                    <div className={`w-[60px] h-[60px] rounded-full bg-white flex items-center justify-center ${selectedDeliveryOption === method.key ? 'ring-2 ring-white/80' : ''}`}>
-                      <img src={method.icon} alt={method.label} className="w-10 h-10 object-contain" />
-                    </div>
-                    <span className="text-white text-[14px] font-extrabold leading-[17px] text-center">{method.label}</span>
-                  </button>
-                ))}
-              </div>
-
-              <div className="flex flex-col gap-2 w-full">
-                <button className="w-full flex items-center gap-2 p-4 bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.1),0_1px_2px_1px_rgba(0,0,0,0.15)]">
-                  <LocationIcon className="w-4 h-4 flex-shrink-0" />
-                  <span className="flex-1 text-left text-foreground text-[12px] leading-[16px]">
-                    1213 E Trinity Mills Rd, Dallas, TX 75220
-                  </span>
-                </button>
-                <button className="w-full flex items-center gap-2 p-4 bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.1),0_1px_2px_1px_rgba(0,0,0,0.15)]">
-                  <StoreIcon className="w-4 h-4 flex-shrink-0 self-start mt-0.5" />
-                  <div className="flex-1 text-left flex flex-col gap-1">
-                    <span className="text-foreground text-[12px] font-semibold leading-[16px]">Carrollton Supercenter</span>
-                    <span className="text-foreground text-[12px] leading-[16px]">1213 E Trinity Mills Rd, Dallas, TX 75220</span>
-                  </div>
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Visual Navigation - Mobile/Tablet */}
-        <div
-          className={`px-4 py-2 flex items-center gap-2 overflow-x-auto scrollbar-hide lg:hidden ${showDeliveryOptions ? 'hidden' : ''}`}
-          style={{ backgroundColor: 'var(--ld-semantic-color-fill-accent-blue-subtle)' }}
-        >
-          <button className="flex-shrink-0 h-8 w-8 flex items-center justify-center bg-white rounded-full transition-all duration-100 hover:opacity-80">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fca32f8144d3e414bafe0be8b4870d869"
-              alt="Grid"
-              width="20"
-              height="20"
-            />
-          </button>
-          {['Get it Fast', 'Rollbacks & More', 'Easter', 'Pharmacy', 'New Arrivals', 'The Baby Event', 'Dinner Made Easy', 'My Items'].map((label) => (
-            <button
-              key={label}
-              className="flex-shrink-0 h-8 px-3 py-1.5 bg-white rounded-full whitespace-nowrap transition-all duration-100 hover:opacity-80"
-              style={{
-                color: 'var(--ld-semantic-color-top-nav-fill)',
-                fontSize: '14px',
-                fontWeight: 400
-              }}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Main Content */}
       <div className="px-4 pt-6 pb-32 space-y-4">
         {/* Order Status Card — mobile */}
@@ -310,18 +153,6 @@ export default function Index() {
         </div>
       </div>
 
-      {showSearchModal && (
-        <SearchTypeaheadModal
-          onClose={() => setShowSearchModal(false)}
-          onCameraClick={handleCameraClick}
-        />
-      )}
-
-      <CameraModal
-        isOpen={showCameraModal}
-        onClose={() => setShowCameraModal(false)}
-        onCapture={handleCameraCapture}
-      />
     </ResponsiveLayout>
   );
 }
