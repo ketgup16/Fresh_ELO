@@ -54,7 +54,7 @@
 
 /* Color Variants - Icon Color */
 .spotIconInner--brand {
-  color: var(--ld-semantic-color-text-onfill-brand-subtle);
+  color: var(--ld-semantic-color-text-brand, #0053e2);
 }
 
 .spotIconInner--neutral {
@@ -62,5 +62,5 @@
 }
 
 .spotIconInner--white {
-  color: var(--ld-semantic-color-text-onfill-brand-subtle);
+  color: var(--ld-semantic-color-text-brand, #0053e2);
 }
