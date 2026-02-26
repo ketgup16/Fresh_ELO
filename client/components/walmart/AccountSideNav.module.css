@@ -114,9 +114,9 @@
 /* Settings label */
 .settingsLabel {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 20px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-fill-brand-bold, #001e60);
 }
 
 /* Sign out row */
