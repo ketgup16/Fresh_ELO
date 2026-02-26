@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/Button';
 import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
 import { Divider } from '@/components/ui/Divider';
 import { ResponsiveLayout } from '@/components/walmart/ResponsiveLayout';
@@ -251,7 +252,7 @@ export default function PurchaseHistory() {
 
               {/* Pagination */}
               <div className={styles.pagination}>
-                <button className={styles.paginationBtn} aria-label="Next page">›</button>
+                <Button variant="secondary" size="small" aria-label="Next page">›</Button>
               </div>
             </div>
           </main>
