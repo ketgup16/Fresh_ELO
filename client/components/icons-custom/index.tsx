@@ -1,17 +1,37 @@
 /**
  * CUSTOM ICON LIBRARY
- * 
- * This folder is for custom icons that don't exist in the core LD 3.5 library.
- * 
- * BEFORE adding icons here:
- * 1. Search all 306 icons in client/components/icons/
- * 2. Check /component-library#icons for visual reference
- * 3. Look for similar icons that can be repurposed
- * 4. Only create new icons if absolutely necessary
- * 
- * See guidelines/RULE_IconUsage.md for complete rules.
+ *
+ * Icons that don't exist in the core LD 3.5 library (client/components/icons/).
+ * These are specific to the Walmart.com consumer experience pages.
+ *
+ * See guidelines/RULE_IconUsage.md for rules.
  */
 
-// Export custom icons here
-// Example:
-// export { MyCustomIcon } from './MyCustomIcon';
+// Fulfillment method illustrations (colored spot icons, not mono-stroke)
+export { FulfillmentShippingIcon } from './FulfillmentShippingIcon';
+export { FulfillmentPickupIcon } from './FulfillmentPickupIcon';
+export { FulfillmentDeliveryIcon } from './FulfillmentDeliveryIcon';
+
+// Cart with badge + price
+export { CartIcon } from './CartIcon';
+
+// Sparky mascot (Lottie animations)
+export { SparkyLookingDown } from './SparkyLookingDown';
+export { SparkyAnimation } from './SparkyAnimation';
+
+// Branded logos (multi-color, not themeable)
+export { WalmartCashLogoIcon } from './WalmartCashLogoIcon';
+export { WalmartPlusLogoIcon } from './WalmartPlusLogoIcon';
+export { SubscriptionLogoIcon } from './SubscriptionLogoIcon';
+export { CashLogoIcon } from './CashLogoIcon';
+export { SparklesIcon } from './SparklesIcon';
+
+// Navigation / utility (mono-color, use currentColor)
+export { CloseIcon } from './CloseIcon';
+export { InfoIcon } from './InfoIcon';
+export { LocationIcon } from './LocationIcon';
+export { StoreIcon } from './StoreIcon';
+export { ShippingIcon } from './ShippingIcon';
+export { ListsIcon } from './ListsIcon';
+export { ReorderIcon } from './ReorderIcon';
+export { PurchaseHistoryIcon } from './PurchaseHistoryIcon';

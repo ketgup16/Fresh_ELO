@@ -1,36 +1,72 @@
 {
-  "dashboard": {
-    "screenshot": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc3a06f6f42ec4f12933aad1327cc0377",
-    "chart": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff5cdb3639c9b4824903691b17827989a",
-    "description": "Main dashboard screenshot showing campaign analytics"
-  },
-  "icons": {
-    "calendar": {
-      "url": "https://api.builder.io/api/v1/image/assets/TEMP/d9a81b2a7bb3dfdd5e2c469c8253220e869a1119",
-      "size": "16x16",
-      "description": "Calendar icon for date selection"
-    },
-    "chevronDown": {
-      "url": "https://api.builder.io/api/v1/image/assets/TEMP/ad9070864ceb13f3f71f85b6653ff2d30635be9f",
-      "size": "16x16",
-      "description": "Chevron down icon for dropdowns"
-    },
-    "alert": {
-      "url": "https://api.builder.io/api/v1/image/assets/TEMP/eba9c836fc8540b60609a632b74b284ef2c689b9",
-      "size": "48x48",
-      "description": "Alert icon for recommendations"
-    },
-    "lightning": {
-      "url": "https://api.builder.io/api/v1/image/assets/TEMP/9c45272a9799064fc27164fd23ecbece5d885598",
-      "size": "48x48",
-      "description": "Lightning/panel icon for recommendations"
+  "navigation": {
+    "description": "Bottom navigation tab bar icons for mobile Walmart.com experience",
+    "items": {
+      "shop-active": {
+        "path": "/assets/navigation/shop-active.png",
+        "alt": "Shop tab icon in active/selected state - filled shopping bag",
+        "usage": "Mobile bottom nav - active shop tab"
+      },
+      "shop-inactive": {
+        "path": "/assets/navigation/shop-inactive.png",
+        "alt": "Shop tab icon in inactive state - outlined shopping bag",
+        "usage": "Mobile bottom nav - inactive shop tab"
+      },
+      "heart-active": {
+        "path": "/assets/navigation/heart-active.png",
+        "alt": "Favorites tab icon in active/selected state - filled heart",
+        "usage": "Mobile bottom nav - active favorites/my items tab"
+      },
+      "heart-inactive": {
+        "path": "/assets/navigation/heart-inactive.png",
+        "alt": "Favorites tab icon in inactive state - outlined heart",
+        "usage": "Mobile bottom nav - inactive favorites/my items tab"
+      },
+      "user-active": {
+        "path": "/assets/navigation/user-active.png",
+        "alt": "Account tab icon in active/selected state - filled person silhouette",
+        "usage": "Mobile bottom nav - active account tab"
+      },
+      "user-inactive": {
+        "path": "/assets/navigation/user-inactive.png",
+        "alt": "Account tab icon in inactive state - outlined person silhouette",
+        "usage": "Mobile bottom nav - inactive account tab"
+      }
     }
   },
-  "productPreviews": {
+  "logos": {
+    "description": "Walmart brand logos and sub-brand marks",
     "items": {
-      "url": "https://api.builder.io/api/v1/image/assets/TEMP/7455309de67a3c164e789c5cadc34c0c8b745dab",
-      "size": "424x48",
-      "description": "Product preview thumbnails for recommended items"
+      "walmart-plus-logo": {
+        "path": "/assets/logos/walmart-plus-logo.svg",
+        "alt": "Walmart+ membership program logo - blue W+ mark",
+        "usage": "Walmart+ membership badges, subscription CTAs"
+      },
+      "walmart-cash-logo": {
+        "path": "/assets/logos/walmart-cash-logo.svg",
+        "alt": "Walmart Cash rewards logo - gold coin with W mark",
+        "usage": "Walmart Cash earning/redeeming indicators"
+      },
+      "subscription-logo": {
+        "path": "/assets/logos/subscription-logo.svg",
+        "alt": "Subscribe and Save program logo - recurring delivery icon",
+        "usage": "Product detail subscription option badges"
+      }
+    }
+  },
+  "dashboard": {
+    "description": "Seller Center dashboard analytics screenshots",
+    "items": {
+      "screenshot": {
+        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc3a06f6f42ec4f12933aad1327cc0377",
+        "alt": "Main dashboard screenshot showing campaign analytics with charts and metrics",
+        "usage": "Dashboard overview, documentation"
+      },
+      "chart": {
+        "url": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff5cdb3639c9b4824903691b17827989a",
+        "alt": "Analytics chart showing performance trends over time",
+        "usage": "Campaign analytics section"
+      }
     }
   }
 }
