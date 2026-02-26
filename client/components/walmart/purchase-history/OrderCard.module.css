@@ -16,6 +16,12 @@
   padding: 16px;
 }
 
+@media (min-width: 1024px) {
+  .cardBody {
+    gap: 40px;
+  }
+}
+
 .leftCol {
   flex: 1;
   display: flex;
