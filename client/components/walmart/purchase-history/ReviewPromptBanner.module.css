@@ -86,28 +86,21 @@
   margin: 0;
 }
 
-.ctaImages {
+.ctaImageWrap {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  padding: 16px 8px 8px;
   align-self: stretch;
   flex: 1;
-  gap: -16px; /* slight overlap */
-  position: relative;
+  overflow: hidden;
 }
 
-.ctaImg {
-  width: 80px;
-  height: 80px;
+.ctaIllustration {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
   object-fit: contain;
-  border-radius: 4px;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.ctaImg:not(:first-child) {
-  margin-left: -16px;
+  display: block;
 }
 
 /* ── Product review cards ── */

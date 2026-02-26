@@ -22,6 +22,9 @@ const PRODUCTS = {
   watering: { src: 'https://i5.walmartimages.com/seo/2-Gallon-Watering-Can_f2e5a4d6-85e1-4d00-9cad-fd893b41d15e.f2e5a4d6-85e1-4d00-9cad-fd893b41d15e.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff', alt: 'Watering Can' },
 };
 
+// CTA card illustration — Figma export (gaming items collage)
+const REVIEW_CTA_ILLUSTRATION = 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fa9ac7592b3fe4183ae567be74c87f6ab?format=webp&width=800&height=1200';
+
 const REVIEW_PRODUCTS = [
   { name: 'Nintendo Switch™ with Neon Blue and Neon Red Joy-Con', imageSrc: PRODUCTS.switch.src, rating: 3.5 },
   { name: 'MarioKart Deluxe for Nintendo Switch™', imageSrc: PRODUCTS.mario.src, rating: 4.5 },
@@ -65,7 +68,7 @@ export default function PurchaseHistory() {
               <PurchaseHistoryFilters />
 
               {/* Review Prompt */}
-              <ReviewPromptBanner products={REVIEW_PRODUCTS} />
+              <ReviewPromptBanner products={REVIEW_PRODUCTS} ctaIllustration={REVIEW_CTA_ILLUSTRATION} />
 
               {/* Order list */}
               <div className={styles.orderList}>

@@ -12,6 +12,8 @@ interface ReviewProduct {
 
 interface ReviewPromptBannerProps {
   products: ReviewProduct[];
+  /** Illustration shown inside the "What'd you think?" CTA card */
+  ctaIllustration?: string;
 }
 
 function StarRating({ rating }: { rating: number }) {
@@ -26,14 +28,47 @@ function StarRating({ rating }: { rating: number }) {
   );
 }
 
-export function ReviewPromptBanner({ products }: ReviewPromptBannerProps) {
+function CtaCard({ ctaIllustration }: { ctaIllustration?: string }) {
+  return (
+    <div className={styles.ctaCard}>
+      <div className={styles.ctaContent}>
+        <p className={styles.ctaHeading}>What'd you think?</p>
+        <Button variant="secondary" size="small">Review more items</Button>
+      </div>
+      {ctaIllustration && (
+        <div className={styles.ctaImageWrap}>
+          <img
+            src={ctaIllustration}
+            alt="Review items illustration"
+            className={styles.ctaIllustration}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ProductCard({ product }: { product: ReviewProduct }) {
+  return (
+    <div className={styles.productCard}>
+      <div className={styles.productRow}>
+        <img src={product.imageSrc} alt={product.name} className={styles.productImg} />
+        <div className={styles.productInfo}>
+          <p className={styles.productName}>{product.name}</p>
+          {product.rating !== undefined && <StarRating rating={product.rating} />}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBannerProps) {
   const [dismissed, setDismissed] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   if (dismissed) return null;
 
-  // Total number of cards: 1 CTA + product cards
   const totalCards = 1 + products.length;
 
   function handleScroll() {
@@ -64,57 +99,25 @@ export function ReviewPromptBanner({ products }: ReviewPromptBannerProps) {
 
       {/* Desktop: static flex row */}
       <div className={styles.cardsDesktop}>
-        {/* Card 1: CTA */}
-        <div className={styles.ctaCard}>
-          <div className={styles.ctaContent}>
-            <p className={styles.ctaHeading}>What'd you think?</p>
-            <Button variant="secondary" size="small">Review more items</Button>
-          </div>
-          {/* product images stacked visually */}
-          <div className={styles.ctaImages}>
-            {products.slice(0, 2).map((p, i) => (
-              <img
-                key={i}
-                src={p.imageSrc}
-                alt={p.name}
-                className={styles.ctaImg}
-                style={{ zIndex: products.length - i }}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Product review cards */}
+        <CtaCard ctaIllustration={ctaIllustration} />
         {products.map((p, i) => (
-          <div key={i} className={styles.productCard}>
-            <div className={styles.productRow}>
-              <img src={p.imageSrc} alt={p.name} className={styles.productImg} />
-              <div className={styles.productInfo}>
-                <p className={styles.productName}>{p.name}</p>
-                {p.rating !== undefined && <StarRating rating={p.rating} />}
-              </div>
-            </div>
-          </div>
+          <ProductCard key={i} product={p} />
         ))}
       </div>
 
       {/* Mobile: horizontal scroll carousel */}
-      <div
-        className={styles.cardsMobile}
-        ref={carouselRef}
-        onScroll={handleScroll}
-      >
-        {/* CTA card */}
-        <div className={styles.carouselCard}>
+      <div className={styles.cardsMobile} ref={carouselRef} onScroll={handleScroll}>
+        {/* CTA card (mobile) */}
+        <div className={`${styles.carouselCard} ${styles.ctaCard}`}>
           <div className={styles.ctaContent}>
             <p className={styles.ctaHeading}>What'd you think?</p>
             <Button variant="secondary" size="small">Review more items</Button>
           </div>
-          <div className={styles.ctaImages}>
-            {products.slice(0, 2).map((p, i) => (
-              <img key={i} src={p.imageSrc} alt={p.name} className={styles.ctaImg} style={{ zIndex: products.length - i }} />
-            ))}
-          </div>
+          {ctaIllustration && (
+            <div className={styles.ctaImageWrap}>
+              <img src={ctaIllustration} alt="Review items illustration" className={styles.ctaIllustration} />
+            </div>
+          )}
         </div>
 
         {products.map((p, i) => (
