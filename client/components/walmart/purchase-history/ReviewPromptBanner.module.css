@@ -4,6 +4,7 @@
 
 .wrapper {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  width: 100%;
 }
 
 /* ── Desktop ── */
