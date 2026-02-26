@@ -42,8 +42,8 @@
 }
 
 .orderTypeChip img {
-  width: 24px;
-  height: 24px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
   flex-shrink: 0;
 }
