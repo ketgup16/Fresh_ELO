@@ -48,7 +48,7 @@
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2E2F32);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
-  padding: 16px var(--ld-primitive-scale-space-150, 0.75rem) 4px;
+  padding: 16px 0 4px;
 }
 
 /* Nav item inner layout (content inside SideNavigationItem) */
@@ -108,12 +108,4 @@
 
 [data-state="open"] > .collapsibleHeader .chevronIcon {
   transform: rotate(180deg);
-}
-
-/* Settings label */
-.settingsLabel {
-  font-size: var(--ld-semantic-font-body-medium-size, 1rem);
-  font-weight: 700;
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
-  color: var(--ld-semantic-color-fill-brand-bold, #001e60);
 }

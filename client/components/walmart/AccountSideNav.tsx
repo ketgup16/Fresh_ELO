@@ -155,7 +155,7 @@ export function AccountSideNav() {
       {/* Settings Section (collapsible) */}
       <Collapsible>
         <CollapsibleTrigger className={styles.collapsibleHeader}>
-          <SectionRow icon={<Gear />} label="Settings" labelClassName={styles.settingsLabel} showChevron />
+          <SectionRow icon={<Gear />} label="Settings" showChevron />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <SideNavigation aria-label="Settings">
