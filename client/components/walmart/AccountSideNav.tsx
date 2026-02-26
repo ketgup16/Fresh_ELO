@@ -6,14 +6,13 @@ import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigati
 import { Divider } from '@/components/ui/Divider';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { Tag } from '@/components/ui/Tag';
-import { Badge } from '@/components/ui/Badge';
 import styles from './AccountSideNav.module.css';
 
 interface NavItem {
   label: string;
   path: string;
-  badge?: string;
-  dot?: boolean;
+  tag?: string;
+  tagColor?: 'warning' | 'info';
 }
 
 const accountItems: NavItem[] = [
@@ -22,21 +21,23 @@ const accountItems: NavItem[] = [
   { label: 'Walmart+', path: '/walmart-plus' },
   { label: 'My savings', path: '/savings' },
   { label: 'Walmart Cash', path: '/walmart-cash' },
-  { label: 'Messages (2 new)', path: '/messages', dot: true },
+  { label: 'Messages', path: '/messages' },
 ];
 
 const myItemsItems: NavItem[] = [
   { label: 'Reorder', path: '/reorder' },
+  { label: 'Shop With Friends', path: '/shop-with-friends', tag: 'New', tagColor: 'warning' },
   { label: 'Lists', path: '/lists' },
+  { label: 'Subscriptions', path: '/subscriptions' },
   { label: 'Registry', path: '/registry' },
+  { label: 'Protection plans', path: '/protection-plans' },
 ];
 
 const myProfileItems: NavItem[] = [
-  { label: 'Fashion', path: '/fashion', badge: 'NEW' },
+  { label: 'Reviews', path: '/reviews', tag: '6 items to review', tagColor: 'warning' },
+  { label: 'Pets', path: '/pets' },
   { label: 'Vehicles', path: '/vehicles' },
   { label: 'Recipes', path: '/recipes' },
-  { label: 'Pets', path: '/pets' },
-  { label: 'Giving & impact', path: '/giving' },
 ];
 
 const otherAccountsItems: NavItem[] = [
@@ -48,24 +49,23 @@ const otherAccountsItems: NavItem[] = [
 function NavItemContent({ item }: { item: NavItem }) {
   return (
     <span className={styles.navItemInner}>
-      {item.dot && <Badge variant="error" size="small" aria-label="2 new messages" />}
       <span className={styles.navItemLabel}>{item.label}</span>
-      {item.badge && <Tag variant="primary" color="warning">{item.badge}</Tag>}
+      {item.tag && <Tag variant="primary" color={item.tagColor ?? 'warning'}>{item.tag}</Tag>}
     </span>
   );
 }
 
-interface NavSectionProps {
+interface NavGroupProps {
   title: string;
   items: NavItem[];
   currentPath: string;
   onNavigate: (e: React.MouseEvent<HTMLAnchorElement>, path: string) => void;
 }
 
-function NavSection({ title, items, currentPath, onNavigate }: NavSectionProps) {
+function NavGroup({ title, items, currentPath, onNavigate }: NavGroupProps) {
   return (
-    <div className={styles.section}>
-      <div className={styles.sectionTitle}>{title}</div>
+    <>
+      <div className={styles.groupTitle}>{title}</div>
       <SideNavigation aria-label={title}>
         {items.map((item) => (
           <SideNavigationItem
@@ -78,7 +78,7 @@ function NavSection({ title, items, currentPath, onNavigate }: NavSectionProps) 
           </SideNavigationItem>
         ))}
       </SideNavigation>
-    </div>
+    </>
   );
 }
 
@@ -97,12 +97,12 @@ export function AccountSideNav() {
       <div className={styles.userHeader}>
         <div className={styles.userHeaderTop}>
           <WalmartPlusLogoIcon width={32} height={24} aria-hidden="true" />
-          <span className={styles.greeting}>Hi, Amy</span>
+          <span className={styles.greeting}>Hi, Mi</span>
         </div>
         <p className={styles.memberSince}>Member since 2023</p>
       </div>
 
-      {/* Account Section (collapsible) */}
+      {/* Account Section (collapsible) — contains all nav groups */}
       <Collapsible defaultOpen>
         <CollapsibleTrigger className={styles.collapsibleHeader}>
           <div className={styles.collapsibleHeaderLeft}>
@@ -114,6 +114,7 @@ export function AccountSideNav() {
           </span>
         </CollapsibleTrigger>
         <CollapsibleContent>
+          {/* Account links */}
           <SideNavigation aria-label="Account">
             {accountItems.map((item) => (
               <SideNavigationItem
@@ -126,20 +127,17 @@ export function AccountSideNav() {
               </SideNavigationItem>
             ))}
           </SideNavigation>
+
+          {/* My items */}
+          <NavGroup title="My items" items={myItemsItems} currentPath={location.pathname} onNavigate={handleNav} />
+
+          {/* My profile */}
+          <NavGroup title="My profile" items={myProfileItems} currentPath={location.pathname} onNavigate={handleNav} />
+
+          {/* Other accounts */}
+          <NavGroup title="Other accounts" items={otherAccountsItems} currentPath={location.pathname} onNavigate={handleNav} />
         </CollapsibleContent>
       </Collapsible>
-
-      <Divider />
-
-      <NavSection title="My items" items={myItemsItems} currentPath={location.pathname} onNavigate={handleNav} />
-
-      <Divider />
-
-      <NavSection title="My profile" items={myProfileItems} currentPath={location.pathname} onNavigate={handleNav} />
-
-      <Divider />
-
-      <NavSection title="Other accounts" items={otherAccountsItems} currentPath={location.pathname} onNavigate={handleNav} />
 
       <Divider />
 

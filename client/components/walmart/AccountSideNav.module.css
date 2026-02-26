@@ -25,16 +25,16 @@
 }
 
 .greeting {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2E2F32);
-  line-height: 24px;
+  line-height: 32px;
 }
 
 .memberSince {
   font-size: 12px;
   font-weight: 400;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-action-fill-primary, #0071DC);
   line-height: 16px;
   margin: 0;
   padding-left: 40px;
@@ -46,12 +46,13 @@
   flex-direction: column;
 }
 
-.sectionTitle {
+/* Group title inside the accordion — flush left with SideNavigationItem text */
+.groupTitle {
   font-size: 14px;
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2E2F32);
-  padding: 12px 16px 4px;
   line-height: 20px;
+  padding: 16px var(--ld-primitive-scale-space-150, 0.75rem) 4px;
 }
 
 /* Nav item inner layout (content inside SideNavigationItem) */
@@ -72,7 +73,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 12px 16px 12px 0;
+  padding: 12px var(--ld-primitive-scale-space-150, 0.75rem);
   background: none;
   border: none;
   cursor: pointer;
@@ -127,7 +128,7 @@
   align-items: center;
   gap: 8px;
   width: 100%;
-  padding: 12px 16px 12px 0;
+  padding: 12px var(--ld-primitive-scale-space-150, 0.75rem);
   background: none;
   border: none;
   cursor: pointer;
