@@ -51,7 +51,50 @@ export const frequentSearches = [
   'listerine',
 ];
 
+export type KeepShoppingItem = {
+  label: string;
+  image: string | null;
+  isFilter?: boolean;
+};
+
+export const keepShoppingCategory = 'Flowers';
+
+export const keepShoppingFor: KeepShoppingItem[] = [
+  { label: 'Pickup today', image: null, isFilter: true },
+  { label: 'Flowers Shop', image: 'https://images.pexels.com/photos/5410133/pexels-photo-5410133.jpeg?auto=compress&cs=tinysrgb&w=300' },
+  { label: 'Flowers Bouquet', image: 'https://images.pexels.com/photos/35062137/pexels-photo-35062137.jpeg?auto=compress&cs=tinysrgb&w=300' },
+  { label: 'Roses', image: 'https://images.pexels.com/photos/19867740/pexels-photo-19867740.jpeg?auto=compress&cs=tinysrgb&w=300' },
+  { label: 'Artificial Flowers', image: 'https://images.pexels.com/photos/8754695/pexels-photo-8754695.jpeg?auto=compress&cs=tinysrgb&w=300' },
+  { label: 'Sunflowers', image: 'https://images.pexels.com/photos/4622893/pexels-photo-4622893.jpeg?auto=compress&cs=tinysrgb&w=300' },
+];
+
+export const grabYourUsuals = [
+  'white socks',
+  'coffee pods',
+  'paper towels',
+  'laundry detergent',
+  'dog food',
+  'bread',
+  'cheese',
+];
+
 export function filterSuggestions(query: string): string[] {
   if (!query) return [];
   return allSuggestions.filter(s => s.toLowerCase().includes(query.toLowerCase()));
+}
+
+export function renderHighlightedText(text: string, query: string) {
+  if (!query) return { before: '', match: text, after: '' };
+
+  const lowerText = text.toLowerCase();
+  const lowerQuery = query.toLowerCase();
+  const index = lowerText.indexOf(lowerQuery);
+
+  if (index === -1) return { before: text, match: '', after: '' };
+
+  return {
+    before: text.slice(0, index),
+    match: text.slice(index, index + query.length),
+    after: text.slice(index + query.length),
+  };
 }
