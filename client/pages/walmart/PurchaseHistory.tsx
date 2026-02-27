@@ -15,6 +15,7 @@ import { ReviewPromptBanner } from '@/components/walmart/purchase-history/Review
 import { OrderCard, OrderCardProps } from '@/components/walmart/purchase-history/OrderCard';
 import { AutoCareOrderCard } from '@/components/walmart/purchase-history/AutoCareOrderCard';
 import { CombinedOrderCard } from '@/components/walmart/purchase-history/CombinedOrderCard';
+import { CurbsideOrderCard } from '@/components/walmart/purchase-history/CurbsideOrderCard';
 import { InlineAdBanner } from '@/components/walmart/purchase-history/InlineAdBanner';
 import styles from './PurchaseHistory.module.css';
 
@@ -148,6 +149,7 @@ const ORDERS: OrderEntry[] = [
       orderTotal: '$85.00',
       actions: [
         { label: 'Edit items', variant: 'primary' },
+        { label: 'Get it now', variant: 'secondary' },
         { label: 'View details', variant: 'secondary' },
       ],
     },
@@ -414,8 +416,10 @@ export default function PurchaseHistory() {
                             </div>
                           )}
                           {order.card.orderType === 'auto'
-                            ? <AutoCareOrderCard {...order.card} />
-                            : <OrderCard {...order.card} />}
+                              ? <AutoCareOrderCard {...order.card} />
+                              : order.card.orderType === 'curbside'
+                                ? <CurbsideOrderCard {...order.card} />
+                                : <OrderCard {...order.card} />}
                         </div>
                       ))}
                     </>
