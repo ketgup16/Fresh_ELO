@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Check, X, Flash } from '@/components/icons';
+import { Check, X, FlashFill } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { IconButton } from '@/components/ui/IconButton';
@@ -76,7 +76,8 @@ export function GetItNowModal({ open, onClose, location, orderTotal }: GetItNowM
               <Tag
                 variant="primary"
                 color="brand"
-                leading={<Flash style={{ width: 14, height: 14, color: '#F7C200' }} />}
+                leading={<FlashFill style={{ width: 14, height: 14, color: '#F7C200' }} />}
+                style={{ alignSelf: 'flex-start' }}
               >
                 Express delivery
               </Tag>

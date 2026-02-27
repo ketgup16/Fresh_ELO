@@ -699,3 +699,24 @@
 .apptLegalLink:hover {
   color: var(--ld-semantic-color-text, #2E2F32);
 }
+
+/* ── Mobile: bottom sheet ────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .modalWrap {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 16px 16px 0 0;
+    animation: sheetIn 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes sheetIn {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+}
