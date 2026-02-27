@@ -359,23 +359,25 @@ export default function PurchaseHistory() {
   return (
     <ResponsiveLayout maxWidth="full" mobileActiveTab="user">
       <div className={styles.page}>
-        {/* Top: breadcrumbs + banner */}
-        <div className={styles.topSection}>
-          <div className={styles.breadcrumbRow}>
-            <Breadcrumb aria-label="Purchase history navigation">
-              <BreadcrumbItem href="/account">Account</BreadcrumbItem>
-              <BreadcrumbItem isCurrent>Purchase History</BreadcrumbItem>
-            </Breadcrumb>
-            <div className={styles.breadcrumbActions}>
-              <IconButton variant="ghost" size="medium" aria-label="Messages">
-                <Email style={{ width: 20, height: 20 }} />
-              </IconButton>
-              <IconButton variant="ghost" size="medium" aria-label="Account settings">
-                <Gear style={{ width: 20, height: 20 }} />
-              </IconButton>
-            </div>
+        {/* Breadcrumbs — visible on all screen sizes */}
+        <div className={styles.breadcrumbRow}>
+          <Breadcrumb aria-label="Purchase history navigation">
+            <BreadcrumbItem href="/account">Account</BreadcrumbItem>
+            <BreadcrumbItem isCurrent>Purchase History</BreadcrumbItem>
+          </Breadcrumb>
+          <div className={styles.breadcrumbActions}>
+            <IconButton variant="ghost" size="medium" aria-label="Messages">
+              <Email style={{ width: 20, height: 20 }} />
+            </IconButton>
+            <IconButton variant="ghost" size="medium" aria-label="Account settings">
+              <Gear style={{ width: 20, height: 20 }} />
+            </IconButton>
           </div>
-          <Divider />
+        </div>
+        <Divider />
+
+        {/* Desktop-only: ad banner */}
+        <div className={styles.topSection}>
           <div className={styles.bannerRow}>
             <SkylineBanner
               logoSrc="https://api.builder.io/api/v1/image/assets/TEMP/b1a26e66a9f2b9c467e29b2c6bb339ed58cbcd54?width=154"

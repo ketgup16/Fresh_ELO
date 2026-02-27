@@ -92,6 +92,7 @@
 
 /* Responsive */
 @media (max-width: 1023px) {
+  /* Hide the desktop-only ad banner section */
   .topSection {
     display: none;
   }
