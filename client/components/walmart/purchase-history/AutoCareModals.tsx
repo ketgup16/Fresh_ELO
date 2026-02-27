@@ -202,33 +202,38 @@ function CheckInModal({
 
 // ── Appointment Details Modal (View Details + Reschedule flow) ────────────────
 function ViewDetailsModal({
-  open, onClose, onCheckIn, serviceDetails, location, statusHeading, orderTotal, initialStep,
+  open, onClose, onCheckIn, serviceDetails, location, statusHeading, orderTotal, initialStep, appointmentDate,
 }: {
   open: boolean; onClose: () => void; onCheckIn: () => void;
   serviceDetails?: ServiceDetails; location?: string;
   statusHeading: string; orderTotal?: string;
   initialStep: DetailsStep;
+  appointmentDate?: Date;
 }) {
+  const initDate = appointmentDate ?? new Date(2026, 3, 2);
   const [saved, setSaved] = useState(false);
   const [receiptExpanded, setReceiptExpanded] = useState(false);
   const [showCallout, setShowCallout] = useState(true);
   const [expandedField, setExpandedField] = useState<'date' | 'time' | null>(null);
-  const [selectedDate, setSelectedDate] = useState(new Date(2026, 3, 2));
-  const [pendingDate, setPendingDate] = useState(new Date(2026, 3, 2));
+  const [selectedDate, setSelectedDate] = useState(initDate);
+  const [pendingDate, setPendingDate] = useState(initDate);
   const [selectedTime, setSelectedTime] = useState('10:00 AM');
   const [pendingTime, setPendingTime] = useState<string | null>(null);
   const [hasChanges, setHasChanges] = useState(false);
 
   useEffect(() => {
     if (open) {
+      const d = appointmentDate ?? new Date(2026, 3, 2);
       setSaved(false);
       setReceiptExpanded(false);
       setShowCallout(true);
       setHasChanges(false);
+      setSelectedDate(d);
+      setPendingDate(d);
       // Auto-expand date field when opened from Reschedule button
       setExpandedField(initialStep === 'editDate' ? 'date' : null);
     }
-  }, [open, initialStep]);
+  }, [open, initialStep, appointmentDate]);
 
   useModalEffects(open, onClose);
 
@@ -336,7 +341,7 @@ function ViewDetailsModal({
                 </IconButton>
               </div>
               <p className={styles.apptCalloutText}>Pay now for quick check-in and service.</p>
-              <Button variant="secondary" size="small" onClick={onCheckIn}>
+              <Button variant="secondary" size="small" onClick={onCheckIn} UNSAFE_style={{ alignSelf: 'flex-start' }}>
                 Check in now
               </Button>
             </div>
@@ -539,7 +544,7 @@ interface AutoCareModalsProps {
 }
 
 export function AutoCareModals({
-  openModal, onClose, onSwitchToCheckIn, onSwitchToReschedule, serviceDetails, location, statusHeading, orderTotal,
+  openModal, onClose, onSwitchToCheckIn, onSwitchToReschedule, serviceDetails, location, statusHeading, orderTotal, appointmentDate,
 }: AutoCareModalsProps) {
   return (
     <>
@@ -574,6 +579,7 @@ export function AutoCareModals({
         statusHeading={statusHeading}
         orderTotal={orderTotal}
         initialStep={openModal === 'reschedule' ? 'editDate' : 'details'}
+        appointmentDate={appointmentDate}
       />
     </>
   );
