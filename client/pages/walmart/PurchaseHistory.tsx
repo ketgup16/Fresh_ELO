@@ -374,6 +374,11 @@ export default function PurchaseHistory() {
                 />
               </div>
 
+              {/* Auto Care appointment card: oil change with Check in, Reschedule, View details */}
+              <div className={styles.newCard}>
+                <AutoCareOrderCard {...COMBINED_CARD_AUTO} />
+              </div>
+
               {/* ── Standard order list ───────────────────────────────────── */}
               <div className={styles.orderList}>
                 {visibleOrders.length === 0 ? (
