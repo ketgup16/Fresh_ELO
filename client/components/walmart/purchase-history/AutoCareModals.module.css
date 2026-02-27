@@ -424,6 +424,26 @@
   border-color: var(--ld-semantic-color-action-fill-primary, #0071DC);
 }
 
+/* Open/expanded state of editable field */
+.apptFieldValueOpen {
+  border-color: var(--ld-semantic-color-action-fill-primary, #0071DC);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Inline expand panel — appears below the field button */
+.fieldExpandPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--ld-semantic-color-action-fill-primary, #0071DC);
+  border-top: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+}
+
 /* Static (non-editable) field */
 .apptFieldValueStatic {
   display: flex;

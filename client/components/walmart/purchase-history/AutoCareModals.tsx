@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import {
-  ChevronLeft, ChevronRight, Check, X, ArrowLeft,
+  ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Check, X,
   Store, UserCircle, CreditCard, Receipt,
 } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
@@ -12,7 +12,7 @@ import type { ServiceDetails } from './OrderCard';
 import styles from './AutoCareModals.module.css';
 
 export type AutoCareModalType = 'checkIn' | 'reschedule' | 'viewDetails' | null;
-type DetailsStep = 'details' | 'editDate' | 'editTime' | 'booked';
+type DetailsStep = 'details' | 'editDate';
 
 const TIMES = ['9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '3:00 PM'];
 const WEEK_DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -206,17 +206,22 @@ function ViewDetailsModal({
   statusHeading: string; orderTotal?: string;
   initialStep: DetailsStep;
 }) {
-  const [step, setStep] = useState<DetailsStep>(initialStep);
+  const [saved, setSaved] = useState(false);
   const [showCallout, setShowCallout] = useState(true);
-  const [selectedDate, setSelectedDate] = useState(new Date(2026, 3, 2)); // Apr 2
+  const [expandedField, setExpandedField] = useState<'date' | 'time' | null>(null);
+  const [selectedDate, setSelectedDate] = useState(new Date(2026, 3, 2));
   const [pendingDate, setPendingDate] = useState(new Date(2026, 3, 2));
   const [selectedTime, setSelectedTime] = useState('10:00 AM');
   const [pendingTime, setPendingTime] = useState<string | null>(null);
+  const [hasChanges, setHasChanges] = useState(false);
 
   useEffect(() => {
     if (open) {
-      setStep(initialStep);
+      setSaved(false);
       setShowCallout(true);
+      setHasChanges(false);
+      // Auto-expand date field when opened from Reschedule button
+      setExpandedField(initialStep === 'editDate' ? 'date' : null);
     }
   }, [open, initialStep]);
 
@@ -235,18 +240,27 @@ function ViewDetailsModal({
     weekday: 'short', month: 'short', day: 'numeric',
   });
 
-  const handleConfirmDate = () => {
+  const toggleField = (field: 'date' | 'time') => {
+    if (field === 'date') setPendingDate(selectedDate);
+    if (field === 'time') setPendingTime(null);
+    setExpandedField(prev => prev === field ? null : field);
+  };
+
+  const confirmDate = () => {
     setSelectedDate(pendingDate);
-    setStep('details');
+    setExpandedField(null);
+    setHasChanges(true);
   };
 
-  const handleConfirmTime = () => {
-    if (pendingTime) setSelectedTime(pendingTime);
-    setStep('details');
+  const confirmTime = () => {
+    if (pendingTime) { setSelectedTime(pendingTime); setHasChanges(true); }
+    setExpandedField(null);
   };
 
-  // ── Booked success ──
-  if (step === 'booked') {
+  const chevronStyle = { width: 18, height: 18, color: 'var(--ld-semantic-color-text-subtle, #74767C)', flexShrink: 0 as const };
+
+  // ── Saved success state ──
+  if (saved) {
     return createPortal(
       <>
         <Scrim onClick={onClose} style={{ zIndex: 100 }} />
@@ -260,9 +274,10 @@ function ViewDetailsModal({
             <div className={styles.successIcon}>
               <Check style={{ width: 32, height: 32, color: '#fff' }} />
             </div>
-            <h2 className={styles.confirmedTitle}>Service booked!</h2>
+            <h2 className={styles.confirmedTitle}>Appointment updated!</h2>
             <p className={styles.confirmedText}>
-              Your <strong>{serviceName}</strong> is booked for <strong>{formattedDate}</strong> at <strong>{selectedTime}</strong>. See you then!
+              Your <strong>{serviceName}</strong> is now scheduled for{' '}
+              <strong>{formattedDate}</strong> at <strong>{selectedTime}</strong>. See you then!
             </p>
             <Button variant="primary" onClick={onClose} UNSAFE_className={styles.fullWidthBtn}>
               Done
@@ -274,90 +289,7 @@ function ViewDetailsModal({
     );
   }
 
-  // ── Edit Date ──
-  if (step === 'editDate') {
-    return createPortal(
-      <>
-        <Scrim onClick={onClose} style={{ zIndex: 100 }} />
-        <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="edit-date-title">
-          <div className={styles.modalHeader}>
-            <div className={styles.headerWithBack}>
-              <IconButton aria-label="Back" variant="ghost" size="medium" onClick={() => setStep('details')}>
-                <ArrowLeft style={{ width: 20, height: 20 }} />
-              </IconButton>
-              <h2 id="edit-date-title" className={styles.modalTitle}>Select Date</h2>
-            </div>
-            <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
-              <X style={{ width: 20, height: 20 }} />
-            </IconButton>
-          </div>
-          <div className={styles.editStepBody}>
-            <AppointmentCalendar selectedDate={pendingDate} onSelect={setPendingDate} />
-          </div>
-          <div className={styles.modalFooter}>
-            <Button
-              variant="primary"
-              onClick={handleConfirmDate}
-              UNSAFE_className={styles.fullWidthBtn}
-            >
-              Confirm date
-            </Button>
-          </div>
-        </div>
-      </>,
-      document.body
-    );
-  }
-
-  // ── Edit Time ──
-  if (step === 'editTime') {
-    return createPortal(
-      <>
-        <Scrim onClick={onClose} style={{ zIndex: 100 }} />
-        <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="edit-time-title">
-          <div className={styles.modalHeader}>
-            <div className={styles.headerWithBack}>
-              <IconButton aria-label="Back" variant="ghost" size="medium" onClick={() => setStep('details')}>
-                <ArrowLeft style={{ width: 20, height: 20 }} />
-              </IconButton>
-              <h2 id="edit-time-title" className={styles.modalTitle}>Select Time</h2>
-            </div>
-            <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
-              <X style={{ width: 20, height: 20 }} />
-            </IconButton>
-          </div>
-          <div className={styles.editStepBody}>
-            <p className={styles.editStepHint}>Available time slots for {formattedDate}</p>
-            <div className={styles.timeChips}>
-              {TIMES.map(t => (
-                <Chip
-                  key={t}
-                  selected={pendingTime === t}
-                  onSelectedChange={() => setPendingTime(t)}
-                  size="medium"
-                >
-                  {t}
-                </Chip>
-              ))}
-            </div>
-          </div>
-          <div className={styles.modalFooter}>
-            <Button
-              variant="primary"
-              onClick={handleConfirmTime}
-              disabled={!pendingTime}
-              UNSAFE_className={styles.fullWidthBtn}
-            >
-              Confirm time
-            </Button>
-          </div>
-        </div>
-      </>,
-      document.body
-    );
-  }
-
-  // ── Main details view ──
+  // ── Main details view (with inline expand) ──
   return createPortal(
     <>
       <Scrim onClick={onClose} style={{ zIndex: 100 }} />
@@ -394,12 +326,7 @@ function ViewDetailsModal({
             <div className={styles.apptCallout}>
               <div className={styles.apptCalloutTop}>
                 <p className={styles.apptCalloutTitle}>Save time at the store!</p>
-                <IconButton
-                  aria-label="Dismiss"
-                  variant="ghost"
-                  size="small"
-                  onClick={() => setShowCallout(false)}
-                >
+                <IconButton aria-label="Dismiss" variant="ghost" size="small" onClick={() => setShowCallout(false)}>
                   <X style={{ width: 16, height: 16 }} />
                 </IconButton>
               </div>
@@ -412,26 +339,70 @@ function ViewDetailsModal({
 
           {/* Editable appointment fields */}
           <div className={styles.apptFields}>
+            {/* Date field — inline expand */}
             <div className={styles.apptFieldGroup}>
               <span className={styles.apptFieldLabel}>Date</span>
               <button
-                className={styles.apptFieldValue}
-                onClick={() => { setPendingDate(selectedDate); setStep('editDate'); }}
+                className={[styles.apptFieldValue, expandedField === 'date' ? styles.apptFieldValueOpen : ''].filter(Boolean).join(' ')}
+                onClick={() => toggleField('date')}
+                aria-expanded={expandedField === 'date'}
               >
                 <span>{formattedDate}</span>
-                <ChevronRight style={{ width: 18, height: 18, color: 'var(--ld-semantic-color-text-subtle, #74767C)', flexShrink: 0 }} />
+                {expandedField === 'date'
+                  ? <ChevronUp style={chevronStyle} />
+                  : <ChevronDown style={chevronStyle} />}
               </button>
+              {expandedField === 'date' && (
+                <div className={styles.fieldExpandPanel}>
+                  <AppointmentCalendar selectedDate={pendingDate} onSelect={setPendingDate} />
+                  <Button variant="primary" onClick={confirmDate} UNSAFE_className={styles.fullWidthBtn}>
+                    Confirm date
+                  </Button>
+                </div>
+              )}
             </div>
+
+            {/* Time field — inline expand */}
             <div className={styles.apptFieldGroup}>
               <span className={styles.apptFieldLabel}>Time</span>
               <button
-                className={styles.apptFieldValue}
-                onClick={() => { setPendingTime(null); setStep('editTime'); }}
+                className={[styles.apptFieldValue, expandedField === 'time' ? styles.apptFieldValueOpen : ''].filter(Boolean).join(' ')}
+                onClick={() => toggleField('time')}
+                aria-expanded={expandedField === 'time'}
               >
                 <span>{selectedTime}</span>
-                <ChevronRight style={{ width: 18, height: 18, color: 'var(--ld-semantic-color-text-subtle, #74767C)', flexShrink: 0 }} />
+                {expandedField === 'time'
+                  ? <ChevronUp style={chevronStyle} />
+                  : <ChevronDown style={chevronStyle} />}
               </button>
+              {expandedField === 'time' && (
+                <div className={styles.fieldExpandPanel}>
+                  <p className={styles.editStepHint}>Available times for {formattedDate}</p>
+                  <div className={styles.timeChips}>
+                    {TIMES.map(t => (
+                      <Chip
+                        key={t}
+                        selected={pendingTime === t}
+                        onSelectedChange={() => setPendingTime(t)}
+                        size="medium"
+                      >
+                        {t}
+                      </Chip>
+                    ))}
+                  </div>
+                  <Button
+                    variant="primary"
+                    onClick={confirmTime}
+                    disabled={!pendingTime}
+                    UNSAFE_className={styles.fullWidthBtn}
+                  >
+                    Confirm time
+                  </Button>
+                </div>
+              )}
             </div>
+
+            {/* Static fields */}
             <div className={styles.apptFieldGroup}>
               <span className={styles.apptFieldLabel}>Service</span>
               <div className={styles.apptFieldValueStatic}>{serviceName}</div>
@@ -452,7 +423,6 @@ function ViewDetailsModal({
               </div>
               <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
             </button>
-
             <button className={styles.apptListRow}>
               <UserCircle style={{ width: 22, height: 22, flexShrink: 0 }} />
               <div className={styles.apptListRowContent}>
@@ -461,7 +431,6 @@ function ViewDetailsModal({
               </div>
               <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
             </button>
-
             <button className={styles.apptListRow}>
               <CreditCard style={{ width: 22, height: 22, flexShrink: 0 }} />
               <div className={styles.apptListRowContent}>
@@ -470,7 +439,6 @@ function ViewDetailsModal({
               </div>
               <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
             </button>
-
             <button className={styles.apptListRow}>
               <Receipt style={{ width: 22, height: 22, flexShrink: 0 }} />
               <div className={styles.apptListRowContent}>
@@ -483,7 +451,7 @@ function ViewDetailsModal({
 
           {/* Legal text */}
           <p className={styles.apptLegalText}>
-            By placing this order, you agree to our{' '}
+            By saving your changes, you agree to our{' '}
             <a href="#" className={styles.apptLegalLink}>Privacy Policy</a>
             {' '}and{' '}
             <a href="#" className={styles.apptLegalLink}>Terms of Use</a>.
@@ -494,10 +462,11 @@ function ViewDetailsModal({
         <div className={styles.modalFooter}>
           <Button
             variant="primary"
-            onClick={() => setStep('booked')}
+            onClick={() => setSaved(true)}
+            disabled={!hasChanges}
             UNSAFE_className={styles.fullWidthBtn}
           >
-            Book service {estTotal}
+            {hasChanges ? 'Save changes' : 'No changes to save'}
           </Button>
         </div>
       </div>
