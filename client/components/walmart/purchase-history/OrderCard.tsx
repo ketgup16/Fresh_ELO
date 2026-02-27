@@ -1,4 +1,5 @@
-import { ChevronRight } from '@/components/icons';
+import { useState } from 'react';
+import { ChevronRight, Star, StarFill } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { Divider } from '@/components/ui/Divider';
 import { Alert } from '@/components/ui/Alert';
@@ -68,6 +69,14 @@ const ORDER_TYPE_LABELS: Record<OrderType, string> = {
   auto: 'Auto Care Center',
 };
 
+const EXPERIENCE_LABELS: Record<OrderType, string> = {
+  curbside: 'pickup',
+  delivery: 'delivery',
+  shipping: 'shipping',
+  store: 'in-store',
+  auto: 'Auto Care',
+};
+
 const DELIVERY_STEPS = ['Placed', 'Preparing', 'On the way', 'Delivered'];
 const PICKUP_STEPS = ['Placed', 'Preparing', 'Ready', 'Picked up'];
 const STEP_INDEX: Record<TimelineStep, number> = {
@@ -103,6 +112,50 @@ const FULFILLMENT_ICONS: Record<OrderType, { src: string; alt: string }> = {
 function OrderTypeIcon({ type }: { type: OrderType }) {
   const icon = FULFILLMENT_ICONS[type];
   return <img src={icon.src} alt="" aria-hidden="true" width={64} height={64} />;
+}
+
+function RatingWidget({ orderType }: { orderType: OrderType }) {
+  const [hovered, setHovered] = useState(0);
+  const [selected, setSelected] = useState(0);
+
+  if (selected > 0) {
+    return (
+      <div className={styles.ratingSection}>
+        <p className={styles.ratingThankYou}>Thanks for your feedback!</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.ratingSection}>
+      <p className={styles.ratingTitle}>How was your {EXPERIENCE_LABELS[orderType]} experience?</p>
+      <p className={styles.ratingSubtitle}>Select a rating to begin quick survey.</p>
+      <div
+        className={styles.stars}
+        role="radiogroup"
+        aria-label="Rate your experience"
+        onMouseLeave={() => setHovered(0)}
+      >
+        {[1, 2, 3, 4, 5].map(n => (
+          <button
+            key={n}
+            type="button"
+            role="radio"
+            aria-checked={selected === n}
+            aria-label={`${n} star${n > 1 ? 's' : ''}`}
+            className={styles.starBtn}
+            onMouseEnter={() => setHovered(n)}
+            onClick={() => setSelected(n)}
+          >
+            {n <= (hovered || selected)
+              ? <StarFill style={{ width: 28, height: 28, color: '#F7C200' }} />
+              : <Star    style={{ width: 28, height: 28, color: '#F7C200' }} />
+            }
+          </button>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export function OrderCard({
@@ -227,6 +280,11 @@ export function OrderCard({
           </div>
         )}
       </div>
+
+      {/* Rating — shown for delivered orders */}
+      {timelineStep === 'delivered' && (
+        <RatingWidget orderType={orderType} />
+      )}
 
       {/* Footer */}
       <Divider />

@@ -176,6 +176,65 @@
   justify-content: center;
 }
 
+/* ── Rating section ────────────────────────────────────────────────────────── */
+.ratingSection {
+  padding: 14px 16px;
+  background: var(--ld-semantic-color-background-subtle, #F2F3F3);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ratingTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+  line-height: 20px;
+}
+
+.ratingSubtitle {
+  font-size: 13px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  margin: 0;
+  line-height: 18px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+  margin-top: 6px;
+}
+
+.starBtn {
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: transform 120ms ease;
+}
+
+.starBtn:hover {
+  transform: scale(1.15);
+}
+
+.starBtn:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071DC);
+  outline-offset: 2px;
+}
+
+.ratingThankYou {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+  line-height: 20px;
+}
+
 /* Footer */
 .cardFooter {
   border-top: none;
