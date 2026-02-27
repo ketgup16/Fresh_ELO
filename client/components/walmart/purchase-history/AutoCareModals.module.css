@@ -484,6 +484,11 @@
   border-bottom: none;
 }
 
+/* Open/expanded state for Est. total row */
+.apptListRowOpen {
+  border-bottom: none;
+}
+
 .apptListRow:hover {
   background: var(--ld-semantic-color-fill-subtle, #F2F3F3);
 }
@@ -510,6 +515,41 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   RECEIPT INLINE PANEL (under Est. total row)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.receiptInlinePanel {
+  display: flex;
+  flex-direction: column;
+  background: var(--ld-semantic-color-fill-subtle, #F2F3F3);
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+}
+
+.receiptInlineLines {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.receiptInlineOrderSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px 20px;
+  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+}
+
+/* Flex label for lines with an inline icon (e.g. Temporary hold) */
+.receiptLineLabelFlex {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
 /* ══════════════════════════════════════════════════════════════════════════════
