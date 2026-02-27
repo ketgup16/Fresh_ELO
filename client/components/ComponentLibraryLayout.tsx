@@ -18,12 +18,6 @@ interface NavSection {
 
 const navigationSections: NavSection[] = [
   {
-    titleKey: 'componentLibrary.patterns',
-    items: [
-      { id: 'order-card-patterns', nameKey: 'componentLibrary.navOrderCardPatterns', path: '/component-library/order-card-patterns' },
-    ]
-  },
-  {
     titleKey: 'componentLibrary.gettingStarted',
     items: [
       { id: 'overview', nameKey: 'componentLibrary.overview', path: '/component-library' },
@@ -103,6 +97,12 @@ const navigationSections: NavSection[] = [
       { id: 'scroll-area', nameKey: 'componentLibrary.navScrollArea', path: '/component-library/scroll-area' },
       { id: 'slider', nameKey: 'componentLibrary.navSlider', path: '/component-library/slider' },
       { id: 'toggle', nameKey: 'componentLibrary.navToggle', path: '/component-library/toggle' },
+    ]
+  },
+  {
+    titleKey: 'componentLibrary.patterns',
+    items: [
+      { id: 'order-card-patterns', nameKey: 'componentLibrary.navOrderCardPatterns', path: '/component-library/order-card-patterns' },
     ]
   }
 ];
