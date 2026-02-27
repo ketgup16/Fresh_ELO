@@ -18,6 +18,12 @@ interface NavSection {
 
 const navigationSections: NavSection[] = [
   {
+    titleKey: 'componentLibrary.patterns',
+    items: [
+      { id: 'order-card-patterns', nameKey: 'componentLibrary.navOrderCardPatterns', path: '/component-library/order-card-patterns' },
+    ]
+  },
+  {
     titleKey: 'componentLibrary.gettingStarted',
     items: [
       { id: 'overview', nameKey: 'componentLibrary.overview', path: '/component-library' },

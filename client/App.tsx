@@ -95,6 +95,7 @@ const TextAreaPage = React.lazy(() => import("./pages/component-library/TextArea
 const TextFieldsPage = React.lazy(() => import("./pages/component-library/TextFields"));
 const ThemesPage = React.lazy(() => import("./pages/component-library/Themes"));
 const TogglePage = React.lazy(() => import("./pages/component-library/Toggle"));
+const OrderCardPatternsPage = React.lazy(() => import("./pages/component-library/OrderCardPatterns"));
 
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
@@ -180,6 +181,7 @@ const App = () => (
                 <Route path="tabs" element={<TabsPage />} />
                 <Route path="tags" element={<TagsPage />} />
                 <Route path="toggle" element={<TogglePage />} />
+                <Route path="order-card-patterns" element={<OrderCardPatternsPage />} />
               </Route>
 
               {/* Walmart pages */}
