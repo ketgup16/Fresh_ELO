@@ -194,7 +194,7 @@ export function AutoCareOrderDetailModal({
 
                     {/* Store / vehicle / payment */}
                     <div className={styles.sideCard}>
-                      <Tag variant="primary" color="info">Auto Care</Tag>
+                      <Tag variant="secondary" color="brand" style={{ alignSelf: 'flex-start' }}>Auto Care</Tag>
 
                       <div className={styles.sideSection}>
                         <h4 className={styles.sideSectionTitle}>Store location</h4>
