@@ -96,7 +96,7 @@
 .optionList {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 16px;
   margin-bottom: 16px;
 }
 

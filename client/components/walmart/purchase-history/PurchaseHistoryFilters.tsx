@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FilterChip } from '@/components/ui/FilterChip';
+import { FormGroup } from '@/components/ui/FormGroup';
 import { Search } from '@/components/icons';
 import { Popover, PopoverAnchor, PopoverContent } from '@/components/ui/Popover';
 import { RadioGroup, Radio } from '@/components/ui/radio-group';
@@ -95,7 +96,10 @@ export function PurchaseHistoryFilters({ filters, onFiltersChange }: PurchaseHis
   );
 
   const statusOptions = (
-    <div className={styles.optionList}>
+    <FormGroup
+      UNSAFE_className={styles.optionList}
+      UNSAFE_style={{ '--ld-primitive-scale-space-100': '16px' } as React.CSSProperties}
+    >
       <Checkbox
         checked={pendingStatus.includes('in-progress')}
         label="In progress"
@@ -106,7 +110,7 @@ export function PurchaseHistoryFilters({ filters, onFiltersChange }: PurchaseHis
         label="Completed"
         onCheckedChange={checked => togglePendingStatus('completed', !!checked)}
       />
-    </div>
+    </FormGroup>
   );
 
   return (
