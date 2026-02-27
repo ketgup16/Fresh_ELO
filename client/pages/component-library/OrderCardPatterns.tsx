@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { OrderCard } from '@/components/walmart/purchase-history/OrderCard';
 import { AutoCareOrderCard } from '@/components/walmart/purchase-history/AutoCareOrderCard';
@@ -98,7 +98,7 @@ const PATTERNS: PatternEntry[] = [
   {
     id: 'standard-delivery',
     title: 'Completed delivery order',
-    prompt: 'Show a completed grocery delivery order from Feb 15 with product thumbnails, order total, and a "Start a return" option.',
+    prompt: 'Show a completed grocery delivery order with product thumbnails, order total, and a "Start a return" option.',
     preview: (
       <OrderCard
         orderType="delivery"
@@ -131,7 +131,7 @@ const PATTERNS: PatternEntry[] = [
   {
     id: 'curbside-get-it-now',
     title: 'Active curbside with "Get it now" express upgrade',
-    prompt: 'Show an active curbside order with a countdown to edit and a "Get it now" button to upgrade to express delivery for $9.95.',
+    prompt: 'Show an active curbside order with a countdown to edit and a "Get it now" button to upgrade to express delivery.',
     preview: (
       <CurbsideOrderCard
         {...CURBSIDE_CARD}
@@ -163,7 +163,7 @@ const PATTERNS: PatternEntry[] = [
   {
     id: 'delayed-delivery',
     title: 'Late delivery warning',
-    prompt: 'Show an amber warning card for a delivery that\'s running 2 hours late, with options to reschedule, switch to pickup, or cancel.',
+    prompt: 'Show a delayed delivery warning card with options to reschedule, switch to pickup, or cancel.',
     preview: (
       <DelayedDeliveryCard
         statusHeading="Delayed, estimated up to 2 hours"
@@ -204,6 +204,87 @@ const PATTERNS: PatternEntry[] = [
   },
 ];
 
+// ── Copy button ───────────────────────────────────────────────────────────────
+function CopyPromptButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  function handleCopy() {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
+  return (
+    <button
+      onClick={handleCopy}
+      style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: '12px',
+        width: '100%',
+        padding: '12px 20px',
+        background: copied
+          ? 'var(--ld-semantic-color-fill-positive-subtle, #EAF6ED)'
+          : 'var(--ld-semantic-color-background-subtle, #F2F3F3)',
+        border: 'none',
+        borderTop: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
+        cursor: 'pointer',
+        textAlign: 'left',
+        transition: 'background 0.15s ease',
+        fontFamily: 'var(--ld-semantic-font-family-sans)',
+      }}
+    >
+      {/* Left: label + prompt text */}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <span style={{
+          display: 'block',
+          fontSize: '11px',
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          letterSpacing: '0.06em',
+          color: copied
+            ? 'var(--ld-semantic-color-text-positive, #1A7A34)'
+            : 'var(--ld-semantic-color-text-subtlest, #74767C)',
+          marginBottom: '4px',
+        }}>
+          {copied ? 'Copied!' : 'Prompt'}
+        </span>
+        <span style={{
+          display: 'block',
+          fontSize: '13px',
+          fontStyle: 'italic',
+          color: 'var(--ld-semantic-color-text, #2E2F32)',
+          lineHeight: '1.5',
+        }}>
+          "{text}"
+        </span>
+      </div>
+
+      {/* Right: copy icon */}
+      <span style={{
+        flexShrink: 0,
+        marginTop: '2px',
+        color: copied
+          ? 'var(--ld-semantic-color-text-positive, #1A7A34)'
+          : 'var(--ld-semantic-color-text-subtle, #74767C)',
+        transition: 'color 0.15s ease',
+      }}>
+        {copied ? (
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2.5 8.5L6 12L13.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        ) : (
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <rect x="5.5" y="1.5" width="9" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.5"/>
+            <path d="M3.5 4.5H2.5C1.95 4.5 1.5 4.95 1.5 5.5V14.5C1.5 15.05 1.95 15.5 2.5 15.5H10.5C11.05 15.5 11.5 15.05 11.5 14.5V13.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+        )}
+      </span>
+    </button>
+  );
+}
+
 // ── Pattern card wrapper ──────────────────────────────────────────────────────
 function PatternSection({ pattern }: { pattern: PatternEntry }) {
   return (
@@ -239,38 +320,8 @@ function PatternSection({ pattern }: { pattern: PatternEntry }) {
         {pattern.preview}
       </div>
 
-      {/* Prompt strip */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'flex-start',
-        gap: '10px',
-        padding: '12px 20px',
-        borderTop: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-        backgroundColor: 'var(--ld-semantic-color-background-subtle, #F2F3F3)',
-      }}>
-        <span style={{
-          flexShrink: 0,
-          fontSize: '11px',
-          fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '0.06em',
-          color: 'var(--ld-semantic-color-text-subtlest, #74767C)',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          paddingTop: '1px',
-        }}>
-          Prompt
-        </span>
-        <p style={{
-          margin: 0,
-          fontSize: '13px',
-          color: 'var(--ld-semantic-color-text, #2E2F32)',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          lineHeight: '1.5',
-          fontStyle: 'italic',
-        }}>
-          "{pattern.prompt}"
-        </p>
-      </div>
+      {/* Copyable prompt button */}
+      <CopyPromptButton text={pattern.prompt} />
     </div>
   );
 }
@@ -287,7 +338,7 @@ export default function OrderCardPatternsPage() {
       <PageHeader
         section="Patterns"
         title="Order Card Patterns"
-        description="Ready-to-use card templates for the Purchase History page. Each pattern is a live component — copy the prompt below it to surface it via AI."
+        description="Ready-to-use card templates for the Purchase History page. Each pattern is a live component — click the prompt below it to copy it, then paste it into Fusion."
       />
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', marginTop: '8px' }}>
