@@ -14,6 +14,7 @@ import {
 import { ReviewPromptBanner } from '@/components/walmart/purchase-history/ReviewPromptBanner';
 import { OrderCard, OrderCardProps } from '@/components/walmart/purchase-history/OrderCard';
 import { AutoCareOrderCard } from '@/components/walmart/purchase-history/AutoCareOrderCard';
+import { CombinedOrderCard } from '@/components/walmart/purchase-history/CombinedOrderCard';
 import { InlineAdBanner } from '@/components/walmart/purchase-history/InlineAdBanner';
 import styles from './PurchaseHistory.module.css';
 
