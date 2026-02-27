@@ -110,7 +110,7 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
 
           {/* ── Right: Delivery ── */}
           <div className={styles.section}>
-            <div className={styles.orderMeta}>
+            <div className={styles.orderMeta} style={{ marginBottom: 13 }}>
               <img
                 src={FULFILLMENT_ICONS.delivery.src}
                 alt=""
