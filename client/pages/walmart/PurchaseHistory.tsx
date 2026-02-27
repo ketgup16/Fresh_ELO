@@ -320,7 +320,7 @@ const ORDERS: OrderEntry[] = [
 // Toggle any card on/off by changing its flag. false = hidden, true = visible.
 
 // Hidden by default (template/demo variants)
-const SHOW_COMBINED_CARD        = false; // Auto Care + Curbside bundled card
+const SHOW_COMBINED_CARD        = true; // Auto Care + Curbside bundled card
 const SHOW_AUTO_CARE_ORDER      = false; // Standalone Auto Care appointment card
 const SHOW_CURBSIDE_GET_IT_NOW  = false; // Curbside "Get it now" active order
 const SHOW_DELAYED_DELIVERY     = false; // Delayed delivery warning card
