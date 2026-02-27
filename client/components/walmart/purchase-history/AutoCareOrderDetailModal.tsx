@@ -137,21 +137,19 @@ export function AutoCareOrderDetailModal({
       <ResponsiveLayout maxWidth="full" mobileActiveTab="user">
         <div className={styles.page}>
 
-          {/* ── Breadcrumb + divider ─────────────────────────────────────── */}
-          <div className={styles.topSection}>
-            <div className={styles.breadcrumbRow}>
-              <Breadcrumb aria-label="Order details navigation">
-                <BreadcrumbItem onClick={(e: React.MouseEvent) => { e.preventDefault(); onClose(); }}>
-                  Account
-                </BreadcrumbItem>
-                <BreadcrumbItem onClick={(e: React.MouseEvent) => { e.preventDefault(); onClose(); }}>
-                  Purchase history
-                </BreadcrumbItem>
-                <BreadcrumbItem isCurrent>Order details</BreadcrumbItem>
-              </Breadcrumb>
-            </div>
-            <Divider />
+          {/* ── Breadcrumb — visible on all screen sizes ─────────────────── */}
+          <div className={styles.breadcrumbRow}>
+            <Breadcrumb aria-label="Order details navigation">
+              <BreadcrumbItem onClick={(e: React.MouseEvent) => { e.preventDefault(); onClose(); }}>
+                Account
+              </BreadcrumbItem>
+              <BreadcrumbItem onClick={(e: React.MouseEvent) => { e.preventDefault(); onClose(); }}>
+                Purchase history
+              </BreadcrumbItem>
+              <BreadcrumbItem isCurrent>Order details</BreadcrumbItem>
+            </Breadcrumb>
           </div>
+          <Divider />
 
           {/* ── Body ────────────────────────────────────────────────────── */}
           <div className={styles.body}>
@@ -167,17 +165,20 @@ export function AutoCareOrderDetailModal({
                       {orderDateLabel} order
                     </h1>
                     <span className={styles.orderNumHeader}>
-                      | Order# {orderNum}
+                      <span className={styles.orderNumPipe} aria-hidden="true">|</span>
+                      {' '}Order# {orderNum}
                     </span>
                   </div>
-                  <LinkButton
-                    leading={<Printer style={{ width: 16, height: 16 }} />}
-                    size="small"
-                    color="subtle"
-                    onClick={() => window.print()}
-                  >
-                    Print
-                  </LinkButton>
+                  <span className={styles.printBtn}>
+                    <LinkButton
+                      leading={<Printer style={{ width: 16, height: 16 }} />}
+                      size="small"
+                      color="subtle"
+                      onClick={() => window.print()}
+                    >
+                      Print
+                    </LinkButton>
+                  </span>
                 </div>
 
                 {/* ── Two-column layout ─────────────────────────────────── */}

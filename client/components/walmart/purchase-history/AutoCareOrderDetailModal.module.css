@@ -34,7 +34,7 @@
 }
 
 .breadcrumbRow {
-  padding: 16px 16px 16px;
+  padding: 8px 16px;
 }
 
 /* Body layout: side nav left, main content right */
@@ -65,16 +65,22 @@
 
 /* Responsive — matches PurchaseHistory breakpoints */
 @media (max-width: 1023px) {
-  .topSection {
-    display: none;
-  }
-
   .body {
     flex-direction: column;
   }
 
   .content {
     padding: 16px;
+  }
+
+  /* Hide Print button on mobile */
+  .printBtn {
+    display: none;
+  }
+
+  /* Hide the | separator on mobile */
+  .orderNumPipe {
+    display: none;
   }
 }
 
