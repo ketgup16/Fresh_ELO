@@ -46,7 +46,7 @@ export function GetItNowModal({ open, onClose, location, orderTotal }: GetItNowM
           /* ── Success state ── */
           <div className={styles.successBody}>
             <div className={styles.closeBtnWrap}>
-              <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
+              <IconButton aria-label="Close" variant="ghost" size="small" onClick={onClose}>
                 <X style={{ width: 20, height: 20 }} />
               </IconButton>
             </div>
@@ -66,7 +66,7 @@ export function GetItNowModal({ open, onClose, location, orderTotal }: GetItNowM
           <>
             <div className={styles.header}>
               <h2 id="get-it-now-title" className={styles.title}>Get it now</h2>
-              <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
+              <IconButton aria-label="Close" variant="ghost" size="small" onClick={onClose}>
                 <X style={{ width: 20, height: 20 }} />
               </IconButton>
             </div>
@@ -77,7 +77,11 @@ export function GetItNowModal({ open, onClose, location, orderTotal }: GetItNowM
                 variant="primary"
                 color="brand"
                 leading={<FlashFill style={{ width: 14, height: 14, color: '#F7C200' }} />}
-                style={{ alignSelf: 'flex-start' }}
+                style={{
+                  alignSelf: 'flex-start',
+                  background: 'var(--ld-semantic-color-fill-brand-bold)',
+                  color: 'var(--ld-semantic-color-text-on-fill-brand-bold)',
+                }}
               >
                 Express delivery
               </Tag>
@@ -117,10 +121,10 @@ export function GetItNowModal({ open, onClose, location, orderTotal }: GetItNowM
 
             <div className={styles.footer}>
               <ButtonGroup UNSAFE_className={styles.footerGroup}>
-                <Button variant="secondary" size="medium" onClick={onClose}>
+                <Button variant="secondary" size="small" onClick={onClose}>
                   Cancel
                 </Button>
-                <Button variant="primary" size="medium" onClick={() => setConfirmed(true)}>
+                <Button variant="primary" size="small" onClick={() => setConfirmed(true)}>
                   Confirm — get it now
                 </Button>
               </ButtonGroup>

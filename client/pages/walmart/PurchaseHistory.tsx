@@ -379,6 +379,20 @@ export default function PurchaseHistory() {
 
               {/* Order list */}
               <div className={styles.orderList}>
+                {/* Combined card pattern — oil change + delivery side by side */}
+                {(() => {
+                  const autoCareOrder = ORDERS.find(o => o.id === 'auto-oil-change-mar7');
+                  const deliveryOrder = ORDERS.find(o => o.id === 'delivery-onway-may12');
+                  if (!autoCareOrder || !deliveryOrder) return null;
+                  return (
+                    <CombinedOrderCard
+                      autoCare={autoCareOrder.card}
+                      delivery={deliveryOrder.card}
+                      autoCareAppointmentDate={new Date(2026, 2, 7)}
+                    />
+                  );
+                })()}
+
                 {visibleOrders.length === 0 ? (
                   <p style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)', fontSize: 14 }}>
                     No orders match your filters.

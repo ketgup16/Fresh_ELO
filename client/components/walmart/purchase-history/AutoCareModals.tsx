@@ -135,7 +135,7 @@ function CheckInModal({
         {checkedIn ? (
           <div className={styles.confirmedBody}>
             <div className={styles.closeBtnWrap}>
-              <IconButton aria-label="Close" variant="ghost" size="medium" onClick={handleDone}>
+              <IconButton aria-label="Close" variant="ghost" size="small" onClick={handleDone}>
                 <X style={{ width: 20, height: 20 }} />
               </IconButton>
             </div>
@@ -154,7 +154,7 @@ function CheckInModal({
           <>
             <div className={styles.modalHeader}>
               <h2 id="checkin-title" className={styles.modalTitle}>Check In</h2>
-              <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
+              <IconButton aria-label="Close" variant="ghost" size="small" onClick={onClose}>
                 <X style={{ width: 20, height: 20 }} />
               </IconButton>
             </div>
@@ -277,7 +277,7 @@ function ViewDetailsModal({
         <div className={styles.modalWrap} role="dialog" aria-modal="true">
           <div className={styles.confirmedBody}>
             <div className={styles.closeBtnWrap}>
-              <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
+              <IconButton aria-label="Close" variant="ghost" size="small" onClick={onClose}>
                 <X style={{ width: 20, height: 20 }} />
               </IconButton>
             </div>
@@ -307,7 +307,7 @@ function ViewDetailsModal({
         {/* Header */}
         <div className={styles.modalHeader}>
           <h2 id="appt-details-title" className={styles.modalTitleLarge}>Your Appointment details</h2>
-          <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
+          <IconButton aria-label="Close" variant="ghost" size="small" onClick={onClose}>
             <X style={{ width: 20, height: 20 }} />
           </IconButton>
         </div>
@@ -394,7 +394,7 @@ function ViewDetailsModal({
                         key={t}
                         selected={pendingTime === t}
                         onSelectedChange={() => setPendingTime(t)}
-                        size="medium"
+                        size="small"
                       >
                         {t}
                       </Chip>
