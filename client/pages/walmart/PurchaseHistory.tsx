@@ -319,7 +319,7 @@ const ORDERS: OrderEntry[] = [
 // ── Template card visibility flags ────────────────────────────────────────────
 // Set to true to show demo/template card variants on this page.
 const SHOW_COMBINED_CARD        = false; // Auto Care + Curbside bundled card
-const SHOW_AUTO_CARE_ORDER      = false; // Standalone Auto Care appointment card
+const SHOW_AUTO_CARE_ORDER      = true;  // Standalone Auto Care appointment card
 const SHOW_CURBSIDE_GET_IT_NOW  = false; // Curbside "Get it now" active order
 const SHOW_DELAYED_DELIVERY     = false; // Delayed delivery warning card
 
