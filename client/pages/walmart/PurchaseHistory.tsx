@@ -369,6 +369,15 @@ export default function PurchaseHistory() {
                   animation on insert. Remove the wrapper + component to hide.
               ─────────────────────────────────────────────────────────────── */}
 
+              {/* Combined card: same-day oil change + curbside pickup bundle */}
+              <div className={styles.newCard}>
+                <CombinedOrderCard
+                  autoCare={COMBINED_CARD_AUTO}
+                  delivery={COMBINED_CARD_DELIVERY}
+                  autoCareAppointmentDate={new Date(2026, 2, 7)}
+                />
+              </div>
+
               {/* Delayed delivery warning card: reschedule, switch to pickup, or cancel */}
               <div className={styles.newCard}>
                 <DelayedDeliveryCard
