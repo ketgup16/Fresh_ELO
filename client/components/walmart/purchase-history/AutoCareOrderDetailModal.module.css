@@ -1,61 +1,87 @@
-/* ── Full-screen page overlay ──────────────────────────────────────────────── */
-.detailOverlay {
+/* ── Full-screen overlay ───────────────────────────────────────────────────── */
+/* Sits above everything; the ResponsiveLayout inside renders the real chrome  */
+.overlay {
   position: fixed;
   inset: 0;
   z-index: 201;
-  display: flex;
-  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--ld-semantic-color-fill-surface-primary, #fff);
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  animation: slideIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
+  animation: fadeIn 180ms ease;
 }
 
-@keyframes slideIn {
+@keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
-/* ── Scrollable area below the fixed chrome ────────────────────────────────── */
-.pageBody {
-  flex: 1;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+/* ════════════════════════════════════════════════════════════════════════════
+   PAGE STRUCTURE — mirrors PurchaseHistory.module.css exactly
+   ════════════════════════════════════════════════════════════════════════════ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  background: #fff;
+  min-height: 100%;
+}
+
+/* Top section: breadcrumb + divider */
+.topSection {
   display: flex;
   flex-direction: column;
 }
 
-/* ── Breadcrumb row ────────────────────────────────────────────────────────── */
 .breadcrumbRow {
-  padding: 16px 24px;
-  flex-shrink: 0;
+  padding: 16px 16px 16px;
 }
 
-/* ── Body: sidenav + main side by side ─────────────────────────────────────── */
-.pageLayout {
+/* Body layout: side nav left, main content right */
+.body {
   display: flex;
   flex: 1;
-  align-items: flex-start;
-  min-height: 0;
+  align-items: stretch;
 }
 
-/* ── Main content area ─────────────────────────────────────────────────────── */
-.mainContent {
+.main {
   flex: 1;
   min-width: 0;
+  overflow-y: auto;
 }
 
-.contentInner {
+/* Main content padding — same as PurchaseHistory .content */
+.content {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px 24px 48px;
+  padding: 20px 24px 40px;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
   background: var(--ld-semantic-color-background-subtle, #F2F3F3);
   min-height: 100%;
 }
 
-/* ── Order header ──────────────────────────────────────────────────────────── */
+/* Responsive — matches PurchaseHistory breakpoints */
+@media (max-width: 1023px) {
+  .topSection {
+    display: none;
+  }
+
+  .body {
+    flex-direction: column;
+  }
+
+  .content {
+    padding: 16px;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   ORDER HEADER
+   ════════════════════════════════════════════════════════════════════════════ */
+
 .orderHeader {
   display: flex;
   align-items: baseline;
@@ -80,16 +106,24 @@
 
 .orderNumHeader {
   font-size: 14px;
-  font-weight: 400;
   color: var(--ld-semantic-color-text, #2E2F32);
 }
 
-/* ── Two-column layout ─────────────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════════════
+   TWO-COLUMN LAYOUT
+   ════════════════════════════════════════════════════════════════════════════ */
+
 .columns {
   display: grid;
   grid-template-columns: 1fr 340px;
   align-items: start;
   gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .columns {
+    grid-template-columns: 1fr 300px;
+  }
 }
 
 @media (max-width: 1023px) {
@@ -100,24 +134,18 @@
   .sidebar {
     order: -1;
   }
-
-  .contentInner {
-    padding: 16px 16px 40px;
-  }
-
-  .breadcrumbRow {
-    padding: 12px 16px;
-  }
 }
 
-/* ── Left column ───────────────────────────────────────────────────────────── */
 .mainCol {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* ── White content cards ───────────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════════════
+   CONTENT CARDS
+   ════════════════════════════════════════════════════════════════════════════ */
+
 .card {
   background: var(--ld-semantic-color-fill-surface-primary, #fff);
   border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
@@ -128,16 +156,11 @@
   gap: 12px;
 }
 
-/* ── Appointment card header ───────────────────────────────────────────────── */
+/* ── Appointment card ──────────────────────────────────────────────────────── */
 .fulfillmentRow {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.autoIcon {
-  object-fit: contain;
-  flex-shrink: 0;
 }
 
 .fulfillmentText {
@@ -148,7 +171,6 @@
 
 .fulfillmentLabel {
   font-size: 12px;
-  font-weight: 400;
   color: var(--ld-semantic-color-text-subtle, #74767C);
   line-height: 16px;
 }
@@ -164,7 +186,7 @@
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2E2F32);
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 @media (max-width: 640px) {
@@ -187,7 +209,7 @@
   margin: 0;
 }
 
-/* ── Services block ────────────────────────────────────────────────────────── */
+/* ── Services ──────────────────────────────────────────────────────────────── */
 .serviceBlock {
   display: flex;
   flex-direction: column;
@@ -263,7 +285,10 @@
   color: var(--ld-semantic-color-action-fill-primary, #0071DC);
 }
 
-/* ── Sidebar ───────────────────────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════════════
+   SIDEBAR
+   ════════════════════════════════════════════════════════════════════════════ */
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -272,7 +297,6 @@
   top: 20px;
 }
 
-/* ── Sidebar card ──────────────────────────────────────────────────────────── */
 .sideCard {
   background: var(--ld-semantic-color-fill-surface-primary, #fff);
   border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
@@ -303,7 +327,6 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  color: var(--ld-semantic-color-text, #2E2F32);
 }
 
 .sideText {
@@ -333,15 +356,9 @@
   color: var(--ld-semantic-color-text, #2E2F32);
 }
 
-.priceLineLabel {
-  flex: 1;
-}
+.priceLineLabel { flex: 1; }
+.priceLineValue { flex-shrink: 0; }
 
-.priceLineValue {
-  flex-shrink: 0;
-}
-
-/* ── Total row ─────────────────────────────────────────────────────────────── */
 .priceTotal {
   display: flex;
   justify-content: space-between;
@@ -350,12 +367,7 @@
   border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
 }
 
-.priceTotalLabel {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
-}
-
+.priceTotalLabel,
 .priceTotalValue {
   font-size: 16px;
   font-weight: 700;
@@ -415,9 +427,7 @@
   text-align: left;
 }
 
-.chargeHistoryRow:hover {
-  opacity: 0.8;
-}
+.chargeHistoryRow:hover { opacity: 0.8; }
 
 .chargeHistoryText {
   flex: 1;
@@ -437,7 +447,7 @@
   color: var(--ld-semantic-color-text-subtle, #74767C);
 }
 
-/* ── Order number + CSS barcode ────────────────────────────────────────────── */
+/* ── Order number + barcode ────────────────────────────────────────────────── */
 .orderNumSide {
   font-size: 13px;
   color: var(--ld-semantic-color-text, #2E2F32);
