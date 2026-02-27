@@ -233,6 +233,7 @@ const ORDERS: OrderEntry[] = [
       statusHeading: 'Delivered on Feb 10',
       timelineStep: 'delivered',
       products: [P.blueberries, P.strawberries, P.grapefruit, P.bananas, P.milk, P.tide],
+      orderTotal: '$67.13',
       returnNotice: 'You still have items to return in this order',
       returnDeadline: 'Jun 22',
       actions: [{ label: 'View details', variant: 'secondary' }],
