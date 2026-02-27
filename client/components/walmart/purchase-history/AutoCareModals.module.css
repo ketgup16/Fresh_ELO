@@ -116,8 +116,9 @@
 .calGrid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  padding: 8px;
+  padding: 8px 4px;
   gap: 2px;
+  justify-items: center;
 }
 
 .calDayHeader {
@@ -134,8 +135,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  width: 100%;
+  width: 36px;
+  height: 36px;
   border: none;
   background: none;
   cursor: pointer;
@@ -144,6 +145,7 @@
   border-radius: 50%;
   transition: background 120ms;
   font-family: inherit;
+  flex-shrink: 0;
 }
 
 .calDay:hover:not(:disabled) {
