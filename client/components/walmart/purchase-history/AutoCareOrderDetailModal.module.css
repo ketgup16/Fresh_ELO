@@ -1,0 +1,554 @@
+/* ── Full-screen overlay ───────────────────────────────────────────────────── */
+.detailOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  animation: slideUp 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Sticky top bar ────────────────────────────────────────────────────────── */
+.topBar {
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+}
+
+.topBarInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 24px;
+}
+
+/* ── Breadcrumb ────────────────────────────────────────────────────────────── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.breadcrumbLink {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ld-semantic-color-action-fill-primary, #0071DC);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.breadcrumbLink:hover {
+  color: var(--ld-semantic-color-action-fill-primary-hovered, #004F9A);
+}
+
+.breadcrumbCurrent {
+  font-size: 13px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+}
+
+/* ── Scrollable page body ──────────────────────────────────────────────────── */
+.pageBody {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--ld-semantic-color-background-subtle, #F2F3F3);
+}
+
+.pageInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Order header row ──────────────────────────────────────────────────────── */
+.orderHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.orderHeaderLeft {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.orderDate {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+}
+
+.orderNumHeader {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.printBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ld-semantic-color-action-fill-primary, #0071DC);
+  cursor: pointer;
+  text-decoration: underline;
+  flex-shrink: 0;
+}
+
+.printBtn:hover {
+  color: var(--ld-semantic-color-action-fill-primary-hovered, #004F9A);
+}
+
+/* ── Two-column layout ─────────────────────────────────────────────────────── */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  align-items: start;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    order: -1;
+  }
+}
+
+/* ── Main column ───────────────────────────────────────────────────────────── */
+.mainCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Generic card ──────────────────────────────────────────────────────────── */
+.card {
+  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Appointment status card ───────────────────────────────────────────────── */
+.appointmentCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.appointmentCardLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fulfillmentRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.autoIcon {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.fulfillmentText {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.fulfillmentLabel {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  line-height: 16px;
+}
+
+.fulfillmentSub {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  line-height: 16px;
+}
+
+.apptHeading {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .apptHeading {
+    font-size: 20px;
+  }
+}
+
+.apptActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ── Section title ─────────────────────────────────────────────────────────── */
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0 0 4px;
+}
+
+/* ── Services block ────────────────────────────────────────────────────────── */
+.serviceBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vehicleName {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+}
+
+.serviceList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.serviceItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  line-height: 20px;
+}
+
+.serviceItem::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ld-semantic-color-text-subtle, #74767C);
+  flex-shrink: 0;
+}
+
+/* ── Help list ─────────────────────────────────────────────────────────────── */
+.helpList {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  margin-top: -4px;
+}
+
+.helpRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 0;
+  border: none;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  background: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  cursor: pointer;
+  text-align: left;
+  transition: color 120ms;
+}
+
+.helpRow:last-child {
+  border-bottom: none;
+}
+
+.helpRow:hover {
+  color: var(--ld-semantic-color-action-fill-primary, #0071DC);
+}
+
+/* ── Sidebar ───────────────────────────────────────────────────────────────── */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 20px;
+}
+
+/* ── Sidebar card ──────────────────────────────────────────────────────────── */
+.sideCard {
+  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ── Auto Care chip ────────────────────────────────────────────────────────── */
+.sideChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--ld-semantic-color-fill-info-subtle, #EBF3FF);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-action-fill-primary, #0071DC);
+  align-self: flex-start;
+}
+
+/* ── Sidebar section ───────────────────────────────────────────────────────── */
+.sideSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+}
+
+.sideSection:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.sideSectionTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+}
+
+.sideSectionContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.sideText {
+  font-size: 14px;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+}
+
+.sideTextSub {
+  font-size: 13px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  margin: 2px 0 0;
+}
+
+/* ── Pricing lines ─────────────────────────────────────────────────────────── */
+.pricingLines {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.priceLine {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.priceLineLabel {
+  flex: 1;
+}
+
+.priceLineValue {
+  flex-shrink: 0;
+  font-weight: 400;
+}
+
+/* ── Total row ─────────────────────────────────────────────────────────────── */
+.priceTotal {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+}
+
+.priceTotalLabel {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.priceTotalValue {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+/* ── Temporary adjusted total ──────────────────────────────────────────────── */
+.priceAdjusted {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+}
+
+.priceAdjustedRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.priceAdjustedLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  display: inline-flex;
+  align-items: center;
+}
+
+.priceAdjustedValue {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  flex-shrink: 0;
+}
+
+.priceAdjustedNote {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Charge history row ────────────────────────────────────────────────────── */
+.chargeHistoryRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 0 0;
+  border: none;
+  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: background 120ms;
+}
+
+.chargeHistoryRow:hover {
+  opacity: 0.8;
+}
+
+.chargeHistoryText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.chargeHistoryTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.chargeHistorySub {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+}
+
+/* ── Order number + barcode ────────────────────────────────────────────────── */
+.orderNumSide {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+  font-family: var(--ld-semantic-font-family-mono, 'Courier New', monospace);
+}
+
+/* CSS barcode using repeating gradient */
+.barcode {
+  height: 56px;
+  width: 100%;
+  border-radius: 2px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #1a1a1a 0px,   #1a1a1a 2px,
+    transparent    2px,   transparent    5px,
+    #1a1a1a 5px,   #1a1a1a 6px,
+    transparent    6px,   transparent    8px,
+    #1a1a1a 8px,   #1a1a1a 11px,
+    transparent    11px,  transparent    13px,
+    #1a1a1a 13px,  #1a1a1a 14px,
+    transparent    14px,  transparent    17px,
+    #1a1a1a 17px,  #1a1a1a 20px,
+    transparent    20px,  transparent    22px,
+    #1a1a1a 22px,  #1a1a1a 23px,
+    transparent    23px,  transparent    27px,
+    #1a1a1a 27px,  #1a1a1a 29px,
+    transparent    29px,  transparent    31px,
+    #1a1a1a 31px,  #1a1a1a 33px,
+    transparent    33px,  transparent    36px,
+    #1a1a1a 36px,  #1a1a1a 37px,
+    transparent    37px,  transparent    40px,
+    #1a1a1a 40px,  #1a1a1a 42px,
+    transparent    42px,  transparent    45px,
+    #1a1a1a 45px,  #1a1a1a 47px,
+    transparent    47px,  transparent    48px,
+    #1a1a1a 48px,  #1a1a1a 51px,
+    transparent    51px,  transparent    54px,
+    #1a1a1a 54px,  #1a1a1a 55px,
+    transparent    55px,  transparent    58px,
+    #1a1a1a 58px,  #1a1a1a 60px,
+    transparent    60px,  transparent    62px,
+    #1a1a1a 62px,  #1a1a1a 64px,
+    transparent    64px,  transparent    67px
+  );
+  background-size: 67px 100%;
+}

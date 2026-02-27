@@ -22,6 +22,7 @@ export function AutoCareOrderCard(props: OrderCardProps) {
         openModal={openModal}
         onClose={() => setOpenModal(null)}
         onSwitchToCheckIn={() => setOpenModal('checkIn')}
+        onSwitchToReschedule={() => setOpenModal('reschedule')}
         serviceDetails={props.serviceDetails}
         location={props.location}
         statusHeading={props.statusHeading}

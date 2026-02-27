@@ -8,10 +8,11 @@ import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 import { Chip } from '@/components/ui/Chip';
 import { Scrim } from '@/components/ui/Scrim';
+import { AutoCareOrderDetailModal } from './AutoCareOrderDetailModal';
 import type { ServiceDetails } from './OrderCard';
 import styles from './AutoCareModals.module.css';
 
-export type AutoCareModalType = 'checkIn' | 'reschedule' | 'viewDetails' | null;
+export type AutoCareModalType = 'checkIn' | 'reschedule' | 'viewDetails' | 'editDetails' | null;
 type DetailsStep = 'details' | 'editDate';
 
 const TIMES = ['9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '3:00 PM'];
@@ -520,6 +521,7 @@ interface AutoCareModalsProps {
   openModal: AutoCareModalType;
   onClose: () => void;
   onSwitchToCheckIn?: () => void;
+  onSwitchToReschedule?: () => void;
   serviceDetails?: ServiceDetails;
   location?: string;
   statusHeading: string;
@@ -528,10 +530,23 @@ interface AutoCareModalsProps {
 }
 
 export function AutoCareModals({
-  openModal, onClose, onSwitchToCheckIn, serviceDetails, location, statusHeading, orderTotal,
+  openModal, onClose, onSwitchToCheckIn, onSwitchToReschedule, serviceDetails, location, statusHeading, orderTotal,
 }: AutoCareModalsProps) {
   return (
     <>
+      {/* Full order details page — triggered by 'View details' */}
+      <AutoCareOrderDetailModal
+        open={openModal === 'viewDetails'}
+        onClose={onClose}
+        onCheckIn={onSwitchToCheckIn ?? onClose}
+        onReschedule={onSwitchToReschedule ?? onClose}
+        serviceDetails={serviceDetails}
+        location={location}
+        statusHeading={statusHeading}
+        orderTotal={orderTotal}
+      />
+
+      {/* Check-in flow */}
       <CheckInModal
         open={openModal === 'checkIn'}
         onClose={onClose}
@@ -539,8 +554,10 @@ export function AutoCareModals({
         location={location}
         statusHeading={statusHeading}
       />
+
+      {/* Reschedule / edit appointment flow (inline date+time pickers) */}
       <ViewDetailsModal
-        open={openModal === 'viewDetails' || openModal === 'reschedule'}
+        open={openModal === 'reschedule' || openModal === 'editDetails'}
         onClose={onClose}
         onCheckIn={onSwitchToCheckIn ?? onClose}
         serviceDetails={serviceDetails}
