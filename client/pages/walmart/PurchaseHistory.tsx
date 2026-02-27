@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { IconButton } from '@/components/ui/IconButton';
-import { ChevronDown, Email, Gear } from '@/components/icons';
+import { ChevronDown, Email } from '@/components/icons';
 import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
 import { Divider } from '@/components/ui/Divider';
 import { ResponsiveLayout } from '@/components/walmart/ResponsiveLayout';
@@ -17,7 +17,6 @@ import { AutoCareOrderCard } from '@/components/walmart/purchase-history/AutoCar
 import { CombinedOrderCard } from '@/components/walmart/purchase-history/CombinedOrderCard';
 import { CurbsideOrderCard } from '@/components/walmart/purchase-history/CurbsideOrderCard';
 import { InlineAdBanner } from '@/components/walmart/purchase-history/InlineAdBanner';
-import { DelayedDeliveryCard } from '@/components/walmart/purchase-history/DelayedDeliveryCard';
 import styles from './PurchaseHistory.module.css';
 
 const CDN = 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F';
@@ -64,6 +63,65 @@ const REVIEW_PRODUCTS = [
   { name: P.marioKart.alt,      imageSrc: P.marioKart.src,      rating: 4.5 },
 ];
 
+// ── Card data for prompt-driven card patterns ─────────────────────────────────
+// These data objects are referenced by the special cards rendered below ReviewPromptBanner.
+// They are NOT part of the filterable ORDERS list.
+
+const COMBINED_CARD_AUTO = {
+  orderType: 'auto' as const,
+  location: 'Carrollton Supercenter at 1213 Trinity Mills Rd',
+  statusHeading: 'Sat, Mar 7, 10:00am–11:00am',
+  products: [] as { src: string; alt: string }[],
+  serviceDetails: {
+    vehicle: '2019 Toyota Camry',
+    services: ['Conventional Oil & Filter Change', 'Tire Rotation'],
+    serviceItems: [
+      {
+        name: 'Conventional Oil & Filter Change',
+        variant: 'Conventional oil - Pennzoil',
+        price: '$29.88',
+        capacity: 'Up to 5 qts.',
+        notes: [
+          'Additional charges may apply if more oil is needed.',
+          'Package selections can be changed at the store.',
+        ],
+      },
+      {
+        name: 'Tire Rotation',
+        variant: 'Standard 4-tire rotation',
+        price: '$14.88',
+        notes: ['Includes inspection of tread depth and tire pressure.'],
+      },
+    ],
+    appointmentContact: 'Marcus Johnson',
+    storePhone: '(972) 466-2228',
+    storeHours: '7am to 7pm',
+    serviceInstructions: 'Please check the cabin air filter as well. Last replaced about 2 years ago.',
+  },
+  orderTotal: '$89.88',
+  actions: [
+    { label: 'Check in', variant: 'primary' as const },
+    { label: 'Reschedule', variant: 'secondary' as const },
+    { label: 'View details', variant: 'secondary' as const },
+  ],
+};
+
+const COMBINED_CARD_DELIVERY = {
+  orderType: 'curbside' as const,
+  location: 'Carrollton Supercenter at 1213 Trinity Mills Rd',
+  statusHeading: 'Sat, Mar 7, 12:00pm–1:00pm',
+  timelineStep: 'placed' as const,
+  timelineVariant: 'pickup' as const,
+  addItemsBanner: '1hr 20min left to add to your order',
+  products: [P.milk, P.eggs, P.bananas, P.avocado, P.redOnion, P.blueberries],
+  orderTotal: '$85.00',
+  actions: [
+    { label: 'Get it now', variant: 'primary' as const },
+    { label: 'Edit items', variant: 'secondary' as const },
+    { label: 'View details', variant: 'secondary' as const },
+  ],
+};
+
 // ── Order data with filter metadata ──────────────────────────────────────────
 interface OrderEntry {
   id: string;
@@ -87,102 +145,6 @@ function makeSearchText(card: OrderCardProps): string {
 }
 
 const ORDERS: OrderEntry[] = [
-  {
-    id: 'auto-oil-change-mar7',
-    date: new Date(2026, 2, 7),
-    orderStatus: 'in-progress',
-    hasReturn: false,
-    isInStore: true,
-    isOnline: false,
-    card: {
-      orderType: 'auto',
-      location: 'Carrollton Supercenter at 1213 Trinity Mills Rd',
-      statusHeading: 'Sat, Mar 7, 10:00am–11:00am',
-      products: [],
-      serviceDetails: {
-        vehicle: '2019 Toyota Camry',
-        services: ['Conventional Oil & Filter Change', 'Tire Rotation'],
-        serviceItems: [
-          {
-            name: 'Conventional Oil & Filter Change',
-            variant: 'Conventional oil - Pennzoil',
-            price: '$29.88',
-            capacity: 'Up to 5 qts.',
-            notes: [
-              'Additional charges may apply if more oil is needed.',
-              'Package selections can be changed at the store.',
-            ],
-          },
-          {
-            name: 'Tire Rotation',
-            variant: 'Standard 4-tire rotation',
-            price: '$14.88',
-            notes: [
-              'Includes inspection of tread depth and tire pressure.',
-            ],
-          },
-        ],
-        appointmentContact: 'Marcus Johnson',
-        storePhone: '(972) 466-2228',
-        storeHours: '7am to 7pm',
-        serviceInstructions: 'Please check the cabin air filter as well. Last replaced about 2 years ago.',
-      },
-      orderTotal: '$89.88',
-      actions: [
-        { label: 'Check in', variant: 'primary' },
-        { label: 'Reschedule', variant: 'secondary' },
-        { label: 'View details', variant: 'secondary' },
-      ],
-    },
-    get searchText() { return makeSearchText(this.card); },
-  },
-  {
-    id: 'curbside-feb28',
-    date: new Date(2026, 1, 28),
-    orderStatus: 'in-progress',
-    hasReturn: false,
-    isInStore: false,
-    isOnline: true,
-    card: {
-      orderType: 'curbside',
-      location: 'Carrollton Supercenter at 1213 Trinity Mills Rd',
-      statusHeading: 'Sat, Mar 7, 12:00pm–1:00pm',
-      timelineStep: 'placed',
-      timelineVariant: 'pickup',
-      addItemsBanner: '1hr 20min left to add to your order',
-      products: [P.milk, P.eggs, P.bananas, P.avocado, P.redOnion, P.blueberries],
-      orderTotal: '$85.00',
-      actions: [
-        { label: 'Get it now', variant: 'primary' },
-        { label: 'Edit items', variant: 'secondary' },
-        { label: 'View details', variant: 'secondary' },
-      ],
-    },
-    get searchText() { return makeSearchText(this.card); },
-  },
-  {
-    id: 'delivery-delayed-may12',
-    date: new Date(2026, 1, 25),
-    orderStatus: 'in-progress',
-    hasReturn: false,
-    isInStore: false,
-    isOnline: true,
-    card: {
-      orderType: 'delivery',
-      statusHeading: 'Delayed, estimated up to 2 hours',
-      timelineStep: 'preparing',
-      isDelayed: true,
-      products: [P.strawberries, P.blueberries, P.bananas],
-      orderTotal: '$32.47',
-      actions: [
-        { label: 'Reschedule delivery', variant: 'secondary' },
-        { label: 'Pickup instead', variant: 'secondary' },
-        { label: 'View details', variant: 'secondary' },
-        { label: 'Cancel order', variant: 'secondary' },
-      ],
-    },
-    get searchText() { return makeSearchText(this.card); },
-  },
   {
     id: 'delivery-onway-may12',
     date: new Date(2026, 1, 25),
@@ -316,33 +278,13 @@ const ORDERS: OrderEntry[] = [
   },
 ];
 
-// ── Card visibility flags ────────────────────────────────────────────────────
-// Toggle any card on/off by changing its flag. false = hidden, true = visible.
-
-// Hidden by default (template/demo variants)
-const SHOW_COMBINED_CARD        = true; // Auto Care + Curbside bundled card
-const SHOW_AUTO_CARE_ORDER      = false; // Standalone Auto Care appointment card
-const SHOW_CURBSIDE_GET_IT_NOW  = false; // Curbside "Get it now" active order
-const SHOW_DELAYED_DELIVERY     = false; // Delayed delivery warning card
-
-// Visible by default (standard order list)
-const SHOW_DELIVERY_ON_THE_WAY  = true;  // Delivery in transit
-const SHOW_COMPLETED_DELIVERY   = true;  // Completed grocery delivery (Feb 15, Start a return)
-const SHOW_DELIVERY_WITH_RETURN = true;  // Completed delivery with return notice (Feb 10)
-const SHOW_SHIPPING_ELECTRONICS = true;  // Shipped electronics order
-const SHOW_SHIPPING_APPLIANCES  = true;  // Shipped appliances order
-const SHOW_COMPLETED_CURBSIDE   = true;  // Completed curbside pickup
-const SHOW_STORE_PURCHASE       = true;  // In-store purchase
-
 // ── Filter logic ──────────────────────────────────────────────────────────────
 function applyFilters(orders: OrderEntry[], f: FilterState): OrderEntry[] {
   return orders.filter(order => {
-    // Text search
     if (f.search.trim()) {
       if (!order.searchText.includes(f.search.trim().toLowerCase())) return false;
     }
 
-    // Date filter
     if (f.date) {
       const now = new Date();
       if (f.date === 'last3m') {
@@ -356,10 +298,7 @@ function applyFilters(orders: OrderEntry[], f: FilterState): OrderEntry[] {
       }
     }
 
-    // Status filter
     if (f.status.length > 0 && !f.status.includes(order.orderStatus)) return false;
-
-    // Toggle filters
     if (f.returnsOnly && !order.hasReturn) return false;
     if (f.inStoreOnly && !order.isInStore) return false;
     if (f.onlineOnly && !order.isOnline) return false;
@@ -372,39 +311,12 @@ function applyFilters(orders: OrderEntry[], f: FilterState): OrderEntry[] {
 export default function PurchaseHistory() {
   const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
 
-  // Demo card state — initialized from constants so AI flag edits take effect on reload.
-  // Gear button resets these to hidden at runtime without a code change.
-  const [showCombined, setShowCombined]               = useState(SHOW_COMBINED_CARD);
-  const [showAutoCare, setShowAutoCare]               = useState(SHOW_AUTO_CARE_ORDER);
-  const [showCurbsideGetItNow, setShowCurbsideGetItNow] = useState(SHOW_CURBSIDE_GET_IT_NOW);
-  const [showDelayed, setShowDelayed]                 = useState(SHOW_DELAYED_DELIVERY);
-
-  function resetDemoCards() {
-    setShowCombined(false);
-    setShowAutoCare(false);
-    setShowCurbsideGetItNow(false);
-    setShowDelayed(false);
-  }
-
-  const visibleOrders = useMemo(() => {
-    let filtered = applyFilters(ORDERS, filters);
-    if (!showAutoCare)         filtered = filtered.filter(o => o.id !== 'auto-oil-change-mar7');
-    if (!showCurbsideGetItNow) filtered = filtered.filter(o => o.id !== 'curbside-feb28');
-    if (!showDelayed)          filtered = filtered.filter(o => o.id !== 'delivery-delayed-may12');
-    if (!SHOW_DELIVERY_ON_THE_WAY) filtered = filtered.filter(o => o.id !== 'delivery-onway-may12');
-    if (!SHOW_COMPLETED_DELIVERY)  filtered = filtered.filter(o => o.id !== 'delivery-mar4');
-    if (!SHOW_DELIVERY_WITH_RETURN)filtered = filtered.filter(o => o.id !== 'delivery-mar8');
-    if (!SHOW_SHIPPING_ELECTRONICS)filtered = filtered.filter(o => o.id !== 'shipping-mar5-electronics');
-    if (!SHOW_SHIPPING_APPLIANCES) filtered = filtered.filter(o => o.id !== 'shipping-feb28-appliances');
-    if (!SHOW_COMPLETED_CURBSIDE)  filtered = filtered.filter(o => o.id !== 'curbside-feb25-garden');
-    if (!SHOW_STORE_PURCHASE)      filtered = filtered.filter(o => o.id !== 'store-feb19-2024');
-    return filtered;
-  }, [filters, showAutoCare, showCurbsideGetItNow, showDelayed]);
+  const visibleOrders = useMemo(() => applyFilters(ORDERS, filters), [filters]);
 
   return (
     <ResponsiveLayout maxWidth="full" mobileActiveTab="user">
       <div className={styles.page}>
-        {/* Breadcrumbs — visible on all screen sizes */}
+        {/* Breadcrumbs */}
         <div className={styles.breadcrumbRow}>
           <Breadcrumb aria-label="Purchase history navigation">
             <BreadcrumbItem href="/account">Account</BreadcrumbItem>
@@ -413,9 +325,6 @@ export default function PurchaseHistory() {
           <div className={styles.breadcrumbActions}>
             <IconButton variant="ghost" size="medium" aria-label="Messages">
               <Email style={{ width: 20, height: 20 }} />
-            </IconButton>
-            <IconButton variant="ghost" size="medium" aria-label="Reset demo cards" onClick={resetDemoCards}>
-              <Gear style={{ width: 20, height: 20 }} />
             </IconButton>
           </div>
         </div>
@@ -450,63 +359,50 @@ export default function PurchaseHistory() {
               {/* Review Prompt */}
               <ReviewPromptBanner products={REVIEW_PRODUCTS} ctaIllustration={REVIEW_CTA} />
 
-              {/* Order list */}
-              <div className={styles.orderList}>
-                {/* Combined card pattern — oil change + delivery side by side */}
-                {showCombined && (() => {
-                  const autoCareOrder = ORDERS.find(o => o.id === 'auto-oil-change-mar7');
-                  const deliveryOrder = ORDERS.find(o => o.id === 'curbside-feb28');
-                  if (!autoCareOrder || !deliveryOrder) return null;
-                  return (
-                    <div className={styles.newCard}>
-                      <CombinedOrderCard
-                        autoCare={autoCareOrder.card}
-                        delivery={deliveryOrder.card}
-                        autoCareAppointmentDate={new Date(2026, 2, 7)}
-                      />
-                    </div>
-                  );
-                })()}
+              {/* ── Prompt-driven card patterns ──────────────────────────────
+                  Cards below are added/removed here in response to user prompts.
+                  Each card is wrapped in styles.newCard to trigger the green glow
+                  animation on insert. Remove the wrapper + component to hide.
+              ─────────────────────────────────────────────────────────────── */}
 
+              {/* Combined card: same-day oil change + curbside pickup bundle */}
+              <div className={styles.newCard}>
+                <CombinedOrderCard
+                  autoCare={COMBINED_CARD_AUTO}
+                  delivery={COMBINED_CARD_DELIVERY}
+                  autoCareAppointmentDate={new Date(2026, 2, 7)}
+                />
+              </div>
+
+              {/* ── Standard order list ───────────────────────────────────── */}
+              <div className={styles.orderList}>
                 {visibleOrders.length === 0 ? (
                   <p style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)', fontSize: 14 }}>
                     No orders match your filters.
                   </p>
                 ) : (
-                  visibleOrders.map((order, i) => {
-                    const isDemoCard = ['auto-oil-change-mar7', 'curbside-feb28'].includes(order.id);
-                    const isDelayedCard = showDelayed && order.id === 'delivery-delayed-may12';
-                    return (
-                      <div key={order.id} className={isDemoCard || isDelayedCard ? styles.newCard : undefined}>
-                        {i === 3 && (
-                          <div style={{ marginBottom: 16 }}>
-                            <InlineAdBanner
-                              logoSrc={GEICO_LOGO}
-                              logoAlt="GEICO"
-                              headline="15 minutes could save you on car insurance. Really..."
-                              ctaLabel="Get a quote"
-                              imageSrc={GEICO_AD}
-                              imageAlt="GEICO gecko"
-                            />
-                          </div>
-                        )}
-                        {isDelayedCard ? (
-                          <DelayedDeliveryCard
-                            statusHeading="Delayed, estimated up to 2 hours"
-                            delayEstimate="Estimated up to 2 hours late"
-                            products={[P.strawberries, P.blueberries, P.bananas]}
-                            orderTotal="$32.47"
+                  visibleOrders.map((order, i) => (
+                    <div key={order.id}>
+                      {i === 3 && (
+                        <div style={{ marginBottom: 16 }}>
+                          <InlineAdBanner
+                            logoSrc={GEICO_LOGO}
+                            logoAlt="GEICO"
+                            headline="15 minutes could save you on car insurance. Really..."
+                            ctaLabel="Get a quote"
+                            imageSrc={GEICO_AD}
+                            imageAlt="GEICO gecko"
                           />
-                        ) : (
-                          order.card.orderType === 'auto'
-                            ? <AutoCareOrderCard {...order.card} />
-                            : order.card.orderType === 'curbside'
-                              ? <CurbsideOrderCard {...order.card} />
-                              : <OrderCard {...order.card} />
-                        )}
-                      </div>
-                    );
-                  })
+                        </div>
+                      )}
+                      {order.card.orderType === 'auto'
+                        ? <AutoCareOrderCard {...order.card} />
+                        : order.card.orderType === 'curbside'
+                          ? <CurbsideOrderCard {...order.card} />
+                          : <OrderCard {...order.card} />
+                      }
+                    </div>
+                  ))
                 )}
               </div>
 

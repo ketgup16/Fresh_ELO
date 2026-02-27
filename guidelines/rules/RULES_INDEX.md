@@ -381,23 +381,25 @@ public/illustrations/
 
 ---
 
-### 14. Purchase History Card Pattern Toggles
+### 14. Purchase History Prompt-Driven Card Patterns
 **File**: `RULE_PurchaseHistoryCardPatterns.md`
 
-**When**: User mentions any hidden card pattern on the Purchase History page
+**When**: User mentions any card pattern on the Purchase History page
 
 **Key Requirements**:
-- ✅ IMMEDIATELY set the matching flag to `true` in `client/pages/walmart/PurchaseHistory.tsx` — no confirmation needed
+- ✅ IMMEDIATELY add the card's JSX directly below `<ReviewPromptBanner>` — no flags, no confirmation
+- ✅ ALWAYS wrap the inserted card in `<div className={styles.newCard}>` for the green glow animation
 - ✅ Match on the **exact prompt text** from `OrderCardPatterns.tsx` OR keyword aliases
-- ✅ Only change the flag, nothing else
-- ✅ When a new pattern is added to `OrderCardPatterns.tsx`, also add a flag in `PurchaseHistory.tsx` and a new entry here
+- ✅ Define card data as a named constant near the top of `PurchaseHistory.tsx`
+- ✅ When a new pattern is added to `OrderCardPatterns.tsx`, add a row to the mapping table in `RULE_PurchaseHistoryCardPatterns.md`
+- ❌ NEVER use boolean flags to show/hide these cards
 
-| Exact prompt (from OrderCardPatterns.tsx) | Flag |
+| Exact prompt (from OrderCardPatterns.tsx) | Component |
 |---|---|
-| "Show a combined card pairing a same-day oil change with a curbside pickup…" | `SHOW_COMBINED_CARD` |
-| "Show a scheduled oil change appointment card with Check in, Reschedule…" | `SHOW_AUTO_CARE_ORDER` |
-| "Show an active curbside order with a countdown to edit and a 'Get it now' button…" | `SHOW_CURBSIDE_GET_IT_NOW` |
-| "Show a delayed delivery warning card with options to reschedule, switch to pickup…" | `SHOW_DELAYED_DELIVERY` |
+| "Show a combined card pairing a same-day oil change with a curbside pickup…" | `<CombinedOrderCard>` |
+| "Show a scheduled oil change appointment card with Check in, Reschedule…" | `<AutoCareOrderCard>` |
+| "Show an active curbside order with a countdown to edit and a 'Get it now' button…" | `<CurbsideOrderCard>` |
+| "Show a delayed delivery warning card with options to reschedule, switch to pickup…" | `<DelayedDeliveryCard>` |
 
 ---
 

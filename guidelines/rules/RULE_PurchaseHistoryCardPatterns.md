@@ -1,5 +1,5 @@
 ---
-title: Purchase History — Card Pattern Visibility Toggles
+title: Purchase History — Prompt-Driven Card Patterns
 scope: rule
 status: stable
 owner: design-system
@@ -8,74 +8,90 @@ last_updated: 2025-02-27
 
 ## Purpose
 
-Every order card on the Purchase History page (`client/pages/walmart/PurchaseHistory.tsx`) has a boolean flag. When a user asks to show or hide a card, the agent MUST immediately flip the corresponding flag — no questions, no confirmation, no planning step.
+Special order card patterns on the Purchase History page are added and removed **directly in JSX** — there are no boolean flags. When a user prompts for a card pattern, add it to the page. When it should no longer be shown, remove it.
 
 ---
 
-## All Flags
+## Where Cards Go
 
-All flags live near the top of `client/pages/walmart/PurchaseHistory.tsx`:
+All prompt-driven cards live **immediately below `<ReviewPromptBanner>`** in `client/pages/walmart/PurchaseHistory.tsx`, inside the "Prompt-driven card patterns" comment block:
 
-```ts
-// Hidden by default (template/demo variants)
-const SHOW_COMBINED_CARD        = false; // Auto Care + Curbside bundled card
-const SHOW_AUTO_CARE_ORDER      = false; // Standalone Auto Care appointment card
-const SHOW_CURBSIDE_GET_IT_NOW  = false; // Curbside "Get it now" active order
-const SHOW_DELAYED_DELIVERY     = false; // Delayed delivery warning card
+```tsx
+{/* ── Prompt-driven card patterns ──────────────────────────────
+    Cards below are added/removed here in response to user prompts.
+    Each card is wrapped in styles.newCard to trigger the green glow
+    animation on insert. Remove the wrapper + component to hide.
+─────────────────────────────────────────────────────────────── */}
 
-// Visible by default (standard order list)
-const SHOW_DELIVERY_ON_THE_WAY  = true;  // Delivery in transit
-const SHOW_COMPLETED_DELIVERY   = true;  // Completed grocery delivery (Feb 15, Start a return)
-const SHOW_DELIVERY_WITH_RETURN = true;  // Completed delivery with return notice (Feb 10)
-const SHOW_SHIPPING_ELECTRONICS = true;  // Shipped electronics order
-const SHOW_SHIPPING_APPLIANCES  = true;  // Shipped appliances order
-const SHOW_COMPLETED_CURBSIDE   = true;  // Completed curbside pickup
-const SHOW_STORE_PURCHASE       = true;  // In-store purchase
+{/* Combined card: same-day oil change + curbside pickup bundle */}
+<div className={styles.newCard}>
+  <CombinedOrderCard
+    autoCare={COMBINED_CARD_AUTO}
+    delivery={COMBINED_CARD_DELIVERY}
+    autoCareAppointmentDate={new Date(2026, 2, 7)}
+  />
+</div>
 ```
 
 ---
 
-## Trigger → Flag Mapping
+## Green Glow on Insert
 
-Match on the **exact prompt** from `OrderCardPatterns.tsx` OR keyword aliases. Both trigger the same immediate flag change.
+Every inserted card **MUST** be wrapped in `<div className={styles.newCard}>`. This triggers the green glow animation defined in `PurchaseHistory.module.css` that plays once on mount, signaling the card was just added.
 
-### Hidden-by-default patterns
+```tsx
+// ✅ CORRECT — always wrap in newCard for green glow
+<div className={styles.newCard}>
+  <SomeOrderCard ... />
+</div>
 
-| Exact prompt / keyword aliases | Flag |
-|---|---|
-| "Show a combined card pairing a same-day oil change with a curbside pickup, with a merged bundle total." / "combined card", "bundle total", "oil change + curbside" | `SHOW_COMBINED_CARD` |
-| "Show a scheduled oil change appointment card with Check in, Reschedule, and View details actions." / "auto care order", "oil change card", "auto care appointment" | `SHOW_AUTO_CARE_ORDER` |
-| "Show an active curbside order with a countdown to edit and a 'Get it now' button to upgrade to express delivery." / "get it now", "active curbside", "express upgrade" | `SHOW_CURBSIDE_GET_IT_NOW` |
-| "Show a delayed delivery warning card with options to reschedule, switch to pickup, or cancel." / "delayed delivery", "late delivery", "delay card" | `SHOW_DELAYED_DELIVERY` |
-
-### Visible-by-default patterns
-
-| Keyword aliases | Flag |
-|---|---|
-| "delivery on the way", "in transit", "delivery in progress", "on its way" | `SHOW_DELIVERY_ON_THE_WAY` |
-| "completed grocery delivery", "start a return", "delivered feb 15", "completed delivery" | `SHOW_COMPLETED_DELIVERY` |
-| "return notice", "delivery with return", "delivered feb 10", "return deadline" | `SHOW_DELIVERY_WITH_RETURN` |
-| "shipping electronics", "shipped electronics", "nintendo", "shipped order" | `SHOW_SHIPPING_ELECTRONICS` |
-| "shipping appliances", "shipped appliances", "kitchenaid", "appliance order" | `SHOW_SHIPPING_APPLIANCES` |
-| "completed curbside", "curbside pickup completed", "picked up", "garden order" | `SHOW_COMPLETED_CURBSIDE` |
-| "store purchase", "in-store", "in store purchase" | `SHOW_STORE_PURCHASE` |
+// ❌ WRONG — no glow, card appears without visual feedback
+<SomeOrderCard ... />
+```
 
 ---
 
-## How to Apply
+## Prompt → Card Mapping
 
-**Showing a hidden card** → set flag to `true`
-**Hiding a visible card** → set flag to `false`
+Match on the **exact prompt** from `OrderCardPatterns.tsx` OR keyword aliases. Both trigger the same immediate JSX add/remove.
 
-```ts
-// Single line change only — nothing else
-const SHOW_COMPLETED_DELIVERY = false;
+| Exact prompt / keyword aliases | Component | Data constants |
+|---|---|---|
+| "Show a combined card pairing a same-day oil change with a curbside pickup, with a merged bundle total." / "combined card", "bundle total", "oil change + curbside" | `<CombinedOrderCard>` | `COMBINED_CARD_AUTO`, `COMBINED_CARD_DELIVERY` |
+| "Show a scheduled oil change appointment card with Check in, Reschedule, and View details actions." / "auto care order", "oil change card", "auto care appointment" | `<AutoCareOrderCard>` | Define inline or as `AUTO_CARE_CARD_DATA` |
+| "Show an active curbside order with a countdown to edit and a 'Get it now' button to upgrade to express delivery." / "get it now", "active curbside", "express upgrade" | `<CurbsideOrderCard>` | Define inline or as `CURBSIDE_GET_IT_NOW_DATA` |
+| "Show a delayed delivery warning card with options to reschedule, switch to pickup, or cancel." / "delayed delivery", "late delivery", "delay card" | `<DelayedDeliveryCard>` | Define inline or as `DELAYED_DELIVERY_DATA` |
+
+---
+
+## How to Add a Card
+
+1. **Define card data** as a named constant near the top of the file (see `COMBINED_CARD_AUTO` / `COMBINED_CARD_DELIVERY` pattern).
+2. **Add the JSX** inside the prompt-driven comment block, wrapped in `<div className={styles.newCard}>`.
+3. **Add the import** if the component isn't already imported.
+
+```tsx
+// Step 1 — data constant (near top of file)
+const AUTO_CARE_CARD_DATA = {
+  orderType: 'auto' as const,
+  // ...
+};
+
+// Step 2 — JSX (inside prompt-driven block, below ReviewPromptBanner)
+<div className={styles.newCard}>
+  <AutoCareOrderCard {...AUTO_CARE_CARD_DATA} />
+</div>
 ```
 
-The user can trigger this by:
-- Pasting a prompt from the [Order Card Patterns page](/component-library/order-card-patterns)
-- Selecting a card in the preview and saying "hide"
-- Typing any keyword alias
+## How to Remove a Card
+
+Delete the `<div className={styles.newCard}>` wrapper and the component inside it. Also remove the data constant if it's no longer used.
+
+---
+
+## Standard Order List (ORDERS array)
+
+The `ORDERS` array contains only the **always-visible** filterable orders. Do not add prompt-driven card data to `ORDERS` — keep it in dedicated constants as shown above.
 
 ---
 
@@ -83,19 +99,18 @@ The user can trigger this by:
 
 When a new pattern is added to `client/pages/component-library/OrderCardPatterns.tsx`:
 
-1. **Add a flag** to the flags block in `client/pages/walmart/PurchaseHistory.tsx` (default `false` for hidden, `true` for visible)
-2. **Wire the flag** in the `visibleOrders` useMemo filter — follow the existing pattern
-3. **Add a row** to the Trigger → Flag Mapping table in this file
-4. **Update `RULES_INDEX.md`** rule #14 table
+1. **Add a row** to the Prompt → Card Mapping table above.
+2. **Update `RULES_INDEX.md`** rule #14 table.
+3. **Define data constants** near the top of `PurchaseHistory.tsx` for the new card's props.
 
 ---
 
 ## Enforcement Rules
 
-- ✅ ALWAYS flip the flag immediately — zero confirmation, zero delay
-- ✅ ONLY change the flag line — do not touch any other code
-- ✅ Multiple flags can be set in one edit
-- ✅ ALWAYS add a flag + rule entry when a new pattern is added to `OrderCardPatterns.tsx`
-- ❌ NEVER ask "are you sure?" before setting or unsetting a flag
-- ❌ NEVER refactor or reorder the flags block
-- ❌ NEVER add a flag without a corresponding card in the ORDERS array or render block
+- ✅ ALWAYS add prompt-driven cards immediately below `<ReviewPromptBanner>`
+- ✅ ALWAYS wrap inserted cards in `<div className={styles.newCard}>` for green glow
+- ✅ ONLY add/remove JSX — do not add boolean flags
+- ✅ ALWAYS add the import for any new card component
+- ❌ NEVER add boolean visibility flags
+- ❌ NEVER add prompt-driven card data to the `ORDERS` array
+- ❌ NEVER skip the `newCard` wrapper on insert
