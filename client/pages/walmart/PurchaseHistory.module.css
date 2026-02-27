@@ -68,6 +68,24 @@
   width: 100%;
 }
 
+/* New card glow — plays once on mount when a demo card is unhidden */
+.newCard {
+  border-radius: 8px;
+  animation: cardGlow 2.4s ease-out forwards;
+}
+
+@keyframes cardGlow {
+  0% {
+    box-shadow: 0 0 0 2px #1A7A34, 0 0 24px 6px rgba(26, 122, 52, 0.30);
+  }
+  55% {
+    box-shadow: 0 0 0 2px #1A7A34, 0 0 24px 6px rgba(26, 122, 52, 0.30);
+  }
+  100% {
+    box-shadow: none;
+  }
+}
+
 /* Pagination */
 .pagination {
   display: flex;

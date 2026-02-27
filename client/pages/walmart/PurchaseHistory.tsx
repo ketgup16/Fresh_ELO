@@ -372,11 +372,25 @@ function applyFilters(orders: OrderEntry[], f: FilterState): OrderEntry[] {
 export default function PurchaseHistory() {
   const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
 
+  // Demo card state — initialized from constants so AI flag edits take effect on reload.
+  // Gear button resets these to hidden at runtime without a code change.
+  const [showCombined, setShowCombined]               = useState(SHOW_COMBINED_CARD);
+  const [showAutoCare, setShowAutoCare]               = useState(SHOW_AUTO_CARE_ORDER);
+  const [showCurbsideGetItNow, setShowCurbsideGetItNow] = useState(SHOW_CURBSIDE_GET_IT_NOW);
+  const [showDelayed, setShowDelayed]                 = useState(SHOW_DELAYED_DELIVERY);
+
+  function resetDemoCards() {
+    setShowCombined(false);
+    setShowAutoCare(false);
+    setShowCurbsideGetItNow(false);
+    setShowDelayed(false);
+  }
+
   const visibleOrders = useMemo(() => {
     let filtered = applyFilters(ORDERS, filters);
-    if (!SHOW_AUTO_CARE_ORDER)     filtered = filtered.filter(o => o.id !== 'auto-oil-change-mar7');
-    if (!SHOW_CURBSIDE_GET_IT_NOW) filtered = filtered.filter(o => o.id !== 'curbside-feb28');
-    if (!SHOW_DELAYED_DELIVERY)    filtered = filtered.filter(o => o.id !== 'delivery-delayed-may12');
+    if (!showAutoCare)         filtered = filtered.filter(o => o.id !== 'auto-oil-change-mar7');
+    if (!showCurbsideGetItNow) filtered = filtered.filter(o => o.id !== 'curbside-feb28');
+    if (!showDelayed)          filtered = filtered.filter(o => o.id !== 'delivery-delayed-may12');
     if (!SHOW_DELIVERY_ON_THE_WAY) filtered = filtered.filter(o => o.id !== 'delivery-onway-may12');
     if (!SHOW_COMPLETED_DELIVERY)  filtered = filtered.filter(o => o.id !== 'delivery-mar4');
     if (!SHOW_DELIVERY_WITH_RETURN)filtered = filtered.filter(o => o.id !== 'delivery-mar8');
@@ -385,7 +399,7 @@ export default function PurchaseHistory() {
     if (!SHOW_COMPLETED_CURBSIDE)  filtered = filtered.filter(o => o.id !== 'curbside-feb25-garden');
     if (!SHOW_STORE_PURCHASE)      filtered = filtered.filter(o => o.id !== 'store-feb19-2024');
     return filtered;
-  }, [filters]);
+  }, [filters, showAutoCare, showCurbsideGetItNow, showDelayed]);
 
   return (
     <ResponsiveLayout maxWidth="full" mobileActiveTab="user">
@@ -400,7 +414,7 @@ export default function PurchaseHistory() {
             <IconButton variant="ghost" size="medium" aria-label="Messages">
               <Email style={{ width: 20, height: 20 }} />
             </IconButton>
-            <IconButton variant="ghost" size="medium" aria-label="Account settings">
+            <IconButton variant="ghost" size="medium" aria-label="Reset demo cards" onClick={resetDemoCards}>
               <Gear style={{ width: 20, height: 20 }} />
             </IconButton>
           </div>
@@ -439,16 +453,18 @@ export default function PurchaseHistory() {
               {/* Order list */}
               <div className={styles.orderList}>
                 {/* Combined card pattern — oil change + delivery side by side */}
-                {SHOW_COMBINED_CARD && (() => {
+                {showCombined && (() => {
                   const autoCareOrder = ORDERS.find(o => o.id === 'auto-oil-change-mar7');
                   const deliveryOrder = ORDERS.find(o => o.id === 'curbside-feb28');
                   if (!autoCareOrder || !deliveryOrder) return null;
                   return (
-                    <CombinedOrderCard
-                      autoCare={autoCareOrder.card}
-                      delivery={deliveryOrder.card}
-                      autoCareAppointmentDate={new Date(2026, 2, 7)}
-                    />
+                    <div className={styles.newCard}>
+                      <CombinedOrderCard
+                        autoCare={autoCareOrder.card}
+                        delivery={deliveryOrder.card}
+                        autoCareAppointmentDate={new Date(2026, 2, 7)}
+                      />
+                    </div>
                   );
                 })()}
 
@@ -457,37 +473,40 @@ export default function PurchaseHistory() {
                     No orders match your filters.
                   </p>
                 ) : (
-                  visibleOrders.map((order, i) => (
-                    <div key={order.id}>
-                      {i === 3 && (
-                        <div style={{ marginBottom: 16 }}>
-                          <InlineAdBanner
-                            logoSrc={GEICO_LOGO}
-                            logoAlt="GEICO"
-                            headline="15 minutes could save you on car insurance. Really..."
-                            ctaLabel="Get a quote"
-                            imageSrc={GEICO_AD}
-                            imageAlt="GEICO gecko"
-                          />
-                        </div>
-                      )}
-                      {SHOW_DELAYED_DELIVERY && order.id === 'delivery-delayed-may12' && (
-                        <div style={{ marginBottom: 16 }}>
+                  visibleOrders.map((order, i) => {
+                    const isDemoCard = ['auto-oil-change-mar7', 'curbside-feb28'].includes(order.id);
+                    const isDelayedCard = showDelayed && order.id === 'delivery-delayed-may12';
+                    return (
+                      <div key={order.id} className={isDemoCard || isDelayedCard ? styles.newCard : undefined}>
+                        {i === 3 && (
+                          <div style={{ marginBottom: 16 }}>
+                            <InlineAdBanner
+                              logoSrc={GEICO_LOGO}
+                              logoAlt="GEICO"
+                              headline="15 minutes could save you on car insurance. Really..."
+                              ctaLabel="Get a quote"
+                              imageSrc={GEICO_AD}
+                              imageAlt="GEICO gecko"
+                            />
+                          </div>
+                        )}
+                        {isDelayedCard ? (
                           <DelayedDeliveryCard
                             statusHeading="Delayed, estimated up to 2 hours"
                             delayEstimate="Estimated up to 2 hours late"
                             products={[P.strawberries, P.blueberries, P.bananas]}
                             orderTotal="$32.47"
                           />
-                        </div>
-                      )}
-                      {order.card.orderType === 'auto'
-                        ? <AutoCareOrderCard {...order.card} />
-                        : order.card.orderType === 'curbside'
-                          ? <CurbsideOrderCard {...order.card} />
-                          : <OrderCard {...order.card} />}
-                    </div>
-                  ))
+                        ) : (
+                          order.card.orderType === 'auto'
+                            ? <AutoCareOrderCard {...order.card} />
+                            : order.card.orderType === 'curbside'
+                              ? <CurbsideOrderCard {...order.card} />
+                              : <OrderCard {...order.card} />
+                        )}
+                      </div>
+                    );
+                  })
                 )}
               </div>
 
