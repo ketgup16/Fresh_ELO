@@ -50,10 +50,13 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
     return a;
   }) ?? [];
 
-  const deliveryPrimary   = delivery.actions?.filter(a => a.variant === 'primary') ?? [];
-  const deliverySecondary = (delivery.actions?.filter(a => a.variant === 'secondary') ?? []).map(a =>
+  const deliveryActions = (delivery.actions ?? []).map(a =>
     a.label === 'Get it now' ? { ...a, onClick: () => setShowGetItNow(true) } : a
   );
+
+  const parsePrice = (s?: string) => parseFloat((s ?? '0').replace(/[^0-9.]/g, '')) || 0;
+  const bundleTotal = `$${(parsePrice(autoCare.orderTotal) + parsePrice(delivery.orderTotal)).toFixed(2)}`;
+
   const activeStep = delivery.timelineStep ? STEP_INDEX[delivery.timelineStep] : undefined;
   const rightIcon  = FULFILLMENT_ICONS[delivery.orderType] ?? FULFILLMENT_ICONS.delivery;
   const rightLabel = ORDER_TYPE_LABELS[delivery.orderType] ?? ORDER_TYPE_LABELS.delivery;
@@ -121,9 +124,9 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
           {/* Vertical divider */}
           <div className={styles.verticalDivider} aria-hidden="true" />
 
-          {/* ── Right: Delivery ── */}
+          {/* ── Right: Delivery / Curbside ── */}
           <div className={styles.section}>
-            <div className={styles.orderMeta} style={{ marginBottom: 13 }}>
+            <div className={styles.orderMeta} style={{ marginBottom: 1 }}>
               <img
                 src={rightIcon.src}
                 alt=""
@@ -132,6 +135,9 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
               />
               <div className={styles.metaText}>
                 <span className={styles.eyebrow}>{rightLabel}</span>
+                {delivery.location && (
+                  <span className={styles.location}>{delivery.location}</span>
+                )}
                 <h3 className={styles.statusHeading}>{delivery.statusHeading}</h3>
               </div>
             </div>
@@ -154,13 +160,14 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
             )}
 
             <div className={styles.actions}>
-              {deliveryPrimary.map(a => (
-                <Button key={a.label} variant="primary" size="small" onClick={a.onClick} UNSAFE_className={styles.actionBtn}>
-                  {a.label}
-                </Button>
-              ))}
-              {deliverySecondary.map(a => (
-                <Button key={a.label} variant="secondary" size="small" onClick={a.onClick} UNSAFE_className={styles.actionBtn}>
+              {deliveryActions.map(a => (
+                <Button
+                  key={a.label}
+                  variant={a.variant}
+                  size="small"
+                  onClick={a.onClick}
+                  UNSAFE_className={styles.actionBtn}
+                >
                   {a.label}
                 </Button>
               ))}
@@ -180,6 +187,12 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
             <span className={styles.footerLabel}>{rightLabel}</span>
             <span className={styles.orderTotal}>Order total {delivery.orderTotal}</span>
           </div>
+        </div>
+
+        {/* Bundle total row */}
+        <div className={styles.bundleRow}>
+          <span className={styles.bundleLabel}>Bundle total</span>
+          <span className={styles.bundleTotal}>{bundleTotal}</span>
         </div>
       </article>
 

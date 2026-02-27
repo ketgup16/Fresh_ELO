@@ -200,29 +200,42 @@
   line-height: 18px;
 }
 
-.stars {
-  display: flex;
-  gap: 2px;
-  margin-top: 6px;
+/* Interactive overlay wrapper — LD Rating renders visually, buttons handle input */
+.starsWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  height: 28px; /* tall enough for large LD stars + breathing room */
 }
 
-.starBtn {
+.ratingDisplay {
+  pointer-events: none;
+  /* Scale the LD large stars (20px) up to 28px via transform for visual weight */
+  transform: scale(1.4);
+  transform-origin: left center;
+}
+
+.starOverlays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  /* Each large star is 20px, scaled 1.4× = 28px */
+  width: calc(5 * 28px);
+  height: 100%;
+}
+
+.starOverlayBtn {
+  flex: 1;
   background: none;
   border: none;
-  padding: 2px;
+  padding: 0;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  transition: transform 120ms ease;
+  border-radius: 2px;
 }
 
-.starBtn:hover {
-  transform: scale(1.15);
-}
-
-.starBtn:focus-visible {
+.starOverlayBtn:focus-visible {
   outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071DC);
   outline-offset: 2px;
 }

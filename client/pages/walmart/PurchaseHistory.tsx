@@ -146,15 +146,15 @@ const ORDERS: OrderEntry[] = [
     card: {
       orderType: 'curbside',
       location: 'Carrollton Supercenter at 1213 Trinity Mills Rd',
-      statusHeading: 'Sat, Feb 28, 5pm–6pm',
+      statusHeading: 'Sat, Mar 7, 12:00pm–1:00pm',
       timelineStep: 'placed',
       timelineVariant: 'pickup',
       addItemsBanner: '1hr 20min left to add to your order',
       products: [P.milk, P.eggs, P.bananas, P.avocado, P.redOnion, P.blueberries],
       orderTotal: '$85.00',
       actions: [
-        { label: 'Edit items', variant: 'primary' },
-        { label: 'Get it now', variant: 'secondary' },
+        { label: 'Get it now', variant: 'primary' },
+        { label: 'Edit items', variant: 'secondary' },
         { label: 'View details', variant: 'secondary' },
       ],
     },
