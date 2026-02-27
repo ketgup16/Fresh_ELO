@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { ChevronLeft, ChevronRight, Check } from '@/components/icons';
+import { ChevronLeft, ChevronRight, Check, X } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
+import { IconButton } from '@/components/ui/IconButton';
+import { Chip } from '@/components/ui/Chip';
+import { Scrim } from '@/components/ui/Scrim';
 import type { ServiceDetails } from './OrderCard';
 import styles from './AutoCareModals.module.css';
 
 export type AutoCareModalType = 'checkIn' | 'reschedule' | 'viewDetails' | null;
 
 const HERO_IMAGE =
-  'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F9de482c973c84198a984b033fd033105?format=webp&width=800&height=1200';
+  'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F3109be97542e41e484222dde38d7cc4b?format=webp&width=800&height=1200';
 
 const TIMES = ['9:00 AM', '11:00 AM', '1:00 PM', '3:00 PM'];
 const WEEK_DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -30,11 +33,6 @@ function useModalEffects(open: boolean, onClose: () => void) {
       document.removeEventListener('keydown', onKey);
     };
   }, [open, onClose]);
-}
-
-// ── Overlay ───────────────────────────────────────────────────────────────────
-function Overlay({ onClose }: { onClose: () => void }) {
-  return <div className={styles.overlay} onClick={onClose} aria-hidden="true" />;
 }
 
 // ── Mini Calendar ─────────────────────────────────────────────────────────────
@@ -77,13 +75,13 @@ function AppointmentCalendar({
   return (
     <div className={styles.calendar}>
       <div className={styles.calNav}>
-        <button className={styles.calNavBtn} onClick={prevMonth} aria-label="Previous month">
+        <IconButton aria-label="Previous month" variant="ghost" size="small" onClick={prevMonth}>
           <ChevronLeft style={{ width: 20, height: 20 }} />
-        </button>
+        </IconButton>
         <span className={styles.calMonthLabel}>{MONTHS_FULL[viewMonth]} {viewYear}</span>
-        <button className={styles.calNavBtn} onClick={nextMonth} aria-label="Next month">
+        <IconButton aria-label="Next month" variant="ghost" size="small" onClick={nextMonth}>
           <ChevronRight style={{ width: 20, height: 20 }} />
-        </button>
+        </IconButton>
       </div>
       <div className={styles.calGrid}>
         {WEEK_DAYS.map(d => (
@@ -133,11 +131,15 @@ function RescheduleModal({
 
   return createPortal(
     <>
-      <Overlay onClose={onClose} />
+      <Scrim onClick={onClose} style={{ zIndex: 100 }} />
       <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="reschedule-title">
         {confirmed ? (
           <div className={styles.confirmedBody}>
-            <button className={styles.closeBtn} onClick={handleDone} aria-label="Close">✕</button>
+            <div className={styles.closeBtnWrap}>
+              <IconButton aria-label="Close" variant="ghost" size="medium" onClick={handleDone}>
+                <X style={{ width: 20, height: 20 }} />
+              </IconButton>
+            </div>
             <div className={styles.successIcon}>
               <Check style={{ width: 32, height: 32, color: '#fff' }} />
             </div>
@@ -153,7 +155,9 @@ function RescheduleModal({
           <>
             <div className={styles.modalHeader}>
               <h2 id="reschedule-title" className={styles.modalTitle}>Schedule Your Appointment</h2>
-              <button className={styles.closeBtn} onClick={onClose} aria-label="Close">✕</button>
+              <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
+                <X style={{ width: 20, height: 20 }} />
+              </IconButton>
             </div>
             <div className={styles.modalScrollBody}>
               <img src={HERO_IMAGE} alt="Walmart Auto Care Center" className={styles.heroImage} />
@@ -163,14 +167,14 @@ function RescheduleModal({
                 <p className={styles.sectionLabel}>Select Time</p>
                 <div className={styles.timeChips}>
                   {TIMES.map(t => (
-                    <button
+                    <Chip
                       key={t}
-                      className={[styles.timeChip, selectedTime === t ? styles.timeChipSelected : ''].filter(Boolean).join(' ')}
-                      onClick={() => setSelectedTime(t)}
-                      aria-pressed={selectedTime === t}
+                      selected={selectedTime === t}
+                      onSelectedChange={() => setSelectedTime(t)}
+                      size="medium"
                     >
                       {t}
-                    </button>
+                    </Chip>
                   ))}
                 </div>
               </div>
@@ -210,11 +214,15 @@ function CheckInModal({
 
   return createPortal(
     <>
-      <Overlay onClose={onClose} />
+      <Scrim onClick={onClose} style={{ zIndex: 100 }} />
       <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="checkin-title">
         {checkedIn ? (
           <div className={styles.confirmedBody}>
-            <button className={styles.closeBtn} onClick={handleDone} aria-label="Close">✕</button>
+            <div className={styles.closeBtnWrap}>
+              <IconButton aria-label="Close" variant="ghost" size="medium" onClick={handleDone}>
+                <X style={{ width: 20, height: 20 }} />
+              </IconButton>
+            </div>
             <div className={styles.successIcon}>
               <Check style={{ width: 32, height: 32, color: '#fff' }} />
             </div>
@@ -230,7 +238,9 @@ function CheckInModal({
           <>
             <div className={styles.modalHeader}>
               <h2 id="checkin-title" className={styles.modalTitle}>Check In</h2>
-              <button className={styles.closeBtn} onClick={onClose} aria-label="Close">✕</button>
+              <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
+                <X style={{ width: 20, height: 20 }} />
+              </IconButton>
             </div>
             <div className={styles.checkInBody}>
               <div className={styles.detailCard}>
@@ -288,11 +298,13 @@ function ViewDetailsModal({
 
   return createPortal(
     <>
-      <Overlay onClose={onClose} />
+      <Scrim onClick={onClose} style={{ zIndex: 100 }} />
       <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="details-title">
         <div className={styles.modalHeader}>
           <h2 id="details-title" className={styles.modalTitle}>Appointment Details</h2>
-          <button className={styles.closeBtn} onClick={onClose} aria-label="Close">✕</button>
+          <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
+            <X style={{ width: 20, height: 20 }} />
+          </IconButton>
         </div>
         <div className={styles.detailsBody}>
           <div className={styles.detailRow}>

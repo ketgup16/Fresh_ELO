@@ -1,11 +1,3 @@
-/* ── Overlay ──────────────────────────────────────────────────────────────── */
-.overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: rgba(0, 0, 0, 0.5);
-}
-
 /* ── Modal wrapper ─────────────────────────────────────────────────────────── */
 .modalWrap {
   position: fixed;
@@ -48,20 +40,11 @@
   line-height: 1.3;
 }
 
-.closeBtn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
-  padding: 4px 8px;
-  border-radius: 4px;
-  line-height: 1;
-  transition: background 150ms;
-}
-
-.closeBtn:hover {
-  background: var(--ld-semantic-color-fill-subtle, #F2F3F3);
+/* ── Close button wrapper for confirmed state ─────────────────────────────── */
+.closeBtnWrap {
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }
 
 /* ── Scrollable body ───────────────────────────────────────────────────────── */
@@ -122,24 +105,6 @@
   justify-content: space-between;
   padding: 12px 8px;
   border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
-}
-
-.calNavBtn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  color: var(--ld-semantic-color-text, #2E2F32);
-  transition: background 150ms;
-}
-
-.calNavBtn:hover {
-  background: var(--ld-semantic-color-fill-subtle, #F2F3F3);
 }
 
 .calMonthLabel {
@@ -204,30 +169,6 @@
   padding: 0 20px 4px;
 }
 
-.timeChip {
-  border: 1.5px solid var(--ld-semantic-color-separator, #E3E4E5);
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
-  border-radius: 6px;
-  padding: 8px 14px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ld-semantic-color-text, #2E2F32);
-  cursor: pointer;
-  transition: border-color 120ms, background 120ms;
-  font-family: inherit;
-}
-
-.timeChip:hover {
-  border-color: var(--ld-semantic-color-action-fill-primary, #0071DC);
-}
-
-.timeChipSelected {
-  border-color: var(--ld-semantic-color-action-fill-primary, #0071DC);
-  background: var(--ld-semantic-color-action-fill-primary, #0071DC);
-  color: #fff;
-  font-weight: 700;
-}
-
 /* ── Footer ────────────────────────────────────────────────────────────────── */
 .modalFooter {
   display: flex;
@@ -257,6 +198,7 @@
 
 /* ── Confirmed / success state ─────────────────────────────────────────────── */
 .confirmedBody {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
