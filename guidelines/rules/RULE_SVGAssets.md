@@ -202,11 +202,23 @@ public/illustrations/
 
 When an illustration is needed for a component or page, follow this order:
 
-1. **Check `public/illustrations/`** — search all subfolders for an asset matching the name or visual concept (e.g. "Toys", "Grocery", "Delivery")
-2. **Use the existing asset** if a match is found — reference it with a local path
-3. **Only generate a new image if**:
-   - The Figma design specifies an image that does not exist in the folder, **or**
-   - The user explicitly requests a new / different image
+1. **Search `public/illustrations/`** — scan all subfolders for assets matching the name or visual concept
+2. **Present the top matches to the user** — list the 2–4 best candidates with their filenames and a one-line description of what each looks like, then state which one you're defaulting to and why
+3. **Implement the default immediately** — don't wait for approval, but make it trivial for the user to switch by naming the alternatives
+4. **Only generate a new image if**:
+   - No reasonable match exists in the folder, **or**
+   - The Figma design specifies a unique asset, **or**
+   - The user explicitly requests something new
+
+### Proactive Suggestion Format (REQUIRED)
+
+Every time you place an illustration, include a short note like:
+
+> **Illustration used**: `OilChange.svg` — wrench/oil drop icon, best match for an oil change service.
+> **Alternatives in the library**: `AutoCare.svg` (car lift/tools scene), `PersonalCar.svg` (car silhouette), `Tire.svg` (tire). Say the name to switch.
+
+❌ **NEVER silently pick an illustration** without telling the user what was chosen and what alternatives exist.
+❌ **NEVER ask the user to go look up what illustrations are available** — that is the agent's job.
 
 ### Examples
 

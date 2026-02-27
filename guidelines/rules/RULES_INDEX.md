@@ -268,6 +268,7 @@ public/
 
 **Key Requirements**:
 - ✅ ALWAYS check `public/illustrations/` for an existing match before generating a new image
+- ✅ ALWAYS tell the user which illustration was chosen and list 2–4 alternatives by filename — never silently pick one
 - ✅ ONLY generate a new image if the Figma design specifies something not in the folder, or the user explicitly requests it
 - ✅ ALWAYS provide `alt` text on every `<img>` using an illustration — the SVG files have NO embedded `<title>` elements
 - ✅ Use `alt=""` + `aria-hidden="true"` only when the illustration is purely decorative
