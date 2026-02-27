@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { IconButton } from '@/components/ui/IconButton';
-import { ChevronDown, Bell, Settings } from '@/components/icons';
+import { ChevronDown, Bell, Gear } from '@/components/icons';
 import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
 import { Divider } from '@/components/ui/Divider';
 import { ResponsiveLayout } from '@/components/walmart/ResponsiveLayout';
@@ -342,7 +342,7 @@ export default function PurchaseHistory() {
                 <Bell style={{ width: 20, height: 20 }} />
               </IconButton>
               <IconButton variant="ghost" size="medium" aria-label="Account settings">
-                <Settings style={{ width: 20, height: 20 }} />
+                <Gear style={{ width: 20, height: 20 }} />
               </IconButton>
             </div>
           </div>
