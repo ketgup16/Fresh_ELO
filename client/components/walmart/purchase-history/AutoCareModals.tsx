@@ -199,9 +199,9 @@ function CheckInModal({
 
 // ── Appointment Details Modal (View Details + Reschedule flow) ────────────────
 function ViewDetailsModal({
-  open, onClose, serviceDetails, location, statusHeading, orderTotal, initialStep,
+  open, onClose, onCheckIn, serviceDetails, location, statusHeading, orderTotal, initialStep,
 }: {
-  open: boolean; onClose: () => void;
+  open: boolean; onClose: () => void; onCheckIn: () => void;
   serviceDetails?: ServiceDetails; location?: string;
   statusHeading: string; orderTotal?: string;
   initialStep: DetailsStep;
@@ -331,7 +331,7 @@ function ViewDetailsModal({
                 </IconButton>
               </div>
               <p className={styles.apptCalloutText}>Pay now for quick check-in and service.</p>
-              <Button variant="secondary" size="small" onClick={onClose}>
+              <Button variant="secondary" size="small" onClick={onCheckIn}>
                 Check in now
               </Button>
             </div>
@@ -449,24 +449,26 @@ function ViewDetailsModal({
             </button>
           </div>
 
-          {/* Legal text */}
-          <p className={styles.apptLegalText}>
-            By saving your changes, you agree to our{' '}
-            <a href="#" className={styles.apptLegalLink}>Privacy Policy</a>
-            {' '}and{' '}
-            <a href="#" className={styles.apptLegalLink}>Terms of Use</a>.
-          </p>
+          {/* Legal text — only shown when there are changes to save */}
+          {hasChanges && (
+            <p className={styles.apptLegalText}>
+              By saving your changes, you agree to our{' '}
+              <a href="#" className={styles.apptLegalLink}>Privacy Policy</a>
+              {' '}and{' '}
+              <a href="#" className={styles.apptLegalLink}>Terms of Use</a>.
+            </p>
+          )}
         </div>
 
         {/* Footer */}
         <div className={styles.modalFooter}>
           <Button
             variant="primary"
-            onClick={() => setSaved(true)}
-            disabled={!hasChanges}
+            size="large"
+            onClick={() => hasChanges ? setSaved(true) : onClose()}
             UNSAFE_className={styles.fullWidthBtn}
           >
-            {hasChanges ? 'Save changes' : 'No changes to save'}
+            {hasChanges ? 'Save changes' : 'Done'}
           </Button>
         </div>
       </div>
@@ -479,6 +481,7 @@ function ViewDetailsModal({
 interface AutoCareModalsProps {
   openModal: AutoCareModalType;
   onClose: () => void;
+  onSwitchToCheckIn?: () => void;
   serviceDetails?: ServiceDetails;
   location?: string;
   statusHeading: string;
@@ -487,7 +490,7 @@ interface AutoCareModalsProps {
 }
 
 export function AutoCareModals({
-  openModal, onClose, serviceDetails, location, statusHeading, orderTotal,
+  openModal, onClose, onSwitchToCheckIn, serviceDetails, location, statusHeading, orderTotal,
 }: AutoCareModalsProps) {
   return (
     <>
@@ -501,6 +504,7 @@ export function AutoCareModals({
       <ViewDetailsModal
         open={openModal === 'viewDetails' || openModal === 'reschedule'}
         onClose={onClose}
+        onCheckIn={onSwitchToCheckIn ?? onClose}
         serviceDetails={serviceDetails}
         location={location}
         statusHeading={statusHeading}

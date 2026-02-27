@@ -6,7 +6,7 @@
   z-index: 101;
   transform: translate(-50%, -50%);
   width: 95vw;
-  max-width: 480px;
+  max-width: 600px;
   max-height: 92vh;
   display: flex;
   flex-direction: column;

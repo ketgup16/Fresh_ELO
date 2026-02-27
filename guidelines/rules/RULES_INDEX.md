@@ -335,6 +335,37 @@ public/illustrations/
 
 ---
 
+### 12a. Accessibility — Never Disable Buttons
+**Scope**: ALL interactive components, modals, forms, and CTAs
+
+**When**: Any time a button's action depends on state (form validity, unsaved changes, selection, etc.)
+
+**Key Requirements**:
+- ✅ ALWAYS keep buttons enabled — use visual cues (label changes) instead of `disabled`
+- ✅ If nothing actionable has happened yet, show a neutral label ("Done", "Close") that safely dismisses
+- ✅ If an action becomes available, change the label to reflect it ("Save changes", "Confirm", etc.)
+- ✅ Use `aria-describedby` or helper text to explain _why_ an action isn't ready, if needed
+- ❌ NEVER add `disabled` to a button because state hasn't changed yet
+- ❌ NEVER show a button that does nothing (grayed-out, cursor-not-allowed) — remove it or change its label
+
+**Quick Check**:
+```tsx
+// ❌ WRONG — blocks keyboard users, confuses screen readers
+<Button variant="primary" disabled={!hasChanges}>Save changes</Button>
+
+// ✅ CORRECT — always enabled, label reflects state
+<Button variant="primary" onClick={() => hasChanges ? save() : dismiss()}>
+  {hasChanges ? 'Save changes' : 'Done'}
+</Button>
+```
+
+**Why this matters**:
+- Disabled buttons can't receive focus — screen readers and keyboard users can't reach them
+- Users with cognitive disabilities can't tell *why* the button is inactive without extra context
+- LD 3.5 accessible design principle: interactive elements must always be reachable
+
+---
+
 ### 12. Panel Design Requirements
 **File**: `Panel.md`
 
