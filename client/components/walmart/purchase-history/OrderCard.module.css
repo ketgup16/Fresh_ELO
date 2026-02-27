@@ -206,14 +206,15 @@
   display: inline-flex;
   align-items: center;
   margin-top: 8px;
-  height: 28px; /* tall enough for large LD stars + breathing room */
+  /* 5 stars × 20px + 4 gaps × 8px = 132px */
+  width: calc(5 * 20px + 4 * 8px);
+  height: 24px;
 }
 
+/* Override Rating component's internal gap: 0 */
 .ratingDisplay {
   pointer-events: none;
-  /* Scale the LD large stars (20px) up to 28px via transform for visual weight */
-  transform: scale(1.4);
-  transform-origin: left center;
+  gap: 8px !important;
 }
 
 .starOverlays {
@@ -221,13 +222,13 @@
   top: 0;
   left: 0;
   display: flex;
-  /* Each large star is 20px, scaled 1.4× = 28px */
-  width: calc(5 * 28px);
+  gap: 8px;
   height: 100%;
 }
 
 .starOverlayBtn {
-  flex: 1;
+  width: 20px;
+  flex-shrink: 0;
   background: none;
   border: none;
   padding: 0;

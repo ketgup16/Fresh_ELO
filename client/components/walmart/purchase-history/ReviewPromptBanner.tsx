@@ -23,7 +23,7 @@ function CtaCard({ ctaIllustration }: { ctaIllustration?: string }) {
     <div className={styles.ctaCard}>
       <div className={styles.ctaText}>
         <p className={styles.ctaHeading}>What&rsquo;d you think?</p>
-        <Button variant="secondary" size="small">Review more items</Button>
+        <Button variant="secondary" size="large">Review more items</Button>
       </div>
       {ctaIllustration && (
         <img src={ctaIllustration} alt="Review items illustration" className={styles.ctaIllustration} />
@@ -38,7 +38,7 @@ function ProductReviewCard({ product }: { product: ReviewProduct }) {
       <img src={product.imageSrc} alt={product.name} className={styles.productImg} />
       <div className={styles.productInfo}>
         <p className={styles.productName}>{product.name}</p>
-        {product.rating !== undefined && <Rating value={product.rating} size="small" />}
+        {product.rating !== undefined && <Rating value={product.rating} size="large" />}
       </div>
     </div>
   );
@@ -52,7 +52,7 @@ function MobileCtaCard({ ctaIllustration }: { ctaIllustration?: string }) {
       <div className={styles.mobileCtaInner}>
         <div className={styles.mobileCtaContent}>
           <p className={styles.ctaHeading}>What&rsquo;d you think?</p>
-          <Button variant="secondary" size="small">Review more items</Button>
+          <Button variant="secondary" size="large">Review more items</Button>
         </div>
         {ctaIllustration && (
           <img src={ctaIllustration} alt="" aria-hidden="true" className={styles.mobileCtaIllustration} />
@@ -69,7 +69,7 @@ function MobileCard({ product }: { product: ReviewProduct }) {
         <img src={product.imageSrc} alt={product.name} className={styles.mobileProductImg} />
         <div className={styles.mobileProductInfo}>
           <p className={styles.mobileProductName}>{product.name}</p>
-          {product.rating !== undefined && <Rating value={product.rating} size="small" />}
+          {product.rating !== undefined && <Rating value={product.rating} size="large" />}
         </div>
       </div>
     </div>
@@ -151,7 +151,7 @@ export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBa
       <div className={styles.desktop}>
         <div className={styles.titleRow}>
           <p className={styles.subtitle}>Help other customers by writing a review.</p>
-          <IconButton aria-label="Dismiss review prompt" variant="ghost" size="small" onClick={() => setDismissed(true)}>
+          <IconButton aria-label="Dismiss review prompt" variant="ghost" size="large" onClick={() => setDismissed(true)}>
             <X />
           </IconButton>
         </div>
@@ -165,7 +165,7 @@ export function ReviewPromptBanner({ products, ctaIllustration }: ReviewPromptBa
       <div className={styles.mobile}>
         <div className={styles.mobileHeader}>
           <h2 className={styles.mobileHeading}>What&rsquo;d you think?</h2>
-          <IconButton aria-label="Dismiss review prompt" variant="ghost" size="small" onClick={() => setDismissed(true)}>
+          <IconButton aria-label="Dismiss review prompt" variant="ghost" size="large" onClick={() => setDismissed(true)}>
             <X />
           </IconButton>
         </div>

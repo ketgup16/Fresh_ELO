@@ -80,6 +80,7 @@ const EXPERIENCE_LABELS: Record<OrderType, string> = {
 
 const DELIVERY_STEPS = ['Placed', 'Preparing', 'On the way', 'Delivered'];
 const PICKUP_STEPS = ['Placed', 'Preparing', 'Ready', 'Picked up'];
+const AUTO_STEPS = ['Scheduled', 'Ready to service', 'Serviced'];
 const STEP_INDEX: Record<TimelineStep, number> = {
   placed: 0,
   preparing: 1,
@@ -221,12 +222,22 @@ export function OrderCard({
             )}
           </div>
 
-          {/* LD ProgressTracker */}
+          {/* LD ProgressTracker — delivery/pickup */}
           {timelineStep && activeStep !== undefined && (
             <ProgressTracker
               steps={steps}
               activeStep={activeStep}
               status={trackerStatus}
+              className={styles.progressTracker}
+            />
+          )}
+
+          {/* Auto Care appointment tracker */}
+          {orderType === 'auto' && serviceDetails?.appointmentStep !== undefined && (
+            <ProgressTracker
+              steps={AUTO_STEPS}
+              activeStep={serviceDetails.appointmentStep}
+              status="info"
               className={styles.progressTracker}
             />
           )}
