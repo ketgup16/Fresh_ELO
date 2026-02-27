@@ -381,6 +381,24 @@ public/illustrations/
 
 ---
 
+### 14. Purchase History Card Pattern Toggles
+**File**: `RULE_PurchaseHistoryCardPatterns.md`
+
+**When**: User mentions any hidden card pattern on the Purchase History page
+
+**Key Requirements**:
+- ✅ IMMEDIATELY set the matching flag to `true` in `client/pages/walmart/PurchaseHistory.tsx` — no confirmation needed
+- ✅ Only change the flag, nothing else
+
+| Prompt keyword | Flag |
+|---|---|
+| "combined card", "auto care + curbside" | `SHOW_COMBINED_CARD` |
+| "auto care order", "oil change card" | `SHOW_AUTO_CARE_ORDER` |
+| "curbside get it now", "get it now" | `SHOW_CURBSIDE_GET_IT_NOW` |
+| "delayed delivery", "delayed card" | `SHOW_DELAYED_DELIVERY` |
+
+---
+
 ### 13. Prompt-Driven Design Generation
 **File**: `RULE_PromptDrivenDesign.md`
 
