@@ -112,26 +112,6 @@ const ORDERS: OrderEntry[] = [
     get searchText() { return makeSearchText(this.card); },
   },
   {
-    id: 'delivery-onway-may12',
-    date: new Date(2026, 1, 25),
-    orderStatus: 'in-progress',
-    hasReturn: false,
-    isInStore: false,
-    isOnline: true,
-    card: {
-      orderType: 'delivery',
-      statusHeading: 'Arrives today, 5pm–6pm',
-      timelineStep: 'on-the-way',
-      products: [P.tide, P.bounce, P.angelSoft, P.vivaPaperTowels],
-      orderTotal: '$67.13',
-      actions: [
-        { label: 'Track order', variant: 'primary' },
-        { label: 'View details', variant: 'secondary' },
-      ],
-    },
-    get searchText() { return makeSearchText(this.card); },
-  },
-  {
     id: 'curbside-feb28',
     date: new Date(2026, 1, 28),
     orderStatus: 'in-progress',
@@ -174,6 +154,26 @@ const ORDERS: OrderEntry[] = [
         { label: 'Pickup instead', variant: 'secondary' },
         { label: 'View details', variant: 'secondary' },
         { label: 'Cancel order', variant: 'secondary' },
+      ],
+    },
+    get searchText() { return makeSearchText(this.card); },
+  },
+  {
+    id: 'delivery-onway-may12',
+    date: new Date(2026, 1, 25),
+    orderStatus: 'in-progress',
+    hasReturn: false,
+    isInStore: false,
+    isOnline: true,
+    card: {
+      orderType: 'delivery',
+      statusHeading: 'Arrives today, 5pm–6pm',
+      timelineStep: 'on-the-way',
+      products: [P.tide, P.bounce, P.angelSoft, P.vivaPaperTowels],
+      orderTotal: '$67.13',
+      actions: [
+        { label: 'Track order', variant: 'primary' },
+        { label: 'View details', variant: 'secondary' },
       ],
     },
     get searchText() { return makeSearchText(this.card); },
@@ -383,48 +383,29 @@ export default function PurchaseHistory() {
                   <p style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)', fontSize: 14 }}>
                     No orders match your filters.
                   </p>
-                ) : (() => {
-                  const autoCareOrder = visibleOrders.find(o => o.id === 'auto-oil-change-mar7');
-                  const deliveryOrder = visibleOrders.find(o => o.id === 'delivery-onway-may12');
-                  const showCombined = !!(autoCareOrder && deliveryOrder);
-                  const rest = visibleOrders.filter(
-                    o => o.id !== 'auto-oil-change-mar7' && o.id !== 'delivery-onway-may12'
-                  );
-                  return (
-                    <>
-                      {showCombined && (
-                        <CombinedOrderCard
-                          autoCare={autoCareOrder!.card}
-                          delivery={deliveryOrder!.card}
-                          autoCareAppointmentDate={new Date(2026, 2, 7)}
-                        />
-                      )}
-                      {!showCombined && autoCareOrder && <AutoCareOrderCard {...autoCareOrder.card} />}
-                      {!showCombined && deliveryOrder && <OrderCard {...deliveryOrder.card} />}
-                      {rest.map((order, i) => (
-                        <div key={order.id}>
-                          {i === 2 && (
-                            <div style={{ marginBottom: 16 }}>
-                              <InlineAdBanner
-                                logoSrc={GEICO_LOGO}
-                                logoAlt="GEICO"
-                                headline="15 minutes could save you on car insurance. Really..."
-                                ctaLabel="Get a quote"
-                                imageSrc={GEICO_AD}
-                                imageAlt="GEICO gecko"
-                              />
-                            </div>
-                          )}
-                          {order.card.orderType === 'auto'
-                              ? <AutoCareOrderCard {...order.card} />
-                              : order.card.orderType === 'curbside'
-                                ? <CurbsideOrderCard {...order.card} />
-                                : <OrderCard {...order.card} />}
+                ) : (
+                  visibleOrders.map((order, i) => (
+                    <div key={order.id}>
+                      {i === 3 && (
+                        <div style={{ marginBottom: 16 }}>
+                          <InlineAdBanner
+                            logoSrc={GEICO_LOGO}
+                            logoAlt="GEICO"
+                            headline="15 minutes could save you on car insurance. Really..."
+                            ctaLabel="Get a quote"
+                            imageSrc={GEICO_AD}
+                            imageAlt="GEICO gecko"
+                          />
                         </div>
-                      ))}
-                    </>
-                  );
-                })()}
+                      )}
+                      {order.card.orderType === 'auto'
+                        ? <AutoCareOrderCard {...order.card} />
+                        : order.card.orderType === 'curbside'
+                          ? <CurbsideOrderCard {...order.card} />
+                          : <OrderCard {...order.card} />}
+                    </div>
+                  ))
+                )}
               </div>
 
               {/* Pagination */}
