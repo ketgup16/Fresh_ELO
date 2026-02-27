@@ -110,9 +110,9 @@ export function MobileTopNav({ showHomeExtras = false }: MobileTopNavProps) {
 
               <div className="flex justify-center gap-6">
                 {([
-                  { key: 'shipping', label: 'Shipping', icon: '/assets/illustrations/mono-small/fulfillment-shipping.svg' },
-                  { key: 'pickup',   label: 'Pickup',   icon: '/assets/illustrations/mono-small/fulfillment-pickup.svg' },
-                  { key: 'delivery', label: 'Delivery', icon: '/assets/illustrations/mono-small/fulfillment-delivery.svg' },
+                  { key: 'shipping', label: 'Shipping', icon: '/illustrations/mono-small/fulfillment-shipping.svg' },
+                  { key: 'pickup',   label: 'Pickup',   icon: '/illustrations/mono-small/fulfillment-pickup.svg' },
+                  { key: 'delivery', label: 'Delivery', icon: '/illustrations/mono-small/fulfillment-delivery.svg' },
                 ] as const).map((method) => (
                   <button
                     key={method.key}

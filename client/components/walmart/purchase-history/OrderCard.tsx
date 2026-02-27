@@ -57,19 +57,19 @@ const STEP_INDEX: Record<TimelineStep, number> = {
 
 const FULFILLMENT_ICONS: Record<OrderType, { src: string; alt: string }> = {
   curbside: {
-    src: '/assets/illustrations/mono-small/fulfillment-pickup.svg',
+    src: '/illustrations/mono-small/fulfillment-pickup.svg',
     alt: 'Curbside pickup',
   },
   delivery: {
-    src: '/assets/illustrations/mono-small/fulfillment-delivery.svg',
+    src: '/illustrations/mono-small/fulfillment-delivery.svg',
     alt: 'Delivery',
   },
   store: {
-    src: '/assets/illustrations/mono-small/fulfillment-store.svg',
+    src: '/illustrations/mono-small/fulfillment-store.svg',
     alt: 'Store purchase',
   },
   shipping: {
-    src: '/assets/illustrations/mono-small/fulfillment-shipping.svg',
+    src: '/illustrations/mono-small/fulfillment-shipping.svg',
     alt: 'Shipping',
   },
 };

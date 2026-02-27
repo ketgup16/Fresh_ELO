@@ -33,7 +33,7 @@ When a card needs to show:
 ```tsx
 <span className={styles.orderTypeChip}>
   <img
-    src="/assets/illustrations/mono-small/fulfillment-pickup.svg"
+    src="/illustrations/mono-small/fulfillment-pickup.svg"
     alt=""
     aria-hidden="true"
     width={64}

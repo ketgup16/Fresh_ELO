@@ -54,7 +54,7 @@ SVG files served from CDNs are often intercepted and re-encoded as WebP via URL 
 <img src="https://cdn.builder.io/api/v1/image/assets%2F.../fuel?format=webp&width=800&height=1200" />
 
 <!-- ✅ CORRECT — Local SVG, crisp at any size -->
-<img src="/assets/illustrations/mono-small/fuel.svg" />
+<img src="/illustrations/mono-small/fuel.svg" />
 ```
 
 ---
@@ -66,7 +66,7 @@ Fulfillment / order-type icons (pickup, delivery, shipping, store) must be rende
 ```tsx
 // ✅ CORRECT
 <img
-  src="/assets/illustrations/mono-small/fulfillment-pickup.svg"
+  src="/illustrations/mono-small/fulfillment-pickup.svg"
   alt=""
   aria-hidden="true"
   width={64}
@@ -91,14 +91,14 @@ Every locally hosted illustration must be registered in `public/assets/asset-lib
 {
   "fulfillment-icons": {
     "fulfillment-pickup": {
-      "path": "/assets/illustrations/mono-small/fulfillment-pickup.svg",
+      "path": "/illustrations/mono-small/fulfillment-pickup.svg",
       "alt": "Curbside pickup fulfillment icon",
       "usage": "Curbside pickup order type indicator in order cards"
     }
   },
   "pictograms-mono-small": {
     "fuel": {
-      "path": "/assets/illustrations/mono-small/fuel.svg",
+      "path": "/illustrations/mono-small/fuel.svg",
       "alt": "Fuel station pictogram",
       "usage": "Fuel-related services or promotions"
     }
@@ -127,7 +127,7 @@ const path = require('path');
 const ASSETS = [
   {
     url: 'https://cdn.builder.io/api/v1/image/assets%2F.../fuel.svg',
-    dest: 'public/assets/illustrations/mono-small/fuel.svg',
+    dest: 'public/illustrations/mono-small/fuel.svg',
   },
   // ...
 ];
@@ -175,7 +175,7 @@ https://cdn.builder.io/api/v1/image/assets%2F<project>%2F<hash>
 
 ## Checklist Before Shipping
 
-- [ ] All SVG illustrations are in `/public/assets/illustrations/`
+- [ ] All SVG illustrations are in `/public/illustrations/`
 - [ ] No CDN URLs with `?format=webp` params for SVGs anywhere in code
 - [ ] Fulfillment icons rendered at 64×64
 - [ ] All assets registered in `asset-library.json` with local paths only

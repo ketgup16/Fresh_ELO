@@ -391,7 +391,7 @@ Order card meta sections use the **icon-left / text-column-right** pattern. See 
 
 ### SVG Fulfillment Icons
 
-- Always host SVG pictograms locally in `/public/assets/illustrations/mono-small/`
+- Always host SVG pictograms locally in `/public/illustrations/mono-small/`
 - Render fulfillment icons at **64×64** — never smaller
 - Never use CDN URLs with `?format=webp` for SVG files (causes blur)
 - See `RULE_SVGAssets.md` for full management rules
