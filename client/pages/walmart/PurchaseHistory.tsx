@@ -17,6 +17,7 @@ import { AutoCareOrderCard } from '@/components/walmart/purchase-history/AutoCar
 import { CombinedOrderCard } from '@/components/walmart/purchase-history/CombinedOrderCard';
 import { CurbsideOrderCard } from '@/components/walmart/purchase-history/CurbsideOrderCard';
 import { InlineAdBanner } from '@/components/walmart/purchase-history/InlineAdBanner';
+import { DelayedDeliveryCard } from '@/components/walmart/purchase-history/DelayedDeliveryCard';
 import styles from './PurchaseHistory.module.css';
 
 const CDN = 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F';
@@ -367,6 +368,16 @@ export default function PurchaseHistory() {
                   Each card is wrapped in styles.newCard to trigger the green glow
                   animation on insert. Remove the wrapper + component to hide.
               ─────────────────────────────────────────────────────────────── */}
+
+              {/* Delayed delivery warning card: reschedule, switch to pickup, or cancel */}
+              <div className={styles.newCard}>
+                <DelayedDeliveryCard
+                  statusHeading="Delayed, estimated up to 2 hours"
+                  delayEstimate="Estimated up to 2 hours late"
+                  products={[P.strawberries, P.blueberries, P.bananas]}
+                  orderTotal="$32.47"
+                />
+              </div>
 
               {/* Auto Care appointment card: oil change with Check in, Reschedule, View details */}
               <div className={styles.newCard}>
