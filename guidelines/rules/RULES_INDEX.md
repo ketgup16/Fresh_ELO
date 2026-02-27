@@ -261,25 +261,45 @@ public/
 
 ---
 
-### 10. SVG Asset Management and Local Hosting
+### 10. SVG Asset Management, Reuse, and Accessibility
 **File**: `RULE_SVGAssets.md`
 
-**When**: Any SVG illustration or pictogram is referenced from a CDN, or a new illustration asset is added
+**When**: Any SVG illustration is needed, added, or referenced
 
 **Key Requirements**:
-- ✅ ALWAYS host SVG illustrations locally in `/public/assets/illustrations/`
-- ✅ NEVER use CDN URLs with `?format=webp` or `?width=` params for SVG files
-- ✅ Fulfillment/category pictograms must render at 64×64px
-- ✅ Register every asset in `public/assets/asset-library.json` with local path only
+- ✅ ALWAYS check `public/illustrations/` for an existing match before generating a new image
+- ✅ ONLY generate a new image if the Figma design specifies something not in the folder, or the user explicitly requests it
+- ✅ ALWAYS provide `alt` text on every `<img>` using an illustration — the SVG files have NO embedded `<title>` elements
+- ✅ Use `alt=""` + `aria-hidden="true"` only when the illustration is purely decorative
+- ✅ ALWAYS host SVG illustrations locally — never reference CDN URLs with `?format=webp` or `?width=` params
+- ✅ Fulfillment/category pictograms render at 64×64px
+- ❌ NEVER generate a new illustration when a semantically matching one already exists locally
+- ❌ NEVER omit `alt` on an `<img>` tag
+- ❌ NEVER use the filename as alt text (e.g. `alt="Toys.svg"`)
 - ❌ NEVER commit download scripts to source control
+
+**Illustration Folders**:
+```
+public/illustrations/
+  mono-large/          # Large mono category illustrations
+  mono-small/          # Small mono category illustrations
+  spot-illustration/   # Character/scene illustrations (associate-waving, network-issue, etc.)
+```
 
 **Quick Check**:
 ```html
-<!-- ❌ WRONG — CDN re-encodes SVG as WebP → blurry -->
-<img src="https://cdn.builder.io/.../icon?format=webp&width=800" />
+<!-- ❌ WRONG — generating new when existing matches -->
+<!-- Toys.svg already exists locally! -->
+<Media type="gen-image" query="toys illustration" />
 
-<!-- ✅ CORRECT — local SVG, crisp at any size -->
-<img src="/assets/illustrations/mono-small/fulfillment-pickup.svg" width="64" height="64" />
+<!-- ✅ CORRECT — reuse existing, with proper alt -->
+<img src="/illustrations/mono-large/Toys.svg" alt="Toys" width="64" height="64" />
+
+<!-- ✅ CORRECT — decorative spot illustration -->
+<img src="/illustrations/spot-illustration/associate-waving.svg" alt="" aria-hidden="true" width="160" height="160" />
+
+<!-- ❌ WRONG — CDN re-encodes SVG as WebP → blurry, and no alt -->
+<img src="https://cdn.builder.io/.../icon?format=webp&width=800" />
 ```
 
 ---

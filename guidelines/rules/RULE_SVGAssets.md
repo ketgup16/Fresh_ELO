@@ -183,6 +183,98 @@ https://cdn.builder.io/api/v1/image/assets%2F<project>%2F<hash>
 
 ---
 
+---
+
+## Illustration Reuse-First Policy (NO EXCEPTIONS)
+
+> **Before generating a new image or illustration, ALWAYS check whether a matching asset already exists in `public/illustrations/`.**
+
+### Folder Structure
+
+```
+public/illustrations/
+  mono-large/          # Large mono-style category illustrations
+  mono-small/          # Small mono-style category illustrations
+  spot-illustration/   # Spot / character illustrations (associate-waving, network-issue, etc.)
+```
+
+### Decision Tree
+
+When an illustration is needed for a component or page, follow this order:
+
+1. **Check `public/illustrations/`** — search all subfolders for an asset matching the name or visual concept (e.g. "Toys", "Grocery", "Delivery")
+2. **Use the existing asset** if a match is found — reference it with a local path
+3. **Only generate a new image if**:
+   - The Figma design specifies an image that does not exist in the folder, **or**
+   - The user explicitly requests a new / different image
+
+### Examples
+
+```tsx
+// ✅ CORRECT — reuse existing illustration
+<img src="/illustrations/mono-large/Delivery.svg" alt="Delivery" width={64} height={64} />
+
+// ❌ WRONG — generating a new image when Delivery.svg already exists
+<Media type="gen-image" query="delivery truck illustration" />
+
+// ✅ CORRECT — generate only when Figma specifies something not in the folder
+// (Figma has a unique custom banner image that has no match locally)
+<img src="https://api.builder.io/api/v1/image/assets/TEMP/abc123" alt="Summer sale banner" />
+```
+
+### Naming Match Logic
+
+When searching for an existing illustration, match on:
+- **Exact filename** (case-insensitive): `Toys.svg` matches a need for a "toys" illustration
+- **Semantic similarity**: `Grocery.svg` and `Groceries.svg` both exist — pick the closest match
+- **Folder appropriateness**: use `mono-large` for large hero contexts, `mono-small` for inline/card contexts, `spot-illustration` for character/scene illustrations
+
+---
+
+## Alt Text Requirements
+
+> **None of the SVG files in `public/illustrations/` contain embedded `<title>` elements. Alt text MUST always be provided by the consuming code.**
+
+### Rules
+
+- ✅ ALWAYS provide `alt` on every `<img>` tag using an illustration SVG
+- ✅ Use descriptive alt text that communicates the illustration's meaning in context
+- ✅ Use `alt=""` + `aria-hidden="true"` only when the illustration is purely decorative and the surrounding text already conveys the full meaning
+- ❌ NEVER omit `alt` — an `<img>` without `alt` is an accessibility violation
+- ❌ NEVER use the filename as alt text (e.g. `alt="Toys.svg"` is wrong)
+
+### Examples
+
+```tsx
+// ✅ CORRECT — meaningful alt text
+<img src="/illustrations/mono-large/Toys.svg" alt="Toys" width={64} height={64} />
+
+// ✅ CORRECT — decorative, text already describes the section
+<img
+  src="/illustrations/spot-illustration/associate-waving.svg"
+  alt=""
+  aria-hidden="true"
+  width={160}
+  height={160}
+/>
+
+// ❌ WRONG — no alt attribute
+<img src="/illustrations/mono-large/Grocery.svg" width={64} height={64} />
+
+// ❌ WRONG — filename used as alt text
+<img src="/illustrations/mono-large/Grocery.svg" alt="Grocery.svg" />
+```
+
+### Alt Text by Folder
+
+| Folder | Context | Alt text guidance |
+|---|---|---|
+| `mono-large` | Hero / section headers | Describe the category: `"Grocery"`, `"Electronics"` |
+| `mono-small` | Inline cards / chips | Describe concisely: `"Toys"`, `"Pet care"` |
+| `spot-illustration` | Decorative scenes | Usually `alt=""` + `aria-hidden="true"` unless it conveys meaning not in surrounding text |
+
+---
+
 ## Related Rules
 
 - [RULE_FigmaAssetExtraction](./RULE_FigmaAssetExtraction.md)
@@ -190,6 +282,6 @@ https://cdn.builder.io/api/v1/image/assets%2F<project>%2F<hash>
 
 ---
 
-**Last Updated**: 2025-05-27
+**Last Updated**: 2025-02-27
 **Status**: Active — Hard Rule
 **Applies To**: All illustration/pictogram SVG assets
