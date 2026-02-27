@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/Button';
 import { Divider } from '@/components/ui/Divider';
 import { ProgressTracker } from '@/components/ui/ProgressTracker';
 import { AutoCareModals, AutoCareModalType } from './AutoCareModals';
+import { GetItNowModal } from './GetItNowModal';
 import type { OrderCardProps } from './OrderCard';
 import styles from './CombinedOrderCard.module.css';
 
@@ -40,6 +41,7 @@ interface CombinedOrderCardProps {
 
 export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate }: CombinedOrderCardProps) {
   const [openModal, setOpenModal] = useState<AutoCareModalType>(null);
+  const [showGetItNow, setShowGetItNow] = useState(false);
 
   const autoCareActions = autoCare.actions?.map(a => {
     if (a.label === 'Check in')     return { ...a, onClick: () => setOpenModal('checkIn') };
@@ -49,7 +51,9 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
   }) ?? [];
 
   const deliveryPrimary   = delivery.actions?.filter(a => a.variant === 'primary') ?? [];
-  const deliverySecondary = delivery.actions?.filter(a => a.variant === 'secondary') ?? [];
+  const deliverySecondary = (delivery.actions?.filter(a => a.variant === 'secondary') ?? []).map(a =>
+    a.label === 'Get it now' ? { ...a, onClick: () => setShowGetItNow(true) } : a
+  );
   const activeStep = delivery.timelineStep ? STEP_INDEX[delivery.timelineStep] : undefined;
   const rightIcon  = FULFILLMENT_ICONS[delivery.orderType] ?? FULFILLMENT_ICONS.delivery;
   const rightLabel = ORDER_TYPE_LABELS[delivery.orderType] ?? ORDER_TYPE_LABELS.delivery;
@@ -177,6 +181,13 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
           </div>
         </div>
       </article>
+
+      <GetItNowModal
+        open={showGetItNow}
+        onClose={() => setShowGetItNow(false)}
+        location={delivery.location}
+        orderTotal={delivery.orderTotal}
+      />
 
       <AutoCareModals
         openModal={openModal}
