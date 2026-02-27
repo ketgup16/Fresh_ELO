@@ -90,14 +90,12 @@ export function DelayedDeliveryCard({
             <Button variant="secondary" size="small" onClick={onPickupInstead} UNSAFE_className={styles.actionBtn}>
               Pickup instead
             </Button>
-            <button className={styles.linkRow} onClick={onViewDetails}>
-              <span>View details</span>
-              <ChevronRight style={{ width: 16, height: 16 }} />
-            </button>
-            <button className={styles.linkRow} onClick={onCancelOrder}>
-              <span>Cancel order</span>
-              <ChevronRight style={{ width: 16, height: 16 }} />
-            </button>
+            <Button variant="secondary" size="small" onClick={onViewDetails} UNSAFE_className={styles.actionBtn}>
+              View details
+            </Button>
+            <Button variant="secondary" size="small" onClick={onCancelOrder} UNSAFE_className={styles.actionBtn}>
+              Cancel order
+            </Button>
           </div>
         </div>
       </div>
