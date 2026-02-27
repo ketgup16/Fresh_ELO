@@ -1,0 +1,119 @@
+import { Button } from '@/components/ui/Button';
+import { ButtonGroup } from '@/components/ui/ButtonGroup';
+import { Tag } from '@/components/ui/Tag';
+import { ProgressTracker } from '@/components/ui/ProgressTracker';
+import { Clock, ChevronRight } from '@/components/icons';
+import type { OrderProduct } from './OrderCard';
+import styles from './DelayedDeliveryCard.module.css';
+
+interface DelayedDeliveryCardProps {
+  statusHeading: string;
+  delayEstimate: string;
+  products: OrderProduct[];
+  orderTotal?: string;
+  onReschedule?: () => void;
+  onPickupInstead?: () => void;
+  onViewDetails?: () => void;
+  onCancelOrder?: () => void;
+}
+
+const DELIVERY_STEPS = ['Placed', 'Preparing', 'On the way', 'Delivered'];
+
+export function DelayedDeliveryCard({
+  statusHeading,
+  delayEstimate,
+  products,
+  orderTotal,
+  onReschedule,
+  onPickupInstead,
+  onViewDetails,
+  onCancelOrder,
+}: DelayedDeliveryCardProps) {
+  return (
+    <article className={styles.card}>
+      {/* ── Warning banner ── */}
+      <div className={styles.banner}>
+        <div className={styles.bannerLeft}>
+          <Clock style={{ width: 18, height: 18, flexShrink: 0 }} />
+          <span className={styles.bannerText}>Running late — we're sorry for the wait</span>
+        </div>
+        <Tag variant="primary" color="warning" style={{ alignSelf: 'center' }}>Delayed</Tag>
+      </div>
+
+      {/* ── Main body ── */}
+      <div className={styles.body}>
+
+        {/* Left: meta + status + progress + products */}
+        <div className={styles.leftCol}>
+          <div className={styles.meta}>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F06ac09fed4534c02b62a8d43e759a824"
+              alt=""
+              aria-hidden="true"
+              width={48}
+              height={48}
+              className={styles.typeIcon}
+            />
+            <div>
+              <span className={styles.eyebrow}>Delivery from store</span>
+              <h3 className={styles.statusHeading}>{statusHeading}</h3>
+            </div>
+          </div>
+
+          <div className={styles.delayCallout}>
+            <p className={styles.delayEstimate}>{delayEstimate}</p>
+            <p className={styles.delayNote}>We're working to get your order to you as quickly as possible.</p>
+          </div>
+
+          <ProgressTracker
+            steps={DELIVERY_STEPS}
+            activeStep={1}
+            status="warning"
+            className={styles.tracker}
+          />
+
+          {products.length > 0 && (
+            <div className={styles.products}>
+              {products.slice(0, 5).map((p, i) => (
+                <img key={i} src={p.src} alt={p.alt} className={styles.productImg} />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Right: illustration + actions */}
+        <div className={styles.rightCol}>
+          <img
+            src="/illustrations/spot-illustration/CalendarWithClock.svg"
+            alt=""
+            aria-hidden="true"
+            className={styles.illustration}
+          />
+          <div className={styles.actions}>
+            <Button variant="primary" size="small" onClick={onReschedule} UNSAFE_className={styles.actionBtn}>
+              Reschedule delivery
+            </Button>
+            <Button variant="secondary" size="small" onClick={onPickupInstead} UNSAFE_className={styles.actionBtn}>
+              Pickup instead
+            </Button>
+            <button className={styles.linkRow} onClick={onViewDetails}>
+              <span>View details</span>
+              <ChevronRight style={{ width: 16, height: 16 }} />
+            </button>
+            <button className={styles.linkRow} onClick={onCancelOrder}>
+              <span>Cancel order</span>
+              <ChevronRight style={{ width: 16, height: 16 }} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Footer ── */}
+      <div className={styles.footer}>
+        {orderTotal && (
+          <span className={styles.orderTotal}>Order total {orderTotal}</span>
+        )}
+      </div>
+    </article>
+  );
+}
