@@ -102,6 +102,30 @@ const ORDERS: OrderEntry[] = [
       serviceDetails: {
         vehicle: '2019 Toyota Camry',
         services: ['Conventional Oil & Filter Change', 'Tire Rotation'],
+        serviceItems: [
+          {
+            name: 'Conventional Oil & Filter Change',
+            variant: 'Conventional oil - Pennzoil',
+            price: '$29.88',
+            capacity: 'Up to 5 qts.',
+            notes: [
+              'Additional charges may apply if more oil is needed.',
+              'Package selections can be changed at the store.',
+            ],
+          },
+          {
+            name: 'Tire Rotation',
+            variant: 'Standard 4-tire rotation',
+            price: '$14.88',
+            notes: [
+              'Includes inspection of tread depth and tire pressure.',
+            ],
+          },
+        ],
+        appointmentContact: 'Marcus Johnson',
+        storePhone: '(972) 466-2228',
+        storeHours: '7am to 7pm',
+        serviceInstructions: 'Please check the cabin air filter as well. Last replaced about 2 years ago.',
       },
       orderTotal: '$89.88',
       actions: [

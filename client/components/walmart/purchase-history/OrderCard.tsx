@@ -21,9 +21,23 @@ export interface OrderProduct {
   alt: string;
 }
 
+export interface ServiceItem {
+  name: string;
+  variant?: string;       // e.g. "Full-synthetic premium oil - Castrol"
+  price?: string;         // e.g. "$54.99"
+  capacity?: string;      // e.g. "Up to 5 qts."
+  notes?: string[];       // e.g. ["Additional charges may apply…"]
+  imageSrc?: string;
+}
+
 export interface ServiceDetails {
   vehicle: string;
-  services: string[];
+  services: string[];         // kept for backward compat (simple list)
+  serviceItems?: ServiceItem[]; // rich per-service data
+  appointmentContact?: string; // e.g. "Emilia Garcia"
+  storePhone?: string;        // e.g. "(972) 466-2228"
+  storeHours?: string;        // e.g. "Hours: 7am to 7pm"
+  serviceInstructions?: string; // free-text note from customer
 }
 
 export interface OrderCardProps {
