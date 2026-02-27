@@ -380,28 +380,46 @@ export default function PurchaseHistory() {
                   <p style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)', fontSize: 14 }}>
                     No orders match your filters.
                   </p>
-                ) : (
-                  visibleOrders.map((order, i) => (
-                    <div key={order.id}>
-                      {/* Inline ad after 3rd visible order */}
-                      {i === 3 && (
-                        <div style={{ marginBottom: 16 }}>
-                          <InlineAdBanner
-                            logoSrc={GEICO_LOGO}
-                            logoAlt="GEICO"
-                            headline="15 minutes could save you on car insurance. Really..."
-                            ctaLabel="Get a quote"
-                            imageSrc={GEICO_AD}
-                            imageAlt="GEICO gecko"
-                          />
-                        </div>
+                ) : (() => {
+                  const autoCareOrder = visibleOrders.find(o => o.id === 'auto-oil-change-mar7');
+                  const deliveryOrder = visibleOrders.find(o => o.id === 'delivery-onway-may12');
+                  const showCombined = !!(autoCareOrder && deliveryOrder);
+                  const rest = visibleOrders.filter(
+                    o => o.id !== 'auto-oil-change-mar7' && o.id !== 'delivery-onway-may12'
+                  );
+                  return (
+                    <>
+                      {showCombined && (
+                        <CombinedOrderCard
+                          autoCare={autoCareOrder!.card}
+                          delivery={deliveryOrder!.card}
+                          autoCareAppointmentDate={new Date(2026, 2, 7)}
+                        />
                       )}
-                      {order.card.orderType === 'auto'
-                        ? <AutoCareOrderCard {...order.card} />
-                        : <OrderCard {...order.card} />}
-                    </div>
-                  ))
-                )}
+                      {!showCombined && autoCareOrder && <AutoCareOrderCard {...autoCareOrder.card} />}
+                      {!showCombined && deliveryOrder && <OrderCard {...deliveryOrder.card} />}
+                      {rest.map((order, i) => (
+                        <div key={order.id}>
+                          {i === 2 && (
+                            <div style={{ marginBottom: 16 }}>
+                              <InlineAdBanner
+                                logoSrc={GEICO_LOGO}
+                                logoAlt="GEICO"
+                                headline="15 minutes could save you on car insurance. Really..."
+                                ctaLabel="Get a quote"
+                                imageSrc={GEICO_AD}
+                                imageAlt="GEICO gecko"
+                              />
+                            </div>
+                          )}
+                          {order.card.orderType === 'auto'
+                            ? <AutoCareOrderCard {...order.card} />
+                            : <OrderCard {...order.card} />}
+                        </div>
+                      ))}
+                    </>
+                  );
+                })()}
               </div>
 
               {/* Pagination */}
