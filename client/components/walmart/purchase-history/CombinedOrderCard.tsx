@@ -148,9 +148,15 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
         {/* Footer */}
         <Divider />
         <div className={styles.footer}>
-          <span className={styles.orderTotal}>Order total {autoCare.orderTotal}</span>
+          <div className={styles.footerItem}>
+            <span className={styles.footerLabel}>Auto Care</span>
+            <span className={styles.orderTotal}>Order total {autoCare.orderTotal}</span>
+          </div>
           <span className={styles.footerDivider} aria-hidden="true" />
-          <span className={styles.orderTotal}>Order total {delivery.orderTotal}</span>
+          <div className={styles.footerItem}>
+            <span className={styles.footerLabel}>Delivery from store</span>
+            <span className={styles.orderTotal}>Order total {delivery.orderTotal}</span>
+          </div>
         </div>
       </article>
 

@@ -197,6 +197,10 @@
   }
 }
 
+.apptProgress {
+  margin: 4px 0 8px;
+}
+
 .apptActions {
   display: flex;
   gap: 8px;

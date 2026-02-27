@@ -11,6 +11,7 @@ import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
 import { Divider } from '@/components/ui/Divider';
 import { ResponsiveLayout } from '@/components/walmart/ResponsiveLayout';
 import { AccountSideNav } from '@/components/walmart/AccountSideNav';
+import { ProgressTracker } from '@/components/ui/ProgressTracker';
 import type { ServiceDetails, ServiceItem } from './OrderCard';
 import styles from './AutoCareOrderDetailModal.module.css';
 
@@ -103,6 +104,9 @@ export function AutoCareOrderDetailModal({
   const storePhone          = serviceDetails?.storePhone;
   const storeHours          = serviceDetails?.storeHours;
   const serviceInstructions = serviceDetails?.serviceInstructions;
+  const appointmentStep     = serviceDetails?.appointmentStep ?? 0;
+
+  const AUTO_STEPS = ['Scheduled', 'Ready to service', 'Serviced'];
 
   const total     = orderTotal ?? '$89.88';
   const storeName = location
@@ -198,6 +202,15 @@ export function AutoCareOrderDetailModal({
                         </div>
                       </div>
                       <h2 className={styles.apptHeading}>{statusHeading}</h2>
+
+                      {/* Auto care progress tracker */}
+                      <ProgressTracker
+                        steps={AUTO_STEPS}
+                        activeStep={appointmentStep}
+                        status="info"
+                        className={styles.apptProgress}
+                      />
+
                       <div className={styles.apptActions}>
                         <Button variant="primary" size="small" onClick={onCheckIn}>
                           Check in

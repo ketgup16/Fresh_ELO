@@ -81,14 +81,8 @@ export function DelayedDeliveryCard({
           )}
         </div>
 
-        {/* Right: illustration + actions */}
+        {/* Right: actions */}
         <div className={styles.rightCol}>
-          <img
-            src="/illustrations/spot-illustration/CalendarWithClock.svg"
-            alt=""
-            aria-hidden="true"
-            className={styles.illustration}
-          />
           <div className={styles.actions}>
             <Button variant="primary" size="small" onClick={onReschedule} UNSAFE_className={styles.actionBtn}>
               Reschedule delivery

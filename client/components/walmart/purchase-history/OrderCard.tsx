@@ -38,6 +38,7 @@ export interface ServiceDetails {
   storePhone?: string;        // e.g. "(972) 466-2228"
   storeHours?: string;        // e.g. "Hours: 7am to 7pm"
   serviceInstructions?: string; // free-text note from customer
+  appointmentStep?: number;     // 0=Scheduled, 1=Ready to service, 2=Serviced
 }
 
 export interface OrderCardProps {
