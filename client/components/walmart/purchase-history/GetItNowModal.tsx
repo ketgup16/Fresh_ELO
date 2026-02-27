@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { IconButton } from '@/components/ui/IconButton';
 import { Scrim } from '@/components/ui/Scrim';
+import { Tag } from '@/components/ui/Tag';
 import styles from './GetItNowModal.module.css';
 
 interface GetItNowModalProps {
@@ -72,10 +73,13 @@ export function GetItNowModal({ open, onClose, location, orderTotal }: GetItNowM
 
             <div className={styles.body}>
               {/* Speed badge */}
-              <div className={styles.speedBadge}>
-                <Flash style={{ width: 20, height: 20, color: 'var(--ld-semantic-color-action-fill-primary, #0071DC)' }} />
-                <span className={styles.speedLabel}>Express delivery</span>
-              </div>
+              <Tag
+                variant="primary"
+                color="brand"
+                leading={<Flash style={{ width: 14, height: 14, color: '#F7C200' }} />}
+              >
+                Express delivery
+              </Tag>
 
               <p className={styles.description}>
                 Switch your curbside pickup to express delivery and get your order delivered to your door in as little as <strong>1 hour</strong>.

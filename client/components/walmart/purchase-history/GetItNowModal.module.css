@@ -50,23 +50,6 @@
   gap: 16px;
 }
 
-/* ── Speed badge ── */
-.speedBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--ld-semantic-color-fill-info-subtle, #EBF3FF);
-  border-radius: 20px;
-  padding: 6px 14px 6px 10px;
-  align-self: flex-start;
-}
-
-.speedLabel {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--ld-semantic-color-action-fill-primary, #0071DC);
-}
-
 /* ── Description ── */
 .description {
   font-size: 14px;
