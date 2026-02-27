@@ -1,12 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { ChevronLeft, ChevronRight, Check } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
-import {
-  Modal,
-  ModalContent,
-  ModalOverlay,
-  ModalPortal,
-} from '@/components/ui/Modal';
 import type { ServiceDetails } from './OrderCard';
 import styles from './AutoCareModals.module.css';
 
@@ -21,6 +16,26 @@ const MONTHS_FULL = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December',
 ];
+
+// ── Scroll lock + Escape key ──────────────────────────────────────────────────
+function useModalEffects(open: boolean, onClose: () => void) {
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open, onClose]);
+}
+
+// ── Overlay ───────────────────────────────────────────────────────────────────
+function Overlay({ onClose }: { onClose: () => void }) {
+  return <div className={styles.overlay} onClick={onClose} aria-hidden="true" />;
+}
 
 // ── Mini Calendar ─────────────────────────────────────────────────────────────
 function AppointmentCalendar({
@@ -65,33 +80,27 @@ function AppointmentCalendar({
         <button className={styles.calNavBtn} onClick={prevMonth} aria-label="Previous month">
           <ChevronLeft style={{ width: 20, height: 20 }} />
         </button>
-        <span className={styles.calMonthLabel}>
-          {MONTHS_FULL[viewMonth]} {viewYear}
-        </span>
+        <span className={styles.calMonthLabel}>{MONTHS_FULL[viewMonth]} {viewYear}</span>
         <button className={styles.calNavBtn} onClick={nextMonth} aria-label="Next month">
           <ChevronRight style={{ width: 20, height: 20 }} />
         </button>
       </div>
-
       <div className={styles.calGrid}>
         {WEEK_DAYS.map(d => (
           <span key={d} className={styles.calDayHeader}>{d}</span>
         ))}
         {cells.map((d, i) =>
-          d === null ? (
-            <span key={`empty-${i}`} />
-          ) : (
+          d === null ? <span key={`e-${i}`} /> : (
             <button
               key={d}
               className={[
                 styles.calDay,
                 isSelected(d) ? styles.calDaySelected : '',
                 isPast(d) ? styles.calDayPast : '',
-              ].join(' ')}
+              ].filter(Boolean).join(' ')}
               onClick={() => !isPast(d) && onSelect(new Date(viewYear, viewMonth, d))}
               disabled={isPast(d)}
               aria-pressed={isSelected(d)}
-              aria-label={`${MONTHS_FULL[viewMonth]} ${d}, ${viewYear}`}
             >
               {d}
             </button>
@@ -104,264 +113,225 @@ function AppointmentCalendar({
 
 // ── Reschedule Modal ──────────────────────────────────────────────────────────
 function RescheduleModal({
-  open,
-  onClose,
-  initialDate,
+  open, onClose, initialDate,
 }: {
-  open: boolean;
-  onClose: () => void;
-  initialDate: Date;
+  open: boolean; onClose: () => void; initialDate: Date;
 }) {
   const [selectedDate, setSelectedDate] = useState(initialDate);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [confirmed, setConfirmed] = useState(false);
 
-  const handleConfirm = () => setConfirmed(true);
+  useModalEffects(open, onClose);
 
-  const handleDone = () => {
-    setConfirmed(false);
-    setSelectedTime(null);
-    onClose();
-  };
+  if (!open) return null;
 
   const formattedDate = selectedDate.toLocaleDateString('en-US', {
     weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
   });
 
-  return (
-    <Modal open={open} onOpenChange={open => !open && onClose()}>
-      <ModalPortal>
-        <ModalOverlay />
-        <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="reschedule-title">
-          {confirmed ? (
-            /* ── Step 2: Confirmation ── */
-            <div className={styles.confirmedBody}>
-              <button className={styles.closeBtn} onClick={handleDone} aria-label="Close">
-                ✕
-              </button>
-              <div className={styles.successIcon}>
-                <Check style={{ width: 32, height: 32, color: '#fff' }} />
-              </div>
-              <h2 className={styles.confirmedTitle}>Appointment Rescheduled</h2>
-              <p className={styles.confirmedText}>
-                Your oil change is now scheduled for<br />
-                <strong>{formattedDate}</strong> at <strong>{selectedTime}</strong>.
-              </p>
-              <Button variant="primary" onClick={handleDone} UNSAFE_className={styles.fullWidthBtn}>
-                Done
-              </Button>
+  const handleDone = () => { setConfirmed(false); setSelectedTime(null); onClose(); };
+
+  return createPortal(
+    <>
+      <Overlay onClose={onClose} />
+      <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="reschedule-title">
+        {confirmed ? (
+          <div className={styles.confirmedBody}>
+            <button className={styles.closeBtn} onClick={handleDone} aria-label="Close">✕</button>
+            <div className={styles.successIcon}>
+              <Check style={{ width: 32, height: 32, color: '#fff' }} />
             </div>
-          ) : (
-            /* ── Step 1: Pick date + time ── */
-            <>
-              <div className={styles.modalHeader}>
-                <h2 id="reschedule-title" className={styles.modalTitle}>Schedule Your Appointment</h2>
-                <button className={styles.closeBtn} onClick={onClose} aria-label="Close">✕</button>
-              </div>
-
-              <div className={styles.modalScrollBody}>
-                <img
-                  src={HERO_IMAGE}
-                  alt="Walmart Auto Care Center"
-                  className={styles.heroImage}
-                />
-
-                <div className={styles.modalBody}>
-                  <p className={styles.sectionLabel}>Select Date</p>
-                  <AppointmentCalendar selectedDate={selectedDate} onSelect={setSelectedDate} />
-
-                  <p className={styles.sectionLabel}>Select Time</p>
-                  <div className={styles.timeChips}>
-                    {TIMES.map(t => (
-                      <button
-                        key={t}
-                        className={[styles.timeChip, selectedTime === t ? styles.timeChipSelected : ''].join(' ')}
-                        onClick={() => setSelectedTime(t)}
-                        aria-pressed={selectedTime === t}
-                      >
-                        {t}
-                      </button>
-                    ))}
-                  </div>
+            <h2 className={styles.confirmedTitle}>Appointment Rescheduled</h2>
+            <p className={styles.confirmedText}>
+              Your oil change is now scheduled for <strong>{formattedDate}</strong> at <strong>{selectedTime}</strong>.
+            </p>
+            <Button variant="primary" onClick={handleDone} UNSAFE_className={styles.fullWidthBtn}>
+              Done
+            </Button>
+          </div>
+        ) : (
+          <>
+            <div className={styles.modalHeader}>
+              <h2 id="reschedule-title" className={styles.modalTitle}>Schedule Your Appointment</h2>
+              <button className={styles.closeBtn} onClick={onClose} aria-label="Close">✕</button>
+            </div>
+            <div className={styles.modalScrollBody}>
+              <img src={HERO_IMAGE} alt="Walmart Auto Care Center" className={styles.heroImage} />
+              <div className={styles.modalBody}>
+                <p className={styles.sectionLabel}>Select Date</p>
+                <AppointmentCalendar selectedDate={selectedDate} onSelect={setSelectedDate} />
+                <p className={styles.sectionLabel}>Select Time</p>
+                <div className={styles.timeChips}>
+                  {TIMES.map(t => (
+                    <button
+                      key={t}
+                      className={[styles.timeChip, selectedTime === t ? styles.timeChipSelected : ''].filter(Boolean).join(' ')}
+                      onClick={() => setSelectedTime(t)}
+                      aria-pressed={selectedTime === t}
+                    >
+                      {t}
+                    </button>
+                  ))}
                 </div>
               </div>
-
-              <div className={styles.modalFooter}>
-                <Button
-                  variant="primary"
-                  onClick={handleConfirm}
-                  disabled={!selectedTime}
-                  UNSAFE_className={styles.fullWidthBtn}
-                >
-                  Continue to service selection
-                </Button>
-              </div>
-            </>
-          )}
-        </div>
-      </ModalPortal>
-    </Modal>
+            </div>
+            <div className={styles.modalFooter}>
+              <Button
+                variant="primary"
+                onClick={() => setConfirmed(true)}
+                disabled={!selectedTime}
+                UNSAFE_className={styles.fullWidthBtn}
+              >
+                Continue to service selection
+              </Button>
+            </div>
+          </>
+        )}
+      </div>
+    </>,
+    document.body
   );
 }
 
 // ── Check-In Modal ────────────────────────────────────────────────────────────
 function CheckInModal({
-  open,
-  onClose,
-  serviceDetails,
-  location,
-  statusHeading,
+  open, onClose, serviceDetails, location, statusHeading,
 }: {
-  open: boolean;
-  onClose: () => void;
-  serviceDetails?: ServiceDetails;
-  location?: string;
-  statusHeading: string;
+  open: boolean; onClose: () => void;
+  serviceDetails?: ServiceDetails; location?: string; statusHeading: string;
 }) {
   const [checkedIn, setCheckedIn] = useState(false);
 
-  const handleCheckIn = () => setCheckedIn(true);
+  useModalEffects(open, onClose);
+
+  if (!open) return null;
+
   const handleDone = () => { setCheckedIn(false); onClose(); };
 
-  return (
-    <Modal open={open} onOpenChange={o => !o && onClose()}>
-      <ModalPortal>
-        <ModalOverlay />
-        <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="checkin-title">
-          {checkedIn ? (
-            <div className={styles.confirmedBody}>
-              <button className={styles.closeBtn} onClick={handleDone} aria-label="Close">✕</button>
-              <div className={styles.successIcon}>
-                <Check style={{ width: 32, height: 32, color: '#fff' }} />
+  return createPortal(
+    <>
+      <Overlay onClose={onClose} />
+      <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="checkin-title">
+        {checkedIn ? (
+          <div className={styles.confirmedBody}>
+            <button className={styles.closeBtn} onClick={handleDone} aria-label="Close">✕</button>
+            <div className={styles.successIcon}>
+              <Check style={{ width: 32, height: 32, color: '#fff' }} />
+            </div>
+            <h2 className={styles.confirmedTitle}>You're checked in!</h2>
+            <p className={styles.confirmedText}>
+              Head inside and let the team know you've arrived. We'll take it from here.
+            </p>
+            <Button variant="primary" onClick={handleDone} UNSAFE_className={styles.fullWidthBtn}>
+              Done
+            </Button>
+          </div>
+        ) : (
+          <>
+            <div className={styles.modalHeader}>
+              <h2 id="checkin-title" className={styles.modalTitle}>Check In</h2>
+              <button className={styles.closeBtn} onClick={onClose} aria-label="Close">✕</button>
+            </div>
+            <div className={styles.checkInBody}>
+              <div className={styles.detailCard}>
+                <img
+                  src="/illustrations/spot-illustration/OilChange.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width={56}
+                  height={56}
+                />
+                <div className={styles.detailInfo}>
+                  <p className={styles.detailHeading}>{statusHeading}</p>
+                  {location && <p className={styles.detailSub}>{location}</p>}
+                  {serviceDetails && (
+                    <>
+                      <p className={styles.detailVehicle}>{serviceDetails.vehicle}</p>
+                      <ul className={styles.detailServices}>
+                        {serviceDetails.services.map(s => <li key={s}>{s}</li>)}
+                      </ul>
+                    </>
+                  )}
+                </div>
               </div>
-              <h2 className={styles.confirmedTitle}>You're checked in!</h2>
-              <p className={styles.confirmedText}>
-                Head inside and let the team know you've arrived. We'll take it from here.
+              <p className={styles.checkInNote}>
+                Park in any Auto Care bay and a technician will greet you shortly.
               </p>
-              <Button variant="primary" onClick={handleDone} UNSAFE_className={styles.fullWidthBtn}>
-                Done
+            </div>
+            <div className={styles.modalFooter}>
+              <Button variant="secondary" onClick={onClose} UNSAFE_className={styles.halfWidthBtn}>
+                Not yet
+              </Button>
+              <Button variant="primary" onClick={() => setCheckedIn(true)} UNSAFE_className={styles.halfWidthBtn}>
+                I'm here, check me in
               </Button>
             </div>
-          ) : (
-            <>
-              <div className={styles.modalHeader}>
-                <h2 id="checkin-title" className={styles.modalTitle}>Check In</h2>
-                <button className={styles.closeBtn} onClick={onClose} aria-label="Close">✕</button>
-              </div>
-
-              <div className={styles.modalBody} style={{ padding: '24px' }}>
-                <div className={styles.detailCard}>
-                  <img
-                    src="/illustrations/spot-illustration/OilChange.svg"
-                    alt=""
-                    aria-hidden="true"
-                    width={56}
-                    height={56}
-                    className={styles.detailIcon}
-                  />
-                  <div className={styles.detailInfo}>
-                    <p className={styles.detailHeading}>{statusHeading}</p>
-                    {location && <p className={styles.detailSub}>{location}</p>}
-                    {serviceDetails && (
-                      <>
-                        <p className={styles.detailVehicle}>{serviceDetails.vehicle}</p>
-                        <ul className={styles.detailServices}>
-                          {serviceDetails.services.map(s => (
-                            <li key={s}>{s}</li>
-                          ))}
-                        </ul>
-                      </>
-                    )}
-                  </div>
-                </div>
-                <p className={styles.checkInNote}>
-                  Park in any Auto Care bay and a technician will greet you shortly.
-                </p>
-              </div>
-
-              <div className={styles.modalFooter}>
-                <Button variant="secondary" onClick={onClose} UNSAFE_className={styles.fullWidthBtn}>
-                  Not yet
-                </Button>
-                <Button variant="primary" onClick={handleCheckIn} UNSAFE_className={styles.fullWidthBtn}>
-                  I'm here, check me in
-                </Button>
-              </div>
-            </>
-          )}
-        </div>
-      </ModalPortal>
-    </Modal>
+          </>
+        )}
+      </div>
+    </>,
+    document.body
   );
 }
 
 // ── View Details Modal ────────────────────────────────────────────────────────
 function ViewDetailsModal({
-  open,
-  onClose,
-  serviceDetails,
-  location,
-  statusHeading,
-  orderTotal,
+  open, onClose, serviceDetails, location, statusHeading, orderTotal,
 }: {
-  open: boolean;
-  onClose: () => void;
-  serviceDetails?: ServiceDetails;
-  location?: string;
-  statusHeading: string;
-  orderTotal?: string;
+  open: boolean; onClose: () => void;
+  serviceDetails?: ServiceDetails; location?: string;
+  statusHeading: string; orderTotal?: string;
 }) {
-  return (
-    <Modal open={open} onOpenChange={o => !o && onClose()}>
-      <ModalPortal>
-        <ModalOverlay />
-        <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="details-title">
-          <div className={styles.modalHeader}>
-            <h2 id="details-title" className={styles.modalTitle}>Appointment Details</h2>
-            <button className={styles.closeBtn} onClick={onClose} aria-label="Close">✕</button>
-          </div>
+  useModalEffects(open, onClose);
 
-          <div className={styles.detailsBody}>
-            <div className={styles.detailRow}>
-              <span className={styles.detailRowLabel}>Date & Time</span>
-              <span className={styles.detailRowValue}>{statusHeading}</span>
-            </div>
-            {location && (
-              <div className={styles.detailRow}>
-                <span className={styles.detailRowLabel}>Location</span>
-                <span className={styles.detailRowValue}>{location}</span>
-              </div>
-            )}
-            {serviceDetails && (
-              <>
-                <div className={styles.detailRow}>
-                  <span className={styles.detailRowLabel}>Vehicle</span>
-                  <span className={styles.detailRowValue}>{serviceDetails.vehicle}</span>
-                </div>
-                <div className={styles.detailRow}>
-                  <span className={styles.detailRowLabel}>Services</span>
-                  <span className={styles.detailRowValue}>
-                    {serviceDetails.services.join(', ')}
-                  </span>
-                </div>
-              </>
-            )}
-            {orderTotal && (
-              <div className={[styles.detailRow, styles.detailRowTotal].join(' ')}>
-                <span className={styles.detailRowLabel}>Estimated total</span>
-                <span className={styles.detailRowValue}>{orderTotal}</span>
-              </div>
-            )}
-          </div>
+  if (!open) return null;
 
-          <div className={styles.modalFooter}>
-            <Button variant="secondary" onClick={onClose} UNSAFE_className={styles.fullWidthBtn}>
-              Close
-            </Button>
-          </div>
+  return createPortal(
+    <>
+      <Overlay onClose={onClose} />
+      <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="details-title">
+        <div className={styles.modalHeader}>
+          <h2 id="details-title" className={styles.modalTitle}>Appointment Details</h2>
+          <button className={styles.closeBtn} onClick={onClose} aria-label="Close">✕</button>
         </div>
-      </ModalPortal>
-    </Modal>
+        <div className={styles.detailsBody}>
+          <div className={styles.detailRow}>
+            <span className={styles.detailRowLabel}>Date & Time</span>
+            <span className={styles.detailRowValue}>{statusHeading}</span>
+          </div>
+          {location && (
+            <div className={styles.detailRow}>
+              <span className={styles.detailRowLabel}>Location</span>
+              <span className={styles.detailRowValue}>{location}</span>
+            </div>
+          )}
+          {serviceDetails && (
+            <>
+              <div className={styles.detailRow}>
+                <span className={styles.detailRowLabel}>Vehicle</span>
+                <span className={styles.detailRowValue}>{serviceDetails.vehicle}</span>
+              </div>
+              <div className={styles.detailRow}>
+                <span className={styles.detailRowLabel}>Services</span>
+                <span className={styles.detailRowValue}>{serviceDetails.services.join(', ')}</span>
+              </div>
+            </>
+          )}
+          {orderTotal && (
+            <div className={[styles.detailRow, styles.detailRowTotal].join(' ')}>
+              <span className={styles.detailRowLabel}>Estimated total</span>
+              <span className={styles.detailRowValue}>{orderTotal}</span>
+            </div>
+          )}
+        </div>
+        <div className={styles.modalFooter}>
+          <Button variant="secondary" onClick={onClose} UNSAFE_className={styles.fullWidthBtn}>
+            Close
+          </Button>
+        </div>
+      </div>
+    </>,
+    document.body
   );
 }
 
@@ -377,13 +347,8 @@ interface AutoCareModalsProps {
 }
 
 export function AutoCareModals({
-  openModal,
-  onClose,
-  serviceDetails,
-  location,
-  statusHeading,
-  orderTotal,
-  appointmentDate = new Date(2026, 2, 7), // Mar 7 2026
+  openModal, onClose, serviceDetails, location, statusHeading, orderTotal,
+  appointmentDate = new Date(2026, 2, 7),
 }: AutoCareModalsProps) {
   return (
     <>
