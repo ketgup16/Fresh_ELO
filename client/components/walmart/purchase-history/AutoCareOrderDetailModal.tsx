@@ -228,9 +228,6 @@ export function AutoCareOrderDetailModal({
 
                       {/* Vehicle */}
                       <div className={styles.vehicleRow}>
-                        <svg className={styles.vehicleIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-                          <path d="M5 17H3a1 1 0 01-1-1v-5a1 1 0 01.293-.707l3-3A1 1 0 016 7h12a1 1 0 01.707.293l3 3A1 1 0 0122 11v5a1 1 0 01-1 1h-2m-13 0h10m-10 0a2 2 0 11-4 0 2 2 0 014 0zm10 0a2 2 0 11-4 0 2 2 0 014 0z" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
                         <span className={styles.vehicleName}>{vehicle}</span>
                       </div>
 
