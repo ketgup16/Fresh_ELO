@@ -25,6 +25,8 @@ const STEP_INDEX: Record<string, number> = {
   placed: 0, preparing: 1, 'on-the-way': 2, delivered: 3,
 };
 
+const AUTO_STEPS = ['Scheduled', 'Ready to service', 'Serviced'];
+
 interface CombinedOrderCardProps {
   autoCare: OrderCardProps;
   delivery: OrderCardProps;
@@ -68,6 +70,14 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
                 <h3 className={styles.statusHeading}>{autoCare.statusHeading}</h3>
               </div>
             </div>
+
+            {/* Auto care progress tracker */}
+            <ProgressTracker
+              steps={AUTO_STEPS}
+              activeStep={autoCare.serviceDetails?.appointmentStep ?? 0}
+              status="info"
+              className={styles.tracker}
+            />
 
             {autoCare.serviceDetails && (
               <div className={styles.serviceDetails}>
