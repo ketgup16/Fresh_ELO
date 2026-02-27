@@ -316,12 +316,23 @@ const ORDERS: OrderEntry[] = [
   },
 ];
 
-// ── Template card visibility flags ────────────────────────────────────────────
-// Set to true to show demo/template card variants on this page.
+// ── Card visibility flags ────────────────────────────────────────────────────
+// Toggle any card on/off by changing its flag. false = hidden, true = visible.
+
+// Hidden by default (template/demo variants)
 const SHOW_COMBINED_CARD        = false; // Auto Care + Curbside bundled card
 const SHOW_AUTO_CARE_ORDER      = false; // Standalone Auto Care appointment card
 const SHOW_CURBSIDE_GET_IT_NOW  = false; // Curbside "Get it now" active order
 const SHOW_DELAYED_DELIVERY     = false; // Delayed delivery warning card
+
+// Visible by default (standard order list)
+const SHOW_DELIVERY_ON_THE_WAY  = true;  // Delivery in transit
+const SHOW_COMPLETED_DELIVERY   = true;  // Completed grocery delivery (Feb 15, Start a return)
+const SHOW_DELIVERY_WITH_RETURN = true;  // Completed delivery with return notice (Feb 10)
+const SHOW_SHIPPING_ELECTRONICS = true;  // Shipped electronics order
+const SHOW_SHIPPING_APPLIANCES  = true;  // Shipped appliances order
+const SHOW_COMPLETED_CURBSIDE   = true;  // Completed curbside pickup
+const SHOW_STORE_PURCHASE       = true;  // In-store purchase
 
 // ── Filter logic ──────────────────────────────────────────────────────────────
 function applyFilters(orders: OrderEntry[], f: FilterState): OrderEntry[] {
@@ -366,6 +377,13 @@ export default function PurchaseHistory() {
     if (!SHOW_AUTO_CARE_ORDER)     filtered = filtered.filter(o => o.id !== 'auto-oil-change-mar7');
     if (!SHOW_CURBSIDE_GET_IT_NOW) filtered = filtered.filter(o => o.id !== 'curbside-feb28');
     if (!SHOW_DELAYED_DELIVERY)    filtered = filtered.filter(o => o.id !== 'delivery-delayed-may12');
+    if (!SHOW_DELIVERY_ON_THE_WAY) filtered = filtered.filter(o => o.id !== 'delivery-onway-may12');
+    if (!SHOW_COMPLETED_DELIVERY)  filtered = filtered.filter(o => o.id !== 'delivery-mar4');
+    if (!SHOW_DELIVERY_WITH_RETURN)filtered = filtered.filter(o => o.id !== 'delivery-mar8');
+    if (!SHOW_SHIPPING_ELECTRONICS)filtered = filtered.filter(o => o.id !== 'shipping-mar5-electronics');
+    if (!SHOW_SHIPPING_APPLIANCES) filtered = filtered.filter(o => o.id !== 'shipping-feb28-appliances');
+    if (!SHOW_COMPLETED_CURBSIDE)  filtered = filtered.filter(o => o.id !== 'curbside-feb25-garden');
+    if (!SHOW_STORE_PURCHASE)      filtered = filtered.filter(o => o.id !== 'store-feb19-2024');
     return filtered;
   }, [filters]);
 
