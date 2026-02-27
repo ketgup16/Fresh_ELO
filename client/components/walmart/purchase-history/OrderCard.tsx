@@ -299,7 +299,10 @@ export function OrderCard({
 
       {/* Rating — shown for delivered orders */}
       {timelineStep === 'delivered' && (
-        <RatingWidget orderType={orderType} />
+        <>
+          <Divider />
+          <RatingWidget orderType={orderType} />
+        </>
       )}
 
       {/* Footer */}

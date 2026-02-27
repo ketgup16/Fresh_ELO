@@ -311,6 +311,59 @@
   border-color: var(--ld-semantic-color-text, #2E2F32);
 }
 
+/* ── Interactive rating widget (mirrors OrderCard RatingWidget styles) ── */
+.starsWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 4px;
+  width: calc(5 * 20px + 4 * 8px);
+  height: 24px;
+}
+
+.ratingDisplay {
+  pointer-events: none;
+  gap: 8px !important;
+}
+
+.starOverlays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  gap: 8px;
+  height: 100%;
+}
+
+.starOverlayBtn {
+  width: 20px;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.starOverlayBtn:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071DC);
+  outline-offset: 2px;
+}
+
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.ratingThanks {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-fill-positive, #00863D);
+  margin: 0;
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .desktop {

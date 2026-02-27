@@ -5,6 +5,46 @@ import { IconButton } from '@/components/ui/IconButton';
 import { Rating } from '@/components/ui/Rating';
 import styles from './ReviewPromptBanner.module.css';
 
+/* ── Interactive rating widget (mirrors OrderCard RatingWidget) ── */
+function ProductRating({ name }: { name: string }) {
+  const [hovered, setHovered] = useState(0);
+  const [selected, setSelected] = useState(0);
+
+  if (selected > 0) {
+    return (
+      <div className={styles.ratingRow}>
+        <Rating value={selected} size="large" className={styles.ratingDisplay} aria-label={`Your rating: ${selected} out of 5 stars`} />
+        <span className={styles.ratingThanks}>Thanks!</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.starsWrapper} onMouseLeave={() => setHovered(0)}>
+      <Rating
+        value={hovered || 0}
+        size="large"
+        className={styles.ratingDisplay}
+        aria-hidden
+      />
+      <div className={styles.starOverlays} role="radiogroup" aria-label={`Rate ${name}`}>
+        {[1, 2, 3, 4, 5].map(n => (
+          <button
+            key={n}
+            type="button"
+            role="radio"
+            aria-checked={selected === n}
+            aria-label={`${n} star${n > 1 ? 's' : ''}`}
+            className={styles.starOverlayBtn}
+            onMouseEnter={() => setHovered(n)}
+            onClick={() => setSelected(n)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export interface ReviewProduct {
   name: string;
   imageSrc: string;
@@ -23,7 +63,7 @@ function CtaCard({ ctaIllustration }: { ctaIllustration?: string }) {
     <div className={styles.ctaCard}>
       <div className={styles.ctaText}>
         <p className={styles.ctaHeading}>What&rsquo;d you think?</p>
-        <Button variant="secondary" size="large">Review more items</Button>
+        <Button variant="secondary" size="small">Review more items</Button>
       </div>
       {ctaIllustration && (
         <img src={ctaIllustration} alt="Review items illustration" className={styles.ctaIllustration} />
@@ -38,7 +78,7 @@ function ProductReviewCard({ product }: { product: ReviewProduct }) {
       <img src={product.imageSrc} alt={product.name} className={styles.productImg} />
       <div className={styles.productInfo}>
         <p className={styles.productName}>{product.name}</p>
-        {product.rating !== undefined && <Rating value={product.rating} size="large" />}
+        <ProductRating name={product.name} />
       </div>
     </div>
   );
@@ -52,7 +92,7 @@ function MobileCtaCard({ ctaIllustration }: { ctaIllustration?: string }) {
       <div className={styles.mobileCtaInner}>
         <div className={styles.mobileCtaContent}>
           <p className={styles.ctaHeading}>What&rsquo;d you think?</p>
-          <Button variant="secondary" size="large">Review more items</Button>
+          <Button variant="secondary" size="small">Review more items</Button>
         </div>
         {ctaIllustration && (
           <img src={ctaIllustration} alt="" aria-hidden="true" className={styles.mobileCtaIllustration} />
@@ -69,7 +109,7 @@ function MobileCard({ product }: { product: ReviewProduct }) {
         <img src={product.imageSrc} alt={product.name} className={styles.mobileProductImg} />
         <div className={styles.mobileProductInfo}>
           <p className={styles.mobileProductName}>{product.name}</p>
-          {product.rating !== undefined && <Rating value={product.rating} size="large" />}
+          <ProductRating name={product.name} />
         </div>
       </div>
     </div>

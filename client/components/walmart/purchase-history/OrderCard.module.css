@@ -179,7 +179,6 @@
 /* ── Rating section ────────────────────────────────────────────────────────── */
 .ratingSection {
   padding: 14px 16px;
-  background: var(--ld-semantic-color-background-subtle, #F2F3F3);
   display: flex;
   flex-direction: column;
   gap: 4px;
