@@ -1,0 +1,381 @@
+/* ── Modal wrapper ─────────────────────────────────────────────────────────── */
+.modalWrap {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  width: 95vw;
+  max-width: 560px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  animation: modalIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ── Header ────────────────────────────────────────────────────────────────── */
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 16px;
+  flex-shrink: 0;
+}
+
+.modalTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  padding: 4px 8px;
+  border-radius: 4px;
+  line-height: 1;
+  transition: background 150ms;
+}
+
+.closeBtn:hover {
+  background: var(--ld-semantic-color-fill-subtle, #F2F3F3);
+}
+
+/* ── Scrollable body ───────────────────────────────────────────────────────── */
+.modalScrollBody {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* ── Hero image ────────────────────────────────────────────────────────────── */
+.heroImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+@media (min-width: 480px) {
+  .heroImage {
+    height: 240px;
+  }
+}
+
+/* ── Body padding ──────────────────────────────────────────────────────────── */
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Section label ─────────────────────────────────────────────────────────── */
+.sectionLabel {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 16px 20px 0;
+}
+
+/* ── Calendar ──────────────────────────────────────────────────────────────── */
+.calendar {
+  margin: 0 12px;
+  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.calNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+}
+
+.calNavBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  transition: background 150ms;
+}
+
+.calNavBtn:hover {
+  background: var(--ld-semantic-color-fill-subtle, #F2F3F3);
+}
+
+.calMonthLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.calGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 8px;
+  gap: 2px;
+}
+
+.calDayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+}
+
+.calDay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  border-radius: 50%;
+  transition: background 120ms;
+  font-family: inherit;
+}
+
+.calDay:hover:not(:disabled) {
+  background: var(--ld-semantic-color-fill-subtle, #F2F3F3);
+}
+
+.calDaySelected {
+  background: var(--ld-semantic-color-action-fill-primary, #0071DC) !important;
+  color: #fff !important;
+  font-weight: 700;
+}
+
+.calDayPast {
+  color: var(--ld-semantic-color-text-disabled, #BABBBE);
+  cursor: not-allowed;
+}
+
+/* ── Time chips ────────────────────────────────────────────────────────────── */
+.timeChips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0 20px 4px;
+}
+
+.timeChip {
+  border: 1.5px solid var(--ld-semantic-color-separator, #E3E4E5);
+  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  cursor: pointer;
+  transition: border-color 120ms, background 120ms;
+  font-family: inherit;
+}
+
+.timeChip:hover {
+  border-color: var(--ld-semantic-color-action-fill-primary, #0071DC);
+}
+
+.timeChipSelected {
+  border-color: var(--ld-semantic-color-action-fill-primary, #0071DC);
+  background: var(--ld-semantic-color-action-fill-primary, #0071DC);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ── Footer ────────────────────────────────────────────────────────────────── */
+.modalFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 20px 20px;
+  flex-shrink: 0;
+  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+}
+
+@media (min-width: 480px) {
+  .modalFooter {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+.fullWidthBtn {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 480px) {
+  .fullWidthBtn {
+    width: auto;
+    min-width: 180px;
+  }
+}
+
+/* reschedule CTA spans full width always */
+.modalFooter:has(.fullWidthBtn:only-child) .fullWidthBtn {
+  width: 100%;
+}
+
+/* ── Confirmed / success state ─────────────────────────────────────────────── */
+.confirmedBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 32px 32px;
+  gap: 16px;
+}
+
+.successIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--ld-semantic-color-action-fill-primary, #0071DC);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.confirmedTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+}
+
+.confirmedText {
+  font-size: 15px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Check-in detail card ──────────────────────────────────────────────────── */
+.detailCard {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-radius: 8px;
+  background: var(--ld-semantic-color-fill-subtle, #F2F3F3);
+}
+
+.detailIcon {
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.detailInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detailHeading {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+}
+
+.detailSub {
+  font-size: 13px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  margin: 0;
+}
+
+.detailVehicle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 4px 0 0;
+}
+
+.detailServices {
+  margin: 4px 0 0;
+  padding-left: 16px;
+  font-size: 13px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  line-height: 1.6;
+}
+
+.checkInNote {
+  font-size: 13px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+
+/* ── View details rows ─────────────────────────────────────────────────────── */
+.detailsBody {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  gap: 0;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+}
+
+.detailRow:last-child {
+  border-bottom: none;
+}
+
+.detailRowLabel {
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  flex-shrink: 0;
+  min-width: 100px;
+}
+
+.detailRowValue {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  text-align: right;
+}
+
+.detailRowTotal .detailRowLabel,
+.detailRowTotal .detailRowValue {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}

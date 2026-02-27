@@ -13,6 +13,7 @@ import {
 } from '@/components/walmart/purchase-history/PurchaseHistoryFilters';
 import { ReviewPromptBanner } from '@/components/walmart/purchase-history/ReviewPromptBanner';
 import { OrderCard, OrderCardProps } from '@/components/walmart/purchase-history/OrderCard';
+import { AutoCareOrderCard } from '@/components/walmart/purchase-history/AutoCareOrderCard';
 import { InlineAdBanner } from '@/components/walmart/purchase-history/InlineAdBanner';
 import styles from './PurchaseHistory.module.css';
 
@@ -387,7 +388,9 @@ export default function PurchaseHistory() {
                           />
                         </div>
                       )}
-                      <OrderCard {...order.card} />
+                      {order.card.orderType === 'auto'
+                        ? <AutoCareOrderCard {...order.card} />
+                        : <OrderCard {...order.card} />}
                     </div>
                   ))
                 )}
