@@ -365,20 +365,6 @@ export default function PurchaseHistory() {
                   animation on insert. Remove the wrapper + component to hide.
               ─────────────────────────────────────────────────────────────── */}
 
-              {/* Combined card: same-day oil change + curbside pickup bundle */}
-              <div className={styles.newCard}>
-                <CombinedOrderCard
-                  autoCare={COMBINED_CARD_AUTO}
-                  delivery={COMBINED_CARD_DELIVERY}
-                  autoCareAppointmentDate={new Date(2026, 2, 7)}
-                />
-              </div>
-
-              {/* Auto Care appointment card: oil change with Check in, Reschedule, View details */}
-              <div className={styles.newCard}>
-                <AutoCareOrderCard {...COMBINED_CARD_AUTO} />
-              </div>
-
               {/* ── Standard order list ───────────────────────────────────── */}
               <div className={styles.orderList}>
                 {visibleOrders.length === 0 ? (
