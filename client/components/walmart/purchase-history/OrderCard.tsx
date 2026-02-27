@@ -64,23 +64,23 @@ const STEP_INDEX: Record<TimelineStep, number> = {
 
 const FULFILLMENT_ICONS: Record<OrderType, { src: string; alt: string }> = {
   curbside: {
-    src: '/illustrations/mono-small/pre-schedule.svg',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Feb8e854b1c2441668631c59d482af3f2',
     alt: 'Curbside pickup',
   },
   delivery: {
-    src: '/illustrations/mono-small/wplus-delivery.svg',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F06ac09fed4534c02b62a8d43e759a824',
     alt: 'Delivery',
   },
   store: {
-    src: '/illustrations/mono-small/storefront.svg',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F4ed8486e018848678a23689dc195dcd8',
     alt: 'Store purchase',
   },
   shipping: {
-    src: '/illustrations/mono-small/delivery-united.svg',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fae074f13699f44c0a142fc357711a02e',
     alt: 'Shipping',
   },
   auto: {
-    src: '/illustrations/spot-illustration/OilChange.svg',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F26a934c359774221bf674b2fb62d93da',
     alt: '',
   },
 };
