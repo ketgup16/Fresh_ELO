@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import {
-  ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Check, X,
+  ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Check, X, ArrowLeft, InfoCircle,
   Store, UserCircle, CreditCard, Receipt,
 } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
@@ -207,6 +207,7 @@ function ViewDetailsModal({
   initialStep: DetailsStep;
 }) {
   const [saved, setSaved] = useState(false);
+  const [receiptOpen, setReceiptOpen] = useState(false);
   const [showCallout, setShowCallout] = useState(true);
   const [expandedField, setExpandedField] = useState<'date' | 'time' | null>(null);
   const [selectedDate, setSelectedDate] = useState(new Date(2026, 3, 2));
@@ -218,6 +219,7 @@ function ViewDetailsModal({
   useEffect(() => {
     if (open) {
       setSaved(false);
+      setReceiptOpen(false);
       setShowCallout(true);
       setHasChanges(false);
       // Auto-expand date field when opened from Reschedule button
@@ -258,6 +260,60 @@ function ViewDetailsModal({
   };
 
   const chevronStyle = { width: 18, height: 18, color: 'var(--ld-semantic-color-text-subtle, #74767C)', flexShrink: 0 as const };
+
+  // ── Receipt / cost breakdown view ──
+  if (receiptOpen) {
+    return createPortal(
+      <>
+        <Scrim onClick={onClose} style={{ zIndex: 100 }} />
+        <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="receipt-title">
+          <div className={styles.modalHeader}>
+            <div className={styles.headerWithBack}>
+              <IconButton aria-label="Back" variant="ghost" size="medium" onClick={() => setReceiptOpen(false)}>
+                <ArrowLeft style={{ width: 20, height: 20 }} />
+              </IconButton>
+              <h2 id="receipt-title" className={styles.modalTitle}>Receipt</h2>
+            </div>
+            <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
+              <X style={{ width: 20, height: 20 }} />
+            </IconButton>
+          </div>
+
+          <div className={styles.receiptBody}>
+            {/* Line items */}
+            <div className={styles.receiptLines}>
+              <div className={styles.receiptLine}>
+                <span className={styles.receiptLineLabel}>Oil change service</span>
+                <span className={styles.receiptLineValue}>$54.99</span>
+              </div>
+              <div className={styles.receiptLine}>
+                <span className={[styles.receiptLineLabel, styles.receiptLineBold].join(' ')}>Taxes</span>
+                <span className={styles.receiptLineValue}>$3.20</span>
+              </div>
+              <div className={styles.receiptLine}>
+                <span className={styles.receiptLineLabel}>
+                  Temporary hold
+                  <InfoCircle style={{ width: 16, height: 16, verticalAlign: 'middle', marginLeft: 4, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+                </span>
+                <span className={styles.receiptLineValue}>$00.00</span>
+              </div>
+              <div className={[styles.receiptLine, styles.receiptLineTotal].join(' ')}>
+                <span className={styles.receiptLineTotalLabel}>Total</span>
+                <span className={styles.receiptLineTotalValue}>$58.19</span>
+              </div>
+            </div>
+
+            {/* Order info + barcode */}
+            <div className={styles.receiptOrderSection}>
+              <p className={styles.receiptOrderNum}>Order# 0000000-00000</p>
+              <div className={styles.receiptBarcode} aria-hidden="true" />
+            </div>
+          </div>
+        </div>
+      </>,
+      document.body
+    );
+  }
 
   // ── Saved success state ──
   if (saved) {
@@ -439,7 +495,7 @@ function ViewDetailsModal({
               </div>
               <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
             </button>
-            <button className={styles.apptListRow}>
+            <button className={styles.apptListRow} onClick={() => setReceiptOpen(true)}>
               <Receipt style={{ width: 22, height: 22, flexShrink: 0 }} />
               <div className={styles.apptListRowContent}>
                 <span className={styles.apptListRowLabel}>Est. total</span>

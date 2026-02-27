@@ -512,6 +512,129 @@
   text-overflow: ellipsis;
 }
 
+/* ══════════════════════════════════════════════════════════════════════════════
+   RECEIPT VIEW
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.receiptBody {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Line items */
+.receiptLines {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 24px;
+}
+
+.receiptLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  gap: 16px;
+}
+
+.receiptLineLabel {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.receiptLineBold {
+  font-weight: 700;
+}
+
+.receiptLineValue {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  flex-shrink: 0;
+}
+
+/* Total row */
+.receiptLineTotal {
+  border-bottom: none;
+  padding-top: 18px;
+  padding-bottom: 8px;
+}
+
+.receiptLineTotalLabel {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.receiptLineTotalValue {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+/* Order section with barcode */
+.receiptOrderSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 24px 32px;
+  border-top: 2px solid var(--ld-semantic-color-separator, #E3E4E5);
+  margin-top: 8px;
+}
+
+.receiptOrderNum {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+  font-family: var(--ld-semantic-font-family-mono, 'Courier New', monospace);
+}
+
+/* CSS barcode using repeating gradient */
+.receiptBarcode {
+  height: 60px;
+  width: 100%;
+  border-radius: 2px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #1a1a1a 0px,   #1a1a1a 2px,
+    transparent    2px,   transparent    5px,
+    #1a1a1a 5px,   #1a1a1a 6px,
+    transparent    6px,   transparent    8px,
+    #1a1a1a 8px,   #1a1a1a 11px,
+    transparent    11px,  transparent    13px,
+    #1a1a1a 13px,  #1a1a1a 14px,
+    transparent    14px,  transparent    17px,
+    #1a1a1a 17px,  #1a1a1a 20px,
+    transparent    20px,  transparent    22px,
+    #1a1a1a 22px,  #1a1a1a 23px,
+    transparent    23px,  transparent    27px,
+    #1a1a1a 27px,  #1a1a1a 29px,
+    transparent    29px,  transparent    31px,
+    #1a1a1a 31px,  #1a1a1a 33px,
+    transparent    33px,  transparent    36px,
+    #1a1a1a 36px,  #1a1a1a 37px,
+    transparent    37px,  transparent    40px,
+    #1a1a1a 40px,  #1a1a1a 42px,
+    transparent    42px,  transparent    45px,
+    #1a1a1a 45px,  #1a1a1a 47px,
+    transparent    47px,  transparent    48px,
+    #1a1a1a 48px,  #1a1a1a 51px,
+    transparent    51px,  transparent    54px,
+    #1a1a1a 54px,  #1a1a1a 55px,
+    transparent    55px,  transparent    58px,
+    #1a1a1a 58px,  #1a1a1a 60px,
+    transparent    60px,  transparent    62px,
+    #1a1a1a 62px,  #1a1a1a 64px,
+    transparent    64px,  transparent    67px
+  );
+  background-size: 67px 100%;
+}
+
 /* ── Legal text ────────────────────────────────────────────────────────────── */
 .apptLegalText {
   font-size: 12px;
