@@ -8,13 +8,13 @@ last_updated: 2025-02-27
 
 ## Purpose
 
-The Purchase History page (`client/pages/walmart/PurchaseHistory.tsx`) contains several card pattern variants that are hidden by default using boolean flags. When a user asks to see or work with one of these patterns, the agent MUST immediately set the corresponding flag to `true` — no questions, no confirmation, no planning step.
+The Purchase History page (`client/pages/walmart/PurchaseHistory.tsx`) contains card pattern variants that are hidden by default using boolean flags. When a user pastes or types a prompt matching a card pattern, the agent MUST immediately set the corresponding flag to `true` — no questions, no confirmation, no planning step.
 
 ---
 
 ## The Flags
 
-All flags live at the top of `client/pages/walmart/PurchaseHistory.tsx`:
+All flags live near the top of `client/pages/walmart/PurchaseHistory.tsx`:
 
 ```ts
 const SHOW_COMBINED_CARD        = false; // Auto Care + Curbside bundled card
@@ -27,29 +27,45 @@ const SHOW_DELAYED_DELIVERY     = false; // Delayed delivery warning card
 
 ## Trigger → Flag Mapping
 
-When a user's prompt matches any of the keywords below (case-insensitive), immediately set the corresponding flag to `true`.
+Match on the **exact prompt text** from `OrderCardPatterns.tsx` OR any of the keyword aliases below. Both trigger the same immediate flag change.
 
-| User says anything like… | Set this flag to `true` |
-|---|---|
-| "combined card", "auto care + curbside", "bundled card", "combined order" | `SHOW_COMBINED_CARD` |
-| "auto care order", "auto care appointment", "oil change card", "auto care card" | `SHOW_AUTO_CARE_ORDER` |
-| "curbside get it now", "get it now", "curbside active", "curbside card" | `SHOW_CURBSIDE_GET_IT_NOW` |
-| "delayed delivery", "delayed order", "delay card", "delayed card" | `SHOW_DELAYED_DELIVERY` |
+### Combined card
+**Exact prompt**: `"Show a combined card pairing a same-day oil change with a curbside pickup, with a merged bundle total."`
+**Keyword aliases**: "combined card", "auto care + curbside", "bundled card", "combined order", "bundle total"
+**Flag**: `SHOW_COMBINED_CARD = true`
+
+---
+
+### Auto Care appointment
+**Exact prompt**: `"Show a scheduled oil change appointment card with Check in, Reschedule, and View details actions."`
+**Keyword aliases**: "auto care order", "auto care appointment", "oil change card", "auto care card", "scheduled oil change"
+**Flag**: `SHOW_AUTO_CARE_ORDER = true`
+
+---
+
+### Active curbside / Get it now
+**Exact prompt**: `"Show an active curbside order with a countdown to edit and a \"Get it now\" button to upgrade to express delivery."`
+**Keyword aliases**: "curbside get it now", "get it now", "curbside active", "active curbside", "express upgrade"
+**Flag**: `SHOW_CURBSIDE_GET_IT_NOW = true`
+
+---
+
+### Delayed delivery warning
+**Exact prompt**: `"Show a delayed delivery warning card with options to reschedule, switch to pickup, or cancel."`
+**Keyword aliases**: "delayed delivery", "delayed order", "delay card", "late delivery warning"
+**Flag**: `SHOW_DELAYED_DELIVERY = true`
 
 ---
 
 ## How to Apply
 
-1. Identify which flag(s) map to the user's prompt.
+1. Identify which flag(s) map to the prompt.
 2. Open `client/pages/walmart/PurchaseHistory.tsx`.
 3. Change the matching flag(s) from `false` to `true`.
-4. Do nothing else — no layout changes, no data changes, no questions.
+4. Done — no other changes.
 
 ```ts
-// Before
-const SHOW_DELAYED_DELIVERY = false;
-
-// After — single line change, nothing else
+// Single line change only:
 const SHOW_DELAYED_DELIVERY = true;
 ```
 
@@ -57,15 +73,38 @@ const SHOW_DELAYED_DELIVERY = true;
 
 ## Hiding a Pattern
 
-If the user asks to hide a pattern ("hide the delayed delivery", "turn off combined card", "remove auto care"), set the flag back to `false`.
+If the user selects a card and says "hide", or says "turn off / remove / hide [pattern name]", set the flag back to `false`.
 
 ---
 
-## Rules
+## Adding a New Card Pattern (CRITICAL)
 
-- ✅ ALWAYS apply the flag change immediately when the prompt matches
-- ✅ ONLY change the flag — do not touch surrounding code
-- ✅ Multiple flags can be set in the same edit if the prompt references multiple patterns
-- ❌ NEVER ask for confirmation before setting a flag
-- ❌ NEVER refactor or reorganize the flags block
-- ❌ NEVER add new flags without a corresponding card pattern already implemented in the file
+When a new pattern is added to `client/pages/component-library/OrderCardPatterns.tsx`, the agent MUST also:
+
+1. **Add a new flag** to the flags block in `client/pages/walmart/PurchaseHistory.tsx`:
+   ```ts
+   const SHOW_MY_NEW_CARD = false; // Description of the new pattern
+   ```
+
+2. **Wire up the flag** in the render logic — follow the same IIFE or conditional pattern used by existing flags.
+
+3. **Add a new entry to this rule file** under "Trigger → Flag Mapping" with:
+   - The exact prompt text from `OrderCardPatterns.tsx`
+   - Keyword aliases
+   - The new flag name
+
+4. **Update `RULES_INDEX.md`** — add the new prompt → flag row to the table in rule #14.
+
+Without these steps, the new pattern will never surface when the prompt is used.
+
+---
+
+## Enforcement Rules
+
+- ✅ ALWAYS apply the flag change immediately — zero delay, zero confirmation
+- ✅ ONLY change the flag line — do not touch surrounding code
+- ✅ Multiple flags can be set in one edit if the prompt references multiple patterns
+- ✅ ALWAYS add a flag + rule entry when a new pattern is added to `OrderCardPatterns.tsx`
+- ❌ NEVER ask "are you sure?" before setting or unsetting a flag
+- ❌ NEVER refactor or reorder the flags block
+- ❌ NEVER add a flag without a corresponding implemented card pattern in the file

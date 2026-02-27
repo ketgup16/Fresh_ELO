@@ -388,14 +388,16 @@ public/illustrations/
 
 **Key Requirements**:
 - ✅ IMMEDIATELY set the matching flag to `true` in `client/pages/walmart/PurchaseHistory.tsx` — no confirmation needed
+- ✅ Match on the **exact prompt text** from `OrderCardPatterns.tsx` OR keyword aliases
 - ✅ Only change the flag, nothing else
+- ✅ When a new pattern is added to `OrderCardPatterns.tsx`, also add a flag in `PurchaseHistory.tsx` and a new entry here
 
-| Prompt keyword | Flag |
+| Exact prompt (from OrderCardPatterns.tsx) | Flag |
 |---|---|
-| "combined card", "auto care + curbside" | `SHOW_COMBINED_CARD` |
-| "auto care order", "oil change card" | `SHOW_AUTO_CARE_ORDER` |
-| "curbside get it now", "get it now" | `SHOW_CURBSIDE_GET_IT_NOW` |
-| "delayed delivery", "delayed card" | `SHOW_DELAYED_DELIVERY` |
+| "Show a combined card pairing a same-day oil change with a curbside pickup…" | `SHOW_COMBINED_CARD` |
+| "Show a scheduled oil change appointment card with Check in, Reschedule…" | `SHOW_AUTO_CARE_ORDER` |
+| "Show an active curbside order with a countdown to edit and a 'Get it now' button…" | `SHOW_CURBSIDE_GET_IT_NOW` |
+| "Show a delayed delivery warning card with options to reschedule, switch to pickup…" | `SHOW_DELAYED_DELIVERY` |
 
 ---
 
