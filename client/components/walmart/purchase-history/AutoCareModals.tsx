@@ -358,7 +358,7 @@ function ViewDetailsModal({
               {expandedField === 'date' && (
                 <div className={styles.fieldExpandPanel}>
                   <AppointmentCalendar selectedDate={pendingDate} onSelect={setPendingDate} />
-                  <Button variant="primary" onClick={confirmDate} UNSAFE_className={styles.fullWidthBtn}>
+                  <Button variant="secondary" size="small" onClick={confirmDate} UNSAFE_className={styles.fullWidthBtn}>
                     Confirm date
                   </Button>
                 </div>
@@ -394,7 +394,8 @@ function ViewDetailsModal({
                     ))}
                   </div>
                   <Button
-                    variant="primary"
+                    variant="secondary"
+                    size="small"
                     onClick={confirmTime}
                     disabled={!pendingTime}
                     UNSAFE_className={styles.fullWidthBtn}
@@ -503,7 +504,7 @@ function ViewDetailsModal({
         <div className={styles.modalFooter}>
           <Button
             variant="primary"
-            size="large"
+            size="medium"
             onClick={() => hasChanges ? setSaved(true) : onClose()}
             UNSAFE_className={styles.fullWidthBtn}
           >
