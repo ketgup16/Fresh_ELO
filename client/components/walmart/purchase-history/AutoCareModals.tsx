@@ -510,9 +510,9 @@ function ViewDetailsModal({
         {/* Footer */}
         <div className={styles.modalFooter}>
           <ButtonGroup UNSAFE_className={styles.footerButtonGroup}>
-            <LinkButton size="small" onClick={onClose}>
+            <Button variant="secondary" size="small" onClick={onClose}>
               Close
-            </LinkButton>
+            </Button>
             {hasChanges && (
               <Button
                 variant="secondary"
