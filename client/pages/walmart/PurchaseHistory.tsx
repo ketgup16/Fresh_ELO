@@ -316,6 +316,13 @@ const ORDERS: OrderEntry[] = [
   },
 ];
 
+// ── Template card visibility flags ────────────────────────────────────────────
+// Set to true to show demo/template card variants on this page.
+const SHOW_COMBINED_CARD        = false; // Auto Care + Curbside bundled card
+const SHOW_AUTO_CARE_ORDER      = false; // Standalone Auto Care appointment card
+const SHOW_CURBSIDE_GET_IT_NOW  = false; // Curbside "Get it now" active order
+const SHOW_DELAYED_DELIVERY     = false; // Delayed delivery warning card
+
 // ── Filter logic ──────────────────────────────────────────────────────────────
 function applyFilters(orders: OrderEntry[], f: FilterState): OrderEntry[] {
   return orders.filter(order => {
@@ -354,7 +361,13 @@ function applyFilters(orders: OrderEntry[], f: FilterState): OrderEntry[] {
 export default function PurchaseHistory() {
   const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
 
-  const visibleOrders = useMemo(() => applyFilters(ORDERS, filters), [filters]);
+  const visibleOrders = useMemo(() => {
+    let filtered = applyFilters(ORDERS, filters);
+    if (!SHOW_AUTO_CARE_ORDER)     filtered = filtered.filter(o => o.id !== 'auto-oil-change-mar7');
+    if (!SHOW_CURBSIDE_GET_IT_NOW) filtered = filtered.filter(o => o.id !== 'curbside-feb28');
+    if (!SHOW_DELAYED_DELIVERY)    filtered = filtered.filter(o => o.id !== 'delivery-delayed-may12');
+    return filtered;
+  }, [filters]);
 
   return (
     <ResponsiveLayout maxWidth="full" mobileActiveTab="user">
@@ -408,7 +421,7 @@ export default function PurchaseHistory() {
               {/* Order list */}
               <div className={styles.orderList}>
                 {/* Combined card pattern — oil change + delivery side by side */}
-                {(() => {
+                {SHOW_COMBINED_CARD && (() => {
                   const autoCareOrder = ORDERS.find(o => o.id === 'auto-oil-change-mar7');
                   const deliveryOrder = ORDERS.find(o => o.id === 'curbside-feb28');
                   if (!autoCareOrder || !deliveryOrder) return null;
@@ -440,7 +453,7 @@ export default function PurchaseHistory() {
                           />
                         </div>
                       )}
-                      {order.id === 'delivery-delayed-may12' && (
+                      {SHOW_DELAYED_DELIVERY && order.id === 'delivery-delayed-may12' && (
                         <div style={{ marginBottom: 16 }}>
                           <DelayedDeliveryCard
                             statusHeading="Delayed, estimated up to 2 hours"

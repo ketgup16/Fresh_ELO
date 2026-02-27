@@ -6,7 +6,7 @@
   overflow: hidden;
   background: var(--ld-semantic-color-fill-surface-primary, #fff);
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  box-shadow: 0 2px 12px rgba(245, 166, 35, 0.15);
+  box-shadow: var(--ld-semantic-elevation-shadow-raised, 0 2px 12px rgba(245, 166, 35, 0.15));
 }
 
 /* ── Warning banner ── */

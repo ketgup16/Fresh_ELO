@@ -10,7 +10,7 @@
   gap: 8px;
   align-self: stretch;
   /* Figma: warning/amber surface */
-  background: #FFF3C4;
+  background: var(--ld-semantic-color-feedback-warning-fill-subtle, #FFF3C4);
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
 }
 

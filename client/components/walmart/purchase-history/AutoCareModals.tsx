@@ -140,7 +140,7 @@ function CheckInModal({
               </IconButton>
             </div>
             <div className={styles.successIcon}>
-              <Check style={{ width: 32, height: 32, color: '#fff' }} />
+              <Check style={{ width: 32, height: 32, color: 'var(--ld-primitive-color-white, #fff)' }} />
             </div>
             <h2 className={styles.confirmedTitle}>You're checked in!</h2>
             <p className={styles.confirmedText}>
@@ -282,7 +282,7 @@ function ViewDetailsModal({
               </IconButton>
             </div>
             <div className={styles.successIcon}>
-              <Check style={{ width: 32, height: 32, color: '#fff' }} />
+              <Check style={{ width: 32, height: 32, color: 'var(--ld-primitive-color-white, #fff)' }} />
             </div>
             <h2 className={styles.confirmedTitle}>Appointment updated!</h2>
             <p className={styles.confirmedText}>
