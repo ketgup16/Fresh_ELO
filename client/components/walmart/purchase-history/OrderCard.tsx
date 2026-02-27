@@ -7,7 +7,7 @@ import { ProgressTracker } from '@/components/ui/ProgressTracker';
 import { AmendsBanner } from './AmendsBanner';
 import styles from './OrderCard.module.css';
 
-export type OrderType = 'curbside' | 'delivery' | 'shipping' | 'store';
+export type OrderType = 'curbside' | 'delivery' | 'shipping' | 'store' | 'auto';
 export type TimelineStep = 'placed' | 'preparing' | 'on-the-way' | 'delivered';
 
 export interface OrderAction {
@@ -19,6 +19,11 @@ export interface OrderAction {
 export interface OrderProduct {
   src: string;
   alt: string;
+}
+
+export interface ServiceDetails {
+  vehicle: string;
+  services: string[];
 }
 
 export interface OrderCardProps {
@@ -37,6 +42,7 @@ export interface OrderCardProps {
   returnNotice?: string;
   returnDeadline?: string;
   addItemsBanner?: string;
+  serviceDetails?: ServiceDetails;
 }
 
 const ORDER_TYPE_LABELS: Record<OrderType, string> = {
@@ -44,6 +50,7 @@ const ORDER_TYPE_LABELS: Record<OrderType, string> = {
   delivery: 'Delivery from store',
   shipping: 'Shipping',
   store: 'Store purchase',
+  auto: 'Auto Care Center',
 };
 
 const DELIVERY_STEPS = ['Placed', 'Preparing', 'On the way', 'Delivered'];
@@ -72,6 +79,10 @@ const FULFILLMENT_ICONS: Record<OrderType, { src: string; alt: string }> = {
     src: '/illustrations/mono-small/fulfillment-shipping.svg',
     alt: 'Shipping',
   },
+  auto: {
+    src: '/illustrations/spot-illustration/OilChange.svg',
+    alt: '',
+  },
 };
 
 function OrderTypeIcon({ type }: { type: OrderType }) {
@@ -95,6 +106,7 @@ export function OrderCard({
   returnNotice,
   returnDeadline,
   addItemsBanner,
+  serviceDetails,
 }: OrderCardProps) {
   const primaryActions = actions.filter((a) => a.variant === 'primary');
   const secondaryActions = actions.filter((a) => a.variant === 'secondary');
@@ -162,12 +174,26 @@ export function OrderCard({
             </div>
           )}
 
+          {/* Service details (auto appointments) */}
+          {serviceDetails && (
+            <div className={styles.serviceDetails}>
+              <span className={styles.vehicleLabel}>{serviceDetails.vehicle}</span>
+              <ul className={styles.serviceList}>
+                {serviceDetails.services.map((s, i) => (
+                  <li key={i} className={styles.serviceItem}>{s}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {/* Product images */}
-          <div className={styles.products}>
-            {products.slice(0, 8).map((p, i) => (
-              <img key={i} src={p.src} alt={p.alt} className={styles.productImg} />
-            ))}
-          </div>
+          {products.length > 0 && (
+            <div className={styles.products}>
+              {products.slice(0, 8).map((p, i) => (
+                <img key={i} src={p.src} alt={p.alt} className={styles.productImg} />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Right: action buttons */}

@@ -84,23 +84,25 @@ function makeSearchText(card: OrderCardProps): string {
 
 const ORDERS: OrderEntry[] = [
   {
-    id: 'curbside-may14',
-    date: new Date(2026, 1, 28),
+    id: 'auto-oil-change-mar7',
+    date: new Date(2026, 2, 7),
     orderStatus: 'in-progress',
     hasReturn: false,
-    isInStore: false,
-    isOnline: true,
+    isInStore: true,
+    isOnline: false,
     card: {
-      orderType: 'curbside',
+      orderType: 'auto',
       location: 'Carrollton Supercenter at 1213 Trinity Mills Rd',
-      statusHeading: 'Sat, Feb 28, 5pm–6pm',
-      timelineStep: 'placed',
-      timelineVariant: 'pickup',
-      addItemsBanner: '1hr 20min left to add to your order',
-      products: [P.milk, P.eggs, P.bananas, P.avocado, P.redOnion, P.blueberries],
-      orderTotal: '$85.00',
+      statusHeading: 'Sat, Mar 7, 10:00am–11:00am',
+      products: [],
+      serviceDetails: {
+        vehicle: '2019 Toyota Camry',
+        services: ['Conventional Oil & Filter Change', 'Tire Rotation'],
+      },
+      orderTotal: '$89.88',
       actions: [
-        { label: 'Edit items', variant: 'primary' },
+        { label: 'Check in', variant: 'primary' },
+        { label: 'Reschedule', variant: 'secondary' },
         { label: 'View details', variant: 'secondary' },
       ],
     },

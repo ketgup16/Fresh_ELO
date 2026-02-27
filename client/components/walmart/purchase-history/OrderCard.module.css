@@ -117,6 +117,50 @@
   background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
 }
 
+/* Service details (auto Care appointments) */
+.serviceDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.vehicleLabel {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  line-height: 20px;
+}
+
+.serviceList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.serviceItem {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.serviceItem::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ld-semantic-color-text-subtle, #74767C);
+  flex-shrink: 0;
+}
+
 /* Right column: action buttons */
 .rightCol {
   display: flex;
