@@ -1,4 +1,4 @@
-/* ── Full-screen overlay ───────────────────────────────────────────────────── */
+/* ── Full-screen page overlay ──────────────────────────────────────────────── */
 .detailOverlay {
   position: fixed;
   inset: 0;
@@ -7,77 +7,55 @@
   flex-direction: column;
   background: var(--ld-semantic-color-fill-surface-primary, #fff);
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  animation: slideUp 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: slideIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes slideIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-/* ── Sticky top bar ────────────────────────────────────────────────────────── */
-.topBar {
-  flex-shrink: 0;
-  border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
-}
-
-.topBarInner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 10px 24px;
-}
-
-/* ── Breadcrumb ────────────────────────────────────────────────────────────── */
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-}
-
-.breadcrumbLink {
-  background: none;
-  border: none;
-  padding: 0;
-  font-family: inherit;
-  font-size: 13px;
-  color: var(--ld-semantic-color-action-fill-primary, #0071DC);
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.breadcrumbLink:hover {
-  color: var(--ld-semantic-color-action-fill-primary-hovered, #004F9A);
-}
-
-.breadcrumbCurrent {
-  font-size: 13px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
-}
-
-/* ── Scrollable page body ──────────────────────────────────────────────────── */
+/* ── Scrollable area below the fixed chrome ────────────────────────────────── */
 .pageBody {
   flex: 1;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: var(--ld-semantic-color-background-subtle, #F2F3F3);
+  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  display: flex;
+  flex-direction: column;
 }
 
-.pageInner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 24px 48px;
+/* ── Breadcrumb row ────────────────────────────────────────────────────────── */
+.breadcrumbRow {
+  padding: 16px 24px;
+  flex-shrink: 0;
+}
+
+/* ── Body: sidenav + main side by side ─────────────────────────────────────── */
+.pageLayout {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  min-height: 0;
+}
+
+/* ── Main content area ─────────────────────────────────────────────────────── */
+.mainContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.contentInner {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding: 20px 24px 48px;
+  background: var(--ld-semantic-color-background-subtle, #F2F3F3);
+  min-height: 100%;
 }
 
-/* ── Order header row ──────────────────────────────────────────────────────── */
+/* ── Order header ──────────────────────────────────────────────────────────── */
 .orderHeader {
   display: flex;
   align-items: baseline;
@@ -106,25 +84,6 @@
   color: var(--ld-semantic-color-text, #2E2F32);
 }
 
-.printBtn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: none;
-  border: none;
-  padding: 0;
-  font-family: inherit;
-  font-size: 13px;
-  color: var(--ld-semantic-color-action-fill-primary, #0071DC);
-  cursor: pointer;
-  text-decoration: underline;
-  flex-shrink: 0;
-}
-
-.printBtn:hover {
-  color: var(--ld-semantic-color-action-fill-primary-hovered, #004F9A);
-}
-
 /* ── Two-column layout ─────────────────────────────────────────────────────── */
 .columns {
   display: grid;
@@ -133,7 +92,7 @@
   gap: 20px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
   .columns {
     grid-template-columns: 1fr;
   }
@@ -141,16 +100,24 @@
   .sidebar {
     order: -1;
   }
+
+  .contentInner {
+    padding: 16px 16px 40px;
+  }
+
+  .breadcrumbRow {
+    padding: 12px 16px;
+  }
 }
 
-/* ── Main column ───────────────────────────────────────────────────────────── */
+/* ── Left column ───────────────────────────────────────────────────────────── */
 .mainCol {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* ── Generic card ──────────────────────────────────────────────────────────── */
+/* ── White content cards ───────────────────────────────────────────────────── */
 .card {
   background: var(--ld-semantic-color-fill-surface-primary, #fff);
   border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
@@ -158,23 +125,10 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
-/* ── Appointment status card ───────────────────────────────────────────────── */
-.appointmentCard {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.appointmentCardLeft {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
+/* ── Appointment card header ───────────────────────────────────────────────── */
 .fulfillmentRow {
   display: flex;
   align-items: center;
@@ -213,7 +167,7 @@
   line-height: 1.2;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .apptHeading {
     font-size: 20px;
   }
@@ -230,7 +184,7 @@
   font-size: 16px;
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2E2F32);
-  margin: 0 0 4px;
+  margin: 0;
 }
 
 /* ── Services block ────────────────────────────────────────────────────────── */
@@ -275,12 +229,12 @@
   flex-shrink: 0;
 }
 
-/* ── Help list ─────────────────────────────────────────────────────────────── */
+/* ── Help rows ─────────────────────────────────────────────────────────────── */
 .helpList {
   display: flex;
   flex-direction: column;
   border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
-  margin-top: -4px;
+  margin-top: 4px;
 }
 
 .helpRow {
@@ -329,31 +283,13 @@
   gap: 14px;
 }
 
-/* ── Auto Care chip ────────────────────────────────────────────────────────── */
-.sideChip {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: var(--ld-semantic-color-fill-info-subtle, #EBF3FF);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ld-semantic-color-action-fill-primary, #0071DC);
-  align-self: flex-start;
-}
-
-/* ── Sidebar section ───────────────────────────────────────────────────────── */
+/* ── Sidebar sections ──────────────────────────────────────────────────────── */
 .sideSection {
   display: flex;
   flex-direction: column;
   gap: 4px;
   padding-top: 14px;
   border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
-}
-
-.sideSection:first-of-type {
-  border-top: none;
-  padding-top: 0;
 }
 
 .sideSectionTitle {
@@ -403,7 +339,6 @@
 
 .priceLineValue {
   flex-shrink: 0;
-  font-weight: 400;
 }
 
 /* ── Total row ─────────────────────────────────────────────────────────────── */
@@ -465,7 +400,7 @@
   margin: 0;
 }
 
-/* ── Charge history row ────────────────────────────────────────────────────── */
+/* ── Charge history ────────────────────────────────────────────────────────── */
 .chargeHistoryRow {
   display: flex;
   align-items: center;
@@ -478,7 +413,6 @@
   cursor: pointer;
   font-family: inherit;
   text-align: left;
-  transition: background 120ms;
 }
 
 .chargeHistoryRow:hover {
@@ -503,52 +437,50 @@
   color: var(--ld-semantic-color-text-subtle, #74767C);
 }
 
-/* ── Order number + barcode ────────────────────────────────────────────────── */
+/* ── Order number + CSS barcode ────────────────────────────────────────────── */
 .orderNumSide {
   font-size: 13px;
-  font-weight: 400;
   color: var(--ld-semantic-color-text, #2E2F32);
   margin: 0;
   font-family: var(--ld-semantic-font-family-mono, 'Courier New', monospace);
 }
 
-/* CSS barcode using repeating gradient */
 .barcode {
   height: 56px;
   width: 100%;
   border-radius: 2px;
   background-image: repeating-linear-gradient(
     90deg,
-    #1a1a1a 0px,   #1a1a1a 2px,
-    transparent    2px,   transparent    5px,
-    #1a1a1a 5px,   #1a1a1a 6px,
-    transparent    6px,   transparent    8px,
-    #1a1a1a 8px,   #1a1a1a 11px,
-    transparent    11px,  transparent    13px,
-    #1a1a1a 13px,  #1a1a1a 14px,
-    transparent    14px,  transparent    17px,
-    #1a1a1a 17px,  #1a1a1a 20px,
-    transparent    20px,  transparent    22px,
-    #1a1a1a 22px,  #1a1a1a 23px,
-    transparent    23px,  transparent    27px,
-    #1a1a1a 27px,  #1a1a1a 29px,
-    transparent    29px,  transparent    31px,
-    #1a1a1a 31px,  #1a1a1a 33px,
-    transparent    33px,  transparent    36px,
-    #1a1a1a 36px,  #1a1a1a 37px,
-    transparent    37px,  transparent    40px,
-    #1a1a1a 40px,  #1a1a1a 42px,
-    transparent    42px,  transparent    45px,
-    #1a1a1a 45px,  #1a1a1a 47px,
-    transparent    47px,  transparent    48px,
-    #1a1a1a 48px,  #1a1a1a 51px,
-    transparent    51px,  transparent    54px,
-    #1a1a1a 54px,  #1a1a1a 55px,
-    transparent    55px,  transparent    58px,
-    #1a1a1a 58px,  #1a1a1a 60px,
-    transparent    60px,  transparent    62px,
-    #1a1a1a 62px,  #1a1a1a 64px,
-    transparent    64px,  transparent    67px
+    #1a1a1a 0px,  #1a1a1a 2px,
+    transparent   2px,  transparent   5px,
+    #1a1a1a 5px,  #1a1a1a 6px,
+    transparent   6px,  transparent   8px,
+    #1a1a1a 8px,  #1a1a1a 11px,
+    transparent   11px, transparent   13px,
+    #1a1a1a 13px, #1a1a1a 14px,
+    transparent   14px, transparent   17px,
+    #1a1a1a 17px, #1a1a1a 20px,
+    transparent   20px, transparent   22px,
+    #1a1a1a 22px, #1a1a1a 23px,
+    transparent   23px, transparent   27px,
+    #1a1a1a 27px, #1a1a1a 29px,
+    transparent   29px, transparent   31px,
+    #1a1a1a 31px, #1a1a1a 33px,
+    transparent   33px, transparent   36px,
+    #1a1a1a 36px, #1a1a1a 37px,
+    transparent   37px, transparent   40px,
+    #1a1a1a 40px, #1a1a1a 42px,
+    transparent   42px, transparent   45px,
+    #1a1a1a 45px, #1a1a1a 47px,
+    transparent   47px, transparent   48px,
+    #1a1a1a 48px, #1a1a1a 51px,
+    transparent   51px, transparent   54px,
+    #1a1a1a 54px, #1a1a1a 55px,
+    transparent   55px, transparent   58px,
+    #1a1a1a 58px, #1a1a1a 60px,
+    transparent   60px, transparent   62px,
+    #1a1a1a 62px, #1a1a1a 64px,
+    transparent   64px, transparent   67px
   );
   background-size: 67px 100%;
 }

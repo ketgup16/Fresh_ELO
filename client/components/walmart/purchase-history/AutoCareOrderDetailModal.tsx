@@ -1,10 +1,15 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { X, ChevronRight, InfoCircle, Store, CreditCard, Printer } from '@/components/icons';
+import { ChevronRight, InfoCircle, Store, CreditCard, Printer } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
-import { IconButton } from '@/components/ui/IconButton';
-import { Scrim } from '@/components/ui/Scrim';
-import { Link } from '@/components/ui/Link';
+import { LinkButton } from '@/components/ui/LinkButton';
+import { Tag } from '@/components/ui/Tag';
+import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
+import { Divider } from '@/components/ui/Divider';
+import { DesktopHeader } from '@/components/walmart/DesktopHeader';
+import { SubNav } from '@/components/walmart/SubNav';
+import { PromoBanner } from '@/components/walmart/PromoBanner';
+import { AccountSideNav } from '@/components/walmart/AccountSideNav';
 import type { ServiceDetails } from './OrderCard';
 import styles from './AutoCareOrderDetailModal.module.css';
 
@@ -44,259 +49,253 @@ export function AutoCareOrderDetailModal({
 
   if (!open) return null;
 
-  // ── Data derived from props ──────────────────────────────────────────────
-  const vehicle    = serviceDetails?.vehicle   ?? '2019 Toyota Camry';
-  const services   = serviceDetails?.services  ?? ['Oil change'];
-  const total      = orderTotal ?? '$89.88';
-  const storeName  = location
-    ? location.replace(/ at .*/, '')          // "Carrollton Supercenter"
+  // ── Data derived from props ────────────────────────────────────────────────
+  const vehicle   = serviceDetails?.vehicle  ?? '2019 Toyota Camry';
+  const services  = serviceDetails?.services ?? ['Oil change'];
+  const total     = orderTotal ?? '$89.88';
+  const storeName = location
+    ? location.replace(/ at .*/, '')       // "Carrollton Supercenter"
     : 'Carrollton Supercenter';
-  const storeAddr  = location
-    ? location.replace(/^.* at /, '')         // "1213 Trinity Mills Rd"
+  const storeAddr = location
+    ? location.replace(/^.* at /, '')      // "1213 Trinity Mills Rd"
     : '1213 E Trinity Mills Rd, Carrollton, TX 75006';
-  // Build full address for sidebar display
-  const sidebarAddr = location
-    ? storeAddr.includes('TX') ? storeAddr : `${storeAddr}, Carrollton, TX 75006`
-    : '1213 E Trinity Mills Rd, Carrollton, TX 75006';
+  const sidebarAddr = storeAddr.includes(',')
+    ? storeAddr
+    : `${storeAddr}, Carrollton, TX 75006`;
 
-  // Breakdown amounts (static demo data matching the card total)
+  // Breakdown — sums to the card's orderTotal ($89.88)
   const servicePrice = '$54.99';
   const tirPrice     = '$31.99';
   const taxAmt       = '$2.90';
-  const totalAmt     = total;
 
-  // Order date from statusHeading (e.g. "Sat, Mar 7, 10:00am–11:00am")
+  // Strip time portion for the page heading ("Sat, Mar 7, 10:00am–11:00am" → "Sat, Mar 7")
   const orderDateLabel = statusHeading.replace(/,\s*\d{1,2}:\d{2}.*$/, '').trim();
   const orderNum       = '2000143-50929015';
 
   return createPortal(
-    <>
-      <Scrim onClick={onClose} style={{ zIndex: 200 }} />
+    <div
+      className={styles.detailOverlay}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="order-detail-title"
+    >
+      {/* ── Real site chrome ─────────────────────────────────────────── */}
+      <DesktopHeader />
+      <SubNav />
+      <PromoBanner />
 
-      {/* Full-screen page-style container */}
-      <div
-        className={styles.detailOverlay}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="order-detail-title"
-      >
-        {/* ── Sticky top bar ────────────────────────────────────────────── */}
-        <div className={styles.topBar}>
-          <div className={styles.topBarInner}>
-            {/* Breadcrumb */}
-            <nav className={styles.breadcrumb} aria-label="Breadcrumb">
-              <button className={styles.breadcrumbLink} onClick={onClose}>
-                Purchase history
-              </button>
-              <ChevronRight style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
-              <span className={styles.breadcrumbCurrent}>Order details</span>
-            </nav>
-            <IconButton aria-label="Close order details" variant="ghost" size="medium" onClick={onClose}>
-              <X style={{ width: 20, height: 20 }} />
-            </IconButton>
-          </div>
+      {/* ── Scrollable page body ─────────────────────────────────────── */}
+      <div className={styles.pageBody}>
+
+        {/* Breadcrumb + divider */}
+        <div className={styles.breadcrumbRow}>
+          <Breadcrumb aria-label="Order details navigation">
+            <BreadcrumbItem href="#" onClick={(e: React.MouseEvent) => { e.preventDefault(); onClose(); }}>
+              My account
+            </BreadcrumbItem>
+            <BreadcrumbItem href="#" onClick={(e: React.MouseEvent) => { e.preventDefault(); onClose(); }}>
+              Purchase history
+            </BreadcrumbItem>
+            <BreadcrumbItem isCurrent>Order details</BreadcrumbItem>
+          </Breadcrumb>
         </div>
+        <Divider />
 
-        {/* ── Scrollable body ───────────────────────────────────────────── */}
-        <div className={styles.pageBody}>
-          <div className={styles.pageInner}>
+        {/* ── Body: sidenav + content ─────────────────────────────────── */}
+        <div className={styles.pageLayout}>
+          <AccountSideNav />
 
-            {/* ── Order header ──────────────────────────────────────────── */}
-            <div className={styles.orderHeader}>
-              <div className={styles.orderHeaderLeft}>
-                <h1 id="order-detail-title" className={styles.orderDate}>
-                  {orderDateLabel} order
-                </h1>
-                <span className={styles.orderNumHeader}>| Order# {orderNum}</span>
+          <main className={styles.mainContent}>
+            <div className={styles.contentInner}>
+
+              {/* ── Order header ──────────────────────────────────────── */}
+              <div className={styles.orderHeader}>
+                <div className={styles.orderHeaderLeft}>
+                  <h1 id="order-detail-title" className={styles.orderDate}>
+                    {orderDateLabel} order
+                  </h1>
+                  <span className={styles.orderNumHeader}>| Order# {orderNum}</span>
+                </div>
+                <LinkButton
+                  leading={<Printer style={{ width: 16, height: 16 }} />}
+                  size="small"
+                  onClick={() => window.print()}
+                >
+                  Print
+                </LinkButton>
               </div>
-              <button className={styles.printBtn} aria-label="Print order">
-                <Printer style={{ width: 16, height: 16 }} />
-                <span>Print</span>
-              </button>
-            </div>
 
-            {/* ── Two-column layout ─────────────────────────────────────── */}
-            <div className={styles.columns}>
+              {/* ── Two-column layout ──────────────────────────────────── */}
+              <div className={styles.columns}>
 
-              {/* ── LEFT: Main content ────────────────────────────────────── */}
-              <main className={styles.mainCol}>
+                {/* ── LEFT: Main content ───────────────────────────────── */}
+                <div className={styles.mainCol}>
 
-                {/* Appointment status card */}
-                <section className={styles.card}>
-                  <div className={styles.appointmentCard}>
-                    <div className={styles.appointmentCardLeft}>
-                      {/* Fulfillment label */}
-                      <div className={styles.fulfillmentRow}>
-                        <img
-                          src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F26a934c359774221bf674b2fb62d93da"
-                          alt=""
-                          aria-hidden="true"
-                          width={36}
-                          height={36}
-                          className={styles.autoIcon}
-                        />
-                        <div className={styles.fulfillmentText}>
-                          <span className={styles.fulfillmentLabel}>Auto Care Center</span>
-                          <span className={styles.fulfillmentSub}>{storeName}</span>
+                  {/* Appointment status card */}
+                  <section className={styles.card}>
+                    <div className={styles.fulfillmentRow}>
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F26a934c359774221bf674b2fb62d93da"
+                        alt=""
+                        aria-hidden="true"
+                        width={36}
+                        height={36}
+                        className={styles.autoIcon}
+                      />
+                      <div className={styles.fulfillmentText}>
+                        <span className={styles.fulfillmentLabel}>Auto Care Center</span>
+                        <span className={styles.fulfillmentSub}>{storeName}</span>
+                      </div>
+                    </div>
+                    <h2 className={styles.apptHeading}>{statusHeading}</h2>
+                    <div className={styles.apptActions}>
+                      <Button variant="primary" size="small" onClick={onCheckIn}>
+                        Check in
+                      </Button>
+                      <Button variant="secondary" size="small" onClick={onReschedule}>
+                        Reschedule
+                      </Button>
+                    </div>
+                  </section>
+
+                  {/* Services card */}
+                  <section className={styles.card}>
+                    <h3 className={styles.sectionTitle}>Services</h3>
+                    <div className={styles.serviceBlock}>
+                      <p className={styles.vehicleName}>{vehicle}</p>
+                      <ul className={styles.serviceList}>
+                        {services.map((s) => (
+                          <li key={s} className={styles.serviceItem}>{s}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </section>
+
+                  {/* Help section */}
+                  <section className={styles.card}>
+                    <h3 className={styles.sectionTitle}>How can we help?</h3>
+                    <div className={styles.helpList}>
+                      <button className={styles.helpRow}>
+                        <span>Cancel appointment</span>
+                        <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
+                      </button>
+                      <button className={styles.helpRow}>
+                        <span>Contact store</span>
+                        <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
+                      </button>
+                      <button className={styles.helpRow}>
+                        <span>
+                          Need more help?{' '}
+                          <LinkButton size="small" onClick={() => {}}>Visit our help center.</LinkButton>
+                        </span>
+                        <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
+                      </button>
+                    </div>
+                  </section>
+
+                </div>
+
+                {/* ── RIGHT: Sidebar ──────────────────────────────────── */}
+                <aside className={styles.sidebar}>
+
+                  {/* Store / vehicle / payment */}
+                  <div className={styles.sideCard}>
+                    <Tag variant="primary" color="info">Auto Care</Tag>
+
+                    <div className={styles.sideSection}>
+                      <h4 className={styles.sideSectionTitle}>Store location</h4>
+                      <div className={styles.sideSectionContent}>
+                        <Store style={{ width: 16, height: 16, flexShrink: 0, marginTop: 2 }} />
+                        <div>
+                          <p className={styles.sideText}>{storeName}</p>
+                          <p className={styles.sideTextSub}>{sidebarAddr}</p>
                         </div>
                       </div>
-
-                      {/* Appointment time — large heading */}
-                      <h2 className={styles.apptHeading}>{statusHeading}</h2>
-
-                      {/* Action buttons */}
-                      <div className={styles.apptActions}>
-                        <Button variant="primary" size="small" onClick={onCheckIn}>
-                          Check in
-                        </Button>
-                        <Button variant="secondary" size="small" onClick={onReschedule}>
-                          Reschedule
-                        </Button>
-                      </div>
                     </div>
-                  </div>
-                </section>
 
-                {/* Services card */}
-                <section className={styles.card}>
-                  <h3 className={styles.sectionTitle}>Services</h3>
-                  <div className={styles.serviceBlock}>
-                    <p className={styles.vehicleName}>{vehicle}</p>
-                    <ul className={styles.serviceList}>
-                      {services.map((s) => (
-                        <li key={s} className={styles.serviceItem}>{s}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </section>
+                    <div className={styles.sideSection}>
+                      <h4 className={styles.sideSectionTitle}>Vehicle</h4>
+                      <p className={styles.sideText}>{vehicle}</p>
+                    </div>
 
-                {/* Help section */}
-                <section className={styles.card}>
-                  <h3 className={styles.sectionTitle}>How can we help?</h3>
-                  <div className={styles.helpList}>
-                    <button className={styles.helpRow}>
-                      <span>Cancel appointment</span>
-                      <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
-                    </button>
-                    <button className={styles.helpRow}>
-                      <span>Contact store</span>
-                      <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
-                    </button>
-                    <button className={styles.helpRow}>
-                      <span>Need more help? <Link href="#" underline>Visit our help center.</Link></span>
-                      <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
-                    </button>
-                  </div>
-                </section>
-
-              </main>
-
-              {/* ── RIGHT: Sidebar ──────────────────────────────────────── */}
-              <aside className={styles.sidebar}>
-
-                {/* Store + Appointment type chip */}
-                <div className={styles.sideCard}>
-                  <div className={styles.sideChip}>Auto Care</div>
-
-                  {/* Store address */}
-                  <div className={styles.sideSection}>
-                    <h4 className={styles.sideSectionTitle}>Store location</h4>
-                    <div className={styles.sideSectionContent}>
-                      <Store style={{ width: 16, height: 16, flexShrink: 0, marginTop: 2 }} />
-                      <div>
-                        <p className={styles.sideText}>{storeName}</p>
-                        <p className={styles.sideTextSub}>{sidebarAddr}</p>
+                    <div className={styles.sideSection}>
+                      <h4 className={styles.sideSectionTitle}>Payment method</h4>
+                      <div className={styles.sideSectionContent}>
+                        <CreditCard style={{ width: 16, height: 16, flexShrink: 0 }} />
+                        <p className={styles.sideText}>ending in 7725</p>
                       </div>
                     </div>
                   </div>
 
-                  {/* Vehicle */}
-                  <div className={styles.sideSection}>
-                    <h4 className={styles.sideSectionTitle}>Vehicle</h4>
-                    <p className={styles.sideText}>{vehicle}</p>
-                  </div>
-
-                  {/* Payment method */}
-                  <div className={styles.sideSection}>
-                    <h4 className={styles.sideSectionTitle}>Payment method</h4>
-                    <div className={styles.sideSectionContent}>
-                      <CreditCard style={{ width: 16, height: 16, flexShrink: 0 }} />
-                      <p className={styles.sideText}>ending in 7725</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Pricing breakdown */}
-                <div className={styles.sideCard}>
-                  {/* Line items */}
-                  <div className={styles.pricingLines}>
-                    {services[0] && (
+                  {/* Pricing breakdown */}
+                  <div className={styles.sideCard}>
+                    <div className={styles.pricingLines}>
+                      {services[0] && (
+                        <div className={styles.priceLine}>
+                          <span className={styles.priceLineLabel}>{services[0]}</span>
+                          <span className={styles.priceLineValue}>{servicePrice}</span>
+                        </div>
+                      )}
+                      {services[1] && (
+                        <div className={styles.priceLine}>
+                          <span className={styles.priceLineLabel}>{services[1]}</span>
+                          <span className={styles.priceLineValue}>{tirPrice}</span>
+                        </div>
+                      )}
                       <div className={styles.priceLine}>
-                        <span className={styles.priceLineLabel}>{services[0]}</span>
-                        <span className={styles.priceLineValue}>{servicePrice}</span>
+                        <span className={styles.priceLineLabel}>Tax</span>
+                        <span className={styles.priceLineValue}>{taxAmt}</span>
                       </div>
-                    )}
-                    {services[1] && (
-                      <div className={styles.priceLine}>
-                        <span className={styles.priceLineLabel}>{services[1]}</span>
-                        <span className={styles.priceLineValue}>{tirPrice}</span>
+                    </div>
+
+                    <div className={styles.priceTotal}>
+                      <span className={styles.priceTotalLabel}>Total</span>
+                      <span className={styles.priceTotalValue}>{total}</span>
+                    </div>
+
+                    <div className={styles.priceAdjusted}>
+                      <div className={styles.priceAdjustedRow}>
+                        <span className={styles.priceAdjustedLabel}>
+                          Temporary adjusted total
+                          <InfoCircle style={{ width: 14, height: 14, marginLeft: 4, verticalAlign: 'middle', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+                        </span>
+                        <span className={styles.priceAdjustedValue}>{total}</span>
                       </div>
-                    )}
-                    <div className={styles.priceLine}>
-                      <span className={styles.priceLineLabel}>Tax</span>
-                      <span className={styles.priceLineValue}>{taxAmt}</span>
+                      <p className={styles.priceAdjustedNote}>
+                        This covers adjustments to your final order total for items priced by weight or potentially substituted. After your final order total is confirmed,{' '}
+                        <strong>we'll refund any amount that's left over.</strong>
+                      </p>
                     </div>
+
+                    <button className={styles.chargeHistoryRow}>
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F26a934c359774221bf674b2fb62d93da"
+                        alt=""
+                        aria-hidden="true"
+                        width={28}
+                        height={28}
+                      />
+                      <div className={styles.chargeHistoryText}>
+                        <span className={styles.chargeHistoryTitle}>Charge history</span>
+                        <span className={styles.chargeHistorySub}>Your transaction activity for this order</span>
+                      </div>
+                      <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+                    </button>
                   </div>
 
-                  {/* Total */}
-                  <div className={styles.priceTotal}>
-                    <span className={styles.priceTotalLabel}>Total</span>
-                    <span className={styles.priceTotalValue}>{totalAmt}</span>
+                  {/* Order number + barcode */}
+                  <div className={styles.sideCard}>
+                    <p className={styles.orderNumSide}>Order# {orderNum}</p>
+                    <div className={styles.barcode} aria-hidden="true" />
                   </div>
 
-                  {/* Temporary adjusted total info */}
-                  <div className={styles.priceAdjusted}>
-                    <div className={styles.priceAdjustedRow}>
-                      <span className={styles.priceAdjustedLabel}>
-                        Temporary adjusted total
-                        <InfoCircle style={{ width: 14, height: 14, marginLeft: 4, verticalAlign: 'middle', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
-                      </span>
-                      <span className={styles.priceAdjustedValue}>{totalAmt}</span>
-                    </div>
-                    <p className={styles.priceAdjustedNote}>
-                      This covers adjustments to your final order total for items that are priced by weight or potentially substituted, and state bag fees where applicable. After your final order total is confirmed, <strong>we'll refund any amount that's left over.</strong>
-                    </p>
-                  </div>
-
-                  {/* Charge history */}
-                  <button className={styles.chargeHistoryRow}>
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F26a934c359774221bf674b2fb62d93da"
-                      alt=""
-                      aria-hidden="true"
-                      width={28}
-                      height={28}
-                    />
-                    <div className={styles.chargeHistoryText}>
-                      <span className={styles.chargeHistoryTitle}>Charge history</span>
-                      <span className={styles.chargeHistorySub}>Your transaction activity for this order</span>
-                    </div>
-                    <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
-                  </button>
-                </div>
-
-                {/* Order number + barcode */}
-                <div className={styles.sideCard}>
-                  <p className={styles.orderNumSide}>Order# {orderNum}</p>
-                  <div className={styles.barcode} aria-hidden="true" />
-                </div>
-
-              </aside>
+                </aside>
+              </div>
             </div>
-          </div>
+          </main>
         </div>
       </div>
-    </>,
+    </div>,
     document.body
   );
 }
