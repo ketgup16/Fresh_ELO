@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { ChevronLeft, ChevronRight, Check, X } from '@/components/icons';
+import {
+  ChevronLeft, ChevronRight, Check, X, ArrowLeft,
+  Store, UserCircle, CreditCard, Receipt,
+} from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 import { Chip } from '@/components/ui/Chip';
@@ -9,11 +12,9 @@ import type { ServiceDetails } from './OrderCard';
 import styles from './AutoCareModals.module.css';
 
 export type AutoCareModalType = 'checkIn' | 'reschedule' | 'viewDetails' | null;
+type DetailsStep = 'details' | 'editDate' | 'editTime' | 'booked';
 
-const HERO_IMAGE =
-  'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F3109be97542e41e484222dde38d7cc4b?format=webp&width=800&height=1200';
-
-const TIMES = ['9:00 AM', '11:00 AM', '1:00 PM', '3:00 PM'];
+const TIMES = ['9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '3:00 PM'];
 const WEEK_DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS_FULL = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -109,94 +110,6 @@ function AppointmentCalendar({
   );
 }
 
-// ── Reschedule Modal ──────────────────────────────────────────────────────────
-function RescheduleModal({
-  open, onClose, initialDate,
-}: {
-  open: boolean; onClose: () => void; initialDate: Date;
-}) {
-  const [selectedDate, setSelectedDate] = useState(initialDate);
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [confirmed, setConfirmed] = useState(false);
-
-  useModalEffects(open, onClose);
-
-  if (!open) return null;
-
-  const formattedDate = selectedDate.toLocaleDateString('en-US', {
-    weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
-  });
-
-  const handleDone = () => { setConfirmed(false); setSelectedTime(null); onClose(); };
-
-  return createPortal(
-    <>
-      <Scrim onClick={onClose} style={{ zIndex: 100 }} />
-      <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="reschedule-title">
-        {confirmed ? (
-          <div className={styles.confirmedBody}>
-            <div className={styles.closeBtnWrap}>
-              <IconButton aria-label="Close" variant="ghost" size="medium" onClick={handleDone}>
-                <X style={{ width: 20, height: 20 }} />
-              </IconButton>
-            </div>
-            <div className={styles.successIcon}>
-              <Check style={{ width: 32, height: 32, color: '#fff' }} />
-            </div>
-            <h2 className={styles.confirmedTitle}>Appointment Rescheduled</h2>
-            <p className={styles.confirmedText}>
-              Your oil change is now scheduled for <strong>{formattedDate}</strong> at <strong>{selectedTime}</strong>.
-            </p>
-            <Button variant="primary" onClick={handleDone} UNSAFE_className={styles.fullWidthBtn}>
-              Done
-            </Button>
-          </div>
-        ) : (
-          <>
-            <div className={styles.modalHeader}>
-              <h2 id="reschedule-title" className={styles.modalTitle}>Schedule Your Appointment</h2>
-              <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
-                <X style={{ width: 20, height: 20 }} />
-              </IconButton>
-            </div>
-            <div className={styles.modalScrollBody}>
-              <img src={HERO_IMAGE} alt="Walmart Auto Care Center" className={styles.heroImage} />
-              <div className={styles.modalBody}>
-                <p className={styles.sectionLabel}>Select Date</p>
-                <AppointmentCalendar selectedDate={selectedDate} onSelect={setSelectedDate} />
-                <p className={styles.sectionLabel}>Select Time</p>
-                <div className={styles.timeChips}>
-                  {TIMES.map(t => (
-                    <Chip
-                      key={t}
-                      selected={selectedTime === t}
-                      onSelectedChange={() => setSelectedTime(t)}
-                      size="medium"
-                    >
-                      {t}
-                    </Chip>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className={styles.modalFooter}>
-              <Button
-                variant="primary"
-                onClick={() => setConfirmed(true)}
-                disabled={!selectedTime}
-                UNSAFE_className={styles.fullWidthBtn}
-              >
-                Continue to service selection
-              </Button>
-            </div>
-          </>
-        )}
-      </div>
-    </>,
-    document.body
-  );
-}
-
 // ── Check-In Modal ────────────────────────────────────────────────────────────
 function CheckInModal({
   open, onClose, serviceDetails, location, statusHeading,
@@ -284,61 +197,307 @@ function CheckInModal({
   );
 }
 
-// ── View Details Modal ────────────────────────────────────────────────────────
+// ── Appointment Details Modal (View Details + Reschedule flow) ────────────────
 function ViewDetailsModal({
-  open, onClose, serviceDetails, location, statusHeading, orderTotal,
+  open, onClose, serviceDetails, location, statusHeading, orderTotal, initialStep,
 }: {
   open: boolean; onClose: () => void;
   serviceDetails?: ServiceDetails; location?: string;
   statusHeading: string; orderTotal?: string;
+  initialStep: DetailsStep;
 }) {
+  const [step, setStep] = useState<DetailsStep>(initialStep);
+  const [showCallout, setShowCallout] = useState(true);
+  const [selectedDate, setSelectedDate] = useState(new Date(2026, 3, 2)); // Apr 2
+  const [pendingDate, setPendingDate] = useState(new Date(2026, 3, 2));
+  const [selectedTime, setSelectedTime] = useState('10:00 AM');
+  const [pendingTime, setPendingTime] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (open) {
+      setStep(initialStep);
+      setShowCallout(true);
+    }
+  }, [open, initialStep]);
+
   useModalEffects(open, onClose);
 
   if (!open) return null;
 
+  const vehicle = serviceDetails?.vehicle ?? '2019 Toyota Camry';
+  const serviceName = serviceDetails?.services?.[0] ?? 'Oil change';
+  const estTotal = orderTotal ?? '$58.26';
+  const storeAddress = location
+    ? location.replace('Carrollton Supercenter at ', '')
+    : '1213 E Trinity Mills Rd, Carrollton, TX 75006';
+
+  const formattedDate = selectedDate.toLocaleDateString('en-US', {
+    weekday: 'short', month: 'short', day: 'numeric',
+  });
+
+  const handleConfirmDate = () => {
+    setSelectedDate(pendingDate);
+    setStep('details');
+  };
+
+  const handleConfirmTime = () => {
+    if (pendingTime) setSelectedTime(pendingTime);
+    setStep('details');
+  };
+
+  // ── Booked success ──
+  if (step === 'booked') {
+    return createPortal(
+      <>
+        <Scrim onClick={onClose} style={{ zIndex: 100 }} />
+        <div className={styles.modalWrap} role="dialog" aria-modal="true">
+          <div className={styles.confirmedBody}>
+            <div className={styles.closeBtnWrap}>
+              <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
+                <X style={{ width: 20, height: 20 }} />
+              </IconButton>
+            </div>
+            <div className={styles.successIcon}>
+              <Check style={{ width: 32, height: 32, color: '#fff' }} />
+            </div>
+            <h2 className={styles.confirmedTitle}>Service booked!</h2>
+            <p className={styles.confirmedText}>
+              Your <strong>{serviceName}</strong> is booked for <strong>{formattedDate}</strong> at <strong>{selectedTime}</strong>. See you then!
+            </p>
+            <Button variant="primary" onClick={onClose} UNSAFE_className={styles.fullWidthBtn}>
+              Done
+            </Button>
+          </div>
+        </div>
+      </>,
+      document.body
+    );
+  }
+
+  // ── Edit Date ──
+  if (step === 'editDate') {
+    return createPortal(
+      <>
+        <Scrim onClick={onClose} style={{ zIndex: 100 }} />
+        <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="edit-date-title">
+          <div className={styles.modalHeader}>
+            <div className={styles.headerWithBack}>
+              <IconButton aria-label="Back" variant="ghost" size="medium" onClick={() => setStep('details')}>
+                <ArrowLeft style={{ width: 20, height: 20 }} />
+              </IconButton>
+              <h2 id="edit-date-title" className={styles.modalTitle}>Select Date</h2>
+            </div>
+            <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
+              <X style={{ width: 20, height: 20 }} />
+            </IconButton>
+          </div>
+          <div className={styles.editStepBody}>
+            <AppointmentCalendar selectedDate={pendingDate} onSelect={setPendingDate} />
+          </div>
+          <div className={styles.modalFooter}>
+            <Button
+              variant="primary"
+              onClick={handleConfirmDate}
+              UNSAFE_className={styles.fullWidthBtn}
+            >
+              Confirm date
+            </Button>
+          </div>
+        </div>
+      </>,
+      document.body
+    );
+  }
+
+  // ── Edit Time ──
+  if (step === 'editTime') {
+    return createPortal(
+      <>
+        <Scrim onClick={onClose} style={{ zIndex: 100 }} />
+        <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="edit-time-title">
+          <div className={styles.modalHeader}>
+            <div className={styles.headerWithBack}>
+              <IconButton aria-label="Back" variant="ghost" size="medium" onClick={() => setStep('details')}>
+                <ArrowLeft style={{ width: 20, height: 20 }} />
+              </IconButton>
+              <h2 id="edit-time-title" className={styles.modalTitle}>Select Time</h2>
+            </div>
+            <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
+              <X style={{ width: 20, height: 20 }} />
+            </IconButton>
+          </div>
+          <div className={styles.editStepBody}>
+            <p className={styles.editStepHint}>Available time slots for {formattedDate}</p>
+            <div className={styles.timeChips}>
+              {TIMES.map(t => (
+                <Chip
+                  key={t}
+                  selected={pendingTime === t}
+                  onSelectedChange={() => setPendingTime(t)}
+                  size="medium"
+                >
+                  {t}
+                </Chip>
+              ))}
+            </div>
+          </div>
+          <div className={styles.modalFooter}>
+            <Button
+              variant="primary"
+              onClick={handleConfirmTime}
+              disabled={!pendingTime}
+              UNSAFE_className={styles.fullWidthBtn}
+            >
+              Confirm time
+            </Button>
+          </div>
+        </div>
+      </>,
+      document.body
+    );
+  }
+
+  // ── Main details view ──
   return createPortal(
     <>
       <Scrim onClick={onClose} style={{ zIndex: 100 }} />
-      <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="details-title">
+      <div className={styles.modalWrap} role="dialog" aria-modal="true" aria-labelledby="appt-details-title">
+        {/* Header */}
         <div className={styles.modalHeader}>
-          <h2 id="details-title" className={styles.modalTitle}>Appointment Details</h2>
+          <h2 id="appt-details-title" className={styles.modalTitleLarge}>Your Appointment details</h2>
           <IconButton aria-label="Close" variant="ghost" size="medium" onClick={onClose}>
             <X style={{ width: 20, height: 20 }} />
           </IconButton>
         </div>
-        <div className={styles.detailsBody}>
-          <div className={styles.detailRow}>
-            <span className={styles.detailRowLabel}>Date & Time</span>
-            <span className={styles.detailRowValue}>{statusHeading}</span>
+
+        {/* Scrollable body */}
+        <div className={styles.detailsScrollBody}>
+          {/* Service row */}
+          <div className={styles.apptServiceRow}>
+            <img
+              src="/illustrations/spot-illustration/OilChange.svg"
+              alt=""
+              aria-hidden="true"
+              width={48}
+              height={48}
+              className={styles.apptServiceIcon}
+            />
+            <div className={styles.apptServiceInfo}>
+              <p className={styles.apptServiceName}>{serviceName}</p>
+              <p className={styles.apptServiceDesc}>Full-synthetic premium oil - Castrol</p>
+              <p className={styles.apptServicePrice}>$54.88 for up to 5 qts.</p>
+            </div>
           </div>
-          {location && (
-            <div className={styles.detailRow}>
-              <span className={styles.detailRowLabel}>Location</span>
-              <span className={styles.detailRowValue}>{location}</span>
+
+          {/* Blue callout */}
+          {showCallout && (
+            <div className={styles.apptCallout}>
+              <div className={styles.apptCalloutTop}>
+                <p className={styles.apptCalloutTitle}>Save time at the store!</p>
+                <IconButton
+                  aria-label="Dismiss"
+                  variant="ghost"
+                  size="small"
+                  onClick={() => setShowCallout(false)}
+                >
+                  <X style={{ width: 16, height: 16 }} />
+                </IconButton>
+              </div>
+              <p className={styles.apptCalloutText}>Pay now for quick check-in and service.</p>
+              <Button variant="secondary" size="small" onClick={onClose}>
+                Check in now
+              </Button>
             </div>
           )}
-          {serviceDetails && (
-            <>
-              <div className={styles.detailRow}>
-                <span className={styles.detailRowLabel}>Vehicle</span>
-                <span className={styles.detailRowValue}>{serviceDetails.vehicle}</span>
-              </div>
-              <div className={styles.detailRow}>
-                <span className={styles.detailRowLabel}>Services</span>
-                <span className={styles.detailRowValue}>{serviceDetails.services.join(', ')}</span>
-              </div>
-            </>
-          )}
-          {orderTotal && (
-            <div className={[styles.detailRow, styles.detailRowTotal].join(' ')}>
-              <span className={styles.detailRowLabel}>Estimated total</span>
-              <span className={styles.detailRowValue}>{orderTotal}</span>
+
+          {/* Editable appointment fields */}
+          <div className={styles.apptFields}>
+            <div className={styles.apptFieldGroup}>
+              <span className={styles.apptFieldLabel}>Date</span>
+              <button
+                className={styles.apptFieldValue}
+                onClick={() => { setPendingDate(selectedDate); setStep('editDate'); }}
+              >
+                <span>{formattedDate}</span>
+                <ChevronRight style={{ width: 18, height: 18, color: 'var(--ld-semantic-color-text-subtle, #74767C)', flexShrink: 0 }} />
+              </button>
             </div>
-          )}
+            <div className={styles.apptFieldGroup}>
+              <span className={styles.apptFieldLabel}>Time</span>
+              <button
+                className={styles.apptFieldValue}
+                onClick={() => { setPendingTime(null); setStep('editTime'); }}
+              >
+                <span>{selectedTime}</span>
+                <ChevronRight style={{ width: 18, height: 18, color: 'var(--ld-semantic-color-text-subtle, #74767C)', flexShrink: 0 }} />
+              </button>
+            </div>
+            <div className={styles.apptFieldGroup}>
+              <span className={styles.apptFieldLabel}>Service</span>
+              <div className={styles.apptFieldValueStatic}>{serviceName}</div>
+            </div>
+            <div className={styles.apptFieldGroup}>
+              <span className={styles.apptFieldLabel}>Vehicle</span>
+              <div className={styles.apptFieldValueStatic}>{vehicle}</div>
+            </div>
+          </div>
+
+          {/* Info list rows */}
+          <div className={styles.apptListRows}>
+            <button className={styles.apptListRow}>
+              <Store style={{ width: 22, height: 22, flexShrink: 0 }} />
+              <div className={styles.apptListRowContent}>
+                <span className={styles.apptListRowLabel}>Store location</span>
+                <span className={styles.apptListRowValue}>{storeAddress}</span>
+              </div>
+              <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+            </button>
+
+            <button className={styles.apptListRow}>
+              <UserCircle style={{ width: 22, height: 22, flexShrink: 0 }} />
+              <div className={styles.apptListRowContent}>
+                <span className={styles.apptListRowLabel}>Appointment contact</span>
+                <span className={styles.apptListRowValue}>Emilia Garcia</span>
+              </div>
+              <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+            </button>
+
+            <button className={styles.apptListRow}>
+              <CreditCard style={{ width: 22, height: 22, flexShrink: 0 }} />
+              <div className={styles.apptListRowContent}>
+                <span className={styles.apptListRowLabel}>Pay with</span>
+                <span className={styles.apptListRowValue}>ending in 7725</span>
+              </div>
+              <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+            </button>
+
+            <button className={styles.apptListRow}>
+              <Receipt style={{ width: 22, height: 22, flexShrink: 0 }} />
+              <div className={styles.apptListRowContent}>
+                <span className={styles.apptListRowLabel}>Est. total</span>
+                <span className={styles.apptListRowValue}>{estTotal} • Includes taxes and fees.</span>
+              </div>
+              <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+            </button>
+          </div>
+
+          {/* Legal text */}
+          <p className={styles.apptLegalText}>
+            By placing this order, you agree to our{' '}
+            <a href="#" className={styles.apptLegalLink}>Privacy Policy</a>
+            {' '}and{' '}
+            <a href="#" className={styles.apptLegalLink}>Terms of Use</a>.
+          </p>
         </div>
+
+        {/* Footer */}
         <div className={styles.modalFooter}>
-          <Button variant="secondary" onClick={onClose} UNSAFE_className={styles.fullWidthBtn}>
-            Close
+          <Button
+            variant="primary"
+            onClick={() => setStep('booked')}
+            UNSAFE_className={styles.fullWidthBtn}
+          >
+            Book service {estTotal}
           </Button>
         </div>
       </div>
@@ -360,15 +519,9 @@ interface AutoCareModalsProps {
 
 export function AutoCareModals({
   openModal, onClose, serviceDetails, location, statusHeading, orderTotal,
-  appointmentDate = new Date(2026, 2, 7),
 }: AutoCareModalsProps) {
   return (
     <>
-      <RescheduleModal
-        open={openModal === 'reschedule'}
-        onClose={onClose}
-        initialDate={appointmentDate}
-      />
       <CheckInModal
         open={openModal === 'checkIn'}
         onClose={onClose}
@@ -377,12 +530,13 @@ export function AutoCareModals({
         statusHeading={statusHeading}
       />
       <ViewDetailsModal
-        open={openModal === 'viewDetails'}
+        open={openModal === 'viewDetails' || openModal === 'reschedule'}
         onClose={onClose}
         serviceDetails={serviceDetails}
         location={location}
         statusHeading={statusHeading}
         orderTotal={orderTotal}
+        initialStep={openModal === 'reschedule' ? 'editDate' : 'details'}
       />
     </>
   );
