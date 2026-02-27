@@ -5,6 +5,8 @@ import {
   Store, UserCircle, CreditCard, Receipt,
 } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
+import { ButtonGroup } from '@/components/ui/ButtonGroup';
+import { LinkButton } from '@/components/ui/LinkButton';
 import { IconButton } from '@/components/ui/IconButton';
 import { Chip } from '@/components/ui/Chip';
 import { Scrim } from '@/components/ui/Scrim';
@@ -502,14 +504,20 @@ function ViewDetailsModal({
 
         {/* Footer */}
         <div className={styles.modalFooter}>
-          <Button
-            variant="primary"
-            size="medium"
-            onClick={() => hasChanges ? setSaved(true) : onClose()}
-            UNSAFE_className={styles.fullWidthBtn}
-          >
-            {hasChanges ? 'Save changes' : 'Done'}
-          </Button>
+          <ButtonGroup UNSAFE_className={styles.footerButtonGroup}>
+            <LinkButton size="small" onClick={onClose}>
+              Close
+            </LinkButton>
+            {hasChanges && (
+              <Button
+                variant="secondary"
+                size="small"
+                onClick={() => setSaved(true)}
+              >
+                Save changes
+              </Button>
+            )}
+          </ButtonGroup>
         </div>
       </div>
     </>,

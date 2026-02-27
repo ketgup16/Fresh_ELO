@@ -197,10 +197,16 @@
 .modalFooter {
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  justify-content: flex-end;
   padding: 12px 20px 16px;
   flex-shrink: 0;
   border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+}
+
+.footerButtonGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .fullWidthBtn {
