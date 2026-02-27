@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { IconButton } from '@/components/ui/IconButton';
-import { ChevronDown, Email } from '@/components/icons';
+import { ChevronDown, Email, Gear } from '@/components/icons';
 import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
 import { Divider } from '@/components/ui/Divider';
 import { ResponsiveLayout } from '@/components/walmart/ResponsiveLayout';
@@ -325,6 +325,9 @@ export default function PurchaseHistory() {
           <div className={styles.breadcrumbActions}>
             <IconButton variant="ghost" size="medium" aria-label="Messages">
               <Email style={{ width: 20, height: 20 }} />
+            </IconButton>
+            <IconButton variant="ghost" size="medium" aria-label="Settings">
+              <Gear style={{ width: 20, height: 20 }} />
             </IconButton>
           </div>
         </div>
