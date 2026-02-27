@@ -58,6 +58,7 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
   const rightIcon  = FULFILLMENT_ICONS[delivery.orderType] ?? FULFILLMENT_ICONS.delivery;
   const rightLabel = ORDER_TYPE_LABELS[delivery.orderType] ?? ORDER_TYPE_LABELS.delivery;
   const rightSteps = delivery.timelineVariant === 'pickup' ? PICKUP_STEPS : DELIVERY_STEPS;
+  const rightTrackerStatus = delivery.timelineStep === 'delivered' ? 'success' : 'info';
 
   return (
     <>
@@ -139,7 +140,7 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
               <ProgressTracker
                 steps={rightSteps}
                 activeStep={activeStep}
-                status="info"
+                status={rightTrackerStatus}
                 className={styles.tracker}
               />
             )}

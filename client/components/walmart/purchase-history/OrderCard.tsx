@@ -128,7 +128,7 @@ export function OrderCard({
 
   const steps = timelineVariant === 'pickup' ? PICKUP_STEPS : DELIVERY_STEPS;
   const activeStep = timelineStep ? STEP_INDEX[timelineStep] : undefined;
-  const trackerStatus = isDelayed ? 'warning' : 'info';
+  const trackerStatus = isDelayed ? 'warning' : timelineStep === 'delivered' ? 'success' : 'info';
 
   return (
     <article className={styles.card}>
