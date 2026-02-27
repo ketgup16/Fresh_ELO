@@ -114,6 +114,7 @@ export function AutoCareOrderDetailModal({
                   <LinkButton
                     leading={<Printer style={{ width: 16, height: 16 }} />}
                     size="small"
+                    color="subtle"
                     onClick={() => window.print()}
                   >
                     Print
@@ -180,7 +181,7 @@ export function AutoCareOrderDetailModal({
                         <button className={styles.helpRow}>
                           <span>
                             Need more help?{' '}
-                            <LinkButton size="small" onClick={() => {}}>Visit our help center.</LinkButton>
+                            <LinkButton size="small" color="subtle" onClick={() => {}}>Visit our help center.</LinkButton>
                           </span>
                           <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
                         </button>

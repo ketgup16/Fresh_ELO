@@ -500,9 +500,9 @@ function ViewDetailsModal({
           {hasChanges && (
             <p className={styles.apptLegalText}>
               By saving your changes, you agree to our{' '}
-              <a href="#" className={styles.apptLegalLink}>Privacy Policy</a>
+              <LinkButton size="small" color="subtle" href="#">Privacy Policy</LinkButton>
               {' '}and{' '}
-              <a href="#" className={styles.apptLegalLink}>Terms of Use</a>.
+              <LinkButton size="small" color="subtle" href="#">Terms of Use</LinkButton>.
             </p>
           )}
         </div>
