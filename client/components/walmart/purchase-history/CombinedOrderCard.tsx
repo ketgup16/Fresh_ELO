@@ -10,6 +10,9 @@ const FULFILLMENT_ICONS: Record<string, { src: string }> = {
   delivery: {
     src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F06ac09fed4534c02b62a8d43e759a824',
   },
+  curbside: {
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Feb8e854b1c2441668631c59d482af3f2',
+  },
   auto: {
     src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F26a934c359774221bf674b2fb62d93da',
   },
@@ -17,10 +20,12 @@ const FULFILLMENT_ICONS: Record<string, { src: string }> = {
 
 const ORDER_TYPE_LABELS: Record<string, string> = {
   delivery: 'Delivery from store',
+  curbside: 'Curbside pickup',
   auto: 'Auto Care Center',
 };
 
 const DELIVERY_STEPS = ['Placed', 'Preparing', 'On the way', 'Delivered'];
+const PICKUP_STEPS  = ['Placed', 'Preparing', 'Ready', 'Picked up'];
 const STEP_INDEX: Record<string, number> = {
   placed: 0, preparing: 1, 'on-the-way': 2, delivered: 3,
 };
@@ -46,6 +51,9 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
   const deliveryPrimary   = delivery.actions?.filter(a => a.variant === 'primary') ?? [];
   const deliverySecondary = delivery.actions?.filter(a => a.variant === 'secondary') ?? [];
   const activeStep = delivery.timelineStep ? STEP_INDEX[delivery.timelineStep] : undefined;
+  const rightIcon  = FULFILLMENT_ICONS[delivery.orderType] ?? FULFILLMENT_ICONS.delivery;
+  const rightLabel = ORDER_TYPE_LABELS[delivery.orderType] ?? ORDER_TYPE_LABELS.delivery;
+  const rightSteps = delivery.timelineVariant === 'pickup' ? PICKUP_STEPS : DELIVERY_STEPS;
 
   return (
     <>
@@ -112,20 +120,20 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
           <div className={styles.section}>
             <div className={styles.orderMeta} style={{ marginBottom: 13 }}>
               <img
-                src={FULFILLMENT_ICONS.delivery.src}
+                src={rightIcon.src}
                 alt=""
                 aria-hidden="true"
                 className={styles.typeIcon}
               />
               <div className={styles.metaText}>
-                <span className={styles.eyebrow}>{ORDER_TYPE_LABELS.delivery}</span>
+                <span className={styles.eyebrow}>{rightLabel}</span>
                 <h3 className={styles.statusHeading}>{delivery.statusHeading}</h3>
               </div>
             </div>
 
             {delivery.timelineStep && activeStep !== undefined && (
               <ProgressTracker
-                steps={DELIVERY_STEPS}
+                steps={rightSteps}
                 activeStep={activeStep}
                 status="info"
                 className={styles.tracker}
@@ -164,7 +172,7 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
           </div>
           <span className={styles.footerDivider} aria-hidden="true" />
           <div className={styles.footerItem}>
-            <span className={styles.footerLabel}>Delivery from store</span>
+            <span className={styles.footerLabel}>{rightLabel}</span>
             <span className={styles.orderTotal}>Order total {delivery.orderTotal}</span>
           </div>
         </div>

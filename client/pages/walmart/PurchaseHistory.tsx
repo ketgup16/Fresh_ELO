@@ -408,7 +408,7 @@ export default function PurchaseHistory() {
                 {/* Combined card pattern — oil change + delivery side by side */}
                 {(() => {
                   const autoCareOrder = ORDERS.find(o => o.id === 'auto-oil-change-mar7');
-                  const deliveryOrder = ORDERS.find(o => o.id === 'delivery-onway-may12');
+                  const deliveryOrder = ORDERS.find(o => o.id === 'curbside-feb28');
                   if (!autoCareOrder || !deliveryOrder) return null;
                   return (
                     <CombinedOrderCard
