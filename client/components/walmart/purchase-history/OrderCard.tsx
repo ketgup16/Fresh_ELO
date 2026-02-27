@@ -80,7 +80,7 @@ const FULFILLMENT_ICONS: Record<OrderType, { src: string; alt: string }> = {
     alt: 'Shipping',
   },
   auto: {
-    src: '/illustrations/spot-illustration/OilChange.svg',
+    src: '/illustrations/spot-illustration/AutoCare.svg',
     alt: '',
   },
 };
