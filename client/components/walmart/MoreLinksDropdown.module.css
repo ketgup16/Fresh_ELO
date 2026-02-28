@@ -6,7 +6,7 @@
   padding: 4px 12px;
   white-space: nowrap;
   border-radius: 9999px;
-  background: transparent;
+  background: white;
   border: 1.5px solid transparent;
   cursor: pointer;
   transition: background 100ms, border-color 100ms;
