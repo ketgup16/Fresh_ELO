@@ -10,12 +10,14 @@ const SLIDES = [
     eyebrow: 'Deals too big to miss',
     headline: 'Up to 45% off top brands',
     ctaText: 'Shop Deals',
+    objectPosition: 'center center',
   },
   {
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F7941dff9d8b44caea6e922b3def671e8?format=webp&width=1600',
     eyebrow: 'Up to 40% off red, white & so you',
     headline: 'Last-minute July 4th faves',
     ctaText: 'Shop now',
+    objectPosition: 'left center',
   },
 ];
 
@@ -40,7 +42,7 @@ export function NewArrivalsCarousel() {
 
   return (
     <div className={styles.carousel}>
-      <img src={slide.image} alt={slide.headline} className={styles.bgImage} />
+      <img src={slide.image} alt={slide.headline} className={styles.bgImage} style={{ objectPosition: slide.objectPosition }} />
 
       <div className={styles.textPanel}>
         <div className={styles.eyebrow}>{slide.eyebrow}</div>
