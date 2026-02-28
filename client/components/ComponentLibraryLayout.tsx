@@ -34,6 +34,7 @@ const navigationSections: NavSection[] = [
       { id: 'accordion', nameKey: 'componentLibrary.navAccordion', path: '/component-library/accordion' },
       { id: 'alerts', nameKey: 'componentLibrary.navAlerts', path: '/component-library/alerts' },
       { id: 'badges', nameKey: 'componentLibrary.navBadges', path: '/component-library/badges' },
+      { id: 'basic-banner', nameKey: 'componentLibrary.navBasicBanner', path: '/component-library/basic-banner' },
       { id: 'bottom-sheet', nameKey: 'componentLibrary.navBottomSheet', path: '/component-library/bottom-sheet' },
       { id: 'breadcrumbs', nameKey: 'componentLibrary.navBreadcrumbs', path: '/component-library/breadcrumbs' },
       { id: 'buttons', nameKey: 'componentLibrary.navButtons', path: '/component-library/buttons' },

@@ -75,6 +75,7 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navAccordion', descKey: 'componentLibrary.descAccordion', path: '/component-library/accordion', icon: 'ChevronDown', section: 'ld' },
   { titleKey: 'componentLibrary.navAlerts', descKey: 'componentLibrary.descAlerts', path: '/component-library/alerts', icon: 'ExclamationCircle', section: 'ld' },
   { titleKey: 'componentLibrary.navBadges', descKey: 'componentLibrary.descBadges', path: '/component-library/badges', icon: 'Tag', section: 'ld' },
+  { titleKey: 'componentLibrary.navBasicBanner', descKey: 'componentLibrary.descBasicBanner', path: '/component-library/basic-banner', icon: 'Note', section: 'ld' },
   { titleKey: 'componentLibrary.navBottomSheet', descKey: 'componentLibrary.descBottomSheet', path: '/component-library/bottom-sheet', icon: 'PanelLeft', section: 'ld' },
   { titleKey: 'componentLibrary.navBreadcrumbs', descKey: 'componentLibrary.descBreadcrumbs', path: '/component-library/breadcrumbs', icon: 'ArrowRight', section: 'ld' },
   { titleKey: 'componentLibrary.navButtons', descKey: 'componentLibrary.descButtons', path: '/component-library/buttons', icon: 'Circle', section: 'ld' },
