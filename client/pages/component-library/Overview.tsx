@@ -208,6 +208,8 @@ export default function ComponentLibraryOverview() {
         borderRadius: '12px',
         marginBottom: '32px',
         flexWrap: 'wrap',
+        width: '100%',
+        boxSizing: 'border-box',
       }}>
         <div style={{ flexShrink: 0 }}>
           <div style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--ld-semantic-color-text-secondary, #74767C)', marginBottom: '6px' }}>
