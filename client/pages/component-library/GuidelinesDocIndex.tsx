@@ -102,6 +102,13 @@ const docSections: DocSection[] = [
       { name: 'Theme Addition', path: 'guidelines/rules/RULE_ThemeAddition.md', purpose: 'Process for adding new brand themes' },
       { name: 'Markdown Organization', path: 'guidelines/rules/RULE_MarkdownOrganization.md', purpose: 'Markdown file directory structure rules' },
       { name: 'Radix Migration Plan', path: 'guidelines/rules/PLAN_RadixMigration.md', purpose: 'Plan to remove Radix UI dependencies' },
+      { name: 'WCP Component Creation', path: 'guidelines/rules/RULE_WCPComponentCreation.md', purpose: 'Workflow for creating Walmart Component Platform (WCP) product components' },
+      { name: 'Carousel & Scroll Patterns', path: 'guidelines/rules/RULE_CarouselAndScrollPatterns.md', purpose: 'Scroll snap vs auto-advance carousel — when to use each and how to implement' },
+      { name: 'Inline Style vs CSS Module', path: 'guidelines/rules/RULE_InlineStyleVsCSSModule.md', purpose: 'When inline styles are allowed vs when CSS modules are required' },
+      { name: 'Animation and Motion', path: 'guidelines/rules/RULE_AnimationAndMotion.md', purpose: 'Animation types, standard durations, and prefers-reduced-motion requirements' },
+      { name: 'Data-Driven Components', path: 'guidelines/rules/RULE_DataDrivenComponents.md', purpose: 'Static data array naming, TypeScript interfaces, and multi-line text patterns' },
+      { name: 'Component Variant Naming', path: 'guidelines/rules/RULE_ComponentVariantNaming.md', purpose: 'Action-intent vs visual-theme vs status variant naming conventions' },
+      { name: 'Walmart Page Composition', path: 'guidelines/rules/RULE_WalmartPageComposition.md', purpose: 'Page shell responsibilities, stacking order, and full-bleed layout rules' },
     ],
   },
   {

@@ -619,6 +619,62 @@ Answer these before handing off to engineering or Fusion. Unanswered questions =
 
 ---
 
+## New Rules — Added 2025-02-28
+
+Seven new rules have been added to `guidelines/rules/`. These are enforced by the pre-task protocol via `RULES_INDEX.md`.
+
+### Rule 15 — WCP Component Creation (`RULE_WCPComponentCreation.md`)
+- **LD components** live in `client/components/ui/` — design-system primitives
+- **WCP components** live in `client/components/walmart/` — Walmart product-level, built on top of LD primitives
+- WCP uses visual-theme variants: `default | brand | inverse` (never `primary | secondary`)
+- Variant classes via array join: `[styles.banner, styles[variant]].filter(Boolean).join(' ')`
+- Render as `<button>` when `onClick` provided, `<div>` otherwise
+- Named export only; requires Component Library page + route + Overview.tsx entry + i18n keys
+- Does NOT require ComponentPropertyTester sandbox entry or 10-step LD process
+
+### Rule 16 — Carousel and Scroll Patterns (`RULE_CarouselAndScrollPatterns.md`)
+- **Pattern 1** (scroll snap): `overflow-x: auto`, `scroll-snap-type: x mandatory`, `scrollbar-width: none` — no JS needed
+- **Pattern 2** (auto-advance): `setInterval` with `useRef`, pause on user interaction, `IconButton` with `aria-label` for prev/next
+- `headlineParts?: string[]` for multi-line headlines — render each in `<span style={{ display: 'block' }}>`
+- `objectPosition` applied as inline style (dynamic per slide)
+- `UNSAFE_className` acceptable for circular `IconButton` nav controls
+- Always add `prefers-reduced-motion: reduce` override
+
+### Rule 17 — Inline Style vs CSS Module (`RULE_InlineStyleVsCSSModule.md`)
+- CSS modules for ALL static values (variants, states, tokens, spacing, typography)
+- Inline styles ONLY for truly dynamic per-instance values: `objectPosition`, drag width, tooltip coordinates, progress percentage
+- When using tokens inline, always include fallback: `var(--ld-semantic-color-text-positive, #1A7A34)`
+- Never hardcode hex colors inline; never put spacing/font/border-radius inline
+
+### Rule 18 — Animation and Motion (`RULE_AnimationAndMotion.md`)
+- EVERY animation MUST have `@media (prefers-reduced-motion: reduce)` override — no exceptions
+- `@keyframes` for multi-step sequences; `transition` for 2-state hover/focus
+- Canonical "new item" glow: `0 0 0 2px #1A7A34, 0 0 24px 6px rgba(26, 122, 52, 0.30)`, 2.5s ease-in-out
+- Standard durations: 150ms (micro), 250ms (standard), 400ms (complex)
+- Never create a custom spinner — use the existing `Spinner` component
+
+### Rule 19 — Data-Driven Components (`RULE_DataDrivenComponents.md`)
+- Static demo data in the SAME `.tsx` file as the component, above the component function
+- Array names: `UPPER_SNAKE_CASE` (e.g., `PRODUCTS`, `SLIDES`, `ORDERS`)
+- Always define a TypeScript interface for the data shape
+- `headlineParts?: string[]` for multi-line text — never `\n` in strings
+- Use Walmart CDN or local illustration URLs — never placeholder.com or picsum
+
+### Rule 20 — Component Variant Naming (`RULE_ComponentVariantNaming.md`)
+- Action-intent (LD): `primary | secondary | tertiary | destructive` — Button, IconButton only
+- Visual-theme (WCP): `default | brand | inverse` — banners, callouts, promo components
+- Status/sentiment: `success | warning | error | info | neutral` — Tag, Alert, Badge
+- Always string union type (never enum); always optional with default; always `styles[variant]` for class mapping
+
+### Rule 21 — Walmart Page Composition (`RULE_WalmartPageComposition.md`)
+- Page files MUST NOT render shell components (`DesktopHeader`, `MobileTopNav`, `SubNav`, `BottomNav`) — already provided by layout
+- Standard stacking: Hero → Promotional rows → Section headers → Content grids → Inline ad banners
+- Full-bleed sections: `width: 100%; overflow: hidden` — never `max-width`
+- Padded content: `24px 32px` → `20px 24px` → `16px` → `12px` across breakpoints
+- Never add `max-width` or `margin: 0 auto` to full-bleed sections or `BottomNav`
+
+---
+
 ## Design System Package Ingestion Process
 
 When a designer drops a new design system package into the project:

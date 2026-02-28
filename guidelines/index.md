@@ -110,6 +110,13 @@ Design system enforcement rules and best practices.
 - [Theme Addition](rules/RULE_ThemeAddition.md) - Process for adding new themes
 - [Markdown Organization](rules/RULE_MarkdownOrganization.md) - Markdown file organization
 - [Radix Migration Plan](rules/PLAN_RadixMigration.md) - Plan to remove Radix UI dependencies
+- [WCP Component Creation](rules/RULE_WCPComponentCreation.md) - Workflow for creating Walmart Component Platform (WCP) product components
+- [Carousel and Scroll Patterns](rules/RULE_CarouselAndScrollPatterns.md) - Scroll snap vs auto-advance carousel implementation
+- [Inline Style vs CSS Module](rules/RULE_InlineStyleVsCSSModule.md) - When to use inline styles vs CSS modules
+- [Animation and Motion](rules/RULE_AnimationAndMotion.md) - Animation types, durations, and prefers-reduced-motion requirements
+- [Data-Driven Components](rules/RULE_DataDrivenComponents.md) - Local static data array conventions and TypeScript patterns
+- [Component Variant Naming](rules/RULE_ComponentVariantNaming.md) - Action-intent vs visual-theme vs status variant conventions
+- [Walmart Page Composition](rules/RULE_WalmartPageComposition.md) - Page shell, stacking order, and full-bleed layout rules
 
 ### implementations/
 

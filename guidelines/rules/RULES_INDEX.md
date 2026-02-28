@@ -381,6 +381,115 @@ public/illustrations/
 
 ---
 
+### 15. WCP Component Creation
+**File**: `RULE_WCPComponentCreation.md`
+
+**When**: Creating any Walmart-specific (WCP) product component
+
+**Key Requirements**:
+- ✅ Distinguish LD primitives (in `client/components/ui/`) from WCP product components (in `client/components/walmart/`)
+- ✅ WCP components use visual-theme variants: `default | brand | inverse`
+- ✅ Use array join for variant class composition: `[styles.banner, styles[variant]].filter(Boolean).join(' ')`
+- ✅ Render as `<button>` when `onClick` is provided, `<div>` otherwise
+- ✅ Named export only — never `export default`
+- ✅ Requires: Component Library page, route, Overview.tsx entry, i18n keys
+- ❌ Does NOT require ComponentPropertyTester sandbox entry
+- ❌ Does NOT require the 10-step `RULE_CreateNewComponent.md` process
+
+---
+
+### 16. Carousel and Scroll Patterns
+**File**: `RULE_CarouselAndScrollPatterns.md`
+
+**When**: Building any horizontally scrollable list or auto-advancing carousel
+
+**Key Requirements**:
+- ✅ **Pattern 1** (scroll snap): `overflow-x: auto`, `scroll-snap-type: x mandatory`, tiles use `scroll-snap-align: start`, hide scrollbar with `scrollbar-width: none`
+- ✅ **Pattern 2** (auto-advance): JS `setInterval` with `useRef`, pause on user interaction, always include prev/next `IconButton` with `aria-label`
+- ✅ Use `headlineParts?: string[]` for multi-line headlines (render each in `<span style={{ display: 'block' }}>`)
+- ✅ Apply `objectPosition` as inline style (dynamic per slide)
+- ✅ `UNSAFE_className` is acceptable for circular `IconButton` nav controls
+- ✅ Always include `prefers-reduced-motion: reduce` override to pause or disable animations
+- ❌ NEVER use Pattern 2 without prev/next controls and aria-labels
+
+---
+
+### 17. Inline Style vs CSS Module
+**File**: `RULE_InlineStyleVsCSSModule.md`
+
+**When**: Deciding where to put any style value
+
+**Key Requirements**:
+- ✅ CSS modules for ALL static, variant-based, state-based, and token-referenced styles
+- ✅ Inline styles ONLY for truly dynamic per-instance values (objectPosition, drag width, tooltip coordinates)
+- ✅ When using tokens inline, always include a fallback: `var(--ld-semantic-color-text-positive, #1A7A34)`
+- ❌ NEVER hardcode hex colors inline
+- ❌ NEVER put spacing, font, or border-radius values inline (they belong in CSS modules)
+- ❌ NEVER use inline styles for variant-based colors
+
+---
+
+### 18. Animation and Motion
+**File**: `RULE_AnimationAndMotion.md`
+
+**When**: Adding any animation, transition, or motion to the UI
+
+**Key Requirements**:
+- ✅ EVERY animation MUST have a `@media (prefers-reduced-motion: reduce)` override — no exceptions
+- ✅ Use `@keyframes` for multi-step sequences; use `transition` for 2-state hover/focus changes
+- ✅ Canonical "new item" glow: `0 0 0 2px #1A7A34, 0 0 24px 6px rgba(26, 122, 52, 0.30)`, 2.5s, ease-in-out
+- ✅ Standard durations: 150ms (micro), 250ms (standard), 400ms (complex), 2500ms (insertion glow)
+- ✅ Auto-advance carousels must pause on user interaction and disable when `prefers-reduced-motion: reduce`
+- ❌ NEVER create a custom spinner — use the existing `Spinner` component
+
+---
+
+### 19. Data-Driven Components
+**File**: `RULE_DataDrivenComponents.md`
+
+**When**: Building components that render from local static/demo data arrays
+
+**Key Requirements**:
+- ✅ Static demo data lives in the SAME `.tsx` file as the component, above the component function
+- ✅ Data arrays: `UPPER_SNAKE_CASE` constant names (e.g., `PRODUCTS`, `SLIDES`, `ORDERS`)
+- ✅ Always define a TypeScript interface for the data shape
+- ✅ Use `headlineParts?: string[]` for multi-line text — never `\n` in strings
+- ✅ Use Walmart CDN or local illustration URLs — never placeholder.com or picsum.photos
+- ❌ NEVER hardcode user-specific or real API data in the component file — pass as props
+
+---
+
+### 20. Component Variant Naming
+**File**: `RULE_ComponentVariantNaming.md`
+
+**When**: Creating any component with a `variant` prop
+
+**Key Requirements**:
+- ✅ **Action-intent** (LD primitives): `primary | secondary | tertiary | destructive` — for Button, IconButton
+- ✅ **Visual-theme** (WCP components): `default | brand | inverse` — for banners, callouts, promo components
+- ✅ **Status/sentiment** (data display): `success | warning | error | info | neutral` — for Tag, Alert, Badge
+- ✅ Always use a string union type — never an enum
+- ✅ Always include a `default` fallback and make the prop optional
+- ✅ Map variant classes with `styles[variant]` — never switch/if chains
+- ❌ NEVER apply action-intent names (`primary/secondary`) to visual-theme components
+- ❌ NEVER apply visual-theme names (`brand/inverse`) to action components
+
+---
+
+### 21. Walmart Page Composition
+**File**: `RULE_WalmartPageComposition.md`
+
+**When**: Building any Walmart-facing page (`/walmart/*`)
+
+**Key Requirements**:
+- ✅ Page files MUST NOT render shell components (`DesktopHeader`, `MobileTopNav`, `SubNav`, `BottomNav`) — the layout provides them
+- ✅ Standard stacking order: Hero → Promotional rows → Section headers → Content grids → Inline ad banners
+- ✅ Full-bleed sections (hero, carousels): `width: 100%; overflow: hidden` — no `max-width`
+- ✅ Padded content sections: `24px 32px` → `20px 24px` → `16px` → `12px` across breakpoints
+- ❌ NEVER add `max-width` or `margin: 0 auto` to full-bleed sections or `BottomNav`
+
+---
+
 ### 14. Purchase History Prompt-Driven Card Patterns
 **File**: `RULE_PurchaseHistoryCardPatterns.md`
 
