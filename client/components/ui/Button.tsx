@@ -4,7 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 export type ButtonSize = 'large' | 'medium' | 'small';
 export type ButtonType = 'button' | 'reset' | 'submit';
-export type ButtonVariant = 'destructive' | 'primary' | 'secondary' | 'tertiary';
+export type ButtonVariant = 'destructive' | 'primary' | 'primary-alt' | 'secondary' | 'tertiary';
 
 interface CommonProps {
   'aria-label'?: string;

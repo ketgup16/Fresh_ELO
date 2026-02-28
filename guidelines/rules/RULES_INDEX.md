@@ -465,7 +465,7 @@ public/illustrations/
 **When**: Creating any component with a `variant` prop
 
 **Key Requirements**:
-- ✅ **Action-intent** (LD primitives): `primary | secondary | tertiary | destructive` — for Button, IconButton
+- ✅ **Action-intent** (LD primitives): `primary | primary-alt | secondary | tertiary | destructive` — for Button, IconButton
 - ✅ **Visual-theme** (WCP components): `default | brand | inverse` — for banners, callouts, promo components
 - ✅ **Status/sentiment** (data display): `success | warning | error | info | neutral` — for Tag, Alert, Badge
 - ✅ Always use a string union type — never an enum
@@ -473,6 +473,13 @@ public/illustrations/
 - ✅ Map variant classes with `styles[variant]` — never switch/if chains
 - ❌ NEVER apply action-intent names (`primary/secondary`) to visual-theme components
 - ❌ NEVER apply visual-theme names (`brand/inverse`) to action components
+
+**`primary-alt` — Walmart+ Membership Button**:
+- Use `variant="primary-alt"` on the `Button` component for ALL Walmart+ membership CTAs
+- Gold (Spark-100 `#ffc220`) fill with dark navy (Blue-160 `#001e60`) text
+- Uses semantic tokens: `--ld-semantic-color-action-fill-primary-alt` and `--ld-semantic-color-action-text-on-fill-primary-alt`
+- Same sizes as `primary`: small, medium, large
+- Disabled state: gray-50 fill, white text (same pattern as other variants)
 
 ---
 

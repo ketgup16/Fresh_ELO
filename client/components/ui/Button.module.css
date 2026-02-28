@@ -77,6 +77,37 @@
   color: var(--ld-semantic-color-action-text-on-fill-primary-disabled);
 }
 
+/* Primary Alt Variant — Walmart+ membership (Spark gold fill, navy text) */
+.button--variant-primary-alt {
+  background-color: var(--ld-semantic-color-action-fill-primary-alt, #ffc220);
+  color: var(--ld-semantic-color-action-text-on-fill-primary-alt, #001e60);
+  border-color: var(--ld-semantic-color-action-fill-primary-alt, #ffc220);
+}
+
+.button--variant-primary-alt:hover:not(:disabled) {
+  background-color: var(--ld-semantic-color-action-fill-primary-alt-hovered, #e6a31d);
+  border-color: var(--ld-semantic-color-action-fill-primary-alt-hovered, #e6a31d);
+  color: var(--ld-semantic-color-action-text-on-fill-primary-alt-hovered, #001e60);
+}
+
+.button--variant-primary-alt:focus-visible {
+  background-color: var(--ld-semantic-color-action-fill-primary-alt-focused, #e6a31d);
+  border-color: var(--ld-semantic-color-action-fill-primary-alt-focused, #e6a31d);
+  color: var(--ld-semantic-color-action-text-on-fill-primary-alt-focused, #001e60);
+}
+
+.button--variant-primary-alt:active:not(:disabled) {
+  background-color: var(--ld-semantic-color-action-fill-primary-alt-pressed, #cc851a);
+  border-color: var(--ld-semantic-color-action-fill-primary-alt-pressed, #cc851a);
+  color: var(--ld-semantic-color-action-text-on-fill-primary-alt-pressed, #001e60);
+}
+
+.button--variant-primary-alt:disabled {
+  background-color: var(--ld-semantic-color-action-fill-primary-alt-disabled, #babbbe);
+  border-color: var(--ld-semantic-color-action-fill-primary-alt-disabled, #babbbe);
+  color: var(--ld-semantic-color-action-text-on-fill-primary-alt-disabled, #ffffff);
+}
+
 /* Secondary Variant */
 .button--variant-secondary {
   background-color: var(--ld-semantic-color-action-fill-secondary);

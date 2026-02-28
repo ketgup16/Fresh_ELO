@@ -31,6 +31,47 @@ export const ButtonExample: React.FC = () => {
 
       <section>
         <h2 style={{ marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>
+          Primary Alt — Membership (Walmart+)
+        </h2>
+        <p style={{ marginBottom: '16px', fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)', lineHeight: 1.5 }}>
+          Use <code style={{ fontFamily: 'var(--ld-semantic-font-family-mono)', fontSize: '13px', backgroundColor: 'var(--ld-semantic-color-fill-subtle)', padding: '2px 6px', borderRadius: '4px' }}>variant="primary-alt"</code> for Walmart+ membership CTAs. Gold fill, navy text.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)' }}>Sizes</p>
+            <ButtonGroup>
+              <Button variant="primary-alt" size="small">Button label</Button>
+              <Button variant="primary-alt" size="medium">Button label</Button>
+              <Button variant="primary-alt" size="large">Button label</Button>
+            </ButtonGroup>
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)' }}>States</p>
+            <ButtonGroup>
+              <Button variant="primary-alt" size="medium">Default</Button>
+              <Button variant="primary-alt" size="medium" disabled>Disabled</Button>
+              <Button variant="primary-alt" size="medium" isLoading>Loading</Button>
+            </ButtonGroup>
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)' }}>With leading icon</p>
+            <ButtonGroup>
+              <Button variant="primary-alt" size="small" leading={<Plus style={{ width: 16, height: 16 }} />}>Join Walmart+</Button>
+              <Button variant="primary-alt" size="medium" leading={<Plus style={{ width: 20, height: 20 }} />}>Join Walmart+</Button>
+              <Button variant="primary-alt" size="large" leading={<Plus style={{ width: 24, height: 24 }} />}>Join Walmart+</Button>
+            </ButtonGroup>
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)' }}>Full width</p>
+            <div style={{ maxWidth: '400px', width: '100%' }}>
+              <Button variant="primary-alt" size="large" isFullWidth>Start free trial</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style={{ marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>
           Button Sizes
         </h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>

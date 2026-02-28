@@ -106,6 +106,12 @@
   --ld-semantic-color-action-fill-primary-hovered: var(--ld-primitive-color-blue-110, #114ab6);
   --ld-semantic-color-action-fill-primary-pressed: var(--ld-primitive-color-blue-130, #002e99);
   --ld-semantic-color-action-fill-primary-disabled: var(--ld-primitive-color-gray-50, #babbbe);
+  /* Primary Alt — Walmart+ membership / Spark gold */
+  --ld-semantic-color-action-fill-primary-alt: var(--ld-primitive-color-spark-100, #ffc220);
+  --ld-semantic-color-action-fill-primary-alt-focused: var(--ld-primitive-color-spark-110, #e6a31d);
+  --ld-semantic-color-action-fill-primary-alt-hovered: var(--ld-primitive-color-spark-110, #e6a31d);
+  --ld-semantic-color-action-fill-primary-alt-pressed: var(--ld-primitive-color-spark-120, #cc851a);
+  --ld-semantic-color-action-fill-primary-alt-disabled: var(--ld-primitive-color-gray-50, #babbbe);
   --ld-semantic-color-action-fill-secondary: var(--ld-primitive-color-white, #ffffff);
   --ld-semantic-color-action-fill-secondary-focused: var(--ld-primitive-color-gray-10, #f1f1f2);
   --ld-semantic-color-action-fill-secondary-hovered: var(--ld-primitive-color-gray-10, #f1f1f2);
@@ -138,6 +144,12 @@
   --ld-semantic-color-action-text-on-fill-primary-hovered: var(--ld-primitive-color-white, #ffffff);
   --ld-semantic-color-action-text-on-fill-primary-pressed: var(--ld-primitive-color-white, #ffffff);
   --ld-semantic-color-action-text-on-fill-primary-disabled: var(--ld-primitive-color-white, #ffffff);
+  /* Primary Alt text — dark navy on gold for membership */
+  --ld-semantic-color-action-text-on-fill-primary-alt: var(--ld-primitive-color-blue-160, #001e60);
+  --ld-semantic-color-action-text-on-fill-primary-alt-focused: var(--ld-primitive-color-blue-160, #001e60);
+  --ld-semantic-color-action-text-on-fill-primary-alt-hovered: var(--ld-primitive-color-blue-160, #001e60);
+  --ld-semantic-color-action-text-on-fill-primary-alt-pressed: var(--ld-primitive-color-blue-160, #001e60);
+  --ld-semantic-color-action-text-on-fill-primary-alt-disabled: var(--ld-primitive-color-white, #ffffff);
   --ld-semantic-color-action-text-on-fill-secondary: var(--ld-primitive-color-gray-160, #2e2f32);
   --ld-semantic-color-action-text-on-fill-secondary-focused: var(--ld-primitive-color-gray-160, #2e2f32);
   --ld-semantic-color-action-text-on-fill-secondary-hovered: var(--ld-primitive-color-gray-160, #2e2f32);
