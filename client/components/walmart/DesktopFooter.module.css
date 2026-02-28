@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--ld-primitive-color-blue-10, #E9F1FE);
+  background-color: var(--ld-semantic-color-fill-brand-subtle, #E9F1FE);
   width: 100%;
 }
 
@@ -35,7 +35,8 @@
 .feedbackDivider {
   width: 100%;
   height: 1px;
-  background-color: var(--ld-primitive-color-blue-30, #ACC8FB);
+  background-color: var(--ld-semantic-color-border-brand, #0053e2);
+  opacity: 0.3;
 }
 
 /* ── Blue Links Section ── */
@@ -45,7 +46,7 @@
   align-items: center;
   gap: 32px;
   padding: 16px 40px 32px;
-  background-color: var(--ld-primitive-color-blue-130, #002E99);
+  background-color: var(--ld-semantic-color-action-fill-primary-pressed, #002E99);
   width: 100%;
 }
 

@@ -43,5 +43,10 @@
   /* SubNav brand-subtle background — green to match brand */
   --ld-semantic-color-fill-brand-subtle: var(--ld-primitive-color-green-10, #eaf3e6);
 
+  /* Bold brand text/fill — green equivalent of dark navy */
+  --ld-semantic-color-text-brand-bold: var(--ld-primitive-color-green-160, #0d2901);
+  --ld-semantic-color-fill-brand-bold: var(--ld-primitive-color-green-160, #0d2901);
+  --ld-semantic-color-border-brand-bold: var(--ld-primitive-color-green-160, #0d2901);
+
   /* Inherits WCP commerce tokens and all LD Base tokens */
 }
