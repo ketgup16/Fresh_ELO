@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
+import { WCPButtonGroup } from '@/components/ui/WCPButtonGroup';
 import { Plus, ChevronRight, Download, Trash } from '@/components/icons';
 
 /**
@@ -222,6 +223,125 @@ export const ButtonExample: React.FC = () => {
             </Button>
           </ButtonGroup>
         </form>
+      </section>
+
+      <section>
+        <h2 style={{ marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>
+          WCP Button Group — Inline Patterns
+        </h2>
+        <p style={{ marginBottom: '16px', fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)', lineHeight: 1.5 }}>
+          Standard WCP button group combinations for side-by-side actions. Use <strong>Preferred</strong> for the primary CTA and <strong>Alternate</strong> for the secondary action.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '440px' }}>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Primary + Secondary (full width)</p>
+            <WCPButtonGroup
+              layout="inline"
+              pattern="primary-secondary"
+              preferredLabel="Preferred"
+              alternateLabel="Alternate"
+              fullWidth
+            />
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Primary + Secondary (auto width)</p>
+            <WCPButtonGroup
+              layout="inline"
+              pattern="primary-secondary"
+              preferredLabel="Preferred"
+              alternateLabel="Alternate"
+              fullWidth={false}
+            />
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Primary + Tertiary (link left, primary right)</p>
+            <WCPButtonGroup
+              layout="inline"
+              pattern="primary-tertiary"
+              preferredLabel="Preferred"
+              alternateLabel="Alternate"
+              preferredRight
+            />
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Secondary + Tertiary (link left, secondary right)</p>
+            <WCPButtonGroup
+              layout="inline"
+              pattern="secondary-tertiary"
+              preferredLabel="Preferred"
+              alternateLabel="Alternate"
+              preferredRight
+            />
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Secondary + Tertiary (secondary left, link right)</p>
+            <WCPButtonGroup
+              layout="inline"
+              pattern="secondary-tertiary"
+              preferredLabel="Preferred"
+              alternateLabel="Alternate"
+              preferredRight={false}
+            />
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Tertiary + Tertiary (centered)</p>
+            <WCPButtonGroup
+              layout="inline"
+              pattern="tertiary-tertiary"
+              preferredLabel="Preferred"
+              alternateLabel="Alternate"
+              fullWidth
+            />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style={{ marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>
+          WCP Button Group — Stacked Patterns
+        </h2>
+        <p style={{ marginBottom: '16px', fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)', lineHeight: 1.5 }}>
+          Vertically stacked button groups where all buttons expand to full width. Preferred action always appears on top.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '343px' }}>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Primary + Secondary</p>
+            <WCPButtonGroup
+              layout="stacked"
+              pattern="primary-secondary"
+              preferredLabel="Preferred"
+              alternateLabel="Alternate"
+            />
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Primary + Tertiary</p>
+            <WCPButtonGroup
+              layout="stacked"
+              pattern="primary-tertiary"
+              preferredLabel="Preferred"
+              alternateLabel="Alternate"
+            />
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Secondary + Tertiary</p>
+            <WCPButtonGroup
+              layout="stacked"
+              pattern="secondary-tertiary"
+              preferredLabel="Preferred"
+              alternateLabel="Alternate"
+            />
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Three Options (Primary + Secondary inline, link below)</p>
+            <WCPButtonGroup
+              layout="stacked"
+              pattern="three-options"
+              preferredLabel="Preferred"
+              alternateLabel="Alternate"
+              thirdLabel="Alternate"
+            />
+          </div>
+        </div>
       </section>
 
       <section>
