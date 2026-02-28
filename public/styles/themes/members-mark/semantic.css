@@ -10,6 +10,18 @@
  */
 
 :root {
+  /* WCP Primary Alt Button — Member's Mark membership CTA (Brand dark gray) */
+  --wcp-semantic-color-action-fill-primary-alt: var(--ld-primitive-color-gray-140, #283645);
+  --wcp-semantic-color-action-fill-primary-alt-hovered: var(--ld-primitive-color-gray-150, #1e2a37);
+  --wcp-semantic-color-action-fill-primary-alt-focused: var(--ld-primitive-color-gray-150, #1e2a37);
+  --wcp-semantic-color-action-fill-primary-alt-pressed: var(--ld-primitive-color-gray-160, #151f29);
+  --wcp-semantic-color-action-fill-primary-alt-disabled: var(--ld-primitive-color-gray-10, #eaf1f5);
+  --wcp-semantic-color-action-text-on-fill-primary-alt: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-action-text-on-fill-primary-alt-hovered: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-action-text-on-fill-primary-alt-focused: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-action-text-on-fill-primary-alt-pressed: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-action-text-on-fill-primary-alt-disabled: var(--ld-primitive-color-gray-50, #a7b7c4);
+
   /* Member's Mark brand colors - DARK GRAY */
   --ld-semantic-color-action-border-secondary: #283645;
   --ld-semantic-color-action-border-secondary-focused: #283645;

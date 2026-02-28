@@ -10,6 +10,18 @@
  */
 
 :root {
+  /* WCP Primary Alt Button — Sam's Club membership CTA (Black) */
+  --wcp-semantic-color-action-fill-primary-alt: var(--ld-primitive-color-black, #000000);
+  --wcp-semantic-color-action-fill-primary-alt-hovered: var(--ld-primitive-color-gray-170, #0d141b);
+  --wcp-semantic-color-action-fill-primary-alt-focused: var(--ld-primitive-color-gray-170, #0d141b);
+  --wcp-semantic-color-action-fill-primary-alt-pressed: var(--ld-primitive-color-gray-160, #151f29);
+  --wcp-semantic-color-action-fill-primary-alt-disabled: var(--ld-primitive-color-gray-10, #eaf1f5);
+  --wcp-semantic-color-action-text-on-fill-primary-alt: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-action-text-on-fill-primary-alt-hovered: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-action-text-on-fill-primary-alt-focused: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-action-text-on-fill-primary-alt-pressed: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-action-text-on-fill-primary-alt-disabled: var(--ld-primitive-color-gray-50, #a7b7c4);
+
   /* Primary Button - Bright Blue Filled */
   --ld-semantic-color-action-fill-primary: var(--ld-primitive-color-blue-130, #0062ad);
   --ld-semantic-color-action-fill-primary-disabled: var(--ld-primitive-color-gray-10, #eaf1f5);
