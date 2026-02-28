@@ -117,6 +117,7 @@ Design system enforcement rules and best practices.
 - [Data-Driven Components](rules/RULE_DataDrivenComponents.md) - Local static data array conventions and TypeScript patterns
 - [Component Variant Naming](rules/RULE_ComponentVariantNaming.md) - Action-intent vs visual-theme vs status variant conventions
 - [Walmart Page Composition](rules/RULE_WalmartPageComposition.md) - Page shell, stacking order, and full-bleed layout rules
+- [Theme Compliance](rules/RULE_ThemeCompliance.md) - Hard rule: every new component/page must pass theme compliance check before completion
 
 ### implementations/
 

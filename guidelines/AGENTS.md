@@ -789,4 +789,31 @@ When a Figma layer is named `[WCP] Button`, `[WCP] Loading Button`, `[LD 3.5] Pl
 
 // ✅ CORRECT — use LD Rating component
 <Rating value={4.4} size="small" />
+
+// ❌ WRONG — primitive token directly in component CSS (bypasses theming)
+// .nav { background: var(--ld-primitive-color-blue-10); }
+
+// ❌ WRONG — hardcoded hex even with a fallback comment
+// .banner { background: #EBF1FF; /* brand-subtle */ }
+
+// ✅ CORRECT — semantic token in CSS module (themes automatically)
+// .nav { background: var(--ld-semantic-color-fill-brand-subtle, #EBF1FF); }
+```
+
+### Theme Compliance — Pre-Completion Requirement
+
+**Every new component and page MUST pass a theme compliance check before it is considered done.**
+
+See `guidelines/rules/RULE_ThemeCompliance.md` for the full rule. Key checks:
+
+1. Zero hardcoded hex colors in component/page CSS
+2. Zero `--ld-primitive-color-*` references in component CSS
+3. Zero hardcoded `font-size`, `padding`, `border-radius` values (use token vars)
+4. Switch to Bodega (green) theme → brand colors must be green, not blue
+5. Switch to Walmart Legacy theme → verify correct rendering
+
+```bash
+# Run before completing any component work:
+grep -rn "#[0-9a-fA-F]\{6\}" client/components/ client/pages/ --include="*.css"
+grep -rn "ld-primitive-color-" client/components/ client/pages/ --include="*.css"
 ```

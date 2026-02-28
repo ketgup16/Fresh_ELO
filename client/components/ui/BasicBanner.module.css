@@ -1,14 +1,14 @@
 .banner {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--ld-semantic-spacing-100, 0.5rem); /* 8px */
   width: 100%;
-  padding: 12px 16px;
-  border-radius: 8px;
+  padding: var(--ld-semantic-spacing-component-padding-medium, 0.75rem) var(--ld-semantic-spacing-200, 1rem);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 0.5rem);
   box-sizing: border-box;
   text-align: left;
   border: none;
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
   text-decoration: none;
 }
 
@@ -20,21 +20,21 @@
   filter: brightness(0.97);
 }
 
-/* ── Variants (from Figma) ─────────────────────────────────────────────────── */
+/* ── Variants (from Figma: [WCP] Basic Banner) ─────────────────────────────── */
 
-/* Default: blue-subtle fill, dark navy text */
+/* Default: accent-blue-subtle fill, navy-on-blue-subtle text */
 .default {
   background: var(--ld-semantic-color-fill-accent-blue-subtle, #EBF1FF);
   color: var(--ld-semantic-color-text-onfill-accent-blue-subtle, #002E99);
 }
 
-/* Brand: Walmart blue fill, white text */
+/* Brand: Walmart blue fill, on-brand text (white) */
 .brand {
   background: var(--ld-semantic-color-action-fill-primary, #0071DC);
   color: var(--ld-semantic-color-text-onfill-brand, #FFFFFF);
 }
 
-/* Inverse: dark/inverse fill, white text */
+/* Inverse: dark/inverse fill, on-inverse text (white) */
 .inverse {
   background: var(--ld-semantic-color-fill-inverse, #1A1A1A);
   color: var(--ld-semantic-color-text-onfill-inverse, #FFFFFF);
@@ -47,23 +47,23 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
+  width: var(--ld-semantic-scale-icon-medium, 1.5rem);
+  height: var(--ld-semantic-scale-icon-medium, 1.5rem);
   color: inherit;
 }
 
 .icon {
-  width: 24px;
-  height: 24px;
+  width: var(--ld-semantic-scale-icon-medium, 1.5rem);
+  height: var(--ld-semantic-scale-icon-medium, 1.5rem);
   color: inherit;
 }
 
 /* ── Text ──────────────────────────────────────────────────────────────────── */
 
 .text {
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.43;
+  font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
+  font-weight: var(--ld-semantic-font-body-small-weight-alt, 700);
+  line-height: var(--ld-semantic-font-body-small-line-height, 1.25rem);
   color: inherit;
   overflow: hidden;
   text-overflow: ellipsis;

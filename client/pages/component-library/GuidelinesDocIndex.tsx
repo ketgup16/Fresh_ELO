@@ -109,6 +109,7 @@ const docSections: DocSection[] = [
       { name: 'Data-Driven Components', path: 'guidelines/rules/RULE_DataDrivenComponents.md', purpose: 'Static data array naming, TypeScript interfaces, and multi-line text patterns' },
       { name: 'Component Variant Naming', path: 'guidelines/rules/RULE_ComponentVariantNaming.md', purpose: 'Action-intent vs visual-theme vs status variant naming conventions' },
       { name: 'Walmart Page Composition', path: 'guidelines/rules/RULE_WalmartPageComposition.md', purpose: 'Page shell responsibilities, stacking order, and full-bleed layout rules' },
+      { name: 'Theme Compliance', path: 'guidelines/rules/RULE_ThemeCompliance.md', purpose: 'Hard rule: every new component/page must pass theme compliance check before completion' },
     ],
   },
   {

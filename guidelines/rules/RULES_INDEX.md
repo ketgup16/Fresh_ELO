@@ -476,6 +476,41 @@ public/illustrations/
 
 ---
 
+### 22. Theme Compliance for New Components and Pages
+**File**: `RULE_ThemeCompliance.md`
+
+**When**: BEFORE marking any new component or page as complete
+
+**Key Requirements**:
+- ✅ EVERY new component and page MUST pass a theme compliance check before it is considered done
+- ✅ ALWAYS use `--ld-semantic-*` tokens in component CSS — never primitive tokens or hardcoded hex values
+- ✅ Primitive tokens (`--ld-primitive-color-*`) are FORBIDDEN in component CSS files
+- ✅ Spacing, font size, border-radius MUST use token vars — never hardcoded px values
+- ✅ Theme-specific visual differences belong in `public/styles/themes/THEME_NAME/semantic.css` — never in the component
+- ✅ Run the automated detection grep commands before completing component work
+- ❌ NEVER hardcode hex colors, even as a "default" — always use `var(--token, fallback)`
+- ❌ NEVER reference `--ld-primitive-color-*` directly in component or page CSS
+
+**Quick Check**:
+```css
+/* ❌ WRONG — breaks theming */
+.nav { background: var(--ld-primitive-color-blue-10, #E9F1FE); color: #002E99; }
+
+/* ✅ CORRECT — themes automatically */
+.nav {
+  background: var(--ld-semantic-color-fill-brand-subtle, #E9F1FE);
+  color: var(--ld-semantic-color-text-brand-bold, #002E99);
+}
+```
+
+**Pre-Completion Checklist**:
+1. Switch to Bodega (green) theme — verify brand colors are green, not blue
+2. Switch to Walmart Legacy theme — verify correct rendering
+3. Run grep for `#[0-9a-fA-F]{6}` in component CSS — must return 0 results
+4. Run grep for `ld-primitive-color-` in component CSS — must return 0 results
+
+---
+
 ### 21. Walmart Page Composition
 **File**: `RULE_WalmartPageComposition.md`
 
