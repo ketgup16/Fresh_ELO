@@ -20,8 +20,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Mobile: anchor image to the right so the left text area stays clear */
-  object-position: right center;
+  /* Mobile: anchor image to the left */
+  object-position: left center;
   display: block;
 }
 
