@@ -201,6 +201,7 @@ export default function ComponentLibraryOverview() {
       <div style={{
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'center',
         gap: '16px',
         padding: '16px 24px',
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
