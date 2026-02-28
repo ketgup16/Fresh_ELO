@@ -52,5 +52,30 @@
   --ld-semantic-font-heading-medium-family: Gibson, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
   --ld-semantic-font-heading-small-family: Gibson, 'Everyday Sans UI', -apple-system, Roboto, sans-serif;
 
+  /* Focus outline — Sam's Club blue (inherited brand) */
+  --ld-semantic-color-action-focus-outline: var(--ld-primitive-color-blue-130, #0062ad);
+
+  /* Brand fills — inherit Sam's Club blue */
+  --ld-semantic-color-fill-brand: var(--ld-primitive-color-blue-130, #0062ad);
+  --ld-semantic-color-fill-brand-subtle: var(--ld-primitive-color-blue-5, #f0f7ff);
+
+  /* ── Side Navigation / Page Nav — Sam's Club blue highlights ───────────── */
+  --ld-semantic-color-page-nav-fill-hovered: var(--ld-primitive-color-blue-5, #f0f7ff);
+  --ld-semantic-color-page-nav-fill-focused: var(--ld-primitive-color-blue-5, #f0f7ff);
+  --ld-semantic-color-page-nav-fill-pressed: var(--ld-primitive-color-blue-10, #e0effc);
+  --ld-semantic-color-page-nav-fill-activated: var(--ld-primitive-color-blue-5, #f0f7ff);
+  --ld-semantic-color-page-nav-fill-activated-hovered: var(--ld-primitive-color-blue-10, #e0effc);
+  --ld-semantic-color-page-nav-fill-activated-focused: var(--ld-primitive-color-blue-10, #e0effc);
+  --ld-semantic-color-page-nav-fill-activated-pressed: var(--ld-primitive-color-blue-20, #c1def9);
+
+  /* Active indicator bar — Member's Mark dark gray brand */
+  --ld-semantic-color-page-nav-indicator-hovered: var(--ld-primitive-color-blue-20, #c1def9);
+  --ld-semantic-color-page-nav-indicator-focused: var(--ld-primitive-color-blue-20, #c1def9);
+  --ld-semantic-color-page-nav-indicator-pressed: var(--ld-primitive-color-blue-30, #9acbf7);
+  --ld-semantic-color-page-nav-indicator-activated: #283645;
+  --ld-semantic-color-page-nav-indicator-activated-hovered: #283645;
+  --ld-semantic-color-page-nav-indicator-activated-focused: #283645;
+  --ld-semantic-color-page-nav-indicator-activated-pressed: #1e2a37;
+
   /* Inherits Sam's Club brand + WCP commerce tokens */
 }

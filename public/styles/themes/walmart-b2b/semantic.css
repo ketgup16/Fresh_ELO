@@ -74,6 +74,31 @@
   
   /* WCP Confidence Fill - Darker blue */
   --wcp-semantic-color-fill-confidence: var(--ld-primitive-color-blue-130, #002e99);
+
+  /* Top navigation — navy */
+  --ld-semantic-color-top-nav-fill: var(--ld-primitive-color-blue-130, #002e99);
+
+  /* Brand fills — navy */
+  --ld-semantic-color-fill-brand-subtle: var(--ld-primitive-color-blue-5, #f0f5ff);
+  --ld-semantic-color-text-on-fill-brand-subtle: var(--ld-primitive-color-blue-130, #002e99);
+
+  /* ── Side Navigation / Page Nav — navy active highlights ───────────────── */
+  --ld-semantic-color-page-nav-fill-hovered: var(--ld-primitive-color-blue-5, #f0f5ff);
+  --ld-semantic-color-page-nav-fill-focused: var(--ld-primitive-color-blue-5, #f0f5ff);
+  --ld-semantic-color-page-nav-fill-pressed: var(--ld-primitive-color-blue-10, #e9f1fe);
+  --ld-semantic-color-page-nav-fill-activated: var(--ld-primitive-color-blue-5, #f0f5ff);
+  --ld-semantic-color-page-nav-fill-activated-hovered: var(--ld-primitive-color-blue-10, #e9f1fe);
+  --ld-semantic-color-page-nav-fill-activated-focused: var(--ld-primitive-color-blue-10, #e9f1fe);
+  --ld-semantic-color-page-nav-fill-activated-pressed: var(--ld-primitive-color-blue-20, #c9dcfd);
+
+  /* Active indicator bar — navy */
+  --ld-semantic-color-page-nav-indicator-hovered: var(--ld-primitive-color-blue-20, #c9dcfd);
+  --ld-semantic-color-page-nav-indicator-focused: var(--ld-primitive-color-blue-20, #c9dcfd);
+  --ld-semantic-color-page-nav-indicator-pressed: var(--ld-primitive-color-blue-30, #acc8fb);
+  --ld-semantic-color-page-nav-indicator-activated: var(--ld-primitive-color-blue-130, #002e99);
+  --ld-semantic-color-page-nav-indicator-activated-hovered: var(--ld-primitive-color-blue-130, #002e99);
+  --ld-semantic-color-page-nav-indicator-activated-focused: var(--ld-primitive-color-blue-130, #002e99);
+  --ld-semantic-color-page-nav-indicator-activated-pressed: var(--ld-primitive-color-blue-140, #002185);
 }
 
 /* 
