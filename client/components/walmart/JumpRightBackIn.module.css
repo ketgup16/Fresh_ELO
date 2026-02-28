@@ -1,0 +1,156 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.heading {
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .heading { font-size: 24px; }
+}
+
+/* Horizontally scrollable row */
+.row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  /* hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin: 0 -16px;
+  padding: 0 16px 4px;
+}
+
+.row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Each product tile */
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+  width: 148px;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .tile { width: 180px; }
+}
+
+@media (min-width: 1024px) {
+  .tile { width: 200px; }
+}
+
+/* Image area */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.heartBtn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.heartBtn:hover {
+  background: #fff;
+}
+
+.heartIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+}
+
+/* Content below image */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ctaRow {
+  display: flex;
+}
+
+/* Price */
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.pricePrefix {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text-brand-bold, #001e60);
+}
+
+.price {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.priceDollar {
+  font-size: 11px;
+  vertical-align: super;
+  line-height: 1;
+}
+
+.originalPrice {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: 11px;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  text-decoration: line-through;
+}
+
+/* Product name */
+.name {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: 12px;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

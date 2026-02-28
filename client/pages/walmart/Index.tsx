@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Link } from "@/components/ui/Link";
 import { IconButton } from "@/components/ui/IconButton";
 import { NewArrivalsCarousel } from "@/components/walmart/NewArrivalsCarousel";
+import { JumpRightBackIn } from "@/components/walmart/JumpRightBackIn";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 
 export default function Index() {
@@ -57,6 +58,9 @@ export default function Index() {
 
         {/* New Arrivals Carousel */}
         <NewArrivalsCarousel />
+
+        {/* Jump right back in — recently viewed products */}
+        <JumpRightBackIn />
 
         {/* Carousel Container */}
         <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide -mx-4 px-4 touch-pan-x">

@@ -4,11 +4,21 @@ import { IconButton } from '@/components/ui/IconButton';
 import { ChevronLeft, ChevronRight, Pause, PlayFill } from '@/components/icons';
 import styles from './NewArrivalsCarousel.module.css';
 
-const SLIDES = [
+interface Slide {
+  image: string;
+  eyebrow: string;
+  headline: string;
+  headlineParts?: string[];
+  ctaText: string;
+  objectPosition: string;
+}
+
+const SLIDES: Slide[] = [
   {
     image: 'https://api.builder.io/api/v1/image/assets/TEMP/4b39e8f1df8751e16cafff1be17c820421c14da9?width=3224',
     eyebrow: 'Deals too big to miss',
     headline: 'Up to 45% off top brands',
+    headlineParts: ['Up to 45% off', 'top brands'],
     ctaText: 'Shop Deals',
     objectPosition: '30% center',
   },
@@ -40,13 +50,24 @@ export function NewArrivalsCarousel() {
 
   const slide = SLIDES[current];
 
+  const headlineContent = slide.headlineParts
+    ? slide.headlineParts.map((part, i) => (
+        <span key={i} style={{ display: 'block' }}>{part}</span>
+      ))
+    : slide.headline;
+
   return (
     <div className={styles.carousel}>
-      <img src={slide.image} alt={slide.headline} className={styles.bgImage} style={{ objectPosition: slide.objectPosition }} />
+      <img
+        src={slide.image}
+        alt={slide.headline}
+        className={styles.bgImage}
+        style={{ objectPosition: slide.objectPosition }}
+      />
 
       <div className={styles.textPanel}>
         <div className={styles.eyebrow}>{slide.eyebrow}</div>
-        <div className={styles.headline}>{slide.headline}</div>
+        <div className={styles.headline}>{headlineContent}</div>
         <div>
           <Button variant="secondary" size="small">{slide.ctaText}</Button>
         </div>
