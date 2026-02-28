@@ -119,6 +119,28 @@ Design system enforcement rules and best practices.
 - [Walmart Page Composition](rules/RULE_WalmartPageComposition.md) - Page shell, stacking order, and full-bleed layout rules
 - [Theme Compliance](rules/RULE_ThemeCompliance.md) - Hard rule: every new component/page must pass theme compliance check before completion
 
+### skills/
+
+Step-by-step implementation recipes — the "how-to" companion to enforcement rules. Each skill is a copy-paste-ready guide for a common task.
+
+- [Skills Index](skills/SKILLS_INDEX.md) - Overview of all available skills
+- [Build a WCP Component](skills/SKILL_BuildWCPComponent.md) - End-to-end recipe: component file, CSS module, Component Library page, route, i18n
+- [Map Figma to Tokens](skills/SKILL_MapFigmaToTokens.md) - Translate Figma colors, spacing, and fonts into semantic tokens
+- [Add a Theme Override](skills/SKILL_AddThemeOverride.md) - Make one brand look different without touching component CSS
+- [Build a Scroll Carousel](skills/SKILL_BuildScrollCarousel.md) - Copy-paste scroll-snap carousel with hidden scrollbar and responsive tile sizes
+- [Fix Token Violations](skills/SKILL_FixTokenViolations.md) - Audit and replace hardcoded values with the correct semantic tokens
+- [Build a Responsive Page](skills/SKILL_BuildResponsivePage.md) - New Walmart page with correct shell, stacking order, full-bleed sections, and breakpoints
+- [Add a CSS Animation](skills/SKILL_AddAnimation.md) - Keyframes, transitions, insertion glows, and skeletons — with prefers-reduced-motion
+- [Add Translatable Strings](skills/SKILL_AddI18nStrings.md) - Add i18n keys to en/es/fr locale files and use useTranslation in components
+- [Add a Custom Icon](skills/SKILL_AddCustomIcon.md) - Create a new SVG icon when none exists in the 303+ icon library
+- [Extract Figma Assets](skills/SKILL_ExtractFigmaAssets.md) - Identify exportable assets, reuse existing illustrations, avoid CDN URLs
+- [Write a Design Prompt](skills/SKILL_WriteDesignPrompt.md) - Recipes for prompting new pages, cards, banners, and carousels from an AI agent
+- [Build a Data-Driven Component](skills/SKILL_BuildDataDrivenComponent.md) - Static data arrays, TypeScript interfaces, headlineParts, and objectPosition patterns
+- [Use Tag and OLQTag](skills/SKILL_UseTagComponents.md) - When to use Tag vs OLQTag, all variants, how to replace custom styled status divs
+- [Build a Card Meta Layout](skills/SKILL_BuildCardMetaLayout.md) - Icon + stacked label/sublabel chip pattern with correct nested DOM structure
+- [Build an LD Primitive Component](skills/SKILL_BuildLDComponent.md) - Complete 10-step process for design-system primitives in client/components/ui/
+- [Use LinkButton and Spot Icon](skills/SKILL_UseLinkButton.md) - LinkButton for text-link actions; round brand-colored Spot Icon for todo/action rows
+
 ### implementations/
 
 Completed component implementation summaries and documentation.
