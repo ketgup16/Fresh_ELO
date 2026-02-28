@@ -38,7 +38,7 @@ interface ButtonBaseProps extends CommonProps {
 
   /**
    * The size for the button.
-   * @default "small"
+   * @default "medium"
    */
   size?: ButtonSize;
 
@@ -135,7 +135,7 @@ export const Button = React.forwardRef<
     isFullWidth = false,
     isLoading = false,
     leading,
-    size = 'small',
+    size = 'medium',
     trailing,
     variant = 'secondary',
     'aria-label': ariaLabel,

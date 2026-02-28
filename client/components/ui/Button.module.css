@@ -37,14 +37,14 @@
   padding: var(--ld-primitive-scale-space-150) var(--ld-primitive-scale-space-250);
   font-size: var(--ld-semantic-font-body-medium-size);
   line-height: var(--ld-semantic-font-body-medium-line-height);
-  min-height: 44px; /* LD 3.5 spec */
+  min-height: 48px;
 }
 
 .button--size-large {
-  padding: var(--ld-primitive-scale-space-200) var(--ld-primitive-scale-space-300);
+  padding: var(--ld-primitive-scale-space-150) var(--ld-primitive-scale-space-350);
   font-size: var(--ld-semantic-font-body-large-size);
   line-height: var(--ld-semantic-font-body-large-line-height);
-  min-height: 56px; /* LD 3.5 spec */
+  min-height: 48px;
 }
 
 /* Full Width */
