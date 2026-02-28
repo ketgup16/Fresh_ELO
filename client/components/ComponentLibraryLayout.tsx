@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
 import { DesktopHeader } from '@/components/walmart/DesktopHeader';
+import { Menu } from '@/components/icons/Menu';
+import { X } from '@/components/icons/X';
+import styles from './ComponentLibraryLayout.module.css';
 
 // Navigation item definition (nameKey references componentLibrary.* translation keys)
 interface NavItem {
@@ -112,109 +115,106 @@ export function ComponentLibraryLayout() {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+  const closeNav = useCallback(() => setMobileNavOpen(false), []);
+
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
     navigate(path);
-  };
+    closeNav();
+  }, [navigate, closeNav]);
+
+  // Current page name for mobile top bar
+  const currentPage = navigationSections
+    .flatMap(s => s.items)
+    .find(item => item.path === location.pathname);
+  const currentPageName = currentPage ? t(currentPage.nameKey) : t('componentLibrary.title');
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+    <div className={styles.shell}>
       <DesktopHeader />
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-      {/* Sidebar */}
-      <aside
-        style={{
-          width: '280px',
-          borderRight: '1px solid var(--ld-semantic-color-border-moderate, #E6E6E8)',
-          backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-          display: 'flex',
-          flexDirection: 'column',
-          flexShrink: 0
-        }}
-      >
-        <div style={{
-          padding: '24px 16px',
-          flex: 1,
-          overflowY: 'auto',
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <h1 style={{ 
-            fontSize: '24px', 
-            fontWeight: '700',
-            marginBottom: '8px',
-            color: 'var(--ld-semantic-color-text-primary, #2E2F32)'
-          }}>
-            {t('componentLibrary.title')}
-          </h1>
-          <p style={{
-            fontSize: '14px',
-            color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-            marginBottom: '24px'
-          }}>
-            {t('componentLibrary.subtitle')}
-          </p>
-          
-          {navigationSections.map((section, sectionIndex) => (
-            <div key={section.titleKey} style={{ marginBottom: sectionIndex < navigationSections.length - 1 ? '24px' : '0' }}>
-              <h2 style={{
-                fontSize: '11px',
-                fontWeight: '700',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px',
-                color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-                marginBottom: '8px',
-                paddingLeft: '16px'
-              }}>
-                {t(section.titleKey)}
-              </h2>
-              <SideNavigation aria-label={`${t(section.titleKey)} Navigation`}>
-                {section.items.map((item) => {
-                  const isActive = location.pathname === item.path;
 
-                  return (
-                    <SideNavigationItem
-                      key={item.id}
-                      href={item.path}
-                      isCurrent={isActive}
-                      onClick={(e) => handleNavClick(e, item.path)}
-                    >
-                      {t(item.nameKey)}
-                    </SideNavigationItem>
-                  );
-                })}
+      <div className={styles.body}>
+        {/* Backdrop for mobile drawer */}
+        <div
+          className={`${styles.backdrop} ${mobileNavOpen ? styles.backdropVisible : ''}`}
+          onClick={closeNav}
+          aria-hidden="true"
+        />
+
+        {/* Sidebar / Drawer */}
+        <aside className={`${styles.sidebar} ${mobileNavOpen ? styles.sidebarOpen : ''}`}>
+          <div className={styles.sidebarInner}>
+            {/* Close button — mobile only */}
+            <div className={styles.drawerCloseRow}>
+              <button
+                className={styles.drawerCloseBtn}
+                onClick={closeNav}
+                aria-label="Close navigation"
+              >
+                <X width={20} height={20} />
+              </button>
+            </div>
+
+            <h1 className={styles.sidebarTitle}>{t('componentLibrary.title')}</h1>
+            <p className={styles.sidebarSubtitle}>{t('componentLibrary.subtitle')}</p>
+
+            {navigationSections.map((section, sectionIndex) => (
+              <div
+                key={section.titleKey}
+                style={{ marginBottom: sectionIndex < navigationSections.length - 1 ? '24px' : '0' }}
+              >
+                <h2 className={styles.sectionLabel}>{t(section.titleKey)}</h2>
+                <SideNavigation aria-label={`${t(section.titleKey)} Navigation`}>
+                  {section.items.map((item) => {
+                    const isActive = location.pathname === item.path;
+                    return (
+                      <SideNavigationItem
+                        key={item.id}
+                        href={item.path}
+                        isCurrent={isActive}
+                        onClick={(e) => handleNavClick(e, item.path)}
+                      >
+                        {t(item.nameKey)}
+                      </SideNavigationItem>
+                    );
+                  })}
+                </SideNavigation>
+              </div>
+            ))}
+
+            {/* Back to Home */}
+            <div className={styles.backToHome}>
+              <SideNavigation aria-label="Main Navigation">
+                <SideNavigationItem
+                  href="/"
+                  onClick={(e) => handleNavClick(e, '/')}
+                >
+                  ← {t('componentLibrary.backToHome')}
+                </SideNavigationItem>
               </SideNavigation>
             </div>
-          ))}
-
-          {/* Back to Home - Bottom of Navigation */}
-          <div style={{
-            marginTop: 'auto',
-            paddingTop: '24px',
-            borderTop: '2px solid var(--ld-semantic-color-border-subtle)'
-          }}>
-            <SideNavigation aria-label="Main Navigation">
-              <SideNavigationItem
-                href="/"
-                onClick={(e) => handleNavClick(e, '/')}
-              >
-                ← {t('componentLibrary.backToHome')}
-              </SideNavigationItem>
-            </SideNavigation>
           </div>
-        </div>
-      </aside>
+        </aside>
 
-      {/* Main content area */}
-      <main style={{
-        flex: 1,
-        overflowY: 'auto',
-        backgroundColor: '#ffffff'
-      }}>
-        <Outlet />
-      </main>
+        {/* Main content area */}
+        <main className={styles.main}>
+          {/* Mobile top bar with hamburger */}
+          <div className={styles.mobileTopBar}>
+            <button
+              className={styles.hamburgerBtn}
+              onClick={() => setMobileNavOpen(true)}
+              aria-label="Open navigation menu"
+              aria-expanded={mobileNavOpen}
+            >
+              <Menu width={24} height={24} />
+            </button>
+            <span className={styles.mobileTopBarTitle}>{currentPageName}</span>
+          </div>
 
+          <Outlet />
+        </main>
       </div>
     </div>
   );
