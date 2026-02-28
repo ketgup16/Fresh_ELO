@@ -34,10 +34,10 @@
 }
 
 .button--size-medium {
-  padding: var(--ld-primitive-scale-space-150) var(--ld-primitive-scale-space-250);
+  padding: var(--ld-primitive-scale-space-100) var(--ld-primitive-scale-space-300);
   font-size: var(--ld-semantic-font-body-medium-size);
   line-height: var(--ld-semantic-font-body-medium-line-height);
-  min-height: 48px;
+  min-height: 40px;
 }
 
 .button--size-large {
