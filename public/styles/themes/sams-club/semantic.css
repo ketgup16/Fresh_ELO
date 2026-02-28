@@ -10,12 +10,17 @@
  */
 
 :root {
-  /* Primary Button - Bright Blue Filled */
-  --ld-semantic-color-action-fill-primary: var(--ld-primitive-color-blue-130, #0062ad);
+  /* Primary Button - Black Filled */
+  --ld-semantic-color-action-fill-primary: var(--ld-primitive-color-black, #000000);
   --ld-semantic-color-action-fill-primary-disabled: var(--ld-primitive-color-gray-10, #eaf1f5);
-  --ld-semantic-color-action-fill-primary-focused: var(--ld-primitive-color-blue-120, #006ec4);
-  --ld-semantic-color-action-fill-primary-hovered: var(--ld-primitive-color-blue-120, #006ec4);
-  --ld-semantic-color-action-fill-primary-pressed: var(--ld-primitive-color-blue-150, #00427b);
+  --ld-semantic-color-action-fill-primary-focused: var(--ld-primitive-color-gray-170, #0d141b);
+  --ld-semantic-color-action-fill-primary-hovered: var(--ld-primitive-color-gray-170, #0d141b);
+  --ld-semantic-color-action-fill-primary-pressed: var(--ld-primitive-color-gray-160, #151f29);
+  --ld-semantic-color-action-text-on-fill-primary: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-action-text-on-fill-primary-focused: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-action-text-on-fill-primary-hovered: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-action-text-on-fill-primary-pressed: var(--ld-primitive-color-white, #ffffff);
+  --ld-semantic-color-action-text-on-fill-primary-disabled: var(--ld-primitive-color-gray-50, #a7b7c4);
   
   /* Secondary Button - Blue Border & Text, White Background */
   --ld-semantic-color-action-fill-secondary: var(--ld-primitive-color-white, #ffffff);
