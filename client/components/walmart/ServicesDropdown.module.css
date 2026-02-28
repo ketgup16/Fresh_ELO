@@ -5,7 +5,7 @@
   height: 32px;
   padding: 4px 12px;
   border-radius: 9999px;
-  background: white;
+  background: transparent;
   border: 1.5px solid transparent;
   cursor: pointer;
   transition: background 100ms;
