@@ -122,18 +122,18 @@
 }
 
 .gicLabel {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
-  color: var(--ld-semantic-color-top-nav-text-on-fill, #FFFFFF);
+  font-size: var(--ld-semantic-font-body-medium-size, 1rem);
+  font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
+  line-height: var(--ld-semantic-font-body-medium-line-height, 1.5rem);
+  color: var(--ld-semantic-color-top-nav-text-on-fill, #ffffff);
   white-space: nowrap;
 }
 
 .gicSubtext {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  color: var(--ld-semantic-color-top-nav-text-on-fill, #FFFFFF);
+  font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-line-height, 1.25rem);
+  color: var(--ld-semantic-color-top-nav-text-on-fill, #ffffff);
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -176,9 +176,9 @@
   align-items: center;
   flex: 1;
   position: relative;
-  background: var(--ld-semantic-color-surface, #fff);
+  background: var(--ld-semantic-color-surface, #ffffff);
   border-radius: 9999px;
-  border: 1px solid var(--ld-semantic-color-border-moderate, #9CA3AF);
+  border: 1px solid var(--ld-semantic-color-border-subtlest, #74767c);
 }
 
 .searchInputWrapActive {
@@ -254,14 +254,14 @@
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  border: 1px solid var(--ld-semantic-color-border-subtle, #D1D5DB);
-  background: white;
+  border: 1px solid var(--ld-semantic-color-border-disabled, #babbbe);
+  background: var(--ld-semantic-color-surface, #ffffff);
   cursor: pointer;
   transition: background-color 100ms;
 }
 
 .clearButton:hover {
-  background: var(--ld-semantic-color-surface-hovered, #F8F8F8);
+  background: var(--ld-semantic-color-surface-hovered, #f1f1f2);
 }
 
 /* Navigation */
