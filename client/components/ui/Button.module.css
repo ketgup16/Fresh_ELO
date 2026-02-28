@@ -25,25 +25,28 @@
   opacity: 0.4;
 }
 
-/* Size Variants */
+/* Size Variants
+   Vertical padding is 0 — height is set by min-height and flexbox centering.
+   Horizontal padding controls hug width — consistent per size.
+*/
 .button--size-small {
-  padding: var(--ld-primitive-scale-space-100) var(--ld-primitive-scale-space-200);
+  padding: 0 var(--ld-primitive-scale-space-200); /* 0 16px */
   font-size: var(--ld-semantic-font-body-small-size);
-  line-height: var(--ld-semantic-font-body-small-line-height);
-  min-height: 32px; /* LD 3.5 spec */
+  line-height: 1;
+  min-height: 32px;
 }
 
 .button--size-medium {
-  padding: var(--ld-primitive-scale-space-100) var(--ld-primitive-scale-space-300);
+  padding: 0 var(--ld-primitive-scale-space-300); /* 0 24px */
   font-size: var(--ld-semantic-font-body-medium-size);
-  line-height: var(--ld-semantic-font-body-medium-line-height);
+  line-height: 1;
   min-height: 40px;
 }
 
 .button--size-large {
-  padding: var(--ld-primitive-scale-space-150) var(--ld-primitive-scale-space-350);
+  padding: 0 var(--ld-primitive-scale-space-300); /* 0 24px — same as medium for consistent hug */
   font-size: var(--ld-semantic-font-body-large-size);
-  line-height: var(--ld-semantic-font-body-large-line-height);
+  line-height: 1;
   min-height: 48px;
 }
 
