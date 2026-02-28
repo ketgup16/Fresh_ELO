@@ -7,7 +7,7 @@
   position: sticky;
   top: 86px;
   z-index: 98;
-  background-color: var(--ld-semantic-color-fill-accent-blue-subtle, #F0F3FF);
+  background-color: var(--ld-semantic-color-fill-brand-subtle, #EBF1FF);
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
 }
 
