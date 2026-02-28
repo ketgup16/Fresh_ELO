@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { ThemeSwitcher } from '@/components/ThemeSwitcher';
+import { useTheme } from '@/contexts/ThemeContext';
 import {
   ArrowLeft,
   ArrowRight,
@@ -115,11 +117,15 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navTags', descKey: 'componentLibrary.descTags', path: '/component-library/tags', icon: 'Tag', section: 'ld' },
   { titleKey: 'componentLibrary.navTextArea', descKey: 'componentLibrary.descTextArea', path: '/component-library/textarea', icon: 'Note', section: 'ld' },
   { titleKey: 'componentLibrary.navTextFields', descKey: 'componentLibrary.descTextFields', path: '/component-library/text-fields', icon: 'Edit', section: 'ld' },
+  { titleKey: 'componentLibrary.navSegmentedControl', descKey: 'componentLibrary.descSegmentedControl', path: '/component-library/segmented-control', icon: 'List', section: 'ld' },
+  { titleKey: 'componentLibrary.navQuantityStepper', descKey: 'componentLibrary.descQuantityStepper', path: '/component-library/quantity-stepper', icon: 'Minus', section: 'ld' },
   // ── Shared Components ──
   { titleKey: 'componentLibrary.navAlertDialog', descKey: 'componentLibrary.descAlertDialog', path: '/component-library/alert-dialog', icon: 'ExclamationCircle', section: 'shadcn' },
   { titleKey: 'componentLibrary.navAvatar', descKey: 'componentLibrary.descAvatar', path: '/component-library/avatar', icon: 'Circle', section: 'shadcn' },
   { titleKey: 'componentLibrary.navCalendar', descKey: 'componentLibrary.descCalendar', path: '/component-library/calendar', icon: 'Calendar', section: 'shadcn' },
   { titleKey: 'componentLibrary.navCarousel', descKey: 'componentLibrary.descCarousel', path: '/component-library/carousel', icon: 'ArrowRight', section: 'shadcn' },
+  { titleKey: 'componentLibrary.navCollapsible', descKey: 'componentLibrary.descCollapsible', path: '/component-library/collapsible', icon: 'ChevronDown', section: 'shadcn' },
+  { titleKey: 'componentLibrary.navDateRangePicker', descKey: 'componentLibrary.descDateRangePicker', path: '/component-library/date-range-picker', icon: 'Calendar', section: 'shadcn' },
   { titleKey: 'componentLibrary.navChart', descKey: 'componentLibrary.descChart', path: '/component-library/chart', icon: 'BarGraph', section: 'shadcn' },
   { titleKey: 'componentLibrary.navCommand', descKey: 'componentLibrary.descCommand', path: '/component-library/command', icon: 'Search', section: 'shadcn' },
   { titleKey: 'componentLibrary.navContextMenu', descKey: 'componentLibrary.descContextMenu', path: '/component-library/context-menu', icon: 'Menu', section: 'shadcn' },
@@ -159,20 +165,28 @@ function ComponentCard({ entry }: { entry: ComponentEntry }) {
   );
 }
 
+const patternComponents: ComponentEntry[] = [
+  { titleKey: 'componentLibrary.navOrderCardPatterns', descKey: 'componentLibrary.descOrderCardPatterns', path: '/component-library/order-card-patterns', icon: 'List', section: 'ld' },
+];
+
 export default function ComponentLibraryOverview() {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { currentThemeData } = useTheme();
   const [searchQuery, setSearchQuery] = React.useState('');
 
+  const allSections = [...componentSections, ...patternComponents];
+
   const filteredSections = searchQuery.trim()
-    ? componentSections.filter(s =>
+    ? allSections.filter(s =>
         t(s.titleKey).toLowerCase().includes(searchQuery.toLowerCase()) ||
         t(s.descKey).toLowerCase().includes(searchQuery.toLowerCase())
       )
-    : componentSections;
+    : allSections;
 
-  const ldComponents = filteredSections.filter(s => s.section === 'ld');
+  const ldComponents = filteredSections.filter(s => s.section === 'ld' && !patternComponents.find(p => p.path === s.path));
   const shadcnComponents = filteredSections.filter(s => s.section === 'shadcn');
+  const patternEntries = filteredSections.filter(s => patternComponents.find(p => p.path === s.path));
 
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
@@ -182,6 +196,44 @@ export default function ComponentLibraryOverview() {
         title={t('componentLibrary.overviewTitle')}
         description={t('componentLibrary.overviewDescription')}
       />
+
+      {/* Theme Switcher Bar */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '16px',
+        padding: '16px 24px',
+        backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
+        border: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
+        borderRadius: '12px',
+        marginBottom: '32px',
+        flexWrap: 'wrap',
+      }}>
+        <div style={{ flexShrink: 0 }}>
+          <div style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--ld-semantic-color-text-secondary, #74767C)', marginBottom: '6px' }}>
+            Active Theme
+          </div>
+          <ThemeSwitcher />
+        </div>
+        {currentThemeData && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingLeft: '16px', borderLeft: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)' }}>
+            <div style={{
+              width: '32px', height: '32px', borderRadius: '50%',
+              backgroundColor: currentThemeData.previewColor ?? 'var(--ld-semantic-color-action-fill-primary)',
+              flexShrink: 0,
+              border: '2px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
+            }} />
+            <div>
+              <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--ld-semantic-color-text-primary, #2e2f32)', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>
+                {currentThemeData.name}
+              </div>
+              <div style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text-secondary, #74767C)', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>
+                {currentThemeData.description}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
 
       <div style={{ marginBottom: '48px' }}>
         {/* Search Bar */}
@@ -260,7 +312,7 @@ export default function ComponentLibraryOverview() {
 
       {/* Shared Components */}
       {shadcnComponents.length > 0 && (
-        <div>
+        <div style={{ marginBottom: '48px' }}>
           <h2 style={{
             fontSize: '11px',
             fontWeight: '700',
@@ -277,6 +329,31 @@ export default function ComponentLibraryOverview() {
             gap: '24px',
           }}>
             {shadcnComponents.map((entry) => (
+              <ComponentCard key={entry.path} entry={entry} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Patterns */}
+      {patternEntries.length > 0 && (
+        <div style={{ marginBottom: '48px' }}>
+          <h2 style={{
+            fontSize: '11px',
+            fontWeight: '700',
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+            color: 'var(--ld-semantic-color-text-secondary, #74767C)',
+            marginBottom: '16px',
+          }}>
+            {t('componentLibrary.patterns')}
+          </h2>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+          }}>
+            {patternEntries.map((entry) => (
               <ComponentCard key={entry.path} entry={entry} />
             ))}
           </div>

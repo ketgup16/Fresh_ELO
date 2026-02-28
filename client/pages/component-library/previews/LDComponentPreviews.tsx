@@ -6,6 +6,7 @@ import { Alert } from '@/components/ui/Alert';
 import { Chip } from '@/components/ui/Chip';
 import { FilterChip } from '@/components/ui/FilterChip';
 import { Spinner } from '@/components/ui/Spinner';
+import { BasicBanner } from '@/components/ui/BasicBanner';
 import { PreviewFrame } from './PreviewFrame';
 
 export function AlertsPreview() {
@@ -577,6 +578,71 @@ export function SkeletonPreview() {
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px', justifyContent: 'center' }}>
             <div style={{ width: '100%', height: '8px', borderRadius: '4px', background: 'var(--ld-semantic-color-loading-subtle, #E2E2E3)' }} />
             <div style={{ width: '60%', height: '8px', borderRadius: '4px', background: 'var(--ld-semantic-color-loading-subtle, #E2E2E3)', opacity: 0.7 }} />
+          </div>
+        </div>
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function BasicBannerPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ width: '200px', transform: 'scale(0.9)', transformOrigin: 'center' }}>
+        <BasicBanner variant="default" text="Free delivery on orders $35+" />
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function SegmentedControlPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ display: 'inline-flex', border: '1px solid var(--ld-semantic-color-border-moderate, #e6e6e8)', borderRadius: '8px', overflow: 'hidden', background: 'var(--ld-semantic-color-fill-subtle, #f8f8f8)' }}>
+        {['List', 'Grid', 'Map'].map((label, i) => (
+          <div key={label} style={{
+            padding: '6px 14px',
+            fontSize: '13px',
+            fontWeight: i === 0 ? 700 : 400,
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+            color: i === 0 ? 'var(--ld-semantic-color-action-text-on-fill-primary, #fff)' : 'var(--ld-semantic-color-text-secondary, #74767C)',
+            background: i === 0 ? 'var(--ld-semantic-color-action-fill-primary, #0071DC)' : 'transparent',
+            cursor: 'pointer',
+            borderRight: i < 2 ? '1px solid var(--ld-semantic-color-border-moderate, #e6e6e8)' : 'none',
+          }}>
+            {label}
+          </div>
+        ))}
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function QuantityStepperPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ display: 'inline-flex', alignItems: 'center', border: '1px solid var(--ld-semantic-color-action-border-secondary, #2e2f32)', borderRadius: '9999px', overflow: 'hidden' }}>
+        <div style={{ width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', fontWeight: 700, color: 'var(--ld-semantic-color-text, #2e2f32)', cursor: 'pointer' }}>−</div>
+        <div style={{ width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2e2f32)', borderLeft: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)', borderRight: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)' }}>2</div>
+        <div style={{ width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', fontWeight: 700, color: 'var(--ld-semantic-color-text, #2e2f32)', cursor: 'pointer' }}>+</div>
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function OrderCardPatternsPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ width: '180px', borderRadius: '8px', border: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)', background: 'var(--ld-semantic-color-fill-surface-primary, #fff)', overflow: 'hidden' }}>
+        <div style={{ background: 'var(--ld-semantic-color-fill-subtle, #f8f8f8)', padding: '8px 12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--ld-semantic-color-text-secondary, #74767c)', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>ORDER #12345</span>
+          <span style={{ fontSize: '10px', color: 'var(--ld-semantic-color-text-positive, #2a8703)', fontWeight: 600 }}>Delivered</span>
+        </div>
+        <div style={{ padding: '8px 12px', display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <div style={{ width: '32px', height: '32px', borderRadius: '4px', background: 'var(--ld-semantic-color-fill-subtle, #f0f0f2)' }} />
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--ld-semantic-color-text, #2e2f32)', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Product Name</div>
+            <div style={{ fontSize: '10px', color: 'var(--ld-semantic-color-text-secondary, #74767c)' }}>Qty 1 · $12.99</div>
           </div>
         </div>
       </div>
