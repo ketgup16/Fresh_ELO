@@ -189,7 +189,7 @@ export default function ComponentLibraryOverview() {
   const patternEntries = filteredSections.filter(s => patternComponents.find(p => p.path === s.path));
 
   return (
-    <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+    <div>
       {/* Header — full-width, no horizontal padding on parent */}
       <PageHeader
         section={t('componentLibrary.gettingStarted')}

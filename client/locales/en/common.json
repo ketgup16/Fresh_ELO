@@ -79,7 +79,7 @@
     "gettingStarted": "Getting Started",
     "components": "Components",
     "overviewTitle": "Living Design 3.5",
-    "overviewDescription": "A comprehensive component library for the Walmart Connect Ad Center. Each component follows the Living Design 3.5 specification with proper accessibility, semantic tokens, and responsive behavior.",
+    "overviewDescription": "A comprehensive component library for Walmart. Each component follows the Living Design 3.5 specification with proper accessibility, semantic tokens, and responsive behavior.",
     "sandboxTitle": "Component Sandbox",
     "sandboxDescription": "Interactive testing environment for Living Design 3.5 components. Select a component and adjust its properties in real-time.",
     "selectComponent": "Select Component to Test",
