@@ -220,12 +220,12 @@ export default function ComponentLibraryOverview() {
           <ThemeSwitcher />
         </div>
         {currentThemeData && (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '10px', paddingLeft: '16px', paddingTop: '20px', borderLeft: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)', flex: 1 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '10px', paddingLeft: '16px', paddingTop: '20px', borderLeft: '1px solid var(--ld-semantic-color-separator, #e3e4e5)', flex: 1 }}>
             <div style={{
               width: '32px', height: '32px', borderRadius: '50%',
               backgroundColor: currentThemeData.previewColor ?? 'var(--ld-semantic-color-action-fill-primary)',
               flexShrink: 0,
-              border: '2px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
+              border: '2px solid var(--ld-semantic-color-separator, #e3e4e5)',
             }} />
             <div>
               <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--ld-semantic-color-text-primary, #2e2f32)', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>

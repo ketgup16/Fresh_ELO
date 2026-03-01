@@ -33,40 +33,39 @@ export function MwebFooter({ contained = false }: MwebFooterProps) {
         <Button variant="secondary" size="medium">Give feedback</Button>
       </div>
 
-      {/* Separator */}
+      {/* Top separator before links */}
       <div className={styles.separator} />
 
-      {/* Blue Links Section */}
-      <div className={styles.linksSection}>
-        <nav className={styles.linksContainer} aria-label="Footer navigation">
-          <a href="#" className={styles.footerLink}>All departments</a>
-          <a href="#" className={styles.footerLink}>Store directory</a>
-          <a href="#" className={styles.footerLink}>Careers</a>
-          <a href="#" className={styles.footerLink}>Our company</a>
-          <a href="#" className={styles.footerLink}>Sell on Walmart.com</a>
-          <a href="#" className={styles.footerLink}>Help</a>
-          <a href="#" className={styles.footerLink}>COVID-19 vaccines scheduler</a>
-          <a href="#" className={styles.footerLink}>Product recalls</a>
-          <a href="#" className={styles.footerLink}>Accessibility</a>
-          <a href="#" className={styles.footerLink}>Tax exempt program</a>
-          <a href="#" className={styles.footerLink}>Get the Walmart App</a>
-          <a href="#" className={styles.footerLink}>Sign up for email</a>
-          <a href="#" className={styles.footerLink}>Safety data sheet</a>
-          <a href="#" className={styles.footerLink}>Terms of use</a>
-          <a href="#" className={styles.footerLink}>Privacy &amp; security</a>
-          <a href="#" className={styles.footerLink}>California Supply Chain Act</a>
-          <a href="#" className={styles.privacyChoicesLink}>
-            <PrivacyIcon />
-            <span>Your privacy choices</span>
-          </a>
-          <a href="#" className={styles.footerLink}>Notice at collection</a>
-          <a href="#" className={styles.footerLink}>Request my personal information</a>
-          <a href="#" className={styles.footerLink}>Brand shop directory</a>
-          <a href="#" className={styles.footerLink}>#IYWYK</a>
-        </nav>
+      {/* Links Section — white background, stacked text links */}
+      <nav className={styles.linksContainer} aria-label="Footer navigation">
+        <a href="#" className={styles.footerLink}>All departments</a>
+        <a href="#" className={styles.footerLink}>Store directory</a>
+        <a href="#" className={styles.footerLink}>Careers</a>
+        <a href="#" className={styles.footerLink}>Our company</a>
+        <a href="#" className={styles.footerLink}>Sell on Walmart.com</a>
+        <a href="#" className={styles.footerLink}>Help</a>
+        <a href="#" className={styles.footerLink}>COVID-19 vaccines scheduler</a>
+        <a href="#" className={styles.footerLink}>Product recalls</a>
+        <a href="#" className={styles.footerLink}>Accessibility</a>
+        <a href="#" className={styles.footerLink}>Tax exempt program</a>
+        <a href="#" className={styles.footerLink}>Get the Walmart App</a>
+        <a href="#" className={styles.footerLink}>Sign up for email</a>
+        <a href="#" className={styles.footerLink}>Safety data sheet</a>
+        <a href="#" className={styles.footerLink}>Terms of use</a>
+        <a href="#" className={styles.footerLink}>Privacy &amp; security</a>
+        <a href="#" className={styles.footerLink}>California Supply Chain Act</a>
+        <a href="#" className={styles.privacyChoicesLink}>
+          <PrivacyIcon />
+          <span>Your privacy choices</span>
+        </a>
+        <a href="#" className={styles.footerLink}>Notice at collection</a>
+        <a href="#" className={styles.footerLink}>Request my personal information</a>
+        <a href="#" className={styles.footerLink}>Brand shop directory</a>
+        <a href="#" className={styles.footerLink}>#IYWYK</a>
+      </nav>
 
-        <p className={styles.copyright}>©2025 Walmart. All rights reserved.</p>
-      </div>
+      {/* Copyright */}
+      <p className={styles.copyright}>©2025 Walmart. All rights reserved.</p>
     </footer>
   );
 }

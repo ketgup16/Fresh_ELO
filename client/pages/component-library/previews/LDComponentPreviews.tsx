@@ -633,7 +633,7 @@ export function QuantityStepperPreview() {
 export function OrderCardPatternsPreview() {
   return (
     <PreviewFrame>
-      <div style={{ width: '180px', borderRadius: '8px', border: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)', background: 'var(--ld-semantic-color-fill-surface-primary, #fff)', overflow: 'hidden' }}>
+      <div style={{ width: '180px', borderRadius: '8px', border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)', background: 'var(--ld-semantic-color-fill-surface-primary, #fff)', overflow: 'hidden' }}>
         <div style={{ background: 'var(--ld-semantic-color-fill-subtle, #f8f8f8)', padding: '8px 12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--ld-semantic-color-text-secondary, #74767c)', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>ORDER #12345</span>
           <span style={{ fontSize: '10px', color: 'var(--ld-semantic-color-text-positive, #2a8703)', fontWeight: 600 }}>Delivered</span>

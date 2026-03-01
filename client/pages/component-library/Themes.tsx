@@ -367,7 +367,7 @@ export default function ThemesPage() {
                 color: 'var(--ld-semantic-color-text)',
                 marginBottom: '8px',
                 paddingBottom: '8px',
-                borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)'
+                borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)'
               }}>
                 The quick brown fox jumps over the lazy dog
               </div>
@@ -486,7 +486,7 @@ export default function ThemesPage() {
                         height: '40px',
                         backgroundColor: token.computed || `var(${token.name})`,
                         borderRadius: '4px',
-                        border: '1px solid var(--ld-semantic-color-border-subtle)',
+                        border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
                       }} />
                     </DataTableCell>
                     <DataTableCell UNSAFE_className="font-mono text-xs">
@@ -725,7 +725,7 @@ export default function ThemesPage() {
                             fontSize: '12px',
                             lineHeight: `var(${token.name})`,
                             color: 'var(--ld-semantic-color-text)',
-                            border: '1px dashed var(--ld-semantic-color-border-subtle)',
+                            border: '1px dashed var(--ld-semantic-color-separator, #e3e4e5)',
                             padding: '4px',
                             display: 'inline-block'
                           }}>
