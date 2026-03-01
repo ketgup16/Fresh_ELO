@@ -190,6 +190,8 @@
     "navWCPCountry": "Country Select",
     "navWCPFlag": "Flag",
     "navWCPFloatingButton": "Floating Button",
+    "navWCPHeartView": "Heart View",
+    "descWCPHeartView": "Favorites toggle button with desktop callout and mobile snackbar feedback",
     "tools": "Tools",
     "navThemeEditor": "Theme Editor",
     "descAlerts": "Banner messages for info, success, warning, and error states",

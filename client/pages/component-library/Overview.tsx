@@ -120,6 +120,7 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navSegmentedControl', descKey: 'componentLibrary.descSegmentedControl', path: '/component-library/segmented-control', icon: 'List', section: 'ld' },
   { titleKey: 'componentLibrary.navQuantityStepper', descKey: 'componentLibrary.descQuantityStepper', path: '/component-library/quantity-stepper', icon: 'Minus', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPFloatingButton', descKey: 'componentLibrary.descWCPFloatingButton', path: '/component-library/wcp-floating-button', icon: 'Circle', section: 'ld' },
+  { titleKey: 'componentLibrary.navWCPHeartView', descKey: 'componentLibrary.descWCPHeartView', path: '/component-library/wcp-heart-view', icon: 'Star', section: 'ld' },
   // ── Shared Components ──
   { titleKey: 'componentLibrary.navAlertDialog', descKey: 'componentLibrary.descAlertDialog', path: '/component-library/alert-dialog', icon: 'ExclamationCircle', section: 'shadcn' },
   { titleKey: 'componentLibrary.navAvatar', descKey: 'componentLibrary.descAvatar', path: '/component-library/avatar', icon: 'Circle', section: 'shadcn' },
