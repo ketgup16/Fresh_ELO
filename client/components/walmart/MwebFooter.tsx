@@ -1,4 +1,5 @@
 import styles from './MwebFooter.module.css';
+import { Button } from '@/components/ui/Button';
 
 const PrivacyIcon = () => (
   <svg width="28" height="12" viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className={styles.privacyIcon}>
@@ -26,6 +27,12 @@ export function MwebFooter({ contained = false }: MwebFooterProps) {
   const cls = [styles.footer, contained ? styles.footerContained : ''].filter(Boolean).join(' ');
   return (
     <footer className={cls}>
+      {/* Feedback Section */}
+      <div className={styles.feedbackSection}>
+        <p className={styles.feedbackText}>We'd love to hear what you think!</p>
+        <Button variant="secondary" size="medium">Give feedback</Button>
+      </div>
+
       <nav className={styles.linksContainer} aria-label="Footer navigation">
         <a href="#" className={styles.footerLink}>All Departments</a>
         <a href="#" className={styles.footerLink}>Store Directory</a>

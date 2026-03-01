@@ -5,6 +5,25 @@
   background-color: var(--ld-semantic-color-surface, #fff);
 }
 
+/* ── Feedback Section ── */
+.feedbackSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-400, 16px);
+  padding: var(--ld-primitive-scale-space-600, 24px) var(--ld-primitive-scale-space-400, 16px);
+  text-align: center;
+}
+
+.feedbackText {
+  color: var(--ld-semantic-color-text, #2E2F32);
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: var(--ld-semantic-font-body-default-size, 16px);
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+}
+
 /* ── Links Container ── */
 .linksContainer {
   display: flex;
