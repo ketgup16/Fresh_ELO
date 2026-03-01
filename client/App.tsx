@@ -108,6 +108,10 @@ const SideNavPage = React.lazy(() => import("./pages/component-library/SideNav")
 const PageTemplatesPage = React.lazy(() => import("./pages/component-library/PageTemplates"));
 const SearchResultsPatternPage = React.lazy(() => import("./pages/component-library/SearchResults"));
 const ProductCardsPage = React.lazy(() => import("./pages/component-library/ProductCards"));
+const HomePageWidgetsPage = React.lazy(() => import("./pages/component-library/HomePageWidgets"));
+const PromoBannersPage = React.lazy(() => import("./pages/component-library/PromoBanners"));
+const DropdownsPage = React.lazy(() => import("./pages/component-library/Dropdowns"));
+const WCPSearchAndUtilityPage = React.lazy(() => import("./pages/component-library/WCPSearchAndUtility"));
 
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
@@ -206,6 +210,10 @@ const App = () => (
                 <Route path="page-templates" element={<PageTemplatesPage />} />
                 <Route path="search-results" element={<SearchResultsPatternPage />} />
                 <Route path="product-cards" element={<ProductCardsPage />} />
+                <Route path="home-page-widgets" element={<HomePageWidgetsPage />} />
+                <Route path="promo-banners" element={<PromoBannersPage />} />
+                <Route path="dropdowns" element={<DropdownsPage />} />
+                <Route path="search-utility" element={<WCPSearchAndUtilityPage />} />
               </Route>
 
               {/* Walmart pages */}

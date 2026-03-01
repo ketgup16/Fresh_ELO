@@ -59,6 +59,8 @@ const navigationSections: NavSection[] = [
       { id: 'page-templates', nameKey: 'componentLibrary.navPageTemplates', path: '/component-library/page-templates' },
       { id: 'side-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/side-nav' },
       { id: 'search-results', nameKey: 'componentLibrary.navSearchResults', path: '/component-library/search-results' },
+      { id: 'home-page-widgets', nameKey: 'componentLibrary.navHomePageWidgets', path: '/component-library/home-page-widgets' },
+      { id: 'promo-banners', nameKey: 'componentLibrary.navPromoBanners', path: '/component-library/promo-banners' },
     ]
   },
   {
@@ -68,6 +70,8 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-flag', nameKey: 'componentLibrary.navWCPFlag', path: '/component-library/wcp-flag' },
       { id: 'basic-banner', nameKey: 'componentLibrary.navBasicBanner', path: '/component-library/basic-banner' },
       { id: 'product-cards', nameKey: 'componentLibrary.navProductCards', path: '/component-library/product-cards' },
+      { id: 'dropdowns', nameKey: 'componentLibrary.navDropdowns', path: '/component-library/dropdowns' },
+      { id: 'search-utility', nameKey: 'componentLibrary.navSearchUtility', path: '/component-library/search-utility' },
     ]
   },
   {
