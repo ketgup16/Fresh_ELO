@@ -32,10 +32,12 @@
   height: 100%;
 }
 
-/* Size Variants */
+/* Size Variants — Mobile first */
+
+/* small: 24×24 on mobile, 32×32 on desktop */
 .iconButton--size-small {
-  width: var(--ld-primitive-scale-space-300);
-  height: var(--ld-primitive-scale-space-300);
+  width: 24px;
+  height: 24px;
   padding: var(--ld-primitive-scale-space-50);
 }
 
@@ -44,9 +46,17 @@
   height: var(--ld-semantic-scale-icon-small);
 }
 
+@media (min-width: 1024px) {
+  .iconButton--size-small {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* medium: 32×32 on mobile, 40×40 on desktop */
 .iconButton--size-medium {
-  width: 32px; /* LD 3.5 spec */
-  height: 32px; /* LD 3.5 spec */
+  width: 32px;
+  height: 32px;
   padding: var(--ld-primitive-scale-space-100);
 }
 
@@ -55,9 +65,17 @@
   height: var(--ld-semantic-scale-icon-medium);
 }
 
+@media (min-width: 1024px) {
+  .iconButton--size-medium {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* large: 40×40 (unchanged) */
 .iconButton--size-large {
-  width: 40px; /* LD 3.5 spec */
-  height: 40px; /* LD 3.5 spec */
+  width: 40px;
+  height: 40px;
   padding: var(--ld-primitive-scale-space-100);
 }
 
