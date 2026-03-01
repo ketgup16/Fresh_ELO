@@ -113,6 +113,7 @@ const HomePageWidgetsPage = React.lazy(() => import("./pages/component-library/H
 const PromoBannersPage = React.lazy(() => import("./pages/component-library/PromoBanners"));
 const DropdownsPage = React.lazy(() => import("./pages/component-library/Dropdowns"));
 const WCPSearchAndUtilityPage = React.lazy(() => import("./pages/component-library/WCPSearchAndUtility"));
+const WCPFloatingButtonPage = React.lazy(() => import("./pages/component-library/WCPFloatingButton"));
 
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
@@ -216,6 +217,7 @@ const App = () => (
                 <Route path="dropdowns" element={<DropdownsPage />} />
                 <Route path="search-utility" element={<WCPSearchAndUtilityPage />} />
                 <Route path="wcp-button-groups" element={<WCPButtonGroupsPage />} />
+                <Route path="wcp-floating-button" element={<WCPFloatingButtonPage />} />
               </Route>
 
               {/* Walmart pages */}

@@ -1,0 +1,252 @@
+---
+title: WCP Floating Button — Component Skill
+scope: rule
+status: stable
+owner: design-system
+last_updated: 2025-03-01
+figma: "[WCP] Floating Button"
+---
+
+## Overview
+
+`WCPFloatingButton` is a circular, elevated icon-only button used for **carousel controls** and **floating action** scenarios where a button must appear to "float" above content. It is a WCP product component (lives in `client/components/walmart/`) that is built on top of LD 3.5 secondary action tokens.
+
+**DO NOT confuse it with `IconButton`** (the LD primitive in `client/components/ui/`). The key differences:
+
+| | `IconButton` (LD primitive) | `WCPFloatingButton` (WCP product) |
+|---|---|---|
+| **Location** | `client/components/ui/` | `client/components/walmart/` |
+| **Shape** | Square or rounded (configurable) | Always circular |
+| **Elevation** | No shadow | Box-shadow at all non-disabled states |
+| **Sizes** | small, medium, large | xsmall, small, medium, large |
+| **Use case** | General inline icon actions | Carousel prev/next, FAB overlays |
+| **Token family** | Varies by variant | Always `action-*-secondary` family |
+
+---
+
+## When to Use
+
+- **Carousel prev/next controls** — the most common use case
+- **Floating action buttons** that overlay scrollable or image content
+- Any icon-only button that needs to visually "float" above a surface via a drop shadow
+
+**Do NOT use for:**
+- Inline icon actions within text, forms, or toolbars → use `IconButton`
+- Primary page-level actions → use `Button`
+
+---
+
+## Token Mapping
+
+All styles MUST use LD 3.5 semantic tokens. Never hardcode hex values.
+
+### Background + Border
+
+| State | Background token | Border token |
+|---|---|---|
+| Enabled | `--ld-semantic-color-action-fill-secondary` | `--ld-semantic-color-action-border-secondary` |
+| Hovered | `--ld-semantic-color-action-fill-secondary-hovered` | `--ld-semantic-color-action-border-secondary-hovered` |
+| Focused | (no fill change) | (outline only) |
+| Pressed | `--ld-semantic-color-action-fill-secondary-pressed` | `--ld-semantic-color-action-border-secondary-pressed` |
+| Disabled | `--ld-semantic-color-action-fill-secondary-disabled` | `--ld-semantic-color-action-border-secondary-disabled` |
+
+### Icon (text) color
+
+| State | Token |
+|---|---|
+| Enabled | `--ld-semantic-color-action-text-onfill-secondary` |
+| Hovered | `--ld-semantic-color-action-text-onfill-secondary-hovered` |
+| Focused | `--ld-semantic-color-action-text-onfill-secondary-focused` |
+| Pressed | `--ld-semantic-color-action-text-onfill-secondary-pressed` |
+| Disabled | `--ld-semantic-color-action-text-onfill-transparent-disabled` |
+
+### Focus ring
+
+```css
+.floatingButton:focus-visible {
+  outline: var(--ld-semantic-scale-borderwidth-interactive-focused, 2px) solid
+    var(--ld-semantic-color-action-focus-outline);
+  outline-offset: 2px;
+}
+```
+
+### Box shadow (elevation)
+
+| State | Shadow |
+|---|---|
+| Enabled | `0 1px 2px 0 rgba(0,0,0,0.12), 0 2px 6px 0 rgba(0,0,0,0.10)` |
+| Hovered | `0 2px 4px 0 rgba(0,0,0,0.14), 0 4px 10px 0 rgba(0,0,0,0.12)` |
+| Pressed | `0 0px 2px 0 rgba(0,0,0,0.10), 0 1px 4px 0 rgba(0,0,0,0.08)` |
+| Disabled | `none` |
+
+---
+
+## Size Variants
+
+Sizes control the overall button diameter and match icon size to the LD scale tokens.
+
+| Size | Diameter | Icon size token | Icon px fallback |
+|---|---|---|---|
+| `xsmall` | 28px | `--ld-semantic-scale-icon-small` | 16px |
+| `small` | 32px | `--ld-semantic-scale-icon-small` | 16px |
+| `medium` (default) | 40px | `--ld-semantic-scale-icon-medium` | 24px |
+| `large` | 52px | `--ld-semantic-scale-icon-large` | 32px |
+
+**Touch target note:** `xsmall` (28px) is below the recommended 44×44px tap target. When using `xsmall`, ensure the parent context provides at least 44px of interactive area via padding or `::before` expansion.
+
+---
+
+## Usage
+
+### Import
+
+```tsx
+import { WCPFloatingButton } from '@/components/walmart/WCPFloatingButton';
+import { ArrowLeft, ArrowRight } from '@/components/icons';
+```
+
+### Basic carousel controls
+
+```tsx
+<WCPFloatingButton size="medium" aria-label="Previous slide">
+  <ArrowLeft />
+</WCPFloatingButton>
+
+<WCPFloatingButton size="medium" aria-label="Next slide">
+  <ArrowRight />
+</WCPFloatingButton>
+```
+
+### Disabled state
+
+```tsx
+<WCPFloatingButton
+  size="medium"
+  aria-label="Previous slide"
+  disabled
+>
+  <ArrowLeft />
+</WCPFloatingButton>
+```
+
+### Small variant (xsmall / small)
+
+```tsx
+<WCPFloatingButton size="small" aria-label="Close">
+  <Close size={16} />
+</WCPFloatingButton>
+```
+
+### With event handler
+
+```tsx
+<WCPFloatingButton
+  size="medium"
+  aria-label="Next slide"
+  onClick={handleNext}
+>
+  <ArrowRight />
+</WCPFloatingButton>
+```
+
+---
+
+## Props
+
+| Prop | Type | Default | Required | Description |
+|---|---|---|---|---|
+| `children` | `ReactNode` | — | ✅ | Icon to render (use icons from `@/components/icons`) |
+| `aria-label` | `string` | — | ✅ | Accessible label — always required for icon-only buttons |
+| `size` | `'xsmall' \| 'small' \| 'medium' \| 'large'` | `'medium'` | — | Controls diameter and icon size |
+| `disabled` | `boolean` | `false` | — | Disables interaction and removes shadow |
+| `UNSAFE_className` | `string` | — | — | Escape hatch for host overrides (use sparingly) |
+| `UNSAFE_style` | `CSSProperties` | — | — | Escape hatch for host overrides (use sparingly) |
+| All `button` HTML attributes | — | — | — | Spread onto the root `<button>` element |
+
+---
+
+## Do / Don't
+
+### ✅ Do
+
+- Always provide a descriptive `aria-label` (e.g., "Next slide", "Previous slide", "Close")
+- Match icon size to button size — see the size table above
+- Use existing icons from `@/components/icons` — never create inline SVGs
+- Always use tokens — never hardcode hex colors in `UNSAFE_style`
+- Add `prefers-reduced-motion: reduce` overrides for any custom animations on top of this component
+
+### ❌ Don't
+
+- Don't use for general inline icon actions → use `IconButton` instead
+- Don't put text inside the button — it is icon-only by design
+- Don't hardcode `width`, `height`, or `border-radius` values — they come from the CSS module
+- Don't skip `aria-label` — icons alone are invisible to screen readers
+- Don't add a second box-shadow on top of the component's built-in elevation
+
+---
+
+## Accessibility
+
+- Renders as a native `<button type="button">` — keyboard accessible and focusable by default
+- `aria-label` is **required** (enforced by TypeScript) since the button contains no text
+- `disabled` uses the native HTML attribute — screen readers announce the state automatically
+- Focus ring uses `focus-visible` (keyboard-only focus indicator — not shown on mouse click)
+
+---
+
+## CSS Module Reference
+
+**File**: `client/components/walmart/WCPFloatingButton.module.css`
+
+Key classes:
+
+| Class | Purpose |
+|---|---|
+| `.floatingButton` | Root button — all base styles, tokens, transitions |
+| `.floatingButton:hover:not(:disabled)` | Hovered state |
+| `.floatingButton:focus-visible` | Keyboard focus ring |
+| `.floatingButton:active:not(:disabled)` | Pressed state |
+| `.floatingButton:disabled` | Disabled state |
+| `.iconWrap` | Centers the icon SVG inside the button |
+| `.size--xsmall` | 28px diameter, 16px icon |
+| `.size--small` | 32px diameter, 16px icon |
+| `.size--medium` | 40px diameter, 24px icon |
+| `.size--large` | 52px diameter, 32px icon |
+
+---
+
+## How This Component Was Built (Reference for Future WCP Components)
+
+This component follows the WCP component creation rule (`RULE_WCPComponentCreation.md`). Steps taken:
+
+1. **Checked for existing components** — confirmed no equivalent floating button existed in `client/components/walmart/`
+2. **Distinguished LD vs WCP** — the LD `IconButton` exists but lacks the floating/elevation pattern required
+3. **Named export** — `export function WCPFloatingButton` (no default export)
+4. **CSS Module with LD tokens only** — zero hardcoded hex values, all state/size styles in `.module.css`
+5. **No variant naming** — this component does not need `default | brand | inverse` variants; it always uses the secondary token family
+6. **Accessibility** — TypeScript enforces `aria-label`; native `<button>` element
+7. **Component Library page** — `client/pages/component-library/WCPFloatingButton.tsx`
+8. **Route registered** — `/component-library/wcp-floating-button` in `client/App.tsx`
+9. **Overview.tsx entry** — added to the component grid with i18n keys
+10. **`prefers-reduced-motion`** — transitions disabled via media query in CSS module
+
+---
+
+## Related Components
+
+- **`IconButton`** (`client/components/ui/IconButton.tsx`) — LD primitive for inline icon actions
+- **`WCPButtonGroups`** (`client/components/walmart/WCPButtonGroups.tsx`) — WCP pattern for grouped buttons
+- Carousel patterns: see `RULE_CarouselAndScrollPatterns.md` for how to wire prev/next controls to a carousel
+
+---
+
+## File Checklist
+
+| File | Status |
+|---|---|
+| `client/components/walmart/WCPFloatingButton.tsx` | ✅ Created |
+| `client/components/walmart/WCPFloatingButton.module.css` | ✅ Created |
+| `client/pages/component-library/WCPFloatingButton.tsx` | ✅ Created |
+| Route `/component-library/wcp-floating-button` in `App.tsx` | ✅ Added |
+| Overview.tsx card entry | ✅ Added |
+| This guideline file | ✅ Created |
