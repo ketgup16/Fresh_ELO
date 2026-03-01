@@ -23,10 +23,10 @@ export function SkylineBanner({ logoSrc, logoAlt, headline, subtext, imageSrc, i
         <div className={styles.sponsored}>
           <span className={styles.sponsoredLabel}>Sponsored</span>
           <button className={styles.infoBtn} aria-label="Ad info">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="8" cy="8" r="7" stroke="#74767C" strokeWidth="1.5" />
-              <rect x="7.25" y="7" width="1.5" height="5" rx="0.75" fill="#74767C" />
-              <rect x="7.25" y="4.5" width="1.5" height="1.5" rx="0.75" fill="#74767C" />
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ color: 'var(--ld-semantic-color-text-subtle)' }}>
+              <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
+              <rect x="7.25" y="7" width="1.5" height="5" rx="0.75" fill="currentColor" />
+              <rect x="7.25" y="4.5" width="1.5" height="1.5" rx="0.75" fill="currentColor" />
             </svg>
           </button>
         </div>

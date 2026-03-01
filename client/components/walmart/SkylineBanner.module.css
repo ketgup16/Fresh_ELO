@@ -4,7 +4,7 @@
   justify-content: space-between;
   height: 64px;
   border-radius: 8px;
-  background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
+  background: var(--ld-semantic-color-fill-subtle);
   overflow: hidden;
   padding-left: 16px;
   width: 100%;
@@ -34,20 +34,20 @@
 }
 
 .headline {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 14px;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-small-size);
   font-weight: 700;
   line-height: 20px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   white-space: nowrap;
 }
 
 .subtext {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 14px;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-small-size);
   font-weight: 400;
   line-height: 20px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -69,10 +69,10 @@
 }
 
 .sponsoredLabel {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-family: var(--ld-semantic-font-family-sans);
   font-size: 12px;
   font-weight: 400;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   white-space: nowrap;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .infoBtn:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071DC);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   border-radius: 50%;
 }
 

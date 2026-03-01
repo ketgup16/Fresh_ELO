@@ -1,5 +1,6 @@
 import { Heart } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
+import { IconButton } from '@/components/ui/IconButton';
 import styles from './JumpRightBackIn.module.css';
 
 interface ProductTile {
@@ -63,9 +64,14 @@ export function JumpRightBackIn() {
           <div key={i} className={styles.tile}>
             <div className={styles.imageWrapper}>
               <img src={product.image} alt={product.name} className={styles.image} />
-              <button className={styles.heartBtn} aria-label="Save to list">
+              <IconButton
+                aria-label="Save to list"
+                variant="secondary"
+                size="small"
+                UNSAFE_className={styles.heartBtn}
+              >
                 <Heart className={styles.heartIcon} />
-              </button>
+              </IconButton>
             </div>
             <div className={styles.body}>
               <div className={styles.ctaRow}>

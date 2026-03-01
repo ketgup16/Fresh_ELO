@@ -2,7 +2,7 @@
   display: none;
   align-items: center;
   gap: 12px;
-  background: var(--ld-semantic-color-surface, #ffffff);
+  background: var(--ld-semantic-color-surface);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
   padding: 12px 16px;
@@ -26,21 +26,21 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-family: var(--ld-semantic-font-family-sans, sans-serif);
-  font-size: 14px;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-small-size);
 }
 
 .text {
-  color: var(--ld-semantic-color-text, #2e2f32);
+  color: var(--ld-semantic-color-text);
 }
 
 .emphasis {
-  color: var(--ld-semantic-color-text, #2e2f32);
+  color: var(--ld-semantic-color-text);
   font-weight: 700;
 }
 
 .separator {
-  color: var(--ld-semantic-color-text-subtlest, #9ca3af);
+  color: var(--ld-semantic-color-text-subtlest);
 }
 
 .closeButton {

@@ -113,12 +113,12 @@
 
 /* Magnifying-glass effect: active icon pops up in size */
 .tabIconActive {
-  color: var(--ld-semantic-color-action-fill-primary, #0053E2);
+  color: var(--ld-semantic-color-action-fill-primary);
   transform: scale(1.22);
 }
 
 .tabIconInactive {
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   transform: scale(1);
 }
 

@@ -13,7 +13,7 @@ const LIST_SAMPLES = [
   {
     name: "Kellogg's Frosted Flakes, Breakfast Cereal, Original, Family Size, 13.5 oz",
     price: '3', cents: '68', unitPrice: '$4.36/lb',
-    flag: 'Best seller', flagColor: '#0E002E',
+    flag: 'Best seller', flagVariant: 'default',
     rating: 4.7, ratingCount: '12,234',
     image: `${CDN}783f38e6d773461b95706408b1a14434?format=webp&width=400`,
     pickup: '2 pm', ebt: true,
@@ -21,7 +21,7 @@ const LIST_SAMPLES = [
   {
     name: "Post Honey Bunches of Oats with Almonds Cereal, 18 oz",
     price: '3', cents: '48', unitPrice: '$3.09/lb',
-    flag: 'Rollback', flagColor: '#EA1100', wasPrice: '$4.28',
+    flag: 'Rollback', flagVariant: 'red', wasPrice: '$4.28',
     rating: 4.5, ratingCount: '6,442',
     image: `${CDN}783f38e6d773461b95706408b1a14434?format=webp&width=400`,
     pickup: 'Tomorrow', ebt: true,
@@ -39,7 +39,7 @@ const GRID_SAMPLES = [
   {
     name: "Sofia Jeans Women's Knit Midi Dress with Flutter Sleeves",
     price: '24', cents: '98',
-    flag: 'Best seller', flagColor: '#0E002E',
+    flag: 'Best seller', flagVariant: 'default',
     rating: 4.6, ratingCount: '3,892',
     image: `${CDN}4b7f2d27b5e7432fa6f5c9c16e80e3b2?format=webp&width=400`,
     pickup: '2 pm',
@@ -124,7 +124,7 @@ export default function ProductCardsPage() {
           { name: 'ratingCount', required: true, description: 'Formatted review count string, e.g. "12,234"' },
           { name: 'wasPrice', required: false, description: 'Original price shown as struck-through when on rollback/sale' },
           { name: 'flag', required: false, description: 'Badge label, e.g. "Best seller" or "Rollback"' },
-          { name: 'flagColor', required: false, description: 'Badge background color hex, defaults to dark navy' },
+          { name: 'flagVariant', required: false, description: "Badge color variant: 'default' (dark navy) or 'red' (rollback)" },
           { name: 'unitPrice', required: false, description: 'Per-unit price string, e.g. "$4.36/lb"' },
           { name: 'ebt', required: false, description: 'When true, shows an "EBT eligible" green label' },
           { name: 'pickup', required: false, description: 'Pickup time string, e.g. "2 pm" or "Tomorrow"' },
@@ -166,7 +166,7 @@ export default function ProductCardsPage() {
           { name: 'ratingCount', required: true, description: 'Formatted review count string' },
           { name: 'wasPrice', required: false, description: 'Original price for rollback display' },
           { name: 'flag', required: false, description: 'Badge label overlay on image' },
-          { name: 'flagColor', required: false, description: 'Badge background color hex' },
+          { name: 'flagVariant', required: false, description: "Badge color variant: 'default' or 'red'" },
           { name: 'pickup', required: false, description: 'Pickup time string' },
           { name: 'onAddToCart', required: false, description: 'Callback for "Add to cart" tap' },
         ]} />

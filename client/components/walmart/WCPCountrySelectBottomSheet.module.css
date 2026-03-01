@@ -11,19 +11,19 @@
 
 /* ─── Slide-up keyframe ─── */
 @keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet { animation: none; }
 }
 
 /* ─── Sheet ─── */
 .sheet {
   width: 100%;
   max-width: 768px;
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  background: var(--ld-semantic-color-surface);
   border-radius: 16px 16px 0 0;
   box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.10), 0 5px 10px 3px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -43,16 +43,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 8px 8px 56px; /* left pad balances the close button width */
+  padding: 8px 8px 8px 56px;
 }
 
 .title {
   flex: 1;
   text-align: center;
-  font-size: var(--ld-semantic-font-heading-small-size, 18px);
+  font-size: var(--ld-semantic-font-heading-small-size);
   font-weight: 700;
   font-family: var(--ld-semantic-font-family-sans);
-  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
   line-height: 1.33;
 }
@@ -66,13 +66,13 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  color: var(--ld-semantic-color-text);
   border-radius: 50%;
   flex-shrink: 0;
 }
 
 .closeBtn:hover {
-  background: var(--ld-semantic-color-fill-surface-hover, #f2f2f2);
+  background: var(--ld-semantic-color-surface-hovered);
 }
 
 /* ─── Scrollable content ─── */
@@ -92,13 +92,8 @@
   flex-direction: column;
 }
 
-.listFlat {
-  gap: 0;
-}
-
-.listSlot {
-  gap: 8px;
-}
+.listFlat { gap: 0; }
+.listSlot { gap: 8px; }
 
 /* ─── Country rows — flat ─── */
 .countryRow {
@@ -118,14 +113,14 @@
 }
 
 .countryRowFlat:hover {
-  background: var(--ld-semantic-color-fill-surface-hover, #f2f2f2);
+  background: var(--ld-semantic-color-surface-hovered);
 }
 
 /* ─── Country rows — slot (card with shadow) ─── */
 .countryRowSlot {
   padding: 8px;
   border-radius: 8px;
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  background: var(--ld-semantic-color-surface);
   box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
 }
 
@@ -145,8 +140,8 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: 1.5px solid var(--ld-semantic-color-text-primary, #2e2f32);
-  background: #fff;
+  border: 1.5px solid var(--ld-semantic-color-text);
+  background: var(--ld-semantic-color-surface);
 }
 
 .radioSelected {
@@ -156,15 +151,15 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--ld-semantic-color-text-primary, #2e2f32);
-  border: 2px solid var(--ld-semantic-color-text-primary, #2e2f32);
+  background: var(--ld-semantic-color-text);
+  border: 2px solid var(--ld-semantic-color-text);
 }
 
 .radioDot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--ld-semantic-color-surface);
 }
 
 /* ─── Flag ─── */
@@ -179,9 +174,9 @@
 /* ─── Country name ─── */
 .countryName {
   flex: 1;
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-size: var(--ld-semantic-font-body-medium-size);
   font-family: var(--ld-semantic-font-family-sans);
-  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  color: var(--ld-semantic-color-text);
   font-weight: 400;
   line-height: 1.5;
 }
@@ -192,9 +187,9 @@
 
 /* ─── Dial code ─── */
 .dialCode {
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-size: var(--ld-semantic-font-body-small-size);
   font-family: var(--ld-semantic-font-family-sans);
-  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  color: var(--ld-semantic-color-text);
   font-weight: 400;
   white-space: nowrap;
   flex-shrink: 0;
@@ -207,7 +202,7 @@
 
 .divider {
   height: 1px;
-  background: var(--ld-semantic-color-border-subtle, #e6e6e8);
+  background: var(--ld-semantic-color-separator);
 }
 
 .footerInner {

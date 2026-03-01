@@ -5,36 +5,36 @@
   height: 32px;
   padding: 4px 12px;
   border-radius: 9999px;
-  background: white;
+  background: var(--ld-semantic-color-surface);
   border: 1.5px solid transparent;
   cursor: pointer;
   transition: background 100ms;
-  color: var(--ld-semantic-color-text-brand-bold, #001E60);
-  font-size: 14px;
+  color: var(--ld-semantic-color-text-brand-bold);
+  font-size: var(--ld-semantic-font-body-small-size);
   font-weight: 700;
   line-height: 20px;
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-family: var(--ld-semantic-font-family-sans);
 }
 
 .trigger:hover {
   background: rgba(0, 30, 96, 0.06);
-  border-color: var(--ld-semantic-color-text-brand-bold, #001E60);
+  border-color: var(--ld-semantic-color-text-brand-bold);
 }
 
 .trigger:active {
   background: rgba(0, 30, 96, 0.12);
-  border-color: var(--ld-semantic-color-text-brand-bold, #001E60);
+  border-color: var(--ld-semantic-color-text-brand-bold);
 }
 
 .trigger:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0053E2);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
 }
 
 .trigger:disabled,
 .trigger[aria-disabled="true"] {
-  color: var(--ld-semantic-color-text-disabled, #BABBBE);
-  border-color: var(--ld-semantic-color-text-disabled, #BABBBE);
+  color: var(--ld-semantic-color-text-disabled);
+  border-color: var(--ld-semantic-color-text-disabled);
   cursor: not-allowed;
 }
 
@@ -58,8 +58,8 @@
 }
 
 .content {
-  background: white;
-  border: 1px solid var(--ld-semantic-color-border-subtle, #D1D5DB);
+  background: var(--ld-semantic-color-surface);
+  border: 1px solid var(--ld-semantic-color-separator);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
   min-width: 200px;
@@ -71,9 +71,9 @@
 .item {
   padding: 8px 12px;
   cursor: pointer;
-  font-size: 14px;
-  color: var(--ld-semantic-color-text, #2E2F32);
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size);
+  color: var(--ld-semantic-color-text);
+  font-family: var(--ld-semantic-font-family-sans);
   font-weight: 400;
   line-height: 20px;
   border-radius: 4px;
@@ -82,14 +82,14 @@
 }
 
 .item:hover {
-  background: var(--ld-semantic-color-surface-hovered, #F8F8F8);
+  background: var(--ld-semantic-color-surface-hovered);
 }
 
 .item:active {
-  background: var(--ld-semantic-color-fill-accent-blue-subtle, #F0F3FF);
+  background: var(--ld-semantic-color-fill-accent-blue-subtle);
 }
 
 .item:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0053E2);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: -2px;
 }

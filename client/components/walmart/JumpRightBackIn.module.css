@@ -5,10 +5,10 @@
 }
 
 .heading {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-family: var(--ld-semantic-font-family-sans);
   font-size: 20px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
   line-height: 1.2;
 }
@@ -25,7 +25,6 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  /* hide scrollbar */
   scrollbar-width: none;
   -ms-overflow-style: none;
   margin: 0 -16px;
@@ -61,7 +60,7 @@
   aspect-ratio: 1 / 1;
   border-radius: 8px;
   overflow: hidden;
-  background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
+  background: var(--ld-semantic-color-fill-subtle);
 }
 
 .image {
@@ -87,13 +86,13 @@
 }
 
 .heartBtn:hover {
-  background: #fff;
+  background: var(--ld-semantic-color-surface);
 }
 
 .heartIcon {
   width: 16px;
   height: 16px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
 }
 
 /* Content below image */
@@ -116,17 +115,17 @@
 }
 
 .pricePrefix {
-  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-family: var(--ld-semantic-font-family-sans);
   font-size: 12px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text-brand-bold, #001e60);
+  color: var(--ld-semantic-color-text-brand-bold);
 }
 
 .price {
-  font-family: var(--ld-semantic-font-family-sans, sans-serif);
-  font-size: 14px;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-small-size);
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
 }
 
 .priceDollar {
@@ -136,17 +135,17 @@
 }
 
 .originalPrice {
-  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-family: var(--ld-semantic-font-family-sans);
   font-size: 11px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   text-decoration: line-through;
 }
 
 /* Product name */
 .name {
-  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-family: var(--ld-semantic-font-family-sans);
   font-size: 12px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   line-height: 1.4;
   margin: 0;
   display: -webkit-box;

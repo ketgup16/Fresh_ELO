@@ -1,0 +1,166 @@
+.card {
+  display: flex;
+  gap: 12px;
+  padding: 8px 8px 12px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator);
+  font-family: var(--ld-semantic-font-family-sans);
+}
+
+/* Image column */
+.imageCol {
+  width: 148px;
+  height: 190px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Flag badge */
+.flag {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 10;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--ld-semantic-color-fill-inverse);
+  color: var(--ld-semantic-color-text-inverse);
+}
+
+.flagRed {
+  background: var(--ld-semantic-color-text-negative);
+  color: var(--ld-semantic-color-text-inverse);
+}
+
+/* Favorite button */
+.favoriteButton {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 10;
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background: var(--ld-semantic-color-surface);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+.heartEmpty {
+  color: var(--ld-semantic-color-text-subtle);
+  width: 16px;
+  height: 16px;
+}
+
+.heartFilled {
+  color: var(--ld-semantic-color-text-negative);
+  width: 16px;
+  height: 16px;
+}
+
+/* Content column */
+.contentCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Price */
+.priceRow {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ld-semantic-color-text);
+}
+
+.priceSup {
+  font-size: var(--ld-semantic-font-body-small-size);
+  vertical-align: top;
+}
+
+.priceAccent {
+  color: var(--ld-semantic-color-text-positive);
+}
+
+.priceStrike {
+  font-size: var(--ld-semantic-font-body-small-size);
+  color: var(--ld-semantic-color-text-subtle);
+  text-decoration: line-through;
+}
+
+/* Unit price */
+.unitPrice {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle);
+}
+
+/* Product name */
+.productName {
+  font-size: var(--ld-semantic-font-body-small-size);
+  color: var(--ld-semantic-color-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+}
+
+/* Cue text */
+.cue {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text);
+}
+
+/* Rating row */
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ratingCount {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle);
+}
+
+/* EBT badge */
+.ebt {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text-positive);
+}
+
+/* Pickup */
+.pickup {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text);
+}
+
+.pickupBold {
+  font-weight: 700;
+}
+
+/* Low stock warning */
+.stock {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text-negative);
+}
+
+/* Add to cart button */
+.addToCart {
+  width: 164px;
+  margin-top: 4px;
+}

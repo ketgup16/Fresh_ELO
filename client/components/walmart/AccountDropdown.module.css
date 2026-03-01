@@ -14,29 +14,29 @@
   border: none;
   cursor: pointer;
   transition: background-color 100ms;
-  color: var(--ld-semantic-color-top-nav-text-on-fill, #fff);
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  color: var(--ld-semantic-color-top-nav-text-on-fill);
+  font-family: var(--ld-semantic-font-family-sans);
   white-space: nowrap;
   gap: 8px;
 }
 
 .trigger:hover {
-  background: var(--ld-semantic-color-top-nav-fill-hovered, #004D99);
+  background: var(--ld-semantic-color-top-nav-fill-hovered);
 }
 
 .trigger:active {
-  background: var(--ld-semantic-color-top-nav-fill-pressed, #003366);
+  background: var(--ld-semantic-color-top-nav-fill-pressed);
 }
 
 .trigger:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0053E2);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
 }
 
 .triggerIcon {
   width: 16px;
   height: 16px;
-  color: var(--ld-semantic-color-top-nav-text-on-fill, #fff);
+  color: var(--ld-semantic-color-top-nav-text-on-fill);
   flex-shrink: 0;
 }
 
@@ -47,17 +47,17 @@
 }
 
 .triggerSubtext {
-  font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
-  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-line-height, 1.25rem);
-  color: var(--ld-semantic-color-top-nav-text-on-fill, #ffffff);
+  font-size: var(--ld-semantic-font-body-small-size);
+  font-weight: var(--ld-semantic-font-body-small-weight-default);
+  line-height: var(--ld-semantic-font-body-small-line-height);
+  color: var(--ld-semantic-color-top-nav-text-on-fill);
 }
 
 .triggerLabel {
-  font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
-  font-weight: var(--ld-semantic-font-body-small-weight-alt, 700);
-  line-height: var(--ld-semantic-font-body-small-line-height, 1.25rem);
-  color: var(--ld-semantic-color-top-nav-text-on-fill, #ffffff);
+  font-size: var(--ld-semantic-font-body-small-size);
+  font-weight: var(--ld-semantic-font-body-small-weight-alt);
+  line-height: var(--ld-semantic-font-body-small-line-height);
+  color: var(--ld-semantic-color-top-nav-text-on-fill);
   margin-top: -2px;
 }
 
@@ -67,10 +67,10 @@
   top: 69px;
   right: 0;
   min-width: 220px;
-  background: var(--ld-semantic-color-surface, #ffffff);
+  background: var(--ld-semantic-color-surface);
   border-radius: 0 0 8px 8px;
   box-shadow: var(--ld-semantic-elevation-200);
-  padding: var(--ld-semantic-spacing-100, 0.5rem) 0;
+  padding: 8px 0;
   z-index: 200;
 }
 
@@ -86,19 +86,19 @@
   cursor: pointer;
   text-align: left;
   transition: background-color 100ms;
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-family: var(--ld-semantic-font-family-sans);
 }
 
 .item:hover {
-  background: var(--ld-semantic-color-surface-hovered, #f1f1f2);
+  background: var(--ld-semantic-color-surface-hovered);
 }
 
 .item:active {
-  background: var(--ld-semantic-color-fill-accent-blue-subtle, #E9F1FE);
+  background: var(--ld-semantic-color-fill-accent-blue-subtle);
 }
 
 .item:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0053E2);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: -2px;
 }
 
@@ -106,20 +106,27 @@
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
 }
 
 .itemLabel {
-  font-size: var(--ld-semantic-font-body-medium-size, 1rem);
-  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-medium-line-height, 1.5rem);
-  color: var(--ld-semantic-color-text, #2e2f32);
+  font-size: var(--ld-semantic-font-body-medium-size);
+  font-weight: var(--ld-semantic-font-body-medium-weight-default);
+  line-height: var(--ld-semantic-font-body-medium-line-height);
+  color: var(--ld-semantic-color-text);
 }
 
 /* ── Separator ── */
 .separator {
   height: 1px;
-  background: var(--ld-semantic-color-separator, #e3e4e5);
-  margin: var(--ld-semantic-spacing-100, 0.5rem) 0;
+  background: var(--ld-semantic-color-separator);
+  margin: 8px 0;
   border: none;
+}
+
+/* Panel adjustments for narrow viewports */
+@media (max-width: 768px) {
+  .panel {
+    min-width: 180px;
+  }
 }

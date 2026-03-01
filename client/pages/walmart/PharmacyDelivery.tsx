@@ -1,100 +1,108 @@
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, Phone, Clock, Map } from "@/components/icons";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
-import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { ButtonGroup } from "@/components/ui/ButtonGroup";
+import styles from "./PharmacyDelivery.module.css";
+
+const SERVICES = [
+  { title: 'Refill prescriptions', desc: 'Quick and easy refills' },
+  { title: 'New prescriptions', desc: 'Transfer or start new' },
+  { title: 'Over-the-counter', desc: 'Health & wellness products' },
+  { title: 'Immunizations', desc: 'Flu shots & vaccines' },
+  { title: 'Health screenings', desc: 'Check-ups and tests' },
+];
 
 export default function PharmacyDelivery() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'shop' | 'heart' | 'user'>('shop');
 
   return (
     <ResponsiveLayout maxWidth="full">
-      <div className="bg-white font-sans">
-      <div className="sticky top-0 z-50 bg-white border-b border-border">
-        <div className="flex items-center gap-3 px-4 py-3">
-          <Button
-            variant="tertiary"
-            size="small"
-            onClick={() => navigate('/walmart')}
-            UNSAFE_className="flex-shrink-0 !p-0 !h-auto"
-            aria-label="Go back"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </Button>
-          <h1 className="text-[20px] font-bold text-foreground">Pharmacy Delivery</h1>
+      <div className={styles.page}>
+        <div className={styles.topBar}>
+          <div className={styles.topBarInner}>
+            <Button
+              variant="tertiary"
+              size="small"
+              onClick={() => navigate('/walmart')}
+              UNSAFE_className="flex-shrink-0 !p-0 !h-auto"
+              aria-label="Go back"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </Button>
+            <h1 className={styles.pageTitle}>Pharmacy Delivery</h1>
+          </div>
         </div>
-      </div>
 
-      <div className="px-4 pt-6 pb-32">
-        <div className="space-y-6">
-          <div className="bg-gradient-to-br from-[#00A862] to-[#007A47] rounded-lg p-6 text-white">
-            <div className="flex items-start justify-between mb-4">
+        <div className={styles.content}>
+          {/* Hero card */}
+          <div className={styles.heroCard}>
+            <div className={styles.heroTop}>
               <div>
-                <h2 className="text-[28px] font-bold mb-2">Pharmacy</h2>
-                <p className="text-[16px] opacity-90">Fast, reliable prescription delivery</p>
+                <h2 className={styles.heroTitle}>Pharmacy</h2>
+                <p className={styles.heroSubtitle}>Fast, reliable prescription delivery</p>
               </div>
             </div>
-            <Button variant="secondary" size="medium" UNSAFE_className="bg-white !text-[#00A862] hover:bg-gray-50">
+            <Button variant="secondary" size="medium">
               Transfer prescription
             </Button>
           </div>
 
-          <div className="grid grid-cols-3 gap-3">
-            <div className="bg-[#F0FFF9] rounded-lg p-3 text-center">
-              <Clock className="w-6 h-6 text-[#00A862] mx-auto mb-2" />
-              <p className="text-[12px] font-semibold text-foreground">Same-day</p>
-              <p className="text-[10px] text-muted-foreground">delivery</p>
+          {/* Feature grid */}
+          <div className={styles.featureGrid}>
+            <div className={styles.featureCard}>
+              <Clock className={styles.featureIcon} />
+              <p className={styles.featureLabel}>Same-day</p>
+              <p className={styles.featureDesc}>delivery</p>
             </div>
-            <div className="bg-[#F0FFF9] rounded-lg p-3 text-center">
-              <Map className="w-6 h-6 text-[#00A862] mx-auto mb-2" />
-              <p className="text-[12px] font-semibold text-foreground">Local</p>
-              <p className="text-[10px] text-muted-foreground">pharmacy</p>
+            <div className={styles.featureCard}>
+              <Map className={styles.featureIcon} />
+              <p className={styles.featureLabel}>Local</p>
+              <p className={styles.featureDesc}>pharmacy</p>
             </div>
-            <div className="bg-[#F0FFF9] rounded-lg p-3 text-center">
-              <Phone className="w-6 h-6 text-[#00A862] mx-auto mb-2" />
-              <p className="text-[12px] font-semibold text-foreground">24/7</p>
-              <p className="text-[10px] text-muted-foreground">support</p>
+            <div className={styles.featureCard}>
+              <Phone className={styles.featureIcon} />
+              <p className={styles.featureLabel}>24/7</p>
+              <p className={styles.featureDesc}>support</p>
             </div>
           </div>
 
+          {/* Services */}
           <div>
-            <h3 className="text-[18px] font-bold text-foreground mb-3">Services</h3>
-            <div className="space-y-2">
-              {[
-                { title: 'Refill prescriptions', desc: 'Quick and easy refills' },
-                { title: 'New prescriptions', desc: 'Transfer or start new' },
-                { title: 'Over-the-counter', desc: 'Health & wellness products' },
-                { title: 'Immunizations', desc: 'Flu shots & vaccines' },
-                { title: 'Health screenings', desc: 'Check-ups and tests' }
-              ].map((service, index) => (
-                <button
-                  key={index}
-                  className="w-full flex items-center justify-between p-4 rounded-lg border border-border hover:bg-[#F0FFF9] transition-colors"
-                >
-                  <div className="text-left flex-1">
-                    <h4 className="text-[16px] font-semibold text-foreground">{service.title}</h4>
-                    <p className="text-[14px] text-muted-foreground">{service.desc}</p>
+            <h3 className={styles.sectionTitle}>Services</h3>
+            <div className={styles.servicesList}>
+              {SERVICES.map((service) => (
+                <button key={service.title} className={styles.serviceButton}>
+                  <div className={styles.serviceTextWrap}>
+                    <h4 className={styles.serviceTitle}>{service.title}</h4>
+                    <p className={styles.serviceDesc}>{service.desc}</p>
                   </div>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={styles.serviceChevron}
+                    aria-hidden="true"
+                  >
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="bg-[var(--ld-semantic-color-fill-brand-subtle,#F5F8FF)] rounded-lg p-4">
-            <h3 className="text-[16px] font-bold text-foreground mb-2">Need help?</h3>
-            <p className="text-[14px] text-muted-foreground mb-3">Our pharmacy team is here to assist you</p>
-            <div className="flex gap-2">
-              <Button variant="primary" size="medium" UNSAFE_className="flex-1">Call pharmacy</Button>
-              <Button variant="secondary" size="medium" UNSAFE_className="flex-1">Chat now</Button>
-            </div>
+          {/* Help card */}
+          <div className={styles.helpCard}>
+            <h3 className={styles.helpTitle}>Need help?</h3>
+            <p className={styles.helpText}>Our pharmacy team is here to assist you</p>
+            <ButtonGroup>
+              <Button variant="primary" size="medium" isFullWidth>Call pharmacy</Button>
+              <Button variant="secondary" size="medium" isFullWidth>Chat now</Button>
+            </ButtonGroup>
           </div>
         </div>
-      </div>
-
       </div>
     </ResponsiveLayout>
   );

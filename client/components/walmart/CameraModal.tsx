@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { X } from '@/components/icons';
+import { Button } from '@/components/ui/Button';
+import { ButtonGroup } from '@/components/ui/ButtonGroup';
+import styles from './CameraModal.module.css';
 
 interface CameraModalProps {
   isOpen: boolean;
@@ -21,10 +24,7 @@ export function CameraModal({ isOpen, onClose, onCapture }: CameraModalProps) {
     } else {
       stopCamera();
     }
-
-    return () => {
-      stopCamera();
-    };
+    return () => { stopCamera(); };
   }, [isOpen]);
 
   const startCamera = async () => {
@@ -33,11 +33,9 @@ export function CameraModal({ isOpen, onClose, onCapture }: CameraModalProps) {
         video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } },
         audio: false,
       });
-
       setStream(mediaStream);
       setHasPermission(true);
       setError('');
-
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
       }
@@ -61,29 +59,22 @@ export function CameraModal({ isOpen, onClose, onCapture }: CameraModalProps) {
     if (videoRef.current && canvasRef.current) {
       const video = videoRef.current;
       const canvas = canvasRef.current;
-
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
-
       const context = canvas.getContext('2d');
       if (context) {
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const imageData = canvas.toDataURL('image/jpeg', 0.95);
-        setCapturedImage(imageData);
+        setCapturedImage(canvas.toDataURL('image/jpeg', 0.95));
       }
     }
   };
 
   const handleUsePhoto = () => {
-    if (capturedImage && onCapture) {
-      onCapture(capturedImage);
-    }
+    if (capturedImage && onCapture) onCapture(capturedImage);
     handleClose();
   };
 
-  const handleRetake = () => {
-    setCapturedImage('');
-  };
+  const handleRetake = () => setCapturedImage('');
 
   const handleClose = () => {
     stopCamera();
@@ -94,75 +85,61 @@ export function CameraModal({ isOpen, onClose, onCapture }: CameraModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black z-[200] flex items-center justify-center">
-      <div className="relative w-full h-full max-w-[430px] mx-auto">
-        <div className="absolute top-0 left-0 right-0 z-10 p-4 flex justify-between items-center bg-gradient-to-b from-black/50 to-transparent">
-          <h2 className="text-white text-lg font-semibold">
+    <div className={styles.overlay}>
+      <div className={styles.container}>
+        {/* Top bar */}
+        <div className={styles.topBar}>
+          <h2 className={styles.topBarTitle}>
             {capturedImage ? 'Photo Preview' : 'Take Photo'}
           </h2>
-          <button
-            onClick={handleClose}
-            className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/50 transition-colors"
-          >
+          <button className={styles.closeButton} onClick={handleClose} aria-label="Close camera">
             <X className="w-6 h-6" />
           </button>
         </div>
 
-        <div className="relative w-full h-full flex items-center justify-center bg-black">
+        {/* Viewfinder */}
+        <div className={styles.viewfinder}>
           {error ? (
-            <div className="text-white text-center p-8">
-              <p className="text-lg mb-4">{error}</p>
-              <button
-                onClick={startCamera}
-                className="px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
-              >
+            <div className={styles.errorContent}>
+              <p className={styles.errorText}>{error}</p>
+              <Button variant="primary" size="medium" onClick={startCamera}>
                 Try Again
-              </button>
+              </Button>
             </div>
           ) : capturedImage ? (
-            <img
-              src={capturedImage}
-              alt="Captured"
-              className="max-w-full max-h-full object-contain"
-            />
+            <img src={capturedImage} alt="Captured" className={styles.capturedImage} />
           ) : (
             <video
               ref={videoRef}
               autoPlay
               playsInline
               muted
-              className="w-full h-full object-cover"
+              className={styles.video}
             />
           )}
         </div>
 
-        <canvas ref={canvasRef} className="hidden" />
+        <canvas ref={canvasRef} style={{ display: 'none' }} />
 
+        {/* Bottom controls */}
         {hasPermission && !error && (
-          <div className="absolute bottom-0 left-0 right-0 z-10 p-6 bg-gradient-to-t from-black/50 to-transparent">
+          <div className={styles.bottomBar}>
             {capturedImage ? (
-              <div className="flex gap-4 justify-center">
-                <button
-                  onClick={handleRetake}
-                  className="px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-colors border border-white/30"
-                >
+              <ButtonGroup>
+                <Button variant="secondary" size="medium" onClick={handleRetake}>
                   Retake
-                </button>
-                <button
-                  onClick={handleUsePhoto}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
-                >
+                </Button>
+                <Button variant="primary" size="medium" onClick={handleUsePhoto}>
                   Use Photo
-                </button>
-              </div>
+                </Button>
+              </ButtonGroup>
             ) : (
-              <div className="flex justify-center">
+              <div className={styles.shutterWrap}>
                 <button
+                  className={styles.shutterButton}
                   onClick={capturePhoto}
-                  className="w-16 h-16 rounded-full bg-white border-4 border-gray-300 hover:bg-gray-100 transition-all active:scale-95"
-                >
-                  <div className="w-full h-full rounded-full bg-white"></div>
-                </button>
+                  aria-label="Capture photo"
+                />
               </div>
             )}
           </div>

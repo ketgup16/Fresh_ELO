@@ -126,15 +126,7 @@ export function DesktopHeader() {
         {/* Search Form */}
         <div
           ref={searchFormRef}
-          className={styles.searchFormWrap}
-          style={showTypeahead ? {
-            borderWidth: '2px',
-            borderStyle: 'solid',
-            borderColor: 'var(--ld-semantic-color-action-focus-outline, #0053E2)',
-            borderBottomWidth: 0,
-            backgroundColor: 'white',
-            padding: '1px',
-          } : undefined}
+          className={`${styles.searchFormWrap} ${showTypeahead ? styles.searchFormWrapFocused : ''}`}
         >
           <form
             action="/walmart/search"
@@ -173,7 +165,7 @@ export function DesktopHeader() {
                     onClick={() => setSearchQuery('')}
                     className={styles.clearButton}
                   >
-                    <X className="w-4 h-4" style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }} />
+                    <X className="w-4 h-4" />
                   </button>
                 ) : (
                   <button
@@ -202,7 +194,7 @@ export function DesktopHeader() {
         {/* Scrim overlay */}
         {showTypeahead && createPortal(
           <div
-            className="fixed inset-0 bg-black/40 z-[99]"
+            className={styles.scrim}
             onClick={closeTypeahead}
           />,
           document.body

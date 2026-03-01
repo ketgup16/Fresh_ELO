@@ -20,7 +20,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* object-position is set per-slide via inline style */
   display: block;
 }
 
@@ -47,10 +46,10 @@
 }
 
 .eyebrow {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-family: var(--ld-semantic-font-family-sans);
   font-size: 12px;
   font-weight: 800;
-  color: var(--ld-semantic-color-text-brand-bold, #001e60);
+  color: var(--ld-semantic-color-text-brand-bold);
   line-height: 1.08;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -61,10 +60,10 @@
 @media (min-width: 1024px) { .eyebrow { font-size: 24px; } }
 
 .headline {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-family: var(--ld-semantic-font-family-sans);
   font-size: 22px;
   font-weight: 800;
-  color: var(--ld-semantic-color-text-brand-bold, #001e60);
+  color: var(--ld-semantic-color-text-brand-bold);
   line-height: 1;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -88,7 +87,7 @@
 @media (min-width: 768px) { .controls { top: 24px; right: 24px; } }
 
 .controlBtn {
-  background: var(--ld-semantic-color-surface, #fff) !important;
+  background: var(--ld-semantic-color-surface) !important;
   border-radius: 9999px !important;
   width: 24px !important;
   height: 24px !important;

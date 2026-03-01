@@ -7,8 +7,8 @@
   position: sticky;
   top: 86px;
   z-index: 98;
-  background-color: var(--ld-semantic-color-fill-brand-subtle, #EBF1FF);
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  background-color: var(--ld-semantic-color-fill-brand-subtle);
+  font-family: var(--ld-semantic-font-family-sans);
 }
 
 @media (min-width: 1024px) {
@@ -72,11 +72,11 @@
   padding: 4px 12px;
   text-decoration: none;
   transition: background 100ms;
-  color: var(--ld-semantic-color-text-brand-bold, #001E60);
-  font-size: 14px;
+  color: var(--ld-semantic-color-text-brand-bold);
+  font-size: var(--ld-semantic-font-body-small-size);
   font-weight: 400;
   line-height: 20px;
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-family: var(--ld-semantic-font-family-sans);
 }
 
 .secondaryLink:hover {
@@ -88,7 +88,7 @@
 }
 
 .secondaryLink:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0053E2);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
 }
 

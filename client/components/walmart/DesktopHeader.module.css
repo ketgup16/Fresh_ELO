@@ -5,8 +5,8 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: var(--ld-semantic-color-top-nav-fill, #0071dc);
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  background-color: var(--ld-semantic-color-top-nav-fill);
+  font-family: var(--ld-semantic-font-family-sans);
 }
 
 @media (min-width: 1024px) {
@@ -37,15 +37,15 @@
 }
 
 .logo:hover {
-  background: var(--ld-semantic-color-top-nav-fill-hovered, #004D99);
+  background: var(--ld-semantic-color-top-nav-fill-hovered);
 }
 
 .logo:active {
-  background: var(--ld-semantic-color-top-nav-fill-pressed, #003366);
+  background: var(--ld-semantic-color-top-nav-fill-pressed);
 }
 
 .logo:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0053E2);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
 }
 
@@ -61,7 +61,7 @@
   align-items: center;
   height: 52px;
   position: relative;
-  background: var(--ld-semantic-color-top-nav-fill-hovered, #004D99);
+  background: var(--ld-semantic-color-top-nav-fill-hovered);
   width: auto;
 }
 
@@ -75,20 +75,20 @@
   background: transparent;
   border: none;
   padding: 0 12px;
-  color: var(--ld-semantic-color-top-nav-text-on-fill, #FFFFFF);
+  color: var(--ld-semantic-color-top-nav-text-on-fill);
   cursor: pointer;
 }
 
 .gicButton:hover {
-  background: var(--ld-semantic-color-top-nav-fill-pressed, #003366);
+  background: var(--ld-semantic-color-top-nav-fill-pressed);
 }
 
 .gicButton:active {
-  background: var(--ld-semantic-color-top-nav-fill-pressed, #003366);
+  background: var(--ld-semantic-color-top-nav-fill-pressed);
 }
 
 .gicButton:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0053E2);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
 }
 
@@ -122,18 +122,18 @@
 }
 
 .gicLabel {
-  font-size: var(--ld-semantic-font-body-medium-size, 1rem);
-  font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
-  line-height: var(--ld-semantic-font-body-medium-line-height, 1.5rem);
-  color: var(--ld-semantic-color-top-nav-text-on-fill, #ffffff);
+  font-size: var(--ld-semantic-font-body-medium-size);
+  font-weight: var(--ld-semantic-font-body-medium-weight-alt);
+  line-height: var(--ld-semantic-font-body-medium-line-height);
+  color: var(--ld-semantic-color-top-nav-text-on-fill);
   white-space: nowrap;
 }
 
 .gicSubtext {
-  font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
-  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-line-height, 1.25rem);
-  color: var(--ld-semantic-color-top-nav-text-on-fill, #ffffff);
+  font-size: var(--ld-semantic-font-body-small-size);
+  font-weight: var(--ld-semantic-font-body-small-weight-default);
+  line-height: var(--ld-semantic-font-body-small-line-height);
+  color: var(--ld-semantic-color-top-nav-text-on-fill);
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -153,7 +153,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--ld-semantic-color-top-nav-text-on-fill, #FFFFFF);
+  color: var(--ld-semantic-color-top-nav-text-on-fill);
   flex-shrink: 0;
   margin-left: 8px;
 }
@@ -176,9 +176,9 @@
   align-items: center;
   flex: 1;
   position: relative;
-  background: var(--ld-semantic-color-surface, #ffffff);
+  background: var(--ld-semantic-color-surface);
   border-radius: 9999px;
-  border: 1px solid var(--ld-semantic-color-border-subtlest, #74767c);
+  border: 1px solid var(--ld-semantic-color-border-subtlest);
 }
 
 .searchInputWrapActive {
@@ -197,14 +197,14 @@
   border: none;
   outline: none;
   font-family: inherit;
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
+  font-size: var(--ld-semantic-font-body-small-size);
+  line-height: var(--ld-semantic-font-body-small-lineheight);
   font-weight: 400;
-  color: var(--ld-semantic-color-text-brand, #001E60);
+  color: var(--ld-semantic-color-text-brand);
 }
 
 .searchInput::placeholder {
-  color: var(--ld-semantic-color-text-brand, #001E60);
+  color: var(--ld-semantic-color-text-brand);
   font-weight: 400;
 }
 
@@ -239,8 +239,8 @@
   border: none;
   cursor: pointer;
   transition: all 100ms;
-  background-color: var(--ld-semantic-color-fill-brand-bold, #001e60);
-  color: var(--ld-semantic-color-top-nav-text-on-fill, #fff);
+  background-color: var(--ld-semantic-color-fill-brand-bold);
+  color: var(--ld-semantic-color-top-nav-text-on-fill);
 }
 
 .searchButton:hover {
@@ -254,14 +254,15 @@
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  border: 1px solid var(--ld-semantic-color-border-disabled, #babbbe);
-  background: var(--ld-semantic-color-surface, #ffffff);
+  border: 1px solid var(--ld-semantic-color-border-disabled);
+  background: var(--ld-semantic-color-surface);
+  color: var(--ld-semantic-color-text);
   cursor: pointer;
   transition: background-color 100ms;
 }
 
 .clearButton:hover {
-  background: var(--ld-semantic-color-surface-hovered, #f1f1f2);
+  background: var(--ld-semantic-color-surface-hovered);
 }
 
 /* Navigation */
@@ -304,19 +305,35 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--ld-semantic-color-top-nav-text-on-fill, #FFFFFF);
+  color: var(--ld-semantic-color-top-nav-text-on-fill);
   width: 60px;
 }
 
 .cartButton:hover {
-  background: var(--ld-semantic-color-top-nav-fill-hovered, #004D99);
+  background: var(--ld-semantic-color-top-nav-fill-hovered);
 }
 
 .cartButton:active {
-  background: var(--ld-semantic-color-top-nav-fill-pressed, #003366);
+  background: var(--ld-semantic-color-top-nav-fill-pressed);
 }
 
 .cartButton:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0053E2);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
+}
+
+/* Search form focused state */
+.searchFormWrapFocused {
+  border: 2px solid var(--ld-semantic-color-action-focus-outline);
+  border-bottom: none;
+  background: var(--ld-semantic-color-surface);
+  padding: 1px;
+}
+
+/* Search scrim overlay */
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--ld-semantic-color-overlay-dim, rgba(0, 0, 0, 0.4));
+  z-index: 99;
 }

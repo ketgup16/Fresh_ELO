@@ -7,15 +7,15 @@
 
 /* ─── Label ─── */
 .label {
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-size: var(--ld-semantic-font-body-small-size);
   font-weight: 700;
   font-family: var(--ld-semantic-font-family-sans);
-  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  color: var(--ld-semantic-color-text);
   margin-bottom: 4px;
 }
 
 .labelDisabled {
-  color: var(--ld-semantic-color-text-disabled, #babbbe);
+  color: var(--ld-semantic-color-text-disabled);
 }
 
 /* ─── Input container ─── */
@@ -28,34 +28,34 @@
   width: 100%;
   box-sizing: border-box;
   border-radius: 4px;
-  border: 1.5px solid var(--ld-semantic-color-border-strong, #74767c);
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  border: 1.5px solid var(--ld-semantic-color-border-strong);
+  background: var(--ld-semantic-color-surface);
   overflow: hidden;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .container:focus-within {
-  border-color: var(--ld-semantic-color-action-focus-outline, #0071dc);
-  box-shadow: 0 0 0 2px var(--ld-semantic-color-action-focus-outline, #0071dc);
+  border-color: var(--ld-semantic-color-action-focus-outline);
+  box-shadow: 0 0 0 2px var(--ld-semantic-color-action-focus-outline);
 }
 
 .containerError {
-  border-color: var(--ld-semantic-color-border-negative, #ea1100);
+  border-color: var(--ld-semantic-color-text-negative);
 }
 
 .containerError:focus-within {
-  border-color: var(--ld-semantic-color-border-negative, #ea1100);
-  box-shadow: 0 0 0 2px var(--ld-semantic-color-border-negative, #ea1100);
+  border-color: var(--ld-semantic-color-text-negative);
+  box-shadow: 0 0 0 2px var(--ld-semantic-color-text-negative);
 }
 
 .containerDisabled {
-  border-color: var(--ld-semantic-color-border-subtle, #e6e6e8);
-  background: var(--ld-semantic-color-fill-surface-disabled, #f7f7f8);
+  border-color: var(--ld-semantic-color-separator);
+  background: var(--ld-semantic-color-fill-subtle);
   cursor: not-allowed;
 }
 
 .containerReadOnly {
-  border-color: var(--ld-semantic-color-border-subtle, #e6e6e8);
+  border-color: var(--ld-semantic-color-separator);
 }
 
 /* ─── Country code trigger button ─── */
@@ -68,7 +68,7 @@
   cursor: pointer;
   padding: 0;
   flex-shrink: 0;
-  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  color: var(--ld-semantic-color-text);
 }
 
 .countryTrigger:disabled {
@@ -86,34 +86,34 @@
 
 .triggerAbbr,
 .triggerDialCode {
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-size: var(--ld-semantic-font-body-medium-size);
   font-family: var(--ld-semantic-font-family-sans);
-  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  color: var(--ld-semantic-color-text);
   font-weight: 400;
   white-space: nowrap;
 }
 
 .containerDisabled .triggerAbbr,
 .containerDisabled .triggerDialCode {
-  color: var(--ld-semantic-color-text-disabled, #babbbe);
+  color: var(--ld-semantic-color-text-disabled);
 }
 
 .caret {
   width: 16px;
   height: 16px;
-  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  color: var(--ld-semantic-color-text);
   flex-shrink: 0;
 }
 
 .containerDisabled .caret {
-  color: var(--ld-semantic-color-text-disabled, #babbbe);
+  color: var(--ld-semantic-color-text-disabled);
 }
 
 /* ─── Divider ─── */
 .divider {
   width: 1px;
   height: 24px;
-  background: var(--ld-semantic-color-border-subtle, #e6e6e8);
+  background: var(--ld-semantic-color-separator);
   flex-shrink: 0;
 }
 
@@ -123,33 +123,33 @@
   border: none;
   outline: none;
   background: transparent;
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-size: var(--ld-semantic-font-body-medium-size);
   font-family: var(--ld-semantic-font-family-sans);
-  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  color: var(--ld-semantic-color-text);
   font-weight: 400;
   min-width: 0;
 }
 
 .phoneInput::placeholder {
-  color: var(--ld-semantic-color-text-secondary, #74767c);
+  color: var(--ld-semantic-color-text-subtle);
 }
 
 .phoneInput:disabled {
   cursor: not-allowed;
-  color: var(--ld-semantic-color-text-disabled, #babbbe);
+  color: var(--ld-semantic-color-text-disabled);
 }
 
 /* ─── Helper text ─── */
 .helperText {
-  font-size: var(--ld-semantic-font-caption-size, 12px);
+  font-size: var(--ld-semantic-font-caption-size);
   font-family: var(--ld-semantic-font-family-sans);
-  color: var(--ld-semantic-color-text-secondary, #515357);
+  color: var(--ld-semantic-color-text-subtle);
   margin: 4px 0 0;
   line-height: 1.33;
 }
 
 .helperTextDisabled {
-  color: var(--ld-semantic-color-text-disabled, #babbbe);
+  color: var(--ld-semantic-color-text-disabled);
 }
 
 /* ─── Error row ─── */
@@ -164,13 +164,13 @@
   width: 16px;
   height: 16px;
   flex-shrink: 0;
-  color: var(--ld-semantic-color-text-negative, #ea1100);
+  color: var(--ld-semantic-color-text-negative);
   margin-top: 1px;
 }
 
 .errorText {
-  font-size: var(--ld-semantic-font-caption-size, 12px);
+  font-size: var(--ld-semantic-font-caption-size);
   font-family: var(--ld-semantic-font-family-sans);
-  color: var(--ld-semantic-color-text-negative, #ea1100);
+  color: var(--ld-semantic-color-text-negative);
   line-height: 1.33;
 }

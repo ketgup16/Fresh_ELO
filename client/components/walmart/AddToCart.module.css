@@ -5,8 +5,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 9999px;
-  border: 1px solid var(--ld-semantic-color-border-default, #74767C);
-  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-border-default);
+  background: var(--ld-semantic-color-surface);
   cursor: pointer;
   transition: transform 0.2s ease-out;
 }
@@ -25,10 +25,10 @@
 }
 
 .countText {
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   text-align: center;
-  font-family: var(--ld-semantic-font-family-sans, sans-serif);
-  font-size: 14px;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-small-size);
   font-weight: 700;
   line-height: 20px;
 }
@@ -41,8 +41,8 @@
   align-items: center;
   gap: 4px;
   border-radius: 9999px;
-  border: 1px solid var(--ld-semantic-color-border-default, #74767C);
-  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-border-default);
+  background: var(--ld-semantic-color-surface);
   transition: all 0.3s ease-out;
 }
 
@@ -54,14 +54,14 @@
   justify-content: center;
   align-items: center;
   border-radius: 9999px;
-  background: var(--ld-semantic-color-surface, #fff);
+  background: var(--ld-semantic-color-surface);
   border: none;
   cursor: pointer;
   transition: all 0.15s ease-out;
 }
 
 .stepperButton:hover {
-  background: var(--ld-semantic-color-fill-subtle, #F3F4F5);
+  background: var(--ld-semantic-color-fill-subtle);
 }
 
 .stepperButton:active {

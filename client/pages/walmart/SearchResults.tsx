@@ -16,7 +16,7 @@ const FILTER_CHIPS = ['In-store', 'Top rated', 'Brand', 'Screen size', 'Price', 
 const TOP_PRODUCTS: ProductCardListProps[] = [
   {
     flag: 'Best seller',
-    flagColor: '#0E002E',
+    flagVariant: 'default',
     price: '228',
     cents: '00',
     name: 'VIZIO 50" Class V-Series 4K UHD LED Smart TV V4K50M-08',
@@ -28,7 +28,7 @@ const TOP_PRODUCTS: ProductCardListProps[] = [
   },
   {
     flag: 'Rollback',
-    flagColor: '#EA1100',
+    flagVariant: 'red',
     price: '1,396',
     cents: '99',
     wasPrice: '$2,499.00',

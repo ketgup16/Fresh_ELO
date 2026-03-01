@@ -1,0 +1,92 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.bar::-webkit-scrollbar {
+  display: none;
+}
+
+.iconBtn {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  border: 1px solid var(--ld-semantic-color-separator);
+  background: var(--ld-semantic-color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ld-semantic-color-text);
+  transition: background-color 150ms;
+}
+
+.iconBtn:hover {
+  background: var(--ld-semantic-color-surface-hovered);
+}
+
+.sortBtn {
+  flex-shrink: 0;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--ld-semantic-color-separator);
+  background: var(--ld-semantic-color-surface);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  color: var(--ld-semantic-color-text);
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-small-size);
+  transition: background-color 150ms;
+}
+
+.sortBtn:hover {
+  background: var(--ld-semantic-color-surface-hovered);
+}
+
+.chip {
+  flex-shrink: 0;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--ld-semantic-color-separator);
+  background: var(--ld-semantic-color-surface);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  color: var(--ld-semantic-color-text);
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-small-size);
+  transition: background-color 150ms, border-color 150ms;
+}
+
+.chip:hover {
+  background: var(--ld-semantic-color-surface-hovered);
+}
+
+.chipActive {
+  background: var(--ld-semantic-color-fill-inverse);
+  border-color: var(--ld-semantic-color-fill-inverse);
+  color: var(--ld-semantic-color-text-inverse);
+}
+
+.chipActive:hover {
+  background: var(--ld-semantic-color-fill-inverse);
+  opacity: 0.9;
+}
+
+.chipIcon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}

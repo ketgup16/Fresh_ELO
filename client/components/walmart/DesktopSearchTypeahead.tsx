@@ -13,6 +13,7 @@ import {
   trendingSearches,
   frequentSearches,
 } from "@/components/walmart/searchData";
+import styles from "./DesktopSearchTypeahead.module.css";
 
 interface DesktopSearchTypeaheadProps {
   searchQuery: string;
@@ -23,7 +24,7 @@ interface DesktopSearchTypeaheadProps {
 }
 
 function Separator() {
-  return <div style={{ height: '1px', background: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />;
+  return <div className={styles.separator} />;
 }
 
 function HorizontalScrollSection({ children }: { children: React.ReactNode }) {
@@ -56,13 +57,13 @@ function HorizontalScrollSection({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className={styles.scrollRow}>
       {canScrollLeft && (
         <IconButton aria-label="Scroll left" variant="secondary" size="medium" onClick={() => scrollBy('left')}>
           <ChevronLeft className="w-4 h-4" />
         </IconButton>
       )}
-      <div ref={scrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide flex-1 pb-1">
+      <div ref={scrollRef} className={styles.scrollList}>
         {children}
       </div>
       {canScrollRight && (
@@ -107,7 +108,7 @@ export function DesktopSearchTypeahead({
   };
 
   return (
-    <div className="absolute top-full left-[-3px] right-[-3px] border-2 border-t-0 rounded-b-sm bg-white z-[101] max-h-[80vh] overflow-y-auto scrollbar-hide shadow-lg" style={{ borderColor: 'var(--ld-semantic-color-action-focus-outline, #0053E2)' }}>
+    <div className={styles.typeahead}>
       {searchQuery && filteredSuggestions.length > 0 ? (
         <SuggestionsList
           suggestions={filteredSuggestions}
@@ -136,25 +137,22 @@ function SuggestionsList({
   onSelect: (suggestion: string) => void;
 }) {
   return (
-    <div className="px-6 py-3">
-      <div className="flex flex-col">
+    <div className={styles.suggestionsWrap}>
+      <div>
         {suggestions.slice(0, 10).map((suggestion, index) => {
           const parts = renderHighlightedText(suggestion, query);
           return (
             <div key={index}>
               <button
                 onClick={() => onSelect(suggestion)}
-                className="flex items-center gap-3 py-2.5 w-full rounded px-2 transition-colors"
-                style={{ fontFamily: 'var(--ld-semantic-font-family-sans)' }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-surface-hovered, #F8F8F8)'}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                className={styles.suggestionRow}
               >
-                <div className="flex-1 text-left text-[14px] leading-[20px] overflow-hidden text-ellipsis whitespace-nowrap" style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
-                  {parts.before && <span className="font-bold">{parts.before}</span>}
-                  <span className="font-normal">{parts.match}</span>
-                  {parts.after && <span className="font-bold">{parts.after}</span>}
+                <div className={styles.suggestionText}>
+                  {parts.before && <span style={{ fontWeight: 700 }}>{parts.before}</span>}
+                  <span style={{ fontWeight: 400 }}>{parts.match}</span>
+                  {parts.after && <span style={{ fontWeight: 700 }}>{parts.after}</span>}
                 </div>
-                <ArrowUpLeft className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+                <ArrowUpLeft className={styles.suggestionIcon} />
               </button>
               {index < Math.min(suggestions.length, 10) - 1 && <Separator />}
             </div>
@@ -179,27 +177,23 @@ function DefaultContent({
   return (
     <div>
       {/* Keep shopping for */}
-      <section className="px-5 pt-5 pb-4">
-        <h3 className="text-[16px] font-bold mb-3" style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeading}>
           Keep shopping for {keepShoppingCategory}
         </h3>
         <HorizontalScrollSection>
           {keepShoppingFor.map((item) => (
-            <button key={item.label} className="flex flex-col items-center gap-1 flex-shrink-0 w-[72px]">
+            <button key={item.label} className={styles.tileButton}>
               {item.isFilter ? (
-                <div className="w-[72px] h-[72px] rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--ld-semantic-color-fill-subtle, #F1F1F2)' }}>
-                  <span className="text-[11px] text-center font-medium leading-tight px-1" style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
-                    {item.label}
-                  </span>
+                <div className={styles.tileFilter}>
+                  <span className={styles.tileFilterLabel}>{item.label}</span>
                 </div>
               ) : (
-                <div className="w-[72px] h-[72px] rounded-full bg-gray-100 overflow-hidden">
-                  <img src={item.image!} alt={item.label} className="w-full h-full object-cover" />
+                <div className={styles.tileImage}>
+                  <img src={item.image!} alt={item.label} className={styles.tileImageImg} />
                 </div>
               )}
-              <span className="text-[12px] text-center leading-tight line-clamp-2" style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
-                {item.label}
-              </span>
+              <span className={styles.tileLabel}>{item.label}</span>
             </button>
           ))}
         </HorizontalScrollSection>
@@ -208,17 +202,13 @@ function DefaultContent({
       <Separator />
 
       {/* Grab your usuals */}
-      <section className="px-5 py-4">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-[16px] font-bold" style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Grab your usuals</h3>
-          <a
-            href="/walmart"
-            className="flex items-center gap-1 text-[14px] underline hover:opacity-80 transition-opacity flex-shrink-0"
-            style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}
-          >
+      <section className={styles.sectionPadded}>
+        <div className={styles.sectionHeadingRow}>
+          <h3 className={styles.sectionHeading} style={{ margin: 0 }}>Grab your usuals</h3>
+          <button className={styles.myItemsLink}>
             <Heart className="w-4 h-4" />
             My items
-          </a>
+          </button>
         </div>
         <HorizontalScrollSection>
           {grabYourUsuals.map((term) => (
@@ -234,28 +224,25 @@ function DefaultContent({
       {/* Recent searches */}
       {recentSearches.length > 0 && (
         <>
-          <section className="px-5 py-4">
-            <h3 className="text-[16px] font-bold mb-1" style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Your recent searches</h3>
+          <section className={styles.sectionPadded}>
+            <h3 className={styles.sectionHeading}>Your recent searches</h3>
             <div>
               {recentSearches.map((search, index) => (
                 <div key={index}>
-                  <div className="flex items-center gap-3 py-2.5">
-                    <History className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+                  <div className={styles.recentRow}>
+                    <History className={styles.recentIcon} />
                     <button
                       onClick={() => onRecentClick(search)}
-                      className="flex-1 text-[14px] text-left hover:underline"
-                      style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}
+                      className={styles.recentButton}
                     >
                       {search}
                     </button>
                     <button
                       onClick={() => onRemoveRecent(index)}
-                      className="p-1 rounded-full transition-colors"
+                      className={styles.recentRemoveButton}
                       aria-label={`Remove ${search}`}
-                      onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--ld-semantic-color-surface-hovered, #F8F8F8)'}
-                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                     >
-                      <X className="w-3.5 h-3.5" style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+                      <X className="w-3.5 h-3.5" />
                     </button>
                   </div>
                   {index < recentSearches.length - 1 && <Separator />}
@@ -268,8 +255,8 @@ function DefaultContent({
       )}
 
       {/* Trending */}
-      <section className="px-5 py-4">
-        <h3 className="text-[16px] font-bold mb-3" style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Trending</h3>
+      <section className={styles.sectionPadded}>
+        <h3 className={styles.sectionHeading}>Trending</h3>
         <HorizontalScrollSection>
           {trendingSearches.map((term) => (
             <Button key={term} variant="secondary" size="small" onClick={() => onChipClick(term)}>
@@ -282,8 +269,8 @@ function DefaultContent({
       <Separator />
 
       {/* Frequent searches */}
-      <section className="px-5 py-4">
-        <h3 className="text-[16px] font-bold mb-3" style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Your frequent searches</h3>
+      <section className={styles.sectionPadded}>
+        <h3 className={styles.sectionHeading}>Your frequent searches</h3>
         <HorizontalScrollSection>
           {frequentSearches.map((term) => (
             <Button key={term} variant="secondary" size="small" onClick={() => onChipClick(term)}>

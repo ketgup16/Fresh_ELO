@@ -19,7 +19,7 @@ const LIST_PRODUCTS = [
   {
     name: "Kellogg's Frosted Flakes, Breakfast Cereal, Original, Family Size, 13.5 oz",
     price: '3', cents: '68', unitPrice: '$4.36/lb',
-    flag: 'Best seller', flagColor: '#0E002E',
+    flag: 'Best seller', flagVariant: 'default',
     rating: 4.7, ratingCount: '12,234',
     image: `${CDN}783f38e6d773461b95706408b1a14434?format=webp&width=400`,
     pickup: '2 pm', ebt: true,
@@ -34,7 +34,7 @@ const LIST_PRODUCTS = [
   {
     name: "Post Honey Bunches of Oats with Almonds Cereal, 18 oz",
     price: '3', cents: '48', unitPrice: '$3.09/lb',
-    flag: 'Rollback', flagColor: '#EA1100', wasPrice: '$4.28',
+    flag: 'Rollback', flagVariant: 'red', wasPrice: '$4.28',
     rating: 4.5, ratingCount: '6,442',
     image: `${CDN}783f38e6d773461b95706408b1a14434?format=webp&width=400`,
     pickup: 'Tomorrow', ebt: true,
@@ -54,7 +54,7 @@ const GRID_PRODUCTS = [
   {
     name: "Sofia Jeans Women's Knit Midi Dress with Flutter Sleeves",
     price: '24', cents: '98',
-    flag: 'Best seller', flagColor: '#0E002E',
+    flag: 'Best seller', flagVariant: 'default',
     rating: 4.6, ratingCount: '3,892',
     image: `${CDN}4b7f2d27b5e7432fa6f5c9c16e80e3b2?format=webp&width=400`,
     pickup: '2 pm',
@@ -62,7 +62,7 @@ const GRID_PRODUCTS = [
   {
     name: "Scoop Women's Printed Mesh Maxi Dress",
     price: '34', cents: '00', wasPrice: '$48.00',
-    flag: 'Rollback', flagColor: '#EA1100',
+    flag: 'Rollback', flagVariant: 'red',
     rating: 4.2, ratingCount: '856',
     image: `${CDN}4b7f2d27b5e7432fa6f5c9c16e80e3b2?format=webp&width=400`,
   },

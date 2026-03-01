@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Filter, SortingArrows, Grid, ChevronDown } from "@/components/icons";
+import styles from "./SearchFilterBar.module.css";
 
 interface SearchFilterBarProps {
   chips: readonly string[];
@@ -15,24 +16,15 @@ export function SearchFilterBar({ chips }: SearchFilterBarProps) {
   };
 
   return (
-    <div className="flex items-center gap-2 px-3 py-2 border-b border-border overflow-x-auto scrollbar-hide">
-      <button
-        className="flex-shrink-0 w-8 h-8 rounded-full border border-border flex items-center justify-center"
-        aria-label="All filters"
-      >
+    <div className={styles.bar}>
+      <button className={styles.iconBtn} aria-label="All filters">
         <Filter className="w-4 h-4" />
       </button>
-      <button
-        className="flex-shrink-0 h-8 px-3 rounded-full border border-border flex items-center gap-1"
-        aria-label="Sort"
-      >
+      <button className={styles.sortBtn} aria-label="Sort">
         <SortingArrows className="w-4 h-4" />
-        <span className="text-[14px]">Sort</span>
+        <span>Sort</span>
       </button>
-      <button
-        className="flex-shrink-0 w-8 h-8 rounded-full border border-border flex items-center justify-center"
-        aria-label="Grid view"
-      >
+      <button className={styles.iconBtn} aria-label="Grid view">
         <Grid className="w-4 h-4" />
       </button>
       {chips.map((chip) => {
@@ -41,14 +33,10 @@ export function SearchFilterBar({ chips }: SearchFilterBarProps) {
           <button
             key={chip}
             onClick={() => toggleFilter(chip)}
-            className={`flex-shrink-0 h-8 px-3 rounded-full flex items-center gap-1 ${
-              isActive
-                ? "bg-foreground text-white border border-foreground"
-                : "border border-border"
-            }`}
+            className={[styles.chip, isActive ? styles.chipActive : ''].filter(Boolean).join(' ')}
           >
-            <span className="text-[14px]">{chip}</span>
-            <ChevronDown className="w-3 h-3" />
+            <span>{chip}</span>
+            <ChevronDown className={styles.chipIcon} />
           </button>
         );
       })}

@@ -1,11 +1,11 @@
 .card {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border: 1px solid var(--ld-semantic-color-separator);
   border-radius: 8px;
   overflow: hidden;
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  background: var(--ld-semantic-color-surface);
+  font-family: var(--ld-semantic-font-family-sans);
 }
 
 /* Card body */
@@ -17,9 +17,7 @@
 }
 
 @media (min-width: 1024px) {
-  .cardBody {
-    gap: 40px;
-  }
+  .cardBody { gap: 40px; }
 }
 
 .leftCol {
@@ -44,7 +42,7 @@
   gap: 10px;
   font-size: 12px;
   font-weight: 400;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
 }
 
 .orderTypeChipText {
@@ -56,7 +54,7 @@
 .eyebrow {
   font-size: 12px;
   font-weight: 400;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   line-height: 16px;
 }
 
@@ -69,28 +67,28 @@
 
 .location {
   font-size: 12px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
 }
 
 .seller {
   font-size: 12px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
 }
 
 /* Status heading */
 .statusHeading {
   font-size: 32px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   line-height: 40px;
   margin: 0;
 }
 
 .statusHeadingDelayed {
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
 }
 
-/* Return alert wrapper — provides top margin */
+/* Return alert wrapper */
 .returnAlertWrap {
   margin-top: 4px;
 }
@@ -114,7 +112,7 @@
   height: 60px;
   object-fit: contain;
   border-radius: 4px;
-  background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
+  background: var(--ld-semantic-color-fill-subtle);
 }
 
 /* Service details (auto Care appointments) */
@@ -128,7 +126,7 @@
 .vehicleLabel {
   font-size: 14px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   line-height: 20px;
 }
 
@@ -144,7 +142,7 @@
 .serviceItem {
   font-size: 14px;
   font-weight: 400;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   line-height: 20px;
   display: flex;
   align-items: center;
@@ -157,7 +155,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--ld-semantic-color-text-subtle, #74767C);
+  background: var(--ld-semantic-color-text-subtle);
   flex-shrink: 0;
 }
 
@@ -176,7 +174,7 @@
   justify-content: center;
 }
 
-/* ── Rating section ────────────────────────────────────────────────────────── */
+/* ── Rating section ── */
 .ratingSection {
   padding: 14px 16px;
   display: flex;
@@ -187,30 +185,28 @@
 .ratingTitle {
   font-size: 14px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
   line-height: 20px;
 }
 
 .ratingSubtitle {
   font-size: 13px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   margin: 0;
   line-height: 18px;
 }
 
-/* Interactive overlay wrapper — LD Rating renders visually, buttons handle input */
+/* Interactive overlay wrapper */
 .starsWrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
   margin-top: 8px;
-  /* 5 stars × 20px + 4 gaps × 8px = 132px */
   width: calc(5 * 20px + 4 * 8px);
   height: 24px;
 }
 
-/* Override Rating component's internal gap: 0 */
 .ratingDisplay {
   pointer-events: none;
   gap: 8px !important;
@@ -236,14 +232,14 @@
 }
 
 .starOverlayBtn:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071DC);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
 }
 
 .ratingThankYou {
   font-size: 14px;
   font-weight: 600;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
   line-height: 20px;
 }
@@ -255,9 +251,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
-  background: var(--ld-semantic-color-background-subtle, #F2F3F3);
+  font-size: var(--ld-semantic-font-body-small-size);
+  line-height: var(--ld-semantic-font-body-small-lineheight);
+  background: var(--ld-semantic-color-background-subtle);
 }
 
 .footerSpacer {
@@ -267,45 +263,40 @@
 .orderTotal {
   font-size: 13px;
   font-weight: 400;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
 }
 
-/* Mobile-only chevron — hidden on desktop */
+/* Mobile-only chevron */
 .mobileChevron {
   display: none;
 }
 
 @media (max-width: 1023px) {
-  /* Show chevron, push it to the far right of the chip row */
   .mobileChevron {
     display: block;
     margin-left: auto;
     flex-shrink: 0;
-    color: var(--ld-semantic-color-text-subtle, #74767C);
+    color: var(--ld-semantic-color-text-subtle);
     width: 20px;
     height: 20px;
   }
 
-  /* Smaller fulfillment icon on mobile */
   .orderTypeChip img {
     width: 40px;
     height: 40px;
   }
 
-  /* Status heading smaller */
   .statusHeading {
     font-size: 17px;
     line-height: 24px;
   }
 
-  /* Card body stays as row on mobile — icon + text + chevron */
   .cardBody {
     flex-direction: column;
     align-items: stretch;
     padding: 12px 16px;
   }
 
-  /* Actions go full-width below */
   .rightCol {
     width: 100%;
     min-width: unset;
@@ -319,7 +310,6 @@
     justify-content: center;
   }
 
-  /* Tighter product images */
   .products {
     flex-wrap: nowrap;
     overflow-x: auto;

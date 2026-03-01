@@ -9,9 +9,8 @@
   justify-content: space-between;
   gap: 8px;
   align-self: stretch;
-  /* Figma: warning/amber surface */
-  background: var(--ld-semantic-color-feedback-warning-fill-subtle, #FFF3C4);
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  background: var(--ld-semantic-color-feedback-warning-fill-subtle);
+  font-family: var(--ld-semantic-font-family-sans);
 }
 
 .inner {
@@ -23,10 +22,10 @@
 }
 
 .message {
-  font-size: 14px;
+  font-size: var(--ld-semantic-font-body-small-size);
   font-weight: 700;
   line-height: 20px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -34,6 +33,6 @@
 
 .cta {
   flex-shrink: 0;
-  font-size: 14px;
+  font-size: var(--ld-semantic-font-body-small-size);
   font-weight: 400;
 }

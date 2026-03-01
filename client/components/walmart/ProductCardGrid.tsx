@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Heart, HeartFill } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import { Rating } from "@/components/ui/Rating";
+import styles from "./ProductCardGrid.module.css";
 
 export interface ProductCardGridProps {
   image: string;
@@ -10,7 +11,7 @@ export interface ProductCardGridProps {
   cents: string;
   wasPrice?: string;
   flag?: string;
-  flagColor?: string;
+  flagVariant?: 'default' | 'red';
   rating: number;
   ratingCount: string;
   pickup?: string;
@@ -24,7 +25,7 @@ export function ProductCardGrid({
   cents,
   wasPrice,
   flag,
-  flagColor,
+  flagVariant = 'default',
   rating,
   ratingCount,
   pickup,
@@ -33,83 +34,72 @@ export function ProductCardGrid({
   const [isFavorited, setIsFavorited] = useState(false);
 
   return (
-    <div className="border border-border rounded-2xl shadow-sm overflow-hidden">
+    <div className={styles.card}>
       {/* Image area */}
-      <div className="h-[220px] relative bg-gray-50 flex items-center justify-center">
+      <div className={styles.imageArea}>
         {flag && (
-          <div className="absolute top-2 left-2 z-10">
-            <div
-              style={{ backgroundColor: flagColor || "#0E002E" }}
-              className="px-2 py-0.5 rounded text-[11px] font-bold text-white"
-            >
-              {flag}
-            </div>
+          <div className={[styles.flag, flagVariant === 'red' ? styles.flagRed : ''].filter(Boolean).join(' ')}>
+            {flag}
           </div>
         )}
         <button
-          className="absolute top-2 right-2 z-10 w-7 h-7 rounded-full bg-white shadow flex items-center justify-center"
+          className={styles.favoriteButton}
           onClick={() => setIsFavorited(!isFavorited)}
           aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
         >
           {isFavorited ? (
-            <HeartFill className="w-4 h-4 text-[#E11900]" />
+            <HeartFill className={styles.heartFilled} />
           ) : (
-            <Heart className="w-4 h-4 text-muted-foreground" />
+            <Heart className={styles.heartEmpty} />
           )}
         </button>
-        <img
-          src={image}
-          alt={name}
-          className="w-[160px] h-[200px] object-contain"
-        />
+        <img src={image} alt={name} className={styles.productImage} />
       </div>
 
       {/* Content */}
-      <div className="p-2">
+      <div className={styles.content}>
         {/* Price */}
-        <div className="text-[20px] font-bold leading-5 mb-1">
+        <div className={styles.priceRow}>
           {wasPrice ? (
             <>
-              <span className="text-[14px] align-top text-[var(--ld-semantic-color-text-accent-green,#2A8703)]">
-                Now $
-              </span>
-              <span className="text-[var(--ld-semantic-color-text-accent-green,#2A8703)]">{price}</span>
-              <span className="text-[14px] align-top text-[var(--ld-semantic-color-text-accent-green,#2A8703)]">
-                {cents}
-              </span>{" "}
-              <span className="text-[14px] text-muted-foreground line-through">{wasPrice}</span>
+              <span className={`${styles.priceSup} ${styles.priceAccent}`}>Now $</span>
+              <span className={styles.priceAccent}>{price}</span>
+              <span className={`${styles.priceSup} ${styles.priceAccent}`}>{cents}</span>
+              {' '}
+              <span className={styles.priceStrike}>{wasPrice}</span>
             </>
           ) : (
             <>
-              <span className="text-[14px] align-top">$</span>
+              <span className={styles.priceSup}>$</span>
               {price}
-              <span className="text-[14px] align-top">{cents}</span>
+              <span className={styles.priceSup}>{cents}</span>
             </>
           )}
         </div>
 
-        <p className="text-[14px] text-foreground line-clamp-2 mb-1">{name}</p>
+        <p className={styles.productName}>{name}</p>
 
-        <div className="flex items-center gap-1">
+        <div className={styles.ratingRow}>
           <Rating value={rating} size="small" />
-          <span className="text-[12px] text-muted-foreground">{ratingCount}</span>
+          <span className={styles.ratingCount}>{ratingCount}</span>
         </div>
 
         {pickup && (
-          <p className="text-[12px] text-foreground mt-1">
-            Pickup <span className="font-bold">{pickup}</span>
+          <p className={styles.pickup}>
+            Pickup <span className={styles.pickupBold}>{pickup}</span>
           </p>
         )}
 
-        <Button
-          variant="primary"
-          size="small"
-          isFullWidth
-          UNSAFE_className="mt-2"
-          onClick={onAddToCart}
-        >
-          Add to cart
-        </Button>
+        <div className={styles.addToCart}>
+          <Button
+            variant="primary"
+            size="small"
+            isFullWidth
+            onClick={onAddToCart}
+          >
+            Add to cart
+          </Button>
+        </div>
       </div>
     </div>
   );

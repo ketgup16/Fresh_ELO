@@ -4,11 +4,11 @@
   flex-direction: column;
   gap: 10px;
   padding: 12px 16px;
-  background-color: var(--ld-semantic-color-top-nav-fill, #0071DC);
+  background-color: var(--ld-semantic-color-top-nav-fill);
   position: sticky;
   top: 0;
   z-index: 100;
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-family: var(--ld-semantic-font-family-sans);
 }
 
 /* Hide on desktop — DesktopHeader takes over */
@@ -41,7 +41,7 @@
   border: none;
   cursor: pointer;
   border-radius: 50%;
-  color: var(--ld-primitive-color-white, #fff);
+  color: var(--ld-semantic-color-text-inverse);
   transition: background 100ms;
   flex-shrink: 0;
 }
@@ -51,7 +51,7 @@
 }
 
 .cartButton:focus-visible {
-  outline: 2px solid var(--ld-primitive-color-white, #fff);
+  outline: 2px solid var(--ld-semantic-color-text-inverse);
   outline-offset: 2px;
 }
 
@@ -64,14 +64,14 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: var(--ld-primitive-color-white, #fff);
+  background: var(--ld-semantic-color-surface);
   border-radius: 9999px;
   padding: 8px 16px;
   height: 40px;
 }
 
 .searchIcon {
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   flex-shrink: 0;
 }
 
@@ -80,16 +80,15 @@
   border: none;
   outline: none;
   background: transparent;
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 14px;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-small-size);
   line-height: 20px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   min-width: 0;
 }
 
 .searchInput::placeholder {
-  color: var(--ld-semantic-color-text-subtle, #74767C);
-  font-size: 13px;
+  color: var(--ld-semantic-color-text-subtle);
 }
 
 /* Remove browser default search input clear button */
