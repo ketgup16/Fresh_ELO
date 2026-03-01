@@ -124,7 +124,7 @@ export default function ThemeEditorPage() {
         <PageHeader
           section="Tools"
           title="Theme Editor"
-          description="Override semantic tokens in real time. Changes stack on top of the active theme via CSS cascade and persist across sessions via localStorage. Only semantic tokens (--ld-semantic-* and --wcp-semantic-*) are editable — primitive and scale tokens are fixed by design."
+          description="Override semantic tokens using values from the primitive color palette. Pick any primitive token (e.g. blue-100, spark-100) as the new value — no arbitrary hex. Changes apply instantly via CSS cascade and persist across sessions. Scale and primitive tokens are not editable."
         />
 
         {/* Toolbar */}

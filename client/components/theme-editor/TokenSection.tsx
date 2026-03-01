@@ -64,6 +64,7 @@ export function TokenSection({
               token={token}
               label={label}
               isOverridden={overrides[token] !== undefined}
+              overrideValue={overrides[token]}
               onSet={onSet}
               onReset={onReset}
               getCurrentValue={getCurrentValue}
