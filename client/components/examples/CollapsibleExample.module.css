@@ -77,14 +77,21 @@
   background-color: var(--ld-semantic-color-fill-surface-primary);
 }
 
-/* ─── Inline expandable text ─── */
-.inlineText {
+/* ─── Shared text base (always applied) ─── */
+.expandableText {
   font-size: 15px;
   line-height: 1.5;
   font-family: var(--ld-semantic-font-family-sans);
   color: var(--ld-semantic-color-text-primary);
+  margin: 0 0 4px;
 }
 
+/* ─── Inline variant ─── */
+.inlineText {
+  /* inherits .expandableText */
+}
+
+/* Applied only when collapsed */
 .inlineClamped {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -96,7 +103,7 @@
 .inlineMore {
   float: right;
   clear: both;
-  margin-top: -1.5em; /* Pull up to sit on the last line */
+  margin-top: -1.5em;
   background: linear-gradient(
     to right,
     transparent,
@@ -106,14 +113,10 @@
   white-space: nowrap;
 }
 
-/* ─── Block expandable text ─── */
+/* ─── Block variant ─── */
+/* Applied only when collapsed — base styles come from .expandableText */
 .blockClamped {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  font-size: 15px;
-  line-height: 1.5;
-  font-family: var(--ld-semantic-font-family-sans);
-  color: var(--ld-semantic-color-text-primary);
-  margin: 0 0 4px;
 }

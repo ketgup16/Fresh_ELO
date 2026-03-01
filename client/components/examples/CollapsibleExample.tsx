@@ -18,7 +18,7 @@ const MEDIUM_TEXT =
 function InlineExpandableText({ text, lines = 1 }: { text: string; lines?: number }) {
   const [expanded, setExpanded] = React.useState(false);
   return (
-    <div className={styles.inlineText}>
+    <div className={styles.expandableText}>
       {expanded ? (
         <>
           <span>{text}</span>
@@ -26,7 +26,10 @@ function InlineExpandableText({ text, lines = 1 }: { text: string; lines?: numbe
           <LinkButton onClick={() => setExpanded(false)}>Show less</LinkButton>
         </>
       ) : (
-        <span className={styles.inlineClamped} style={{ WebkitLineClamp: lines } as React.CSSProperties}>
+        <span
+          className={styles.inlineClamped}
+          style={{ WebkitLineClamp: lines } as React.CSSProperties}
+        >
           {text}
           <span className={styles.inlineMore}>
             {'… '}
@@ -44,7 +47,7 @@ function BlockExpandableText({ text, lines = 2 }: { text: string; lines?: number
   return (
     <div>
       <p
-        className={expanded ? undefined : styles.blockClamped}
+        className={[styles.expandableText, !expanded ? styles.blockClamped : ''].join(' ')}
         style={!expanded ? ({ WebkitLineClamp: lines } as React.CSSProperties) : undefined}
       >
         {text}
