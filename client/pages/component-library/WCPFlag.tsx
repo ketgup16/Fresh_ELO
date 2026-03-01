@@ -1,6 +1,40 @@
 import React from 'react';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { WCPFlag, WCP_FLAG_VARIANTS, type WCPFlagVariant } from '@/components/walmart/WCPFlag';
+import {
+  Tag,
+  Star,
+  StarFill,
+  Spark,
+  Dollar,
+  Coupon,
+  ShieldCheck,
+  Rocket,
+  Store,
+  BoxSpark,
+  ArrowUp,
+} from '@/components/icons';
+
+// ─── Icon size shared across all flag examples ────────────────────────────────
+
+const ICON_SIZE = { width: 16, height: 16 } as const;
+
+// ─── Per-variant icon map ─────────────────────────────────────────────────────
+
+const VARIANT_ICONS: Record<WCPFlagVariant, React.ReactNode> = {
+  'neutral':           <Tag           {...ICON_SIZE} />,
+  'brand-outlined':    <Star          {...ICON_SIZE} />,
+  'member-subtle':     <Spark         {...ICON_SIZE} />,
+  'savings':           <Dollar        {...ICON_SIZE} />,
+  'savings-outlined':  <Coupon        {...ICON_SIZE} />,
+  'confidence-subtle': <ShieldCheck   {...ICON_SIZE} />,
+  'express-subtle':    <Rocket        {...ICON_SIZE} />,
+  'brand':             <Store         {...ICON_SIZE} />,
+  'brand-bold':        <BoxSpark      {...ICON_SIZE} />,
+  'member':            <Spark         {...ICON_SIZE} />,
+  'dark':              <StarFill      {...ICON_SIZE} />,
+  'trending':          <ArrowUp       {...ICON_SIZE} />,
+};
 
 // ─── Grid layout ─────────────────────────────────────────────────────────────
 
@@ -68,7 +102,7 @@ export default function WCPFlagPage() {
                   border: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
                 }}
               >
-                <WCPFlag variant={variant} label="Flag name" />
+                <WCPFlag variant={variant} label="Flag name" leadingIcon={VARIANT_ICONS[variant]} />
                 <span style={{
                   fontSize: '11px',
                   fontFamily: 'monospace',
@@ -148,7 +182,7 @@ export default function WCPFlagPage() {
               >
                 {/* Preview */}
                 <div>
-                  <WCPFlag variant={meta.variant} label="Flag name" />
+                  <WCPFlag variant={meta.variant} label="Flag name" leadingIcon={VARIANT_ICONS[meta.variant]} />
                 </div>
 
                 {/* Variant name */}
@@ -216,7 +250,7 @@ export default function WCPFlagPage() {
             border: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
           }}>
             {WCP_FLAG_VARIANTS.map(m => (
-              <WCPFlag key={m.variant} variant={m.variant} label={m.label} />
+              <WCPFlag key={m.variant} variant={m.variant} label={m.label} leadingIcon={VARIANT_ICONS[m.variant]} />
             ))}
           </div>
         </section>

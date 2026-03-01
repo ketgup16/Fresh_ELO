@@ -49,30 +49,6 @@ export interface WCPFlagProps {
   className?: string;
 }
 
-// ─── Placeholder icon ─────────────────────────────────────────────────────────
-
-/**
- * Placeholder flag icon — matches the small square icon shown in the design.
- * Uses currentColor so it inherits the variant's text color.
- */
-function FlagPlaceholderIcon() {
-  return (
-    <svg
-      width="20"
-      height="16"
-      viewBox="0 0 20 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      className={styles.icon}
-    >
-      <rect x="0.5" y="0.5" width="19" height="15" rx="1.5" stroke="currentColor" strokeOpacity="0.4" />
-      <rect x="2" y="2" width="6" height="5" rx="0.5" fill="currentColor" fillOpacity="0.25" />
-      <path d="M2 10h16M2 13h10" stroke="currentColor" strokeOpacity="0.4" strokeWidth="1" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function WCPFlag({
@@ -87,13 +63,13 @@ export function WCPFlag({
       className={[styles.flag, styles[variant], className].filter(Boolean).join(' ')}
       data-variant={variant}
     >
-      <span className={styles.iconWrap}>
-        {leadingIcon ?? <FlagPlaceholderIcon />}
-      </span>
+      {leadingIcon && (
+        <span className={styles.iconWrap}>{leadingIcon}</span>
+      )}
       <span className={styles.label}>{label}</span>
-      <span className={styles.iconWrap}>
-        {trailingIcon ?? <FlagPlaceholderIcon />}
-      </span>
+      {trailingIcon && (
+        <span className={styles.iconWrap}>{trailingIcon}</span>
+      )}
     </span>
   );
 }
