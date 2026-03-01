@@ -7,18 +7,19 @@
 
 /* ─── Label ─── */
 .label {
+  font-family: var(--ld-semantic-font-body-small-family);
   font-size: var(--ld-semantic-font-body-small-size);
-  font-weight: 700;
-  font-family: var(--ld-semantic-font-family-sans);
+  font-weight: var(--ld-semantic-font-body-small-weight-alt, 700);
+  line-height: var(--ld-semantic-font-body-small-lineheight);
   color: var(--ld-semantic-color-text);
-  margin-bottom: 4px;
+  margin-bottom: var(--ld-primitive-scale-space-50, 4px);
 }
 
 .labelDisabled {
   color: var(--ld-semantic-color-text-disabled);
 }
 
-/* ─── Input container ─── */
+/* ─── Input container — mirrors TextField field-* token family ─── */
 .container {
   display: flex;
   align-items: center;
@@ -27,35 +28,52 @@
   padding: 8px 16px;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 4px;
-  border: 1.5px solid var(--ld-semantic-color-border-strong);
-  background: var(--ld-semantic-color-surface);
+  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
+  border: var(--ld-semantic-scale-borderwidth-interactive, 1px) solid var(--ld-semantic-color-field-border);
+  background: var(--ld-semantic-color-field-fill);
   overflow: hidden;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-width 0.2s ease-in-out;
 }
 
-.container:focus-within {
-  border-color: var(--ld-semantic-color-action-focus-outline);
-  box-shadow: 0 0 0 2px var(--ld-semantic-color-action-focus-outline);
+.container:hover:not(.containerDisabled):not(.containerReadOnly) {
+  border-width: var(--ld-semantic-scale-borderwidth-interactive-hovered, 2px);
+  border-color: var(--ld-semantic-color-field-border-hovered);
+  background: var(--ld-semantic-color-field-fill-hovered);
+}
+
+.container:focus-within:not(.containerDisabled):not(.containerReadOnly) {
+  border-width: var(--ld-semantic-scale-borderwidth-interactive-focused, 2px);
+  border-color: var(--ld-semantic-color-field-border-focused);
+  background: var(--ld-semantic-color-field-fill-focused);
 }
 
 .containerError {
-  border-color: var(--ld-semantic-color-text-negative);
+  border-color: var(--ld-semantic-color-field-border-negative);
+  background: var(--ld-semantic-color-field-fill-negative);
 }
 
-.containerError:focus-within {
-  border-color: var(--ld-semantic-color-text-negative);
-  box-shadow: 0 0 0 2px var(--ld-semantic-color-text-negative);
+.containerError:hover:not(.containerDisabled) {
+  border-width: var(--ld-semantic-scale-borderwidth-interactive-hovered, 2px);
+  border-color: var(--ld-semantic-color-field-border-negative-hovered);
+  background: var(--ld-semantic-color-field-fill-negative-hovered);
+}
+
+.containerError:focus-within:not(.containerDisabled) {
+  border-width: var(--ld-semantic-scale-borderwidth-interactive-focused, 2px);
+  border-color: var(--ld-semantic-color-field-border-negative-focused);
+  background: var(--ld-semantic-color-field-fill-negative-focused);
 }
 
 .containerDisabled {
-  border-color: var(--ld-semantic-color-separator);
-  background: var(--ld-semantic-color-fill-subtle);
+  border-width: var(--ld-semantic-scale-borderwidth-interactive, 1px);
+  border-color: var(--ld-semantic-color-field-border-disabled);
+  background: var(--ld-semantic-color-field-fill-disabled);
   cursor: not-allowed;
 }
 
 .containerReadOnly {
-  border-color: var(--ld-semantic-color-separator);
+  border-color: var(--ld-semantic-color-field-border-disabled);
+  background: var(--ld-semantic-color-field-fill);
 }
 
 /* ─── Country code trigger button ─── */
@@ -68,7 +86,7 @@
   cursor: pointer;
   padding: 0;
   flex-shrink: 0;
-  color: var(--ld-semantic-color-text);
+  color: var(--ld-semantic-color-field-text-onfill);
 }
 
 .countryTrigger:disabled {
@@ -88,25 +106,25 @@
 .triggerDialCode {
   font-size: var(--ld-semantic-font-body-medium-size);
   font-family: var(--ld-semantic-font-family-sans);
-  color: var(--ld-semantic-color-text);
+  color: var(--ld-semantic-color-field-text-onfill);
   font-weight: 400;
   white-space: nowrap;
 }
 
 .containerDisabled .triggerAbbr,
 .containerDisabled .triggerDialCode {
-  color: var(--ld-semantic-color-text-disabled);
+  color: var(--ld-semantic-color-field-text-onfill-disabled);
 }
 
 .caret {
   width: 16px;
   height: 16px;
-  color: var(--ld-semantic-color-text);
+  color: var(--ld-semantic-color-field-text-onfill);
   flex-shrink: 0;
 }
 
 .containerDisabled .caret {
-  color: var(--ld-semantic-color-text-disabled);
+  color: var(--ld-semantic-color-field-text-onfill-disabled);
 }
 
 /* ─── Divider ─── */
@@ -124,9 +142,10 @@
   outline: none;
   background: transparent;
   font-size: var(--ld-semantic-font-body-medium-size);
-  font-family: var(--ld-semantic-font-family-sans);
-  color: var(--ld-semantic-color-text);
-  font-weight: 400;
+  font-family: var(--ld-semantic-font-body-medium-family);
+  color: var(--ld-semantic-color-field-text-onfill);
+  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-medium-lineheight);
   min-width: 0;
 }
 
@@ -136,7 +155,7 @@
 
 .phoneInput:disabled {
   cursor: not-allowed;
-  color: var(--ld-semantic-color-text-disabled);
+  color: var(--ld-semantic-color-field-text-onfill-disabled);
 }
 
 @media (max-width: 480px) {
@@ -148,11 +167,12 @@
 
 /* ─── Helper text ─── */
 .helperText {
+  font-family: var(--ld-semantic-font-caption-family);
   font-size: var(--ld-semantic-font-caption-size);
-  font-family: var(--ld-semantic-font-family-sans);
+  font-weight: var(--ld-semantic-font-caption-weight-default, 400);
+  line-height: var(--ld-semantic-font-caption-lineheight);
   color: var(--ld-semantic-color-text-subtle);
-  margin: 4px 0 0;
-  line-height: 1.33;
+  margin: var(--ld-primitive-scale-space-50, 4px) 0 0;
 }
 
 .helperTextDisabled {
@@ -176,8 +196,9 @@
 }
 
 .errorText {
+  font-family: var(--ld-semantic-font-caption-family);
   font-size: var(--ld-semantic-font-caption-size);
-  font-family: var(--ld-semantic-font-family-sans);
+  font-weight: var(--ld-semantic-font-caption-weight-default, 400);
+  line-height: var(--ld-semantic-font-caption-lineheight);
   color: var(--ld-semantic-color-text-negative);
-  line-height: 1.33;
 }
