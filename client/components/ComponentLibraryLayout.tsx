@@ -107,6 +107,7 @@ const navigationSections: NavSection[] = [
     titleKey: 'componentLibrary.patterns',
     items: [
       { id: 'order-card-patterns', nameKey: 'componentLibrary.navOrderCardPatterns', path: '/component-library/order-card-patterns' },
+      { id: 'wcp-country', nameKey: 'componentLibrary.navWCPCountry', path: '/component-library/wcp-country' },
     ]
   }
 ];

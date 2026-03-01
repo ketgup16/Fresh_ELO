@@ -97,6 +97,7 @@ const ThemesPage = React.lazy(() => import("./pages/component-library/Themes"));
 const TogglePage = React.lazy(() => import("./pages/component-library/Toggle"));
 const OrderCardPatternsPage = React.lazy(() => import("./pages/component-library/OrderCardPatterns"));
 const BasicBannerPage = React.lazy(() => import("./pages/component-library/BasicBanner"));
+const WCPCountryComponentsPage = React.lazy(() => import("./pages/component-library/WCPCountryComponents"));
 
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
@@ -184,6 +185,7 @@ const App = () => (
                 <Route path="toggle" element={<TogglePage />} />
                 <Route path="order-card-patterns" element={<OrderCardPatternsPage />} />
                 <Route path="basic-banner" element={<BasicBannerPage />} />
+                <Route path="wcp-country" element={<WCPCountryComponentsPage />} />
               </Route>
 
               {/* Walmart pages */}

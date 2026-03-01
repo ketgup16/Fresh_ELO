@@ -1,0 +1,204 @@
+/* ─── Overlay backdrop ─── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 500;
+}
+
+/* ─── Sheet ─── */
+.sheet {
+  width: 100%;
+  max-width: 768px;
+  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.10), 0 5px 10px 3px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+/* ─── Header ─── */
+.header {
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 8px 8px 56px; /* left pad balances the close button width */
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-size: var(--ld-semantic-font-heading-small-size, 18px);
+  font-weight: 700;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  margin: 0;
+  line-height: 1.33;
+}
+
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.closeBtn:hover {
+  background: var(--ld-semantic-color-fill-surface-hover, #f2f2f2);
+}
+
+/* ─── Scrollable content ─── */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px 16px;
+}
+
+/* ─── Country lists ─── */
+.listFlat,
+.listSlot {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.listFlat {
+  gap: 0;
+}
+
+.listSlot {
+  gap: 8px;
+}
+
+/* ─── Country rows — flat ─── */
+.countryRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.countryRowFlat {
+  padding: 8px 4px;
+}
+
+.countryRowFlat:hover {
+  background: var(--ld-semantic-color-fill-surface-hover, #f2f2f2);
+}
+
+/* ─── Country rows — slot (card with shadow) ─── */
+.countryRowSlot {
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+}
+
+.countryRowSlot:hover {
+  box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 1px rgba(0, 0, 0, 0.18);
+}
+
+/* ─── Radio button ─── */
+.radio {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.radioEmpty {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ld-semantic-color-text-primary, #2e2f32);
+  background: #fff;
+}
+
+.radioSelected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--ld-semantic-color-text-primary, #2e2f32);
+  border: 2px solid var(--ld-semantic-color-text-primary, #2e2f32);
+}
+
+.radioDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* ─── Flag ─── */
+.flag {
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ─── Country name ─── */
+.countryName {
+  flex: 1;
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.countryNameSelected {
+  font-weight: 700;
+}
+
+/* ─── Dial code ─── */
+.dialCode {
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  font-weight: 400;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ─── Footer ─── */
+.footer {
+  flex-shrink: 0;
+}
+
+.divider {
+  height: 1px;
+  background: var(--ld-semantic-color-border-subtle, #e6e6e8);
+}
+
+.footerInner {
+  padding: 16px;
+}
