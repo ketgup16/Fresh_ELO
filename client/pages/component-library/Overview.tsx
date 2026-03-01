@@ -189,13 +189,14 @@ export default function ComponentLibraryOverview() {
   const patternEntries = filteredSections.filter(s => patternComponents.find(p => p.path === s.path));
 
   return (
-    <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      {/* Header */}
+    <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+      {/* Header — full-width, no horizontal padding on parent */}
       <PageHeader
         section={t('componentLibrary.gettingStarted')}
         title={t('componentLibrary.overviewTitle')}
         description={t('componentLibrary.overviewDescription')}
       />
+      <div style={{ padding: '0 48px 48px' }}>
 
       {/* Theme Switcher Bar */}
       <div style={{
@@ -382,6 +383,7 @@ export default function ComponentLibraryOverview() {
           <ArrowLeft style={{ width: 16, height: 16, marginRight: 8 }} />
           {t('componentLibrary.backToHome')}
         </Button>
+      </div>
       </div>
     </div>
   );
