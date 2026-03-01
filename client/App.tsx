@@ -98,6 +98,7 @@ const TogglePage = React.lazy(() => import("./pages/component-library/Toggle"));
 const OrderCardPatternsPage = React.lazy(() => import("./pages/component-library/OrderCardPatterns"));
 const BasicBannerPage = React.lazy(() => import("./pages/component-library/BasicBanner"));
 const WCPCountryComponentsPage = React.lazy(() => import("./pages/component-library/WCPCountryComponents"));
+const DesignTokensPage = React.lazy(() => import("./pages/component-library/DesignTokens"));
 
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
@@ -116,6 +117,7 @@ const App = () => (
               <Route path="/component-library" element={<ComponentLibraryLayout />}>
                 <Route index element={<ComponentLibraryOverview />} />
                 <Route path="themes" element={<ThemesPage />} />
+                <Route path="design-tokens" element={<DesignTokensPage />} />
                 <Route path="component-tester" element={<ComponentTester />} />
                 <Route path="icons" element={<IconsPage />} />
                 <Route path="buttons" element={<ButtonsPage />} />

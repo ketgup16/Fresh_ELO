@@ -30,7 +30,7 @@
   flex-direction: column;
   max-height: 90vh;
   overflow: hidden;
-  animation: slideUp 3s cubic-bezier(0.32, 0.72, 0, 1) both;
+  animation: slideUp 1.5s cubic-bezier(0.32, 0.72, 0, 1) both;
 }
 
 /* ─── Header ─── */
