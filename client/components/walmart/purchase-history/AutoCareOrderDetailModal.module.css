@@ -6,7 +6,7 @@
   z-index: 201;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  background: var(--ld-semantic-color-fill-surface-primary);
   animation: fadeIn 180ms ease;
 }
 
@@ -23,7 +23,7 @@
   display: flex;
   flex-direction: column;
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  background: var(--ld-semantic-color-fill-surface-primary);
   min-height: 100%;
 }
 
@@ -59,7 +59,7 @@
   width: 100%;
   max-width: none;
   box-sizing: border-box;
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  background: var(--ld-semantic-color-fill-surface-primary);
   min-height: 100%;
 }
 
@@ -108,13 +108,13 @@
   font-size: var(--ld-semantic-font-display-large-size-b-s, 2rem);
   font-weight: var(--ld-semantic-font-display-large-weight-alt, 700);
   line-height: var(--ld-semantic-font-display-large-line-height-b-s, 2.5rem);
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
 }
 
 .orderNumHeader {
   font-size: 14px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
@@ -155,8 +155,8 @@
    ════════════════════════════════════════════════════════════════════════════ */
 
 .card {
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
-  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  background: var(--ld-semantic-color-fill-surface-primary);
+  border: 1px solid var(--ld-semantic-color-separator);
   border-radius: 8px;
   padding: 20px;
   display: flex;
@@ -179,20 +179,20 @@
 
 .fulfillmentLabel {
   font-size: 12px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   line-height: 16px;
 }
 
 .fulfillmentSub {
   font-size: 12px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   line-height: 16px;
 }
 
 .apptHeading {
   font-size: 28px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
   line-height: 1.25;
 }
@@ -217,7 +217,7 @@
 .sectionTitle {
   font-size: 16px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
 }
 
@@ -232,13 +232,13 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
 }
 
 .vehicleName {
   font-size: 14px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
 }
 
@@ -260,22 +260,22 @@
   height: 52px;
   object-fit: contain;
   border-radius: 6px;
-  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border: 1px solid var(--ld-semantic-color-separator);
   flex-shrink: 0;
-  background: var(--ld-semantic-color-fill-subtle, #F8F9FA);
+  background: var(--ld-semantic-color-fill-subtle);
 }
 
 .serviceItemImagePlaceholder {
   width: 52px;
   height: 52px;
   border-radius: 6px;
-  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
-  background: var(--ld-semantic-color-fill-subtle, #F8F9FA);
+  border: 1px solid var(--ld-semantic-color-separator);
+  background: var(--ld-semantic-color-fill-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
 }
 
 .serviceItemBody {
@@ -289,14 +289,14 @@
 .serviceItemName {
   font-size: 14px;
   font-weight: 600;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
   line-height: 20px;
 }
 
 .serviceItemVariant {
   font-size: 13px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   margin: 0;
   line-height: 18px;
 }
@@ -311,12 +311,12 @@
 .serviceItemPrice {
   font-size: 14px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
 }
 
 .serviceItemCapacity {
   font-size: 13px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
 }
 
 .serviceItemNotes {
@@ -330,7 +330,7 @@
 
 .serviceItemNote {
   font-size: 12px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   line-height: 18px;
 }
 
@@ -349,7 +349,7 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   line-height: 20px;
 }
 
@@ -359,7 +359,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--ld-semantic-color-text-subtle, #74767C);
+  background: var(--ld-semantic-color-text-subtle);
   flex-shrink: 0;
 }
 
@@ -380,24 +380,24 @@
   padding: 0;
   cursor: pointer;
   font-family: inherit;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
 }
 
 .instructionsLabel {
   font-size: 14px;
   font-weight: 600;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
 }
 
 .instructionsText {
   font-size: 13px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   margin: 0;
   line-height: 1.6;
   padding: 10px 12px;
-  background: var(--ld-semantic-color-fill-subtle, #F8F9FA);
+  background: var(--ld-semantic-color-fill-subtle);
   border-radius: 6px;
-  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border: 1px solid var(--ld-semantic-color-separator);
 }
 
 /* ── Appointment details card rows ─────────────────────────────────────────── */
@@ -412,7 +412,7 @@
   align-items: flex-start;
   gap: 12px;
   padding: 14px 0;
-  border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-bottom: 1px solid var(--ld-semantic-color-separator);
 }
 
 .apptDetailRow:first-child {
@@ -433,7 +433,7 @@
 
 .apptDetailLabel {
   font-size: 12px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   line-height: 16px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -443,13 +443,13 @@
 .apptDetailValue {
   font-size: 14px;
   font-weight: 600;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   line-height: 20px;
 }
 
 .apptDetailSub {
   font-size: 13px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   line-height: 18px;
 }
 
@@ -457,7 +457,7 @@
 .helpList {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-top: 1px solid var(--ld-semantic-color-separator);
   margin-top: 4px;
 }
 
@@ -469,11 +469,11 @@
   width: 100%;
   padding: 14px 0;
   border: none;
-  border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-bottom: 1px solid var(--ld-semantic-color-separator);
   background: none;
   font-family: inherit;
   font-size: 14px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   cursor: pointer;
   text-align: left;
   transition: color 120ms;
@@ -484,7 +484,7 @@
 }
 
 .helpRow:hover {
-  color: var(--ld-semantic-color-action-fill-primary, #0071DC);
+  color: var(--ld-semantic-color-action-fill-primary);
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
@@ -500,8 +500,8 @@
 }
 
 .sideCard {
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
-  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  background: var(--ld-semantic-color-fill-surface-primary);
+  border: 1px solid var(--ld-semantic-color-separator);
   border-radius: 8px;
   padding: 16px;
   display: flex;
@@ -515,13 +515,13 @@
   flex-direction: column;
   gap: 4px;
   padding-top: 14px;
-  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-top: 1px solid var(--ld-semantic-color-separator);
 }
 
 .sideSectionTitle {
   font-size: 14px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
 }
 
@@ -533,13 +533,13 @@
 
 .sideText {
   font-size: 14px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
 }
 
 .sideTextSub {
   font-size: 13px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   margin: 2px 0 0;
 }
 
@@ -555,7 +555,7 @@
   justify-content: space-between;
   gap: 12px;
   font-size: 14px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
 }
 
 .priceLineLabel { flex: 1; }
@@ -566,14 +566,14 @@
   justify-content: space-between;
   gap: 12px;
   padding-top: 10px;
-  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-top: 1px solid var(--ld-semantic-color-separator);
 }
 
 .priceTotalLabel,
 .priceTotalValue {
   font-size: 16px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
 }
 
 /* ── Temporary adjusted total ──────────────────────────────────────────────── */
@@ -582,7 +582,7 @@
   flex-direction: column;
   gap: 6px;
   padding-top: 10px;
-  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-top: 1px solid var(--ld-semantic-color-separator);
 }
 
 .priceAdjustedRow {
@@ -595,7 +595,7 @@
 .priceAdjustedLabel {
   font-size: 13px;
   font-weight: 600;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   display: inline-flex;
   align-items: center;
 }
@@ -603,13 +603,13 @@
 .priceAdjustedValue {
   font-size: 13px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   flex-shrink: 0;
 }
 
 .priceAdjustedNote {
   font-size: 12px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   line-height: 1.5;
   margin: 0;
 }
@@ -622,7 +622,7 @@
   width: 100%;
   padding: 10px 0 0;
   border: none;
-  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-top: 1px solid var(--ld-semantic-color-separator);
   background: none;
   cursor: pointer;
   font-family: inherit;
@@ -641,18 +641,18 @@
 .chargeHistoryTitle {
   font-size: 14px;
   font-weight: 600;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
 }
 
 .chargeHistorySub {
   font-size: 12px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
 }
 
 /* ── Order number + barcode ────────────────────────────────────────────────── */
 .orderNumSide {
   font-size: 13px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
   font-family: var(--ld-semantic-font-family-mono, 'Courier New', monospace);
 }

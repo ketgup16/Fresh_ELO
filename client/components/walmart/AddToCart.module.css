@@ -74,3 +74,15 @@
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 480px) {
+  .stepper {
+    min-width: 96px;
+    height: 28px;
+  }
+
+  .initialButton {
+    width: 28px;
+    height: 28px;
+  }
+}

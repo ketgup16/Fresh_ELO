@@ -7,10 +7,10 @@
 .banner {
   display: flex;
   align-items: stretch;
-  border: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border: 1px solid var(--ld-semantic-color-separator);
   border-radius: 8px;
   overflow: hidden;
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  background: var(--ld-semantic-color-fill-surface-primary);
   min-height: 120px;
 }
 
@@ -37,7 +37,7 @@
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
   font-size: 15px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
   line-height: 20px;
 }
@@ -46,7 +46,7 @@
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
   font-size: 13px;
   font-weight: 400;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0 0 8px;
 }
 
@@ -69,7 +69,7 @@
   gap: 4px;
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
   font-size: 11px;
-  color: var(--ld-semantic-color-text-subtlest, #74767C);
+  color: var(--ld-semantic-color-text-subtlest);
 }
 
 @media (max-width: 480px) {

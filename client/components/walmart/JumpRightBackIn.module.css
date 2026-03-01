@@ -53,6 +53,11 @@
   .tile { width: 200px; }
 }
 
+@media (max-width: 480px) {
+  .tile { width: 124px; }
+  .heading { font-size: 18px; }
+}
+
 /* Image area */
 .imageWrapper {
   position: relative;

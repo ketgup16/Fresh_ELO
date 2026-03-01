@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Filter, SortingArrows, Grid, ChevronDown } from "@/components/icons";
+import { SortingArrows, Grid } from "@/components/icons";
+import { FilterChip } from "@/components/ui/FilterChip";
+import { IconButton } from "@/components/ui/IconButton";
 import styles from "./SearchFilterBar.module.css";
 
 interface SearchFilterBarProps {
@@ -17,29 +19,30 @@ export function SearchFilterBar({ chips }: SearchFilterBarProps) {
 
   return (
     <div className={styles.bar}>
-      <button className={styles.iconBtn} aria-label="All filters">
-        <Filter className="w-4 h-4" />
-      </button>
-      <button className={styles.sortBtn} aria-label="Sort">
-        <SortingArrows className="w-4 h-4" />
-        <span>Sort</span>
-      </button>
-      <button className={styles.iconBtn} aria-label="Grid view">
+      {/* All Filters — icon-only FilterChip */}
+      <FilterChip isAllFilters showLabel={false} aria-label="All filters" />
+
+      {/* Sort — multi-select chip with icon + label */}
+      <FilterChip iconLeading={<SortingArrows className="w-4 h-4" />} aria-label="Sort">
+        Sort
+      </FilterChip>
+
+      {/* Grid view — IconButton ghost */}
+      <IconButton aria-label="Grid view" variant="secondary" size="small">
         <Grid className="w-4 h-4" />
-      </button>
-      {chips.map((chip) => {
-        const isActive = activeFilters.includes(chip);
-        return (
-          <button
-            key={chip}
-            onClick={() => toggleFilter(chip)}
-            className={[styles.chip, isActive ? styles.chipActive : ''].filter(Boolean).join(' ')}
-          >
-            <span>{chip}</span>
-            <ChevronDown className={styles.chipIcon} />
-          </button>
-        );
-      })}
+      </IconButton>
+
+      {/* Filter chips */}
+      {chips.map((chip) => (
+        <FilterChip
+          key={chip}
+          selected={activeFilters.includes(chip)}
+          onSelectedChange={() => toggleFilter(chip)}
+          isMultiSelect
+        >
+          {chip}
+        </FilterChip>
+      ))}
     </div>
   );
 }

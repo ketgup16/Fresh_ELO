@@ -36,8 +36,8 @@
 .heroCard {
   background: linear-gradient(
     135deg,
-    var(--ld-semantic-color-text-positive, #00A862),
-    var(--ld-semantic-color-text-positive-bold, #007A47)
+    var(--ld-semantic-color-text-positive),
+    var(--ld-semantic-color-text-positive-bold)
   );
   border-radius: 8px;
   padding: 24px;
@@ -73,7 +73,7 @@
 }
 
 .featureCard {
-  background: var(--ld-semantic-color-fill-accent-green-subtle, #f0fff9);
+  background: var(--ld-semantic-color-fill-accent-green-subtle);
   border-radius: 8px;
   padding: 12px;
   text-align: center;
@@ -129,7 +129,7 @@
 }
 
 .serviceButton:hover {
-  background: var(--ld-semantic-color-fill-accent-green-subtle, #f0fff9);
+  background: var(--ld-semantic-color-fill-accent-green-subtle);
 }
 
 .serviceTextWrap {

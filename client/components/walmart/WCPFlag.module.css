@@ -70,8 +70,8 @@
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .brand-subtle {
-  --flag-bg:     var(--ld-semantic-color-fill-brand-subtle, #e9f1fe);
-  --flag-text:   var(--ld-semantic-color-text-on-fill-brand-subtle, #114ab6);
+  --flag-bg:     var(--ld-semantic-color-fill-brand-subtle);
+  --flag-text:   var(--ld-semantic-color-text-on-fill-brand-subtle);
   --flag-border: transparent;
 }
 

@@ -139,6 +139,13 @@
   color: var(--ld-semantic-color-text-disabled);
 }
 
+@media (max-width: 480px) {
+  .container {
+    padding: 6px 12px;
+    min-height: 48px;
+  }
+}
+
 /* ─── Helper text ─── */
 .helperText {
   font-size: var(--ld-semantic-font-caption-size);

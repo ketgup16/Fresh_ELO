@@ -7,7 +7,7 @@ const PRODUCTS = [
 
 export function MoreProductListings() {
   return (
-    <div className="flex flex-col border-t-8 border-[#F3F4F5]">
+    <div className="flex flex-col border-t-8 border-[var(--ld-semantic-color-fill-subtle)]">
       {PRODUCTS.map((product, i) => (
         <div key={i} className="flex gap-3 px-2 py-3 border-b border-border">
           <div className="w-[173px] h-[233px] flex-shrink-0 relative rounded-l-lg">

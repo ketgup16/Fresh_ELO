@@ -36,7 +36,7 @@ export function KnowTypesSection() {
   const scrollRef = useDragScroll();
 
   return (
-    <div className="px-3 py-4 border-t-8 border-[#F3F4F5]">
+    <div className="px-3 py-4 border-t-8 border-[var(--ld-semantic-color-fill-subtle)]">
       <h2 className="text-[18px] font-bold text-foreground mb-3">Know what types to look for</h2>
       <div ref={scrollRef} className="flex gap-2 overflow-x-auto scrollbar-hide pb-2 mb-3">
         {TYPE_FILTERS.map((filter) => {

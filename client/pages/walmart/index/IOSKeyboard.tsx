@@ -1,3 +1,5 @@
+import styles from './IOSKeyboard.module.css';
+
 interface IOSKeyboardProps {
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
@@ -14,7 +16,7 @@ export function IOSKeyboard({
   setRecentSearches,
 }: IOSKeyboardProps) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-[#CCCFD3] bg-opacity-76 backdrop-blur-[10px]" style={{ height: '335px' }}>
+    <div className={`fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto ${styles.keyboard}`} style={{ height: '335px' }}>
       {/* Suggestion Bar */}
       <div className="flex items-center gap-[2px] px-[1px] pt-[10px] pb-0 h-[44px]">
         {searchQuery ? (
@@ -27,7 +29,7 @@ export function IOSKeyboard({
               }}
               className="flex-1 h-[34px] flex items-center justify-center rounded-[4.6px] bg-white bg-opacity-80 active:bg-opacity-60 transition-colors"
             >
-              <span className="text-[#3A3B3D] text-[17px] font-normal truncate px-2">"{searchQuery}"</span>
+              <span className={`${styles.keyboardText} text-[17px] font-normal truncate px-2`}>"{searchQuery}"</span>
             </button>
             <div className="w-px h-6 bg-black opacity-10"></div>
 
@@ -42,7 +44,7 @@ export function IOSKeyboard({
                   }}
                   className="flex-1 h-full flex items-center justify-center rounded-[4.6px] bg-white bg-opacity-0 active:bg-opacity-60 transition-colors"
                 >
-                  <span className="text-[#3A3B3D] text-[17px] font-normal truncate px-2">{suggestion}</span>
+                  <span className={`${styles.keyboardText} text-[17px] font-normal truncate px-2`}>{suggestion}</span>
                 </button>
                 {idx < Math.min(filteredSuggestions.length - 1, 1) && (
                   <div className="w-px h-6 bg-black opacity-10"></div>
@@ -55,13 +57,13 @@ export function IOSKeyboard({
                 {filteredSuggestions.length === 0 && (
                   <>
                     <button className="flex-1 h-[34px] flex items-center justify-center rounded-[4.6px]">
-                      <span className="text-[#3A3B3D] text-[17px]"> </span>
+                      <span className={`${styles.keyboardText} text-[17px]`}> </span>
                     </button>
                     <div className="w-px h-6 bg-black opacity-10"></div>
                   </>
                 )}
                 <button className="flex-1 h-[34px] flex items-center justify-center rounded-[4.6px]">
-                  <span className="text-[#3A3B3D] text-[17px]"> </span>
+                  <span className={`${styles.keyboardText} text-[17px]`}> </span>
                 </button>
               </>
             )}
@@ -77,7 +79,7 @@ export function IOSKeyboard({
                   }}
                   className="flex-1 h-full flex items-center justify-center rounded-[4.6px] bg-white bg-opacity-0 active:bg-opacity-60 transition-colors"
                 >
-                  <span className="text-[#3A3B3D] text-[17px] font-normal">{word}</span>
+                  <span className={`${styles.keyboardText} text-[17px] font-normal`}>{word}</span>
                 </button>
                 {idx < 2 && <div className="w-px h-6 bg-black opacity-10"></div>}
               </div>
@@ -129,14 +131,14 @@ export function IOSKeyboard({
           </div>
           <button
             onClick={() => setSearchQuery(prev => prev.slice(0, -1))}
-            className="w-[42px] h-[42px] bg-[#ADB3BC] rounded-[4.6px] shadow-[0_1px_0_0_#898A8D] flex items-center justify-center"
+            className={`w-[42px] h-[42px] ${styles.modifierKey} rounded-[4.6px] shadow-[0_1px_0_0_#898A8D] flex items-center justify-center`}
           >
             <span className="text-[16px] text-black">&#x232B;</span>
           </button>
         </div>
 
         <div className="flex gap-[6px]">
-          <div className="w-[87px] h-[42px] bg-[#ADB3BC] rounded-[4.6px] shadow-[0_1px_0_0_#898A8D] flex items-center justify-center">
+          <div className={`w-[87px] h-[42px] ${styles.modifierKey} rounded-[4.6px] shadow-[0_1px_0_0_#898A8D] flex items-center justify-center`}>
             <span className="text-[16px] text-black">123</span>
           </div>
           <button
@@ -145,19 +147,19 @@ export function IOSKeyboard({
           >
             <span className="text-[16px] text-black">space</span>
           </button>
-          <div className="w-[88px] h-[42px] bg-[#ADB3BC] rounded-[4.6px] shadow-[0_1px_0_0_#898A8D] flex items-center justify-center">
+          <div className={`w-[88px] h-[42px] ${styles.modifierKey} rounded-[4.6px] shadow-[0_1px_0_0_#898A8D] flex items-center justify-center`}>
             <span className="text-[16px] text-black">Go</span>
           </div>
         </div>
       </div>
 
       {/* Bottom Section */}
-      <div className="flex justify-between items-start px-0 bg-[#CCCFD3] bg-opacity-76 backdrop-blur-[10px]">
+      <div className={`flex justify-between items-start px-0 ${styles.suggestionBar}`}>
         <div className="w-[47px] h-[47px] flex items-center justify-center">
-          <span className="text-[26px] text-[#50555C]">&#x1F600;</span>
+          <span className={`text-[26px] ${styles.subtleText}`}>&#x1F600;</span>
         </div>
         <div className="w-[47px] h-[47px] flex items-center justify-center">
-          <span className="text-[26px] text-[#50555C]">&#x1F3A4;</span>
+          <span className={`text-[26px] ${styles.subtleText}`}>&#x1F3A4;</span>
         </div>
       </div>
 

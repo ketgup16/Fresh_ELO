@@ -27,7 +27,7 @@ export function TrendingBrandsSection() {
   const brandFiltersScrollRef = useDragScroll();
 
   return (
-    <div className="px-3 py-4 border-t-8 border-[#F3F4F5]">
+    <div className="px-3 py-4 border-t-8 border-[var(--ld-semantic-color-fill-subtle)]">
       <h2 className="text-[16px] font-bold text-foreground mb-2">TV brands currently trending</h2>
       <div ref={brandFiltersScrollRef} className="flex gap-2 overflow-x-auto scrollbar-hide pb-2 mb-3">
         {BRANDS.map((brand) => {

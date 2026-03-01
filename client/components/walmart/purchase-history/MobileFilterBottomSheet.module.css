@@ -17,7 +17,7 @@
 
 /* ── Sheet panel ── */
 .sheet {
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  background: var(--ld-semantic-color-fill-surface-primary);
   border-radius: 16px 16px 0 0;
   padding: 0 0 env(safe-area-inset-bottom, 0px);
   display: flex;
@@ -37,7 +37,7 @@
   width: 36px;
   height: 4px;
   border-radius: 2px;
-  background: var(--ld-semantic-color-border-moderate, #BABBBE);
+  background: var(--ld-semantic-color-border-moderate);
   margin: 12px auto 0;
   flex-shrink: 0;
 }
@@ -49,7 +49,7 @@
   justify-content: space-between;
   padding: 16px 20px 12px;
   flex-shrink: 0;
-  border-bottom: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-bottom: 1px solid var(--ld-semantic-color-separator);
 }
 
 .title {
@@ -57,7 +57,7 @@
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
 }
 
 .closeBtn {
@@ -70,13 +70,13 @@
   border: none;
   cursor: pointer;
   border-radius: 50%;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   transition: background 100ms;
   flex-shrink: 0;
 }
 
 .closeBtn:hover {
-  background: var(--ld-semantic-color-fill-subtle, #F2F2F2);
+  background: var(--ld-semantic-color-fill-subtle);
 }
 
 /* ── Body (scrollable options) ── */
@@ -94,5 +94,5 @@
   gap: 12px;
   padding: 16px 20px;
   flex-shrink: 0;
-  border-top: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
+  border-top: 1px solid var(--ld-semantic-color-separator);
 }

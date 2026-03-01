@@ -14,7 +14,7 @@
   align-items: flex-start;
   align-self: stretch;
   border-radius: 8px;
-  background: var(--ld-semantic-color-background-subtle, #F2F3F3);
+  background: var(--ld-semantic-color-background-subtle);
   padding: 16px 16px 24px 16px;
   gap: 16px;
 }
@@ -29,7 +29,7 @@
 
 .subtitle {
   flex: 1 0 0;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  color: var(--ld-semantic-color-text-subtle);
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -52,8 +52,8 @@
   flex-direction: column;
   align-items: flex-start;
   border-radius: 8px;
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
-  box-shadow: var(--ld-semantic-elevation-shadow-raised, 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15));
+  background: var(--ld-semantic-color-fill-surface-primary);
+  box-shadow: var(--ld-semantic-elevation-shadow-raised);
   overflow: hidden;
   position: relative;
 }
@@ -72,7 +72,7 @@
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
   align-self: stretch;
 }
@@ -99,8 +99,8 @@
   gap: 16px;
   padding: 24px;
   border-radius: 8px;
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
-  box-shadow: var(--ld-semantic-elevation-shadow-raised, 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15));
+  background: var(--ld-semantic-color-fill-surface-primary);
+  box-shadow: var(--ld-semantic-elevation-shadow-raised);
   overflow: hidden;
 }
 
@@ -125,7 +125,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -140,7 +140,7 @@
   gap: 16px;
   /* Break out of parent 16px padding so carousel reaches screen edges */
   margin: 0 -16px;
-  background: var(--ld-semantic-color-background-subtle, #F2F3F3);
+  background: var(--ld-semantic-color-background-subtle);
   padding-top: 16px;
   padding-bottom: 8px;
 }
@@ -158,7 +158,7 @@
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
 }
 
@@ -193,8 +193,8 @@
   flex: 0 0 calc(100% - 48px);
   min-width: 0;
   border-radius: 8px;
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
-  box-shadow: var(--ld-semantic-elevation-shadow-raised, 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 4px 1px rgba(0, 0, 0, 0.15));
+  background: var(--ld-semantic-color-fill-surface-primary);
+  box-shadow: var(--ld-semantic-elevation-shadow-raised);
   overflow: hidden;
   scroll-snap-align: start;
   display: flex;
@@ -261,7 +261,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text);
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -298,7 +298,7 @@
   width: 8px;
   height: 8px;
   border-radius: 9999px;
-  border: 1.5px solid var(--ld-semantic-color-text-subtlest, #74767C);
+  border: 1.5px solid var(--ld-semantic-color-text-subtlest);
   background: transparent;
   transition: background 0.25s ease, border-color 0.25s ease, width 0.25s cubic-bezier(0.34, 1.2, 0.64, 1);
   display: block;
@@ -307,8 +307,8 @@
 /* Active dot — pill shape, 2× wider */
 .dotActive::before {
   width: 16px;
-  background: var(--ld-semantic-color-text, #2E2F32);
-  border-color: var(--ld-semantic-color-text, #2E2F32);
+  background: var(--ld-semantic-color-text);
+  border-color: var(--ld-semantic-color-text);
 }
 
 /* ── Interactive rating widget (mirrors OrderCard RatingWidget styles) ── */
@@ -346,7 +346,7 @@
 }
 
 .starOverlayBtn:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071DC);
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
   outline-offset: 2px;
 }
 
@@ -360,7 +360,7 @@
 .ratingThanks {
   font-size: 13px;
   font-weight: 600;
-  color: var(--ld-semantic-color-fill-positive, #00863D);
+  color: var(--ld-semantic-color-fill-positive);
   margin: 0;
 }
 

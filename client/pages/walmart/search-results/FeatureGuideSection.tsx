@@ -124,7 +124,7 @@ export function FeatureGuideSection() {
   const displayCarouselScrollRef = useDragScroll();
 
   return (
-    <div className="px-3 py-4 border-t-8 border-[#F3F4F5] bg-[var(--ld-semantic-color-fill-accent-blue-subtle,#E9F1FE)]">
+    <div className="px-3 py-4 border-t-8 border-[var(--ld-semantic-color-fill-subtle)] bg-[var(--ld-semantic-color-fill-accent-blue-subtle)]">
       <div className="mb-3">
         <h2 className="text-[16px] font-bold text-foreground mb-2">Features to consider when shopping for TVs</h2>
         <div ref={featureFiltersScrollRef} className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">

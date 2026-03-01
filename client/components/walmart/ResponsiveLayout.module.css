@@ -1,6 +1,6 @@
 .root {
   min-height: 100vh;
-  background-color: var(--ld-semantic-color-surface, #FFFFFF);
+  background-color: var(--ld-semantic-color-surface);
 }
 
 .main {
