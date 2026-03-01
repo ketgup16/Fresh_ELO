@@ -1,5 +1,5 @@
 .pageHeader {
-  background: var(--ld-semantic-color-surface-brand, #e9f1fe);
+  background: var(--ld-semantic-color-fill-brand-subtle, #e9f1fe);
   display: flex;
   align-items: flex-start;
   gap: 48px;
