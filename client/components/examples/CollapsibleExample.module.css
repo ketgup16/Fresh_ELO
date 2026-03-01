@@ -30,7 +30,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  border: 1px solid var(--ld-semantic-color-border-moderate);
+  border: 1px solid var(--ld-semantic-color-border-subtle);
   border-radius: 8px;
   margin-bottom: 8px;
 }
@@ -45,7 +45,7 @@
 
 .collapsibleItem {
   padding: 16px;
-  border: 1px solid var(--ld-semantic-color-border-moderate);
+  border: 1px solid var(--ld-semantic-color-border-subtle);
   border-radius: 8px;
   margin-bottom: 8px;
   background-color: var(--ld-semantic-color-fill-surface-primary);

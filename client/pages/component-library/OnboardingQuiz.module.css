@@ -100,7 +100,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--ld-semantic-color-border-moderate, #BABBBE);
+  background: var(--ld-semantic-color-border-subtle, #e6e6e8);
   transition: background 200ms, width 200ms;
 }
 

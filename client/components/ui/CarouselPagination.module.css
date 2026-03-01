@@ -6,7 +6,7 @@
   gap: 4px;
   padding: 6px 10px;
   background: var(--ld-semantic-color-fill-surface-primary, #ffffff);
-  border: 1px solid var(--ld-semantic-color-border-moderate, #e6e6e8);
+  border: 1px solid var(--ld-semantic-color-border-subtle, #e6e6e8);
   border-radius: 9999px;
   box-shadow: var(--ld-semantic-elevation-100, 0 1px 3px rgba(0,0,0,0.08));
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif);
@@ -73,7 +73,7 @@
   width: 100%;
   height: 4px;
   border-radius: 9999px;
-  background: var(--ld-semantic-color-border-moderate, #e6e6e8);
+  background: var(--ld-semantic-color-border-subtle, #e6e6e8);
   overflow: hidden;
 }
 
