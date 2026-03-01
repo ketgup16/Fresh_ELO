@@ -936,4 +936,5 @@
   --wcp-semantic-color-text-link-hovered: var(--ld-primitive-color-blue-110, #114ab6);
   --wcp-semantic-color-text-link-visited: var(--ld-primitive-color-purple-100, #63327e);
   --wcp-semantic-color-text-strikethrough: var(--ld-primitive-color-gray-100, #74767c); /* Strikethrough price */
+  --wcp-semantic-color-text-trending: var(--ld-primitive-color-gray-160, #2e2f32); /* Dark text on orange trending bg */
 }

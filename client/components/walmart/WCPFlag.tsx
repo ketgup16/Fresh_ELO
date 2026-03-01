@@ -4,36 +4,25 @@ import styles from './WCPFlag.module.css';
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 /**
- * WCP Flag visual variants — each maps to a distinct WCP semantic token set.
+ * WCP Flag visual variants.
  *
- * Row 1 – Neutral/default family:
- *   neutral | brand-outlined | member-subtle
+ * All variants use --wcp-semantic-color-* tokens exclusively, ensuring they
+ * are commerce-specific and won't conflict with arbitrary LD brand overrides.
  *
- * Row 2 – Savings/negative + info family:
- *   savings | savings-outlined | confidence-subtle
+ * Exception: `brand-subtle` intentionally uses LD brand tokens so it tracks
+ * brand-theme overrides (e.g. Bodega green, Walmart blue).
  *
- * Row 3 – Express/brand dark family:
- *   express-subtle | brand | brand-bold
- *
- * Row 4 – Warm accent family:
- *   member | dark | trending
+ * brand-subtle | member-subtle | savings | savings-outlined
+ * confidence-subtle | express-subtle | member | trending
  */
 export type WCPFlagVariant =
-  // Row 1 — neutral defaults
-  | 'neutral'
-  | 'brand-outlined'
+  | 'brand-subtle'
   | 'member-subtle'
-  // Row 2 — savings / info
   | 'savings'
   | 'savings-outlined'
   | 'confidence-subtle'
-  // Row 3 — brand dark / express
   | 'express-subtle'
-  | 'brand'
-  | 'brand-bold'
-  // Row 4 — warm accents
   | 'member'
-  | 'dark'
   | 'trending';
 
 export interface WCPFlagProps {
@@ -41,9 +30,9 @@ export interface WCPFlagProps {
   label?: string;
   /** Visual color variant */
   variant?: WCPFlagVariant;
-  /** Leading icon/image (left side). Defaults to a placeholder flag image. */
+  /** Optional leading icon (left side) */
   leadingIcon?: React.ReactNode;
-  /** Trailing icon/image (right side). Defaults to a placeholder flag image. */
+  /** Optional trailing icon (right side) */
   trailingIcon?: React.ReactNode;
   /** Additional class names */
   className?: string;
@@ -53,7 +42,7 @@ export interface WCPFlagProps {
 
 export function WCPFlag({
   label = 'Flag name',
-  variant = 'neutral',
+  variant = 'brand-subtle',
   leadingIcon,
   trailingIcon,
   className,
@@ -77,16 +66,44 @@ export function WCPFlag({
 // ─── Variant metadata (useful for docs) ──────────────────────────────────────
 
 export const WCP_FLAG_VARIANTS: Array<{ variant: WCPFlagVariant; label: string; description: string }> = [
-  { variant: 'neutral',            label: 'Neutral',             description: 'Default gray — generic / no semantic meaning' },
-  { variant: 'brand-outlined',     label: 'Brand Outlined',      description: 'White bg, navy border — brand call-out' },
-  { variant: 'member-subtle',      label: 'Member Subtle',       description: 'Warm amber tint — Walmart+ member (subtle)' },
-  { variant: 'savings',            label: 'Savings',             description: 'Solid red — promotional savings / clearance' },
-  { variant: 'savings-outlined',   label: 'Savings Outlined',    description: 'Red border — savings indicator (outlined)' },
-  { variant: 'confidence-subtle',  label: 'Confidence Subtle',   description: 'Blue tint — confidence / info badge (subtle)' },
-  { variant: 'express-subtle',     label: 'Express Subtle',      description: 'Lavender tint — Walmart+ Express (subtle)' },
-  { variant: 'brand',              label: 'Brand',               description: 'Dark navy solid — primary brand fill' },
-  { variant: 'brand-bold',         label: 'Brand Bold',          description: 'Deep navy solid — bold brand emphasis' },
-  { variant: 'member',             label: 'Member',              description: 'Spark yellow — Walmart+ member highlight' },
-  { variant: 'dark',               label: 'Dark',                description: 'Near-black — inverse / high contrast' },
-  { variant: 'trending',           label: 'Trending',            description: 'Orange — trending / promotional accent' },
+  {
+    variant: 'brand-subtle',
+    label: 'Brand Subtle',
+    description: 'White bg, brand-colored border + text — tracks brand theme (LD exception)',
+  },
+  {
+    variant: 'member-subtle',
+    label: 'Member Subtle',
+    description: 'Warm amber tint — Walmart+ member (subtle)',
+  },
+  {
+    variant: 'savings',
+    label: 'Savings',
+    description: 'Solid red — promotional savings / clearance',
+  },
+  {
+    variant: 'savings-outlined',
+    label: 'Savings Outlined',
+    description: 'White bg, red border — savings indicator (outlined)',
+  },
+  {
+    variant: 'confidence-subtle',
+    label: 'Confidence Subtle',
+    description: 'Light blue tint — confidence / info badge',
+  },
+  {
+    variant: 'express-subtle',
+    label: 'Express Subtle',
+    description: 'Lavender tint — Walmart+ Express',
+  },
+  {
+    variant: 'member',
+    label: 'Member',
+    description: 'Spark yellow — Walmart+ member highlight',
+  },
+  {
+    variant: 'trending',
+    label: 'Trending',
+    description: 'Orange — trending / promotional accent',
+  },
 ];
