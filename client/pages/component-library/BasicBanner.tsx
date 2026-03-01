@@ -34,7 +34,7 @@ export default function BasicBannerPage() {
   return (
     <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
       <PageHeader
-        section="Components"
+        section="WCP Components"
         title="Basic Banner"
         description="A generic banner component used to communicate value propositions, branded messages, or contextual callouts. Supports three visual variants and an optional leading icon."
       />

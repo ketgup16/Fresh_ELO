@@ -51,13 +51,29 @@ const navigationSections: NavSection[] = [
     ]
   },
   {
+    titleKey: 'componentLibrary.wcpPatterns',
+    items: [
+      { id: 'footer-patterns', nameKey: 'componentLibrary.navFooterPatterns', path: '/component-library/footer-patterns' },
+      { id: 'top-nav', nameKey: 'componentLibrary.navTopNav', path: '/component-library/top-nav' },
+      { id: 'order-card-patterns', nameKey: 'componentLibrary.navOrderCardPatterns', path: '/component-library/order-card-patterns' },
+      { id: 'page-templates', nameKey: 'componentLibrary.navPageTemplates', path: '/component-library/page-templates' },
+      { id: 'side-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/side-nav' },
+    ]
+  },
+  {
+    titleKey: 'componentLibrary.wcpComponents',
+    items: [
+      { id: 'wcp-country', nameKey: 'componentLibrary.navWCPCountry', path: '/component-library/wcp-country' },
+      { id: 'wcp-flag', nameKey: 'componentLibrary.navWCPFlag', path: '/component-library/wcp-flag' },
+      { id: 'basic-banner', nameKey: 'componentLibrary.navBasicBanner', path: '/component-library/basic-banner' },
+    ]
+  },
+  {
     titleKey: 'componentLibrary.components',
     items: [
       { id: 'icons', nameKey: 'componentLibrary.navIcons', path: '/component-library/icons' },
-      { id: 'accordion', nameKey: 'componentLibrary.navAccordion', path: '/component-library/accordion' },
       { id: 'alerts', nameKey: 'componentLibrary.navAlerts', path: '/component-library/alerts' },
       { id: 'badges', nameKey: 'componentLibrary.navBadges', path: '/component-library/badges' },
-      { id: 'basic-banner', nameKey: 'componentLibrary.navBasicBanner', path: '/component-library/basic-banner' },
       { id: 'bottom-sheet', nameKey: 'componentLibrary.navBottomSheet', path: '/component-library/bottom-sheet' },
       { id: 'breadcrumbs', nameKey: 'componentLibrary.navBreadcrumbs', path: '/component-library/breadcrumbs' },
       { id: 'buttons', nameKey: 'componentLibrary.navButtons', path: '/component-library/buttons' },
@@ -94,8 +110,6 @@ const navigationSections: NavSection[] = [
       { id: 'snackbars', nameKey: 'componentLibrary.navSnackbars', path: '/component-library/snackbars' },
       { id: 'spinners', nameKey: 'componentLibrary.navSpinners', path: '/component-library/spinners' },
       { id: 'spot-icons', nameKey: 'componentLibrary.navSpotIcons', path: '/component-library/spot-icons' },
-      { id: 'segmented-control', nameKey: 'componentLibrary.navSegmentedControl', path: '/component-library/segmented-control' },
-      { id: 'quantity-stepper', nameKey: 'componentLibrary.navQuantityStepper', path: '/component-library/quantity-stepper' },
       { id: 'switches', nameKey: 'componentLibrary.navSwitches', path: '/component-library/switches' },
       { id: 'tab-navigation', nameKey: 'componentLibrary.navTabNavigation', path: '/component-library/tabs' },
       { id: 'tags', nameKey: 'componentLibrary.navTags', path: '/component-library/tags' },
@@ -106,6 +120,9 @@ const navigationSections: NavSection[] = [
   {
     titleKey: 'componentLibrary.sharedSection',
     items: [
+      { id: 'accordion', nameKey: 'componentLibrary.navAccordion', path: '/component-library/accordion' },
+      { id: 'segmented-control', nameKey: 'componentLibrary.navSegmentedControl', path: '/component-library/segmented-control' },
+      { id: 'quantity-stepper', nameKey: 'componentLibrary.navQuantityStepper', path: '/component-library/quantity-stepper' },
       { id: 'alert-dialog', nameKey: 'componentLibrary.navAlertDialog', path: '/component-library/alert-dialog' },
       { id: 'avatar', nameKey: 'componentLibrary.navAvatar', path: '/component-library/avatar' },
       { id: 'carousel', nameKey: 'componentLibrary.navCarousel', path: '/component-library/carousel' },
@@ -121,15 +138,6 @@ const navigationSections: NavSection[] = [
       { id: 'scroll-area', nameKey: 'componentLibrary.navScrollArea', path: '/component-library/scroll-area' },
       { id: 'slider', nameKey: 'componentLibrary.navSlider', path: '/component-library/slider' },
       { id: 'toggle', nameKey: 'componentLibrary.navToggle', path: '/component-library/toggle' },
-    ]
-  },
-  {
-    titleKey: 'componentLibrary.patterns',
-    items: [
-      { id: 'footer-patterns', nameKey: 'componentLibrary.navFooterPatterns', path: '/component-library/footer-patterns' },
-      { id: 'order-card-patterns', nameKey: 'componentLibrary.navOrderCardPatterns', path: '/component-library/order-card-patterns' },
-      { id: 'wcp-country', nameKey: 'componentLibrary.navWCPCountry', path: '/component-library/wcp-country' },
-      { id: 'wcp-flag', nameKey: 'componentLibrary.navWCPFlag', path: '/component-library/wcp-flag' },
     ]
   },
 ];

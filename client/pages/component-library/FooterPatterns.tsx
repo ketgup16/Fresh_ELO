@@ -54,9 +54,9 @@ export default function FooterPatternsPage() {
   return (
     <div className={styles.page}>
       <PageHeader
-        section="Patterns"
-        title="WCP Footer & WCP Bottom Nav"
-        description="Three WCP navigation patterns — one for each platform. Use the selector below to set the project-wide mobile default, then preview each component live."
+        section="WCP Patterns"
+        title="Footer & Bottom Nav"
+        description="Three navigation patterns — one for each platform. Use the selector below to set the project-wide mobile default, then preview each component live."
       />
 
       {/* ── Mobile Default Selector ─────────────────────────────── */}

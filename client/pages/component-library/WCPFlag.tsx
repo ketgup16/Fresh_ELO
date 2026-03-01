@@ -75,8 +75,8 @@ export default function WCPFlagPage() {
   return (
     <div>
       <PageHeader
-        section="WCP Patterns"
-        title="WCP Flag"
+        section="WCP Components"
+        title="Flag"
         description="Contextual labels for promotions, membership tiers, confidence badges, and more. All variants use WCP semantic tokens and are fully theme-responsive."
       />
 

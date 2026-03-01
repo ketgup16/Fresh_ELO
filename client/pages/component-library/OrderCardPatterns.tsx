@@ -430,8 +430,8 @@ export default function OrderCardPatternsPage() {
       fontFamily: 'var(--ld-semantic-font-family-sans)',
     }}>
       <PageHeader
-        section="Patterns"
-        title="Order Card Patterns"
+        section="WCP Patterns"
+        title="Order Cards"
         description="Ready-to-use card templates for the Purchase History page. Each pattern is a live component — click the prompt below it to copy it, then paste it into Fusion."
       />
 

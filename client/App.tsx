@@ -103,6 +103,9 @@ const DesignTokensPage = React.lazy(() => import("./pages/component-library/Desi
 const WCPFlagPage = React.lazy(() => import("./pages/component-library/WCPFlag"));
 const ThemeEditorPage = React.lazy(() => import("./pages/component-library/ThemeEditorPage"));
 const FooterPatternsPage = React.lazy(() => import("./pages/component-library/FooterPatterns"));
+const TopNavPage = React.lazy(() => import("./pages/component-library/TopNav"));
+const SideNavPage = React.lazy(() => import("./pages/component-library/SideNav"));
+const PageTemplatesPage = React.lazy(() => import("./pages/component-library/PageTemplates"));
 
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
@@ -196,6 +199,9 @@ const App = () => (
                 <Route path="wcp-flag" element={<WCPFlagPage />} />
                 <Route path="theme-editor" element={<ThemeEditorPage />} />
                 <Route path="footer-patterns" element={<FooterPatternsPage />} />
+                <Route path="top-nav" element={<TopNavPage />} />
+                <Route path="side-nav" element={<SideNavPage />} />
+                <Route path="page-templates" element={<PageTemplatesPage />} />
               </Route>
 
               {/* Walmart pages */}
