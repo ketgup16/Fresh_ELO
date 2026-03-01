@@ -219,7 +219,7 @@ export default function ComponentLibraryOverview() {
           <ThemeSwitcher />
         </div>
         {currentThemeData && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', paddingLeft: '16px', borderLeft: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)', flex: 1 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '10px', paddingLeft: '16px', paddingTop: '20px', borderLeft: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)', flex: 1 }}>
             <div style={{
               width: '32px', height: '32px', borderRadius: '50%',
               backgroundColor: currentThemeData.previewColor ?? 'var(--ld-semantic-color-action-fill-primary)',
