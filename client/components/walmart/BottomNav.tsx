@@ -7,6 +7,8 @@ import styles from './BottomNav.module.css';
 interface BottomNavProps {
   activeTab?: 'shop' | 'heart' | 'user';
   onTabChange?: (tab: 'shop' | 'heart' | 'user') => void;
+  /** Renders in-flow (not fixed) for use inside a patterns/documentation page */
+  contained?: boolean;
 }
 
 const TAB_X: Record<string, string> = {
@@ -21,7 +23,7 @@ const NAV_PATHS: Record<string, string | undefined> = {
   user: '/walmart/purchase-history',
 };
 
-export function BottomNav({ activeTab = 'shop', onTabChange }: BottomNavProps) {
+export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }: BottomNavProps) {
   const navigate = useNavigate();
   // Visual tab drives the indicator position — decoupled from prop so we can
   // animate first, then trigger the page navigation after the slide completes.
@@ -79,8 +81,12 @@ export function BottomNav({ activeTab = 'shop', onTabChange }: BottomNavProps) {
 
   return (
     <>
-      <div className={`${styles.fadeOverlay} ${!isVisible ? styles.fadeOverlayHidden : ''}`} />
-      <div className={`${styles.nav} ${!isVisible ? styles.navHidden : ''}`}>
+      {!contained && <div className={`${styles.fadeOverlay} ${!isVisible ? styles.fadeOverlayHidden : ''}`} />}
+      <div className={[
+        styles.nav,
+        !contained && !isVisible ? styles.navHidden : '',
+        contained ? styles.navContained : '',
+      ].filter(Boolean).join(' ')}>
         <div className={styles.navInner}>
           <div className={styles.tabBar}>
             <div

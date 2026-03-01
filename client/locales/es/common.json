@@ -170,6 +170,7 @@
     "navDataTable": "Tabla de datos",
     "navToggle": "Alternar",
     "patterns": "Patrones",
+    "navFooterPatterns": "Pie de página y Nav inferior",
     "navOrderCardPatterns": "Patrones de Tarjeta de Pedido",
     "descAlerts": "Mensajes de banner para estados de información, éxito, advertencia y error",
     "descBadges": "Insignias de conteo, indicadores de estado y variantes de color semántico",

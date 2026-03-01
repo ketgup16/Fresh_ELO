@@ -170,6 +170,7 @@
     "navDataTable": "Tableau de données",
     "navToggle": "Basculer",
     "patterns": "Modèles",
+    "navFooterPatterns": "Pied de page et Nav inférieure",
     "navOrderCardPatterns": "Modèles de Carte de Commande",
     "descAlerts": "Messages de bannière pour les états d'information, succès, avertissement et erreur",
     "descBadges": "Badges de comptage, indicateurs d'état et variantes de couleur sémantique",
