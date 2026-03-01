@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { WCPFlag, WCP_FLAG_VARIANTS } from '@/components/walmart/WCPFlag';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { useTheme } from '@/contexts/ThemeContext';
+import { DesktopFooter } from '@/components/walmart/DesktopFooter';
+import { MwebFooter } from '@/components/walmart/MwebFooter';
+import { BottomNav } from '@/components/walmart/BottomNav';
 import {
   Gift,
   Star,
@@ -37,6 +40,8 @@ const FLAG_ICONS: Record<WCPFlagVariant, React.ReactNode> = {
   'urgent':             <Flash       {...ICON_SIZE} />,
 };
 
+type Platform = 'dweb' | 'mweb' | 'native';
+
 interface PreviewPanelProps {
   /** Number of overrides applied — used to force re-render when tokens change */
   overrideCount: number;
@@ -49,6 +54,7 @@ interface PreviewPanelProps {
  */
 export function PreviewPanel({ overrideCount: _ }: PreviewPanelProps) {
   const { currentThemeData } = useTheme();
+  const [platform, setPlatform] = useState<Platform>('dweb');
 
   return (
     <div className={styles.panel}>
@@ -66,6 +72,41 @@ export function PreviewPanel({ overrideCount: _ }: PreviewPanelProps) {
         <p className={styles.themeNote}>
           Switch themes to see how your overrides stack on top of different base themes.
           Token overrides remain active across theme switches.
+        </p>
+      </section>
+
+      {/* Platform / device chooser */}
+      <section className={styles.section}>
+        <h3 className={styles.sectionTitle}>Device &amp; breakpoint</h3>
+        <div className={styles.platformRow}>
+          <ButtonGroup>
+            <Button
+              variant={platform === 'dweb' ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setPlatform('dweb')}
+            >
+              Desktop
+            </Button>
+            <Button
+              variant={platform === 'mweb' ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setPlatform('mweb')}
+            >
+              Mobile Web
+            </Button>
+            <Button
+              variant={platform === 'native' ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setPlatform('native')}
+            >
+              Native
+            </Button>
+          </ButtonGroup>
+        </div>
+        <p className={styles.themeNote}>
+          {platform === 'dweb' && 'Previewing desktop web footer (≥1024px).'}
+          {platform === 'mweb' && 'Previewing mobile web footer (<1024px).'}
+          {platform === 'native' && 'Previewing native bottom navigation bar.'}
         </p>
       </section>
 
@@ -112,6 +153,32 @@ export function PreviewPanel({ overrideCount: _ }: PreviewPanelProps) {
             placeholder="Field border tokens preview"
             readOnly
           />
+        </div>
+      </section>
+
+      {/* Footer / nav pattern preview */}
+      <section className={styles.section}>
+        <h3 className={styles.sectionTitle}>
+          {platform === 'native' ? 'Bottom nav' : 'Footer'}
+        </h3>
+        <div className={platform === 'native' ? styles.nativePreviewWrap : styles.footerPreviewWrap}>
+          {platform === 'dweb' && (
+            <div className={styles.footerScaleWrap}>
+              <div className={styles.footerScaleInner}>
+                <DesktopFooter />
+              </div>
+            </div>
+          )}
+          {platform === 'mweb' && (
+            <div className={styles.mwebPreviewFrame}>
+              <MwebFooter />
+            </div>
+          )}
+          {platform === 'native' && (
+            <div className={styles.nativeFrame}>
+              <BottomNav activeTab="shop" />
+            </div>
+          )}
         </div>
       </section>
     </div>

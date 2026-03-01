@@ -111,7 +111,7 @@ export default function WCPFlagPage() {
                   padding: '20px 16px',
                   background: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
                   borderRadius: '8px',
-                  border: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
+                  border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
                 }}
               >
                 <WCPFlag variant={variant} label={label} leadingIcon={VARIANT_ICONS[variant]} />
@@ -154,7 +154,7 @@ export default function WCPFlagPage() {
           <div style={{
             background: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
             borderRadius: '8px',
-            border: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
+            border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
             overflow: 'hidden',
             marginTop: '16px',
           }}>
@@ -164,7 +164,7 @@ export default function WCPFlagPage() {
               gridTemplateColumns: '130px minmax(0,1fr) minmax(0,1.6fr) minmax(0,1.6fr)',
               padding: '10px 16px',
               background: 'var(--ld-semantic-color-fill-surface-secondary, #f5f5f6)',
-              borderBottom: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
+              borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
             }}>
               {['Preview', 'Variant', 'Fill token (bg)', 'Text-onFill token'].map(h => (
                 <span key={h} style={{
@@ -190,7 +190,7 @@ export default function WCPFlagPage() {
                   padding: '12px 16px',
                   alignItems: 'center',
                   borderBottom: i < WCP_FLAG_VARIANTS.length - 1
-                    ? '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)'
+                    ? '1px solid var(--ld-semantic-color-separator, #e3e4e5)'
                     : 'none',
                 }}
               >
@@ -270,7 +270,7 @@ export default function WCPFlagPage() {
             padding: '24px',
             background: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
             borderRadius: '8px',
-            border: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
+            border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
           }}>
             {WCP_FLAG_VARIANTS.map(m => (
               <WCPFlag key={m.variant} variant={m.variant} label={m.label} leadingIcon={VARIANT_ICONS[m.variant]} />

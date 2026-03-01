@@ -75,37 +75,37 @@ export default function ProgressIndicatorPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle, #F1F1F2)' }}>
+                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)' }}>
                     <td style={{ padding: '12px 8px' }}><code>value</code></td>
                     <td style={{ padding: '12px 8px' }}>number</td>
                     <td style={{ padding: '12px 8px' }}>required</td>
                     <td style={{ padding: '12px 8px' }}>{t('componentLibrary.progressValueDesc')}</td>
                   </tr>
-                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle, #F1F1F2)' }}>
+                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)' }}>
                     <td style={{ padding: '12px 8px' }}><code>max</code></td>
                     <td style={{ padding: '12px 8px' }}>number</td>
                     <td style={{ padding: '12px 8px' }}>100</td>
                     <td style={{ padding: '12px 8px' }}>{t('componentLibrary.progressMaxDesc')}</td>
                   </tr>
-                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle, #F1F1F2)' }}>
+                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)' }}>
                     <td style={{ padding: '12px 8px' }}><code>label</code></td>
                     <td style={{ padding: '12px 8px' }}>string</td>
                     <td style={{ padding: '12px 8px' }}>-</td>
                     <td style={{ padding: '12px 8px' }}>{t('componentLibrary.progressLabelDesc')}</td>
                   </tr>
-                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle, #F1F1F2)' }}>
+                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)' }}>
                     <td style={{ padding: '12px 8px' }}><code>valueLabel</code></td>
                     <td style={{ padding: '12px 8px' }}>string</td>
                     <td style={{ padding: '12px 8px' }}>-</td>
                     <td style={{ padding: '12px 8px' }}>{t('componentLibrary.progressValueLabelDesc')}</td>
                   </tr>
-                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle, #F1F1F2)' }}>
+                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)' }}>
                     <td style={{ padding: '12px 8px' }}><code>variant</code></td>
                     <td style={{ padding: '12px 8px' }}>"primary" | "success" | "warning" | "error"</td>
                     <td style={{ padding: '12px 8px' }}>"primary"</td>
                     <td style={{ padding: '12px 8px' }}>{t('componentLibrary.progressVariantDesc')}</td>
                   </tr>
-                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle, #F1F1F2)' }}>
+                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)' }}>
                     <td style={{ padding: '12px 8px' }}><code>showValue</code></td>
                     <td style={{ padding: '12px 8px' }}>boolean</td>
                     <td style={{ padding: '12px 8px' }}>false</td>

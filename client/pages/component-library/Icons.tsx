@@ -139,7 +139,7 @@ export default function IconsPage() {
                     flexDirection: 'column',
                     alignItems: 'center',
                     padding: '16px',
-                    border: '1px solid var(--ld-semantic-color-border-subtle, #F0F0F1)',
+                    border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
                     borderRadius: '6px',
                     transition: 'all 0.2s',
                     cursor: 'pointer'
@@ -150,7 +150,7 @@ export default function IconsPage() {
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.borderColor = 'var(--ld-semantic-color-border-subtle, #F0F0F1)';
+                    e.currentTarget.style.borderColor = 'var(--ld-semantic-color-separator, #e3e4e5)';
                   }}
                 >
                   <IconComponent size={32} />

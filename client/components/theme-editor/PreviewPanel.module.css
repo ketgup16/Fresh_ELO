@@ -99,3 +99,48 @@
   outline-offset: 1px;
   border-color: var(--ld-semantic-color-field-border-focused, #0071dc);
 }
+
+/* Platform chooser */
+.platformRow {
+  display: flex;
+}
+
+/* Footer preview wrappers */
+.footerPreviewWrap {
+  overflow: hidden;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.footerScaleWrap {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Scale the desktop footer to fit the panel width */
+.footerScaleInner {
+  transform-origin: top left;
+  transform: scale(0.45);
+  width: 222%;
+  pointer-events: none;
+}
+
+.mwebPreviewFrame {
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Native bottom nav preview */
+.nativePreviewWrap {
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  overflow: hidden;
+  background: var(--ld-semantic-color-surface, #fff);
+}
+
+.nativeFrame {
+  position: relative;
+  height: 100px;
+  overflow: hidden;
+}

@@ -59,7 +59,7 @@
 .backToHome {
   margin-top: auto;
   padding-top: 24px;
-  border-top: 2px solid var(--ld-semantic-color-border-subtle);
+  border-top: 2px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
 /* ─── Mobile top bar ─── */

@@ -75,6 +75,28 @@ import { OLQTag } from '@/components/ui/olq-tag';
 
 ---
 
+### 2.5 — Separator Token (ALWAYS ENFORCE — zero exceptions for divider contexts)
+**File**: `RULE_SeparatorToken.md`
+
+**When**: ANY time a divider line, section separator, table row border, or subtle section border is needed
+
+**Key Requirements**:
+- ✅ ALWAYS use `var(--ld-semantic-color-separator, #e3e4e5)` for dividers, table row borders, and section separators
+- ✅ gray-20 (`#e3e4e5`) — correct light separator that works across all themes
+- ❌ NEVER use `var(--ld-semantic-color-border-subtle)` for dividers — it resolves inconsistently (some contexts: near-black #515357)
+- `border-subtle` is reserved ONLY for interactive component borders (inputs, interactive card frames)
+
+**Quick Check**:
+```css
+/* ❌ WRONG — too dark or inconsistent for dividers */
+border-bottom: 1px solid var(--ld-semantic-color-border-subtle, #515357);
+
+/* ✅ CORRECT — always use separator for divider lines */
+border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+```
+
+---
+
 ### 3. Design System Enforcement (Tokens + Icons)
 **File**: `RULE_DesignSystemEnforcement.md`
 

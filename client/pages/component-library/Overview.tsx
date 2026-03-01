@@ -206,7 +206,7 @@ export default function ComponentLibraryOverview() {
         gap: '16px',
         padding: '16px 24px',
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
-        border: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
+        border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
         borderRadius: '12px',
         marginBottom: '32px',
         flexWrap: 'wrap',
