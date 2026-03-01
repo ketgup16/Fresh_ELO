@@ -10,8 +10,7 @@
   justify-content: center;
   flex-shrink: 0;
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
-  border: var(--ld-semantic-scale-borderwidth-interactive, 1px) solid
-    var(--ld-semantic-color-action-border-secondary);
+  border: none;
   background: var(--ld-semantic-color-action-fill-secondary);
   color: var(--ld-semantic-color-action-text-onfill-secondary);
   cursor: pointer;
@@ -34,7 +33,6 @@
 /* ── Hover ─────────────────────────────────────────── */
 .floatingButton:hover:not(:disabled) {
   background: var(--ld-semantic-color-action-fill-secondary-hovered);
-  border-color: var(--ld-semantic-color-action-border-secondary-hovered);
   color: var(--ld-semantic-color-action-text-onfill-secondary-hovered);
   box-shadow:
     0 2px 4px 0 rgba(0, 0, 0, 0.14),
@@ -52,7 +50,6 @@
 /* ── Pressed / Active ──────────────────────────────── */
 .floatingButton:active:not(:disabled) {
   background: var(--ld-semantic-color-action-fill-secondary-pressed);
-  border-color: var(--ld-semantic-color-action-border-secondary-pressed);
   color: var(--ld-semantic-color-action-text-onfill-secondary-pressed);
   box-shadow:
     0 0px 2px 0 rgba(0, 0, 0, 0.10),
@@ -62,7 +59,6 @@
 /* ── Disabled ──────────────────────────────────────── */
 .floatingButton:disabled {
   background: var(--ld-semantic-color-action-fill-secondary-disabled);
-  border-color: var(--ld-semantic-color-action-border-secondary-disabled);
   color: var(--ld-semantic-color-action-text-onfill-transparent-disabled);
   box-shadow: none;
   cursor: not-allowed;

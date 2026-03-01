@@ -3,6 +3,7 @@ import { PageHeader } from '@/components/ui/PageHeader';
 import { WCPCountrySelectBottomSheet, WCP_DEFAULT_COUNTRIES } from '@/components/walmart/WCPCountrySelectBottomSheet';
 import { WCPCountryCodePhoneInput } from '@/components/walmart/WCPCountryCodePhoneInput';
 import { WCPCountrySelectGroup } from '@/components/walmart/WCPCountrySelectGroup';
+import { WCPCountrySelectDropdown } from '@/components/walmart/WCPCountrySelectDropdown';
 import { Button } from '@/components/ui/Button';
 import styles from './WCPCountryComponents.module.css';
 
@@ -14,6 +15,10 @@ export default function WCPCountryComponentsPage() {
   const [phoneValue, setPhoneValue] = React.useState('(415) 699-5290');
   const [groupValue, setGroupValue] = React.useState('US');
 
+  // Dropdown state
+  const [singleValue, setSingleValue] = React.useState('US');
+  const [multiValue, setMultiValue] = React.useState<string[]>(['US', 'MX']);
+
   return (
     <div>
       <PageHeader
@@ -23,6 +28,74 @@ export default function WCPCountryComponentsPage() {
       />
 
       <div className={styles.content}>
+
+        {/* ── Country Select Dropdown (Desktop) ── */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Country Select Dropdown</h2>
+          <p className={styles.sectionDesc}>
+            A desktop-first dropdown with search, single-select (radio), and multi-select (checkbox) modes.
+            On mobile, pair this with the bottom sheet pattern below.
+          </p>
+
+          <div className={styles.dropdownGrid}>
+            {/* Single select */}
+            <div className={styles.dropdownCard}>
+              <h3 className={styles.variantTitle}>Single Select</h3>
+              <p className={styles.variantDesc}>One country can be selected at a time. Closes automatically on selection.</p>
+              <WCPCountrySelectDropdown
+                label="Ship to"
+                mode="single"
+                value={singleValue}
+                onChange={(v) => setSingleValue(v as string)}
+                placeholder="Select country"
+              />
+              <WCPCountrySelectDropdown
+                label="With dial codes"
+                mode="single"
+                value={singleValue}
+                onChange={(v) => setSingleValue(v as string)}
+                showDialCode
+                placeholder="Select country"
+              />
+            </div>
+
+            {/* Multi select */}
+            <div className={styles.dropdownCard}>
+              <h3 className={styles.variantTitle}>Multi Select</h3>
+              <p className={styles.variantDesc}>Multiple countries can be checked. Changes apply on "Apply" button click.</p>
+              <WCPCountrySelectDropdown
+                label="Ship to regions"
+                mode="multi"
+                value={multiValue}
+                onChange={(v) => setMultiValue(v as string[])}
+                placeholder="Select countries"
+                confirmLabel="Apply"
+              />
+              <WCPCountrySelectDropdown
+                label="With dial codes"
+                mode="multi"
+                value={multiValue}
+                onChange={(v) => setMultiValue(v as string[])}
+                showDialCode
+                placeholder="Select countries"
+                confirmLabel="Apply"
+              />
+            </div>
+
+            {/* Disabled */}
+            <div className={styles.dropdownCard}>
+              <h3 className={styles.variantTitle}>Disabled</h3>
+              <p className={styles.variantDesc}>Dropdown in disabled state — not interactive.</p>
+              <WCPCountrySelectDropdown
+                label="Ship to"
+                mode="single"
+                value="US"
+                disabled
+                placeholder="Select country"
+              />
+            </div>
+          </div>
+        </section>
 
         {/* ── Country Select Bottom Sheet ── */}
         <section className={styles.section}>
