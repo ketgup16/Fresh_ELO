@@ -145,7 +145,7 @@ export default function WCPFlagPage() {
             {/* Header row */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: '120px 1fr 1fr 1fr',
+              gridTemplateColumns: '140px minmax(0,1.2fr) minmax(0,1.4fr) minmax(0,1.4fr)',
               gap: '0',
               padding: '10px 16px',
               background: 'var(--ld-semantic-color-fill-surface-secondary, #f5f5f6)',
@@ -171,7 +171,7 @@ export default function WCPFlagPage() {
                 key={meta.variant}
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: '120px 1fr 1fr 1fr',
+                  gridTemplateColumns: '140px minmax(0,1.2fr) minmax(0,1.4fr) minmax(0,1.4fr)',
                   gap: '0',
                   padding: '12px 16px',
                   alignItems: 'center',
@@ -182,7 +182,7 @@ export default function WCPFlagPage() {
               >
                 {/* Preview */}
                 <div>
-                  <WCPFlag variant={meta.variant} label="Flag name" leadingIcon={VARIANT_ICONS[meta.variant]} />
+                  <WCPFlag variant={meta.variant} label="Flag name" />
                 </div>
 
                 {/* Variant name */}
