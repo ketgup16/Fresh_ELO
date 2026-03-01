@@ -138,6 +138,182 @@ export default function WCPHeartViewPage() {
           </div>
         </section>
 
+        {/* ── Do's and Don'ts ── */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Do's and Don'ts</h2>
+
+          <div className={styles.dosDonotsGrid}>
+
+            {/* DON'T 1 */}
+            <div className={styles.dosDontCard}>
+              <div className={styles.dosDontPreview}>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F737fdd2b66f847faa5c6939529c819e6?format=webp&width=800&height=1200"
+                  alt="Don't change the heart fill color"
+                  className={styles.dosDontImg}
+                />
+              </div>
+              <div className={styles.dontLabel}>
+                <span className={styles.dontIcon} aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="7.25" stroke="#C1002B" strokeWidth="1.5"/>
+                    <line x1="4.5" y1="4.5" x2="11.5" y2="11.5" stroke="#C1002B" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="11.5" y1="4.5" x2="4.5" y2="11.5" stroke="#C1002B" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </span>
+                <span className={styles.dontText}>DON&apos;T</span>
+              </div>
+              <p className={styles.dosDontDesc}>Don&apos;t change the color of the filled state of the Heart View component.</p>
+            </div>
+
+            {/* DON'T 2 */}
+            <div className={styles.dosDontCard}>
+              <div className={styles.dosDontPreview}>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F737fdd2b66f847faa5c6939529c819e6?format=webp&width=800&height=1200"
+                  alt="Don't include inaccessible CTAs in the callout"
+                  className={`${styles.dosDontImg} ${styles.dosDontImgRight}`}
+                />
+              </div>
+              <div className={styles.dontLabel}>
+                <span className={styles.dontIcon} aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="7.25" stroke="#C1002B" strokeWidth="1.5"/>
+                    <line x1="4.5" y1="4.5" x2="11.5" y2="11.5" stroke="#C1002B" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="11.5" y1="4.5" x2="4.5" y2="11.5" stroke="#C1002B" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </span>
+                <span className={styles.dontText}>DON&apos;T</span>
+              </div>
+              <p className={styles.dosDontDesc}>Don&apos;t include CTAs in the tooltip content that are not available from the page underneath. Since it disappears automatically, some users will not be able to access the CTAs and need another way to access the same content.</p>
+            </div>
+
+            {/* DO 1 */}
+            <div className={styles.dosDontCard}>
+              <div className={styles.dosDontPreview}>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8723ec307a584d6fb3cba29d15e05b2e?format=webp&width=800&height=1200"
+                  alt="Do overlay heart on product tile top right"
+                  className={styles.dosDontImg}
+                />
+              </div>
+              <div className={styles.doLabel}>
+                <span className={styles.doIcon} aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="7.25" stroke="#1A7A3F" strokeWidth="1.5"/>
+                    <path d="M4.5 8L7 10.5L11.5 5.5" stroke="#1A7A3F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
+                <span className={styles.doText}>DO</span>
+              </div>
+              <p className={styles.dosDontDesc}>Overlay the Heart Fill component on top of Item Tiles in the top right corner.</p>
+            </div>
+
+            {/* DO 2 */}
+            <div className={styles.dosDontCard}>
+              <div className={styles.dosDontPreview}>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8723ec307a584d6fb3cba29d15e05b2e?format=webp&width=800&height=1200"
+                  alt="Do match size with other PDP floating buttons"
+                  className={`${styles.dosDontImg} ${styles.dosDontImgRight}`}
+                />
+              </div>
+              <div className={styles.doLabel}>
+                <span className={styles.doIcon} aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="7.25" stroke="#1A7A3F" strokeWidth="1.5"/>
+                    <path d="M4.5 8L7 10.5L11.5 5.5" stroke="#1A7A3F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
+                <span className={styles.doText}>DO</span>
+              </div>
+              <p className={styles.dosDontDesc}>On PDP pages when using the Heart View component within a series of floating buttons, make sure its size matches the other buttons.</p>
+            </div>
+
+            {/* DO 3 */}
+            <div className={styles.dosDontCard}>
+              <div className={styles.dosDontPreview}>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F50dad93335284e88aa49270cd0fb40fe?format=webp&width=800&height=1200"
+                  alt="Do place callout where it doesn't overlap other actions"
+                  className={styles.dosDontImg}
+                />
+              </div>
+              <div className={styles.doLabel}>
+                <span className={styles.doIcon} aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="7.25" stroke="#1A7A3F" strokeWidth="1.5"/>
+                    <path d="M4.5 8L7 10.5L11.5 5.5" stroke="#1A7A3F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
+                <span className={styles.doText}>DO</span>
+              </div>
+              <p className={styles.dosDontDesc}>Add a popover in a place where it doesn&apos;t overlap any other actions.</p>
+            </div>
+
+            {/* DON'T 3 */}
+            <div className={styles.dosDontCard}>
+              <div className={styles.dosDontPreview}>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F50dad93335284e88aa49270cd0fb40fe?format=webp&width=800&height=1200"
+                  alt="Don't place callout where it overlaps other actions"
+                  className={`${styles.dosDontImg} ${styles.dosDontImgRight}`}
+                />
+              </div>
+              <div className={styles.dontLabel}>
+                <span className={styles.dontIcon} aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="7.25" stroke="#C1002B" strokeWidth="1.5"/>
+                    <line x1="4.5" y1="4.5" x2="11.5" y2="11.5" stroke="#C1002B" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="11.5" y1="4.5" x2="4.5" y2="11.5" stroke="#C1002B" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </span>
+                <span className={styles.dontText}>DON&apos;T</span>
+              </div>
+              <p className={styles.dosDontDesc}>Don&apos;t add a popover in a place where it overlaps other actions. In the example above, the zoom action button is being covered.</p>
+            </div>
+
+          </div>
+        </section>
+
+        {/* ── Callout positions ── */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Callout Positions</h2>
+          <p className={styles.sectionDesc}>
+            Use the <code>calloutPosition</code> prop to control where the callout appears relative to the heart button.
+            Choose based on the heart's location on the page so the callout never overlaps other actions.
+          </p>
+          <div className={styles.positionsGrid}>
+            <div className={styles.positionCard}>
+              <div className={styles.positionPreview}>
+                <WCPHeartView size="medium" listName="Amy's List" calloutPosition="left" />
+              </div>
+              <div className={styles.positionMeta}>
+                <code className={styles.positionCode}>calloutPosition="left"</code>
+                <p className={styles.positionDesc}>Callout appears to the left. Use when the heart is in the center or right of the page.</p>
+              </div>
+            </div>
+            <div className={styles.positionCard}>
+              <div className={styles.positionPreview}>
+                <WCPHeartView size="medium" listName="Amy's List" calloutPosition="right" />
+              </div>
+              <div className={styles.positionMeta}>
+                <code className={styles.positionCode}>calloutPosition="right"</code>
+                <p className={styles.positionDesc}>Callout appears to the right. Use when the heart is near the left edge.</p>
+              </div>
+            </div>
+            <div className={styles.positionCard}>
+              <div className={styles.positionPreview}>
+                <WCPHeartView size="medium" listName="Amy's List" calloutPosition="bottom" />
+              </div>
+              <div className={styles.positionMeta}>
+                <code className={styles.positionCode}>calloutPosition="bottom"</code>
+                <p className={styles.positionDesc}>Callout appears below. Use when there is no space on either side, such as a narrow column.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ── Behavior notes ── */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Behavior</h2>
@@ -169,18 +345,19 @@ export default function WCPHeartViewPage() {
           <h2 className={styles.sectionTitle}>Usage</h2>
           <pre className={styles.codeBlock}>{`import { WCPHeartView } from '@/components/walmart/WCPHeartView';
 
-// Uncontrolled
+// Uncontrolled — callout defaults to 'left'
 <WCPHeartView
   listName="Amy's List"
   onViewList={() => navigate('/favorites')}
 />
 
-// Controlled
+// Controlled with explicit callout position
 <WCPHeartView
   activated={isFavorited}
   onChange={setIsFavorited}
   listName="Amy's List"
   onViewList={() => navigate('/favorites')}
+  calloutPosition="right"   // 'left' | 'right' | 'bottom'
   snackbarDuration={3500}
 />`}</pre>
         </section>

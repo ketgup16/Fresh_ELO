@@ -258,6 +258,140 @@
   white-space: pre;
 }
 
+/* ── Callout Positions ── */
+.positionsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.positionCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 12px;
+}
+
+.positionPreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  /* Extra horizontal room so the callout has space to appear */
+  padding: 0 56px;
+}
+
+.positionMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.positionCode {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 12px;
+  background: var(--ld-semantic-color-fill-secondary, #f2f2f2);
+  padding: 3px 7px;
+  border-radius: 4px;
+  color: var(--ld-semantic-color-text);
+  align-self: flex-start;
+}
+
+.positionDesc {
+  font-size: 13px;
+  line-height: 1.5;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  margin: 0;
+}
+
+/* ── Do's and Don'ts ── */
+.dosDonotsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.dosDontCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--ld-semantic-color-surface, #fff);
+}
+
+.dosDontPreview {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--ld-semantic-color-fill-secondary, #f2f2f2);
+}
+
+.dosDontImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+  display: block;
+}
+
+.dosDontImgRight {
+  object-position: right top;
+}
+
+.doLabel,
+.dontLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 16px;
+}
+
+.doText {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: #1A7A3F;
+  letter-spacing: 0.04em;
+}
+
+.dontText {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: #C1002B;
+  letter-spacing: 0.04em;
+}
+
+.doIcon,
+.dontIcon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dosDontCard:has(.doLabel) {
+  border-top: 3px solid #1A7A3F;
+}
+
+.dosDontCard:has(.dontLabel) {
+  border-top: 3px solid #C1002B;
+}
+
+.dosDontDesc {
+  font-size: 14px;
+  line-height: 1.55;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  margin: 0;
+  padding: 0 16px 16px;
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .page {
@@ -265,7 +399,9 @@
   }
 
   .statesGrid,
-  .behaviorGrid {
+  .behaviorGrid,
+  .dosDonotsGrid,
+  .positionsGrid {
     grid-template-columns: 1fr;
   }
 

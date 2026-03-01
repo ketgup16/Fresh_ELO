@@ -30,6 +30,11 @@ export interface WCPHeartViewProps {
   'aria-label'?: string;
   /** Extra class for positioning overrides */
   UNSAFE_className?: string;
+  /**
+   * Where the callout appears relative to the heart button.
+   * @default 'left'
+   */
+  calloutPosition?: 'left' | 'right' | 'bottom';
 }
 
 type CalloutType = 'add' | 'saved' | 'removed' | null;
@@ -45,6 +50,7 @@ export function WCPHeartView({
   disabled = false,
   'aria-label': ariaLabel,
   UNSAFE_className,
+  calloutPosition = 'left',
 }: WCPHeartViewProps) {
   const isControlled = controlledActivated !== undefined;
   const [internalActivated, setInternalActivated] = React.useState(defaultActivated);
@@ -137,7 +143,13 @@ export function WCPHeartView({
     <div className={styles.wrapper}>
       {/* Desktop callout tooltip */}
       {callout && calloutText && (
-        <div className={styles.callout} role="tooltip">
+        <div
+          className={[
+            styles.callout,
+            styles[`callout--${calloutPosition}`],
+          ].filter(Boolean).join(' ')}
+          role="tooltip"
+        >
           <span className={styles.calloutText}>{calloutText}</span>
           {callout === 'saved' && onViewList && (
             <button

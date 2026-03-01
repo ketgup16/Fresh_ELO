@@ -155,79 +155,134 @@
   display: none;
 }
 
-@keyframes calloutFadeIn {
+/* Shared callout text + action styles */
+.calloutText {
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-family: var(--ld-semantic-font-family-sans);
+  font-weight: 700;
+  line-height: 1.4285;
+  color: var(--ld-semantic-color-text-inverse, #fff);
+  text-align: center;
+}
+
+.calloutAction {
+  display: block;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-family: var(--ld-semantic-font-family-sans);
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-inverse, #fff);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 0;
+  white-space: nowrap;
+  text-align: right;
+  width: 100%;
+}
+
+.calloutAction:hover {
+  opacity: 0.85;
+}
+
+.calloutAction:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Shared nubbin base */
+.calloutArrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  flex-shrink: 0;
+}
+
+@keyframes calloutFadeInLeft {
   from { opacity: 0; transform: translateY(-50%) translateX(4px); }
   to   { opacity: 1; transform: translateY(-50%) translateX(0); }
 }
 
+@keyframes calloutFadeInRight {
+  from { opacity: 0; transform: translateY(-50%) translateX(-4px); }
+  to   { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
+
+@keyframes calloutFadeInBottom {
+  from { opacity: 0; transform: translateX(-50%) translateY(-4px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
 @media (min-width: 900px) {
+  /* ── Shared base at desktop ── */
   .callout {
     display: flex;
-    align-items: center;
-    gap: 6px;
+    flex-direction: column;
+    gap: 4px;
     position: absolute;
-    right: calc(100% + 10px);
-    top: 50%;
-    transform: translateY(-50%);
     background: var(--ld-semantic-color-fill-inverse, #2e2f32);
     color: var(--ld-semantic-color-text-inverse, #fff);
-    border-radius: 6px;
-    padding: 8px 10px;
+    border-radius: 4px;
+    padding: 8px 12px;
     white-space: nowrap;
     z-index: 100;
     box-shadow:
       0 2px 8px rgba(0, 0, 0, 0.20),
       0 1px 3px rgba(0, 0, 0, 0.12);
-    animation: calloutFadeIn 0.12s ease;
     pointer-events: auto;
   }
 
-  /* Arrow pointing right (toward the button) */
-  .calloutArrow {
-    position: absolute;
+  /* ── LEFT: callout appears to the left, nubbin points right ── */
+  .callout--left {
+    right: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+    animation: calloutFadeInLeft 0.12s ease;
+  }
+
+  .callout--left .calloutArrow {
     right: -6px;
     top: 50%;
     transform: translateY(-50%);
-    width: 0;
-    height: 0;
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
     border-left: 6px solid var(--ld-semantic-color-fill-inverse, #2e2f32);
-    flex-shrink: 0;
   }
 
-  .calloutText {
-    font-size: var(--ld-semantic-font-body-small-size, 14px);
-    font-family: var(--ld-semantic-font-family-sans);
-    font-weight: 400;
-    line-height: 1.4;
-    color: var(--ld-semantic-color-text-inverse, #fff);
+  /* ── RIGHT: callout appears to the right, nubbin points left ── */
+  .callout--right {
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+    animation: calloutFadeInRight 0.12s ease;
   }
 
-  .calloutAction {
-    display: inline-flex;
-    align-items: center;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: var(--ld-semantic-font-body-small-size, 14px);
-    font-family: var(--ld-semantic-font-family-sans);
-    font-weight: 400;
-    color: var(--ld-semantic-color-text-inverse, #fff);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    padding: 0;
-    white-space: nowrap;
+  .callout--right .calloutArrow {
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid var(--ld-semantic-color-fill-inverse, #2e2f32);
   }
 
-  .calloutAction:hover {
-    opacity: 0.85;
+  /* ── BOTTOM: callout appears below, nubbin points up ── */
+  .callout--bottom {
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    animation: calloutFadeInBottom 0.12s ease;
   }
 
-  .calloutAction:focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.8);
-    outline-offset: 2px;
-    border-radius: 2px;
+  .callout--bottom .calloutArrow {
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid var(--ld-semantic-color-fill-inverse, #2e2f32);
   }
 }
 
