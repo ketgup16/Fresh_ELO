@@ -27,7 +27,7 @@
 .section {
   padding: var(--ld-primitive-scale-space-400, 16px);
   background: var(--ld-semantic-color-surface, #fff);
-  border: 1px solid var(--ld-semantic-color-border, #e5e5e5);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   display: flex;
   flex-direction: column;
