@@ -1,9 +1,10 @@
 /* ─── WCP Flag Component ──────────────────────────────────────────────────── */
 /*
   Token strategy:
-    --flag-bg     → --wcp-semantic-color-fill-*        (fill category only)
-    --flag-text   → --wcp-semantic-color-text-onFill-* (paired text-on-fill)
-    --flag-border → --wcp-semantic-color-border-*      (or transparent)
+    --flag-bg         → --wcp-semantic-color-fill-*        (fill category only)
+    --flag-text       → --wcp-semantic-color-text-onFill-* (paired text-on-fill)
+    --flag-icon-color → --wcp-semantic-color-icon-onFill-* (icon-specific, falls back to --flag-text)
+    --flag-border     → --wcp-semantic-color-border-*      (or transparent)
 
   Exception: `brand-subtle` uses LD brand tokens intentionally so it responds
   to brand-theme overrides (Bodega green, etc.).
@@ -18,25 +19,16 @@
 /* ─── Base shell ─────────────────────────────────────────────────────────── */
 
 .flag {
-  /* Layout */
   display: inline-flex;
   align-items: center;
   gap: 4px;
   padding: 4px 8px;
   border-radius: 4px;
-
-  /* Sizing */
   min-height: 28px;
   width: max-content;
-
-  /* Border */
   border: 1.5px solid var(--flag-border, transparent);
-
-  /* Color via component tokens */
   background-color: var(--flag-bg);
   color: var(--flag-text);
-
-  /* Typography */
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
   font-size: 13px;
   font-weight: 700;
@@ -50,6 +42,8 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  /* Icon color can be overridden independently from text via --flag-icon-color */
+  color: var(--flag-icon-color, var(--flag-text));
 }
 
 .label {
@@ -58,41 +52,41 @@
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* Holiday Restricted                                                          */
-/* Dark charcoal fill — items restricted/unavailable during holiday period     */
+/* Light gray fill, dark gray text — items restricted during holiday period    */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .holiday-restricted {
-  --flag-bg:     var(--wcp-semantic-color-fill-holiday-restricted, #2e2f32);
-  --flag-text:   var(--wcp-semantic-color-text-onFill-holiday-restricted, #ffffff);
+  --flag-bg:     var(--wcp-semantic-color-fill-holiday-restricted, #f1f1f2);
+  --flag-text:   var(--wcp-semantic-color-text-onFill-holiday-restricted, #515357);
   --flag-border: transparent;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* Brand Subtle                                                                */
 /* Exception: uses LD brand tokens so it tracks brand theme overrides         */
-/* (e.g. Bodega → green border/text instead of navy)                          */
+/* (e.g. Bodega → green fill/text instead of blue)                            */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .brand-subtle {
   --flag-bg:     var(--ld-semantic-color-fill-brand-subtle, #e9f1fe);
   --flag-text:   var(--ld-semantic-color-text-on-fill-brand-subtle, #114ab6);
-  --flag-border: var(--ld-semantic-color-border-brand, #0053e2);
+  --flag-border: transparent;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* Scarcity                                                                    */
-/* Orange fill — low stock / limited availability                              */
+/* Light amber tint, dark amber text — low stock / limited availability       */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .scarcity {
-  --flag-bg:     var(--wcp-semantic-color-fill-scarcity, #fa6400);
-  --flag-text:   var(--wcp-semantic-color-text-onFill-scarcity, #ffffff);
+  --flag-bg:     var(--wcp-semantic-color-fill-scarcity, #fef6de);
+  --flag-text:   var(--wcp-semantic-color-text-onFill-scarcity, #662b0d);
   --flag-border: transparent;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* Savings Bold                                                                */
-/* Solid red fill — promotional savings / clearance (high emphasis)            */
+/* Solid red fill, white text — promotional savings / clearance (high emphasis)*/
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .savings-bold {
@@ -103,18 +97,18 @@
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* Savings Subtle                                                              */
-/* Light red tint — savings indicator (low emphasis)                           */
+/* White fill, dark-red border + text — savings (outlined / low emphasis)      */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .savings-subtle {
-  --flag-bg:     var(--wcp-semantic-color-fill-savings-subtle, #fde9e8);
+  --flag-bg:     var(--wcp-semantic-color-fill-savings-subtle, #ffffff);
   --flag-text:   var(--wcp-semantic-color-text-onFill-savings-subtle, #a20c00);
-  --flag-border: transparent;
+  --flag-border: var(--wcp-semantic-color-border-savings-subtle, #a20c00);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* Confidence Subtle                                                           */
-/* Light blue tint — soft info / confidence badge (fixed, never brand-overridden) */
+/* Light blue tint — soft confidence / info badge (never brand-overridden)     */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .confidence-subtle {
@@ -125,66 +119,67 @@
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* Confidence Bold                                                             */
-/* Solid blue fill — standard confidence badge                                 */
+/* Darkest navy fill (#0e002e) — highest-emphasis confidence badge             */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .confidence-bold {
-  --flag-bg:     var(--wcp-semantic-color-fill-confidence, #0053e2);
-  --flag-text:   var(--wcp-semantic-color-text-onFill-confidence, #ffffff);
+  --flag-bg:     var(--wcp-semantic-color-fill-confidence-bold, #0e002e);
+  --flag-text:   var(--wcp-semantic-color-text-onFill-confidence-bold, #ffffff);
   --flag-border: transparent;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* Confidence Alt                                                              */
-/* White fill, blue border — outlined confidence badge (alternative style)     */
+/* Deep navy fill (#001e60), white text, spark yellow icons                    */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .confidence-alt {
-  --flag-bg:     var(--wcp-semantic-color-fill-confidence-alt, #ffffff);
-  --flag-text:   var(--wcp-semantic-color-text-onFill-confidence-alt, #0053e2);
-  --flag-border: var(--wcp-semantic-color-border-confidence-alt, #0053e2);
+  --flag-bg:         var(--wcp-semantic-color-fill-confidence-alt, #001e60);
+  --flag-text:       var(--wcp-semantic-color-text-onFill-confidence-alt, #ffffff);
+  --flag-icon-color: var(--wcp-semantic-color-icon-onFill-confidence-alt, #ffc220);
+  --flag-border:     transparent;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* Confidence                                                                  */
-/* Navy blue fill — confidence badge (high emphasis / deep)                    */
+/* Deep navy fill (#001e60), white text — standard emphasis confidence badge   */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .confidence {
-  --flag-bg:     var(--wcp-semantic-color-fill-confidence-deep, #002e99);
-  --flag-text:   var(--wcp-semantic-color-text-onFill-confidence-deep, #ffffff);
+  --flag-bg:     var(--wcp-semantic-color-fill-confidence, #001e60);
+  --flag-text:   var(--wcp-semantic-color-text-onFill-confidence, #ffffff);
   --flag-border: transparent;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* Holiday Member                                                              */
-/* Green fill — Walmart+ member holiday badge                                  */
+/* Spark yellow fill (#ffc220), very dark navy text — Walmart+ holiday badge   */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .holiday-member {
-  --flag-bg:     var(--wcp-semantic-color-fill-holiday-member, #2a8703);
-  --flag-text:   var(--wcp-semantic-color-text-onFill-holiday-member, #ffffff);
+  --flag-bg:     var(--wcp-semantic-color-fill-holiday-member, #ffc220);
+  --flag-text:   var(--wcp-semantic-color-text-onFill-holiday-member, #0e002e);
   --flag-border: transparent;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* Social                                                                      */
-/* Cyan fill — social proof (views, interest, popularity)                      */
+/* White fill, blue border + text — social proof (outlined badge)              */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .social {
-  --flag-bg:     var(--wcp-semantic-color-fill-social, #189ee2);
-  --flag-text:   var(--wcp-semantic-color-text-onFill-social, #ffffff);
-  --flag-border: transparent;
+  --flag-bg:     var(--wcp-semantic-color-fill-social, #ffffff);
+  --flag-text:   var(--wcp-semantic-color-text-onFill-social, #0053e2);
+  --flag-border: var(--wcp-semantic-color-border-social, #0053e2);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* Urgent                                                                      */
-/* Dark red fill — urgency / time-sensitive / critical action                  */
+/* Bright yellow fill (#fff200), dark gray text — urgency / time-sensitive     */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .urgent {
-  --flag-bg:     var(--wcp-semantic-color-fill-urgent, #a20c00);
-  --flag-text:   var(--wcp-semantic-color-text-onFill-urgent, #ffffff);
+  --flag-bg:     var(--wcp-semantic-color-fill-urgent, #fff200);
+  --flag-text:   var(--wcp-semantic-color-text-onFill-urgent, #2e2f32);
   --flag-border: transparent;
 }
