@@ -125,29 +125,96 @@ export function BasicBanner({ variant = 'default', headline, onClick }: BasicBan
 
 ### Step 4 — Create the Component Library page
 
-- Location: `client/pages/component-library/BasicBannerPage.tsx`
+- Location: `client/pages/component-library/ComponentNamePage.tsx`
+- Default export (pages use default export, unlike the component itself which uses named export)
 - Show all variants, all interactive states, and any required props
-- Include i18n usage examples if the component has user-facing text
-
-### Step 5 — Add a route
-
-Add the Component Library page route to `client/App.tsx`:
+- Include usage code examples in a `<pre>` block
+- Include a Do / Don't section
 
 ```tsx
-<Route path="/component-library/basic-banner" element={<BasicBannerPage />} />
+// client/pages/component-library/BasicBannerPage.tsx
+import { PageHeader } from '@/components/ui/PageHeader';
+import { BasicBanner } from '@/components/walmart/BasicBanner';
+
+export default function BasicBannerPage() {
+  return (
+    <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
+      <PageHeader
+        section="WCP Components"
+        title="Basic Banner"
+        description="Short description of the component and its use cases."
+      />
+      {/* Sections: Variants, States, Usage code, Do/Don't */}
+    </div>
+  );
+}
 ```
 
-### Step 6 — Add to Overview.tsx
+### Step 5 — Register a lazy import + route in App.tsx
 
-Add a card entry in `client/pages/component-library/Overview.tsx` in the appropriate category section.
+Add a lazy import near the other WCP page lazy imports:
 
-### Step 7 — Add i18n keys
+```tsx
+// In client/App.tsx — near other WCP lazy imports
+const BasicBannerPage = React.lazy(() => import('./pages/component-library/BasicBanner'));
+```
 
-Add all user-facing strings to the translation files (`en.json`, `es.json`, `fr.json`). See `RULE_Internationalization.md`.
+Then add a route inside the `<Route path="/component-library" ...>` block:
 
-### Step 8 — Update GuidelinesDocIndex.tsx
+```tsx
+<Route path="basic-banner" element={<BasicBannerPage />} />
+```
 
-Per `RULE_GuidelinesPageSync.md`, add the new component to `client/pages/component-library/GuidelinesDocIndex.tsx` if a documentation file exists.
+### Step 6 — Add to the sidebar navigation (REQUIRED)
+
+This is the step most often missed. The Component Library sidebar is driven by the `navSections` array in:
+
+**`client/components/ComponentLibraryLayout.tsx`**
+
+Add a new entry to the correct section object. WCP components belong in the `wcpComponents` section:
+
+```ts
+// In the { titleKey: 'componentLibrary.wcpComponents', items: [...] } block
+{ id: 'basic-banner', nameKey: 'componentLibrary.navBasicBanner', path: '/component-library/basic-banner' },
+```
+
+**Section guide:**
+
+| Component type | Section titleKey |
+|---|---|
+| WCP product components (Walmart-specific) | `componentLibrary.wcpComponents` |
+| LD 3.5 primitives | `componentLibrary.components` |
+| Radix/Shadcn shared components | `componentLibrary.sharedSection` |
+| WCP page/layout patterns | `componentLibrary.wcpPatterns` |
+
+**Without this step, the component page is unreachable from the sidebar.**
+
+### Step 7 — Add to Overview.tsx
+
+Add a card entry in `client/pages/component-library/Overview.tsx` in the `componentSections` array:
+
+```ts
+{ titleKey: 'componentLibrary.navBasicBanner', descKey: 'componentLibrary.descBasicBanner', path: '/component-library/basic-banner', icon: 'Note', section: 'ld' },
+```
+
+### Step 8 — Add i18n keys to ALL THREE locale files
+
+Add nav label and description keys to **all three** locale files:
+- `client/locales/en/common.json`
+- `client/locales/es/common.json`
+- `client/locales/fr/common.json`
+
+Keys needed:
+```json
+"navBasicBanner": "Basic Banner",
+"descBasicBanner": "Short description for the Overview card"
+```
+
+The `navXxx` key is used by both the sidebar and Overview. The `descXxx` key is Overview-only.
+
+### Step 9 — Update GuidelinesDocIndex.tsx
+
+Per `RULE_GuidelinesPageSync.md`, add the new component to `client/pages/component-library/GuidelinesDocIndex.tsx` if a documentation/guideline file exists.
 
 ---
 
@@ -194,18 +261,21 @@ className={`${styles.banner} ${variantClass}`}
 
 ## Quick Reference
 
-| Requirement | Required for WCP? |
-|---|---|
-| Named export (no default export) | ✅ Yes |
-| CSS module with LD tokens only | ✅ Yes |
-| `default \| brand \| inverse` variant naming | ✅ Yes |
-| Interactive/non-interactive `Tag` pattern | ✅ Yes |
-| Array join for variant class composition | ✅ Yes |
-| Component Library page + route | ✅ Yes |
-| Overview.tsx entry | ✅ Yes |
-| i18n keys for user-facing strings | ✅ Yes |
-| ComponentPropertyTester sandbox entry | ❌ No |
-| 10-step `RULE_CreateNewComponent.md` process | ❌ No |
+| Requirement | Required for WCP? | File |
+|---|---|---|
+| Named export (no default export) | ✅ Yes | `client/components/walmart/ComponentName.tsx` |
+| CSS module with LD tokens only | ✅ Yes | `client/components/walmart/ComponentName.module.css` |
+| `default \| brand \| inverse` variant naming | ✅ (if variants needed) | CSS module + component props |
+| Interactive/non-interactive `Tag` pattern | ✅ Yes | Component `.tsx` |
+| Array join for variant class composition | ✅ Yes | Component `.tsx` |
+| Component Library page (default export) | ✅ Yes | `client/pages/component-library/ComponentNamePage.tsx` |
+| Lazy import in App.tsx | ✅ Yes | `client/App.tsx` |
+| Route registered in App.tsx | ✅ Yes | `client/App.tsx` |
+| **Sidebar nav entry in ComponentLibraryLayout.tsx** | ✅ **Yes — most often missed** | `client/components/ComponentLibraryLayout.tsx` |
+| Overview.tsx card entry | ✅ Yes | `client/pages/component-library/Overview.tsx` |
+| i18n `nav` + `desc` keys in all 3 locales | ✅ Yes | `client/locales/en|es|fr/common.json` |
+| ComponentPropertyTester sandbox entry | ❌ No | — |
+| 10-step `RULE_CreateNewComponent.md` process | ❌ No | — |
 
 ---
 

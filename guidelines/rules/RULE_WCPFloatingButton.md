@@ -225,10 +225,12 @@ This component follows the WCP component creation rule (`RULE_WCPComponentCreati
 4. **CSS Module with LD tokens only** — zero hardcoded hex values, all state/size styles in `.module.css`
 5. **No variant naming** — this component does not need `default | brand | inverse` variants; it always uses the secondary token family
 6. **Accessibility** — TypeScript enforces `aria-label`; native `<button>` element
-7. **Component Library page** — `client/pages/component-library/WCPFloatingButton.tsx`
-8. **Route registered** — `/component-library/wcp-floating-button` in `client/App.tsx`
-9. **Overview.tsx entry** — added to the component grid with i18n keys
-10. **`prefers-reduced-motion`** — transitions disabled via media query in CSS module
+7. **Component Library page** — `client/pages/component-library/WCPFloatingButton.tsx` (default export)
+8. **Lazy import + Route** — added to `client/App.tsx` at `/component-library/wcp-floating-button`
+9. **Sidebar nav** — added to `wcpComponents` section in `client/components/ComponentLibraryLayout.tsx` so the link appears in the left sidebar
+10. **Overview.tsx card** — added to the component grid so it appears on the overview page
+11. **i18n keys** — `navWCPFloatingButton` + `descWCPFloatingButton` added to all three locale files (`en`, `es`, `fr`)
+12. **`prefers-reduced-motion`** — transitions disabled via media query in CSS module
 
 ---
 
@@ -242,11 +244,18 @@ This component follows the WCP component creation rule (`RULE_WCPComponentCreati
 
 ## File Checklist
 
-| File | Status |
-|---|---|
-| `client/components/walmart/WCPFloatingButton.tsx` | ✅ Created |
-| `client/components/walmart/WCPFloatingButton.module.css` | ✅ Created |
-| `client/pages/component-library/WCPFloatingButton.tsx` | ✅ Created |
-| Route `/component-library/wcp-floating-button` in `App.tsx` | ✅ Added |
-| Overview.tsx card entry | ✅ Added |
-| This guideline file | ✅ Created |
+Use this as a copy-paste checklist for every new WCP component:
+
+| Step | File | Status |
+|---|---|---|
+| 1. Component | `client/components/walmart/WCPFloatingButton.tsx` | ✅ |
+| 2. CSS Module | `client/components/walmart/WCPFloatingButton.module.css` | ✅ |
+| 3. Library Page | `client/pages/component-library/WCPFloatingButton.tsx` | ✅ |
+| 4. Lazy import | `client/App.tsx` | ✅ |
+| 5. Route | `client/App.tsx` | ✅ |
+| 6. **Sidebar nav** | `client/components/ComponentLibraryLayout.tsx` | ✅ |
+| 7. Overview card | `client/pages/component-library/Overview.tsx` | ✅ |
+| 8. i18n — en | `client/locales/en/common.json` | ✅ |
+| 9. i18n — es | `client/locales/es/common.json` | ✅ |
+| 10. i18n — fr | `client/locales/fr/common.json` | ✅ |
+| 11. Guideline | `guidelines/rules/RULE_WCPFloatingButton.md` | ✅ |
