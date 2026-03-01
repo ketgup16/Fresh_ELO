@@ -57,12 +57,42 @@ const WCP_COMMERCE_TOKENS: TokenDef[] = [
   { token: '--wcp-semantic-color-border-social',                    label: 'Social border' },
 ];
 
+const TOP_NAV_TOKENS: TokenDef[] = [
+  { token: '--ld-semantic-color-top-nav-fill',              label: 'Background' },
+  { token: '--ld-semantic-color-top-nav-fill-hovered',      label: 'Background (hover)' },
+  { token: '--ld-semantic-color-top-nav-fill-pressed',      label: 'Background (pressed)' },
+  { token: '--ld-semantic-color-top-nav-text-on-fill',      label: 'Text & icons' },
+  { token: '--ld-semantic-color-top-nav-text-on-fill-hovered',  label: 'Text & icons (hover)' },
+  { token: '--ld-semantic-color-top-nav-separator',         label: 'Separator' },
+];
+
+const BOTTOM_NAV_TOKENS: TokenDef[] = [
+  { token: '--ld-semantic-color-bottom-nav-fill',                         label: 'Background' },
+  { token: '--ld-semantic-color-bottom-nav-fill-activated',               label: 'Background (active)' },
+  { token: '--ld-semantic-color-bottom-nav-separator',                    label: 'Separator' },
+  { token: '--ld-semantic-color-bottom-nav-text-on-fill',                 label: 'Icon & text (inactive)' },
+  { token: '--ld-semantic-color-bottom-nav-text-on-fill-activated',       label: 'Icon & text (active)' },
+  { token: '--ld-semantic-color-bottom-nav-text-on-fill-activated-hovered', label: 'Icon & text (active hover)' },
+];
+
+const PAGE_NAV_TOKENS: TokenDef[] = [
+  { token: '--ld-semantic-color-page-nav-fill',                  label: 'Item background' },
+  { token: '--ld-semantic-color-page-nav-fill-activated',        label: 'Item background (active)' },
+  { token: '--ld-semantic-color-page-nav-fill-hovered',          label: 'Item background (hover)' },
+  { token: '--ld-semantic-color-page-nav-indicator-activated',   label: 'Active indicator' },
+  { token: '--ld-semantic-color-page-nav-text-on-fill',          label: 'Text' },
+  { token: '--ld-semantic-color-page-nav-text-on-fill-activated', label: 'Text (active)' },
+];
+
 const TOKEN_GROUPS = [
   { id: 'primary-action',    title: 'Primary Action',    tokens: PRIMARY_ACTION_TOKENS },
   { id: 'secondary-action',  title: 'Secondary Action',  tokens: SECONDARY_ACTION_TOKENS },
   { id: 'brand',             title: 'Brand',             tokens: BRAND_TOKENS },
   { id: 'destructive',       title: 'Destructive',       tokens: DESTRUCTIVE_TOKENS },
   { id: 'wcp-commerce',      title: 'WCP Commerce',      tokens: WCP_COMMERCE_TOKENS },
+  { id: 'top-nav',           title: 'Top Navigation',    tokens: TOP_NAV_TOKENS },
+  { id: 'bottom-nav',        title: 'Bottom Navigation', tokens: BOTTOM_NAV_TOKENS },
+  { id: 'page-nav',          title: 'Page Navigation',   tokens: PAGE_NAV_TOKENS },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
