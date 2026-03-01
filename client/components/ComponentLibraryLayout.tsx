@@ -5,7 +5,20 @@ import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigati
 import { DesktopHeader } from '@/components/walmart/DesktopHeader';
 import { Menu } from '@/components/icons/Menu';
 import { X } from '@/components/icons/X';
+import { ChevronDown } from '@/components/icons/ChevronDown';
 import styles from './ComponentLibraryLayout.module.css';
+
+const COLLAPSED_STORAGE_KEY = 'cl-collapsed-sections';
+// Large sections start collapsed by default
+const DEFAULT_COLLAPSED = new Set(['componentLibrary.components', 'componentLibrary.sharedSection']);
+
+function readCollapsed(): Set<string> {
+  try {
+    const raw = localStorage.getItem(COLLAPSED_STORAGE_KEY);
+    if (raw) return new Set(JSON.parse(raw) as string[]);
+  } catch { /* ignore */ }
+  return new Set(DEFAULT_COLLAPSED);
+}
 
 // Navigation item definition (nameKey references componentLibrary.* translation keys)
 interface NavItem {
@@ -126,6 +139,17 @@ export function ComponentLibraryLayout() {
   const location = useLocation();
   const { t } = useTranslation();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState<Set<string>>(readCollapsed);
+
+  const toggleSection = useCallback((titleKey: string) => {
+    setCollapsed(prev => {
+      const next = new Set(prev);
+      if (next.has(titleKey)) next.delete(titleKey);
+      else next.add(titleKey);
+      try { localStorage.setItem(COLLAPSED_STORAGE_KEY, JSON.stringify([...next])); } catch { /* ignore */ }
+      return next;
+    });
+  }, []);
 
   const closeNav = useCallback(() => setMobileNavOpen(false), []);
 
@@ -170,29 +194,57 @@ export function ComponentLibraryLayout() {
             <h1 className={styles.sidebarTitle}>{t('componentLibrary.title')}</h1>
             <p className={styles.sidebarSubtitle}>{t('componentLibrary.subtitle')}</p>
 
-            {navigationSections.map((section, sectionIndex) => (
-              <div
-                key={section.titleKey}
-                style={{ marginBottom: sectionIndex < navigationSections.length - 1 ? '24px' : '0' }}
-              >
-                <h2 className={styles.sectionLabel}>{t(section.titleKey)}</h2>
-                <SideNavigation aria-label={`${t(section.titleKey)} Navigation`}>
-                  {section.items.map((item) => {
-                    const isActive = location.pathname === item.path;
-                    return (
-                      <SideNavigationItem
-                        key={item.id}
-                        href={item.path}
-                        isCurrent={isActive}
-                        onClick={(e) => handleNavClick(e, item.path)}
-                      >
-                        {t(item.nameKey)}
-                      </SideNavigationItem>
-                    );
-                  })}
-                </SideNavigation>
-              </div>
-            ))}
+            {navigationSections.map((section, sectionIndex) => {
+              const isCollapsed = collapsed.has(section.titleKey);
+              // Auto-expand section if the current page lives inside it
+              const hasActiveItem = section.items.some(item => item.path === location.pathname);
+              const effectivelyOpen = hasActiveItem || !isCollapsed;
+
+              return (
+                <div
+                  key={section.titleKey}
+                  className={styles.navSection}
+                  style={{ marginBottom: sectionIndex < navigationSections.length - 1 ? '8px' : '0' }}
+                >
+                  <button
+                    className={styles.sectionToggle}
+                    onClick={() => toggleSection(section.titleKey)}
+                    aria-expanded={effectivelyOpen}
+                    aria-controls={`section-${section.titleKey}`}
+                  >
+                    <span className={styles.sectionLabelText}>{t(section.titleKey)}</span>
+                    <ChevronDown
+                      width={14}
+                      height={14}
+                      className={[styles.sectionChevron, effectivelyOpen ? styles.sectionChevronOpen : ''].join(' ')}
+                    />
+                  </button>
+
+                  <div
+                    id={`section-${section.titleKey}`}
+                    className={[styles.sectionContent, effectivelyOpen ? styles.sectionContentOpen : ''].join(' ')}
+                  >
+                    <div className={styles.sectionContentInner}>
+                      <SideNavigation aria-label={`${t(section.titleKey)} Navigation`}>
+                        {section.items.map((item) => {
+                          const isActive = location.pathname === item.path;
+                          return (
+                            <SideNavigationItem
+                              key={item.id}
+                              href={item.path}
+                              isCurrent={isActive}
+                              onClick={(e) => handleNavClick(e, item.path)}
+                            >
+                              {t(item.nameKey)}
+                            </SideNavigationItem>
+                          );
+                        })}
+                      </SideNavigation>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
 
             {/* Back to Home */}
             <div className={styles.backToHome}>
