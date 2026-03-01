@@ -106,6 +106,8 @@ const FooterPatternsPage = React.lazy(() => import("./pages/component-library/Fo
 const TopNavPage = React.lazy(() => import("./pages/component-library/TopNav"));
 const SideNavPage = React.lazy(() => import("./pages/component-library/SideNav"));
 const PageTemplatesPage = React.lazy(() => import("./pages/component-library/PageTemplates"));
+const SearchResultsPatternPage = React.lazy(() => import("./pages/component-library/SearchResults"));
+const ProductCardsPage = React.lazy(() => import("./pages/component-library/ProductCards"));
 
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
@@ -202,6 +204,8 @@ const App = () => (
                 <Route path="top-nav" element={<TopNavPage />} />
                 <Route path="side-nav" element={<SideNavPage />} />
                 <Route path="page-templates" element={<PageTemplatesPage />} />
+                <Route path="search-results" element={<SearchResultsPatternPage />} />
+                <Route path="product-cards" element={<ProductCardsPage />} />
               </Route>
 
               {/* Walmart pages */}

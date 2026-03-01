@@ -58,6 +58,7 @@ const navigationSections: NavSection[] = [
       { id: 'order-card-patterns', nameKey: 'componentLibrary.navOrderCardPatterns', path: '/component-library/order-card-patterns' },
       { id: 'page-templates', nameKey: 'componentLibrary.navPageTemplates', path: '/component-library/page-templates' },
       { id: 'side-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/side-nav' },
+      { id: 'search-results', nameKey: 'componentLibrary.navSearchResults', path: '/component-library/search-results' },
     ]
   },
   {
@@ -66,6 +67,7 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-country', nameKey: 'componentLibrary.navWCPCountry', path: '/component-library/wcp-country' },
       { id: 'wcp-flag', nameKey: 'componentLibrary.navWCPFlag', path: '/component-library/wcp-flag' },
       { id: 'basic-banner', nameKey: 'componentLibrary.navBasicBanner', path: '/component-library/basic-banner' },
+      { id: 'product-cards', nameKey: 'componentLibrary.navProductCards', path: '/component-library/product-cards' },
     ]
   },
   {
