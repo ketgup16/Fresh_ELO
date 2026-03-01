@@ -1,0 +1,136 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-200, 8px);
+  padding: var(--ld-primitive-scale-space-150, 6px) var(--ld-primitive-scale-space-300, 12px);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  transition: background 150ms ease;
+}
+
+.row:hover {
+  background: var(--ld-semantic-color-fill-hovered, rgba(0, 0, 0, 0.04));
+}
+
+.row.overridden {
+  background: var(--ld-semantic-color-fill-brand-subtle, #e9f1fe);
+}
+
+.swatch {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  border: 2px solid var(--ld-semantic-color-border, #d9d9d9);
+  cursor: pointer;
+  padding: 0;
+  appearance: none;
+  background: transparent;
+  transition: border-color 150ms ease, transform 100ms ease;
+}
+
+.swatch:hover {
+  border-color: var(--ld-semantic-color-border-strong, #74767c);
+  transform: scale(1.1);
+}
+
+.swatch:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071dc);
+  outline-offset: 2px;
+}
+
+.hiddenColorInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.labelGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tokenName {
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  font-size: 11px;
+  color: var(--ld-semantic-color-text-subtle, #6d6e72);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hexInput {
+  flex-shrink: 0;
+  width: 80px;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  font-size: 12px;
+  padding: var(--ld-primitive-scale-space-100, 4px) var(--ld-primitive-scale-space-150, 6px);
+  border: 1px solid var(--ld-semantic-color-field-border, #babbbe);
+  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
+  background: var(--ld-semantic-color-field-fill, #fff);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  text-transform: lowercase;
+}
+
+.hexInput:focus {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071dc);
+  outline-offset: 1px;
+  border-color: var(--ld-semantic-color-field-border-focused, #0071dc);
+}
+
+.resetBtn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  color: var(--ld-semantic-color-text-subtle, #6d6e72);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease, color 150ms ease, background 150ms ease;
+  padding: 0;
+}
+
+.resetBtn.resetBtnVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.resetBtn:hover {
+  background: var(--ld-semantic-color-fill-hovered, rgba(0, 0, 0, 0.08));
+  color: var(--ld-semantic-color-text-negative, #c1281b);
+}
+
+.resetBtn:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071dc);
+  outline-offset: 2px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swatch,
+  .resetBtn,
+  .row {
+    transition: none;
+  }
+}

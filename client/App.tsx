@@ -100,6 +100,7 @@ const BasicBannerPage = React.lazy(() => import("./pages/component-library/Basic
 const WCPCountryComponentsPage = React.lazy(() => import("./pages/component-library/WCPCountryComponents"));
 const DesignTokensPage = React.lazy(() => import("./pages/component-library/DesignTokens"));
 const WCPFlagPage = React.lazy(() => import("./pages/component-library/WCPFlag"));
+const ThemeEditorPage = React.lazy(() => import("./pages/component-library/ThemeEditorPage"));
 
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
@@ -190,6 +191,7 @@ const App = () => (
                 <Route path="basic-banner" element={<BasicBannerPage />} />
                 <Route path="wcp-country" element={<WCPCountryComponentsPage />} />
                 <Route path="wcp-flag" element={<WCPFlagPage />} />
+                <Route path="theme-editor" element={<ThemeEditorPage />} />
               </Route>
 
               {/* Walmart pages */}

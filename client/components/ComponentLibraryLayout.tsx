@@ -111,6 +111,12 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-country', nameKey: 'componentLibrary.navWCPCountry', path: '/component-library/wcp-country' },
       { id: 'wcp-flag', nameKey: 'componentLibrary.navWCPFlag', path: '/component-library/wcp-flag' },
     ]
+  },
+  {
+    titleKey: 'componentLibrary.tools',
+    items: [
+      { id: 'theme-editor', nameKey: 'componentLibrary.navThemeEditor', path: '/component-library/theme-editor' },
+    ]
   }
 ];
 

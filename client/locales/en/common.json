@@ -176,6 +176,8 @@
     "navOrderCardPatterns": "Order Card Patterns",
     "navWCPCountry": "WCP Country Select",
     "navWCPFlag": "WCP Flag",
+    "tools": "Tools",
+    "navThemeEditor": "Theme Editor",
     "descAlerts": "Banner messages for info, success, warning, and error states",
     "descBadges": "Count badges, status indicators, and semantic color variants",
     "descBreadcrumbs": "Navigation breadcrumbs with support for 2-5 levels and custom separators",
