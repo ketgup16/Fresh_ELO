@@ -929,6 +929,9 @@
   --wcp-semantic-color-text-savings-subtle: var(--ld-primitive-color-red-130, #a20c00);
   --wcp-semantic-color-text-express: var(--ld-primitive-color-purple-100, #63327e); /* Purple Walmart+ Express */
   --wcp-semantic-color-text-member: var(--ld-primitive-color-spark-140, #995213); /* Spark member text */
+  --wcp-semantic-color-text-confidence: var(--ld-primitive-color-blue-100, #0053e2); /* Blue confidence text — never theme-overridden */
+  --wcp-semantic-color-text-confidence-subtle: var(--ld-primitive-color-blue-130, #002e99); /* Deeper blue for subtle bg — never theme-overridden */
+  --wcp-semantic-color-border-confidence: var(--ld-primitive-color-blue-100, #0053e2); /* Blue confidence border */
   --wcp-semantic-color-text-link: var(--ld-primitive-color-blue-100, #0053e2); /* Standard link blue */
   --wcp-semantic-color-text-link-hovered: var(--ld-primitive-color-blue-110, #114ab6);
   --wcp-semantic-color-text-link-visited: var(--ld-primitive-color-purple-100, #63327e);

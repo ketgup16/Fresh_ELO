@@ -98,11 +98,11 @@
   --flag-border: var(--wcp-semantic-color-border-savings-bold, #ea1100);
 }
 
-/* Confidence Subtle — light blue fill, blue border */
+/* Confidence Subtle — light blue fill, blue border (always blue, never brand-overridden) */
 .confidence-subtle {
   --flag-bg:     var(--wcp-semantic-color-fill-confidence-subtle, #e9f1fe);
-  --flag-text:   var(--ld-semantic-color-text-brand, #0053e2);
-  --flag-border: var(--wcp-semantic-color-notice-info-border, #0053e2);
+  --flag-text:   var(--wcp-semantic-color-text-confidence, #0053e2);
+  --flag-border: var(--wcp-semantic-color-border-confidence, #0053e2);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */

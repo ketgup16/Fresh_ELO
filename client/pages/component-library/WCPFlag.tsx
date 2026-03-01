@@ -283,7 +283,7 @@ const TEXT_TOKENS: Record<WCPFlagVariant, string> = {
   'member-subtle':      '--wcp-semantic-color-text-member',
   'savings':            '--wcp-semantic-color-text-onFill-savings',
   'savings-outlined':   '--wcp-semantic-color-text-savings',
-  'confidence-subtle':  '--ld-semantic-color-text-brand',
+  'confidence-subtle':  '--wcp-semantic-color-text-confidence',
   'express-subtle':     '--wcp-semantic-color-text-express',
   'brand':              '--ld-semantic-color-text-inverse',
   'brand-bold':         '--ld-semantic-color-text-inverse',
