@@ -888,8 +888,14 @@
   --wcp-semantic-color-fill-member-subtle: var(--ld-primitive-color-spark-10, #fef6de);
   --wcp-semantic-color-fill-holiday-member: var(--ld-primitive-color-green-100, #2a8703); /* Holiday Walmart+ */
   --wcp-semantic-color-fill-holiday-member-subtle: var(--ld-primitive-color-green-10, #eaf3e6);
+  --wcp-semantic-color-fill-holiday-restricted: var(--ld-primitive-color-gray-160, #2e2f32); /* Holiday-restricted items */
+  --wcp-semantic-color-fill-scarcity: var(--ld-primitive-color-orange-100, #fa6400); /* Scarcity / low stock */
+  --wcp-semantic-color-fill-social: var(--ld-primitive-color-cyan-70, #189ee2); /* Social proof */
+  --wcp-semantic-color-fill-urgent: var(--ld-primitive-color-red-130, #a20c00); /* Urgency — darker than savings-bold */
   --wcp-semantic-color-fill-confidence: var(--ld-primitive-color-blue-100, #0053e2); /* Confidence badge */
   --wcp-semantic-color-fill-confidence-subtle: var(--ld-primitive-color-blue-10, #e9f1fe);
+  --wcp-semantic-color-fill-confidence-alt: var(--ld-primitive-color-white, #ffffff); /* Confidence outlined (alt style) */
+  --wcp-semantic-color-fill-confidence-deep: var(--ld-primitive-color-blue-130, #002e99); /* Confidence bold / navy */
   --wcp-semantic-color-fill-trending: var(--ld-primitive-color-orange-100, #fa6400); /* Trending badge */
 
   /* WCP Input Colors */
@@ -921,17 +927,31 @@
   --wcp-semantic-color-surface-trending: var(--ld-primitive-color-orange-10, #fff0e6);
 
   /* WCP Text Colors - Special text treatments */
-  --wcp-semantic-color-text-onFill-savings: var(--ld-primitive-color-white, #ffffff); /* White text on red savings */
+  /* text-onFill-* = paired tokens for text that sits on a filled background */
+  --wcp-semantic-color-text-onFill-savings: var(--ld-primitive-color-white, #ffffff); /* White text on red savings-bold */
+  --wcp-semantic-color-text-onFill-savings-subtle: var(--ld-primitive-color-red-130, #a20c00); /* Dark red on light red savings-subtle */
   --wcp-semantic-color-text-onFill-express: var(--ld-primitive-color-white, #ffffff); /* White text on purple express */
   --wcp-semantic-color-text-onFill-member: var(--ld-primitive-color-gray-160, #2e2f32); /* Dark text on yellow member */
   --wcp-semantic-color-text-onFill-confidence: var(--ld-primitive-color-white, #ffffff); /* White text on blue confidence */
-  --wcp-semantic-color-text-savings: var(--ld-primitive-color-red-100, #ea1100); /* Red savings text */
+  --wcp-semantic-color-text-onFill-confidence-alt: var(--ld-primitive-color-blue-100, #0053e2); /* Blue text on white confidence-alt */
+  --wcp-semantic-color-text-onFill-confidence-deep: var(--ld-primitive-color-white, #ffffff); /* White text on navy confidence-deep */
+  --wcp-semantic-color-text-onFill-confidence-subtle: var(--ld-primitive-color-blue-130, #002e99); /* Navy text on light blue confidence-subtle */
+  --wcp-semantic-color-text-onFill-holiday-member: var(--ld-primitive-color-white, #ffffff); /* White text on green holiday-member */
+  --wcp-semantic-color-text-onFill-holiday-restricted: var(--ld-primitive-color-white, #ffffff); /* White text on dark holiday-restricted */
+  --wcp-semantic-color-text-onFill-scarcity: var(--ld-primitive-color-white, #ffffff); /* White text on orange scarcity */
+  --wcp-semantic-color-text-onFill-social: var(--ld-primitive-color-white, #ffffff); /* White text on cyan social */
+  --wcp-semantic-color-text-onFill-trending: var(--ld-primitive-color-gray-160, #2e2f32); /* Dark text on orange trending */
+  --wcp-semantic-color-text-onFill-urgent: var(--ld-primitive-color-white, #ffffff); /* White text on dark-red urgent */
+  /* Generic (non-fill) text tokens for use on surface backgrounds */
+  --wcp-semantic-color-text-savings: var(--ld-primitive-color-red-100, #ea1100); /* Red savings text on surfaces */
   --wcp-semantic-color-text-savings-subtle: var(--ld-primitive-color-red-130, #a20c00);
   --wcp-semantic-color-text-express: var(--ld-primitive-color-purple-100, #63327e); /* Purple Walmart+ Express */
   --wcp-semantic-color-text-member: var(--ld-primitive-color-spark-140, #995213); /* Spark member text */
   --wcp-semantic-color-text-confidence: var(--ld-primitive-color-blue-100, #0053e2); /* Blue confidence text — never theme-overridden */
   --wcp-semantic-color-text-confidence-subtle: var(--ld-primitive-color-blue-130, #002e99); /* Deeper blue for subtle bg — never theme-overridden */
+  /* WCP Border tokens */
   --wcp-semantic-color-border-confidence: var(--ld-primitive-color-blue-100, #0053e2); /* Blue confidence border */
+  --wcp-semantic-color-border-confidence-alt: var(--ld-primitive-color-blue-100, #0053e2); /* Blue border for confidence-alt outlined */
   --wcp-semantic-color-text-link: var(--ld-primitive-color-blue-100, #0053e2); /* Standard link blue */
   --wcp-semantic-color-text-link-hovered: var(--ld-primitive-color-blue-110, #114ab6);
   --wcp-semantic-color-text-link-visited: var(--ld-primitive-color-purple-100, #63327e);

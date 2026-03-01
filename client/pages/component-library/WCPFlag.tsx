@@ -2,13 +2,18 @@ import React from 'react';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { WCPFlag, WCP_FLAG_VARIANTS, type WCPFlagVariant } from '@/components/walmart/WCPFlag';
 import {
+  Gift,
   Star,
-  Spark,
+  Hourglass,
   Dollar,
-  Coupon,
+  Tag,
   ShieldCheck,
-  Rocket,
-  ArrowUp,
+  CheckCircle,
+  Check,
+  Lock,
+  Spark,
+  UsersFill,
+  Flash,
 } from '@/components/icons';
 
 // ─── Icon size shared across all flag examples ────────────────────────────────
@@ -18,55 +23,50 @@ const ICON_SIZE = { width: 16, height: 16 } as const;
 // ─── Per-variant icon map ─────────────────────────────────────────────────────
 
 const VARIANT_ICONS: Record<WCPFlagVariant, React.ReactNode> = {
-  'brand-subtle':      <Star          {...ICON_SIZE} />,
-  'member-subtle':     <Spark         {...ICON_SIZE} />,
-  'savings':           <Dollar        {...ICON_SIZE} />,
-  'savings-outlined':  <Coupon        {...ICON_SIZE} />,
-  'confidence-subtle': <ShieldCheck   {...ICON_SIZE} />,
-  'express-subtle':    <Rocket        {...ICON_SIZE} />,
-  'member':            <Spark         {...ICON_SIZE} />,
-  'trending':          <ArrowUp       {...ICON_SIZE} />,
+  'holiday-restricted': <Lock        {...ICON_SIZE} />,
+  'brand-subtle':       <Star        {...ICON_SIZE} />,
+  'scarcity':           <Hourglass   {...ICON_SIZE} />,
+  'savings-bold':       <Dollar      {...ICON_SIZE} />,
+  'savings-subtle':     <Tag         {...ICON_SIZE} />,
+  'confidence-subtle':  <ShieldCheck {...ICON_SIZE} />,
+  'confidence-bold':    <ShieldCheck {...ICON_SIZE} />,
+  'confidence-alt':     <Check       {...ICON_SIZE} />,
+  'confidence':         <CheckCircle {...ICON_SIZE} />,
+  'holiday-member':     <Gift        {...ICON_SIZE} />,
+  'social':             <UsersFill   {...ICON_SIZE} />,
+  'urgent':             <Flash       {...ICON_SIZE} />,
 };
-
-// ─── Grid layout ─────────────────────────────────────────────────────────────
-
-const GRID: Array<{ row: string; variants: WCPFlagVariant[] }> = [
-  {
-    row: 'Brand / Member',
-    variants: ['brand-subtle', 'member-subtle', 'member'],
-  },
-  {
-    row: 'Savings / Confidence',
-    variants: ['savings', 'savings-outlined', 'confidence-subtle'],
-  },
-  {
-    row: 'Express / Trending',
-    variants: ['express-subtle', 'trending'],
-  },
-];
 
 // ─── Token reference data ─────────────────────────────────────────────────────
 
 const BG_TOKENS: Record<WCPFlagVariant, string> = {
-  'brand-subtle':      '--ld-semantic-color-fill-brand-subtle *',
-  'member-subtle':     '--wcp-semantic-color-fill-member-subtle',
-  'savings':           '--wcp-semantic-color-fill-savings-bold',
-  'savings-outlined':  '--wcp-semantic-color-input-background',
-  'confidence-subtle': '--wcp-semantic-color-fill-confidence-subtle',
-  'express-subtle':    '--wcp-semantic-color-fill-express-subtle',
-  'member':            '--wcp-semantic-color-fill-member',
-  'trending':          '--wcp-semantic-color-fill-trending',
+  'holiday-restricted': '--wcp-semantic-color-fill-holiday-restricted',
+  'brand-subtle':       '--ld-semantic-color-fill-brand-subtle *',
+  'scarcity':           '--wcp-semantic-color-fill-scarcity',
+  'savings-bold':       '--wcp-semantic-color-fill-savings-bold',
+  'savings-subtle':     '--wcp-semantic-color-fill-savings-subtle',
+  'confidence-subtle':  '--wcp-semantic-color-fill-confidence-subtle',
+  'confidence-bold':    '--wcp-semantic-color-fill-confidence',
+  'confidence-alt':     '--wcp-semantic-color-fill-confidence-alt',
+  'confidence':         '--wcp-semantic-color-fill-confidence-deep',
+  'holiday-member':     '--wcp-semantic-color-fill-holiday-member',
+  'social':             '--wcp-semantic-color-fill-social',
+  'urgent':             '--wcp-semantic-color-fill-urgent',
 };
 
 const TEXT_TOKENS: Record<WCPFlagVariant, string> = {
-  'brand-subtle':      '--ld-semantic-color-text-brand *',
-  'member-subtle':     '--wcp-semantic-color-text-member',
-  'savings':           '--wcp-semantic-color-text-onFill-savings',
-  'savings-outlined':  '--wcp-semantic-color-text-savings',
-  'confidence-subtle': '--wcp-semantic-color-text-confidence',
-  'express-subtle':    '--wcp-semantic-color-text-express',
-  'member':            '--wcp-semantic-color-action-text-primary-alt',
-  'trending':          '--wcp-semantic-color-text-trending',
+  'holiday-restricted': '--wcp-semantic-color-text-onFill-holiday-restricted',
+  'brand-subtle':       '--ld-semantic-color-text-on-fill-brand-subtle *',
+  'scarcity':           '--wcp-semantic-color-text-onFill-scarcity',
+  'savings-bold':       '--wcp-semantic-color-text-onFill-savings',
+  'savings-subtle':     '--wcp-semantic-color-text-onFill-savings-subtle',
+  'confidence-subtle':  '--wcp-semantic-color-text-onFill-confidence-subtle',
+  'confidence-bold':    '--wcp-semantic-color-text-onFill-confidence',
+  'confidence-alt':     '--wcp-semantic-color-text-onFill-confidence-alt',
+  'confidence':         '--wcp-semantic-color-text-onFill-confidence-deep',
+  'holiday-member':     '--wcp-semantic-color-text-onFill-holiday-member',
+  'social':             '--wcp-semantic-color-text-onFill-social',
+  'urgent':             '--wcp-semantic-color-text-onFill-urgent',
 };
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -96,10 +96,10 @@ export default function WCPFlagPage() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(4, 1fr)',
             gap: '16px',
           }}>
-            {GRID.flatMap(row => row.variants).map(variant => (
+            {WCP_FLAG_VARIANTS.map(({ variant, label }) => (
               <div
                 key={variant}
                 style={{
@@ -114,7 +114,7 @@ export default function WCPFlagPage() {
                   border: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
                 }}
               >
-                <WCPFlag variant={variant} label="Flag name" leadingIcon={VARIANT_ICONS[variant]} />
+                <WCPFlag variant={variant} label={label} leadingIcon={VARIANT_ICONS[variant]} />
                 <span style={{
                   fontSize: '11px',
                   fontFamily: 'monospace',
@@ -145,7 +145,10 @@ export default function WCPFlagPage() {
             fontFamily: 'var(--ld-semantic-font-family-sans)',
             marginBottom: '8px',
           }}>
-            All variants use <code style={{ fontFamily: 'monospace' }}>--wcp-semantic-color-*</code> tokens so colors are commerce-specific and theme-stable. <strong>brand-subtle</strong> <span style={{ opacity: 0.7 }}>(*)</span> is the lone exception — it intentionally uses LD brand tokens so it tracks brand-theme overrides (Bodega green, etc.).
+            All variants use <code style={{ fontFamily: 'monospace' }}>--wcp-semantic-color-fill-*</code> for background
+            and <code style={{ fontFamily: 'monospace' }}>--wcp-semantic-color-text-onFill-*</code> for text — proper semantic pairs.{' '}
+            <strong>brand-subtle</strong> <span style={{ opacity: 0.7 }}>(*)</span> is the lone exception — it uses LD brand tokens
+            so it tracks brand-theme overrides (Bodega green, etc.).
           </p>
 
           <div style={{
@@ -158,12 +161,12 @@ export default function WCPFlagPage() {
             {/* Header row */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: '140px minmax(0,1.2fr) minmax(0,1.4fr) minmax(0,1.4fr)',
+              gridTemplateColumns: '130px minmax(0,1fr) minmax(0,1.6fr) minmax(0,1.6fr)',
               padding: '10px 16px',
               background: 'var(--ld-semantic-color-fill-surface-secondary, #f5f5f6)',
               borderBottom: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
             }}>
-              {['Preview', 'Variant', 'Background token', 'Text token'].map(h => (
+              {['Preview', 'Variant', 'Fill token (bg)', 'Text-onFill token'].map(h => (
                 <span key={h} style={{
                   fontSize: '11px',
                   fontWeight: 700,
@@ -183,7 +186,7 @@ export default function WCPFlagPage() {
                 key={meta.variant}
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: '140px minmax(0,1.2fr) minmax(0,1.4fr) minmax(0,1.4fr)',
+                  gridTemplateColumns: '130px minmax(0,1fr) minmax(0,1.6fr) minmax(0,1.6fr)',
                   padding: '12px 16px',
                   alignItems: 'center',
                   borderBottom: i < WCP_FLAG_VARIANTS.length - 1
@@ -191,12 +194,12 @@ export default function WCPFlagPage() {
                     : 'none',
                 }}
               >
-                {/* Preview — no icons, color only */}
+                {/* Preview — color swatch only, no icons */}
                 <div>
                   <WCPFlag variant={meta.variant} label="Flag name" />
                 </div>
 
-                {/* Variant name */}
+                {/* Variant name + description */}
                 <div>
                   <code style={{
                     fontSize: '12px',
@@ -217,12 +220,12 @@ export default function WCPFlagPage() {
                   </span>
                 </div>
 
-                {/* BG token */}
+                {/* Fill (bg) token */}
                 <div style={{ fontSize: '11px', fontFamily: 'monospace', color: 'var(--ld-semantic-color-text-secondary, #74767c)', paddingRight: '8px' }}>
                   {BG_TOKENS[meta.variant]}
                 </div>
 
-                {/* Text token */}
+                {/* Text-onFill token */}
                 <div style={{ fontSize: '11px', fontFamily: 'monospace', color: 'var(--ld-semantic-color-text-secondary, #74767c)' }}>
                   {TEXT_TOKENS[meta.variant]}
                 </div>
@@ -236,7 +239,7 @@ export default function WCPFlagPage() {
             fontFamily: 'var(--ld-semantic-font-family-sans)',
             marginTop: '10px',
           }}>
-            * brand-subtle uses LD brand tokens by design — it responds to brand-theme overrides.
+            * brand-subtle uses LD brand tokens by design — it responds to brand-theme overrides (Bodega: green).
           </p>
         </section>
 

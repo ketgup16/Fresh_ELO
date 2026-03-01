@@ -4,26 +4,27 @@ import styles from './WCPFlag.module.css';
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 /**
- * WCP Flag visual variants.
+ * WCP Flag visual variants (12 total).
  *
- * All variants use --wcp-semantic-color-* tokens exclusively, ensuring they
- * are commerce-specific and won't conflict with arbitrary LD brand overrides.
- *
- * Exception: `brand-subtle` intentionally uses LD brand tokens so it tracks
- * brand-theme overrides (e.g. Bodega green, Walmart blue).
- *
- * brand-subtle | member-subtle | savings | savings-outlined
- * confidence-subtle | express-subtle | member | trending
+ * Token strategy:
+ *   - All variants use --wcp-semantic-color-fill-* for background
+ *   - All variants use --wcp-semantic-color-text-onFill-* for text/icon color
+ *   - Exception: `brand-subtle` intentionally uses LD brand tokens so it
+ *     tracks brand-theme overrides (e.g. Bodega green, Walmart blue)
  */
 export type WCPFlagVariant =
+  | 'holiday-restricted'
   | 'brand-subtle'
-  | 'member-subtle'
-  | 'savings'
-  | 'savings-outlined'
+  | 'scarcity'
+  | 'savings-bold'
+  | 'savings-subtle'
   | 'confidence-subtle'
-  | 'express-subtle'
-  | 'member'
-  | 'trending';
+  | 'confidence-bold'
+  | 'confidence-alt'
+  | 'confidence'
+  | 'holiday-member'
+  | 'social'
+  | 'urgent';
 
 export interface WCPFlagProps {
   /** Display label inside the flag */
@@ -67,43 +68,63 @@ export function WCPFlag({
 
 export const WCP_FLAG_VARIANTS: Array<{ variant: WCPFlagVariant; label: string; description: string }> = [
   {
+    variant: 'holiday-restricted',
+    label: 'Holiday Restricted',
+    description: 'Dark charcoal — items unavailable or restricted during holiday period',
+  },
+  {
     variant: 'brand-subtle',
     label: 'Brand Subtle',
-    description: 'White bg, brand-colored border + text — tracks brand theme (LD exception)',
+    description: 'Subtle brand tint — tracks brand theme (LD exception: blue → Bodega green)',
   },
   {
-    variant: 'member-subtle',
-    label: 'Member Subtle',
-    description: 'Warm amber tint — Walmart+ member (subtle)',
+    variant: 'scarcity',
+    label: 'Scarcity',
+    description: 'Orange — low stock / limited availability indicator',
   },
   {
-    variant: 'savings',
-    label: 'Savings',
-    description: 'Solid red — promotional savings / clearance',
+    variant: 'savings-bold',
+    label: 'Savings Bold',
+    description: 'Solid red — promotional savings / clearance (high emphasis)',
   },
   {
-    variant: 'savings-outlined',
-    label: 'Savings Outlined',
-    description: 'White bg, red border — savings indicator (outlined)',
+    variant: 'savings-subtle',
+    label: 'Savings Subtle',
+    description: 'Light red tint, red text — savings indicator (low emphasis)',
   },
   {
     variant: 'confidence-subtle',
     label: 'Confidence Subtle',
-    description: 'Light blue tint — confidence / info badge',
+    description: 'Light blue tint — soft confidence / info badge',
   },
   {
-    variant: 'express-subtle',
-    label: 'Express Subtle',
-    description: 'Lavender tint — Walmart+ Express',
+    variant: 'confidence-bold',
+    label: 'Confidence Bold',
+    description: 'Solid blue — confidence badge (standard emphasis)',
   },
   {
-    variant: 'member',
-    label: 'Member',
-    description: 'Spark yellow — Walmart+ member highlight',
+    variant: 'confidence-alt',
+    label: 'Confidence Alt',
+    description: 'White fill, blue border — outlined confidence badge (alternative style)',
   },
   {
-    variant: 'trending',
-    label: 'Trending',
-    description: 'Orange — trending / promotional accent',
+    variant: 'confidence',
+    label: 'Confidence',
+    description: 'Navy blue — confidence badge (high emphasis / deep)',
+  },
+  {
+    variant: 'holiday-member',
+    label: 'Holiday Member',
+    description: 'Green — Walmart+ member during holiday season',
+  },
+  {
+    variant: 'social',
+    label: 'Social',
+    description: 'Cyan — social proof indicator (views, interest, popularity)',
+  },
+  {
+    variant: 'urgent',
+    label: 'Urgent',
+    description: 'Dark red — urgency / time-sensitive / critical action needed',
   },
 ];
