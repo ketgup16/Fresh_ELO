@@ -72,6 +72,7 @@ const navigationSections: NavSection[] = [
       { id: 'product-cards', nameKey: 'componentLibrary.navProductCards', path: '/component-library/product-cards' },
       { id: 'dropdowns', nameKey: 'componentLibrary.navDropdowns', path: '/component-library/dropdowns' },
       { id: 'search-utility', nameKey: 'componentLibrary.navSearchUtility', path: '/component-library/search-utility' },
+      { id: 'wcp-button-groups', nameKey: 'componentLibrary.navWCPButtonGroups', path: '/component-library/wcp-button-groups' },
     ]
   },
   {

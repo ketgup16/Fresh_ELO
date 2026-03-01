@@ -107,6 +107,7 @@ const TopNavPage = React.lazy(() => import("./pages/component-library/TopNav"));
 const SideNavPage = React.lazy(() => import("./pages/component-library/SideNav"));
 const PageTemplatesPage = React.lazy(() => import("./pages/component-library/PageTemplates"));
 const SearchResultsPatternPage = React.lazy(() => import("./pages/component-library/SearchResults"));
+const WCPButtonGroupsPage = React.lazy(() => import("./pages/component-library/WCPButtonGroups"));
 const ProductCardsPage = React.lazy(() => import("./pages/component-library/ProductCards"));
 const HomePageWidgetsPage = React.lazy(() => import("./pages/component-library/HomePageWidgets"));
 const PromoBannersPage = React.lazy(() => import("./pages/component-library/PromoBanners"));
@@ -214,6 +215,7 @@ const App = () => (
                 <Route path="promo-banners" element={<PromoBannersPage />} />
                 <Route path="dropdowns" element={<DropdownsPage />} />
                 <Route path="search-utility" element={<WCPSearchAndUtilityPage />} />
+                <Route path="wcp-button-groups" element={<WCPButtonGroupsPage />} />
               </Route>
 
               {/* Walmart pages */}
