@@ -2,82 +2,83 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: var(--ld-semantic-color-fill-primary, #fff);
-}
-
-/* ── Feedback Section ── */
-.feedbackSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--ld-primitive-scale-space-400, 16px);
-  padding: var(--ld-primitive-scale-space-600, 24px) var(--ld-primitive-scale-space-400, 16px);
-  background-color: var(--ld-semantic-color-fill-primary, #fff);
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-.feedbackText {
-  color: var(--ld-semantic-color-text, #2E2F32);
-  font-family: var(--ld-semantic-font-family-sans, sans-serif);
-  font-size: var(--ld-semantic-font-body-default-size, 16px);
-  font-weight: 400;
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* ── Separator ── */
-.separator {
-  width: 100%;
-  height: 1px;
-  background-color: var(--ld-semantic-color-separator, #e3e4e5);
-  flex-shrink: 0;
+  background-color: var(--ld-semantic-color-surface, #fff);
 }
 
 /* ── Links Container ── */
 .linksContainer {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  padding: var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-200, 8px);
+  gap: 0;
 }
 
 .footerLink {
   display: block;
-  width: 100%;
   color: var(--ld-semantic-color-text, #2E2F32);
   font-family: var(--ld-semantic-font-family-sans, sans-serif);
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-size: var(--ld-semantic-font-body-default-size, 16px);
   font-weight: 400;
-  line-height: 1.43;
+  line-height: 1.5;
   text-decoration: none;
-  padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px);
-  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  box-sizing: border-box;
+  padding: var(--ld-primitive-scale-space-200, 8px) 0;
+  transition: color var(--ld-primitive-duration-200, 150ms) ease,
+    text-decoration-color var(--ld-primitive-duration-200, 150ms) ease;
 }
 
 .footerLink:hover {
-  background-color: var(--ld-semantic-color-fill-hover, #f5f5f5);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  color: var(--ld-semantic-color-link-text-hovered, #0053e2);
 }
 
+.footerLink:active {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  color: var(--ld-semantic-color-link-text-pressed, #003aad);
+}
+
+.footerLink:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071dc);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Privacy choices link (with icon) ── */
 .privacyChoicesLink {
   display: flex;
   align-items: center;
   gap: var(--ld-primitive-scale-space-100, 4px);
-  width: 100%;
   color: var(--ld-semantic-color-text, #2E2F32);
   font-family: var(--ld-semantic-font-family-sans, sans-serif);
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-size: var(--ld-semantic-font-body-default-size, 16px);
   font-weight: 400;
-  line-height: 1.43;
+  line-height: 1.5;
   text-decoration: none;
-  padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px);
-  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  box-sizing: border-box;
+  padding: var(--ld-primitive-scale-space-200, 8px) 0;
+  transition: color var(--ld-primitive-duration-200, 150ms) ease;
 }
 
 .privacyChoicesLink:hover {
-  background-color: var(--ld-semantic-color-fill-hover, #f5f5f5);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  color: var(--ld-semantic-color-link-text-hovered, #0053e2);
+}
+
+.privacyChoicesLink:active {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  color: var(--ld-semantic-color-link-text-pressed, #003aad);
+}
+
+.privacyChoicesLink:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0071dc);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .privacyIcon {
@@ -92,10 +93,7 @@
   font-weight: 400;
   line-height: 1.33;
   margin: 0;
-  padding: var(--ld-primitive-scale-space-400, 16px);
-  text-align: center;
-  width: 100%;
-  box-sizing: border-box;
+  padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-500, 20px);
 }
 
 /* ── Desktop: hide MwebFooter (unless contained) ── */

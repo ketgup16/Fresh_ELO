@@ -1,5 +1,4 @@
 import styles from './MwebFooter.module.css';
-import { Button } from '@/components/ui/Button';
 
 const PrivacyIcon = () => (
   <svg width="28" height="12" viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className={styles.privacyIcon}>
@@ -27,44 +26,36 @@ export function MwebFooter({ contained = false }: MwebFooterProps) {
   const cls = [styles.footer, contained ? styles.footerContained : ''].filter(Boolean).join(' ');
   return (
     <footer className={cls}>
-      {/* Feedback Section */}
-      <div className={styles.feedbackSection}>
-        <p className={styles.feedbackText}>We'd love to hear what you think!</p>
-        <Button variant="secondary" size="medium">Give feedback</Button>
-      </div>
-
-      {/* Top separator before links */}
-      <div className={styles.separator} />
-
-      {/* Links Section — white background, stacked text links */}
       <nav className={styles.linksContainer} aria-label="Footer navigation">
-        <a href="#" className={styles.footerLink}>All departments</a>
-        <a href="#" className={styles.footerLink}>Store directory</a>
+        <a href="#" className={styles.footerLink}>All Departments</a>
+        <a href="#" className={styles.footerLink}>Store Directory</a>
         <a href="#" className={styles.footerLink}>Careers</a>
-        <a href="#" className={styles.footerLink}>Our company</a>
+        <a href="#" className={styles.footerLink}>Our Company</a>
         <a href="#" className={styles.footerLink}>Sell on Walmart.com</a>
         <a href="#" className={styles.footerLink}>Help</a>
-        <a href="#" className={styles.footerLink}>COVID-19 vaccines scheduler</a>
-        <a href="#" className={styles.footerLink}>Product recalls</a>
+        <a href="#" className={styles.footerLink}>Product Recalls</a>
         <a href="#" className={styles.footerLink}>Accessibility</a>
-        <a href="#" className={styles.footerLink}>Tax exempt program</a>
+        <a href="#" className={styles.footerLink}>Tax Exempt Program</a>
         <a href="#" className={styles.footerLink}>Get the Walmart App</a>
-        <a href="#" className={styles.footerLink}>Sign up for email</a>
-        <a href="#" className={styles.footerLink}>Safety data sheet</a>
-        <a href="#" className={styles.footerLink}>Terms of use</a>
-        <a href="#" className={styles.footerLink}>Privacy &amp; security</a>
+        <a href="#" className={styles.footerLink}>Safety Data Sheet</a>
+        <a href="#" className={styles.footerLink}>Terms of Use</a>
+        <a href="#" className={styles.footerLink}>Privacy Notice</a>
         <a href="#" className={styles.footerLink}>California Supply Chain Act</a>
         <a href="#" className={styles.privacyChoicesLink}>
           <PrivacyIcon />
-          <span>Your privacy choices</span>
+          <span>Your Privacy Choices</span>
         </a>
-        <a href="#" className={styles.footerLink}>Notice at collection</a>
-        <a href="#" className={styles.footerLink}>Request my personal information</a>
-        <a href="#" className={styles.footerLink}>Brand shop directory</a>
+        <a href="#" className={styles.footerLink}>Customer Privacy Center</a>
+        <a href="#" className={styles.footerLink}>Notice at Collection</a>
+        <a href="#" className={styles.footerLink}>AdChoices</a>
+        <a href="#" className={styles.footerLink}>Consumer Health Data Privacy Notices</a>
+        <a href="#" className={styles.footerLink}>Brand Shop Directory</a>
+        <a href="#" className={styles.footerLink}>Pharmacy</a>
+        <a href="#" className={styles.footerLink}>Walmart Business</a>
         <a href="#" className={styles.footerLink}>#IYWYK</a>
+        <a href="#" className={styles.footerLink}>Delete Account</a>
       </nav>
 
-      {/* Copyright */}
       <p className={styles.copyright}>©2025 Walmart. All rights reserved.</p>
     </footer>
   );
