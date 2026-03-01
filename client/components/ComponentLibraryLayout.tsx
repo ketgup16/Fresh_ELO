@@ -109,6 +109,7 @@ const navigationSections: NavSection[] = [
     items: [
       { id: 'order-card-patterns', nameKey: 'componentLibrary.navOrderCardPatterns', path: '/component-library/order-card-patterns' },
       { id: 'wcp-country', nameKey: 'componentLibrary.navWCPCountry', path: '/component-library/wcp-country' },
+      { id: 'wcp-flag', nameKey: 'componentLibrary.navWCPFlag', path: '/component-library/wcp-flag' },
     ]
   }
 ];

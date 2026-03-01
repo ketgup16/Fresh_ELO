@@ -1,0 +1,158 @@
+/* ─── WCP Flag Component ──────────────────────────────────────────────────── */
+/*
+  All colors are driven by WCP semantic tokens (--wcp-semantic-color-*)
+  and LD semantic tokens (--ld-semantic-color-*), making every variant
+  fully theme-responsive.
+
+  Component-scoped CSS variables:
+    --flag-bg       background fill
+    --flag-text     text + icon color
+    --flag-border   border color (transparent = no visible border)
+*/
+
+/* ─── Base shell ─────────────────────────────────────────────────────────── */
+
+.flag {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+
+  /* Sizing */
+  min-height: 28px;
+  width: max-content;
+
+  /* Border via box-shadow so it doesn't add to layout size */
+  border: 1.5px solid var(--flag-border, transparent);
+
+  /* Color via component tokens */
+  background-color: var(--flag-bg);
+  color: var(--flag-text);
+
+  /* Typography */
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ─── Internal parts ─────────────────────────────────────────────────────── */
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.icon {
+  display: block;
+}
+
+.label {
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* ROW 1 — Neutral / Default family                                           */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Neutral — light gray fill, subtle border */
+.neutral {
+  --flag-bg:     var(--ld-semantic-color-fill-subtle, #f8f8f8);
+  --flag-text:   var(--ld-semantic-color-text, #2e2f32);
+  --flag-border: var(--ld-semantic-color-border-subtle, #babbbe);
+}
+
+/* Brand Outlined — white fill, dark navy border */
+.brand-outlined {
+  --flag-bg:     var(--ld-semantic-color-fill-surface-primary, #ffffff);
+  --flag-text:   var(--ld-semantic-color-text-brand-bold, #001e60);
+  --flag-border: var(--ld-semantic-color-text-brand-bold, #001e60);
+}
+
+/* Member Subtle — warm amber/spark tint */
+.member-subtle {
+  --flag-bg:     var(--wcp-semantic-color-fill-member-subtle, #fef6de);
+  --flag-text:   var(--wcp-semantic-color-text-member, #995213);
+  --flag-border: var(--wcp-semantic-color-action-border-primary-alt, #995213);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* ROW 2 — Savings / Confidence family                                        */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Savings — solid red fill, white content */
+.savings {
+  --flag-bg:     var(--wcp-semantic-color-fill-savings-bold, #ea1100);
+  --flag-text:   var(--wcp-semantic-color-text-onFill-savings, #ffffff);
+  --flag-border: transparent;
+}
+
+/* Savings Outlined — white fill, red border + red text */
+.savings-outlined {
+  --flag-bg:     var(--ld-semantic-color-fill-surface-primary, #ffffff);
+  --flag-text:   var(--wcp-semantic-color-text-savings, #ea1100);
+  --flag-border: var(--wcp-semantic-color-border-savings-bold, #ea1100);
+}
+
+/* Confidence Subtle — light blue fill, blue border */
+.confidence-subtle {
+  --flag-bg:     var(--wcp-semantic-color-fill-confidence-subtle, #e9f1fe);
+  --flag-text:   var(--ld-semantic-color-text-brand, #0053e2);
+  --flag-border: var(--wcp-semantic-color-notice-info-border, #0053e2);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* ROW 3 — Express / Brand dark family                                        */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Express Subtle — lavender/purple tint */
+.express-subtle {
+  --flag-bg:     var(--wcp-semantic-color-fill-express-subtle, #efebf2);
+  --flag-text:   var(--wcp-semantic-color-text-express, #63327e);
+  --flag-border: transparent;
+}
+
+/* Brand — dark navy solid fill, white content */
+.brand {
+  --flag-bg:     var(--ld-semantic-color-border-brand-bold, #001e60);
+  --flag-text:   var(--ld-semantic-color-text-inverse, #ffffff);
+  --flag-border: transparent;
+}
+
+/* Brand Bold — deep navy (slightly deeper variant) */
+.brand-bold {
+  --flag-bg:     var(--ld-semantic-color-background-inverse, #2e2f32);
+  --flag-text:   var(--ld-semantic-color-text-inverse, #ffffff);
+  --flag-border: transparent;
+  /* Use brand-bold navy override via ld-primitive if available */
+  background-color: #0a1a4a;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* ROW 4 — Warm accent family                                                 */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Member — spark/gold yellow fill, dark text */
+.member {
+  --flag-bg:     var(--wcp-semantic-color-fill-member, #ffc220);
+  --flag-text:   var(--wcp-semantic-color-action-text-primary-alt, #2e2f32);
+  --flag-border: transparent;
+}
+
+/* Dark — near-black fill, white content */
+.dark {
+  --flag-bg:     var(--ld-semantic-color-background-inverse, #2e2f32);
+  --flag-text:   var(--ld-semantic-color-text-inverse, #ffffff);
+  --flag-border: transparent;
+}
+
+/* Trending — orange fill, dark text */
+.trending {
+  --flag-bg:     var(--wcp-semantic-color-fill-trending, #fa6400);
+  --flag-text:   var(--ld-semantic-color-text, #2e2f32);
+  --flag-border: transparent;
+}
