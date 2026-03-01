@@ -48,7 +48,7 @@ const GRID: Array<{ row: string; variants: WCPFlagVariant[] }> = [
 // ─── Token reference data ─────────────────────────────────────────────────────
 
 const BG_TOKENS: Record<WCPFlagVariant, string> = {
-  'brand-subtle':      '--ld-semantic-color-fill-surface-primary *',
+  'brand-subtle':      '--ld-semantic-color-fill-brand-subtle *',
   'member-subtle':     '--wcp-semantic-color-fill-member-subtle',
   'savings':           '--wcp-semantic-color-fill-savings-bold',
   'savings-outlined':  '--wcp-semantic-color-input-background',
@@ -59,7 +59,7 @@ const BG_TOKENS: Record<WCPFlagVariant, string> = {
 };
 
 const TEXT_TOKENS: Record<WCPFlagVariant, string> = {
-  'brand-subtle':      '--ld-semantic-color-text-brand-bold *',
+  'brand-subtle':      '--ld-semantic-color-text-brand *',
   'member-subtle':     '--wcp-semantic-color-text-member',
   'savings':           '--wcp-semantic-color-text-onFill-savings',
   'savings-outlined':  '--wcp-semantic-color-text-savings',

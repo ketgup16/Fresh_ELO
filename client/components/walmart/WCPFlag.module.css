@@ -66,9 +66,12 @@
 /* ═══════════════════════════════════════════════════════════════════════════ */
 
 .brand-subtle {
-  --flag-bg:     var(--ld-semantic-color-fill-surface-primary, #ffffff);
-  --flag-text:   var(--ld-semantic-color-text-brand-bold, #001e60);
-  --flag-border: var(--ld-semantic-color-border-brand-bold, #001e60);
+  /* All three tokens are overridden per brand theme:
+     Base (Walmart blue): light-blue bg, blue text/border
+     Bodega (green):      light-green bg, green text/border   */
+  --flag-bg:     var(--ld-semantic-color-fill-brand-subtle, #e9f1fe);
+  --flag-text:   var(--ld-semantic-color-text-brand, #0053e2);
+  --flag-border: var(--ld-semantic-color-border-brand, #0053e2);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
