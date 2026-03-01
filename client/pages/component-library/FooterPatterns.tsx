@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
-import { Tag } from '@/components/ui/tag';
+import { Tag } from '@/components/ui/Tag';
 import { DesktopFooter } from '@/components/walmart/DesktopFooter';
 import { MwebFooter } from '@/components/walmart/MwebFooter';
 import { BottomNav } from '@/components/walmart/BottomNav';
@@ -11,21 +11,24 @@ import styles from './FooterPatterns.module.css';
 type Platform = 'dweb' | 'mweb' | 'native';
 type NativeTab = 'shop' | 'heart' | 'user';
 
-const PLATFORM_META: Record<Platform, { label: string; tag: string; tagVariant: 'info' | 'success' | 'neutral'; description: string }> = {
+const PLATFORM_META: Record<Platform, { label: string; component: string; tag: string; tagVariant: 'info' | 'success' | 'neutral'; description: string }> = {
   dweb: {
     label: 'Desktop Web',
+    component: 'WCP Footer (Dweb)',
     tag: '≥ 1024px',
     tagVariant: 'info',
     description: 'The standard desktop footer. Renders below all page content with a feedback section, full link grid, and copyright. Hidden on screens narrower than 1024px.',
   },
   mweb: {
     label: 'Mobile Web',
+    component: 'WCP Footer (Mweb)',
     tag: '< 1024px',
     tagVariant: 'success',
     description: 'Single-column stacked layout for mobile browsers. Same content as the desktop footer — feedback, full link list, copyright — collapsed into a scannable vertical list.',
   },
   native: {
     label: 'Native App',
+    component: 'WCP Bottom Nav',
     tag: 'iOS / Android',
     tagVariant: 'neutral',
     description: 'Glassmorphic bottom navigation bar with animated spring indicator. Three primary destinations: Shop, My Items, and Account. Includes the Sparky AI button.',
@@ -42,8 +45,8 @@ export default function FooterPatternsPage() {
     <div className={styles.page}>
       <PageHeader
         section="Patterns"
-        title="Footer & Bottom Navigation"
-        description="Three platform-specific footer and navigation patterns. Choose the one that matches your target platform — Desktop Web, Mobile Web, or Native App."
+        title="WCP Footer & WCP Bottom Nav"
+        description="Three WCP navigation patterns. Switch between WCP Footer (Dweb), WCP Footer (Mweb), and WCP Bottom Nav — each is a distinct component for its target platform."
       />
 
       {/* Platform switcher */}
@@ -54,28 +57,28 @@ export default function FooterPatternsPage() {
             size="medium"
             onClick={() => setPlatform('dweb')}
           >
-            Desktop Web
+            WCP Footer (Dweb)
           </Button>
           <Button
             variant={platform === 'mweb' ? 'primary' : 'secondary'}
             size="medium"
             onClick={() => setPlatform('mweb')}
           >
-            Mobile Web
+            WCP Footer (Mweb)
           </Button>
           <Button
             variant={platform === 'native' ? 'primary' : 'secondary'}
             size="medium"
             onClick={() => setPlatform('native')}
           >
-            Native
+            WCP Bottom Nav
           </Button>
         </ButtonGroup>
       </div>
 
       {/* Active variant meta */}
       <div className={styles.metaRow}>
-        <span className={styles.metaLabel}>{meta.label}</span>
+        <span className={styles.metaLabel}>{meta.component}</span>
         <Tag variant={meta.tagVariant}>{meta.tag}</Tag>
         <p className={styles.metaDesc}>{meta.description}</p>
       </div>
@@ -135,7 +138,7 @@ export default function FooterPatternsPage() {
         <div className={styles.usageTable}>
           <div className={styles.usageRow}>
             <div className={styles.usageCell}>
-              <span className={styles.usagePlatform}>Desktop Web</span>
+              <span className={styles.usagePlatform}>WCP Footer (Dweb)</span>
               <Tag variant="info">≥ 1024px</Tag>
             </div>
             <div className={styles.usageCell}>
@@ -147,7 +150,7 @@ export default function FooterPatternsPage() {
           </div>
           <div className={styles.usageRow}>
             <div className={styles.usageCell}>
-              <span className={styles.usagePlatform}>Mobile Web</span>
+              <span className={styles.usagePlatform}>WCP Footer (Mweb)</span>
               <Tag variant="success">{'< 1024px'}</Tag>
             </div>
             <div className={styles.usageCell}>
@@ -159,7 +162,7 @@ export default function FooterPatternsPage() {
           </div>
           <div className={styles.usageRow}>
             <div className={styles.usageCell}>
-              <span className={styles.usagePlatform}>Native App</span>
+              <span className={styles.usagePlatform}>WCP Bottom Nav</span>
               <Tag variant="neutral">iOS / Android</Tag>
             </div>
             <div className={styles.usageCell}>
