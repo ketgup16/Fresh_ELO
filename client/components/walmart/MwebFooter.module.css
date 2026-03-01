@@ -112,9 +112,12 @@
   opacity: 0.7;
 }
 
-/* ── Desktop: hide MwebFooter ── */
+/* ── Desktop: hide MwebFooter (unless contained) ── */
 @media (min-width: 1024px) {
   .footer {
     display: none;
+  }
+  .footerContained {
+    display: flex;
   }
 }

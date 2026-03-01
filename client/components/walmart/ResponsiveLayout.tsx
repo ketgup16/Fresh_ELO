@@ -2,10 +2,12 @@ import { ReactNode } from 'react';
 import { BottomNav } from './BottomNav';
 import { DesktopHeader } from './DesktopHeader';
 import { DesktopFooter } from './DesktopFooter';
+import { MwebFooter } from './MwebFooter';
 import { MobileTopNav } from './MobileTopNav';
 import { SubNav } from './SubNav';
 import { PromoBanner } from './PromoBanner';
 import { OrderStatusBanner } from './OrderStatusBanner';
+import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import styles from './ResponsiveLayout.module.css';
 
 interface ResponsiveLayoutProps {
@@ -37,6 +39,7 @@ export function ResponsiveLayout({
   mobileActiveTab = 'shop',
 }: ResponsiveLayoutProps) {
   const maxWidthClass = maxWidthClassMap[maxWidth] || styles.maxWidth2xl;
+  const { mobileFooter } = useLayoutSettings();
 
   return (
     <div className={styles.root}>
@@ -54,11 +57,13 @@ export function ResponsiveLayout({
         </div>
       </main>
 
-      {showMobileNav && (
+      {/* Mobile footer/nav — swapped by project-level mobileFooter setting */}
+      {showMobileNav && mobileFooter === 'native' && (
         <div className={styles.mobileNavWrapper}>
           <BottomNav activeTab={mobileActiveTab} />
         </div>
       )}
+      {showMobileNav && mobileFooter === 'mweb' && <MwebFooter />}
 
       <DesktopFooter />
     </div>

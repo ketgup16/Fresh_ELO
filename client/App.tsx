@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MartyProvider } from "@/contexts/MartyContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { LayoutSettingsProvider } from "@/contexts/LayoutSettingsContext";
 import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
 
 import React from 'react';
@@ -110,7 +111,8 @@ const queryClient = new QueryClient();
 // Main App component with routing
 const App = () => (
   <ThemeProvider>
-    <QueryClientProvider client={queryClient}>
+      <LayoutSettingsProvider>
+        <QueryClientProvider client={queryClient}>
       <SnackbarContainer />
       <MartyProvider>
           <BrowserRouter>
@@ -216,6 +218,7 @@ const App = () => (
           </BrowserRouter>
         </MartyProvider>
     </QueryClientProvider>
+      </LayoutSettingsProvider>
   </ThemeProvider>
 );
 

@@ -18,9 +18,15 @@ const PrivacyIcon = () => (
   </svg>
 );
 
-export function MwebFooter() {
+interface MwebFooterProps {
+  /** When true, overrides the desktop display:none so it renders at all breakpoints (for docs/patterns pages) */
+  contained?: boolean;
+}
+
+export function MwebFooter({ contained = false }: MwebFooterProps) {
+  const cls = [styles.footer, contained ? styles.footerContained : ''].filter(Boolean).join(' ');
   return (
-    <footer className={styles.footer}>
+    <footer className={cls}>
       {/* Feedback Section */}
       <div className={styles.feedbackSection}>
         <p className={styles.feedbackText}>We'd love to hear what you think!</p>
