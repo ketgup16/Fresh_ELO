@@ -422,7 +422,7 @@ export function AutoCareOrderDetailModal({
                         <div className={styles.priceAdjustedRow}>
                           <span className={styles.priceAdjustedLabel}>
                             Temporary hold
-                            <InfoCircle style={{ width: 14, height: 14, marginLeft: 4, verticalAlign: 'middle', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+                            <InfoCircle style={{ width: 14, height: 14, marginLeft: 4, verticalAlign: 'middle', color: 'var(--ld-semantic-color-text-subtle)' }} />
                           </span>
                           <span className={styles.priceAdjustedValue}>$0.00</span>
                         </div>
@@ -443,7 +443,7 @@ export function AutoCareOrderDetailModal({
                           <span className={styles.chargeHistoryTitle}>Charge history</span>
                           <span className={styles.chargeHistorySub}>Your transaction activity for this order</span>
                         </div>
-                        <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+                        <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
                       </button>
                     </div>
 

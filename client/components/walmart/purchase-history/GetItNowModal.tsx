@@ -51,7 +51,7 @@ export function GetItNowModal({ open, onClose, location, orderTotal }: GetItNowM
               </IconButton>
             </div>
             <div className={styles.successIcon}>
-              <Check style={{ width: 32, height: 32, color: 'var(--ld-primitive-color-white, #fff)' }} />
+              <Check style={{ width: 32, height: 32, color: 'var(--ld-semantic-color-text-inverse)' }} />
             </div>
             <h2 className={styles.successTitle}>On its way!</h2>
             <p className={styles.successText}>
@@ -76,7 +76,7 @@ export function GetItNowModal({ open, onClose, location, orderTotal }: GetItNowM
               <Tag
                 variant="primary"
                 color="brand"
-                leading={<FlashFill style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-feedback-caution, #F7C200)' }} />}
+                leading={<FlashFill style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-feedback-caution)' }} />}
                 style={{
                   alignSelf: 'flex-start',
                   background: 'var(--ld-semantic-color-fill-brand-bold)',

@@ -396,7 +396,7 @@ export default function PurchaseHistory() {
               {/* ── Standard order list ───────────────────────────────────── */}
               <div className={styles.orderList}>
                 {visibleOrders.length === 0 ? (
-                  <p style={{ color: 'var(--ld-semantic-color-text-subtle, #74767C)', fontSize: 14 }}>
+                  <p style={{ color: 'var(--ld-semantic-color-text-subtle)', fontSize: 14 }}>
                     No orders match your filters.
                   </p>
                 ) : (

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Plus, Minus } from '@/components/icons';
+import { IconButton } from '@/components/ui/IconButton';
 import styles from './AddToCart.module.css';
 
 interface AddToCartProps {
@@ -32,13 +33,16 @@ export function AddToCart({ onQuantityChange }: AddToCartProps) {
 
   if (mode === 'initial') {
     return (
-      <button
-        className={styles.initialButton}
-        onClick={(e) => { e.stopPropagation(); update(1); }}
+      <IconButton
+        variant="secondary"
+        size="small"
+        shape="rounded"
         aria-label="Add to cart"
+        UNSAFE_className={styles.initialButton}
+        onClick={(e) => { e.stopPropagation(); update(1); }}
       >
         <Plus width={16} height={16} />
-      </button>
+      </IconButton>
     );
   }
 
@@ -56,23 +60,29 @@ export function AddToCart({ onQuantityChange }: AddToCartProps) {
 
   return (
     <div className={styles.stepper}>
-      <button
-        className={styles.stepperButton}
-        onClick={(e) => { e.stopPropagation(); update(quantity - 1); }}
+      <IconButton
+        variant="ghost"
+        size="small"
+        shape="rounded"
         aria-label="Decrease quantity"
+        UNSAFE_className={styles.stepperButton}
+        onClick={(e) => { e.stopPropagation(); update(quantity - 1); }}
       >
         <Minus width={16} height={16} />
-      </button>
+      </IconButton>
       <div className={styles.stepperCount}>
         <span className={styles.countText}>{quantity}</span>
       </div>
-      <button
-        className={styles.stepperButton}
-        onClick={(e) => { e.stopPropagation(); update(quantity + 1); }}
+      <IconButton
+        variant="ghost"
+        size="small"
+        shape="rounded"
         aria-label="Increase quantity"
+        UNSAFE_className={styles.stepperButton}
+        onClick={(e) => { e.stopPropagation(); update(quantity + 1); }}
       >
         <Plus width={16} height={16} />
-      </button>
+      </IconButton>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, Menu, Search } from '@/components/icons';
+import { IconButton } from '@/components/ui/IconButton';
 import { CartIcon, LocationIcon, StoreIcon } from '@/components/icons-custom';
 import { CameraModal } from '@/components/walmart/CameraModal';
 import { DepartmentsDropdown } from '@/components/walmart/DepartmentsDropdown';
@@ -39,9 +40,9 @@ export function MobileTopNav({ showHomeExtras = false }: MobileTopNavProps) {
           style={{ backgroundColor: 'var(--ld-semantic-color-top-nav-fill)' }}
         >
           <div className="flex items-center gap-3 md:gap-6">
-            <button className="text-white flex-shrink-0" aria-label="Menu">
+            <IconButton aria-label="Menu" variant="ghost" size="medium" UNSAFE_className="text-white flex-shrink-0">
               <Menu className="w-6 h-6" />
-            </button>
+            </IconButton>
             <a href="/walmart" className="flex-shrink-0" aria-label="Walmart Homepage">
               <img
                 src="https://i5.walmartimages.com/dfw/63fd9f59-14e2/9d304ce6-96de-4331-b8ec-c5191226d378/v1/spark-icon.svg"
@@ -56,14 +57,16 @@ export function MobileTopNav({ showHomeExtras = false }: MobileTopNavProps) {
               <span className="text-muted-foreground text-[14px] md:text-[16px] flex-1 truncate">
                 Search Walmart
               </span>
-              <button
+              <IconButton
                 onClick={(e) => { e.stopPropagation(); setShowSearchModal(true); }}
-                className="w-8 h-8 rounded-full flex items-center justify-center -mr-1"
-                style={{ backgroundColor: 'var(--ld-semantic-color-text-brand-bold, #001e60)' }}
+                UNSAFE_className="rounded-full -mr-1"
+                style={{ backgroundColor: 'var(--ld-semantic-color-text-brand-bold)' }}
                 aria-label="Search"
+                variant="ghost"
+                size="small"
               >
                 <Search className="w-4 h-4 md:w-5 md:h-5 text-white" />
-              </button>
+              </IconButton>
             </div>
             <CartIcon count={0} price="$0.00" textColor="white" />
           </div>

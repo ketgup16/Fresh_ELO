@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Search } from '@/components/icons';
+import { IconButton } from '@/components/ui/IconButton';
 import { CartIcon } from '@/components/icons-custom';
 import { useNavigate } from 'react-router-dom';
 import styles from './MobileHeader.module.css';
@@ -33,14 +34,15 @@ export function MobileHeader() {
           />
         </a>
 
-        <button
-          type="button"
-          className={styles.cartButton}
+        <IconButton
           aria-label="Cart"
+          variant="ghost"
+          size="medium"
+          UNSAFE_className={styles.cartButton}
           onClick={() => navigate('/walmart/cart')}
         >
           <CartIcon />
-        </button>
+        </IconButton>
       </div>
 
       {/* Search row */}

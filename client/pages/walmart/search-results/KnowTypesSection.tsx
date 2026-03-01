@@ -60,9 +60,9 @@ export function KnowTypesSection() {
               <div className="text-[20px] font-bold leading-4 mb-1">
                 {product.wasPrice ? (
                   <>
-                    <span className="text-[14px] align-top text-[var(--ld-semantic-color-text-accent-green,#2A8703)]">Now $</span>
-                    <span className="text-[var(--ld-semantic-color-text-accent-green,#2A8703)]">{product.price.replace('$', '')}</span>
-                    <span className="text-[14px] align-top text-[var(--ld-semantic-color-text-accent-green,#2A8703)]">{product.cents}</span>
+                    <span className="text-[14px] align-top text-[var(--ld-semantic-color-text-accent-green)]">Now $</span>
+                    <span className="text-[var(--ld-semantic-color-text-accent-green)]">{product.price.replace('$', '')}</span>
+                    <span className="text-[14px] align-top text-[var(--ld-semantic-color-text-accent-green)]">{product.cents}</span>
                     {' '}<span className="text-[14px] text-muted-foreground line-through">{product.wasPrice}</span>
                   </>
                 ) : (

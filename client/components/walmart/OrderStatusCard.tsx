@@ -24,7 +24,7 @@ export function OrderStatusCard({
     <div
       className="lg:hidden flex items-center gap-3 p-3 rounded-lg"
       style={{
-        background: "var(--ld-semantic-color-surface, #fff)",
+        background: "var(--ld-semantic-color-surface)",
         boxShadow:
           "0 -1px 2px 0 rgba(0,0,0,0.10), 0 1px 2px 1px rgba(0,0,0,0.15)",
       }}
@@ -39,7 +39,7 @@ export function OrderStatusCard({
           style={{
             fontFamily: "var(--ld-semantic-font-family-sans, sans-serif)",
             fontSize: "14px",
-            color: "var(--ld-semantic-color-text, #2E2F32)",
+            color: "var(--ld-semantic-color-text)",
           }}
         >
           {statusLine}
@@ -49,7 +49,7 @@ export function OrderStatusCard({
             fontFamily: "var(--ld-semantic-font-family-sans, sans-serif)",
             fontSize: "14px",
             fontWeight: 700,
-            color: "var(--ld-semantic-color-text, #2E2F32)",
+            color: "var(--ld-semantic-color-text)",
           }}
         >
           {deliveryLine}

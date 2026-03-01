@@ -24,9 +24,9 @@ export function MoreProductListings() {
           </div>
           <div className="flex-1 flex flex-col gap-1">
             <div className="text-[20px] font-bold leading-4">
-              <span className="text-[14px] align-top text-[var(--ld-semantic-color-text-accent-green,#2A8703)]">Now $</span>
-              <span className="text-[var(--ld-semantic-color-text-accent-green,#2A8703)]">{product.price}</span>
-              <span className="text-[14px] align-top text-[var(--ld-semantic-color-text-accent-green,#2A8703)]">{product.cents}</span>
+              <span className="text-[14px] align-top text-[var(--ld-semantic-color-text-accent-green)]">Now $</span>
+              <span className="text-[var(--ld-semantic-color-text-accent-green)]">{product.price}</span>
+              <span className="text-[14px] align-top text-[var(--ld-semantic-color-text-accent-green)]">{product.cents}</span>
               {' '}<span className="text-[14px] text-muted-foreground line-through">{product.wasPrice}</span>
             </div>
             <div className="text-[14px] text-foreground line-clamp-2">

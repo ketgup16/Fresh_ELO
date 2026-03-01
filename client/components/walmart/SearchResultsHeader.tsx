@@ -21,7 +21,7 @@ export function SearchResultsHeader({ query, onBack }: SearchResultsHeaderProps)
           <ChevronLeft className="w-6 h-6" />
         </Button>
         <div className="flex-1">
-          <div className="border-2 border-[var(--ld-semantic-color-action-fill-primary,#0071DC)] rounded-full">
+          <div className="border-2 border-[var(--ld-semantic-color-action-fill-primary)] rounded-full">
             <div className="bg-white rounded-full px-3 py-2 flex items-center gap-2 h-[42px]">
               <div className="w-6 h-6 flex-shrink-0">
                 <SparklesIcon />

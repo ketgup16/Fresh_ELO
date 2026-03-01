@@ -55,7 +55,7 @@ export function SearchBar({
             </div>
           </div>
         </div>
-        <CartIcon count={cartCount} price="$0.00" textColor="var(--ld-semantic-color-text-subtle, #515357)" />
+        <CartIcon count={cartCount} price="$0.00" textColor="var(--ld-semantic-color-text-subtle)" />
       </div>
     </div>
   );

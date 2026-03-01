@@ -140,7 +140,7 @@ function CheckInModal({
               </IconButton>
             </div>
             <div className={styles.successIcon}>
-              <Check style={{ width: 32, height: 32, color: 'var(--ld-primitive-color-white, #fff)' }} />
+              <Check style={{ width: 32, height: 32, color: 'var(--ld-semantic-color-text-inverse)' }} />
             </div>
             <h2 className={styles.confirmedTitle}>You're checked in!</h2>
             <p className={styles.confirmedText}>
@@ -267,7 +267,7 @@ function ViewDetailsModal({
     setExpandedField(null);
   };
 
-  const chevronStyle = { width: 18, height: 18, color: 'var(--ld-semantic-color-text-subtle, #74767C)', flexShrink: 0 as const };
+  const chevronStyle = { width: 18, height: 18, color: 'var(--ld-semantic-color-text-subtle)', flexShrink: 0 as const };
 
   // ── Saved success state ──
   if (saved) {
@@ -282,7 +282,7 @@ function ViewDetailsModal({
               </IconButton>
             </div>
             <div className={styles.successIcon}>
-              <Check style={{ width: 32, height: 32, color: 'var(--ld-primitive-color-white, #fff)' }} />
+              <Check style={{ width: 32, height: 32, color: 'var(--ld-semantic-color-text-inverse)' }} />
             </div>
             <h2 className={styles.confirmedTitle}>Appointment updated!</h2>
             <p className={styles.confirmedText}>
@@ -432,7 +432,7 @@ function ViewDetailsModal({
                 <span className={styles.apptListRowLabel}>Store location</span>
                 <span className={styles.apptListRowValue}>{storeAddress}</span>
               </div>
-              <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+              <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
             </button>
             <button className={styles.apptListRow}>
               <UserCircle style={{ width: 22, height: 22, flexShrink: 0 }} />
@@ -440,7 +440,7 @@ function ViewDetailsModal({
                 <span className={styles.apptListRowLabel}>Appointment contact</span>
                 <span className={styles.apptListRowValue}>Emilia Garcia</span>
               </div>
-              <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+              <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
             </button>
             <button className={styles.apptListRow}>
               <CreditCard style={{ width: 22, height: 22, flexShrink: 0 }} />
@@ -448,7 +448,7 @@ function ViewDetailsModal({
                 <span className={styles.apptListRowLabel}>Pay with</span>
                 <span className={styles.apptListRowValue}>ending in 7725</span>
               </div>
-              <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+              <ChevronRight style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
             </button>
             <button
               className={[styles.apptListRow, receiptExpanded ? styles.apptListRowOpen : ''].filter(Boolean).join(' ')}
@@ -461,8 +461,8 @@ function ViewDetailsModal({
                 <span className={styles.apptListRowValue}>{estTotal} • Includes taxes and fees.</span>
               </div>
               {receiptExpanded
-                ? <ChevronUp style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
-                : <ChevronDown style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+                ? <ChevronUp style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
+                : <ChevronDown style={{ width: 18, height: 18, flexShrink: 0, color: 'var(--ld-semantic-color-text-subtle)' }} />
               }
             </button>
             {receiptExpanded && (
@@ -479,7 +479,7 @@ function ViewDetailsModal({
                   <div className={styles.receiptLine}>
                     <span className={styles.receiptLineLabelFlex}>
                       Temporary hold
-                      <InfoCircle style={{ width: 16, height: 16, marginLeft: 4, color: 'var(--ld-semantic-color-text-subtle, #74767C)', flexShrink: 0 }} />
+                      <InfoCircle style={{ width: 16, height: 16, marginLeft: 4, color: 'var(--ld-semantic-color-text-subtle)', flexShrink: 0 }} />
                     </span>
                     <span className={styles.receiptLineValue}>$00.00</span>
                   </div>
