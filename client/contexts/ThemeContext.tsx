@@ -13,11 +13,39 @@ interface ThemeContextValue {
   availableThemes: Theme[];
   switchTheme: (themeId: Theme['id']) => void;
   isLoading: boolean;
+  /** Re-fetches overrides.css for the current theme after the file has been written by the server. */
+  reloadOverrides: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 const THEME_STORAGE_KEY = 'ld-theme';
+
+/**
+ * Load an optional CSS file — resolves even if the file 404s.
+ * Used for overrides.css which may not exist yet.
+ */
+function loadOptionalCSS(href: string, themeId: string): Promise<void> {
+  return new Promise((resolve) => {
+    // Remove any existing overrides link for this theme
+    const existing = document.querySelector(`link[data-theme-overrides-file]`);
+    existing?.remove();
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.setAttribute('data-theme-override', 'semantic');
+    link.setAttribute('data-theme-id', themeId);
+    link.setAttribute('data-theme-overrides-file', 'true');
+    link.onload = () => resolve();
+    link.onerror = () => {
+      // File doesn't exist yet — that's fine
+      link.remove();
+      resolve();
+    };
+    document.head.appendChild(link);
+  });
+}
 
 /**
  * Load theme CSS files dynamically using inheritance model
@@ -156,7 +184,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     setIsLoading(true);
 
+    const themeFolder = theme.semanticCSS.substring(0, theme.semanticCSS.lastIndexOf('/'));
+
     loadThemeCSS(theme)
+      .then(() => loadOptionalCSS(`${themeFolder}/overrides.css?v=${Date.now()}`, theme.id))
       .then(() => {
         // Force a small delay and reflow to ensure CSS is fully applied
         setTimeout(() => {
@@ -193,13 +224,21 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const theme = getThemeById(currentTheme);
     if (theme && (theme.id as string) !== 'base') {
       setIsLoading(true);
+      const themeFolder = theme.semanticCSS.substring(0, theme.semanticCSS.lastIndexOf('/'));
       loadThemeCSS(theme)
+        .then(() => loadOptionalCSS(`${themeFolder}/overrides.css?v=${Date.now()}`, theme.id))
         .then(() => setIsLoading(false))
-        .catch((error) => {
-          setIsLoading(false);
-        });
+        .catch(() => setIsLoading(false));
     }
   }, []); // Only run once on mount
+
+  // Reload just the overrides.css for the current theme (called after server writes the file)
+  const reloadOverrides = useCallback(() => {
+    const theme = getThemeById(currentTheme);
+    if (!theme) return;
+    const themeFolder = theme.semanticCSS.substring(0, theme.semanticCSS.lastIndexOf('/'));
+    loadOptionalCSS(`${themeFolder}/overrides.css?v=${Date.now()}`, theme.id);
+  }, [currentTheme]);
 
   const currentThemeData = getThemeById(currentTheme);
 
@@ -209,7 +248,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     availableThemes: AVAILABLE_THEMES,
     switchTheme,
     isLoading,
-  }), [currentTheme, currentThemeData, switchTheme, isLoading]);
+    reloadOverrides,
+  }), [currentTheme, currentThemeData, switchTheme, isLoading, reloadOverrides]);
 
   return (
     <ThemeContext.Provider value={value}>

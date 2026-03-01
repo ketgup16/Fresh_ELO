@@ -25,10 +25,16 @@ const navigationSections: NavSection[] = [
     items: [
       { id: 'overview', nameKey: 'componentLibrary.overview', path: '/component-library' },
       { id: 'getting-started', nameKey: 'componentLibrary.gettingStartedNav', path: '/component-library/getting-started' },
-      { id: 'themes', nameKey: 'componentLibrary.themesTokens', path: '/component-library/themes' },
-      { id: 'design-tokens', nameKey: 'componentLibrary.navDesignTokens', path: '/component-library/design-tokens' },
-      { id: 'component-tester', nameKey: 'componentLibrary.componentSandbox', path: '/component-library/component-tester' },
       { id: 'guidelines', nameKey: 'componentLibrary.guidelines', path: '/component-library/guidelines' },
+    ]
+  },
+  {
+    titleKey: 'componentLibrary.tools',
+    items: [
+      { id: 'component-tester', nameKey: 'componentLibrary.componentSandbox', path: '/component-library/component-tester' },
+      { id: 'design-tokens', nameKey: 'componentLibrary.navDesignTokens', path: '/component-library/design-tokens' },
+      { id: 'themes', nameKey: 'componentLibrary.themesTokens', path: '/component-library/themes' },
+      { id: 'theme-editor', nameKey: 'componentLibrary.navThemeEditor', path: '/component-library/theme-editor' },
     ]
   },
   {
@@ -112,12 +118,6 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-flag', nameKey: 'componentLibrary.navWCPFlag', path: '/component-library/wcp-flag' },
     ]
   },
-  {
-    titleKey: 'componentLibrary.tools',
-    items: [
-      { id: 'theme-editor', nameKey: 'componentLibrary.navThemeEditor', path: '/component-library/theme-editor' },
-    ]
-  }
 ];
 
 export function ComponentLibraryLayout() {

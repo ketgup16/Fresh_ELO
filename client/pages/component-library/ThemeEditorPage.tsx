@@ -5,6 +5,7 @@ import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { TokenSection, type TokenDef } from '@/components/theme-editor/TokenSection';
 import { PreviewPanel } from '@/components/theme-editor/PreviewPanel';
 import { useThemeEditor } from '@/hooks/useThemeEditor';
+import { useTheme } from '@/contexts/ThemeContext';
 import { Download } from '@/components/icons/Download';
 import { Upload } from '@/components/icons/Upload';
 import { RotateCcw } from '@/components/icons/RotateCcw';
@@ -68,9 +69,11 @@ const TOKEN_GROUPS = [
 
 export default function ThemeEditorPage() {
   const { overrides, setOverride, resetOverride, resetAll, exportJSON, importJSON, getCurrentValue } = useThemeEditor();
+  const { currentTheme, currentThemeData, reloadOverrides } = useTheme();
   const importInputRef = useRef<HTMLInputElement>(null);
   const [importError, setImportError] = React.useState<string | null>(null);
   const [importSuccess, setImportSuccess] = React.useState(false);
+  const [importSaving, setImportSaving] = React.useState(false);
 
   const totalOverrides = Object.keys(overrides).length;
 
@@ -97,19 +100,30 @@ export default function ThemeEditorPage() {
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = (ev) => {
+    reader.onload = async (ev) => {
       const text = ev.target?.result;
       if (typeof text !== 'string') return;
-      const result = importJSON(text);
+
+      setImportSaving(true);
+      const result = await importJSON(
+        text,
+        currentThemeData?.semanticCSS,
+        currentTheme,
+        currentThemeData?.name,
+      );
+      setImportSaving(false);
+
       if (result.success) {
+        // Reload overrides.css so the file change takes effect in the browser
+        reloadOverrides();
         setImportSuccess(true);
-        setTimeout(() => setImportSuccess(false), 3000);
+        setTimeout(() => setImportSuccess(false), 4000);
       } else {
         setImportError(result.error ?? 'Unknown error');
       }
     };
     reader.readAsText(file);
-    // Reset the input so the same file can be re-imported
+    // Reset so the same file can be re-imported
     e.target.value = '';
   }
 
@@ -135,8 +149,11 @@ export default function ThemeEditorPage() {
                 {totalOverrides} override{totalOverrides !== 1 ? 's' : ''} active
               </span>
             )}
-            {importSuccess && (
-              <span className={styles.successMessage}>Overrides imported successfully</span>
+            {importSaving && (
+              <span className={styles.savingMessage}>Saving to theme file…</span>
+            )}
+            {importSuccess && !importSaving && (
+              <span className={styles.successMessage}>Saved to {currentThemeData?.name ?? 'theme'} — overrides.css updated</span>
             )}
             {importError && (
               <span className={styles.errorMessage}>{importError}</span>

@@ -50,6 +50,13 @@
   font-weight: 700;
 }
 
+.savingMessage {
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  color: var(--ld-semantic-color-text-subtle, #6d6e72);
+  font-weight: 600;
+}
+
 .successMessage {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-small-size, 14px);

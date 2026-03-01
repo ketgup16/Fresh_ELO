@@ -94,33 +94,76 @@ export function useThemeEditor() {
     return JSON.stringify(payload, null, 2);
   }, [overrides]);
 
-  const importJSON = useCallback((jsonString: string): { success: boolean; error?: string } => {
+  /**
+   * Parse a JSON import, apply overrides immediately via CSS setProperty,
+   * persist to localStorage, AND write overrides.css to the active theme folder
+   * via the server API so they survive page reloads without localStorage.
+   *
+   * @param jsonString  The imported JSON text.
+   * @param cssFilePath The active theme's semanticCSS path from the theme registry
+   *                    (e.g. "/styles/themes/wcp/semantic.css"). Required for server write.
+   * @param themeId     The active theme id (e.g. "walmart").
+   * @param themeName   Display name (e.g. "Walmart").
+   */
+  const importJSON = useCallback(async (
+    jsonString: string,
+    cssFilePath?: string,
+    themeId?: string,
+    themeName?: string,
+  ): Promise<{ success: boolean; error?: string }> => {
+    // ── 1. Parse & validate ────────────────────────────────────────────────
+    let parsed: ThemeEditorExport;
     try {
-      const parsed = JSON.parse(jsonString) as ThemeEditorExport;
-      if (!parsed.overrides || typeof parsed.overrides !== 'object') {
-        return { success: false, error: 'Invalid format: missing "overrides" object.' };
-      }
-      // Clear existing overrides first
-      setOverrides(prev => { clearAllOverrides(prev); return {}; });
-
-      // Validate and apply only --ld-semantic-* and --wcp-semantic-* tokens
-      const valid: TokenOverrides = {};
-      for (const [token, value] of Object.entries(parsed.overrides)) {
-        if (
-          (token.startsWith('--ld-semantic-') || token.startsWith('--wcp-semantic-')) &&
-          typeof value === 'string'
-        ) {
-          valid[token] = value;
-          applyOverride(token, value);
-        }
-      }
-
-      setOverrides(valid);
-      saveToStorage(valid);
-      return { success: true };
-    } catch (e) {
+      parsed = JSON.parse(jsonString) as ThemeEditorExport;
+    } catch {
       return { success: false, error: 'Failed to parse JSON.' };
     }
+
+    if (!parsed.overrides || typeof parsed.overrides !== 'object') {
+      return { success: false, error: 'Invalid format: missing "overrides" object.' };
+    }
+
+    // ── 2. Validate tokens ────────────────────────────────────────────────
+    const valid: TokenOverrides = {};
+    for (const [token, value] of Object.entries(parsed.overrides)) {
+      if (
+        (token.startsWith('--ld-semantic-') || token.startsWith('--wcp-semantic-')) &&
+        typeof value === 'string'
+      ) {
+        valid[token] = value;
+      }
+    }
+
+    // ── 3. Apply immediately via CSS cascade ──────────────────────────────
+    setOverrides(prev => { clearAllOverrides(prev); return {}; });
+    applyAllOverrides(valid);
+    setOverrides(valid);
+    saveToStorage(valid);
+
+    // ── 4. Persist to theme CSS file via server ───────────────────────────
+    if (cssFilePath) {
+      try {
+        const res = await fetch('/api/theme/save-overrides', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            cssFilePath,
+            overrides: valid,
+            themeId: themeId ?? (localStorage.getItem('ld-theme') ?? 'walmart'),
+            themeName: themeName ?? 'Unknown',
+          }),
+        });
+        const data = await res.json();
+        if (!data.success) {
+          console.warn('[theme-editor] Server write failed:', data.error);
+          // Still return success — the inline override already works
+        }
+      } catch (err) {
+        console.warn('[theme-editor] Server unreachable, overrides applied inline only:', err);
+      }
+    }
+
+    return { success: true };
   }, []);
 
   // Clean up inline overrides when component unmounts (optional: keep them persisted)

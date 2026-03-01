@@ -281,7 +281,7 @@ function ColorRow({ name, description }: { name: string; description: string }) 
           borderRadius: '6px',
           background: `var(${name})`,
           flexShrink: 0,
-          border: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
+          border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
           boxShadow: 'var(--ld-semantic-elevation-100)',
         }}
       />
@@ -441,7 +441,7 @@ function Section({ title, description, count, children }: {
         <div style={{
           background: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
           borderRadius: '8px',
-          border: '1px solid var(--ld-semantic-color-border-subtle, #e6e6e8)',
+          border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
           overflow: 'hidden',
           padding: '4px',
           display: 'grid',
