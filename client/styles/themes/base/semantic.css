@@ -928,23 +928,23 @@
   --wcp-semantic-color-surface-savings: var(--ld-primitive-color-red-10, #fde9e8);
   --wcp-semantic-color-surface-trending: var(--ld-primitive-color-orange-10, #fff0e6);
 
-  /* WCP Text Colors - Special text treatments */
-  /* text-onFill-* = paired tokens for text that sits on a filled background */
-  --wcp-semantic-color-text-onFill-savings: var(--ld-primitive-color-white, #ffffff); /* White text on red savings-bold */
-  --wcp-semantic-color-text-onFill-savings-subtle: var(--ld-primitive-color-red-130, #a20c00); /* Dark red on light red savings-subtle */
-  --wcp-semantic-color-text-onFill-express: var(--ld-primitive-color-white, #ffffff); /* White text on purple express */
-  --wcp-semantic-color-text-onFill-member: var(--ld-primitive-color-gray-160, #2e2f32); /* Dark text on yellow member */
-  --wcp-semantic-color-text-onFill-confidence: var(--ld-primitive-color-white, #ffffff); /* White text on blue confidence */
-  --wcp-semantic-color-text-onFill-confidence-alt: var(--ld-primitive-color-white, #ffffff); /* White text on navy confidence-alt */
-  --wcp-semantic-color-icon-onFill-confidence-alt: var(--ld-primitive-color-spark-100, #ffc220); /* Spark yellow icons on confidence-alt */
-  --wcp-semantic-color-text-onFill-confidence-bold: var(--ld-primitive-color-white, #ffffff); /* White text on darkest navy confidence-bold */
-  --wcp-semantic-color-text-onFill-confidence-subtle: var(--ld-primitive-color-blue-130, #002e99); /* Navy text on light blue confidence-subtle */
-  --wcp-semantic-color-text-onFill-holiday-member: var(--ld-primitive-color-blue-180, #0e002e); /* Very dark navy on spark yellow holiday-member */
-  --wcp-semantic-color-text-onFill-holiday-restricted: var(--ld-primitive-color-gray-130, #515357); /* Medium gray on light gray holiday-restricted */
-  --wcp-semantic-color-text-onFill-scarcity: var(--ld-primitive-color-spark-160, #662b0d); /* Very dark amber on light amber scarcity */
-  --wcp-semantic-color-text-onFill-social: var(--ld-primitive-color-blue-100, #0053e2); /* Blue text on white social */
-  --wcp-semantic-color-text-onFill-trending: var(--ld-primitive-color-gray-160, #2e2f32); /* Dark text on orange trending */
-  --wcp-semantic-color-text-onFill-urgent: var(--ld-primitive-color-gray-160, #2e2f32); /* Dark gray on bright yellow urgent */
+  /* WCP Text on Fill Colors — text-on-fill-* naming matches WCP theme file */
+  /* These are the base fallback values; WCP/theme files override per brand   */
+  --wcp-semantic-color-text-on-fill-savings-bold: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-text-on-fill-savings-subtle: var(--ld-primitive-color-red-130, #a20c00);
+  --wcp-semantic-color-text-on-fill-express: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-text-on-fill-member: var(--ld-primitive-color-gray-160, #2e2f32);
+  --wcp-semantic-color-text-on-fill-confidence: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-text-on-fill-confidence-alt: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-icon-on-fill-confidence-alt: var(--ld-primitive-color-spark-100, #ffc220);
+  --wcp-semantic-color-text-on-fill-confidence-bold: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-text-on-fill-confidence-subtle: var(--ld-primitive-color-blue-130, #002e99);
+  --wcp-semantic-color-text-on-fill-holiday-member: var(--ld-primitive-color-blue-180, #0e002e);
+  --wcp-semantic-color-text-on-fill-holiday-restricted: var(--ld-primitive-color-gray-130, #515357);
+  --wcp-semantic-color-text-on-fill-scarcity: var(--ld-primitive-color-spark-160, #662b0d);
+  --wcp-semantic-color-text-on-fill-social: var(--ld-primitive-color-blue-100, #0053e2);
+  --wcp-semantic-color-text-on-fill-trending: var(--ld-primitive-color-gray-160, #2e2f32);
+  --wcp-semantic-color-text-on-fill-urgent: var(--ld-primitive-color-gray-160, #2e2f32);
   /* Generic (non-fill) text tokens for use on surface backgrounds */
   --wcp-semantic-color-text-savings: var(--ld-primitive-color-red-100, #ea1100); /* Red savings text on surfaces */
   --wcp-semantic-color-text-savings-subtle: var(--ld-primitive-color-red-130, #a20c00);

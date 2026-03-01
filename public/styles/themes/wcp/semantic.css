@@ -38,6 +38,7 @@
   
   /* WCP Fill Colors */
   --wcp-semantic-color-fill-confidence: var(--ld-primitive-color-blue-160, #001e60);
+  --wcp-semantic-color-fill-confidence-alt: var(--ld-primitive-color-blue-160, #001e60);
   --wcp-semantic-color-fill-confidence-bold: var(--ld-primitive-color-blue-180, #0e002e);
   --wcp-semantic-color-fill-confidence-subtle: var(--ld-primitive-color-magic-4, #e9f1fe);
   --wcp-semantic-color-fill-holiday-member: var(--ld-primitive-color-spark-100, #ffc220);
@@ -79,7 +80,8 @@
   
   /* WCP Text on Fill Colors */
   --wcp-semantic-color-text-on-fill-confidence: var(--ld-primitive-color-white, #ffffff);
-  --wcp-semantic-color-text-on-fill-confidence-alt: var(--ld-primitive-color-spark-100, #ffc220);
+  --wcp-semantic-color-text-on-fill-confidence-alt: var(--ld-primitive-color-white, #ffffff);
+  --wcp-semantic-color-icon-on-fill-confidence-alt: var(--ld-primitive-color-spark-100, #ffc220);
   --wcp-semantic-color-text-on-fill-confidence-bold: var(--ld-primitive-color-white, #ffffff);
   --wcp-semantic-color-text-on-fill-confidence-subtle: var(--ld-primitive-color-blue-130, #002e99);
   --wcp-semantic-color-text-on-fill-holiday-member: var(--ld-primitive-color-blue-180, #0e002e);
