@@ -67,13 +67,18 @@ export function DesktopHeader() {
           onClose={() => setShowHighlight(false)}
           open={showHighlight && !showGIC}
           icon={
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F2f0b0d0cef554208baca4785f47e5bb9"
-              alt=""
-              width="28"
-              height="28"
-              style={{ filter: 'invert(1)' }}
-            />
+            <svg width="28" height="28" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              {/* Outer pin — brand blue subtle */}
+              <path
+                d="M36 4.5C42.2657 4.5 48.2753 6.98864 52.7058 11.4192C57.1364 15.8497 59.625 21.8593 59.625 28.125C59.625 51.75 36 67.5 36 67.5C36 67.5 12.375 51.75 12.375 28.125C12.375 21.8593 14.8636 15.8497 19.2942 11.4192C23.7247 6.98864 29.7343 4.5 36 4.5ZM36 15.75C29.1655 15.75 23.625 21.2905 23.625 28.125C23.625 34.9595 29.1655 40.5 36 40.5C42.8345 40.5 48.375 34.9595 48.375 28.125C48.375 21.2905 42.8345 15.75 36 15.75Z"
+                fill="var(--ld-semantic-color-fill-brand-subtle, #C7DBFF)"
+              />
+              {/* Inner circle — cyan blue */}
+              <path
+                d="M36 40.5C42.8345 40.5 48.375 34.9595 48.375 28.125C48.375 21.2905 42.8345 15.75 36 15.75C29.1655 15.75 23.625 21.2905 23.625 28.125C23.625 34.9595 29.1655 40.5 36 40.5Z"
+                fill="#4DBDF5"
+              />
+            </svg>
           }
         >
           <section className={styles.gicSection}>
