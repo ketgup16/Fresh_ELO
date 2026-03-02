@@ -148,7 +148,7 @@ export default function WCPHeartViewPage() {
             <div className={styles.dosDontCard}>
               <div className={styles.dosDontPreview}>
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F737fdd2b66f847faa5c6939529c819e6?format=webp&width=800&height=1200"
+                  src="/assets/examples/heart-view/dont-1-heart-color.webp"
                   alt="Don't change the heart fill color"
                   className={styles.dosDontImg}
                 />
@@ -170,9 +170,9 @@ export default function WCPHeartViewPage() {
             <div className={styles.dosDontCard}>
               <div className={styles.dosDontPreview}>
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F737fdd2b66f847faa5c6939529c819e6?format=webp&width=800&height=1200"
+                  src="/assets/examples/heart-view/dont-2-cta-tooltip.webp"
                   alt="Don't include inaccessible CTAs in the callout"
-                  className={`${styles.dosDontImg} ${styles.dosDontImgRight}`}
+                  className={styles.dosDontImg}
                 />
               </div>
               <div className={styles.dontLabel}>
@@ -192,7 +192,7 @@ export default function WCPHeartViewPage() {
             <div className={styles.dosDontCard}>
               <div className={styles.dosDontPreview}>
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8723ec307a584d6fb3cba29d15e05b2e?format=webp&width=800&height=1200"
+                  src="/assets/examples/heart-view/do-1-product-tiles.webp"
                   alt="Do overlay heart on product tile top right"
                   className={styles.dosDontImg}
                 />
@@ -213,9 +213,9 @@ export default function WCPHeartViewPage() {
             <div className={styles.dosDontCard}>
               <div className={styles.dosDontPreview}>
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8723ec307a584d6fb3cba29d15e05b2e?format=webp&width=800&height=1200"
+                  src="/assets/examples/heart-view/do-2-pdp-floating.webp"
                   alt="Do match size with other PDP floating buttons"
-                  className={`${styles.dosDontImg} ${styles.dosDontImgRight}`}
+                  className={styles.dosDontImg}
                 />
               </div>
               <div className={styles.doLabel}>
@@ -234,7 +234,7 @@ export default function WCPHeartViewPage() {
             <div className={styles.dosDontCard}>
               <div className={styles.dosDontPreview}>
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F50dad93335284e88aa49270cd0fb40fe?format=webp&width=800&height=1200"
+                  src="/assets/examples/heart-view/do-3-callout-no-overlap.webp"
                   alt="Do place callout where it doesn't overlap other actions"
                   className={styles.dosDontImg}
                 />
@@ -255,9 +255,9 @@ export default function WCPHeartViewPage() {
             <div className={styles.dosDontCard}>
               <div className={styles.dosDontPreview}>
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F50dad93335284e88aa49270cd0fb40fe?format=webp&width=800&height=1200"
+                  src="/assets/examples/heart-view/dont-3-callout-overlap.webp"
                   alt="Don't place callout where it overlaps other actions"
-                  className={`${styles.dosDontImg} ${styles.dosDontImgRight}`}
+                  className={styles.dosDontImg}
                 />
               </div>
               <div className={styles.dontLabel}>
