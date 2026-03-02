@@ -75,6 +75,7 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-button-groups', nameKey: 'componentLibrary.navWCPButtonGroups', path: '/component-library/wcp-button-groups' },
       { id: 'wcp-floating-button', nameKey: 'componentLibrary.navWCPFloatingButton', path: '/component-library/wcp-floating-button' },
       { id: 'wcp-heart-view', nameKey: 'componentLibrary.navWCPHeartView', path: '/component-library/wcp-heart-view' },
+      { id: 'wcp-rating', nameKey: 'componentLibrary.navWCPRating', path: '/component-library/wcp-rating' },
     ]
   },
   {

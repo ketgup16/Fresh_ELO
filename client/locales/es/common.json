@@ -189,6 +189,8 @@
     "navWCPFloatingButton": "Botón Flotante",
     "navWCPHeartView": "Vista de Corazón",
     "descWCPHeartView": "Botón de favoritos con callout en escritorio y snackbar en móvil",
+    "navWCPRating": "WCP Calificación",
+    "descWCPRating": "Componente de calificación interactiva con etiquetas para la experiencia del consumidor WCP",
     "descWCPFloatingButton": "Botón de ícono circular elevado para controles de carrusel y acciones flotantes",
     "descAlerts": "Mensajes de banner para estados de información, éxito, advertencia y error",
     "descBadges": "Insignias de conteo, indicadores de estado y variantes de color semántico",

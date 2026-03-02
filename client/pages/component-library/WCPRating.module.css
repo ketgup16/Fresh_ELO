@@ -1,0 +1,330 @@
+.page {
+  padding: 48px;
+  max-width: 1200px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  margin-top: 32px;
+}
+
+/* ── Section ── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text);
+  margin: 0;
+}
+
+.sectionDesc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  font-family: var(--ld-semantic-font-family-sans);
+  margin: 0;
+  max-width: 680px;
+}
+
+.sectionDesc code {
+  font-family: monospace;
+  font-size: 13px;
+  background: var(--ld-semantic-color-fill-secondary, #f2f2f2);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--ld-semantic-color-text);
+}
+
+/* ── Demo card ── */
+.demoCard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px;
+  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 12px;
+}
+
+.cardTitle {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/* ── State label ── */
+.stateLabel {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  font-family: var(--ld-semantic-font-family-sans);
+  white-space: nowrap;
+  min-width: 72px;
+}
+
+/* ── Interactive demo ── */
+.interactiveDemo {
+  padding: 32px;
+  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 12px;
+}
+
+.interactiveDemoInner {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.interactiveMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.interactiveValue {
+  font-size: 14px;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+}
+
+.interactiveValue strong {
+  color: var(--ld-semantic-color-text);
+}
+
+.interactiveLastEvent {
+  font-size: 12px;
+  font-family: monospace;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  background: var(--ld-semantic-color-fill-secondary, #f2f2f2);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* ── Sizes grid ── */
+.sizesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.ratingsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ── States grid ── */
+.statesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.stateItem {
+  padding: 16px 0;
+}
+
+/* ── Labels table ── */
+.labelsTable {
+  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.labelsTableHeader,
+.labelsTableRow {
+  display: grid;
+  grid-template-columns: 80px 120px 1fr;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 16px;
+}
+
+.labelsTableHeader {
+  background: var(--ld-semantic-color-fill-secondary, #f2f2f2);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.labelsTableRow {
+  border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  font-family: var(--ld-semantic-font-family-sans);
+}
+
+.labelsTableStars {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text);
+}
+
+.labelsTableLabel {
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+}
+
+/* ── Behavior grid ── */
+.behaviorGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.behaviorCard {
+  padding: 20px 24px;
+  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 10px;
+}
+
+.behaviorTitle {
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text);
+  margin: 0 0 12px;
+}
+
+.behaviorList {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.behaviorList li {
+  font-size: 14px;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  line-height: 1.5;
+}
+
+.behaviorList li code {
+  font-family: monospace;
+  font-size: 12px;
+  background: var(--ld-semantic-color-fill-secondary, #f2f2f2);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--ld-semantic-color-text);
+}
+
+/* ── Code block ── */
+.codeBlock {
+  background: var(--ld-semantic-color-fill-inverse, #2e2f32);
+  color: #e8eaf0;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  padding: 24px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0;
+  white-space: pre;
+}
+
+/* ── Props table ── */
+.propsTable {
+  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.propsTableHeader,
+.propsTableRow {
+  display: grid;
+  grid-template-columns: 140px 200px 120px 1fr;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 16px;
+}
+
+.propsTableHeader {
+  background: var(--ld-semantic-color-fill-secondary, #f2f2f2);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.propsTableRow {
+  border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  font-family: var(--ld-semantic-font-family-sans);
+}
+
+.propName {
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  color: var(--ld-semantic-color-text);
+}
+
+.propType {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  color: #0060b8;
+}
+
+.propDefault {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+}
+
+.propDesc {
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  line-height: 1.5;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .page {
+    padding: 16px;
+  }
+
+  .sizesGrid,
+  .statesGrid,
+  .behaviorGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .propsTableHeader,
+  .propsTableRow {
+    grid-template-columns: 1fr;
+  }
+
+  .labelsTableHeader,
+  .labelsTableRow {
+    grid-template-columns: 60px 100px 1fr;
+  }
+}
