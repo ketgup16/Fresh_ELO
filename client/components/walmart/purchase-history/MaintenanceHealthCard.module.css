@@ -1,29 +1,35 @@
 .card {
-  border-radius: 10px;
+  border-radius: var(--ld-primitive-scale-borderradius-150, 10px);
   overflow: hidden;
   font-family: var(--ld-semantic-font-family-sans);
   background: var(--ld-semantic-color-surface);
-  border: 1px solid var(--ld-semantic-color-separator);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
 /* ── Header strip ──────────────────────────────────────── */
 .header {
-  background: linear-gradient(135deg, #001E5A 0%, #003087 100%);
-  padding: 16px 20px;
+  background: linear-gradient(135deg, var(--ld-semantic-color-fill-brand-bold, #001E5A) 0%, var(--ld-semantic-color-action-fill-primary, #003087) 100%);
+  padding: var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-500, 20px);
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: var(--ld-primitive-scale-space-350, 14px);
 }
 
 .headerIcon {
   width: 52px;
   height: 52px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.12);
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+.wrenchIcon {
+  width: 26px;
+  height: 26px;
+  color: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
 }
 
 .headerText {
@@ -32,27 +38,27 @@
 }
 
 .headerEyebrow {
-  font-size: 11px;
+  font-size: var(--ld-semantic-font-body-small-size, 11px);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: rgba(255,255,255,0.6);
-  margin: 0 0 2px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 var(--ld-primitive-scale-space-050, 2px);
 }
 
 .headerVehicle {
-  font-size: 18px;
+  font-size: var(--ld-semantic-font-heading-small-size, 18px);
   font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 1px;
+  color: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
+  margin: 0 0 var(--ld-primitive-scale-space-025, 1px);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .headerMileage {
-  font-size: 13px;
-  color: rgba(255,255,255,0.65);
+  font-size: var(--ld-semantic-font-body-small-size, 13px);
+  color: rgba(255, 255, 255, 0.65);
   margin: 0;
 }
 
@@ -73,13 +79,13 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgba(255,255,255,0.55);
-  margin-top: 3px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: var(--ld-primitive-scale-space-075, 3px);
 }
 
 /* ── Maintenance grid ──────────────────────────────────── */
 .section {
-  padding: 16px 20px 0;
+  padding: var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-500, 20px) 0;
 }
 
 .sectionTitle {
@@ -88,22 +94,22 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--ld-semantic-color-text-subtle);
-  margin: 0 0 12px;
+  margin: 0 0 var(--ld-primitive-scale-space-300, 12px);
 }
 
 .healthGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding-bottom: 16px;
+  gap: var(--ld-primitive-scale-space-250, 10px);
+  padding-bottom: var(--ld-primitive-scale-space-400, 16px);
 }
 
 .healthItem {
-  border-radius: 8px;
-  padding: 12px 10px 10px;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-250, 10px) var(--ld-primitive-scale-space-250, 10px);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--ld-primitive-scale-space-150, 6px);
   position: relative;
   overflow: hidden;
 }
@@ -128,31 +134,41 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: var(--ld-primitive-scale-space-050, 2px) var(--ld-primitive-scale-space-150, 6px);
+  border-radius: var(--ld-primitive-scale-borderradius-050, 4px);
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: var(--ld-primitive-scale-space-075, 3px);
   width: fit-content;
 }
 
 .statusBadge--overdue {
   background: var(--ld-semantic-color-text-negative, #C90000);
-  color: #fff;
+  color: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
 }
 
 .statusBadge--due {
-  background: #966600;
-  color: #fff;
+  background: var(--ld-semantic-color-fill-warning-bold, #7A5200);
+  color: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
 }
 
 .statusBadge--good {
   background: var(--ld-semantic-color-text-positive, #1A7A34);
-  color: #fff;
+  color: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
+}
+
+/* Status dot (replaces emoji bullet) */
+.statusDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: currentColor;
+  flex-shrink: 0;
 }
 
 .itemName {
-  font-size: 13px;
+  font-size: var(--ld-semantic-font-body-small-size, 13px);
   font-weight: 700;
   color: var(--ld-semantic-color-text-primary);
   line-height: 1.3;
@@ -167,7 +183,7 @@
 }
 
 .itemPrice {
-  font-size: 13px;
+  font-size: var(--ld-semantic-font-body-small-size, 13px);
   font-weight: 700;
   color: var(--ld-semantic-color-text-primary);
   margin: 0;
@@ -175,27 +191,29 @@
 
 /* ── Bundle savings strip ──────────────────────────────── */
 .savingsBanner {
-  margin: 0 20px 16px;
-  border-radius: 8px;
-  padding: 11px 14px;
+  margin: 0 var(--ld-primitive-scale-space-500, 20px) var(--ld-primitive-scale-space-400, 16px);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  padding: var(--ld-primitive-scale-space-275, 11px) var(--ld-primitive-scale-space-350, 14px);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--ld-primitive-scale-space-250, 10px);
   background: var(--ld-semantic-color-fill-brand-subtle, #E8F0FE);
   border: 1px solid var(--ld-semantic-color-border-brand, #0053E2);
 }
 
-.savingsIcon {
-  font-size: 18px;
+.savingsIconSvg {
+  width: 20px;
+  height: 20px;
+  color: var(--ld-semantic-color-text-brand, #0053E2);
   flex-shrink: 0;
-  line-height: 1;
 }
 
 .savingsText {
   flex: 1;
-  font-size: 13px;
+  font-size: var(--ld-semantic-font-body-small-size, 13px);
   color: var(--ld-semantic-color-text-primary);
   line-height: 1.4;
+  margin: 0;
 }
 
 .savingsAmount {
@@ -205,23 +223,18 @@
 
 /* ── Footer ────────────────────────────────────────────── */
 .footer {
-  border-top: 1px solid var(--ld-semantic-color-separator);
-  padding: 12px 20px;
+  border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-500, 20px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: var(--ld-semantic-color-background-subtle, #F6F6F7);
-  gap: 10px;
+  gap: var(--ld-primitive-scale-space-250, 10px);
 }
 
 .footerLeft {
   font-size: 12px;
   color: var(--ld-semantic-color-text-subtle);
-}
-
-.footerActions {
-  display: flex;
-  gap: 8px;
 }
 
 @media (max-width: 600px) {
@@ -230,24 +243,26 @@
   }
 
   .header {
-    padding: 14px 16px;
+    padding: var(--ld-primitive-scale-space-350, 14px) var(--ld-primitive-scale-space-400, 16px);
   }
 
   .section {
-    padding: 14px 16px 0;
+    padding: var(--ld-primitive-scale-space-350, 14px) var(--ld-primitive-scale-space-400, 16px) 0;
   }
 
   .savingsBanner {
-    margin: 0 16px 14px;
+    margin: 0 var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-350, 14px);
   }
 
   .footer {
-    padding: 10px 16px;
+    padding: var(--ld-primitive-scale-space-250, 10px) var(--ld-primitive-scale-space-400, 16px);
     flex-direction: column;
     align-items: stretch;
   }
+}
 
-  .footerActions {
-    flex-direction: column;
+@media (prefers-reduced-motion: reduce) {
+  .scoreRing circle {
+    transition: none;
   }
 }

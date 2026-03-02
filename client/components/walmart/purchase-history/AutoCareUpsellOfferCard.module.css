@@ -1,19 +1,19 @@
 .card {
-  border-radius: 10px;
+  border-radius: var(--ld-primitive-scale-borderradius-150, 10px);
   overflow: hidden;
   font-family: var(--ld-semantic-font-family-sans);
-  border: 1px solid var(--ld-semantic-color-separator);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
   display: grid;
   grid-template-columns: 220px 1fr;
 }
 
 /* ── Left panel: offer badge ─────────────────────────── */
 .offerPanel {
-  background: linear-gradient(160deg, #1A3A2A 0%, #0D5C2E 60%, #1A7A34 100%);
-  padding: 24px 20px;
+  background: linear-gradient(160deg, var(--ld-semantic-color-fill-success-bold, #1A3A2A) 0%, var(--ld-semantic-color-text-positive, #0D5C2E) 60%, var(--ld-semantic-color-border-positive, #1A7A34) 100%);
+  padding: var(--ld-primitive-scale-space-600, 24px) var(--ld-primitive-scale-space-500, 20px);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--ld-primitive-scale-space-300, 12px);
   position: relative;
   overflow: hidden;
 }
@@ -23,8 +23,8 @@
 .offerPanel::after {
   content: '';
   position: absolute;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.06);
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: rgba(255, 255, 255, 0.06);
   pointer-events: none;
 }
 
@@ -45,18 +45,18 @@
 .memberBadge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 20px;
-  padding: 3px 10px 3px 6px;
+  gap: var(--ld-primitive-scale-space-125, 5px);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  padding: var(--ld-primitive-scale-space-075, 3px) var(--ld-primitive-scale-space-250, 10px) var(--ld-primitive-scale-space-075, 3px) var(--ld-primitive-scale-space-150, 6px);
   width: fit-content;
 }
 
 .memberBadgeText {
   font-size: 11px;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
   letter-spacing: 0.03em;
 }
 
@@ -70,42 +70,42 @@
 .discountBlock {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--ld-primitive-scale-space-050, 2px);
 }
 
 .discountPct {
   font-size: 48px;
   font-weight: 900;
-  color: #ffffff;
+  color: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
   line-height: 1;
   letter-spacing: -2px;
 }
 
 .discountOff {
-  font-size: 16px;
+  font-size: var(--ld-semantic-font-heading-xsmall-size, 16px);
   font-weight: 700;
-  color: rgba(255,255,255,0.8);
-  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: var(--ld-primitive-scale-space-050, 2px);
 }
 
 .discountService {
-  font-size: 13px;
-  color: rgba(255,255,255,0.65);
+  font-size: var(--ld-semantic-font-body-small-size, 13px);
+  color: rgba(255, 255, 255, 0.65);
   font-weight: 500;
 }
 
 .countdown {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-top: 4px;
+  gap: var(--ld-primitive-scale-space-125, 5px);
+  margin-top: var(--ld-primitive-scale-space-100, 4px);
 }
 
 .countdownDot {
   width: 6px;
   height: 6px;
-  border-radius: 50%;
-  background: #4ADE80;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: var(--ld-semantic-color-text-positive, #1A7A34);
   flex-shrink: 0;
   animation: pulse 1.8s ease-in-out infinite;
 }
@@ -115,18 +115,24 @@
   50% { opacity: 0.35; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .countdownDot {
+    animation: none;
+  }
+}
+
 .countdownText {
   font-size: 11px;
   font-weight: 600;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* ── Right panel: details ────────────────────────────── */
 .detailPanel {
-  padding: 20px 24px;
+  padding: var(--ld-primitive-scale-space-500, 20px) var(--ld-primitive-scale-space-600, 24px);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--ld-primitive-scale-space-400, 16px);
   background: var(--ld-semantic-color-surface);
 }
 
@@ -136,11 +142,11 @@
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--ld-semantic-color-text-subtle);
-  margin: 0 0 4px;
+  margin: 0 0 var(--ld-primitive-scale-space-100, 4px);
 }
 
 .detailHeading {
-  font-size: 20px;
+  font-size: var(--ld-semantic-font-heading-small-size, 20px);
   font-weight: 700;
   color: var(--ld-semantic-color-text-primary);
   margin: 0;
@@ -151,26 +157,27 @@
 .vehicleRow {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 8px;
-  background: var(--ld-semantic-color-fill-surface-secondary, #F5F5F6);
+  gap: var(--ld-primitive-scale-space-200, 8px);
+  padding: var(--ld-primitive-scale-space-250, 10px) var(--ld-primitive-scale-space-300, 12px);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  background: var(--ld-semantic-color-background-subtle, #F5F5F6);
 }
 
 .vehicleIcon {
-  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  color: var(--ld-semantic-color-text-subtle);
   flex-shrink: 0;
-  line-height: 1;
 }
 
 .vehicleInfo {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: var(--ld-primitive-scale-space-025, 1px);
 }
 
 .vehicleName {
-  font-size: 14px;
+  font-size: var(--ld-semantic-font-body-default-size, 14px);
   font-weight: 700;
   color: var(--ld-semantic-color-text-primary);
 }
@@ -184,7 +191,7 @@
 .priceRow {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: var(--ld-primitive-scale-space-250, 10px);
 }
 
 .priceNew {
@@ -195,25 +202,25 @@
 }
 
 .priceOld {
-  font-size: 14px;
+  font-size: var(--ld-semantic-font-body-default-size, 14px);
   color: var(--ld-semantic-color-text-subtle);
   text-decoration: line-through;
 }
 
 .priceSaving {
-  font-size: 13px;
+  font-size: var(--ld-semantic-font-body-small-size, 13px);
   font-weight: 600;
   color: var(--ld-semantic-color-text-positive, #1A7A34);
   background: var(--ld-semantic-color-fill-success-subtle, #EAF6ED);
-  padding: 2px 8px;
-  border-radius: 4px;
+  padding: var(--ld-primitive-scale-space-050, 2px) var(--ld-primitive-scale-space-200, 8px);
+  border-radius: var(--ld-primitive-scale-borderradius-050, 4px);
 }
 
 /* Fine print */
 .finePrint {
   font-size: 11px;
   color: var(--ld-semantic-color-text-subtlest, #9A9BA1);
-  margin: -8px 0 0;
+  margin: calc(var(--ld-primitive-scale-space-200, 8px) * -1) 0 0;
   line-height: 1.4;
 }
 
@@ -221,7 +228,7 @@
 .actions {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--ld-primitive-scale-space-200, 8px);
   margin-top: auto;
 }
 
@@ -232,11 +239,11 @@
   }
 
   .offerPanel {
-    padding: 20px 16px;
+    padding: var(--ld-primitive-scale-space-500, 20px) var(--ld-primitive-scale-space-400, 16px);
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: var(--ld-primitive-scale-space-400, 16px);
   }
 
   .discountPct {
@@ -244,6 +251,6 @@
   }
 
   .detailPanel {
-    padding: 16px;
+    padding: var(--ld-primitive-scale-space-400, 16px);
   }
 }

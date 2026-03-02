@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/Button';
+import { Car } from '@/components/icons/Car';
 import styles from './AutoCareUpsellOfferCard.module.css';
 
 export interface AutoCareUpsellOfferCardProps {
@@ -80,7 +81,7 @@ export function AutoCareUpsellOfferCard({
 
         {/* Vehicle */}
         <div className={styles.vehicleRow}>
-          <span className={styles.vehicleIcon} aria-hidden="true">🚗</span>
+          <Car className={styles.vehicleIcon} aria-hidden="true" />
           <div className={styles.vehicleInfo}>
             <span className={styles.vehicleName}>{vehicle}</span>
             {vehicleSub && <span className={styles.vehicleSub}>{vehicleSub}</span>}
@@ -100,7 +101,7 @@ export function AutoCareUpsellOfferCard({
         {/* CTAs */}
         <div className={styles.actions}>
           <Button variant="primary" size="small" onClick={onBook}>
-            Claim offer &amp; book →
+            Claim offer &amp; book
           </Button>
           {onDismiss && (
             <Button variant="tertiary" size="small" onClick={onDismiss}>

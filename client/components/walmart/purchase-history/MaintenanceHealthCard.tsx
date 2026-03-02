@@ -1,3 +1,5 @@
+import { Wrench } from '@/components/icons/Wrench';
+import { DollarCircleFill } from '@/components/icons/DollarCircleFill';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import styles from './MaintenanceHealthCard.module.css';
@@ -29,36 +31,20 @@ const STATUS_LABELS: Record<HealthStatus, string> = {
   good: 'Good',
 };
 
-const STATUS_DOT: Record<HealthStatus, string> = {
-  overdue: '●',
-  due: '●',
-  good: '●',
-};
-
-// Wrench SVG icon (inline, no external dep)
-function WrenchIcon() {
-  return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
-        stroke="#ffffff"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 // Radial health score ring
 function ScoreRing({ score }: { score: number }) {
   const r = 20;
   const circ = 2 * Math.PI * r;
   const dash = (score / 100) * circ;
-  const color = score >= 70 ? '#4ADE80' : score >= 40 ? '#FACC15' : '#F87171';
+  const color =
+    score >= 70
+      ? 'var(--ld-semantic-color-text-positive, #4ADE80)'
+      : score >= 40
+      ? 'var(--ld-semantic-color-rating-fill, #FACC15)'
+      : 'var(--ld-semantic-color-text-negative, #F87171)';
 
   return (
-    <svg className={styles.scoreRing} viewBox="0 0 52 52" aria-label={`Health score: ${score}/100`}>
+    <svg className={styles.scoreRing} viewBox="0 0 52 52" aria-label={`Health score: ${score} out of 100`}>
       {/* Track */}
       <circle cx="26" cy="26" r={r} fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="5" />
       {/* Progress */}
@@ -105,7 +91,7 @@ export function MaintenanceHealthCard({
       {/* ── Header: dark navy + vehicle info + health score ── */}
       <div className={styles.header}>
         <div className={styles.headerIcon}>
-          <WrenchIcon />
+          <Wrench className={styles.wrenchIcon} aria-hidden="true" />
         </div>
         <div className={styles.headerText}>
           <p className={styles.headerEyebrow}>Auto Care Center</p>
@@ -129,7 +115,8 @@ export function MaintenanceHealthCard({
               className={`${styles.healthItem} ${styles[`healthItem--${item.status}`]}`}
             >
               <span className={`${styles.statusBadge} ${styles[`statusBadge--${item.status}`]}`}>
-                {STATUS_DOT[item.status]} {STATUS_LABELS[item.status]}
+                <span className={styles.statusDot} aria-hidden="true" />
+                {STATUS_LABELS[item.status]}
               </span>
               <p className={styles.itemName}>{item.name}</p>
               <p className={styles.itemDetail}>{item.detail}</p>
@@ -142,7 +129,7 @@ export function MaintenanceHealthCard({
       {/* ── Bundle savings strip ── */}
       {bundleSavings && (
         <div className={styles.savingsBanner}>
-          <span className={styles.savingsIcon} aria-hidden="true">💰</span>
+          <DollarCircleFill className={styles.savingsIconSvg} aria-hidden="true" />
           <p className={styles.savingsText}>
             {bundleSavings}{' '}
             {bundleSavingsAmount && (
