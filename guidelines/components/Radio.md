@@ -16,7 +16,7 @@ Radio buttons represent a group of mutually exclusive choices. Use the Radio com
 |------|---------|
 | `client/components/ui/Radio.tsx` | LD 3.5 Radio item component |
 | `client/components/ui/Radio.module.css` | Token-based styles for all 10 states |
-| `client/components/ui/radio-group.tsx` | RadioGroup container (Radix wrapper) |
+| `client/components/ui/radio-group.tsx` | RadioGroup container |
 | `client/components/examples/RadioExample.tsx` | Usage examples |
 
 ## Import
@@ -41,7 +41,7 @@ import { RadioGroup } from '@/components/ui/radio-group';
 
 ## RadioGroup Props
 
-Inherits all props from Radix `RadioGroupPrimitive.Root`:
+Props for the RadioGroup container:
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -133,7 +133,7 @@ All tokens prefixed with `var(--ld-semantic-color-)`.
 
 ## Accessibility
 
-- Built on Radix RadioGroup which provides:
+- Implements WAI-ARIA RadioGroup pattern:
   - Arrow key navigation between radios
   - Roving tabindex focus management
   - `role="radiogroup"` on container, `role="radio"` on items

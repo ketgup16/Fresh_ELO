@@ -12,10 +12,10 @@ The rules extracted from this work live in `guidelines/rules/RULE_DesignSystemEn
 
 ## What Was Done
 
-- Deleted `client/components/ui/button.tsx` (lowercase Shadcn original)
+- Deleted `client/components/ui/button.tsx` (lowercase legacy original)
 - Canonical implementation is `client/components/ui/Button.tsx` (uppercase, LD 3.5)
-- Migrated `buttonVariants` CVA export into `Button.tsx` for Shadcn compatibility
-- Updated 5 Shadcn components that imported from the old path: `calendar`, `alert-dialog`, `pagination`, `sidebar`, `carousel`
+- Migrated `buttonVariants` CVA export into `Button.tsx` for backwards compatibility
+- Updated 5 legacy components that imported from the old path: `calendar`, `alert-dialog`, `pagination`, `sidebar`, `carousel`
 - Updated `ButtonGroup.tsx` to use `var(--ld-semantic-spacing-3, 12px)` instead of hard-coded `12px`
 
 ## Canonical Import
@@ -40,7 +40,7 @@ import { Button, buttonVariants } from '@/components/ui/Button';
 | `href` | `string` | — renders as `<a>` |
 | `disabled` | `boolean` | `false` |
 
-Old Shadcn size/variant names are no longer valid:
+Old (legacy) size/variant names are no longer valid:
 
 | Old | New |
 |-----|-----|

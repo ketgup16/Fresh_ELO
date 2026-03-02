@@ -52,7 +52,7 @@ Use `isMagic` for AI-generated content loading. Displays a special shimmer anima
 ## Migration
 
 ```tsx
-// Old (Shadcn)
+// Old (legacy)
 import { Skeleton } from '@/components/ui/skeleton';
 <Skeleton className="h-12 w-12 rounded-full" />
 

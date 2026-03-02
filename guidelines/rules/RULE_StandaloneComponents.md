@@ -15,7 +15,6 @@ All UI components must be standalone with zero external component library depend
 **ALL UI components MUST be standalone with ZERO external component library dependencies.**
 
 This means:
-- **NO** `@radix-ui/*` packages
 - **NO** `@headlessui/*` packages
 - **NO** `@chakra-ui/*` packages
 - **NO** `@mui/*` packages
@@ -43,9 +42,9 @@ This means:
 
 ## How to Build Standalone Components
 
-### Instead of Radix Primitives, Use:
+### Standalone Replacements for Common Patterns:
 
-| Radix Pattern | Standalone Replacement |
+| Pattern | Standalone Implementation |
 |---|---|
 | `Dialog` | Native `<div>` with `role="dialog"`, `aria-modal`, portal, focus trap |
 | `Popover` | Native `<div>` with positioning, click-outside, escape key handling |
@@ -79,7 +78,7 @@ This means:
 import * as React from 'react';
 import styles from './ComponentName.module.css';
 
-// NO external imports from @radix-ui, @headlessui, etc.
+// NO external imports from external UI libraries
 
 export interface ComponentNameProps {
   // Define all props
@@ -106,8 +105,7 @@ ComponentName.displayName = 'ComponentName';
 
 ### Code Review Checklist:
 
-- [ ] No `@radix-ui/*` imports
-- [ ] No external UI primitive imports
+- [ ] No external UI library imports
 - [ ] Uses native HTML elements with proper ARIA roles
 - [ ] Keyboard navigation implemented
 - [ ] Focus management handled
@@ -116,7 +114,7 @@ ComponentName.displayName = 'ComponentName';
 
 ## Exceptions
 
-**NONE.** This rule has no exceptions. If a pattern seems too complex to implement standalone, break it into smaller pieces. Every Radix/Headless UI pattern can be implemented with native HTML + React + ARIA.
+**NONE.** This rule has no exceptions. If a pattern seems too complex to implement standalone, break it into smaller pieces. Every UI pattern can be implemented with native HTML + React + ARIA.
 
 ## Related Rules
 

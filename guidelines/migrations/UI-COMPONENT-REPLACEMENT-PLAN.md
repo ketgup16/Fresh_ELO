@@ -8,18 +8,18 @@ last_updated: 2025-02-26
 
 ## Purpose
 
-Replace shadcn/ui components with Living Design 3.5 equivalents. Migrate one component at a time; verify dev server after each.
+Replace legacy UI components with Living Design 3.5 equivalents. Migrate one component at a time; verify dev server after each.
 
 ## Architecture Difference
 
-shadcn uses Tailwind + CVA. LD uses CSS Modules + `--ld-*` tokens. Both sit on Radix UI primitives so the JSX tree structure is usually compatible — only variant names and className overrides need updating.
+Legacy components used Tailwind + CVA. LD uses CSS Modules + `--ld-*` tokens. The JSX tree structure is usually compatible — only variant names and className overrides need updating.
 
 ## Component Mapping
 
-| shadcn component | LD replacement | Status | API notes |
+| Legacy component | LD replacement | Status | API notes |
 |-----------------|---------------|--------|-----------|
 | `button.tsx` | `Button.tsx` | Done | Variant names differ — see table below |
-| `checkbox.tsx` | LD Checkbox | Pending | API compatible (both Radix) |
+| `checkbox.tsx` | LD Checkbox | Pending | API compatible |
 | `radio-group.tsx` | LD Radio | Pending | API compatible |
 | `popover.tsx` | Keep for now | Deferred | No LD equivalent yet |
 | `dialog.tsx` | LD Modal | Pending | Sub-component names differ |
@@ -30,11 +30,11 @@ shadcn uses Tailwind + CVA. LD uses CSS Modules + `--ld-*` tokens. Both sit on R
 | `sonner.tsx` | Keep for now | Deferred | — |
 | `tooltip.tsx` | Keep for now | Deferred | — |
 
-Components marked **Deferred** have no LD 3.5 equivalent yet. Keep the shadcn version and track with `RULE_StandaloneComponents.md`.
+Components marked **Deferred** have no LD 3.5 equivalent yet. Keep the current version and track with `RULE_StandaloneComponents.md`.
 
 ## Variant Name Mapping (Button)
 
-| shadcn | LD 3.5 |
+| Legacy | LD 3.5 |
 |--------|--------|
 | `default` | `primary` |
 | `outline` | `secondary` |
@@ -46,7 +46,7 @@ Components marked **Deferred** have no LD 3.5 equivalent yet. Keep the shadcn ve
 | `lg` | `large` |
 | `icon` | use `IconButton` |
 
-## Active Files Using shadcn Components
+## Active Files Using Legacy Components
 
 | File | Components used |
 |------|----------------|
@@ -60,7 +60,7 @@ Components marked **Deferred** have no LD 3.5 equivalent yet. Keep the shadcn ve
 
 ## Per-Component Migration Checklist
 
-When replacing any shadcn component:
+When replacing any legacy component:
 
 - [ ] Import from LD path: `@/components/ui/ComponentName` (uppercase)
 - [ ] Update variant/size prop values to LD names
@@ -70,10 +70,10 @@ When replacing any shadcn component:
 - [ ] Check keyboard navigation
 - [ ] Run dev server — confirm no console errors
 
-## Find Remaining shadcn Imports
+## Find Remaining Legacy Imports
 
 ```bash
-# Components still importing from lowercase (shadcn) paths
+# Components still importing from lowercase (legacy) paths
 grep -r "from '@/components/ui/button'" client/
 grep -r "from '@/components/ui/checkbox'" client/
 grep -r "from '@/components/ui/dialog'" client/

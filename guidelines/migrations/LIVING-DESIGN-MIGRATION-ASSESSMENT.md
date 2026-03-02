@@ -8,7 +8,7 @@ last_updated: 2025-02-26
 
 ## Purpose
 
-Track ongoing migration from Tailwind/shadcn patterns to Living Design 3.5 components and tokens.
+Track ongoing migration from legacy Tailwind patterns to Living Design 3.5 components and tokens.
 
 ## Anti-Patterns to Fix
 
@@ -86,7 +86,7 @@ These are used heavily across pages but no LD 3.5 component exists yet. Create t
 - `MartyFloatingPanel.tsx`, `MartyAssistant.tsx`, `DisplayDashboard.tsx`
 - `RecommendationsPanel.tsx`, `AttributionFilterDropdown.tsx`, `DateRangeFilterDropdown.tsx`
 
-### Shadcn → Living Design Component Replacements
+### Legacy → Living Design Component Replacements
 
 See `UI-COMPONENT-REPLACEMENT-PLAN.md` for the full component mapping.
 

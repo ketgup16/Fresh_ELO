@@ -239,10 +239,10 @@ function ProfileSettings() {
 
 ## Migration from Old Component
 
-If migrating from the Radix-based switch:
+If migrating from the legacy switch:
 
 ```tsx
-// OLD (Radix API)
+// OLD (legacy API)
 import { Switch } from '@/components/ui/switch';
 <Switch checked={value} onCheckedChange={setValue} />
 

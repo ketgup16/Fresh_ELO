@@ -41,7 +41,7 @@ import { DatePickerCalendar } from '@/components/ui/DatePickerCalendar';
 ## Migration
 
 ```tsx
-// Old (Shadcn)
+// Old (legacy)
 import { Calendar } from '@/components/ui/calendar';
 <Calendar mode="single" selected={date} onSelect={setDate} />
 

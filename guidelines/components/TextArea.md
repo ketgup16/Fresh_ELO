@@ -54,7 +54,7 @@ import { TextArea } from '@/components/ui/TextArea';
 ## Migration
 
 ```tsx
-// Old (Shadcn)
+// Old (legacy)
 import { Textarea } from '@/components/ui/textarea';
 <Label htmlFor="msg">Message</Label>
 <Textarea id="msg" placeholder="Type here..." />

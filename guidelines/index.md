@@ -109,7 +109,7 @@ Design system enforcement rules and best practices.
 - [Theme Switcher](rules/RULE_ThemeSwitcher.md) - Theme management rules
 - [Theme Addition](rules/RULE_ThemeAddition.md) - Process for adding new themes
 - [Markdown Organization](rules/RULE_MarkdownOrganization.md) - Markdown file organization
-- [Radix Migration Plan](rules/PLAN_RadixMigration.md) - Plan to remove Radix UI dependencies
+- [Legacy Migration Plan](rules/PLAN_RadixMigration.md) - Plan to remove legacy UI dependencies
 - [WCP Component Creation](rules/RULE_WCPComponentCreation.md) - Workflow for creating Walmart Component Platform (WCP) product components
 - [Carousel and Scroll Patterns](rules/RULE_CarouselAndScrollPatterns.md) - Scroll snap vs auto-advance carousel implementation
 - [Inline Style vs CSS Module](rules/RULE_InlineStyleVsCSSModule.md) - When to use inline styles vs CSS modules
@@ -158,7 +158,7 @@ Migration plans and standardization documentation for transitioning to Living De
 - [Living Design Migration](migrations/LIVING-DESIGN-MIGRATION-ASSESSMENT.md) - Migration assessment
 - [Table Standardization](migrations/PLAN_TABLE_STANDARDIZATION.md) - Table standardization plan
 - [Theme Switcher Plan](migrations/THEME_SWITCHER_PLAN.md) - Theme switcher implementation plan
-- [UI Component Replacement](migrations/UI-COMPONENT-REPLACEMENT-PLAN.md) - shadcn-to-LD replacement plan
+- [UI Component Replacement](migrations/UI-COMPONENT-REPLACEMENT-PLAN.md) - Legacy-to-LD replacement plan
 
 ### Project Documentation
 

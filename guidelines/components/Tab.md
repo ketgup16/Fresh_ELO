@@ -60,7 +60,7 @@ const [tab, setTab] = useState('overview');
 ## Migration
 
 ```tsx
-// Old (Radix Tabs)
+// Old (legacy)
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 <TabsList><TabsTrigger value="t1">Tab 1</TabsTrigger></TabsList>
 <TabsContent value="t1">Content</TabsContent>

@@ -123,7 +123,7 @@ const selectAllState = checkedCount === 0 ? false : allChecked ? true : 'indeter
 - Don't override checkbox colors with inline styles or className overrides.
 
 ## Accessibility
-- Built on Radix UI Checkbox primitive for full keyboard and screen reader support.
+- Implements WAI-ARIA Checkbox pattern for full keyboard and screen reader support.
 - Space key toggles the checkbox state.
 - The `label` prop creates a proper `<label>` wrapper for click-to-toggle.
 - When no visible label is present, `aria-label` is applied directly to the checkbox.
