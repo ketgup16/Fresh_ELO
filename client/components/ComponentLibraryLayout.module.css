@@ -201,7 +201,9 @@
 /* ─── Main content ─── */
 .main {
   flex: 1;
+  min-width: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   background-color: #ffffff;
 }
 
