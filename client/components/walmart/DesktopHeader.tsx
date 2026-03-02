@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { Highlight } from '@/components/ui/Highlight';
 import { Search, ChevronDown } from '@/components/icons';
 import {
   SparkyLookingDown, CartIcon,
@@ -16,6 +17,7 @@ import styles from './DesktopHeader.module.css';
 export function DesktopHeader() {
   const navigate = useNavigate();
   const [showGIC, setShowGIC] = useState(false);
+  const [showHighlight, setShowHighlight] = useState(true);
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
   const [searchQuery, setSearchQuery] = useState('');
   const [showTypeahead, setShowTypeahead] = useState(false);
@@ -57,71 +59,88 @@ export function DesktopHeader() {
         </a>
 
         {/* Location/Delivery Selector */}
-        <section className={styles.gicSection}>
-          <button
-            type="button"
-            className={styles.gicButton}
-            onClick={() => setShowGIC(!showGIC)}
-          >
-            <div className={styles.gicContent}>
-              <div className={styles.gicIcon}>
-                {selectedDeliveryOption === 'none' && (
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fe96ba70bf20a4d59aede84cfd5b0636c"
-                    alt="Global Intent"
-                    width="40"
-                    height="40"
-                  />
-                )}
-                {selectedDeliveryOption === 'delivery' && (
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff8af2f0cfbbf459b862fcbd867dac70d"
-                    alt="Delivery"
-                  />
-                )}
-                {selectedDeliveryOption === 'pickup' && (
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff91b889ffddd4a669bd5f5ed913c38df"
-                    alt="Pickup"
-                  />
-                )}
-                {selectedDeliveryOption === 'shipping' && (
-                  <FulfillmentShippingIcon />
-                )}
-              </div>
-              <div className={styles.gicText}>
-                <div className={styles.gicLabel}>
-                  {selectedDeliveryOption === 'none' && 'Pickup or delivery?'}
-                  {selectedDeliveryOption === 'shipping' && 'Shipping'}
-                  {selectedDeliveryOption === 'pickup' && 'Pickup'}
-                  {selectedDeliveryOption === 'delivery' && 'Delivery'}
-                </div>
-                <div className={styles.gicSubtext}>
-                  {selectedDeliveryOption === 'none' ? (
-                    <>
-                      <span>847 Maple Grove Dr</span>
-                      <span className={styles.separator}>•</span>
-                      <span className={styles.ellipsis}>Sunnyvale Supercenter</span>
-                    </>
-                  ) : selectedDeliveryOption === 'pickup' ? (
-                    <span className={styles.ellipsis}>Carrollton Supercenter</span>
-                  ) : (
-                    <span>3471 Park Ln</span>
+        <Highlight
+          message="Is this the right location?"
+          position="bottom-start"
+          actionLabel="Update"
+          onAction={() => { setShowHighlight(false); setShowGIC(true); }}
+          onClose={() => setShowHighlight(false)}
+          open={showHighlight && !showGIC}
+          icon={
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fe96ba70bf20a4d59aede84cfd5b0636c"
+              alt=""
+              width="24"
+              height="24"
+            />
+          }
+        >
+          <section className={styles.gicSection}>
+            <button
+              type="button"
+              className={styles.gicButton}
+              onClick={() => setShowGIC(!showGIC)}
+            >
+              <div className={styles.gicContent}>
+                <div className={styles.gicIcon}>
+                  {selectedDeliveryOption === 'none' && (
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fe96ba70bf20a4d59aede84cfd5b0636c"
+                      alt="Global Intent"
+                      width="40"
+                      height="40"
+                    />
+                  )}
+                  {selectedDeliveryOption === 'delivery' && (
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff8af2f0cfbbf459b862fcbd867dac70d"
+                      alt="Delivery"
+                    />
+                  )}
+                  {selectedDeliveryOption === 'pickup' && (
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff91b889ffddd4a669bd5f5ed913c38df"
+                      alt="Pickup"
+                    />
+                  )}
+                  {selectedDeliveryOption === 'shipping' && (
+                    <FulfillmentShippingIcon />
                   )}
                 </div>
+                <div className={styles.gicText}>
+                  <div className={styles.gicLabel}>
+                    {selectedDeliveryOption === 'none' && 'Pickup or delivery?'}
+                    {selectedDeliveryOption === 'shipping' && 'Shipping'}
+                    {selectedDeliveryOption === 'pickup' && 'Pickup'}
+                    {selectedDeliveryOption === 'delivery' && 'Delivery'}
+                  </div>
+                  <div className={styles.gicSubtext}>
+                    {selectedDeliveryOption === 'none' ? (
+                      <>
+                        <span>847 Maple Grove Dr</span>
+                        <span className={styles.separator}>•</span>
+                        <span className={styles.ellipsis}>Sunnyvale Supercenter</span>
+                      </>
+                    ) : selectedDeliveryOption === 'pickup' ? (
+                      <span className={styles.ellipsis}>Carrollton Supercenter</span>
+                    ) : (
+                      <span>3471 Park Ln</span>
+                    )}
+                  </div>
+                </div>
+                <div className={styles.gicChevron}>
+                  <ChevronDown />
+                </div>
               </div>
-              <div className={styles.gicChevron}>
-                <ChevronDown />
-              </div>
-            </div>
-          </button>
-          <DesktopGICDropdown
-            isOpen={showGIC}
-            onClose={() => setShowGIC(false)}
-            selectedOption={selectedDeliveryOption}
-            onSelectOption={setSelectedDeliveryOption}
-          />
-        </section>
+            </button>
+            <DesktopGICDropdown
+              isOpen={showGIC}
+              onClose={() => setShowGIC(false)}
+              selectedOption={selectedDeliveryOption}
+              onSelectOption={setSelectedDeliveryOption}
+            />
+          </section>
+        </Highlight>
 
         {/* Search Form */}
         <div
