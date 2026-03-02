@@ -119,17 +119,20 @@
 
 /* ── Sizes grid ── */
 .sizesGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
-.ratingsColumn {
+/* Row of all 6 rating states side by side */
+.ratingsRow {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
 }
 
+/* Kept for compatibility */
 .ratingRow {
   display: flex;
   align-items: center;

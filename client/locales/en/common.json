@@ -192,7 +192,7 @@
     "navWCPFloatingButton": "Floating Button",
     "navWCPHeartView": "Heart View",
     "descWCPHeartView": "Favorites toggle button with desktop callout and mobile snackbar feedback",
-    "navWCPRating": "WCP Rating",
+    "navWCPRating": "Ratings",
     "descWCPRating": "Interactive star rating component with labels for the WCP consumer experience",
     "tools": "Tools",
     "navThemeEditor": "Theme Editor",

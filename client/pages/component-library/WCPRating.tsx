@@ -21,10 +21,6 @@ function DemoCard({ title, children }: { title: string; children: React.ReactNod
   );
 }
 
-function StateLabel({ children }: { children: React.ReactNode }) {
-  return <div className={styles.stateLabel}>{children}</div>;
-}
-
 const LABELS: Record<number, string> = {
   0: 'Unrated',
   1: 'Very poor',
@@ -42,7 +38,7 @@ export default function WCPRatingPage() {
     <div className={styles.page}>
       <PageHeader
         section="WCP Components"
-        title="WCP Rating"
+        title="Ratings"
         description="An interactive 5-star rating component for the Walmart consumer experience. Users click stars to select a rating and see a contextual label. Supports two size variants (small and medium) with responsive star dimensions across the 900px breakpoint."
       />
 
@@ -95,23 +91,17 @@ export default function WCPRatingPage() {
 
           <div className={styles.sizesGrid}>
             <DemoCard title="Small">
-              <div className={styles.ratingsColumn}>
+              <div className={styles.ratingsRow}>
                 {[0, 1, 2, 3, 4, 5].map((v) => (
-                  <div key={v} className={styles.ratingRow}>
-                    <StateLabel>{LABELS[v]}</StateLabel>
-                    <WCPRating size="small" defaultValue={v} key={`small-${v}`} />
-                  </div>
+                  <WCPRating size="small" defaultValue={v} key={`small-${v}`} />
                 ))}
               </div>
             </DemoCard>
 
             <DemoCard title="Medium">
-              <div className={styles.ratingsColumn}>
+              <div className={styles.ratingsRow}>
                 {[0, 1, 2, 3, 4, 5].map((v) => (
-                  <div key={v} className={styles.ratingRow}>
-                    <StateLabel>{LABELS[v]}</StateLabel>
-                    <WCPRating size="medium" defaultValue={v} key={`medium-${v}`} />
-                  </div>
+                  <WCPRating size="medium" defaultValue={v} key={`medium-${v}`} />
                 ))}
               </div>
             </DemoCard>

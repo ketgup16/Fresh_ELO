@@ -4,7 +4,7 @@
 .rating {
   display: inline-flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 6px;
 }
 
@@ -67,6 +67,7 @@
   color: var(--ld-semantic-color-text-subtle, #74767c);
   line-height: 1.4;
   white-space: nowrap;
+  text-align: center;
 }
 
 /* ─────────────────────────────────────────────────────────────── */
