@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/Tab';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 import { GuidelinesDocIndex } from './GuidelinesDocIndex';
 import { OverviewTab } from './guidelines-tabs/OverviewTab';
@@ -14,12 +14,7 @@ import { AgentRulesTab } from './guidelines-tabs/AgentRulesTab';
 export default function GuidelinesPage() {
   const { t } = useTranslation();
   return (
-    <div style={{
-      padding: '48px',
-      maxWidth: '1200px',
-      margin: '0 auto'
-    }}>
-      <PageHeader section={t('componentLibrary.gettingStarted')} title={t('componentLibrary.guidelinesTitle')} description={t('componentLibrary.guidelinesDesc')} />
+    <ComponentPageLayout section={t('componentLibrary.gettingStarted')} title={t('componentLibrary.guidelinesTitle')} description={t('componentLibrary.guidelinesDesc')}>
 
       <Tabs defaultValue="overview">
         <TabList>
@@ -42,6 +37,6 @@ export default function GuidelinesPage() {
         <TabPanel value="agent"><AgentRulesTab /></TabPanel>
         <TabPanel value="docs"><GuidelinesDocIndex /></TabPanel>
       </Tabs>
-    </div>
+    </ComponentPageLayout>
   );
 }

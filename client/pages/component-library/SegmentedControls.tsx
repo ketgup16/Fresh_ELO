@@ -1,21 +1,16 @@
 import React from 'react';
 import { SegmentedControlExample } from '@/components/examples/SegmentedControlExample';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 
 export default function SegmentedControlsPage() {
   const { t } = useTranslation();
   return (
-    <div style={{
-      padding: '48px',
-      maxWidth: '1400px',
-      margin: '0 auto'
-    }}>
-      <PageHeader
-        section={t('componentLibrary.components')}
-        title={t('componentLibrary.navSegmentedControl')}
-        description="A linear set of 2–5 mutually exclusive segments, each functioning as a button. Used to filter content or switch between related views."
-      />
+    <ComponentPageLayout
+      section={t('componentLibrary.components')}
+      title={t('componentLibrary.navSegmentedControl')}
+      description="A linear set of 2–5 mutually exclusive segments, each functioning as a button. Used to filter content or switch between related views."
+    >
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-surface, #ffffff)',
         padding: '32px',
@@ -26,6 +21,6 @@ export default function SegmentedControlsPage() {
           <SegmentedControlExample />
         </React.Suspense>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

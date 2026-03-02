@@ -1,17 +1,16 @@
 import React from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Tag } from '@/components/ui/Tag';
 import { AccountSideNav } from '@/components/walmart/AccountSideNav';
 import styles from './SideNav.module.css';
 
 export default function SideNavPage() {
   return (
-    <div className={styles.page}>
-      <PageHeader
-        section="WCP Patterns"
-        title="Side Nav"
-        description="Collapsible side navigation patterns used for account management and contextual sub-navigation within Walmart pages."
-      />
+    <ComponentPageLayout
+      section="WCP Patterns"
+      title="Side Nav"
+      description="Collapsible side navigation patterns used for account management and contextual sub-navigation within Walmart pages."
+    >
 
       {/* ── Account Side Nav Preview ── */}
       <div className={styles.previewSection}>
@@ -109,6 +108,6 @@ export default function SideNavPage() {
           </div>
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

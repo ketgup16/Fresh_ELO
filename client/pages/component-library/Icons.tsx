@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Icons from '@/components/icons';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 
 // Organize icons by category key (maps to translation keys)
@@ -96,12 +96,7 @@ export default function IconsPage() {
   const totalIconCount = Object.values(iconCategories).flat().length;
 
   return (
-    <div style={{
-      padding: '48px',
-      maxWidth: '1400px',
-      margin: '0 auto'
-    }}>
-      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.iconsTitle')} description={t('componentLibrary.iconsDesc', { count: totalIconCount })} />
+    <ComponentPageLayout section={t('componentLibrary.components')} title={t('componentLibrary.iconsTitle')} description={t('componentLibrary.iconsDesc', { count: totalIconCount })}>
 
       {Object.entries(iconCategories).map(([categoryKey, iconNames]) => (
         <div
@@ -169,6 +164,6 @@ export default function IconsPage() {
           </div>
         </div>
       ))}
-    </div>
+    </ComponentPageLayout>
   );
 }

@@ -1,17 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 const IconButtonExample = React.lazy(() => import('@/components/examples/IconButtonExample'));
 
 export default function IconButtonsPage() {
   const { t } = useTranslation();
   return (
-    <div style={{
-      padding: '48px',
-      maxWidth: '1400px',
-      margin: '0 auto'
-    }}>
-      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navIconButtons')} description={t('componentLibrary.descIconButtons')} />
+    <ComponentPageLayout section={t('componentLibrary.components')} title={t('componentLibrary.navIconButtons')} description={t('componentLibrary.descIconButtons')}>
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -23,6 +18,6 @@ export default function IconButtonsPage() {
           <IconButtonExample />
         </React.Suspense>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

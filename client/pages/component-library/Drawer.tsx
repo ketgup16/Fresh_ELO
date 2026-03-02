@@ -1,12 +1,12 @@
 import React from 'react';
 import DrawerExample from '@/components/examples/DrawerExample';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 
 export default function DrawerPage() {
   const { t } = useTranslation();
   return (
-    <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
+    <ComponentPageLayout section={t('componentLibrary.sharedSection')} title={t('componentLibrary.navBottomSheet')} description={t('componentLibrary.descBottomSheet')}>
       <div style={{
         marginBottom: '32px',
         padding: '16px',
@@ -21,12 +21,11 @@ export default function DrawerPage() {
           <span dangerouslySetInnerHTML={{ __html: t('componentLibrary.drawerReplacedDesc') }} />
         </p>
       </div>
-      <PageHeader section={t('componentLibrary.sharedSection')} title={t('componentLibrary.navBottomSheet')} description={t('componentLibrary.descBottomSheet')} />
       <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
         <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <DrawerExample />
         </React.Suspense>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

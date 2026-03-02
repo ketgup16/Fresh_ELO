@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { Tag } from '@/components/ui/Tag';
@@ -52,12 +52,11 @@ export default function FooterPatternsPage() {
   }
 
   return (
-    <div className={styles.page}>
-      <PageHeader
-        section="WCP Patterns"
-        title="Footer & Bottom Nav"
-        description="Three navigation patterns — one for each platform. Use the selector below to set the project-wide mobile default, then preview each component live."
-      />
+    <ComponentPageLayout
+      section="WCP Patterns"
+      title="Footer & Bottom Nav"
+      description="Three navigation patterns — one for each platform. Use the selector below to set the project-wide mobile default, then preview each component live."
+    >
 
       {/* ── Mobile Default Selector ─────────────────────────────── */}
       <div className={styles.defaultSelector}>
@@ -252,6 +251,6 @@ export default function FooterPatternsPage() {
           <strong>Responsive pairing:</strong> <code>DesktopFooter</code> and <code>MwebFooter</code> each manage their own breakpoint visibility — render both and CSS handles which one shows. The project-level default above controls whether <code>MwebFooter</code> or <code>BottomNav</code> is used at mobile widths in <code>ResponsiveLayout</code>.
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

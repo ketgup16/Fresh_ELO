@@ -1,17 +1,12 @@
 import React from 'react';
 import AccordionExample from '@/components/examples/AccordionExample';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 
 export default function AccordionPage() {
   const { t } = useTranslation();
   return (
-    <div style={{
-      padding: '48px',
-      maxWidth: '1400px',
-      margin: '0 auto'
-    }}>
-      <PageHeader section={t('componentLibrary.sharedSection')} title={t('componentLibrary.navAccordion')} description={t('componentLibrary.descAccordion')} />
+    <ComponentPageLayout section={t('componentLibrary.sharedSection')} title={t('componentLibrary.navAccordion')} description={t('componentLibrary.descAccordion')}>
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -23,6 +18,6 @@ export default function AccordionPage() {
           <AccordionExample />
         </React.Suspense>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

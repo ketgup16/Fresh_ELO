@@ -1,6 +1,6 @@
 import React from 'react';
 import { CalloutExample } from '@/components/examples/CalloutExample';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 import { Highlight, type HighlightPosition } from '@/components/ui/Highlight';
 import { Button } from '@/components/ui/Button';
@@ -10,8 +10,7 @@ const TooltipExample = React.lazy(() => import('@/components/examples/TooltipExa
 export default function CalloutsPage() {
   const { t } = useTranslation();
   return (
-    <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navCallouts')} description={t('componentLibrary.descCallouts')} />
+    <ComponentPageLayout section={t('componentLibrary.components')} title={t('componentLibrary.navCallouts')} description={t('componentLibrary.descCallouts')}>
 
       {/* Nubbin Positions & Static Examples */}
       <div style={{
@@ -88,7 +87,7 @@ export default function CalloutsPage() {
       }}>
         <HighlightVariantExamples />
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }
 

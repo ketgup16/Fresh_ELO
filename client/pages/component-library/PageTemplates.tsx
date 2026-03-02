@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { Tag } from '@/components/ui/Tag';
@@ -40,12 +40,11 @@ export default function PageTemplatesPage() {
   const meta = TEMPLATES[active];
 
   return (
-    <div className={styles.page}>
-      <PageHeader
-        section="WCP Patterns"
-        title="Page Templates"
-        description="Standard page shell compositions used across Walmart web experiences. Each template defines how the top nav, content area, side nav, and footer are arranged for different page types."
-      />
+    <ComponentPageLayout
+      section="WCP Patterns"
+      title="Page Templates"
+      description="Standard page shell compositions used across Walmart web experiences. Each template defines how the top nav, content area, side nav, and footer are arranged for different page types."
+    >
 
       {/* ── Template Selector ── */}
       <div className={styles.selectorSection}>
@@ -130,6 +129,6 @@ export default function PageTemplatesPage() {
       <div className={styles.noteBox}>
         <strong>Responsive shell:</strong> The <code>ResponsiveLayout</code> component in <code>@/components/walmart/</code> wires together the correct header, footer, and bottom nav based on the current viewport and the project-level mobile footer preference set in the Footer & Bottom Nav pattern page.
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

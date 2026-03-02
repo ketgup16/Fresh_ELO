@@ -1,6 +1,6 @@
 import React from 'react';
 import ToggleExample from '@/components/examples/ToggleExample';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 import { WCPIconSelector, type WCPIconSelectorSize, type WCPIconSelectorShape, type WCPIconSelectorColor } from '@/components/walmart/WCPIconSelector';
 import { Heart } from '@/components/icons/Heart';
@@ -13,12 +13,11 @@ import { PinFill } from '@/components/icons/PinFill';
 export default function TogglePage() {
   const { t } = useTranslation();
   return (
-    <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader
-        section={t('componentLibrary.sharedSection')}
-        title={t('componentLibrary.navToggle')}
-        description={t('componentLibrary.descToggle')}
-      />
+    <ComponentPageLayout
+      section={t('componentLibrary.sharedSection')}
+      title={t('componentLibrary.navToggle')}
+      description={t('componentLibrary.descToggle')}
+    >
 
       {/* ── Existing Toggle ── */}
       <div style={{
@@ -64,7 +63,7 @@ export default function TogglePage() {
       }}>
         <WCPIconSelectorShowcase />
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }
 

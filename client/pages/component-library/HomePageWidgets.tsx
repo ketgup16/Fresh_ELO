@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Tag } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import { OrderStatusCard } from '@/components/walmart/OrderStatusCard';
@@ -15,12 +15,11 @@ export default function HomePageWidgetsPage() {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.page}>
-      <PageHeader
-        section="WCP Patterns"
-        title="Home Page Widgets"
-        description="Contextual widgets rendered on the Walmart home page — an order status notification card, a desktop-only order status banner, an auto-playing promotional carousel, and a personalized 'Jump right back in' product shelf."
-      />
+    <ComponentPageLayout
+      section="WCP Patterns"
+      title="Home Page Widgets"
+      description="Contextual widgets rendered on the Walmart home page — an order status notification card, a desktop-only order status banner, an auto-playing promotional carousel, and a personalized 'Jump right back in' product shelf."
+    >
 
       {/* ── OrderStatusCard ───────────────────────────────────── */}
       <div className={styles.section}>
@@ -181,6 +180,6 @@ export default function HomePageWidgetsPage() {
           ))}
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

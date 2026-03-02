@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { TokenSection, type TokenDef } from '@/components/theme-editor/TokenSection';
@@ -163,13 +163,12 @@ export default function ThemeEditorPage() {
   }
 
   return (
-    <div className={styles.page}>
+    <ComponentPageLayout
+      section="Tools"
+      title="Theme Editor"
+      description="Override semantic tokens using values from the primitive color palette. Pick any primitive token (e.g. blue-100, spark-100) as the new value — no arbitrary hex. Changes apply instantly via CSS cascade and persist across sessions. Scale and primitive tokens are not editable."
+    >
       <div className={styles.pageTop}>
-        <PageHeader
-          section="Tools"
-          title="Theme Editor"
-          description="Override semantic tokens using values from the primitive color palette. Pick any primitive token (e.g. blue-100, spark-100) as the new value — no arbitrary hex. Changes apply instantly via CSS cascade and persist across sessions. Scale and primitive tokens are not editable."
-        />
 
         {/* Toolbar */}
         <div className={styles.toolbar}>
@@ -258,6 +257,6 @@ export default function ThemeEditorPage() {
           </div>
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

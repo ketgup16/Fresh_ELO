@@ -1,21 +1,16 @@
 import React from 'react';
 import { QuantityStepperExample } from '@/components/examples/QuantityStepperExample';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 
 export default function QuantityStepperPage() {
   const { t } = useTranslation();
   return (
-    <div style={{
-      padding: '48px',
-      maxWidth: '1400px',
-      margin: '0 auto'
-    }}>
-      <PageHeader
-        section={t('componentLibrary.components')}
-        title={t('componentLibrary.navQuantityStepper')}
-        description={t('componentLibrary.quantityStepperDesc')}
-      />
+    <ComponentPageLayout
+      section={t('componentLibrary.components')}
+      title={t('componentLibrary.navQuantityStepper')}
+      description={t('componentLibrary.quantityStepperDesc')}
+    >
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -27,6 +22,6 @@ export default function QuantityStepperPage() {
           <QuantityStepperExample />
         </React.Suspense>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

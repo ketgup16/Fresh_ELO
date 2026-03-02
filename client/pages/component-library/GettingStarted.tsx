@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/Tab';
 import { GettingStartedDesigner } from './GettingStartedDesigner';
 import { GettingStartedAgent } from './GettingStartedAgent';
@@ -124,12 +124,11 @@ export default function GettingStartedPage() {
   const { t } = useTranslation();
 
   return (
-    <div style={{ padding: '48px', maxWidth: '1200px', margin: '0 auto' }}>
-      <PageHeader
-        section={t('componentLibrary.gettingStarted')}
-        title={t('componentLibrary.gettingStartedTitle')}
-        description={t('componentLibrary.gettingStartedDesc')}
-      />
+    <ComponentPageLayout
+      section={t('componentLibrary.gettingStarted')}
+      title={t('componentLibrary.gettingStartedTitle')}
+      description={t('componentLibrary.gettingStartedDesc')}
+    >
 
       <Tabs defaultValue="designer">
         <TabList>
@@ -481,6 +480,6 @@ export default function GettingStartedPage() {
           <GettingStartedAgent />
         </TabPanel>
       </Tabs>
-    </div>
+    </ComponentPageLayout>
   );
 }

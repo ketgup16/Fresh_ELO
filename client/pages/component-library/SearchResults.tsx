@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { Tag } from '@/components/ui/Tag';
@@ -81,12 +81,11 @@ export default function SearchResultsPatternPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('list');
 
   return (
-    <div className={styles.page}>
-      <PageHeader
-        section="WCP Patterns"
-        title="Search Results"
-        description="The search results page combines three layers — a sticky header with back navigation, a scrollable filter chip bar, and a product list or grid. Toggle between list and grid views below."
-      />
+    <ComponentPageLayout
+      section="WCP Patterns"
+      title="Search Results"
+      description="The search results page combines three layers — a sticky header with back navigation, a scrollable filter chip bar, and a product list or grid. Toggle between list and grid views below."
+    >
 
       {/* ── A. Results Header ─────────────────────────────────── */}
       <div className={styles.section}>
@@ -285,6 +284,6 @@ export default function SearchResultsPatternPage() {
           ))}
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

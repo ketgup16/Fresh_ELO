@@ -1,17 +1,12 @@
 import React from 'react';
 import { NudgeExample } from '@/components/examples/NudgeExample';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 
 export default function NudgesPage() {
   const { t } = useTranslation();
   return (
-    <div style={{
-      padding: '48px',
-      maxWidth: '1400px',
-      margin: '0 auto'
-    }}>
-      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navNudges')} description={t('componentLibrary.descNudges')} />
+    <ComponentPageLayout section={t('componentLibrary.components')} title={t('componentLibrary.navNudges')} description={t('componentLibrary.descNudges')}>
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -23,6 +18,6 @@ export default function NudgesPage() {
           <NudgeExample />
         </React.Suspense>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }
