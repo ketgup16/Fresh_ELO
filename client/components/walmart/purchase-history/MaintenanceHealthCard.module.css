@@ -118,6 +118,7 @@
   padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-250, 10px) var(--ld-primitive-scale-space-250, 10px);
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--ld-primitive-scale-space-150, 6px);
   position: relative;
   overflow: hidden;
