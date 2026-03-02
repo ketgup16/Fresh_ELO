@@ -194,7 +194,7 @@ function WCPIconSelectorShowcase() {
       <section>
         <SectionHeading>White color (for dark backgrounds)</SectionHeading>
         <p style={{ fontSize: '14px', color: 'var(--ld-semantic-color-text-secondary, #74767C)', marginBottom: '24px' }}>
-          The <Chip>white</Chip> variant renders a white background with elevation — ideal for use on colored or dark surfaces like the top nav.
+          The <Chip>white</Chip> variant renders a transparent background with a white icon — ideal for use on colored or dark surfaces like the top nav or hero banners.
         </p>
         <div style={{
           display: 'flex',

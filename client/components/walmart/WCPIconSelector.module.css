@@ -149,36 +149,31 @@
 }
 
 /* ── Color: white (for dark/colored backgrounds) ─────────────
-   OFF  → white bg with elevation, icon in white-context color
-   ON   → white bg, brand-blue icon
+   OFF  → no background, white icon
+   ON   → no background, white filled icon
    ─────────────────────────────────────────────────────────── */
 .selector--white {
-  background-color: rgba(255, 255, 255, 1);
-  color: var(--ld-semantic-color-text-primary, #2e2f32);
-  box-shadow:
-    0 -1px 2px rgba(0, 0, 0, 0.10),
-    0 1px 2px 1px rgba(0, 0, 0, 0.15);
+  background-color: transparent;
+  color: rgba(255, 255, 255, 1);
 }
 
 .selector--white:hover:not(:disabled) {
-  background-color: rgba(255, 255, 255, 0.92);
-  box-shadow:
-    0 -1px 4px rgba(0, 0, 0, 0.12),
-    0 2px 4px 1px rgba(0, 0, 0, 0.18);
+  background-color: rgba(255, 255, 255, 0.12);
 }
 
 .selector--white:active:not(:disabled) {
-  background-color: rgba(240, 244, 255, 1);
+  background-color: rgba(255, 255, 255, 0.20);
 }
 
 .selector--white.selector--checked {
-  background-color: rgba(255, 255, 255, 1);
-  color: var(--ld-semantic-color-fill-brand, #0053e2);
-  box-shadow:
-    0 -1px 2px rgba(0, 0, 0, 0.10),
-    0 1px 2px 1px rgba(0, 0, 0, 0.15);
+  background-color: transparent;
+  color: rgba(255, 255, 255, 1);
 }
 
 .selector--white.selector--checked:hover:not(:disabled) {
-  background-color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.selector--white.selector--checked:active:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.20);
 }
