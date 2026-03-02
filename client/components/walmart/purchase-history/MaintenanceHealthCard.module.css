@@ -138,41 +138,6 @@
   border: 1px solid var(--ld-semantic-color-border-positive, #5CB85C);
 }
 
-.statusBadge {
-  font-size: 10px;
-  font-weight: 700;
-  padding: var(--ld-primitive-scale-space-050, 2px) var(--ld-primitive-scale-space-150, 6px);
-  border-radius: var(--ld-primitive-scale-borderradius-050, 4px);
-  display: inline-flex;
-  align-items: center;
-  gap: var(--ld-primitive-scale-space-075, 3px);
-  width: fit-content;
-}
-
-.statusBadge--overdue {
-  background: var(--ld-semantic-color-text-negative, #C90000);
-  color: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
-}
-
-.statusBadge--due {
-  background: var(--ld-semantic-color-fill-warning-bold, #7A5200);
-  color: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
-}
-
-.statusBadge--good {
-  background: var(--ld-semantic-color-text-positive, #1A7A34);
-  color: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
-}
-
-/* Status dot (replaces emoji bullet) */
-.statusDot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
-  background: currentColor;
-  flex-shrink: 0;
-}
 
 .itemName {
   font-size: var(--ld-semantic-font-body-small-size, 13px);

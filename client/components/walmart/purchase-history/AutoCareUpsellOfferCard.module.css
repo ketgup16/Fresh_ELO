@@ -58,6 +58,7 @@
   font-weight: 700;
   color: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
   letter-spacing: 0.03em;
+  white-space: nowrap;
 }
 
 .sparkIcon {

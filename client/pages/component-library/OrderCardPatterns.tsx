@@ -298,45 +298,39 @@ const PATTERNS: PatternEntry[] = [
       />
     ),
   },
-  // ── NEW: Maintenance Health Dashboard ─────────────────────────────────────
+  // ── Auto Care Engagement Examples (2 cards, one prompt) ─────────────────────
   {
-    id: 'maintenance-health',
-    title: 'Vehicle maintenance health dashboard',
-    prompt: 'Show a vehicle maintenance health card for a 2019 Toyota Camry with 22,450 miles. Mark oil change as overdue at ~$29.88, tire rotation as due soon at ~$14.88, and wiper blades as good until Oct 2026. Include a bundle savings callout saving $12 when both are booked together, with a Schedule services button.',
+    id: 'auto-care-engagement',
+    title: 'Auto center engagement cards',
+    prompt: 'Show cards to drive bookings at Walmart Auto Care for a 2019 Toyota Camry at 22,450 miles.',
     preview: (
-      <MaintenanceHealthCard
-        vehicle="2019 Toyota Camry"
-        mileage="22,450 miles"
-        healthScore={62}
-        location="Carrollton Supercenter · Auto Care Center"
-        illustration="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff991ec87514645ea86e2480394f1c3fd?format=webp&width=800"
-        items={[
-          { name: 'Oil Change', status: 'overdue', detail: '3,200 mi overdue', price: '$29.88' },
-          { name: 'Tire Rotation', status: 'due', detail: 'Due in ~800 mi', price: '$14.88' },
-          { name: 'Wiper Blades', status: 'good', detail: 'Next: Oct 2026' },
-        ]}
-        bundleSavings="Bundle oil change + tire rotation —"
-        bundleSavingsAmount="$12"
-      />
-    ),
-  },
-  // ── NEW: Member Exclusive Upsell Offer ───────────────────────────────────────
-  {
-    id: 'auto-care-upsell-offer',
-    title: 'Walmart+ exclusive Auto Care offer',
-    prompt: 'Show a Walmart+ exclusive offer card for a 2019 Toyota Camry offering 20% off a tire rotation (regular $14.88, member price $11.90, saving $2.98). The offer expires in 2 days. Include a Claim offer & book button and a Remind me later option.',
-    preview: (
-      <AutoCareUpsellOfferCard
-        vehicle="2019 Toyota Camry"
-        vehicleSub="Last serviced 3,200 miles ago"
-        serviceName="Tire Rotation"
-        discountPct={20}
-        regularPrice="$14.88"
-        memberPrice="$11.90"
-        savings="$2.98"
-        expiresInDays={2}
-        terms="Valid at Carrollton Supercenter Auto Care. One vehicle per offer. Walmart+ membership required."
-      />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <MaintenanceHealthCard
+          vehicle="2019 Toyota Camry"
+          mileage="22,450 miles"
+          healthScore={62}
+          location="Carrollton Supercenter · Auto Care Center"
+          illustration="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff991ec87514645ea86e2480394f1c3fd?format=webp&width=800"
+          items={[
+            { name: 'Oil Change', status: 'overdue', detail: '3,200 mi overdue', price: '$29.88' },
+            { name: 'Tire Rotation', status: 'due', detail: 'Due in ~800 mi', price: '$14.88' },
+            { name: 'Wiper Blades', status: 'good', detail: 'Next: Oct 2026' },
+          ]}
+          bundleSavings="Bundle oil change + tire rotation —"
+          bundleSavingsAmount="$12"
+        />
+        <AutoCareUpsellOfferCard
+          vehicle="2019 Toyota Camry"
+          vehicleSub="Last serviced 3,200 miles ago"
+          serviceName="Tire Rotation"
+          discountPct={20}
+          regularPrice="$14.88"
+          memberPrice="$11.90"
+          savings="$2.98"
+          expiresInDays={2}
+          terms="Valid at Carrollton Supercenter Auto Care. One vehicle per offer. Walmart+ membership required."
+        />
+      </div>
     ),
   },
 ];
@@ -378,8 +372,6 @@ function CopyPromptButton({ text }: { text: string }) {
           display: 'block',
           fontSize: '11px',
           fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '0.06em',
           color: copied
             ? 'var(--ld-semantic-color-text-positive, #1A7A34)'
             : 'var(--ld-semantic-color-text-subtlest, #74767C)',
@@ -443,8 +435,6 @@ function PatternSection({ pattern }: { pattern: PatternEntry }) {
           margin: 0,
           fontSize: '13px',
           fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '0.06em',
           color: 'var(--ld-semantic-color-text-subtle, #74767C)',
           fontFamily: 'var(--ld-semantic-font-family-sans)',
         }}>

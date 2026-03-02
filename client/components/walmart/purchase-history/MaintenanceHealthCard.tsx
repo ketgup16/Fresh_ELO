@@ -1,4 +1,9 @@
+import React from 'react';
 import { DollarCircleFill } from '@/components/icons/DollarCircleFill';
+import { WarningFill } from '@/components/icons/WarningFill';
+import { Clock } from '@/components/icons/Clock';
+import { CheckCircleFill } from '@/components/icons/CheckCircleFill';
+import { Tag } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import styles from './MaintenanceHealthCard.module.css';
@@ -26,10 +31,10 @@ export interface MaintenanceHealthCardProps {
   onViewReport?: () => void;
 }
 
-const STATUS_LABELS: Record<HealthStatus, string> = {
-  overdue: 'Overdue',
-  due: 'Due soon',
-  good: 'Good',
+const STATUS_TAG_CONFIG: Record<HealthStatus, { color: 'negative' | 'warning' | 'positive'; icon: React.ReactNode; label: string }> = {
+  overdue: { color: 'negative', icon: <WarningFill />, label: 'Overdue' },
+  due:     { color: 'warning',  icon: <Clock />,        label: 'Due soon' },
+  good:    { color: 'positive', icon: <CheckCircleFill />, label: 'Good' },
 };
 
 // Radial health score ring
@@ -123,10 +128,13 @@ export function MaintenanceHealthCard({
               key={item.name}
               className={`${styles.healthItem} ${styles[`healthItem--${item.status}`]}`}
             >
-              <span className={`${styles.statusBadge} ${styles[`statusBadge--${item.status}`]}`}>
-                <span className={styles.statusDot} aria-hidden="true" />
-                {STATUS_LABELS[item.status]}
-              </span>
+              <Tag
+                variant="primary"
+                color={STATUS_TAG_CONFIG[item.status].color}
+                leading={STATUS_TAG_CONFIG[item.status].icon}
+              >
+                {STATUS_TAG_CONFIG[item.status].label}
+              </Tag>
               <p className={styles.itemName}>{item.name}</p>
               <p className={styles.itemDetail}>{item.detail}</p>
               {item.price && <p className={styles.itemPrice}>~{item.price}</p>}
