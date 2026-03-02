@@ -115,9 +115,21 @@ export function MaintenanceHealthCard({
             {location && <p className={styles.headerMileage}>{location}</p>}
             <p className={styles.headerMileage}>{mileage}</p>
           </div>
-          <div className={styles.healthScore}>
-            <ScoreRing score={healthScore} />
-            <span className={styles.scoreLabel}>Health</span>
+          <div className={styles.healthScoreWrapper}>
+            <div className={styles.healthScore}>
+              <ScoreRing score={healthScore} />
+              <span className={styles.scoreLabel}>Health</span>
+            </div>
+            <div className={styles.scoreTooltip} role="tooltip">
+              <strong>Health Score: {healthScore}/100</strong>
+              <span>
+                {healthScore >= 70
+                  ? 'Good condition'
+                  : healthScore >= 40
+                  ? 'Needs attention'
+                  : 'Service overdue'}
+              </span>
+            </div>
           </div>
         </div>
       </div>

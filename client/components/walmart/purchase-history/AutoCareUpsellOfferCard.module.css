@@ -252,7 +252,7 @@
 .priceNew {
   font-size: 24px;
   font-weight: 900;
-  color: var(--ld-semantic-color-text-brand, #0053e2);
+  color: var(--ld-semantic-color-text-positive);
   line-height: 1.2;
   flex-shrink: 0;
 }
