@@ -18,6 +18,8 @@ import { CombinedOrderCard } from '@/components/walmart/purchase-history/Combine
 import { CurbsideOrderCard } from '@/components/walmart/purchase-history/CurbsideOrderCard';
 import { InlineAdBanner } from '@/components/walmart/purchase-history/InlineAdBanner';
 import { DelayedDeliveryCard } from '@/components/walmart/purchase-history/DelayedDeliveryCard';
+import { MaintenanceHealthCard } from '@/components/walmart/purchase-history/MaintenanceHealthCard';
+import { AutoCareUpsellOfferCard } from '@/components/walmart/purchase-history/AutoCareUpsellOfferCard';
 import styles from './PurchaseHistory.module.css';
 
 const CDN = 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F';
@@ -391,6 +393,38 @@ export default function PurchaseHistory() {
               {/* Auto Care appointment card: oil change with Check in, Reschedule, View details */}
               <div className={styles.newCard}>
                 <AutoCareOrderCard {...COMBINED_CARD_AUTO} />
+              </div>
+
+              {/* Vehicle maintenance health dashboard: overdue/due/good items + bundle savings */}
+              <div className={styles.newCard}>
+                <MaintenanceHealthCard
+                  vehicle="2019 Toyota Camry"
+                  mileage="22,450 miles"
+                  healthScore={62}
+                  location="Carrollton Supercenter · Auto Care Center"
+                  items={[
+                    { name: 'Oil Change', status: 'overdue', detail: '3,200 mi overdue', price: '$29.88' },
+                    { name: 'Tire Rotation', status: 'due', detail: 'Due in ~800 mi', price: '$14.88' },
+                    { name: 'Wiper Blades', status: 'good', detail: 'Next: Oct 2026' },
+                  ]}
+                  bundleSavings="Bundle oil change + tire rotation —"
+                  bundleSavingsAmount="$12"
+                />
+              </div>
+
+              {/* Walmart+ exclusive Auto Care offer: 20% off tire rotation, expires in 2 days */}
+              <div className={styles.newCard}>
+                <AutoCareUpsellOfferCard
+                  vehicle="2019 Toyota Camry"
+                  vehicleSub="Last serviced 3,200 miles ago"
+                  serviceName="Tire Rotation"
+                  discountPct={20}
+                  regularPrice="$14.88"
+                  memberPrice="$11.90"
+                  savings="$2.98"
+                  expiresInDays={2}
+                  terms="Valid at Carrollton Supercenter Auto Care. One vehicle per offer. Walmart+ membership required."
+                />
               </div>
 
               {/* ── Standard order list ───────────────────────────────────── */}

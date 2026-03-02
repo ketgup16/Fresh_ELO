@@ -7,6 +7,8 @@ import { CombinedOrderCard } from '@/components/walmart/purchase-history/Combine
 import { DelayedDeliveryCard } from '@/components/walmart/purchase-history/DelayedDeliveryCard';
 import { InlineAdBanner } from '@/components/walmart/purchase-history/InlineAdBanner';
 import { ReviewPromptBanner } from '@/components/walmart/purchase-history/ReviewPromptBanner';
+import { MaintenanceHealthCard } from '@/components/walmart/purchase-history/MaintenanceHealthCard';
+import { AutoCareUpsellOfferCard } from '@/components/walmart/purchase-history/AutoCareUpsellOfferCard';
 
 // ── Shared image helpers ────────────────────────────────────────────────────
 const CDN = 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F';
@@ -293,6 +295,46 @@ const PATTERNS: PatternEntry[] = [
         orderTotal="$45.08"
         showStartReturn
         actions={[{ label: 'View details', variant: 'secondary' }]}
+      />
+    ),
+  },
+  // ── NEW: Maintenance Health Dashboard ─────────────────────────────────────
+  {
+    id: 'maintenance-health',
+    title: 'Vehicle maintenance health dashboard',
+    prompt: 'Show a vehicle maintenance health card for a 2019 Toyota Camry with 22,450 miles. Mark oil change as overdue at ~$29.88, tire rotation as due soon at ~$14.88, and wiper blades as good until Oct 2026. Include a bundle savings callout saving $12 when both are booked together, with a Schedule services button.',
+    preview: (
+      <MaintenanceHealthCard
+        vehicle="2019 Toyota Camry"
+        mileage="22,450 miles"
+        healthScore={62}
+        location="Carrollton Supercenter · Auto Care Center"
+        items={[
+          { name: 'Oil Change', status: 'overdue', detail: '3,200 mi overdue', price: '$29.88' },
+          { name: 'Tire Rotation', status: 'due', detail: 'Due in ~800 mi', price: '$14.88' },
+          { name: 'Wiper Blades', status: 'good', detail: 'Next: Oct 2026' },
+        ]}
+        bundleSavings="Bundle oil change + tire rotation —"
+        bundleSavingsAmount="$12"
+      />
+    ),
+  },
+  // ── NEW: Member Exclusive Upsell Offer ───────────────────────────────────────
+  {
+    id: 'auto-care-upsell-offer',
+    title: 'Walmart+ exclusive Auto Care offer',
+    prompt: 'Show a Walmart+ exclusive offer card for a 2019 Toyota Camry offering 20% off a tire rotation (regular $14.88, member price $11.90, saving $2.98). The offer expires in 2 days. Include a Claim offer & book button and a Remind me later option.',
+    preview: (
+      <AutoCareUpsellOfferCard
+        vehicle="2019 Toyota Camry"
+        vehicleSub="Last serviced 3,200 miles ago"
+        serviceName="Tire Rotation"
+        discountPct={20}
+        regularPrice="$14.88"
+        memberPrice="$11.90"
+        savings="$2.98"
+        expiresInDays={2}
+        terms="Valid at Carrollton Supercenter Auto Care. One vehicle per offer. Walmart+ membership required."
       />
     ),
   },

@@ -1,0 +1,249 @@
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: var(--ld-semantic-font-family-sans);
+  border: 1px solid var(--ld-semantic-color-separator);
+  display: grid;
+  grid-template-columns: 220px 1fr;
+}
+
+/* ── Left panel: offer badge ─────────────────────────── */
+.offerPanel {
+  background: linear-gradient(160deg, #1A3A2A 0%, #0D5C2E 60%, #1A7A34 100%);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative circles */
+.offerPanel::before,
+.offerPanel::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+
+.offerPanel::before {
+  width: 140px;
+  height: 140px;
+  bottom: -40px;
+  right: -50px;
+}
+
+.offerPanel::after {
+  width: 80px;
+  height: 80px;
+  top: -20px;
+  left: -20px;
+}
+
+.memberBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 20px;
+  padding: 3px 10px 3px 6px;
+  width: fit-content;
+}
+
+.memberBadgeText {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+.sparkIcon {
+  width: 14px;
+  height: 14px;
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
+}
+
+.discountBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.discountPct {
+  font-size: 48px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.discountOff {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+  margin-top: 2px;
+}
+
+.discountService {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 500;
+}
+
+.countdown {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.countdownDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ADE80;
+  flex-shrink: 0;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.countdownText {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ── Right panel: details ────────────────────────────── */
+.detailPanel {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--ld-semantic-color-surface);
+}
+
+.detailEyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ld-semantic-color-text-subtle);
+  margin: 0 0 4px;
+}
+
+.detailHeading {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text-primary);
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* Vehicle row */
+.vehicleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--ld-semantic-color-fill-surface-secondary, #F5F5F6);
+}
+
+.vehicleIcon {
+  font-size: 20px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.vehicleInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.vehicleName {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text-primary);
+}
+
+.vehicleSub {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle);
+}
+
+/* Pricing */
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.priceNew {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--ld-semantic-color-text-positive, #1A7A34);
+  line-height: 1;
+}
+
+.priceOld {
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle);
+  text-decoration: line-through;
+}
+
+.priceSaving {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text-positive, #1A7A34);
+  background: var(--ld-semantic-color-fill-success-subtle, #EAF6ED);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Fine print */
+.finePrint {
+  font-size: 11px;
+  color: var(--ld-semantic-color-text-subtlest, #9A9BA1);
+  margin: -8px 0 0;
+  line-height: 1.4;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .offerPanel {
+    padding: 20px 16px;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .discountPct {
+    font-size: 36px;
+  }
+
+  .detailPanel {
+    padding: 16px;
+  }
+}
