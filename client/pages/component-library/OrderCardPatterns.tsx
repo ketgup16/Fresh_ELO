@@ -302,7 +302,7 @@ const PATTERNS: PatternEntry[] = [
   {
     id: 'auto-care-engagement',
     title: 'Auto center engagement cards',
-    prompt: 'Show cards to drive bookings at Walmart Auto Care for a 2019 Toyota Camry at 22,450 miles.',
+    prompt: 'Show 2 ways to improve Auto Care engagement.',
     preview: (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <MaintenanceHealthCard
