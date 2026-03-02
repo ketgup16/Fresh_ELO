@@ -4,6 +4,7 @@ import { Search, ChevronDown } from '@/components/icons';
 import {
   SparkyLookingDown, CartIcon,
   FulfillmentShippingIcon, CloseIcon as X,
+  LocationIcon,
 } from '@/components/icons-custom';
 import { useNavigate } from 'react-router-dom';
 import { createPortal } from 'react-dom';
@@ -66,14 +67,7 @@ export function DesktopHeader() {
           onAction={() => { setShowHighlight(false); setShowGIC(true); }}
           onClose={() => setShowHighlight(false)}
           open={showHighlight && !showGIC}
-          icon={
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fe96ba70bf20a4d59aede84cfd5b0636c"
-              alt=""
-              width="24"
-              height="24"
-            />
-          }
+          icon={<LocationIcon width="20" height="20" style={{ color: 'currentColor' }} />}
         >
           <section className={styles.gicSection}>
             <button

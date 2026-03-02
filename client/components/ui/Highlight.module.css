@@ -46,13 +46,12 @@
   pointer-events: none;
 }
 
-/* ── Icon (bounces to attract attention) ─────────────────── */
+/* ── Icon (static — no bounce, callout itself animates) ──── */
 .icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  animation: iconBounce 2s ease-in-out 0.6s infinite;
 }
 
 .icon img,
