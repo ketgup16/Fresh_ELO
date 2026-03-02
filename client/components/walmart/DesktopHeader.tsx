@@ -72,6 +72,7 @@ export function DesktopHeader() {
               alt=""
               width="28"
               height="28"
+              style={{ filter: 'invert(1)' }}
             />
           }
         >
