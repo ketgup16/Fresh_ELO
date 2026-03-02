@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { WCPHeartView } from '@/components/walmart/WCPHeartView';
 import styles from './WCPHeartView.module.css';
 
@@ -20,13 +20,11 @@ export default function WCPHeartViewPage() {
   const [controlled, setControlled] = React.useState(false);
 
   return (
-    <div className={styles.page}>
-      <PageHeader
-        section="WCP Components"
-        title="Heart View"
-        description="A circular toggle button for adding items to a favorites list. Similar to the Floating Button but acts as a toggle. On desktop (900px+) it shows a callout on hover; on mobile it triggers a snackbar after toggling."
-      />
-
+    <ComponentPageLayout
+      section="WCP Components"
+      title="Heart View"
+      description="A circular toggle button for adding items to a favorites list. Similar to the Floating Button but acts as a toggle. On desktop (900px+) it shows a callout on hover; on mobile it triggers a snackbar after toggling."
+    >
       <div className={styles.content}>
 
         {/* ── States showcase ── */}
@@ -363,7 +361,7 @@ export default function WCPHeartViewPage() {
         </section>
 
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }
 

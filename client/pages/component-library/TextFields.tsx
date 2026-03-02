@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextFieldExample } from '@/components/examples/TextFieldExample';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 
 const LabelExample = React.lazy(() => import('@/components/examples/LabelExample'));
@@ -8,8 +8,7 @@ const LabelExample = React.lazy(() => import('@/components/examples/LabelExample
 export default function TextFieldsPage() {
   const { t } = useTranslation();
   return (
-    <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navTextFields')} description={t('componentLibrary.textFieldsPageDesc')} />
+    <ComponentPageLayout section={t('componentLibrary.components')} title={t('componentLibrary.navTextFields')} description={t('componentLibrary.textFieldsPageDesc')}>
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -53,6 +52,6 @@ export default function TextFieldsPage() {
           <LabelExample />
         </React.Suspense>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

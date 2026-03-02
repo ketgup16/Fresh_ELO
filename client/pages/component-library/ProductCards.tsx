@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Tag } from '@/components/ui/Tag';
 import { ProductCardList } from '@/components/walmart/ProductCardList';
 import { ProductCardGrid } from '@/components/walmart/ProductCardGrid';
@@ -84,12 +84,11 @@ function PropTable({ rows }: { rows: PropRow[] }) {
 // ── Page ─────────────────────────────────────────────────────────────────────
 export default function ProductCardsPage() {
   return (
-    <div className={styles.page}>
-      <PageHeader
-        section="WCP Components"
-        title="Product Cards"
-        description="Three product card components used across search results, category pages, and home-page carousels. Each card is a standalone component — combine them with SearchFilterBar and SearchResultsHeader to build full search patterns."
-      />
+    <ComponentPageLayout
+      section="WCP Components"
+      title="Product Cards"
+      description="Three product card components used across search results, category pages, and home-page carousels. Each card is a standalone component — combine them with SearchFilterBar and SearchResultsHeader to build full search patterns."
+    >
 
       {/* ── ProductCardList ───────────────────────────────────── */}
       <div className={styles.section}>
@@ -260,6 +259,6 @@ export default function ProductCardsPage() {
           ))}
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

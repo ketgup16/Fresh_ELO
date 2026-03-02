@@ -1,5 +1,5 @@
 import { BasicBanner } from '@/components/ui/BasicBanner';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 
 const sectionStyle: React.CSSProperties = {
   backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -32,13 +32,11 @@ function VariantRow({ label, children }: { label: string; children: React.ReactN
 
 export default function BasicBannerPage() {
   return (
-    <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader
-        section="WCP Components"
-        title="Basic Banner"
-        description="A generic banner component used to communicate value propositions, branded messages, or contextual callouts. Supports three visual variants and an optional leading icon."
-      />
-
+    <ComponentPageLayout
+      section="WCP Components"
+      title="Basic Banner"
+      description="A generic banner component used to communicate value propositions, branded messages, or contextual callouts. Supports three visual variants and an optional leading icon."
+    >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
 
         {/* All 3 variants */}
@@ -119,6 +117,6 @@ export default function BasicBannerPage() {
 />`}</pre>
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

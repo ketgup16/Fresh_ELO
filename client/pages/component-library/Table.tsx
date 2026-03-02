@@ -1,18 +1,17 @@
 import React from 'react';
 import DataTableExample from '@/components/examples/DataTableExample';
 import DataTableSubComponentsExample from '@/components/examples/DataTableSubComponentsExample';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 
 export default function TablePage() {
   const { t } = useTranslation();
   return (
-    <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader
-        section={t('componentLibrary.sharedSection')}
-        title={t('componentLibrary.navTable')}
-        description={t('componentLibrary.descTable')}
-      />
+    <ComponentPageLayout
+      section={t('componentLibrary.sharedSection')}
+      title={t('componentLibrary.navTable')}
+      description={t('componentLibrary.descTable')}
+    >
 
       {/* Full interactive example */}
       <h2 style={{
@@ -57,6 +56,6 @@ export default function TablePage() {
           <DataTableSubComponentsExample />
         </React.Suspense>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

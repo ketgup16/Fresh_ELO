@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Tag } from '@/components/ui/Tag';
 import { SkylineBanner } from '@/components/walmart/SkylineBanner';
 import styles from './HomePageWidgets.module.css';
@@ -13,12 +13,11 @@ const TANYE_PRODUCT = `${CDN}b9a1addd35da48df88f41a3052039cd0?format=webp&width=
 
 export default function PromoBannersPage() {
   return (
-    <div className={styles.page}>
-      <PageHeader
-        section="WCP Patterns"
-        title="Promotions & Banners"
-        description="Sponsored and promotional banner components used across search results, purchase history, and home pages. SkylineBanner is the primary sponsored ad unit; PromoBanner is a full-bleed image link."
-      />
+    <ComponentPageLayout
+      section="WCP Patterns"
+      title="Promotions & Banners"
+      description="Sponsored and promotional banner components used across search results, purchase history, and home pages. SkylineBanner is the primary sponsored ad unit; PromoBanner is a full-bleed image link."
+    >
 
       {/* ── SkylineBanner ─────────────────────────────────────── */}
       <div className={styles.section}>
@@ -139,6 +138,6 @@ export default function PromoBannersPage() {
           ))}
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

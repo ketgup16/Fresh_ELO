@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { WCPCountrySelectBottomSheet, WCP_DEFAULT_COUNTRIES } from '@/components/walmart/WCPCountrySelectBottomSheet';
 import { WCPCountryCodePhoneInput } from '@/components/walmart/WCPCountryCodePhoneInput';
 import { WCPCountrySelectGroup } from '@/components/walmart/WCPCountrySelectGroup';
@@ -20,13 +20,11 @@ export default function WCPCountryComponentsPage() {
   const [multiValue, setMultiValue] = React.useState<string[]>(['US', 'MX']);
 
   return (
-    <div>
-      <PageHeader
-        section="WCP Components"
-        title="Country Select"
-        description="Country picker, phone input with country code selector, and country select group for shipping and contact flows."
-      />
-
+    <ComponentPageLayout
+      section="WCP Components"
+      title="Country Select"
+      description="Country picker, phone input with country code selector, and country select group for shipping and contact flows."
+    >
       <div className={styles.content}>
 
         {/* ── Country Select Dropdown (Desktop) ── */}
@@ -257,6 +255,6 @@ export default function WCPCountryComponentsPage() {
         </section>
 
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

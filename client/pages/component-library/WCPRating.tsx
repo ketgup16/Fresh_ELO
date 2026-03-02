@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { WCPRating } from '@/components/walmart/WCPRating';
 import { Button } from '@/components/ui/Button';
 import styles from './WCPRating.module.css';
@@ -35,13 +35,11 @@ export default function WCPRatingPage() {
   const [lastSelected, setLastSelected] = useState<number | null>(null);
 
   return (
-    <div className={styles.page}>
-      <PageHeader
-        section="WCP Components"
-        title="Ratings"
-        description="An interactive 5-star rating component for the Walmart consumer experience. Users click stars to select a rating and see a contextual label. Supports two size variants (small and medium) with responsive star dimensions across the 900px breakpoint."
-      />
-
+    <ComponentPageLayout
+      section="WCP Components"
+      title="Ratings"
+      description="An interactive 5-star rating component for the Walmart consumer experience. Users click stars to select a rating and see a contextual label. Supports two size variants (small and medium) with responsive star dimensions across the 900px breakpoint."
+    >
       <div className={styles.content}>
 
         {/* ── Live Interactive Demo ── */}
@@ -242,6 +240,6 @@ const [rating, setRating] = useState(0);
         </section>
 
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

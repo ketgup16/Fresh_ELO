@@ -57,7 +57,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 6px 16px 6px 16px;
+  padding: 6px 8px 6px 0;
   background: none;
   border: none;
   cursor: pointer;
@@ -70,11 +70,11 @@
 }
 
 .sectionLabelText {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
+  font-size: var(--ld-semantic-font-body-large-size, 1.125rem);
+  font-weight: var(--ld-semantic-font-body-large-weight-alt, 700);
+  line-height: var(--ld-semantic-font-body-large-line-height, 1.5rem);
+  color: var(--ld-semantic-color-text-primary, #2E2F32);
+  font-family: var(--ld-semantic-font-family-sans);
 }
 
 .sectionChevron {

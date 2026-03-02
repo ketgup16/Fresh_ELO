@@ -16,7 +16,7 @@ import { Divider } from '@/components/ui/Divider';
 import { SpotIcon } from '@/components/ui/SpotIcon';
 import { Rating } from '@/components/ui/Rating';
 import * as Icons from '@/components/icons';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 
 type ComponentType =
   | 'button' | 'badge' | 'chip' | 'filterchip' | 'tag'
@@ -779,13 +779,11 @@ export default function ComponentTester() {
   }, {} as Record<string, typeof components>);
 
   return (
-    <div style={{
-      padding: 'clamp(24px, 4vw, 48px)',
-      maxWidth: '1400px',
-      margin: '0 auto'
-    }}>
-      {/* Header */}
-      <PageHeader section={t('componentLibrary.gettingStarted')} title={t('componentLibrary.sandboxTitle')} description={t('componentLibrary.sandboxDescription')} />
+    <ComponentPageLayout
+      section={t('componentLibrary.gettingStarted')}
+      title={t('componentLibrary.sandboxTitle')}
+      description={t('componentLibrary.sandboxDescription')}
+    >
 
       {/* Component Selector */}
       <div style={{ marginBottom: '32px', maxWidth: '500px' }}>
@@ -956,6 +954,6 @@ export default function ComponentTester() {
           )}
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Tag } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import styles from './WCPButtonGroups.module.css';
@@ -122,12 +122,11 @@ function Stacked3Options() {
 
 export default function WCPButtonGroupsPage() {
   return (
-    <div className={styles.page}>
-      <PageHeader
-        section="WCP Components"
-        title="Button Groups"
-        description="WCP button group patterns for mobile cards, action footers, and bottom sheets. Each pattern specifies which LD 3.5 button variants to pair and in what order — primary action always on the right (inline) or top (stacked)."
-      />
+    <ComponentPageLayout
+      section="WCP Components"
+      title="Button Groups"
+      description="WCP button group patterns for mobile cards, action footers, and bottom sheets. Each pattern specifies which LD 3.5 button variants to pair and in what order — primary action always on the right (inline) or top (stacked)."
+    >
 
       {/* ── Inline Patterns ───────────────────────────────────── */}
       <section className={styles.section}>
@@ -280,6 +279,6 @@ export default function WCPButtonGroupsPage() {
   <Button variant="tertiary" size="medium" isFullWidth>Alternate</Button>
 </div>`}</pre>
       </section>
-    </div>
+    </ComponentPageLayout>
   );
 }

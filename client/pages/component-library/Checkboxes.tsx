@@ -1,17 +1,12 @@
 import React from 'react';
 import { CheckboxExample } from '@/components/examples/CheckboxExample';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 
 export default function CheckboxesPage() {
   const { t } = useTranslation();
   return (
-    <div style={{
-      padding: '48px',
-      maxWidth: '1400px',
-      margin: '0 auto'
-    }}>
-      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navCheckboxes')} description={t('componentLibrary.descCheckboxes')} />
+    <ComponentPageLayout section={t('componentLibrary.components')} title={t('componentLibrary.navCheckboxes')} description={t('componentLibrary.descCheckboxes')}>
 
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
@@ -23,6 +18,6 @@ export default function CheckboxesPage() {
           <CheckboxExample />
         </React.Suspense>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TabExample } from '@/components/examples/TabExample';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 
 /**
@@ -12,9 +12,7 @@ import { useTranslation } from 'react-i18next';
 export default function TabsPage() {
   const { t } = useTranslation();
   return (
-    <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      {/* Page Header */}
-      <PageHeader section={t('componentLibrary.components')} title={t('componentLibrary.navTabNavigation')} description={t('componentLibrary.descTabNavigation')} />
+    <ComponentPageLayout section={t('componentLibrary.components')} title={t('componentLibrary.navTabNavigation')} description={t('componentLibrary.descTabNavigation')}>
       
       {/* Documentation Link */}
       <div style={{
@@ -161,6 +159,6 @@ export default function TabsPage() {
           </div>
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

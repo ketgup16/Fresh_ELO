@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { WCPFlag, WCP_FLAG_VARIANTS, type WCPFlagVariant } from '@/components/walmart/WCPFlag';
 import {
   Gift,
@@ -73,14 +73,12 @@ const TEXT_TOKENS: Record<WCPFlagVariant, string> = {
 
 export default function WCPFlagPage() {
   return (
-    <div>
-      <PageHeader
-        section="WCP Components"
-        title="Flag"
-        description="Contextual labels for promotions, membership tiers, confidence badges, and more. All variants use WCP semantic tokens and are fully theme-responsive."
-      />
-
-      <div style={{ padding: '0 48px 64px' }}>
+    <ComponentPageLayout
+      section="WCP Components"
+      title="Flag"
+      description="Contextual labels for promotions, membership tiers, confidence badges, and more. All variants use WCP semantic tokens and are fully theme-responsive."
+    >
+      <div>
 
         {/* ── Variant grid ── */}
         <section style={{ marginBottom: '56px' }}>
@@ -279,6 +277,6 @@ export default function WCPFlagPage() {
         </section>
 
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }
