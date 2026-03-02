@@ -68,7 +68,7 @@ export function DesktopHeader() {
           open={showHighlight && !showGIC}
           icon={
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fbc94b4d148154c699f72d007857c09d0"
+              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F2f0b0d0cef554208baca4785f47e5bb9"
               alt=""
               width="28"
               height="28"
