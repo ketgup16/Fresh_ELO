@@ -7,7 +7,7 @@ import { DataTableHeader } from '@/components/ui/DataTableHeader';
 import { DataTableCell } from '@/components/ui/DataTableCellText';
 import { Button } from '@/components/ui/Button';
 import * as Icons from '@/components/icons';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 
 const ChevronDown = Icons.ChevronDown;
@@ -189,14 +189,12 @@ export default function ThemesPage() {
   };
 
   return (
-    <div id="top" style={{
-      padding: '48px',
-      maxWidth: '100%',
-      margin: '0 auto',
-      position: 'relative'
-    }}>
-      {/* Header */}
-      <PageHeader section={t('componentLibrary.gettingStarted')} title={t('componentLibrary.themesTitle')} description={t('componentLibrary.themesDesc')} />
+    <ComponentPageLayout
+      section={t('componentLibrary.gettingStarted')}
+      title={t('componentLibrary.themesTitle')}
+      description={t('componentLibrary.themesDesc')}
+    >
+      <div id="top" style={{ position: 'relative' }}>
 
       {/* Quick Navigation */}
       <div style={{
@@ -949,6 +947,7 @@ export default function ThemesPage() {
           <ArrowUp style={{ width: 24, height: 24 }} />
         </button>
       )}
-    </div>
+      </div>
+    </ComponentPageLayout>
   );
 }

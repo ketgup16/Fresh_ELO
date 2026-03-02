@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { WCPFloatingButton } from '@/components/walmart/WCPFloatingButton';
 import {
   ArrowLeft,
@@ -43,13 +43,11 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 export default function WCPFloatingButtonPage() {
   return (
-    <div style={{ padding: '48px', maxWidth: '1400px', margin: '0 auto' }}>
-      <PageHeader
-        section="WCP Components"
-        title="Floating Button"
-        description="A circular elevated icon button used for carousel controls and floating action scenarios. Combines LD 3.5 secondary action tokens with a box-shadow to communicate elevation."
-      />
-
+    <ComponentPageLayout
+      section="WCP Components"
+      title="Floating Button"
+      description="A circular elevated icon button used for carousel controls and floating action scenarios. Combines LD 3.5 secondary action tokens with a box-shadow to communicate elevation."
+    >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
 
         {/* Sizes */}
@@ -239,6 +237,6 @@ import { ArrowLeft, ArrowRight } from '@/components/icons';
         </div>
 
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

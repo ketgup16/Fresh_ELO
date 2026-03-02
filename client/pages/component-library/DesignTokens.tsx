@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/Button';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 
 // ─── Token data ─────────────────────────────────────────────────────────────
 // All tokens listed here are actively referenced across component CSS modules
@@ -466,14 +466,12 @@ export default function DesignTokensPage() {
   };
 
   return (
-    <div>
-      <PageHeader
-        section="Foundation"
-        title="Project Token Usage"
-        description={`All ${totalColor + totalOther} semantic tokens actively referenced across component CSS and TSX files in this project. Click any token to copy it. Theming is reflected in the color swatches — switch themes to preview.`}
-      />
-
-      <div style={{ padding: '0 48px 64px' }}>
+    <ComponentPageLayout
+      section="Foundation"
+      title="Project Token Usage"
+      description={`All ${totalColor + totalOther} semantic tokens actively referenced across component CSS and TSX files in this project. Click any token to copy it. Theming is reflected in the color swatches — switch themes to preview.`}
+    >
+      <div>
         {/* Quick nav */}
         <div style={{
           display: 'flex',
@@ -541,6 +539,6 @@ export default function DesignTokensPage() {
           ))}
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

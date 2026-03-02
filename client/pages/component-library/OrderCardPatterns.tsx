@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { OrderCard } from '@/components/walmart/purchase-history/OrderCard';
 import { AutoCareOrderCard } from '@/components/walmart/purchase-history/AutoCareOrderCard';
 import { CurbsideOrderCard } from '@/components/walmart/purchase-history/CurbsideOrderCard';
@@ -423,23 +423,16 @@ function PatternSection({ pattern }: { pattern: PatternEntry }) {
 // ── Page ─────────────────────────────────────────────────────────────────────
 export default function OrderCardPatternsPage() {
   return (
-    <div style={{
-      padding: '48px',
-      maxWidth: '1200px',
-      margin: '0 auto',
-      fontFamily: 'var(--ld-semantic-font-family-sans)',
-    }}>
-      <PageHeader
-        section="WCP Patterns"
-        title="Order Cards"
-        description="Ready-to-use card templates for the Purchase History page. Each pattern is a live component — click the prompt below it to copy it, then paste it into Fusion."
-      />
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', marginTop: '8px' }}>
+    <ComponentPageLayout
+      section="WCP Patterns"
+      title="Order Cards"
+      description="Ready-to-use card templates for the Purchase History page. Each pattern is a live component — click the prompt below it to copy it, then paste it into Fusion."
+    >
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>
         {PATTERNS.map(pattern => (
           <PatternSection key={pattern.id} pattern={pattern} />
         ))}
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

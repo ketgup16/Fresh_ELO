@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Tag } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import { SearchBar } from '@/components/walmart/SearchBar';
@@ -13,12 +13,11 @@ export default function WCPSearchAndUtilityPage() {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.page}>
-      <PageHeader
-        section="WCP Components"
-        title="Search & Utility"
-        description="Standalone utility components used across Walmart pages — the mobile search bar, the Add to Cart quantity control, the desktop Sub Nav, and the Mobile Top Nav."
-      />
+    <ComponentPageLayout
+      section="WCP Components"
+      title="Search & Utility"
+      description="Standalone utility components used across Walmart pages — the mobile search bar, the Add to Cart quantity control, the desktop Sub Nav, and the Mobile Top Nav."
+    >
 
       {/* ── SearchBar ─────────────────────────────────────────── */}
       <div className={styles.section}>
@@ -203,6 +202,6 @@ export default function WCPSearchAndUtilityPage() {
           ))}
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }

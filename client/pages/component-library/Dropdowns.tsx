@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Tag } from '@/components/ui/Tag';
 import { AccountDropdown } from '@/components/walmart/AccountDropdown';
 import { DepartmentsDropdown } from '@/components/walmart/DepartmentsDropdown';
@@ -26,12 +26,11 @@ function DropdownPreviewRow({ children }: { children: React.ReactNode }) {
 
 export default function DropdownsPage() {
   return (
-    <div className={styles.page}>
-      <PageHeader
-        section="WCP Components"
-        title="Dropdowns"
-        description="Navigation and utility dropdown menus used in the Desktop Header and Sub Nav. Each dropdown manages its own open/close state, keyboard navigation, and outside-click dismissal."
-      />
+    <ComponentPageLayout
+      section="WCP Components"
+      title="Dropdowns"
+      description="Navigation and utility dropdown menus used in the Desktop Header and Sub Nav. Each dropdown manages its own open/close state, keyboard navigation, and outside-click dismissal."
+    >
 
       {/* ── AccountDropdown ───────────────────────────────────── */}
       <div className={styles.section}>
@@ -192,6 +191,6 @@ export default function DropdownsPage() {
           ))}
         </div>
       </div>
-    </div>
+    </ComponentPageLayout>
   );
 }
