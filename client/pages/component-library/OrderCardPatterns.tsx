@@ -291,6 +291,54 @@ function PatternSection({ pattern }: { pattern: PatternEntry }) {
   );
 }
 
+// ── Prompts summary table ─────────────────────────────────────────────────────
+function PromptsTable() {
+  const border = '1px solid var(--ld-semantic-color-separator, #E3E4E5)';
+  const cellStyle: React.CSSProperties = {
+    padding: '12px 16px',
+    verticalAlign: 'top',
+    borderBottom: border,
+    fontFamily: 'var(--ld-semantic-font-family-sans)',
+    fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)',
+    lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)',
+    color: 'var(--ld-semantic-color-text, #2E2F32)',
+  };
+
+  return (
+    <div style={{
+      borderRadius: '8px',
+      border,
+      overflow: 'hidden',
+      marginBottom: '8px',
+    }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr style={{ background: 'var(--ld-semantic-color-background-subtle, #F2F3F3)' }}>
+            <th style={{ ...cellStyle, width: '220px', fontWeight: 700, color: 'var(--ld-semantic-color-text-subtle, #515357)', fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)' }}>
+              Pattern
+            </th>
+            <th style={{ ...cellStyle, fontWeight: 700, color: 'var(--ld-semantic-color-text-subtle, #515357)', fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)' }}>
+              Prompt
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {PATTERNS.map((p, i) => (
+            <tr key={p.id} style={{ background: i % 2 === 0 ? 'var(--ld-semantic-color-surface, #fff)' : 'var(--ld-semantic-color-background-subtle, #F2F3F3)' }}>
+              <td style={{ ...cellStyle, fontWeight: 600, borderRight: border, whiteSpace: 'nowrap' }}>
+                {p.title}
+              </td>
+              <td style={{ ...cellStyle }}>
+                {p.prompt}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 // ── Page ─────────────────────────────────────────────────────────────────────
 export default function OrderCardPatternsPage() {
   return (
@@ -300,6 +348,7 @@ export default function OrderCardPatternsPage() {
       description="Ready-to-use card templates for the Purchase History page. Each pattern is a live component — click the prompt below it to copy it, then paste it into Fusion."
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>
+        <PromptsTable />
         {PATTERNS.map(pattern => (
           <PatternSection key={pattern.id} pattern={pattern} />
         ))}
