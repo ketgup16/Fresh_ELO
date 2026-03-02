@@ -244,9 +244,8 @@ public/
 - Consolidate duplicates immediately
 
 **Component Priority**:
-1. Living Design 3.5 components (`client/components/ui/` with uppercase)
-2. Shadcn/Radix components (lowercase names)
-3. Custom components (only if no equivalent exists)
+1. Living Design 3.5 components (`client/components/ui/`)
+2. Custom components (only if no LD equivalent exists)
 
 ---
 

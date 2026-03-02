@@ -14,7 +14,7 @@ Step-by-step instructions for an AI assistant to integrate the Living Design 3.5
 
 1. [Overview & Prerequisites](#1-overview--prerequisites)
 2. [Import Files Into a New Project](#2-import-files-into-a-new-project)
-3. [Replace Default Shadcn Components](#3-replace-default-shadcn-components)
+3. [Replace Legacy Components with LD 3.5](#3-replace-legacy-components-with-ld-35)
 4. [Update Existing Designs to Use the Design System](#4-update-existing-designs-to-use-the-design-system)
 5. [Create New Components Using LD Tokens](#5-create-new-components-using-ld-tokens)
 6. [Validation Checklist](#6-validation-checklist)
@@ -35,10 +35,9 @@ Step-by-step instructions for an AI assistant to integrate the Living Design 3.5
 
 ### What This Library Contains
 
-This is a portable **Living Design 3.5 + Shared Components** library that includes:
+This is a portable **Living Design 3.5** component library that includes:
 
 - **60+ LD 3.5 components** (Button, Card, Tag, DataTable, Metric, etc.) with CSS Modules
-- **30+ Shared Components** (Radix/Shadcn wrappers styled with LD tokens)
 - **300+ icons** (custom SVG icon library)
 - **Design tokens** (primitive + semantic CSS custom properties)
 - **30+ themes** (Walmart, Sam's Club, Associate, Developer, etc.)
@@ -58,37 +57,6 @@ tailwindcss
 tailwindcss-animate
 autoprefixer
 postcss
-```
-
-**Radix UI (for Shared Components):**
-```
-@radix-ui/react-accordion
-@radix-ui/react-alert-dialog
-@radix-ui/react-aspect-ratio
-@radix-ui/react-avatar
-@radix-ui/react-checkbox
-@radix-ui/react-collapsible
-@radix-ui/react-context-menu
-@radix-ui/react-dialog
-@radix-ui/react-dropdown-menu
-@radix-ui/react-hover-card
-@radix-ui/react-label
-@radix-ui/react-menubar
-@radix-ui/react-navigation-menu
-@radix-ui/react-popover
-@radix-ui/react-progress
-@radix-ui/react-radio-group
-@radix-ui/react-scroll-area
-@radix-ui/react-select
-@radix-ui/react-separator
-@radix-ui/react-slider
-@radix-ui/react-slot
-@radix-ui/react-switch
-@radix-ui/react-tabs
-@radix-ui/react-toast
-@radix-ui/react-toggle
-@radix-ui/react-toggle-group
-@radix-ui/react-tooltip
 ```
 
 **Additional (for specific components):**
@@ -199,43 +167,6 @@ This includes ALL `.tsx` and `.module.css` files. The full list of LD 3.5 compon
 | TextField | `TextField.tsx`, `TextField.module.css` |
 | Toggle (LD) | `Toggle.tsx`, `Toggle.module.css` (Note: uppercase file) |
 
-Shared Components (Radix/Shadcn wrappers with LD tokens — lowercase filenames):
-
-| Component | File |
-|-----------|------|
-| Accordion | `accordion.tsx` |
-| Alert Dialog | `alert-dialog.tsx` |
-| Aspect Ratio | `aspect-ratio.tsx` |
-| Avatar | `avatar.tsx` |
-| Calendar | `calendar.tsx` |
-| Card (Shadcn) | `card.tsx` |
-| Carousel | `carousel.tsx` |
-| Chart | `chart.tsx` |
-| Collapsible | `collapsible.tsx` |
-| Command | `command.tsx`, `Command.module.css` |
-| Context Menu | `context-menu.tsx` |
-| Dialog | `dialog.tsx` |
-| Drawer | `drawer.tsx` |
-| Dropdown Menu | `dropdown-menu.tsx`, `DropdownMenu.module.css` |
-| Form | `form.tsx` |
-| Input OTP | `input-otp.tsx` |
-| Label | `label.tsx` |
-| Menubar | `menubar.tsx`, `Menubar.module.css` |
-| Navigation Menu | `navigation-menu.tsx`, `NavigationMenu.module.css` |
-| OLQ Tag | `olq-tag.tsx` |
-| Pagination | `pagination.tsx`, `Pagination.module.css` |
-| Popover (Radix) | `popover.tsx` |
-| Radio Group | `radio-group.tsx` |
-| Resizable | `resizable.tsx` |
-| Scroll Area | `scroll-area.tsx` |
-| Sidebar | `sidebar.tsx` |
-| Slider | `slider.tsx` |
-| Tabs (Radix) | `tabs.tsx` |
-| Textarea (Radix) | `textarea.tsx` |
-| Toggle (Radix) | `toggle.tsx` |
-| Toggle Group | `toggle-group.tsx` |
-| Tooltip | `tooltip.tsx` |
-
 Also copy the barrel export file:
 ```
 client/components/ui/index.ts
@@ -334,22 +265,22 @@ If brand fonts are not available, the components will fall back to system fonts.
 
 ---
 
-## 3. Replace Default Shadcn Components
+## 3. Replace Legacy Components with LD 3.5
 
-If the target project already has Shadcn/UI components installed, follow this process to replace them with the LD 3.5 equivalents.
+If the target project has existing custom or third-party UI components, replace them with LD 3.5 equivalents.
 
 ### Step 3.1: Audit Existing Components
 
-Scan the target project for existing Shadcn components:
+Scan the target project for existing components:
 ```bash
 ls {target}/components/ui/
 ```
 
 ### Step 3.2: Replace Components That Have LD 3.5 Equivalents
 
-For each component below, **delete the old Shadcn file** and use the LD 3.5 version from this library. Then update all imports across the project.
+For each component below, **delete the old file** and use the LD 3.5 version from this library. Then update all imports across the project.
 
-| Old Shadcn Component | LD 3.5 Replacement | New Import Path | Notes |
+| Legacy Component | LD 3.5 Replacement | New Import Path | Notes |
 |---|---|---|---|
 | `button.tsx` | `Button.tsx` | `@/components/ui/Button` | Variants: `primary`, `secondary`, `tertiary`, `destructive` |
 | `badge.tsx` | `Badge.tsx` | `@/components/ui/Badge` | Variants: `info`, `success`, `warning`, `error` |
@@ -368,57 +299,31 @@ For each component below, **delete the old Shadcn file** and use the LD 3.5 vers
 | `label.tsx` | (not needed) | — | Labels are built into TextField, TextArea, FormGroup |
 | `table.tsx` | `DataTable.tsx` | `@/components/ui/DataTable` | Use with DataTableHeader, DataTableRow, DataTableCell |
 
-### Step 3.3: Keep Shared Components (No LD Equivalent)
-
-These Shadcn/Radix components do NOT have LD 3.5 equivalents. The versions in this library are already styled with LD tokens. **Keep them as-is:**
-
-| Component | File | Import Path |
-|---|---|---|
-| Accordion | `accordion.tsx` | `@/components/ui/accordion` |
-| Alert Dialog | `alert-dialog.tsx` | `@/components/ui/alert-dialog` |
-| Aspect Ratio | `aspect-ratio.tsx` | `@/components/ui/aspect-ratio` |
-| Avatar | `avatar.tsx` | `@/components/ui/avatar` |
-| Calendar | `calendar.tsx` | `@/components/ui/calendar` |
-| Carousel | `carousel.tsx` | `@/components/ui/carousel` |
-| Chart | `chart.tsx` | `@/components/ui/chart` |
-| Collapsible | `collapsible.tsx` | `@/components/ui/collapsible` |
-| Command | `command.tsx` | `@/components/ui/command` |
-| Context Menu | `context-menu.tsx` | `@/components/ui/context-menu` |
-| Dialog | `dialog.tsx` | `@/components/ui/dialog` |
-| Drawer | `drawer.tsx` | `@/components/ui/drawer` |
-| Dropdown Menu | `dropdown-menu.tsx` | `@/components/ui/dropdown-menu` |
-| Form | `form.tsx` | `@/components/ui/form` |
-| Menubar | `menubar.tsx` | `@/components/ui/menubar` |
-| Navigation Menu | `navigation-menu.tsx` | `@/components/ui/navigation-menu` |
-| Pagination | `pagination.tsx` | `@/components/ui/pagination` |
-| Scroll Area | `scroll-area.tsx` | `@/components/ui/scroll-area` |
-| Slider | `slider.tsx` | `@/components/ui/slider` |
-
-### Step 3.4: Update All Imports
+### Step 3.3: Update All Imports
 
 After replacing components, update all import statements across the project:
 
 ```bash
-# Find all files importing from old Shadcn paths
+# Find files using old lowercase imports
 grep -rn "from ['\"]@/components/ui/button['\"]" {target}/
 grep -rn "from ['\"]@/components/ui/badge['\"]" {target}/
 # ... repeat for each replaced component
 ```
 
-**Import path changes:**
+**All LD 3.5 imports are PascalCase:**
 ```tsx
-// OLD (Shadcn - lowercase)
+// OLD (legacy lowercase)
 import { Button } from '@/components/ui/button';
 
-// NEW (LD 3.5 - uppercase)
+// NEW (LD 3.5 PascalCase)
 import { Button } from '@/components/ui/Button';
 ```
 
-### Step 3.5: Update Component Props
+### Step 3.4: Update Component Props
 
-LD 3.5 components may have different prop names than Shadcn defaults. Common changes:
+LD 3.5 components may use different prop names. Common changes:
 
-| Shadcn Prop | LD 3.5 Prop | Component |
+| Old Prop | LD 3.5 Prop | Component |
 |---|---|---|
 | `variant="outline"` | `variant="secondary"` | Button |
 | `variant="ghost"` | `variant="tertiary"` | Button |
@@ -603,7 +508,7 @@ Before creating anything new:
 2. Search `client/components/ui/index.ts` for exports
 3. Check `guidelines/components/` for documentation
 4. Check `design-system-docs/` for MDX specs
-5. Check if a Shared Component (lowercase Radix wrapper) already handles this use case
+5. Check `design-system-docs/` for MDX specs and existing patterns
 
 ### Step 5.2: Create the Component
 
@@ -780,8 +685,7 @@ pnpm run typecheck
 After integration, create a brief summary:
 
 ```
-Components replaced: X (list which Shadcn components were swapped for LD 3.5)
-Components kept (Shared): X (list which Radix wrappers were kept)
+Components replaced: X (list which legacy components were swapped for LD 3.5)
 New components created: X (list any new components built with LD tokens)
 New icons created: X (list any new icons added)
 Tokens migrated: X hardcoded values replaced with LD tokens
@@ -1156,12 +1060,6 @@ import { DataTableHeader } from '@/components/ui/DataTableHeader';
 import { DataTableRow } from '@/components/ui/DataTableRow';
 import { DataTableCell } from '@/components/ui/DataTableCellText';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
-
-// Shared Components (Lowercase imports)
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
-import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog';
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from '@/components/ui/dropdown-menu';
-import { ScrollArea } from '@/components/ui/scroll-area';
 
 // Icons
 import { Search, Settings, ChevronRight, Close, Plus, Edit, Trash } from '@/components/icons';

@@ -76,7 +76,7 @@ While the starter comes with a express server, only create endpoint when strictl
 - **Frontend**: React 18 + React Router 6 (spa) + TypeScript + Vite + TailwindCSS 3
 - **Backend**: Express server integrated with Vite dev server
 - **Testing**: Vitest
-- **UI**: Radix UI + TailwindCSS 3 + Lucide React icons
+- **UI**: Living Design 3.5 + CSS Modules
 
 ## Project Structure
 
@@ -285,17 +285,14 @@ background: #F8F8F8;
 
 - **Never modify existing components — especially LD components.** Files in `client/components/ui/` are the design system source of truth. Never edit them, even if a user asks for a change. Instead, create a new variant or a new wrapper component that composes the original. The original component files must remain untouched so other consumers and the design system contract are not affected.
 - **Always use existing LD components** before creating custom elements. Search `client/components/ui/` first.
-- **Import paths** — uppercase for LD 3.5 components, lowercase for Shadcn/Radix:
+- **Import paths** — always uppercase for LD 3.5 components:
 
 ```tsx
-// ✅ LD 3.5 components (uppercase)
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
-import { Tag } from '@/components/ui/tag';
+import { Tag } from '@/components/ui/Tag';
 import { Rating } from '@/components/ui/Rating';
-
-// ✅ Shadcn/Radix components (lowercase)
-import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
+import { Popover, PopoverContent } from '@/components/ui/Popover';
 ```
 
 - **Rating stars**: Use `<Rating value={4.4} size="small" />`, never manually render star SVGs.
@@ -315,7 +312,7 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover
 - **Side Navigation (No Exceptions)**: Always use the existing `AppSidebar` component from `@/components/ui/AppSidebar`. Never create a new sidebar or side navigation component. When building new pages, pass different `menuItems` to configure the links and content — do not duplicate or recreate the sidebar structure. The same applies to `SideNavigation` and `SideNavigationItem` for secondary navigation patterns.
 - **Overlays — Popovers, Dropdowns, Tooltips, Dialogs (No Exceptions)**:
   - All overlay elements must render on top of everything and never be clipped or cut off.
-  - Always use Radix/Shadcn portal-based components (`Popover`, `DropdownMenu`, `Dialog`, `Tooltip`, `Select`, `ContextMenu`, `Command`) which portal to `document.body` and escape `overflow: hidden` ancestors.
+  - Always use LD portal-based components (`Popover`, `Modal`, `Menu`, `Select`) which portal to `document.body` and escape `overflow: hidden` ancestors.
   - Never set `overflow: hidden` on containers holding overlay triggers unless the overlay portals out.
   - Never create custom absolute-positioned dropdown menus.
 
@@ -323,7 +320,7 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover
 
 | File type | Convention | Examples |
 |---|---|---|
-| All UI components (LD + Shadcn/Radix) | **PascalCase** | `Button.tsx`, `Dialog.tsx`, `ScrollArea.tsx`, `AlertDialog.tsx` |
+| All UI components (LD 3.5) | **PascalCase** | `Button.tsx`, `Dialog.tsx`, `Modal.tsx`, `Popover.tsx` |
 | CSS modules | **PascalCase** (match component) | `Button.module.css`, `DataTable.module.css` |
 | Pages | **PascalCase** | `Index.tsx`, `Catalog.tsx` |
 | Page CSS modules | **camelCase** | `detailItem.module.css` |
