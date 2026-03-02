@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
-import { OrderCard } from '@/components/walmart/purchase-history/OrderCard';
 import { AutoCareOrderCard } from '@/components/walmart/purchase-history/AutoCareOrderCard';
 import { CurbsideOrderCard } from '@/components/walmart/purchase-history/CurbsideOrderCard';
 import { CombinedOrderCard } from '@/components/walmart/purchase-history/CombinedOrderCard';
 import { DelayedDeliveryCard } from '@/components/walmart/purchase-history/DelayedDeliveryCard';
-import { InlineAdBanner } from '@/components/walmart/purchase-history/InlineAdBanner';
-import { ReviewPromptBanner } from '@/components/walmart/purchase-history/ReviewPromptBanner';
 import { MaintenanceHealthCard } from '@/components/walmart/purchase-history/MaintenanceHealthCard';
 import { AutoCareUpsellOfferCard } from '@/components/walmart/purchase-history/AutoCareUpsellOfferCard';
 
@@ -17,33 +14,13 @@ function img(hash: string, alt: string) {
 }
 
 const P = {
+  milk:          img('4275c57e09134f118110d61ffaed7f3e', 'Great Value Whole Milk'),
+  eggs:          img('78ef20205e3c4c4d89a0402b3651cfaf', 'Great Value Cage Free Eggs'),
   bananas:       img('3722ac211f454e0e981b44c68bd71f32', 'Organic Bananas'),
   avocado:       img('5d243d5fa5384060878d8e665e30b97a', 'Avocado'),
   blueberries:   img('23fbfba8c5334a6e97499ee2bcbdeeed', 'Blueberries'),
   strawberries:  img('182fe6cfc6cc4e94935dbbe85d069c17', 'Strawberries'),
-  blackberries:  img('253d78e864f649acb54e079fbeeb861c', 'Blackberries'),
-  grapefruit:    img('32f015c99b914a939d4da0575ea302ef', 'Grapefruit'),
-  redOnion:      img('c0aac98a03ab445db944c2155809258d', 'Red Onion'),
-  milk:          img('4275c57e09134f118110d61ffaed7f3e', 'Great Value Whole Milk'),
-  eggs:          img('78ef20205e3c4c4d89a0402b3651cfaf', 'Great Value Cage Free Eggs'),
-  tide:          img('1dc32c7426d2475a943854ef53106014', 'Tide Ultra OXI'),
-  bounce:        img('439fe5b0b4304c4a921ed8602bb1f23c', 'Bounce Mega Sheets'),
-  angelSoft:     img('e07a9fb025044c9bb8479349a197c015', 'Angel Soft Toilet Paper'),
-  wateringCan:   img('3807f1f88c0f42ab974b5b59ab07ff8b', 'Black Metal Watering Can'),
-  firePit:       img('0c564c139118430c914ca80d9fe80dc9', 'Outdoor Fire Pit'),
-  kitchenAid:    img('871a9d01d15e4344aeddd828e6ad96a4', 'KitchenAid Artisan Stand Mixer'),
-  nutrBullet:    img('d97202fbf7544db59d1672fca554125c', 'NutriBullet Pro Blender'),
-  switch:        img('117a3b8c29e94104986149ff470e0f0b', 'Nintendo Switch™'),
-  marioKart:     img('f58f628972ee4b62a864595c74d87835', 'Mario Kart 8 Deluxe'),
-  jblSpeaker:    img('009b0a2bda494171b74c4d0b9be9467d', 'JBL Clip 3 Bluetooth Speaker'),
-  peanutButter:  img('49b526ad3c9e44438dccecf8e3a1f030', 'Adams Peanut Butter'),
-  cereal:        img('2e3ad9b09a894c658b053653b52ae341', 'Great Value Frosted Shredded Wheat'),
-  chexMix:       img('3b1c6c21fa734099a7e94fb02336f7a3', 'Chex Mix Traditional Multipack'),
 };
-
-const GEICO_LOGO = `${CDN}e49854d53dde4904a3644e06872e21b1?format=webp&width=400`;
-const GEICO_AD   = `${CDN}b7ecbf94d42b4e7aafd823d851677509?format=webp&width=400`;
-const REVIEW_CTA = `${CDN}76440250dedc40518f93ea76656ae0eb?format=webp&width=400`;
 
 // ── Auto Care order data (shared between two patterns) ──────────────────────
 const AUTO_CARE_CARD = {
@@ -108,39 +85,6 @@ interface PatternEntry {
 
 const PATTERNS: PatternEntry[] = [
   {
-    id: 'standard-delivery',
-    title: 'Completed delivery order',
-    prompt: 'Show a completed grocery delivery order with product thumbnails, order total, and a "Start a return" option.',
-    preview: (
-      <OrderCard
-        orderType="delivery"
-        statusHeading="Delivered on Feb 15"
-        timelineStep="delivered"
-        products={[P.bananas, P.blueberries, P.avocado, P.milk]}
-        orderTotal="$41.90"
-        showStartReturn
-        actions={[{ label: 'View details', variant: 'secondary' }]}
-      />
-    ),
-  },
-  {
-    id: 'curbside-completed',
-    title: 'Completed curbside pickup',
-    prompt: 'Show a curbside pickup order that was already collected, with store location, products, and a "View details" button.',
-    preview: (
-      <CurbsideOrderCard
-        orderType="curbside"
-        location="Carrollton Supercenter at 1213 Trinity Mills Rd"
-        statusHeading="Picked up on Jan 15"
-        timelineVariant="pickup"
-        products={[P.wateringCan, P.firePit, P.bananas, P.milk]}
-        orderTotal="$247.95"
-        showStartReturn
-        actions={[{ label: 'View details', variant: 'secondary' }]}
-      />
-    ),
-  },
-  {
     id: 'curbside-get-it-now',
     title: 'Active curbside with "Get it now" express upgrade',
     prompt: 'Show an active curbside order with a countdown to edit and a "Get it now" button to upgrade to express delivery.',
@@ -182,119 +126,6 @@ const PATTERNS: PatternEntry[] = [
         delayEstimate="Estimated up to 2 hours late"
         products={[P.strawberries, P.blueberries, P.bananas]}
         orderTotal="$32.47"
-      />
-    ),
-  },
-  {
-    id: 'inline-ad',
-    title: 'Sponsored ad banner between orders',
-    prompt: 'Insert a sponsored brand banner between order cards with a logo, headline, and CTA button.',
-    preview: (
-      <InlineAdBanner
-        logoSrc={GEICO_LOGO}
-        logoAlt="GEICO"
-        headline="15 minutes could save you on car insurance. Really..."
-        ctaLabel="Get a quote"
-        imageSrc={GEICO_AD}
-        imageAlt="GEICO gecko"
-      />
-    ),
-  },
-  {
-    id: 'review-prompt',
-    title: 'Review prompt for recent purchases',
-    prompt: 'Show a "Rate your recent purchases" carousel at the top of the order list for items the customer hasn\'t reviewed yet.',
-    preview: (
-      <ReviewPromptBanner
-        products={[
-          { name: P.switch.alt, imageSrc: P.switch.src, rating: 3.5 },
-          { name: P.marioKart.alt, imageSrc: P.marioKart.src, rating: 4.5 },
-        ]}
-        ctaIllustration={REVIEW_CTA}
-      />
-    ),
-  },
-  {
-    id: 'delivery-on-the-way',
-    title: 'Delivery in transit',
-    prompt: 'Show a grocery delivery order that is on its way, with a track order button.',
-    preview: (
-      <OrderCard
-        orderType="delivery"
-        statusHeading="Arrives today, 5pm–6pm"
-        timelineStep="on-the-way"
-        products={[P.tide, P.bounce, P.angelSoft, P.milk]}
-        orderTotal="$67.13"
-        actions={[
-          { label: 'Track order', variant: 'primary' },
-          { label: 'View details', variant: 'secondary' },
-        ]}
-      />
-    ),
-  },
-  {
-    id: 'delivery-with-return',
-    title: 'Completed delivery with return notice',
-    prompt: 'Show a completed delivery order with an active return deadline notice.',
-    preview: (
-      <OrderCard
-        orderType="delivery"
-        statusHeading="Delivered on Feb 10"
-        timelineStep="delivered"
-        products={[P.blueberries, P.strawberries, P.grapefruit, P.bananas, P.milk, P.tide]}
-        orderTotal="$67.13"
-        returnNotice="You still have items to return in this order"
-        returnDeadline="Jun 22"
-        actions={[{ label: 'View details', variant: 'secondary' }]}
-      />
-    ),
-  },
-  {
-    id: 'shipping-electronics',
-    title: 'Shipped electronics order',
-    prompt: 'Show a delivered shipping order for electronics with a third-party seller and a "Start a return" option.',
-    preview: (
-      <OrderCard
-        orderType="shipping"
-        seller="WorldWide Inc"
-        fulfilledBy="Walmart"
-        statusHeading="Delivered on Jan 28"
-        timelineStep="delivered"
-        products={[P.switch, P.marioKart, P.jblSpeaker]}
-        orderTotal="$385.00"
-        showStartReturn
-        actions={[{ label: 'View details', variant: 'secondary' }]}
-      />
-    ),
-  },
-  {
-    id: 'shipping-appliances',
-    title: 'Shipped appliances order',
-    prompt: 'Show a delivered shipping order for home appliances with a third-party seller.',
-    preview: (
-      <OrderCard
-        orderType="shipping"
-        seller="WorldWide Inc"
-        fulfilledBy="Walmart"
-        statusHeading="Delivered on Jan 20"
-        products={[P.kitchenAid, P.nutrBullet]}
-        orderTotal="$289.98"
-        actions={[{ label: 'View details', variant: 'secondary' }]}
-      />
-    ),
-  },
-  {
-    id: 'store-purchase',
-    title: 'In-store purchase',
-    prompt: 'Show an in-store purchase receipt with grocery items and a "Start a return" option.',
-    preview: (
-      <OrderCard
-        orderType="store"
-        statusHeading="Jan 10 purchase"
-        products={[P.milk, P.bananas, P.eggs, P.peanutButter, P.cereal, P.chexMix]}
-        orderTotal="$45.08"
-        showStartReturn
-        actions={[{ label: 'View details', variant: 'secondary' }]}
       />
     ),
   },
