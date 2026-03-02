@@ -40,7 +40,7 @@ export function MobileTopNav({ showHomeExtras = false }: MobileTopNavProps) {
           style={{ backgroundColor: 'var(--ld-semantic-color-top-nav-fill)' }}
         >
           <div className="flex items-center gap-3 md:gap-6">
-            <IconButton aria-label="Menu" variant="ghost" size="medium" UNSAFE_className="text-white flex-shrink-0">
+            <IconButton aria-label="Menu" variant="white" size="large" UNSAFE_className="flex-shrink-0">
               <Menu className="w-6 h-6" />
             </IconButton>
             <a href="/walmart" className="flex-shrink-0" aria-label="Walmart Homepage">
