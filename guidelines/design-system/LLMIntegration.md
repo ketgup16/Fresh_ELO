@@ -3,7 +3,7 @@ title: LLM Integration Instructions
 scope: design-system
 status: stable
 owner: design-system
-last_updated: 2025-02-25
+last_updated: 2026-03-02
 ---
 
 ## Purpose
@@ -18,6 +18,16 @@ Step-by-step instructions for an AI assistant to integrate the Living Design 3.5
 4. [Update Existing Designs to Use the Design System](#4-update-existing-designs-to-use-the-design-system)
 5. [Create New Components Using LD Tokens](#5-create-new-components-using-ld-tokens)
 6. [Validation Checklist](#6-validation-checklist)
+7. [Advanced Authoring Rules (WCP-Validated)](#7-advanced-authoring-rules-wcp-validated)
+   - [7.1 Typography Token Rules](#71-typography-token-rules)
+   - [7.2 Color & Surface Rules](#72-color--surface-rules)
+   - [7.3 Icon Rules](#73-icon-rules)
+   - [7.4 Component Usage Rules](#74-component-usage-rules)
+   - [7.5 Typography Style Rules](#75-typography-style-rules)
+   - [7.6 Accessibility Rules](#76-accessibility-rules)
+   - [7.7 Visual Layering Rules](#77-visual-layering-rules)
+   - [7.8 Component Library Pattern Page Rules](#78-component-library-pattern-page-rules)
+   - [7.9 No Divider Lines](#79-no-divider-lines)
 
 ---
 
@@ -775,6 +785,342 @@ Components kept (Shared): X (list which Radix wrappers were kept)
 New components created: X (list any new components built with LD tokens)
 New icons created: X (list any new icons added)
 Tokens migrated: X hardcoded values replaced with LD tokens
+```
+
+---
+
+---
+
+## 7. Advanced Authoring Rules (WCP-Validated)
+
+These rules were validated through real component work on the Walmart Commerce Platform Purchase History page. They complement the general rules above and should be applied to all new component work.
+
+---
+
+### 7.1 Typography Token Rules
+
+#### Always validate tokens against `client/styles/semantic.css` before using them
+
+Many tokens that look correct are actually invalid. Always grep the actual file as source of truth before writing new CSS.
+
+**Heading tokens require a viewport suffix — `-b-s` (small) or `-b-l` (large):**
+```css
+/* WRONG — this token does not exist */
+font-size: var(--ld-semantic-font-heading-small-size);
+
+/* CORRECT */
+font-size: var(--ld-semantic-font-heading-small-size-b-s, 1.125rem);
+line-height: var(--ld-semantic-font-heading-small-line-height-b-s, 1.5rem);
+font-weight: var(--ld-semantic-font-heading-small-weight-default, 700);
+font-family: var(--ld-semantic-font-heading-small-family);
+```
+
+#### Always provide the full token set — not just size
+
+A complete typography definition requires all four properties. Partial application is a violation:
+
+```css
+/* WRONG — only size, missing family/weight/line-height */
+.label {
+  font-size: var(--ld-semantic-font-caption-size);
+}
+
+/* CORRECT — complete caption token set */
+.label {
+  font-family: var(--ld-semantic-font-caption-family);
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: var(--ld-semantic-font-caption-weight-default, 400);
+  line-height: var(--ld-semantic-font-caption-line-height, 1rem);
+}
+```
+
+#### Caption tokens for all small labels and eyebrows
+
+Any text smaller than body (eyebrows, status labels, meta text, fine print) must use caption tokens — never hardcoded px values:
+
+| Token set | Use |
+|---|---|
+| `--ld-semantic-font-caption-*` with `weight-default` | Default weight labels |
+| `--ld-semantic-font-caption-*` with `weight-alt` | Bold/emphasis labels |
+| `--ld-semantic-font-body-small-*` | Body-level text (14px / 0.875rem) |
+| `--ld-semantic-font-body-medium-*` | Default body (16px / 1rem) |
+| `--ld-semantic-font-heading-small-*-b-s` | Small headings (18px / 1.125rem) |
+
+#### Never use hardcoded font fallbacks that don't match the token value
+
+```css
+/* WRONG — token is 0.875rem but fallback says 13px */
+font-size: var(--ld-semantic-font-body-small-size, 13px);
+
+/* CORRECT */
+font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
+```
+
+---
+
+### 7.2 Color & Surface Rules
+
+#### Never use gradients on surfaces
+
+`linear-gradient` is prohibited on surface backgrounds (cards, panels, headers) unless the token itself is a gradient (e.g., magic tokens). Use a flat semantic fill token instead:
+
+```css
+/* WRONG */
+background: linear-gradient(135deg, #001E5A, #003087);
+
+/* CORRECT */
+background: var(--ld-semantic-color-fill-brand-bold, #001E5A);
+```
+
+#### Brand blue vs. positive green — know when to use each
+
+| Use case | Token |
+|---|---|
+| Brand CTAs, member prices, links | `var(--ld-semantic-color-text-brand)` |
+| Savings amounts, discounts, positive outcomes | `var(--ld-semantic-color-text-positive)` |
+| Savings badge background | `var(--ld-semantic-color-fill-positive-subtle)` |
+| Dark brand panel/header | `var(--ld-semantic-color-fill-brand-bold)` |
+
+Savings text **must always be green** (`text-positive`). Never use brand blue for savings.
+
+#### Never use `rgba()` opacity hacks for semantic colors
+
+```css
+/* WRONG — bypasses theming */
+color: rgba(255, 255, 255, 0.7);
+
+/* CORRECT — use the appropriate on-fill token with opacity as a last resort only */
+color: var(--ld-semantic-color-action-text-on-fill-primary);
+opacity: 0.7;
+```
+
+---
+
+### 7.3 Icon Rules
+
+#### Always use outlined icons, never Fill variants
+
+```tsx
+// WRONG
+import { CheckCircleFill } from '@/components/icons/CheckCircleFill';
+import { WarningFill } from '@/components/icons/WarningFill';
+
+// CORRECT
+import { CheckCircle } from '@/components/icons/CheckCircle';
+import { Warning } from '@/components/icons/Warning';
+```
+
+#### Always add `aria-hidden="true"` to decorative icons
+
+Icons used inside Tags, Alerts, and buttons are decorative — the surrounding text provides context:
+
+```tsx
+<Warning width={12} height={12} aria-hidden="true" />
+```
+
+#### Always set explicit width/height on icons used in compact contexts
+
+Icons default to 20×20. In Tags (12px) or fine-print areas (14px), always set explicit size:
+
+```tsx
+// Inside a Tag
+<Clock width={12} height={12} aria-hidden="true" />
+
+// In a detail row
+<Car width={16} height={16} aria-hidden="true" />
+```
+
+---
+
+### 7.4 Component Usage Rules
+
+#### Tag vs Badge — they are not interchangeable
+
+| Component | Use for |
+|---|---|
+| `<Tag>` | Status labels, category labels, any text-based indicator |
+| `<Badge>` | Numeric counts only (notification count, cart quantity) |
+
+Never use a raw `<span>` with custom styles for either of these.
+
+#### Tags and Buttons must hug content — never stretch full width
+
+Add `align-items: flex-start` to any flex container that holds Tags or Buttons to prevent them from stretching:
+
+```css
+/* Flex parent of Tags/Buttons */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* REQUIRED — prevents stretching */
+}
+```
+
+#### Use `<Alert>` for all info/success/warning/error banners
+
+Never build custom callout divs with background color + icon + text. The `<Alert>` component handles all of this:
+
+```tsx
+// WRONG — custom callout div
+<div className={styles.warningBox}>
+  <WarningIcon />
+  <p>Delayed, up to 2 hours late</p>
+</div>
+
+// CORRECT
+import { Alert } from '@/components/ui/Alert';
+<Alert variant="warning">
+  <strong>Estimated up to 2 hours late</strong> — We're working to get your order to you as quickly as possible.
+</Alert>
+```
+
+Alert variants: `info` | `success` | `warning` | `error`
+
+---
+
+### 7.5 Typography Style Rules
+
+#### Never use `text-transform: uppercase`
+
+LD 3.5 does not use all-caps for eyebrows, labels, or section titles. Remove any `text-transform: uppercase` and accompanying `letter-spacing` values.
+
+```css
+/* WRONG */
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* CORRECT — just use caption tokens at normal case */
+.eyebrow {
+  font-family: var(--ld-semantic-font-caption-family);
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: var(--ld-semantic-font-caption-weight-alt, 700);
+  line-height: var(--ld-semantic-font-caption-line-height, 1rem);
+}
+```
+
+---
+
+### 7.6 Accessibility Rules
+
+#### Price rows need ARIA group context
+
+When displaying old price / new price / savings together, wrap in a group with a label:
+
+```tsx
+<div role="group" aria-label="Pricing">
+  <span aria-label={`Member price: ${memberPrice}`}>{memberPrice}</span>
+  <span aria-label={`Regular price: ${regularPrice}`}>{regularPrice}</span>
+  <span aria-label={`You save ${savings}`}>Save {savings}</span>
+</div>
+```
+
+#### Data visualizations need hover tooltips
+
+Any numeric indicator (score ring, progress arc, metric) rendered on a visual surface must have a hover tooltip explaining what it means. Use a CSS-based tooltip with `role="tooltip"`:
+
+```tsx
+<div className={styles.scoreWrapper}>
+  <div className={styles.score}>
+    <ScoreRing score={score} />
+    <span>Health</span>
+  </div>
+  <div className={styles.tooltip} role="tooltip">
+    <strong>Health Score: {score}/100</strong>
+    <span>{score >= 70 ? 'Good condition' : score >= 40 ? 'Needs attention' : 'Service overdue'}</span>
+  </div>
+</div>
+```
+
+```css
+.scoreWrapper { position: relative; cursor: help; }
+.scoreWrapper:hover .tooltip { opacity: 1; transform: translateY(0); }
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  padding: 8px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 10;
+}
+```
+
+#### SVG score rings / progress indicators
+
+For custom radial progress (health score, completion ring):
+- Add `aria-label` on the `<svg>` describing the value (e.g., `"Health score: 62 out of 100"`)
+- Use `role="img"` if the SVG conveys meaningful data
+- Score number text inside SVG: use `dominant-baseline="central"` + `text-anchor="middle"` for centering
+
+---
+
+### 7.7 Visual Layering Rules
+
+#### Elements rendered on top of illustrations need a backdrop
+
+When a UI element (score ring, text, badge) is positioned over an illustration or photo, add a frosted glass backdrop so it remains legible regardless of the image content:
+
+```css
+.overlaidElement {
+  background: rgba(0, 0, 20, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+```
+
+#### Illustration masking on card headers
+
+When an illustration is absolutely positioned in a card header (covering part of the background), use a `mask-image` gradient to fade it into the background color:
+
+```css
+/* Illustration fading from right edge leftward */
+.illustration {
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,1) 70%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,1) 70%);
+}
+
+/* Illustration fading from bottom (offer panel style) */
+.illustration {
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.85) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.85) 100%);
+}
+```
+
+---
+
+### 7.8 Component Library Pattern Page Rules
+
+When maintaining a component pattern library page (`/component-library/order-card-patterns` or similar):
+
+1. **Remove patterns once added to real pages** — the library should only contain patterns not yet deployed, to avoid redundancy
+2. **Provide three things per pattern**: title label, live preview, copyable prompt
+3. **Add a summary table** at the top of the page listing all patterns and their prompts in a scannable format
+4. **Keep prompts concise** — one sentence describing exactly what the card shows (e.g., `"Show a combined card pairing a same-day oil change with a curbside pickup, with a merged bundle total."`)
+5. **Use `newCard` animation wrapper** when inserting prompt-driven cards into real pages so designers can see what was just added
+
+---
+
+### 7.9 No Divider Lines
+
+Do not add divider lines between sections unless explicitly requested. Use spacing (gap/padding) to create visual separation instead.
+
+```css
+/* WRONG — adding an unsolicited divider */
+border-bottom: 1px solid var(--ld-semantic-color-separator);
+
+/* CORRECT — use spacing */
+gap: var(--ld-primitive-scale-space-400, 16px);
 ```
 
 ---
