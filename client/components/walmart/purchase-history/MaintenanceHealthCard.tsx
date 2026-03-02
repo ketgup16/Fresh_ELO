@@ -27,6 +27,8 @@ export interface MaintenanceHealthCardProps {
   location?: string;
   /** Optional illustration shown as header background. Store locally in public/illustrations/ */
   illustration?: string;
+  /** Short value statement shown below the health grid, e.g. "Save up to 40% vs. dealerships" */
+  valueStatement?: string;
   onSchedule?: () => void;
   onViewReport?: () => void;
 }
@@ -88,6 +90,7 @@ export function MaintenanceHealthCard({
   bundleSavingsAmount,
   location,
   illustration,
+  valueStatement,
   onSchedule,
   onViewReport,
 }: MaintenanceHealthCardProps) {
@@ -142,6 +145,13 @@ export function MaintenanceHealthCard({
           ))}
         </div>
       </div>
+
+      {/* ── Value statement strip ── */}
+      {valueStatement && (
+        <div className={styles.valueBar}>
+          <span className={styles.valueBarText}>{valueStatement}</span>
+        </div>
+      )}
 
       {/* ── Bundle savings strip ── */}
       {bundleSavings && (

@@ -162,6 +162,22 @@
   margin: 0;
 }
 
+/* ── Value statement bar ───────────────────────────────── */
+.valueBar {
+  margin: 0 var(--ld-primitive-scale-space-500, 20px) var(--ld-primitive-scale-space-300, 12px);
+  padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-350, 14px);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  background: var(--ld-semantic-color-background-subtle, #F6F6F7);
+  border-left: 3px solid var(--ld-semantic-color-fill-brand, #0071DC);
+}
+
+.valueBarText {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  line-height: 1.4;
+}
+
 /* ── Bundle savings strip ──────────────────────────────── */
 .savingsBanner {
   margin: 0 var(--ld-primitive-scale-space-500, 20px) var(--ld-primitive-scale-space-400, 16px);

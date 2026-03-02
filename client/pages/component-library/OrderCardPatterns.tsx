@@ -318,6 +318,7 @@ const PATTERNS: PatternEntry[] = [
           ]}
           bundleSavings="Bundle oil change + tire rotation —"
           bundleSavingsAmount="$12"
+          valueStatement="Walmart Auto Care is up to 40% less than dealership prices. Same-day availability. No hidden fees."
         />
         <AutoCareUpsellOfferCard
           vehicle="2019 Toyota Camry"
@@ -329,6 +330,12 @@ const PATTERNS: PatternEntry[] = [
           savings="$2.98"
           expiresInDays={2}
           terms="Valid at Carrollton Supercenter Auto Care. One vehicle per offer. Walmart+ membership required."
+          illustration="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff991ec87514645ea86e2480394f1c3fd?format=webp&width=800"
+          valueBullets={[
+            'Walmart-certified technicians',
+            'Free multi-point inspection included',
+            'Same-day service available',
+          ]}
         />
       </div>
     ),

@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/Button';
 import { Car } from '@/components/icons/Car';
+import { CheckCircleFill } from '@/components/icons/CheckCircleFill';
 import styles from './AutoCareUpsellOfferCard.module.css';
 
 export interface AutoCareUpsellOfferCardProps {
@@ -21,6 +22,10 @@ export interface AutoCareUpsellOfferCardProps {
   expiresInDays: number;
   /** Fine print / terms */
   terms?: string;
+  /** Optional illustration shown at bottom of offer panel */
+  illustration?: string;
+  /** Value bullets shown in detail panel (max 3) */
+  valueBullets?: string[];
   onBook?: () => void;
   onDismiss?: () => void;
 }
@@ -38,6 +43,8 @@ export function AutoCareUpsellOfferCard({
   savings,
   expiresInDays,
   terms,
+  illustration,
+  valueBullets,
   onBook,
   onDismiss,
 }: AutoCareUpsellOfferCardProps) {
@@ -52,23 +59,34 @@ export function AutoCareUpsellOfferCard({
     <article className={styles.card}>
       {/* ── Left: offer badge panel ── */}
       <div className={styles.offerPanel}>
-        {/* Walmart+ badge */}
-        <div className={styles.memberBadge}>
-          <img src={SPARK_SRC} alt="" aria-hidden="true" className={styles.sparkIcon} />
-          <span className={styles.memberBadgeText}>Walmart+ Exclusive</span>
-        </div>
+        {illustration && (
+          <img
+            src={illustration}
+            alt=""
+            aria-hidden="true"
+            className={styles.offerIllustration}
+          />
+        )}
+        {/* Content sits above the illustration */}
+        <div className={styles.offerContent}>
+          {/* Walmart+ badge */}
+          <div className={styles.memberBadge}>
+            <img src={SPARK_SRC} alt="" aria-hidden="true" className={styles.sparkIcon} />
+            <span className={styles.memberBadgeText}>Walmart+ Exclusive</span>
+          </div>
 
-        {/* Discount */}
-        <div className={styles.discountBlock}>
-          <div className={styles.discountPct}>{discountPct}%</div>
-          <div className={styles.discountOff}>OFF</div>
-          <div className={styles.discountService}>{serviceName}</div>
-        </div>
+          {/* Discount */}
+          <div className={styles.discountBlock}>
+            <div className={styles.discountPct}>{discountPct}%</div>
+            <div className={styles.discountOff}>OFF</div>
+            <div className={styles.discountService}>{serviceName}</div>
+          </div>
 
-        {/* Countdown */}
-        <div className={styles.countdown}>
-          <span className={styles.countdownDot} aria-hidden="true" />
-          <span className={styles.countdownText}>{expiryLabel}</span>
+          {/* Countdown */}
+          <div className={styles.countdown}>
+            <span className={styles.countdownDot} aria-hidden="true" />
+            <span className={styles.countdownText}>{expiryLabel}</span>
+          </div>
         </div>
       </div>
 
@@ -78,6 +96,18 @@ export function AutoCareUpsellOfferCard({
           <p className={styles.detailEyebrow}>Exclusive offer for you</p>
           <h3 className={styles.detailHeading}>{serviceName}</h3>
         </div>
+
+        {/* Value bullets */}
+        {valueBullets && valueBullets.length > 0 && (
+          <ul className={styles.valueBullets}>
+            {valueBullets.map((bullet) => (
+              <li key={bullet} className={styles.valueBullet}>
+                <CheckCircleFill className={styles.valueBulletIcon} aria-hidden="true" />
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        )}
 
         {/* Vehicle */}
         <div className={styles.vehicleRow}>
