@@ -309,6 +309,7 @@ const PATTERNS: PatternEntry[] = [
         mileage="22,450 miles"
         healthScore={62}
         location="Carrollton Supercenter · Auto Care Center"
+        illustration="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff991ec87514645ea86e2480394f1c3fd?format=webp&width=800"
         items={[
           { name: 'Oil Change', status: 'overdue', detail: '3,200 mi overdue', price: '$29.88' },
           { name: 'Tire Rotation', status: 'due', detail: 'Due in ~800 mi', price: '$14.88' },

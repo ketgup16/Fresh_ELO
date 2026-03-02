@@ -138,9 +138,7 @@
 
 .detailEyebrow {
   font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
+  font-weight: 600;
   color: var(--ld-semantic-color-text-subtle);
   margin: 0 0 var(--ld-primitive-scale-space-100, 4px);
 }

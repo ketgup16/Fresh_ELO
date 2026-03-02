@@ -1,4 +1,3 @@
-import { Wrench } from '@/components/icons/Wrench';
 import { DollarCircleFill } from '@/components/icons/DollarCircleFill';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
@@ -21,6 +20,8 @@ export interface MaintenanceHealthCardProps {
   bundleSavings?: string;   // e.g. "Bundle oil change + tire rotation and save $12"
   bundleSavingsAmount?: string; // e.g. "$12"
   location?: string;
+  /** Optional illustration shown as header background. Store locally in public/illustrations/ */
+  illustration?: string;
   onSchedule?: () => void;
   onViewReport?: () => void;
 }
@@ -81,6 +82,7 @@ export function MaintenanceHealthCard({
   bundleSavings,
   bundleSavingsAmount,
   location,
+  illustration,
   onSchedule,
   onViewReport,
 }: MaintenanceHealthCardProps) {
@@ -88,26 +90,33 @@ export function MaintenanceHealthCard({
 
   return (
     <article className={styles.card}>
-      {/* ── Header: dark navy + vehicle info + health score ── */}
-      <div className={styles.header}>
-        <div className={styles.headerIcon}>
-          <Wrench className={styles.wrenchIcon} aria-hidden="true" />
-        </div>
-        <div className={styles.headerText}>
-          <p className={styles.headerEyebrow}>Auto Care Center</p>
-          <p className={styles.headerVehicle}>{vehicle}</p>
-          {location && <p className={styles.headerMileage}>{location}</p>}
-          <p className={styles.headerMileage}>{mileage}</p>
-        </div>
-        <div className={styles.healthScore}>
-          <ScoreRing score={healthScore} />
-          <span className={styles.scoreLabel}>Health</span>
+      {/* ── Header: illustration background + vehicle info + health score ── */}
+      <div className={`${styles.header} ${illustration ? styles.headerWithIllustration : ''}`}>
+        {illustration && (
+          <img
+            src={illustration}
+            alt=""
+            aria-hidden="true"
+            className={styles.headerIllustration}
+          />
+        )}
+        <div className={styles.headerContent}>
+          <div className={styles.headerText}>
+            <p className={styles.headerEyebrow}>Auto Care Center</p>
+            <p className={styles.headerVehicle}>{vehicle}</p>
+            {location && <p className={styles.headerMileage}>{location}</p>}
+            <p className={styles.headerMileage}>{mileage}</p>
+          </div>
+          <div className={styles.healthScore}>
+            <ScoreRing score={healthScore} />
+            <span className={styles.scoreLabel}>Health</span>
+          </div>
         </div>
       </div>
 
       {/* ── Maintenance health grid ── */}
       <div className={styles.section}>
-        <p className={styles.sectionTitle}>Vehicle Maintenance Status</p>
+        <p className={styles.sectionTitle}>Maintenance status</p>
         <div className={styles.healthGrid}>
           {items.map((item) => (
             <div

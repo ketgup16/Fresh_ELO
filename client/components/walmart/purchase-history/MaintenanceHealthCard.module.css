@@ -13,23 +13,38 @@
   display: flex;
   align-items: center;
   gap: var(--ld-primitive-scale-space-350, 14px);
+  position: relative;
+  overflow: hidden;
+  min-height: 100px;
 }
 
-.headerIcon {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
-  background: rgba(255, 255, 255, 0.12);
+/* When an illustration is present the solid bg acts as a fallback */
+.headerWithIllustration {
+  padding: var(--ld-primitive-scale-space-500, 20px) var(--ld-primitive-scale-space-500, 20px);
+}
+
+/* Illustration image — fills right portion of header */
+.headerIllustration {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,1) 70%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,1) 70%);
+  pointer-events: none;
+}
+
+/* Wraps text + score — sits above illustration */
+.headerContent {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.wrenchIcon {
-  width: 26px;
-  height: 26px;
-  color: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
+  gap: var(--ld-primitive-scale-space-350, 14px);
+  flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .headerText {
@@ -39,9 +54,7 @@
 
 .headerEyebrow {
   font-size: var(--ld-semantic-font-body-small-size, 11px);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
+  font-weight: 600;
   color: rgba(255, 255, 255, 0.6);
   margin: 0 0 var(--ld-primitive-scale-space-050, 2px);
 }
@@ -76,9 +89,7 @@
 
 .scoreLabel {
   font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-weight: 600;
   color: rgba(255, 255, 255, 0.55);
   margin-top: var(--ld-primitive-scale-space-075, 3px);
 }
@@ -90,9 +101,7 @@
 
 .sectionTitle {
   font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-weight: 600;
   color: var(--ld-semantic-color-text-subtle);
   margin: 0 0 var(--ld-primitive-scale-space-300, 12px);
 }
@@ -132,8 +141,6 @@
 .statusBadge {
   font-size: 10px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   padding: var(--ld-primitive-scale-space-050, 2px) var(--ld-primitive-scale-space-150, 6px);
   border-radius: var(--ld-primitive-scale-borderradius-050, 4px);
   display: inline-flex;
