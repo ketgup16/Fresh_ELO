@@ -206,6 +206,27 @@
   color: var(--ld-semantic-color-action-text-on-fill-negative-disabled);
 }
 
+/* White Variant (for use on dark/colored backgrounds) */
+.iconButton--variant-white {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.iconButton--variant-white:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.iconButton--variant-white:active:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.iconButton--variant-white:disabled {
+  color: rgba(255, 255, 255, 0.4);
+}
+
 /* Shape Variants */
 .iconButton--shape-square {
   border-radius: var(--ld-primitive-scale-border-radius-50);

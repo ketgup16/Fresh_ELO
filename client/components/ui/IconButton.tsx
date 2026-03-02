@@ -4,7 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 export type IconButtonSize = 'small' | 'medium' | 'large';
 export type IconButtonType = 'button' | 'reset' | 'submit';
-export type IconButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'ghost';
+export type IconButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'ghost' | 'white';
 export type IconButtonShape = 'square' | 'rounded';
 
 interface CommonProps {
@@ -176,6 +176,7 @@ const iconButtonVariants = cva('', {
       tertiary: '',
       destructive: '',
       ghost: '',
+      white: '',
     },
     shape: {
       square: '',

@@ -59,13 +59,13 @@ export function MobileTopNav({ showHomeExtras = false }: MobileTopNavProps) {
               </span>
               <IconButton
                 onClick={(e) => { e.stopPropagation(); setShowSearchModal(true); }}
-                UNSAFE_className="rounded-full -mr-1"
+                UNSAFE_className="rounded-full -mr-2"
                 style={{ backgroundColor: 'var(--ld-semantic-color-text-brand-bold)' }}
                 aria-label="Search"
                 variant="ghost"
-                size="small"
+                size="medium"
               >
-                <Search className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                <Search className="text-white" />
               </IconButton>
             </div>
             <CartIcon count={0} price="$0.00" textColor="white" />
