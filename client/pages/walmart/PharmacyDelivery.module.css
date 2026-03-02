@@ -34,11 +34,7 @@
 
 /* Hero card */
 .heroCard {
-  background: linear-gradient(
-    135deg,
-    var(--ld-semantic-color-text-positive),
-    var(--ld-semantic-color-text-positive-bold)
-  );
+  background: var(--ld-semantic-color-fill-success-bold, #1A7A34);
   border-radius: 8px;
   padding: 24px;
   color: var(--ld-semantic-color-text-inverse);

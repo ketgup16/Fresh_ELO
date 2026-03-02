@@ -9,7 +9,7 @@
 
 /* ── Left panel: offer badge ─────────────────────────── */
 .offerPanel {
-  background: linear-gradient(160deg, var(--ld-semantic-color-fill-success-bold, #1A3A2A) 0%, var(--ld-semantic-color-text-positive, #0D5C2E) 60%, var(--ld-semantic-color-border-positive, #1A7A34) 100%);
+  background: var(--ld-semantic-color-fill-success-bold, #1A3A2A);
   padding: var(--ld-primitive-scale-space-600, 24px) var(--ld-primitive-scale-space-500, 20px);
   display: flex;
   flex-direction: column;

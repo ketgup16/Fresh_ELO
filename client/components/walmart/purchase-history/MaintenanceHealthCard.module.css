@@ -8,7 +8,7 @@
 
 /* ── Header strip ──────────────────────────────────────── */
 .header {
-  background: linear-gradient(135deg, var(--ld-semantic-color-fill-brand-bold, #001E5A) 0%, var(--ld-semantic-color-action-fill-primary, #003087) 100%);
+  background: var(--ld-semantic-color-fill-brand-bold, #001E5A);
   padding: var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-500, 20px);
   display: flex;
   align-items: center;
