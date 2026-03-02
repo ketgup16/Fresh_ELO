@@ -360,7 +360,7 @@
 .ratingThanks {
   font-size: 13px;
   font-weight: 600;
-  color: var(--ld-semantic-color-fill-positive);
+  color: var(--ld-semantic-color-text-positive);
   margin: 0;
 }
 
