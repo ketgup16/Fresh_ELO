@@ -4,7 +4,7 @@
   padding: 16px 24px;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 300;
   background-color: var(--ld-semantic-color-top-nav-fill);
   font-family: var(--ld-semantic-font-family-sans);
 }
