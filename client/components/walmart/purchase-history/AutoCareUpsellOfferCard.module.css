@@ -9,7 +9,7 @@
 
 /* ── Left panel: offer badge ─────────────────────────── */
 .offerPanel {
-  background: var(--ld-semantic-color-fill-success-bold, #1A3A2A);
+  background: var(--ld-semantic-color-fill-brand-bold, #001e60);
   padding: var(--ld-primitive-scale-space-600, 24px) var(--ld-primitive-scale-space-500, 20px);
   display: flex;
   flex-direction: column;
@@ -130,7 +130,7 @@
   width: 6px;
   height: 6px;
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
-  background: var(--ld-semantic-color-text-positive, #1A7A34);
+  background: rgba(255, 255, 255, 0.7);
   flex-shrink: 0;
   animation: pulse 1.8s ease-in-out infinite;
 }
@@ -166,17 +166,18 @@
   display: flex;
   align-items: flex-start;
   gap: var(--ld-primitive-scale-space-150, 6px);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--ld-semantic-color-text-subtle, #74767C);
-  line-height: 1.4;
+  font-family: var(--ld-semantic-font-caption-family);
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: var(--ld-semantic-font-caption-weight-default, 400);
+  line-height: var(--ld-semantic-font-caption-line-height, 1rem);
+  color: var(--ld-semantic-color-text-subtle);
 }
 
 .valueBulletIcon {
   width: 14px;
   height: 14px;
   flex-shrink: 0;
-  color: var(--ld-semantic-color-text-positive, #1A7A34);
+  color: var(--ld-semantic-color-text-brand, #0053e2);
   margin-top: 1px;
 }
 
@@ -190,8 +191,10 @@
 }
 
 .detailEyebrow {
-  font-size: 11px;
-  font-weight: 600;
+  font-family: var(--ld-semantic-font-caption-family);
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: var(--ld-semantic-font-caption-weight-alt, 700);
+  line-height: var(--ld-semantic-font-caption-line-height, 1rem);
   color: var(--ld-semantic-color-text-subtle);
   margin: 0 0 var(--ld-primitive-scale-space-100, 4px);
 }
@@ -249,7 +252,7 @@
 .priceNew {
   font-size: 24px;
   font-weight: 900;
-  color: var(--ld-semantic-color-text-positive, #1A7A34);
+  color: var(--ld-semantic-color-text-brand, #0053e2);
   line-height: 1.2;
   flex-shrink: 0;
 }
@@ -262,10 +265,12 @@
 }
 
 .priceSaving {
-  font-size: var(--ld-semantic-font-body-small-size, 13px);
-  font-weight: 600;
-  color: var(--ld-semantic-color-text-positive, #1A7A34);
-  background: var(--ld-semantic-color-fill-success-subtle, #EAF6ED);
+  font-family: var(--ld-semantic-font-caption-family);
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: var(--ld-semantic-font-caption-weight-alt, 700);
+  line-height: var(--ld-semantic-font-caption-line-height, 1rem);
+  color: var(--ld-semantic-color-text-positive);
+  background: var(--ld-semantic-color-fill-positive-subtle);
   padding: var(--ld-primitive-scale-space-050, 2px) var(--ld-primitive-scale-space-200, 8px);
   border-radius: var(--ld-primitive-scale-borderradius-050, 4px);
   white-space: nowrap;
@@ -284,6 +289,7 @@
 .actions {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--ld-primitive-scale-space-200, 8px);
   margin-top: auto;
 }

@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/Button';
 import { Car } from '@/components/icons/Car';
-import { CheckCircleFill } from '@/components/icons/CheckCircleFill';
+import { CheckCircle } from '@/components/icons/CheckCircle';
 import styles from './AutoCareUpsellOfferCard.module.css';
 
 export interface AutoCareUpsellOfferCardProps {
@@ -102,7 +102,7 @@ export function AutoCareUpsellOfferCard({
           <ul className={styles.valueBullets}>
             {valueBullets.map((bullet) => (
               <li key={bullet} className={styles.valueBullet}>
-                <CheckCircleFill className={styles.valueBulletIcon} aria-hidden="true" />
+                <CheckCircle className={styles.valueBulletIcon} aria-hidden="true" />
                 <span>{bullet}</span>
               </li>
             ))}
@@ -120,10 +120,10 @@ export function AutoCareUpsellOfferCard({
 
         {/* Pricing */}
         <div>
-          <div className={styles.priceRow}>
-            <span className={styles.priceNew}>{memberPrice}</span>
-            <span className={styles.priceOld}>{regularPrice}</span>
-            <span className={styles.priceSaving}>Save {savings}</span>
+          <div className={styles.priceRow} role="group" aria-label="Pricing">
+            <span className={styles.priceNew} aria-label={`Member price: ${memberPrice}`}>{memberPrice}</span>
+            <span className={styles.priceOld} aria-label={`Regular price: ${regularPrice}`}>{regularPrice}</span>
+            <span className={styles.priceSaving} aria-label={`You save ${savings}`}>Save {savings}</span>
           </div>
           {terms && <p className={styles.finePrint}>{terms}</p>}
         </div>

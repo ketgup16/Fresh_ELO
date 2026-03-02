@@ -1,8 +1,8 @@
 import React from 'react';
-import { DollarCircleFill } from '@/components/icons/DollarCircleFill';
-import { WarningFill } from '@/components/icons/WarningFill';
+import { DollarCircle } from '@/components/icons/DollarCircle';
+import { Warning } from '@/components/icons/Warning';
 import { Clock } from '@/components/icons/Clock';
-import { CheckCircleFill } from '@/components/icons/CheckCircleFill';
+import { CheckCircle } from '@/components/icons/CheckCircle';
 import { Tag } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
@@ -34,9 +34,9 @@ export interface MaintenanceHealthCardProps {
 }
 
 const STATUS_TAG_CONFIG: Record<HealthStatus, { color: 'negative' | 'warning' | 'positive'; icon: React.ReactNode; label: string }> = {
-  overdue: { color: 'negative', icon: <WarningFill />, label: 'Overdue' },
-  due:     { color: 'warning',  icon: <Clock />,        label: 'Due soon' },
-  good:    { color: 'positive', icon: <CheckCircleFill />, label: 'Good' },
+  overdue: { color: 'negative', icon: <Warning     width={12} height={12} aria-hidden="true" />, label: 'Overdue' },
+  due:     { color: 'warning',  icon: <Clock       width={12} height={12} aria-hidden="true" />, label: 'Due soon' },
+  good:    { color: 'positive', icon: <CheckCircle width={12} height={12} aria-hidden="true" />, label: 'Good' },
 };
 
 // Radial health score ring
@@ -156,7 +156,7 @@ export function MaintenanceHealthCard({
       {/* ── Bundle savings strip ── */}
       {bundleSavings && (
         <div className={styles.savingsBanner}>
-          <DollarCircleFill className={styles.savingsIconSvg} aria-hidden="true" />
+          <DollarCircle className={styles.savingsIconSvg} aria-hidden="true" />
           <p className={styles.savingsText}>
             {bundleSavings}{' '}
             {bundleSavingsAmount && (
