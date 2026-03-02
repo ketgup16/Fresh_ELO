@@ -52,6 +52,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  line-height: 0;
 }
 
 .icon img,
@@ -60,6 +61,7 @@
   /* respect the width/height set on the element itself */
   max-width: none;
   max-height: none;
+  vertical-align: middle;
 }
 
 /* ── Message text ────────────────────────────────────────── */
