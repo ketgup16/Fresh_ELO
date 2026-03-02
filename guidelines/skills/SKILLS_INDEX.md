@@ -3,7 +3,7 @@ title: Skills Index
 scope: skill
 status: stable
 owner: design-system
-last_updated: 2025-02-28
+last_updated: 2026-03-02
 ---
 
 ## What Is a Skill?
@@ -73,6 +73,14 @@ Skills assume you have already read the relevant rule. They do not re-explain th
 | [Build a Card Meta Layout](SKILL_BuildCardMetaLayout.md) | `RULE_CardMetaLayout.md` | Icon + stacked label/sublabel chip pattern with correct nested DOM structure |
 | [Build an LD Primitive Component](SKILL_BuildLDComponent.md) | `RULE_CreateNewComponent.md` | Complete 10-step process for new design-system primitives in `client/components/ui/` |
 | [Use LinkButton and Spot Icon](SKILL_UseLinkButton.md) | `RULE_LinkButtonAndSpotIcon.md` | LinkButton for text-link actions; round brand-colored Spot Icon for todo/action rows |
+
+### WCP Purchase History (validated March 2026)
+
+| Skill | Based on Rule | Summary |
+|---|---|---|
+| [Build a Purchase History Card](SKILL_BuildPurchaseHistoryCard.md) | `RULE_PurchaseHistoryCardPatterns.md`, `RULE_WCPComponentCreation.md` | Illustrated headers, status Tags, Alert banners, health score rings, pricing rows — full card recipe |
+| [Accessibility Hardening](SKILL_AccessibilityHardening.md) | `RULE_WCPComponentCreation.md` | aria-hidden on icons, price row groups, SVG aria-labels, hover tooltips, rating widget keyboard support |
+| [Manage a Pattern Library](SKILL_ManagePatternLibrary.md) | `RULE_PurchaseHistoryCardPatterns.md`, `RULE_PromptDrivenDesign.md` | Add/remove patterns, write prompts, maintain summary table, promote patterns to real pages |
 
 ---
 
