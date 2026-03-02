@@ -64,6 +64,12 @@ Skills assume you have already read the relevant rule. They do not re-explain th
 |---|---|---|
 | [Write a Design Prompt](SKILL_WriteDesignPrompt.md) | `RULE_PromptDrivenDesign.md` | Recipes for prompting new pages, cards, banners, carousels, and nav sections |
 
+### Product Documentation
+
+| Skill | Based on Rule | Summary |
+|---|---|---|
+| [Generate a PRD from Figma](SKILL_PRD%20Template.md) | `RULE_PromptDrivenDesign.md` | Translate Figma anatomy annotations, do/don't specimens, and component states into a full PRD using the Walmart LD Arch standard template |
+
 ### Data & Components
 
 | Skill | Based on Rule | Summary |
