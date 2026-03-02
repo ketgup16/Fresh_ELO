@@ -371,63 +371,6 @@ export default function PurchaseHistory() {
                   animation on insert. Remove the wrapper + component to hide.
               ─────────────────────────────────────────────────────────────── */}
 
-              {/* Combined card: same-day oil change + curbside pickup bundle */}
-              <div className={styles.newCard}>
-                <CombinedOrderCard
-                  autoCare={COMBINED_CARD_AUTO}
-                  delivery={COMBINED_CARD_DELIVERY}
-                  autoCareAppointmentDate={new Date(2026, 2, 7)}
-                />
-              </div>
-
-              {/* Delayed delivery warning card: reschedule, switch to pickup, or cancel */}
-              <div className={styles.newCard}>
-                <DelayedDeliveryCard
-                  statusHeading="Delayed, estimated up to 2 hours"
-                  delayEstimate="Estimated up to 2 hours late"
-                  products={[P.strawberries, P.blueberries, P.bananas]}
-                  orderTotal="$32.47"
-                />
-              </div>
-
-              {/* Auto Care appointment card: oil change with Check in, Reschedule, View details */}
-              <div className={styles.newCard}>
-                <AutoCareOrderCard {...COMBINED_CARD_AUTO} />
-              </div>
-
-              {/* Vehicle maintenance health dashboard: overdue/due/good items + bundle savings */}
-              <div className={styles.newCard}>
-                <MaintenanceHealthCard
-                  vehicle="2019 Toyota Camry"
-                  mileage="22,450 miles"
-                  healthScore={62}
-                  location="Carrollton Supercenter · Auto Care Center"
-                  illustration="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff991ec87514645ea86e2480394f1c3fd?format=webp&width=800"
-                  items={[
-                    { name: 'Oil Change', status: 'overdue', detail: '3,200 mi overdue', price: '$29.88' },
-                    { name: 'Tire Rotation', status: 'due', detail: 'Due in ~800 mi', price: '$14.88' },
-                    { name: 'Wiper Blades', status: 'good', detail: 'Next: Oct 2026' },
-                  ]}
-                  bundleSavings="Bundle oil change + tire rotation —"
-                  bundleSavingsAmount="$12"
-                />
-              </div>
-
-              {/* Walmart+ exclusive Auto Care offer: 20% off tire rotation, expires in 2 days */}
-              <div className={styles.newCard}>
-                <AutoCareUpsellOfferCard
-                  vehicle="2019 Toyota Camry"
-                  vehicleSub="Last serviced 3,200 miles ago"
-                  serviceName="Tire Rotation"
-                  discountPct={20}
-                  regularPrice="$14.88"
-                  memberPrice="$11.90"
-                  savings="$2.98"
-                  expiresInDays={2}
-                  terms="Valid at Carrollton Supercenter Auto Care. One vehicle per offer. Walmart+ membership required."
-                />
-              </div>
-
               {/* ── Standard order list ───────────────────────────────────── */}
               <div className={styles.orderList}>
                 {visibleOrders.length === 0 ? (
