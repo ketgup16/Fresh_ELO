@@ -10,7 +10,7 @@
   max-height: 92vh;
   display: flex;
   flex-direction: column;
-  background: var(--ld-semantic-color-fill-surface-primary);
+  background: var(--ld-semantic-color-surface, #ffffff);
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
   overflow: hidden;
@@ -417,7 +417,7 @@
   padding: 12px 14px;
   border: 1px solid var(--ld-semantic-color-separator);
   border-radius: 8px;
-  background: var(--ld-semantic-color-fill-surface-primary);
+  background: var(--ld-semantic-color-surface, #ffffff);
   font-size: 15px;
   font-weight: 400;
   color: var(--ld-semantic-color-text);
@@ -448,7 +448,7 @@
   border-top: none;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background: var(--ld-semantic-color-fill-surface-primary);
+  background: var(--ld-semantic-color-surface, #ffffff);
 }
 
 /* Static (non-editable) field */

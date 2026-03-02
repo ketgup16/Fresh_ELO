@@ -5,7 +5,7 @@
   align-items: center;
   gap: 4px;
   padding: 6px 10px;
-  background: var(--ld-semantic-color-fill-surface-primary, #ffffff);
+  background: var(--ld-semantic-color-surface, #ffffff);
   border: 1px solid var(--ld-semantic-color-border-subtle, #e6e6e8);
   border-radius: 9999px;
   box-shadow: var(--ld-semantic-elevation-100, 0 1px 3px rgba(0,0,0,0.08));
@@ -105,7 +105,7 @@
   height: 6px;
   border-radius: 9999px;
   border: none;
-  background: var(--ld-semantic-color-fill-surface-primary, #ffffff);
+  background: var(--ld-semantic-color-surface, #ffffff);
   border: 1.5px solid var(--ld-semantic-color-border-moderate, #e6e6e8);
   cursor: pointer;
   padding: 0;

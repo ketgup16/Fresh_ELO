@@ -1,7 +1,7 @@
 .nav {
   width: 248px;
   flex-shrink: 0;
-  background: var(--ld-semantic-color-fill-surface-primary);
+  background: var(--ld-semantic-color-surface, #ffffff);
   border-right: 1px solid var(--ld-semantic-color-separator);
   display: flex;
   flex-direction: column;

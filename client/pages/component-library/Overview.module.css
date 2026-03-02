@@ -2,7 +2,7 @@
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  background-color: var(--ld-semantic-color-fill-surface-primary, #ffffff);
+  background-color: var(--ld-semantic-color-surface, #ffffff);
   box-shadow: var(--ld-semantic-elevation-100);
   border-radius: 8px;
   transition: box-shadow 0.2s, transform 0.2s;

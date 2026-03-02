@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--ld-primitive-scale-space-400, 16px);
-  background: var(--ld-semantic-color-fill-surface-primary, #ffffff);
+  background: var(--ld-semantic-color-surface, #ffffff);
   border-radius: var(--ld-primitive-scale-borderradius-100, 16px);
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
   padding: var(--ld-primitive-scale-space-600, 24px);

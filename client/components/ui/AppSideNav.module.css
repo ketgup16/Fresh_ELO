@@ -6,7 +6,7 @@
   align-items: center;
   padding: var(--ld-semantic-spacing-3, 12px) var(--ld-semantic-spacing-2, 8px);
   border-right: 1px solid var(--ld-semantic-color-separator, #E3E4E5);
-  background-color: var(--ld-semantic-color-fill-surface-primary, #ffffff);
+  background-color: var(--ld-semantic-color-surface, #ffffff);
   flex-shrink: 0;
   overflow-y: auto;
 }

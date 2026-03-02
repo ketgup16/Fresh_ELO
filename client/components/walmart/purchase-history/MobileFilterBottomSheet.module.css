@@ -17,7 +17,7 @@
 
 /* ── Sheet panel ── */
 .sheet {
-  background: var(--ld-semantic-color-fill-surface-primary);
+  background: var(--ld-semantic-color-surface, #ffffff);
   border-radius: 16px 16px 0 0;
   padding: 0 0 env(safe-area-inset-bottom, 0px);
   display: flex;

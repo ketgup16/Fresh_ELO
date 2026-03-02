@@ -4,7 +4,7 @@
   border: 1px solid var(--ld-semantic-color-separator);
   border-radius: 8px;
   overflow: hidden;
-  background: var(--ld-semantic-color-fill-surface-primary);
+  background: var(--ld-semantic-color-surface, #ffffff);
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
 }
 

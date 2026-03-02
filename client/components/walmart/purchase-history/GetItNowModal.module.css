@@ -9,7 +9,7 @@
   max-height: 92vh;
   display: flex;
   flex-direction: column;
-  background: var(--ld-semantic-color-fill-surface-primary);
+  background: var(--ld-semantic-color-surface, #ffffff);
   border-radius: 16px;
   box-shadow: var(--ld-semantic-elevation-shadow-overlay);
   overflow: hidden;

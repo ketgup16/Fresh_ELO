@@ -6,7 +6,7 @@
   padding: var(--ld-primitive-scale-space-200);
   
   /* Visual */
-  background-color: var(--ld-semantic-color-fill-surface-primary, #ffffff);
+  background-color: var(--ld-semantic-color-surface, #ffffff);
   border: none;
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   
@@ -62,7 +62,7 @@
   position: absolute;
   top: -6px;
   left: 20px;
-  fill: var(--ld-semantic-color-fill-surface-primary, #ffffff);
+  fill: var(--ld-semantic-color-surface, #ffffff);
   filter: drop-shadow(0px -2px 1px rgba(46, 47, 50, 0.10));
 }
 

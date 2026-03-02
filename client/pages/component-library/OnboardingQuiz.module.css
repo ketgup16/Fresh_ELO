@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 24px;
   padding: 32px;
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  background: var(--ld-semantic-color-surface, #ffffff);
   border-radius: 12px;
   box-shadow: 0 1px 4px rgba(46, 47, 50, 0.08), 0 4px 16px rgba(46, 47, 50, 0.08);
 }
@@ -194,7 +194,7 @@
 .optionCheckSelected {
   background: var(--ld-semantic-color-text-brand-bold, #001E60);
   border-color: var(--ld-semantic-color-text-brand-bold, #001E60);
-  color: var(--ld-semantic-color-fill-surface-primary, #fff);
+  color: var(--ld-semantic-color-surface, #ffffff);
 }
 
 .optionText {
@@ -287,7 +287,7 @@
   font-size: 13px;
   line-height: 1.65;
   color: var(--ld-semantic-color-text, #2E2F32);
-  background: var(--ld-semantic-color-fill-surface-primary, #fff);
+  background: var(--ld-semantic-color-surface, #ffffff);
   border: 1px solid var(--ld-semantic-color-border-moderate, #E3E4E5);
   border-radius: 8px;
   padding: 16px;

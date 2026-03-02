@@ -1,6 +1,6 @@
 /* TabFilled — filled/elevated tab bar wrapper */
 .tabFilled {
-  background: var(--ld-semantic-color-fill-surface-primary, #ffffff);
+  background: var(--ld-semantic-color-surface, #ffffff);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px) var(--ld-primitive-scale-borderradius-100, 8px) 0 0;
   overflow: hidden;
 }
