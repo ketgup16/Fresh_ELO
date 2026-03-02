@@ -1,6 +1,6 @@
 import React from 'react';
-import { DollarCircle } from '@/components/icons/DollarCircle';
 import { Warning } from '@/components/icons/Warning';
+import { Alert } from '@/components/ui/Alert';
 import { Clock } from '@/components/icons/Clock';
 import { CheckCircle } from '@/components/icons/CheckCircle';
 import { Tag } from '@/components/ui/Tag';
@@ -146,23 +146,19 @@ export function MaintenanceHealthCard({
         </div>
       </div>
 
-      {/* ── Value statement strip ── */}
+      {/* ── Value statement ── */}
       {valueStatement && (
-        <div className={styles.valueBar}>
-          <span className={styles.valueBarText}>{valueStatement}</span>
+        <div className={styles.alertWrapper}>
+          <Alert variant="info">{valueStatement}</Alert>
         </div>
       )}
 
-      {/* ── Bundle savings strip ── */}
+      {/* ── Bundle savings ── */}
       {bundleSavings && (
-        <div className={styles.savingsBanner}>
-          <DollarCircle className={styles.savingsIconSvg} aria-hidden="true" />
-          <p className={styles.savingsText}>
-            {bundleSavings}{' '}
-            {bundleSavingsAmount && (
-              <span className={styles.savingsAmount}>Save {bundleSavingsAmount}</span>
-            )}
-          </p>
+        <div className={styles.alertWrapper}>
+          <Alert variant="success">
+            {bundleSavings}{bundleSavingsAmount && <> — <strong>Save {bundleSavingsAmount}</strong></>}
+          </Alert>
         </div>
       )}
 

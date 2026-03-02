@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { Tag } from '@/components/ui/Tag';
+import { Alert } from '@/components/ui/Alert';
 import { ProgressTracker } from '@/components/ui/ProgressTracker';
 import { Clock, ChevronRight } from '@/components/icons';
 import type { OrderProduct } from './OrderCard';
@@ -60,10 +61,9 @@ export function DelayedDeliveryCard({
             </div>
           </div>
 
-          <div className={styles.delayCallout}>
-            <p className={styles.delayEstimate}>{delayEstimate}</p>
-            <p className={styles.delayNote}>We're working to get your order to you as quickly as possible.</p>
-          </div>
+          <Alert variant="warning">
+            <strong>{delayEstimate}</strong>{' '}— We’re working to get your order to you as quickly as possible.
+          </Alert>
 
           <ProgressTracker
             steps={DELIVERY_STEPS}
