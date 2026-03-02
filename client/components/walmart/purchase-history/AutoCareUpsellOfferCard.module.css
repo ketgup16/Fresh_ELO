@@ -200,11 +200,12 @@
 }
 
 .detailHeading {
-  font-size: var(--ld-semantic-font-heading-small-size, 20px);
-  font-weight: 700;
+  font-family: var(--ld-semantic-font-heading-small-family);
+  font-size: var(--ld-semantic-font-heading-small-size-b-s, 1.125rem);
+  font-weight: var(--ld-semantic-font-heading-small-weight-default, 700);
+  line-height: var(--ld-semantic-font-heading-small-line-height-b-s, 1.5rem);
   color: var(--ld-semantic-color-text-primary);
   margin: 0;
-  line-height: 1.25;
 }
 
 /* Vehicle row */
@@ -231,13 +232,18 @@
 }
 
 .vehicleName {
-  font-size: var(--ld-semantic-font-body-default-size, 14px);
-  font-weight: 700;
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
+  font-weight: var(--ld-semantic-font-body-small-weight-alt, 700);
+  line-height: var(--ld-semantic-font-body-small-line-height, 1.25rem);
   color: var(--ld-semantic-color-text-primary);
 }
 
 .vehicleSub {
-  font-size: 12px;
+  font-family: var(--ld-semantic-font-caption-family);
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: var(--ld-semantic-font-caption-weight-default, 400);
+  line-height: var(--ld-semantic-font-caption-line-height, 1rem);
   color: var(--ld-semantic-color-text-subtle);
 }
 

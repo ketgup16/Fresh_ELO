@@ -352,14 +352,17 @@
 
 .ratingRow {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
   margin-top: 4px;
 }
 
 .ratingThanks {
-  font-size: 13px;
-  font-weight: 600;
+  font-family: var(--ld-semantic-font-caption-family);
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: var(--ld-semantic-font-caption-weight-alt, 700);
+  line-height: var(--ld-semantic-font-caption-line-height, 1rem);
   color: var(--ld-semantic-color-text-positive);
   margin: 0;
 }
