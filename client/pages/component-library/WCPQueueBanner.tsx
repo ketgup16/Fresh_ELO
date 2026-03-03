@@ -2,57 +2,14 @@ import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { WCPQueueBanner } from '@/components/walmart/WCPQueueBanner';
 import { WCPRichSnackbar } from '@/components/walmart/WCPRichSnackbar';
-import { ProductCardList } from '@/components/walmart/ProductCardList';
-import { Button } from '@/components/ui/Button';
 import { Warning } from '@/components/icons/Warning';
+import { Button } from '@/components/ui/Button';
 import styles from './WCPQueueBanner.module.css';
 
-// ── Helper: seconds from now ───────────────────────────────────────────────
+// ── Helper: ms from now ────────────────────────────────────────────────────
 function secondsFromNow(s: number): number {
   return Date.now() + s * 1000;
 }
-
-// ── Static demo product data ───────────────────────────────────────────────
-const DEMO_PRODUCTS = [
-  {
-    image: 'https://i5.walmartimages.com/seo/Apple-AirPods-Pro-2nd-Generation-with-Lightning-Charging-Case_c3e28b66-aa34-45fa-9d5c-82ef81b8d0b0.0c8e6c0d6e34cf3e11da0965e8d6a21a.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff',
-    name: 'Apple AirPods Pro (2nd Generation)',
-    price: '189',
-    cents: '00',
-    wasPrice: 'Was $249.00',
-    flag: 'Rollback',
-    flagVariant: 'red' as const,
-    rating: 4.8,
-    ratingCount: '(3,241)',
-    pickup: 'today',
-  },
-  {
-    image: 'https://i5.walmartimages.com/seo/Samsung-65-Class-QLED-4K-Smart-TV_e5f4f5a0-5b2e-4b63-9e01-1d3adef06a14.d9453fa36d5a0d0c9e7faa85a0c16898.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff',
-    name: 'Samsung 65" QLED 4K Smart TV',
-    price: '697',
-    cents: '00',
-    wasPrice: 'Was $999.00',
-    flag: 'Flash deal',
-    flagVariant: 'red' as const,
-    rating: 4.6,
-    ratingCount: '(1,587)',
-    pickup: 'today',
-  },
-  {
-    image: 'https://i5.walmartimages.com/seo/Dyson-V15-Detect-Cordless-Vacuum-Cleaner_09bfc0d8-5a44-4f14-a7ed-6b9dc08c428e.fe7a3e83cde01e7b9f8a98a1f04e5b2e.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff',
-    name: 'Dyson V15 Detect Cordless Vacuum',
-    price: '449',
-    cents: '99',
-    wasPrice: 'Was $749.99',
-    flag: 'Limited',
-    flagVariant: 'red' as const,
-    rating: 4.7,
-    ratingCount: '(892)',
-    pickup: 'tomorrow',
-  },
-];
-
-// ── Helpers ────────────────────────────────────────────────────────────────
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return <h2 className={styles.sectionTitle}>{children}</h2>;
@@ -65,15 +22,15 @@ function SectionDesc({ children }: { children: React.ReactNode }) {
 // ── Main page ──────────────────────────────────────────────────────────────
 
 export default function WCPQueueBannerPage() {
-  const [landingEnd, setLandingEnd] = useState<number>(() => secondsFromNow(12 * 60 + 30));
-  const [urgencyEnd, setUrgencyEnd] = useState<number>(() => secondsFromNow(12 * 60));
-  const [dismissed, setDismissed] = useState(false);
+  const [lineJoinedEnd, setLineJoinedEnd] = useState(() => secondsFromNow(59 * 60));
+  const [warningEnd] = useState(() => secondsFromNow(10 * 60 + 23));
+  const [expiringEnd] = useState(() => secondsFromNow(45));
 
   return (
     <ComponentPageLayout
       section="WCP Components"
       title="[WCP] Queue Banner"
-      description="A sticky or inline banner with a live countdown timer for reserved carts, flash sales, and limited-time queue flows. Connected to WCPTimerView and product card badge timers."
+      description="A banner with a live countdown timer for reserved carts, flash sales, and limited-time queue flows. Supports multiple variants: line-joined (card), checkout (compact bar), and error (warning message)."
     >
       <div className={styles.page}>
 
@@ -81,146 +38,296 @@ export default function WCPQueueBannerPage() {
         <div className={styles.section}>
           <SectionTitle>Overview</SectionTitle>
           <SectionDesc>
-            The WCP Queue Banner communicates time-limited cart reservations and flash-sale urgency
-            to users mid-flow. It embeds a live <strong>WCPTimerView (compact)</strong> and
-            automatically shifts background color as time runs low: blue (normal) → yellow (warning,
-            &lt;10 min) → red-tinted (critical, &lt;1 min). It can be mounted sticky below the top
-            nav or inline within a content area.
+            The Queue Banner sits on a dark navy background and contains a white card with a product
+            image placeholder, timer badge, reservation text, and View/Leave action links. A link
+            row with a chevron appears below the card. The component adapts its sizing at the 900px
+            breakpoint — desktop gets larger padding and body-medium text, while mobile uses compact
+            padding and body-small text on certain variants.
           </SectionDesc>
         </div>
 
-        {/* ── Queue Landing Demo ───────────────────────────────────── */}
+        {/* ── Line Joined — Desktop (900+px) ───────────────────────── */}
         <div className={styles.section}>
-          <SectionTitle>Queue Landing Demo</SectionTitle>
+          <SectionTitle>Line Joined — Waiting Room (Light Blue Timer)</SectionTitle>
           <SectionDesc>
-            A full queue landing experience: sticky banner at the top with a shared timer, and
-            product cards below each showing the same countdown as a badge overlay.
+            Default variant when a user joins the line. Timer badge is light blue. Includes product
+            image placeholder, View &amp; Leave links, and a link row below.
           </SectionDesc>
 
           <div className={styles.controlRow}>
             <span className={styles.controlLabel}>Set timer:</span>
-            <Button variant="secondary" size="small" onClick={() => setLandingEnd(secondsFromNow(12 * 60))}>
-              12 min (normal)
+            <Button variant="secondary" size="small" onClick={() => setLineJoinedEnd(secondsFromNow(59 * 60))}>
+              59 min (normal)
             </Button>
-            <Button variant="secondary" size="small" onClick={() => setLandingEnd(secondsFromNow(4 * 60 + 30))}>
-              4:30 (warning)
+            <Button variant="secondary" size="small" onClick={() => setLineJoinedEnd(secondsFromNow(5 * 60))}>
+              5 min (warning)
             </Button>
-            <Button variant="secondary" size="small" onClick={() => setLandingEnd(secondsFromNow(40))}>
-              40 s (critical)
-            </Button>
-          </div>
-
-          <div className={styles.landingDemo}>
-            {/* Banner sits at the top of the demo frame */}
-            <WCPQueueBanner
-              endTime={landingEnd}
-              title="Your cart is reserved"
-              message="Complete checkout before time runs out"
-              ctaLabel="Checkout now"
-              onCta={() => {}}
-              onDismiss={() => {}}
-              position="inline"
-              inline
-            />
-
-            {/* Product cards below with the same timer as badge */}
-            <div className={styles.landingContent}>
-              <div>
-                <p className={styles.landingHeading}>Your reserved items</p>
-                <p className={styles.landingSubheading}>
-                  These items are held for you — complete checkout before the timer expires.
-                </p>
-              </div>
-
-              <div className={styles.productCardRow}>
-                {DEMO_PRODUCTS.map((product, i) => (
-                  <ProductCardList
-                    key={i}
-                    {...product}
-                    timerEndTime={landingEnd}
-                    timerLabel="Held"
-                    onAddToCart={() => {}}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Urgency States ───────────────────────────────────────── */}
-        <div className={styles.section}>
-          <SectionTitle>Urgency States</SectionTitle>
-          <SectionDesc>
-            The banner background changes automatically based on remaining time.
-          </SectionDesc>
-
-          <div className={styles.controlRow}>
-            <span className={styles.controlLabel}>Preview state:</span>
-            <Button variant="secondary" size="small" onClick={() => setUrgencyEnd(secondsFromNow(2 * 3600))}>
-              Normal
-            </Button>
-            <Button variant="secondary" size="small" onClick={() => setUrgencyEnd(secondsFromNow(5 * 60))}>
-              Warning (5 min)
-            </Button>
-            <Button variant="secondary" size="small" onClick={() => setUrgencyEnd(secondsFromNow(30))}>
-              Critical (30s)
+            <Button variant="secondary" size="small" onClick={() => setLineJoinedEnd(secondsFromNow(30))}>
+              30 s (critical)
             </Button>
           </div>
 
           <div className={styles.bannerFrame}>
             <WCPQueueBanner
-              endTime={urgencyEnd}
-              title="Your cart is reserved"
-              message="Complete checkout before time runs out"
-              ctaLabel="Checkout now"
-              onCta={() => {}}
-              position="inline"
+              endTime={lineJoinedEnd}
+              variant="lineJoined"
+              reservationText="reservation text"
+              onView={() => {}}
+              onLeave={() => {}}
+              linkText="Placeholder link text"
+              onLink={() => {}}
               inline
             />
           </div>
         </div>
 
-        {/* ── Mobile Bottom Position ───────────────────────────────── */}
+        {/* ── Line Joined — Warning (Yellow Timer) ─────────────────── */}
         <div className={styles.section}>
-          <SectionTitle>Mobile Bottom Position</SectionTitle>
+          <SectionTitle>Line Joined — Item Warning (Yellow Timer)</SectionTitle>
           <SectionDesc>
-            On mobile breakpoints (≤768px), use <code>position="bottom"</code> to anchor the queue
-            banner to the bottom of the viewport. This avoids conflict with the top navigation bar
-            and follows the Walmart mobile design pattern. The three urgency states below show how
-            the banner looks at the bottom of a mobile screen.
+            When the item reservation is nearing expiry, the timer badge turns yellow/warning.
+            Same card layout as line-joined but with urgency-driven badge color.
+          </SectionDesc>
+
+          <div className={styles.bannerFrame}>
+            <WCPQueueBanner
+              endTime={warningEnd}
+              variant="lineJoined"
+              reservationText="reservation text"
+              onView={() => {}}
+              onLeave={() => {}}
+              linkText="Placeholder link text"
+              onLink={() => {}}
+              inline
+            />
+          </div>
+        </div>
+
+        {/* ── Line Joined — Expiring (Red Timer) ───────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Line Joined — Expiring (Red Timer)</SectionTitle>
+          <SectionDesc>
+            Final urgency state — the timer badge turns red when time is critically low.
+          </SectionDesc>
+
+          <div className={styles.bannerFrame}>
+            <WCPQueueBanner
+              endTime={expiringEnd}
+              variant="lineJoined"
+              reservationText="reservation text"
+              onView={() => {}}
+              onLeave={() => {}}
+              linkText="Placeholder link text"
+              onLink={() => {}}
+              inline
+            />
+          </div>
+        </div>
+
+        {/* ── Checkout Variant ──────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Checkout Variant</SectionTitle>
+          <SectionDesc>
+            Simplified navy bar used during checkout. Shows timer + message + dismiss button.
+            On desktop (900+px) it has 24px vertical padding and body-medium text. On mobile
+            (&lt;900px) it becomes a compact 40px bar with body-small text.
+          </SectionDesc>
+
+          <div className={styles.variantRow}>
+            <div className={styles.variantCard}>
+              <div className={styles.demoLabel}>Desktop (900+px)</div>
+              <div className={styles.bannerFrame}>
+                <WCPQueueBanner
+                  endTime={secondsFromNow(63)}
+                  variant="checkout"
+                  queueMessage="queue messaging"
+                  onDismiss={() => {}}
+                  inline
+                />
+              </div>
+            </div>
+            <div className={styles.variantCard}>
+              <div className={styles.demoLabel}>Mobile (&lt;900px)</div>
+              <div className={styles.bannerFrameNarrow}>
+                <WCPQueueBanner
+                  endTime={secondsFromNow(63)}
+                  variant="checkout"
+                  queueMessage="queue messaging"
+                  onDismiss={() => {}}
+                  inline
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Error Variant ────────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Error Variant</SectionTitle>
+          <SectionDesc>
+            Shown when the queue encounters an error or the user is being placed in line. Displays
+            a warning icon and message. Desktop uses body-medium text with more padding; mobile
+            uses body-small text with compact padding.
+          </SectionDesc>
+
+          <div className={styles.variantRow}>
+            <div className={styles.variantCard}>
+              <div className={styles.demoLabel}>Desktop (900+px)</div>
+              <div className={styles.bannerFrame}>
+                <WCPQueueBanner
+                  endTime={secondsFromNow(600)}
+                  variant="error"
+                  errorMessage="Hang on, we're getting you in line. Please don't refresh or leave the line."
+                  inline
+                />
+              </div>
+            </div>
+            <div className={styles.variantCard}>
+              <div className={styles.demoLabel}>Mobile (&lt;900px)</div>
+              <div className={styles.bannerFrameNarrow}>
+                <WCPQueueBanner
+                  endTime={secondsFromNow(600)}
+                  variant="error"
+                  errorMessage="Hang on, we're getting you in line. Please don't refresh or leave the line."
+                  inline
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Mobile + Bottom Nav Demo ──────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Mobile — Above Bottom Nav</SectionTitle>
+          <SectionDesc>
+            On mobile, the queue banner sits directly above the bottom navigation bar. The snackbar
+            (inverse) appears above the banner. This demo simulates a phone frame to show the
+            stacking order. Note: the bottom nav is shown as a placeholder — the real app uses the
+            existing <code>BottomNav</code> from the layout shell.
           </SectionDesc>
 
           <div className={styles.mobileStatesRow}>
-            {([
-              { label: 'Normal state', sublabel: '> 10 min remaining', end: secondsFromNow(12 * 60) },
-              { label: 'Warning state', sublabel: '< 10 min remaining', end: secondsFromNow(4 * 60 + 30) },
-              { label: 'Critical state', sublabel: '< 1 min remaining', end: secondsFromNow(45) },
-            ] as const).map(({ label, sublabel, end }) => (
-              <div key={label} className={styles.mobileStateCard}>
-                <div className={styles.mobileStateLabel}>{label}</div>
-                <div className={styles.mobileStateSublabel}>{sublabel}</div>
-                <div className={styles.phoneFrame}>
-                  {/* Simulated page background */}
-                  <div className={styles.phonePage}>
-                    <div className={styles.phoneNavBar} />
-                    <div className={styles.phonePageContent} />
-                  </div>
-                  {/* Banner pinned to bottom of phone frame */}
-                  <div className={styles.phoneBannerSlot}>
-                    <WCPQueueBanner
-                      endTime={end}
-                      title="queue messaging"
-                      message=""
-                      ctaLabel=""
-                      showDismiss
-                      onDismiss={() => {}}
-                      position="inline"
-                      inline
-                    />
+            {/* Line Joined with Snackbar */}
+            <div className={styles.mobileStateCard}>
+              <div className={styles.mobileStateLabel}>Line Joined + Snackbar</div>
+              <div className={styles.mobileStateSublabel}>Waiting room state</div>
+              <div className={styles.phoneFrame}>
+                <div className={styles.phonePage}>
+                  <div className={styles.phoneNavBar} />
+                  <div className={styles.phonePageContent} />
+                </div>
+                <div className={styles.phoneBannerSlot}>
+                  <WCPRichSnackbar
+                    open
+                    color="inverse"
+                    leadingSlot={<Warning width={20} height={20} />}
+                    message="Declarative title or body"
+                    actionLabel="Action Button"
+                    onAction={() => {}}
+                    duration={Infinity}
+                    inline
+                  />
+                  <WCPQueueBanner
+                    endTime={secondsFromNow(59 * 60)}
+                    variant="lineJoined"
+                    reservationText="reservation text"
+                    onView={() => {}}
+                    onLeave={() => {}}
+                    linkText="Placeholder link text"
+                    onLink={() => {}}
+                    inline
+                  />
+                </div>
+                <div className={styles.phoneBottomNav}>
+                  <div className={styles.phoneBottomNavDivider} />
+                  <div className={styles.phoneBottomNavItems}>
+                    {['Shop', 'My Items', 'Search', 'Services', 'Account'].map((item) => (
+                      <div key={item} className={styles.phoneBottomNavItem}>
+                        <div className={styles.phoneBottomNavIcon} />
+                        <span className={styles.phoneBottomNavLabel}>{item}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Warning with Snackbar */}
+            <div className={styles.mobileStateCard}>
+              <div className={styles.mobileStateLabel}>Item Warning + Snackbar</div>
+              <div className={styles.mobileStateSublabel}>Yellow timer badge</div>
+              <div className={styles.phoneFrame}>
+                <div className={styles.phonePage}>
+                  <div className={styles.phoneNavBar} />
+                  <div className={styles.phonePageContent} />
+                </div>
+                <div className={styles.phoneBannerSlot}>
+                  <WCPRichSnackbar
+                    open
+                    color="inverse"
+                    leadingSlot={<Warning width={20} height={20} />}
+                    message="Declarative title or body"
+                    actionLabel="Action Button"
+                    onAction={() => {}}
+                    duration={Infinity}
+                    inline
+                  />
+                  <WCPQueueBanner
+                    endTime={warningEnd}
+                    variant="lineJoined"
+                    reservationText="reservation text"
+                    onView={() => {}}
+                    onLeave={() => {}}
+                    linkText="Placeholder link text"
+                    onLink={() => {}}
+                    inline
+                  />
+                </div>
+                <div className={styles.phoneBottomNav}>
+                  <div className={styles.phoneBottomNavDivider} />
+                  <div className={styles.phoneBottomNavItems}>
+                    {['Shop', 'My Items', 'Search', 'Services', 'Account'].map((item) => (
+                      <div key={item} className={styles.phoneBottomNavItem}>
+                        <div className={styles.phoneBottomNavIcon} />
+                        <span className={styles.phoneBottomNavLabel}>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Checkout */}
+            <div className={styles.mobileStateCard}>
+              <div className={styles.mobileStateLabel}>Checkout (Compact)</div>
+              <div className={styles.mobileStateSublabel}>Compact 40px bar on mobile</div>
+              <div className={styles.phoneFrame}>
+                <div className={styles.phonePage}>
+                  <div className={styles.phoneNavBar} />
+                  <div className={styles.phonePageContent} />
+                </div>
+                <div className={styles.phoneBannerSlot}>
+                  <WCPQueueBanner
+                    endTime={secondsFromNow(63)}
+                    variant="checkout"
+                    queueMessage="queue messaging"
+                    onDismiss={() => {}}
+                    inline
+                  />
+                </div>
+                <div className={styles.phoneBottomNav}>
+                  <div className={styles.phoneBottomNavDivider} />
+                  <div className={styles.phoneBottomNavItems}>
+                    {['Shop', 'My Items', 'Search', 'Services', 'Account'].map((item) => (
+                      <div key={item} className={styles.phoneBottomNavItem}>
+                        <div className={styles.phoneBottomNavIcon} />
+                        <span className={styles.phoneBottomNavLabel}>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -228,10 +335,9 @@ export default function WCPQueueBannerPage() {
         <div className={styles.section}>
           <SectionTitle>Snackbar Integration</SectionTitle>
           <SectionDesc>
-            When a user joins the queue, pair the queue banner with a{' '}
-            <strong>WCPRichSnackbar</strong> (Inverse variant) to communicate queue status. The
-            snackbar confirms that the user is being added to the line and provides key
-            instructions. It appears above the bottom queue banner on mobile.
+            Pair the queue banner with a <strong>WCPRichSnackbar</strong> (Inverse variant) above
+            it to communicate queue status. The snackbar confirms the user is being added to the
+            line and provides instructions.
           </SectionDesc>
 
           <div className={styles.snackbarDemo}>
@@ -243,55 +349,6 @@ export default function WCPQueueBannerPage() {
               duration={Infinity}
               inline
             />
-          </div>
-
-          <SectionDesc>
-            The "Brand" variant can be used for positive queue confirmations (e.g., when the user
-            reaches the front of the line):
-          </SectionDesc>
-          <div className={styles.snackbarDemo}>
-            <WCPRichSnackbar
-              open
-              color="brand"
-              leadingSlot={<Warning width={20} height={20} />}
-              message="You're next! Complete your checkout before your reservation expires."
-              actionLabel="Checkout now"
-              onAction={() => {}}
-              duration={Infinity}
-              inline
-            />
-          </div>
-        </div>
-
-        {/* ── Position Variants ────────────────────────────────────── */}
-        <div className={styles.section}>
-          <SectionTitle>Position Variants</SectionTitle>
-          <SectionDesc>
-            Use <code>position="top"</code> (default) for sticky placement just below the nav bar.
-            Use <code>position="inline"</code> for in-flow placement within a content area — useful
-            for demo pages, checkout flows, or cart pages.
-          </SectionDesc>
-
-          <div className={styles.bannerFrame}>
-            {!dismissed ? (
-              <WCPQueueBanner
-                endTime={secondsFromNow(8 * 60)}
-                title="Your cart is reserved"
-                message="8 items are being held for you"
-                ctaLabel="Go to checkout"
-                onCta={() => {}}
-                onDismiss={() => setDismissed(true)}
-                showDismiss
-                position="inline"
-                inline
-              />
-            ) : (
-              <div style={{ padding: '16px 24px', background: 'var(--ld-semantic-color-fill-accent-blue-subtle, #e8f1ff)' }}>
-                <Button variant="secondary" size="small" onClick={() => setDismissed(false)}>
-                  Restore banner
-                </Button>
-              </div>
-            )}
           </div>
         </div>
 
@@ -309,81 +366,85 @@ export default function WCPQueueBannerPage() {
             </thead>
             <tbody>
               <tr><td>endTime</td><td>Date | number | string</td><td>—</td><td>Required. Target end time for the countdown.</td></tr>
-              <tr><td>title</td><td>string</td><td>'Your cart is reserved'</td><td>Bold headline in the banner.</td></tr>
-              <tr><td>message</td><td>string</td><td>'Complete checkout before time runs out'</td><td>Secondary caption (hidden on tablet).</td></tr>
-              <tr><td>ctaLabel</td><td>string</td><td>'Checkout now'</td><td>Primary action button label.</td></tr>
-              <tr><td>onCta</td><td>() =&gt; void</td><td>—</td><td>Called when the CTA button is clicked.</td></tr>
-              <tr><td>onDismiss</td><td>() =&gt; void</td><td>—</td><td>Called when the close button is clicked. Hides the dismiss button if omitted.</td></tr>
-              <tr><td>showDismiss</td><td>boolean</td><td>true</td><td>Whether to render the close button.</td></tr>
-              <tr><td>position</td><td>'top' | 'bottom' | 'inline'</td><td>'top'</td><td>'top' = sticky below nav; 'bottom' = fixed to bottom (mobile); 'inline' = in-flow.</td></tr>
+              <tr><td>variant</td><td>'lineJoined' | 'checkout' | 'error'</td><td>'lineJoined'</td><td>Banner variant matching Figma states.</td></tr>
+              <tr><td>productImage</td><td>string</td><td>—</td><td>Product thumbnail URL (32×32). Shows a gray placeholder if omitted.</td></tr>
+              <tr><td>reservationText</td><td>string</td><td>'reservation text'</td><td>Text next to the timer badge on the white card.</td></tr>
+              <tr><td>viewLabel</td><td>string</td><td>'View'</td><td>Label for the View link button.</td></tr>
+              <tr><td>onView</td><td>() =&gt; void</td><td>—</td><td>Called when View is clicked.</td></tr>
+              <tr><td>leaveLabel</td><td>string</td><td>'Leave'</td><td>Label for the Leave link button.</td></tr>
+              <tr><td>onLeave</td><td>() =&gt; void</td><td>—</td><td>Called when Leave is clicked.</td></tr>
+              <tr><td>linkText</td><td>string</td><td>'Placeholder link text'</td><td>Link row text below the card.</td></tr>
+              <tr><td>showLinkRow</td><td>boolean</td><td>true</td><td>Whether to show the link row.</td></tr>
+              <tr><td>queueMessage</td><td>string</td><td>'queue messaging'</td><td>Message for the checkout variant.</td></tr>
+              <tr><td>onDismiss</td><td>() =&gt; void</td><td>—</td><td>Called when the close button is clicked (checkout).</td></tr>
+              <tr><td>errorMessage</td><td>string</td><td>(default text)</td><td>Error/loading message (error variant).</td></tr>
+              <tr><td>position</td><td>'top' | 'bottom' | 'inline'</td><td>'top'</td><td>'top' = sticky; 'bottom' = fixed above bottom nav; 'inline' = in-flow.</td></tr>
               <tr><td>onExpire</td><td>() =&gt; void</td><td>—</td><td>Called once when the timer hits zero.</td></tr>
             </tbody>
           </table>
         </div>
 
-        {/* ── Code example ────────────────────────────────────────── */}
+        {/* ── Usage ────────────────────────────────────────────────── */}
         <div className={styles.section}>
           <SectionTitle>Usage</SectionTitle>
           <pre className={styles.codeBlock}>{`import { WCPQueueBanner } from '@/components/walmart/WCPQueueBanner';
 
-// Sticky banner (default) — sits below the nav
+// Line Joined (default) — card with image, timer, View/Leave
 <WCPQueueBanner
   endTime={reservationEndTime}
-  title="Your cart is reserved"
-  ctaLabel="Checkout now"
-  onCta={handleCheckout}
+  reservationText="Your item is reserved"
+  onView={handleView}
+  onLeave={handleLeave}
+  linkText="View all reserved items"
+  onLink={handleLink}
+/>
+
+// Checkout — compact navy bar
+<WCPQueueBanner
+  endTime={checkoutEndTime}
+  variant="checkout"
+  queueMessage="Complete checkout before time runs out"
   onDismiss={handleDismiss}
 />
 
-// Inline banner — in-flow within a page section
+// Error — warning message
 <WCPQueueBanner
-  endTime={reservationEndTime}
-  position="inline"
-  title="Flash sale ends soon"
-  message="Only 3 left at this price"
-  ctaLabel="Buy now"
-  onCta={handleBuy}
-/>
-
-// Product card with timer badge
-<ProductCardGrid
-  {...productProps}
-  timerEndTime={reservationEndTime}
-  timerLabel="Held"
+  endTime={endTime}
+  variant="error"
+  errorMessage="Hang on, we're getting you in line."
 />`}</pre>
         </div>
 
-        {/* ── Do / Don't ──────────────────────────────────────────── */}
+        {/* ── Guidelines ──────────────────────────────────────────── */}
         <div className={styles.section}>
           <SectionTitle>Guidelines</SectionTitle>
           <div className={styles.guidelineGrid}>
             <div className={styles.guidelineCard}>
               <div className={styles.doLabel}>Do</div>
               <p className={styles.guidelineText}>
-                Use a single shared <code>endTime</code> value for both the queue banner and any
-                product card badge timers in the same flow — they should always show the same
-                remaining time.
+                Use <code>variant="lineJoined"</code> for the main queue waiting experience and
+                pair it with a WCPRichSnackbar (Inverse) above it.
               </p>
             </div>
             <div className={styles.guidelineCard}>
               <div className={styles.dontLabel}>Don't</div>
               <p className={styles.guidelineText}>
-                Don't stack multiple queue banners at the top of the page. Only one queue reservation
-                should be communicated at a time.
+                Don't stack multiple queue banners. Only one queue reservation should be active at
+                a time.
               </p>
             </div>
             <div className={styles.guidelineCard}>
               <div className={styles.doLabel}>Do</div>
               <p className={styles.guidelineText}>
-                Always provide an <code>onExpire</code> callback when the banner is in a real queue
-                flow — use it to navigate the user to an expired state or refresh their session.
+                Use <code>variant="checkout"</code> during the checkout flow for a compact, less
+                intrusive timer bar.
               </p>
             </div>
             <div className={styles.guidelineCard}>
               <div className={styles.dontLabel}>Don't</div>
               <p className={styles.guidelineText}>
-                Don't use the queue banner for generic promotions that are not time-constrained.
-                Use the Basic Banner or Promo Banner component instead.
+                Don't use the queue banner for generic promotions. Use the Basic Banner or Promo
+                Banner component instead.
               </p>
             </div>
           </div>

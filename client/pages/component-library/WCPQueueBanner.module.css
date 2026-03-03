@@ -40,6 +40,14 @@
   border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
+/* Narrow frame to simulate mobile viewport */
+.bannerFrameNarrow {
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  overflow: hidden;
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  max-width: 375px;
+}
+
 .demoLabel {
   font-family: var(--ld-semantic-font-body-small-family);
   font-size: 11px;
@@ -50,44 +58,18 @@
   margin-bottom: 8px;
 }
 
-/* ── Queue Landing demo ─────────────────────────────────────── */
-.landingDemo {
+/* ── Variant comparison row ─────────────────────────────────── */
+.variantRow {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.variantCard {
   display: flex;
   flex-direction: column;
-  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  overflow: hidden;
-  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
-}
-
-.landingContent {
-  padding: var(--ld-primitive-scale-space-300, 24px);
-  display: flex;
-  flex-direction: column;
-  gap: var(--ld-primitive-scale-space-300, 24px);
-}
-
-.landingHeading {
-  font-family: var(--ld-semantic-font-heading-medium-family);
-  font-size: var(--ld-semantic-font-heading-medium-size, 20px);
-  font-weight: var(--ld-semantic-font-heading-medium-weight, 700);
-  color: var(--ld-semantic-color-text, #2e2f32);
-  margin: 0;
-}
-
-.landingSubheading {
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  color: var(--ld-semantic-color-text-subtle, #515357);
-  margin: 0;
-}
-
-.productCardRow {
-  display: flex;
-  flex-direction: column;
-  background: var(--ld-semantic-color-surface, #fff);
-  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  overflow: hidden;
+  flex: 1;
+  min-width: 300px;
 }
 
 /* ── Mobile states row ──────────────────────────────────────── */
@@ -102,8 +84,8 @@
   flex-direction: column;
   gap: 8px;
   flex: 1;
-  min-width: 220px;
-  max-width: 340px;
+  min-width: 260px;
+  max-width: 380px;
 }
 
 .mobileStateLabel {
@@ -125,7 +107,7 @@
   border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
   display: flex;
   flex-direction: column;
-  height: 320px;
+  height: 440px;
   position: relative;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
 }
@@ -158,9 +140,53 @@
   background-size: 100% 56px;
 }
 
-/* Slot that holds the banner at the phone frame's bottom */
+/* Slot that holds the banner + snackbar at the phone frame's bottom */
 .phoneBannerSlot {
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Phone bottom nav placeholder ────────────────────────────── */
+.phoneBottomNav {
+  flex-shrink: 0;
+  background: var(--ld-semantic-color-surface, #fff);
+  display: flex;
+  flex-direction: column;
+}
+
+.phoneBottomNavDivider {
+  height: 1px;
+  background: var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.phoneBottomNavItems {
+  display: flex;
+  align-items: flex-start;
+  padding: 8px 0 4px;
+}
+
+.phoneBottomNavItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  opacity: 0.4;
+}
+
+.phoneBottomNavIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.phoneBottomNavLabel {
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: 10px;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  text-align: center;
 }
 
 /* ── Snackbar demo ───────────────────────────────────────────── */
@@ -283,13 +309,15 @@
     grid-template-columns: 1fr;
   }
 
-  .productCardRow {
-    grid-template-columns: repeat(2, 1fr);
+  .variantRow {
+    flex-direction: column;
   }
-}
 
-@media (max-width: 480px) {
-  .productCardRow {
-    grid-template-columns: 1fr;
+  .mobileStatesRow {
+    flex-direction: column;
+  }
+
+  .mobileStateCard {
+    max-width: 100%;
   }
 }
