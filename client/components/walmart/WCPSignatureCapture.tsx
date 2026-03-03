@@ -265,6 +265,7 @@ export interface SignatureReauthProps {
   showPreviewWarning?: boolean;
   signatureRequired?: string;
   tempHoldText?: string;
+  subText?: string;
   onAgreeAndSign?: () => void;
   onConfirm?: () => void;
   onChangeSignature?: () => void;
@@ -279,6 +280,7 @@ export function SignatureReauth({
   showPreviewWarning = false,
   signatureRequired = 'Your signature is required to acknowledge your agreement for your pet med subscription.',
   tempHoldText = "You'll have an additional temporary hold up to 20% on your payment account but will only be charged for items received.",
+  subText,
   onAgreeAndSign,
   onConfirm,
   onChangeSignature,

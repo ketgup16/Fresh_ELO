@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import styles from './Tag.module.css';
 
-export type TagVariant = 'primary' | 'secondary' | 'tertiary';
+export type TagVariant = 'primary' | 'secondary' | 'tertiary' | 'info' | 'neutral' | 'success';
 
 export type TagColor =
   | 'brand'
@@ -30,6 +30,13 @@ export interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode;
 }
 
+// Map semantic variant aliases to a base variant + color pair
+const VARIANT_ALIAS_MAP: Record<string, { variant: 'primary' | 'secondary' | 'tertiary'; color: TagColor }> = {
+  info: { variant: 'secondary', color: 'info' },
+  neutral: { variant: 'secondary', color: 'gray' },
+  success: { variant: 'secondary', color: 'positive' },
+};
+
 const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
   (
     {
@@ -42,8 +49,12 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
     },
     ref
   ) => {
-    const variantClass = styles[`tag${variant.charAt(0).toUpperCase() + variant.slice(1)}`];
-    const colorClass = styles[`color${color.charAt(0).toUpperCase() + color.slice(1)}`];
+    const alias = VARIANT_ALIAS_MAP[variant];
+    const resolvedVariant = alias ? alias.variant : (variant as 'primary' | 'secondary' | 'tertiary');
+    const resolvedColor = alias ? alias.color : color;
+
+    const variantClass = styles[`tag${resolvedVariant.charAt(0).toUpperCase() + resolvedVariant.slice(1)}`];
+    const colorClass = styles[`color${resolvedColor.charAt(0).toUpperCase() + resolvedColor.slice(1)}`];
 
     return (
       <span

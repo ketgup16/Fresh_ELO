@@ -13,7 +13,7 @@ export function MoreProductListings() {
           <div className="w-[173px] h-[233px] flex-shrink-0 relative rounded-l-lg">
             {product.flag && (
               <div className="absolute top-1 left-2 z-10">
-                <div style={{ backgroundColor: product.flagVariant === 'red' ? 'var(--ld-semantic-color-text-negative)' : 'var(--ld-semantic-color-fill-inverse)' }} className="px-2 py-1 rounded text-[12px] font-bold" style={{ color: 'var(--ld-semantic-color-text-inverse)' }}>
+                <div style={{ backgroundColor: product.flagVariant === 'red' ? 'var(--ld-semantic-color-text-negative)' : 'var(--ld-semantic-color-fill-inverse)', color: 'var(--ld-semantic-color-text-inverse)' }} className="px-2 py-1 rounded text-[12px] font-bold">
                   {product.flag}
                 </div>
               </div>

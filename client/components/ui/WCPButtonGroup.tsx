@@ -183,7 +183,7 @@ function TertiaryLink({
     | WCPButtonGroupProps['thirdButtonProps'];
 }) {
   return (
-    <LinkButton size="medium" onClick={onClick} {...buttonProps}>
+    <LinkButton size="medium" onClick={onClick} {...(buttonProps as object)}>
       {label}
     </LinkButton>
   );

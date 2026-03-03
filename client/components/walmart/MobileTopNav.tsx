@@ -60,7 +60,7 @@ export function MobileTopNav({ showHomeExtras = false }: MobileTopNavProps) {
               <IconButton
                 onClick={(e) => { e.stopPropagation(); setShowSearchModal(true); }}
                 UNSAFE_className="rounded-full -mr-2"
-                style={{ backgroundColor: 'var(--ld-semantic-color-text-brand-bold)' }}
+                UNSAFE_style={{ backgroundColor: 'var(--ld-semantic-color-text-brand-bold)' }}
                 aria-label="Search"
                 variant="ghost"
                 size="medium"

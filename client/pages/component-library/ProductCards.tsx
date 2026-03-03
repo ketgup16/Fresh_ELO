@@ -13,7 +13,7 @@ const LIST_SAMPLES = [
   {
     name: "Kellogg's Frosted Flakes, Breakfast Cereal, Original, Family Size, 13.5 oz",
     price: '3', cents: '68', unitPrice: '$4.36/lb',
-    flag: 'Best seller', flagVariant: 'default',
+    flag: 'Best seller', flagVariant: 'default' as const,
     rating: 4.7, ratingCount: '12,234',
     image: `${CDN}783f38e6d773461b95706408b1a14434?format=webp&width=400`,
     pickup: '2 pm', ebt: true,
@@ -21,7 +21,7 @@ const LIST_SAMPLES = [
   {
     name: "Post Honey Bunches of Oats with Almonds Cereal, 18 oz",
     price: '3', cents: '48', unitPrice: '$3.09/lb',
-    flag: 'Rollback', flagVariant: 'red', wasPrice: '$4.28',
+    flag: 'Rollback', flagVariant: 'red' as const, wasPrice: '$4.28',
     rating: 4.5, ratingCount: '6,442',
     image: `${CDN}783f38e6d773461b95706408b1a14434?format=webp&width=400`,
     pickup: 'Tomorrow', ebt: true,
@@ -39,7 +39,7 @@ const GRID_SAMPLES = [
   {
     name: "Sofia Jeans Women's Knit Midi Dress with Flutter Sleeves",
     price: '24', cents: '98',
-    flag: 'Best seller', flagVariant: 'default',
+    flag: 'Best seller', flagVariant: 'default' as const,
     rating: 4.6, ratingCount: '3,892',
     image: `${CDN}4b7f2d27b5e7432fa6f5c9c16e80e3b2?format=webp&width=400`,
     pickup: '2 pm',

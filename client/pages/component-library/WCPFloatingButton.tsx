@@ -37,8 +37,8 @@ const rowStyle: React.CSSProperties = {
   gap: '16px',
 };
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <div style={labelStyle}>{children}</div>;
+function SectionLabel({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
+  return <div style={{ ...labelStyle, ...style }}>{children}</div>;
 }
 
 export default function WCPFloatingButtonPage() {
@@ -59,10 +59,10 @@ export default function WCPFloatingButtonPage() {
             <SectionLabel>XSmall (28px)</SectionLabel>
             <div style={rowStyle}>
               <WCPFloatingButton size="xsmall" aria-label="Previous">
-                <ArrowLeft size={16} />
+                <ArrowLeft width={16} height={16} />
               </WCPFloatingButton>
               <WCPFloatingButton size="xsmall" aria-label="Next">
-                <ArrowRight size={16} />
+                <ArrowRight width={16} height={16} />
               </WCPFloatingButton>
             </div>
           </div>
@@ -70,10 +70,10 @@ export default function WCPFloatingButtonPage() {
             <SectionLabel>Small (32px)</SectionLabel>
             <div style={rowStyle}>
               <WCPFloatingButton size="small" aria-label="Previous">
-                <ArrowLeft size={16} />
+                <ArrowLeft width={16} height={16} />
               </WCPFloatingButton>
               <WCPFloatingButton size="small" aria-label="Next">
-                <ArrowRight size={16} />
+                <ArrowRight width={16} height={16} />
               </WCPFloatingButton>
             </div>
           </div>
@@ -92,10 +92,10 @@ export default function WCPFloatingButtonPage() {
             <SectionLabel>Large (52px)</SectionLabel>
             <div style={rowStyle}>
               <WCPFloatingButton size="large" aria-label="Previous">
-                <ArrowLeft size={32} />
+                <ArrowLeft width={32} height={32} />
               </WCPFloatingButton>
               <WCPFloatingButton size="large" aria-label="Next">
-                <ArrowRight size={32} />
+                <ArrowRight width={32} height={32} />
               </WCPFloatingButton>
             </div>
           </div>
@@ -116,8 +116,8 @@ export default function WCPFloatingButtonPage() {
             <SectionLabel>Disabled</SectionLabel>
             <div style={rowStyle}>
               <WCPFloatingButton aria-label="Search" disabled><Search /></WCPFloatingButton>
-              <WCPFloatingButton size="small" aria-label="Dismiss" disabled><X size={16} /></WCPFloatingButton>
-              <WCPFloatingButton size="large" aria-label="Star" disabled><Star size={32} /></WCPFloatingButton>
+              <WCPFloatingButton size="small" aria-label="Dismiss" disabled><X width={16} height={16} /></WCPFloatingButton>
+              <WCPFloatingButton size="large" aria-label="Star" disabled><Star width={32} height={32} /></WCPFloatingButton>
             </div>
           </div>
           <div style={{ background: 'var(--ld-semantic-color-background-subtle)', padding: '12px', borderRadius: '8px' }}>
