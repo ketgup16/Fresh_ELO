@@ -117,44 +117,48 @@ export const WCPQueueBanner: React.FC<WCPQueueBannerProps> = ({
 
   if (variant === 'error') {
     return (
-      <div
-        className={`${styles.errorContainer} ${positionClass}`}
-        role="alert"
-        aria-label="Queue error message"
-      >
-        <Warning className={styles.errorIcon} />
-        <span className={styles.errorText}>{errorMessage}</span>
+      <div className={`${styles.containerWrap} ${positionClass}`}>
+        <div
+          className={styles.errorContainer}
+          role="alert"
+          aria-label="Queue error message"
+        >
+          <Warning className={styles.errorIcon} />
+          <span className={styles.errorText}>{errorMessage}</span>
+        </div>
       </div>
     );
   }
 
   if (variant === 'checkout') {
     return (
-      <div
-        className={`${styles.checkoutContainer} ${positionClass}`}
-        role="banner"
-        aria-label="Queue checkout banner"
-      >
-        <div className={styles.checkoutContent}>
-          <div className={styles.checkoutLeft}>
-            <WCPTimerView
-              endTime={endTime}
-              variant="badge"
-              badgeColor={badgeColor}
-              className={styles.timerBadge}
-            />
-            <span className={styles.checkoutMessage}>{resolvedQueueMessage}</span>
+      <div className={`${styles.containerWrap} ${positionClass}`}>
+        <div
+          className={styles.checkoutContainer}
+          role="banner"
+          aria-label="Queue checkout banner"
+        >
+          <div className={styles.checkoutContent}>
+            <div className={styles.checkoutLeft}>
+              <WCPTimerView
+                endTime={endTime}
+                variant="badge"
+                badgeColor={badgeColor}
+                className={styles.timerBadge}
+              />
+              <span className={styles.checkoutMessage}>{resolvedQueueMessage}</span>
+            </div>
+            {showDismiss && onDismiss && (
+              <button
+                type="button"
+                className={styles.closeButton}
+                onClick={onDismiss}
+                aria-label="Dismiss queue banner"
+              >
+                <X width={16} height={16} />
+              </button>
+            )}
           </div>
-          {showDismiss && onDismiss && (
-            <button
-              type="button"
-              className={styles.closeButton}
-              onClick={onDismiss}
-              aria-label="Dismiss queue banner"
-            >
-              <X width={16} height={16} />
-            </button>
-          )}
         </div>
       </div>
     );
@@ -162,8 +166,9 @@ export const WCPQueueBanner: React.FC<WCPQueueBannerProps> = ({
 
   // Default: lineJoined variant
   return (
+    <div className={`${styles.containerWrap} ${positionClass}`}>
     <div
-      className={`${styles.outerContainer} ${positionClass}`}
+      className={styles.outerContainer}
       role="banner"
       aria-label={`Queue banner: ${resolvedReservationText}`}
     >
@@ -227,6 +232,7 @@ export const WCPQueueBanner: React.FC<WCPQueueBannerProps> = ({
           </span>
         </button>
       )}
+    </div>
     </div>
   );
 };

@@ -1,5 +1,11 @@
 /* ── WCPQueueBanner ───────────────────────────────────────────────────────── */
 
+/* Container query wrapper — enables component-level breakpoints */
+.containerWrap {
+  container-type: inline-size;
+  width: 100%;
+}
+
 /* ─── Position variants ──────────────────────────────────────────────────── */
 .sticky {
   position: sticky;
@@ -35,7 +41,7 @@
   box-sizing: border-box;
 }
 
-/* White inner card */
+/* White inner card — desktop default: 12px 8px */
 .card {
   background: var(--ld-semantic-color-surface, #fff);
   border-radius: var(--wcp-semantic-scale-flag-borderRadius, 4px);
@@ -155,6 +161,7 @@
 
 /* ═══════════════════════════════════════════════════════════════════════════
    CHECKOUT VARIANT — simple navy bar with timer + message + close
+   Desktop (900+px): padding 24px 8px, height ~80px, body-medium (16px)
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .checkoutContainer {
@@ -189,7 +196,7 @@
   color: var(--ld-semantic-color-text-inverse, #fff);
 }
 
-/* Close / dismiss button (shared between checkout) */
+/* Close / dismiss button */
 .closeButton {
   display: flex;
   padding: var(--ld-primitive-scale-space-100, 8px);
@@ -209,6 +216,7 @@
 
 /* ═══════════════════════════════════════════════════════════════════════════
    ERROR VARIANT — navy bar with warning icon + message
+   Desktop (900+px): padding 24px 12px, gap 12px, height ~72px, body-medium
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .errorContainer {
@@ -238,16 +246,18 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE — Mobile breakpoint (< 900px matches Figma 0-899px)
+   RESPONSIVE — Container queries (component-level breakpoint at 899px)
+   These match Figma's "breakpoint=0-899px" variants and adapt based on the
+   component's own container width, not the viewport width.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-@media (max-width: 899px) {
-  /* ── Line-joined: smaller card padding ─────────────────────── */
+@container (max-width: 899px) {
+  /* ── Line-joined: smaller card padding (8px all around) ────── */
   .card {
     padding: var(--ld-primitive-scale-space-100, 8px);
   }
 
-  /* ── Checkout: compact 40px bar ────────────────────────────── */
+  /* ── Checkout: compact 40px bar, body-small (14px) ─────────── */
   .checkoutContainer {
     padding: var(--ld-primitive-scale-space-50, 4px) var(--ld-primitive-scale-space-100, 8px);
     max-height: 40px;
@@ -260,7 +270,7 @@
     line-height: var(--ld-semantic-font-body-small-lineheight);
   }
 
-  /* ── Error: smaller padding and font ───────────────────────── */
+  /* ── Error: padding 12px, gap 8px, height ~64px, body-small ── */
   .errorContainer {
     padding: var(--ld-primitive-scale-space-150, 12px);
     gap: var(--ld-primitive-scale-space-100, 8px);
