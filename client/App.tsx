@@ -121,6 +121,8 @@ const WCPSearchBarPage = React.lazy(() => import("./pages/component-library/WCPS
 const WCPSignatureCapturePage = React.lazy(() => import("./pages/component-library/WCPSignatureCapture"));
 const WCPRichMediaSheetPage = React.lazy(() => import("./pages/component-library/WCPRichMediaSheet"));
 const WCPRichSnackbarPage = React.lazy(() => import("./pages/component-library/WCPRichSnackbar"));
+const WCPTimerViewPage = React.lazy(() => import("./pages/component-library/WCPTimerView"));
+const WCPQueueBannerPage = React.lazy(() => import("./pages/component-library/WCPQueueBanner"));
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
 const queryClient = new QueryClient();
@@ -231,6 +233,8 @@ const App = () => (
                 <Route path="wcp-signature-capture" element={<WCPSignatureCapturePage />} />
                 <Route path="wcp-rich-media-sheet" element={<WCPRichMediaSheetPage />} />
                 <Route path="wcp-rich-snackbar" element={<WCPRichSnackbarPage />} />
+                <Route path="wcp-timer-view" element={<WCPTimerViewPage />} />
+                <Route path="wcp-queue-banner" element={<WCPQueueBannerPage />} />
               </Route>
 
               {/* Walmart pages */}

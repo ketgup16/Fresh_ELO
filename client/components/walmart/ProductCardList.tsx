@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Heart, HeartFill } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import { Rating } from "@/components/ui/Rating";
+import { WCPTimerView } from "./WCPTimerView";
 import styles from "./ProductCardList.module.css";
 
 export interface ProductCardListProps {
@@ -21,6 +22,9 @@ export interface ProductCardListProps {
   unitPrice?: string;
   ebt?: boolean;
   onAddToCart?: () => void;
+  /** Optional countdown end time — shows a badge timer over the image */
+  timerEndTime?: Date | number | string;
+  timerLabel?: string;
 }
 
 export function ProductCardList({
@@ -39,6 +43,8 @@ export function ProductCardList({
   unitPrice,
   ebt,
   onAddToCart,
+  timerEndTime,
+  timerLabel = 'Ends in',
 }: ProductCardListProps) {
   const [isFavorited, setIsFavorited] = useState(false);
 
@@ -63,6 +69,11 @@ export function ProductCardList({
           )}
         </button>
         <img src={image} alt={name} className={styles.productImage} />
+        {timerEndTime && (
+          <div className={styles.timerBadge}>
+            <WCPTimerView endTime={timerEndTime} variant="badge" label={timerLabel} showLabel={false} />
+          </div>
+        )}
       </div>
 
       {/* Content column */}

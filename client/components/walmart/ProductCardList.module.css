@@ -164,3 +164,11 @@
   width: 164px;
   margin-top: 4px;
 }
+
+/* Timer badge overlay — bottom-left of image column */
+.timerBadge {
+  position: absolute;
+  bottom: 6px;
+  left: 4px;
+  z-index: 10;
+}

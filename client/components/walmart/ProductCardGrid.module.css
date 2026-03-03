@@ -139,3 +139,11 @@
 .addToCart {
   margin-top: 8px;
 }
+
+/* Timer badge overlay — bottom-left of image area */
+.timerBadge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  z-index: 10;
+}

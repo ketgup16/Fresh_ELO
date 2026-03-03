@@ -1,0 +1,186 @@
+/* ── WCPTimerView ─────────────────────────────────────────────────────────── */
+
+/* ─── Default variant (stacked digit blocks) ────────────────────────────── */
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+}
+
+.label {
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-alt, 700);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  margin: 0;
+  text-align: center;
+}
+
+.blocks {
+  display: flex;
+  align-items: stretch;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+}
+
+.unitBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 64px;
+  padding: var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-150, 12px);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  gap: 2px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.unitValue {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.5px;
+  /* digit-flip animation */
+  animation: digitFlip 0.15s ease-in-out;
+}
+
+.unitLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+/* ─── Compact variant (inline HH:MM:SS) ─────────────────────────────────── */
+.compact {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+}
+
+.compactLabel {
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.compactTime {
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* ─── Badge variant (pill with clock icon) ───────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: var(--ld-semantic-color-fill-inverse, #2e2f32);
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+}
+
+.badgeIcon {
+  color: var(--ld-semantic-color-text-inverse, #fff);
+  flex-shrink: 0;
+}
+
+.badgeTime {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text-inverse, #fff);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+/* ─── Urgency states ─────────────────────────────────────────────────────── */
+
+/* warning: yellow accent */
+.urgencyWarning .unitBlock {
+  background: var(--ld-semantic-color-fill-accent-spark, #ffc220);
+  border-color: var(--ld-semantic-color-fill-accent-spark, #ffc220);
+}
+
+.urgencyWarning .unitValue {
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.urgencyWarning.compact .compactTime {
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.urgencyWarning.badge {
+  background: var(--ld-semantic-color-fill-accent-spark, #ffc220);
+}
+
+.urgencyWarning .badgeIcon,
+.urgencyWarning .badgeTime {
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+/* critical: red */
+.urgencyCritical .unitBlock {
+  background: var(--ld-semantic-color-fill-negative, #c40000);
+  border-color: var(--ld-semantic-color-fill-negative, #c40000);
+}
+
+.urgencyCritical .unitValue {
+  color: var(--ld-semantic-color-text-inverse, #fff);
+}
+
+.urgencyCritical .unitLabel {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.urgencyCritical.compact .compactTime {
+  color: var(--ld-semantic-color-text-negative, #c40000);
+}
+
+.urgencyCritical.badge {
+  background: var(--ld-semantic-color-fill-negative, #c40000);
+}
+
+.urgencyCritical .badgeIcon,
+.urgencyCritical .badgeTime {
+  color: var(--ld-semantic-color-text-inverse, #fff);
+}
+
+/* ─── Digit-flip animation ──────────────────────────────────────────────── */
+@keyframes digitFlip {
+  0% { opacity: 0.4; transform: translateY(-4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unitValue {
+    animation: none;
+  }
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .unitBlock {
+    min-width: 52px;
+    padding: 6px 8px;
+  }
+
+  .unitValue {
+    font-size: 24px;
+  }
+
+  .unitLabel {
+    font-size: 9px;
+  }
+}

@@ -80,6 +80,8 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-signature-capture', nameKey: 'componentLibrary.navWCPSignatureCapture', path: '/component-library/wcp-signature-capture' },
       { id: 'wcp-rich-media-sheet', nameKey: 'componentLibrary.navWCPRichMediaSheet', path: '/component-library/wcp-rich-media-sheet' },
       { id: 'wcp-rich-snackbar', nameKey: 'componentLibrary.navWCPRichSnackbar', path: '/component-library/wcp-rich-snackbar' },
+      { id: 'wcp-timer-view', nameKey: 'componentLibrary.navWCPTimerView', path: '/component-library/wcp-timer-view' },
+      { id: 'wcp-queue-banner', nameKey: 'componentLibrary.navWCPQueueBanner', path: '/component-library/wcp-queue-banner' },
     ]
   },
   {

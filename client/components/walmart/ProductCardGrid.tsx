@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Heart, HeartFill } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import { Rating } from "@/components/ui/Rating";
+import { WCPTimerView } from "./WCPTimerView";
 import styles from "./ProductCardGrid.module.css";
 
 export interface ProductCardGridProps {
@@ -16,6 +17,9 @@ export interface ProductCardGridProps {
   ratingCount: string;
   pickup?: string;
   onAddToCart?: () => void;
+  /** Optional countdown end time — shows a badge timer over the image */
+  timerEndTime?: Date | number | string;
+  timerLabel?: string;
 }
 
 export function ProductCardGrid({
@@ -30,6 +34,8 @@ export function ProductCardGrid({
   ratingCount,
   pickup,
   onAddToCart,
+  timerEndTime,
+  timerLabel = 'Ends in',
 }: ProductCardGridProps) {
   const [isFavorited, setIsFavorited] = useState(false);
 
@@ -54,6 +60,11 @@ export function ProductCardGrid({
           )}
         </button>
         <img src={image} alt={name} className={styles.productImage} />
+        {timerEndTime && (
+          <div className={styles.timerBadge}>
+            <WCPTimerView endTime={timerEndTime} variant="badge" label={timerLabel} showLabel={false} />
+          </div>
+        )}
       </div>
 
       {/* Content */}

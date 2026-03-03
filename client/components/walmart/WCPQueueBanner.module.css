@@ -1,0 +1,224 @@
+/* ── WCPQueueBanner ───────────────────────────────────────────────────────── */
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-150, 12px);
+  padding: 0 var(--ld-primitive-scale-space-300, 24px);
+  min-height: 56px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  transition: background 0.3s ease;
+  z-index: 100;
+}
+
+/* Position variants */
+.sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.inFlow {
+  position: relative;
+}
+
+/* ─── Urgency / color states ─────────────────────────────────────────────── */
+
+/* Normal: blue */
+.normal {
+  background: var(--ld-semantic-color-fill-accent-blue-subtle, #e8f1ff);
+}
+
+.normal .leadIcon {
+  color: var(--ld-semantic-color-fill-brand, #0071dc);
+}
+
+.normal .title {
+  color: var(--ld-semantic-color-text-brand-bold, #001e60);
+}
+
+.normal .message {
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+/* Warning: yellow */
+.warning {
+  background: var(--ld-semantic-color-fill-accent-spark, #ffc220);
+}
+
+.warning .leadIcon {
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.warning .title {
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.warning .message {
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.warning .dismissIcon {
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+/* Critical: red */
+.critical {
+  background: var(--ld-semantic-color-fill-negative-subtle, #fff0f0);
+}
+
+.critical .leadIcon {
+  color: var(--ld-semantic-color-text-negative, #c40000);
+}
+
+.critical .title {
+  color: var(--ld-semantic-color-text-negative, #c40000);
+}
+
+.critical .message {
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+/* ─── Inner layout ───────────────────────────────────────────────────────── */
+.iconWrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.leadIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--ld-semantic-color-fill-brand, #0071dc);
+}
+
+.textWrap {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text-brand-bold, #001e60);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.message {
+  font-size: var(--ld-semantic-font-caption-size, 12px);
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Timer */
+.timerWrap {
+  flex-shrink: 0;
+}
+
+/* CTA */
+.ctaWrap {
+  flex-shrink: 0;
+}
+
+/* Dismiss button */
+.dismissBtn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  cursor: pointer;
+  padding: 0;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  transition: background 0.15s ease;
+}
+
+.dismissBtn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.dismissIcon {
+  pointer-events: none;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+
+/* Tablet: hide message text */
+@media (max-width: 1024px) {
+  .banner {
+    padding: 0 var(--ld-primitive-scale-space-200, 16px);
+    gap: var(--ld-primitive-scale-space-100, 8px);
+  }
+
+  .message {
+    display: none;
+  }
+}
+
+/* Mobile: 2-row stack */
+@media (max-width: 768px) {
+  .banner {
+    flex-wrap: wrap;
+    min-height: 72px;
+    padding: var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-200, 16px);
+    gap: var(--ld-primitive-scale-space-100, 8px);
+    align-items: flex-start;
+  }
+
+  .iconWrap {
+    align-items: flex-start;
+    padding-top: 2px;
+  }
+
+  .textWrap {
+    flex: 1 1 auto;
+  }
+
+  .message {
+    display: block;
+    white-space: normal;
+  }
+
+  .timerWrap {
+    flex: 1 0 100%;
+    order: 10;
+    display: flex;
+    align-items: center;
+    gap: var(--ld-primitive-scale-space-100, 8px);
+  }
+
+  .ctaWrap {
+    order: 11;
+    flex: 1 0 auto;
+  }
+}
+
+/* Small phone */
+@media (max-width: 480px) {
+  .ctaWrap {
+    flex: 1 0 100%;
+  }
+
+  .ctaWrap button {
+    width: 100%;
+  }
+
+  .title {
+    white-space: normal;
+  }
+}
