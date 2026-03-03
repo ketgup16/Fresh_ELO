@@ -80,13 +80,13 @@
   white-space: nowrap;
 }
 
-/* ─── Badge variant (pill with clock icon) ───────────────────────────────── */
+/* ─── Badge variant (chip with clock icon) ───────────────────────────────── */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 3px 8px;
-  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  padding: 3px 6px;
+  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
   background: var(--ld-semantic-color-fill-inverse, #2e2f32);
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
 }
