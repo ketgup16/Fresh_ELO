@@ -4,6 +4,7 @@ import { WCPQueueBanner } from '@/components/walmart/WCPQueueBanner';
 import { WCPRichSnackbar } from '@/components/walmart/WCPRichSnackbar';
 import { Warning } from '@/components/icons/Warning';
 import { Button } from '@/components/ui/Button';
+import { BottomNav } from '@/components/walmart/BottomNav';
 import styles from './WCPQueueBanner.module.css';
 
 // ── Helper: ms from now ────────────────────────────────────────────────────
@@ -238,16 +239,8 @@ export default function WCPQueueBannerPage() {
                     inline
                   />
                 </div>
-                <div className={styles.phoneBottomNav}>
-                  <div className={styles.phoneBottomNavDivider} />
-                  <div className={styles.phoneBottomNavItems}>
-                    {['Shop', 'My Items', 'Search', 'Services', 'Account'].map((item) => (
-                      <div key={item} className={styles.phoneBottomNavItem}>
-                        <div className={styles.phoneBottomNavIcon} />
-                        <span className={styles.phoneBottomNavLabel}>{item}</span>
-                      </div>
-                    ))}
-                  </div>
+                <div className={styles.phoneBottomNavSlot}>
+                  <BottomNav contained />
                 </div>
               </div>
             </div>
@@ -283,16 +276,8 @@ export default function WCPQueueBannerPage() {
                     inline
                   />
                 </div>
-                <div className={styles.phoneBottomNav}>
-                  <div className={styles.phoneBottomNavDivider} />
-                  <div className={styles.phoneBottomNavItems}>
-                    {['Shop', 'My Items', 'Search', 'Services', 'Account'].map((item) => (
-                      <div key={item} className={styles.phoneBottomNavItem}>
-                        <div className={styles.phoneBottomNavIcon} />
-                        <span className={styles.phoneBottomNavLabel}>{item}</span>
-                      </div>
-                    ))}
-                  </div>
+                <div className={styles.phoneBottomNavSlot}>
+                  <BottomNav contained />
                 </div>
               </div>
             </div>
@@ -315,16 +300,8 @@ export default function WCPQueueBannerPage() {
                     inline
                   />
                 </div>
-                <div className={styles.phoneBottomNav}>
-                  <div className={styles.phoneBottomNavDivider} />
-                  <div className={styles.phoneBottomNavItems}>
-                    {['Shop', 'My Items', 'Search', 'Services', 'Account'].map((item) => (
-                      <div key={item} className={styles.phoneBottomNavItem}>
-                        <div className={styles.phoneBottomNavIcon} />
-                        <span className={styles.phoneBottomNavLabel}>{item}</span>
-                      </div>
-                    ))}
-                  </div>
+                <div className={styles.phoneBottomNavSlot}>
+                  <BottomNav contained />
                 </div>
               </div>
             </div>

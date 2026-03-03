@@ -147,46 +147,9 @@
   flex-direction: column;
 }
 
-/* ── Phone bottom nav placeholder ────────────────────────────── */
-.phoneBottomNav {
+/* ── Phone bottom nav slot (uses real BottomNav with contained) ── */
+.phoneBottomNavSlot {
   flex-shrink: 0;
-  background: var(--ld-semantic-color-surface, #fff);
-  display: flex;
-  flex-direction: column;
-}
-
-.phoneBottomNavDivider {
-  height: 1px;
-  background: var(--ld-semantic-color-separator, #e3e4e5);
-}
-
-.phoneBottomNavItems {
-  display: flex;
-  align-items: flex-start;
-  padding: 8px 0 4px;
-}
-
-.phoneBottomNavItem {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  opacity: 0.4;
-}
-
-.phoneBottomNavIcon {
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-  background: var(--ld-semantic-color-separator, #e3e4e5);
-}
-
-.phoneBottomNavLabel {
-  font-family: var(--ld-semantic-font-body-small-family);
-  font-size: 10px;
-  color: var(--ld-semantic-color-text-subtle, #74767c);
-  text-align: center;
 }
 
 /* ── Snackbar demo ───────────────────────────────────────────── */
