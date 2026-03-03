@@ -44,7 +44,6 @@
   color: var(--ld-semantic-color-text, #2e2f32);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.5px;
-  /* digit-flip animation */
   animation: digitFlip 0.15s ease-in-out;
 }
 
@@ -80,20 +79,24 @@
   white-space: nowrap;
 }
 
-/* ─── Badge variant (chip with clock icon) ───────────────────────────────── */
+/* ─── Badge variant — base ───────────────────────────────────────────────── */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   padding: 3px 6px;
   border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
+  /* Default (urgency normal) fill */
   background: var(--ld-semantic-color-fill-inverse, #2e2f32);
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  border: 1px solid transparent;
 }
 
 .badgeIcon {
-  color: var(--ld-semantic-color-text-inverse, #fff);
+  width: 12px;
+  height: 12px;
   flex-shrink: 0;
+  color: var(--ld-semantic-color-text-inverse, #fff);
 }
 
 .badgeTime {
@@ -103,28 +106,104 @@
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.03em;
   white-space: nowrap;
+  line-height: 1;
 }
 
-/* ─── Urgency states ─────────────────────────────────────────────────────── */
+/* ─── Badge size: large ──────────────────────────────────────────────────── */
+.badgeLarge {
+  padding: 6px 12px;
+  gap: 6px;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+}
 
-/* warning: yellow accent */
+.badgeLarge .badgeIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.badgeLarge .badgeTime {
+  font-size: 18px;
+  letter-spacing: -0.2px;
+}
+
+/* ─── Badge explicit color variants ─────────────────────────────────────── */
+
+/* spark — yellow fill, dark text */
+.badgeColorSpark {
+  background: var(--ld-semantic-color-fill-accent-spark, #ffc220);
+  border-color: transparent;
+}
+.badgeColorSpark .badgeIcon,
+.badgeColorSpark .badgeTime {
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+/* negative — red fill, white text */
+.badgeColorNegative {
+  background: var(--ld-semantic-color-fill-negative, #c40000);
+  border-color: transparent;
+}
+.badgeColorNegative .badgeIcon,
+.badgeColorNegative .badgeTime {
+  color: var(--ld-semantic-color-text-inverse, #fff);
+}
+
+/* blue — light blue fill, dark blue text */
+.badgeColorBlue {
+  background: var(--ld-semantic-color-fill-accent-blue-subtle, #e0eeff);
+  border-color: transparent;
+}
+.badgeColorBlue .badgeIcon,
+.badgeColorBlue .badgeTime {
+  color: var(--ld-semantic-color-text-onfill-accent-blue-subtle, #001e60);
+}
+
+/* inverse — dark navy fill, white text */
+.badgeColorInverse {
+  background: var(--ld-semantic-color-fill-brand, #001e60);
+  border-color: transparent;
+}
+.badgeColorInverse .badgeIcon,
+.badgeColorInverse .badgeTime {
+  color: var(--ld-semantic-color-text-inverse, #fff);
+}
+
+/* outline — transparent bg, dark border, dark text */
+.badgeColorOutline {
+  background: transparent;
+  border-color: var(--ld-semantic-color-text, #2e2f32);
+}
+.badgeColorOutline .badgeIcon,
+.badgeColorOutline .badgeTime {
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+/* plain — no bg, no border, dark text */
+.badgeColorPlain {
+  background: transparent;
+  border-color: transparent;
+}
+.badgeColorPlain .badgeIcon,
+.badgeColorPlain .badgeTime {
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+/* ─── Urgency states (auto-coloring when no explicit badgeColor) ─────────── */
+
+/* warning: yellow */
 .urgencyWarning .unitBlock {
   background: var(--ld-semantic-color-fill-accent-spark, #ffc220);
   border-color: var(--ld-semantic-color-fill-accent-spark, #ffc220);
 }
-
 .urgencyWarning .unitValue {
   color: var(--ld-semantic-color-text, #2e2f32);
 }
-
 .urgencyWarning.compact .compactTime {
   color: var(--ld-semantic-color-text, #2e2f32);
 }
-
 .urgencyWarning.badge {
   background: var(--ld-semantic-color-fill-accent-spark, #ffc220);
 }
-
 .urgencyWarning .badgeIcon,
 .urgencyWarning .badgeTime {
   color: var(--ld-semantic-color-text, #2e2f32);
@@ -135,23 +214,18 @@
   background: var(--ld-semantic-color-fill-negative, #c40000);
   border-color: var(--ld-semantic-color-fill-negative, #c40000);
 }
-
 .urgencyCritical .unitValue {
   color: var(--ld-semantic-color-text-inverse, #fff);
 }
-
 .urgencyCritical .unitLabel {
   color: rgba(255, 255, 255, 0.8);
 }
-
 .urgencyCritical.compact .compactTime {
   color: var(--ld-semantic-color-text-negative, #c40000);
 }
-
 .urgencyCritical.badge {
   background: var(--ld-semantic-color-fill-negative, #c40000);
 }
-
 .urgencyCritical .badgeIcon,
 .urgencyCritical .badgeTime {
   color: var(--ld-semantic-color-text-inverse, #fff);
@@ -175,11 +249,9 @@
     min-width: 52px;
     padding: 6px 8px;
   }
-
   .unitValue {
     font-size: 24px;
   }
-
   .unitLabel {
     font-size: 9px;
   }

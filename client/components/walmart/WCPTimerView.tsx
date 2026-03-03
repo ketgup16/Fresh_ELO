@@ -6,12 +6,28 @@ import styles from './WCPTimerView.module.css';
 
 export type WCPTimerVariant = 'default' | 'compact' | 'badge';
 
+/** Explicit badge color — overrides urgency-based auto-coloring when set */
+export type WCPTimerBadgeColor =
+  | 'spark'       // yellow
+  | 'negative'    // red
+  | 'blue'        // light blue
+  | 'inverse'     // dark navy
+  | 'outline'     // bordered, transparent bg
+  | 'plain';      // no bg, no border
+
+export type WCPTimerBadgeSize = 'small' | 'large';
+
 export interface WCPTimerViewProps {
   endTime: Date | number | string;
   variant?: WCPTimerVariant;
   label?: string;
   showLabel?: boolean;
   onExpire?: () => void;
+  /** Explicit badge fill color — only applies to the `badge` variant.
+   *  When omitted, color is driven automatically by urgency state. */
+  badgeColor?: WCPTimerBadgeColor;
+  /** Badge display size. Defaults to 'small'. */
+  badgeSize?: WCPTimerBadgeSize;
   /** Render inline — for docs / static previews */
   inline?: boolean;
   className?: string;
@@ -35,6 +51,16 @@ const URGENCY_CLASS: Record<WCPTimerUrgency, string> = {
   critical: styles.urgencyCritical,
 };
 
+// ── Badge color → CSS class map ────────────────────────────────────────────
+const BADGE_COLOR_CLASS: Record<WCPTimerBadgeColor, string> = {
+  spark: styles.badgeColorSpark,
+  negative: styles.badgeColorNegative,
+  blue: styles.badgeColorBlue,
+  inverse: styles.badgeColorInverse,
+  outline: styles.badgeColorOutline,
+  plain: styles.badgeColorPlain,
+};
+
 // ─────────────────────────────────────────────────────────────────────────────
 export const WCPTimerView: React.FC<WCPTimerViewProps> = ({
   endTime,
@@ -42,6 +68,8 @@ export const WCPTimerView: React.FC<WCPTimerViewProps> = ({
   label = 'Offer ends in',
   showLabel = true,
   onExpire,
+  badgeColor,
+  badgeSize = 'small',
   inline: _inline,
   className,
 }) => {
@@ -53,14 +81,21 @@ export const WCPTimerView: React.FC<WCPTimerViewProps> = ({
 
   // ── badge variant ─────────────────────────────────────────────────────────
   if (variant === 'badge') {
+    // When badgeColor is explicitly set, it takes precedence over urgency coloring
+    const colorClass = badgeColor ? BADGE_COLOR_CLASS[badgeColor] : urgencyClass;
+    const sizeClass = badgeSize === 'large' ? styles.badgeLarge : '';
+
     return (
       <div
         role="timer"
         aria-live="polite"
         aria-label={ariaLabel}
-        className={[styles.badge, urgencyClass, className].filter(Boolean).join(' ')}
+        className={[styles.badge, colorClass, sizeClass, className].filter(Boolean).join(' ')}
       >
-        <Clock width={12} height={12} className={styles.badgeIcon} aria-hidden="true" />
+        <Clock
+          className={styles.badgeIcon}
+          aria-hidden="true"
+        />
         <span className={styles.badgeTime}>{timer.formatted}</span>
       </div>
     );

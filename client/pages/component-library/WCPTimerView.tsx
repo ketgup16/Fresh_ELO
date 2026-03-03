@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { WCPTimerView } from '@/components/walmart/WCPTimerView';
+import type { WCPTimerBadgeColor } from '@/components/walmart/WCPTimerView';
 import { Button } from '@/components/ui/Button';
 import styles from './WCPTimerView.module.css';
 
@@ -23,15 +24,23 @@ function DemoCard({ label, children }: { label: string; children: React.ReactNod
   );
 }
 
-// ── Helper: seconds from now ───────────────────────────────────────────────
 function secondsFromNow(s: number): number {
   return Date.now() + s * 1000;
 }
 
-// ── Static demo end times (always fresh on mount) ─────────────────────────
 const NORMAL_END = secondsFromNow(2 * 3600 + 34 * 60 + 12);
 const WARNING_END = secondsFromNow(4 * 60 + 30);
 const CRITICAL_END = secondsFromNow(35);
+
+// ── Badge color variant data ───────────────────────────────────────────────
+const BADGE_COLORS: { color: WCPTimerBadgeColor; label: string }[] = [
+  { color: 'spark',    label: 'Spark (yellow)' },
+  { color: 'negative', label: 'Negative (red)' },
+  { color: 'blue',     label: 'Blue (subtle)' },
+  { color: 'inverse',  label: 'Inverse (navy)' },
+  { color: 'outline',  label: 'Outline' },
+  { color: 'plain',    label: 'Plain' },
+];
 
 // ── Main page ──────────────────────────────────────────────────────────────
 
@@ -42,7 +51,7 @@ export default function WCPTimerViewPage() {
     <ComponentPageLayout
       section="WCP Components"
       title="[WCP] Timer View"
-      description="A live countdown timer for limited-time offers, queue reservations, and flash sales. Three display variants — default (stacked digit blocks), compact (inline text), and badge (pill overlay) — all share the same urgency-aware color system."
+      description="A live countdown timer for limited-time offers, queue reservations, and flash sales. Three display variants — default (stacked digit blocks), compact (inline text), and badge (chip overlay) — all share the same urgency-aware color system."
     >
       <div className={styles.page}>
 
@@ -53,14 +62,14 @@ export default function WCPTimerViewPage() {
             The WCP Timer View wraps the <code>useWCPTimer</code> hook and renders a live countdown
             that automatically transitions through urgency states: <strong>normal</strong> (neutral,
             &gt;10 min), <strong>warning</strong> (yellow, 1–10 min), and <strong>critical</strong>{' '}
-            (red, &lt;1 min). It is used in the Queue Banner, product card badge overlays, and queue
-            landing pages.
+            (red, &lt;1 min). For the badge variant, an explicit <code>badgeColor</code> prop is also
+            available in 6 colors × 2 sizes (12 variants total).
           </SectionDesc>
         </div>
 
         {/* ── Variants ─────────────────────────────────────────────── */}
         <div className={styles.section}>
-          <SectionTitle>Variants</SectionTitle>
+          <SectionTitle>Display Variants</SectionTitle>
           <SectionDesc>
             Three display variants cover every placement context.
           </SectionDesc>
@@ -71,18 +80,61 @@ export default function WCPTimerViewPage() {
             <DemoCard label="Compact — inline text">
               <WCPTimerView endTime={NORMAL_END} variant="compact" label="Ends in" />
             </DemoCard>
-            <DemoCard label="Badge — pill overlay">
-              <WCPTimerView endTime={NORMAL_END} variant="badge" label="Ends in" showLabel={false} />
+            <DemoCard label="Badge (small) — chip overlay">
+              <WCPTimerView endTime={NORMAL_END} variant="badge" badgeSize="small" showLabel={false} />
             </DemoCard>
+            <DemoCard label="Badge (large) — chip overlay">
+              <WCPTimerView endTime={NORMAL_END} variant="badge" badgeSize="large" showLabel={false} />
+            </DemoCard>
+          </div>
+        </div>
+
+        {/* ── Badge Color Variants ─────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Badge Color Variants — 12 Total</SectionTitle>
+          <SectionDesc>
+            Use <code>badgeColor</code> to pin a specific color regardless of urgency state.
+            Each color is available in <code>small</code> (default) and <code>large</code> sizes.
+          </SectionDesc>
+
+          <div className={styles.badgeVariantsGrid}>
+            {/* Column headers */}
+            <div className={styles.badgeVariantHeader} />
+            <div className={styles.badgeVariantHeader}>Small</div>
+            <div className={styles.badgeVariantHeader}>Large</div>
+
+            {BADGE_COLORS.map(({ color, label }) => (
+              <React.Fragment key={color}>
+                <div className={styles.badgeVariantRowLabel}>{label}</div>
+                <div className={styles.badgeVariantCell}>
+                  <WCPTimerView
+                    endTime={NORMAL_END}
+                    variant="badge"
+                    badgeColor={color}
+                    badgeSize="small"
+                    showLabel={false}
+                  />
+                </div>
+                <div className={styles.badgeVariantCell}>
+                  <WCPTimerView
+                    endTime={NORMAL_END}
+                    variant="badge"
+                    badgeColor={color}
+                    badgeSize="large"
+                    showLabel={false}
+                  />
+                </div>
+              </React.Fragment>
+            ))}
           </div>
         </div>
 
         {/* ── Urgency States ───────────────────────────────────────── */}
         <div className={styles.section}>
-          <SectionTitle>Urgency States</SectionTitle>
+          <SectionTitle>Auto Urgency States</SectionTitle>
           <SectionDesc>
-            Urgency is derived automatically from time remaining. Use the buttons below to preview each
-            state. The timer updates live.
+            When no <code>badgeColor</code> is set, urgency is derived automatically from time
+            remaining. Use the buttons below to preview each state.
           </SectionDesc>
 
           <div className={styles.controlRow}>
@@ -105,8 +157,11 @@ export default function WCPTimerViewPage() {
             <DemoCard label="Compact variant">
               <WCPTimerView endTime={urgencyEnd} variant="compact" label="Ends in" />
             </DemoCard>
-            <DemoCard label="Badge variant">
-              <WCPTimerView endTime={urgencyEnd} variant="badge" showLabel={false} />
+            <DemoCard label="Badge (small)">
+              <WCPTimerView endTime={urgencyEnd} variant="badge" badgeSize="small" showLabel={false} />
+            </DemoCard>
+            <DemoCard label="Badge (large)">
+              <WCPTimerView endTime={urgencyEnd} variant="badge" badgeSize="large" showLabel={false} />
             </DemoCard>
           </div>
         </div>
@@ -141,6 +196,8 @@ const { hours, minutes, seconds, totalSeconds, isExpired, urgency, formatted } =
             <tbody>
               <tr><td>endTime</td><td>Date | number | string</td><td>—</td><td>Target end time. Required.</td></tr>
               <tr><td>variant</td><td>'default' | 'compact' | 'badge'</td><td>'default'</td><td>Display style.</td></tr>
+              <tr><td>badgeColor</td><td>'spark' | 'negative' | 'blue' | 'inverse' | 'outline' | 'plain'</td><td>—</td><td>Badge only. Explicit color — overrides urgency auto-coloring.</td></tr>
+              <tr><td>badgeSize</td><td>'small' | 'large'</td><td>'small'</td><td>Badge only. Controls padding and font size.</td></tr>
               <tr><td>label</td><td>string</td><td>'Offer ends in'</td><td>Text label shown next to or above the time.</td></tr>
               <tr><td>showLabel</td><td>boolean</td><td>true</td><td>Show or hide the label.</td></tr>
               <tr><td>onExpire</td><td>() =&gt; void</td><td>—</td><td>Called once when the countdown reaches zero.</td></tr>
