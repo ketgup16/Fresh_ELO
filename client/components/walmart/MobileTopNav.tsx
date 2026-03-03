@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronLeft, ChevronUp, Menu, Search } from '@/components/icons';
-import { IconButton } from '@/components/ui/IconButton';
 import { CartIcon, LocationIcon, StoreIcon } from '@/components/icons-custom';
 import { CameraModal } from '@/components/walmart/CameraModal';
 import { DepartmentsDropdown } from '@/components/walmart/DepartmentsDropdown';
@@ -46,19 +45,18 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
         <div className={`${styles.topBar} ${isBlue ? styles.topBarBlue : styles.topBarWhite}`}>
           <div className={styles.topBarRow}>
             {isBlue ? (
-              <IconButton aria-label="Menu" variant="white" size="large" UNSAFE_className="flex-shrink-0">
+              <button className="text-white flex-shrink-0" aria-label="Menu">
                 <Menu className="w-6 h-6" />
-              </IconButton>
+              </button>
             ) : (
-              <IconButton
+              <button
+                className={`flex-shrink-0 ${styles.backButton}`}
+                style={{ color: 'var(--ld-semantic-color-text, #2e2f32)' }}
                 aria-label="Go back"
-                variant="ghost"
-                size="large"
-                UNSAFE_className={styles.backButton}
                 onClick={() => navigate(-1)}
               >
                 <ChevronLeft className="w-6 h-6" />
-              </IconButton>
+              </button>
             )}
 
             {isBlue && (
@@ -80,39 +78,35 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
               </span>
               <div className={styles.searchPillIcons}>
                 {isBlue ? (
-                  <IconButton
+                  <button
                     onClick={(e) => { e.stopPropagation(); setShowSearchModal(true); }}
-                    UNSAFE_className={styles.searchButton}
+                    className={styles.searchButton}
                     aria-label="Search"
-                    variant="ghost"
-                    size="medium"
                   >
-                    <Search className="text-white" />
-                  </IconButton>
+                    <Search className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                  </button>
                 ) : (
                   <>
-                    <IconButton
+                    <button
                       onClick={(e) => { e.stopPropagation(); setShowCameraModal(true); }}
+                      className={styles.searchPillIconBtn}
                       aria-label="Camera search"
-                      variant="ghost"
-                      size="small"
                     >
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 15.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
                         <path d="M2 8.5c0-.828.672-1.5 1.5-1.5h2.586a1 1 0 00.707-.293l1.414-1.414A1 1 0 018.914 5h6.172a1 1 0 01.707.293l1.414 1.414a1 1 0 00.707.293H20.5c.828 0 1.5.672 1.5 1.5v10c0 .828-.672 1.5-1.5 1.5h-17c-.828 0-1.5-.672-1.5-1.5v-10z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
                       </svg>
-                    </IconButton>
-                    <IconButton
+                    </button>
+                    <button
                       onClick={(e) => { e.stopPropagation(); setShowSearchModal(true); }}
+                      className={styles.searchPillIconBtn}
                       aria-label="Voice search"
-                      variant="ghost"
-                      size="small"
                     >
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
                         <path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
                       </svg>
-                    </IconButton>
+                    </button>
                   </>
                 )}
               </div>

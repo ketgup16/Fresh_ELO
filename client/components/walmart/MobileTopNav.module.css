@@ -112,9 +112,29 @@
 }
 
 .searchButton {
-  background-color: var(--ld-semantic-color-text-brand-bold, #004f9a);
+  width: 32px;
+  height: 32px;
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
-  margin-right: -8px;
+  background-color: var(--ld-semantic-color-text-brand-bold, #001e60);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -4px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  flex-shrink: 0;
+}
+
+.searchPillIconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--ld-semantic-color-text-subtle, #6d6e72);
 }
 
 /* ── Delivery banner ── */
