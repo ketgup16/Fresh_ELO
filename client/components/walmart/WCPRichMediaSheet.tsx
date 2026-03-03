@@ -24,7 +24,7 @@ export type WCPRichMediaSheetHeaderVariant =
   | 'inverse'
   | 'none';
 
-export type WCPRichMediaSheetSurfaceVariant = 'default' | 'brand' | 'media';
+export type WCPRichMediaSheetSurfaceVariant = 'default' | 'brand' | 'brand-bold' | 'media';
 
 export interface WCPRichMediaSheetProps {
   /** Whether the sheet is open. */
@@ -57,6 +57,7 @@ export interface WCPRichMediaSheetProps {
    * Sheet background color theme.
    * - `default`: white surface overlay
    * - `brand`: light brand-blue (#F0F5FF)
+   * - `brand-bold`: full brand-blue (#0071DC) — chrome elements auto-inverse
    * - `media`: transparent — content provides full-bleed color
    * @default 'default'
    */
@@ -127,15 +128,17 @@ interface HeaderProps {
   subtitle?: string;
   logoSlot?: React.ReactNode;
   onClose: () => void;
+  /** When true, forces drag handle and close button to use inverse (white) styles. */
+  forceInverseChrome?: boolean;
 }
 
-function SheetHeader({ variant, title, subtitle, logoSlot, onClose }: HeaderProps) {
+function SheetHeader({ variant, title, subtitle, logoSlot, onClose, forceInverseChrome = false }: HeaderProps) {
   if (variant === 'none') {
     return (
       <div className={styles.headerNone}>
-        <DragHandle />
+        <DragHandle inverse={forceInverseChrome} />
         <div className={styles.headerNoneRow}>
-          <CloseButton onClose={onClose} />
+          <CloseButton onClose={onClose} inverse={forceInverseChrome} />
         </div>
       </div>
     );
@@ -160,33 +163,33 @@ function SheetHeader({ variant, title, subtitle, logoSlot, onClose }: HeaderProp
 
   if (variant === 'title-subtitle') {
     return (
-      <div className={styles.header}>
-        <DragHandle />
+      <div className={[styles.header, forceInverseChrome ? styles.headerBrandBold : ''].filter(Boolean).join(' ')}>
+        <DragHandle inverse={forceInverseChrome} />
         <div className={styles.headerRow}>
           <div className={styles.headerTitleFrame}>
-            <DrawerPrimitive.Title className={styles.headerTitle}>
+            <DrawerPrimitive.Title className={[styles.headerTitle, forceInverseChrome ? styles.headerTitleBoldSurface : ''].filter(Boolean).join(' ')}>
               {title}
             </DrawerPrimitive.Title>
             {subtitle && (
-              <p className={styles.headerSubtitle}>{subtitle}</p>
+              <p className={[styles.headerSubtitle, forceInverseChrome ? styles.headerSubtitleBoldSurface : ''].filter(Boolean).join(' ')}>{subtitle}</p>
             )}
           </div>
-          <CloseButton onClose={onClose} />
+          <CloseButton onClose={onClose} inverse={forceInverseChrome} />
         </div>
-        <div className={styles.headerDivider} />
+        <div className={forceInverseChrome ? styles.headerDividerInverse : styles.headerDivider} />
       </div>
     );
   }
 
   if (variant === 'logo-left') {
     return (
-      <div className={styles.header}>
-        <DragHandle />
+      <div className={[styles.header, forceInverseChrome ? styles.headerBrandBold : ''].filter(Boolean).join(' ')}>
+        <DragHandle inverse={forceInverseChrome} />
         <div className={styles.headerRow}>
           <div className={styles.headerLogoLeft}>
             {logoSlot}
           </div>
-          <CloseButton onClose={onClose} />
+          <CloseButton onClose={onClose} inverse={forceInverseChrome} />
         </div>
       </div>
     );
@@ -194,13 +197,13 @@ function SheetHeader({ variant, title, subtitle, logoSlot, onClose }: HeaderProp
 
   if (variant === 'logo-center') {
     return (
-      <div className={styles.header}>
-        <DragHandle />
+      <div className={[styles.header, forceInverseChrome ? styles.headerBrandBold : ''].filter(Boolean).join(' ')}>
+        <DragHandle inverse={forceInverseChrome} />
         <div className={styles.headerRow}>
           <div className={styles.headerLogoCenter}>
             {logoSlot}
           </div>
-          <CloseButton onClose={onClose} />
+          <CloseButton onClose={onClose} inverse={forceInverseChrome} />
         </div>
       </div>
     );
@@ -208,15 +211,15 @@ function SheetHeader({ variant, title, subtitle, logoSlot, onClose }: HeaderProp
 
   // Default: 'title'
   return (
-    <div className={styles.header}>
-      <DragHandle />
+    <div className={[styles.header, forceInverseChrome ? styles.headerBrandBold : ''].filter(Boolean).join(' ')}>
+      <DragHandle inverse={forceInverseChrome} />
       <div className={styles.headerRow}>
         <div className={styles.headerTitleFrame}>
-          <DrawerPrimitive.Title className={styles.headerTitle}>
+          <DrawerPrimitive.Title className={[styles.headerTitle, forceInverseChrome ? styles.headerTitleBoldSurface : ''].filter(Boolean).join(' ')}>
             {title}
           </DrawerPrimitive.Title>
         </div>
-        <CloseButton onClose={onClose} />
+        <CloseButton onClose={onClose} inverse={forceInverseChrome} />
       </div>
     </div>
   );
@@ -241,6 +244,9 @@ export function WCPRichMediaSheet({
 }: WCPRichMediaSheetProps) {
   const showFooter = actions != null;
   const showDivider = showFooterDivider ?? showFooter;
+
+  // On brand-bold the sheet background is dark, so chrome elements must be inverse
+  const isBoldSurface = surfaceVariant === 'brand-bold';
 
   const sheetClassName = [
     styles.sheet,
@@ -267,6 +273,7 @@ export function WCPRichMediaSheet({
             subtitle={subtitle}
             logoSlot={logoSlot}
             onClose={onClose}
+            forceInverseChrome={isBoldSurface}
           />
 
           {/* Content — no internal padding */}

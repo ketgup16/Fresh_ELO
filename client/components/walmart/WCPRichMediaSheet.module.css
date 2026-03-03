@@ -85,6 +85,11 @@
   background: var(--wcp-semantic-color-surface-overlay-brand-subtle, #F0F5FF);
 }
 
+.surface--brand-bold {
+  /* Full brand-blue — use with inverse chrome (drag handle, close button auto-inverted) */
+  background: var(--ld-semantic-color-fill-brand, #0071DC);
+}
+
 .surface--media {
   /* Content provides the background color via full-bleed children */
   background: var(--ld-semantic-color-fill, #ffffff);
@@ -224,6 +229,23 @@
   background: var(--ld-semantic-color-separator, #D9DADC);
 }
 
+/* ── Brand-bold surface: non-inverse header chrome overrides ─────────── */
+
+/* Transparent header bg so the brand-bold sheet color shows through */
+.headerBrandBold {
+  background: transparent;
+}
+
+/* Title text on brand-bold surface uses inverse (white) color */
+.headerTitleBoldSurface {
+  color: var(--ld-semantic-color-text-inverse, #ffffff);
+}
+
+/* Subtitle text on brand-bold surface */
+.headerSubtitleBoldSurface {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 /* ── Inverse header (brand-blue background) ───────────────────────────── */
 
 .headerInverse {
@@ -339,6 +361,10 @@
 
 .footer--brand {
   background: var(--wcp-semantic-color-surface-overlay-brand-subtle, #F0F5FF);
+}
+
+.footer--brand-bold {
+  background: var(--ld-semantic-color-fill-brand, #0071DC);
 }
 
 .footer--media {

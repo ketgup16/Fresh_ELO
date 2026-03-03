@@ -22,6 +22,7 @@ const HEADER_VARIANTS: { label: string; value: WCPRichMediaSheetHeaderVariant; d
 const SURFACE_VARIANTS: { label: string; value: WCPRichMediaSheetSurfaceVariant; desc: string }[] = [
   { value: 'default', label: 'Default', desc: 'White surface overlay' },
   { value: 'brand', label: 'Brand', desc: 'Light brand-blue (#F0F5FF)' },
+  { value: 'brand-bold', label: 'Brand Bold', desc: 'Full brand-blue — chrome auto-inverts to white' },
   { value: 'media', label: 'Media', desc: 'Content provides full-bleed color' },
 ];
 
@@ -293,6 +294,7 @@ export default function WCPRichMediaSheetPage() {
             title="Rich Media Sheet title"
             subtitle="Lorem ipsum dolor sit amet consectetur."
             surfaceVariant={activeSurface}
+            adjustHeight="content"
             actions={
               <Button variant="primary" size="medium" isFullWidth>
                 Button label
