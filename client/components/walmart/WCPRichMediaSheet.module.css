@@ -1,9 +1,22 @@
 /* ════════════════════════════════════════════════════════════════════════
    [WCP] Rich Media Sheet — Styles
    Standalone WCP bottom sheet component for media-rich experiences.
+
+   Sizing, animation and placement intentionally mirror the LD BottomSheet:
+   - position: fixed; left/right/bottom: 0 on mobile
+   - max-height: 90vh  |  fixed mode: 80vh
+   - animation: slideUp 300ms cubic-bezier(0.32, 0.72, 0, 1)
+   - overlay: fadeIn 200ms ease-out
+   - shadow: var(--ld-semantic-elevation-300)
+
+   WCP-only additions over LD:
+   - 6 header variants (title, title-subtitle, logo-left, logo-center, inverse, none)
+   - 3 surface themes (default, brand, media)
+   - Desktop (900px+): centered 560px modal using left/right margins (NO transform
+     so it does NOT conflict with vaul's translateY slide animation)
    ════════════════════════════════════════════════════════════════════════ */
 
-/* ── Overlay ──────────────────────────────────────────────────────────── */
+/* ── Overlay — identical to LD BottomSheet ────────────────────────────── */
 
 .overlay {
   position: fixed;
@@ -13,7 +26,7 @@
   animation: fadeIn 200ms ease-out;
 }
 
-/* ── Sheet Container ──────────────────────────────────────────────────── */
+/* ── Sheet Container — matches LD BottomSheet sizing & animation ──────── */
 
 .sheet {
   position: fixed;
@@ -23,31 +36,40 @@
   z-index: 51;
   display: flex;
   flex-direction: column;
+  /* Top corners only on mobile, same as LD BottomSheet */
   border-top-left-radius: var(--ld-primitive-scale-borderradius-200, 16px);
   border-top-right-radius: var(--ld-primitive-scale-borderradius-200, 16px);
+  /* Matches LD BottomSheet max-height */
   max-height: 90vh;
-  overflow: hidden;
-  box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.10), 0 5px 10px 3px rgba(0, 0, 0, 0.15);
+  /* Match LD BottomSheet shadow token */
+  box-shadow: var(--ld-semantic-elevation-300, 0 -2px 8px rgba(0, 0, 0, 0.1));
+  /* Matches LD BottomSheet slideUp animation exactly */
   animation: slideUp 300ms cubic-bezier(0.32, 0.72, 0, 1);
   outline: none;
 }
 
-/* Fixed height mode */
+/* Fixed height mode — matches LD BottomSheet */
 .sheetFixed {
   height: 80vh;
 }
 
-/* Content-driven height */
+/* Content-driven height — matches LD BottomSheet */
 .sheetContent {
   height: auto;
 }
 
-/* Desktop: centered modal, all-corner radius, fixed width */
+/*
+ * Desktop (900px+): centered modal, fixed 560px width, all-corner radius.
+ *
+ * IMPORTANT: We use left/right margin math instead of transform: translateX(-50%)
+ * because vaul uses transform: translateY() for the slide animation.
+ * Using a translate-based centering on top of that creates a conflict where the
+ * animation jumps. Using calc() on left/right avoids any transform collision.
+ */
 @media (min-width: 900px) {
   .sheet {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
+    left: calc(50% - 280px);   /* 280px = half of 560px */
+    right: calc(50% - 280px);
     width: 560px;
     border-radius: var(--ld-primitive-scale-borderradius-200, 16px);
   }
@@ -119,34 +141,51 @@
   background: rgba(255, 255, 255, 0.25);
 }
 
-/* ── Header ───────────────────────────────────────────────────────────── */
+/* ── Header — matches LD BottomSheet header padding rules ────────────── */
 
-/* Base header (default / title / title-subtitle / logo variants) */
+/* Base header (title / title-subtitle / logo variants) */
 .header {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   flex-shrink: 0;
+  /* Mobile padding — same as LD BottomSheet .header */
+  padding: 0;
 }
 
-/* Row: title + close button */
+/* Row: grabber + title + close button */
 .headerRow {
   display: flex;
   align-items: flex-start;
   gap: var(--ld-primitive-scale-space-200, 16px);
+  /* Mobile: 8px padding, same as LD BottomSheet */
   padding: var(--ld-primitive-scale-space-100, 8px);
 }
 
-/* Title frame: fills remaining space */
+@media (min-width: 900px) {
+  .headerRow {
+    /* Desktop: 16px padding, same as LD BottomSheet */
+    padding: var(--ld-primitive-scale-space-200, 16px);
+  }
+}
+
+/* Title frame: left-padded so title centers past the close button width */
 .headerTitleFrame {
   flex: 1 0 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  /* Offset for close button width so title centers visually */
+  /* Mobile: 8px top/bottom + 56px left offset — same as LD BottomSheet .titleFrame */
   padding: var(--ld-primitive-scale-space-100, 8px) 0
     var(--ld-primitive-scale-space-100, 8px)
     var(--ld-primitive-scale-space-700, 56px);
+}
+
+@media (min-width: 900px) {
+  .headerTitleFrame {
+    /* Desktop: 6px top/bottom + 56px left — same as LD BottomSheet */
+    padding: 6px 0 6px var(--ld-primitive-scale-space-700, 56px);
+  }
 }
 
 .headerTitle {
@@ -154,10 +193,18 @@
   color: var(--ld-semantic-color-text, #2E2F32);
   text-align: center;
   font-family: var(--ld-semantic-font-heading-small-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
-  font-size: var(--ld-semantic-font-heading-small-size, 18px);
+  /* Mobile: 18px — same as LD BottomSheet */
+  font-size: 18px;
   font-weight: var(--ld-semantic-font-heading-small-weight-default, 700);
-  line-height: var(--ld-semantic-font-heading-small-lineheight, 1.333);
+  line-height: var(--ld-semantic-font-heading-small-lineheight, 1.4);
   margin: 0;
+}
+
+@media (min-width: 900px) {
+  .headerTitle {
+    /* Desktop: token size (20px) — same as LD BottomSheet */
+    font-size: var(--ld-semantic-font-heading-small-size, 20px);
+  }
 }
 
 .headerSubtitle {
@@ -171,13 +218,14 @@
   margin: 0;
 }
 
-/* Divider under header (used in title-subtitle variant) */
+/* Divider under title-subtitle header */
 .headerDivider {
   height: 1px;
-  background: var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-separator, #D9DADC);
 }
 
-/* Inverse header (blue background) */
+/* ── Inverse header (brand-blue background) ───────────────────────────── */
+
 .headerInverse {
   display: flex;
   flex-direction: column;
@@ -188,15 +236,29 @@
   background: var(--ld-semantic-color-fill-brand, #0053E2);
 }
 
+@media (min-width: 900px) {
+  .headerInverse {
+    border-radius: var(--ld-primitive-scale-borderradius-200, 16px)
+      var(--ld-primitive-scale-borderradius-200, 16px)
+      0 0;
+  }
+}
+
 .headerTitleInverse {
   flex: 1 0 0;
   color: var(--ld-semantic-color-text-inverse, #ffffff);
   text-align: center;
   font-family: var(--ld-semantic-font-heading-small-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
-  font-size: var(--ld-semantic-font-heading-small-size, 18px);
+  font-size: 18px;
   font-weight: var(--ld-semantic-font-heading-small-weight-default, 700);
-  line-height: var(--ld-semantic-font-heading-small-lineheight, 1.333);
+  line-height: var(--ld-semantic-font-heading-small-lineheight, 1.4);
   margin: 0;
+}
+
+@media (min-width: 900px) {
+  .headerTitleInverse {
+    font-size: var(--ld-semantic-font-heading-small-size, 20px);
+  }
 }
 
 .headerDividerInverse {
@@ -204,7 +266,8 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Logo headers */
+/* ── Logo headers ─────────────────────────────────────────────────────── */
+
 .headerLogoLeft {
   flex: 1 0 0;
   display: flex;
@@ -218,14 +281,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Offset padding so logo centers accounting for close button */
   padding: var(--ld-primitive-scale-space-100, 8px) 0
     var(--ld-primitive-scale-space-100, 8px)
     var(--ld-primitive-scale-space-700, 56px);
   min-height: 40px;
 }
 
-/* None header (just close button) */
+/* ── No-title header (close button only) ──────────────────────────────── */
+
 .headerNone {
   display: flex;
   flex-direction: column;
@@ -239,44 +302,37 @@
   padding: var(--ld-primitive-scale-space-100, 8px);
 }
 
-/* Desktop header adjustments */
 @media (min-width: 900px) {
-  .headerRow {
-    padding: var(--ld-primitive-scale-space-200, 16px);
-  }
-
   .headerNoneRow {
     padding: var(--ld-primitive-scale-space-200, 16px);
   }
-
-  .headerTitle {
-    font-size: var(--ld-semantic-font-heading-small-size, 20px);
-  }
 }
 
-/* ── Content Area ─────────────────────────────────────────────────────── */
+/* ── Content Area — no forced padding (consumer owns layout) ──────────── */
 
-/* No internal padding — consumer owns layout */
 .contentArea {
   overflow-y: auto;
   flex-shrink: 1;
   -webkit-overflow-scrolling: touch;
 }
 
+/* In fixed-height mode content fills remaining vertical space */
 .contentAreaFixed {
   flex: 1 0 0;
 }
 
-/* ── Footer ───────────────────────────────────────────────────────────── */
+/* ── Footer — matches LD BottomSheet .actions section ────────────────── */
 
 .footer {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  align-self: stretch;
   flex-shrink: 0;
+  position: relative;
 }
 
-/* Footer inherits surface background so it blends into the sheet */
+/* Footer background inherits surface variant */
 .footer--default {
   background: var(--ld-semantic-color-surface-overlay, #ffffff);
 }
@@ -289,45 +345,47 @@
   background: var(--ld-semantic-color-surface-overlay, #ffffff);
 }
 
+/* Divider matches LD BottomSheet .divider */
 .footerDivider {
   height: 1px;
-  background: var(--ld-semantic-color-separator, #e3e4e5);
+  align-self: stretch;
+  background: var(--ld-semantic-color-separator, #D9DADC);
+  position: relative;
 }
 
+/* Action padding matches LD BottomSheet .actionContainer */
 .footerActions {
-  padding: var(--ld-primitive-scale-space-200, 16px);
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: flex-start;
+  align-self: stretch;
+  overflow: hidden;
+  position: relative;
+  /* Mobile: 16px — same as LD BottomSheet */
+  padding: var(--ld-primitive-scale-space-200, 16px);
   gap: var(--ld-primitive-scale-space-100, 8px);
 }
 
 @media (min-width: 900px) {
   .footerActions {
+    /* Desktop: 24px — same as LD BottomSheet */
     padding: var(--ld-primitive-scale-space-300, 24px);
   }
 }
 
-/* ── Animations ───────────────────────────────────────────────────────── */
+/* ── Animations — identical to LD BottomSheet ─────────────────────────── */
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
 @keyframes slideUp {
   from { transform: translateY(100%); }
-  to { transform: translateY(0); }
+  to   { transform: translateY(0); }
 }
 
-@media (min-width: 900px) {
-  @keyframes slideUp {
-    from { transform: translateX(-50%) translateY(100%); }
-    to { transform: translateX(-50%) translateY(0); }
-  }
-}
-
-/* Accessibility: respect reduced motion */
+/* Accessibility: respect reduced motion — same as LD BottomSheet */
 @media (prefers-reduced-motion: reduce) {
   .sheet {
     animation: none;
