@@ -122,8 +122,6 @@ const WCPSignatureCapturePage = React.lazy(() => import("./pages/component-libra
 const WCPRichMediaSheetPage = React.lazy(() => import("./pages/component-library/WCPRichMediaSheet"));
 const WCPRichSnackbarPage = React.lazy(() => import("./pages/component-library/WCPRichSnackbar"));
 const WCPTimerViewPage = React.lazy(() => import("./pages/component-library/WCPTimerView"));
-const WCPQueueBannerPage = React.lazy(() => import("./pages/component-library/WCPQueueBanner"));
-const WCPQueueCardPage = React.lazy(() => import("./pages/component-library/WCPQueueCard"));
 const WCPQueuePage = React.lazy(() => import("./pages/component-library/WCPQueue"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
 const FoundationsPage = React.lazy(() => import("./pages/component-library/Foundations"));
@@ -240,8 +238,8 @@ const App = () => (
                 <Route path="wcp-rich-media-sheet" element={<WCPRichMediaSheetPage />} />
                 <Route path="wcp-rich-snackbar" element={<WCPRichSnackbarPage />} />
                 <Route path="wcp-timer-view" element={<WCPTimerViewPage />} />
-                <Route path="wcp-queue-banner" element={<WCPQueueBannerPage />} />
-                <Route path="wcp-queue-card" element={<WCPQueueCardPage />} />
+                <Route path="wcp-queue-banner" element={<Navigate to="/component-library/wcp-queue" replace />} />
+                <Route path="wcp-queue-card" element={<Navigate to="/component-library/wcp-queue" replace />} />
                 <Route path="wcp-queue" element={<WCPQueuePage />} />
               </Route>
 

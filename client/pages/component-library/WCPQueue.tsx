@@ -3,11 +3,15 @@ import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { WCPQueueLanding } from '@/components/walmart/WCPQueueLanding';
 import { WCPQueueBanner } from '@/components/walmart/WCPQueueBanner';
 import { WCPQueueCard } from '@/components/walmart/WCPQueueCard';
+import { WCPQueuePanel } from '@/components/walmart/WCPQueuePanel';
+import type { QueueItem } from '@/components/walmart/WCPQueueItemCard';
 import { WCPRichMediaSheet } from '@/components/walmart/WCPRichMediaSheet';
+import { WCPRichSnackbar } from '@/components/walmart/WCPRichSnackbar';
 import { LeaveQueueModal } from '@/components/walmart/LeaveQueueModal';
+import { Warning } from '@/components/icons/Warning';
+import { BottomNav } from '@/components/walmart/BottomNav';
 import {
   Modal,
-  ModalTrigger,
   ModalContent,
   ModalHeader,
   ModalTitle,
@@ -33,12 +37,47 @@ function SectionDesc({ children }: { children: React.ReactNode }) {
 const DEMO_IMAGE =
   'https://i5.walmartimages.com/seo/Apple-AirPods-Pro-2nd-Generation-with-Lightning-Charging-Case_c3e28b66-aa34-45fa-9d5c-82ef81b8d0b0.0c8e6c0d6e34cf3e11da0965e8d6a21a.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff';
 
+// ── Demo queue items ───────────────────────────────────────────────────────
+
+function buildDemoItems(): QueueItem[] {
+  return [
+    {
+      id: '1',
+      productImage: DEMO_IMAGE,
+      productImageAlt: 'Champion Men\u2019s Classic Graphic Tee',
+      description: 'Champion Men\u2019s Classic Graphic Tee',
+      price: '$199.99',
+      originalPrice: '$299.99',
+      endTime: secondsFromNow(19 * 60),
+    },
+    {
+      id: '2',
+      productImage: DEMO_IMAGE,
+      productImageAlt: 'Champion-Test1',
+      description: 'Champion-Test1',
+      price: '$5.00',
+      endTime: secondsFromNow(34 * 60),
+    },
+    {
+      id: '3',
+      productImage: DEMO_IMAGE,
+      productImageAlt: 'Champion Men\u2019s Sportstyle Colorblock Tee',
+      description: 'Champion Men\u2019s Sportstyle Colorblock Tee',
+      price: '$6.00',
+      endTime: secondsFromNow(54 * 60),
+    },
+  ];
+}
+
 // ── Main page ──────────────────────────────────────────────────────────────
 
 export default function WCPQueuePage() {
   // Timer state
   const [landingEnd] = useState(() => secondsFromNow(59 * 60));
-  const [bannerEnd] = useState(() => secondsFromNow(57 * 60));
+  const [bannerEnd, setBannerEnd] = useState(() => secondsFromNow(59 * 60));
+  const [warningEnd] = useState(() => secondsFromNow(10 * 60 + 23));
+  const [expiringEnd] = useState(() => secondsFromNow(45));
+  const [liveCardEnd, setLiveCardEnd] = useState(() => secondsFromNow(12 * 60));
 
   // Modal state
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -51,11 +90,15 @@ export default function WCPQueuePage() {
   // Leave queue confirmation modal
   const [leaveModalOpen, setLeaveModalOpen] = useState(false);
 
+  // Panel state
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [demoItems] = useState<QueueItem[]>(buildDemoItems);
+
   return (
     <ComponentPageLayout
       section="WCP Patterns"
       title="Queue"
-      description="Combined queue pattern page bringing together Queue Landing, Queue Banner, and Queue Card components for the waiting-room experience."
+      description="Queue pattern page bringing together Queue Landing, Queue Banner, and Queue Card components for the waiting-room experience."
     >
       <div className={styles.page}>
 
@@ -122,14 +165,12 @@ export default function WCPQueuePage() {
             </Button>
           </div>
 
-          {/* Authenticated Modal */}
           <AuthenticatedModal
             open={authModalOpen}
             onClose={() => setAuthModalOpen(false)}
             endTime={landingEnd}
           />
 
-          {/* Unauthenticated Modal */}
           <UnauthenticatedModal
             open={unauthModalOpen}
             onClose={() => setUnauthModalOpen(false)}
@@ -156,7 +197,6 @@ export default function WCPQueuePage() {
             </Button>
           </div>
 
-          {/* Authenticated Sheet */}
           <WCPRichMediaSheet
             isOpen={authSheetOpen}
             onClose={() => setAuthSheetOpen(false)}
@@ -184,7 +224,6 @@ export default function WCPQueuePage() {
             </div>
           </WCPRichMediaSheet>
 
-          {/* Unauthenticated Sheet */}
           <WCPRichMediaSheet
             isOpen={unauthSheetOpen}
             onClose={() => setUnauthSheetOpen(false)}
@@ -218,47 +257,151 @@ export default function WCPQueuePage() {
         <div className={styles.section}>
           <SectionTitle>Queue Banner</SectionTitle>
           <SectionDesc>
-            The Queue Banner sits on a dark navy background and contains a white card with a
-            product image, timer badge, reservation text, and View/Leave action links. Three
+            A banner with a live countdown timer for reserved carts, flash sales, and limited-time
+            queue flows. Sits on a dark navy background with a white card containing a product
+            image, timer badge, reservation text, and View/Leave action links. Supports three
             variants: line-joined, checkout, and error.
           </SectionDesc>
 
-          <div className={styles.variantGrid}>
-            <div className={styles.variantCol}>
-              <span className={styles.variantLabel}>Line Joined</span>
-              <div className={styles.bannerFrame}>
-                <WCPQueueBanner
-                  endTime={bannerEnd}
-                  variant="lineJoined"
-                  productImage={DEMO_IMAGE}
-                  reservationText="reservation text"
-                />
+          {/* Line Joined — Waiting Room */}
+          <div className={styles.useCaseBlock}>
+            <span className={styles.useCaseTitle}>Line Joined — Waiting Room (Light Blue Timer)</span>
+            <div className={styles.controlRow}>
+              <span className={styles.controlLabel}>Set timer:</span>
+              <Button variant="secondary" size="small" onClick={() => setBannerEnd(secondsFromNow(59 * 60))}>
+                59 min (normal)
+              </Button>
+              <Button variant="secondary" size="small" onClick={() => setBannerEnd(secondsFromNow(5 * 60))}>
+                5 min (warning)
+              </Button>
+              <Button variant="secondary" size="small" onClick={() => setBannerEnd(secondsFromNow(30))}>
+                30 s (critical)
+              </Button>
+            </div>
+            <div className={styles.bannerFrame}>
+              <WCPQueueBanner
+                endTime={bannerEnd}
+                variant="lineJoined"
+                productImage={DEMO_IMAGE}
+                reservationText="reservation text"
+                onView={() => {}}
+                onLeave={() => setLeaveModalOpen(true)}
+                linkText="Placeholder link text"
+                onLink={() => setIsPanelOpen(true)}
+                inline
+              />
+            </div>
+          </div>
+
+          {/* Line Joined — Warning (Yellow Timer) */}
+          <div className={styles.useCaseBlock}>
+            <span className={styles.useCaseTitle}>Line Joined — Item Warning (Yellow Timer)</span>
+            <div className={styles.bannerFrame}>
+              <WCPQueueBanner
+                endTime={warningEnd}
+                variant="lineJoined"
+                productImage={DEMO_IMAGE}
+                reservationText="reservation text"
+                onView={() => {}}
+                onLeave={() => setLeaveModalOpen(true)}
+                linkText="Placeholder link text"
+                onLink={() => {}}
+                inline
+              />
+            </div>
+          </div>
+
+          {/* Line Joined — Expiring (Red Timer) */}
+          <div className={styles.useCaseBlock}>
+            <span className={styles.useCaseTitle}>Line Joined — Expiring (Red Timer)</span>
+            <div className={styles.bannerFrame}>
+              <WCPQueueBanner
+                endTime={expiringEnd}
+                variant="lineJoined"
+                productImage={DEMO_IMAGE}
+                reservationText="reservation text"
+                onView={() => {}}
+                onLeave={() => setLeaveModalOpen(true)}
+                linkText="Placeholder link text"
+                onLink={() => {}}
+                inline
+              />
+            </div>
+          </div>
+
+          {/* Checkout Variant */}
+          <div className={styles.useCaseBlock}>
+            <span className={styles.useCaseTitle}>Checkout</span>
+            <SectionDesc>
+              Simplified navy bar used during checkout. Shows timer + message + dismiss button.
+            </SectionDesc>
+            <div className={styles.variantRow}>
+              <div className={styles.variantCard}>
+                <div className={styles.demoLabel}>Desktop (900+px)</div>
+                <div className={styles.bannerFrame}>
+                  <WCPQueueBanner
+                    endTime={secondsFromNow(63)}
+                    variant="checkout"
+                    queueMessage="queue messaging"
+                    onDismiss={() => {}}
+                    inline
+                  />
+                </div>
+              </div>
+              <div className={styles.variantCard}>
+                <div className={styles.demoLabel}>Mobile (&lt;900px)</div>
+                <div className={styles.bannerFrameNarrow}>
+                  <WCPQueueBanner
+                    endTime={secondsFromNow(63)}
+                    variant="checkout"
+                    queueMessage="queue messaging"
+                    onDismiss={() => {}}
+                    inline
+                  />
+                </div>
               </div>
             </div>
+          </div>
 
-            <div className={styles.variantCol}>
-              <span className={styles.variantLabel}>Checkout</span>
-              <div className={styles.bannerFrame}>
-                <WCPQueueBanner
-                  endTime={bannerEnd}
-                  variant="checkout"
-                  queueMessage="Complete your purchase before time runs out"
-                />
+          {/* Error Variant */}
+          <div className={styles.useCaseBlock}>
+            <span className={styles.useCaseTitle}>Error</span>
+            <SectionDesc>
+              Shown when the queue encounters an error or the user is being placed in line.
+            </SectionDesc>
+            <div className={styles.variantRow}>
+              <div className={styles.variantCard}>
+                <div className={styles.demoLabel}>Desktop (900+px)</div>
+                <div className={styles.bannerFrame}>
+                  <WCPQueueBanner
+                    endTime={secondsFromNow(600)}
+                    variant="error"
+                    errorMessage="Hang on, we're getting you in line. Please don't refresh or leave the line."
+                    inline
+                  />
+                </div>
               </div>
-            </div>
-
-            <div className={styles.variantCol}>
-              <span className={styles.variantLabel}>Error</span>
-              <div className={styles.bannerFrame}>
-                <WCPQueueBanner
-                  endTime={bannerEnd}
-                  variant="error"
-                  errorMessage="Your reservation has expired. The item is no longer available at this price."
-                />
+              <div className={styles.variantCard}>
+                <div className={styles.demoLabel}>Mobile (&lt;900px)</div>
+                <div className={styles.bannerFrameNarrow}>
+                  <WCPQueueBanner
+                    endTime={secondsFromNow(600)}
+                    variant="error"
+                    errorMessage="Hang on, we're getting you in line. Please don't refresh or leave the line."
+                    inline
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Queue items side panel */}
+        <WCPQueuePanel
+          isOpen={isPanelOpen}
+          onClose={() => setIsPanelOpen(false)}
+          items={demoItems}
+        />
 
         {/* ═══════════════════════════════════════════════════════════
             Section E — Queue Card
@@ -268,11 +411,11 @@ export default function WCPQueuePage() {
           <SectionDesc>
             A compact card displaying a reservation timer, product thumbnail, pricing, and queue
             actions. Three urgency variants: waiting (blue), warning (yellow), and expiring (red).
-            Clicking &ldquo;Leave the line&rdquo; opens a confirmation modal.
+            Clicking "Leave the line" opens a confirmation modal.
           </SectionDesc>
 
-          <div className={styles.variantGrid}>
-            <div className={styles.variantCol}>
+          <div className={styles.cardVariantGrid}>
+            <div className={styles.cardVariantCol}>
               <span className={styles.variantLabel}>Waiting (Light Blue)</span>
               <WCPQueueCard
                 variant="waiting"
@@ -286,7 +429,7 @@ export default function WCPQueuePage() {
               />
             </div>
 
-            <div className={styles.variantCol}>
+            <div className={styles.cardVariantCol}>
               <span className={styles.variantLabel}>Warning (Yellow)</span>
               <WCPQueueCard
                 variant="warning"
@@ -300,7 +443,7 @@ export default function WCPQueuePage() {
               />
             </div>
 
-            <div className={styles.variantCol}>
+            <div className={styles.cardVariantCol}>
               <span className={styles.variantLabel}>Expiring (Red)</span>
               <WCPQueueCard
                 variant="expiring"
@@ -314,6 +457,38 @@ export default function WCPQueuePage() {
               />
             </div>
           </div>
+
+          {/* Live Countdown */}
+          <div className={styles.useCaseBlock}>
+            <span className={styles.useCaseTitle}>Live Countdown</span>
+            <SectionDesc>
+              When <code>endTime</code> is provided the timer counts down in real time.
+            </SectionDesc>
+            <div className={styles.controlRow}>
+              <span className={styles.controlLabel}>Set timer:</span>
+              <Button variant="secondary" size="small" onClick={() => setLiveCardEnd(secondsFromNow(12 * 60))}>
+                12 min (waiting)
+              </Button>
+              <Button variant="secondary" size="small" onClick={() => setLiveCardEnd(secondsFromNow(4 * 60))}>
+                4 min (warning)
+              </Button>
+              <Button variant="secondary" size="small" onClick={() => setLiveCardEnd(secondsFromNow(30))}>
+                30 s (expiring)
+              </Button>
+            </div>
+            <div className={styles.liveDemo}>
+              <WCPQueueCard
+                variant="waiting"
+                endTime={liveCardEnd}
+                productImage={DEMO_IMAGE}
+                productImageAlt="Apple AirPods Pro"
+                productName="Apple AirPods Pro (2nd Generation)"
+                price="$189.00"
+                wasPrice="$249.00"
+                onLeaveQueue={() => setLeaveModalOpen(true)}
+              />
+            </div>
+          </div>
         </div>
 
         {/* Leave Queue Confirmation Modal */}
@@ -323,16 +498,14 @@ export default function WCPQueuePage() {
         />
 
         {/* ═══════════════════════════════════════════════════════════
-            Section F — Use Case Examples
+            Section F — Banner Use Case Examples
             ═══════════════════════════════════════════════════════════ */}
         <div className={styles.section}>
-          <SectionTitle>Variants</SectionTitle>
+          <SectionTitle>Banner Variants</SectionTitle>
           <SectionDesc>
-            Multiple variants of the component QueueBanner can be manipulated with the help
-            of props and child components.
+            Multiple variants of the Queue Banner manipulated with props and child components.
           </SectionDesc>
 
-          {/* Basic Queue */}
           <div className={styles.useCaseBlock}>
             <span className={styles.useCaseTitle}>Basic Queue</span>
             <div className={styles.bannerFrame}>
@@ -349,7 +522,6 @@ export default function WCPQueuePage() {
             </div>
           </div>
 
-          {/* Reservation Ready Queue */}
           <div className={styles.useCaseBlock}>
             <span className={styles.useCaseTitle}>Reservation Ready Queue</span>
             <div className={styles.bannerFrame}>
@@ -369,7 +541,6 @@ export default function WCPQueuePage() {
             </div>
           </div>
 
-          {/* Time Expired Queue */}
           <div className={styles.useCaseBlock}>
             <span className={styles.useCaseTitle}>Time Expired Queue</span>
             <div className={styles.bannerFrame}>
@@ -389,7 +560,6 @@ export default function WCPQueuePage() {
             </div>
           </div>
 
-          {/* Banner Fetch Error */}
           <div className={styles.useCaseBlock}>
             <span className={styles.useCaseTitle}>Banner Fetch Error</span>
             <div className={styles.bannerFrame}>
@@ -404,13 +574,119 @@ export default function WCPQueuePage() {
         </div>
 
         {/* ═══════════════════════════════════════════════════════════
-            Usage
+            Section G — Mobile + Bottom Nav Demo
+            ═══════════════════════════════════════════════════════════ */}
+        <div className={styles.section}>
+          <SectionTitle>Mobile — Above Bottom Nav</SectionTitle>
+          <SectionDesc>
+            On mobile, the queue banner sits directly above the bottom navigation bar. The snackbar
+            (inverse) appears above the banner.
+          </SectionDesc>
+
+          <div className={styles.mobileStatesRow}>
+            <MobileStateFrame
+              label="Line Joined + Snackbar"
+              sublabel="Waiting room state"
+            >
+              <div className={styles.phoneSnackbarWrap}>
+                <WCPRichSnackbar
+                  open
+                  color="inverse"
+                  leadingSlot={<Warning width={20} height={20} />}
+                  message="Declarative title or body"
+                  actionLabel="Action Button"
+                  onAction={() => {}}
+                  duration={Infinity}
+                  inline
+                />
+              </div>
+              <WCPQueueBanner
+                endTime={secondsFromNow(59 * 60)}
+                variant="lineJoined"
+                productImage={DEMO_IMAGE}
+                reservationText="reservation text"
+                onView={() => {}}
+                onLeave={() => setLeaveModalOpen(true)}
+                linkText="Placeholder link text"
+                onLink={() => {}}
+                inline
+              />
+            </MobileStateFrame>
+
+            <MobileStateFrame
+              label="Item Warning + Snackbar"
+              sublabel="Yellow timer badge"
+            >
+              <div className={styles.phoneSnackbarWrap}>
+                <WCPRichSnackbar
+                  open
+                  color="inverse"
+                  leadingSlot={<Warning width={20} height={20} />}
+                  message="Declarative title or body"
+                  actionLabel="Action Button"
+                  onAction={() => {}}
+                  duration={Infinity}
+                  inline
+                />
+              </div>
+              <WCPQueueBanner
+                endTime={warningEnd}
+                variant="lineJoined"
+                productImage={DEMO_IMAGE}
+                reservationText="reservation text"
+                onView={() => {}}
+                onLeave={() => setLeaveModalOpen(true)}
+                linkText="Placeholder link text"
+                onLink={() => {}}
+                inline
+              />
+            </MobileStateFrame>
+
+            <MobileStateFrame
+              label="Checkout (Compact)"
+              sublabel="Compact 40px bar on mobile"
+            >
+              <WCPQueueBanner
+                endTime={secondsFromNow(63)}
+                variant="checkout"
+                queueMessage="queue messaging"
+                onDismiss={() => {}}
+                inline
+              />
+            </MobileStateFrame>
+          </div>
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════
+            Section H — Snackbar Integration
+            ═══════════════════════════════════════════════════════════ */}
+        <div className={styles.section}>
+          <SectionTitle>Snackbar Integration</SectionTitle>
+          <SectionDesc>
+            Pair the queue banner with a WCPRichSnackbar (Inverse variant) above
+            it to communicate queue status.
+          </SectionDesc>
+
+          <div className={styles.snackbarDemo}>
+            <WCPRichSnackbar
+              open
+              color="inverse"
+              leadingSlot={<Warning width={20} height={20} />}
+              message="Hang on, we're getting you in line. Please don't refresh or leave the line."
+              duration={Infinity}
+              inline
+            />
+          </div>
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════
+            Section I — Usage
             ═══════════════════════════════════════════════════════════ */}
         <div className={styles.section}>
           <SectionTitle>Usage</SectionTitle>
-          <pre className={styles.codeBlock}>{`import { WCPQueueLanding } from '@/components/walmart/WCPQueueLanding';
+          <pre className={styles.codeBlock}>{`// ── Queue Landing ──────────────────────────────────────────────
+import { WCPQueueLanding } from '@/components/walmart/WCPQueueLanding';
 
-// Authenticated — standalone with inline actions
 <WCPQueueLanding
   variant="authenticated"
   endTime={reservationEndTime}
@@ -418,22 +694,74 @@ export default function WCPQueuePage() {
   showInlineActions
 />
 
-// Unauthenticated — inside a Modal
-<Modal open={isOpen} onOpenChange={setIsOpen}>
-  <ModalContent size="large" hideClose>
-    <ModalHeader><ModalTitle>Black Friday Deals</ModalTitle></ModalHeader>
-    <div style={{ background: '#002E99', padding: '32px 24px' }}>
-      <WCPQueueLanding variant="unauthenticated" />
-    </div>
-    <ModalFooter>
-      <Button variant="primary" isFullWidth>Sign in</Button>
-    </ModalFooter>
-  </ModalContent>
-</Modal>`}</pre>
+// ── Queue Banner ───────────────────────────────────────────────
+import { WCPQueueBanner } from '@/components/walmart/WCPQueueBanner';
+
+// Line Joined (default)
+<WCPQueueBanner
+  endTime={reservationEndTime}
+  reservationText="Your item is reserved"
+  onView={handleView}
+  onLeave={handleLeave}
+  linkText="View all reserved items"
+  onLink={handleLink}
+/>
+
+// Checkout — compact navy bar
+<WCPQueueBanner
+  endTime={checkoutEndTime}
+  variant="checkout"
+  queueMessage="Complete checkout before time runs out"
+  onDismiss={handleDismiss}
+/>
+
+// ── Queue Card ─────────────────────────────────────────────────
+import { WCPQueueCard } from '@/components/walmart/WCPQueueCard';
+
+<WCPQueueCard
+  variant="waiting"
+  displayTime="57mins"
+  productName="Product name"
+  price="$499.90"
+  wasPrice="$600.00"
+  onLeaveQueue={() => {}}
+  onView={() => {}}
+/>`}</pre>
         </div>
 
       </div>
     </ComponentPageLayout>
+  );
+}
+
+// ── Mobile State Frame helper ──────────────────────────────────────────────
+
+function MobileStateFrame({
+  label,
+  sublabel,
+  children,
+}: {
+  label: string;
+  sublabel: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={styles.mobileStateCard}>
+      <div className={styles.mobileStateLabel}>{label}</div>
+      <div className={styles.mobileStateSublabel}>{sublabel}</div>
+      <div className={styles.phoneFrame}>
+        <div className={styles.phonePage}>
+          <div className={styles.phoneNavBar} />
+          <div className={styles.phonePageContent} />
+        </div>
+        <div className={styles.phoneBannerSlot}>
+          {children}
+        </div>
+        <div className={styles.phoneBottomNavSlot}>
+          <BottomNav contained />
+        </div>
+      </div>
+    </div>
   );
 }
 
