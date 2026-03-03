@@ -191,8 +191,6 @@
     "descWCPHeartView": "Botón de favoritos con callout en escritorio y snackbar en móvil",
     "navWCPRating": "Calificaciones",
     "descWCPRating": "Componente de calificación interactiva con etiquetas para la experiencia del consumidor WCP",
-    "navWCPRatingDisplay": "Visualización de calificación",
-    "descWCPRatingDisplay": "Visualización de calificación agregada no interactiva para fichas de artículos y secciones de reseñas",
     "descWCPFloatingButton": "Botón de ícono circular elevado para controles de carrusel y acciones flotantes",
     "descAlerts": "Mensajes de banner para estados de información, éxito, advertencia y error",
     "descBadges": "Insignias de conteo, indicadores de estado y variantes de color semántico",

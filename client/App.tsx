@@ -116,8 +116,6 @@ const WCPSearchAndUtilityPage = React.lazy(() => import("./pages/component-libra
 const WCPFloatingButtonPage = React.lazy(() => import("./pages/component-library/WCPFloatingButton"));
 const WCPHeartViewPage = React.lazy(() => import("./pages/component-library/WCPHeartView"));
 const WCPRatingPage = React.lazy(() => import("./pages/component-library/WCPRating"));
-const WCPRatingDisplayPage = React.lazy(() => import("./pages/component-library/WCPRatingDisplay"));
-
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
 const queryClient = new QueryClient();
@@ -223,7 +221,6 @@ const App = () => (
                 <Route path="wcp-floating-button" element={<WCPFloatingButtonPage />} />
                 <Route path="wcp-heart-view" element={<WCPHeartViewPage />} />
                 <Route path="wcp-rating" element={<WCPRatingPage />} />
-                <Route path="wcp-rating-display" element={<WCPRatingDisplayPage />} />
               </Route>
 
               {/* Walmart pages */}
