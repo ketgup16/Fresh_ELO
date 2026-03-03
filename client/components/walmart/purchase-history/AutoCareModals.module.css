@@ -3,7 +3,7 @@
   position: fixed;
   left: 50%;
   top: 50%;
-  z-index: 101;
+  z-index: var(--ld-semantic-z-index-modal, 1050);
   transform: translate(-50%, -50%);
   width: 95vw;
   max-width: 800px;

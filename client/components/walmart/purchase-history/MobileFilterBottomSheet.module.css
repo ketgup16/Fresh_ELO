@@ -3,7 +3,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.48);
-  z-index: 200;
+  z-index: var(--ld-semantic-z-index-modal-backdrop, 1040);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

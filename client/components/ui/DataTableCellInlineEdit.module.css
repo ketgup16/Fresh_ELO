@@ -146,14 +146,14 @@
 .dialogOverlay {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: var(--ld-semantic-z-index-modal-backdrop, 1040);
 }
 
 /* ── Dialog container ────────────────────────────────────────────────── */
 /* Matches Figma: surface-overlay bg, border-radius-50, elevation shadow */
 .dialog {
   position: absolute;
-  z-index: 51;
+  z-index: var(--ld-semantic-z-index-modal, 1050);
   top: 0;
   left: 0;
   right: 0;

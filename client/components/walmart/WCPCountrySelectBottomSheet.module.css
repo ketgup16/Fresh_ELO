@@ -6,7 +6,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  z-index: 500;
+  z-index: var(--ld-semantic-z-index-modal-backdrop, 1040);
 }
 
 /* ─── Slide-up keyframe ─── */
