@@ -200,7 +200,8 @@ export default function WCPRichMediaSheetPage() {
                 <li>Simple confirmation messages (use Dialog instead)</li>
                 <li>1-3 actionable items (use standard BottomSheet)</li>
                 <li>Disclaimer information or privacy notices</li>
-                <li>Surface colors beyond what's defined (default, brand, media)</li>
+                <li>Surface colors beyond what's defined (default, brand, brand-bold, media)</li>
+                <li>Primary buttons on brand-bold surface — use secondary or tertiary instead</li>
               </ul>
             </div>
           </div>
@@ -254,7 +255,11 @@ export default function WCPRichMediaSheetPage() {
             }
             surfaceVariant={activeHeader === 'inverse' ? 'default' : activeSurface}
             actions={
-              <Button variant="primary" size="medium" isFullWidth>
+              <Button
+                variant={activeSurface === 'brand-bold' && activeHeader !== 'inverse' ? 'secondary' : 'primary'}
+                size="medium"
+                isFullWidth
+              >
                 Button label
               </Button>
             }
@@ -296,7 +301,11 @@ export default function WCPRichMediaSheetPage() {
             surfaceVariant={activeSurface}
             adjustHeight="content"
             actions={
-              <Button variant="primary" size="medium" isFullWidth>
+              <Button
+                variant={activeSurface === 'brand-bold' ? 'secondary' : 'primary'}
+                size="medium"
+                isFullWidth
+              >
                 Button label
               </Button>
             }

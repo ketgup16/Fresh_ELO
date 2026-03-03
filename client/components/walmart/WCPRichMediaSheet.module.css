@@ -12,8 +12,9 @@
    WCP-only additions over LD:
    - 6 header variants (title, title-subtitle, logo-left, logo-center, inverse, none)
    - 3 surface themes (default, brand, media)
-   - Desktop (900px+): centered 560px modal using left/right margins (NO transform
+   - Desktop (768px+): centered 768px modal using left/right margins (NO transform
      so it does NOT conflict with vaul's translateY slide animation)
+   - Breakpoint mirrors LD BottomSheet exactly: 768px
    ════════════════════════════════════════════════════════════════════════ */
 
 /* ── Overlay — identical to LD BottomSheet ────────────────────────────── */
@@ -61,18 +62,19 @@
 }
 
 /*
- * Desktop (900px+): centered modal, fixed 560px width, all-corner radius.
+ * Desktop (768px+): centered 768px modal, all-corner radius.
+ * Matches LD BottomSheet breakpoint and width exactly.
  *
  * IMPORTANT: We use left/right margin math instead of transform: translateX(-50%)
  * because vaul uses transform: translateY() for the slide animation.
  * Using a translate-based centering on top of that creates a conflict where the
  * animation jumps. Using calc() on left/right avoids any transform collision.
  */
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   .sheet {
-    left: calc(50% - 280px);   /* 280px = half of 560px */
-    right: calc(50% - 280px);
-    width: 560px;
+    left: calc(50% - 384px);   /* 384px = half of 768px */
+    right: calc(50% - 384px);
+    width: 768px;
     border-radius: var(--ld-primitive-scale-borderradius-200, 16px);
   }
 }
@@ -169,7 +171,7 @@
   padding: var(--ld-primitive-scale-space-100, 8px);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   .headerRow {
     /* Desktop: 16px padding, same as LD BottomSheet */
     padding: var(--ld-primitive-scale-space-200, 16px);
@@ -188,7 +190,7 @@
     var(--ld-primitive-scale-space-700, 56px);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   .headerTitleFrame {
     /* Desktop: 6px top/bottom + 56px left — same as LD BottomSheet */
     padding: 6px 0 6px var(--ld-primitive-scale-space-700, 56px);
@@ -207,7 +209,7 @@
   margin: 0;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   .headerTitle {
     /* Desktop: token size (20px) — same as LD BottomSheet */
     font-size: var(--ld-semantic-font-heading-small-size, 20px);
@@ -394,7 +396,7 @@
   gap: var(--ld-primitive-scale-space-100, 8px);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   .footerActions {
     /* Desktop: 24px — same as LD BottomSheet */
     padding: var(--ld-primitive-scale-space-300, 24px);

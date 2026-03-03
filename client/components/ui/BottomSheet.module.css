@@ -18,11 +18,29 @@
   display: flex;
   flex-direction: column;
   background: var(--ld-semantic-color-surface-overlay, #ffffff);
+  /* Mobile: top corners only */
   border-top-left-radius: var(--ld-primitive-scale-borderradius-200, 16px);
   border-top-right-radius: var(--ld-primitive-scale-borderradius-200, 16px);
   box-shadow: var(--ld-semantic-elevation-300, 0 -2px 8px rgba(0, 0, 0, 0.1));
   max-height: 90vh;
   animation: slideUp 300ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/*
+ * Desktop (768px+): centered 768px modal, all-corner radius.
+ *
+ * IMPORTANT: Use left/right calc centering — NOT transform: translateX(-50%).
+ * Vaul uses transform: translateY() for slide animation; mixing transforms
+ * would cause the sheet to jump or render in the wrong position.
+ */
+@media (min-width: 768px) {
+  .content {
+    left: calc(50% - 384px);   /* 384px = half of 768px */
+    right: calc(50% - 384px);
+    width: 768px;
+    /* All 4 corners rounded on desktop */
+    border-radius: var(--ld-primitive-scale-borderradius-200, 16px);
+  }
 }
 
 .content--fixedHeight {
@@ -42,13 +60,13 @@
   position: relative;
 }
 
-/* Mobile (0-899px) header padding */
+/* Mobile (<768px) header padding */
 .header {
   padding: var(--ld-primitive-scale-space-100, 8px);
 }
 
-/* Desktop (900px+) header padding */
-@media (min-width: 900px) {
+/* Desktop (768px+) header padding */
+@media (min-width: 768px) {
   .header {
     padding: var(--ld-primitive-scale-space-200, 16px);
   }
@@ -72,13 +90,13 @@
   position: relative;
 }
 
-/* Mobile (0-899px) title frame padding */
+/* Mobile (<768px) title frame padding */
 .titleFrame {
   padding: var(--ld-primitive-scale-space-100, 8px) 0 var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-700, 56px);
 }
 
-/* Desktop (900px+) title frame padding */
-@media (min-width: 900px) {
+/* Desktop (768px+) title frame padding */
+@media (min-width: 768px) {
   .titleFrame {
     padding: 6px 0 6px var(--ld-primitive-scale-space-700, 56px);
   }
@@ -96,8 +114,8 @@
   position: relative;
 }
 
-/* Mobile (0-899px) - smaller title */
-@media (max-width: 899px) {
+/* Mobile (<768px) — smaller title */
+@media (max-width: 767px) {
   .title {
     font-size: 18px;
   }
@@ -113,13 +131,13 @@
   overflow-y: auto;
 }
 
-/* Mobile (0-899px) content padding */
+/* Mobile (<768px) content padding */
 .contentContainer {
   padding: 0 var(--ld-primitive-scale-space-200, 16px) var(--ld-primitive-scale-space-200, 16px) var(--ld-primitive-scale-space-200, 16px);
 }
 
-/* Desktop (900px+) content padding */
-@media (min-width: 900px) {
+/* Desktop (768px+) content padding */
+@media (min-width: 768px) {
   .contentContainer {
     padding: 0 var(--ld-primitive-scale-space-300, 24px) var(--ld-primitive-scale-space-300, 24px) var(--ld-primitive-scale-space-300, 24px);
   }
@@ -160,13 +178,13 @@
   position: relative;
 }
 
-/* Mobile (0-899px) action padding */
+/* Mobile (<768px) action padding */
 .actionContainer {
   padding: var(--ld-primitive-scale-space-200, 16px);
 }
 
-/* Desktop (900px+) action padding */
-@media (min-width: 900px) {
+/* Desktop (768px+) action padding */
+@media (min-width: 768px) {
   .actionContainer {
     padding: var(--ld-primitive-scale-space-300, 24px);
   }
