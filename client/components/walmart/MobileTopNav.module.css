@@ -275,7 +275,7 @@
 
 /* ── Sub nav ── */
 .subNav {
-  padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-400, 16px);
+  padding: var(--ld-primitive-scale-space-50, 4px) var(--ld-primitive-scale-space-200, 16px);
   display: flex;
   align-items: center;
   gap: var(--ld-primitive-scale-space-200, 8px);
