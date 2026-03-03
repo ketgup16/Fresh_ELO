@@ -210,36 +210,8 @@
   align-items: center;
 }
 
-/* Close icon button – default (light variants) */
-.closeBtn {
-  display: flex;
-  padding: var(--ld-primitive-scale-space-100, 8px);
-  align-items: flex-start;
-  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
-  border: 1px solid transparent;
-  background: transparent;
-  cursor: pointer;
-  transition: opacity 0.15s ease;
-  color: var(--ld-semantic-color-action-text-onfill-transparent, #2e2f32);
-}
-
-.closeBtn:hover {
-  opacity: 0.7;
-}
-
-.closeBtn:focus {
-  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
-  outline-offset: 2px;
-}
-
-/* Close icon button – white-fill (dark variants: inverse + brand) */
-.closeBtnWhite {
-  background: var(--ld-semantic-color-action-fill-accent-white, #ffffff);
-  color: var(--ld-semantic-color-action-text-onfill-accent-white, #2e2f32);
-}
-
 /* ── Static (inline / demo) mode ──────────────────────────── */
-.staticMode {
+.inlineMode {
   position: relative;
   bottom: auto;
   left: auto;

@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import { IconButton } from '@/components/ui/IconButton';
+import { X } from '@/components/icons/X';
 import styles from './WCPRichSnackbar.module.css';
 
 export type WCPRichSnackbarColor = 'primary' | 'secondary' | 'inverse' | 'brand';
@@ -30,15 +32,6 @@ const POSITION_CLASS: Record<string, string> = {
   'bottom-right': styles.bottomRight,
 };
 
-const CloseIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path
-      d="M7.85355 8.71911L12 12.8656L12.7071 12.1584L8.56066 8.012L12.7071 3.86555L12 3.15845L7.85355 7.30489L3.70711 3.15845L3 3.86555L7.14645 8.012L3 12.1584L3.70711 12.8656L7.85355 8.71911Z"
-      fill="currentColor"
-    />
-  </svg>
-);
-
 export const WCPRichSnackbar: React.FC<WCPRichSnackbarProps> = ({
   id,
   open = true,
@@ -51,11 +44,10 @@ export const WCPRichSnackbar: React.FC<WCPRichSnackbarProps> = ({
   onClose,
   duration = 4000,
   position = 'bottom-center',
-  inline: isStatic = false,
+  inline: isInline = false,
 }) => {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Auto-dismiss
   useEffect(() => {
     if (open && duration !== Infinity && onClose) {
       timerRef.current = setTimeout(() => {
@@ -67,7 +59,7 @@ export const WCPRichSnackbar: React.FC<WCPRichSnackbarProps> = ({
     };
   }, [open, duration, onClose]);
 
-  if (!open && !isStatic) return null;
+  if (!open && !isInline) return null;
 
   const isDark = color === 'inverse' || color === 'brand';
   const isBold = contentVariant === 'left-bold' || contentVariant === 'center-bold';
@@ -81,8 +73,8 @@ export const WCPRichSnackbar: React.FC<WCPRichSnackbarProps> = ({
   const snackbarClass = [
     styles.snackbar,
     styles[color],
-    isStatic ? styles.staticMode : (POSITION_CLASS[position] ?? styles.bottomCenter),
-    open || isStatic ? styles.open : '',
+    isInline ? styles.inlineMode : (POSITION_CLASS[position] ?? styles.bottomCenter),
+    open || isInline ? styles.open : '',
   ]
     .filter(Boolean)
     .join(' ');
@@ -92,10 +84,6 @@ export const WCPRichSnackbar: React.FC<WCPRichSnackbarProps> = ({
     .join(' ');
 
   const messageClass = [styles.message, isBold ? styles.messageBold : '']
-    .filter(Boolean)
-    .join(' ');
-
-  const closeBtnClass = [styles.closeBtn, isDark ? styles.closeBtnWhite : '']
     .filter(Boolean)
     .join(' ');
 
@@ -130,14 +118,15 @@ export const WCPRichSnackbar: React.FC<WCPRichSnackbarProps> = ({
             )}
             {onClose && (
               <div className={styles.closeWrapper}>
-                <button
-                  type="button"
-                  className={closeBtnClass}
-                  onClick={onClose}
+                <IconButton
                   aria-label="Close notification"
+                  variant={isDark ? 'white' : 'ghost'}
+                  size="small"
+                  shape="rounded"
+                  onClick={onClose}
                 >
-                  <CloseIcon />
-                </button>
+                  <X width={16} height={16} />
+                </IconButton>
               </div>
             )}
           </div>
