@@ -356,6 +356,43 @@ public/illustrations/
 
 ---
 
+### 23. Overlay Z-Index — Scrim Components Always On Top (HARD RULE — NO EXCEPTIONS)
+**File**: `RULE_OverlayZIndex.md`
+
+**When**: ANY component that uses a scrim/backdrop (bottom sheet, modal, dialog, drawer, side panel)
+
+**The Rule**: Any component that renders a scrim is an overlay and MUST appear above ALL application UI — including the desktop header, side nav, and any fixed bars.
+
+**Key Requirements**:
+- ✅ Scrim/backdrop MUST use `z-index: var(--ld-semantic-z-index-modal-backdrop, 1040)`
+- ✅ Overlay panel MUST use `z-index: var(--ld-semantic-z-index-modal, 1050)`
+- ✅ Applies to: Bottom Sheet, Modal, Dialog, Drawer, Side Panel — any scrim-based component
+- ❌ NEVER use `z-index: 50` or `z-index: 51` for scrim-based overlays (buried under header 300, sidebar 200)
+- ❌ NEVER use raw integer z-index values — always use semantic tokens
+
+**Quick Check**:
+```css
+/* ❌ WRONG — buried under nav chrome */
+.overlay { z-index: 50; }
+.sheet   { z-index: 51; }
+
+/* ✅ CORRECT — above everything */
+.overlay { z-index: var(--ld-semantic-z-index-modal-backdrop, 1040); }
+.sheet   { z-index: var(--ld-semantic-z-index-modal, 1050); }
+```
+
+**Z-Index Token Scale**:
+- `1000` — dropdowns/menus
+- `1040` — scrim/backdrop
+- `1050` — modal panel
+- `1060` — popovers
+- `1070` — tooltips
+- `1080` — toasts/notifications
+- `1090` — full-screen overlays
+- `1100` — highest (emergency banners)
+
+---
+
 ### 12a. Accessibility — Never Disable Buttons
 **Scope**: ALL interactive components, modals, forms, and CTAs
 
