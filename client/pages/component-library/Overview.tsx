@@ -29,6 +29,7 @@ import {
   Settings,
   Star,
   Tag,
+  Image,
 } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { getComponentPreview } from './ComponentCardPreviews';
@@ -62,6 +63,7 @@ const ICON_MAP: Record<string, IconComponent> = {
   Settings,
   Star,
   Tag,
+  Image,
 };
 
 interface ComponentEntry {
@@ -126,6 +128,7 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navWCPQueueBanner', descKey: 'componentLibrary.descWCPQueueBanner', path: '/component-library/wcp-queue-banner', icon: 'Note', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPSearchBar', descKey: 'componentLibrary.descWCPSearchBar', path: '/component-library/wcp-search-bar', icon: 'Search', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPSignatureCapture', descKey: 'componentLibrary.descWCPSignatureCapture', path: '/component-library/wcp-signature-capture', icon: 'Edit', section: 'ld' },
+  { titleKey: 'componentLibrary.navWCPUploadImage', descKey: 'componentLibrary.descWCPUploadImage', path: '/component-library/wcp-upload-image', icon: 'Image', section: 'ld' },
   // ── Shared Components ──
   { titleKey: 'componentLibrary.navAlertDialog', descKey: 'componentLibrary.descAlertDialog', path: '/component-library/alert-dialog', icon: 'ExclamationCircle', section: 'shadcn' },
   { titleKey: 'componentLibrary.navAvatar', descKey: 'componentLibrary.descAvatar', path: '/component-library/avatar', icon: 'Circle', section: 'shadcn' },

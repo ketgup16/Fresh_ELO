@@ -199,6 +199,8 @@
     "descWCPSearchBar": "WCP inline page search bar with two breakpoints and states: Enabled, Hovered, Activated, and Disabled",
     "navWCPSignatureCapture": "Signature Capture",
     "descWCPSignatureCapture": "WCP subscription signature flow with Trigger, Terms, Base form, and Reauth variants",
+    "navWCPUploadImage": "Upload Image",
+    "descWCPUploadImage": "Photo upload field for customer reviews. Supports up to 5 images with mobile and desktop tile sizes.",
     "navWCPRichMediaSheet": "Rich Media Sheet",
     "descWCPRichMediaSheet": "Slot-driven, themeable bottom sheet for media-rich WCP experiences",
     "navWCPRichSnackbar": "Rich Snackbar",
