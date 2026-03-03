@@ -3,6 +3,7 @@ import "./global.css";
 import "./i18n";
 import { createRoot } from "react-dom/client";
 import { SnackbarContainer } from "@/components/ui/SnackbarContainer";
+import { WCPRichSnackbarContainer } from "@/components/walmart/WCPRichSnackbarContainer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MartyProvider } from "@/contexts/MartyContext";
@@ -119,6 +120,7 @@ const WCPRatingPage = React.lazy(() => import("./pages/component-library/WCPRati
 const WCPSearchBarPage = React.lazy(() => import("./pages/component-library/WCPSearchBar"));
 const WCPSignatureCapturePage = React.lazy(() => import("./pages/component-library/WCPSignatureCapture"));
 const WCPRichMediaSheetPage = React.lazy(() => import("./pages/component-library/WCPRichMediaSheet"));
+const WCPRichSnackbarPage = React.lazy(() => import("./pages/component-library/WCPRichSnackbar"));
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
 const queryClient = new QueryClient();
@@ -129,6 +131,7 @@ const App = () => (
       <LayoutSettingsProvider>
         <QueryClientProvider client={queryClient}>
       <SnackbarContainer />
+      <WCPRichSnackbarContainer />
       <MartyProvider>
           <BrowserRouter>
             <React.Suspense fallback={LazyFallback}>
@@ -227,6 +230,7 @@ const App = () => (
                 <Route path="wcp-search-bar" element={<WCPSearchBarPage />} />
                 <Route path="wcp-signature-capture" element={<WCPSignatureCapturePage />} />
                 <Route path="wcp-rich-media-sheet" element={<WCPRichMediaSheetPage />} />
+                <Route path="wcp-rich-snackbar" element={<WCPRichSnackbarPage />} />
               </Route>
 
               {/* Walmart pages */}

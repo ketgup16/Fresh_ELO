@@ -197,6 +197,8 @@
     "descWCPSignatureCapture": "Composant de capture de signature d'abonnement à variantes multiples",
     "navWCPRichMediaSheet": "Feuille de médias enrichis",
     "descWCPRichMediaSheet": "Feuille inférieure thémable avec emplacements pour les expériences multimédia WCP",
+    "navWCPRichSnackbar": "Snackbar Enrichi",
+    "descWCPRichSnackbar": "Snackbar WCP avec emplacement média et 4 variantes de couleur pour les messages contextuels",
     "descWCPFloatingButton": "Bouton icône circulaire élevé pour les contrôles de carrousel et les actions flottantes",
     "descAlerts": "Messages de bannière pour les états d'information, succès, avertissement et erreur",
     "descBadges": "Badges de comptage, indicateurs d'état et variantes de couleur sémantique",
