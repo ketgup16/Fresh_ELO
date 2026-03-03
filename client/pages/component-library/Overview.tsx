@@ -174,6 +174,7 @@ function ComponentCard({ entry }: { entry: ComponentEntry }) {
 
 const patternComponents: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navOrderCardPatterns', descKey: 'componentLibrary.descOrderCardPatterns', path: '/component-library/order-card-patterns', icon: 'List', section: 'ld' },
+  { titleKey: 'componentLibrary.navWCPQueue', descKey: 'componentLibrary.descWCPQueue', path: '/component-library/wcp-queue', icon: 'Refresh', section: 'ld' },
 ];
 
 export default function ComponentLibraryOverview() {

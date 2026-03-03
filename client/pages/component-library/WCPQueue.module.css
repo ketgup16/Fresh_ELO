@@ -1,0 +1,219 @@
+/* ── WCPQueue combined pattern page ──────────────────────────── */
+
+.page {
+  padding: 32px 48px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionTitle {
+  font-family: var(--ld-semantic-font-heading-medium-family);
+  font-size: var(--ld-semantic-font-heading-medium-size, 20px);
+  font-weight: var(--ld-semantic-font-heading-medium-weight, 700);
+  line-height: var(--ld-semantic-font-heading-medium-lineheight);
+  color: var(--ld-semantic-color-text);
+  margin: 0 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.sectionDesc {
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size);
+  font-weight: var(--ld-semantic-font-body-small-weight-default);
+  line-height: var(--ld-semantic-font-body-small-lineheight);
+  color: var(--ld-semantic-color-text-subtle);
+  margin: 0 0 16px;
+}
+
+/* ── Demo areas ──────────────────────────────────────────────── */
+
+.demoRow {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.demoCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 340px;
+  max-width: 520px;
+}
+
+.demoLabel {
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ld-semantic-color-text-subtle);
+}
+
+/* Blue content area wrapping the Queue Landing content */
+.blueContentArea {
+  padding: 32px 24px;
+  background: var(--wcp-semantic-color-surface-overlay-brand-bold, #002E99);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  overflow: hidden;
+}
+
+/* ── Trigger buttons row ─────────────────────────────────────── */
+
+.triggerRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ── Variant comparison grid ─────────────────────────────────── */
+
+.variantGrid {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.variantCol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 300px;
+  max-width: 380px;
+}
+
+.variantLabel {
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+/* ── Banner demo frame ───────────────────────────────────────── */
+
+.bannerFrame {
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  overflow: hidden;
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.bannerFrameNarrow {
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  overflow: hidden;
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  max-width: 375px;
+}
+
+/* ── Control row ─────────────────────────────────────────────── */
+
+.controlRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.controlLabel {
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text);
+}
+
+/* ── Code block ──────────────────────────────────────────────── */
+
+.codeBlock {
+  background: var(--ld-semantic-color-text, #2e2f32);
+  color: #e8e9ea;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 20px 24px;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ── Modal content override ──────────────────────────────────── */
+
+.modalBlueContent {
+  padding: 32px 24px 24px;
+  background: var(--wcp-semantic-color-surface-overlay-brand-bold, #002E99);
+}
+
+.modalFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  padding: var(--ld-primitive-scale-space-200, 16px) var(--ld-primitive-scale-space-300, 24px);
+  border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.modalLeaveLink {
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: var(--ld-semantic-font-body-medium-family);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.modalLeaveLink:hover {
+  opacity: 0.7;
+}
+
+/* ── Sheet content padding ───────────────────────────────────── */
+
+.sheetContent {
+  padding: 24px 0;
+}
+
+/* ── Sheet footer actions ────────────────────────────────────── */
+
+.sheetFooterActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  width: 100%;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .page {
+    padding: 24px 16px 48px;
+    gap: 32px;
+  }
+
+  .demoRow {
+    flex-direction: column;
+  }
+
+  .demoCard {
+    max-width: 100%;
+  }
+
+  .variantGrid {
+    flex-direction: column;
+  }
+
+  .variantCol {
+    max-width: 100%;
+  }
+}

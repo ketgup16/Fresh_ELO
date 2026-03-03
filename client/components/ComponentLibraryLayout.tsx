@@ -61,6 +61,7 @@ const navigationSections: NavSection[] = [
       { id: 'search-results', nameKey: 'componentLibrary.navSearchResults', path: '/component-library/search-results' },
       { id: 'home-page-widgets', nameKey: 'componentLibrary.navHomePageWidgets', path: '/component-library/home-page-widgets' },
       { id: 'promo-banners', nameKey: 'componentLibrary.navPromoBanners', path: '/component-library/promo-banners' },
+      { id: 'wcp-queue', nameKey: 'componentLibrary.navWCPQueue', path: '/component-library/wcp-queue' },
     ]
   },
   {
