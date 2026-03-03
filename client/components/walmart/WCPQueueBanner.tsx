@@ -14,8 +14,8 @@ export interface WCPQueueBannerProps {
   onCta?: () => void;
   onDismiss?: () => void;
   showDismiss?: boolean;
-  /** 'top' = sticky fixed below nav; 'inline' = in-flow */
-  position?: 'top' | 'inline';
+  /** 'top' = sticky fixed below nav; 'bottom' = fixed to bottom (mobile); 'inline' = in-flow */
+  position?: 'top' | 'bottom' | 'inline';
   onExpire?: () => void;
   /** Render without fixed positioning — for docs/demo */
   inline?: boolean;
@@ -38,7 +38,13 @@ export const WCPQueueBanner: React.FC<WCPQueueBannerProps> = ({
   const bannerClass = [
     styles.banner,
     styles[timer.urgency],
-    position === 'top' && !isInline ? styles.sticky : styles.inFlow,
+    isInline
+      ? styles.inFlow
+      : position === 'top'
+      ? styles.sticky
+      : position === 'bottom'
+      ? styles.bottomFixed
+      : styles.inFlow,
   ]
     .filter(Boolean)
     .join(' ');

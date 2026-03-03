@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { WCPQueueBanner } from '@/components/walmart/WCPQueueBanner';
+import { WCPRichSnackbar } from '@/components/walmart/WCPRichSnackbar';
 import { ProductCardList } from '@/components/walmart/ProductCardList';
 import { Button } from '@/components/ui/Button';
+import { Warning } from '@/components/icons/Warning';
 import styles from './WCPQueueBanner.module.css';
 
 // ── Helper: seconds from now ───────────────────────────────────────────────
@@ -178,6 +180,89 @@ export default function WCPQueueBannerPage() {
           </div>
         </div>
 
+        {/* ── Mobile Bottom Position ───────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Mobile Bottom Position</SectionTitle>
+          <SectionDesc>
+            On mobile breakpoints (≤768px), use <code>position="bottom"</code> to anchor the queue
+            banner to the bottom of the viewport. This avoids conflict with the top navigation bar
+            and follows the Walmart mobile design pattern. The three urgency states below show how
+            the banner looks at the bottom of a mobile screen.
+          </SectionDesc>
+
+          <div className={styles.mobileStatesRow}>
+            {([
+              { label: 'Normal state', sublabel: '> 10 min remaining', end: secondsFromNow(12 * 60) },
+              { label: 'Warning state', sublabel: '< 10 min remaining', end: secondsFromNow(4 * 60 + 30) },
+              { label: 'Critical state', sublabel: '< 1 min remaining', end: secondsFromNow(45) },
+            ] as const).map(({ label, sublabel, end }) => (
+              <div key={label} className={styles.mobileStateCard}>
+                <div className={styles.mobileStateLabel}>{label}</div>
+                <div className={styles.mobileStateSublabel}>{sublabel}</div>
+                <div className={styles.phoneFrame}>
+                  {/* Simulated page background */}
+                  <div className={styles.phonePage}>
+                    <div className={styles.phoneNavBar} />
+                    <div className={styles.phonePageContent} />
+                  </div>
+                  {/* Banner pinned to bottom of phone frame */}
+                  <div className={styles.phoneBannerSlot}>
+                    <WCPQueueBanner
+                      endTime={end}
+                      title="queue messaging"
+                      message=""
+                      ctaLabel=""
+                      showDismiss
+                      onDismiss={() => {}}
+                      position="inline"
+                      inline
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Snackbar Integration ─────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Snackbar Integration</SectionTitle>
+          <SectionDesc>
+            When a user joins the queue, pair the queue banner with a{' '}
+            <strong>WCPRichSnackbar</strong> (Inverse variant) to communicate queue status. The
+            snackbar confirms that the user is being added to the line and provides key
+            instructions. It appears above the bottom queue banner on mobile.
+          </SectionDesc>
+
+          <div className={styles.snackbarDemo}>
+            <WCPRichSnackbar
+              open
+              color="inverse"
+              leadingSlot={<Warning width={20} height={20} />}
+              message="Hang on, we're getting you in line. Please don't refresh or leave the line."
+              duration={Infinity}
+              inline
+            />
+          </div>
+
+          <SectionDesc>
+            The "Brand" variant can be used for positive queue confirmations (e.g., when the user
+            reaches the front of the line):
+          </SectionDesc>
+          <div className={styles.snackbarDemo}>
+            <WCPRichSnackbar
+              open
+              color="brand"
+              leadingSlot={<Warning width={20} height={20} />}
+              message="You're next! Complete your checkout before your reservation expires."
+              actionLabel="Checkout now"
+              onAction={() => {}}
+              duration={Infinity}
+              inline
+            />
+          </div>
+        </div>
+
         {/* ── Position Variants ────────────────────────────────────── */}
         <div className={styles.section}>
           <SectionTitle>Position Variants</SectionTitle>
@@ -230,7 +315,7 @@ export default function WCPQueueBannerPage() {
               <tr><td>onCta</td><td>() =&gt; void</td><td>—</td><td>Called when the CTA button is clicked.</td></tr>
               <tr><td>onDismiss</td><td>() =&gt; void</td><td>—</td><td>Called when the close button is clicked. Hides the dismiss button if omitted.</td></tr>
               <tr><td>showDismiss</td><td>boolean</td><td>true</td><td>Whether to render the close button.</td></tr>
-              <tr><td>position</td><td>'top' | 'inline'</td><td>'top'</td><td>'top' = sticky; 'inline' = in-flow.</td></tr>
+              <tr><td>position</td><td>'top' | 'bottom' | 'inline'</td><td>'top'</td><td>'top' = sticky below nav; 'bottom' = fixed to bottom (mobile); 'inline' = in-flow.</td></tr>
               <tr><td>onExpire</td><td>() =&gt; void</td><td>—</td><td>Called once when the timer hits zero.</td></tr>
             </tbody>
           </table>
