@@ -3,7 +3,7 @@
 .rating {
   display: inline-flex;
   align-items: center;
-  gap: 0;
+  gap: 2px; /* ld-primitive-scale-space-25 */
 }
 
 .star {
