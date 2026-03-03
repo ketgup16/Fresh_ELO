@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { WCPQueueBanner } from '@/components/walmart/WCPQueueBanner';
+import { WCPQueuePanel } from '@/components/walmart/WCPQueuePanel';
+import type { QueueItem } from '@/components/walmart/WCPQueueItemCard';
 import { WCPRichSnackbar } from '@/components/walmart/WCPRichSnackbar';
 import { Warning } from '@/components/icons/Warning';
 import { Button } from '@/components/ui/Button';
@@ -22,10 +24,46 @@ function SectionDesc({ children }: { children: React.ReactNode }) {
 
 // ── Main page ──────────────────────────────────────────────────────────────
 
+// ── Demo queue items ───────────────────────────────────────────────────────
+const DEMO_PRODUCT_IMG =
+  'https://i5.walmartimages.com/seo/Apple-AirPods-Pro-2nd-Generation-with-Lightning-Charging-Case_c3e28b66-aa34-45fa-9d5c-82ef81b8d0b0.0c8e6c0d6e34cf3e11da0965e8d6a21a.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff';
+
+function buildDemoItems(): QueueItem[] {
+  return [
+    {
+      id: '1',
+      productImage: DEMO_PRODUCT_IMG,
+      productImageAlt: 'Champion Men\u2019s Classic Graphic Tee',
+      description: 'Champion Men\u2019s Classic Graphic Tee',
+      price: '$199.99',
+      originalPrice: '$299.99',
+      endTime: secondsFromNow(19 * 60),
+    },
+    {
+      id: '2',
+      productImage: DEMO_PRODUCT_IMG,
+      productImageAlt: 'Champion-Test1',
+      description: 'Champion-Test1',
+      price: '$5.00',
+      endTime: secondsFromNow(34 * 60),
+    },
+    {
+      id: '3',
+      productImage: DEMO_PRODUCT_IMG,
+      productImageAlt: 'Champion Men\u2019s Sportstyle Colorblock Tee',
+      description: 'Champion Men\u2019s Sportstyle Colorblock Tee',
+      price: '$6.00',
+      endTime: secondsFromNow(54 * 60),
+    },
+  ];
+}
+
 export default function WCPQueueBannerPage() {
   const [lineJoinedEnd, setLineJoinedEnd] = useState(() => secondsFromNow(59 * 60));
   const [warningEnd] = useState(() => secondsFromNow(10 * 60 + 23));
   const [expiringEnd] = useState(() => secondsFromNow(45));
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [demoItems] = useState<QueueItem[]>(buildDemoItems);
 
   return (
     <ComponentPageLayout
@@ -76,11 +114,18 @@ export default function WCPQueueBannerPage() {
               onView={() => {}}
               onLeave={() => {}}
               linkText="Placeholder link text"
-              onLink={() => {}}
+              onLink={() => setIsPanelOpen(true)}
               inline
             />
           </div>
         </div>
+
+        {/* Queue items side panel */}
+        <WCPQueuePanel
+          isOpen={isPanelOpen}
+          onClose={() => setIsPanelOpen(false)}
+          items={demoItems}
+        />
 
         {/* ── Line Joined — Warning (Yellow Timer) ─────────────────── */}
         <div className={styles.section}>
