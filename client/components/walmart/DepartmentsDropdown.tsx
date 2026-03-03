@@ -36,12 +36,10 @@ export function DepartmentsDropdown({ leadingIcon }: DepartmentsDropdownProps = 
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <button
           type="button"
           className={styles.trigger}
-          aria-haspopup="true"
-          aria-expanded={isOpen}
         >
           {leadingIcon && <span className={styles.leadingIcon}>{leadingIcon}</span>}
           Departments

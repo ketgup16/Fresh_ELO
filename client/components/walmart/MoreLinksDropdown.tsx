@@ -31,12 +31,10 @@ export function MoreLinksDropdown() {
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <button
           type="button"
           className={styles.trigger}
-          aria-haspopup="true"
-          aria-expanded={isOpen}
         >
           More
           <ChevronDown className={styles.icon} aria-hidden="true" />
