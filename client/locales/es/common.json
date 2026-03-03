@@ -195,6 +195,8 @@
     "descWCPSearchBar": "Componente de barra de búsqueda en línea con estados responsivos",
     "navWCPSignatureCapture": "Captura de firma",
     "descWCPSignatureCapture": "Componente de captura de firma de suscripción con múltiples variantes",
+    "navWCPRichMediaSheet": "Hoja de medios enriquecidos",
+    "descWCPRichMediaSheet": "Hoja inferior temática con ranuras para experiencias multimedia WCP",
     "descWCPFloatingButton": "Botón de ícono circular elevado para controles de carrusel y acciones flotantes",
     "descAlerts": "Mensajes de banner para estados de información, éxito, advertencia y error",
     "descBadges": "Insignias de conteo, indicadores de estado y variantes de color semántico",

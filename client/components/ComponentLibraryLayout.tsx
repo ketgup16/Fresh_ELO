@@ -78,6 +78,7 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-rating', nameKey: 'componentLibrary.navWCPRating', path: '/component-library/wcp-rating' },
       { id: 'wcp-search-bar', nameKey: 'componentLibrary.navWCPSearchBar', path: '/component-library/wcp-search-bar' },
       { id: 'wcp-signature-capture', nameKey: 'componentLibrary.navWCPSignatureCapture', path: '/component-library/wcp-signature-capture' },
+      { id: 'wcp-rich-media-sheet', nameKey: 'componentLibrary.navWCPRichMediaSheet', path: '/component-library/wcp-rich-media-sheet' },
     ]
   },
   {

@@ -118,6 +118,7 @@ const WCPHeartViewPage = React.lazy(() => import("./pages/component-library/WCPH
 const WCPRatingPage = React.lazy(() => import("./pages/component-library/WCPRating"));
 const WCPSearchBarPage = React.lazy(() => import("./pages/component-library/WCPSearchBar"));
 const WCPSignatureCapturePage = React.lazy(() => import("./pages/component-library/WCPSignatureCapture"));
+const WCPRichMediaSheetPage = React.lazy(() => import("./pages/component-library/WCPRichMediaSheet"));
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
 const queryClient = new QueryClient();
@@ -225,6 +226,7 @@ const App = () => (
                 <Route path="wcp-rating" element={<WCPRatingPage />} />
                 <Route path="wcp-search-bar" element={<WCPSearchBarPage />} />
                 <Route path="wcp-signature-capture" element={<WCPSignatureCapturePage />} />
+                <Route path="wcp-rich-media-sheet" element={<WCPRichMediaSheetPage />} />
               </Route>
 
               {/* Walmart pages */}

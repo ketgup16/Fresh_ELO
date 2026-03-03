@@ -1,0 +1,338 @@
+/* ════════════════════════════════════════════════════════════════════════
+   [WCP] Rich Media Sheet — Styles
+   Standalone WCP bottom sheet component for media-rich experiences.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Overlay ──────────────────────────────────────────────────────────── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 200ms ease-out;
+}
+
+/* ── Sheet Container ──────────────────────────────────────────────────── */
+
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 51;
+  display: flex;
+  flex-direction: column;
+  border-top-left-radius: var(--ld-primitive-scale-borderradius-200, 16px);
+  border-top-right-radius: var(--ld-primitive-scale-borderradius-200, 16px);
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.10), 0 5px 10px 3px rgba(0, 0, 0, 0.15);
+  animation: slideUp 300ms cubic-bezier(0.32, 0.72, 0, 1);
+  outline: none;
+}
+
+/* Fixed height mode */
+.sheetFixed {
+  height: 80vh;
+}
+
+/* Content-driven height */
+.sheetContent {
+  height: auto;
+}
+
+/* Desktop: centered modal, all-corner radius, fixed width */
+@media (min-width: 900px) {
+  .sheet {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 560px;
+    border-radius: var(--ld-primitive-scale-borderradius-200, 16px);
+  }
+}
+
+/* ── Surface Variants ─────────────────────────────────────────────────── */
+
+.surface--default {
+  background: var(--ld-semantic-color-surface-overlay, #ffffff);
+}
+
+.surface--brand {
+  background: var(--wcp-semantic-color-surface-overlay-brand-subtle, #F0F5FF);
+}
+
+.surface--media {
+  /* Content provides the background color via full-bleed children */
+  background: var(--ld-semantic-color-fill, #ffffff);
+}
+
+/* ── Drag Handle (Grabber) ────────────────────────────────────────────── */
+
+.grabber {
+  width: 36px;
+  height: 4px;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: var(--ld-semantic-color-separator, #D9DADC);
+  align-self: center;
+  flex-shrink: 0;
+  margin: 8px auto 0;
+  pointer-events: none;
+}
+
+.grabberInverse {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Close Button ─────────────────────────────────────────────────────── */
+
+.closeButton {
+  display: flex;
+  padding: var(--ld-primitive-scale-space-100, 8px);
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  border: 1px solid transparent;
+  background: var(--ld-semantic-color-action-fill-transparent, transparent);
+  cursor: pointer;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  flex-shrink: 0;
+  transition: background 150ms;
+}
+
+.closeButton:hover {
+  background: var(--ld-semantic-color-surface-hovered, rgba(0, 0, 0, 0.05));
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-border-primary, #0053E2);
+  outline-offset: 2px;
+}
+
+.closeButtonInverse {
+  background: var(--ld-semantic-color-action-fill-accent-white, rgba(255, 255, 255, 0.15));
+  color: var(--ld-semantic-color-text-inverse, #ffffff);
+}
+
+.closeButtonInverse:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Header ───────────────────────────────────────────────────────────── */
+
+/* Base header (default / title / title-subtitle / logo variants) */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+/* Row: title + close button */
+.headerRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  padding: var(--ld-primitive-scale-space-100, 8px);
+}
+
+/* Title frame: fills remaining space */
+.headerTitleFrame {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Offset for close button width so title centers visually */
+  padding: var(--ld-primitive-scale-space-100, 8px) 0
+    var(--ld-primitive-scale-space-100, 8px)
+    var(--ld-primitive-scale-space-700, 56px);
+}
+
+.headerTitle {
+  flex: 1 0 0;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  text-align: center;
+  font-family: var(--ld-semantic-font-heading-small-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
+  font-size: var(--ld-semantic-font-heading-small-size, 18px);
+  font-weight: var(--ld-semantic-font-heading-small-weight-default, 700);
+  line-height: var(--ld-semantic-font-heading-small-lineheight, 1.333);
+  margin: 0;
+}
+
+.headerSubtitle {
+  flex: 1 0 0;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  text-align: center;
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
+  margin: 0;
+}
+
+/* Divider under header (used in title-subtitle variant) */
+.headerDivider {
+  height: 1px;
+  background: var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+/* Inverse header (blue background) */
+.headerInverse {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-shrink: 0;
+  border-top-left-radius: var(--ld-primitive-scale-borderradius-200, 16px);
+  border-top-right-radius: var(--ld-primitive-scale-borderradius-200, 16px);
+  background: var(--ld-semantic-color-fill-brand, #0053E2);
+}
+
+.headerTitleInverse {
+  flex: 1 0 0;
+  color: var(--ld-semantic-color-text-inverse, #ffffff);
+  text-align: center;
+  font-family: var(--ld-semantic-font-heading-small-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
+  font-size: var(--ld-semantic-font-heading-small-size, 18px);
+  font-weight: var(--ld-semantic-font-heading-small-weight-default, 700);
+  line-height: var(--ld-semantic-font-heading-small-lineheight, 1.333);
+  margin: 0;
+}
+
+.headerDividerInverse {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Logo headers */
+.headerLogoLeft {
+  flex: 1 0 0;
+  display: flex;
+  align-items: center;
+  padding: var(--ld-primitive-scale-space-100, 8px) 0;
+  min-height: 40px;
+}
+
+.headerLogoCenter {
+  flex: 1 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Offset padding so logo centers accounting for close button */
+  padding: var(--ld-primitive-scale-space-100, 8px) 0
+    var(--ld-primitive-scale-space-100, 8px)
+    var(--ld-primitive-scale-space-700, 56px);
+  min-height: 40px;
+}
+
+/* None header (just close button) */
+.headerNone {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.headerNoneRow {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--ld-primitive-scale-space-100, 8px);
+}
+
+/* Desktop header adjustments */
+@media (min-width: 900px) {
+  .headerRow {
+    padding: var(--ld-primitive-scale-space-200, 16px);
+  }
+
+  .headerNoneRow {
+    padding: var(--ld-primitive-scale-space-200, 16px);
+  }
+
+  .headerTitle {
+    font-size: var(--ld-semantic-font-heading-small-size, 20px);
+  }
+}
+
+/* ── Content Area ─────────────────────────────────────────────────────── */
+
+/* No internal padding — consumer owns layout */
+.contentArea {
+  overflow-y: auto;
+  flex-shrink: 1;
+  -webkit-overflow-scrolling: touch;
+}
+
+.contentAreaFixed {
+  flex: 1 0 0;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+/* Footer inherits surface background so it blends into the sheet */
+.footer--default {
+  background: var(--ld-semantic-color-surface-overlay, #ffffff);
+}
+
+.footer--brand {
+  background: var(--wcp-semantic-color-surface-overlay-brand-subtle, #F0F5FF);
+}
+
+.footer--media {
+  background: var(--ld-semantic-color-surface-overlay, #ffffff);
+}
+
+.footerDivider {
+  height: 1px;
+  background: var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.footerActions {
+  padding: var(--ld-primitive-scale-space-200, 16px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+}
+
+@media (min-width: 900px) {
+  .footerActions {
+    padding: var(--ld-primitive-scale-space-300, 24px);
+  }
+}
+
+/* ── Animations ───────────────────────────────────────────────────────── */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@media (min-width: 900px) {
+  @keyframes slideUp {
+    from { transform: translateX(-50%) translateY(100%); }
+    to { transform: translateX(-50%) translateY(0); }
+  }
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .sheet {
+    animation: none;
+  }
+  .overlay {
+    animation: none;
+  }
+}
