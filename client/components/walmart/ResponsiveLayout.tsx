@@ -46,10 +46,15 @@ export function ResponsiveLayout({
 
   return (
     <div className={styles.root}>
-      {/* Native status bar — iOS or Android */}
-      {showMobileNav && isNative && <NativeStatusBar platform={platform as 'ios' | 'android'} />}
-      {/* Mobile top nav — hidden on desktop via lg:hidden CSS */}
-      {showMobileNav && mobileTopNav === 'native' && <MobileTopNav showHomeExtras={showHomeExtras} />}
+      {/* Native status bar + top nav wrapped together to prevent sub-pixel gap */}
+      {showMobileNav && isNative && mobileTopNav === 'native' && (
+        <div className={styles.nativeNavWrapper}>
+          <NativeStatusBar platform={platform as 'ios' | 'android'} />
+          <MobileTopNav showHomeExtras={showHomeExtras} />
+        </div>
+      )}
+      {showMobileNav && isNative && mobileTopNav !== 'native' && <NativeStatusBar platform={platform as 'ios' | 'android'} />}
+      {showMobileNav && mobileTopNav === 'native' && !isNative && <MobileTopNav showHomeExtras={showHomeExtras} />}
       {showMobileNav && mobileTopNav === 'mweb' && <MobileHeader />}
       {/* Desktop header — hidden on mobile via CSS */}
       {showDesktopHeader && <DesktopHeader />}

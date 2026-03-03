@@ -45,6 +45,19 @@
   }
 }
 
+.nativeNavWrapper {
+  background-color: var(--ld-semantic-color-top-nav-fill);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+@media (min-width: 1024px) {
+  .nativeNavWrapper {
+    display: none;
+  }
+}
+
 .mobileNavWrapper {
   display: block;
 }
