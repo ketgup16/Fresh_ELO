@@ -4,6 +4,7 @@ import { DesktopHeader } from './DesktopHeader';
 import { DesktopFooter } from './DesktopFooter';
 import { MwebFooter } from './MwebFooter';
 import { MobileTopNav } from './MobileTopNav';
+import { MobileHeader } from './MobileHeader';
 import { SubNav } from './SubNav';
 import { PromoBanner } from './PromoBanner';
 import { OrderStatusBanner } from './OrderStatusBanner';
@@ -39,12 +40,13 @@ export function ResponsiveLayout({
   mobileActiveTab = 'shop',
 }: ResponsiveLayoutProps) {
   const maxWidthClass = maxWidthClassMap[maxWidth] || styles.maxWidth2xl;
-  const { mobileFooter } = useLayoutSettings();
+  const { mobileFooter, mobileTopNav } = useLayoutSettings();
 
   return (
     <div className={styles.root}>
       {/* Mobile top nav — hidden on desktop via lg:hidden CSS */}
-      {showMobileNav && <MobileTopNav showHomeExtras={showHomeExtras} />}
+      {showMobileNav && mobileTopNav === 'native' && <MobileTopNav showHomeExtras={showHomeExtras} />}
+      {showMobileNav && mobileTopNav === 'mweb' && <MobileHeader />}
       {/* Desktop header — hidden on mobile via CSS */}
       {showDesktopHeader && <DesktopHeader />}
       {showDesktopHeader && <SubNav />}

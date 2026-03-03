@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
@@ -7,7 +6,6 @@ import { Tag } from '@/components/ui/Tag';
 import { DesktopFooter } from '@/components/walmart/DesktopFooter';
 import { MwebFooter } from '@/components/walmart/MwebFooter';
 import { BottomNav } from '@/components/walmart/BottomNav';
-import { useLayoutSettings, type MobileFooterMode } from '@/contexts/LayoutSettingsContext';
 import styles from './FooterPatterns.module.css';
 
 type Platform = 'dweb' | 'mweb' | 'native';
@@ -40,79 +38,17 @@ const PLATFORM_META: Record<Platform, {
 };
 
 export default function FooterPatternsPage() {
-  const navigate = useNavigate();
-  const { mobileFooter, setMobileFooter } = useLayoutSettings();
   const [platform, setPlatform] = useState<Platform>('dweb');
   const [nativeTab, setNativeTab] = useState<NativeTab>('shop');
 
   const meta = PLATFORM_META[platform];
 
-  function handleSetDefault(mode: MobileFooterMode) {
-    setMobileFooter(mode);
-  }
-
   return (
     <ComponentPageLayout
       section="WCP Patterns"
       title="Footer & Bottom Nav"
-      description="Three navigation patterns — one for each platform. Use the selector below to set the project-wide mobile default, then preview each component live."
+      description="Three navigation patterns — one for each platform. The project-wide mobile default is now configured in Project Settings."
     >
-
-      {/* ── Mobile Default Selector ─────────────────────────────── */}
-      <div className={styles.defaultSelector}>
-        <div className={styles.defaultSelectorHeader}>
-          <div className={styles.defaultSelectorLeft}>
-            <h2 className={styles.defaultSelectorTitle}>Mobile default for this project</h2>
-            <p className={styles.defaultSelectorDesc}>
-              Controls which component renders at mobile breakpoints (&lt;1024px) across all Walmart app pages.
-              Persisted to <code>localStorage</code> — changing this updates the live app immediately.
-            </p>
-          </div>
-          <Button
-            variant="tertiary"
-            size="small"
-            onClick={() => navigate('/walmart')}
-          >
-            Preview in app →
-          </Button>
-        </div>
-
-        <div className={styles.defaultOptions}>
-          <button
-            className={[
-              styles.defaultOption,
-              mobileFooter === 'native' ? styles.defaultOptionActive : '',
-            ].join(' ')}
-            onClick={() => handleSetDefault('native')}
-          >
-            <div className={styles.defaultOptionTop}>
-              <span className={styles.defaultOptionLabel}>WCP Bottom Nav</span>
-              <Tag variant="neutral">iOS / Android</Tag>
-              {mobileFooter === 'native' && <Tag variant="success">Active</Tag>}
-            </div>
-            <p className={styles.defaultOptionDesc}>
-              Native-style floating glass nav bar with animated spring indicator. Best for app-like experiences.
-            </p>
-          </button>
-
-          <button
-            className={[
-              styles.defaultOption,
-              mobileFooter === 'mweb' ? styles.defaultOptionActive : '',
-            ].join(' ')}
-            onClick={() => handleSetDefault('mweb')}
-          >
-            <div className={styles.defaultOptionTop}>
-              <span className={styles.defaultOptionLabel}>WCP Footer (Mweb)</span>
-              <Tag variant="success">{'< 1024px'}</Tag>
-              {mobileFooter === 'mweb' && <Tag variant="success">Active</Tag>}
-            </div>
-            <p className={styles.defaultOptionDesc}>
-              Stacked mobile web footer with full link list. Best for web-first or SEO-focused experiences.
-            </p>
-          </button>
-        </div>
-      </div>
 
       {/* ── Platform Component Preview ──────────────────────────── */}
       <div className={styles.previewSection}>
@@ -248,7 +184,7 @@ export default function FooterPatternsPage() {
         </div>
 
         <div className={styles.noteBox}>
-          <strong>Responsive pairing:</strong> <code>DesktopFooter</code> and <code>MwebFooter</code> each manage their own breakpoint visibility — render both and CSS handles which one shows. The project-level default above controls whether <code>MwebFooter</code> or <code>BottomNav</code> is used at mobile widths in <code>ResponsiveLayout</code>.
+          <strong>Responsive pairing:</strong> <code>DesktopFooter</code> and <code>MwebFooter</code> each manage their own breakpoint visibility — render both and CSS handles which one shows. The project-level default for mobile footer is configured in <strong>Project Settings</strong>.
         </div>
       </div>
     </ComponentPageLayout>

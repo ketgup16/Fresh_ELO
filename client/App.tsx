@@ -125,6 +125,7 @@ const WCPTimerViewPage = React.lazy(() => import("./pages/component-library/WCPT
 const WCPQueueBannerPage = React.lazy(() => import("./pages/component-library/WCPQueueBanner"));
 const WCPQueueCardPage = React.lazy(() => import("./pages/component-library/WCPQueueCard"));
 const WCPQueuePage = React.lazy(() => import("./pages/component-library/WCPQueue"));
+const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
 const queryClient = new QueryClient();
@@ -217,6 +218,7 @@ const App = () => (
                 <Route path="wcp-country" element={<WCPCountryComponentsPage />} />
                 <Route path="wcp-flag" element={<WCPFlagPage />} />
                 <Route path="theme-editor" element={<ThemeEditorPage />} />
+                <Route path="project-settings" element={<ProjectSettingsPage />} />
                 <Route path="footer-patterns" element={<FooterPatternsPage />} />
                 <Route path="top-nav" element={<TopNavPage />} />
                 <Route path="side-nav" element={<SideNavPage />} />

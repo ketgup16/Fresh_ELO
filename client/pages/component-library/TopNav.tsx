@@ -5,14 +5,15 @@ import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { Tag } from '@/components/ui/Tag';
 import { DesktopHeader } from '@/components/walmart/DesktopHeader';
 import { MobileHeader } from '@/components/walmart/MobileHeader';
+import { MobileTopNav, type MobileTopNavVariant } from '@/components/walmart/MobileTopNav';
 import styles from './TopNav.module.css';
 
-type Platform = 'dweb' | 'mweb';
+type Platform = 'dweb' | 'mweb' | 'native';
 
 const PLATFORM_META: Record<Platform, {
   component: string;
   tag: string;
-  tagVariant: 'info' | 'success';
+  tagVariant: 'info' | 'success' | 'neutral';
   description: string;
 }> = {
   dweb: {
@@ -27,17 +28,24 @@ const PLATFORM_META: Record<Platform, {
     tagVariant: 'success',
     description: 'Compact mobile header with hamburger menu, Walmart logo, search icon, and cart/account actions. Designed for screens narrower than 1024px.',
   },
+  native: {
+    component: 'Native Top Nav',
+    tag: 'iOS / Android',
+    tagVariant: 'neutral',
+    description: 'Native app-style top nav with menu icon, Walmart spark, search pill, and cart. Supports blue (home) and white (search/inner) color variants.',
+  },
 };
 
 export default function TopNavPage() {
   const [platform, setPlatform] = useState<Platform>('dweb');
+  const [nativeVariant, setNativeVariant] = useState<MobileTopNavVariant>('blue');
   const meta = PLATFORM_META[platform];
 
   return (
     <ComponentPageLayout
       section="WCP Patterns"
       title="Top Nav"
-      description="Two WCP top navigation patterns — one for desktop web and one for mobile web. Both share the same Walmart brand identity and navigation hierarchy."
+      description="Three WCP top navigation patterns — one for desktop web, one for mobile web, and one for native apps. All share the same Walmart brand identity and navigation hierarchy."
     >
 
       {/* ── Platform Component Preview ── */}
@@ -59,6 +67,13 @@ export default function TopNavPage() {
             >
               Mobile Top Nav
             </Button>
+            <Button
+              variant={platform === 'native' ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setPlatform('native')}
+            >
+              Native Top Nav
+            </Button>
           </ButtonGroup>
         </div>
 
@@ -79,6 +94,40 @@ export default function TopNavPage() {
           {platform === 'mweb' && (
             <div className={styles.mwebFrame}>
               <MobileHeader />
+            </div>
+          )}
+          {platform === 'native' && (
+            <div className={styles.nativeFrame}>
+              <div className={styles.nativePhone}>
+                <div className={styles.nativeScreen}>
+                  <MobileTopNav variant={nativeVariant} showHomeExtras={nativeVariant === 'blue'} />
+                  <div className={styles.nativePageContent}>
+                    <p className={styles.nativePageHint}>
+                      {nativeVariant === 'blue' ? 'Home page content' : 'Search results / inner page content'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.nativeVariantSwitcher}>
+                <p className={styles.nativeVariantLabel}>Color variant:</p>
+                <ButtonGroup>
+                  <Button
+                    variant={nativeVariant === 'blue' ? 'primary' : 'secondary'}
+                    size="small"
+                    onClick={() => setNativeVariant('blue')}
+                  >
+                    Blue (Home)
+                  </Button>
+                  <Button
+                    variant={nativeVariant === 'white' ? 'primary' : 'secondary'}
+                    size="small"
+                    onClick={() => setNativeVariant('white')}
+                  >
+                    White (Search)
+                  </Button>
+                </ButtonGroup>
+              </div>
             </div>
           )}
         </div>
@@ -117,10 +166,22 @@ export default function TopNavPage() {
               <span className={styles.usageImport}>@/components/walmart/MobileHeader</span>
             </div>
           </div>
+          <div className={styles.usageRow}>
+            <div className={styles.usageCell}>
+              <span className={styles.usagePlatform}>Native Top Nav</span>
+              <Tag variant="neutral">iOS / Android</Tag>
+            </div>
+            <div className={styles.usageCell}>
+              <code className={styles.usageCode}>{'<MobileTopNav variant="blue" />'}</code>
+            </div>
+            <div className={styles.usageCell}>
+              <span className={styles.usageImport}>@/components/walmart/MobileTopNav</span>
+            </div>
+          </div>
         </div>
 
         <div className={styles.noteBox}>
-          <strong>Responsive pairing:</strong> <code>DesktopHeader</code> and <code>MobileHeader</code> each manage their own breakpoint visibility via CSS — render both and the correct one will display automatically based on viewport width.
+          <strong>Responsive pairing:</strong> <code>DesktopHeader</code> and <code>MobileHeader</code> each manage their own breakpoint visibility via CSS — render both and the correct one will display automatically based on viewport width. <code>MobileTopNav</code> is used in native app contexts and supports <code>variant=&quot;blue&quot;</code> (home) and <code>variant=&quot;white&quot;</code> (search/inner pages). The project-level default can be set in <strong>Project Settings</strong>.
         </div>
       </div>
     </ComponentPageLayout>

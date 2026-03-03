@@ -39,15 +39,15 @@ const navigationSections: NavSection[] = [
       { id: 'overview', nameKey: 'componentLibrary.overview', path: '/component-library' },
       { id: 'getting-started', nameKey: 'componentLibrary.gettingStartedNav', path: '/component-library/getting-started' },
       { id: 'guidelines', nameKey: 'componentLibrary.guidelines', path: '/component-library/guidelines' },
+      { id: 'design-tokens', nameKey: 'componentLibrary.navDesignTokens', path: '/component-library/design-tokens' },
+      { id: 'themes', nameKey: 'componentLibrary.themesTokens', path: '/component-library/themes' },
     ]
   },
   {
     titleKey: 'componentLibrary.tools',
     items: [
       { id: 'component-tester', nameKey: 'componentLibrary.componentSandbox', path: '/component-library/component-tester' },
-      { id: 'design-tokens', nameKey: 'componentLibrary.navDesignTokens', path: '/component-library/design-tokens' },
-      { id: 'themes', nameKey: 'componentLibrary.themesTokens', path: '/component-library/themes' },
-      { id: 'theme-editor', nameKey: 'componentLibrary.navThemeEditor', path: '/component-library/theme-editor' },
+      { id: 'project-settings', nameKey: 'componentLibrary.navProjectSettings', path: '/component-library/project-settings' },
     ]
   },
   {

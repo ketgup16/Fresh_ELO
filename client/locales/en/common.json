@@ -212,6 +212,7 @@
     "descWCPQueue": "Combined Queue pattern page: Queue Landing, Queue Banner, and Queue Card",
     "tools": "Tools",
     "navThemeEditor": "Theme Editor",
+    "navProjectSettings": "Project Settings",
     "descAlerts": "Banner messages for info, success, warning, and error states",
     "descBadges": "Count badges, status indicators, and semantic color variants",
     "descBreadcrumbs": "Navigation breadcrumbs with support for 2-5 levels and custom separators",

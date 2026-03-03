@@ -171,6 +171,63 @@
   border-radius: 3px;
 }
 
+/* ── Native phone shell ── */
+.nativeFrame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-600, 24px);
+  padding: var(--ld-primitive-scale-space-600, 24px);
+}
+
+.nativePhone {
+  width: 375px;
+  border-radius: 40px;
+  border: 8px solid var(--ld-semantic-color-text, #2e2f32);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.12);
+  background: #f2f2f7;
+}
+
+.nativeScreen {
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  background: #f2f2f7;
+  overflow: hidden;
+}
+
+.nativePageContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.nativePageHint {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: 13px;
+  color: var(--ld-semantic-color-text-subtlest, #9fa0a4);
+  text-align: center;
+  margin: 0;
+}
+
+.nativeVariantSwitcher {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-300, 12px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nativeVariantLabel {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  color: var(--ld-semantic-color-text-subtle, #6d6e72);
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .page {
     padding: 24px 16px;
@@ -178,5 +235,10 @@
 
   .usageRow {
     grid-template-columns: 1fr;
+  }
+
+  .nativePhone {
+    width: 100%;
+    max-width: 340px;
   }
 }
