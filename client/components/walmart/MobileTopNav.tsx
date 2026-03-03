@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Barcode, ChevronDown, ChevronLeft, ChevronUp, Menu, Search } from '@/components/icons';
 import { CartIcon, LocationIcon, StoreIcon } from '@/components/icons-custom';
 import { CameraModal } from '@/components/walmart/CameraModal';
+import { MobileMenuPanel } from '@/components/walmart/MobileMenuPanel';
 import { DepartmentsDropdown } from '@/components/walmart/DepartmentsDropdown';
 import { ServicesDropdown } from '@/components/walmart/ServicesDropdown';
 import { MoreLinksDropdown } from '@/components/walmart/MoreLinksDropdown';
@@ -35,6 +36,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
   const [showCameraModal, setShowCameraModal] = useState(false);
   const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
+  const [showMenuPanel, setShowMenuPanel] = useState(false);
 
   const isBlue = variant === 'blue';
   const isNative = platform === 'ios' || platform === 'android';
@@ -83,7 +85,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
           <div className={`${styles.topBar} ${isBlue ? styles.topBarBlue : styles.topBarWhite}`}>
             <div className={styles.topBarRow}>
               {isBlue && !isNative ? (
-                <button className="text-white flex-shrink-0" aria-label="Menu">
+                <button className="text-white flex-shrink-0" aria-label="Menu" onClick={() => setShowMenuPanel(true)}>
                   <Menu className="w-6 h-6" />
                 </button>
               ) : (
@@ -276,6 +278,11 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
       <CameraModal
         isOpen={showCameraModal}
         onClose={() => setShowCameraModal(false)}
+      />
+
+      <MobileMenuPanel
+        isOpen={showMenuPanel}
+        onClose={() => setShowMenuPanel(false)}
       />
     </>
   );
