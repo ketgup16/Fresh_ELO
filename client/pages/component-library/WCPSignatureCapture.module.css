@@ -136,6 +136,14 @@
   max-width: 480px;
 }
 
+/* ── Sheet completed block ───────────────────────────────── */
+
+.sheetCompletedBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 /* ── Code block ──────────────────────────────────────────── */
 
 .codeBlock {

@@ -7,6 +7,7 @@ import {
   SignatureBase,
   SignatureReauth,
 } from '@/components/walmart/WCPSignatureCapture';
+import { WCPSignatureCaptureBottomSheet } from '@/components/walmart/WCPSignatureCaptureBottomSheet';
 import styles from './WCPSignatureCapture.module.css';
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
@@ -42,10 +43,47 @@ export default function WCPSignatureCapturePage() {
   // Reauth state
   const [reauthSubVariant, setReauthSubVariant] = useState<'agree-sign' | 'signed' | 'signed-as'>('agree-sign');
 
+  // Bottom sheet pattern state
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [sheetFullName, setSheetFullName] = useState('');
+  const [sheetIsSignChecked, setSheetIsSignChecked] = useState(false);
+  const [sheetSignatureState, setSheetSignatureState] = useState<'unsigned' | 'signed'>('unsigned');
+  const [sheetSubmitted, setSheetSubmitted] = useState(false);
+  const [showSheetErrors, setShowSheetErrors] = useState(false);
+
   const handlePreviewSignature = () => {
     if (fullName.trim()) {
       setBaseSignatureState('signed');
     }
+  };
+
+  const handleSheetPreview = () => {
+    if (sheetFullName.trim()) {
+      setSheetSignatureState('signed');
+    }
+  };
+
+  const handleSheetSubmit = () => {
+    if (!sheetFullName.trim() || !sheetIsSignChecked || sheetSignatureState === 'unsigned') {
+      setShowSheetErrors(true);
+      return;
+    }
+    setSheetOpen(false);
+    setSheetSubmitted(true);
+    setShowSheetErrors(false);
+  };
+
+  const handleSheetOpen = () => {
+    setSheetOpen(true);
+    setSheetSubmitted(false);
+  };
+
+  const handleSheetChangeSignature = () => {
+    setSheetOpen(true);
+    setSheetSignatureState('unsigned');
+    setSheetFullName('');
+    setSheetIsSignChecked(false);
+    setSheetSubmitted(false);
   };
 
   return (
@@ -208,6 +246,95 @@ export default function WCPSignatureCapturePage() {
                 showPreviewWarning={reauthSubVariant !== 'agree-sign'}
               />
             </DemoCard>
+          </div>
+        </section>
+
+        {/* ── Bottom Sheet Pattern ────────────────────────────────────────── */}
+        <section className={styles.section}>
+          <SectionTitle>Bottom Sheet Pattern</SectionTitle>
+          <SectionDesc>
+            The full signature capture flow: a <code>SignatureTrigger</code> opens a <code>WCPSignatureCaptureBottomSheet</code> containing the <code>SignatureBase</code> form. After the user types their name, previews the signature, checks the checkbox, and taps "Agree &amp; sign" in the sheet footer, the sheet closes and the signed state is shown via <code>SignatureTerms</code>.
+          </SectionDesc>
+
+          <div className={styles.baseFormDemo}>
+            {sheetSubmitted ? (
+              <div className={styles.sheetCompletedBlock}>
+                <SignatureTerms
+                  signatureState="signed"
+                  signedName={sheetFullName || 'Emilia Garcia'}
+                  showPreviewWarning={false}
+                  onChangeSignature={handleSheetChangeSignature}
+                />
+              </div>
+            ) : (
+              <SignatureTrigger onAgreeAndSign={handleSheetOpen} />
+            )}
+          </div>
+
+          <WCPSignatureCaptureBottomSheet
+            isOpen={sheetOpen}
+            onClose={() => setSheetOpen(false)}
+            title="Subscription agreement"
+            userName="Emilia Garcia"
+            fullName={sheetFullName}
+            onFullNameChange={setSheetFullName}
+            signatureState={sheetSignatureState}
+            signedName={sheetFullName || 'Emilia Garcia'}
+            isSignChecked={sheetIsSignChecked}
+            onSignCheckedChange={setSheetIsSignChecked}
+            onPreviewSignature={handleSheetPreview}
+            showPreviewBeforeSignError={showSheetErrors && sheetSignatureState === 'unsigned'}
+            showCheckboxError={showSheetErrors && !sheetIsSignChecked}
+            onSubmit={handleSheetSubmit}
+            submitLabel="Agree & sign"
+          />
+
+          <div className={styles.codeBlock}>
+            <pre>{`import { SignatureTrigger, SignatureTerms } from '@/components/walmart/WCPSignatureCapture';
+import { WCPSignatureCaptureBottomSheet } from '@/components/walmart/WCPSignatureCaptureBottomSheet';
+
+function SignatureFlow() {
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [fullName, setFullName] = useState('');
+  const [signatureState, setSignatureState] = useState<'unsigned' | 'signed'>('unsigned');
+  const [isSignChecked, setIsSignChecked] = useState(false);
+
+  const handleSubmit = () => {
+    if (!fullName || !isSignChecked || signatureState === 'unsigned') return;
+    setSheetOpen(false);
+    setSubmitted(true);
+  };
+
+  return (
+    <>
+      {submitted ? (
+        <SignatureTerms
+          signatureState="signed"
+          signedName={fullName}
+          onChangeSignature={() => setSheetOpen(true)}
+        />
+      ) : (
+        <SignatureTrigger onAgreeAndSign={() => setSheetOpen(true)} />
+      )}
+
+      <WCPSignatureCaptureBottomSheet
+        isOpen={sheetOpen}
+        onClose={() => setSheetOpen(false)}
+        title="Subscription agreement"
+        userName="Emilia Garcia"
+        fullName={fullName}
+        onFullNameChange={setFullName}
+        signatureState={signatureState}
+        signedName={fullName}
+        isSignChecked={isSignChecked}
+        onSignCheckedChange={setIsSignChecked}
+        onPreviewSignature={() => fullName && setSignatureState('signed')}
+        onSubmit={handleSubmit}
+      />
+    </>
+  );
+}`}</pre>
           </div>
         </section>
 
