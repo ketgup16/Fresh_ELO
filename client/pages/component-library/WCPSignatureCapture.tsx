@@ -8,6 +8,7 @@ import {
   SignatureReauth,
 } from '@/components/walmart/WCPSignatureCapture';
 import { WCPSignatureCaptureBottomSheet } from '@/components/walmart/WCPSignatureCaptureBottomSheet';
+import { WCPSignatureCapturePanel } from '@/components/walmart/WCPSignatureCapturePanel';
 import styles from './WCPSignatureCapture.module.css';
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
@@ -84,6 +85,36 @@ export default function WCPSignatureCapturePage() {
     setSheetFullName('');
     setSheetIsSignChecked(false);
     setSheetSubmitted(false);
+  };
+
+  // Side panel pattern state
+  const [panelOpen, setPanelOpen] = useState(false);
+  const [panelFullName, setPanelFullName] = useState('');
+  const [panelIsSignChecked, setPanelIsSignChecked] = useState(false);
+  const [panelSignatureState, setPanelSignatureState] = useState<'unsigned' | 'signed'>('unsigned');
+  const [panelSubmitted, setPanelSubmitted] = useState(false);
+  const [showPanelErrors, setShowPanelErrors] = useState(false);
+
+  const handlePanelPreview = () => {
+    if (panelFullName.trim()) setPanelSignatureState('signed');
+  };
+
+  const handlePanelSubmit = () => {
+    if (!panelFullName.trim() || !panelIsSignChecked || panelSignatureState === 'unsigned') {
+      setShowPanelErrors(true);
+      return;
+    }
+    setPanelOpen(false);
+    setPanelSubmitted(true);
+    setShowPanelErrors(false);
+  };
+
+  const handlePanelChangeSignature = () => {
+    setPanelSignatureState('unsigned');
+    setPanelFullName('');
+    setPanelIsSignChecked(false);
+    setPanelSubmitted(false);
+    setPanelOpen(true);
   };
 
   return (
@@ -322,6 +353,99 @@ function SignatureFlow() {
         isOpen={sheetOpen}
         onClose={() => setSheetOpen(false)}
         title="Subscription agreement"
+        userName="Emilia Garcia"
+        fullName={fullName}
+        onFullNameChange={setFullName}
+        signatureState={signatureState}
+        signedName={fullName}
+        isSignChecked={isSignChecked}
+        onSignCheckedChange={setIsSignChecked}
+        onPreviewSignature={() => fullName && setSignatureState('signed')}
+        onSubmit={handleSubmit}
+      />
+    </>
+  );
+}`}</pre>
+          </div>
+        </section>
+
+        {/* ── Side Panel Pattern ─────────────────────────────────────────── */}
+        <section className={styles.section}>
+          <SectionTitle>Side Panel Pattern</SectionTitle>
+          <SectionDesc>
+            On desktop (900+px) a slide-out side panel is preferred over a bottom sheet. <code>WCPSignatureCapturePanel</code> wraps the same <code>SignatureBase</code> form inside the LD 3.5 <code>Panel</code> component. The flow and validation are identical — only the overlay presentation differs.
+          </SectionDesc>
+
+          <div className={styles.baseFormDemo}>
+            {panelSubmitted ? (
+              <div className={styles.sheetCompletedBlock}>
+                <SignatureTerms
+                  signatureState="signed"
+                  signedName={panelFullName || 'Emilia Garcia'}
+                  showPreviewWarning={false}
+                  onChangeSignature={handlePanelChangeSignature}
+                />
+              </div>
+            ) : (
+              <SignatureTrigger onAgreeAndSign={() => setPanelOpen(true)} />
+            )}
+          </div>
+
+          <WCPSignatureCapturePanel
+            isOpen={panelOpen}
+            onClose={() => setPanelOpen(false)}
+            title="Subscription agreement"
+            size="medium"
+            position="right"
+            userName="Emilia Garcia"
+            fullName={panelFullName}
+            onFullNameChange={setPanelFullName}
+            signatureState={panelSignatureState}
+            signedName={panelFullName || 'Emilia Garcia'}
+            isSignChecked={panelIsSignChecked}
+            onSignCheckedChange={setPanelIsSignChecked}
+            onPreviewSignature={handlePanelPreview}
+            showPreviewBeforeSignError={showPanelErrors && panelSignatureState === 'unsigned'}
+            showCheckboxError={showPanelErrors && !panelIsSignChecked}
+            onSubmit={handlePanelSubmit}
+            submitLabel="Agree & sign"
+          />
+
+          <div className={styles.codeBlock}>
+            <pre>{`import { SignatureTrigger, SignatureTerms } from '@/components/walmart/WCPSignatureCapture';
+import { WCPSignatureCapturePanel } from '@/components/walmart/WCPSignatureCapturePanel';
+
+function SignatureFlow() {
+  const [panelOpen, setPanelOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [fullName, setFullName] = useState('');
+  const [signatureState, setSignatureState] = useState<'unsigned' | 'signed'>('unsigned');
+  const [isSignChecked, setIsSignChecked] = useState(false);
+
+  const handleSubmit = () => {
+    if (!fullName || !isSignChecked || signatureState === 'unsigned') return;
+    setPanelOpen(false);
+    setSubmitted(true);
+  };
+
+  return (
+    <>
+      {submitted ? (
+        <SignatureTerms
+          signatureState="signed"
+          signedName={fullName}
+          onChangeSignature={() => setPanelOpen(true)}
+        />
+      ) : (
+        <SignatureTrigger onAgreeAndSign={() => setPanelOpen(true)} />
+      )}
+
+      <WCPSignatureCapturePanel
+        isOpen={panelOpen}
+        onClose={() => setPanelOpen(false)}
+        title="Subscription agreement"
+        size="medium"      // 'small' | 'medium' | 'large'
+        position="right"   // 'left' | 'right'
         userName="Emilia Garcia"
         fullName={fullName}
         onFullNameChange={setFullName}
