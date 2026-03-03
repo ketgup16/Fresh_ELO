@@ -193,6 +193,22 @@
   width: 100%;
 }
 
+/* ── Use case example blocks ─────────────────────────────────── */
+
+.useCaseBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.useCaseTitle {
+  font-family: var(--ld-semantic-font-body-medium-family);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
+  line-height: var(--ld-semantic-font-body-medium-lineheight);
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
 /* ── Responsive ──────────────────────────────────────────────── */
 
 @media (max-width: 768px) {

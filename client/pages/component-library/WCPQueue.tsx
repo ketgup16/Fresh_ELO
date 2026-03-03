@@ -4,6 +4,7 @@ import { WCPQueueLanding } from '@/components/walmart/WCPQueueLanding';
 import { WCPQueueBanner } from '@/components/walmart/WCPQueueBanner';
 import { WCPQueueCard } from '@/components/walmart/WCPQueueCard';
 import { WCPRichMediaSheet } from '@/components/walmart/WCPRichMediaSheet';
+import { LeaveQueueModal } from '@/components/walmart/LeaveQueueModal';
 import {
   Modal,
   ModalTrigger,
@@ -46,6 +47,9 @@ export default function WCPQueuePage() {
   // Sheet state
   const [authSheetOpen, setAuthSheetOpen] = useState(false);
   const [unauthSheetOpen, setUnauthSheetOpen] = useState(false);
+
+  // Leave queue confirmation modal
+  const [leaveModalOpen, setLeaveModalOpen] = useState(false);
 
   return (
     <ComponentPageLayout
@@ -264,6 +268,7 @@ export default function WCPQueuePage() {
           <SectionDesc>
             A compact card displaying a reservation timer, product thumbnail, pricing, and queue
             actions. Three urgency variants: waiting (blue), warning (yellow), and expiring (red).
+            Clicking &ldquo;Leave the line&rdquo; opens a confirmation modal.
           </SectionDesc>
 
           <div className={styles.variantGrid}>
@@ -277,6 +282,7 @@ export default function WCPQueuePage() {
                 productName="Product description text name that wraps"
                 price="$499.90"
                 wasPrice="$600.00"
+                onLeaveQueue={() => setLeaveModalOpen(true)}
               />
             </div>
 
@@ -290,6 +296,7 @@ export default function WCPQueuePage() {
                 productName="Product description text name that wraps"
                 price="$499.90"
                 wasPrice="$600.00"
+                onLeaveQueue={() => setLeaveModalOpen(true)}
               />
             </div>
 
@@ -303,6 +310,94 @@ export default function WCPQueuePage() {
                 productName="Product description text name that wraps"
                 price="$499.90"
                 wasPrice="$600.00"
+                onLeaveQueue={() => setLeaveModalOpen(true)}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Leave Queue Confirmation Modal */}
+        <LeaveQueueModal
+          open={leaveModalOpen}
+          onOpenChange={setLeaveModalOpen}
+        />
+
+        {/* ═══════════════════════════════════════════════════════════
+            Section F — Use Case Examples
+            ═══════════════════════════════════════════════════════════ */}
+        <div className={styles.section}>
+          <SectionTitle>Variants</SectionTitle>
+          <SectionDesc>
+            Multiple variants of the component QueueBanner can be manipulated with the help
+            of props and child components.
+          </SectionDesc>
+
+          {/* Basic Queue */}
+          <div className={styles.useCaseBlock}>
+            <span className={styles.useCaseTitle}>Basic Queue</span>
+            <div className={styles.bannerFrame}>
+              <WCPQueueBanner
+                endTime={secondsFromNow(20 * 60)}
+                variant="lineJoined"
+                productImage={DEMO_IMAGE}
+                reservationText="estimated wait"
+                viewLabel="View"
+                onView={() => {}}
+                showLinkRow={false}
+                inline
+              />
+            </div>
+          </div>
+
+          {/* Reservation Ready Queue */}
+          <div className={styles.useCaseBlock}>
+            <span className={styles.useCaseTitle}>Reservation Ready Queue</span>
+            <div className={styles.bannerFrame}>
+              <WCPQueueBanner
+                endTime={secondsFromNow(1)}
+                variant="lineJoined"
+                productImage={DEMO_IMAGE}
+                reservationText="left to buy"
+                viewLabel="View"
+                onView={() => {}}
+                leaveLabel="Leave"
+                onLeave={() => setLeaveModalOpen(true)}
+                linkText="You're in line for 1 other item"
+                onLink={() => {}}
+                inline
+              />
+            </div>
+          </div>
+
+          {/* Time Expired Queue */}
+          <div className={styles.useCaseBlock}>
+            <span className={styles.useCaseTitle}>Time Expired Queue</span>
+            <div className={styles.bannerFrame}>
+              <WCPQueueBanner
+                endTime={secondsFromNow(0)}
+                variant="lineJoined"
+                productImage={DEMO_IMAGE}
+                reservationText="left to buy"
+                viewLabel="View"
+                onView={() => {}}
+                leaveLabel="Remove"
+                onLeave={() => {}}
+                linkText="You're in line for 1 other item"
+                onLink={() => {}}
+                inline
+              />
+            </div>
+          </div>
+
+          {/* Banner Fetch Error */}
+          <div className={styles.useCaseBlock}>
+            <span className={styles.useCaseTitle}>Banner Fetch Error</span>
+            <div className={styles.bannerFrame}>
+              <WCPQueueBanner
+                endTime={secondsFromNow(600)}
+                variant="error"
+                errorMessage="Hang on, we're getting you in line. Please don't refresh or leave the line."
+                inline
               />
             </div>
           </div>

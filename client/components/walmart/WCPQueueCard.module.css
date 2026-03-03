@@ -34,7 +34,7 @@
   padding: 0 var(--ld-primitive-scale-space-50, 4px);
   justify-content: center;
   align-items: center;
-  border-radius: var(--ld-primitive-scale-borderradius-25, 2px);
+  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
   min-width: 48px;
 }
 
