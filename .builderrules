@@ -4,7 +4,7 @@ Got it. Let me update the `.builderrules` file with your new content and give yo
 
 ---
 
-```
+
 # Builder.io Agent Rules
 
 ## Component Reuse Policy
@@ -145,6 +145,39 @@ import { Button } from 'shadcn/ui';
 - REQUIRED: Responsive behavior for small screens
 - Reference Implementation: `client/components/RecommendationsPanel.tsx`
 
+## Page Templates & Layout Components (HARD RULE)
+
+### CRITICAL: Always Use Page Template Components
+
+Every page MUST be wrapped in the appropriate page template. Never build bare pages without the standard layout shell.
+
+#### Top Navigation
+- **ALWAYS use**: The existing top nav component from `client/components/`
+- **NEVER create**: Custom headers, nav bars, or top-level navigation from scratch
+- The top nav must appear on every page — no exceptions
+- Do not hide, override, or conditionally remove the top nav unless explicitly instructed
+
+#### Bottom Navigation
+- **ALWAYS use**: The existing bottom nav component from `client/components/`
+- **NEVER create**: Custom footers or bottom bars from scratch
+- The bottom nav must appear on every page — no exceptions
+- Do not hide, override, or conditionally remove the bottom nav unless explicitly instructed
+
+#### Page Template Shell
+- Before building a new page, check `client/components/` for an existing page layout or template wrapper (e.g., `PageLayout`, `ComponentPageLayout`, etc.)
+- All new pages MUST use the appropriate layout wrapper — never render content directly without a layout shell
+- If a layout wrapper does not exist for the use case, create one that includes the top nav, bottom nav, and a content slot — do not skip the nav components
+
+#### Summary — Page Template Golden Rules
+
+1. Every page = Top Nav + Content + Bottom Nav
+2. Search `client/components/` for existing layout wrappers before creating a new page
+3. Never conditionally hide nav components without explicit instruction
+4. New layout wrappers must always include top and bottom nav
+5. Page content must be scoped inside the template's content slot — not alongside nav components
+
+---
+
 ## External Library Policy (HARD RULE)
 
 **NEVER install or import from external UI libraries** including:
@@ -162,4 +195,3 @@ All UI components MUST come from `client/components/ui/`. If a needed component 
 ---
 
 Remember: **Reuse > Adapt > Create** (in that order!) — always from `client/components/ui/`
-```
