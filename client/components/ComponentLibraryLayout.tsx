@@ -79,6 +79,7 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-search-bar', nameKey: 'componentLibrary.navWCPSearchBar', path: '/component-library/wcp-search-bar' },
       { id: 'wcp-signature-capture', nameKey: 'componentLibrary.navWCPSignatureCapture', path: '/component-library/wcp-signature-capture' },
       { id: 'wcp-rich-media-sheet', nameKey: 'componentLibrary.navWCPRichMediaSheet', path: '/component-library/wcp-rich-media-sheet' },
+      { id: 'wcp-rich-snackbar', nameKey: 'componentLibrary.navWCPRichSnackbar', path: '/component-library/wcp-rich-snackbar' },
     ]
   },
   {
