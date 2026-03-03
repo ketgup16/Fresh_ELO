@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { FilterChip } from '@/components/ui/FilterChip';
 import { FormGroup } from '@/components/ui/FormGroup';
-import { Search } from '@/components/icons';
 import { Popover, PopoverAnchor, PopoverContent } from '@/components/ui/Popover';
 import { RadioGroup, Radio } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/Checkbox';
@@ -9,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { Link } from '@/components/ui/Link';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { MobileFilterBottomSheet } from './MobileFilterBottomSheet';
+import { WCPSearchBar } from '@/components/walmart/WCPSearchBar';
 import styles from './PurchaseHistoryFilters.module.css';
 
 export interface FilterState {
@@ -117,17 +117,12 @@ export function PurchaseHistoryFilters({ filters, onFiltersChange }: PurchaseHis
     <div className={styles.wrapper}>
       {/* Search */}
       <div className={styles.searchRow}>
-        <div className={styles.searchBox}>
-          <Search className={styles.searchIcon} aria-hidden="true" width={16} height={16} />
-          <input
-            type="search"
-            placeholder="Search your orders"
-            className={styles.searchInput}
-            aria-label="Search your orders"
-            value={filters.search}
-            onChange={e => update({ search: e.target.value })}
-          />
-        </div>
+        <WCPSearchBar
+          value={filters.search}
+          onChange={val => update({ search: val })}
+          onClear={() => update({ search: '' })}
+          placeholder="Search your orders"
+        />
       </div>
 
       {/* Filter chips */}

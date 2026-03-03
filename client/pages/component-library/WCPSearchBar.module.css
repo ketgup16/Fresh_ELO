@@ -1,0 +1,173 @@
+.page {
+  padding: 32px 48px 64px;
+  max-width: 1200px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  margin-bottom: 48px;
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.sectionTitle {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+}
+
+.sectionDesc {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── States grid ─────────────────────────────────────────── */
+
+.statesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .statesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mobileStatesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .mobileStatesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Demo card ───────────────────────────────────────────── */
+
+.demoCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 12px;
+  background: var(--ld-semantic-color-surface, #fff);
+}
+
+.demoCardNarrow {
+  max-width: 375px;
+}
+
+.cardLabel {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Desktop demo wrapper ────────────────────────────────── */
+
+.desktopDemo {
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+}
+
+/* ── Live demo ───────────────────────────────────────────── */
+
+.liveDemo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  background: var(--ld-semantic-color-background-subtle, #f8f8f8);
+  border-radius: 12px;
+}
+
+.liveOutput {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  margin: 0;
+}
+
+/* ── Code block ──────────────────────────────────────────── */
+
+.codeBlock {
+  background: #1e1e2e;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+.codeBlock pre {
+  margin: 0;
+  padding: 24px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #cdd6f4;
+}
+
+/* ── Props table ─────────────────────────────────────────── */
+
+.propsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+}
+
+.propsTable th {
+  text-align: left;
+  padding: 10px 16px;
+  background: var(--ld-semantic-color-background-subtle, #f8f8f8);
+  color: var(--ld-semantic-color-text, #2E2F32);
+  font-weight: 700;
+  border-bottom: 2px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.propsTable td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  color: var(--ld-semantic-color-text, #2E2F32);
+  vertical-align: top;
+}
+
+.propsTable td code,
+.propsTable th code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  background: var(--ld-semantic-color-background-subtle, #f0f0f0);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 24px 16px 48px;
+  }
+}

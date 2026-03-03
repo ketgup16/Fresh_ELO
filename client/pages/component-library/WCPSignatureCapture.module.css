@@ -1,0 +1,200 @@
+.page {
+  padding: 32px 48px 64px;
+  max-width: 1200px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  margin-bottom: 48px;
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.sectionTitle {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  margin: 0;
+}
+
+.sectionDesc {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Variant grid ────────────────────────────────────────── */
+
+.variantGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .variantGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Demo card ───────────────────────────────────────────── */
+
+.demoCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 12px;
+  background: var(--ld-semantic-color-surface, #fff);
+}
+
+.cardLabel {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Toggle row ──────────────────────────────────────────── */
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.toggleLabel {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.toggleBtn {
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-surface, #fff);
+  cursor: pointer;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 13px;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.toggleBtn:hover {
+  background: var(--ld-semantic-color-surface-hovered, #F0F0F0);
+}
+
+.toggleBtnActive {
+  background: var(--ld-semantic-color-action-fill-primary, #0071DC);
+  border-color: var(--ld-semantic-color-action-fill-primary, #0071DC);
+  color: #fff;
+}
+
+.toggleBtnActive:hover {
+  background: var(--ld-semantic-color-action-fill-primary, #0071DC);
+}
+
+/* ── Interaction note ────────────────────────────────────── */
+
+.interactionNote {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 13px;
+  color: var(--ld-semantic-color-text-positive, #1A7A34);
+  margin: 0;
+  padding: 8px 12px;
+  background: var(--ld-semantic-color-fill-positive-subtle, #EAF6ED);
+  border-radius: 6px;
+}
+
+/* ── Base form demo ──────────────────────────────────────── */
+
+.baseFormDemo {
+  padding: 24px;
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 12px;
+  background: var(--ld-semantic-color-surface, #fff);
+  max-width: 480px;
+}
+
+/* ── Code block ──────────────────────────────────────────── */
+
+.codeBlock {
+  background: #1e1e2e;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+.codeBlock pre {
+  margin: 0;
+  padding: 24px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #cdd6f4;
+}
+
+/* ── Props table ─────────────────────────────────────────── */
+
+.propsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+}
+
+.propsTable th {
+  text-align: left;
+  padding: 10px 16px;
+  background: var(--ld-semantic-color-background-subtle, #f8f8f8);
+  color: var(--ld-semantic-color-text, #2E2F32);
+  font-weight: 700;
+  border-bottom: 2px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.propsTable td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  color: var(--ld-semantic-color-text, #2E2F32);
+  vertical-align: top;
+}
+
+.propsTable td code,
+.propsTable th code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  background: var(--ld-semantic-color-background-subtle, #f0f0f0);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 24px 16px 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggleBtn {
+    transition: none;
+  }
+}

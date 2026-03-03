@@ -76,6 +76,8 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-floating-button', nameKey: 'componentLibrary.navWCPFloatingButton', path: '/component-library/wcp-floating-button' },
       { id: 'wcp-heart-view', nameKey: 'componentLibrary.navWCPHeartView', path: '/component-library/wcp-heart-view' },
       { id: 'wcp-rating', nameKey: 'componentLibrary.navWCPRating', path: '/component-library/wcp-rating' },
+      { id: 'wcp-search-bar', nameKey: 'componentLibrary.navWCPSearchBar', path: '/component-library/wcp-search-bar' },
+      { id: 'wcp-signature-capture', nameKey: 'componentLibrary.navWCPSignatureCapture', path: '/component-library/wcp-signature-capture' },
     ]
   },
   {
