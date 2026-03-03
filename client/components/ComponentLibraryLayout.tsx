@@ -82,6 +82,7 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-rich-snackbar', nameKey: 'componentLibrary.navWCPRichSnackbar', path: '/component-library/wcp-rich-snackbar' },
       { id: 'wcp-timer-view', nameKey: 'componentLibrary.navWCPTimerView', path: '/component-library/wcp-timer-view' },
       { id: 'wcp-queue-banner', nameKey: 'componentLibrary.navWCPQueueBanner', path: '/component-library/wcp-queue-banner' },
+      { id: 'wcp-queue-card', nameKey: 'componentLibrary.navWCPQueueCard', path: '/component-library/wcp-queue-card' },
     ]
   },
   {
