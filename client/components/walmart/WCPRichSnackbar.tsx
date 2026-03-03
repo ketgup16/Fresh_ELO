@@ -21,7 +21,7 @@ export interface WCPRichSnackbarProps {
   duration?: number;
   position?: 'bottom-left' | 'bottom-center' | 'bottom-right';
   /** Render inline (non-fixed) for use inside docs/demo cards */
-  static?: boolean;
+  inline?: boolean;
 }
 
 const POSITION_CLASS: Record<string, string> = {
@@ -51,7 +51,7 @@ export const WCPRichSnackbar: React.FC<WCPRichSnackbarProps> = ({
   onClose,
   duration = 4000,
   position = 'bottom-center',
-  static: isStatic = false,
+  inline: isStatic = false,
 }) => {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 

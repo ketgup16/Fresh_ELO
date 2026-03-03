@@ -18,7 +18,7 @@ import styles from './WCPRichSnackbar.module.css';
 function StaticSnackbar(props: React.ComponentProps<typeof WCPRichSnackbar>) {
   return (
     <div className={styles.previewWrap}>
-      <WCPRichSnackbar {...props} open static duration={Infinity} />
+      <WCPRichSnackbar {...props} open inline duration={Infinity} />
     </div>
   );
 }
