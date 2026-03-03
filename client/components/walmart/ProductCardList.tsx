@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Heart, HeartFill } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
+import { IconButton } from "@/components/ui/IconButton";
 import { Rating } from "@/components/ui/Rating";
 import { WCPTimerView } from "./WCPTimerView";
 import styles from "./ProductCardList.module.css";
@@ -57,17 +58,21 @@ export function ProductCardList({
             {flag}
           </div>
         )}
-        <button
-          className={styles.favoriteButton}
-          onClick={() => setIsFavorited(!isFavorited)}
-          aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
-        >
-          {isFavorited ? (
-            <HeartFill className={styles.heartFilled} />
-          ) : (
-            <Heart className={styles.heartEmpty} />
-          )}
-        </button>
+        <div className={styles.favoriteButton}>
+          <IconButton
+            aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
+            variant="white"
+            size="small"
+            shape="rounded"
+            onClick={() => setIsFavorited(!isFavorited)}
+          >
+            {isFavorited ? (
+              <HeartFill className={styles.heartFilled} />
+            ) : (
+              <Heart className={styles.heartEmpty} />
+            )}
+          </IconButton>
+        </div>
         <img src={image} alt={name} className={styles.productImage} />
         {timerEndTime && (
           <div className={styles.timerBadge}>
