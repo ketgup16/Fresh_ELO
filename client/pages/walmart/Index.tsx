@@ -4,6 +4,7 @@ import { NewArrivalsCarousel } from "@/components/walmart/NewArrivalsCarousel";
 import { JumpRightBackIn } from "@/components/walmart/JumpRightBackIn";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { OrderStatusCard } from "@/components/walmart/OrderStatusCard";
+import { ActiveCurbsideCard } from "@/components/walmart/ActiveCurbsideCard";
 import { CarouselProductCard } from "@/components/walmart/CarouselProductCard";
 
 interface CarouselItem {
@@ -44,6 +45,9 @@ export default function Index() {
   return (
     <ResponsiveLayout maxWidth="full" showHomeExtras>
       <div className="px-4 pt-6 pb-32 space-y-4">
+
+        {/* Active Curbside Order — countdown + express upgrade */}
+        <ActiveCurbsideCard />
 
         {/* Order Status Card — mobile only, dismissible */}
         <OrderStatusCard
