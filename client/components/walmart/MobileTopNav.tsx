@@ -43,12 +43,12 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
 
   return (
     <>
-      <div className={styles.root}>
+      <div className={`${styles.root} ${isNative && isBlue && showHomeExtras ? styles.rootNativeBlue : ''}`}>
         {/* === NATIVE HOME LAYOUT === */}
         {isNative && isBlue && showHomeExtras ? (
-          <>
+          <div className={styles.nativeHomeContainer}>
             {/* Row 1: Header — greeting / spark / cart */}
-            <div className={`${styles.nativeHeader} ${styles.topBarBlue}`}>
+            <div className={styles.nativeHeader}>
               <span className={styles.greeting}>Hi, Emilia</span>
               <div className={styles.sparkCenter}>
                 <img
@@ -61,7 +61,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
             </div>
 
             {/* Row 2: Search pill */}
-            <div className={`${styles.nativeSearchRow} ${styles.topBarBlue}`}>
+            <div className={styles.nativeSearchRow}>
               <div
                 className={styles.nativeSearchPill}
                 onClick={() => setShowSearchModal(true)}
@@ -77,7 +77,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
                 </button>
               </div>
             </div>
-          </>
+          </div>
         ) : (
           /* === STANDARD TOP BAR (mweb home / non-home / native non-home) === */
           <div className={`${styles.topBar} ${isBlue ? styles.topBarBlue : styles.topBarWhite}`}>
@@ -172,7 +172,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
             {!showDeliveryOptions && (
               <button
                 onClick={() => setShowDeliveryOptions(true)}
-                className="w-full flex items-center justify-between rounded-full px-0 py-2 transition-colors"
+                className="w-full flex items-center justify-between px-0 transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <img
