@@ -11,170 +11,169 @@ function SectionDesc({ children }: { children: React.ReactNode }) {
   return <p className={styles.sectionDesc}>{children}</p>;
 }
 
-function DemoCard({ title, children, narrow }: { title: string; children: React.ReactNode; narrow?: boolean }) {
-  return (
-    <div className={[styles.demoCard, narrow ? styles.demoCardNarrow : ''].filter(Boolean).join(' ')}>
-      <div className={styles.cardLabel}>{title}</div>
-      <div className={styles.cardContent}>{children}</div>
-    </div>
-  );
-}
-
 export default function WCPSearchBarPage() {
-  const [value900, setValue900] = useState('');
-  const [value0899, setValue0899] = useState('');
-  const [valueWithText, setValueWithText] = useState('Running shoes');
-  const [valueDisabled] = useState('');
+  const [liveValue, setLiveValue] = useState('');
+  const [disabledValue] = useState('');
 
   return (
     <ComponentPageLayout
       section="WCP Components"
       title="[WCP] Search Bar"
-      description="An inline, page-level search bar for searching within a page. Not used for global navigation."
+      description="Inline page search component positioned within a page — not used for global navigation. Supports two breakpoints (0–899px and 900+px) and states: Enabled, Hovered, Activated (empty & with value), and Disabled."
     >
       <div className={styles.page}>
 
-        {/* ── 900+px States ───────────────────────────────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>900+ px — Desktop Breakpoint</SectionTitle>
+        {/* ── Overview ─────────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Overview</SectionTitle>
           <SectionDesc>
-            Full desktop version with min-height 56px. Padding is 8px 16px. Includes Hovered, Activated (no text), Activated (with text), and Disabled states. Cancel link appears outside the pill when activated.
+            The WCP Search Bar is an inline search field for filtering content within a page. It
+            differs from the global navigation search — it is scoped to a single section or page.
+            On mobile (0–899px) it uses a slightly more compact height (48px) and on desktop
+            (900+px) it uses 56px. When activated, a blinking cursor appears and a Cancel link
+            is shown; when text is entered, a clear (✕) button replaces the cursor.
+          </SectionDesc>
+        </div>
+
+        {/* ── Interactive Demo ─────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Interactive Demo</SectionTitle>
+          <SectionDesc>
+            Try typing to activate the search bar. The clear button appears once text is entered,
+            and the Cancel link dismisses focus and clears the value.
+          </SectionDesc>
+          <div className={styles.demoWrapper}>
+            <WCPSearchBar
+              value={liveValue}
+              onChange={setLiveValue}
+              onClear={() => setLiveValue('')}
+              onCancel={() => setLiveValue('')}
+              placeholder="Enter search term(s)"
+            />
+          </div>
+          {liveValue && (
+            <p className={styles.searchValueDisplay}>
+              Current value: <code>{liveValue}</code>
+            </p>
+          )}
+        </div>
+
+        {/* ── States ───────────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>States</SectionTitle>
+          <SectionDesc>
+            The search bar has four interaction states. Hover is desktop-only (900+px). The
+            Activated state shows a focus ring and Cancel link; the entered variant shows the
+            typed value and a clear button.
           </SectionDesc>
 
           <div className={styles.statesGrid}>
-            <DemoCard title="Enabled">
-              <div className={styles.desktopDemo}>
+            {/* Enabled */}
+            <div className={styles.stateCard}>
+              <div className={styles.stateLabel}>Enabled</div>
+              <div className={styles.stateDemo}>
                 <WCPSearchBar
                   value=""
                   onChange={() => {}}
                   placeholder="Enter search term(s)"
                 />
               </div>
-            </DemoCard>
+              <p className={styles.stateDesc}>Default resting state. Subtle border and fill.</p>
+            </div>
 
-            <DemoCard title="Activated — No text">
-              <div className={styles.desktopDemo}>
-                <WCPSearchBar
-                  value={value900}
-                  onChange={setValue900}
-                  onCancel={() => setValue900('')}
-                  placeholder="Enter search term(s)"
-                />
+            {/* Activated — empty (cursor shown) */}
+            <div className={styles.stateCard}>
+              <div className={styles.stateLabel}>Activated — empty</div>
+              <div className={styles.stateDemo}>
+                <ActivatedEmptyDemo />
               </div>
-            </DemoCard>
+              <p className={styles.stateDesc}>
+                Focused with no input. Blue border (2px), white fill, blinking cursor.
+              </p>
+            </div>
 
-            <DemoCard title="Activated — With text">
-              <div className={styles.desktopDemo}>
-                <WCPSearchBar
-                  value={valueWithText}
-                  onChange={setValueWithText}
-                  onClear={() => setValueWithText('')}
-                  onCancel={() => setValueWithText('')}
-                  placeholder="Enter search term(s)"
-                />
+            {/* Activated — with value */}
+            <div className={styles.stateCard}>
+              <div className={styles.stateLabel}>Activated — with value</div>
+              <div className={styles.stateDemo}>
+                <ActivatedWithValueDemo />
               </div>
-            </DemoCard>
+              <p className={styles.stateDesc}>
+                Focused with input text. Clear (✕) button appears on the right.
+              </p>
+            </div>
 
-            <DemoCard title="Disabled">
-              <div className={styles.desktopDemo}>
+            {/* Disabled */}
+            <div className={styles.stateCard}>
+              <div className={styles.stateLabel}>Disabled</div>
+              <div className={styles.stateDemo}>
                 <WCPSearchBar
-                  value={valueDisabled}
+                  value={disabledValue}
                   onChange={() => {}}
                   placeholder="Enter search term(s)"
                   disabled
                 />
               </div>
-            </DemoCard>
-          </div>
-        </section>
-
-        {/* ── 0-899px States ──────────────────────────────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>0–899 px — Mobile Breakpoint</SectionTitle>
-          <SectionDesc>
-            Mobile version with min-height 48px, padding 12px. Focused padding is 4px 4px 4px 12px. No Hovered state on mobile. Cancel link appears outside when activated.
-          </SectionDesc>
-
-          <div className={styles.mobileStatesGrid}>
-            <DemoCard title="Enabled" narrow>
-              <WCPSearchBar
-                value=""
-                onChange={() => {}}
-                placeholder="Enter search term(s)"
-              />
-            </DemoCard>
-
-            <DemoCard title="Activated — No text" narrow>
-              <WCPSearchBar
-                value={value0899}
-                onChange={setValue0899}
-                onCancel={() => setValue0899('')}
-                placeholder="Enter search term(s)"
-              />
-            </DemoCard>
-
-            <DemoCard title="Disabled" narrow>
-              <WCPSearchBar
-                value=""
-                onChange={() => {}}
-                placeholder="Enter search term(s)"
-                disabled
-              />
-            </DemoCard>
-          </div>
-        </section>
-
-        {/* ── Live Demo ───────────────────────────────────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>Live Interactive Demo</SectionTitle>
-          <SectionDesc>
-            Type in the search box to see all states in action. The clear button (×) appears when the field is focused and has text. The Cancel link appears when the field is focused.
-          </SectionDesc>
-          <div className={styles.liveDemo}>
-            <WCPSearchBar
-              value={value900}
-              onChange={setValue900}
-              onClear={() => setValue900('')}
-              onCancel={() => setValue900('')}
-              placeholder="Search your orders"
-            />
-            {value900 && (
-              <p className={styles.liveOutput}>
-                Search value: <strong>{value900}</strong>
+              <p className={styles.stateDesc}>
+                Cannot be interacted with. Muted border and text colors.
               </p>
-            )}
+            </div>
           </div>
-        </section>
+        </div>
 
-        {/* ── Usage ───────────────────────────────────────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>Usage</SectionTitle>
+        {/* ── Breakpoints ───────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Breakpoints</SectionTitle>
           <SectionDesc>
-            The WCPSearchBar is a controlled component. Pass <code>value</code> and <code>onChange</code> for controlled behavior.
-            Use <code>onClear</code> to handle the X button click, and <code>onCancel</code> for the Cancel link.
+            The component automatically adapts between two breakpoints. At 900+px (desktop) the
+            pill height increases to 56px and horizontal padding grows to 16px. At 0–899px (mobile
+            and tablet) the height is 48px with 12px padding. The "Hovered" state only applies on
+            desktop.
           </SectionDesc>
-          <div className={styles.codeBlock}>
-            <pre>{`import { WCPSearchBar } from '@/components/walmart/WCPSearchBar';
 
-function MyComponent() {
-  const [search, setSearch] = useState('');
-
-  return (
-    <WCPSearchBar
-      value={search}
-      onChange={setSearch}
-      onClear={() => setSearch('')}
-      onCancel={() => setSearch('')}
-      placeholder="Search your orders"
-    />
-  );
-}`}</pre>
+          <div className={styles.breakpointTable}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>0–899px (Mobile/Tablet)</th>
+                  <th>900+px (Desktop)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Min height (enabled)</td>
+                  <td>48px</td>
+                  <td>56px</td>
+                </tr>
+                <tr>
+                  <td>Padding (enabled)</td>
+                  <td>12px (all sides)</td>
+                  <td>8px top/bottom, 16px left/right</td>
+                </tr>
+                <tr>
+                  <td>Padding (activated)</td>
+                  <td>4px top/bottom/right, 12px left</td>
+                  <td>8px top/bottom/right, 16px left</td>
+                </tr>
+                <tr>
+                  <td>Hover state</td>
+                  <td>No (touch devices)</td>
+                  <td>Yes — slightly darker border + fill</td>
+                </tr>
+                <tr>
+                  <td>Cancel link</td>
+                  <td>Shown when activated</td>
+                  <td>Shown when activated</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </section>
+        </div>
 
-        {/* ── Props ───────────────────────────────────────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>Props</SectionTitle>
+        {/* ── Component Props ───────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Component Props</SectionTitle>
           <table className={styles.propsTable}>
             <thead>
               <tr>
@@ -186,51 +185,153 @@ function MyComponent() {
             </thead>
             <tbody>
               <tr>
-                <td><code>value</code></td>
-                <td><code>string</code></td>
+                <td>value</td>
+                <td>string</td>
                 <td>—</td>
-                <td>Controlled value for the search input.</td>
+                <td>Required. Controlled input value.</td>
               </tr>
               <tr>
-                <td><code>onChange</code></td>
-                <td><code>(value: string) =&gt; void</code></td>
+                <td>onChange</td>
+                <td>(value: string) =&gt; void</td>
                 <td>—</td>
-                <td>Called when the input value changes.</td>
+                <td>Required. Called on every keystroke.</td>
               </tr>
               <tr>
-                <td><code>onClear</code></td>
-                <td><code>() =&gt; void</code></td>
+                <td>onClear</td>
+                <td>() =&gt; void</td>
                 <td>—</td>
-                <td>Called when the × clear button is clicked.</td>
+                <td>Called when the clear (✕) button is pressed. Clears value and keeps focus.</td>
               </tr>
               <tr>
-                <td><code>onCancel</code></td>
-                <td><code>() =&gt; void</code></td>
+                <td>onCancel</td>
+                <td>() =&gt; void</td>
                 <td>—</td>
-                <td>Called when the Cancel link is clicked. Also clears the value.</td>
+                <td>Called when the Cancel link is pressed. Clears value and removes focus.</td>
               </tr>
               <tr>
-                <td><code>placeholder</code></td>
-                <td><code>string</code></td>
-                <td><code>"Enter search term(s)"</code></td>
-                <td>Placeholder text shown in the input.</td>
+                <td>placeholder</td>
+                <td>string</td>
+                <td>'Enter search term(s)'</td>
+                <td>Placeholder text shown when the field is empty.</td>
               </tr>
               <tr>
-                <td><code>disabled</code></td>
-                <td><code>boolean</code></td>
-                <td><code>false</code></td>
-                <td>Disables all interaction.</td>
+                <td>disabled</td>
+                <td>boolean</td>
+                <td>false</td>
+                <td>Disables all interaction. Applies muted visual styling.</td>
               </tr>
               <tr>
-                <td><code>className</code></td>
-                <td><code>string</code></td>
+                <td>className</td>
+                <td>string</td>
                 <td>—</td>
-                <td>Additional CSS class for the wrapper.</td>
+                <td>Optional extra CSS class on the root wrapper.</td>
               </tr>
             </tbody>
           </table>
-        </section>
+        </div>
+
+        {/* ── Usage ─────────────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Usage</SectionTitle>
+          <pre className={styles.codeBlock}>{`import { WCPSearchBar } from '@/components/walmart/WCPSearchBar';
+
+function MyPage() {
+  const [query, setQuery] = React.useState('');
+
+  return (
+    <WCPSearchBar
+      value={query}
+      onChange={setQuery}
+      onClear={() => setQuery('')}
+      onCancel={() => setQuery('')}
+      placeholder="Search products"
+    />
+  );
+}`}</pre>
+        </div>
+
+        {/* ── Do / Don't ───────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Guidelines</SectionTitle>
+          <div className={styles.guidelineGrid}>
+            <div className={styles.guidelineCard}>
+              <div className={styles.doLabel}>Do</div>
+              <p className={styles.guidelineText}>
+                Use this component for inline/page-scoped search — filtering a list, table, or
+                product catalog on the current page.
+              </p>
+            </div>
+            <div className={styles.guidelineCard}>
+              <div className={styles.dontLabel}>Don't</div>
+              <p className={styles.guidelineText}>
+                Don't use this component in the global header for site-wide search. Use the
+                dedicated global search bar component for that use case.
+              </p>
+            </div>
+            <div className={styles.guidelineCard}>
+              <div className={styles.doLabel}>Do</div>
+              <p className={styles.guidelineText}>
+                Always provide both <code>onClear</code> and <code>onCancel</code> callbacks so
+                users can exit the search state cleanly on both desktop and mobile.
+              </p>
+            </div>
+            <div className={styles.guidelineCard}>
+              <div className={styles.dontLabel}>Don't</div>
+              <p className={styles.guidelineText}>
+                Don't stack multiple search bars on the same page. Only one inline search per
+                content area is recommended.
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </ComponentPageLayout>
+  );
+}
+
+// ── Helper demos with pre-triggered focus state ───────────────────────────
+
+function ActivatedEmptyDemo() {
+  const [val, setVal] = React.useState('');
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const input = ref.current?.querySelector('input');
+    if (input) input.focus();
+  }, []);
+
+  return (
+    <div ref={ref}>
+      <WCPSearchBar
+        value={val}
+        onChange={setVal}
+        onClear={() => setVal('')}
+        onCancel={() => setVal('')}
+        placeholder="Enter search term(s)"
+      />
+    </div>
+  );
+}
+
+function ActivatedWithValueDemo() {
+  const [val, setVal] = React.useState('running shoes');
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const input = ref.current?.querySelector('input');
+    if (input) input.focus();
+  }, []);
+
+  return (
+    <div ref={ref}>
+      <WCPSearchBar
+        value={val}
+        onChange={setVal}
+        onClear={() => setVal('')}
+        onCancel={() => setVal('')}
+        placeholder="Enter search term(s)"
+      />
+    </div>
   );
 }

@@ -124,6 +124,8 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navWCPRichSnackbar', descKey: 'componentLibrary.descWCPRichSnackbar', path: '/component-library/wcp-rich-snackbar', icon: 'Chat', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPTimerView', descKey: 'componentLibrary.descWCPTimerView', path: '/component-library/wcp-timer-view', icon: 'Refresh', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPQueueBanner', descKey: 'componentLibrary.descWCPQueueBanner', path: '/component-library/wcp-queue-banner', icon: 'Note', section: 'ld' },
+  { titleKey: 'componentLibrary.navWCPSearchBar', descKey: 'componentLibrary.descWCPSearchBar', path: '/component-library/wcp-search-bar', icon: 'Search', section: 'ld' },
+  { titleKey: 'componentLibrary.navWCPSignatureCapture', descKey: 'componentLibrary.descWCPSignatureCapture', path: '/component-library/wcp-signature-capture', icon: 'Edit', section: 'ld' },
   // ── Shared Components ──
   { titleKey: 'componentLibrary.navAlertDialog', descKey: 'componentLibrary.descAlertDialog', path: '/component-library/alert-dialog', icon: 'ExclamationCircle', section: 'shadcn' },
   { titleKey: 'componentLibrary.navAvatar', descKey: 'componentLibrary.descAvatar', path: '/component-library/avatar', icon: 'Circle', section: 'shadcn' },

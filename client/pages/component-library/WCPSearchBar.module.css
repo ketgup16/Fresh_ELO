@@ -1,173 +1,247 @@
+/* ── WCPSearchBar docs page ────────────────────────────────── */
+
 .page {
   padding: 32px 48px 64px;
-  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding-bottom: 56px;
-  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  margin-bottom: 48px;
-}
-
-.section:last-child {
-  border-bottom: none;
+  gap: 16px;
 }
 
 .sectionTitle {
-  font-family: var(--ld-semantic-font-family-sans);
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
-  margin: 0;
+  font-family: var(--ld-semantic-font-heading-medium-family);
+  font-size: var(--ld-semantic-font-heading-medium-size, 20px);
+  font-weight: var(--ld-semantic-font-heading-medium-weight, 700);
+  line-height: var(--ld-semantic-font-heading-medium-lineheight);
+  color: var(--ld-semantic-color-text);
+  margin: 0 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
 .sectionDesc {
-  font-family: var(--ld-semantic-font-family-sans);
-  font-size: 14px;
-  color: var(--ld-semantic-color-text-subtle, #515357);
-  line-height: 1.5;
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default);
+  line-height: var(--ld-semantic-font-body-small-lineheight);
+  color: var(--ld-semantic-color-text-subtle);
   margin: 0;
 }
 
-/* ── States grid ─────────────────────────────────────────── */
+/* ── Interactive demo ──────────────────────────────────────── */
+
+.demoWrapper {
+  padding: 24px;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.searchValueDisplay {
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  color: var(--ld-semantic-color-text-subtle);
+  margin: 0;
+}
+
+.searchValueDisplay code {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--ld-semantic-color-text);
+}
+
+/* ── States grid ───────────────────────────────────────────── */
 
 .statesGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 24px;
 }
 
-@media (max-width: 900px) {
-  .statesGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.mobileStatesGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-@media (max-width: 768px) {
-  .mobileStatesGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ── Demo card ───────────────────────────────────────────── */
-
-.demoCard {
+.stateCard {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 24px;
+  padding: 20px;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  border-radius: 12px;
   background: var(--ld-semantic-color-surface, #fff);
 }
 
-.demoCardNarrow {
-  max-width: 375px;
-}
-
-.cardLabel {
-  font-family: var(--ld-semantic-font-family-sans);
-  font-size: 12px;
+.stateLabel {
+  font-size: 11px;
   font-weight: 700;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--ld-semantic-color-text-subtle, #515357);
+  color: var(--ld-semantic-color-text-subtle);
 }
 
-.cardContent {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.stateDemo {
+  padding: 8px 0;
 }
 
-/* ── Desktop demo wrapper ────────────────────────────────── */
-
-.desktopDemo {
-  display: flex;
-  align-items: center;
-  min-height: 72px;
-}
-
-/* ── Live demo ───────────────────────────────────────────── */
-
-.liveDemo {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 32px;
-  background: var(--ld-semantic-color-background-subtle, #f8f8f8);
-  border-radius: 12px;
-}
-
-.liveOutput {
-  font-family: var(--ld-semantic-font-family-sans);
-  font-size: 14px;
-  color: var(--ld-semantic-color-text-subtle, #515357);
+.stateDesc {
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-caption-size, 12px);
+  color: var(--ld-semantic-color-text-subtle);
   margin: 0;
+  line-height: 1.5;
 }
 
-/* ── Code block ──────────────────────────────────────────── */
+/* ── Breakpoints table ──────────────────────────────────────── */
 
-.codeBlock {
-  background: #1e1e2e;
-  border-radius: 8px;
-  overflow: auto;
+.breakpointTable {
+  overflow-x: auto;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
-.codeBlock pre {
-  margin: 0;
-  padding: 24px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 13px;
-  line-height: 1.6;
-  color: #cdd6f4;
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
 }
 
-/* ── Props table ─────────────────────────────────────────── */
+.table th {
+  text-align: left;
+  padding: 10px 16px;
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+  border-bottom: 2px solid var(--ld-semantic-color-separator, #e3e4e5);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text);
+}
+
+.table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  color: var(--ld-semantic-color-text-subtle);
+  vertical-align: top;
+}
+
+.table td:first-child {
+  font-weight: 600;
+  color: var(--ld-semantic-color-text);
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Props table ────────────────────────────────────────────── */
 
 .propsTable {
   width: 100%;
   border-collapse: collapse;
-  font-family: var(--ld-semantic-font-family-sans);
-  font-size: 14px;
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
 }
 
 .propsTable th {
   text-align: left;
-  padding: 10px 16px;
-  background: var(--ld-semantic-color-background-subtle, #f8f8f8);
-  color: var(--ld-semantic-color-text, #2E2F32);
-  font-weight: 700;
+  padding: 8px 12px;
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
   border-bottom: 2px solid var(--ld-semantic-color-separator, #e3e4e5);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text);
 }
 
 .propsTable td {
-  padding: 10px 16px;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text-subtle);
   vertical-align: top;
 }
 
-.propsTable td code,
-.propsTable th code {
-  font-family: 'Courier New', Courier, monospace;
+.propsTable td:first-child {
+  font-family: 'Courier New', monospace;
   font-size: 12px;
-  background: var(--ld-semantic-color-background-subtle, #f0f0f0);
-  padding: 2px 6px;
-  border-radius: 4px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-weight: 700;
 }
+
+/* ── Code block ─────────────────────────────────────────────── */
+
+.codeBlock {
+  background: var(--ld-semantic-color-text, #2e2f32);
+  color: #e8e9ea;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 20px 24px;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0;
+}
+
+/* ── Do / Don't ─────────────────────────────────────────────── */
+
+.guidelineGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.guidelineCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 24px;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.doLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ld-semantic-color-text-positive, #1a7a34);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ld-semantic-color-text-positive, #1a7a34);
+}
+
+.dontLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ld-semantic-color-text-negative, #c00);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ld-semantic-color-text-negative, #c00);
+}
+
+.guidelineText {
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  color: var(--ld-semantic-color-text-subtle);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
 
 @media (max-width: 768px) {
   .page {
     padding: 24px 16px 48px;
+    gap: 32px;
+  }
+
+  .statesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .guidelineGrid {
+    grid-template-columns: 1fr;
   }
 }

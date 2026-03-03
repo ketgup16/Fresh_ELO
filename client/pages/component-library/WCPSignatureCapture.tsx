@@ -7,8 +7,7 @@ import {
   SignatureBase,
   SignatureReauth,
 } from '@/components/walmart/WCPSignatureCapture';
-import { WCPSignatureCaptureBottomSheet } from '@/components/walmart/WCPSignatureCaptureBottomSheet';
-import { WCPSignatureCapturePanel } from '@/components/walmart/WCPSignatureCapturePanel';
+import { Button } from '@/components/ui/Button';
 import styles from './WCPSignatureCapture.module.css';
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
@@ -19,574 +18,404 @@ function SectionDesc({ children }: { children: React.ReactNode }) {
   return <p className={styles.sectionDesc}>{children}</p>;
 }
 
-function DemoCard({ title, children }: { title: string; children: React.ReactNode }) {
+function DemoFrame({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className={styles.demoCard}>
-      <div className={styles.cardLabel}>{title}</div>
-      <div className={styles.cardContent}>{children}</div>
+    <div className={styles.demoFrame}>
+      <div className={styles.demoFrameLabel}>{label}</div>
+      <div className={styles.demoFrameContent}>{children}</div>
     </div>
   );
 }
 
 export default function WCPSignatureCapturePage() {
-  // Trigger state
-  const [triggerClicked, setTriggerClicked] = useState(false);
+  // ── Trigger demo ─────────────────────────────────────────────────────────
+  const [showTriggerModal, setShowTriggerModal] = useState(false);
 
-  // Terms state
+  // ── Terms demo ───────────────────────────────────────────────────────────
   const [termsVariant, setTermsVariant] = useState<'signed' | 'signed-as'>('signed');
+  const [showTermsWarning, setShowTermsWarning] = useState(false);
 
-  // Base state
-  const [fullName, setFullName] = useState('');
-  const [isSignChecked, setIsSignChecked] = useState(false);
-  const [showBaseErrors, setShowBaseErrors] = useState(false);
+  // ── Base demo ────────────────────────────────────────────────────────────
+  const [baseName, setBaseName] = useState('');
   const [baseSignatureState, setBaseSignatureState] = useState<'unsigned' | 'signed'>('unsigned');
+  const [baseChecked, setBaseChecked] = useState(false);
+  const [showSignBeforeSubmit, setShowSignBeforeSubmit] = useState(false);
+  const [showPreviewBeforeSign, setShowPreviewBeforeSign] = useState(false);
+  const [showCheckboxError, setShowCheckboxError] = useState(false);
+  const [showTechError, setShowTechError] = useState(false);
+  const [showPetWarning, setShowPetWarning] = useState(false);
 
-  // Reauth state
-  const [reauthSubVariant, setReauthSubVariant] = useState<'agree-sign' | 'signed' | 'signed-as'>('agree-sign');
-
-  // Bottom sheet pattern state
-  const [sheetOpen, setSheetOpen] = useState(false);
-  const [sheetFullName, setSheetFullName] = useState('');
-  const [sheetIsSignChecked, setSheetIsSignChecked] = useState(false);
-  const [sheetSignatureState, setSheetSignatureState] = useState<'unsigned' | 'signed'>('unsigned');
-  const [sheetSubmitted, setSheetSubmitted] = useState(false);
-  const [showSheetErrors, setShowSheetErrors] = useState(false);
-
-  const handlePreviewSignature = () => {
-    if (fullName.trim()) {
-      setBaseSignatureState('signed');
-    }
-  };
-
-  const handleSheetPreview = () => {
-    if (sheetFullName.trim()) {
-      setSheetSignatureState('signed');
-    }
-  };
-
-  const handleSheetSubmit = () => {
-    if (!sheetFullName.trim() || !sheetIsSignChecked || sheetSignatureState === 'unsigned') {
-      setShowSheetErrors(true);
+  const handlePreview = () => {
+    if (!baseName.trim()) {
+      setShowPreviewBeforeSign(true);
       return;
     }
-    setSheetOpen(false);
-    setSheetSubmitted(true);
-    setShowSheetErrors(false);
+    setShowPreviewBeforeSign(false);
+    setBaseSignatureState('signed');
   };
 
-  const handleSheetOpen = () => {
-    setSheetOpen(true);
-    setSheetSubmitted(false);
-  };
-
-  const handleSheetChangeSignature = () => {
-    setSheetOpen(true);
-    setSheetSignatureState('unsigned');
-    setSheetFullName('');
-    setSheetIsSignChecked(false);
-    setSheetSubmitted(false);
-  };
-
-  // Side panel pattern state
-  const [panelOpen, setPanelOpen] = useState(false);
-  const [panelFullName, setPanelFullName] = useState('');
-  const [panelIsSignChecked, setPanelIsSignChecked] = useState(false);
-  const [panelSignatureState, setPanelSignatureState] = useState<'unsigned' | 'signed'>('unsigned');
-  const [panelSubmitted, setPanelSubmitted] = useState(false);
-  const [showPanelErrors, setShowPanelErrors] = useState(false);
-
-  const handlePanelPreview = () => {
-    if (panelFullName.trim()) setPanelSignatureState('signed');
-  };
-
-  const handlePanelSubmit = () => {
-    if (!panelFullName.trim() || !panelIsSignChecked || panelSignatureState === 'unsigned') {
-      setShowPanelErrors(true);
-      return;
-    }
-    setPanelOpen(false);
-    setPanelSubmitted(true);
-    setShowPanelErrors(false);
-  };
-
-  const handlePanelChangeSignature = () => {
-    setPanelSignatureState('unsigned');
-    setPanelFullName('');
-    setPanelIsSignChecked(false);
-    setPanelSubmitted(false);
-    setPanelOpen(true);
-  };
+  // ── Reauth demo ───────────────────────────────────────────────────────────
+  const [reauthVariant, setReauthVariant] = useState<'agree-sign' | 'signed' | 'signed-as'>('agree-sign');
+  const [showReauthError, setShowReauthError] = useState(false);
 
   return (
     <ComponentPageLayout
       section="WCP Components"
       title="[WCP] Signature Capture"
-      description="A multi-variant subscription signature capture component used to collect legal signatures for subscription agreements."
+      description="A set of composable components for capturing a typed signature during subscription flows. Includes Trigger, Terms preview, Base signature form, and Reauth variants — each with appropriate error and warning states."
     >
       <div className={styles.page}>
 
-        {/* ── Variant 1: Subscription Signature Trigger ──────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>Variant 1 — Subscription Signature Trigger</SectionTitle>
+        {/* ── Overview ─────────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Overview</SectionTitle>
           <SectionDesc>
-            Entry state before the user engages. Shows a full-width secondary "Agree &amp; sign" button with a pencil icon and descriptive subtext. Button is <code>size="small"</code> at 0-899px and <code>size="medium"</code> at 900+px.
+            The WCP Signature Capture component covers the full subscription sign-off journey. It
+            has four variants, used in sequence or independently depending on the flow:
+          </SectionDesc>
+          <ul className={styles.overviewList}>
+            <li><strong>Trigger</strong> — A compact "Agree &amp; sign" CTA with subtext. Used to initiate the signing flow.</li>
+            <li><strong>Terms</strong> — Displays the user's existing signature and lets them change it. Used when a preview is already available.</li>
+            <li><strong>Base</strong> — Full form: name field → preview → signature box → checkbox. The primary capture form.</li>
+            <li><strong>Reauth</strong> — A compact variant with a Confirm CTA used for re-authorization flows (e.g. updating a subscription).</li>
+          </ul>
+          <SectionDesc>
+            All variants support error and warning alerts inline using the LD Alert component.
+            Signature text is rendered in the "Vujahday Script" script font to simulate a
+            handwritten signature.
+          </SectionDesc>
+        </div>
+
+        {/* ── Trigger variant ───────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Variant: Trigger</SectionTitle>
+          <SectionDesc>
+            Shows an "Agree &amp; sign" secondary button with a pencil icon and a subtext
+            explaining why a signature is required. Typically placed in a checkout summary or
+            subscription card to kick off the signing flow.
           </SectionDesc>
 
-          <div className={styles.variantGrid}>
-            <DemoCard title="Default — 0-899px">
-              <SignatureTrigger
-                onAgreeAndSign={() => setTriggerClicked(true)}
-              />
-              {triggerClicked && (
-                <p className={styles.interactionNote}>✓ "Agree &amp; sign" was clicked — navigate to Signature Base form.</p>
-              )}
-            </DemoCard>
+          <DemoFrame label="Trigger — default">
+            <SignatureTrigger
+              onAgreeAndSign={() => alert('Opening signature flow…')}
+            />
+          </DemoFrame>
+        </div>
 
-            <DemoCard title="Custom subtext">
-              <SignatureTrigger
-                subText="Your signature is required to confirm your pharmacy delivery agreement."
-                onAgreeAndSign={() => {}}
-              />
-            </DemoCard>
-          </div>
-        </section>
-
-        {/* ── Variant 2: Subscription Signature Terms ────────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>Variant 2 — Subscription Signature Terms</SectionTitle>
+        {/* ── Terms variant ─────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Variant: Terms</SectionTitle>
           <SectionDesc>
-            Shown after the user has signed. Displays the signature preview with "Your signature" title and a "Change signature" link. Includes an optional warning alert for preview failures.
+            Shows the user's captured signature (or a "Signed as …" state) alongside a "Change
+            signature" link. Used after a signature has already been captured in the current
+            session to confirm or change it.
           </SectionDesc>
 
-          <div className={styles.toggleRow}>
-            <span className={styles.toggleLabel}>Signature state:</span>
-            <button
-              className={[styles.toggleBtn, termsVariant === 'signed' ? styles.toggleBtnActive : ''].join(' ')}
+          <div className={styles.controlRow}>
+            <span className={styles.controlLabel}>Signature state:</span>
+            <Button
+              variant={termsVariant === 'signed' ? 'primary' : 'secondary'}
+              size="small"
               onClick={() => setTermsVariant('signed')}
             >
-              Signed (cursive)
-            </button>
-            <button
-              className={[styles.toggleBtn, termsVariant === 'signed-as' ? styles.toggleBtnActive : ''].join(' ')}
+              Signed
+            </Button>
+            <Button
+              variant={termsVariant === 'signed-as' ? 'primary' : 'secondary'}
+              size="small"
               onClick={() => setTermsVariant('signed-as')}
             >
               Signed As
-            </button>
+            </Button>
+            <Button
+              variant={showTermsWarning ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setShowTermsWarning(v => !v)}
+            >
+              {showTermsWarning ? 'Hide' : 'Show'} preview warning
+            </Button>
           </div>
 
-          <div className={styles.variantGrid}>
-            <DemoCard title="Without warning alert">
-              <SignatureTerms
-                signatureState={termsVariant}
-                signedName="Emilia Garcia"
-                showPreviewWarning={false}
-              />
-            </DemoCard>
+          <DemoFrame label={`Terms — ${termsVariant}${showTermsWarning ? ' + warning' : ''}`}>
+            <SignatureTerms
+              signatureState={termsVariant}
+              signedName="Emilia Garcia"
+              showPreviewWarning={showTermsWarning}
+              onChangeSignature={() => alert('Change signature clicked')}
+              onRefreshPage={() => alert('Refresh page clicked')}
+            />
+          </DemoFrame>
+        </div>
 
-            <DemoCard title="With warning alert — preview failed">
-              <SignatureTerms
-                signatureState={termsVariant}
-                signedName="Emilia Garcia"
-                showPreviewWarning
-                onRefreshPage={() => alert('Refreshing page...')}
-              />
-            </DemoCard>
-          </div>
-        </section>
-
-        {/* ── Variant 3: Signature Base (full form) ──────────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>Variant 3 — Signature Base</SectionTitle>
+        {/* ── Base variant ──────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Variant: Base</SectionTitle>
           <SectionDesc>
-            Full signature capture form. Includes optional tech error and pet name warning alerts, subscription terms paragraph, name input field, preview button, signature box, and legal checkbox.
+            The full signature capture form. The user enters their full name, clicks "Preview
+            signature" to see the script font rendering, then checks a consent checkbox to sign.
+            Multiple inline error and warning states are supported.
           </SectionDesc>
 
-          <div className={styles.toggleRow}>
-            <span className={styles.toggleLabel}>Show error states:</span>
-            <button
-              className={[styles.toggleBtn, showBaseErrors ? styles.toggleBtnActive : ''].join(' ')}
-              onClick={() => setShowBaseErrors(v => !v)}
+          <div className={styles.controlRow}>
+            <span className={styles.controlLabel}>Toggle errors:</span>
+            <Button
+              variant={showTechError ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setShowTechError(v => !v)}
             >
-              {showBaseErrors ? 'Hide errors' : 'Show errors'}
-            </button>
+              Tech error
+            </Button>
+            <Button
+              variant={showPetWarning ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setShowPetWarning(v => !v)}
+            >
+              Pet name warning
+            </Button>
+            <Button
+              variant={showSignBeforeSubmit ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setShowSignBeforeSubmit(v => !v)}
+            >
+              Sign before submit
+            </Button>
+            <Button
+              variant={showCheckboxError ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setShowCheckboxError(v => !v)}
+            >
+              Checkbox error
+            </Button>
+            <Button
+              variant="secondary"
+              size="small"
+              onClick={() => {
+                setBaseName('');
+                setBaseSignatureState('unsigned');
+                setBaseChecked(false);
+                setShowSignBeforeSubmit(false);
+                setShowPreviewBeforeSign(false);
+                setShowCheckboxError(false);
+                setShowTechError(false);
+                setShowPetWarning(false);
+              }}
+            >
+              Reset
+            </Button>
           </div>
 
-          <div className={styles.baseFormDemo}>
+          <DemoFrame label="Base — interactive">
             <SignatureBase
               userName="Emilia Garcia"
-              showTechError={showBaseErrors}
-              showPetNameWarning={showBaseErrors}
-              showSignBeforeSubmitError={showBaseErrors}
-              showPreviewBeforeSignError={showBaseErrors && !fullName}
-              showCheckboxError={showBaseErrors && !isSignChecked}
+              fullName={baseName}
+              onFullNameChange={setBaseName}
               signatureState={baseSignatureState}
-              signedName={fullName || 'Emilia Garcia'}
-              fullName={fullName}
-              onFullNameChange={setFullName}
-              onPreviewSignature={handlePreviewSignature}
-              isSignChecked={isSignChecked}
-              onSignCheckedChange={setIsSignChecked}
+              signedName={baseName || 'Emilia Garcia'}
+              isSignChecked={baseChecked}
+              onSignCheckedChange={setBaseChecked}
+              onPreviewSignature={handlePreview}
+              showTechError={showTechError}
+              showPetNameWarning={showPetWarning}
+              showSignBeforeSubmitError={showSignBeforeSubmit}
+              showPreviewBeforeSignError={showPreviewBeforeSign}
+              showCheckboxError={showCheckboxError}
+              onRefreshPage={() => alert('Refresh page clicked')}
             />
-          </div>
-        </section>
+          </DemoFrame>
 
-        {/* ── Variant 4: Signature Reauth ────────────────────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>Variant 4 — Signature Reauth</SectionTitle>
+          <div className={styles.statesRow}>
+            <DemoFrame label="Base — error states only">
+              <SignatureBase
+                userName="Emilia Garcia"
+                fullName=""
+                onFullNameChange={() => {}}
+                signatureState="unsigned"
+                showTechError
+                showPetNameWarning
+                showSignBeforeSubmitError
+                showCheckboxError
+                onRefreshPage={() => {}}
+              />
+            </DemoFrame>
+          </div>
+        </div>
+
+        {/* ── Reauth variant ────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Variant: Reauth</SectionTitle>
           <SectionDesc>
-            Compact re-authorization version. Shows either the "Agree &amp; sign" flow or the signed state with a short signature box. Includes optional error/warning alerts and a "Confirm" primary button.
+            A condensed variant used when the user needs to re-authorize a subscription (e.g.,
+            modifying an existing subscription). Shows either a compact "Agree &amp; sign" CTA
+            or the captured signature with a "Change signature" link, followed by temp-hold
+            notice and Confirm CTA.
           </SectionDesc>
 
-          <div className={styles.toggleRow}>
-            <span className={styles.toggleLabel}>Sub-variant:</span>
-            <button
-              className={[styles.toggleBtn, reauthSubVariant === 'agree-sign' ? styles.toggleBtnActive : ''].join(' ')}
-              onClick={() => setReauthSubVariant('agree-sign')}
+          <div className={styles.controlRow}>
+            <span className={styles.controlLabel}>Sub-variant:</span>
+            <Button
+              variant={reauthVariant === 'agree-sign' ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setReauthVariant('agree-sign')}
             >
               Agree &amp; Sign
-            </button>
-            <button
-              className={[styles.toggleBtn, reauthSubVariant === 'signed' ? styles.toggleBtnActive : ''].join(' ')}
-              onClick={() => setReauthSubVariant('signed')}
+            </Button>
+            <Button
+              variant={reauthVariant === 'signed' ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setReauthVariant('signed')}
             >
-              Signed (cursive)
-            </button>
-            <button
-              className={[styles.toggleBtn, reauthSubVariant === 'signed-as' ? styles.toggleBtnActive : ''].join(' ')}
-              onClick={() => setReauthSubVariant('signed-as')}
+              Signed
+            </Button>
+            <Button
+              variant={reauthVariant === 'signed-as' ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setReauthVariant('signed-as')}
             >
               Signed As
-            </button>
+            </Button>
+            <Button
+              variant={showReauthError ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setShowReauthError(v => !v)}
+            >
+              {showReauthError ? 'Hide' : 'Show'} error
+            </Button>
           </div>
 
-          <div className={styles.variantGrid}>
-            <DemoCard title="Without alerts">
-              <SignatureReauth
-                subVariant={reauthSubVariant}
-                signedName="Emilia Garcia"
-                showReauthError={false}
-                showPreviewWarning={false}
-              />
-            </DemoCard>
+          <DemoFrame label={`Reauth — ${reauthVariant}`}>
+            <SignatureReauth
+              subVariant={reauthVariant}
+              signedName="Emilia Garcia"
+              showReauthError={showReauthError}
+              onAgreeAndSign={() => alert('Opening signature flow…')}
+              onConfirm={() => alert('Confirmed!')}
+              onChangeSignature={() => alert('Change signature clicked')}
+              onRefreshPage={() => alert('Refresh page clicked')}
+            />
+          </DemoFrame>
+        </div>
 
-            <DemoCard title="With alerts">
-              <SignatureReauth
-                subVariant={reauthSubVariant}
-                signedName="Emilia Garcia"
-                showReauthError={reauthSubVariant === 'agree-sign'}
-                showPreviewWarning={reauthSubVariant !== 'agree-sign'}
-              />
-            </DemoCard>
-          </div>
-        </section>
-
-        {/* ── Bottom Sheet Pattern ────────────────────────────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>Bottom Sheet Pattern</SectionTitle>
+        {/* ── Component Props ───────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Component Props</SectionTitle>
           <SectionDesc>
-            The full signature capture flow: a <code>SignatureTrigger</code> opens a <code>WCPSignatureCaptureBottomSheet</code> containing the <code>SignatureBase</code> form. After the user types their name, previews the signature, checks the checkbox, and taps "Agree &amp; sign" in the sheet footer, the sheet closes and the signed state is shown via <code>SignatureTerms</code>.
+            The <code>WCPSignatureCapture</code> component is a unified wrapper that selects the
+            appropriate sub-component based on the <code>variant</code> prop. Individual
+            sub-components (<code>SignatureTrigger</code>, <code>SignatureTerms</code>,{' '}
+            <code>SignatureBase</code>, <code>SignatureReauth</code>) can also be used directly.
           </SectionDesc>
 
-          <div className={styles.baseFormDemo}>
-            {sheetSubmitted ? (
-              <div className={styles.sheetCompletedBlock}>
-                <SignatureTerms
-                  signatureState="signed"
-                  signedName={sheetFullName || 'Emilia Garcia'}
-                  showPreviewWarning={false}
-                  onChangeSignature={handleSheetChangeSignature}
-                />
-              </div>
-            ) : (
-              <SignatureTrigger onAgreeAndSign={handleSheetOpen} />
-            )}
-          </div>
-
-          <WCPSignatureCaptureBottomSheet
-            isOpen={sheetOpen}
-            onClose={() => setSheetOpen(false)}
-            title="Subscription agreement"
-            userName="Emilia Garcia"
-            fullName={sheetFullName}
-            onFullNameChange={setSheetFullName}
-            signatureState={sheetSignatureState}
-            signedName={sheetFullName || 'Emilia Garcia'}
-            isSignChecked={sheetIsSignChecked}
-            onSignCheckedChange={setSheetIsSignChecked}
-            onPreviewSignature={handleSheetPreview}
-            showPreviewBeforeSignError={showSheetErrors && sheetSignatureState === 'unsigned'}
-            showCheckboxError={showSheetErrors && !sheetIsSignChecked}
-            onSubmit={handleSheetSubmit}
-            submitLabel="Agree & sign"
-          />
-
-          <div className={styles.codeBlock}>
-            <pre>{`import { SignatureTrigger, SignatureTerms } from '@/components/walmart/WCPSignatureCapture';
-import { WCPSignatureCaptureBottomSheet } from '@/components/walmart/WCPSignatureCaptureBottomSheet';
-
-function SignatureFlow() {
-  const [sheetOpen, setSheetOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [fullName, setFullName] = useState('');
-  const [signatureState, setSignatureState] = useState<'unsigned' | 'signed'>('unsigned');
-  const [isSignChecked, setIsSignChecked] = useState(false);
-
-  const handleSubmit = () => {
-    if (!fullName || !isSignChecked || signatureState === 'unsigned') return;
-    setSheetOpen(false);
-    setSubmitted(true);
-  };
-
-  return (
-    <>
-      {submitted ? (
-        <SignatureTerms
-          signatureState="signed"
-          signedName={fullName}
-          onChangeSignature={() => setSheetOpen(true)}
-        />
-      ) : (
-        <SignatureTrigger onAgreeAndSign={() => setSheetOpen(true)} />
-      )}
-
-      <WCPSignatureCaptureBottomSheet
-        isOpen={sheetOpen}
-        onClose={() => setSheetOpen(false)}
-        title="Subscription agreement"
-        userName="Emilia Garcia"
-        fullName={fullName}
-        onFullNameChange={setFullName}
-        signatureState={signatureState}
-        signedName={fullName}
-        isSignChecked={isSignChecked}
-        onSignCheckedChange={setIsSignChecked}
-        onPreviewSignature={() => fullName && setSignatureState('signed')}
-        onSubmit={handleSubmit}
-      />
-    </>
-  );
-}`}</pre>
-          </div>
-        </section>
-
-        {/* ── Side Panel Pattern ─────────────────────────────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>Side Panel Pattern</SectionTitle>
-          <SectionDesc>
-            On desktop (900+px) a slide-out side panel is preferred over a bottom sheet. <code>WCPSignatureCapturePanel</code> wraps the same <code>SignatureBase</code> form inside the LD 3.5 <code>Panel</code> component. The flow and validation are identical — only the overlay presentation differs.
-          </SectionDesc>
-
-          <div className={styles.baseFormDemo}>
-            {panelSubmitted ? (
-              <div className={styles.sheetCompletedBlock}>
-                <SignatureTerms
-                  signatureState="signed"
-                  signedName={panelFullName || 'Emilia Garcia'}
-                  showPreviewWarning={false}
-                  onChangeSignature={handlePanelChangeSignature}
-                />
-              </div>
-            ) : (
-              <SignatureTrigger onAgreeAndSign={() => setPanelOpen(true)} />
-            )}
-          </div>
-
-          <WCPSignatureCapturePanel
-            isOpen={panelOpen}
-            onClose={() => setPanelOpen(false)}
-            title="Subscription agreement"
-            size="medium"
-            position="right"
-            userName="Emilia Garcia"
-            fullName={panelFullName}
-            onFullNameChange={setPanelFullName}
-            signatureState={panelSignatureState}
-            signedName={panelFullName || 'Emilia Garcia'}
-            isSignChecked={panelIsSignChecked}
-            onSignCheckedChange={setPanelIsSignChecked}
-            onPreviewSignature={handlePanelPreview}
-            showPreviewBeforeSignError={showPanelErrors && panelSignatureState === 'unsigned'}
-            showCheckboxError={showPanelErrors && !panelIsSignChecked}
-            onSubmit={handlePanelSubmit}
-            submitLabel="Agree & sign"
-          />
-
-          <div className={styles.codeBlock}>
-            <pre>{`import { SignatureTrigger, SignatureTerms } from '@/components/walmart/WCPSignatureCapture';
-import { WCPSignatureCapturePanel } from '@/components/walmart/WCPSignatureCapturePanel';
-
-function SignatureFlow() {
-  const [panelOpen, setPanelOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [fullName, setFullName] = useState('');
-  const [signatureState, setSignatureState] = useState<'unsigned' | 'signed'>('unsigned');
-  const [isSignChecked, setIsSignChecked] = useState(false);
-
-  const handleSubmit = () => {
-    if (!fullName || !isSignChecked || signatureState === 'unsigned') return;
-    setPanelOpen(false);
-    setSubmitted(true);
-  };
-
-  return (
-    <>
-      {submitted ? (
-        <SignatureTerms
-          signatureState="signed"
-          signedName={fullName}
-          onChangeSignature={() => setPanelOpen(true)}
-        />
-      ) : (
-        <SignatureTrigger onAgreeAndSign={() => setPanelOpen(true)} />
-      )}
-
-      <WCPSignatureCapturePanel
-        isOpen={panelOpen}
-        onClose={() => setPanelOpen(false)}
-        title="Subscription agreement"
-        size="medium"      // 'small' | 'medium' | 'large'
-        position="right"   // 'left' | 'right'
-        userName="Emilia Garcia"
-        fullName={fullName}
-        onFullNameChange={setFullName}
-        signatureState={signatureState}
-        signedName={fullName}
-        isSignChecked={isSignChecked}
-        onSignCheckedChange={setIsSignChecked}
-        onPreviewSignature={() => fullName && setSignatureState('signed')}
-        onSubmit={handleSubmit}
-      />
-    </>
-  );
-}`}</pre>
-          </div>
-        </section>
-
-        {/* ── All variants via WCPSignatureCapture ────────────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>Composite Usage via WCPSignatureCapture</SectionTitle>
-          <SectionDesc>
-            The main <code>WCPSignatureCapture</code> component wraps all 4 variants via the <code>variant</code> prop.
-          </SectionDesc>
-          <div className={styles.codeBlock}>
-            <pre>{`import { WCPSignatureCapture } from '@/components/walmart/WCPSignatureCapture';
-
-// Trigger
-<WCPSignatureCapture variant="trigger" onAgreeAndSign={handleOpen} />
-
-// Terms (after signing)
-<WCPSignatureCapture
-  variant="terms"
-  signatureState="signed"
-  signedName="Emilia Garcia"
-  showPreviewWarning={false}
-  onChangeSignature={handleChange}
-/>
-
-// Base form
-<WCPSignatureCapture
-  variant="base"
-  userName="Emilia Garcia"
-  fullName={fullName}
-  onFullNameChange={setFullName}
-  isSignChecked={isSignChecked}
-  onSignCheckedChange={setIsSignChecked}
-  signatureState={sigState}
-/>
-
-// Reauth
-<WCPSignatureCapture
-  variant="reauth"
-  reauthSubVariant="agree-sign"
-  showReauthError
-  onAgreeAndSign={handleSign}
-  onConfirm={handleConfirm}
-/>`}</pre>
-          </div>
-        </section>
-
-        {/* ── Props ───────────────────────────────────────────────────────── */}
-        <section className={styles.section}>
-          <SectionTitle>Props</SectionTitle>
           <table className={styles.propsTable}>
             <thead>
               <tr>
                 <th>Prop</th>
                 <th>Type</th>
-                <th>Default</th>
+                <th>Used by</th>
                 <th>Description</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><code>variant</code></td>
-                <td><code>'trigger' | 'terms' | 'base' | 'reauth'</code></td>
-                <td>—</td>
-                <td>Which variant to render.</td>
-              </tr>
-              <tr>
-                <td><code>signatureState</code></td>
-                <td><code>'unsigned' | 'signed' | 'signed-as'</code></td>
-                <td><code>'unsigned'</code></td>
-                <td>Controls what is shown in the signature box.</td>
-              </tr>
-              <tr>
-                <td><code>signedName</code></td>
-                <td><code>string</code></td>
-                <td><code>'Emilia Garcia'</code></td>
-                <td>Name to show in the signature box when signed.</td>
-              </tr>
-              <tr>
-                <td><code>userName</code></td>
-                <td><code>string</code></td>
-                <td>—</td>
-                <td>Used in the checkbox label for <code>base</code> variant.</td>
-              </tr>
-              <tr>
-                <td><code>showPreviewWarning</code></td>
-                <td><code>boolean</code></td>
-                <td><code>false</code></td>
-                <td>Shows a warning alert about signature preview failure.</td>
-              </tr>
-              <tr>
-                <td><code>showTechError</code></td>
-                <td><code>boolean</code></td>
-                <td><code>false</code></td>
-                <td>(<code>base</code>) Shows a top-level technical error alert.</td>
-              </tr>
-              <tr>
-                <td><code>showPetNameWarning</code></td>
-                <td><code>boolean</code></td>
-                <td><code>false</code></td>
-                <td>(<code>base</code>) Shows a warning that the pet name couldn't be loaded.</td>
-              </tr>
-              <tr>
-                <td><code>fullName</code></td>
-                <td><code>string</code></td>
-                <td><code>''</code></td>
-                <td>(<code>base</code>) Controlled value for the full name text field.</td>
-              </tr>
-              <tr>
-                <td><code>isSignChecked</code></td>
-                <td><code>boolean</code></td>
-                <td><code>false</code></td>
-                <td>(<code>base</code>) Controlled state for the sign checkbox.</td>
-              </tr>
-              <tr>
-                <td><code>reauthSubVariant</code></td>
-                <td><code>'agree-sign' | 'signed' | 'signed-as'</code></td>
-                <td><code>'agree-sign'</code></td>
-                <td>(<code>reauth</code>) Which reauth sub-state to display.</td>
-              </tr>
-              <tr>
-                <td><code>showReauthError</code></td>
-                <td><code>boolean</code></td>
-                <td><code>false</code></td>
-                <td>(<code>reauth</code>) Shows the top error alert about needing to sign.</td>
-              </tr>
+              <tr><td>variant</td><td>'trigger' | 'terms' | 'base' | 'reauth'</td><td>All</td><td>Required. Which variant to render.</td></tr>
+              <tr><td>userName</td><td>string</td><td>Base, Reauth</td><td>Displayed in the checkbox label and signature preview.</td></tr>
+              <tr><td>signatureState</td><td>'unsigned' | 'signed' | 'signed-as'</td><td>Terms, Base, Reauth</td><td>Controls the signature box rendering.</td></tr>
+              <tr><td>signedName</td><td>string</td><td>Terms, Base, Reauth</td><td>Name rendered in script font as the signature.</td></tr>
+              <tr><td>subText</td><td>string</td><td>Trigger, Reauth</td><td>Explanatory text below the CTA.</td></tr>
+              <tr><td>title</td><td>string</td><td>Terms</td><td>Label shown above the signature preview box.</td></tr>
+              <tr><td>showPreviewWarning</td><td>boolean</td><td>Terms, Reauth</td><td>Shows a warning alert when the signature preview failed to load.</td></tr>
+              <tr><td>showTechError</td><td>boolean</td><td>Base</td><td>Shows a generic tech error alert.</td></tr>
+              <tr><td>showPetNameWarning</td><td>boolean</td><td>Base</td><td>Shows a warning when the pet name couldn't be loaded.</td></tr>
+              <tr><td>showSignBeforeSubmitError</td><td>boolean</td><td>Base</td><td>Error if user tries to submit without previewing.</td></tr>
+              <tr><td>showPreviewBeforeSignError</td><td>boolean</td><td>Base</td><td>Error if user tries to sign without previewing first.</td></tr>
+              <tr><td>showCheckboxError</td><td>boolean</td><td>Base</td><td>Error if the consent checkbox is not checked.</td></tr>
+              <tr><td>fullName</td><td>string</td><td>Base</td><td>Controlled value for the Full Name text field.</td></tr>
+              <tr><td>onFullNameChange</td><td>(name: string) =&gt; void</td><td>Base</td><td>Called on name field change.</td></tr>
+              <tr><td>onPreviewSignature</td><td>() =&gt; void</td><td>Base</td><td>Called when "Preview signature" is clicked.</td></tr>
+              <tr><td>isSignChecked</td><td>boolean</td><td>Base</td><td>Controlled state of the consent checkbox.</td></tr>
+              <tr><td>onSignCheckedChange</td><td>(checked: boolean) =&gt; void</td><td>Base</td><td>Called when checkbox changes.</td></tr>
+              <tr><td>reauthSubVariant</td><td>'agree-sign' | 'signed' | 'signed-as'</td><td>Reauth</td><td>Which reauth state to show.</td></tr>
+              <tr><td>showReauthError</td><td>boolean</td><td>Reauth</td><td>Shows the "must agree and sign" error alert.</td></tr>
+              <tr><td>onAgreeAndSign</td><td>() =&gt; void</td><td>Trigger, Reauth</td><td>Called when "Agree &amp; sign" is clicked.</td></tr>
+              <tr><td>onChangeSignature</td><td>() =&gt; void</td><td>Terms, Reauth</td><td>Called when "Change signature" is clicked.</td></tr>
+              <tr><td>onRefreshPage</td><td>() =&gt; void</td><td>Base, Terms, Reauth</td><td>Called from alert action links when a refresh is suggested.</td></tr>
+              <tr><td>onConfirm</td><td>() =&gt; void</td><td>Reauth</td><td>Called when the "Confirm" primary button is pressed.</td></tr>
             </tbody>
           </table>
-        </section>
+        </div>
+
+        {/* ── Usage ─────────────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Usage</SectionTitle>
+          <pre className={styles.codeBlock}>{`import { WCPSignatureCapture } from '@/components/walmart/WCPSignatureCapture';
+// Or use sub-components directly:
+import { SignatureTrigger, SignatureBase, SignatureTerms, SignatureReauth } from '@/components/walmart/WCPSignatureCapture';
+
+// Trigger (step 1 — initiate signing)
+<SignatureTrigger onAgreeAndSign={openSignatureSheet} />
+
+// Base form (step 2 — full capture)
+<SignatureBase
+  userName={user.name}
+  fullName={typedName}
+  onFullNameChange={setTypedName}
+  signatureState={sigState}
+  signedName={typedName}
+  isSignChecked={agreed}
+  onSignCheckedChange={setAgreed}
+  onPreviewSignature={handlePreview}
+/>
+
+// Terms (confirmation step)
+<SignatureTerms
+  signatureState="signed"
+  signedName={typedName}
+  onChangeSignature={reopenSignatureFlow}
+/>
+
+// Reauth
+<SignatureReauth
+  subVariant="agree-sign"
+  onAgreeAndSign={openSignatureSheet}
+  onConfirm={handleConfirm}
+/>`}</pre>
+        </div>
+
+        {/* ── Do / Don't ───────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Guidelines</SectionTitle>
+          <div className={styles.guidelineGrid}>
+            <div className={styles.guidelineCard}>
+              <div className={styles.doLabel}>Do</div>
+              <p className={styles.guidelineText}>
+                Present the <strong>Trigger</strong> variant in checkout before the user proceeds,
+                then open the <strong>Base</strong> form in a bottom sheet or modal when they tap
+                "Agree &amp; sign".
+              </p>
+            </div>
+            <div className={styles.guidelineCard}>
+              <div className={styles.dontLabel}>Don't</div>
+              <p className={styles.guidelineText}>
+                Don't skip showing the signature preview before allowing the user to submit. Always
+                require the "Preview signature" step so they see what they're signing.
+              </p>
+            </div>
+            <div className={styles.guidelineCard}>
+              <div className={styles.doLabel}>Do</div>
+              <p className={styles.guidelineText}>
+                Use the <strong>Terms</strong> variant to display a previously captured signature
+                during an order review so users can see — and change — their signature before
+                finalizing.
+              </p>
+            </div>
+            <div className={styles.guidelineCard}>
+              <div className={styles.dontLabel}>Don't</div>
+              <p className={styles.guidelineText}>
+                Don't use this component for non-subscription contexts. It is designed
+                specifically for pet med subscriptions and recurring order acknowledgments.
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </ComponentPageLayout>
   );
