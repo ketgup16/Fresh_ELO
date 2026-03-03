@@ -126,6 +126,7 @@ const WCPQueueBannerPage = React.lazy(() => import("./pages/component-library/WC
 const WCPQueueCardPage = React.lazy(() => import("./pages/component-library/WCPQueueCard"));
 const WCPQueuePage = React.lazy(() => import("./pages/component-library/WCPQueue"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
+const FoundationsPage = React.lazy(() => import("./pages/component-library/Foundations"));
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
 const queryClient = new QueryClient();
@@ -146,6 +147,7 @@ const App = () => (
                 <Route index element={<ComponentLibraryOverview />} />
                 <Route path="themes" element={<ThemesPage />} />
                 <Route path="design-tokens" element={<DesignTokensPage />} />
+                <Route path="foundations" element={<FoundationsPage />} />
                 <Route path="component-tester" element={<ComponentTester />} />
                 <Route path="icons" element={<IconsPage />} />
                 <Route path="buttons" element={<ButtonsPage />} />

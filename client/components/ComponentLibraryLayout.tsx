@@ -39,8 +39,7 @@ const navigationSections: NavSection[] = [
       { id: 'overview', nameKey: 'componentLibrary.overview', path: '/component-library' },
       { id: 'getting-started', nameKey: 'componentLibrary.gettingStartedNav', path: '/component-library/getting-started' },
       { id: 'guidelines', nameKey: 'componentLibrary.guidelines', path: '/component-library/guidelines' },
-      { id: 'design-tokens', nameKey: 'componentLibrary.navDesignTokens', path: '/component-library/design-tokens' },
-      { id: 'themes', nameKey: 'componentLibrary.themesTokens', path: '/component-library/themes' },
+      { id: 'foundations', nameKey: 'componentLibrary.navFoundations', path: '/component-library/foundations' },
     ]
   },
   {

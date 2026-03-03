@@ -194,6 +194,187 @@ export default function ThemesPage() {
       title={t('componentLibrary.themesTitle')}
       description={t('componentLibrary.themesDesc')}
     >
+      <ThemesContent
+        t={t}
+        currentTheme={currentTheme}
+        currentThemeData={currentThemeData}
+        colorTokens={colorTokens}
+        spaceTokens={spaceTokens}
+        textTokens={textTokens}
+        otherTokens={otherTokens}
+        copiedToken={copiedToken}
+        currentFontFamily={currentFontFamily}
+        primaryFontName={primaryFontName}
+        colorExpanded={colorExpanded}
+        setColorExpanded={setColorExpanded}
+        spaceExpanded={spaceExpanded}
+        setSpaceExpanded={setSpaceExpanded}
+        textExpanded={textExpanded}
+        setTextExpanded={setTextExpanded}
+        otherExpanded={otherExpanded}
+        setOtherExpanded={setOtherExpanded}
+        showBackToTop={showBackToTop}
+        copyToken={copyToken}
+        scrollToSection={scrollToSection}
+        scrollToTop={scrollToTop}
+      />
+    </ComponentPageLayout>
+  );
+}
+
+/** Standalone inner content — used by Foundations page */
+export function ThemesContentWrapper() {
+  // Re-use same hooks from ThemesPage but without ComponentPageLayout wrapper
+  const { t } = useTranslation();
+  const { currentTheme, currentThemeData } = useTheme();
+  const [colorTokens, setColorTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
+  const [spaceTokens, setSpaceTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
+  const [textTokens, setTextTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
+  const [otherTokens, setOtherTokens] = React.useState<Array<{ name: string; value: string; computed: string }>>([]);
+  const [copiedToken, setCopiedToken] = React.useState<string | null>(null);
+  const [currentFontFamily, setCurrentFontFamily] = React.useState<string>('');
+  const [primaryFontName, setPrimaryFontName] = React.useState<string>('');
+  const [colorExpanded, setColorExpanded] = React.useState(true);
+  const [spaceExpanded, setSpaceExpanded] = React.useState(false);
+  const [textExpanded, setTextExpanded] = React.useState(false);
+  const [otherExpanded, setOtherExpanded] = React.useState(false);
+  const [showBackToTop, setShowBackToTop] = React.useState(false);
+
+  const updateAllTokens = React.useCallback(() => {
+    requestAnimationFrame(() => {
+      const colors = extractTokens('--ld-semantic-color');
+      const wcpColors = extractTokens('--wcp-semantic-color');
+      const allColors = [...colors, ...wcpColors];
+      const spaces = extractTokens('--ld-semantic-spacing');
+      const primitiveSpaces = extractTokens('--ld-primitive-scale-space');
+      const allSpaces = [...spaces, ...primitiveSpaces];
+      const textFonts = extractTokens('--ld-semantic-font');
+      const textPrimitive = extractTokens('--ld-primitive-font');
+      const allText = [...textFonts, ...textPrimitive];
+      const borders = extractTokens('--ld-semantic-border');
+      const elevation = extractTokens('--ld-semantic-elevation');
+      const duration = extractTokens('--ld-semantic-duration');
+      const opacity = extractTokens('--ld-semantic-opacity');
+      const zIndex = extractTokens('--ld-semantic-z-index');
+      const allOther = [...borders, ...elevation, ...duration, ...opacity, ...zIndex];
+      React.startTransition(() => {
+        setColorTokens(allColors);
+        setSpaceTokens(allSpaces);
+        setTextTokens(allText);
+        setOtherTokens(allOther);
+      });
+      const styles = getComputedStyle(document.documentElement);
+      const cssVarValue = styles.getPropertyValue('--ld-semantic-font-family-sans').trim();
+      setCurrentFontFamily(cssVarValue);
+      setPrimaryFontName(cssVarValue.split(',')[0].trim().replace(/['"]/g, ''));
+    });
+  }, []);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => updateAllTokens(), 500);
+    return () => clearTimeout(timer);
+  }, [currentTheme, updateAllTokens]);
+
+  React.useEffect(() => {
+    updateAllTokens();
+    const linkObserver = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'childList') {
+          const hasThemeChange = Array.from(mutation.addedNodes).some(
+            node => node.nodeName === 'LINK' && (node as HTMLLinkElement).getAttribute('data-theme-override')
+          ) || Array.from(mutation.removedNodes).some(
+            node => node.nodeName === 'LINK' && (node as HTMLLinkElement).getAttribute('data-theme-override')
+          );
+          if (hasThemeChange) {
+            setTimeout(() => updateAllTokens(), 500);
+            break;
+          }
+        }
+      }
+    });
+    linkObserver.observe(document.head, { childList: true, subtree: false });
+    return () => linkObserver.disconnect();
+  }, [updateAllTokens]);
+
+  React.useEffect(() => {
+    const handleScroll = () => setShowBackToTop(window.scrollY > 400);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const copyToken = (tokenName: string) => {
+    navigator.clipboard.writeText(`var(${tokenName})`);
+    setCopiedToken(tokenName);
+    setTimeout(() => setCopiedToken(null), 2000);
+  };
+
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  return (
+    <ThemesContent
+      t={t}
+      currentTheme={currentTheme}
+      currentThemeData={currentThemeData}
+      colorTokens={colorTokens}
+      spaceTokens={spaceTokens}
+      textTokens={textTokens}
+      otherTokens={otherTokens}
+      copiedToken={copiedToken}
+      currentFontFamily={currentFontFamily}
+      primaryFontName={primaryFontName}
+      colorExpanded={colorExpanded}
+      setColorExpanded={setColorExpanded}
+      spaceExpanded={spaceExpanded}
+      setSpaceExpanded={setSpaceExpanded}
+      textExpanded={textExpanded}
+      setTextExpanded={setTextExpanded}
+      otherExpanded={otherExpanded}
+      setOtherExpanded={setOtherExpanded}
+      showBackToTop={showBackToTop}
+      copyToken={copyToken}
+      scrollToSection={scrollToSection}
+      scrollToTop={scrollToTop}
+    />
+  );
+}
+
+interface ThemesContentProps {
+  t: (key: string) => string;
+  currentTheme: string;
+  currentThemeData: any;
+  colorTokens: Array<{ name: string; value: string; computed: string }>;
+  spaceTokens: Array<{ name: string; value: string; computed: string }>;
+  textTokens: Array<{ name: string; value: string; computed: string }>;
+  otherTokens: Array<{ name: string; value: string; computed: string }>;
+  copiedToken: string | null;
+  currentFontFamily: string;
+  primaryFontName: string;
+  colorExpanded: boolean;
+  setColorExpanded: (v: boolean) => void;
+  spaceExpanded: boolean;
+  setSpaceExpanded: (v: boolean) => void;
+  textExpanded: boolean;
+  setTextExpanded: (v: boolean) => void;
+  otherExpanded: boolean;
+  setOtherExpanded: (v: boolean) => void;
+  showBackToTop: boolean;
+  copyToken: (name: string) => void;
+  scrollToSection: (id: string) => void;
+  scrollToTop: () => void;
+}
+
+function ThemesContent({
+  t, currentThemeData, colorTokens, spaceTokens, textTokens, otherTokens,
+  copiedToken, currentFontFamily, primaryFontName,
+  colorExpanded, setColorExpanded, spaceExpanded, setSpaceExpanded,
+  textExpanded, setTextExpanded, otherExpanded, setOtherExpanded,
+  showBackToTop, copyToken, scrollToSection, scrollToTop,
+}: ThemesContentProps) {
+  return (
       <div id="top" style={{ position: 'relative' }}>
 
       {/* Quick Navigation */}
@@ -948,6 +1129,5 @@ export default function ThemesPage() {
         </button>
       )}
       </div>
-    </ComponentPageLayout>
   );
 }

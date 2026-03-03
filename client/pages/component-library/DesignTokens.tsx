@@ -455,9 +455,9 @@ function Section({ title, description, count, children }: {
   );
 }
 
-// ─── Page ────────────────────────────────────────────────────────────────────
+// ─── Standalone content (for embedding in Foundations page) ─────────────────
 
-export default function DesignTokensPage() {
+export function DesignTokensContent() {
   const totalColor = COLOR_GROUPS.reduce((s, g) => s + g.tokens.length, 0);
   const totalOther = NON_COLOR_GROUPS.reduce((s, g) => s + g.tokens.length, 0);
 
@@ -466,79 +466,90 @@ export default function DesignTokensPage() {
   };
 
   return (
+    <div>
+      {/* Quick nav */}
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '8px',
+        margin: '32px 0 40px',
+      }}>
+        <Button variant="secondary" size="small" onClick={() => scrollTo('color-tokens')}>
+          Color tokens ({totalColor})
+        </Button>
+        <Button variant="secondary" size="small" onClick={() => scrollTo('other-tokens')}>
+          Typography, Spacing & More ({totalOther})
+        </Button>
+      </div>
+
+      {/* ── Color tokens ── */}
+      <div id="color-tokens">
+        <h2 style={{
+          fontSize: '22px',
+          fontWeight: 700,
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+          marginBottom: '24px',
+        }}>
+          Color Tokens
+        </h2>
+
+        {COLOR_GROUPS.map(group => (
+          <Section
+            key={group.category}
+            title={group.category}
+            description={group.description}
+            count={group.tokens.length}
+          >
+            {group.tokens.map(t => (
+              <ColorRow key={t.name} name={t.name} description={t.description} />
+            ))}
+          </Section>
+        ))}
+      </div>
+
+      {/* ── Non-color tokens ── */}
+      <div id="other-tokens" style={{ marginTop: '48px' }}>
+        <h2 style={{
+          fontSize: '22px',
+          fontWeight: 700,
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+          marginBottom: '24px',
+        }}>
+          Typography, Spacing, Elevation & Border Radius
+        </h2>
+
+        {NON_COLOR_GROUPS.map(group => (
+          <Section
+            key={group.category}
+            title={group.category}
+            description={group.description}
+            count={group.tokens.length}
+          >
+            {group.tokens.map(t => (
+              <ValueRow key={t.name} name={t.name} value={t.value} description={t.description} />
+            ))}
+          </Section>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Page (standalone route, kept for backwards compat) ─────────────────────
+
+export default function DesignTokensPage() {
+  const totalColor = COLOR_GROUPS.reduce((s, g) => s + g.tokens.length, 0);
+  const totalOther = NON_COLOR_GROUPS.reduce((s, g) => s + g.tokens.length, 0);
+
+  return (
     <ComponentPageLayout
       section="Foundation"
       title="Project Token Usage"
-      description={`All ${totalColor + totalOther} semantic tokens actively referenced across component CSS and TSX files in this project. Click any token to copy it. Theming is reflected in the color swatches — switch themes to preview.`}
+      description={`All ${totalColor + totalOther} semantic tokens actively referenced across component CSS and TSX files in this project. Click any token to copy it.`}
     >
-      <div>
-        {/* Quick nav */}
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '8px',
-          margin: '32px 0 40px',
-        }}>
-          <Button variant="secondary" size="small" onClick={() => scrollTo('color-tokens')}>
-            Color tokens ({totalColor})
-          </Button>
-          <Button variant="secondary" size="small" onClick={() => scrollTo('other-tokens')}>
-            Typography, Spacing & More ({totalOther})
-          </Button>
-        </div>
-
-        {/* ── Color tokens ── */}
-        <div id="color-tokens">
-          <h2 style={{
-            fontSize: '22px',
-            fontWeight: 700,
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-            color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-            marginBottom: '24px',
-          }}>
-            Color Tokens
-          </h2>
-
-          {COLOR_GROUPS.map(group => (
-            <Section
-              key={group.category}
-              title={group.category}
-              description={group.description}
-              count={group.tokens.length}
-            >
-              {group.tokens.map(t => (
-                <ColorRow key={t.name} name={t.name} description={t.description} />
-              ))}
-            </Section>
-          ))}
-        </div>
-
-        {/* ── Non-color tokens ── */}
-        <div id="other-tokens" style={{ marginTop: '48px' }}>
-          <h2 style={{
-            fontSize: '22px',
-            fontWeight: 700,
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-            color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-            marginBottom: '24px',
-          }}>
-            Typography, Spacing, Elevation & Border Radius
-          </h2>
-
-          {NON_COLOR_GROUPS.map(group => (
-            <Section
-              key={group.category}
-              title={group.category}
-              description={group.description}
-              count={group.tokens.length}
-            >
-              {group.tokens.map(t => (
-                <ValueRow key={t.name} name={t.name} value={t.value} description={t.description} />
-              ))}
-            </Section>
-          ))}
-        </div>
-      </div>
+      <DesignTokensContent />
     </ComponentPageLayout>
   );
 }
