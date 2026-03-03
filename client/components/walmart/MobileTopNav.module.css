@@ -14,7 +14,7 @@
 
 /* ── Top bar ── */
 .topBar {
-  padding: var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-400, 16px);
+  padding: var(--ld-primitive-scale-space-400, 16px);
   padding-bottom: var(--ld-primitive-scale-space-300, 12px);
 }
 
@@ -37,6 +37,7 @@
   display: flex;
   align-items: center;
   gap: var(--ld-primitive-scale-space-300, 12px);
+  min-width: 0;
 }
 
 @media (min-width: 768px) {
@@ -62,9 +63,10 @@
   }
 }
 
-/* ── Search pill ── */
+/* ── Search pill (mweb / non-home standard) ── */
 .searchPill {
   flex: 1;
+  min-width: 0;
   background: white;
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
   height: 52px;
@@ -89,8 +91,17 @@
   border: 2px solid var(--ld-semantic-color-action-fill-primary, #0071dc);
 }
 
+/* Native search pill inside the standard topBarRow (non-home pages) */
+.searchPillNative {
+  height: 36px;
+  padding: 6px 8px 6px 16px;
+  border-radius: 100px;
+  gap: 8px;
+}
+
 .searchPillText {
   flex: 1;
+  min-width: 0;
   font-size: var(--ld-semantic-font-body-small-size, 14px);
   color: var(--ld-semantic-color-text-subtle, #6d6e72);
   overflow: hidden;
@@ -109,6 +120,7 @@
   display: flex;
   align-items: center;
   gap: var(--ld-primitive-scale-space-100, 4px);
+  flex-shrink: 0;
 }
 
 .searchButton {
@@ -135,6 +147,90 @@
   cursor: pointer;
   padding: 4px;
   color: var(--ld-semantic-color-text-subtle, #6d6e72);
+}
+
+/* ═══════════════════════════════════════════
+   NATIVE HOME LAYOUT — Row 1: Header
+   ═══════════════════════════════════════════ */
+
+.nativeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 8px 16px;
+  position: relative;
+}
+
+.greeting {
+  font-family: var(--ld-semantic-font-body-default-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-default-size, 16px);
+  font-weight: var(--ld-semantic-font-body-default-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-default-lineheight, 24px);
+  color: var(--ld-semantic-color-text-inverse, #fff);
+  flex-shrink: 0;
+}
+
+.sparkCenter {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sparkImg {
+  width: 32px;
+  height: 32px;
+}
+
+/* ═══════════════════════════════════════════
+   NATIVE HOME LAYOUT — Row 2: Search pill
+   ═══════════════════════════════════════════ */
+
+.nativeSearchRow {
+  padding: 0 16px 8px 16px;
+}
+
+.nativeSearchPill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 16px;
+  border-radius: 100px;
+  background: var(--ld-semantic-color-surface, #fff);
+  cursor: pointer;
+  width: 100%;
+}
+
+.nativeSearchIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.nativeBarcodeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.nativeBarcodeIcon {
+  width: 24px;
+  height: 24px;
+}
+
+/* ── Native back button (larger for native) ── */
+.nativeBackIcon {
+  width: 32px;
+  height: 32px;
 }
 
 /* ── Delivery banner ── */

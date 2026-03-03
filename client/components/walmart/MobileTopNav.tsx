@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronLeft, ChevronUp, Menu, Search } from '@/components/icons';
+import { Barcode, ChevronDown, ChevronLeft, ChevronUp, Menu, Search } from '@/components/icons';
 import { CartIcon, LocationIcon, StoreIcon } from '@/components/icons-custom';
 import { CameraModal } from '@/components/walmart/CameraModal';
 import { DepartmentsDropdown } from '@/components/walmart/DepartmentsDropdown';
@@ -8,6 +8,7 @@ import { MoreLinksDropdown } from '@/components/walmart/MoreLinksDropdown';
 import { SubNavButton } from '@/components/walmart/SubNavButton';
 import { SearchTypeaheadModal } from '@/pages/walmart/index/SearchTypeaheadModal';
 import { useNavigate } from 'react-router-dom';
+import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import styles from './MobileTopNav.module.css';
 
 const mobileSecondaryLinks = [
@@ -29,92 +30,141 @@ interface MobileTopNavProps {
 
 export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: MobileTopNavProps) {
   const navigate = useNavigate();
+  const { platform } = useLayoutSettings();
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [showCameraModal, setShowCameraModal] = useState(false);
   const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
 
   const isBlue = variant === 'blue';
+  const isNative = platform === 'ios' || platform === 'android';
   const iconVariant = isBlue ? 'white' : undefined;
   const textColor = isBlue ? 'white' : 'var(--ld-semantic-color-text, #2e2f32)';
 
   return (
     <>
       <div className={styles.root}>
-        {/* Top bar: menu/back, logo, search, cart */}
-        <div className={`${styles.topBar} ${isBlue ? styles.topBarBlue : styles.topBarWhite}`}>
-          <div className={styles.topBarRow}>
-            {isBlue ? (
-              <button className="text-white flex-shrink-0" aria-label="Menu">
-                <Menu className="w-6 h-6" />
-              </button>
-            ) : (
-              <button
-                className={`flex-shrink-0 ${styles.backButton}`}
-                style={{ color: 'var(--ld-semantic-color-text, #2e2f32)' }}
-                aria-label="Go back"
-                onClick={() => navigate(-1)}
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-            )}
-
-            {isBlue && (
-              <a href="/walmart" className={styles.logoLink} aria-label="Walmart Homepage">
+        {/* === NATIVE HOME LAYOUT === */}
+        {isNative && isBlue && showHomeExtras ? (
+          <>
+            {/* Row 1: Header — greeting / spark / cart */}
+            <div className={`${styles.nativeHeader} ${styles.topBarBlue}`}>
+              <span className={styles.greeting}>Hi, Emilia</span>
+              <div className={styles.sparkCenter}>
                 <img
                   src="https://i5.walmartimages.com/dfw/63fd9f59-14e2/9d304ce6-96de-4331-b8ec-c5191226d378/v1/spark-icon.svg"
                   alt="Walmart"
-                  className={styles.logoImg}
+                  className={styles.sparkImg}
                 />
-              </a>
-            )}
-
-            <div
-              className={`${styles.searchPill} ${isBlue ? styles.searchPillBlue : styles.searchPillWhite}`}
-              onClick={() => setShowSearchModal(true)}
-            >
-              <span className={styles.searchPillText}>
-                Search Walmart
-              </span>
-              <div className={styles.searchPillIcons}>
-                {isBlue ? (
-                  <button
-                    onClick={(e) => { e.stopPropagation(); setShowSearchModal(true); }}
-                    className={styles.searchButton}
-                    aria-label="Search"
-                  >
-                    <Search className="w-4 h-4 md:w-5 md:h-5 text-white" />
-                  </button>
-                ) : (
-                  <>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); setShowCameraModal(true); }}
-                      className={styles.searchPillIconBtn}
-                      aria-label="Camera search"
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 15.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-                        <path d="M2 8.5c0-.828.672-1.5 1.5-1.5h2.586a1 1 0 00.707-.293l1.414-1.414A1 1 0 018.914 5h6.172a1 1 0 01.707.293l1.414 1.414a1 1 0 00.707.293H20.5c.828 0 1.5.672 1.5 1.5v10c0 .828-.672 1.5-1.5 1.5h-17c-.828 0-1.5-.672-1.5-1.5v-10z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); setShowSearchModal(true); }}
-                      className={styles.searchPillIconBtn}
-                      aria-label="Voice search"
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-                        <path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-                      </svg>
-                    </button>
-                  </>
-                )}
               </div>
+              <CartIcon count={0} price="$0.00" textColor="white" />
             </div>
 
-            <CartIcon count={0} price="$0.00" textColor={textColor} />
+            {/* Row 2: Search pill */}
+            <div className={`${styles.nativeSearchRow} ${styles.topBarBlue}`}>
+              <div
+                className={styles.nativeSearchPill}
+                onClick={() => setShowSearchModal(true)}
+              >
+                <Search className={styles.nativeSearchIcon} />
+                <span className={styles.searchPillText}>Search Walmart</span>
+                <button
+                  onClick={(e) => { e.stopPropagation(); setShowCameraModal(true); }}
+                  className={styles.nativeBarcodeBtn}
+                  aria-label="Scan barcode"
+                >
+                  <Barcode className={styles.nativeBarcodeIcon} />
+                </button>
+              </div>
+            </div>
+          </>
+        ) : (
+          /* === STANDARD TOP BAR (mweb home / non-home / native non-home) === */
+          <div className={`${styles.topBar} ${isBlue ? styles.topBarBlue : styles.topBarWhite}`}>
+            <div className={styles.topBarRow}>
+              {isBlue && !isNative ? (
+                <button className="text-white flex-shrink-0" aria-label="Menu">
+                  <Menu className="w-6 h-6" />
+                </button>
+              ) : (
+                <button
+                  className={`flex-shrink-0 ${styles.backButton}`}
+                  style={{ color: isBlue ? 'white' : 'var(--ld-semantic-color-text, #2e2f32)' }}
+                  aria-label="Go back"
+                  onClick={() => navigate(-1)}
+                >
+                  <ChevronLeft className={isNative ? styles.nativeBackIcon : 'w-6 h-6'} />
+                </button>
+              )}
+
+              {isBlue && !isNative && (
+                <a href="/walmart" className={styles.logoLink} aria-label="Walmart Homepage">
+                  <img
+                    src="https://i5.walmartimages.com/dfw/63fd9f59-14e2/9d304ce6-96de-4331-b8ec-c5191226d378/v1/spark-icon.svg"
+                    alt="Walmart"
+                    className={styles.logoImg}
+                  />
+                </a>
+              )}
+
+              <div
+                className={`${styles.searchPill} ${isBlue ? styles.searchPillBlue : styles.searchPillWhite} ${isNative ? styles.searchPillNative : ''}`}
+                onClick={() => setShowSearchModal(true)}
+              >
+                {isNative && (
+                  <Search className={styles.nativeSearchIcon} />
+                )}
+                <span className={styles.searchPillText}>
+                  Search Walmart
+                </span>
+                <div className={styles.searchPillIcons}>
+                  {isNative ? (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setShowCameraModal(true); }}
+                      className={styles.nativeBarcodeBtn}
+                      aria-label="Scan barcode"
+                    >
+                      <Barcode className={styles.nativeBarcodeIcon} />
+                    </button>
+                  ) : isBlue ? (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setShowSearchModal(true); }}
+                      className={styles.searchButton}
+                      aria-label="Search"
+                    >
+                      <Search className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                    </button>
+                  ) : (
+                    <>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setShowCameraModal(true); }}
+                        className={styles.searchPillIconBtn}
+                        aria-label="Camera search"
+                      >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 15.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+                          <path d="M2 8.5c0-.828.672-1.5 1.5-1.5h2.586a1 1 0 00.707-.293l1.414-1.414A1 1 0 018.914 5h6.172a1 1 0 01.707.293l1.414 1.414a1 1 0 00.707.293H20.5c.828 0 1.5.672 1.5 1.5v10c0 .828-.672 1.5-1.5 1.5h-17c-.828 0-1.5-.672-1.5-1.5v-10z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+                        </svg>
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setShowSearchModal(true); }}
+                        className={styles.searchPillIconBtn}
+                        aria-label="Voice search"
+                      >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+                          <path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+                        </svg>
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              <CartIcon count={0} price="$0.00" textColor={textColor} />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Pickup or Delivery Banner — homepage only */}
         {showHomeExtras && (
