@@ -162,6 +162,25 @@
   opacity: 0.3;
 }
 
+/* Android gesture bar */
+.androidNavBar {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.androidGestureBar {
+  width: 96px;
+  height: 4px;
+  background: black;
+  border-radius: 9999px;
+  opacity: 0.25;
+}
+
 @media (min-width: 1024px) {
   .fadeOverlay,
   .nav {

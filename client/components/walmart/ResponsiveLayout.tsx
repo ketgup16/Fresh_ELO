@@ -9,6 +9,7 @@ import { SubNav } from './SubNav';
 import { PromoBanner } from './PromoBanner';
 import { OrderStatusBanner } from './OrderStatusBanner';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
+import { NativeStatusBar } from './NativeStatusBar';
 import styles from './ResponsiveLayout.module.css';
 
 interface ResponsiveLayoutProps {
@@ -40,10 +41,13 @@ export function ResponsiveLayout({
   mobileActiveTab = 'shop',
 }: ResponsiveLayoutProps) {
   const maxWidthClass = maxWidthClassMap[maxWidth] || styles.maxWidth2xl;
-  const { mobileFooter, mobileTopNav } = useLayoutSettings();
+  const { mobileFooter, mobileTopNav, platform } = useLayoutSettings();
+  const isNative = platform === 'ios' || platform === 'android';
 
   return (
     <div className={styles.root}>
+      {/* Native status bar — iOS or Android */}
+      {showMobileNav && isNative && <NativeStatusBar platform={platform as 'ios' | 'android'} />}
       {/* Mobile top nav — hidden on desktop via lg:hidden CSS */}
       {showMobileNav && mobileTopNav === 'native' && <MobileTopNav showHomeExtras={showHomeExtras} />}
       {showMobileNav && mobileTopNav === 'mweb' && <MobileHeader />}

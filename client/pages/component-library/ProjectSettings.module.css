@@ -70,6 +70,64 @@
   margin: 0;
 }
 
+.navSubsectionDesc {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: 13px;
+  color: var(--ld-semantic-color-text-subtle, #6d6e72);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Platform cards (horizontal row) ── */
+.platformCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--ld-primitive-scale-space-200, 8px);
+}
+
+@media (max-width: 768px) {
+  .platformCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.platformCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--ld-primitive-scale-space-400, 16px);
+  background: var(--ld-semantic-color-background-subtle, #f8f8f8);
+  border: 2px solid transparent;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 150ms, background 150ms;
+}
+
+.platformCard:hover {
+  border-color: var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-surface, #fff);
+}
+
+.platformCardActive {
+  border-color: var(--ld-semantic-color-action-fill-primary, #0071dc) !important;
+  background: var(--ld-semantic-color-fill-brand-subtle, #E9F1FE) !important;
+}
+
+.platformCardTop {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-200, 8px);
+  flex-wrap: wrap;
+}
+
+.platformCardLabel {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: var(--ld-semantic-font-body-default-size, 16px);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
 /* ── Option cards ── */
 .optionCards {
   display: flex;

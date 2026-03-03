@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
-import { useLayoutSettings, type MobileFooterMode, type MobileTopNavMode } from '@/contexts/LayoutSettingsContext';
+import { useLayoutSettings, type MobileFooterMode, type MobileTopNavMode, type PlatformMode } from '@/contexts/LayoutSettingsContext';
 import styles from './ProjectSettings.module.css';
 
 export function NavSettingsSection() {
   const navigate = useNavigate();
-  const { mobileFooter, setMobileFooter, mobileTopNav, setMobileTopNav } = useLayoutSettings();
+  const { mobileFooter, setMobileFooter, mobileTopNav, setMobileTopNav, platform, setPlatform } = useLayoutSettings();
 
   return (
     <div className={styles.navSection}>
@@ -27,12 +27,46 @@ export function NavSettingsSection() {
         </Button>
       </div>
 
+      {/* Platform Mode */}
+      <div className={styles.navSubsection}>
+        <h3 className={styles.navSubsectionTitle}>Platform</h3>
+        <p className={styles.navSubsectionDesc}>
+          Choose the target platform experience. Native modes add OS-specific status bars and navigation chrome.
+        </p>
+        <div className={styles.platformCards}>
+          <PlatformOption
+            label="Web"
+            tag="Responsive"
+            tagVariant="success"
+            description="Standard responsive web layout. No native OS chrome. Uses browser viewport breakpoints for tablet and mobile views."
+            isActive={platform === 'web'}
+            onClick={() => setPlatform('web')}
+          />
+          <PlatformOption
+            label="iOS Native"
+            tag="iPhone / iPad"
+            tagVariant="info"
+            description="iOS native app experience with Dynamic Island, SF-style status bar, and home indicator. Tablet breakpoints simulate iPad views."
+            isActive={platform === 'ios'}
+            onClick={() => setPlatform('ios')}
+          />
+          <PlatformOption
+            label="Android Native"
+            tag="Phone / Tablet"
+            tagVariant="neutral"
+            description="Android native app experience with Material-style status bar and navigation bar. Tablet breakpoints simulate Android tablet views."
+            isActive={platform === 'android'}
+            onClick={() => setPlatform('android')}
+          />
+        </div>
+      </div>
+
       <div className={styles.navSubsections}>
         {/* Mobile Top Nav */}
         <div className={styles.navSubsection}>
           <h3 className={styles.navSubsectionTitle}>Mobile Top Nav</h3>
           <div className={styles.optionCards}>
-            <TopNavOption
+            <SettingOption
               label="Native Top Nav"
               tag="iOS / Android"
               tagVariant="neutral"
@@ -40,7 +74,7 @@ export function NavSettingsSection() {
               isActive={mobileTopNav === 'native'}
               onClick={() => setMobileTopNav('native')}
             />
-            <TopNavOption
+            <SettingOption
               label="Mweb Top Nav"
               tag="< 1024px"
               tagVariant="success"
@@ -55,7 +89,7 @@ export function NavSettingsSection() {
         <div className={styles.navSubsection}>
           <h3 className={styles.navSubsectionTitle}>Mobile Footer / Bottom Nav</h3>
           <div className={styles.optionCards}>
-            <TopNavOption
+            <SettingOption
               label="WCP Bottom Nav"
               tag="iOS / Android"
               tagVariant="neutral"
@@ -63,7 +97,7 @@ export function NavSettingsSection() {
               isActive={mobileFooter === 'native'}
               onClick={() => setMobileFooter('native')}
             />
-            <TopNavOption
+            <SettingOption
               label="WCP Footer (Mweb)"
               tag="< 1024px"
               tagVariant="success"
@@ -78,7 +112,7 @@ export function NavSettingsSection() {
   );
 }
 
-interface TopNavOptionProps {
+interface PlatformOptionProps {
   label: string;
   tag: string;
   tagVariant: 'neutral' | 'success' | 'info';
@@ -87,7 +121,32 @@ interface TopNavOptionProps {
   onClick: () => void;
 }
 
-function TopNavOption({ label, tag, tagVariant, description, isActive, onClick }: TopNavOptionProps) {
+function PlatformOption({ label, tag, tagVariant, description, isActive, onClick }: PlatformOptionProps) {
+  return (
+    <button
+      className={[styles.platformCard, isActive ? styles.platformCardActive : ''].join(' ')}
+      onClick={onClick}
+    >
+      <div className={styles.platformCardTop}>
+        <span className={styles.platformCardLabel}>{label}</span>
+        <Tag variant={tagVariant}>{tag}</Tag>
+        {isActive && <Tag variant="success">Active</Tag>}
+      </div>
+      <p className={styles.optionCardDesc}>{description}</p>
+    </button>
+  );
+}
+
+interface SettingOptionProps {
+  label: string;
+  tag: string;
+  tagVariant: 'neutral' | 'success' | 'info';
+  description: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
+function SettingOption({ label, tag, tagVariant, description, isActive, onClick }: SettingOptionProps) {
   return (
     <button
       className={[styles.optionCard, isActive ? styles.optionCardActive : ''].join(' ')}

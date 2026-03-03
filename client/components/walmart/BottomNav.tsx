@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Store, Heart, User } from '@/components/icons';
 import { SparkyAnimation } from '@/components/icons-custom';
+import { useLayoutSettings, type PlatformMode } from '@/contexts/LayoutSettingsContext';
 import styles from './BottomNav.module.css';
 
 interface BottomNavProps {
@@ -25,6 +26,7 @@ const NAV_PATHS: Record<string, string | undefined> = {
 
 export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }: BottomNavProps) {
   const navigate = useNavigate();
+  const { platform } = useLayoutSettings();
   // Visual tab drives the indicator position — decoupled from prop so we can
   // animate first, then trigger the page navigation after the slide completes.
   const [visualTab, setVisualTab] = useState<'shop' | 'heart' | 'user'>(activeTab);
@@ -132,7 +134,10 @@ export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }
           </button>
         </div>
 
-        <div className={styles.homeIndicator} />
+        {platform === 'ios' && <div className={styles.homeIndicator} />}
+        {platform === 'android' && <div className={styles.androidNavBar}>
+          <div className={styles.androidGestureBar} />
+        </div>}
       </div>
     </>
   );

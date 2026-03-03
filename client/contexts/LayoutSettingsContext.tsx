@@ -10,6 +10,7 @@ import React, { createContext, useContext, useState, useCallback } from 'react';
 
 export type MobileFooterMode = 'native' | 'mweb';
 export type MobileTopNavMode = 'native' | 'mweb';
+export type PlatformMode = 'web' | 'ios' | 'android';
 
 interface LayoutSettingsContextValue {
   /** Which footer/nav renders on mobile breakpoints in the Walmart app */
@@ -18,12 +19,16 @@ interface LayoutSettingsContextValue {
   /** Which top nav renders on mobile breakpoints in the Walmart app */
   mobileTopNav: MobileTopNavMode;
   setMobileTopNav: (mode: MobileTopNavMode) => void;
+  /** Platform experience mode: web, iOS native, or Android native */
+  platform: PlatformMode;
+  setPlatform: (mode: PlatformMode) => void;
 }
 
 const LayoutSettingsContext = createContext<LayoutSettingsContextValue | undefined>(undefined);
 
 const STORAGE_KEY = 'wcp-mobile-footer-mode';
 const TOP_NAV_STORAGE_KEY = 'wcp-mobile-top-nav-mode';
+const PLATFORM_STORAGE_KEY = 'wcp-platform-mode';
 
 function readStoredMode(): MobileFooterMode {
   try {
@@ -43,9 +48,18 @@ function readStoredTopNavMode(): MobileTopNavMode {
   return 'native';
 }
 
+function readStoredPlatform(): PlatformMode {
+  try {
+    const stored = localStorage.getItem(PLATFORM_STORAGE_KEY);
+    if (stored === 'web' || stored === 'ios' || stored === 'android') return stored;
+  } catch { /* ignore */ }
+  return 'web';
+}
+
 export function LayoutSettingsProvider({ children }: { children: React.ReactNode }) {
   const [mobileFooter, setMobileFooterState] = useState<MobileFooterMode>(readStoredMode);
   const [mobileTopNav, setMobileTopNavState] = useState<MobileTopNavMode>(readStoredTopNavMode);
+  const [platform, setPlatformState] = useState<PlatformMode>(readStoredPlatform);
 
   const setMobileFooter = useCallback((mode: MobileFooterMode) => {
     setMobileFooterState(mode);
@@ -63,8 +77,15 @@ export function LayoutSettingsProvider({ children }: { children: React.ReactNode
     } catch { /* ignore */ }
   }, []);
 
+  const setPlatform = useCallback((mode: PlatformMode) => {
+    setPlatformState(mode);
+    try {
+      localStorage.setItem(PLATFORM_STORAGE_KEY, mode);
+    } catch { /* ignore */ }
+  }, []);
+
   return (
-    <LayoutSettingsContext.Provider value={{ mobileFooter, setMobileFooter, mobileTopNav, setMobileTopNav }}>
+    <LayoutSettingsContext.Provider value={{ mobileFooter, setMobileFooter, mobileTopNav, setMobileTopNav, platform, setPlatform }}>
       {children}
     </LayoutSettingsContext.Provider>
   );
