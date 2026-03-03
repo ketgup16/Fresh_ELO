@@ -145,6 +145,12 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
+  gap: var(--ld-primitive-scale-space-300, 24px);
+}
+
+/* Snackbar wrapper inside phone frame — 16px horizontal padding */
+.phoneSnackbarWrap {
+  padding: 0 var(--ld-primitive-scale-space-200, 16px);
 }
 
 /* ── Phone bottom nav slot (uses real BottomNav with contained) ── */

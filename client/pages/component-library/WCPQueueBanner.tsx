@@ -218,16 +218,18 @@ export default function WCPQueueBannerPage() {
                   <div className={styles.phonePageContent} />
                 </div>
                 <div className={styles.phoneBannerSlot}>
-                  <WCPRichSnackbar
-                    open
-                    color="inverse"
-                    leadingSlot={<Warning width={20} height={20} />}
-                    message="Declarative title or body"
-                    actionLabel="Action Button"
-                    onAction={() => {}}
-                    duration={Infinity}
-                    inline
-                  />
+                  <div className={styles.phoneSnackbarWrap}>
+                    <WCPRichSnackbar
+                      open
+                      color="inverse"
+                      leadingSlot={<Warning width={20} height={20} />}
+                      message="Declarative title or body"
+                      actionLabel="Action Button"
+                      onAction={() => {}}
+                      duration={Infinity}
+                      inline
+                    />
+                  </div>
                   <WCPQueueBanner
                     endTime={secondsFromNow(59 * 60)}
                     variant="lineJoined"
@@ -255,16 +257,18 @@ export default function WCPQueueBannerPage() {
                   <div className={styles.phonePageContent} />
                 </div>
                 <div className={styles.phoneBannerSlot}>
-                  <WCPRichSnackbar
-                    open
-                    color="inverse"
-                    leadingSlot={<Warning width={20} height={20} />}
-                    message="Declarative title or body"
-                    actionLabel="Action Button"
-                    onAction={() => {}}
-                    duration={Infinity}
-                    inline
-                  />
+                  <div className={styles.phoneSnackbarWrap}>
+                    <WCPRichSnackbar
+                      open
+                      color="inverse"
+                      leadingSlot={<Warning width={20} height={20} />}
+                      message="Declarative title or body"
+                      actionLabel="Action Button"
+                      onAction={() => {}}
+                      duration={Infinity}
+                      inline
+                    />
+                  </div>
                   <WCPQueueBanner
                     endTime={warningEnd}
                     variant="lineJoined"
