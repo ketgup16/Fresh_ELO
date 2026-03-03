@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { WCPQueueBanner } from '@/components/walmart/WCPQueueBanner';
-import { ProductCardGrid } from '@/components/walmart/ProductCardGrid';
+import { ProductCardList } from '@/components/walmart/ProductCardList';
 import { Button } from '@/components/ui/Button';
 import styles from './WCPQueueBanner.module.css';
 
@@ -132,7 +132,7 @@ export default function WCPQueueBannerPage() {
 
               <div className={styles.productCardRow}>
                 {DEMO_PRODUCTS.map((product, i) => (
-                  <ProductCardGrid
+                  <ProductCardList
                     key={i}
                     {...product}
                     timerEndTime={landingEnd}
