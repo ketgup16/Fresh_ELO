@@ -172,7 +172,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
             {!showDeliveryOptions && (
               <button
                 onClick={() => setShowDeliveryOptions(true)}
-                className="w-full flex items-center justify-between px-0 transition-colors"
+                className={styles.deliveryButton}
               >
                 <div className="flex items-center gap-2">
                   <img
