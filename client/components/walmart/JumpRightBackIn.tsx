@@ -1,6 +1,28 @@
+import { useRef, useState, useEffect } from 'react';
 import { WCPItemTile, ItemTileBadgeType } from '@/components/walmart/WCPItemTile';
 import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
 import styles from './JumpRightBackIn.module.css';
+
+const useDragScroll = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    const handleMouseDown = (e: MouseEvent) => { setIsDragging(true); setStartX(e.pageX - element.offsetLeft); setScrollLeft(element.scrollLeft); element.style.cursor = 'grabbing'; element.style.userSelect = 'none'; };
+    const handleMouseMove = (e: MouseEvent) => { if (!isDragging) return; e.preventDefault(); const x = e.pageX - element.offsetLeft; element.scrollLeft = scrollLeft - (x - startX) * 2; };
+    const handleMouseUp = () => { setIsDragging(false); element.style.cursor = 'grab'; element.style.userSelect = 'auto'; };
+    const handleMouseLeave = () => { if (isDragging) { setIsDragging(false); element.style.cursor = 'grab'; element.style.userSelect = 'auto'; } };
+    element.addEventListener('mousedown', handleMouseDown); element.addEventListener('mousemove', handleMouseMove); element.addEventListener('mouseup', handleMouseUp); element.addEventListener('mouseleave', handleMouseLeave);
+    element.style.cursor = 'grab';
+    return () => { element.removeEventListener('mousedown', handleMouseDown); element.removeEventListener('mousemove', handleMouseMove); element.removeEventListener('mouseup', handleMouseUp); element.removeEventListener('mouseleave', handleMouseLeave); };
+  }, [isDragging, startX, scrollLeft]);
+
+  return ref;
+};
 
 interface ProductCard {
   image: string;
@@ -198,13 +220,15 @@ const CATEGORIES: Category[] = [
 ];
 
 export function JumpRightBackIn() {
+  const scrollRef = useDragScroll();
+
   return (
     <section className={styles.section}>
       <div className={styles.headerRow}>
         <h2 className={styles.heading}>Jump right back in</h2>
         <a href="#" className={styles.viewAll}>View all</a>
       </div>
-      <div className={styles.scrollRow}>
+      <div className={styles.scrollRow} ref={scrollRef}>
         {CATEGORIES.map((category) => (
           <div key={category.title} className={styles.categoryCard}>
             <div className={styles.categoryHeader}>
