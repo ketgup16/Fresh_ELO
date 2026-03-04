@@ -194,13 +194,28 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Shop Vacuums Carousel */}
-          <div className="relative rounded-lg overflow-hidden h-[543px] min-w-[320px] w-[320px] snap-center flex-shrink-0">
+          {/* W+ Sponsored Promo Card */}
+          <div className="relative rounded-lg overflow-hidden h-[543px] min-w-[320px] w-[320px] snap-center flex-shrink-0 flex flex-col">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F94fbeb4b44434b7b8e501f1e8c476d86?format=webp&width=800&height=1200"
-              alt="Shop vacuums background"
+              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F456ff4c02add4328a1b49b441d1346fa?format=webp&width=800&height=1200"
+              alt="Walmart+ membership promo"
               className="absolute inset-0 w-full h-full object-cover"
             />
+            <div className="absolute top-6 left-4 right-4 z-10">
+              <p className="text-[#2e2f32] text-sm font-semibold">Start saving today!</p>
+              <h2 className="text-[#2e2f32] text-[32px] font-bold leading-[34px] mt-1 max-w-[260px]">
+                Get 50% of annual membership
+              </h2>
+              <a href="#" className="text-[#2e2f32] text-sm underline mt-3 inline-block font-semibold">
+                Shop all
+              </a>
+            </div>
+            <span className="absolute bottom-4 right-4 text-[#2e2f32]/60 text-xs z-10">Sponsored</span>
+          </div>
+
+          {/* Shop Vacuums Card */}
+          <div className="relative rounded-lg overflow-hidden h-[543px] min-w-[320px] w-[320px] snap-center flex-shrink-0">
+            <div className="absolute inset-0 bg-[#1a4d8f]" />
             <div className="absolute top-4 right-4 w-10 h-6 bg-white/70 backdrop-blur rounded-full flex items-center justify-center z-10">
               <Pause className="w-4 h-4" />
             </div>
