@@ -154,7 +154,7 @@
 
 /* ── Maintenance grid ──────────────────────────────────── */
 .section {
-  padding: var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-500, 20px) 0;
+  padding: 0 var(--ld-primitive-scale-space-500, 20px) 0;
 }
 
 .sectionTitle {
