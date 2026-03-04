@@ -1,4 +1,5 @@
 import { Pause } from "@/components/icons";
+import { useRef, useCallback } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { NewArrivalsCarousel } from "@/components/walmart/NewArrivalsCarousel";
 import { JumpRightBackIn } from "@/components/walmart/JumpRightBackIn";
@@ -46,6 +47,38 @@ const VACUUM_ITEMS: CarouselItem[] = [
 
 export default function Index() {
   const { setItemQuantity } = useCart();
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    const el = carouselRef.current;
+    if (!el) return;
+    isDragging.current = true;
+    startX.current = e.pageX - el.offsetLeft;
+    scrollLeft.current = el.scrollLeft;
+    el.style.cursor = 'grabbing';
+    el.style.scrollSnapType = 'none';
+  }, []);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!isDragging.current) return;
+    e.preventDefault();
+    const el = carouselRef.current;
+    if (!el) return;
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - startX.current) * 1.5;
+    el.scrollLeft = scrollLeft.current - walk;
+  }, []);
+
+  const handleMouseUp = useCallback(() => {
+    isDragging.current = false;
+    const el = carouselRef.current;
+    if (!el) return;
+    el.style.cursor = '';
+    el.style.scrollSnapType = '';
+  }, []);
 
   const handleQuantityChange = (productIndex: number, quantity: number) => {
     setItemQuantity(productIndex, quantity);
@@ -73,7 +106,14 @@ export default function Index() {
         <JumpRightBackIn />
 
         {/* Promo Carousel Container */}
-        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide -mx-4 px-4 touch-pan-x">
+        <div
+          ref={carouselRef}
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide -mx-4 px-4 touch-pan-x cursor-grab select-none"
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+        >
 
           {/* Grocery Bag Carousel */}
           <div className="relative rounded-lg overflow-hidden h-[543px] min-w-[320px] w-[320px] snap-center flex-shrink-0">
@@ -195,22 +235,24 @@ export default function Index() {
           </div>
 
           {/* W+ Sponsored Promo Card */}
-          <div className="relative rounded-lg overflow-hidden h-[543px] min-w-[320px] w-[320px] snap-center flex-shrink-0 flex flex-col">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F456ff4c02add4328a1b49b441d1346fa?format=webp&width=800&height=1200"
-              alt="Walmart+ membership promo"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute top-6 left-4 right-4 z-10">
-              <p className="text-[#2e2f32] text-sm font-semibold">Start saving today!</p>
-              <h2 className="text-[#2e2f32] text-[32px] font-bold leading-[34px] mt-1 max-w-[260px]">
-                Get 50% of annual membership
-              </h2>
-              <a href="#" className="text-[#2e2f32] text-sm underline mt-3 inline-block font-semibold">
-                Shop all
-              </a>
+          <div className="flex flex-col min-w-[320px] w-[320px] snap-center flex-shrink-0">
+            <div className="relative rounded-lg overflow-hidden h-[543px]">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F456ff4c02add4328a1b49b441d1346fa?format=webp&width=800&height=1200"
+                alt="Walmart+ membership promo"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute top-6 left-4 right-4 z-10">
+                <p className="text-[#2e2f32] text-sm font-semibold">Start saving today!</p>
+                <h2 className="text-[#2e2f32] text-[32px] font-bold leading-[34px] mt-1 max-w-[260px]">
+                  Get 50% of annual membership
+                </h2>
+                <a href="#" className="text-[#2e2f32] text-sm underline mt-3 inline-block font-semibold">
+                  Shop all
+                </a>
+              </div>
             </div>
-            <span className="absolute bottom-4 right-4 text-[#2e2f32]/60 text-xs z-10">Sponsored</span>
+            <span className="text-right text-[#2e2f32]/60 text-xs mt-1 pr-1">Sponsored</span>
           </div>
 
           {/* Shop Vacuums Card */}
