@@ -10,17 +10,6 @@
   flex-direction: column;
   min-width: 0;
   flex: 0 0 calc((100% - 60px) / 6);
-  transition: box-shadow 150ms ease;
-}
-
-.card:hover {
-  box-shadow: var(--ld-semantic-elevation-100, 0 1px 4px rgba(0, 0, 0, 0.1));
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card {
-    transition: none;
-  }
 }
 
 @media (max-width: 1024px) {
