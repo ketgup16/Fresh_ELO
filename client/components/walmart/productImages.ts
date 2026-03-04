@@ -19,35 +19,21 @@ export const PRODUCT_IMAGES = {
   rattanCabinet:
     'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F27eb35b2afea4485ba9d20aa745ccf53?format=webp&width=400',
 
-  // Handbags – group 1 (green/gray hobo variants)
+  // Handbags – green/gray hobo
   hoboBagGreen:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff27d706c41f14cc98266912473bd0b3b?format=webp&width=400',
-  hoboBagGreenAlt:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8f088dbd1ee943b0ad78ae2f46d994bc?format=webp&width=400',
-  hoboBagLight:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F1d2dfbe923404f5293c66b496ffae53b?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F1ab87b8c961148eba3758ee80601ceee?format=webp&width=400',
   hoboBagBrown:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F25124b3b4c93467c99988c992124c17f?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F9f231ed362dd43248ea4aed7618a2b3a?format=webp&width=400',
 
-  // Handbags – group 2 (brown leather tote variants)
+  // Handbags – brown leather tote
   brownTote:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F1baa534f648e4ec1b067857d391198e3?format=webp&width=400',
-  brownToteAlt:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F805e8c0eafde46059509be198819a1c8?format=webp&width=400',
-  brownToteLight:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F604bf89b8bb34763a6643d9a8a766e90?format=webp&width=400',
-  brownToteDark:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fccaf9347e6da45c1a0408f9a8bed0912?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F9f231ed362dd43248ea4aed7618a2b3a?format=webp&width=400',
 
-  // Handbags – group 3 (white/ivory tote set variants)
+  // Handbags – white/ivory tote set + MK
   ivoryToteSet:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F9278955cd98c4300a6325c8140d7dd3b?format=webp&width=400',
-  ivoryToteSetAlt:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F76180b0fa8824fd0b503729ca2dc823d?format=webp&width=400',
-  ivoryToteSetLight:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff7f0d1f50a984251b8da70be10c462e2?format=webp&width=400',
-  ivoryToteSetDark:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fdb4e6a12a56a41df86e3944461328f07?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8181bc0378fc4d3088c9da866ab225e8?format=webp&width=400',
+  mkMonogramSet:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F248d089cd4d74a20a2a4c9c506db3bbf?format=webp&width=400',
 
   // Home & Appliances
   cordlessVacuum:
@@ -61,45 +47,41 @@ export const PRODUCT_IMAGES = {
 
   // Furniture
   boucleArmchair:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8fa57e76072e40bab89f30e8ca84bedf?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F3b2eb5963d0e4ac59a9d7e1aa8d5a214?format=webp&width=400',
   pinkSofaBed:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F76e93eeb3de8479789dc209d4654f07d?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F09953c0ff5f84a5e8fb11576c26ee11c?format=webp&width=400',
   leatherArmchairDetail:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F10e90b9f758d49079ac88848602287bc?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F274f4ff2e6604cdeb950166fd782b99f?format=webp&width=400',
   leatherArmchair:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc54395b629d8473794d9b1264bd7c036?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F250f1a9f3f154c0985288398cc0902b7?format=webp&width=400',
 
-  // Blenders (group I16429_284498)
+  // Blenders
   countertopBlender:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fd588feea9ae142788ec41c475bf6615c?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fcac71e56229e48498251db800593caaf?format=webp&width=400',
   handBlenderSet:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F53eb91e485c44bd39e73a738a889d1c9?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F4dc1b475cbc74199b27cfbb96b56f2e2?format=webp&width=400',
   blenderSystem:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fbab0846617b24af49113abfdbe87e9ef?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff3efbc2a8da24ef0a5061e45658a7bcb?format=webp&width=400',
   personalBlender:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc26d2cc572b244398c7be33a9868c650?format=webp&width=400',
-  blender1:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F55c9109399ae4fcf9a1dd4e2280a3fdf?format=webp&width=400',
-  blender2:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0d07741db1e84da0ae2cb817c4d71f32?format=webp&width=400',
-  blender3:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F1a80a88a8cda43a9bc108aa9570c5dff?format=webp&width=400',
-  blender4:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fb92d480ddaea49bd9ff705b45f0fb91c?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0613e780cd224b2dbc4bc8cab3af9618?format=webp&width=400',
 
-  // Robot vacuums / iRobot (group I16429_284399)
+  // Robot vacuums / iRobot
   roomba1:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F1c26c0eaa158473998a3e2a42de50619?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fcac6d3b33da74f008e7189846ce4a29c?format=webp&width=400',
   roomba2:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fdcfdf4db21d7457983a006f4ff3fe3a7?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F395f5a69955c45c7b7c294ed96f4ee30?format=webp&width=400',
   roomba3:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff9d4aa011f51479fab292c8b6c224d20?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F9496a8e7bb424b84b7017d47030ea046?format=webp&width=400',
   roomba4:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F7d3ec31898bb4bf38ec82b1ed4d6620e?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fec092fc1f1c04133a2d576221cabeb66?format=webp&width=400',
 
   // Laptops
   laptop1:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fb2f0430885184009aeb4223280d0441d?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fb2958dd952ce42b6bddc9c13b91fed5a?format=webp&width=400',
   laptop2:
-    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fede198e0540c48b58a53ff4d4ff1e768?format=webp&width=400',
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F282111a6dce74ad98d66fd74387a597b?format=webp&width=400',
+  laptop3:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F546652e80853422fb199a2a23650acc4?format=webp&width=400',
+  laptop4:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fea3f3c92e92e4b8e8b788740957e2374?format=webp&width=400',
 } as const;
