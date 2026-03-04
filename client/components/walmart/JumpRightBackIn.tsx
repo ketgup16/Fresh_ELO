@@ -1,4 +1,5 @@
 import { WCPFlag, WCPFlagVariant } from '@/components/walmart/WCPFlag';
+import { WCPHeartView } from '@/components/walmart/WCPHeartView';
 import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
 import styles from './JumpRightBackIn.module.css';
 
@@ -49,19 +50,17 @@ const CATEGORIES: Category[] = [
         badge: { label: 'Best seller', type: 'bestseller' },
       },
       {
-        image: PRODUCT_IMAGES.cordlessVacuum,
-        name: 'Cordless Stick Vacuum, 25...',
-        price: '89',
-        cents: '99',
-        originalPrice: '$129.99',
-        pricePrefix: 'Now',
+        image: PRODUCT_IMAGES.tablet,
+        name: 'Roku 50" Select Series TV',
+        price: '228',
+        cents: '00',
         badge: { label: 'Rollback', type: 'rollback' },
       },
       {
-        image: PRODUCT_IMAGES.blenderSystem,
-        name: 'Ninja DUO Blender & Pro...',
-        price: '129',
-        cents: '99',
+        image: PRODUCT_IMAGES.digitalCamera,
+        name: 'Vivitar Popnap Digital Ca...',
+        price: '24',
+        cents: '88',
         badge: { label: 'Best seller', type: 'bestseller' },
       },
     ],
@@ -70,33 +69,33 @@ const CATEGORIES: Category[] = [
     title: "Fashion you'll love",
     products: [
       {
-        image: PRODUCT_IMAGES.hoboBagGreenAlt,
-        name: 'GAEKEAO Hobo Shoulder...',
-        price: '34',
-        cents: '99',
-        originalPrice: '$49.99',
-        pricePrefix: 'Now',
-        badge: { label: 'Rollback', type: 'rollback' },
+        image: PRODUCT_IMAGES.blackCardigan,
+        name: 'Athletic Works Women\'s...',
+        price: '12',
+        cents: '98',
+        badge: { label: 'Best seller', type: 'bestseller' },
       },
       {
-        image: PRODUCT_IMAGES.brownTote,
+        image: PRODUCT_IMAGES.leatherHandbag,
         name: 'Women\'s Leather Satchel...',
         price: '59',
         cents: '99',
         badge: { label: 'Best seller', type: 'bestseller' },
       },
       {
-        image: PRODUCT_IMAGES.ivoryToteSet,
-        name: 'MKP Collection Tote Bag...',
-        price: '44',
-        cents: '99',
-        badge: { label: 'Popular pick', type: 'popular' },
+        image: PRODUCT_IMAGES.rattanCabinet,
+        name: 'Rattan Storage Cabinet,...',
+        price: '89',
+        cents: '00',
+        originalPrice: '$129.00',
+        pricePrefix: 'Now',
+        badge: { label: 'Rollback', type: 'rollback' },
       },
       {
-        image: PRODUCT_IMAGES.hoboBagBrown,
-        name: 'Michael Kors Jet Set Tote...',
-        price: '178',
-        cents: '00',
+        image: PRODUCT_IMAGES.headphones,
+        name: 'Beats Solo3 Wireless On-...',
+        price: '99',
+        cents: '95',
         badge: { label: 'Popular pick', type: 'popular' },
       },
     ],
@@ -105,32 +104,32 @@ const CATEGORIES: Category[] = [
     title: 'Electronics',
     products: [
       {
-        image: PRODUCT_IMAGES.roomba1,
-        name: 'iRobot Roomba i3+ Self-Em...',
-        price: '299',
-        cents: '99',
-        originalPrice: '$449.99',
-        pricePrefix: 'Now',
-        badge: { label: 'Deal', type: 'deal' },
-      },
-      {
-        image: PRODUCT_IMAGES.countertopBlender,
-        name: 'VAVSEA Countertop Blend...',
-        price: '49',
-        cents: '99',
-        badge: { label: 'Best seller', type: 'bestseller' },
-      },
-      {
         image: PRODUCT_IMAGES.tablet,
         name: 'Apple iPad Pro 11" M4 Chi...',
         price: '999',
         cents: '00',
+        originalPrice: '$1,099.00',
+        pricePrefix: 'Now',
+        badge: { label: 'Deal', type: 'deal' },
       },
       {
         image: PRODUCT_IMAGES.digitalCamera,
-        name: 'Vivitar Popnap Digital Ca...',
-        price: '24',
-        cents: '88',
+        name: 'Canon EOS Rebel T7 DSL...',
+        price: '479',
+        cents: '00',
+        badge: { label: 'Best seller', type: 'bestseller' },
+      },
+      {
+        image: PRODUCT_IMAGES.airFryer,
+        name: 'Ninja Foodi 6-in-1 Smart...',
+        price: '149',
+        cents: '99',
+      },
+      {
+        image: PRODUCT_IMAGES.headphones,
+        name: 'Sony WH-1000XM5 Noise...',
+        price: '278',
+        cents: '00',
       },
     ],
   },
@@ -138,34 +137,34 @@ const CATEGORIES: Category[] = [
     title: 'Up to 40% off home',
     products: [
       {
-        image: PRODUCT_IMAGES.cookwareSet,
-        name: 'Carote Nonstick Cookware...',
-        price: '79',
-        cents: '99',
-        originalPrice: '$109.99',
+        image: PRODUCT_IMAGES.rattanCabinet,
+        name: 'Beautiful 12 Piece Dinner...',
+        price: '49',
+        cents: '98',
+        originalPrice: '$79.99',
         pricePrefix: 'Now',
         badge: { label: 'Rollback', type: 'rollback' },
       },
       {
-        image: PRODUCT_IMAGES.comforterSet,
-        name: 'Ultra Soft Comforter Set,...',
-        price: '49',
+        image: PRODUCT_IMAGES.leatherHandbag,
+        name: 'Decorative Throw Pillow...',
+        price: '19',
         cents: '98',
       },
       {
-        image: PRODUCT_IMAGES.boucleArmchair,
-        name: 'Boucle Accent Armchair,...',
-        price: '159',
-        cents: '00',
-        originalPrice: '$219.00',
-        pricePrefix: 'Now',
+        image: PRODUCT_IMAGES.blackCardigan,
+        name: 'Better Homes & Gardens...',
+        price: '34',
+        cents: '97',
         badge: { label: 'Best seller', type: 'bestseller' },
       },
       {
-        image: PRODUCT_IMAGES.mugSet,
-        name: 'Stoneware Mug Set of 4,...',
-        price: '28',
+        image: PRODUCT_IMAGES.airFryer,
+        name: 'Keurig K-Express Coffee...',
+        price: '59',
         cents: '00',
+        originalPrice: '$79.00',
+        pricePrefix: 'Now',
         badge: { label: 'Best seller', type: 'bestseller' },
       },
     ],
@@ -183,6 +182,9 @@ function ProductTile({ product }: { product: ProductCard }) {
           />
         </div>
       )}
+      <div className={styles.heartWrap}>
+        <WCPHeartView size="small" calloutPosition="left" />
+      </div>
       <div className={styles.imageWrapper}>
         <img src={product.image} alt={product.name} className={styles.productImage} />
       </div>
