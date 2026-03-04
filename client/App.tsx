@@ -5,7 +5,8 @@ import { createRoot } from "react-dom/client";
 import { SnackbarContainer } from "@/components/ui/SnackbarContainer";
 import { WCPRichSnackbarContainer } from "@/components/walmart/WCPRichSnackbarContainer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { MartyProvider } from "@/contexts/MartyContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LayoutSettingsProvider } from "@/contexts/LayoutSettingsContext";
@@ -134,6 +135,39 @@ const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFam
 
 const queryClient = new QueryClient();
 
+// Persist last visited path across full HMR reloads (dev only)
+const LAST_PATH_KEY = '__last_visited_path__';
+if (typeof window !== 'undefined' && import.meta.env.DEV) {
+  try {
+    const last = sessionStorage.getItem(LAST_PATH_KEY);
+    const current = window.location.pathname + window.location.search + window.location.hash;
+    // If the page looks like the dev-server root, restore previous path.
+    if (last && (current === '/' || current === '/index.html' || current === '/walmart')) {
+      window.history.replaceState(null, '', last);
+      sessionStorage.removeItem(LAST_PATH_KEY);
+    }
+  } catch (e) {
+    // ignore sessionStorage errors
+  }
+
+  // Save on full unloads
+  window.addEventListener('beforeunload', () => {
+    try {
+      sessionStorage.setItem(LAST_PATH_KEY, window.location.pathname + window.location.search + window.location.hash);
+    } catch (e) {}
+  });
+}
+
+function RouteWatcher() {
+  const location = useLocation();
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(LAST_PATH_KEY, location.pathname + location.search + location.hash);
+    } catch (e) {}
+  }, [location]);
+  return null;
+}
+
 // Main App component with routing
 const App = () => (
   <ThemeProvider>
@@ -145,6 +179,7 @@ const App = () => (
       <MartyProvider>
           <BrowserRouter>
             <React.Suspense fallback={LazyFallback}>
+            {import.meta.env.DEV && <RouteWatcher />}
             <Routes>
               {/* Component Library with nested routes */}
               <Route path="/component-library" element={<ComponentLibraryLayout />}>
