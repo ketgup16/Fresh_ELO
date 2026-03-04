@@ -71,7 +71,7 @@ const CATEGORIES: Category[] = [
     title: "Fashion you'll love",
     products: [
       {
-        image: PRODUCT_IMAGES.hoboBagGreen,
+        image: PRODUCT_IMAGES.hoboBagGreenAlt,
         name: 'GAEKEAO Hobo Shoulder...',
         price: '34',
         cents: '99',
