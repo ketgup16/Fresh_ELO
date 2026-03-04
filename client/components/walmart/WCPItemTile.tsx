@@ -1,6 +1,5 @@
 import { WCPFlag, WCPFlagVariant } from '@/components/walmart/WCPFlag';
 import { WCPHeartView } from '@/components/walmart/WCPHeartView';
-import { QuantityStepper } from '@/components/ui/QuantityStepper';
 import styles from './WCPItemTile.module.css';
 
 export type ItemTileBadgeType = 'bestseller' | 'deal' | 'popular' | 'rollback';
@@ -79,13 +78,6 @@ export function WCPItemTile({
           <div className={styles.originalPrice}>{originalPrice}</div>
         )}
         <p className={styles.name}>{name}</p>
-        <div className={styles.stepperWrap}>
-          <QuantityStepper
-            variant="primary"
-            size="small"
-            showAddLabel={false}
-          />
-        </div>
       </div>
     </div>
   );

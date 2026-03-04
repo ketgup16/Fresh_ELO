@@ -150,13 +150,6 @@
   line-height: 20px;
 }
 
-/* ── Quantity stepper — bottom-right of body ── */
-.stepperWrap {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: auto;
-}
-
 /* Product name — 14px, 1-line clamp */
 .name {
   font-family: var(--ld-semantic-font-family-sans);

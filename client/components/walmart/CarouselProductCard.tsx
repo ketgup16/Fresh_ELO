@@ -1,4 +1,4 @@
-import { AddToCart } from "@/components/walmart/AddToCart";
+import { QuantityStepper } from "@/components/ui/QuantityStepper";
 
 export interface CarouselProductCardProps {
   image: string;
@@ -28,7 +28,12 @@ export function CarouselProductCard({
         <span className="text-[12px] font-bold">{cents}</span>
       </div>
       <div className="mt-2">
-        <AddToCart onQuantityChange={(qty) => onQuantityChange(idx, qty)} />
+        <QuantityStepper
+          variant="tertiary"
+          size="small"
+          showAddLabel={false}
+          onChange={(qty) => onQuantityChange(idx, qty)}
+        />
       </div>
     </div>
   );
