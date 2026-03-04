@@ -34,7 +34,7 @@ export interface WCPHeartViewProps {
    * Where the callout appears relative to the heart button.
    * @default 'left'
    */
-  calloutPosition?: 'left' | 'right' | 'bottom';
+  calloutPosition?: 'left' | 'right' | 'bottom' | 'top';
 }
 
 type CalloutType = 'add' | 'saved' | 'removed' | null;

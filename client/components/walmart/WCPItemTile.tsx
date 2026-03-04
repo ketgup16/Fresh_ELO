@@ -53,7 +53,7 @@ export function WCPItemTile({
         </div>
       )}
       <div className={styles.heartWrap}>
-        <WCPHeartView size="small" calloutPosition="left" />
+        <WCPHeartView size="small" calloutPosition="top" />
       </div>
       <div className={styles.imageWrapper}>
         <img src={image} alt={name} className={styles.image} />
