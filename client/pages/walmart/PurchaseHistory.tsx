@@ -379,7 +379,7 @@ export default function PurchaseHistory() {
                   animation on insert. Remove the wrapper + component to hide.
               ─────────────────────────────────────────────────────────────── */}
               <div className={styles.newCard} style={{ marginBottom: 16 }}>
-                <CurbsideOrderCard {...COMBINED_CARD_DELIVERY} />
+                <AutoCareOrderCard {...COMBINED_CARD_AUTO} />
               </div>
 
               {/* ── Standard order list ───────────────────────────────────── */}
