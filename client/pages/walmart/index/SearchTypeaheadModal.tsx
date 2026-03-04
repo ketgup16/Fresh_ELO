@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { X, Camera, Microphone, ChevronLeft, Clock, ArrowUpLeft } from "@/components/icons";
 import { SparkyLookingDown } from "@/components/icons-custom";
@@ -23,6 +23,12 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(true);
   const [recentSearches, setRecentSearches] = useState(['whole grain cereal', 'frosted flakes', 'cheerios', 'granola', 'oatmeal']);
+
+  // Hide bottom nav while search modal is open
+  useEffect(() => {
+    document.body.classList.add('search-modal-open');
+    return () => document.body.classList.remove('search-modal-open');
+  }, []);
 
   const allSuggestions = sharedSuggestions;
   const filteredSuggestions = searchQuery

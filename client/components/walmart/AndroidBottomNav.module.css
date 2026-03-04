@@ -113,6 +113,11 @@
   }
 }
 
+/* ── Hide when search modal is open ── */
+:global(body.search-modal-open) .nav {
+  display: none;
+}
+
 /* ── Contained / in-flow mode ── */
 .navContained {
   position: relative !important;
