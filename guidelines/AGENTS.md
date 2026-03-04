@@ -2,6 +2,84 @@
 
 ---
 
+## BEFORE YOU START — Read the Skill First
+
+**CRITICAL: Before writing any code, check this table. If your task matches a skill, read that skill file end-to-end first. Skills contain copy-paste scaffolds that prevent the most common mistakes.**
+
+| Task | Read this skill first |
+|---|---|
+| Build a new WCP component | `guidelines/skills/SKILL_BuildWCPComponent.md` |
+| Build a new LD primitive component | `guidelines/skills/SKILL_BuildLDComponent.md` |
+| Build a new Walmart page | `guidelines/skills/SKILL_BuildResponsivePage.md` |
+| Build a scroll/snap carousel | `guidelines/skills/SKILL_BuildScrollCarousel.md` |
+| Build a data-driven component | `guidelines/skills/SKILL_BuildDataDrivenComponent.md` |
+| Build a Purchase History card | `guidelines/skills/SKILL_BuildPurchaseHistoryCard.md` |
+| Build a card meta layout (icon + stacked text) | `guidelines/skills/SKILL_BuildCardMetaLayout.md` |
+| Add an animation or transition | `guidelines/skills/SKILL_AddAnimation.md` |
+| Add translatable strings (i18n) | `guidelines/skills/SKILL_AddI18nStrings.md` |
+| Add a custom icon | `guidelines/skills/SKILL_AddCustomIcon.md` |
+| Add a theme override | `guidelines/skills/SKILL_AddThemeOverride.md` |
+| Extract or use Figma assets | `guidelines/skills/SKILL_ExtractFigmaAssets.md` |
+| Map Figma colors/fonts to tokens | `guidelines/skills/SKILL_MapFigmaToTokens.md` |
+| Fix hardcoded colors or token violations | `guidelines/skills/SKILL_FixTokenViolations.md` |
+| Use Tag or OLQTag | `guidelines/skills/SKILL_UseTagComponents.md` |
+| Use LinkButton or Spot Icon | `guidelines/skills/SKILL_UseLinkButton.md` |
+| Write a design prompt | `guidelines/skills/SKILL_WriteDesignPrompt.md` |
+| Harden accessibility (aria, keyboard, screen reader) | `guidelines/skills/SKILL_AccessibilityHardening.md` |
+| Manage a pattern library | `guidelines/skills/SKILL_ManagePatternLibrary.md` |
+
+All skills are in `guidelines/skills/`. The full index is at `guidelines/skills/SKILLS_INDEX.md`.
+
+---
+
+## TOP VIOLATIONS — Always Check These First
+
+These are the most frequently broken rules. Verify before considering any task complete:
+
+### 1. No hardcoded hex colors — ever
+```css
+/* ❌ WRONG */
+color: #0071DC;
+background: #F8F8F8;
+
+/* ✅ CORRECT */
+color: var(--ld-semantic-color-text-brand, #0071DC);
+background: var(--ld-semantic-color-background-subtle, #F8F8F8);
+```
+Run before finishing: `grep -rn "#[0-9a-fA-F]\{6\}" client/components/ client/pages/ --include="*.css"`
+
+### 2. Never use `--ld-primitive-color-*` in component CSS
+Primitive tokens bypass theming. Only semantic tokens (`--ld-semantic-*`) are allowed in component and page CSS.
+
+### 3. Never create raw `<button>`, `<input>`, `<select>`, `<a>` elements
+| Raw element | Use instead |
+|---|---|
+| `<button>` | `<Button>` from `@/components/ui/Button` |
+| `<input type="checkbox">` | `<Checkbox>` from `@/components/ui/Checkbox` |
+| `<input type="radio">` | `<Radio>` / `<RadioGroup>` |
+| `<input>` / `<textarea>` | `<TextField>` / `<TextArea>` |
+| `<select>` | `<Select>` from `@/components/ui/Select` |
+| `<a>` | `<Link>` from the LD Link component |
+
+### 4. Never create custom dropdowns, popovers, or modals
+Always use portal-based LD components (`Popover`, `Modal`, `Menu`, `Select`). Never use `position: absolute` for overlay UI.
+
+### 5. Never add `max-width` or `margin: 0 auto` to page content containers
+Content must fill the full available width. Use `align-items: stretch` on flex column containers.
+
+### 6. Every animation MUST have a `prefers-reduced-motion` override
+```css
+@keyframes myAnim { ... }
+@media (prefers-reduced-motion: reduce) {
+  .element { animation: none; }
+}
+```
+
+### 7. Never install external UI or icon libraries
+No `shadcn/ui`, `@radix-ui/*`, `@headlessui/*`, `react-icons`, `lucide-react`, etc. All UI from `client/components/ui/`. All icons from `client/components/icons/`.
+
+---
+
 ## MANDATORY PRE-TASK PROTOCOL — Ask Before You Build
 
 **CRITICAL RULE: Before writing a single line of code for any design or UI request, the agent MUST ask the designer/requester the relevant questions from the checklist below. Do not assume. Do not guess. Do not start implementing.**
