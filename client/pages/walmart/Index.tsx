@@ -17,10 +17,10 @@ interface CarouselItem {
 }
 
 const GROCERY_ITEMS: CarouselItem[] = [
-  { img: PRODUCT_IMAGES.airFryer, price: '9', cents: '00', idx: 0 },
-  { img: PRODUCT_IMAGES.rattanCabinet, price: '7', cents: '00', idx: 1 },
-  { img: PRODUCT_IMAGES.digitalCamera, price: '11', cents: '00', idx: 2 },
-  { img: PRODUCT_IMAGES.tablet, price: '9', cents: '49', idx: 3 },
+  { img: PRODUCT_IMAGES.starbucksDoubleshot, price: '9', cents: '00', idx: 0 },
+  { img: PRODUCT_IMAGES.bettergooodsFruitSnacks, price: '7', cents: '00', idx: 1 },
+  { img: PRODUCT_IMAGES.eggs6Count, price: '11', cents: '00', idx: 2 },
+  { img: PRODUCT_IMAGES.oatlyOatMilk, price: '9', cents: '49', idx: 3 },
 ];
 
 const ANIMAL_PRINT_ITEMS: CarouselItem[] = [

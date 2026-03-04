@@ -84,4 +84,29 @@ export const PRODUCT_IMAGES = {
     'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F546652e80853422fb199a2a23650acc4?format=webp&width=400',
   laptop4:
     'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fea3f3c92e92e4b8e8b788740957e2374?format=webp&width=400',
+  // Grocery items
+  starbucksDoubleshot:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0df5f2566ed745199caba22cd2550580?format=webp&width=400',
+  bettergooodsFruitSnacks:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0fb02ee43822448c9fefc27edb406268?format=webp&width=400',
+  eggs6Count:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F7205b144e57e44eda68c0978f46b4ae1?format=webp&width=400',
+  oatlyOatMilk:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Faca303496b8e4fbebda3b698b6f71b74?format=webp&width=400',
+  bettergoodsCarrotJuice:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fbee8e19031fa4558ac46003f633b4d3a?format=webp&width=400',
+  skinnyPopPopcorn:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fcec333ca519841fda21dba1f99e06296?format=webp&width=400',
+  kikkomanSoySauce:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F488da5f4c78145f982f09761420ab8a5?format=webp&width=400',
+  goodCultureCottageCheese:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F51d895e46664467f973c60bc34b032b1?format=webp&width=400',
+  bettergoodsFrozenMeal:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F84ec9962ed7f416ba60c9eb18f965158?format=webp&width=400',
+  freshStrawberries:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F69a12d76a7aa4d1797ea8c5081cc95f4?format=webp&width=400',
+  bettergoodsSalsa:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fcb649a50618f49ca918bf515c9662749?format=webp&width=400',
+  redApple:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F58b6ed866290432196fcfee0794c8c48?format=webp&width=400',
 } as const;
