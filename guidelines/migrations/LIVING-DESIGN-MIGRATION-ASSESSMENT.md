@@ -68,7 +68,7 @@ grep -r 'className=".*text-\[.*px' client/pages/ client/components/
 - [ ] `Body` — paragraph text (currently `text-sm`, `text-base`, inline sizes)
 - [ ] `Caption` — small helper text (currently `text-xs`, `text-[12px]`)
 
-These are used heavily across pages but no LD 3.5 component exists yet. Create them following `RULE_CreateNewComponent.md`.
+These are used heavily across pages but no LD 3.5 component exists yet. Create them following `RULE_CreateNewComponent.mdc`.
 
 ### High Priority Pages (typography migration)
 

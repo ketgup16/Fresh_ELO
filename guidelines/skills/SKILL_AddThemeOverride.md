@@ -1,7 +1,7 @@
 ---
 title: Add a Theme Override
 scope: skill
-based-on: RULE_ThemeCompliance.md, RULE_ThemeAddition.md
+based-on: RULE_ThemeCompliance.mdc, RULE_ThemeAddition.mdc
 last_updated: 2025-02-28
 ---
 

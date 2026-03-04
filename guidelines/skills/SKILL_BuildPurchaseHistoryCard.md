@@ -1,7 +1,7 @@
 ---
 title: Build a Purchase History Card
 scope: skill
-based-on: RULE_PurchaseHistoryCardPatterns.md, RULE_WCPComponentCreation.md, RULE_TagComponents.md, RULE_DesignSystemEnforcement.md
+based-on: RULE_PurchaseHistoryCardPatterns.mdc, RULE_WCPComponentCreation.mdc, RULE_TagComponents.mdc, RULE_DesignSystemEnforcement.mdc
 last_updated: 2026-03-02
 ---
 

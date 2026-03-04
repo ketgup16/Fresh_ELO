@@ -178,7 +178,7 @@ Tile without any badge overlay.
 
 ## Related
 
-- **Rule**: `guidelines/rules/RULE_ItemTile.md`
+- **Rule**: `guidelines/rules/RULE_ItemTile.mdc`
 - **Component Library**: `/component-library/item-tile`
 - **WCPFlag**: `guidelines/components/Flag.md` (if exists)
 - **WCPHeartView**: `client/components/walmart/WCPHeartView.tsx`

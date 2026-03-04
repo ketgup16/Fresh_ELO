@@ -30,7 +30,7 @@ Legacy components used Tailwind + CVA. LD uses CSS Modules + `--ld-*` tokens. Th
 | `sonner.tsx` | Keep for now | Deferred | — |
 | `tooltip.tsx` | Keep for now | Deferred | — |
 
-Components marked **Deferred** have no LD 3.5 equivalent yet. Keep the current version and track with `RULE_StandaloneComponents.md`.
+Components marked **Deferred** have no LD 3.5 equivalent yet. Keep the current version and track with `RULE_StandaloneComponents.mdc`.
 
 ## Variant Name Mapping (Button)
 

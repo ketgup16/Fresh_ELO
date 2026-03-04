@@ -1,7 +1,7 @@
 ---
 title: Build a Card Meta Layout (Icon + Stacked Text)
 scope: skill
-based-on: RULE_CardMetaLayout.md
+based-on: RULE_CardMetaLayout.mdc
 last_updated: 2025-02-28
 ---
 

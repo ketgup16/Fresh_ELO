@@ -1,7 +1,7 @@
 ---
 title: Map Figma Designs to Semantic Tokens
 scope: skill
-based-on: RULE_DesignSystemEnforcement.md, RULE_ThemeCompliance.md
+based-on: RULE_DesignSystemEnforcement.mdc, RULE_ThemeCompliance.mdc
 last_updated: 2025-02-28
 ---
 

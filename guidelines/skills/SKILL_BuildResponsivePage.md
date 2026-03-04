@@ -1,7 +1,7 @@
 ---
 title: Build a Responsive Walmart Page
 scope: skill
-based-on: RULE_ResponsiveLayout.md, RULE_WalmartPageComposition.md
+based-on: RULE_ResponsiveLayout.mdc, RULE_WalmartPageComposition.mdc
 last_updated: 2025-02-28
 ---
 

@@ -232,7 +232,7 @@ export default function ComponentNamesPage() {
 
 ## References
 
-- **Full Process**: See `guidelines/rules/RULE_CreateNewComponent.md`
+- **Full Process**: See `guidelines/rules/RULE_CreateNewComponent.mdc`
 - **Token Documentation**: See `design-system-docs/*-tokens.mdx`
 - **Example Components**: View at `/component-library`
 - **Icon Library**: View at `/component-library/icons`

@@ -1,7 +1,7 @@
 ---
 title: Build a Data-Driven Component
 scope: skill
-based-on: RULE_DataDrivenComponents.md
+based-on: RULE_DataDrivenComponents.mdc
 last_updated: 2025-02-28
 ---
 

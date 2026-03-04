@@ -1,7 +1,7 @@
 ---
 title: Extract Assets from a Figma Design
 scope: skill
-based-on: RULE_FigmaAssetExtraction.md, RULE_SVGAssets.md
+based-on: RULE_FigmaAssetExtraction.mdc, RULE_SVGAssets.mdc
 last_updated: 2025-02-28
 ---
 

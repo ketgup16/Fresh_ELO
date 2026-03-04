@@ -10,7 +10,7 @@ last_updated: 2025-02-26
 
 This implementation summary has been distilled into a prescriptive rule.
 
-**Active rule**: `guidelines/rules/RULE_TagComponents.md`
+**Active rule**: `guidelines/rules/RULE_TagComponents.mdc`
 
 ## What Was Done
 
@@ -19,4 +19,4 @@ This implementation summary has been distilled into a prescriptive rule.
 - Replaced manual `getOLQStyle()` functions in `ItemHealth.tsx` and `OmniROAS.tsx` with `<OLQTag>`
 - Exported both components from `client/components/ui/index.ts`
 
-For usage rules, import paths, and migration patterns see `RULE_TagComponents.md`.
+For usage rules, import paths, and migration patterns see `RULE_TagComponents.mdc`.

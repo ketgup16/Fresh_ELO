@@ -87,7 +87,7 @@ export default function CerealSearchResults() {
   const navigate = useNavigate();
 
   return (
-    <ResponsiveLayout maxWidth="full">
+    <ResponsiveLayout maxWidth="full" showMobileTopNav={false}>
       <div className="bg-white font-sans">
         <SearchResultsHeader query="cereal" onBack={() => navigate('/walmart')} />
         <SearchFilterBar chips={FILTER_CHIPS} />

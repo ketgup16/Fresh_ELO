@@ -1,7 +1,7 @@
 ---
 title: Build a WCP Component
 scope: skill
-based-on: RULE_WCPComponentCreation.md
+based-on: RULE_WCPComponentCreation.mdc
 last_updated: 2025-02-28
 ---
 

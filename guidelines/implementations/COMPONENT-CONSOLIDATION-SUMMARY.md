@@ -8,7 +8,7 @@ last_updated: 2025-02-26
 
 ## Status: Archived
 
-The rules extracted from this work live in `guidelines/rules/RULE_DesignSystemEnforcement.md` and the component spec lives in `guidelines/components/Button.md`.
+The rules extracted from this work live in `guidelines/rules/RULE_DesignSystemEnforcement.mdc` and the component spec lives in `guidelines/components/Button.md`.
 
 ## What Was Done
 

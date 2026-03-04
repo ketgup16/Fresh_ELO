@@ -1,7 +1,7 @@
 ---
 title: Write a Design Prompt
 scope: skill
-based-on: RULE_PromptDrivenDesign.md
+based-on: RULE_PromptDrivenDesign.mdc
 last_updated: 2025-02-28
 ---
 

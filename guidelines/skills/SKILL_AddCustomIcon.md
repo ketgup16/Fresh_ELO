@@ -1,7 +1,7 @@
 ---
 title: Add a Custom Icon
 scope: skill
-based-on: RULE_IconUsage.md, RULE_DesignSystemEnforcement.md
+based-on: RULE_IconUsage.mdc, RULE_DesignSystemEnforcement.mdc
 last_updated: 2025-02-28
 ---
 

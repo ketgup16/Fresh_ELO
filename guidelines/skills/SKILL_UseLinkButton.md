@@ -1,7 +1,7 @@
 ---
 title: Use LinkButton and the Spot Icon Pattern
 scope: skill
-based-on: RULE_LinkButtonAndSpotIcon.md
+based-on: RULE_LinkButtonAndSpotIcon.mdc
 last_updated: 2025-02-28
 ---
 

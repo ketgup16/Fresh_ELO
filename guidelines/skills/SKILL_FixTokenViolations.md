@@ -1,7 +1,7 @@
 ---
 title: Find and Fix Token Violations
 scope: skill
-based-on: RULE_ThemeCompliance.md, RULE_DesignSystemEnforcement.md
+based-on: RULE_ThemeCompliance.mdc, RULE_DesignSystemEnforcement.mdc
 last_updated: 2025-02-28
 ---
 

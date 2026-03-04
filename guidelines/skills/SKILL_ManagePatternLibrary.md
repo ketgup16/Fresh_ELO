@@ -1,7 +1,7 @@
 ---
 title: Manage a Component Pattern Library
 scope: skill
-based-on: RULE_PurchaseHistoryCardPatterns.md, RULE_PromptDrivenDesign.md
+based-on: RULE_PurchaseHistoryCardPatterns.mdc, RULE_PromptDrivenDesign.mdc
 last_updated: 2026-03-02
 ---
 

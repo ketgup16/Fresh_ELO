@@ -1,7 +1,7 @@
 ---
 title: Add a CSS Animation
 scope: skill
-based-on: RULE_AnimationAndMotion.md
+based-on: RULE_AnimationAndMotion.mdc
 last_updated: 2025-02-28
 ---
 

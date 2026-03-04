@@ -62,7 +62,7 @@ Select the questions that apply and ask them in a single message before proceedi
 
 ### Step 3 — Get answers, then build
 
-Only after receiving answers to the relevant questions should implementation begin. If the requester says "just go ahead," use the defaults from `RULE_PromptDrivenDesign.md` and document the assumptions made.
+Only after receiving answers to the relevant questions should implementation begin. If the requester says "just go ahead," use the defaults from `RULE_PromptDrivenDesign.mdc` and document the assumptions made.
 
 ---
 
@@ -370,7 +370,7 @@ Collapsible section headers and action rows (e.g., Sign out) in account side nav
 
 ### Order Card Layout
 
-Order card meta sections use the **icon-left / text-column-right** pattern. See `RULE_CardMetaLayout.md` for full details.
+Order card meta sections use the **icon-left / text-column-right** pattern. See `RULE_CardMetaLayout.mdc` for full details.
 
 ```tsx
 // ✅ CORRECT — location nested inside chip text column
@@ -392,7 +392,7 @@ Order card meta sections use the **icon-left / text-column-right** pattern. See 
 - Always host SVG pictograms locally in `/public/illustrations/mono-small/`
 - Render fulfillment icons at **64×64** — never smaller
 - Never use CDN URLs with `?format=webp` for SVG files (causes blur)
-- See `RULE_SVGAssets.md` for full management rules
+- See `RULE_SVGAssets.mdc` for full management rules
 
 ### Review Prompt Carousel (ReviewPromptBanner)
 
@@ -619,9 +619,9 @@ Answer these before handing off to engineering or Fusion. Unanswered questions =
 
 ## New Rules — Added 2025-02-28
 
-Seven new rules have been added to `guidelines/rules/`. These are enforced by the pre-task protocol via `RULES_INDEX.md`.
+Seven new rules have been added to `guidelines/rules/`. These are enforced by the pre-task protocol via `RULES_INDEX.mdc`.
 
-### Rule 15 — WCP Component Creation (`RULE_WCPComponentCreation.md`)
+### Rule 15 — WCP Component Creation (`RULE_WCPComponentCreation.mdc`)
 - **LD components** live in `client/components/ui/` — design-system primitives
 - **WCP components** live in `client/components/walmart/` — Walmart product-level, built on top of LD primitives
 - WCP uses visual-theme variants: `default | brand | inverse` (never `primary | secondary`)
@@ -630,7 +630,7 @@ Seven new rules have been added to `guidelines/rules/`. These are enforced by th
 - Named export only; requires Component Library page + route + Overview.tsx entry + i18n keys
 - Does NOT require ComponentPropertyTester sandbox entry or 10-step LD process
 
-### Rule 16 — Carousel and Scroll Patterns (`RULE_CarouselAndScrollPatterns.md`)
+### Rule 16 — Carousel and Scroll Patterns (`RULE_CarouselAndScrollPatterns.mdc`)
 - **Pattern 1** (scroll snap): `overflow-x: auto`, `scroll-snap-type: x mandatory`, `scrollbar-width: none` — no JS needed
 - **Pattern 2** (auto-advance): `setInterval` with `useRef`, pause on user interaction, `IconButton` with `aria-label` for prev/next
 - `headlineParts?: string[]` for multi-line headlines — render each in `<span style={{ display: 'block' }}>`
@@ -638,33 +638,33 @@ Seven new rules have been added to `guidelines/rules/`. These are enforced by th
 - `UNSAFE_className` acceptable for circular `IconButton` nav controls
 - Always add `prefers-reduced-motion: reduce` override
 
-### Rule 17 — Inline Style vs CSS Module (`RULE_InlineStyleVsCSSModule.md`)
+### Rule 17 — Inline Style vs CSS Module (`RULE_InlineStyleVsCSSModule.mdc`)
 - CSS modules for ALL static values (variants, states, tokens, spacing, typography)
 - Inline styles ONLY for truly dynamic per-instance values: `objectPosition`, drag width, tooltip coordinates, progress percentage
 - When using tokens inline, always include fallback: `var(--ld-semantic-color-text-positive, #1A7A34)`
 - Never hardcode hex colors inline; never put spacing/font/border-radius inline
 
-### Rule 18 — Animation and Motion (`RULE_AnimationAndMotion.md`)
+### Rule 18 — Animation and Motion (`RULE_AnimationAndMotion.mdc`)
 - EVERY animation MUST have `@media (prefers-reduced-motion: reduce)` override — no exceptions
 - `@keyframes` for multi-step sequences; `transition` for 2-state hover/focus
 - Canonical "new item" glow: `0 0 0 2px #1A7A34, 0 0 24px 6px rgba(26, 122, 52, 0.30)`, 2.5s ease-in-out
 - Standard durations: 150ms (micro), 250ms (standard), 400ms (complex)
 - Never create a custom spinner — use the existing `Spinner` component
 
-### Rule 19 — Data-Driven Components (`RULE_DataDrivenComponents.md`)
+### Rule 19 — Data-Driven Components (`RULE_DataDrivenComponents.mdc`)
 - Static demo data in the SAME `.tsx` file as the component, above the component function
 - Array names: `UPPER_SNAKE_CASE` (e.g., `PRODUCTS`, `SLIDES`, `ORDERS`)
 - Always define a TypeScript interface for the data shape
 - `headlineParts?: string[]` for multi-line text — never `\n` in strings
 - Use Walmart CDN or local illustration URLs — never placeholder.com or picsum
 
-### Rule 20 — Component Variant Naming (`RULE_ComponentVariantNaming.md`)
+### Rule 20 — Component Variant Naming (`RULE_ComponentVariantNaming.mdc`)
 - Action-intent (LD): `primary | secondary | tertiary | destructive` — Button, IconButton only
 - Visual-theme (WCP): `default | brand | inverse` — banners, callouts, promo components
 - Status/sentiment: `success | warning | error | info | neutral` — Tag, Alert, Badge
 - Always string union type (never enum); always optional with default; always `styles[variant]` for class mapping
 
-### Rule 21 — Walmart Page Composition (`RULE_WalmartPageComposition.md`)
+### Rule 21 — Walmart Page Composition (`RULE_WalmartPageComposition.mdc`)
 - Page files MUST NOT render shell components (`DesktopHeader`, `MobileTopNav`, `SubNav`, `BottomNav`) — already provided by layout
 - Standard stacking: Hero → Promotional rows → Section headers → Content grids → Inline ad banners
 - Full-bleed sections: `width: 100%; overflow: hidden` — never `max-width`
@@ -802,7 +802,7 @@ When a Figma layer is named `[WCP] Button`, `[WCP] Loading Button`, `[LD 3.5] Pl
 
 **Every new component and page MUST pass a theme compliance check before it is considered done.**
 
-See `guidelines/rules/RULE_ThemeCompliance.md` for the full rule. Key checks:
+See `guidelines/rules/RULE_ThemeCompliance.mdc` for the full rule. Key checks:
 
 1. Zero hardcoded hex colors in component/page CSS
 2. Zero `--ld-primitive-color-*` references in component CSS

@@ -1,7 +1,7 @@
 ---
 title: Add Translatable Strings (i18n)
 scope: skill
-based-on: RULE_Internationalization.md
+based-on: RULE_Internationalization.mdc
 last_updated: 2025-02-28
 ---
 

@@ -10,8 +10,8 @@ last_updated: 2025-02-26
 
 The theme switching system is fully implemented. For active rules and architecture see:
 
-- `guidelines/rules/RULE_ThemeSwitcher.md` — Theme switching architecture, CSS loading order, troubleshooting
-- `guidelines/rules/RULE_ThemeAddition.md` — Mandatory 8-step checklist for adding new themes
+- `guidelines/rules/RULE_ThemeSwitcher.mdc` — Theme switching architecture, CSS loading order, troubleshooting
+- `guidelines/rules/RULE_ThemeAddition.mdc` — Mandatory 8-step checklist for adding new themes
 
 ## What Was Built
 

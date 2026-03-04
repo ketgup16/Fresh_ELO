@@ -1,7 +1,7 @@
 ---
 title: Build a Living Design (LD) Primitive Component
 scope: skill
-based-on: RULE_CreateNewComponent.md, RULE_ComponentPropertyTester.md
+based-on: RULE_CreateNewComponent.mdc, RULE_ComponentPropertyTester.mdc
 last_updated: 2025-02-28
 ---
 

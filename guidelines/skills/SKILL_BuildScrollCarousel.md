@@ -1,7 +1,7 @@
 ---
 title: Build a Horizontal Scroll Carousel
 scope: skill
-based-on: RULE_CarouselAndScrollPatterns.md
+based-on: RULE_CarouselAndScrollPatterns.mdc
 last_updated: 2025-02-28
 ---
 

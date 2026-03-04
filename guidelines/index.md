@@ -93,31 +93,31 @@ Core design system documentation and token references.
 
 Design system enforcement rules and best practices.
 
-- [Rules Index](rules/RULES_INDEX.md) - Overview of all design system rules
-- [Design System Enforcement](rules/RULE_DesignSystemEnforcement.md) - Tokens, icons, and component enforcement (consolidated)
-- [Create New Component](rules/RULE_CreateNewComponent.md) - Complete process for new components
-- [Component Sandbox](rules/RULE_ComponentPropertyTester.md) - All components must be testable
-- [Standalone Components](rules/RULE_StandaloneComponents.md) - No external dependencies
-- [No Emojis, Use Icons](rules/RULE_NoEmojisUseIcons.md) - No emojis or random images
-- [Icon Usage](rules/RULE_IconUsage.md) - Icon library usage guidelines
-- [LinkButton and Spot Icon](rules/RULE_LinkButtonAndSpotIcon.md) - LinkButton and Spot Icon patterns
-- [Figma Asset Extraction](rules/RULE_FigmaAssetExtraction.md) - Exportable asset rules
-- [Dev Server Health Check](rules/RULE_DevServerHealthCheck.md) - Verify dev server after changes
-- [Guidelines Page Sync](rules/RULE_GuidelinesPageSync.md) - Keep doc index in sync
-- [Internationalization](rules/RULE_Internationalization.md) - All strings must be translatable
-- [Responsive Layout](rules/RULE_ResponsiveLayout.md) - Page structure and responsive rules
-- [Theme Switcher](rules/RULE_ThemeSwitcher.md) - Theme management rules
-- [Theme Addition](rules/RULE_ThemeAddition.md) - Process for adding new themes
-- [Markdown Organization](rules/RULE_MarkdownOrganization.md) - Markdown file organization
-- [Legacy Migration Plan](rules/PLAN_RadixMigration.md) - Plan to remove legacy UI dependencies
-- [WCP Component Creation](rules/RULE_WCPComponentCreation.md) - Workflow for creating Walmart Component Platform (WCP) product components
-- [Carousel and Scroll Patterns](rules/RULE_CarouselAndScrollPatterns.md) - Scroll snap vs auto-advance carousel implementation
-- [Inline Style vs CSS Module](rules/RULE_InlineStyleVsCSSModule.md) - When to use inline styles vs CSS modules
-- [Animation and Motion](rules/RULE_AnimationAndMotion.md) - Animation types, durations, and prefers-reduced-motion requirements
-- [Data-Driven Components](rules/RULE_DataDrivenComponents.md) - Local static data array conventions and TypeScript patterns
-- [Component Variant Naming](rules/RULE_ComponentVariantNaming.md) - Action-intent vs visual-theme vs status variant conventions
-- [Walmart Page Composition](rules/RULE_WalmartPageComposition.md) - Page shell, stacking order, and full-bleed layout rules
-- [Theme Compliance](rules/RULE_ThemeCompliance.md) - Hard rule: every new component/page must pass theme compliance check before completion
+- [Rules Index](rules/RULES_INDEX.mdc) - Overview of all design system rules
+- [Design System Enforcement](rules/RULE_DesignSystemEnforcement.mdc) - Tokens, icons, and component enforcement (consolidated)
+- [Create New Component](rules/RULE_CreateNewComponent.mdc) - Complete process for new components
+- [Component Sandbox](rules/RULE_ComponentPropertyTester.mdc) - All components must be testable
+- [Standalone Components](rules/RULE_StandaloneComponents.mdc) - No external dependencies
+- [No Emojis, Use Icons](rules/RULE_NoEmojisUseIcons.mdc) - No emojis or random images
+- [Icon Usage](rules/RULE_IconUsage.mdc) - Icon library usage guidelines
+- [LinkButton and Spot Icon](rules/RULE_LinkButtonAndSpotIcon.mdc) - LinkButton and Spot Icon patterns
+- [Figma Asset Extraction](rules/RULE_FigmaAssetExtraction.mdc) - Exportable asset rules
+- [Dev Server Health Check](rules/RULE_DevServerHealthCheck.mdc) - Verify dev server after changes
+- [Guidelines Page Sync](rules/RULE_GuidelinesPageSync.mdc) - Keep doc index in sync
+- [Internationalization](rules/RULE_Internationalization.mdc) - All strings must be translatable
+- [Responsive Layout](rules/RULE_ResponsiveLayout.mdc) - Page structure and responsive rules
+- [Theme Switcher](rules/RULE_ThemeSwitcher.mdc) - Theme management rules
+- [Theme Addition](rules/RULE_ThemeAddition.mdc) - Process for adding new themes
+- [Markdown Organization](rules/RULE_MarkdownOrganization.mdc) - Markdown file organization
+- [Legacy Migration Plan](rules/PLAN_RadixMigration.mdc) - Plan to remove legacy UI dependencies
+- [WCP Component Creation](rules/RULE_WCPComponentCreation.mdc) - Workflow for creating Walmart Component Platform (WCP) product components
+- [Carousel and Scroll Patterns](rules/RULE_CarouselAndScrollPatterns.mdc) - Scroll snap vs auto-advance carousel implementation
+- [Inline Style vs CSS Module](rules/RULE_InlineStyleVsCSSModule.mdc) - When to use inline styles vs CSS modules
+- [Animation and Motion](rules/RULE_AnimationAndMotion.mdc) - Animation types, durations, and prefers-reduced-motion requirements
+- [Data-Driven Components](rules/RULE_DataDrivenComponents.mdc) - Local static data array conventions and TypeScript patterns
+- [Component Variant Naming](rules/RULE_ComponentVariantNaming.mdc) - Action-intent vs visual-theme vs status variant conventions
+- [Walmart Page Composition](rules/RULE_WalmartPageComposition.mdc) - Page shell, stacking order, and full-bleed layout rules
+- [Theme Compliance](rules/RULE_ThemeCompliance.mdc) - Hard rule: every new component/page must pass theme compliance check before completion
 
 ### skills/
 

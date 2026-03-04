@@ -51,7 +51,7 @@ This folder is the **Living Design Agent Kit**: agent-readable rules that help t
 | Component API Reference | [ComponentReference.md](./ComponentReference.md) |
 | Component Inventory | [Component-Inventory.md](./Component-Inventory.md) |
 | Design Tokens | [DesignTokens.md](./DesignTokens.md) |
-| Enforcement Rules | [../rules/RULE_DesignSystemEnforcement.md](../rules/RULE_DesignSystemEnforcement.md) |
+| Enforcement Rules | [../rules/RULE_DesignSystemEnforcement.mdc](../rules/RULE_DesignSystemEnforcement.mdc) |
 | Component Guidelines | [../components/](../components/) |
 | Terminology | [Terminology.md](./Terminology.md) |
 | LLM Integration | [LLMIntegration.md](./LLMIntegration.md) |

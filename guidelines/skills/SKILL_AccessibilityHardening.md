@@ -1,7 +1,7 @@
 ---
 title: Accessibility Hardening for WCP Components
 scope: skill
-based-on: RULE_WCPComponentCreation.md, RULE_DesignSystemEnforcement.md
+based-on: RULE_WCPComponentCreation.mdc, RULE_DesignSystemEnforcement.mdc
 last_updated: 2026-03-02
 ---
 

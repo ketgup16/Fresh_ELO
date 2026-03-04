@@ -1,7 +1,7 @@
 ---
 title: Use Tag and OLQTag Components
 scope: skill
-based-on: RULE_TagComponents.md
+based-on: RULE_TagComponents.mdc
 last_updated: 2025-02-28
 ---
 
