@@ -84,6 +84,17 @@ const QUESTIONS: QuizQuestion[] = [
       { value: 'advanced', label: 'Advanced', desc: 'Deep familiarity with tokens and components' },
     ],
   },
+  {
+    id: 'designFocus',
+    question: 'What is your design focus?',
+    why: 'This tailors recommendations toward page-level composition, new component creation, or design system governance — each requires different tools and reading paths.',
+    options: [
+      { value: 'pages', label: 'Building Pages', desc: 'Assembling pages from existing components' },
+      { value: 'components', label: 'Creating Components', desc: 'Designing and building new reusable components' },
+      { value: 'theming', label: 'Theming & Tokens', desc: 'Customizing brand themes and token values' },
+      { value: 'review', label: 'Design Review', desc: 'Reviewing implementations against design specs' },
+    ],
+  },
 ];
 
 /* ── Prompt generation ── */
@@ -125,10 +136,19 @@ function generatePrompt(answers: Record<string, string>): string {
   const env = envLabel[answers.environment] ?? '';
   const exp = expLabel[answers.experience] ?? '';
 
+  const focusLabel: Record<string, string> = {
+    pages: 'My focus is assembling pages from existing LD 3.5 components — prioritize layout patterns, page composition, and responsive breakpoints.',
+    components: 'My focus is designing and creating new reusable components — follow WCP component creation rules, use CSS modules, semantic tokens, and include documentation.',
+    theming: 'My focus is theming and token customization — guide me through creating or modifying brand themes and mapping design values to semantic tokens.',
+    review: 'My focus is design review — compare the current implementation against LD 3.5 standards and flag deviations in tokens, components, and accessibility.',
+  };
+  const focus = focusLabel[answers.designFocus] ?? '';
+
   return [
     `I am building ${project}, ${start}.`,
     `${env}`,
     `${exp}`,
+    focus ? `${focus}` : '',
     ``,
     `Goal: ${goal}`,
     ``,
@@ -199,6 +219,25 @@ function generateReadingPath(answers: Record<string, string>): ReadingItem[] {
   // Environment-based
   if (answers.environment === 'figma' || answers.environment === 'both') {
     path.push({ label: 'Guidelines', path: '/component-library/guidelines' });
+  }
+
+  // Design focus-based
+  if (answers.designFocus === 'components') {
+    path.push({ label: 'Component Designer', path: '/component-library/getting-started' });
+    path.push({ label: 'Component Sandbox', path: '/component-library/component-tester' });
+    path.push({ label: 'WCP Queue (reference)', path: '/component-library/wcp-queue' });
+  }
+  if (answers.designFocus === 'theming') {
+    path.push({ label: 'Themes & Tokens', path: '/component-library/themes' });
+    path.push({ label: 'Foundations', path: '/component-library/foundations' });
+  }
+  if (answers.designFocus === 'review') {
+    path.push({ label: 'Guidelines', path: '/component-library/guidelines' });
+    path.push({ label: 'Themes & Tokens', path: '/component-library/themes' });
+  }
+  if (answers.designFocus === 'pages') {
+    path.push({ label: 'Component Sandbox', path: '/component-library/component-tester' });
+    path.push({ label: 'Cards', path: '/component-library/cards' });
   }
 
   // Always end with icons if not already there

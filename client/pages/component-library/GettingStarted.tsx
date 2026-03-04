@@ -4,6 +4,7 @@ import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/Tab';
 import { GettingStartedDesigner } from './GettingStartedDesigner';
 import { GettingStartedAgent } from './GettingStartedAgent';
+import { GettingStartedComponentDesigner } from './GettingStartedComponentDesigner';
 
 function SectionCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -135,6 +136,7 @@ export default function GettingStartedPage() {
           <Tab value="designer">{t('componentLibrary.tabDesigner')}</Tab>
           <Tab value="developer">{t('componentLibrary.tabDeveloper')}</Tab>
           <Tab value="agent">{t('componentLibrary.tabAgent')}</Tab>
+          <Tab value="component-designer">{t('componentLibrary.tabComponentDesigner')}</Tab>
         </TabList>
 
         {/* Designer Tab */}
@@ -478,6 +480,11 @@ export default function GettingStartedPage() {
         {/* Agent Tab */}
         <TabPanel value="agent">
           <GettingStartedAgent />
+        </TabPanel>
+
+        {/* Component Designer Tab */}
+        <TabPanel value="component-designer">
+          <GettingStartedComponentDesigner />
         </TabPanel>
       </Tabs>
     </ComponentPageLayout>

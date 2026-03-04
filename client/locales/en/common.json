@@ -105,6 +105,7 @@
     "tabDesigner": "Designer",
     "tabDeveloper": "Developer",
     "tabAgent": "AI Agent",
+    "tabComponentDesigner": "Component Designer",
     "section": "Components",
     "navAlerts": "Alerts",
     "navBadges": "Badges",

@@ -70,6 +70,18 @@ const PROMPT_CATEGORIES: { category: string; value: string; prompts: Prompt[] }[
     ],
   },
   {
+    category: 'Component Design',
+    value: 'component-design',
+    prompts: [
+      { label: 'New WCP component', full: 'Create a new WCP component in client/components/walmart/ with visual-theme variants (default, brand, inverse). Use CSS modules with semantic tokens only. Include TypeScript props interface with string union types for variants. Add a documentation page to the Component Library and register it in App.tsx routing.' },
+      { label: 'Add variant to existing', full: 'Add a new variant to an existing component. Update the TypeScript type union, add the CSS class in the module file using semantic tokens, update the WCP_VARIANTS metadata array if applicable, and add the new variant to both the Component Library documentation page and the Component Sandbox.' },
+      { label: 'Component with controlled + uncontrolled', full: 'Create a component that supports both controlled and uncontrolled usage. Accept an optional value prop for controlled mode and a defaultValue prop for uncontrolled. Use internal state that defers to the controlled prop when provided. Follow the WCPHeartView pattern in client/components/walmart/WCPHeartView.tsx.' },
+      { label: 'Responsive component', full: 'Make a component responsive across all standard breakpoints (1024px, 768px, 480px). Use CSS modules with media queries. Desktop should show the full layout, tablet should adapt spacing, and mobile should stack elements vertically. Use semantic spacing tokens that reduce at each breakpoint.' },
+      { label: 'Component with animation', full: 'Add animation to a component using @keyframes in CSS modules. Use 250ms duration with ease-out timing for standard transitions. Always include a @media (prefers-reduced-motion: reduce) override that disables the animation. Never use inline animation styles.' },
+      { label: 'Document in Component Library', full: 'Create a Component Library documentation page for an existing component. Show live rendered examples of each variant, a props reference table with types and defaults, the import path, and usage guidelines. Use ComponentPageLayout as the page wrapper.' },
+    ],
+  },
+  {
     category: 'Accessibility & Polish',
     value: 'a11y',
     prompts: [
