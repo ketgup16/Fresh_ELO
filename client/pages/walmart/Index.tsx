@@ -6,6 +6,7 @@ import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { OrderStatusCard } from "@/components/walmart/OrderStatusCard";
 import { ActiveCurbsideCard } from "@/components/walmart/ActiveCurbsideCard";
 import { CarouselProductCard } from "@/components/walmart/CarouselProductCard";
+import { PRODUCT_IMAGES } from "@/components/walmart/productImages";
 
 interface CarouselItem {
   img: string;
@@ -15,17 +16,17 @@ interface CarouselItem {
 }
 
 const GROCERY_ITEMS: CarouselItem[] = [
-  { img: '/images/products/ninja-air-fryer.jpeg', price: '9', cents: '00', idx: 0 },
-  { img: '/images/products/dinnerware-set.jpeg', price: '7', cents: '00', idx: 1 },
-  { img: '/images/products/table-lamp.jpeg', price: '11', cents: '00', idx: 2 },
-  { img: '/images/products/roomba.jpeg', price: '9', cents: '49', idx: 3 },
+  { img: PRODUCT_IMAGES.airFryer, price: '9', cents: '00', idx: 0 },
+  { img: PRODUCT_IMAGES.rattanCabinet, price: '7', cents: '00', idx: 1 },
+  { img: PRODUCT_IMAGES.digitalCamera, price: '11', cents: '00', idx: 2 },
+  { img: PRODUCT_IMAGES.tablet, price: '9', cents: '49', idx: 3 },
 ];
 
 const ANIMAL_PRINT_ITEMS: CarouselItem[] = [
-  { img: '/images/products/gaekeao-hobo.jpeg', price: '199', cents: '00', idx: 4 },
-  { img: '/images/products/athletic-sneakers.jpeg', price: '79', cents: '00', idx: 5 },
-  { img: '/images/products/cate-chloe.jpeg', price: '178', cents: '00', idx: 6 },
-  { img: '/images/products/marc-jacobs-daisy.jpeg', price: '99', cents: '00', idx: 7 },
+  { img: PRODUCT_IMAGES.leatherHandbag, price: '199', cents: '00', idx: 4 },
+  { img: PRODUCT_IMAGES.blackCardigan, price: '79', cents: '00', idx: 5 },
+  { img: PRODUCT_IMAGES.headphones, price: '178', cents: '00', idx: 6 },
+  { img: PRODUCT_IMAGES.airFryer, price: '99', cents: '00', idx: 7 },
 ];
 
 export default function Index() {

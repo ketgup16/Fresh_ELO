@@ -1,5 +1,6 @@
 import { WCPFlag, WCPFlagVariant } from '@/components/walmart/WCPFlag';
 import { WCPHeartView } from '@/components/walmart/WCPHeartView';
+import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
 import styles from './JumpRightBackIn.module.css';
 
 type BadgeType = 'bestseller' | 'deal' | 'popular' | 'rollback';
@@ -32,7 +33,7 @@ const CATEGORIES: Category[] = [
     title: 'Trending',
     products: [
       {
-        image: '/images/products/airpods-pro.jpeg',
+        image: PRODUCT_IMAGES.headphones,
         name: 'Apple AirPods Pro (2nd gen...',
         price: '169',
         cents: '98',
@@ -42,21 +43,21 @@ const CATEGORIES: Category[] = [
         badge: { label: 'Best seller', type: 'bestseller' },
       },
       {
-        image: '/images/products/ninja-air-fryer.jpeg',
+        image: PRODUCT_IMAGES.airFryer,
         name: 'Ninja 4 Qt Air Fryer,...',
         price: '98',
         cents: '00',
         badge: { label: 'Best seller', type: 'bestseller' },
       },
       {
-        image: '/images/products/roku-tv.jpeg',
+        image: PRODUCT_IMAGES.tablet,
         name: 'Roku 50" LED TV',
         price: '98',
         cents: '00',
         priceSuffix: '/month',
       },
       {
-        image: '/images/products/huffy-bike.jpeg',
+        image: PRODUCT_IMAGES.rattanCabinet,
         name: 'Huffy 26" Rock Cree...',
         price: '98',
         cents: '00',
@@ -68,7 +69,7 @@ const CATEGORIES: Category[] = [
     title: "Fashion you'll love",
     products: [
       {
-        image: '/images/products/athletic-sneakers.jpeg',
+        image: PRODUCT_IMAGES.blackCardigan,
         name: 'Athletic Works Wome...',
         price: '169',
         cents: '98',
@@ -78,21 +79,21 @@ const CATEGORIES: Category[] = [
         badge: { label: 'Best seller', type: 'bestseller' },
       },
       {
-        image: '/images/products/cate-chloe.jpeg',
+        image: PRODUCT_IMAGES.leatherHandbag,
         name: 'Cate & Chloe Bianca...',
         price: '98',
         cents: '00',
         badge: { label: 'Best seller', type: 'bestseller' },
       },
       {
-        image: '/images/products/gaekeao-hobo.jpeg',
+        image: PRODUCT_IMAGES.digitalCamera,
         name: 'GAEKEAO Hobo Ba...',
         price: '98',
         cents: '00',
         badge: { label: 'Popular pick', type: 'popular' },
       },
       {
-        image: '/images/products/marc-jacobs-daisy.jpeg',
+        image: PRODUCT_IMAGES.airFryer,
         name: 'Marc Jacobs Daisy E...',
         price: '98',
         cents: '00',
@@ -104,7 +105,7 @@ const CATEGORIES: Category[] = [
     title: 'Electronics',
     products: [
       {
-        image: '/images/products/meta-quest.jpeg',
+        image: PRODUCT_IMAGES.headphones,
         name: 'Meta Quest 3S 128GB...',
         price: '169',
         cents: '98',
@@ -113,20 +114,20 @@ const CATEGORIES: Category[] = [
         badge: { label: 'Deal', type: 'deal' },
       },
       {
-        image: '/images/products/airpods-max.jpeg',
+        image: PRODUCT_IMAGES.headphones,
         name: 'Apple Pro headpho...',
         price: '98',
         cents: '00',
         badge: { label: 'Best seller', type: 'bestseller' },
       },
       {
-        image: '/images/products/ipad-pro.jpeg',
+        image: PRODUCT_IMAGES.tablet,
         name: 'Apple iPad Pro Seri...',
         price: '98',
         cents: '00',
       },
       {
-        image: '/images/products/vivitar-camera.jpeg',
+        image: PRODUCT_IMAGES.digitalCamera,
         name: 'Vivitar Popnap Digi...',
         price: '98',
         cents: '00',
@@ -137,7 +138,7 @@ const CATEGORIES: Category[] = [
     title: 'Up to 40% off home',
     products: [
       {
-        image: '/images/products/dinnerware-set.jpeg',
+        image: PRODUCT_IMAGES.rattanCabinet,
         name: 'Beautiful 12 Piece Dinner...',
         price: '169',
         cents: '98',
@@ -146,20 +147,20 @@ const CATEGORIES: Category[] = [
         badge: { label: 'Rollback', type: 'rollback' },
       },
       {
-        image: '/images/products/wood-frame.jpeg',
+        image: PRODUCT_IMAGES.rattanCabinet,
         name: 'Active Noise...',
         price: '98',
         cents: '00',
       },
       {
-        image: '/images/products/table-lamp.jpeg',
+        image: PRODUCT_IMAGES.airFryer,
         name: 'Marc Jacobs Daisy E...',
         price: '98',
         cents: '00',
         badge: { label: 'Best seller', type: 'bestseller' },
       },
       {
-        image: '/images/products/roomba.jpeg',
+        image: PRODUCT_IMAGES.leatherHandbag,
         name: 'Ecetana Slipp...',
         price: '98',
         cents: '00',
