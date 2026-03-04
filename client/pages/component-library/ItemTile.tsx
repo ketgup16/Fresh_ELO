@@ -12,6 +12,50 @@ import styles from './ProductCards.module.css';
 
 const CDN = 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F';
 
+// ── FlashDealsItemTile samples ─────────────────────────────────────────────────
+const FLASH_DEALS_SAMPLES: import('@/components/walmart/FlashDealsItemTile').FlashDealsItemTileProps[] = [
+  {
+    image: PRODUCT_IMAGES.flashEarrings,
+    name: 'CZ Stud Earrings, 14K Gold Plated Round...',
+    price: '4',
+    cents: '97',
+    originalPrice: '$12.99',
+    pricePrefix: 'Now',
+    badge: { label: 'Deal', type: 'deal' as const },
+    actionType: 'add',
+    idx: 100,
+  },
+  {
+    image: PRODUCT_IMAGES.flashHumidifier,
+    name: 'Cool Mist Humidifier, 2.5L Top Fill...',
+    price: '19',
+    cents: '88',
+    originalPrice: '$34.99',
+    pricePrefix: 'Now',
+    badge: { label: 'Best seller', type: 'bestseller' as const },
+    actionType: 'options',
+    optionsText: '3 options',
+    idx: 101,
+  },
+  {
+    image: PRODUCT_IMAGES.flashTankTops,
+    name: "Time & Tru Women's Tank Top, 3-Pack...",
+    price: '8',
+    cents: '96',
+    badge: { label: 'Rollback', type: 'rollback' as const },
+    actionType: 'add',
+    idx: 102,
+  },
+];
+
+// ── PromotionalItemTile samples ───────────────────────────────────────────────
+const PROMO_TILE_SAMPLES = [
+  { image: PRODUCT_IMAGES.starbucksDoubleshot, price: '3', cents: '68' },
+  { image: PRODUCT_IMAGES.oatlyOatMilk, price: '4', cents: '98' },
+  { image: PRODUCT_IMAGES.skinnyPopPopcorn, price: '3', cents: '48' },
+  { image: PRODUCT_IMAGES.freshStrawberries, price: '2', cents: '97' },
+];
+
 // ── WCPItemTile samples ───────────────────────────────────────────────────────
 const ITEM_TILE_DEFAULT = {
   image: PRODUCT_IMAGES.airFryer,
@@ -322,6 +366,105 @@ export default function ItemTilePage() {
         ]} />
       </div>
 
+      {/* ── FlashDealsItemTile ─────────────────────────────────── */}
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>FlashDealsItemTile</h2>
+        <p className={styles.sectionDesc}>
+          Card variant used inside the Flash Deals carousel on the home page. Features a no-fill bordered card with a WCPFlag badge overlay, WCPHeartView toggle, green &quot;Now&quot; savings pricing, and a compact &quot;+ Add&quot; or &quot;Options&quot; action button.
+        </p>
+
+        <div className={styles.metaRow}>
+          <span className={styles.metaLabel}>Deal card with Add action</span>
+          <Tag variant="success">Savings</Tag>
+          <Tag variant="neutral">Flash Deals</Tag>
+          <p className={styles.metaDesc}>
+            Uses <code>actionType=&quot;add&quot;</code> — tapping the button immediately adds the item to the cart via <code>CartContext</code>.
+          </p>
+        </div>
+
+        <div className={styles.frame}>
+          <div className={styles.carouselFrame}>
+            {FLASH_DEALS_SAMPLES.filter(s => s.actionType === 'add').map((p, i) => (
+              <div key={i} className={styles.carouselCard} style={{ flex: '0 0 180px' }}>
+                <FlashDealsItemTile {...p} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.metaRow}>
+          <span className={styles.metaLabel}>Options variant</span>
+          <Tag variant="info">Multi-SKU</Tag>
+          <p className={styles.metaDesc}>
+            Uses <code>actionType=&quot;options&quot;</code> with an <code>optionsText</code> label. Useful when the product has multiple sizes or colors.
+          </p>
+        </div>
+
+        <div className={styles.frame}>
+          <div className={styles.carouselFrame}>
+            {FLASH_DEALS_SAMPLES.map((p, i) => (
+              <div key={i} className={styles.carouselCard} style={{ flex: '0 0 180px' }}>
+                <FlashDealsItemTile {...p} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <PropTable rows={[
+          { name: 'image', required: true, description: 'Product image URL — use CDN with ?format=webp&width=400' },
+          { name: 'name', required: true, description: 'Full product name, shown as 2-line clamp' },
+          { name: 'price', required: true, description: 'Dollar portion of the price, e.g. "4"' },
+          { name: 'cents', required: true, description: 'Cents portion of the price, e.g. "97"' },
+          { name: 'actionType', required: true, description: "'add' renders a + Add button; 'options' renders an Options button" },
+          { name: 'idx', required: true, description: 'Index used to identify the tile in cart state updates' },
+          { name: 'originalPrice', required: false, description: 'Strikethrough original price, e.g. "$12.99"' },
+          { name: 'pricePrefix', required: false, description: '"Now" — triggers green savings style' },
+          { name: 'badge', required: false, description: '{ label, type } — WCPFlag badge overlay. Types: bestseller, deal, popular, rollback, clearance' },
+          { name: 'optionsText', required: false, description: 'Text shown below price, e.g. "3 options"' },
+        ]} />
+      </div>
+
+      {/* ── PromotionalItemTile ────────────────────────────────── */}
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>PromotionalItemTile</h2>
+        <p className={styles.sectionDesc}>
+          Compact tile variant used inside promotional carousels (e.g. &quot;Continue shopping&quot; and &quot;Buy it again&quot;). Shows a product image, price, and an inline QuantityStepper for quick add-to-cart. No product name or badge — optimized for minimal horizontal footprint.
+        </p>
+
+        <div className={styles.metaRow}>
+          <span className={styles.metaLabel}>Promo carousel tile</span>
+          <Tag variant="neutral">Carousel</Tag>
+          <Tag variant="info">Grocery</Tag>
+          <p className={styles.metaDesc}>
+            Each tile is self-contained — pass <code>idx</code> and <code>onQuantityChange</code> to wire up cart state from the parent carousel.
+          </p>
+        </div>
+
+        <div className={styles.frame}>
+          <div className={styles.carouselFrame}>
+            {PROMO_TILE_SAMPLES.map((p, i) => (
+              <div key={i} className={styles.carouselCard}>
+                <PromotionalItemTile
+                  image={p.image}
+                  price={p.price}
+                  cents={p.cents}
+                  idx={i}
+                  onQuantityChange={() => {}}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <PropTable rows={[
+          { name: 'image', required: true, description: 'Product image URL' },
+          { name: 'price', required: true, description: 'Dollar portion of price' },
+          { name: 'cents', required: true, description: 'Cents portion of price' },
+          { name: 'idx', required: true, description: 'Card index for identifying quantity changes' },
+          { name: 'onQuantityChange', required: true, description: 'Callback (idx, qty) => void — fires when stepper changes' },
+        ]} />
+      </div>
+
       {/* ── Import Reference ──────────────────────────────────── */}
       <div className={styles.usageSection}>
         <h2 className={styles.usageTitle}>Import Reference</h2>
@@ -332,6 +475,20 @@ export default function ItemTilePage() {
             <span>Import path</span>
           </div>
           {[
+            {
+              name: 'FlashDealsItemTile',
+              tag: 'Flash Deals',
+              tagVariant: 'success' as const,
+              code: '<FlashDealsItemTile image="..." name="..." price="4" cents="97" actionType="add" idx={0} />',
+              path: '@/components/walmart/FlashDealsItemTile',
+            },
+            {
+              name: 'PromotionalItemTile',
+              tag: 'Promo',
+              tagVariant: 'neutral' as const,
+              code: '<PromotionalItemTile image="..." price="3" cents="68" idx={0} onQuantityChange={fn} />',
+              path: '@/components/walmart/PromotionalItemTile',
+            },
             {
               name: 'WCPItemTile',
               tag: 'Item Tile',
