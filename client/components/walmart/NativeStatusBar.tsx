@@ -2,16 +2,17 @@ import styles from './NativeStatusBar.module.css';
 
 interface NativeStatusBarProps {
   platform: 'ios' | 'android';
+  color?: string;
 }
 
-export function NativeStatusBar({ platform }: NativeStatusBarProps) {
+export function NativeStatusBar({ platform, color }: NativeStatusBarProps) {
   if (platform === 'ios') {
-    return <IOSStatusBar />;
+    return <IOSStatusBar color={color} />;
   }
-  return <AndroidStatusBar />;
+  return <AndroidStatusBar color={color} />;
 }
 
-function IOSStatusBar() {
+function IOSStatusBar({ color }: { color?: string }) {
   const now = new Date();
   const hours = now.getHours();
   const minutes = now.getMinutes().toString().padStart(2, '0');
@@ -20,7 +21,7 @@ function IOSStatusBar() {
   const timeStr = `${displayHours}:${minutes}`;
 
   return (
-    <div className={styles.iosStatusBar}>
+    <div className={styles.iosStatusBar} style={color ? { color } : undefined}>
       <div className={styles.iosLeft}>
         <span className={styles.iosTime}>{timeStr}</span>
       </div>
@@ -53,14 +54,14 @@ function IOSStatusBar() {
   );
 }
 
-function AndroidStatusBar() {
+function AndroidStatusBar({ color }: { color?: string }) {
   const now = new Date();
   const hours = now.getHours().toString().padStart(2, '0');
   const minutes = now.getMinutes().toString().padStart(2, '0');
   const timeStr = `${hours}:${minutes}`;
 
   return (
-    <div className={styles.androidStatusBar}>
+    <div className={styles.androidStatusBar} style={color ? { color } : undefined}>
       <div className={styles.androidLeft}>
         <span className={styles.androidTime}>{timeStr}</span>
       </div>
