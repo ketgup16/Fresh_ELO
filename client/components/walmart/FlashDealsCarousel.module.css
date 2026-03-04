@@ -57,12 +57,14 @@
   display: flex;
   gap: 12px;
   overflow-x: auto;
+  overflow-y: visible;
   scroll-snap-type: x proximity;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 4px 0;
+  padding: 40px 0;
+  margin: -40px 0;
 }
 
 .scrollRow::-webkit-scrollbar {

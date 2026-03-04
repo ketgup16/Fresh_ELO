@@ -57,7 +57,7 @@ export function FlashDealsItemTile({
         </div>
       )}
       <div className={styles.heartWrap}>
-        <WCPHeartView size="small" calloutPosition="top" />
+        <WCPHeartView size="small" calloutPosition="bottom" />
       </div>
       <div className={styles.imageWrapper}>
         <img src={image} alt={name} className={styles.image} />
