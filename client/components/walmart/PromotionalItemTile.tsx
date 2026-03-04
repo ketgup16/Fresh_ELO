@@ -1,7 +1,7 @@
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
-import styles from "./CarouselProductCard.module.css";
+import styles from "./PromotionalItemTile.module.css";
 
-export interface CarouselProductCardProps {
+export interface PromotionalItemTileProps {
   image: string;
   price: string;
   cents: string;
@@ -9,13 +9,13 @@ export interface CarouselProductCardProps {
   onQuantityChange: (idx: number, qty: number) => void;
 }
 
-export function CarouselProductCard({
+export function PromotionalItemTile({
   image,
   price,
   cents,
   idx,
   onQuantityChange,
-}: CarouselProductCardProps) {
+}: PromotionalItemTileProps) {
   return (
     <div className={styles.tile}>
       <div className={styles.imageWrapper}>

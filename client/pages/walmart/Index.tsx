@@ -5,7 +5,7 @@ import { JumpRightBackIn } from "@/components/walmart/JumpRightBackIn";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { OrderStatusCard } from "@/components/walmart/OrderStatusCard";
 import { ActiveCurbsideCard } from "@/components/walmart/ActiveCurbsideCard";
-import { CarouselProductCard } from "@/components/walmart/CarouselProductCard";
+import { PromotionalItemTile } from "@/components/walmart/PromotionalItemTile";
 import { ContinueShopping } from "@/components/walmart/ContinueShopping";
 import { PRODUCT_IMAGES } from "@/components/walmart/productImages";
 
@@ -35,6 +35,13 @@ const HOME_REFRESH_ITEMS: CarouselItem[] = [
   { img: PRODUCT_IMAGES.comforterSet, price: '49', cents: '98', idx: 9 },
   { img: PRODUCT_IMAGES.cookwareSet, price: '79', cents: '99', idx: 10 },
   { img: PRODUCT_IMAGES.mugSet, price: '28', cents: '00', idx: 11 },
+];
+
+const VACUUM_ITEMS: CarouselItem[] = [
+  { img: PRODUCT_IMAGES.cordlessVacuum, price: '149', cents: '00', idx: 12 },
+  { img: PRODUCT_IMAGES.roomba1, price: '199', cents: '99', idx: 13 },
+  { img: PRODUCT_IMAGES.roomba2, price: '249', cents: '00', idx: 14 },
+  { img: PRODUCT_IMAGES.roomba3, price: '329', cents: '00', idx: 15 },
 ];
 
 export default function Index() {
@@ -88,7 +95,7 @@ export default function Index() {
             <div className="absolute bottom-0 left-0 right-0 p-4 space-y-2 z-10">
               <div className="grid grid-cols-2 gap-2">
                 {GROCERY_ITEMS.slice(0, 2).map((item) => (
-                  <CarouselProductCard
+                  <PromotionalItemTile
                     key={item.idx}
                     image={item.img}
                     price={item.price}
@@ -100,7 +107,7 @@ export default function Index() {
               </div>
               <div className="grid grid-cols-2 gap-2">
                 {GROCERY_ITEMS.slice(2).map((item) => (
-                  <CarouselProductCard
+                  <PromotionalItemTile
                     key={item.idx}
                     image={item.img}
                     price={item.price}
@@ -129,7 +136,7 @@ export default function Index() {
             <div className="absolute bottom-4 left-4 right-4 space-y-2 z-10">
               <div className="grid grid-cols-2 gap-2">
                 {ANIMAL_PRINT_ITEMS.slice(0, 2).map((item) => (
-                  <CarouselProductCard
+                  <PromotionalItemTile
                     key={item.idx}
                     image={item.img}
                     price={item.price}
@@ -141,7 +148,7 @@ export default function Index() {
               </div>
               <div className="grid grid-cols-2 gap-2">
                 {ANIMAL_PRINT_ITEMS.slice(2).map((item) => (
-                  <CarouselProductCard
+                  <PromotionalItemTile
                     key={item.idx}
                     image={item.img}
                     price={item.price}
@@ -169,7 +176,7 @@ export default function Index() {
             <div className="absolute bottom-4 left-4 right-4 space-y-2 z-10">
               <div className="grid grid-cols-2 gap-2">
                 {HOME_REFRESH_ITEMS.slice(0, 2).map((item) => (
-                  <CarouselProductCard
+                  <PromotionalItemTile
                     key={item.idx}
                     image={item.img}
                     price={item.price}
@@ -181,7 +188,51 @@ export default function Index() {
               </div>
               <div className="grid grid-cols-2 gap-2">
                 {HOME_REFRESH_ITEMS.slice(2).map((item) => (
-                  <CarouselProductCard
+                  <PromotionalItemTile
+                    key={item.idx}
+                    image={item.img}
+                    price={item.price}
+                    cents={item.cents}
+                    idx={item.idx}
+                    onQuantityChange={handleQuantityChange}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Shop Vacuums Carousel */}
+          <div className="relative rounded-lg overflow-hidden h-[543px] min-w-[320px] w-[320px] snap-center flex-shrink-0">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F94fbeb4b44434b7b8e501f1e8c476d86?format=webp&width=800&height=1200"
+              alt="Shop vacuums background"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute top-4 right-4 w-10 h-6 bg-white/70 backdrop-blur rounded-full flex items-center justify-center z-10">
+              <Pause className="w-4 h-4" />
+            </div>
+            <div className="absolute top-8 left-4 right-4 z-10">
+              <h2 className="text-white text-[36px] font-bold leading-[38px] max-w-[230px]">
+                Shop vacuums
+              </h2>
+              <p className="text-white text-sm mt-1">Robot & cordless finds</p>
+            </div>
+            <div className="absolute bottom-4 left-4 right-4 space-y-2 z-10">
+              <div className="grid grid-cols-2 gap-2">
+                {VACUUM_ITEMS.slice(0, 2).map((item) => (
+                  <PromotionalItemTile
+                    key={item.idx}
+                    image={item.img}
+                    price={item.price}
+                    cents={item.cents}
+                    idx={item.idx}
+                    onQuantityChange={handleQuantityChange}
+                  />
+                ))}
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {VACUUM_ITEMS.slice(2).map((item) => (
+                  <PromotionalItemTile
                     key={item.idx}
                     image={item.img}
                     price={item.price}
