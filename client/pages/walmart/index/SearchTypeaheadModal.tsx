@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { X, Camera, Microphone, ChevronLeft, Clock, ArrowUpLeft } from "@/components/icons";
+import { IconButton } from "@/components/ui/IconButton";
 import { SparkyLookingDown } from "@/components/icons-custom";
 import { allSuggestions as sharedSuggestions } from "@/components/walmart/searchData";
 import { IOSKeyboard } from "./IOSKeyboard";
@@ -113,28 +114,36 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
                 className="flex-1 outline-none text-foreground text-[16px] placeholder:text-muted-foreground bg-transparent"
               />
             </div>
-            <div className="flex gap-2 flex-shrink-0">
+            <div className="flex gap-1 flex-shrink-0">
               {searchQuery ? (
-                <button
+                <IconButton
+                  aria-label="Clear search"
+                  variant="secondary"
+                  size="medium"
                   onClick={() => setSearchQuery('')}
-                  className="w-8 h-8 flex-shrink-0 rounded-full border border-gray-300 bg-white flex items-center justify-center"
                 >
-                  <X className="w-4 h-4 text-gray-700" />
-                </button>
+                  <X />
+                </IconButton>
               ) : (
                 <>
-                  <button
+                  <IconButton
+                    aria-label="Camera search"
+                    variant="secondary"
+                    size="medium"
                     onClick={(e) => {
                       e.stopPropagation();
                       onCameraClick();
                     }}
-                    className="w-8 h-8 flex-shrink-0 rounded-full border border-gray-300 bg-white flex items-center justify-center"
                   >
-                    <Camera className="w-4 h-4 text-gray-700" />
-                  </button>
-                  <button className="w-8 h-8 flex-shrink-0 rounded-full border border-gray-300 bg-white flex items-center justify-center">
-                    <Microphone className="w-4 h-4 text-gray-700" />
-                  </button>
+                    <Camera />
+                  </IconButton>
+                  <IconButton
+                    aria-label="Voice search"
+                    variant="secondary"
+                    size="medium"
+                  >
+                    <Microphone />
+                  </IconButton>
                 </>
               )}
             </div>
@@ -210,13 +219,16 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
                       >
                         {search}
                       </button>
-                      <button
+                      <IconButton
+                        aria-label="Remove recent search"
+                        variant="ghost"
+                        size="small"
                         onClick={() => {
                           setRecentSearches(recentSearches.filter((_, i) => i !== index));
                         }}
                       >
-                        <X className="w-4 h-4 text-foreground" />
-                      </button>
+                        <X />
+                      </IconButton>
                     </div>
                     {index < recentSearches.length - 1 && <div className="h-px bg-border mt-3" />}
                   </div>
