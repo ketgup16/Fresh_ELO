@@ -54,17 +54,12 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
 
   return (
     <div className="fixed inset-0 bg-white z-[100] max-w-[430px] mx-auto animate-fade-in flex flex-col">
-      {/* iOS/Android Status Bar — blue when idle, white when search is focused */}
+      {/* iOS/Android Status Bar — always white in the search modal */}
       {isNative && (
-        <div style={{
-          backgroundColor: isSearchFocused
-            ? 'var(--ld-semantic-color-surface, #fff)'
-            : 'var(--ld-semantic-color-top-nav-fill)',
-          transition: 'background-color 150ms ease',
-        }}>
+        <div style={{ backgroundColor: 'var(--ld-semantic-color-surface, #fff)' }}>
           <NativeStatusBar
             platform={platform as 'ios' | 'android'}
-            color={isSearchFocused ? 'var(--ld-semantic-color-text, #2e2f32)' : undefined}
+            color='var(--ld-semantic-color-text, #2e2f32)'
           />
         </div>
       )}

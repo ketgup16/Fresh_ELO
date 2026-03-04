@@ -16,7 +16,7 @@ export function IOSKeyboard({
   setRecentSearches,
 }: IOSKeyboardProps) {
   return (
-    <div className={`fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto ${styles.keyboard}`} style={{ height: '335px' }}>
+    <div className={`fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto z-[110] ${styles.keyboard}`} style={{ height: '335px' }}>
       {/* Suggestion Bar */}
       <div className="flex items-center gap-[2px] px-[1px] pt-[10px] pb-0 h-[44px]">
         {searchQuery ? (
