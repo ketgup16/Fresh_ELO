@@ -18,8 +18,6 @@ import { CombinedOrderCard } from '@/components/walmart/purchase-history/Combine
 import { CurbsideOrderCard } from '@/components/walmart/purchase-history/CurbsideOrderCard';
 import { InlineAdBanner } from '@/components/walmart/purchase-history/InlineAdBanner';
 import { DelayedDeliveryCard } from '@/components/walmart/purchase-history/DelayedDeliveryCard';
-import { MaintenanceHealthCard } from '@/components/walmart/purchase-history/MaintenanceHealthCard';
-import { AutoCareUpsellOfferCard } from '@/components/walmart/purchase-history/AutoCareUpsellOfferCard';
 import styles from './PurchaseHistory.module.css';
 
 const CDN = 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F';
@@ -415,15 +413,6 @@ export default function PurchaseHistory() {
                   Each card is wrapped in styles.newCard to trigger the green glow
                   animation on insert. Remove the wrapper + component to hide.
               ─────────────────────────────────────────────────────────────── */}
-              <div className={styles.newCard} style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 16, marginBottom: 16 }}>
-                <MaintenanceHealthCard {...AUTO_CARE_MAINTENANCE_CARD} onViewReport={() => {}} />
-                <AutoCareUpsellOfferCard
-                  {...AUTO_CARE_UPSELL_OFFER}
-                  onBook={() => {}}
-                  onDismiss={() => {}}
-                />
-              </div>
-
               {/* ── Standard order list ───────────────────────────────────── */}
               <div className={styles.orderList}>
                 {visibleOrders.length === 0 ? (
