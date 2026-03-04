@@ -203,6 +203,8 @@
     "descWCPTimerView": "Minuterie de compte à rebours WCP avec états d'urgence pour les offres à durée limitée et les réservations en file d'attente",
     "navWCPQueueBanner": "Bannière de File d'Attente",
     "descWCPQueueBanner": "Bannière WCP avec compte à rebours en direct pour les articles de panier réservés et les flux de file d'attente à durée limitée",
+    "navWCPUploadImage": "Télécharger Image",
+    "descWCPUploadImage": "Champ de téléchargement de photos pour les avis clients prenant en charge jusqu'à 5 images avec dimensionnement adaptatif",
     "navWCPSearchBar": "Barre de Recherche",
     "descWCPSearchBar": "Barre de recherche de page WCP avec deux points d'arrêt et états : Activé, Survolé, Activé, Désactivé",
     "navWCPSignatureCapture": "Capture de Signature",

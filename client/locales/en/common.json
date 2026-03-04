@@ -213,6 +213,8 @@
     "descWCPQueueCard": "WCP card showing reservation timer, product details, and queue actions across waiting, warning, and expiring states",
     "navWCPQueue": "Queue",
     "descWCPQueue": "Combined Queue pattern page: Queue Landing, Queue Banner, and Queue Card",
+    "navWCPUploadImage": "Upload Image",
+    "descWCPUploadImage": "Photo upload field for customer reviews supporting up to 5 images with responsive tile sizing",
     "tools": "Tools",
     "navThemeEditor": "Theme Editor",
     "navProjectSettings": "Project Settings",
