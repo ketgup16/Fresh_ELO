@@ -16,6 +16,7 @@ import styles from './ResponsiveLayout.module.css';
 interface ResponsiveLayoutProps {
   children: ReactNode;
   showMobileNav?: boolean;
+  showMobileTopNav?: boolean;
   showDesktopHeader?: boolean;
   showOrderStatusBanner?: boolean;
   showHomeExtras?: boolean;
@@ -35,6 +36,7 @@ const maxWidthClassMap: Record<string, string> = {
 export function ResponsiveLayout({
   children,
   showMobileNav = true,
+  showMobileTopNav = true,
   showDesktopHeader = true,
   showOrderStatusBanner = false,
   showHomeExtras = false,
@@ -51,12 +53,12 @@ export function ResponsiveLayout({
       {showMobileNav && isNative && mobileTopNav === 'native' && (
         <div className={styles.nativeNavWrapper}>
           <NativeStatusBar platform={platform as 'ios' | 'android'} />
-          <MobileTopNav showHomeExtras={showHomeExtras} />
+          {showMobileTopNav && <MobileTopNav showHomeExtras={showHomeExtras} />}
         </div>
       )}
       {showMobileNav && isNative && mobileTopNav !== 'native' && <NativeStatusBar platform={platform as 'ios' | 'android'} />}
-      {showMobileNav && mobileTopNav === 'native' && !isNative && <MobileTopNav showHomeExtras={showHomeExtras} />}
-      {showMobileNav && mobileTopNav === 'mweb' && <MobileHeader />}
+      {showMobileNav && showMobileTopNav && mobileTopNav === 'native' && !isNative && <MobileTopNav showHomeExtras={showHomeExtras} />}
+      {showMobileNav && showMobileTopNav && mobileTopNav === 'mweb' && <MobileHeader />}
       {/* Desktop header — hidden on mobile via CSS */}
       {showDesktopHeader && <DesktopHeader />}
       {showDesktopHeader && <SubNav />}

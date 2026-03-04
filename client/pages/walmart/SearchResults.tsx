@@ -70,7 +70,7 @@ export default function SearchResults() {
   const query = searchParams.get('q') || 'TVs';
 
   return (
-    <ResponsiveLayout maxWidth="full">
+    <ResponsiveLayout maxWidth="full" showMobileTopNav={false}>
       <div className="bg-white font-sans">
         <SearchResultsHeader query={query} onBack={() => navigate('/walmart')} />
         <SearchFilterBar chips={FILTER_CHIPS} />

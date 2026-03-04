@@ -9,7 +9,7 @@ interface SearchResultsHeaderProps {
 
 export function SearchResultsHeader({ query, onBack }: SearchResultsHeaderProps) {
   return (
-    <div className="sticky top-0 z-50 bg-white">
+    <div className="sticky top-0 z-50 bg-white lg:hidden">
       <div className="flex items-center gap-1 px-4 pb-3 pt-2">
         <Button
           variant="tertiary"
