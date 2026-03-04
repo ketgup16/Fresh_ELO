@@ -36,7 +36,7 @@
   position: absolute;
   top: 4px;
   left: 4px;
-  z-index: 3;
+  z-index: 2;
   transform-origin: top left;
   transform: scale(0.75);
 }
@@ -46,7 +46,7 @@
   position: absolute;
   top: 20px;
   right: 4px;
-  z-index: 3;
+  z-index: 4;
 }
 
 /* ── Body below image ── */
