@@ -6,6 +6,7 @@
   padding: 0 24px;
   position: sticky;
   top: 86px;
+  margin-top: 16px;
   z-index: 98;
   background-color: var(--ld-semantic-color-fill-brand-subtle);
   font-family: var(--ld-semantic-font-family-sans);
