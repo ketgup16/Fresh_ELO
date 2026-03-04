@@ -1,0 +1,162 @@
+/* WCPItemTile — compact product tile used in 2×2 category grids */
+
+.tile {
+  position: relative;
+  background: var(--ld-semantic-color-surface, #fff);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Image area ── */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 145px;
+  background: var(--ld-semantic-color-surface, #fff);
+  padding: 24px 8px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px) var(--ld-primitive-scale-borderradius-100, 8px) 0 0;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Flag badge — top-left ── */
+.flagWrap {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 3;
+  transform-origin: top left;
+  transform: scale(0.75);
+}
+
+/* ── Heart — on the image, below the flag ── */
+.heartWrap {
+  position: absolute;
+  top: 20px;
+  right: 4px;
+  z-index: 3;
+}
+
+/* ── Body below image ── */
+.body {
+  padding: 0 8px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ── Price row ── */
+.priceRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 1px;
+  flex-wrap: wrap;
+  min-height: 24px;
+}
+
+/* Green savings style when "Now" prefix present */
+.priceRowSavings {
+  color: var(--ld-semantic-color-text-positive, #2a8703);
+}
+
+.priceRowSavings .price,
+.priceRowSavings .dollarSign,
+.priceRowSavings .cents,
+.priceRowSavings .suffix {
+  color: inherit;
+}
+
+/* "Now" prefix — 20px bold green per Figma */
+.prefix {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text-positive, #2a8703);
+  line-height: 24px;
+  margin-right: 2px;
+}
+
+/* Dollar sign — 14px superscript */
+.dollarSign {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  padding-bottom: 6px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Dollar value — 24px bold */
+.price {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  line-height: 20px;
+}
+
+/* Cents — 14px superscript */
+.cents {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  padding-bottom: 8px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* "/mo" suffix — 14px bold, aligned to bottom */
+.suffix {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  line-height: 12px;
+  padding-bottom: 6px;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Strikethrough original price — 14px */
+.originalPrice {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  text-decoration: line-through;
+  line-height: 20px;
+}
+
+/* Product name — 14px, 1-line clamp */
+.name {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  line-height: 20px;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

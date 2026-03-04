@@ -1,16 +1,6 @@
-import { WCPFlag, WCPFlagVariant } from '@/components/walmart/WCPFlag';
-import { WCPHeartView } from '@/components/walmart/WCPHeartView';
+import { WCPItemTile, ItemTileBadgeType } from '@/components/walmart/WCPItemTile';
 import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
 import styles from './JumpRightBackIn.module.css';
-
-type BadgeType = 'bestseller' | 'deal' | 'popular' | 'rollback';
-
-const BADGE_VARIANT_MAP: Record<BadgeType, WCPFlagVariant> = {
-  bestseller: 'savings-bold',
-  deal:       'savings-subtle',
-  popular:    'confidence-subtle',
-  rollback:   'holiday-restricted',
-};
 
 interface ProductCard {
   image: string;
@@ -20,7 +10,7 @@ interface ProductCard {
   originalPrice?: string;
   pricePrefix?: string;
   priceSuffix?: string;
-  badge?: { label: string; type: BadgeType };
+  badge?: { label: string; type: ItemTileBadgeType };
 }
 
 interface Category {
@@ -33,8 +23,8 @@ const CATEGORIES: Category[] = [
     title: 'Trending',
     products: [
       {
-        image: PRODUCT_IMAGES.headphones,
-        name: 'Apple AirPods Pro (2nd gen...',
+        image: PRODUCT_IMAGES.countertopBlender,
+        name: 'VAVSEA 3-in-1 Blender Sys...',
         price: '169',
         cents: '98',
         originalPrice: '$200.00',
@@ -92,8 +82,8 @@ const CATEGORIES: Category[] = [
         badge: { label: 'Rollback', type: 'rollback' },
       },
       {
-        image: PRODUCT_IMAGES.headphones,
-        name: 'Beats Solo3 Wireless On-...',
+        image: PRODUCT_IMAGES.personalBlender,
+        name: 'NutriBullet Pro 900W Ble...',
         price: '99',
         cents: '95',
         badge: { label: 'Popular pick', type: 'popular' },
@@ -126,8 +116,8 @@ const CATEGORIES: Category[] = [
         cents: '99',
       },
       {
-        image: PRODUCT_IMAGES.headphones,
-        name: 'Sony WH-1000XM5 Noise...',
+        image: PRODUCT_IMAGES.blenderSystem,
+        name: 'Ninja Professional Plus B...',
         price: '278',
         cents: '00',
       },
@@ -159,7 +149,7 @@ const CATEGORIES: Category[] = [
         badge: { label: 'Best seller', type: 'bestseller' },
       },
       {
-        image: PRODUCT_IMAGES.airFryer,
+        image: PRODUCT_IMAGES.cookwareSet,
         name: 'Keurig K-Express Coffee...',
         price: '59',
         cents: '00',
@@ -169,47 +159,43 @@ const CATEGORIES: Category[] = [
       },
     ],
   },
+  {
+    title: 'Top-rated picks',
+    products: [
+      {
+        image: PRODUCT_IMAGES.comforterSet,
+        name: 'Ultra Soft Comforter Set...',
+        price: '49',
+        cents: '98',
+        badge: { label: 'Best seller', type: 'bestseller' },
+      },
+      {
+        image: PRODUCT_IMAGES.cordlessVacuum,
+        name: 'Cordless Stick Vacuum...',
+        price: '89',
+        cents: '99',
+        originalPrice: '$129.99',
+        pricePrefix: 'Now',
+        badge: { label: 'Rollback', type: 'rollback' },
+      },
+      {
+        image: PRODUCT_IMAGES.mugSet,
+        name: 'Stoneware Mug Set of 4',
+        price: '28',
+        cents: '00',
+      },
+      {
+        image: PRODUCT_IMAGES.laptop1,
+        name: 'Lenovo IdeaPad 15.6" Lap...',
+        price: '329',
+        cents: '00',
+        originalPrice: '$399.00',
+        pricePrefix: 'Now',
+        badge: { label: 'Deal', type: 'deal' },
+      },
+    ],
+  },
 ];
-
-function ProductTile({ product }: { product: ProductCard }) {
-  return (
-    <div className={styles.productTile}>
-      {product.badge && (
-        <div className={styles.flagWrap}>
-          <WCPFlag
-            label={product.badge.label}
-            variant={BADGE_VARIANT_MAP[product.badge.type]}
-          />
-        </div>
-      )}
-      <div className={styles.heartWrap}>
-        <WCPHeartView size="small" calloutPosition="left" />
-      </div>
-      <div className={styles.imageWrapper}>
-        <img src={product.image} alt={product.name} className={styles.productImage} />
-      </div>
-      <div className={styles.productBody}>
-        <div className={[styles.priceRow, product.pricePrefix ? styles.priceRowSavings : ''].filter(Boolean).join(' ')}>
-          {product.pricePrefix && (
-            <span className={styles.pricePrefix}>{product.pricePrefix} </span>
-          )}
-          <span className={styles.price}>
-            <sup className={styles.priceDollar}>$</sup>
-            {product.price}
-            <sup className={styles.priceCents}>{product.cents}</sup>
-          </span>
-          {product.priceSuffix && (
-            <span className={styles.priceSuffix}>{product.priceSuffix}</span>
-          )}
-        </div>
-        {product.originalPrice && (
-          <div className={styles.originalPrice}>{product.originalPrice}</div>
-        )}
-        <p className={styles.productName}>{product.name}</p>
-      </div>
-    </div>
-  );
-}
 
 export function JumpRightBackIn() {
   return (
@@ -227,7 +213,7 @@ export function JumpRightBackIn() {
             </div>
             <div className={styles.productGrid}>
               {category.products.map((product, i) => (
-                <ProductTile key={i} product={product} />
+                <WCPItemTile key={i} {...product} />
               ))}
             </div>
           </div>

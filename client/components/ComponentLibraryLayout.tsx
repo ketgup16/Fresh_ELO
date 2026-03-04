@@ -69,7 +69,7 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-country', nameKey: 'componentLibrary.navWCPCountry', path: '/component-library/wcp-country' },
       { id: 'wcp-flag', nameKey: 'componentLibrary.navWCPFlag', path: '/component-library/wcp-flag' },
       { id: 'basic-banner', nameKey: 'componentLibrary.navBasicBanner', path: '/component-library/basic-banner' },
-      { id: 'product-cards', nameKey: 'componentLibrary.navProductCards', path: '/component-library/product-cards' },
+      { id: 'item-tile', nameKey: 'componentLibrary.navItemTile', path: '/component-library/item-tile' },
       { id: 'dropdowns', nameKey: 'componentLibrary.navDropdowns', path: '/component-library/dropdowns' },
       { id: 'search-utility', nameKey: 'componentLibrary.navSearchUtility', path: '/component-library/search-utility' },
       { id: 'wcp-button-groups', nameKey: 'componentLibrary.navWCPButtonGroups', path: '/component-library/wcp-button-groups' },

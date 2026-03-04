@@ -109,7 +109,7 @@ const SideNavPage = React.lazy(() => import("./pages/component-library/SideNav")
 const PageTemplatesPage = React.lazy(() => import("./pages/component-library/PageTemplates"));
 const SearchResultsPatternPage = React.lazy(() => import("./pages/component-library/SearchResults"));
 const WCPButtonGroupsPage = React.lazy(() => import("./pages/component-library/WCPButtonGroups"));
-const ProductCardsPage = React.lazy(() => import("./pages/component-library/ProductCards"));
+const ItemTilePage = React.lazy(() => import("./pages/component-library/ItemTile"));
 const HomePageWidgetsPage = React.lazy(() => import("./pages/component-library/HomePageWidgets"));
 const PromoBannersPage = React.lazy(() => import("./pages/component-library/PromoBanners"));
 const DropdownsPage = React.lazy(() => import("./pages/component-library/Dropdowns"));
@@ -225,7 +225,8 @@ const App = () => (
                 <Route path="side-nav" element={<SideNavPage />} />
                 <Route path="page-templates" element={<PageTemplatesPage />} />
                 <Route path="search-results" element={<SearchResultsPatternPage />} />
-                <Route path="product-cards" element={<ProductCardsPage />} />
+                <Route path="item-tile" element={<ItemTilePage />} />
+                <Route path="product-cards" element={<Navigate to="/component-library/item-tile" replace />} />
                 <Route path="home-page-widgets" element={<HomePageWidgetsPage />} />
                 <Route path="promo-banners" element={<PromoBannersPage />} />
                 <Route path="dropdowns" element={<DropdownsPage />} />
