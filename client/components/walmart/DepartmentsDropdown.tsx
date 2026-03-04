@@ -32,7 +32,7 @@ export function DepartmentsDropdown({ leadingIcon, iconOnly = false, overlayMode
     <div ref={containerRef} style={{ position: 'relative' }}>
       <button
         type="button"
-        className={styles.trigger}
+        className={[styles.trigger, iconOnly ? styles.triggerIconOnly : ''].filter(Boolean).join(' ')}
         aria-expanded={isOpen}
         aria-haspopup="dialog"
         onClick={() => setIsOpen((v) => !v)}

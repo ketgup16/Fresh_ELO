@@ -38,6 +38,17 @@
   cursor: not-allowed;
 }
 
+/* Icon-only variant: 32×32, no padding, no label */
+.triggerIconOnly {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  justify-content: center;
+  gap: 0;
+  background: none;
+  border-color: transparent;
+}
+
 .leadingIcon {
   display: flex;
   align-items: center;
@@ -49,9 +60,15 @@
 .leadingIconOnly {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+}
+
+.leadingIconOnly svg {
+  width: 20px;
+  height: 20px;
 }
 
 .icon {
