@@ -1,4 +1,5 @@
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
+import styles from "./CarouselProductCard.module.css";
 
 export interface CarouselProductCardProps {
   image: string;
@@ -16,18 +17,16 @@ export function CarouselProductCard({
   onQuantityChange,
 }: CarouselProductCardProps) {
   return (
-    <div className="bg-white rounded-lg p-2 flex flex-col items-end">
-      <img
-        src={image}
-        alt="Product"
-        className="w-full h-[124px] object-cover rounded self-stretch"
-      />
-      <div className="mt-2 flex items-baseline self-start">
-        <span className="text-[12px] font-bold">$</span>
-        <span className="text-[18px] font-bold">{price}</span>
-        <span className="text-[12px] font-bold">{cents}</span>
+    <div className={styles.tile}>
+      <div className={styles.imageWrapper}>
+        <img src={image} alt="Product" className={styles.image} />
       </div>
-      <div className="mt-2">
+      <div className={styles.footer}>
+        <div className={styles.priceRow}>
+          <span className={styles.dollarSign}>$</span>
+          <span className={styles.price}>{price}</span>
+          <span className={styles.cents}>{cents}</span>
+        </div>
         <QuantityStepper
           variant="tertiary"
           size="small"
