@@ -244,7 +244,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
     return (
       <div ref={ref} className={styles.quantityStepper}>
         <div
-          className={[styles.pill, variantClass, sizeClass, modeClass].join(' ')}
+          className={[styles.pill, variantClass, sizeClass, modeClass, isInitial && isIconOnly ? styles.iconOnlyInitial : ''].filter(Boolean).join(' ')}
           onClick={isClickable ? handlePillClick : undefined}
           onKeyDown={isClickable ? handleKeyDown : undefined}
           role={isClickable ? 'button' : 'group'}

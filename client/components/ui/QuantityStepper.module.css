@@ -146,6 +146,15 @@
 .pill--medium.modeInitial { padding: 0 16px; }
 .pill--large.modeInitial { padding: 0 20px; }
 
+/* Icon-only initial mode: force circle shape (same as collapsed) */
+.iconOnlyInitial {
+  padding: 0 !important;
+}
+
+.pill--small.iconOnlyInitial { width: 32px; }
+.pill--medium.iconOnlyInitial { width: 40px; }
+.pill--large.iconOnlyInitial { width: 52px; }
+
 /* Collapsed mode: force circle shape */
 .modeCollapsed {
   padding: 0;
