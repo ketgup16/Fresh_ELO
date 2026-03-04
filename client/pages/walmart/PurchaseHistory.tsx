@@ -133,6 +133,43 @@ const DELAYED_CARD = {
   orderTotal: '$32.47',
 };
 
+// Auto Care engagement prompt cards (used by prompt injector)
+const AUTO_CARE_MAINTENANCE_CARD = {
+  vehicle: '2019 Toyota Camry',
+  mileage: '22,450 miles',
+  healthScore: 62,
+  location: 'Carrollton Supercenter · Auto Care Center',
+  illustration: `${CDN}f991ec87514645ea86e2480394f1c3fd?format=webp&width=800`,
+  items: [
+    { name: 'Oil Change', status: 'overdue', detail: '3,200 mi overdue', price: '$29.88' },
+    { name: 'Tire Rotation', status: 'due', detail: 'Due in ~800 mi', price: '$14.88' },
+    { name: 'Wiper Blades', status: 'good', detail: 'Next: Oct 2026' },
+  ],
+  bundleSavings: 'Bundle oil change + tire rotation —',
+  bundleSavingsAmount: '$12',
+  valueStatement:
+    'Walmart Auto Care is up to 40% less than dealership prices. Same-day availability. No hidden fees.',
+};
+
+const AUTO_CARE_UPSELL_OFFER = {
+  vehicle: '2019 Toyota Camry',
+  vehicleSub: 'Last serviced 3,200 miles ago',
+  serviceName: 'Tire Rotation',
+  discountPct: 20,
+  regularPrice: '$14.88',
+  memberPrice: '$11.90',
+  savings: '$2.98',
+  expiresInDays: 2,
+  terms:
+    'Valid at Carrollton Supercenter Auto Care. One vehicle per offer. Walmart+ membership required.',
+  illustration: `${CDN}f991ec87514645ea86e2480394f1c3fd?format=webp&width=800`,
+  valueBullets: [
+    'Walmart-certified technicians',
+    'Free multi-point inspection included',
+    'Same-day service available',
+  ],
+};
+
 // ── Order data with filter metadata ──────────────────────────────────────────
 interface OrderEntry {
   id: string;
@@ -378,11 +415,12 @@ export default function PurchaseHistory() {
                   Each card is wrapped in styles.newCard to trigger the green glow
                   animation on insert. Remove the wrapper + component to hide.
               ─────────────────────────────────────────────────────────────── */}
-              <div className={styles.newCard} style={{ marginBottom: 16 }}>
-                <CombinedOrderCard
-                  autoCare={COMBINED_CARD_AUTO}
-                  delivery={COMBINED_CARD_DELIVERY}
-                  autoCareAppointmentDate={new Date(2026, 2, 7, 10)}
+              <div className={styles.newCard} style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+                <MaintenanceHealthCard {...AUTO_CARE_MAINTENANCE_CARD} onViewReport={() => {}} />
+                <AutoCareUpsellOfferCard
+                  {...AUTO_CARE_UPSELL_OFFER}
+                  onBook={() => {}}
+                  onDismiss={() => {}}
                 />
               </div>
 
