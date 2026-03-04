@@ -6,7 +6,7 @@ import styles from './ProjectSettings.module.css';
 
 export function NavSettingsSection() {
   const navigate = useNavigate();
-  const { mobileTopNav, setMobileTopNav, platform, setPlatform } = useLayoutSettings();
+  const { platform, setPlatform } = useLayoutSettings();
 
   return (
     <div className={styles.navSection}>
@@ -61,31 +61,6 @@ export function NavSettingsSection() {
         </div>
       </div>
 
-      <div className={styles.navSubsections}>
-        {/* Mobile Top Nav */}
-        <div className={styles.navSubsection}>
-          <h3 className={styles.navSubsectionTitle}>Mobile Top Nav</h3>
-          <div className={styles.optionCards}>
-            <SettingOption
-              label="Native Top Nav"
-              tag="iOS / Android"
-              tagVariant="neutral"
-              description="Native app-style top nav with menu icon, Walmart spark, search pill, and cart. Blue background with white icons."
-              isActive={mobileTopNav === 'native'}
-              onClick={() => setMobileTopNav('native')}
-            />
-            <SettingOption
-              label="Mweb Top Nav"
-              tag="< 1024px"
-              tagVariant="success"
-              description="Compact mobile web header with logo, search input, and cart. Designed for mobile browser experiences."
-              isActive={mobileTopNav === 'mweb'}
-              onClick={() => setMobileTopNav('mweb')}
-            />
-          </div>
-        </div>
-
-      </div>
     </div>
   );
 }
@@ -107,31 +82,6 @@ function PlatformOption({ label, tag, tagVariant, description, isActive, onClick
     >
       <div className={styles.platformCardTop}>
         <span className={styles.platformCardLabel}>{label}</span>
-        <Tag variant={tagVariant}>{tag}</Tag>
-        {isActive && <Tag variant="success">Active</Tag>}
-      </div>
-      <p className={styles.optionCardDesc}>{description}</p>
-    </button>
-  );
-}
-
-interface SettingOptionProps {
-  label: string;
-  tag: string;
-  tagVariant: 'neutral' | 'success' | 'info';
-  description: string;
-  isActive: boolean;
-  onClick: () => void;
-}
-
-function SettingOption({ label, tag, tagVariant, description, isActive, onClick }: SettingOptionProps) {
-  return (
-    <button
-      className={[styles.optionCard, isActive ? styles.optionCardActive : ''].join(' ')}
-      onClick={onClick}
-    >
-      <div className={styles.optionCardTop}>
-        <span className={styles.optionCardLabel}>{label}</span>
         <Tag variant={tagVariant}>{tag}</Tag>
         {isActive && <Tag variant="success">Active</Tag>}
       </div>
