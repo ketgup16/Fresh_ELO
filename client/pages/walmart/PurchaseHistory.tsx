@@ -370,6 +370,9 @@ export default function PurchaseHistory() {
                   Each card is wrapped in styles.newCard to trigger the green glow
                   animation on insert. Remove the wrapper + component to hide.
               ─────────────────────────────────────────────────────────────── */}
+              <div className={styles.newCard} style={{ marginBottom: 16 }}>
+                <CurbsideOrderCard {...COMBINED_CARD_DELIVERY} />
+              </div>
 
               {/* ── Standard order list ───────────────────────────────────── */}
               <div className={styles.orderList}>
