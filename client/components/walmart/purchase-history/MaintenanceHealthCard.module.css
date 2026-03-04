@@ -259,33 +259,44 @@
   }
 
   .healthItem {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
     align-items: center;
-    padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-250, 10px);
-    gap: var(--ld-primitive-scale-space-200, 8px);
+    column-gap: var(--ld-primitive-scale-space-200, 8px);
+    row-gap: var(--ld-primitive-scale-space-050, 2px);
+    padding: var(--ld-primitive-scale-space-250, 10px) var(--ld-primitive-scale-space-300, 12px);
     border-radius: var(--ld-primitive-scale-borderradius-075, 6px);
   }
 
-  /* Status tag stays at fixed width */
+  /* Tag: row 1 col 1 */
   .healthItem > span:first-child {
-    flex-shrink: 0;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
   }
 
+  /* Name: row 1 col 2 */
   .itemName {
-    flex: 1;
-    min-width: 0;
+    grid-column: 2;
+    grid-row: 1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .itemDetail {
-    flex-shrink: 0;
+  /* Price: row 1 col 3 */
+  .itemPrice {
+    grid-column: 3;
+    grid-row: 1;
     white-space: nowrap;
+    text-align: right;
   }
 
-  .itemPrice {
-    flex-shrink: 0;
+  /* Detail: row 2 col 2–3, indented under name */
+  .itemDetail {
+    grid-column: 2 / 4;
+    grid-row: 2;
     white-space: nowrap;
   }
 
