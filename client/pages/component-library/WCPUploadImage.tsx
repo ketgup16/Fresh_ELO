@@ -48,6 +48,29 @@ function InteractiveDemo() {
   );
 }
 
+const TWO_IMAGES_INITIAL: UploadedImage[] = [
+  { id: '1', src: 'https://placehold.co/96x96/E8F0FE/5B73C8?text=img1', file: new File([], '1.jpg') },
+  { id: '2', src: 'https://placehold.co/96x96/F0FEE8/5B8A00?text=img2', file: new File([], '2.jpg') },
+];
+
+const FIVE_IMAGES_INITIAL: UploadedImage[] = [
+  { id: '1', src: 'https://placehold.co/96x96/E8F0FE/5B73C8?text=1', file: new File([], '1.jpg') },
+  { id: '2', src: 'https://placehold.co/96x96/F0FEE8/5B8A00?text=2', file: new File([], '2.jpg') },
+  { id: '3', src: 'https://placehold.co/96x96/FEF0E8/C87B00?text=3', file: new File([], '3.jpg') },
+  { id: '4', src: 'https://placehold.co/96x96/FEE8E8/C80000?text=4', file: new File([], '4.jpg') },
+  { id: '5', src: 'https://placehold.co/96x96/F8E8FE/8A00C8?text=5', file: new File([], '5.jpg') },
+];
+
+function TwoImagesDemo() {
+  const [images, setImages] = useState<UploadedImage[]>(TWO_IMAGES_INITIAL);
+  return <WCPUploadImage images={images} onChange={setImages} />;
+}
+
+function FullImagesDemo() {
+  const [images, setImages] = useState<UploadedImage[]>(FIVE_IMAGES_INITIAL);
+  return <WCPUploadImage images={images} onChange={setImages} />;
+}
+
 export default function WCPUploadImagePage() {
   return (
     <ComponentPageLayout
@@ -88,32 +111,17 @@ export default function WCPUploadImagePage() {
             </DemoCard>
 
             <DemoCard
-              title="With 2 images (read-only demo)"
+              title="With 2 images"
               note="Thumbnails with × buttons, remaining empty slots shown."
             >
-              <WCPUploadImage
-                images={[
-                  { id: '1', src: 'https://placehold.co/96x96/E8F0FE/5B73C8?text=img1', file: new File([], '1.jpg') },
-                  { id: '2', src: 'https://placehold.co/96x96/F0FEE8/5B8A00?text=img2', file: new File([], '2.jpg') },
-                ]}
-                onChange={() => {}}
-              />
+              <TwoImagesDemo />
             </DemoCard>
 
             <DemoCard
               title="Full (5 images)"
               note="All 5 slots used — no empty + tiles shown."
             >
-              <WCPUploadImage
-                images={[
-                  { id: '1', src: 'https://placehold.co/96x96/E8F0FE/5B73C8?text=1', file: new File([], '1.jpg') },
-                  { id: '2', src: 'https://placehold.co/96x96/F0FEE8/5B8A00?text=2', file: new File([], '2.jpg') },
-                  { id: '3', src: 'https://placehold.co/96x96/FEF0E8/C87B00?text=3', file: new File([], '3.jpg') },
-                  { id: '4', src: 'https://placehold.co/96x96/FEE8E8/C80000?text=4', file: new File([], '4.jpg') },
-                  { id: '5', src: 'https://placehold.co/96x96/F8E8FE/8A00C8?text=5', file: new File([], '5.jpg') },
-                ]}
-                onChange={() => {}}
-              />
+              <FullImagesDemo />
             </DemoCard>
           </div>
         </section>
