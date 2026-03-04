@@ -194,6 +194,29 @@
 }
 
 /* ═══════════════════════════════════════════
+   NATIVE HOME LAYOUT — Inversed variant (white bg, dark text)
+   Used when search modal is open
+   ═══════════════════════════════════════════ */
+
+.nativeHeaderInverse {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 8px 16px;
+  position: relative;
+  background-color: var(--ld-semantic-color-surface, #fff);
+}
+
+.greetingInverse {
+  font-family: var(--ld-semantic-font-body-default-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-default-size, 16px);
+  font-weight: var(--ld-semantic-font-body-default-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-default-lineheight, 24px);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════
    NATIVE HOME LAYOUT — Row 2: Search pill
    ═══════════════════════════════════════════ */
 

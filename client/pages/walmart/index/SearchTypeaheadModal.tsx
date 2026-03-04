@@ -6,6 +6,9 @@ import { allSuggestions as sharedSuggestions } from "@/components/walmart/search
 import { IOSKeyboard } from "./IOSKeyboard";
 import { NativeStatusBar } from "@/components/walmart/NativeStatusBar";
 import { useLayoutSettings } from "@/contexts/LayoutSettingsContext";
+import { useCart } from "@/contexts/CartContext";
+import { CartIcon } from "@/components/icons-custom";
+import navStyles from "@/components/walmart/MobileTopNav.module.css";
 
 interface SearchTypeaheadModalProps {
   onClose: () => void;
@@ -15,6 +18,7 @@ interface SearchTypeaheadModalProps {
 export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeaheadModalProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
+  const { cartCount, cartPrice } = useCart();
   const isNative = platform === 'ios' || platform === 'android';
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(true);
@@ -64,6 +68,25 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
           />
         </div>
       )}
+      {/* Inversed native header — white bg, dark text, shown when search modal is open */}
+      {isNative && (
+        <div className={navStyles.nativeHeaderInverse}>
+          <span className={navStyles.greetingInverse}>Hi, Emilia</span>
+          <div className={navStyles.sparkCenter}>
+            <img
+              src="https://i5.walmartimages.com/dfw/63fd9f59-14e2/9d304ce6-96de-4331-b8ec-c5191226d378/v1/spark-icon.svg"
+              alt="Walmart"
+              className={navStyles.sparkImg}
+            />
+          </div>
+          <CartIcon
+            count={cartCount}
+            price={cartPrice}
+            textColor="var(--ld-semantic-color-text, #2e2f32)"
+          />
+        </div>
+      )}
+
       {/* Search Bar */}
       <div className="flex items-center gap-2 px-4 pt-3 pb-3 border-b border-border flex-shrink-0">
         <button onClick={handleClose} className="flex-shrink-0">
