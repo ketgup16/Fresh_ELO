@@ -1,5 +1,4 @@
 import { WCPFlag, WCPFlagVariant } from '@/components/walmart/WCPFlag';
-import { WCPHeartView } from '@/components/walmart/WCPHeartView';
 import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
 import styles from './JumpRightBackIn.module.css';
 
@@ -184,9 +183,6 @@ function ProductTile({ product }: { product: ProductCard }) {
           />
         </div>
       )}
-      <div className={styles.heartWrap}>
-        <WCPHeartView size="small" calloutPosition="left" />
-      </div>
       <div className={styles.imageWrapper}>
         <img src={product.image} alt={product.name} className={styles.productImage} />
       </div>
