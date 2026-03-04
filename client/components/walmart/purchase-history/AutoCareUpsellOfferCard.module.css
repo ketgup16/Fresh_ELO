@@ -306,19 +306,54 @@
     grid-template-columns: 1fr;
   }
 
+  /* Offer panel becomes a compact horizontal strip */
   .offerPanel {
-    padding: var(--ld-primitive-scale-space-500, 20px) var(--ld-primitive-scale-space-400, 16px);
+    padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px);
     flex-direction: row;
     align-items: center;
-    flex-wrap: wrap;
     gap: var(--ld-primitive-scale-space-400, 16px);
   }
 
+  .offerContent {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--ld-primitive-scale-space-300, 12px);
+  }
+
+  .discountBlock {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--ld-primitive-scale-space-100, 4px);
+  }
+
   .discountPct {
-    font-size: 36px;
+    font-size: 28px;
+    letter-spacing: -1px;
+  }
+
+  .discountOff {
+    font-size: 13px;
+    margin-top: 0;
+    align-self: flex-start;
+    padding-top: 2px;
+  }
+
+  .discountService {
+    display: none;
+  }
+
+  .countdown {
+    margin-top: 0;
   }
 
   .detailPanel {
     padding: var(--ld-primitive-scale-space-400, 16px);
+    gap: var(--ld-primitive-scale-space-300, 12px);
+  }
+
+  .actions {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }

@@ -252,20 +252,33 @@
 }
 
 @media (max-width: 600px) {
+  /* Keep 2 columns so the grid stays compact */
   .healthGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--ld-primitive-scale-space-200, 8px);
+  }
+
+  .healthItem {
+    padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-200, 8px);
+    gap: var(--ld-primitive-scale-space-100, 4px);
   }
 
   .header {
-    padding: var(--ld-primitive-scale-space-350, 14px) var(--ld-primitive-scale-space-400, 16px);
+    min-height: 72px;
+    padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px);
+  }
+
+  .scoreRing {
+    width: 40px;
+    height: 40px;
   }
 
   .section {
-    padding: var(--ld-primitive-scale-space-350, 14px) var(--ld-primitive-scale-space-400, 16px) 0;
+    padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px) 0;
   }
 
-  .savingsBanner {
-    margin: 0 var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-350, 14px);
+  .alertWrapper {
+    margin: 0 var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-250, 10px);
   }
 
   .footer {
