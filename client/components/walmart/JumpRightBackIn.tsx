@@ -1,5 +1,15 @@
-import { Heart } from '@/components/icons';
+import { WCPFlag, WCPFlagVariant } from '@/components/walmart/WCPFlag';
+import { WCPHeartView } from '@/components/walmart/WCPHeartView';
 import styles from './JumpRightBackIn.module.css';
+
+type BadgeType = 'bestseller' | 'deal' | 'popular' | 'rollback';
+
+const BADGE_VARIANT_MAP: Record<BadgeType, WCPFlagVariant> = {
+  bestseller: 'savings-bold',
+  deal:       'savings-subtle',
+  popular:    'confidence-subtle',
+  rollback:   'holiday-restricted',
+};
 
 interface ProductCard {
   image: string;
@@ -9,7 +19,7 @@ interface ProductCard {
   originalPrice?: string;
   pricePrefix?: string;
   priceSuffix?: string;
-  badge?: { label: string; type: 'bestseller' | 'deal' | 'popular' | 'rollback' };
+  badge?: { label: string; type: BadgeType };
 }
 
 interface Category {
@@ -164,14 +174,17 @@ function ProductTile({ product }: { product: ProductCard }) {
     <div className={styles.productTile}>
       <div className={styles.imageWrapper}>
         {product.badge && (
-          <span className={`${styles.badge} ${styles[`badge--${product.badge.type}`]}`}>
-            {product.badge.label}
-          </span>
+          <div className={styles.flagWrap}>
+            <WCPFlag
+              label={product.badge.label}
+              variant={BADGE_VARIANT_MAP[product.badge.type]}
+            />
+          </div>
         )}
         <img src={product.image} alt={product.name} className={styles.productImage} />
-        <button className={styles.heartBtn} aria-label="Save to list">
-          <Heart width={16} height={16} />
-        </button>
+        <div className={styles.heartWrap}>
+          <WCPHeartView size="small" calloutPosition="left" />
+        </div>
       </div>
       <div className={styles.productBody}>
         <div className={styles.priceRow}>

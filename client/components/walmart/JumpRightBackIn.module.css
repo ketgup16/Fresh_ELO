@@ -134,65 +134,23 @@
   display: block;
 }
 
-/* Badge top-left */
-.badge {
+/* WCPFlag positioned top-left over image */
+.flagWrap {
   position: absolute;
   top: 6px;
   left: 6px;
   z-index: 1;
-  font-family: var(--ld-semantic-font-family-sans);
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 1;
-  padding: 3px 6px;
-  border-radius: var(--wcp-semantic-scale-flag-borderRadius, 4px);
-  white-space: nowrap;
+  /* Scale down the WCPFlag to fit compact tile */
+  transform-origin: top left;
+  transform: scale(0.75);
 }
 
-.badge--bestseller {
-  background: #c40000;
-  color: #fff;
-}
-
-.badge--deal {
-  background: transparent;
-  color: #2e7d32;
-  border: 1px solid #2e7d32;
-}
-
-.badge--popular {
-  background: transparent;
-  color: var(--ld-semantic-color-text-brand, #0053e2);
-  border: 1px solid var(--ld-semantic-color-text-brand, #0053e2);
-}
-
-.badge--rollback {
-  background: transparent;
-  color: var(--ld-semantic-color-text, #2e2f32);
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-}
-
-/* Heart button top-right */
-.heartBtn {
+/* WCPHeartView positioned top-right over image */
+.heartWrap {
   position: absolute;
   top: 6px;
   right: 6px;
   z-index: 1;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  color: var(--ld-semantic-color-text-subtle);
-}
-
-.heartBtn:hover {
-  background: var(--ld-semantic-color-surface);
 }
 
 /* Product body below image */
@@ -211,11 +169,12 @@
   flex-wrap: wrap;
 }
 
+/* "Now" prefix — green savings color matching Figma */
 .pricePrefix {
   font-family: var(--ld-semantic-font-family-sans);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text-negative, #b3261e);
+  color: var(--ld-semantic-color-text-positive, #076c00);
   margin-right: 2px;
 }
 
@@ -250,6 +209,7 @@
   margin-left: 1px;
 }
 
+/* Strikethrough original price */
 .originalPrice {
   font-family: var(--ld-semantic-font-family-sans);
   font-size: 11px;
@@ -257,7 +217,7 @@
   text-decoration: line-through;
 }
 
-/* Product name */
+/* Product name — 1-line truncation */
 .productName {
   font-family: var(--ld-semantic-font-family-sans);
   font-size: 12px;
