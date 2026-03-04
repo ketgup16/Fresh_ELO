@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { BottomNav } from './BottomNav';
+import { AndroidBottomNav } from './AndroidBottomNav';
 import { DesktopHeader } from './DesktopHeader';
 import { DesktopFooter } from './DesktopFooter';
 import { MwebFooter } from './MwebFooter';
@@ -69,7 +70,10 @@ export function ResponsiveLayout({
       </main>
 
       {/* Mobile footer/nav — swapped by project-level mobileFooter setting */}
-      {showMobileNav && mobileFooter === 'native' && (
+      {showMobileNav && mobileFooter === 'native' && platform === 'android' && (
+        <AndroidBottomNav activeTab={mobileActiveTab === 'heart' ? 'heart' : mobileActiveTab === 'user' ? 'account' : 'shop'} />
+      )}
+      {showMobileNav && mobileFooter === 'native' && platform !== 'android' && (
         <div className={styles.mobileNavWrapper}>
           <BottomNav activeTab={mobileActiveTab} />
         </div>
