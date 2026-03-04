@@ -176,19 +176,19 @@ const CATEGORIES: Category[] = [
 function ProductTile({ product }: { product: ProductCard }) {
   return (
     <div className={styles.productTile}>
-      <div className={styles.imageWrapper}>
-        {product.badge && (
-          <div className={styles.flagWrap}>
-            <WCPFlag
-              label={product.badge.label}
-              variant={BADGE_VARIANT_MAP[product.badge.type]}
-            />
-          </div>
-        )}
-        <img src={product.image} alt={product.name} className={styles.productImage} />
-        <div className={styles.heartWrap}>
-          <WCPHeartView size="small" calloutPosition="left" />
+      {product.badge && (
+        <div className={styles.flagWrap}>
+          <WCPFlag
+            label={product.badge.label}
+            variant={BADGE_VARIANT_MAP[product.badge.type]}
+          />
         </div>
+      )}
+      <div className={styles.heartWrap}>
+        <WCPHeartView size="small" calloutPosition="left" />
+      </div>
+      <div className={styles.imageWrapper}>
+        <img src={product.image} alt={product.name} className={styles.productImage} />
       </div>
       <div className={styles.productBody}>
         <div className={[styles.priceRow, product.pricePrefix ? styles.priceRowSavings : ''].filter(Boolean).join(' ')}>

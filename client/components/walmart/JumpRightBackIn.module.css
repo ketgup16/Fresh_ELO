@@ -111,9 +111,10 @@
 
 /* Individual product tile */
 .productTile {
+  position: relative;
   background: var(--ld-semantic-color-surface, #fff);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
 }
@@ -124,10 +125,12 @@
   width: 100%;
   height: 145px;
   background: var(--ld-semantic-color-surface, #fff);
-  padding: 8px;
+  padding: 24px 8px 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px) var(--ld-primitive-scale-borderradius-100, 8px) 0 0;
+  overflow: hidden;
 }
 
 .productImage {
@@ -137,23 +140,23 @@
   display: block;
 }
 
-/* WCPFlag positioned top-left over image */
+/* WCPFlag positioned top-left, slightly overlapping the image */
 .flagWrap {
   position: absolute;
-  top: 6px;
-  left: 6px;
-  z-index: 1;
+  top: 4px;
+  left: 4px;
+  z-index: 3;
   /* Scale down the WCPFlag to fit compact tile */
   transform-origin: top left;
   transform: scale(0.75);
 }
 
-/* WCPHeartView positioned top-right over image */
+/* WCPHeartView positioned top-right, slightly overlapping the image */
 .heartWrap {
   position: absolute;
-  top: 6px;
-  right: 6px;
-  z-index: 1;
+  top: 2px;
+  right: 2px;
+  z-index: 3;
 }
 
 /* Product body below image */
