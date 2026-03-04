@@ -1,4 +1,3 @@
-import { Pause } from "@/components/icons";
 import { useRef, useCallback } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { NewArrivalsCarousel } from "@/components/walmart/NewArrivalsCarousel";
@@ -122,9 +121,6 @@ export default function Index() {
               alt="Grocery carousel background"
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute top-4 right-4 w-10 h-6 bg-white/70 backdrop-blur rounded-full flex items-center justify-center z-10">
-              <Pause className="w-4 h-4" />
-            </div>
             <div className="absolute bottom-0 left-0 right-0 p-4 space-y-2 z-10">
               <div className="grid grid-cols-2 gap-2">
                 {GROCERY_ITEMS.slice(0, 2).map((item) => (
@@ -160,9 +156,6 @@ export default function Index() {
               alt="Bold animal prints background"
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute top-4 right-4 w-10 h-6 bg-white/70 backdrop-blur rounded-full flex items-center justify-center z-10">
-              <Pause className="w-4 h-4" />
-            </div>
             <div className="absolute top-8 left-4 right-4 z-10">
               <h2 className="text-white text-[48px] leading-[40px] max-w-[230px]">Bold animal prints</h2>
             </div>
@@ -202,9 +195,6 @@ export default function Index() {
                 Home refresh
               </h2>
               <p className="text-[#2e4a22] text-sm mt-1">Furniture & kitchen finds</p>
-            </div>
-            <div className="absolute top-4 right-4 w-10 h-6 bg-white/70 backdrop-blur rounded-full flex items-center justify-center z-10">
-              <Pause className="w-4 h-4" />
             </div>
             <div className="absolute bottom-4 left-4 right-4 space-y-2 z-10">
               <div className="grid grid-cols-2 gap-2">
@@ -258,9 +248,6 @@ export default function Index() {
           {/* Shop Vacuums Card */}
           <div className="relative rounded-lg overflow-hidden h-[543px] min-w-[320px] w-[320px] snap-center flex-shrink-0">
             <div className="absolute inset-0 bg-[#1a4d8f]" />
-            <div className="absolute top-4 right-4 w-10 h-6 bg-white/70 backdrop-blur rounded-full flex items-center justify-center z-10">
-              <Pause className="w-4 h-4" />
-            </div>
             <div className="absolute top-8 left-4 right-4 z-10">
               <h2 className="text-white text-[36px] font-bold leading-[38px] max-w-[230px]">
                 Shop vacuums
