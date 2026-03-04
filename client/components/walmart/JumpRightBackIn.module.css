@@ -169,12 +169,24 @@
   flex-wrap: wrap;
 }
 
-/* "Now" prefix — green savings color matching Figma */
+/* When "Now" prefix is present, entire price row turns savings green */
+.priceRowSavings {
+  color: var(--ld-semantic-color-text-positive, #2a8703);
+}
+
+.priceRowSavings .price,
+.priceRowSavings .priceDollar,
+.priceRowSavings .priceCents,
+.priceRowSavings .priceSuffix {
+  color: inherit;
+}
+
+/* "Now" prefix */
 .pricePrefix {
   font-family: var(--ld-semantic-font-family-sans);
   font-size: 11px;
   font-weight: 700;
-  color: var(--ld-semantic-color-text-positive, #076c00);
+  color: var(--ld-semantic-color-text-positive, #2a8703);
   margin-right: 2px;
 }
 

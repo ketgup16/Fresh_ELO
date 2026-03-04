@@ -187,7 +187,7 @@ function ProductTile({ product }: { product: ProductCard }) {
         </div>
       </div>
       <div className={styles.productBody}>
-        <div className={styles.priceRow}>
+        <div className={[styles.priceRow, product.pricePrefix ? styles.priceRowSavings : ''].filter(Boolean).join(' ')}>
           {product.pricePrefix && (
             <span className={styles.pricePrefix}>{product.pricePrefix} </span>
           )}
