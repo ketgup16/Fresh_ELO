@@ -5,6 +5,7 @@
   align-items: center;
   gap: var(--ld-primitive-scale-space-250, 20px);
   flex: 1 0 0;
+  max-width: 500px;
 }
 
 /* ── Pill (the rounded input container) ───────────────────────────────────── */
