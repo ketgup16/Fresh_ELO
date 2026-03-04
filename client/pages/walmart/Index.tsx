@@ -15,17 +15,17 @@ interface CarouselItem {
 }
 
 const GROCERY_ITEMS: CarouselItem[] = [
-  { img: 'https://api.builder.io/api/v1/image/assets/TEMP/bd837058fbddc5901e149fc30b9d42df64f5c469?width=800', price: '9', cents: '00', idx: 0 },
-  { img: 'https://api.builder.io/api/v1/image/assets/TEMP/8a7143f8102e1b6f6b1b897bb77a6eca35110d9e?width=800', price: '7', cents: '00', idx: 1 },
-  { img: 'https://api.builder.io/api/v1/image/assets/TEMP/323dc30082ef5d7041780a725ebbf4e9d310e7ba?width=800', price: '11', cents: '00', idx: 2 },
-  { img: 'https://api.builder.io/api/v1/image/assets/TEMP/443bdf4d7c71e01c3032f1295a2ffcb0b4edd57d?width=800', price: '9', cents: '49', idx: 3 },
+  { img: '/images/products/ninja-air-fryer.jpeg', price: '9', cents: '00', idx: 0 },
+  { img: '/images/products/dinnerware-set.jpeg', price: '7', cents: '00', idx: 1 },
+  { img: '/images/products/table-lamp.jpeg', price: '11', cents: '00', idx: 2 },
+  { img: '/images/products/roomba.jpeg', price: '9', cents: '49', idx: 3 },
 ];
 
 const ANIMAL_PRINT_ITEMS: CarouselItem[] = [
-  { img: 'https://api.builder.io/api/v1/image/assets/TEMP/22eb4ceff29b46284693bbf8e8fa100f9d85a82e?width=800', price: '199', cents: '00', idx: 4 },
-  { img: 'https://api.builder.io/api/v1/image/assets/TEMP/d9ee7b238140973cda377ee6e3f49c9037dfcc6d?width=800', price: '79', cents: '00', idx: 5 },
-  { img: 'https://api.builder.io/api/v1/image/assets/TEMP/475d5bef94fd5d4f97597ae2c5c56bccddc46514?width=800', price: '178', cents: '00', idx: 6 },
-  { img: 'https://api.builder.io/api/v1/image/assets/TEMP/fd1e2f2ead763dc721242c668c98d4ee72e664a1?width=800', price: '99', cents: '00', idx: 7 },
+  { img: '/images/products/gaekeao-hobo.jpeg', price: '199', cents: '00', idx: 4 },
+  { img: '/images/products/athletic-sneakers.jpeg', price: '79', cents: '00', idx: 5 },
+  { img: '/images/products/cate-chloe.jpeg', price: '178', cents: '00', idx: 6 },
+  { img: '/images/products/marc-jacobs-daisy.jpeg', price: '99', cents: '00', idx: 7 },
 ];
 
 export default function Index() {
