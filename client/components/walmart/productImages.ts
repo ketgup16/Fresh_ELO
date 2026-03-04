@@ -109,4 +109,18 @@ export const PRODUCT_IMAGES = {
     'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fcb649a50618f49ca918bf515c9662749?format=webp&width=400',
   redApple:
     'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F58b6ed866290432196fcfee0794c8c48?format=webp&width=400',
+
+  // Flash Deals
+  flashEarrings:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fd02a9e520e5040aab3e4cc7a15442318?format=webp&width=400',
+  flashShampoo:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F05643d24b1534517bba50e26a1a75178?format=webp&width=400',
+  flashHumidifier:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F207f43bc2e614f0fac075e2d6c9a2d1f?format=webp&width=400',
+  flashTankTops:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F3351e086d41b41b8a457ea95b7ebde21?format=webp&width=400',
+  flashLaptop:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Febac1d29c0c243c58bf6b0f4f724dd65?format=webp&width=400',
+  flashExerciseBike:
+    'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8327129ce60a4a7c8fcef5aa641d9611?format=webp&width=400',
 } as const;

@@ -1,10 +1,11 @@
-import { WCPFlag, WCPFlagVariant } from '@/components/walmart/WCPFlag';
+import { WCPFlag } from '@/components/walmart/WCPFlag';
 import { WCPHeartView } from '@/components/walmart/WCPHeartView';
-import styles from './WCPItemTile.module.css';
+import { Button } from '@/components/ui/Button';
+import { useCart } from '@/contexts/CartContext';
+import { ItemTileBadgeType } from '@/components/walmart/WCPItemTile';
+import styles from './FlashDealsItemTile.module.css';
 
-export type ItemTileBadgeType = 'bestseller' | 'deal' | 'popular' | 'rollback' | 'clearance';
-
-const BADGE_VARIANT_MAP: Record<ItemTileBadgeType, WCPFlagVariant> = {
+const BADGE_VARIANT_MAP: Record<ItemTileBadgeType, import('@/components/walmart/WCPFlag').WCPFlagVariant> = {
   bestseller: 'savings-bold',
   deal: 'savings-subtle',
   popular: 'confidence-subtle',
@@ -12,39 +13,40 @@ const BADGE_VARIANT_MAP: Record<ItemTileBadgeType, WCPFlagVariant> = {
   clearance: 'holiday-restricted',
 };
 
-export interface WCPItemTileProps {
-  /** Product image URL */
+export interface FlashDealsItemTileProps {
   image: string;
-  /** Product name (truncated to 1 line) */
   name: string;
-  /** Dollar portion of price, e.g. "98" */
   price: string;
-  /** Cents portion of price, e.g. "00" */
   cents: string;
-  /** Strikethrough original price, e.g. "$200.00" */
   originalPrice?: string;
-  /** Prefix like "Now" — triggers green savings style */
   pricePrefix?: string;
-  /** Suffix like "/mo" */
-  priceSuffix?: string;
-  /** Optional badge overlay */
   badge?: { label: string; type: ItemTileBadgeType };
+  optionsText?: string;
+  actionType: 'add' | 'options';
+  idx: number;
 }
 
-export function WCPItemTile({
+export function FlashDealsItemTile({
   image,
   name,
   price,
   cents,
   originalPrice,
   pricePrefix,
-  priceSuffix,
   badge,
-}: WCPItemTileProps) {
+  optionsText,
+  actionType,
+  idx,
+}: FlashDealsItemTileProps) {
+  const { setItemQuantity } = useCart();
   const isSavings = !!pricePrefix;
 
+  const handleAdd = () => {
+    setItemQuantity(idx, 1);
+  };
+
   return (
-    <div className={styles.tile}>
+    <div className={styles.card}>
       {badge && (
         <div className={styles.flagWrap}>
           <WCPFlag
@@ -71,14 +73,25 @@ export function WCPItemTile({
           <span className={styles.dollarSign}>$</span>
           <span className={styles.price}>{price}</span>
           <span className={styles.cents}>{cents}</span>
-          {priceSuffix && (
-            <span className={styles.suffix}>{priceSuffix}</span>
-          )}
         </div>
         {originalPrice && (
           <div className={styles.originalPrice}>{originalPrice}</div>
         )}
+        {optionsText && (
+          <p className={styles.optionsText}>{optionsText}</p>
+        )}
         <p className={styles.name}>{name}</p>
+      </div>
+      <div className={styles.footer}>
+        {actionType === 'add' ? (
+          <Button variant="secondary" size="small" onClick={handleAdd}>
+            + Add
+          </Button>
+        ) : (
+          <Button variant="secondary" size="small" onClick={() => {}}>
+            Options
+          </Button>
+        )}
       </div>
     </div>
   );
