@@ -22,6 +22,7 @@ interface ResponsiveLayoutProps {
   showHomeExtras?: boolean;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
   mobileActiveTab?: 'shop' | 'heart' | 'user';
+  nativeStatusBarVariant?: 'blue' | 'white';
 }
 
 const maxWidthClassMap: Record<string, string> = {
@@ -42,6 +43,7 @@ export function ResponsiveLayout({
   showHomeExtras = false,
   maxWidth = '2xl',
   mobileActiveTab = 'shop',
+  nativeStatusBarVariant = 'blue',
 }: ResponsiveLayoutProps) {
   const maxWidthClass = maxWidthClassMap[maxWidth] || styles.maxWidth2xl;
   const { mobileFooter, mobileTopNav, platform } = useLayoutSettings();
@@ -51,7 +53,7 @@ export function ResponsiveLayout({
     <div className={styles.root}>
       {/* Native status bar + top nav wrapped together to prevent sub-pixel gap */}
       {showMobileNav && isNative && mobileTopNav === 'native' && (
-        <div className={styles.nativeNavWrapper}>
+        <div className={[styles.nativeNavWrapper, nativeStatusBarVariant === 'white' ? styles.nativeNavWrapperWhite : ''].filter(Boolean).join(' ')}>
           <NativeStatusBar platform={platform as 'ios' | 'android'} />
           {showMobileTopNav && <MobileTopNav showHomeExtras={showHomeExtras} />}
         </div>

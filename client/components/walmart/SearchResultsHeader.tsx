@@ -1,6 +1,6 @@
 import { ChevronLeft } from "@/components/icons";
 import { SparklesIcon } from "@/components/icons-custom";
-import { Button } from "@/components/ui/Button";
+import { IconButton } from "@/components/ui/IconButton";
 
 interface SearchResultsHeaderProps {
   query: string;
@@ -9,17 +9,17 @@ interface SearchResultsHeaderProps {
 
 export function SearchResultsHeader({ query, onBack }: SearchResultsHeaderProps) {
   return (
-    <div className="sticky top-0 z-50 bg-white lg:hidden">
+    <div className="sticky top-0 z-50 bg-white lg:hidden -mx-4">
       <div className="flex items-center gap-1 px-4 pb-4 pt-2">
-        <Button
-          variant="tertiary"
-          size="small"
+        <IconButton
+          variant="ghost"
+          size="medium"
           onClick={onBack}
-          UNSAFE_className="flex-shrink-0 !p-0 !h-auto"
           aria-label="Go back"
+          UNSAFE_className="flex-shrink-0"
         >
           <ChevronLeft className="w-6 h-6" />
-        </Button>
+        </IconButton>
         <div className="flex-1">
           <div className="border-2 border-[var(--ld-semantic-color-action-fill-primary)] rounded-full">
             <div className="bg-white rounded-full px-3 py-2 flex items-center gap-2 h-[42px]">

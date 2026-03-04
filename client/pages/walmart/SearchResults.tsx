@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { SparklesIcon } from "@/components/icons-custom";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
+import { PRODUCT_IMAGES } from "@/components/walmart/productImages";
 import { SearchResultsHeader } from "@/components/walmart/SearchResultsHeader";
 import { SearchFilterBar } from "@/components/walmart/SearchFilterBar";
 import { ProductCardList, ProductCardListProps } from "@/components/walmart/ProductCardList";
@@ -23,7 +23,7 @@ const TOP_PRODUCTS: ProductCardListProps[] = [
     rating: 4.5,
     ratingCount: '2,204',
     pickup: '2 pm',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/25805b85ee9b7ab1a9bb9121e0ef8891b372b99b?width=320',
+    image: PRODUCT_IMAGES.tablet,
     cue: 'TV with bright screen',
   },
   {
@@ -36,7 +36,7 @@ const TOP_PRODUCTS: ProductCardListProps[] = [
     rating: 4.3,
     ratingCount: '1,121',
     pickup: '2 pm',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/25805b85ee9b7ab1a9bb9121e0ef8891b372b99b?width=320',
+    image: PRODUCT_IMAGES.laptop1,
   },
   {
     price: '328',
@@ -45,7 +45,7 @@ const TOP_PRODUCTS: ProductCardListProps[] = [
     rating: 4.6,
     ratingCount: '3,567',
     pickup: '2 pm',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/25805b85ee9b7ab1a9bb9121e0ef8891b372b99b?width=320',
+    image: PRODUCT_IMAGES.laptop2,
   },
 ];
 
@@ -70,7 +70,7 @@ export default function SearchResults() {
   const query = searchParams.get('q') || 'TVs';
 
   return (
-    <ResponsiveLayout maxWidth="full" showMobileTopNav={false}>
+    <ResponsiveLayout maxWidth="full" showMobileTopNav={false} nativeStatusBarVariant="white">
       <div className="bg-white font-sans">
         <SearchResultsHeader query={query} onBack={() => navigate('/walmart')} />
         <SearchFilterBar chips={FILTER_CHIPS} />

@@ -7,6 +7,18 @@
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  /* Break out of contentContainer's 16px horizontal padding on mobile */
+  margin-left: -16px;
+  margin-right: -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 1024px) {
+  .bar {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .bar::-webkit-scrollbar {

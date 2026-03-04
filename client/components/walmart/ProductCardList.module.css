@@ -69,25 +69,78 @@
 
 /* Price */
 .priceRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 1px;
+  flex-wrap: wrap;
+  min-height: 24px;
+}
+
+/* Green savings style when "Now" prefix present */
+.priceRowSavings {
+  color: var(--ld-semantic-color-text-positive, #2a8703);
+}
+
+.priceRowSavings .price,
+.priceRowSavings .dollarSign,
+.priceRowSavings .cents {
+  color: inherit;
+}
+
+/* "Now" prefix */
+.prefix {
+  font-family: var(--ld-semantic-font-family-sans);
   font-size: 20px;
   font-weight: 700;
-  line-height: 1.25;
-  color: var(--ld-semantic-color-text);
+  color: var(--ld-semantic-color-text-positive, #2a8703);
+  line-height: 24px;
+  margin-right: 2px;
 }
 
-.priceSup {
-  font-size: var(--ld-semantic-font-body-small-size);
-  vertical-align: top;
+/* Dollar sign — 14px superscript */
+.dollarSign {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  padding-bottom: 6px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.priceAccent {
-  color: var(--ld-semantic-color-text-positive);
+/* Dollar value — 24px bold */
+.price {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  line-height: 20px;
+}
+
+/* Cents — 14px superscript */
+.cents {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  padding-bottom: 8px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .priceStrike {
   font-size: var(--ld-semantic-font-body-small-size);
   color: var(--ld-semantic-color-text-subtle);
   text-decoration: line-through;
+  align-self: flex-end;
+  margin-left: 4px;
+  line-height: 20px;
 }
 
 /* Unit price */

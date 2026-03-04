@@ -1,8 +1,6 @@
-import { useState } from "react";
-import { Heart, HeartFill } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
-import { IconButton } from "@/components/ui/IconButton";
 import { Rating } from "@/components/ui/Rating";
+import { WCPHeartView } from "./WCPHeartView";
 import { WCPTimerView } from "./WCPTimerView";
 import styles from "./ProductCardList.module.css";
 
@@ -47,8 +45,6 @@ export function ProductCardList({
   timerEndTime,
   timerLabel = 'Ends in',
 }: ProductCardListProps) {
-  const [isFavorited, setIsFavorited] = useState(false);
-
   return (
     <div className={styles.card}>
       {/* Image column */}
@@ -59,19 +55,7 @@ export function ProductCardList({
           </div>
         )}
         <div className={styles.favoriteButton}>
-          <IconButton
-            aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
-            variant="white"
-            size="small"
-            shape="rounded"
-            onClick={() => setIsFavorited(!isFavorited)}
-          >
-            {isFavorited ? (
-              <HeartFill className={styles.heartFilled} />
-            ) : (
-              <Heart className={styles.heartEmpty} />
-            )}
-          </IconButton>
+          <WCPHeartView size="small" calloutPosition="right" />
         </div>
         <img src={image} alt={name} className={styles.productImage} />
         {timerEndTime && (
@@ -83,22 +67,16 @@ export function ProductCardList({
 
       {/* Content column */}
       <div className={styles.contentCol}>
-        {/* Price */}
-        <div className={styles.priceRow}>
-          {wasPrice ? (
-            <>
-              <span className={`${styles.priceSup} ${styles.priceAccent}`}>Now $</span>
-              <span className={styles.priceAccent}>{price}</span>
-              <span className={`${styles.priceSup} ${styles.priceAccent}`}>{cents}</span>
-              {' '}
-              <span className={styles.priceStrike}>{wasPrice}</span>
-            </>
-          ) : (
-            <>
-              <span className={styles.priceSup}>$</span>
-              {price}
-              <span className={styles.priceSup}>{cents}</span>
-            </>
+        {/* Price — matches WCPItemTile superscript pattern */}
+        <div className={[styles.priceRow, wasPrice ? styles.priceRowSavings : ''].filter(Boolean).join(' ')}>
+          {wasPrice && (
+            <span className={styles.prefix}>Now </span>
+          )}
+          <span className={styles.dollarSign}>$</span>
+          <span className={styles.price}>{price}</span>
+          <span className={styles.cents}>{cents}</span>
+          {wasPrice && (
+            <span className={styles.priceStrike}>{wasPrice}</span>
           )}
         </div>
 
