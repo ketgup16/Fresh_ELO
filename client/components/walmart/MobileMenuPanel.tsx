@@ -94,7 +94,7 @@ export function MobileMenuPanel({ isOpen, onClose }: MobileMenuPanelProps) {
           <div className={styles.header}>
             <div className={styles.headerRow}>
               <WalmartPlusLogoIcon width={32} height={24} aria-hidden="true" />
-              <span className={styles.greeting}>Hi, Mi H</span>
+              <span className={styles.greeting}>Hi, Emilia</span>
             </div>
             <button className={styles.closeButton} onClick={onClose} aria-label="Close menu">
               <X width={24} height={24} />

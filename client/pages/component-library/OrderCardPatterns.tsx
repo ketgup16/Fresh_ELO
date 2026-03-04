@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import pageStyles from './OrderCardPatterns.module.css';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { AutoCareOrderCard } from '@/components/walmart/purchase-history/AutoCareOrderCard';
 import { CurbsideOrderCard } from '@/components/walmart/purchase-history/CurbsideOrderCard';
@@ -255,33 +256,16 @@ function CopyPromptButton({ text }: { text: string }) {
 // ── Pattern card wrapper ──────────────────────────────────────────────────────
 function PatternSection({ pattern }: { pattern: PatternEntry }) {
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 0,
-      borderRadius: '12px',
-      border: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-      overflow: 'hidden',
-      backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
-    }}>
+    <div className={pageStyles.patternCard}>
       {/* Label row */}
-      <div style={{
-        padding: '16px 20px 12px',
-        borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-      }}>
-        <p style={{
-          margin: 0,
-          fontSize: '13px',
-          fontWeight: 700,
-          color: 'var(--ld-semantic-color-text-subtle, #74767C)',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-        }}>
+      <div className={pageStyles.patternLabel}>
+        <p className={pageStyles.patternLabelText}>
           {pattern.title}
         </p>
       </div>
 
       {/* Live preview */}
-      <div style={{ padding: '24px 20px' }}>
+      <div className={pageStyles.patternPreview}>
         {pattern.preview}
       </div>
 
@@ -305,13 +289,8 @@ function PromptsTable() {
   };
 
   return (
-    <div style={{
-      borderRadius: '8px',
-      border,
-      overflow: 'hidden',
-      marginBottom: '8px',
-    }}>
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <div className={pageStyles.tableWrapper}>
+      <table className={pageStyles.table}>
         <thead>
           <tr style={{ background: 'var(--ld-semantic-color-background-subtle, #F2F3F3)' }}>
             <th style={{ ...cellStyle, width: '220px', fontWeight: 700, color: 'var(--ld-semantic-color-text-subtle, #515357)', fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)' }}>
@@ -325,7 +304,7 @@ function PromptsTable() {
         <tbody>
           {PATTERNS.map((p, i) => (
             <tr key={p.id} style={{ background: i % 2 === 0 ? 'var(--ld-semantic-color-surface, #fff)' : 'var(--ld-semantic-color-background-subtle, #F2F3F3)' }}>
-              <td style={{ ...cellStyle, fontWeight: 600, borderRight: border, whiteSpace: 'nowrap' }}>
+              <td style={{ ...cellStyle, fontWeight: 600, borderRight: border }}>
                 {p.title}
               </td>
               <td style={{ ...cellStyle }}>
@@ -347,7 +326,7 @@ export default function OrderCardPatternsPage() {
       title="Order Cards"
       description="Ready-to-use card templates for the Purchase History page. Each pattern is a live component — click the prompt below it to copy it, then paste it into Fusion."
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>
+      <div className={pageStyles.stack}>
         <PromptsTable />
         {PATTERNS.map(pattern => (
           <PatternSection key={pattern.id} pattern={pattern} />

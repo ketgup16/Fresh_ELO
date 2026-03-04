@@ -8,7 +8,7 @@ interface AccountDropdownProps {
   userName?: string;
 }
 
-export function AccountDropdown({ userName = 'Hi, Mi H' }: AccountDropdownProps) {
+export function AccountDropdown({ userName = 'Hi, Emilia' }: AccountDropdownProps) {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);

@@ -234,7 +234,7 @@ export function DesktopHeader() {
               <ReorderDropdown />
             </li>
             <li className={styles.accountItem}>
-              <AccountDropdown userName="Hi, Mi H" />
+              <AccountDropdown userName="Hi, Emilia" />
             </li>
             <li className={styles.cartItem}>
               <button
