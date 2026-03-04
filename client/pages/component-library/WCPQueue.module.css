@@ -1,11 +1,4 @@
-/* ── WCPQueue merged pattern page ─────────────────────────────── */
-
-.page {
-  padding: 32px 48px 64px;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-}
+/* ── WCPQueue docs page ───────────────────────────────── */
 
 .section {
   display: flex;
@@ -33,352 +26,124 @@
   margin: 0 0 16px;
 }
 
-/* ── Demo areas ──────────────────────────────────────────────── */
-
-.demoRow {
-  display: flex;
-  gap: 32px;
-  flex-wrap: wrap;
+/* ── Demo grid ──────────────────────────────────────────────── */
+.demoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
 }
 
 .demoCard {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  flex: 1;
-  min-width: 340px;
-  max-width: 520px;
+  gap: 12px;
+  padding: 24px;
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
-.demoLabel {
+.demoCardDark {
+  background: var(--wcp-semantic-color-surface-overlay-brand-bold, #002E99);
+}
+
+.cardLabel {
   font-family: var(--ld-semantic-font-body-small-family);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ld-semantic-color-text-subtle);
-  margin-bottom: 8px;
+  margin: 0;
 }
 
-/* Blue content area wrapping the Queue Landing content */
-.blueContentArea {
-  padding: 32px 24px;
-  background: var(--wcp-semantic-color-surface-overlay-brand-bold, #002E99);
-  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  overflow: hidden;
+.cardLabelLight {
+  color: rgba(255, 255, 255, 0.7);
 }
 
-/* ── Trigger buttons row ─────────────────────────────────────── */
-
-.triggerRow {
+.cardContent {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Timer variants row ─────────────────────────────────────── */
+.timerRow {
+  display: flex;
   align-items: center;
-}
-
-/* ── Variant comparison grid (Banner) ────────────────────────── */
-
-.variantGrid {
-  display: flex;
-  gap: 24px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
-.variantCol {
+/* ── Banner demo wrapper ────────────────────────────────────── */
+.bannerDemo {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bannerWrap {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  flex: 1;
-  min-width: 300px;
-  max-width: 380px;
-}
-
-.variantLabel {
-  font-family: var(--ld-semantic-font-body-small-family);
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-/* ── Card variant grid (fixed 343px columns like Figma) ──────── */
-
-.cardVariantGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 343px);
-  gap: var(--ld-primitive-scale-space-300, 24px);
-}
-
-.cardVariantCol {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ld-primitive-scale-space-100, 8px);
-}
-
-/* ── Banner demo frame ───────────────────────────────────────── */
-
-.bannerFrame {
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   overflow: hidden;
   border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
-.bannerFrameNarrow {
+/* ── Landing demo wrapper ───────────────────────────────────── */
+.landingWrap {
+  max-width: 468px;
+  padding: 32px;
+  background: var(--wcp-semantic-color-surface-overlay-brand-bold, #002E99);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  overflow: hidden;
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  max-width: 375px;
 }
 
-/* ── Variant row (side-by-side desktop/mobile) ───────────────── */
-
-.variantRow {
+/* ── Meta row (tags) ────────────────────────────────────────── */
+.metaRow {
   display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.variantCard {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 300px;
-}
-
-/* ── Control row ─────────────────────────────────────────────── */
-
-.controlRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
   align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.controlLabel {
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
+.metaLabel {
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size);
+  font-weight: var(--ld-semantic-font-body-small-weight-default);
+  line-height: var(--ld-semantic-font-body-small-lineheight);
+  color: var(--ld-semantic-color-text-subtle);
+}
+
+/* ── Prop table ─────────────────────────────────────────────── */
+.propTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size);
+}
+
+.propTable th,
+.propTable td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.propTable th {
   font-weight: 700;
   color: var(--ld-semantic-color-text);
-}
-
-/* ── Live demo (card) ────────────────────────────────────────── */
-
-.liveDemo {
-  max-width: 343px;
-}
-
-/* ── Code block ──────────────────────────────────────────────── */
-
-.codeBlock {
-  background: var(--ld-semantic-color-text, #2e2f32);
-  color: #e8e9ea;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 13px;
-  line-height: 1.6;
-  padding: 20px 24px;
-  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  overflow-x: auto;
-  white-space: pre;
-}
-
-/* ── Modal content override ──────────────────────────────────── */
-
-.modalBlueContent {
-  padding: 32px 24px 24px;
-  background: var(--wcp-semantic-color-surface-overlay-brand-bold, #002E99);
-}
-
-.modalFooter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--ld-primitive-scale-space-200, 16px);
-  padding: var(--ld-primitive-scale-space-200, 16px) var(--ld-primitive-scale-space-300, 24px);
-  border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-}
-
-.modalLeaveLink {
-  color: var(--ld-semantic-color-text, #2e2f32);
-  font-family: var(--ld-semantic-font-body-medium-family);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
-  text-decoration: underline;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-}
-
-.modalLeaveLink:hover {
-  opacity: 0.7;
-}
-
-/* ── Sheet content padding ───────────────────────────────────── */
-
-.sheetContent {
-  padding: 24px 0;
-}
-
-/* ── Sheet footer actions ────────────────────────────────────── */
-
-.sheetFooterActions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--ld-primitive-scale-space-200, 16px);
-  width: 100%;
-}
-
-/* ── Use case example blocks ─────────────────────────────────── */
-
-.useCaseBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.useCaseTitle {
-  font-family: var(--ld-semantic-font-body-medium-family);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
-  line-height: var(--ld-semantic-font-body-medium-lineheight);
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-/* ── Mobile states row ──────────────────────────────────────── */
-
-.mobileStatesRow {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.mobileStateCard {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-  min-width: 260px;
-  max-width: 380px;
-}
-
-.mobileStateLabel {
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-.mobileStateSublabel {
-  font-size: 12px;
-  color: var(--ld-semantic-color-text-subtle, #515357);
-  margin-top: -4px;
-}
-
-/* Phone frame container */
-.phoneFrame {
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  display: flex;
-  flex-direction: column;
-  height: 440px;
-  position: relative;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
-}
-
-.phonePage {
-  flex: 1;
   background: var(--ld-semantic-color-background-subtle, #f5f6f7);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
 }
 
-.phoneNavBar {
-  height: 48px;
-  background: var(--ld-semantic-color-fill-brand, #0071dc);
-  flex-shrink: 0;
+.propTable td {
+  color: var(--ld-semantic-color-text-subtle);
 }
 
-.phonePageContent {
-  flex: 1;
-  padding: 16px;
-  background: repeating-linear-gradient(
-    180deg,
-    var(--ld-semantic-color-background-subtle, #f5f6f7) 0px,
-    var(--ld-semantic-color-background-subtle, #f5f6f7) 40px,
-    var(--ld-semantic-color-separator, #e3e4e5) 40px,
-    var(--ld-semantic-color-separator, #e3e4e5) 41px
-  );
-  background-size: 100% 56px;
-}
-
-.phoneBannerSlot {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--ld-primitive-scale-space-300, 24px);
-}
-
-.phoneSnackbarWrap {
-  padding: 0 var(--ld-primitive-scale-space-200, 16px);
-}
-
-.phoneBottomNavSlot {
-  flex-shrink: 0;
-}
-
-/* ── Snackbar demo ───────────────────────────────────────────── */
-
-.snackbarDemo {
-  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  overflow: hidden;
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-}
-
-/* ── Responsive ──────────────────────────────────────────────── */
-
-@media (max-width: 1200px) {
-  .cardVariantGrid {
-    grid-template-columns: repeat(2, 343px);
-  }
-}
-
-@media (max-width: 768px) {
-  .page {
-    padding: 24px 16px 48px;
-    gap: 32px;
-  }
-
-  .demoRow {
-    flex-direction: column;
-  }
-
-  .demoCard {
-    max-width: 100%;
-  }
-
-  .variantGrid {
-    flex-direction: column;
-  }
-
-  .variantCol {
-    max-width: 100%;
-  }
-
-  .cardVariantGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .variantRow {
-    flex-direction: column;
-  }
-
-  .mobileStatesRow {
-    flex-direction: column;
-  }
-
-  .mobileStateCard {
-    max-width: 100%;
-  }
+.propTable code {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+  padding: 2px 6px;
+  border-radius: 4px;
 }

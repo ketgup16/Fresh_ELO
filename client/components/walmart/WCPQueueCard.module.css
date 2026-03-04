@@ -1,26 +1,27 @@
-/* ── Card shell ─────────────────────────────────────────────────────────────── */
+/* WCPQueueCard — compact product card used in queue flows */
+
 .card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  align-self: stretch;
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  background: var(--ld-semantic-color-surface);
+  background: var(--ld-semantic-color-surface, #fff);
   box-shadow:
-    0 -1px 2px 0 rgba(0, 0, 0, 0.10),
-    0  1px 2px 1px rgba(0, 0, 0, 0.15);
-  width: 100%;
+    0 -1px 2px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 1px rgba(0, 0, 0, 0.15);
 }
 
-/* ── Content area ───────────────────────────────────────────────────────────── */
 .content {
   display: flex;
-  flex-direction: column;
-  gap: var(--ld-primitive-scale-space-100, 8px);
   padding: var(--ld-primitive-scale-space-200, 16px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-100, 8px);
   align-self: stretch;
 }
 
-/* ── Timer row ──────────────────────────────────────────────────────────────── */
+/* ── Timer row ── */
 .timerRow {
   display: flex;
   align-items: center;
@@ -28,61 +29,16 @@
   align-self: stretch;
 }
 
-/* Timer pill shared */
-.timerPill {
-  display: flex;
-  padding: 0 var(--ld-primitive-scale-space-50, 4px);
-  justify-content: center;
-  align-items: center;
-  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
-  min-width: 48px;
-}
-
-/* Variant: waiting — light blue */
-.timerPill--waiting {
-  background: var(--ld-semantic-color-fill-brand-subtle);
-}
-.timerPill--waiting .timerTime {
-  color: var(--ld-semantic-color-text-onfill-brand-subtle, #114ab6);
-}
-
-/* Variant: warning — yellow */
-.timerPill--warning {
-  background: var(--ld-semantic-color-fill-warning);
-}
-.timerPill--warning .timerTime {
-  color: var(--ld-semantic-color-text-onfill-warning, #2e2f32);
-}
-
-/* Variant: expiring — red */
-.timerPill--expiring {
-  background: var(--ld-semantic-color-fill-negative);
-}
-.timerPill--expiring .timerTime {
-  color: var(--ld-semantic-color-text-onfill-negative, #ffffff);
-}
-
-/* Timer text */
-.timerTime {
-  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* Timer label */
 .timerLabel {
   flex: 1 0 0;
-  color: var(--ld-semantic-color-text);
+  color: var(--ld-semantic-color-text, #2E2F32);
   font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-small-size, 14px);
   font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 1.43);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
 }
 
-/* ── Product row ────────────────────────────────────────────────────────────── */
+/* ── Product description row ── */
 .productRow {
   display: flex;
   align-items: flex-start;
@@ -91,37 +47,32 @@
 }
 
 .productImage {
-  flex-shrink: 0;
   width: 40px;
   height: 40px;
-}
-
-.productImg {
-  width: 40px;
-  height: 40px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  display: block;
-  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
+  border-radius: var(--ld-primitive-scale-borderradius-25, 4px);
+  flex-shrink: 0;
 }
 
-.productImgPlaceholder {
-  width: 40px;
-  height: 40px;
-  background: var(--ld-semantic-color-background-subtle, #f2f8ff);
-  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-}
-
-.productName {
+.descriptionBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
   flex: 1 0 0;
-  color: var(--ld-semantic-color-text);
+}
+
+.description {
+  flex: 1 0 0;
+  color: var(--ld-semantic-color-text, #2E2F32);
   font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-small-size, 14px);
   font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 1.43);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
 }
 
-/* ── Pricing ────────────────────────────────────────────────────────────────── */
+/* ── Pricing ── */
 .pricing {
   display: flex;
   flex-direction: column;
@@ -130,39 +81,20 @@
 }
 
 .price {
-  color: var(--ld-semantic-color-text);
+  color: var(--ld-semantic-color-text, #2E2F32);
+  text-align: right;
   font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
-  text-align: right;
-  white-space: nowrap;
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
 }
 
-.wasPrice {
-  color: var(--ld-semantic-color-text-subtle);
+.originalPrice {
+  color: var(--ld-semantic-color-text-subtle, #6D6E71);
+  text-align: right;
   font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-small-size, 14px);
   font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 1.43);
-  text-align: right;
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
   text-decoration: line-through;
-  white-space: nowrap;
-}
-
-/* ── Actions row ────────────────────────────────────────────────────────────── */
-.actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--ld-primitive-scale-space-200, 16px) var(--ld-primitive-scale-space-200, 16px);
-  align-self: stretch;
-}
-
-/* ── Reduced motion ─────────────────────────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  .card * {
-    transition: none !important;
-    animation: none !important;
-  }
 }

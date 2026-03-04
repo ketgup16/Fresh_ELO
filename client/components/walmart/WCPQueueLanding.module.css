@@ -1,25 +1,14 @@
-/* ── [WCP] Queue Landing ─────────────────────────────────────── */
+/* WCPQueueLanding — queue waiting room landing page content */
 
-.content {
+.landing {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--ld-primitive-scale-space-300, 24px);
-  align-self: stretch;
+  align-items: flex-start;
+  width: 100%;
 }
 
-/* ── Illustration ────────────────────────────────────────────── */
-.illustration {
-  display: flex;
-  width: 75px;
-  height: 75px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-/* ── Title section ───────────────────────────────────────────── */
-.titleSection {
+/* ── Hero section (authenticated) ── */
+.heroSection {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +16,15 @@
   align-self: stretch;
 }
 
-.illustrationAndTitle {
+.illustrationWrap {
+  display: flex;
+  width: 75px;
+  height: 75px;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleBlock {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,50 +32,45 @@
   align-self: stretch;
 }
 
-/* ── Authenticated title ─────────────────────────────────────── */
-.titleAuthenticated {
+.heroTitle {
   color: var(--ld-semantic-color-text-inverse, #fff);
   text-align: center;
-  font-family: var(--ld-semantic-font-body-medium-family);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
-  margin: 0;
 }
 
-/* ── Unauthenticated title ───────────────────────────────────── */
-.titleUnauthenticated {
+.heroSubtext {
+  align-self: stretch;
   color: var(--ld-semantic-color-text-inverse, #fff);
   text-align: center;
-  font-family: var(--ld-semantic-font-display-small-family);
-  font-size: var(--ld-semantic-font-display-small-size, 36px);
-  font-weight: var(--ld-semantic-font-display-small-weight-alt, 700);
-  line-height: var(--ld-semantic-font-display-small-lineheight, 48px);
-  margin: 0;
-}
-
-/* ── Subtitle ────────────────────────────────────────────────── */
-.subtitleAuthenticated {
-  color: var(--ld-semantic-color-text-inverse, #fff);
-  text-align: center;
-  font-family: var(--ld-semantic-font-body-medium-family);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
-  margin: 0;
 }
 
-.subtitleUnauthenticated {
+/* ── Unauthenticated hero ── */
+.unauthHero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.unauthTitle {
+  align-self: stretch;
   color: var(--ld-semantic-color-text-inverse, #fff);
   text-align: center;
-  font-family: var(--ld-semantic-font-body-small-family);
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
-  margin: 0;
+  font-family: var(--ld-semantic-font-display-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-display-small-size, 36px);
+  font-weight: var(--ld-semantic-font-display-small-weight-alt, 700);
+  line-height: var(--ld-semantic-font-display-small-lineheight, 48px);
 }
 
-/* ── White card ──────────────────────────────────────────────── */
+/* ── Product card ── */
 .card {
   display: flex;
   flex-direction: column;
@@ -86,81 +78,53 @@
   align-self: stretch;
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   background: var(--ld-semantic-color-surface, #fff);
-  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 -1px 2px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 1px rgba(0, 0, 0, 0.15);
+  margin-top: var(--ld-primitive-scale-space-300, 24px);
 }
 
 .cardContent {
   display: flex;
   padding: var(--ld-primitive-scale-space-200, 16px);
   flex-direction: column;
-  align-items: flex-start;
-  align-self: stretch;
-}
-
-/* ── Estimated wait + timer + disclaimer (authenticated only) ── */
-.waitSection {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   gap: var(--ld-primitive-scale-space-200, 16px);
   align-self: stretch;
 }
 
-.waitInfo {
+/* ── Wait / timer section (authenticated) ── */
+.waitSection {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--ld-primitive-scale-space-100, 8px);
 }
 
-.estimatedWaitLabel {
-  color: var(--ld-semantic-color-text, #2e2f32);
-  font-family: var(--ld-semantic-font-body-medium-family);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
-  margin: 0;
-}
-
-.timerBadge {
+.waitGroup {
   display: flex;
-  padding: 0 var(--ld-primitive-scale-space-50, 4px);
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: var(--ld-primitive-scale-space-50, 4px);
-  border-radius: var(--ld-primitive-scale-borderradius-25, 4px);
-  background: var(--ld-semantic-color-fill-brand-subtle, #e6f1fc);
-  min-width: 48px;
+  gap: var(--ld-primitive-scale-space-100, 8px);
 }
 
-.timerText {
-  color: var(--ld-semantic-color-text-onfill-brand-subtle, #114ab6);
-  text-align: center;
-  font-family: var(--ld-semantic-font-body-medium-family);
+.waitLabel {
+  color: var(--ld-semantic-color-text, #2E2F32);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
 }
 
 .disclaimer {
-  color: var(--ld-semantic-color-text-subtle, #515357);
-  font-family: var(--ld-semantic-font-caption-family);
+  color: var(--ld-semantic-color-text-subtle, #6D6E71);
+  font-family: var(--ld-semantic-font-caption-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-caption-size, 12px);
   font-weight: var(--ld-semantic-font-caption-weight-default, 400);
   line-height: var(--ld-semantic-font-caption-lineheight, 16px);
-  margin: 0;
 }
 
-/* ── Divider ─────────────────────────────────────────────────── */
-.divider {
-  width: 100%;
-  height: 1px;
-  background: var(--ld-semantic-color-separator, #e3e4e5);
-  border: none;
-  margin: 0;
-}
-
-/* ── Product row ─────────────────────────────────────────────── */
+/* ── Product info row ── */
 .productRow {
   display: flex;
   align-items: flex-start;
@@ -172,28 +136,9 @@
   width: 104px;
   height: 104px;
   aspect-ratio: 1 / 1;
-  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
-  background: var(--ld-semantic-color-fill-subtle, #f5f6f7);
   object-fit: cover;
+  border-radius: var(--ld-primitive-scale-borderradius-25, 4px);
   flex-shrink: 0;
-}
-
-.productImagePlaceholder {
-  width: 104px;
-  height: 104px;
-  aspect-ratio: 1 / 1;
-  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
-  background: var(--ld-semantic-color-fill-subtle, #f5f6f7);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.placeholderIcon {
-  width: 32px;
-  height: 32px;
-  color: var(--ld-semantic-color-text-subtlest, #babbbe);
 }
 
 .productDetails {
@@ -206,94 +151,65 @@
 }
 
 .productDescription {
-  color: var(--ld-semantic-color-text, #2e2f32);
-  font-family: var(--ld-semantic-font-body-medium-family);
+  align-self: stretch;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
-  margin: 0;
 }
 
-.priceRow {
+.productPricing {
   display: flex;
-  align-items: center;
-  gap: 4px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
 }
 
-.price {
-  color: var(--ld-semantic-color-text, #2e2f32);
-  font-family: var(--ld-semantic-font-body-medium-family);
+.productPrice {
+  color: var(--ld-semantic-color-text, #2E2F32);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
 }
 
-.wasPrice {
-  color: var(--ld-semantic-color-text-subtle, #515357);
-  font-family: var(--ld-semantic-font-body-small-family);
+.productOriginal {
+  color: var(--ld-semantic-color-text-subtle, #6D6E71);
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-small-size, 14px);
   font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
   line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
   text-decoration: line-through;
 }
 
-/* ── Account section (unauthenticated) ───────────────────────── */
-.accountSection {
+/* ── Account link (unauthenticated) ── */
+.accountLink {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: var(--ld-primitive-scale-space-100, 8px);
+  gap: var(--ld-primitive-scale-space-50, 4px);
   align-self: stretch;
+  margin-top: var(--ld-primitive-scale-space-200, 16px);
 }
 
-.accountLabel {
+.accountText {
   color: var(--ld-semantic-color-text-inverse, #fff);
-  font-family: var(--ld-semantic-font-body-medium-family);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
-  margin: 0;
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
 }
 
-.createAccountLink {
-  color: var(--ld-semantic-color-text-inverse, #fff);
-  font-family: var(--ld-semantic-font-body-medium-family);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
-  text-decoration: underline;
-  cursor: pointer;
+.createLink {
   background: none;
   border: none;
-  padding: 0;
-}
-
-.createAccountLink:hover {
-  opacity: 0.8;
-}
-
-/* ── Inline actions (standalone demo usage) ──────────────────── */
-.inlineActions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--ld-primitive-scale-space-200, 16px);
-  align-self: stretch;
-}
-
-.leaveLink {
   color: var(--ld-semantic-color-text-inverse, #fff);
-  font-family: var(--ld-semantic-font-body-medium-family);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
   text-decoration: underline;
   cursor: pointer;
-  background: none;
-  border: none;
   padding: 0;
-}
-
-.leaveLink:hover {
-  opacity: 0.8;
 }

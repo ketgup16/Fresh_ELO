@@ -1,240 +1,255 @@
-import React from 'react';
-import { LinkButton } from '@/components/ui/LinkButton';
-import { ChevronRight } from '@/components/icons/ChevronRight';
+import { useState } from 'react';
+import { WCPTimerView, TimerViewVariant } from '@/components/walmart/WCPTimerView';
 import { Warning } from '@/components/icons/Warning';
 import { X } from '@/components/icons/X';
-import { WCPTimerView } from './WCPTimerView';
-import { useWCPTimer } from '@/hooks/use-wcp-timer';
+import { ChevronRight } from '@/components/icons/ChevronRight';
 import styles from './WCPQueueBanner.module.css';
 
-export type WCPQueueBannerVariant = 'lineJoined' | 'checkout' | 'error';
+export type QueueBannerVariant = 'lineJoined' | 'warning' | 'checkout' | 'error';
 
 export interface WCPQueueBannerProps {
-  endTime: Date | number | string;
-  /** Banner variant matching Figma states */
-  variant?: WCPQueueBannerVariant;
-
-  /* ── Line-joined variant props ─────────────────────────────── */
-  /** Product thumbnail URL (32×32) */
+  /** Banner variant */
+  variant: QueueBannerVariant;
+  /** Timer display string, e.g. "59mins" or "01:03" */
+  timeDisplay?: string;
+  /** Text shown next to or below the timer */
+  message?: string;
+  /** Optional snackbar text shown above the banner bar */
+  snackbarText?: string;
+  /** Product image URL (lineJoined / warning only) */
   productImage?: string;
-  /** Alt text for product image */
-  productImageAlt?: string;
-  /** Text next to the timer badge on the white card */
-  reservationText?: string;
-  /** "View" link label */
-  viewLabel?: string;
-  /** Called when View is clicked */
+  /** Callback when "View" link is clicked */
   onView?: () => void;
-  /** "Leave" link label */
-  leaveLabel?: string;
-  /** Called when Leave is clicked */
+  /** Callback when "Leave" link is clicked */
   onLeave?: () => void;
+  /** Callback when close/dismiss is clicked */
+  onClose?: () => void;
+  /** Callback when the CTA chevron button is clicked */
+  onAction?: () => void;
+
+  /* ── Backward-compat aliases (used by old demo pages) ──── */
+  /** Countdown end time — auto-formats the timer display */
+  endTime?: Date | number | string;
+  /** Alias for message (lineJoined) */
+  reservationText?: string;
   /** Link row text below the card */
   linkText?: string;
-  /** Called when the link row is clicked */
+  /** Callback for link row click */
   onLink?: () => void;
-  /** Whether to show the link row */
-  showLinkRow?: boolean;
-
-  /* ── Checkout variant props ────────────────────────────────── */
-  /** Message displayed next to the timer (checkout variant) */
+  /** Alias for message (checkout) */
   queueMessage?: string;
-  /** Called when close/dismiss button is clicked */
+  /** Alias for onClose */
   onDismiss?: () => void;
-  /** Whether to show the dismiss X button (checkout variant) */
-  showDismiss?: boolean;
-
-  /* ── Error variant props ───────────────────────────────────── */
-  /** Error/loading message text */
+  /** Alias for message (error) */
   errorMessage?: string;
-
-  /* ── Positioning ───────────────────────────────────────────── */
-  /** 'top' = sticky; 'bottom' = fixed above bottom nav; 'inline' = in-flow */
-  position?: 'top' | 'bottom' | 'inline';
-  onExpire?: () => void;
-  /** Force in-flow rendering (for docs/demos) */
+  /** Render inline (no fixed positioning) */
   inline?: boolean;
-
-  /* ── Legacy props (backward compat) ────────────────────────── */
-  /** @deprecated Use reservationText */
-  title?: string;
-  /** @deprecated Use queueMessage */
-  message?: string;
-  /** @deprecated Use viewLabel + onView */
-  ctaLabel?: string;
-  /** @deprecated Use onView */
-  onCta?: () => void;
 }
 
-export const WCPQueueBanner: React.FC<WCPQueueBannerProps> = ({
-  endTime,
-  variant = 'lineJoined',
-  productImage,
-  productImageAlt = '',
-  reservationText,
-  viewLabel = 'View',
-  onView,
-  leaveLabel = 'Leave',
-  onLeave,
-  linkText = 'Placeholder link text',
-  onLink,
-  showLinkRow = true,
-  queueMessage,
-  onDismiss,
-  showDismiss = true,
-  errorMessage = "Hang on, we\u2019re getting you in line. Please don\u2019t refresh or leave the line.",
-  position = 'top',
-  onExpire,
-  inline: isInline = false,
-  // Legacy
-  title,
-  message,
-  ctaLabel,
-  onCta,
-}) => {
-  const timer = useWCPTimer(endTime, onExpire);
+const TIMER_VARIANT_MAP: Record<string, TimerViewVariant> = {
+  lineJoined: 'waiting',
+  warning: 'warning',
+  checkout: 'warning',
+  error: 'expiring',
+};
 
-  // Backward compat: map old props to new
-  const resolvedReservationText = reservationText ?? title ?? 'reservation text';
-  const resolvedQueueMessage = queueMessage ?? message ?? 'queue messaging';
-  const resolvedOnView = onView ?? onCta;
+export function WCPQueueBanner(props: WCPQueueBannerProps) {
+  const {
+    variant,
+    timeDisplay,
+    snackbarText,
+    productImage,
+    onView,
+    onLeave,
+    onAction,
+    endTime,
+    linkText,
+    onLink,
+    inline: _inline,
+  } = props;
 
-  const positionClass = isInline
-    ? styles.inFlow
-    : position === 'top'
-    ? styles.sticky
-    : position === 'bottom'
-    ? styles.bottomFixed
-    : styles.inFlow;
+  // Resolve message from various alias props
+  const message =
+    props.message ??
+    props.reservationText ??
+    props.queueMessage ??
+    props.errorMessage ??
+    '';
 
-  // Timer badge color based on urgency
-  const badgeColor =
-    timer.urgency === 'critical'
-      ? 'negative'
-      : timer.urgency === 'warning'
-      ? 'spark'
-      : 'blue';
+  const onClose = props.onClose ?? props.onDismiss;
+
+  const [snackbarVisible, setSnackbarVisible] = useState(!!snackbarText);
 
   if (variant === 'error') {
-    return (
-      <div className={`${styles.containerWrap} ${positionClass}`}>
-        <div
-          className={styles.errorContainer}
-          role="alert"
-          aria-label="Queue error message"
-        >
-          <Warning className={styles.errorIcon} />
-          <span className={styles.errorText}>{errorMessage}</span>
-        </div>
-      </div>
-    );
+    return <ErrorBanner message={message} />;
   }
 
   if (variant === 'checkout') {
     return (
-      <div className={`${styles.containerWrap} ${positionClass}`}>
-        <div
-          className={styles.checkoutContainer}
-          role="banner"
-          aria-label="Queue checkout banner"
-        >
-          <div className={styles.checkoutContent}>
-            <div className={styles.checkoutLeft}>
-              <WCPTimerView
-                endTime={endTime}
-                variant="badge"
-                badgeColor={badgeColor}
-                className={styles.timerBadge}
-              />
-              <span className={styles.checkoutMessage}>{resolvedQueueMessage}</span>
-            </div>
-            {showDismiss && onDismiss && (
-              <button
-                type="button"
-                className={styles.closeButton}
-                onClick={onDismiss}
-                aria-label="Dismiss queue banner"
-              >
-                <X width={16} height={16} />
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
+      <CheckoutBanner
+        timeDisplay={timeDisplay}
+        endTime={endTime}
+        message={message}
+        onClose={onClose}
+      />
     );
   }
 
-  // Default: lineJoined variant
   return (
-    <div className={`${styles.containerWrap} ${positionClass}`}>
-    <div
-      className={styles.outerContainer}
-      role="banner"
-      aria-label={`Queue banner: ${resolvedReservationText}`}
-    >
-      {/* White inner card */}
-      <div className={styles.card}>
-        <div className={styles.barRow}>
-          {/* Left group: image + timer + text */}
-          <div className={styles.barLeft}>
-            {/* Product image placeholder */}
-            {productImage ? (
-              <img
-                src={productImage}
-                alt={productImageAlt}
-                className={styles.productImg}
-              />
-            ) : (
-              <div className={styles.productImgPlaceholder} aria-hidden="true" />
-            )}
-
-            {/* Timer badge */}
-            <WCPTimerView
-              endTime={endTime}
-              variant="badge"
-              badgeColor={badgeColor}
-              className={styles.timerBadge}
-            />
-
-            {/* Reservation text */}
-            <span className={styles.reservationText}>{resolvedReservationText}</span>
+    <div className={styles.wrapper}>
+      {/* Snackbar */}
+      {snackbarVisible && snackbarText && (
+        <div className={styles.snackbar}>
+          <div className={styles.snackbarContent}>
+            <span className={styles.snackbarText}>{snackbarText}</span>
           </div>
-
-          {/* Right group: View | Leave links */}
-          <div className={styles.linkButtons}>
-            {resolvedOnView && (
-              <LinkButton color="default" size="small" onClick={resolvedOnView}>
-                {ctaLabel || viewLabel}
-              </LinkButton>
-            )}
-            {onLeave && (
-              <>
-                <div className={styles.linkDivider} aria-hidden="true" />
-                <LinkButton color="default" size="small" onClick={onLeave}>
-                  {leaveLabel}
-                </LinkButton>
-              </>
-            )}
+          <div className={styles.snackbarActions}>
+            <button
+              className={styles.snackbarActionBtn}
+              onClick={onAction}
+              type="button"
+            >
+              Action Button
+            </button>
+            <button
+              className={styles.snackbarCloseBtn}
+              onClick={() => setSnackbarVisible(false)}
+              type="button"
+              aria-label="Close notification"
+            >
+              <X width={16} height={16} />
+            </button>
           </div>
         </div>
-      </div>
-
-      {/* Link row below the card */}
-      {showLinkRow && (
-        <button
-          type="button"
-          className={styles.linkRow}
-          onClick={onLink}
-        >
-          <span className={styles.linkRowText}>{linkText}</span>
-          <span className={styles.linkRowChevron}>
-            <ChevronRight width={16} height={16} />
-          </span>
-        </button>
       )}
-    </div>
+
+      {/* Banner bar */}
+      <div className={styles.bannerContainer}>
+        <div className={styles.bannerBar}>
+          <div className={styles.barContents}>
+            <div className={styles.infoGroup}>
+              {productImage && (
+                <img
+                  src={productImage}
+                  alt=""
+                  className={styles.productThumb}
+                />
+              )}
+              {(timeDisplay || endTime) && (
+                <WCPTimerView
+                  timeDisplay={timeDisplay}
+                  endTime={endTime}
+                  variant={TIMER_VARIANT_MAP[variant]}
+                  size="medium"
+                />
+              )}
+              <span className={styles.reservationText}>{message}</span>
+            </div>
+
+            <div className={styles.actionGroup}>
+              <div className={styles.linkGroup}>
+                {onView && (
+                  <button
+                    className={styles.linkBtn}
+                    onClick={onView}
+                    type="button"
+                  >
+                    View
+                  </button>
+                )}
+                {onLeave && (
+                  <>
+                    <span className={styles.divider} />
+                    <button
+                      className={styles.linkBtn}
+                      onClick={onLeave}
+                      type="button"
+                    >
+                      Leave
+                    </button>
+                  </>
+                )}
+              </div>
+              {(onAction || onLink) && (
+                <button
+                  className={styles.chevronBtn}
+                  onClick={onAction ?? onLink}
+                  type="button"
+                  aria-label="View details"
+                >
+                  <ChevronRight width={16} height={16} />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Link row (backward-compat) */}
+          {linkText && (
+            <div className={styles.linkRow}>
+              <button
+                className={styles.linkRowBtn}
+                onClick={onLink}
+                type="button"
+              >
+                {linkText}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
-};
+}
 
-export default WCPQueueBanner;
+/* ── Sub-components ─────────────────────────────────────────── */
+
+function CheckoutBanner({
+  timeDisplay,
+  endTime,
+  message,
+  onClose,
+}: {
+  timeDisplay?: string;
+  endTime?: Date | number | string;
+  message: string;
+  onClose?: () => void;
+}) {
+  return (
+    <div className={styles.checkoutBanner}>
+      <div className={styles.checkoutContent}>
+        <div className={styles.checkoutInfo}>
+          <WCPTimerView
+            timeDisplay={timeDisplay}
+            endTime={endTime}
+            variant="warning"
+            size="medium"
+          />
+          <span className={styles.checkoutMessage}>{message}</span>
+        </div>
+        {onClose && (
+          <button
+            className={styles.checkoutCloseBtn}
+            onClick={onClose}
+            type="button"
+            aria-label="Dismiss"
+          >
+            <X width={16} height={16} />
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ErrorBanner({ message }: { message: string }) {
+  return (
+    <div className={styles.errorBanner}>
+      <Warning
+        width={24}
+        height={24}
+        className={styles.errorIcon}
+      />
+      <span className={styles.errorMessage}>{message}</span>
+    </div>
+  );
+}

@@ -1,258 +1,49 @@
-/* ── WCPTimerView ─────────────────────────────────────────────────────────── */
+/* WCPTimerView — urgency-colored timer pill */
 
-/* ─── Default variant (stacked digit blocks) ────────────────────────────── */
-.root {
+.timer {
   display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--ld-primitive-scale-space-100, 8px);
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-}
-
-.label {
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: var(--ld-semantic-font-body-small-weight-alt, 700);
-  color: var(--ld-semantic-color-text, #2e2f32);
-  margin: 0;
-  text-align: center;
-}
-
-.blocks {
-  display: flex;
-  align-items: stretch;
-  gap: var(--ld-primitive-scale-space-100, 8px);
-}
-
-.unitBlock {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 0 var(--ld-primitive-scale-space-50, 4px);
   justify-content: center;
-  min-width: 64px;
-  padding: var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-150, 12px);
-  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  background: var(--ld-semantic-color-surface, #fff);
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  gap: 2px;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.unitValue {
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--ld-semantic-color-text, #2e2f32);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.5px;
-  animation: digitFlip 0.15s ease-in-out;
-}
-
-.unitLabel {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ld-semantic-color-text-subtle, #515357);
-}
-
-/* ─── Compact variant (inline HH:MM:SS) ─────────────────────────────────── */
-.compact {
-  display: inline-flex;
   align-items: center;
-  gap: var(--ld-primitive-scale-space-100, 8px);
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-}
-
-.compactLabel {
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  color: var(--ld-semantic-color-text-subtle, #515357);
-  font-weight: 400;
-  white-space: nowrap;
-}
-
-.compactTime {
+  gap: var(--ld-primitive-scale-space-50, 4px);
+  border-radius: var(--ld-primitive-scale-borderradius-25, 4px);
+  min-width: 48px;
+  text-align: center;
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2e2f32);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
+  font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
 }
 
-/* ─── Badge variant — base ───────────────────────────────────────────────── */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 6px;
-  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
-  /* Default (urgency normal) fill */
-  background: var(--ld-semantic-color-fill-inverse, #2e2f32);
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  border: 1px solid transparent;
+/* ── Size: small ── */
+.small {
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
 }
 
-.badgeIcon {
-  width: 12px;
-  height: 12px;
-  flex-shrink: 0;
-  color: var(--ld-semantic-color-text-inverse, #fff);
+/* ── Variant: Waiting room (light blue) ── */
+.waiting {
+  background: var(--ld-semantic-color-fill-brand-subtle, #D9E8FF);
+  color: var(--ld-semantic-color-text-onfill-brand-subtle, #114AB6);
 }
 
-.badgeTime {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--ld-semantic-color-text-inverse, #fff);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-  line-height: 1;
+/* ── Variant: Warning (yellow) ── */
+.warning {
+  background: var(--ld-semantic-color-fill-warning, #FFC220);
+  color: var(--ld-semantic-color-text-onfill-warning, #2E2F32);
 }
 
-/* ─── Badge size: large ──────────────────────────────────────────────────── */
-.badgeLarge {
-  padding: 6px 12px;
-  gap: 6px;
-  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+/* ── Variant: Expiring (red) ── */
+.expiring {
+  background: var(--ld-semantic-color-fill-negative, #C5221F);
+  color: var(--ld-semantic-color-text-onfill-negative, #FFFFFF);
 }
 
-.badgeLarge .badgeIcon {
-  width: 18px;
-  height: 18px;
-}
-
-.badgeLarge .badgeTime {
-  font-size: 18px;
-  letter-spacing: -0.2px;
-}
-
-/* ─── Badge explicit color variants ─────────────────────────────────────── */
-
-/* spark — yellow fill, dark text */
-.badgeColorSpark {
-  background: var(--ld-semantic-color-fill-accent-spark, #ffc220);
-  border-color: transparent;
-}
-.badgeColorSpark .badgeIcon,
-.badgeColorSpark .badgeTime {
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-/* negative — red fill, white text */
-.badgeColorNegative {
-  background: var(--ld-semantic-color-fill-negative, #c40000);
-  border-color: transparent;
-}
-.badgeColorNegative .badgeIcon,
-.badgeColorNegative .badgeTime {
-  color: var(--ld-semantic-color-text-inverse, #fff);
-}
-
-/* blue — light blue fill, dark blue text */
-.badgeColorBlue {
-  background: var(--ld-semantic-color-fill-accent-blue-subtle, #e0eeff);
-  border-color: transparent;
-}
-.badgeColorBlue .badgeIcon,
-.badgeColorBlue .badgeTime {
-  color: var(--ld-semantic-color-text-onfill-accent-blue-subtle, #001e60);
-}
-
-/* inverse — dark navy fill, white text */
-.badgeColorInverse {
-  background: var(--ld-semantic-color-fill-brand, #001e60);
-  border-color: transparent;
-}
-.badgeColorInverse .badgeIcon,
-.badgeColorInverse .badgeTime {
-  color: var(--ld-semantic-color-text-inverse, #fff);
-}
-
-/* outline — transparent bg, dark border, dark text */
-.badgeColorOutline {
-  background: transparent;
-  border-color: var(--ld-semantic-color-text, #2e2f32);
-}
-.badgeColorOutline .badgeIcon,
-.badgeColorOutline .badgeTime {
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-/* plain — no bg, no border, dark text */
-.badgeColorPlain {
-  background: transparent;
-  border-color: transparent;
-}
-.badgeColorPlain .badgeIcon,
-.badgeColorPlain .badgeTime {
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-/* ─── Urgency states (auto-coloring when no explicit badgeColor) ─────────── */
-
-/* warning: yellow */
-.urgencyWarning .unitBlock {
-  background: var(--ld-semantic-color-fill-accent-spark, #ffc220);
-  border-color: var(--ld-semantic-color-fill-accent-spark, #ffc220);
-}
-.urgencyWarning .unitValue {
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-.urgencyWarning.compact .compactTime {
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-.urgencyWarning.badge {
-  background: var(--ld-semantic-color-fill-accent-spark, #ffc220);
-}
-.urgencyWarning .badgeIcon,
-.urgencyWarning .badgeTime {
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-/* critical: red */
-.urgencyCritical .unitBlock {
-  background: var(--ld-semantic-color-fill-negative, #c40000);
-  border-color: var(--ld-semantic-color-fill-negative, #c40000);
-}
-.urgencyCritical .unitValue {
-  color: var(--ld-semantic-color-text-inverse, #fff);
-}
-.urgencyCritical .unitLabel {
-  color: rgba(255, 255, 255, 0.8);
-}
-.urgencyCritical.compact .compactTime {
-  color: var(--ld-semantic-color-text-negative, #c40000);
-}
-.urgencyCritical.badge {
-  background: var(--ld-semantic-color-fill-negative, #c40000);
-}
-.urgencyCritical .badgeIcon,
-.urgencyCritical .badgeTime {
-  color: var(--ld-semantic-color-text-inverse, #fff);
-}
-
-/* ─── Digit-flip animation ──────────────────────────────────────────────── */
-@keyframes digitFlip {
-  0% { opacity: 0.4; transform: translateY(-4px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .unitValue {
-    animation: none;
-  }
-}
-
-/* ─── Responsive ─────────────────────────────────────────────────────────── */
-@media (max-width: 480px) {
-  .unitBlock {
-    min-width: 52px;
-    padding: 6px 8px;
-  }
-  .unitValue {
-    font-size: 24px;
-  }
-  .unitLabel {
-    font-size: 9px;
-  }
+/* ── Optional label ── */
+.label {
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
+  color: var(--ld-semantic-color-text, #2E2F32);
 }

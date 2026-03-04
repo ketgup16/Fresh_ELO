@@ -1,177 +1,238 @@
-/* ── WCPQueueBanner ───────────────────────────────────────────────────────── */
+/* WCPQueueBanner — queue status banner with multiple variants */
 
-/* Container query wrapper — enables component-level breakpoints */
-.containerWrap {
-  container-type: inline-size;
-  width: 100%;
-}
-
-/* ─── Position variants ──────────────────────────────────────────────────── */
-.sticky {
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-}
-
-.bottomFixed {
-  position: fixed;
-  bottom: 92px;
-  left: 0;
-  right: 0;
-  z-index: 200;
-}
-
-.inFlow {
-  position: relative;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   LINE-JOINED VARIANT (default) — navy wrapper → white card → link row
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.outerContainer {
+/* ── Wrapper (lineJoined / warning) ── */
+.wrapper {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--ld-primitive-scale-space-100, 8px);
-  padding: var(--ld-primitive-scale-space-100, 8px);
-  background: var(--wcp-semantic-color-surface-overlay-brand-bold, #002E99);
   width: 100%;
-  box-sizing: border-box;
 }
 
-/* White inner card — desktop default: 12px 8px */
-.card {
-  background: var(--ld-semantic-color-surface, #fff);
-  border-radius: var(--wcp-semantic-scale-flag-borderRadius, 4px);
-  box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.10),
-              0 3px 5px 2px rgba(0, 0, 0, 0.15);
-  padding: var(--ld-primitive-scale-space-150, 12px) var(--ld-primitive-scale-space-100, 8px);
-}
-
-/* Bar row: image + timer + text + links */
-.barRow {
+/* ── Snackbar ── */
+.snackbar {
   display: flex;
-  justify-content: space-between;
+  min-width: 311px;
+  min-height: 52px;
   align-items: center;
-  align-content: center;
-  row-gap: var(--ld-primitive-scale-space-250, 20px);
-  flex-wrap: wrap;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  align-self: stretch;
+  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
+  background: var(--ld-semantic-color-fill-inverse, #2E2F32);
+  box-shadow:
+    0 -1px 4px 0 rgba(0, 0, 0, 0.1),
+    0 5px 10px 3px rgba(0, 0, 0, 0.15);
+  padding: var(--ld-primitive-scale-space-200, 16px);
 }
 
-/* Left group: image + timer badge + reservation text */
-.barLeft {
+@media (max-width: 899px) {
+  .snackbar {
+    margin: 0 var(--ld-primitive-scale-space-100, 8px);
+  }
+}
+
+.snackbarContent {
   display: flex;
-  max-width: 415px;
   align-items: center;
-  align-content: center;
   gap: var(--ld-primitive-scale-space-100, 8px);
   flex: 1 0 0;
-  flex-wrap: wrap;
 }
 
-/* 32×32 product image */
-.productImg {
-  width: 32px;
-  height: 32px;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: var(--wcp-semantic-scale-flag-borderRadius, 4px);
-  flex-shrink: 0;
-}
-
-.productImgPlaceholder {
-  width: 32px;
-  height: 32px;
-  background: var(--ld-semantic-color-separator, #e3e4e5);
-  border-radius: var(--wcp-semantic-scale-flag-borderRadius, 4px);
-  flex-shrink: 0;
-}
-
-/* Timer badge — sizing handled by WCPTimerView */
-.timerBadge {
-  flex-shrink: 0;
-}
-
-/* Reservation text */
-.reservationText {
-  flex: 1 0 0;
-  font-family: var(--ld-semantic-font-body-medium-family);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-medium-lineheight);
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-/* View + Leave link buttons */
-.linkButtons {
-  display: flex;
-  padding-left: var(--ld-primitive-scale-space-100, 8px);
-  justify-content: flex-end;
-  align-items: center;
-  gap: var(--ld-primitive-scale-space-200, 16px);
-  flex-shrink: 0;
-}
-
-/* Vertical divider between View and Leave */
-.linkDivider {
-  width: 1px;
-  height: 16px;
-  background: var(--ld-semantic-color-separator, #e3e4e5);
-  flex-shrink: 0;
-}
-
-/* ── Link row (below card, on navy bg) ───────────────────────────────────── */
-.linkRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--ld-primitive-scale-space-100, 8px);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.linkRow:hover .linkRowText {
-  text-decoration: underline;
-}
-
-.linkRowText {
-  font-family: var(--ld-semantic-font-body-small-family);
+.snackbarText {
+  color: var(--ld-semantic-color-text-inverse, #fff);
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-small-size, 14px);
   font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-lineheight);
-  color: var(--ld-semantic-color-link-text-accent-white, #fff);
-  text-decoration: underline;
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
 }
 
-.linkRowChevron {
+.snackbarActions {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+}
+
+.snackbarActionBtn {
+  background: none;
+  border: none;
+  color: var(--ld-semantic-color-link-text-accent-white, #fff);
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.snackbarCloseBtn {
   display: flex;
   padding: var(--ld-primitive-scale-space-100, 8px);
   align-items: center;
   justify-content: center;
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
-  background: var(--ld-semantic-color-action-fill-accent-white, rgba(255, 255, 255, 0.15));
-  color: var(--ld-semantic-color-action-text-onfill-accent-white, #fff);
+  background: var(--ld-semantic-color-action-fill-accent-white, #fff);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+/* ── Banner container (blue bg) ── */
+.bannerContainer {
+  display: flex;
+  padding: var(--ld-primitive-scale-space-100, 8px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  align-self: stretch;
+  background: var(--wcp-semantic-color-surface-overlay-brand-bold, #002E99);
+}
+
+.bannerBar {
+  display: flex;
+  padding: var(--ld-primitive-scale-space-150, 12px) var(--ld-primitive-scale-space-100, 8px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+  align-self: stretch;
+  border-radius: 4px;
+  background: var(--ld-semantic-color-fill, #fff);
+  box-shadow:
+    0 -1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 3px 5px 2px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 899px) {
+  .bannerBar {
+    padding: var(--ld-primitive-scale-space-100, 8px);
+  }
+}
+
+.barContents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  row-gap: var(--ld-primitive-scale-space-250, 20px);
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+.infoGroup {
+  display: flex;
+  max-width: 415px;
+  align-items: center;
+  align-content: center;
+  gap: 8px var(--ld-primitive-scale-space-100, 8px);
+  flex: 1 0 0;
+  flex-wrap: wrap;
+}
+
+.productThumb {
+  width: 32px;
+  height: 32px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--ld-primitive-scale-borderradius-25, 4px);
   flex-shrink: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   CHECKOUT VARIANT — simple navy bar with timer + message + close
-   Desktop (900+px): padding 24px 8px, height ~80px, body-medium (16px)
-   ═══════════════════════════════════════════════════════════════════════════ */
+.reservationText {
+  flex: 1 0 0;
+  color: var(--ld-semantic-color-text-onfill, #2E2F32);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
+}
 
-.checkoutContainer {
+/* ── Action group (View | Leave + chevron) ── */
+.actionGroup {
+  display: flex;
+  padding-left: var(--ld-primitive-scale-space-100, 8px);
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+}
+
+.linkGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+}
+
+.linkBtn {
+  background: none;
+  border: none;
+  color: var(--ld-semantic-color-link-text, #2E2F32);
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.divider {
+  width: 1px;
+  height: 16px;
+  background: var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+/* ── Link row (backward-compat) ── */
+.linkRow {
+  display: flex;
+  padding: var(--ld-primitive-scale-space-100, 8px) 0 0;
+  border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.linkRowBtn {
+  background: none;
+  border: none;
+  color: var(--ld-semantic-color-link-text, #2E2F32);
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.chevronBtn {
+  display: flex;
+  padding: var(--ld-primitive-scale-space-100, 8px);
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: var(--ld-semantic-color-action-fill-accent-white, #fff);
+  border: none;
+  cursor: pointer;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  box-shadow:
+    0 -1px 2px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 1px rgba(0, 0, 0, 0.15);
+}
+
+/* ── Checkout variant ── */
+.checkoutBanner {
   display: flex;
   padding: var(--ld-primitive-scale-space-300, 24px) var(--ld-primitive-scale-space-100, 8px);
   align-items: center;
   gap: 4px;
+  align-self: stretch;
   background: var(--wcp-semantic-color-surface-overlay-brand-bold, #002E99);
   width: 100%;
-  box-sizing: border-box;
+}
+
+@media (max-width: 899px) {
+  .checkoutBanner {
+    padding: var(--ld-primitive-scale-space-50, 4px) var(--ld-primitive-scale-space-100, 8px);
+    max-height: 40px;
+  }
 }
 
 .checkoutContent {
@@ -179,114 +240,78 @@
   justify-content: space-between;
   align-items: center;
   flex: 1 0 0;
+  min-height: 32px;
 }
 
-.checkoutLeft {
+.checkoutInfo {
   display: flex;
   align-items: center;
   gap: var(--ld-primitive-scale-space-100, 8px);
-  flex: 1 0 0;
 }
 
 .checkoutMessage {
-  font-family: var(--ld-semantic-font-body-medium-family);
+  color: var(--ld-semantic-color-text-inverse, #fff);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-medium-lineheight);
-  color: var(--ld-semantic-color-text-inverse, #fff);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
 }
 
-/* Close / dismiss button */
-.closeButton {
+@media (max-width: 899px) {
+  .checkoutMessage {
+    font-size: var(--ld-semantic-font-body-small-size, 14px);
+    line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
+  }
+}
+
+.checkoutCloseBtn {
   display: flex;
   padding: var(--ld-primitive-scale-space-100, 8px);
-  flex-direction: column;
-  align-items: flex-start;
-  border: none;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
-  background: var(--ld-semantic-color-action-fill-accent-white, rgba(255, 255, 255, 0.15));
-  color: var(--ld-semantic-color-action-text-onfill-accent-white, #fff);
+  background: var(--ld-semantic-color-action-fill-accent-white, #fff);
+  border: none;
   cursor: pointer;
-  flex-shrink: 0;
+  color: var(--ld-semantic-color-text, #2E2F32);
 }
 
-.closeButton:hover {
-  opacity: 0.85;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   ERROR VARIANT — navy bar with warning icon + message
-   Desktop (900+px): padding 24px 12px, gap 12px, height ~72px, body-medium
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.errorContainer {
+/* ── Error variant ── */
+.errorBanner {
   display: flex;
   padding: var(--ld-primitive-scale-space-300, 24px) var(--ld-primitive-scale-space-150, 12px);
   align-items: flex-start;
   gap: var(--ld-primitive-scale-space-150, 12px);
+  align-self: stretch;
   background: var(--wcp-semantic-color-surface-overlay-brand-bold, #002E99);
   width: 100%;
-  box-sizing: border-box;
+}
+
+@media (max-width: 899px) {
+  .errorBanner {
+    padding: var(--ld-primitive-scale-space-150, 12px);
+  }
 }
 
 .errorIcon {
-  width: var(--ld-semantic-scale-icon-medium, 24px);
-  height: var(--ld-semantic-scale-icon-medium, 24px);
-  color: var(--ld-semantic-color-text-inverse, #fff);
   flex-shrink: 0;
+  color: var(--ld-semantic-color-text-inverse, #fff);
+  width: 24px;
+  height: 24px;
 }
 
-.errorText {
+.errorMessage {
   flex: 1 0 0;
-  font-family: var(--ld-semantic-font-body-medium-family);
+  color: var(--ld-semantic-color-text-inverse, #fff);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-body-medium-size, 16px);
   font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-medium-lineheight);
-  color: var(--ld-semantic-color-text-inverse, #fff);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE — Container queries (component-level breakpoint at 899px)
-   These match Figma's "breakpoint=0-899px" variants and adapt based on the
-   component's own container width, not the viewport width.
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-@container (max-width: 899px) {
-  /* ── Line-joined: smaller card padding (8px all around) ────── */
-  .card {
-    padding: var(--ld-primitive-scale-space-100, 8px);
-  }
-
-  /* ── Checkout: compact 40px bar, body-small (14px) ─────────── */
-  .checkoutContainer {
-    padding: var(--ld-primitive-scale-space-50, 4px) var(--ld-primitive-scale-space-100, 8px);
-    max-height: 40px;
-  }
-
-  .checkoutMessage {
-    font-family: var(--ld-semantic-font-body-small-family);
+@media (max-width: 899px) {
+  .errorMessage {
     font-size: var(--ld-semantic-font-body-small-size, 14px);
-    font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-    line-height: var(--ld-semantic-font-body-small-lineheight);
-  }
-
-  /* ── Error: padding 12px, gap 8px, height ~64px, body-small ── */
-  .errorContainer {
-    padding: var(--ld-primitive-scale-space-150, 12px);
-    gap: var(--ld-primitive-scale-space-100, 8px);
-  }
-
-  .errorText {
-    font-family: var(--ld-semantic-font-body-small-family);
-    font-size: var(--ld-semantic-font-body-small-size, 14px);
-    font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-    line-height: var(--ld-semantic-font-body-small-lineheight);
-  }
-}
-
-/* ── Reduced motion ──────────────────────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  .closeButton {
-    transition: none;
+    line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
   }
 }
