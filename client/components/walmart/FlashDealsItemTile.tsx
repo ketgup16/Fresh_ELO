@@ -1,6 +1,7 @@
 import { WCPFlag } from '@/components/walmart/WCPFlag';
 import { WCPHeartView } from '@/components/walmart/WCPHeartView';
 import { Button } from '@/components/ui/Button';
+import { QuantityStepper } from '@/components/ui/QuantityStepper';
 import { useCart } from '@/contexts/CartContext';
 import { ItemTileBadgeType } from '@/components/walmart/WCPItemTile';
 import styles from './FlashDealsItemTile.module.css';
@@ -84,9 +85,12 @@ export function FlashDealsItemTile({
       </div>
       <div className={styles.footer}>
         {actionType === 'add' ? (
-          <Button variant="secondary" size="small" onClick={handleAdd}>
-            + Add
-          </Button>
+          <QuantityStepper
+            variant="secondary"
+            size="small"
+            showTrashOnRemove
+            onChange={(qty) => setItemQuantity(idx, qty)}
+          />
         ) : (
           <Button variant="secondary" size="small" onClick={() => {}}>
             Options
