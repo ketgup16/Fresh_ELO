@@ -57,6 +57,10 @@
   transform: rotate(180deg);
 }
 
+.iconOpen {
+  transform: rotate(180deg);
+}
+
 .content {
   background: var(--ld-semantic-color-surface);
   border: 1px solid var(--ld-semantic-color-separator);

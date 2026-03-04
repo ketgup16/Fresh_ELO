@@ -1,65 +1,49 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type React from 'react';
 import { ChevronDown } from '@/components/icons';
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from '@/components/ui/dropdown-menu';
-import { useNavigate } from 'react-router-dom';
+import { MegaNav } from '@/components/walmart/MegaNav';
 import styles from './ServicesDropdown.module.css';
-
-const services = [
-  { label: 'Photo Services', path: '/services/photo' },
-  { label: 'Money Services', path: '/services/money' },
-  { label: 'Tire & Battery', path: '/services/tire-battery' },
-  { label: 'Vision Services', path: '/services/vision' },
-  { label: 'Hearing', path: '/services/hearing' },
-  { label: 'Pharmacy', path: '/services/pharmacy' },
-  { label: 'Travel Services', path: '/services/travel' },
-  { label: 'Rental Services', path: '/services/rental' },
-];
 
 interface ServicesDropdownProps {
   leadingIcon?: React.ReactNode;
 }
 
 export function ServicesDropdown({ leadingIcon }: ServicesDropdownProps = {}) {
-  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleSelect = (path: string) => {
-    navigate(path);
-    setIsOpen(false);
-  };
+  // Close when clicking outside
+  useEffect(() => {
+    if (!isOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [isOpen]);
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger asChild>
-        <button
-          type="button"
-          className={styles.trigger}
-        >
-          {leadingIcon && <span className={styles.leadingIcon}>{leadingIcon}</span>}
-          Services
-          <ChevronDown className={styles.icon} aria-hidden="true" />
-        </button>
-      </DropdownMenuTrigger>
+    <div ref={containerRef} style={{ position: 'relative' }}>
+      <button
+        type="button"
+        className={styles.trigger}
+        aria-expanded={isOpen}
+        aria-haspopup="dialog"
+        onClick={() => setIsOpen((v) => !v)}
+      >
+        {leadingIcon && <span className={styles.leadingIcon}>{leadingIcon}</span>}
+        Services
+        <ChevronDown className={[styles.icon, isOpen ? styles.iconOpen : ''].filter(Boolean).join(' ')} aria-hidden="true" />
+      </button>
 
-      <DropdownMenuContent className={styles.content}>
-        <nav role="navigation" aria-label="Available services">
-          {services.map((service) => (
-            <DropdownMenuItem
-              key={service.path}
-              className={styles.item}
-              onSelect={() => handleSelect(service.path)}
-            >
-              {service.label}
-            </DropdownMenuItem>
-          ))}
-        </nav>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      <MegaNav
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        initialTab="services"
+        mode="panel"
+      />
+    </div>
   );
 }

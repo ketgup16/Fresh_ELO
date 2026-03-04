@@ -165,21 +165,12 @@ export function MegaNav({ isOpen, onClose, initialTab = 'departments', mode = 'o
           </div>
         )}
 
-        {/* ── Desktop tab strip (panel only) ── */}
+        {/* ── Desktop panel header — section title only, no tab switching ── */}
         {mode === 'panel' && (
-          <div className={styles.panelTabs}>
-            <button
-              className={[styles.panelTab, activeTab === 'departments' ? styles.panelTabActive : ''].join(' ')}
-              onClick={() => setActiveTab('departments')}
-            >
-              Departments
-            </button>
-            <button
-              className={[styles.panelTab, activeTab === 'services' ? styles.panelTabActive : ''].join(' ')}
-              onClick={() => setActiveTab('services')}
-            >
-              Services
-            </button>
+          <div className={styles.panelHeader}>
+            <span className={styles.panelTitle}>
+              {activeTab === 'departments' ? 'Departments' : 'Services'}
+            </span>
           </div>
         )}
 

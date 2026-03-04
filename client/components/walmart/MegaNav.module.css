@@ -91,35 +91,23 @@
   background: var(--ld-semantic-color-surface-hovered);
 }
 
-/* ── Desktop tab strip (panel mode) ── */
-.panelTabs {
+/* ── Desktop panel header (panel mode — no switching between tabs) ── */
+.panelHeader {
   display: flex;
+  align-items: center;
+  padding: 12px 20px 8px;
   border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
   flex-shrink: 0;
 }
 
-.panelTab {
-  padding: 10px 20px;
+.panelTitle {
   font-family: var(--ld-semantic-font-family-sans, 'Bogle', sans-serif);
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  color: var(--ld-semantic-color-text-subtle);
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  transition: color 120ms, border-color 120ms;
-  margin-bottom: -1px;
-}
-
-.panelTab:hover {
-  color: var(--ld-semantic-color-text);
-}
-
-.panelTabActive {
-  color: var(--ld-semantic-color-text-brand, #0053e2);
-  border-bottom-color: var(--ld-semantic-color-text-brand, #0053e2);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 /* ── Two-column body ── */
