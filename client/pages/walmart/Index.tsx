@@ -33,13 +33,13 @@ const ANIMAL_PRINT_ITEMS: CarouselItem[] = [
 
 const HOME_REFRESH_ITEMS: CarouselItem[] = [
   { img: PRODUCT_IMAGES.boucleArmchair, price: '159', cents: '00', idx: 8 },
-  { img: PRODUCT_IMAGES.rattanCabinet, price: '49', cents: '98', idx: 9 },
+  { img: PRODUCT_IMAGES.roomba2, price: '49', cents: '98', idx: 9 },
   { img: PRODUCT_IMAGES.cookwareSet, price: '79', cents: '99', idx: 10 },
   { img: PRODUCT_IMAGES.mugSet, price: '28', cents: '00', idx: 11 },
 ];
 
 const VACUUM_ITEMS: CarouselItem[] = [
-  { img: PRODUCT_IMAGES.countertopBlender, price: '149', cents: '00', idx: 12 },
+  { img: PRODUCT_IMAGES.roomba2, price: '149', cents: '00', idx: 12 },
   { img: PRODUCT_IMAGES.roomba1, price: '199', cents: '99', idx: 13 },
   { img: PRODUCT_IMAGES.roomba2, price: '249', cents: '00', idx: 14 },
   { img: PRODUCT_IMAGES.roomba3, price: '329', cents: '00', idx: 15 },
