@@ -27,12 +27,14 @@ export function PromotionalItemTile({
           <span className={styles.price}>{price}</span>
           <span className={styles.cents}>{cents}</span>
         </div>
-        <QuantityStepper
-          variant="tertiary"
-          size="small"
-          showAddLabel={false}
-          onChange={(qty) => onQuantityChange(idx, qty)}
-        />
+        <div className={styles.stepperWrapper}>
+          <QuantityStepper
+            variant="tertiary"
+            size="small"
+            showAddLabel={false}
+            onChange={(qty) => onQuantityChange(idx, qty)}
+          />
+        </div>
       </div>
     </div>
   );

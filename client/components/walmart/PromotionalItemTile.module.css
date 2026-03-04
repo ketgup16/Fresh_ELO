@@ -32,6 +32,17 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 4px;
+  position: relative;
+  min-height: 32px;
+}
+
+/* Make the stepper overlay from the right so it doesn't push price */
+.stepperWrapper {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
 }
 
 /* ── Superscript price row (matches WCPItemTile) ── */
