@@ -252,15 +252,41 @@
 }
 
 @media (max-width: 600px) {
-  /* Keep 2 columns so the grid stays compact */
+  /* Compact list: one item per row, horizontal layout */
   .healthGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--ld-primitive-scale-space-200, 8px);
+    grid-template-columns: 1fr;
+    gap: var(--ld-primitive-scale-space-150, 6px);
   }
 
   .healthItem {
-    padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-200, 8px);
-    gap: var(--ld-primitive-scale-space-100, 4px);
+    flex-direction: row;
+    align-items: center;
+    padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-250, 10px);
+    gap: var(--ld-primitive-scale-space-200, 8px);
+    border-radius: var(--ld-primitive-scale-borderradius-075, 6px);
+  }
+
+  /* Status tag stays at fixed width */
+  .healthItem > span:first-child {
+    flex-shrink: 0;
+  }
+
+  .itemName {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .itemDetail {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .itemPrice {
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .header {

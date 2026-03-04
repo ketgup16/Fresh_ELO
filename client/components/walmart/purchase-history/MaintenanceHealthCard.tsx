@@ -134,6 +134,13 @@ export function MaintenanceHealthCard({
         </div>
       </div>
 
+      {/* ── Value statement ── */}
+      {valueStatement && (
+        <div className={styles.alertWrapper}>
+          <Alert variant="info">{valueStatement}</Alert>
+        </div>
+      )}
+
       {/* ── Maintenance health grid ── */}
       <div className={styles.section}>
         <p className={styles.sectionTitle}>Maintenance status</p>
@@ -157,13 +164,6 @@ export function MaintenanceHealthCard({
           ))}
         </div>
       </div>
-
-      {/* ── Value statement ── */}
-      {valueStatement && (
-        <div className={styles.alertWrapper}>
-          <Alert variant="info">{valueStatement}</Alert>
-        </div>
-      )}
 
       {/* ── Bundle savings ── */}
       {bundleSavings && (
