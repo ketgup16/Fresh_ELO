@@ -6,6 +6,7 @@ import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { OrderStatusCard } from "@/components/walmart/OrderStatusCard";
 import { ActiveCurbsideCard } from "@/components/walmart/ActiveCurbsideCard";
 import { CarouselProductCard } from "@/components/walmart/CarouselProductCard";
+import { ContinueShopping } from "@/components/walmart/ContinueShopping";
 import { PRODUCT_IMAGES } from "@/components/walmart/productImages";
 
 interface CarouselItem {
@@ -27,6 +28,13 @@ const ANIMAL_PRINT_ITEMS: CarouselItem[] = [
   { img: PRODUCT_IMAGES.blackCardigan, price: '79', cents: '00', idx: 5 },
   { img: PRODUCT_IMAGES.headphones, price: '178', cents: '00', idx: 6 },
   { img: PRODUCT_IMAGES.airFryer, price: '99', cents: '00', idx: 7 },
+];
+
+const HOME_REFRESH_ITEMS: CarouselItem[] = [
+  { img: PRODUCT_IMAGES.boucleArmchair, price: '159', cents: '00', idx: 8 },
+  { img: PRODUCT_IMAGES.comforterSet, price: '49', cents: '98', idx: 9 },
+  { img: PRODUCT_IMAGES.cookwareSet, price: '79', cents: '99', idx: 10 },
+  { img: PRODUCT_IMAGES.mugSet, price: '28', cents: '00', idx: 11 },
 ];
 
 export default function Index() {
@@ -146,7 +154,51 @@ export default function Index() {
             </div>
           </div>
 
+          {/* Home Refresh Carousel */}
+          <div className="relative rounded-lg overflow-hidden h-[543px] min-w-[320px] w-[320px] snap-center flex-shrink-0">
+            <div className="absolute inset-0 bg-[#e8f0e4]" />
+            <div className="absolute top-8 left-4 right-4 z-10">
+              <h2 className="text-[#2e4a22] text-[36px] font-bold leading-[38px] max-w-[200px]">
+                Home refresh
+              </h2>
+              <p className="text-[#2e4a22] text-sm mt-1">Furniture & kitchen finds</p>
+            </div>
+            <div className="absolute top-4 right-4 w-10 h-6 bg-white/70 backdrop-blur rounded-full flex items-center justify-center z-10">
+              <Pause className="w-4 h-4" />
+            </div>
+            <div className="absolute bottom-4 left-4 right-4 space-y-2 z-10">
+              <div className="grid grid-cols-2 gap-2">
+                {HOME_REFRESH_ITEMS.slice(0, 2).map((item) => (
+                  <CarouselProductCard
+                    key={item.idx}
+                    image={item.img}
+                    price={item.price}
+                    cents={item.cents}
+                    idx={item.idx}
+                    onQuantityChange={handleQuantityChange}
+                  />
+                ))}
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {HOME_REFRESH_ITEMS.slice(2).map((item) => (
+                  <CarouselProductCard
+                    key={item.idx}
+                    image={item.img}
+                    price={item.price}
+                    cents={item.cents}
+                    idx={item.idx}
+                    onQuantityChange={handleQuantityChange}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
+
+        {/* Continue Shopping section */}
+        <ContinueShopping />
+
       </div>
     </ResponsiveLayout>
   );
