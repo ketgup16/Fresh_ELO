@@ -4,6 +4,8 @@ import { X, Camera, Microphone, ChevronLeft, Clock, ArrowUpLeft } from "@/compon
 import { SparkyLookingDown } from "@/components/icons-custom";
 import { allSuggestions as sharedSuggestions } from "@/components/walmart/searchData";
 import { IOSKeyboard } from "./IOSKeyboard";
+import { NativeStatusBar } from "@/components/walmart/NativeStatusBar";
+import { useLayoutSettings } from "@/contexts/LayoutSettingsContext";
 
 interface SearchTypeaheadModalProps {
   onClose: () => void;
@@ -12,6 +14,8 @@ interface SearchTypeaheadModalProps {
 
 export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeaheadModalProps) {
   const navigate = useNavigate();
+  const { platform } = useLayoutSettings();
+  const isNative = platform === 'ios' || platform === 'android';
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(true);
   const [recentSearches, setRecentSearches] = useState(['whole grain cereal', 'frosted flakes', 'cheerios', 'granola', 'oatmeal']);
@@ -45,9 +49,15 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
   };
 
   return (
-    <div className="fixed inset-0 bg-white z-[100] max-w-[430px] mx-auto animate-fade-in">
+    <div className="fixed inset-0 bg-white z-[100] max-w-[430px] mx-auto animate-fade-in flex flex-col">
+      {/* iOS/Android Status Bar */}
+      {isNative && (
+        <div style={{ backgroundColor: 'var(--ld-semantic-color-top-nav-fill)' }}>
+          <NativeStatusBar platform={platform as 'ios' | 'android'} />
+        </div>
+      )}
       {/* Search Bar */}
-      <div className="flex items-center gap-2 px-4 pt-4 pb-3 border-b border-border">
+      <div className="flex items-center gap-2 px-4 pt-3 pb-3 border-b border-border flex-shrink-0">
         <button onClick={handleClose} className="flex-shrink-0">
           <ChevronLeft className="w-6 h-6 text-foreground" />
         </button>
@@ -100,8 +110,8 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
         </div>
       </div>
 
-      {/* Content */}
-      <div className="overflow-y-auto" style={{ height: 'calc(100vh - 101px - 335px)' }}>
+      {/* Content — pb-[335px] so content isn't hidden behind the fixed keyboard */}
+      <div className="overflow-y-auto flex-1 pb-[335px]">
         {searchQuery && filteredSuggestions.length > 0 ? (
           <div className="px-4 py-4">
             <div className="flex flex-col">
