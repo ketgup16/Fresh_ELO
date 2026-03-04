@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MartyProvider } from "@/contexts/MartyContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LayoutSettingsProvider } from "@/contexts/LayoutSettingsContext";
+import { CartProvider } from "@/contexts/CartContext";
 import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
 
 import React from 'react';
@@ -134,6 +135,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <ThemeProvider>
       <LayoutSettingsProvider>
+        <CartProvider>
         <QueryClientProvider client={queryClient}>
       <SnackbarContainer />
       <WCPRichSnackbarContainer />
@@ -266,6 +268,7 @@ const App = () => (
           </BrowserRouter>
         </MartyProvider>
     </QueryClientProvider>
+        </CartProvider>
       </LayoutSettingsProvider>
   </ThemeProvider>
 );

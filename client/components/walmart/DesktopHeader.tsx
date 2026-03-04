@@ -12,10 +12,12 @@ import { DesktopSearchTypeahead } from './DesktopSearchTypeahead';
 import { ReorderDropdown } from './ReorderDropdown';
 import { AccountDropdown } from './AccountDropdown';
 import { defaultRecentSearches } from './searchData';
+import { useCart } from '@/contexts/CartContext';
 import styles from './DesktopHeader.module.css';
 
 export function DesktopHeader() {
   const navigate = useNavigate();
+  const { cartCount, cartPrice } = useCart();
   const [showGIC, setShowGIC] = useState(false);
   const [showHighlight, setShowHighlight] = useState(true);
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
@@ -241,7 +243,7 @@ export function DesktopHeader() {
                 className={styles.cartButton}
                 onClick={() => navigate('/cart')}
               >
-                <CartIcon count={1} price="$5.00" textColor="var(--ld-semantic-color-top-nav-text-on-fill)" />
+                <CartIcon count={cartCount} price={cartPrice} textColor="var(--ld-semantic-color-top-nav-text-on-fill)" />
               </button>
             </li>
           </ul>

@@ -10,6 +10,7 @@ import { SubNavButton } from '@/components/walmart/SubNavButton';
 import { SearchTypeaheadModal } from '@/pages/walmart/index/SearchTypeaheadModal';
 import { useNavigate } from 'react-router-dom';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
+import { useCart } from '@/contexts/CartContext';
 import styles from './MobileTopNav.module.css';
 
 const mobileSecondaryLinks = [
@@ -32,6 +33,7 @@ interface MobileTopNavProps {
 export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
+  const { cartCount, cartPrice } = useCart();
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [showCameraModal, setShowCameraModal] = useState(false);
   const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
@@ -59,7 +61,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
                   className={styles.sparkImg}
                 />
               </div>
-              <CartIcon count={0} price="$0.00" textColor="white" />
+              <CartIcon count={cartCount} price={cartPrice} textColor="white" />
             </div>
 
             {/* Row 2: Search pill */}
@@ -163,7 +165,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
                 </div>
               </div>
 
-              <CartIcon count={0} price="$0.00" textColor={textColor} />
+              <CartIcon count={cartCount} price={cartPrice} textColor={textColor} />
             </div>
           </div>
         )}

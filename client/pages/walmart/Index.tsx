@@ -1,5 +1,5 @@
 import { Pause } from "@/components/icons";
-import { useState } from "react";
+import { useCart } from "@/contexts/CartContext";
 import { NewArrivalsCarousel } from "@/components/walmart/NewArrivalsCarousel";
 import { JumpRightBackIn } from "@/components/walmart/JumpRightBackIn";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
@@ -45,17 +45,10 @@ const VACUUM_ITEMS: CarouselItem[] = [
 ];
 
 export default function Index() {
-  const [cartItems, setCartItems] = useState<Record<number, number>>({});
+  const { setItemQuantity } = useCart();
 
   const handleQuantityChange = (productIndex: number, quantity: number) => {
-    setCartItems(prev => {
-      if (quantity === 0) {
-        const newItems = { ...prev };
-        delete newItems[productIndex];
-        return newItems;
-      }
-      return { ...prev, [productIndex]: quantity };
-    });
+    setItemQuantity(productIndex, quantity);
   };
 
   return (
