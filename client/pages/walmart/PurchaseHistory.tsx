@@ -378,17 +378,6 @@ export default function PurchaseHistory() {
                   Each card is wrapped in styles.newCard to trigger the green glow
                   animation on insert. Remove the wrapper + component to hide.
               ─────────────────────────────────────────────────────────────── */}
-              <div className={styles.newCard} style={{ marginBottom: 16 }}>
-                <DelayedDeliveryCard
-                  statusHeading={DELAYED_CARD.statusHeading}
-                  delayEstimate={DELAYED_CARD.delayEstimate}
-                  products={DELAYED_CARD.products}
-                  orderTotal={DELAYED_CARD.orderTotal}
-                  onReschedule={() => console.log('Reschedule delivery clicked')}
-                  onPickupInstead={() => console.log('Switch to pickup clicked')}
-                  onCancelOrder={() => console.log('Cancel order clicked')}
-                />
-              </div>
 
               {/* ── Standard order list ───────────────────────────────────── */}
               <div className={styles.orderList}>
