@@ -106,19 +106,19 @@ const CATEGORIES: Category[] = [
     title: 'Electronics',
     products: [
       {
-        image: PRODUCT_IMAGES.laptop1,
-        name: 'Lenovo IdeaPad 15.6" Lapt...',
-        price: '329',
-        cents: '00',
-        originalPrice: '$399.00',
+        image: PRODUCT_IMAGES.roomba1,
+        name: 'iRobot Roomba i3+ Self-Em...',
+        price: '299',
+        cents: '99',
+        originalPrice: '$449.99',
         pricePrefix: 'Now',
         badge: { label: 'Deal', type: 'deal' },
       },
       {
-        image: PRODUCT_IMAGES.laptop2,
-        name: 'Acer Chromebook 15.6", 8...',
-        price: '279',
-        cents: '00',
+        image: PRODUCT_IMAGES.countertopBlender,
+        name: 'VAVSEA Countertop Blend...',
+        price: '49',
+        cents: '99',
         badge: { label: 'Best seller', type: 'bestseller' },
       },
       {
