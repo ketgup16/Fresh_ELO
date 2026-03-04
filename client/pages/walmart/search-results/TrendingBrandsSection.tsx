@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { InfoCircle as Info } from "@/components/icons";
+import { FilterChip } from "@/components/ui/FilterChip";
 
 const useDragScroll = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -30,15 +31,15 @@ export function TrendingBrandsSection() {
     <div className="px-3 py-4 border-t-8 border-[var(--ld-semantic-color-fill-subtle)]">
       <h2 className="text-[16px] font-bold text-foreground mb-2">TV brands currently trending</h2>
       <div ref={brandFiltersScrollRef} className="flex gap-2 overflow-x-auto scrollbar-hide pb-2 mb-3">
-        {BRANDS.map((brand) => {
-          const isActive = selectedBrand === brand;
-          return (
-            <button key={brand} onClick={() => setSelectedBrand(brand)}
-              className={`h-[26px] px-4 rounded flex-shrink-0 bg-white ${isActive ? 'border-2 border-foreground' : 'border border-border'}`}>
-              <span className={`text-[14px] ${isActive ? 'font-bold' : ''} text-foreground`}>{brand}</span>
-            </button>
-          );
-        })}
+        {BRANDS.map((brand) => (
+          <FilterChip
+            key={brand}
+            selected={selectedBrand === brand}
+            onSelectedChange={() => setSelectedBrand(brand)}
+          >
+            {brand}
+          </FilterChip>
+        ))}
       </div>
 
       <div className="bg-white rounded-2xl p-3 border border-border">

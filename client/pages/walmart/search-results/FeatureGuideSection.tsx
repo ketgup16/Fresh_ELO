@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { FilterChip } from "@/components/ui/FilterChip";
 
 const useDragScroll = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -128,20 +129,15 @@ export function FeatureGuideSection() {
       <div className="mb-3">
         <h2 className="text-[16px] font-bold text-foreground mb-2">Features to consider when shopping for TVs</h2>
         <div ref={featureFiltersScrollRef} className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-          {FEATURE_FILTERS.map((filter) => {
-            const isActive = selectedFilter === filter;
-            return (
-              <button
-                key={filter}
-                onClick={() => setSelectedFilter(filter)}
-                className={`flex-shrink-0 bg-white h-auto self-center px-4 pb-0.5 rounded ${isActive ? 'border-2' : 'border'} border-foreground`}
-              >
-                <span className={`text-[14px] ${isActive ? 'font-bold' : ''} text-foreground`}>
-                  {filter}
-                </span>
-              </button>
-            );
-          })}
+          {FEATURE_FILTERS.map((filter) => (
+            <FilterChip
+              key={filter}
+              selected={selectedFilter === filter}
+              onSelectedChange={() => setSelectedFilter(filter)}
+            >
+              {filter}
+            </FilterChip>
+          ))}
         </div>
       </div>
 
