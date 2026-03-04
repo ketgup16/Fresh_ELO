@@ -15,13 +15,20 @@ import { Select, SelectItem } from '@/components/ui/Select';
 import { Divider } from '@/components/ui/Divider';
 import { SpotIcon } from '@/components/ui/SpotIcon';
 import { Rating } from '@/components/ui/Rating';
+import { Alert } from '@/components/ui/Alert';
+import { Spinner } from '@/components/ui/Spinner';
+import { ProgressIndicator } from '@/components/ui/ProgressIndicator';
+import { WCPFlag, WCP_FLAG_VARIANTS } from '@/components/walmart/WCPFlag';
+import type { WCPFlagVariant } from '@/components/walmart/WCPFlag';
+import { WCPHeartView } from '@/components/walmart/WCPHeartView';
 import * as Icons from '@/components/icons';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 
 type ComponentType =
   | 'button' | 'badge' | 'chip' | 'filterchip' | 'tag'
   | 'iconbutton' | 'checkbox' | 'switch' | 'textfield' | 'textarea'
-  | 'datefield' | 'select' | 'divider' | 'spoticon' | 'rating';
+  | 'datefield' | 'select' | 'divider' | 'spoticon' | 'rating'
+  | 'alert' | 'spinner' | 'progressindicator' | 'wcpflag' | 'wcpheartview';
 
 const components = [
   { id: 'button', name: 'Button', category: 'Actions' },
@@ -39,6 +46,11 @@ const components = [
   { id: 'checkbox', name: 'Checkbox', category: 'Forms' },
   { id: 'switch', name: 'Switch', category: 'Forms' },
   { id: 'divider', name: 'Divider', category: 'Layout' },
+  { id: 'alert', name: 'Alert', category: 'Feedback' },
+  { id: 'spinner', name: 'Spinner', category: 'Feedback' },
+  { id: 'progressindicator', name: 'Progress Indicator', category: 'Feedback' },
+  { id: 'wcpflag', name: 'WCP Flag', category: 'WCP' },
+  { id: 'wcpheartview', name: 'WCP Heart View', category: 'WCP' },
 ];
 
 export default function ComponentTester() {
@@ -113,6 +125,28 @@ export default function ComponentTester() {
   
   // Divider props
   const [dividerOrientation, setDividerOrientation] = React.useState<'horizontal' | 'vertical'>('horizontal');
+
+  // Alert props
+  const [alertVariant, setAlertVariant] = React.useState<'info' | 'success' | 'warning' | 'error'>('info');
+  const [alertMessage, setAlertMessage] = React.useState('This is an alert message');
+
+  // Spinner props
+  const [spinnerColor, setSpinnerColor] = React.useState<'neutral' | 'white'>('neutral');
+  const [spinnerSize, setSpinnerSize] = React.useState<'large' | 'small'>('large');
+
+  // ProgressIndicator props
+  const [progressValue, setProgressValue] = React.useState(65);
+  const [progressVariant, setProgressVariant] = React.useState<'primary' | 'success' | 'warning' | 'error'>('primary');
+  const [progressShowValue, setProgressShowValue] = React.useState(true);
+  const [progressLabel, setProgressLabel] = React.useState('Progress');
+
+  // WCPFlag props
+  const [flagVariant, setFlagVariant] = React.useState<WCPFlagVariant>('brand-subtle');
+  const [flagLabel, setFlagLabel] = React.useState('Flag name');
+
+  // WCPHeartView props
+  const [heartActivated, setHeartActivated] = React.useState(false);
+  const [heartSize, setHeartSize] = React.useState<'small' | 'medium'>('medium');
 
   const renderComponent = () => {
     switch (selectedComponent) {
@@ -267,7 +301,47 @@ export default function ComponentTester() {
             <Divider orientation={dividerOrientation} />
           </div>
         );
-      
+
+      case 'alert':
+        return (
+          <Alert variant={alertVariant}>
+            {alertMessage}
+          </Alert>
+        );
+
+      case 'spinner':
+        return (
+          <div style={{ padding: '24px', backgroundColor: spinnerColor === 'white' ? 'var(--ld-semantic-color-action-fill-primary, #0071DC)' : 'transparent', borderRadius: '8px' }}>
+            <Spinner color={spinnerColor} size={spinnerSize} />
+          </div>
+        );
+
+      case 'progressindicator':
+        return (
+          <div style={{ width: '100%', maxWidth: '400px' }}>
+            <ProgressIndicator
+              value={progressValue}
+              variant={progressVariant}
+              showValue={progressShowValue}
+              label={progressLabel}
+            />
+          </div>
+        );
+
+      case 'wcpflag':
+        return (
+          <WCPFlag variant={flagVariant} label={flagLabel} />
+        );
+
+      case 'wcpheartview':
+        return (
+          <WCPHeartView
+            activated={heartActivated}
+            onChange={setHeartActivated}
+            size={heartSize}
+          />
+        );
+
       default:
         return null;
     }
@@ -754,7 +828,187 @@ export default function ComponentTester() {
             </div>
           </div>
         );
-      
+
+      case 'alert':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                {t('componentLibrary.variant')}
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['info', 'success', 'warning', 'error'] as const).map((variant) => (
+                  <Chip
+                    key={variant}
+                    size="small"
+                    selected={alertVariant === variant}
+                    onClick={() => setAlertVariant(variant)}
+                  >
+                    {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            <div>
+              <TextField
+                label="Message"
+                size="small"
+                value={alertMessage}
+                onChange={(e) => setAlertMessage(e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case 'spinner':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                {t('componentLibrary.color')}
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['neutral', 'white'] as const).map((color) => (
+                  <Chip
+                    key={color}
+                    size="small"
+                    selected={spinnerColor === color}
+                    onClick={() => setSpinnerColor(color)}
+                  >
+                    {color.charAt(0).toUpperCase() + color.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                {t('componentLibrary.size')}
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['large', 'small'] as const).map((size) => (
+                  <Chip
+                    key={size}
+                    size="small"
+                    selected={spinnerSize === size}
+                    onClick={() => setSpinnerSize(size)}
+                  >
+                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'progressindicator':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                {t('componentLibrary.variant')}
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['primary', 'success', 'warning', 'error'] as const).map((variant) => (
+                  <Chip
+                    key={variant}
+                    size="small"
+                    selected={progressVariant === variant}
+                    onClick={() => setProgressVariant(variant)}
+                  >
+                    {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            <div>
+              <TextField
+                label="Value (0-100)"
+                size="small"
+                type="number"
+                value={String(progressValue)}
+                onChange={(e) => setProgressValue(Number(e.target.value))}
+                inputProps={{ min: 0, max: 100 }}
+              />
+            </div>
+            <div>
+              <TextField
+                label="Label"
+                size="small"
+                value={progressLabel}
+                onChange={(e) => setProgressLabel(e.target.value)}
+              />
+            </div>
+            <div>
+              <Checkbox
+                checked={progressShowValue}
+                onCheckedChange={(checked) => setProgressShowValue(checked as boolean)}
+                label="Show percentage"
+              />
+            </div>
+          </div>
+        );
+
+      case 'wcpflag':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                {t('componentLibrary.variant')}
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {WCP_FLAG_VARIANTS.map(({ variant, label }) => (
+                  <Chip
+                    key={variant}
+                    size="small"
+                    selected={flagVariant === variant}
+                    onClick={() => setFlagVariant(variant)}
+                  >
+                    {label}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            <div>
+              <TextField
+                label="Label"
+                size="small"
+                value={flagLabel}
+                onChange={(e) => setFlagLabel(e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case 'wcpheartview':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                {t('componentLibrary.size')}
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['small', 'medium'] as const).map((size) => (
+                  <Chip
+                    key={size}
+                    size="small"
+                    selected={heartSize === size}
+                    onClick={() => setHeartSize(size)}
+                  >
+                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            <div>
+              <Checkbox
+                checked={heartActivated}
+                onCheckedChange={(checked) => setHeartActivated(checked as boolean)}
+                label="Activated (favorited)"
+              />
+            </div>
+          </div>
+        );
+
       default:
         return (
           <div style={{
@@ -949,6 +1203,47 @@ export default function ComponentTester() {
   checked={${switchChecked}}
   onCheckedChange={setChecked}${switchDisabled ? '\n  disabled' : ''}
   label="Toggle option"
+/>`}
+            </pre>
+          )}
+          {selectedComponent === 'alert' && (
+            <pre style={{ margin: 0 }}>
+              {`<Alert variant="${alertVariant}">
+  ${alertMessage}
+</Alert>`}
+            </pre>
+          )}
+          {selectedComponent === 'spinner' && (
+            <pre style={{ margin: 0 }}>
+              {`<Spinner
+  color="${spinnerColor}"
+  size="${spinnerSize}"
+/>`}
+            </pre>
+          )}
+          {selectedComponent === 'progressindicator' && (
+            <pre style={{ margin: 0 }}>
+              {`<ProgressIndicator
+  value={${progressValue}}
+  variant="${progressVariant}"
+  label="${progressLabel}"${progressShowValue ? '\n  showValue' : ''}
+/>`}
+            </pre>
+          )}
+          {selectedComponent === 'wcpflag' && (
+            <pre style={{ margin: 0 }}>
+              {`<WCPFlag
+  variant="${flagVariant}"
+  label="${flagLabel}"
+/>`}
+            </pre>
+          )}
+          {selectedComponent === 'wcpheartview' && (
+            <pre style={{ margin: 0 }}>
+              {`<WCPHeartView
+  activated={${heartActivated}}
+  onChange={setActivated}
+  size="${heartSize}"
 />`}
             </pre>
           )}
