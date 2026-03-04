@@ -165,15 +165,6 @@ export function MegaNav({ isOpen, onClose, initialTab = 'departments', mode = 'o
           </div>
         )}
 
-        {/* ── Desktop panel header — section title only, no tab switching ── */}
-        {mode === 'panel' && (
-          <div className={styles.panelHeader}>
-            <span className={styles.panelTitle}>
-              {activeTab === 'departments' ? 'Departments' : 'Services'}
-            </span>
-          </div>
-        )}
-
         {/* ── Two-column body ── */}
         <div className={styles.body}>
           {/* Left: category list */}
