@@ -129,6 +129,7 @@ const CarouselsAndGridsPage = React.lazy(() => import("./pages/component-library
 const OrderStatusCardsPage = React.lazy(() => import("./pages/component-library/OrderStatusCards"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
 const FoundationsPage = React.lazy(() => import("./pages/component-library/Foundations"));
+const AssetsPage = React.lazy(() => import("./pages/component-library/Assets"));
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
 const queryClient = new QueryClient();
@@ -151,6 +152,7 @@ const App = () => (
                 <Route path="themes" element={<ThemesPage />} />
                 <Route path="design-tokens" element={<DesignTokensPage />} />
                 <Route path="foundations" element={<FoundationsPage />} />
+                <Route path="assets" element={<AssetsPage />} />
                 <Route path="component-tester" element={<ComponentTester />} />
                 <Route path="icons" element={<IconsPage />} />
                 <Route path="buttons" element={<ButtonsPage />} />

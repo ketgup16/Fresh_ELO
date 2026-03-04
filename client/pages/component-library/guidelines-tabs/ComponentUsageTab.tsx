@@ -75,6 +75,10 @@ export function ComponentUsageTab() {
             { name: 'Nudges', usage: 'Non-critical supportive information with optional actions' },
             { name: 'Text Fields', usage: 'Single-line text input for names, emails, search, etc.' },
             { name: 'Text Area', usage: 'Multi-line text input for descriptions, comments, notes' },
+            { name: 'QuantityStepper', usage: 'Increment/decrement control for cart quantities. Use with CartContext for real-time count updates.' },
+            { name: 'HeartView', usage: 'Favorite/wishlist toggle. Always position on the right side of product tiles.' },
+            { name: 'WCPFlag', usage: 'Product badges (Clearance, Bestseller, Rollback). Clearance always uses "urgent" variant.' },
+            { name: 'ItemTile', usage: 'Product tile for carousels and grids. No hover states on container — only interactive elements respond.' },
           ].map((item) => (
             <div
               key={item.name}
@@ -92,6 +96,66 @@ export function ComponentUsageTab() {
               <span style={{ color: 'var(--ld-semantic-color-text-subtle)', lineHeight: '1.6' }}>
                 {item.usage}
               </span>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Carousel & Overflow Rules */}
+      <div style={{
+        backgroundColor: 'var(--ld-semantic-color-surface)',
+        padding: '32px',
+        borderRadius: '8px',
+        boxShadow: 'var(--ld-semantic-elevation-100)'
+      }}>
+        <h3 style={{
+          fontSize: '20px',
+          fontWeight: '700',
+          color: 'var(--ld-semantic-color-text)',
+          marginBottom: '24px'
+        }}>
+          Carousel & Interactive Frame Rules
+        </h3>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px' }}>
+          {[
+            {
+              title: 'Tooltip clipping prevention',
+              detail: 'All scrollable containers (carousels, horizontal scroll rows) must use overflow-y: visible with padding/margin compensation so tooltips and callouts are never clipped.',
+              code: '.scrollRow { overflow-x: auto; overflow-y: visible; padding: 40px 0; margin: -40px 0; }',
+            },
+            {
+              title: 'No hover states on tile containers',
+              detail: 'Product tiles and item cards should NOT have hover/transition effects on the container. Only interactive elements (buttons, heart icons) should respond to user interaction.',
+            },
+            {
+              title: 'Tile sizing in carousels',
+              detail: 'Use flex-based sizing (flex: 0 0 calc((100% - gap) / N)) to show a fixed number of tiles. Responsive: 6 at desktop, 4 at 1024px, 3 at 768px, ~2.3 at 480px.',
+            },
+          ].map((rule, i) => (
+            <div key={i} style={{
+              padding: '16px',
+              backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+              borderRadius: '6px',
+              borderLeft: '4px solid var(--ld-semantic-color-border-brand)',
+            }}>
+              <strong style={{ color: 'var(--ld-semantic-color-text)' }}>{rule.title}</strong>
+              <div style={{ color: 'var(--ld-semantic-color-text-subtle)', marginTop: '4px', lineHeight: '1.6' }}>
+                {rule.detail}
+              </div>
+              {'code' in rule && rule.code && (
+                <code style={{
+                  display: 'block',
+                  marginTop: '8px',
+                  padding: '8px 12px',
+                  backgroundColor: 'var(--ld-semantic-color-surface)',
+                  borderRadius: '4px',
+                  fontFamily: 'var(--ld-semantic-font-family-mono)',
+                  fontSize: '12px',
+                  color: 'var(--ld-semantic-color-text)',
+                  border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
+                }}>
+                  {rule.code}
+                </code>
+              )}
             </div>
           ))}
         </div>

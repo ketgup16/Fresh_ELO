@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/Tab';
-import { ThemesContentWrapper } from './Themes';
-import { DesignTokensContent } from './DesignTokens';
+import { Spinner } from '@/components/ui/Spinner';
+
+const ThemesContentWrapper = React.lazy(() => import('./Themes').then(m => ({ default: m.ThemesContentWrapper })));
+const DesignTokensContent = React.lazy(() => import('./DesignTokens').then(m => ({ default: m.DesignTokensContent })));
+
+const TabFallback = <div style={{ display: 'flex', justifyContent: 'center', padding: '48px' }}><Spinner size="large" /></div>;
 
 export default function FoundationsPage() {
   return (
@@ -18,11 +22,11 @@ export default function FoundationsPage() {
         </TabList>
 
         <TabPanel value="themes">
-          <ThemesContentWrapper />
+          <Suspense fallback={TabFallback}><ThemesContentWrapper /></Suspense>
         </TabPanel>
 
         <TabPanel value="project-tokens">
-          <DesignTokensContent />
+          <Suspense fallback={TabFallback}><DesignTokensContent /></Suspense>
         </TabPanel>
       </Tabs>
     </ComponentPageLayout>

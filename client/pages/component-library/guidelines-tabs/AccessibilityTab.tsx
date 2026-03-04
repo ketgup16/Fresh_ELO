@@ -83,6 +83,66 @@ export function AccessibilityTab() {
           ))}
         </div>
       </div>
+      {/* Never Disable Buttons */}
+      <div style={{
+        backgroundColor: 'var(--ld-semantic-color-surface)',
+        padding: '32px',
+        borderRadius: '8px',
+        boxShadow: 'var(--ld-semantic-elevation-100)'
+      }}>
+        <h3 style={{
+          fontSize: '20px',
+          fontWeight: '700',
+          color: 'var(--ld-semantic-color-text)',
+          marginBottom: '24px'
+        }}>
+          Never Disable Buttons
+        </h3>
+        <div style={{
+          padding: '20px',
+          backgroundColor: 'var(--ld-semantic-color-fill-error-subtle)',
+          borderRadius: '6px',
+          borderLeft: '4px solid var(--ld-semantic-color-border-negative)',
+          marginBottom: '16px',
+        }}>
+          <div style={{ fontWeight: '700', marginBottom: '8px', fontSize: '14px', color: 'var(--ld-semantic-color-text)' }}>
+            Hard Rule: Keep buttons enabled at all times
+          </div>
+          <div style={{ fontSize: '14px', lineHeight: '1.6', color: 'var(--ld-semantic-color-text-subtle)' }}>
+            Disabled buttons cannot receive focus — screen readers and keyboard users cannot reach them.
+            Instead, use label changes or helper text to communicate state.
+          </div>
+        </div>
+        <div style={{ display: 'grid', gap: '12px' }}>
+          <div style={{
+            padding: '16px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '6px',
+          }}>
+            <div style={{ fontFamily: 'var(--ld-semantic-font-family-mono)', fontSize: '13px', lineHeight: '1.8' }}>
+              <div style={{ color: 'var(--ld-semantic-color-text-negative)', marginBottom: '4px' }}>
+                {'// ❌ WRONG'}
+              </div>
+              <div style={{ color: 'var(--ld-semantic-color-text-subtlest)' }}>
+                {'<Button disabled={!hasChanges}>Save changes</Button>'}
+              </div>
+              <br />
+              <div style={{ color: 'var(--ld-semantic-color-text-positive)', marginBottom: '4px' }}>
+                {'// ✅ CORRECT'}
+              </div>
+              <div style={{ color: 'var(--ld-semantic-color-text)' }}>
+                {'<Button onClick={() => hasChanges ? save() : dismiss()}>'}
+              </div>
+              <div style={{ color: 'var(--ld-semantic-color-text)' }}>
+                {'  {hasChanges ? "Save changes" : "Done"}'}
+              </div>
+              <div style={{ color: 'var(--ld-semantic-color-text)' }}>
+                {'</Button>'}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

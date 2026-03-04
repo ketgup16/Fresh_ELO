@@ -250,7 +250,7 @@ const NON_COLOR_GROUPS = [
 
 // ─── Components ─────────────────────────────────────────────────────────────
 
-function ColorRow({ name, description }: { name: string; description: string }) {
+function ColorRow({ name, description, compact }: { name: string; description: string; compact: boolean }) {
   const [copied, setCopied] = React.useState(false);
 
   const copy = () => {
@@ -259,15 +259,21 @@ function ColorRow({ name, description }: { name: string; description: string }) 
     setTimeout(() => setCopied(false), 1800);
   };
 
+  const swatchSize = compact ? 20 : 40;
+  const pad = compact ? '4px 8px' : '10px 12px';
+  const gap = compact ? '8px' : '12px';
+  const nameSize = compact ? '11px' : '12px';
+
   return (
     <div
       onClick={copy}
+      title={`Click to copy var(${name})`}
       style={{
         display: 'flex',
         alignItems: 'center',
-        gap: '12px',
-        padding: '10px 12px',
-        borderRadius: '6px',
+        gap,
+        padding: pad,
+        borderRadius: '4px',
         cursor: 'pointer',
         transition: 'background 150ms',
       }}
@@ -276,32 +282,33 @@ function ColorRow({ name, description }: { name: string; description: string }) 
     >
       <div
         style={{
-          width: '40px',
-          height: '40px',
-          borderRadius: '6px',
+          width: `${swatchSize}px`,
+          height: `${swatchSize}px`,
+          borderRadius: compact ? '4px' : '6px',
           background: `var(${name})`,
           flexShrink: 0,
           border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
-          boxShadow: 'var(--ld-semantic-elevation-100)',
         }}
       />
       <div style={{ flex: 1, minWidth: 0 }}>
         <code style={{
           display: 'block',
-          fontSize: '12px',
+          fontSize: nameSize,
           fontFamily: 'monospace',
           fontWeight: 600,
           color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-          marginBottom: '2px',
+          marginBottom: compact ? 0 : '2px',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
         }}>
           {name}
         </code>
-        <span style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle, #74767c)' }}>
-          {description}
-        </span>
+        {!compact && (
+          <span style={{ fontSize: '11px', color: 'var(--ld-semantic-color-text-subtle, #74767c)' }}>
+            {description}
+          </span>
+        )}
       </div>
       {copied && (
         <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--ld-semantic-color-action-fill-primary, #0053e2)', flexShrink: 0 }}>
@@ -312,7 +319,7 @@ function ColorRow({ name, description }: { name: string; description: string }) 
   );
 }
 
-function ValueRow({ name, value, description }: { name: string; value: string; description: string }) {
+function ValueRow({ name, value, description, compact }: { name: string; value: string; description: string; compact: boolean }) {
   const [copied, setCopied] = React.useState(false);
 
   const copy = () => {
@@ -321,15 +328,19 @@ function ValueRow({ name, value, description }: { name: string; value: string; d
     setTimeout(() => setCopied(false), 1800);
   };
 
+  const pad = compact ? '4px 8px' : '10px 12px';
+  const nameSize = compact ? '11px' : '12px';
+
   return (
     <div
       onClick={copy}
+      title={`Click to copy ${name.startsWith('--') ? `var(${name})` : value}`}
       style={{
         display: 'flex',
         alignItems: 'center',
-        gap: '16px',
-        padding: '10px 12px',
-        borderRadius: '6px',
+        gap: compact ? '8px' : '16px',
+        padding: pad,
+        borderRadius: '4px',
         cursor: 'pointer',
         transition: 'background 150ms',
       }}
@@ -339,27 +350,29 @@ function ValueRow({ name, value, description }: { name: string; value: string; d
       <div style={{ flex: 1, minWidth: 0 }}>
         <code style={{
           display: 'block',
-          fontSize: '12px',
+          fontSize: nameSize,
           fontFamily: 'monospace',
           fontWeight: 600,
           color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-          marginBottom: '2px',
+          marginBottom: compact ? 0 : '2px',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
         }}>
           {name}
         </code>
-        <span style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle, #74767c)' }}>
-          {description}
-        </span>
+        {!compact && (
+          <span style={{ fontSize: '11px', color: 'var(--ld-semantic-color-text-subtle, #74767c)' }}>
+            {description}
+          </span>
+        )}
       </div>
       <code style={{
-        fontSize: '11px',
+        fontSize: compact ? '10px' : '11px',
         fontFamily: 'monospace',
         color: 'var(--ld-semantic-color-text-secondary, #74767c)',
         background: 'var(--ld-semantic-color-fill-surface-tertiary, #f0f0f1)',
-        padding: '2px 8px',
+        padding: '2px 6px',
         borderRadius: '4px',
         flexShrink: 0,
         whiteSpace: 'nowrap',
@@ -375,16 +388,17 @@ function ValueRow({ name, value, description }: { name: string; value: string; d
   );
 }
 
-function Section({ title, description, count, children }: {
+function Section({ title, description, count, compact, children }: {
   title: string;
   description: string;
   count: number;
+  compact: boolean;
   children: React.ReactNode;
 }) {
   const [open, setOpen] = React.useState(true);
 
   return (
-    <div style={{ marginBottom: '32px' }}>
+    <div style={{ marginBottom: compact ? '16px' : '32px' }}>
       {/* Section header */}
       <button
         onClick={() => setOpen(o => !o)}
@@ -395,14 +409,14 @@ function Section({ title, description, count, children }: {
           width: '100%',
           background: 'none',
           border: 'none',
-          padding: '0 0 12px',
+          padding: compact ? '0 0 6px' : '0 0 12px',
           cursor: 'pointer',
           textAlign: 'left',
         }}
       >
         <div>
           <h3 style={{
-            fontSize: '16px',
+            fontSize: compact ? '13px' : '16px',
             fontWeight: 700,
             fontFamily: 'var(--ld-semantic-font-family-sans)',
             color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
@@ -411,24 +425,26 @@ function Section({ title, description, count, children }: {
             {title}
             <span style={{
               marginLeft: '8px',
-              fontSize: '12px',
+              fontSize: '11px',
               fontWeight: 400,
               color: 'var(--ld-semantic-color-text-subtle, #74767c)',
             }}>
-              {count} tokens
+              {count}
             </span>
           </h3>
-          <p style={{
-            fontSize: '13px',
-            color: 'var(--ld-semantic-color-text-subtle, #74767c)',
-            margin: '2px 0 0',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-          }}>
-            {description}
-          </p>
+          {!compact && (
+            <p style={{
+              fontSize: '13px',
+              color: 'var(--ld-semantic-color-text-subtle, #74767c)',
+              margin: '2px 0 0',
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+            }}>
+              {description}
+            </p>
+          )}
         </div>
         <span style={{
-          fontSize: '20px',
+          fontSize: compact ? '16px' : '20px',
           color: 'var(--ld-semantic-color-text-subtle, #74767c)',
           transform: open ? 'rotate(0deg)' : 'rotate(-90deg)',
           transition: 'transform 200ms',
@@ -440,13 +456,15 @@ function Section({ title, description, count, children }: {
       {open && (
         <div style={{
           background: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
-          borderRadius: '8px',
+          borderRadius: compact ? '6px' : '8px',
           border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
           overflow: 'hidden',
-          padding: '4px',
+          padding: compact ? '2px' : '4px',
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-          gap: '2px',
+          gridTemplateColumns: compact
+            ? 'repeat(auto-fill, minmax(240px, 1fr))'
+            : 'repeat(auto-fill, minmax(320px, 1fr))',
+          gap: '1px',
         }}>
           {children}
         </div>
@@ -457,9 +475,22 @@ function Section({ title, description, count, children }: {
 
 // ─── Standalone content (for embedding in Foundations page) ─────────────────
 
+const DENSITY_KEY = 'cl-token-density';
+
 export function DesignTokensContent() {
   const totalColor = COLOR_GROUPS.reduce((s, g) => s + g.tokens.length, 0);
   const totalOther = NON_COLOR_GROUPS.reduce((s, g) => s + g.tokens.length, 0);
+  const [compact, setCompact] = React.useState(() => {
+    try { return localStorage.getItem(DENSITY_KEY) === 'compact'; } catch { return true; }
+  });
+
+  const toggleDensity = () => {
+    setCompact(prev => {
+      const next = !prev;
+      try { localStorage.setItem(DENSITY_KEY, next ? 'compact' : 'default'); } catch { /* */ }
+      return next;
+    });
+  };
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -467,29 +498,34 @@ export function DesignTokensContent() {
 
   return (
     <div>
-      {/* Quick nav */}
+      {/* Toolbar: quick nav + density toggle */}
       <div style={{
         display: 'flex',
         flexWrap: 'wrap',
         gap: '8px',
-        margin: '32px 0 40px',
+        margin: '24px 0 32px',
+        alignItems: 'center',
       }}>
         <Button variant="secondary" size="small" onClick={() => scrollTo('color-tokens')}>
-          Color tokens ({totalColor})
+          Colors ({totalColor})
         </Button>
         <Button variant="secondary" size="small" onClick={() => scrollTo('other-tokens')}>
-          Typography, Spacing & More ({totalOther})
+          Typography & Spacing ({totalOther})
+        </Button>
+        <div style={{ flex: 1 }} />
+        <Button variant="tertiary" size="small" onClick={toggleDensity}>
+          {compact ? 'Expanded view' : 'Compact view'}
         </Button>
       </div>
 
       {/* ── Color tokens ── */}
       <div id="color-tokens">
         <h2 style={{
-          fontSize: '22px',
+          fontSize: compact ? '18px' : '22px',
           fontWeight: 700,
           fontFamily: 'var(--ld-semantic-font-family-sans)',
           color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-          marginBottom: '24px',
+          marginBottom: compact ? '12px' : '24px',
         }}>
           Color Tokens
         </h2>
@@ -500,22 +536,23 @@ export function DesignTokensContent() {
             title={group.category}
             description={group.description}
             count={group.tokens.length}
+            compact={compact}
           >
             {group.tokens.map(t => (
-              <ColorRow key={t.name} name={t.name} description={t.description} />
+              <ColorRow key={t.name} name={t.name} description={t.description} compact={compact} />
             ))}
           </Section>
         ))}
       </div>
 
       {/* ── Non-color tokens ── */}
-      <div id="other-tokens" style={{ marginTop: '48px' }}>
+      <div id="other-tokens" style={{ marginTop: compact ? '24px' : '48px' }}>
         <h2 style={{
-          fontSize: '22px',
+          fontSize: compact ? '18px' : '22px',
           fontWeight: 700,
           fontFamily: 'var(--ld-semantic-font-family-sans)',
           color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-          marginBottom: '24px',
+          marginBottom: compact ? '12px' : '24px',
         }}>
           Typography, Spacing, Elevation & Border Radius
         </h2>
@@ -526,9 +563,10 @@ export function DesignTokensContent() {
             title={group.category}
             description={group.description}
             count={group.tokens.length}
+            compact={compact}
           >
             {group.tokens.map(t => (
-              <ValueRow key={t.name} name={t.name} value={t.value} description={t.description} />
+              <ValueRow key={t.name} name={t.name} value={t.value} description={t.description} compact={compact} />
             ))}
           </Section>
         ))}

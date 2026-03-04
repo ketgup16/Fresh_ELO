@@ -129,6 +129,14 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navWCPSearchBar', descKey: 'componentLibrary.descWCPSearchBar', path: '/component-library/wcp-search-bar', icon: 'Search', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPSignatureCapture', descKey: 'componentLibrary.descWCPSignatureCapture', path: '/component-library/wcp-signature-capture', icon: 'Edit', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPUploadImage', descKey: 'componentLibrary.descWCPUploadImage', path: '/component-library/wcp-upload-image', icon: 'Image', section: 'ld' },
+  { titleKey: 'componentLibrary.navWCPCountry', descKey: 'componentLibrary.descWCPCountry', path: '/component-library/wcp-country', icon: 'Circle', section: 'ld' },
+  { titleKey: 'componentLibrary.navWCPFlag', descKey: 'componentLibrary.descWCPFlag', path: '/component-library/wcp-flag', icon: 'Tag', section: 'ld' },
+  { titleKey: 'componentLibrary.navWCPRating', descKey: 'componentLibrary.descWCPRating', path: '/component-library/wcp-rating', icon: 'Star', section: 'ld' },
+  { titleKey: 'componentLibrary.navWCPButtonGroups', descKey: 'componentLibrary.descWCPButtonGroups', path: '/component-library/wcp-button-groups', icon: 'Circle', section: 'ld' },
+  { titleKey: 'componentLibrary.navDropdowns', descKey: 'componentLibrary.descDropdowns', path: '/component-library/dropdowns', icon: 'ChevronDown', section: 'ld' },
+  { titleKey: 'componentLibrary.navSearchUtility', descKey: 'componentLibrary.descSearchUtility', path: '/component-library/search-utility', icon: 'Search', section: 'ld' },
+  { titleKey: 'componentLibrary.navWCPRichMediaSheet', descKey: 'componentLibrary.descWCPRichMediaSheet', path: '/component-library/wcp-rich-media-sheet', icon: 'Box', section: 'ld' },
+  { titleKey: 'componentLibrary.navItemTile', descKey: 'componentLibrary.descItemTile', path: '/component-library/item-tile', icon: 'Box', section: 'ld' },
   // ── Shared Components ──
   { titleKey: 'componentLibrary.navAlertDialog', descKey: 'componentLibrary.descAlertDialog', path: '/component-library/alert-dialog', icon: 'ExclamationCircle', section: 'shadcn' },
   { titleKey: 'componentLibrary.navAvatar', descKey: 'componentLibrary.descAvatar', path: '/component-library/avatar', icon: 'Circle', section: 'shadcn' },
@@ -178,6 +186,15 @@ function ComponentCard({ entry }: { entry: ComponentEntry }) {
 const patternComponents: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navOrderCardPatterns', descKey: 'componentLibrary.descOrderCardPatterns', path: '/component-library/order-card-patterns', icon: 'List', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPQueue', descKey: 'componentLibrary.descWCPQueue', path: '/component-library/wcp-queue', icon: 'Refresh', section: 'ld' },
+  { titleKey: 'componentLibrary.navFooterPatterns', descKey: 'componentLibrary.descFooterPatterns', path: '/component-library/footer-patterns', icon: 'List', section: 'ld' },
+  { titleKey: 'componentLibrary.navTopNav', descKey: 'componentLibrary.descTopNav', path: '/component-library/top-nav', icon: 'Menu', section: 'ld' },
+  { titleKey: 'componentLibrary.navPageTemplates', descKey: 'componentLibrary.descPageTemplates', path: '/component-library/page-templates', icon: 'Box', section: 'ld' },
+  { titleKey: 'componentLibrary.navSideNav', descKey: 'componentLibrary.descSideNav', path: '/component-library/side-nav', icon: 'PanelLeft', section: 'ld' },
+  { titleKey: 'componentLibrary.navSearchResults', descKey: 'componentLibrary.descSearchResults', path: '/component-library/search-results', icon: 'Search', section: 'ld' },
+  { titleKey: 'componentLibrary.navHomePageWidgets', descKey: 'componentLibrary.descHomePageWidgets', path: '/component-library/home-page-widgets', icon: 'Box', section: 'ld' },
+  { titleKey: 'componentLibrary.navPromoBanners', descKey: 'componentLibrary.descPromoBanners', path: '/component-library/promo-banners', icon: 'Note', section: 'ld' },
+  { titleKey: 'componentLibrary.navCarouselsGrids', descKey: 'componentLibrary.descCarouselsGrids', path: '/component-library/carousels-grids', icon: 'ArrowRight', section: 'ld' },
+  { titleKey: 'componentLibrary.navOrderStatusCards', descKey: 'componentLibrary.descOrderStatusCards', path: '/component-library/order-status-cards', icon: 'List', section: 'ld' },
 ];
 
 export default function ComponentLibraryOverview() {

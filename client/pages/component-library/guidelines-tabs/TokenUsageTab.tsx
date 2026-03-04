@@ -134,6 +134,7 @@ export function TokenUsageTab() {
         </div>
       </div>
 
+      {/* Separator Token Rule */}
       <div style={{
         backgroundColor: 'var(--ld-semantic-color-surface)',
         padding: '32px',
@@ -146,20 +147,73 @@ export function TokenUsageTab() {
           color: 'var(--ld-semantic-color-text)',
           marginBottom: '24px'
         }}>
-          TypeScript Usage
+          Separator vs Border Token Rule
         </h3>
-        <ul style={{
-          fontSize: '14px',
-          lineHeight: '1.8',
-          color: 'var(--ld-semantic-color-text-subtle)',
-          paddingLeft: '24px'
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div style={{
+            padding: '16px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '6px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-positive)',
+          }}>
+            <div style={{ fontWeight: '700', fontSize: '14px', color: 'var(--ld-semantic-color-text)', marginBottom: '6px' }}>
+              For dividers, section separators, table row borders:
+            </div>
+            <code style={{
+              fontFamily: 'var(--ld-semantic-font-family-mono)',
+              fontSize: '13px',
+              color: 'var(--ld-semantic-color-text)',
+            }}>
+              border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+            </code>
+          </div>
+          <div style={{
+            padding: '16px',
+            backgroundColor: 'var(--ld-semantic-color-fill-subtle)',
+            borderRadius: '6px',
+            borderLeft: '4px solid var(--ld-semantic-color-border-negative)',
+          }}>
+            <div style={{ fontWeight: '700', fontSize: '14px', color: 'var(--ld-semantic-color-text)', marginBottom: '6px' }}>
+              border-subtle is ONLY for interactive component borders:
+            </div>
+            <div style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', lineHeight: '1.6' }}>
+              Inputs, interactive card frames, form fields. Never use it for visual separators.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Primitive Token Prohibition */}
+      <div style={{
+        backgroundColor: 'var(--ld-semantic-color-surface)',
+        padding: '32px',
+        borderRadius: '8px',
+        boxShadow: 'var(--ld-semantic-elevation-100)'
+      }}>
+        <h3 style={{
+          fontSize: '20px',
+          fontWeight: '700',
+          color: 'var(--ld-semantic-color-text)',
+          marginBottom: '24px'
         }}>
-          <li>Always export TypeScript types for component props</li>
-          <li>Use React.forwardRef for components that need ref access</li>
-          <li>Provide prop type unions for variants (e.g., size: 'small' | 'medium' | 'large')</li>
-          <li>Document props with JSDoc comments</li>
-          <li>Use discriminated unions for complex state management</li>
-        </ul>
+          Primitive Token Prohibition
+        </h3>
+        <div style={{
+          padding: '16px',
+          backgroundColor: 'var(--ld-semantic-color-fill-error-subtle)',
+          borderRadius: '6px',
+          borderLeft: '4px solid var(--ld-semantic-color-border-negative)',
+          fontSize: '14px',
+          lineHeight: '1.6',
+          color: 'var(--ld-semantic-color-text-subtle)',
+        }}>
+          <strong style={{ color: 'var(--ld-semantic-color-text)' }}>--ld-primitive-color-* tokens are FORBIDDEN in component/page CSS.</strong><br />
+          Only semantic tokens (--ld-semantic-*) may be used in components.
+          Primitive tokens are only for building the semantic layer in theme files.
+          <br /><br />
+          <strong style={{ color: 'var(--ld-semantic-color-text)' }}>Zero hardcoded hex colors.</strong> Every color must use a semantic token variable.
+          Switch to a non-default theme (e.g., Bodega) to verify brand colors adapt correctly.
+        </div>
       </div>
     </div>
   );

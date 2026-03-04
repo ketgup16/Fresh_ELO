@@ -40,6 +40,7 @@ const navigationSections: NavSection[] = [
       { id: 'getting-started', nameKey: 'componentLibrary.gettingStartedNav', path: '/component-library/getting-started' },
       { id: 'guidelines', nameKey: 'componentLibrary.guidelines', path: '/component-library/guidelines' },
       { id: 'foundations', nameKey: 'componentLibrary.navFoundations', path: '/component-library/foundations' },
+      { id: 'assets', nameKey: 'componentLibrary.navAssets', path: '/component-library/assets' },
     ]
   },
   {
