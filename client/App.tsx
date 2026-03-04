@@ -264,8 +264,9 @@ const App = () => (
               <Route path="/walmart/pharmacy-delivery" element={<WalmartPharmacyDelivery />} />
               <Route path="/walmart/purchase-history" element={<WalmartPurchaseHistory />} />
 
-              {/* Redirect home to Walmart */}
-              <Route path="/" element={<Navigate to="/walmart" replace />} />
+              {/* Redirect home to Walmart, but only in production to avoid HMR reload issues jumping back to home */}
+              {import.meta.env.PROD && <Route path="/" element={<Navigate to="/walmart" replace />} />}
+              {import.meta.env.DEV && <Route path="/" element={<WalmartIndex />} />}
 
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />
