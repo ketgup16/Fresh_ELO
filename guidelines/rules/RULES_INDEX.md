@@ -576,6 +576,51 @@ public/illustrations/
 
 ---
 
+### 25. Component Creation Process
+**File**: `RULE_ComponentCreation.md`
+
+**When**: Creating ANY new UI component (LD primitive or WCP product-level)
+
+**Key Requirements**:
+- ✅ ALWAYS search existing components before creating new ones (Priority: Reuse > Adapt > Create)
+- ✅ Named exports only — never `export default` for components
+- ✅ String union types for variants — never enums
+- ✅ CSS modules with semantic tokens only — zero hardcoded hex
+- ✅ Responsive breakpoints (1024/768/480) and `prefers-reduced-motion` for animations
+- ✅ Post-creation: component library page + route + sidebar + i18n + sandbox entry + theme compliance
+- ❌ NEVER create a component without completing the post-creation checklist
+
+---
+
+### 26. Component Enhancement
+**File**: `RULE_ComponentEnhancement.md`
+
+**When**: Modifying or extending an existing component
+
+**Key Requirements**:
+- ✅ All changes MUST be additive — never remove or rename props/variants
+- ✅ New props MUST be optional with defaults
+- ✅ Update component library page to show new variants
+- ✅ Run theme compliance check after changes
+- ❌ NEVER modify LD components in `client/components/ui/` directly — create wrappers instead
+- ❌ NEVER change default values or rename variant strings
+
+---
+
+### 27. Component Library Page
+**File**: `RULE_ComponentLibraryPage.md`
+
+**When**: Creating documentation for any component
+
+**Key Requirements**:
+- ✅ MUST use `ComponentPageLayout` wrapper
+- ✅ MUST include interactive demo, all variants/states, and usage notes
+- ✅ Similar components MUST be grouped on a single page
+- ✅ MUST register: route in App.tsx, sidebar in ComponentLibraryLayout.tsx, i18n keys in all 3 locales
+- ❌ NEVER create a standalone page for a variant that belongs on an existing grouped page
+
+---
+
 ### 24. Item Tile Components
 **File**: `RULE_ItemTile.md`
 

@@ -61,6 +61,8 @@ const navigationSections: NavSection[] = [
       { id: 'home-page-widgets', nameKey: 'componentLibrary.navHomePageWidgets', path: '/component-library/home-page-widgets' },
       { id: 'promo-banners', nameKey: 'componentLibrary.navPromoBanners', path: '/component-library/promo-banners' },
       { id: 'wcp-queue', nameKey: 'componentLibrary.navWCPQueue', path: '/component-library/wcp-queue' },
+      { id: 'carousels-grids', nameKey: 'componentLibrary.navCarouselsGrids', path: '/component-library/carousels-grids' },
+      { id: 'order-status-cards', nameKey: 'componentLibrary.navOrderStatusCards', path: '/component-library/order-status-cards' },
     ]
   },
   {

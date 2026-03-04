@@ -5,6 +5,8 @@ import { ProductCardList } from '@/components/walmart/ProductCardList';
 import { ProductCardGrid } from '@/components/walmart/ProductCardGrid';
 import { CarouselProductCard } from '@/components/walmart/CarouselProductCard';
 import { WCPItemTile } from '@/components/walmart/WCPItemTile';
+import { FlashDealsItemTile } from '@/components/walmart/FlashDealsItemTile';
+import { PromotionalItemTile } from '@/components/walmart/PromotionalItemTile';
 import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
 import styles from './ProductCards.module.css';
 

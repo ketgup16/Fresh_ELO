@@ -125,6 +125,8 @@ const WCPRichSnackbarPage = React.lazy(() => import("./pages/component-library/W
 const WCPTimerViewPage = React.lazy(() => import("./pages/component-library/WCPTimerView"));
 const WCPQueuePage = React.lazy(() => import("./pages/component-library/WCPQueue"));
 const WCPUploadImagePage = React.lazy(() => import("./pages/component-library/WCPUploadImage"));
+const CarouselsAndGridsPage = React.lazy(() => import("./pages/component-library/CarouselsAndGrids"));
+const OrderStatusCardsPage = React.lazy(() => import("./pages/component-library/OrderStatusCards"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
 const FoundationsPage = React.lazy(() => import("./pages/component-library/Foundations"));
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
@@ -246,6 +248,8 @@ const App = () => (
                 <Route path="wcp-queue-card" element={<Navigate to="/component-library/wcp-queue" replace />} />
                 <Route path="wcp-queue" element={<WCPQueuePage />} />
                 <Route path="wcp-upload-image" element={<WCPUploadImagePage />} />
+                <Route path="carousels-grids" element={<CarouselsAndGridsPage />} />
+                <Route path="order-status-cards" element={<OrderStatusCardsPage />} />
               </Route>
 
               {/* Walmart pages */}
