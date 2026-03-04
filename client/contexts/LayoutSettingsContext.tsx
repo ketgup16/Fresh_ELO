@@ -72,8 +72,10 @@ export function LayoutSettingsProvider({ children }: { children: React.ReactNode
 
   const setMobileTopNav = useCallback((mode: MobileTopNavMode) => {
     setMobileTopNavState(mode);
+    setMobileFooterState(mode);
     try {
       localStorage.setItem(TOP_NAV_STORAGE_KEY, mode);
+      localStorage.setItem(STORAGE_KEY, mode);
     } catch { /* ignore */ }
   }, []);
 
@@ -81,6 +83,15 @@ export function LayoutSettingsProvider({ children }: { children: React.ReactNode
     setPlatformState(mode);
     try {
       localStorage.setItem(PLATFORM_STORAGE_KEY, mode);
+    } catch { /* ignore */ }
+
+    // Sync nav components to match the selected platform
+    const navMode = mode === 'web' ? 'mweb' : 'native';
+    setMobileFooterState(navMode);
+    setMobileTopNavState(navMode);
+    try {
+      localStorage.setItem(STORAGE_KEY, navMode);
+      localStorage.setItem(TOP_NAV_STORAGE_KEY, navMode);
     } catch { /* ignore */ }
   }, []);
 

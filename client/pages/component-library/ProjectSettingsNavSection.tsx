@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
-import { useLayoutSettings, type MobileFooterMode, type MobileTopNavMode, type PlatformMode } from '@/contexts/LayoutSettingsContext';
+import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import styles from './ProjectSettings.module.css';
 
 export function NavSettingsSection() {
   const navigate = useNavigate();
-  const { mobileFooter, setMobileFooter, mobileTopNav, setMobileTopNav, platform, setPlatform } = useLayoutSettings();
+  const { mobileTopNav, setMobileTopNav, platform, setPlatform } = useLayoutSettings();
 
   return (
     <div className={styles.navSection}>
@@ -85,28 +85,6 @@ export function NavSettingsSection() {
           </div>
         </div>
 
-        {/* Mobile Footer / Bottom Nav */}
-        <div className={styles.navSubsection}>
-          <h3 className={styles.navSubsectionTitle}>Mobile Footer / Bottom Nav</h3>
-          <div className={styles.optionCards}>
-            <SettingOption
-              label="WCP Bottom Nav"
-              tag="iOS / Android"
-              tagVariant="neutral"
-              description="Native-style floating glass nav bar with animated spring indicator. Best for app-like experiences."
-              isActive={mobileFooter === 'native'}
-              onClick={() => setMobileFooter('native')}
-            />
-            <SettingOption
-              label="WCP Footer (Mweb)"
-              tag="< 1024px"
-              tagVariant="success"
-              description="Stacked mobile web footer with full link list. Best for web-first or SEO-focused experiences."
-              isActive={mobileFooter === 'mweb'}
-              onClick={() => setMobileFooter('mweb')}
-            />
-          </div>
-        </div>
       </div>
     </div>
   );
