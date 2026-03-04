@@ -576,6 +576,44 @@ public/illustrations/
 
 ---
 
+### 24. Item Tile Components
+**File**: `RULE_ItemTile.md`
+
+**When**: Creating any compact product tile in a grid or carousel
+
+**Key Requirements**:
+- ✅ ALWAYS use `WCPItemTile` from `@/components/walmart/WCPItemTile` — never build custom product tiles
+- ✅ ALWAYS use `ItemTileBadgeType` for badges — only `bestseller`, `deal`, `popular`, `rollback`
+- ✅ ALWAYS use `WCPHeartView` with `size="small"` and `calloutPosition="top"` inside tiles
+- ✅ ALWAYS source images from `PRODUCT_IMAGES` constant — never placeholder URLs
+- ✅ Parent grid MUST use `grid-auto-rows: 1fr` for consistent tile height
+- ✅ Two price variants only: default (black) and savings (green with `pricePrefix`)
+- ❌ NEVER hardcode price colors — `.priceRowSavings` handles green via token
+- ❌ NEVER set fixed pixel height on tiles — let the grid equalize them
+- ❌ NEVER use images with baked-in UI overlays (hearts, badges)
+
+**Quick Check**:
+```tsx
+// ❌ WRONG — custom tile
+<div className="myTile">
+  <img src={url} />
+  <span style={{ color: '#2a8703' }}>${price}</span>
+</div>
+
+// ✅ CORRECT — standard component
+<WCPItemTile
+  image={PRODUCT_IMAGES.airFryer}
+  name="Ninja 4 Qt Air Fryer"
+  price="98"
+  cents="00"
+  badge={{ label: 'Best seller', type: 'bestseller' }}
+/>
+```
+
+**Component Spec**: `guidelines/components/ItemTile.md`
+
+---
+
 ### 21. Walmart Page Composition
 **File**: `RULE_WalmartPageComposition.md`
 

@@ -60,6 +60,7 @@ const docSections: DocSection[] = [
       { name: 'Tag', path: 'guidelines/components/Tag.md', purpose: 'Labels for status, category, or attribute of an item' },
       { name: 'TextArea', path: 'guidelines/components/TextArea.md', purpose: 'Multi-line text input for free-form content' },
       { name: 'TextField', path: 'guidelines/components/TextField.md', purpose: 'Single-line input for names, emails, etc.' },
+      { name: 'Item Tile', path: 'guidelines/components/ItemTile.md', purpose: 'Compact product tile for 2×2 category grids in carousels' },
     ],
   },
   {
@@ -110,6 +111,7 @@ const docSections: DocSection[] = [
       { name: 'Component Variant Naming', path: 'guidelines/rules/RULE_ComponentVariantNaming.md', purpose: 'Action-intent vs visual-theme vs status variant naming conventions' },
       { name: 'Walmart Page Composition', path: 'guidelines/rules/RULE_WalmartPageComposition.md', purpose: 'Page shell responsibilities, stacking order, and full-bleed layout rules' },
       { name: 'Theme Compliance', path: 'guidelines/rules/RULE_ThemeCompliance.md', purpose: 'Hard rule: every new component/page must pass theme compliance check before completion' },
+      { name: 'Item Tile', path: 'guidelines/rules/RULE_ItemTile.md', purpose: 'Rules for creating item tile components and variants — badge types, price layout, heart position' },
     ],
   },
   {
