@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Barcode, ChevronDown, ChevronLeft, ChevronUp, Menu, Search } from '@/components/icons';
+import { Barcode, ChevronDown, ChevronLeft, ChevronUp, Menu, Search, AppSwitcher } from '@/components/icons';
 import { CartIcon, LocationIcon, StoreIcon } from '@/components/icons-custom';
 import { CameraModal } from '@/components/walmart/CameraModal';
 import { MobileMenuPanel } from '@/components/walmart/MobileMenuPanel';
 import { DepartmentsDropdown } from '@/components/walmart/DepartmentsDropdown';
 import { ServicesDropdown } from '@/components/walmart/ServicesDropdown';
+import { MegaNav } from '@/components/walmart/MegaNav';
 import { MoreLinksDropdown } from '@/components/walmart/MoreLinksDropdown';
 import { SubNavButton } from '@/components/walmart/SubNavButton';
 import { SearchTypeaheadModal } from '@/pages/walmart/index/SearchTypeaheadModal';
@@ -37,6 +38,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
   const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
   const [showMenuPanel, setShowMenuPanel] = useState(false);
+  const [showMegaNav, setShowMegaNav] = useState(false);
 
   const isBlue = variant === 'blue';
   const isNative = platform === 'ios' || platform === 'android';
@@ -247,12 +249,24 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
         {/* Sub Nav — homepage only */}
         {showHomeExtras && (
           <div className={`${styles.subNav} ${showDeliveryOptions ? styles.subNavHidden : ''}`}>
-            <div className="flex-shrink-0">
-              <DepartmentsDropdown />
-            </div>
-            <div className="flex-shrink-0">
-              <ServicesDropdown />
-            </div>
+            {isNative ? (
+              <button
+                className={styles.megaNavTrigger}
+                onClick={() => setShowMegaNav(true)}
+                aria-label="Open departments and services menu"
+              >
+                <AppSwitcher className={styles.megaNavIcon} />
+              </button>
+            ) : (
+              <>
+                <div className="flex-shrink-0">
+                  <DepartmentsDropdown />
+                </div>
+                <div className="flex-shrink-0">
+                  <ServicesDropdown />
+                </div>
+              </>
+            )}
             {mobileSecondaryLinks.map((link) => (
               <SubNavButton
                 key={link.label}
@@ -283,6 +297,12 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
       <MobileMenuPanel
         isOpen={showMenuPanel}
         onClose={() => setShowMenuPanel(false)}
+      />
+
+      <MegaNav
+        isOpen={showMegaNav}
+        onClose={() => setShowMegaNav(false)}
+        mode="overlay"
       />
     </>
   );

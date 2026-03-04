@@ -295,3 +295,32 @@
 .backButton {
   flex-shrink: 0;
 }
+
+/* ── Mega nav icon trigger (native sub-nav) ── */
+.megaNavTrigger {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ld-semantic-color-text-brand-bold, #001e60);
+  transition: background 120ms;
+}
+
+.megaNavTrigger:hover {
+  background: rgba(0, 30, 96, 0.06);
+}
+
+.megaNavTrigger:active {
+  background: rgba(0, 30, 96, 0.12);
+}
+
+.megaNavIcon {
+  width: 20px;
+  height: 20px;
+}
