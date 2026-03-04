@@ -53,7 +53,23 @@ Demonstrate the power of Fusion and prompt-driven UI generation by transforming 
 
 ---
 
-## Scene 4: The 'One Walmart' Bundle
+## Scene 4: Engagement and Proactive Care
+
+**SVP Leader:**
+"But here is where it gets really powerful. We don't just want to show past orders; we want to proactively help customers manage their lives. Let's look at how we can drive engagement with our Auto Care centers by showing them relevant maintenance alerts before they even know they need them."
+
+**[Action]** *Leader enters the next prompt.*
+**[Input Prompt]:** *"Show 2 ways to improve Auto Care engagement."*
+
+**[Action]** *Leader hits generate.*
+* **Estimated Load Time:** ~3-4 seconds to load the maintenance health and upsell offer cards.
+
+**SVP Leader:**
+"Immediately, the customer sees a personalized maintenance health score for their vehicle and a targeted, member-priced upsell offer for a tire rotation. We're moving from a static receipt to a proactive service dashboard."
+
+---
+
+## Scene 5: The 'One Walmart' Bundle
 
 **SVP Leader:**
 "But here is where it gets really powerful. What if that same customer is getting an oil change and also needs to pick up their weekly groceries? We can combine those trips into one seamless experience."
@@ -69,7 +85,7 @@ Demonstrate the power of Fusion and prompt-driven UI generation by transforming 
 
 ---
 
-## Scene 5: Proactive Exception Handling
+## Scene 6: Proactive Exception Handling
 
 **SVP Leader:**
 "Finally, we know things don't always go perfectly. Delays happen. When they do, we shouldn't wait for the customer to call support. We should proactively offer solutions."

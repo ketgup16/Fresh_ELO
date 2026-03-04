@@ -74,6 +74,22 @@ When a user prompts with a specific keyword matching a known Order Card pattern,
 </div>
 ```
 
+### 5. Auto Care Engagement
+**Trigger keywords:** `2 ways to improve Auto Care engagement`
+**Components:** `MaintenanceHealthCard`, `AutoCareUpsellOfferCard`
+**Data Constants:** `AUTO_CARE_MAINTENANCE_CARD`, `AUTO_CARE_UPSELL_OFFER`
+**JSX to Inject:**
+```tsx
+<div className={styles.newCard} style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+  <MaintenanceHealthCard {...AUTO_CARE_MAINTENANCE_CARD} onViewReport={() => {}} />
+  <AutoCareUpsellOfferCard
+    {...AUTO_CARE_UPSELL_OFFER}
+    onBook={() => {}}
+    onDismiss={() => {}}
+  />
+</div>
+```
+
 ---
 
 ## Critical Rules for Agents
