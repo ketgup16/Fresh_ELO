@@ -53,7 +53,7 @@ export default function Index() {
 
   return (
     <ResponsiveLayout maxWidth="full" showHomeExtras>
-      <div className="px-4 pt-6 pb-32 space-y-4">
+      <div className="pt-6 pb-32 space-y-4">
 
         {/* Active Curbside Order — countdown + express upgrade */}
         <ActiveCurbsideCard />

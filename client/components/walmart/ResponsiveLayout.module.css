@@ -15,8 +15,6 @@
   .contentContainer {
     margin-left: auto;
     margin-right: auto;
-    padding-left: 24px;
-    padding-right: 24px;
     padding-bottom: 0;
   }
 
@@ -37,11 +35,11 @@
   }
 
   .contentContainer.maxWidth2xl {
-    max-width: 1612px;
+    max-width: 1660px;
   }
 
   .contentContainer.maxWidthFull {
-    max-width: 100%;
+    max-width: 1660px;
   }
 }
 

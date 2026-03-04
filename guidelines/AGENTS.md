@@ -235,7 +235,7 @@ const data: MyRouteResponse = await response.json();
 
 ### Layout Rules
 
-- **Never use `max-width` constraints** on page content containers. All page content (headers, content areas) must fill the full available width within the navigation shell.
+- **All Walmart pages cap at 1660px max-width** with no left/right padding on the content container. This is enforced by `ResponsiveLayout` — do not override it. Individual sections handle their own internal horizontal padding.
 - **Use `align-items: stretch`** instead of `align-items: center` on flex column containers that hold page content. Centering causes content to shrink instead of filling width.
 - **Standard page shell pattern** — every page must use this identical structure:
 
@@ -246,6 +246,7 @@ const data: MyRouteResponse = await response.json();
 ```
 
 - Content areas should use `flex: 1` to expand and fill available height.
+- Page-level wrappers (the first `<div>` inside `<ResponsiveLayout>`) must NOT add `px-*` Tailwind classes or CSS `padding-left`/`padding-right`.
 
 ### Token Rules (CRITICAL)
 

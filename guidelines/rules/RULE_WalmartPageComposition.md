@@ -12,6 +12,32 @@ Walmart-facing pages (`/walmart/*`) follow specific layout and component stackin
 
 ---
 
+## Page Max-Width (HARD RULE — NO EXCEPTIONS)
+
+All Walmart pages MUST have a max-width of **1660px** with **no left/right padding** on the `contentContainer`. This is enforced by `ResponsiveLayout` via its CSS module.
+
+- `maxWidthFull` and `maxWidth2xl` both resolve to `1660px`
+- The `contentContainer` has **zero** `padding-left` / `padding-right` — individual sections handle their own internal padding
+- Pages pass `maxWidth="full"` to `<ResponsiveLayout>` — this caps at 1660px and centers with `margin: 0 auto`
+- Page-level wrappers (the first `<div>` inside `<ResponsiveLayout>`) must NOT add `px-*` Tailwind classes or CSS `padding-left`/`padding-right`
+
+```css
+/* ✅ CORRECT — ResponsiveLayout handles max-width, no side padding */
+.contentContainer {
+  max-width: 1660px;
+  margin-left: auto;
+  margin-right: auto;
+  /* NO padding-left or padding-right */
+}
+
+/* ❌ WRONG — adding side padding at page wrapper level */
+<div className="px-4 pt-6 pb-32"> /* px-4 adds unwanted side padding */
+```
+
+Individual sections within the page handle their own horizontal padding as needed.
+
+---
+
 ## What the Shell Already Provides
 
 Walmart pages are rendered inside a layout shell that already includes:
@@ -59,7 +85,7 @@ Elements that span the full viewport width:
 }
 ```
 
-Never add `max-width` or `margin: 0 auto` to full-bleed sections.
+Never add custom `max-width` or `margin: 0 auto` to full-bleed sections. The 1660px cap is handled by `ResponsiveLayout` — do not override it.
 
 ### Padded content sections
 

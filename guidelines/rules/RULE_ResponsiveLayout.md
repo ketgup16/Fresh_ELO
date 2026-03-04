@@ -55,23 +55,19 @@ Every page MUST use the standard shell: `DesktopHeader` + `SubNav` + scrollable 
 
 ## Content Container
 
-All page content MUST fill the full available width within the shell. **Never use `max-width` constraints** on page content containers.
+All Walmart page content is capped at **1660px** max-width via `ResponsiveLayout`. The `contentContainer` has **no left/right padding** — individual sections handle their own horizontal padding.
 
 ```css
+/* ResponsiveLayout enforces this — do NOT override */
 .contentContainer {
-  width: 100%;
-  padding: 24px;
+  max-width: 1660px;
+  margin-left: auto;
+  margin-right: auto;
+  /* NO padding-left or padding-right */
 }
 ```
 
-For landing/overview pages with more breathing room:
-
-```css
-.pageContent {
-  width: 100%;
-  padding: 32px 32px 48px;
-}
-```
+Page-level wrappers (the first `<div>` inside `<ResponsiveLayout>`) must NOT add `px-*` Tailwind classes or CSS `padding-left`/`padding-right`. Individual sections within the page handle their own horizontal padding as needed.
 
 Use `align-items: stretch` (not `center`) on flex column containers that hold page content.
 
