@@ -125,6 +125,14 @@ const COMBINED_CARD_DELIVERY = {
   ],
 };
 
+const DELAYED_CARD = {
+  orderType: 'delivery' as const,
+  statusHeading: 'Delayed, estimated up to 2 hours',
+  delayEstimate: 'Estimated up to 2 hours late',
+  products: [P.strawberries, P.blueberries, P.bananas] as { src: string; alt: string }[],
+  orderTotal: '$32.47',
+};
+
 // ── Order data with filter metadata ──────────────────────────────────────────
 interface OrderEntry {
   id: string;
@@ -371,10 +379,14 @@ export default function PurchaseHistory() {
                   animation on insert. Remove the wrapper + component to hide.
               ─────────────────────────────────────────────────────────────── */}
               <div className={styles.newCard} style={{ marginBottom: 16 }}>
-                <CombinedOrderCard
-                  autoCare={COMBINED_CARD_AUTO}
-                  delivery={COMBINED_CARD_DELIVERY}
-                  autoCareAppointmentDate={new Date(2026, 2, 7, 10)}
+                <DelayedDeliveryCard
+                  statusHeading={DELAYED_CARD.statusHeading}
+                  delayEstimate={DELAYED_CARD.delayEstimate}
+                  products={DELAYED_CARD.products}
+                  orderTotal={DELAYED_CARD.orderTotal}
+                  onReschedule={() => console.log('Reschedule delivery clicked')}
+                  onPickupInstead={() => console.log('Switch to pickup clicked')}
+                  onCancelOrder={() => console.log('Cancel order clicked')}
                 />
               </div>
 
