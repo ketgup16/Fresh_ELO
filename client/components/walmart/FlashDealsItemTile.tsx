@@ -10,7 +10,7 @@ const BADGE_VARIANT_MAP: Record<ItemTileBadgeType, import('@/components/walmart/
   deal: 'savings-subtle',
   popular: 'confidence-subtle',
   rollback: 'holiday-restricted',
-  clearance: 'holiday-restricted',
+  clearance: 'urgent',
 };
 
 export interface FlashDealsItemTileProps {
