@@ -12,7 +12,7 @@ interface FlashDealItem {
   cents: string;
   originalPrice: string;
   pricePrefix: string;
-  badge: { label: string; type: ItemTileBadgeType };
+  badge?: { label: string; type: ItemTileBadgeType };
   optionsText?: string;
   actionType: 'add' | 'options';
   idx: number;
