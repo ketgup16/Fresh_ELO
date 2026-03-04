@@ -46,6 +46,14 @@
   flex-shrink: 0;
 }
 
+.leadingIconOnly {
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
 .icon {
   width: 16px;
   height: 16px;

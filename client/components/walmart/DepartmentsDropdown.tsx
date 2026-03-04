@@ -6,9 +6,13 @@ import styles from './DepartmentsDropdown.module.css';
 
 interface DepartmentsDropdownProps {
   leadingIcon?: React.ReactNode;
+  /** Icon-only mode: hides label and chevron, shows only the leadingIcon */
+  iconOnly?: boolean;
+  /** Use overlay mode instead of dropdown panel (for native) */
+  overlayMode?: boolean;
 }
 
-export function DepartmentsDropdown({ leadingIcon }: DepartmentsDropdownProps = {}) {
+export function DepartmentsDropdown({ leadingIcon, iconOnly = false, overlayMode = false }: DepartmentsDropdownProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -33,16 +37,15 @@ export function DepartmentsDropdown({ leadingIcon }: DepartmentsDropdownProps = 
         aria-haspopup="dialog"
         onClick={() => setIsOpen((v) => !v)}
       >
-        {leadingIcon && <span className={styles.leadingIcon}>{leadingIcon}</span>}
-        Departments
-        <ChevronDown className={[styles.icon, isOpen ? styles.iconOpen : ''].filter(Boolean).join(' ')} aria-hidden="true" />
+        {leadingIcon && <span className={iconOnly ? styles.leadingIconOnly : styles.leadingIcon}>{leadingIcon}</span>}
+        {!iconOnly && <>Departments<ChevronDown className={[styles.icon, isOpen ? styles.iconOpen : ''].filter(Boolean).join(' ')} aria-hidden="true" /></>}
       </button>
 
       <MegaNav
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         initialTab="departments"
-        mode="panel"
+        mode={overlayMode ? 'overlay' : 'panel'}
       />
     </div>
   );
