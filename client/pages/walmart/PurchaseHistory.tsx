@@ -415,7 +415,7 @@ export default function PurchaseHistory() {
                   Each card is wrapped in styles.newCard to trigger the green glow
                   animation on insert. Remove the wrapper + component to hide.
               ─────────────────────────────────────────────────────────────── */}
-              <div className={styles.newCard} style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+              <div className={styles.newCard} style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 16, marginBottom: 16 }}>
                 <MaintenanceHealthCard {...AUTO_CARE_MAINTENANCE_CARD} onViewReport={() => {}} />
                 <AutoCareUpsellOfferCard
                   {...AUTO_CARE_UPSELL_OFFER}
