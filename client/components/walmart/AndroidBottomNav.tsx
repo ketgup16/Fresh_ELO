@@ -37,7 +37,7 @@ function TabIcon({ id, active }: { id: AndroidTab; active: boolean }) {
       return active ? <HeartFill className={cls} /> : <Heart className={cls} />;
     case 'search':
       return (
-        <div className={styles.sparkyWrap}>
+        <div className={[styles.sparkyWrap, active ? styles.sparkyWrapActive : ''].filter(Boolean).join(' ')}>
           <SparkyAnimation />
         </div>
       );
