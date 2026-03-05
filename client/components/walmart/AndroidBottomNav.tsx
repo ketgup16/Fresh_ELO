@@ -23,7 +23,7 @@ const NAV_PATHS: Record<AndroidTab, string | undefined> = {
 const TABS: { id: AndroidTab; label: string }[] = [
   { id: 'shop', label: 'Shop' },
   { id: 'heart', label: 'My Items' },
-  { id: 'search', label: 'Search' },
+  { id: 'search', label: 'Ask Sparky' },
   { id: 'services', label: 'Services' },
   { id: 'account', label: 'Account' },
 ];
