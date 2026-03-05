@@ -43,12 +43,8 @@ export function ServiceRow({
 }: ServiceRowProps) {
   const { label, color } = STATUS_CONFIG[status];
 
-  return (
-    <button
-      className={styles.row}
-      onClick={onTap}
-      aria-label={`${serviceLabel}, ${label}`}
-    >
+  const content = (
+    <>
       <ServiceTypeIcon type={serviceType} size={32} />
 
       <div className={styles.info}>
@@ -62,10 +58,30 @@ export function ServiceRow({
         {label}
       </Tag>
 
-      <ChevronRight
-        aria-hidden="true"
-        className={styles.chevron}
-      />
-    </button>
+      {onTap && (
+        <ChevronRight
+          aria-hidden="true"
+          className={styles.chevron}
+        />
+      )}
+    </>
+  );
+
+  if (onTap) {
+    return (
+      <button
+        className={`${styles.row} ${styles.rowInteractive}`}
+        onClick={onTap}
+        aria-label={`${serviceLabel}, ${label}`}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <div className={styles.row} aria-label={`${serviceLabel}, ${label}`}>
+      {content}
+    </div>
   );
 }
