@@ -1,99 +1,117 @@
 import { useNavigate } from "react-router-dom";
+import { SparklesIcon } from "@/components/icons-custom";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
-import { Button } from "@/components/ui/Button";
+import { PRODUCT_IMAGES } from "@/components/walmart/productImages";
 import { SearchResultsHeader } from "@/components/walmart/SearchResultsHeader";
 import { SearchFilterBar } from "@/components/walmart/SearchFilterBar";
-import { ProductCardGrid, ProductCardGridProps } from "@/components/walmart/ProductCardGrid";
+import { ProductCardList, ProductCardListProps } from "@/components/walmart/ProductCardList";
 
 const FILTER_CHIPS = ['In-store', 'Size', 'Color', 'Brand', 'Price', 'Customer rating'] as const;
 
-const DRESS_PRODUCTS: ProductCardGridProps[] = [
+const DRESS_PRODUCTS: ProductCardListProps[] = [
   {
+    flag: 'Best seller',
+    flagVariant: 'default',
+    price: '18',
+    cents: '98',
     name: "Time and Tru Women's Sleeveless Tiered Maxi Dress",
-    price: "18",
-    cents: "98",
     rating: 4.4,
-    ratingCount: "1,247",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F4b7f2d27b5e7432fa6f5c9c16e80e3b2?format=webp&width=400",
-    pickup: "Tomorrow",
+    ratingCount: '1,247',
+    pickup: '2 pm',
+    image: PRODUCT_IMAGES.blackCardigan,
+    cue: 'Flowy and comfortable for everyday wear',
   },
   {
-    name: "Sofia Jeans Women's Knit Midi Dress with Flutter Sleeves",
-    price: "24",
-    cents: "98",
-    flag: "Best seller",
-    flagVariant: 'default',
-    rating: 4.6,
-    ratingCount: "3,892",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F4b7f2d27b5e7432fa6f5c9c16e80e3b2?format=webp&width=400",
-    pickup: "2 pm",
-  },
-  {
-    name: "Scoop Women's Printed Mesh Maxi Dress",
-    price: "34",
-    cents: "00",
-    wasPrice: "$48.00",
-    flag: "Rollback",
+    flag: 'Rollback',
     flagVariant: 'red',
+    price: '24',
+    cents: '98',
+    wasPrice: '$34.00',
+    name: "Sofia Jeans Women's Knit Midi Dress with Flutter Sleeves",
+    rating: 4.6,
+    ratingCount: '3,892',
+    pickup: '2 pm',
+    image: PRODUCT_IMAGES.flashTankTops,
+    cue: 'Stretchy knit, great for work or weekend',
+  },
+  {
+    price: '34',
+    cents: '00',
+    wasPrice: '$48.00',
+    flag: 'Rollback',
+    flagVariant: 'red',
+    name: "Scoop Women's Printed Mesh Maxi Dress",
     rating: 4.2,
-    ratingCount: "856",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F4b7f2d27b5e7432fa6f5c9c16e80e3b2?format=webp&width=400",
+    ratingCount: '856',
+    image: PRODUCT_IMAGES.blackCardigan,
+    cue: 'Lightweight mesh, perfect for summer',
   },
   {
+    price: '22',
+    cents: '00',
     name: "Free Assembly Women's Square Neck Mini Dress",
-    price: "22",
-    cents: "00",
     rating: 4.1,
-    ratingCount: "421",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F4b7f2d27b5e7432fa6f5c9c16e80e3b2?format=webp&width=400",
-    pickup: "2 pm",
+    ratingCount: '421',
+    image: PRODUCT_IMAGES.flashTankTops,
+    pickup: '2 pm',
+    cue: 'Trendy silhouette, multiple colors available',
   },
   {
-    name: "The Pioneer Woman Smocked Bodice Dress",
-    price: "28",
-    cents: "50",
-    rating: 4.7,
-    ratingCount: "2,103",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F4b7f2d27b5e7432fa6f5c9c16e80e3b2?format=webp&width=400",
-    pickup: "Tomorrow",
-  },
-  {
-    name: "No Boundaries Juniors Ribbed Bodycon Dress",
-    price: "12",
-    cents: "98",
-    flag: "Best seller",
+    flag: 'Best seller',
     flagVariant: 'default',
+    price: '28',
+    cents: '50',
+    name: "The Pioneer Woman Smocked Bodice Midi Dress",
+    rating: 4.7,
+    ratingCount: '2,103',
+    image: PRODUCT_IMAGES.blackCardigan,
+    pickup: 'Tomorrow',
+    cue: 'Boho style with elastic smocked top',
+  },
+  {
+    flag: 'Best seller',
+    flagVariant: 'default',
+    price: '12',
+    cents: '98',
+    name: "No Boundaries Juniors Ribbed Bodycon Dress",
     rating: 4.3,
-    ratingCount: "5,612",
-    image: "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F4b7f2d27b5e7432fa6f5c9c16e80e3b2?format=webp&width=400",
-    pickup: "2 pm",
+    ratingCount: '5,612',
+    image: PRODUCT_IMAGES.flashTankTops,
+    pickup: '2 pm',
+    cue: 'Form-fitting ribbed fabric, junior sizing',
   },
 ];
+
+function AIResultsBanner() {
+  return (
+    <div className="px-3 py-2 border-b border-border">
+      <div className="flex items-center gap-2">
+        <div className="w-5 h-5 flex-shrink-0">
+          <SparklesIcon />
+        </div>
+        <p className="text-[14px] text-foreground">
+          <span className="font-bold">AI-powered results</span> — Showing top-rated dresses for women based on your search
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export default function DressesSearchResults() {
   const navigate = useNavigate();
 
   return (
-    <ResponsiveLayout maxWidth="full" showMobileTopNav={false}>
+    <ResponsiveLayout maxWidth="full" showMobileTopNav={false} nativeStatusBarVariant="white">
       <div className="bg-white font-sans">
         <SearchResultsHeader query="dresses for women" onBack={() => navigate('/walmart')} />
         <SearchFilterBar chips={FILTER_CHIPS} />
+        <AIResultsBanner />
 
-        {/* Results count */}
-        <div className="px-3 py-2 border-b border-border">
-          <p className="text-[14px] text-muted-foreground">1,000+ results for "dresses for women"</p>
-        </div>
-
-        {/* Product Grid */}
-        <div className="grid grid-cols-2 gap-3 p-3">
+        {/* Product list */}
+        <div className="flex flex-col">
           {DRESS_PRODUCTS.map((product, i) => (
-            <ProductCardGrid key={i} {...product} />
+            <ProductCardList key={i} {...product} />
           ))}
-        </div>
-
-        {/* Load more */}
-        <div className="px-3 pb-6">
-          <Button variant="secondary" size="medium" isFullWidth>Load more results</Button>
         </div>
       </div>
     </ResponsiveLayout>
