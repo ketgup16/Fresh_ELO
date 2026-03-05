@@ -56,6 +56,14 @@ export interface CheckboxProps {
   required?: boolean;
 
   /**
+   * Size of the checkbox.
+   * - `small`: 16×16px (default, for tables / filters / multi-select lists)
+   * - `large`: 24×24px (for confirmation, consent, and terms flows)
+   * @default "small"
+   */
+  size?: 'small' | 'large';
+
+  /**
    * Escape hatch for additional CSS classes on the checkbox root.
    */
   UNSAFE_className?: string;
@@ -119,6 +127,7 @@ export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
       name,
       value = 'on',
       required,
+      size = 'small',
       UNSAFE_className,
       UNSAFE_style,
     },
@@ -158,7 +167,11 @@ export const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
       }
     };
 
-    const checkboxClassName = [styles.checkbox, UNSAFE_className]
+    const checkboxClassName = [
+      styles.checkbox,
+      size === 'large' && styles['checkbox--large'],
+      UNSAFE_className,
+    ]
       .filter(Boolean)
       .join(' ');
 

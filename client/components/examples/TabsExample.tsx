@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/tabs';
+import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/Tab';
 
 export default function TabsExample() {
   return (

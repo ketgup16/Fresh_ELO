@@ -115,6 +115,13 @@ export interface TextFieldProps {
   >;
   
   /**
+   * Whether to truncate overflowing input text with an ellipsis instead of scrolling.
+   * Useful for single-line fields where the value may exceed the visible width.
+   * @default false
+   */
+  truncate?: boolean;
+
+  /**
    * Unsafe className override (use sparingly)
    */
   UNSAFE_className?: string;
@@ -177,6 +184,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       disabled = false,
       readOnly = false,
       isMagic = false,
+      truncate = false,
       helperText,
       error,
       leadingIcon,
@@ -215,6 +223,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     const inputClassName = [
       styles.input,
       size === 'small' ? styles.inputSmall : styles.inputLarge,
+      truncate && styles['input--truncate'],
     ].filter(Boolean).join(' ');
 
     // Build className for label

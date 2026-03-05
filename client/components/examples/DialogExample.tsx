@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-} from '@/components/ui/dialog';
+  Modal as Dialog,
+  ModalContent as DialogContent,
+  ModalDescription as DialogDescription,
+  ModalHeader as DialogHeader,
+  ModalTitle as DialogTitle,
+  ModalTrigger as DialogTrigger,
+  ModalFooter as DialogFooter,
+} from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { TextField } from '@/components/ui/TextField';
 

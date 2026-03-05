@@ -14,6 +14,11 @@ interface MenuContextValue {
   triggerRef: React.RefObject<HTMLButtonElement | null>;
   highlightedIndex: number;
   setHighlightedIndex: (i: number) => void;
+  /** Whether this is a right-click context menu */
+  isContextMenu: boolean;
+  /** Mouse position when using context-menu trigger */
+  contextPosition: { x: number; y: number };
+  setContextPosition: (pos: { x: number; y: number }) => void;
 }
 
 const MenuCtx = React.createContext<MenuContextValue | null>(null);
@@ -38,13 +43,20 @@ interface DropdownMenuProps {
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   children: React.ReactNode;
+  /**
+   * How the menu is triggered.
+   * - `'click'` (default): opens on button click
+   * - `'context-menu'`: opens on right-click at the cursor position
+   */
+  trigger?: 'click' | 'context-menu';
 }
 
-function DropdownMenu({ open: controlledOpen, defaultOpen = false, onOpenChange, children }: DropdownMenuProps) {
+function DropdownMenu({ open: controlledOpen, defaultOpen = false, onOpenChange, children, trigger = 'click' }: DropdownMenuProps) {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
   const open = controlledOpen !== undefined ? controlledOpen : uncontrolledOpen;
   const triggerRef = React.useRef<HTMLButtonElement>(null);
   const [highlightedIndex, setHighlightedIndex] = React.useState(-1);
+  const [contextPosition, setContextPosition] = React.useState({ x: 0, y: 0 });
 
   const handleChange = React.useCallback(
     (next: boolean) => {
@@ -56,7 +68,7 @@ function DropdownMenu({ open: controlledOpen, defaultOpen = false, onOpenChange,
   );
 
   return (
-    <MenuCtx.Provider value={{ open, onOpenChange: handleChange, triggerRef, highlightedIndex, setHighlightedIndex }}>
+    <MenuCtx.Provider value={{ open, onOpenChange: handleChange, triggerRef, highlightedIndex, setHighlightedIndex, isContextMenu: trigger === 'context-menu', contextPosition, setContextPosition }}>
       {children}
     </MenuCtx.Provider>
   );
@@ -67,22 +79,41 @@ function DropdownMenu({ open: controlledOpen, defaultOpen = false, onOpenChange,
 /* ------------------------------------------------------------------ */
 
 const DropdownMenuTrigger = React.forwardRef<
-  HTMLButtonElement,
-  React.ButtonHTMLAttributes<HTMLButtonElement> & { asChild?: boolean }
+  HTMLButtonElement | HTMLDivElement,
+  (React.ButtonHTMLAttributes<HTMLButtonElement> | React.HTMLAttributes<HTMLDivElement>) & { asChild?: boolean }
 >(({ onClick, children, asChild, ...props }, ref) => {
-  const { open, onOpenChange, triggerRef } = useMenuCtx();
+  const { open, onOpenChange, triggerRef, isContextMenu, setContextPosition } = useMenuCtx();
 
+  // Context-menu mode: render a div that listens for right-clicks
+  if (isContextMenu) {
+    return (
+      <div
+        ref={ref as React.Ref<HTMLDivElement>}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          setContextPosition({ x: e.clientX, y: e.clientY });
+          onOpenChange(true);
+          (onClick as React.MouseEventHandler<HTMLDivElement>)?.(e as any);
+        }}
+        {...(props as React.HTMLAttributes<HTMLDivElement>)}
+      >
+        {children}
+      </div>
+    );
+  }
+
+  // Click mode (default)
   const mergedRef = React.useCallback(
     (node: HTMLButtonElement | null) => {
       (triggerRef as React.MutableRefObject<HTMLButtonElement | null>).current = node;
-      if (typeof ref === 'function') ref(node);
+      if (typeof ref === 'function') ref(node as any);
       else if (ref) (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
     },
     [ref, triggerRef],
   );
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    onClick?.(e);
+    (onClick as React.MouseEventHandler<HTMLButtonElement>)?.(e);
     onOpenChange(!open);
   };
 
@@ -98,13 +129,13 @@ const DropdownMenuTrigger = React.forwardRef<
 
   return (
     <button
-      ref={mergedRef}
+      ref={mergedRef as React.Ref<HTMLButtonElement>}
       type="button"
       onClick={handleClick}
       aria-expanded={open}
       aria-haspopup="menu"
       data-state={open ? 'open' : 'closed'}
-      {...props}
+      {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {children}
     </button>
@@ -237,7 +268,7 @@ interface DropdownMenuContentProps extends React.HTMLAttributes<HTMLDivElement> 
 
 const DropdownMenuContent = React.forwardRef<HTMLDivElement, DropdownMenuContentProps>(
   ({ className, sideOffset = 4, side = 'bottom', align = 'start', style, ...props }, ref) => {
-    const { open, onOpenChange, triggerRef } = useMenuCtx();
+    const { open, onOpenChange, triggerRef, isContextMenu, contextPosition } = useMenuCtx();
     const contentRef = React.useRef<HTMLDivElement>(null);
     const [pos, setPos] = React.useState<{ top: number; left: number }>({ top: 0, left: 0 });
 
@@ -324,6 +355,11 @@ const DropdownMenuContent = React.forwardRef<HTMLDivElement, DropdownMenuContent
 
     if (!open) return null;
 
+    // In context-menu mode, position at the cursor rather than the trigger button
+    const contentPos = isContextMenu
+      ? { top: contextPosition.y, left: contextPosition.x }
+      : pos;
+
     return (
       <DropdownMenuPortal>
         <div
@@ -333,8 +369,8 @@ const DropdownMenuContent = React.forwardRef<HTMLDivElement, DropdownMenuContent
           className={cn(styles.content, className)}
           style={{
             position: 'fixed',
-            top: pos.top,
-            left: pos.left,
+            top: contentPos.top,
+            left: contentPos.left,
             zIndex: 50,
             ...style,
           }}
@@ -538,3 +574,25 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
 };
+
+/* ------------------------------------------------------------------ */
+/*  ContextMenu* aliases — import from here instead of context-menu   */
+/* ------------------------------------------------------------------ */
+
+export const ContextMenu = ({ children, ...props }: Omit<DropdownMenuProps, 'trigger'> & { children: React.ReactNode }) => (
+  <DropdownMenu trigger="context-menu" {...props}>{children}</DropdownMenu>
+);
+export const ContextMenuTrigger = DropdownMenuTrigger;
+export const ContextMenuContent = DropdownMenuContent;
+export const ContextMenuItem = DropdownMenuItem;
+export const ContextMenuCheckboxItem = DropdownMenuCheckboxItem;
+export const ContextMenuRadioItem = DropdownMenuRadioItem;
+export const ContextMenuLabel = DropdownMenuLabel;
+export const ContextMenuSeparator = DropdownMenuSeparator;
+export const ContextMenuShortcut = DropdownMenuShortcut;
+export const ContextMenuGroup = DropdownMenuGroup;
+export const ContextMenuPortal = DropdownMenuPortal;
+export const ContextMenuSub = DropdownMenuSub;
+export const ContextMenuSubContent = DropdownMenuSubContent;
+export const ContextMenuSubTrigger = DropdownMenuSubTrigger;
+export const ContextMenuRadioGroup = DropdownMenuRadioGroup;

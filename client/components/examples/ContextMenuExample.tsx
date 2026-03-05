@@ -9,7 +9,7 @@ import {
   ContextMenuRadioGroup,
   ContextMenuRadioItem,
   ContextMenuLabel,
-} from '@/components/ui/context-menu';
+} from '@/components/ui/dropdown-menu';
 
 export default function ContextMenuExample() {
   const [showBookmarks, setShowBookmarks] = React.useState(true);

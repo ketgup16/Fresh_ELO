@@ -96,6 +96,18 @@
   height: 10px; /* Spec */
 }
 
+/* Large size variant — 24×24px for confirmation/consent flows */
+.checkbox--large {
+  width: 24px;
+  height: 24px;
+}
+
+.checkbox--large .checkIcon,
+.checkbox--large .indeterminateIcon {
+  width: 16px;
+  height: 16px;
+}
+
 /* Label wrapper (optional, for checkbox + label combos) */
 .wrapper {
   display: inline-flex;

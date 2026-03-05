@@ -8,6 +8,13 @@
   margin: 0;
 }
 
+/* Bordered container variant */
+.sideNavigation--bordered {
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
+  padding: var(--ld-primitive-scale-space-75, 6px);
+}
+
 /* SideNavigationItem - Page navigation link */
 .sideNavigationItem {
   display: flex;

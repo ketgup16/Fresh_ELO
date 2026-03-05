@@ -30,6 +30,12 @@ export interface AppSidebarProps {
   menuItems?: SidebarMenuItem[];
   /** Start the sidebar locked open (showing labels). Defaults to false. */
   defaultLocked?: boolean;
+  /**
+   * When explicitly set to `false`, renders icon-only and disables hover-to-expand.
+   * Useful when you want the compact nav bar variant (equivalent to the former AppSideNav).
+   * When not provided, the sidebar uses its default hover/lock behavior.
+   */
+  expanded?: boolean;
 }
 
 const iconStyle = { width: 16, height: 16 };
@@ -59,6 +65,7 @@ export function AppSidebar({
   onMenuItemClick,
   menuItems: menuItemsProp,
   defaultLocked = false,
+  expanded: expandedProp,
 }: AppSidebarProps) {
   const { t } = useTranslation();
   const menuItems = menuItemsProp ?? getDefaultMenuItems(t);
@@ -85,7 +92,9 @@ export function AppSidebar({
     return initial;
   });
 
-  const sidebarExpanded = sidebarLocked || sidebarHovered;
+  // When expandedProp is explicitly false, force icon-only and disable hover-expand
+  const iconOnly = expandedProp === false;
+  const sidebarExpanded = iconOnly ? false : (sidebarLocked || sidebarHovered);
 
   // Auto-detect active item from route (checks submenu items first for dot state)
   useEffect(() => {
@@ -174,8 +183,8 @@ export function AppSidebar({
         transition: isResizingSidebar ? 'none' : 'width 300ms ease-in-out',
         flexShrink: 0,
       }}
-      onMouseEnter={() => setSidebarHovered(true)}
-      onMouseLeave={() => setSidebarHovered(false)}
+      onMouseEnter={() => !iconOnly && setSidebarHovered(true)}
+      onMouseLeave={() => !iconOnly && setSidebarHovered(false)}
     >
       {/* Menu items */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>

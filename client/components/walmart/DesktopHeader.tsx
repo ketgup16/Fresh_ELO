@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { Highlight } from '@/components/ui/Highlight';
+import { Highlight } from '@/components/ui/Callout';
 import { Search, ChevronDown } from '@/components/icons';
 import {
   SparkyLookingDown, CartIcon,

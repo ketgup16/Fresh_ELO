@@ -118,18 +118,26 @@ export interface TabListProps {
    * The tab triggers to display
    */
   children: React.ReactNode;
-  
+
   /**
    * Whether to use small screen mode (tabs fill width evenly)
    * @default false
    */
   smallScreen?: boolean;
-  
+
+  /**
+   * Visual variant of the tab bar.
+   * - `default`: standard bottom-border style (default)
+   * - `filled`: white background + rounded top corners; use when tabs sit on a gray/subtle background
+   * @default "default"
+   */
+  variant?: 'default' | 'filled';
+
   /**
    * Unsafe escape hatch for custom className
    */
   UNSAFE_className?: string;
-  
+
   /**
    * Unsafe escape hatch for custom styles
    */
@@ -146,13 +154,15 @@ export const TabList = React.forwardRef<HTMLDivElement, TabListProps>((props, re
   const {
     children,
     smallScreen = false,
+    variant = 'default',
     UNSAFE_className,
     UNSAFE_style,
   } = props;
-  
+
   const className = [
     styles.tabList,
     smallScreen && styles['tabList--smallScreen'],
+    variant === 'filled' && styles['tabList--filled'],
     UNSAFE_className,
   ]
     .filter(Boolean)

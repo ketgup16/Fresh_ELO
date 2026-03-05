@@ -288,6 +288,13 @@
   line-height: var(--ld-semantic-font-caption-lineheight);
 }
 
+/* Truncate variant — ellipsis instead of horizontal scroll */
+.input--truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Remove number input spinners for cleaner trailing content */
 .input[type="number"]::-webkit-inner-spin-button,
 .input[type="number"]::-webkit-outer-spin-button {
