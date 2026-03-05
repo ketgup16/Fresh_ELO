@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import { InfoCircle as Info } from "@/components/icons";
-import { FilterChip } from "@/components/ui/FilterChip";
+import { Chip } from "@/components/ui/Chip";
+import { WCPItemTile } from "@/components/walmart/WCPItemTile";
+import { PRODUCT_IMAGES } from "@/components/walmart/productImages";
 
 const useDragScroll = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,51 +26,43 @@ const useDragScroll = () => {
 const PRICE_FILTERS = ['All prices ($)', 'Under $250', '$250 to $500', '$500 to $1000', '$1000+'];
 
 const PRODUCTS = [
-  { price: '328', cents: '00', wasPrice: '$298.00', name: 'VIZIO 50" Class Quantum 4K QLED HDR Smart TV', rating: '2,204' },
-  { price: '699', cents: '99', name: 'Samsung 65" Class 4K UHD OLED Smart TV C4 Series', rating: '3,369' },
-  { price: '468', cents: '00', name: 'Sony 75" Class 4K UHD OLED Smart TV C4 Series', rating: '3,451' },
-  { price: '346', cents: '99', name: 'LG 50" QNED70 Series 4K UHD QNED AI Smart TV', rating: '1,240' },
+  { image: PRODUCT_IMAGES.tablet, price: '328', cents: '00', name: 'VIZIO 50" Class Quantum 4K QLED HDR Smart TV', badge: undefined },
+  { image: PRODUCT_IMAGES.laptop1, price: '699', cents: '99', name: 'Samsung 65" Class 4K UHD OLED Smart TV C4 Series', badge: undefined },
+  { image: PRODUCT_IMAGES.laptop2, price: '468', cents: '00', name: 'Sony 75" Class 4K UHD OLED Smart TV C4 Series', badge: undefined },
+  { image: PRODUCT_IMAGES.laptop3, price: '346', cents: '99', name: 'LG 50" QNED70 Series 4K UHD QNED AI Smart TV', badge: undefined },
 ];
 
 export function PopularByPriceSection() {
   const [selectedPrice, setSelectedPrice] = useState('All prices ($)');
-  const scrollRef = useDragScroll();
+  const chipScrollRef = useDragScroll();
+  const carouselScrollRef = useDragScroll();
 
   return (
     <div className="px-3 py-4 border-t-8 border-[var(--ld-semantic-color-fill-subtle)]">
       <h2 className="text-[18px] font-bold text-foreground mb-3">Popular TVs by price</h2>
-      <div ref={scrollRef} className="flex gap-2 overflow-x-auto scrollbar-hide pb-2 mb-3">
+      <div ref={chipScrollRef} className="flex gap-2 overflow-x-auto scrollbar-hide pb-2 mb-3">
         {PRICE_FILTERS.map((filter) => (
-          <FilterChip
+          <Chip
             key={filter}
+            size="small"
             selected={selectedPrice === filter}
             onSelectedChange={() => setSelectedPrice(filter)}
           >
             {filter}
-          </FilterChip>
+          </Chip>
         ))}
       </div>
 
-      <div className="grid grid-cols-2 gap-3 mb-3">
+      <div ref={carouselScrollRef} className="flex gap-3 overflow-x-auto scrollbar-hide pb-3">
         {PRODUCTS.map((product, i) => (
-          <div key={i} className="border border-border rounded-2xl shadow-sm overflow-hidden">
-            <div className="h-[169px] relative bg-gray-50 flex items-center justify-center">
-              <img src="https://api.builder.io/api/v1/image/assets/TEMP/25805b85ee9b7ab1a9bb9121e0ef8891b372b99b?width=328" alt="Product" className="w-[156px] h-[156px] object-contain" />
-            </div>
-            <div className="p-2">
-              <div className="text-[20px] font-bold leading-4 mb-1">
-                <span className="text-[14px] align-top">$</span>{product.price}<span className="text-[14px] align-top">{product.cents}</span>
-              </div>
-              <p className="text-[14px] text-foreground line-clamp-2 mb-1">{product.name}</p>
-              <div className="flex items-center gap-1">
-                <div className="flex gap-[1px]">
-                  {[1, 2, 3, 4].map((j) => (
-                    <svg key={j} width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9L3 11L3.5 7.5L1 5L4.5 4.5L6 1Z" fill="var(--ld-semantic-color-rating-fill)"/></svg>
-                  ))}
-                </div>
-                <span className="text-[12px] text-muted-foreground">{product.rating}</span>
-              </div>
-            </div>
+          <div key={i} style={{ width: 160, flexShrink: 0 }}>
+            <WCPItemTile
+              image={product.image}
+              name={product.name}
+              price={product.price}
+              cents={product.cents}
+              badge={product.badge}
+            />
           </div>
         ))}
       </div>

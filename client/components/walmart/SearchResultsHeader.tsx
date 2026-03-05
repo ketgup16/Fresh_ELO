@@ -12,8 +12,8 @@ export function SearchResultsHeader({ query, onBack }: SearchResultsHeaderProps)
     <div className="sticky top-0 z-50 bg-white lg:hidden -mx-4">
       <div className="flex items-center gap-1 px-4 pb-4 pt-2">
         <IconButton
-          variant="secondary"
-          size="medium"
+          variant="ghost"
+          size="large"
           onClick={onBack}
           aria-label="Go back"
           UNSAFE_className="flex-shrink-0"

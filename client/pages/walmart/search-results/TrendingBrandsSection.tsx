@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { InfoCircle as Info } from "@/components/icons";
-import { FilterChip } from "@/components/ui/FilterChip";
+import { Chip } from "@/components/ui/Chip";
 
 const useDragScroll = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -32,13 +32,14 @@ export function TrendingBrandsSection() {
       <h2 className="text-[16px] font-bold text-foreground mb-2">TV brands currently trending</h2>
       <div ref={brandFiltersScrollRef} className="flex gap-2 overflow-x-auto scrollbar-hide pb-2 mb-3">
         {BRANDS.map((brand) => (
-          <FilterChip
+          <Chip
             key={brand}
+            size="small"
             selected={selectedBrand === brand}
             onSelectedChange={() => setSelectedBrand(brand)}
           >
             {brand}
-          </FilterChip>
+          </Chip>
         ))}
       </div>
 

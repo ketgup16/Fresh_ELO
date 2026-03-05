@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/Button";
+import { PRODUCT_IMAGES } from "@/components/walmart/productImages";
 
 const PRODUCTS = [
-  { flag: 'Deal', flagVariant: 'default', price: '1,179', cents: '00', wasPrice: '$2,499.00', name: 'SAMSUNG 55" Class S90C OLED 4K Smart TV QN55S90CAFXZA 2023', cue: 'TV with bright screen', rating: '500', pickup: '2 pm', stock: 'Only 6 left' },
-  { flag: 'Rollback', flagVariant: 'red', price: '498', cents: '00', wasPrice: '$699.99', name: 'LG 55" Class QNED 4K LED QNED85T series TV with webOS 24', cue: 'TV with bright screen', rating: '151', pickup: '2 pm', stock: '' },
+  { flag: 'Deal', flagVariant: 'default', image: PRODUCT_IMAGES.laptop1, price: '1,179', cents: '00', wasPrice: '$2,499.00', name: 'SAMSUNG 55" Class S90C OLED 4K Smart TV QN55S90CAFXZA 2023', cue: 'TV with bright screen', rating: '500', pickup: '2 pm', stock: 'Only 6 left' },
+  { flag: 'Rollback', flagVariant: 'red', image: PRODUCT_IMAGES.laptop2, price: '498', cents: '00', wasPrice: '$699.99', name: 'LG 55" Class QNED 4K LED QNED85T series TV with webOS 24', cue: 'TV with bright screen', rating: '151', pickup: '2 pm', stock: '' },
 ];
 
 export function MoreProductListings() {
@@ -19,7 +20,7 @@ export function MoreProductListings() {
               </div>
             )}
             <div className="relative">
-              <img src="https://api.builder.io/api/v1/image/assets/TEMP/25805b85ee9b7ab1a9bb9121e0ef8891b372b99b?width=320" alt="TV" className="w-[160px] h-[160px] object-contain mx-auto" />
+              <img src={product.image} alt={product.name} className="w-[160px] h-[160px] object-contain mx-auto" />
             </div>
           </div>
           <div className="flex-1 flex flex-col gap-1">
