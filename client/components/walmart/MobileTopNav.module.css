@@ -319,6 +319,48 @@
   flex-shrink: 0;
 }
 
+/* ── L3 page title bar ── */
+.l3Bar {
+  background: var(--ld-semantic-color-surface, #fff);
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.l3Row {
+  display: flex;
+  align-items: center;
+  padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px);
+  gap: var(--ld-primitive-scale-space-300, 12px);
+  min-height: 52px;
+}
+
+.l3BackButton {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.l3BackIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.l3Title {
+  flex: 1;
+  font-size: var(--ld-semantic-font-heading-small-size, 20px);
+  font-weight: var(--ld-semantic-font-heading-small-weight-default, 700);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* ── Mega nav icon trigger (native sub-nav) ── */
 .megaNavTrigger {
   flex-shrink: 0;

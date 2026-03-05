@@ -23,6 +23,7 @@ interface ResponsiveLayoutProps {
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
   mobileActiveTab?: 'shop' | 'heart' | 'user';
   nativeStatusBarVariant?: 'blue' | 'white';
+  mobileTopNavTitle?: string;
 }
 
 const maxWidthClassMap: Record<string, string> = {
@@ -44,6 +45,7 @@ export function ResponsiveLayout({
   maxWidth = '2xl',
   mobileActiveTab = 'shop',
   nativeStatusBarVariant = 'blue',
+  mobileTopNavTitle,
 }: ResponsiveLayoutProps) {
   const maxWidthClass = maxWidthClassMap[maxWidth] || styles.maxWidth2xl;
   const { mobileFooter, mobileTopNav, platform } = useLayoutSettings();
@@ -55,11 +57,11 @@ export function ResponsiveLayout({
       {showMobileNav && isNative && mobileTopNav === 'native' && (
         <div className={[styles.nativeNavWrapper, nativeStatusBarVariant === 'white' ? styles.nativeNavWrapperWhite : ''].filter(Boolean).join(' ')}>
           <NativeStatusBar platform={platform as 'ios' | 'android'} />
-          {showMobileTopNav && <MobileTopNav showHomeExtras={showHomeExtras} />}
+          {showMobileTopNav && <MobileTopNav showHomeExtras={showHomeExtras} pageTitle={mobileTopNavTitle} />}
         </div>
       )}
       {showMobileNav && isNative && mobileTopNav !== 'native' && <NativeStatusBar platform={platform as 'ios' | 'android'} />}
-      {showMobileNav && showMobileTopNav && mobileTopNav === 'native' && !isNative && <MobileTopNav showHomeExtras={showHomeExtras} />}
+      {showMobileNav && showMobileTopNav && mobileTopNav === 'native' && !isNative && <MobileTopNav showHomeExtras={showHomeExtras} pageTitle={mobileTopNavTitle} />}
       {showMobileNav && showMobileTopNav && mobileTopNav === 'mweb' && <MobileHeader />}
       {/* Desktop header — hidden on mobile via CSS */}
       {showDesktopHeader && <DesktopHeader />}

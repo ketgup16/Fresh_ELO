@@ -28,9 +28,10 @@ export type MobileTopNavVariant = 'blue' | 'white';
 interface MobileTopNavProps {
   showHomeExtras?: boolean;
   variant?: MobileTopNavVariant;
+  pageTitle?: string;
 }
 
-export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: MobileTopNavProps) {
+export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTitle }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
   const { cartCount, cartPrice } = useCart();
@@ -44,6 +45,29 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
   const isNative = platform === 'ios' || platform === 'android';
   const iconVariant = isBlue ? 'white' : undefined;
   const textColor = isBlue ? 'white' : 'var(--ld-semantic-color-text, #2e2f32)';
+
+  // L3 page: show title + back chevron, no search bar
+  if (pageTitle) {
+    return (
+      <>
+        <div className={styles.root}>
+          <div className={styles.l3Bar}>
+            <div className={styles.l3Row}>
+              <button
+                className={styles.l3BackButton}
+                aria-label="Go back"
+                onClick={() => navigate(-1)}
+              >
+                <ChevronLeft className={styles.l3BackIcon} />
+              </button>
+              <h1 className={styles.l3Title}>{pageTitle}</h1>
+              <CartIcon count={cartCount} price={cartPrice} />
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>

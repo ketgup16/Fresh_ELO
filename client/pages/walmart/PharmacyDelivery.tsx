@@ -1,5 +1,4 @@
-import { useNavigate } from "react-router-dom";
-import { ChevronLeft, Phone, Clock, Map } from "@/components/icons";
+import { Phone, Clock, Map, ChevronRight } from "@/components/icons";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { Button } from "@/components/ui/Button";
 import { ButtonGroup } from "@/components/ui/ButtonGroup";
@@ -14,25 +13,9 @@ const SERVICES = [
 ];
 
 export default function PharmacyDelivery() {
-  const navigate = useNavigate();
-
   return (
-    <ResponsiveLayout maxWidth="full">
+    <ResponsiveLayout maxWidth="full" mobileTopNavTitle="Pharmacy Delivery" nativeStatusBarVariant="white">
       <div className={styles.page}>
-        <div className={styles.topBar}>
-          <div className={styles.topBarInner}>
-            <Button
-              variant="tertiary"
-              size="small"
-              onClick={() => navigate('/walmart')}
-              UNSAFE_className="flex-shrink-0 !p-0 !h-auto"
-              aria-label="Go back"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </Button>
-            <h1 className={styles.pageTitle}>Pharmacy Delivery</h1>
-          </div>
-        </div>
 
         <div className={styles.content}>
           {/* Hero card */}
@@ -77,17 +60,7 @@ export default function PharmacyDelivery() {
                     <h4 className={styles.serviceTitle}>{service.title}</h4>
                     <p className={styles.serviceDesc}>{service.desc}</p>
                   </div>
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={styles.serviceChevron}
-                    aria-hidden="true"
-                  >
-                    <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  <ChevronRight className={styles.serviceChevron} aria-hidden="true" />
                 </button>
               ))}
             </div>
