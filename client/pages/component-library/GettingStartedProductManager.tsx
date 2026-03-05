@@ -280,51 +280,56 @@ interface Prompt { label: string; full: string; }
 
 const PM_PROMPT_CATEGORIES: { category: string; value: string; prompts: Prompt[] }[] = [
   {
-    category: 'Dashboards',
-    value: 'dashboards',
+    category: 'Search & Discovery',
+    value: 'search',
     prompts: [
-      { label: 'Campaign performance dashboard', full: 'Create a campaign performance dashboard page with a page header, a row of 4 KPI metric cards (impressions, clicks, spend, CTR), a line chart showing 30-day trends, and a filterable DataTable with campaign rows. Use Card, DataTable, and semantic tokens throughout.' },
-      { label: 'Executive summary view', full: 'Build an executive summary dashboard with a hero metric section (3 large KPI numbers with trend badges), a 2-column chart grid, and a ranked list with progress bars. All data should be mock data defined in a constant at the top of the file.' },
+      { label: 'Search results page', full: 'Create a search results page for the Walmart app using ResponsiveLayout (maxWidth="full", showMobileTopNav={false}, nativeStatusBarVariant="white"). Include a SearchResultsHeader with back chevron and AI sparkle icon, a SearchFilterBar with chips (In-store, Size, Color, Brand, Price), an AIResultsBanner, and a vertical list of ProductCardList items. Each product card shows image, flag badge (Best seller / Rollback), price, name, star rating, pickup time, and an Add to cart button.' },
+      { label: 'Filter chip bar', full: 'Add a sticky horizontal SearchFilterBar below the search header. Chips: All Filters (icon only), Sort (with SortingArrows icon), then In-store, Top rated, Brand, Price, Special offers. Selected chips use the selected/inverse style. The bar scrolls horizontally on mobile and is full-bleed (use lg:-mx-16 to break out of container padding on desktop).' },
+      { label: 'AI results banner', full: 'Add an AIResultsBanner row between the SearchFilterBar and the product list. It shows a SparklesIcon on the left (from @/components/icons-custom) and text: "AI-powered results — Showing top-rated [query] based on your search". Use the existing pattern in client/pages/walmart/SearchResults.tsx as reference.' },
     ],
   },
   {
-    category: 'Data Tables',
-    value: 'tables',
+    category: 'Product Cards',
+    value: 'products',
     prompts: [
-      { label: 'Filterable sortable table', full: 'Create a DataTable with sortable column headers, a filter toolbar (search field + status Select + date range), row selection checkboxes, status Tag badges, and pagination. Use the rounded prop since this is a standalone table.' },
-      { label: 'Table with detail panel', full: 'Build a full-width DataTable where clicking a row opens a resizable Panel on the right side with row details. The panel should have a header, close button, and 3 sections of detail content using semantic tokens.' },
+      { label: 'Product card list (row layout)', full: 'Add a ProductCardList item (from @/components/walmart/ProductCardList). Props to pass: flag ("Best seller" or "Rollback"), flagVariant ("default" or "red"), price (dollar string), cents (cents string), wasPrice (optional original price), name, rating (number 1-5), ratingCount (string like "1,247"), pickup ("2 pm" or "Tomorrow"), image (from PRODUCT_IMAGES in @/components/walmart/productImages), cue (one-line descriptive subtitle). The card renders image left + content right with Add to cart button.' },
+      { label: 'Product grid (tile layout)', full: 'Create a 2-column product tile grid using ProductCardGrid. Import from @/components/walmart/ProductCardGrid. Each tile shows a product image at top, flag badge, price, star rating with count, and an Add to cart button. The grid is wrapped in a flex-col container and stacks to 1 column on mobile (<480px).' },
+      { label: 'Horizontal product carousel', full: 'Build a horizontal-scroll product carousel. Wrap cards in a div with: display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; padding: 0 16px. Each card uses flex: 0 0 72vw on mobile and flex: 0 0 calc(33% - 8px) on tablet+. Cards have scroll-snap-align: start.' },
     ],
   },
   {
-    category: 'Charts & Visualizations',
-    value: 'charts',
+    category: 'Cart & Checkout',
+    value: 'cart',
     prompts: [
-      { label: 'Line chart with time controls', full: 'Add a line chart using Recharts with a time range selector (7D / 30D / 90D as SegmentedControl), a chart title, a legend, and a summary row below the chart showing total, average, and peak values.' },
-      { label: 'Bar chart comparison', full: 'Create a grouped bar chart comparing two metrics over the last 6 months. Include axis labels, a legend, and hover tooltips. Use ld-semantic chart color tokens for the bar colors.' },
+      { label: 'Cart item row', full: 'Create a cart item row component. Shows: product thumbnail (64×64px, object-fit: contain), product name (2 lines max, font-weight 600), price, a QuantityStepper for quantity, and a remove IconButton (variant="ghost", size="small"). Below the item show pickup/delivery options as Radio buttons in a RadioGroup. Add a Divider (1px separator token) between items.' },
+      { label: 'Order summary card', full: 'Build an order summary card using Card component. Rows: "Items subtotal" + amount, "Savings" + amount in green (text-positive token), "Estimated tax" + amount, "Delivery" + "Free" in green. Bold "Estimated total" row at bottom with separator above it. Below the card: Button (variant="primary", isFullWidth) "Place order", then a centered Link "Continue shopping".' },
+      { label: 'Promo code input', full: 'Add a promo code row to the cart page. Use a TextField (label: "Promo code", size="small", placeholder: "Enter code") with an "Apply" Button (variant="secondary", size="small") inline to the right. On success: show a green Snackbar "Code applied — you saved $5.00". On invalid code: set errorMessage on the TextField.' },
     ],
   },
   {
-    category: 'Metric Cards',
-    value: 'metrics',
+    category: 'Orders & Account',
+    value: 'orders',
     prompts: [
-      { label: 'KPI card grid', full: 'Create a responsive 4-column metric card grid (2 columns on tablet, 1 on mobile). Each card shows: a label, a large number, a percentage change with a green up or red down arrow Tag, and a small sparkline at the bottom.' },
-      { label: 'Single metric highlight card', full: 'Build a hero metric card that takes the full width, shows a very large number (48px), a descriptive label, a trend badge, and a "View breakdown" Link below. Use Card with semantic tokens.' },
+      { label: 'Order history list', full: 'Create an order history page with a list of order summary cards. Each card shows: order date, order number (subtle), status Tag (variant "success" for Delivered, "info" for In transit, "critical" for Cancelled), a row of up to 3 product thumbnails (40×40px) with "+N more" if needed, order total, and two buttons: "Track package" (secondary) and "Buy again" (tertiary). Use Divider between cards.' },
+      { label: 'Order detail page', full: 'Build an order detail page. Top: order number (h2), placed date, status with CheckCircleFill icon (green). Then a list of ordered items (thumbnail 64px, name, qty, unit price, line total). Below: two side-by-side Cards — "Shipping address" (name + address lines) and "Payment method" (card brand + last 4 digits). Footer: "Need help with this order?" Link.' },
+      { label: 'Account overview', full: 'Create an account overview page with: a profile header (40px avatar circle with initials, full name bold, email subtle, "Edit profile" Button tertiary). Below: a 2×2 grid of shortcut cards (Orders, Lists, Walmart+, Settings) each with an icon, bold label, and arrow. Then a "Recent orders" section with the last 2 order rows.' },
     ],
   },
   {
-    category: 'Recommendations',
-    value: 'recommendations',
+    category: 'Promotions & Deals',
+    value: 'promos',
     prompts: [
-      { label: 'Recommendation list', full: 'Create a vertical list of recommendation cards. Each card has a title, a 2-line description, a confidence score badge (Tag), and two buttons: Apply (primary) and Dismiss (tertiary). Show a Snackbar confirmation when Apply is clicked.' },
-      { label: 'Recommendation carousel', full: 'Build a horizontal scrolling carousel of recommendation cards with previous/next IconButtons. Each card shows an icon, title, description, potential impact metric, and an Apply button.' },
+      { label: 'Rollback promo banner', full: 'Create a Rollback promotional banner row. Background: var(--ld-semantic-color-fill-accent-yellow-subtle). Left side: a yellow "Rollback" WCPFlag badge + bold headline + short description. Right side: "Shop Rollbacks" Link with ChevronRight icon. Full-bleed width, 16px vertical padding. Add a thin separator below.' },
+      { label: 'Deal countdown section', full: 'Build a "Deal of the Day" section with: a bold section header, a live countdown timer (HH:MM:SS using setInterval + useState, clears on unmount). Below: a horizontal-scroll row of deal product cards. Each card has a red "Limited time" Tag, original price struck-through in subtle color, and sale price in bold brand color.' },
+      { label: 'Savings summary row', full: 'Add a savings summary banner between the cart items and order summary. Shows a green CheckCircleFill icon + "You\'re saving $X.XX on this order" in text-positive color. Background: var(--ld-semantic-color-fill-positive-subtle). Full-width, 12px 16px padding, 8px border-radius.' },
     ],
   },
   {
     category: 'Starting from Scratch',
     value: 'scratch',
     prompts: [
-      { label: 'New data feature page', full: 'I am starting a new data feature page from scratch. Create the page shell with a page header (title + subtitle + action button), a filter row, a content area placeholder, and proper responsive behavior at 1024px, 768px, and 480px breakpoints.' },
-      { label: 'Generate from PRD notes', full: 'Here are my rough requirements: [paste your notes here]. Based on these, create a data display page using LD 3.5 components. Choose the most appropriate components (DataTable, Card, Chart) for the data described.' },
+      { label: 'New Walmart page shell', full: 'Create a new ecommerce page at client/pages/walmart/MyPage.tsx using ResponsiveLayout (maxWidth="full", showMobileTopNav={false}, nativeStatusBarVariant="white"). Add the route to App.tsx. Include a SearchResultsHeader (with back button navigating to /walmart), a SearchFilterBar below it, and a scrollable content area. Follow the pattern in client/pages/walmart/SearchResults.tsx.' },
+      { label: 'Generate from PRD notes', full: 'Here are my rough requirements for a Walmart ecommerce feature: [paste your notes here]. Build the page using WCP components (ProductCardList, SearchFilterBar, ResponsiveLayout, etc.) from client/components/walmart/. Use PRODUCT_IMAGES from @/components/walmart/productImages for product images. Follow the pattern in client/pages/walmart/SearchResults.tsx as a reference for page structure.' },
     ],
   },
 ];
@@ -518,9 +523,9 @@ export function GettingStartedProductManager() {
             { q: 'What if the component I described doesn\'t exist?', a: 'The agent will use the closest available LD 3.5 component and note the substitution. If a truly custom component is needed, it will build one following the WCP component creation rules.' },
           ].map(({ q, a }) => (
             <AccordionItem key={q} value={q}>
-              <AccordionTrigger style={{ fontSize: 15, fontWeight: 600, textAlign: 'left' }}>{q}</AccordionTrigger>
+              <AccordionTrigger style={{ fontSize: 15, fontWeight: 600, textAlign: 'left', padding: '20px 0' }}>{q}</AccordionTrigger>
               <AccordionContent>
-                <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--ld-semantic-color-text-subtle)', margin: 0, paddingBottom: 4 }}>{a}</p>
+                <p style={{ fontSize: 14, lineHeight: 1.8, color: 'var(--ld-semantic-color-text-subtle)', margin: 0, paddingBottom: 20 }}>{a}</p>
               </AccordionContent>
             </AccordionItem>
           ))}
