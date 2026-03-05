@@ -6,10 +6,12 @@ import { Tag } from '@/components/ui/Tag';
 import { DesktopFooter } from '@/components/walmart/DesktopFooter';
 import { MwebFooter } from '@/components/walmart/MwebFooter';
 import { BottomNav } from '@/components/walmart/BottomNav';
+import { AndroidBottomNav } from '@/components/walmart/AndroidBottomNav';
 import styles from './FooterPatterns.module.css';
 
-type Platform = 'dweb' | 'mweb' | 'native';
+type Platform = 'dweb' | 'mweb' | 'native' | 'android';
 type NativeTab = 'shop' | 'heart' | 'user';
+type AndroidTab = 'shop' | 'heart' | 'search' | 'services' | 'account';
 
 const PLATFORM_META: Record<Platform, {
   component: string;
@@ -30,16 +32,23 @@ const PLATFORM_META: Record<Platform, {
     description: 'Single-column stacked layout for mobile browsers. Same content as the desktop footer — feedback, full link list, copyright — collapsed into a scannable vertical list.',
   },
   native: {
-    component: 'WCP Bottom Nav',
-    tag: 'iOS / Android',
+    component: 'WCP Bottom Nav (iOS)',
+    tag: 'iOS',
     tagVariant: 'neutral',
-    description: 'Glassmorphic bottom navigation bar with animated spring indicator. Three primary destinations: Shop, My Items, and Account. Includes the Sparky AI button.',
+    description: 'Glassmorphic bottom navigation bar with animated spring indicator. Three primary destinations: Shop, My Items, and Account. Includes the Sparky AI button. iOS home indicator included.',
+  },
+  android: {
+    component: 'WCP Bottom Nav (Android)',
+    tag: 'Android',
+    tagVariant: 'neutral',
+    description: 'Material-style bottom navigation bar with five tabs: Shop, My Items, Sparky, Services, and Account. Includes Android gesture bar. Active tab highlighted in brand blue.',
   },
 };
 
 export default function FooterPatternsPage() {
   const [platform, setPlatform] = useState<Platform>('dweb');
   const [nativeTab, setNativeTab] = useState<NativeTab>('shop');
+  const [androidTab, setAndroidTab] = useState<AndroidTab>('shop');
 
   const meta = PLATFORM_META[platform];
 
@@ -74,7 +83,14 @@ export default function FooterPatternsPage() {
               size="small"
               onClick={() => setPlatform('native')}
             >
-              WCP Bottom Nav
+              WCP Bottom Nav (iOS)
+            </Button>
+            <Button
+              variant={platform === 'android' ? 'primary' : 'secondary'}
+              size="small"
+              onClick={() => setPlatform('android')}
+            >
+              Android Bottom Nav
             </Button>
           </ButtonGroup>
         </div>
@@ -98,6 +114,39 @@ export default function FooterPatternsPage() {
             <div className={styles.mwebFrame}>
               {/* contained overrides the desktop display:none */}
               <MwebFooter contained />
+            </div>
+          )}
+
+          {platform === 'android' && (
+            <div className={styles.nativeFrame}>
+              <div className={styles.androidPhone}>
+                <div className={styles.androidScreen}>
+                  <div className={styles.nativePageContent}>
+                    <p className={styles.nativePageHint}>App content above the nav bar</p>
+                  </div>
+                  <AndroidBottomNav
+                    contained
+                    activeTab={androidTab}
+                    onTabChange={(tab) => setAndroidTab(tab)}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.nativeTabSwitcher}>
+                <p className={styles.nativeTabLabel}>Active tab:</p>
+                <ButtonGroup>
+                  {(['shop', 'heart', 'search', 'services', 'account'] as AndroidTab[]).map((tab) => (
+                    <Button
+                      key={tab}
+                      variant={androidTab === tab ? 'primary' : 'secondary'}
+                      size="small"
+                      onClick={() => setAndroidTab(tab)}
+                    >
+                      {tab === 'shop' ? 'Shop' : tab === 'heart' ? 'My Items' : tab === 'search' ? 'Sparky' : tab === 'services' ? 'Services' : 'Account'}
+                    </Button>
+                  ))}
+                </ButtonGroup>
+              </div>
             </div>
           )}
 
@@ -171,14 +220,26 @@ export default function FooterPatternsPage() {
           </div>
           <div className={styles.usageRow}>
             <div className={styles.usageCell}>
-              <span className={styles.usagePlatform}>WCP Bottom Nav</span>
-              <Tag variant="neutral">iOS / Android</Tag>
+              <span className={styles.usagePlatform}>WCP Bottom Nav (iOS)</span>
+              <Tag variant="neutral">iOS</Tag>
             </div>
             <div className={styles.usageCell}>
               <code className={styles.usageCode}>{'<BottomNav activeTab="shop" />'}</code>
             </div>
             <div className={styles.usageCell}>
               <span className={styles.usageImport}>@/components/walmart/BottomNav</span>
+            </div>
+          </div>
+          <div className={styles.usageRow}>
+            <div className={styles.usageCell}>
+              <span className={styles.usagePlatform}>WCP Bottom Nav (Android)</span>
+              <Tag variant="neutral">Android</Tag>
+            </div>
+            <div className={styles.usageCell}>
+              <code className={styles.usageCode}>{'<AndroidBottomNav activeTab="shop" />'}</code>
+            </div>
+            <div className={styles.usageCell}>
+              <span className={styles.usageImport}>@/components/walmart/AndroidBottomNav</span>
             </div>
           </div>
         </div>

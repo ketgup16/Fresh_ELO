@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Store, StoreFill, Heart, HeartFill, Search, Services, ServicesFill, User, UserCircleFill } from '@/components/icons';
+import { Store, StoreFill, Heart, HeartFill, Services, ServicesFill, User, UserCircleFill } from '@/components/icons';
+import { SparkyAnimation } from '@/components/icons-custom';
 import styles from './AndroidBottomNav.module.css';
 
 type AndroidTab = 'shop' | 'heart' | 'search' | 'services' | 'account';
@@ -35,7 +36,11 @@ function TabIcon({ id, active }: { id: AndroidTab; active: boolean }) {
     case 'heart':
       return active ? <HeartFill className={cls} /> : <Heart className={cls} />;
     case 'search':
-      return <Search className={cls} />;
+      return (
+        <div className={styles.sparkyWrap}>
+          <SparkyAnimation />
+        </div>
+      );
     case 'services':
       return active ? <ServicesFill className={cls} /> : <Services className={cls} />;
     case 'account':

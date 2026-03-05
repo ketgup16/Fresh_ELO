@@ -334,6 +334,24 @@
   border-radius: 3px;
 }
 
+/* Android phone shell — white background, squarer corners */
+.androidPhone {
+  width: 375px;
+  border-radius: 32px;
+  border: 8px solid var(--ld-semantic-color-text, #2e2f32);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.12);
+  background: var(--ld-semantic-color-surface, #fff);
+}
+
+.androidScreen {
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  background: var(--ld-semantic-color-surface, #fff);
+  overflow: hidden;
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .page {
@@ -345,6 +363,11 @@
   }
 
   .nativePhone {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .androidPhone {
     width: 100%;
     max-width: 340px;
   }
