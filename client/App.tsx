@@ -25,7 +25,6 @@ const WalmartSearchResults = React.lazy(() => import("./pages/walmart/SearchResu
 const WalmartDressesSearch = React.lazy(() => import("./pages/walmart/DressesSearchResults"));
 const WalmartCerealSearch = React.lazy(() => import("./pages/walmart/CerealSearchResults"));
 const WalmartProductDetail = React.lazy(() => import("./pages/walmart/ProductDetail"));
-const WalmartPharmacyDelivery = React.lazy(() => import("./pages/walmart/PharmacyDelivery"));
 const WalmartPurchaseHistory = React.lazy(() => import("./pages/walmart/PurchaseHistory"));
 
 // Component library pages (lazy loaded)
@@ -296,7 +295,6 @@ const App = () => (
               <Route path="/walmart/search/dresses" element={<WalmartDressesSearch />} />
               <Route path="/walmart/search/cereal" element={<WalmartCerealSearch />} />
               <Route path="/walmart/product/:productId" element={<WalmartProductDetail />} />
-              <Route path="/walmart/pharmacy-delivery" element={<WalmartPharmacyDelivery />} />
               <Route path="/walmart/purchase-history" element={<WalmartPurchaseHistory />} />
 
               {/* Redirect home to Walmart, but only in production to avoid HMR reload issues jumping back to home */}
