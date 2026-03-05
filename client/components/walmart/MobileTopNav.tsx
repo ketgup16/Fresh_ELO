@@ -55,11 +55,17 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue' }: Mobil
             <div className={styles.nativeHeader}>
               <span className={styles.greeting}>Hi, Emilia</span>
               <div className={styles.sparkCenter}>
-                <img
-                  src="https://i5.walmartimages.com/dfw/63fd9f59-14e2/9d304ce6-96de-4331-b8ec-c5191226d378/v1/spark-icon.svg"
-                  alt="Walmart"
-                  className={styles.sparkImg}
-                />
+                <a
+                  href="/walmart"
+                  onClick={(e) => { e.preventDefault(); navigate('/walmart'); }}
+                  aria-label="Walmart Homepage"
+                >
+                  <img
+                    src="https://i5.walmartimages.com/dfw/63fd9f59-14e2/9d304ce6-96de-4331-b8ec-c5191226d378/v1/spark-icon.svg"
+                    alt="Walmart"
+                    className={styles.sparkImg}
+                  />
+                </a>
               </div>
               <CartIcon count={cartCount} price={cartPrice} textColor="white" />
             </div>
