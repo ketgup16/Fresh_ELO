@@ -95,7 +95,7 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
           <ChevronLeft className="w-6 h-6 text-foreground" />
         </button>
         <div className="flex-1 rainbow-border animate-search-bar-expand">
-          <div className="bg-white rounded-full px-3 py-2 flex items-center gap-2 h-[42px] max-w-[500px] w-full mr-auto">
+          <div className="bg-white rounded-full px-3 py-2 flex items-center gap-2 h-[42px] w-full">
             <div className="w-6 h-6 flex-shrink-0">
               <SparkyLookingDown />
             </div>
@@ -151,8 +151,8 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
         </div>
       </div>
 
-      {/* Content — pb-[335px] so content isn't hidden behind the fixed keyboard */}
-      <div className="overflow-y-auto flex-1 pb-[335px]">
+      {/* Content — pb-[335px] on mobile so content isn't hidden behind the fixed keyboard; no offset on lg+ */}
+      <div className="overflow-y-auto flex-1 pb-[335px] lg:pb-0">
         {searchQuery && filteredSuggestions.length > 0 ? (
           <div className="px-4 py-4">
             <div className="flex flex-col">
