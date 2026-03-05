@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Chip } from "@/components/ui/Chip";
+import styles from "./FeatureGuideSection.module.css";
 
 const useDragScroll = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -90,26 +91,26 @@ function FeatureCard({ filter }: { filter: string }) {
 
   return (
     <>
-      <h3 className="text-[13px] font-bold text-foreground text-left mb-2">{content.title}</h3>
-      <div className="bg-white rounded-lg overflow-hidden w-full">
+      <h3 className={styles.featureCardTitle}>{content.title}</h3>
+      <div className={styles.featureCardInner}>
         {content.image && (
           <div className="relative">
             <img src={content.image} alt={content.title} className="w-full h-[119px] object-cover rounded-t-lg" />
             {content.badges && (
-              <div className="absolute top-[6px] left-[7px] flex gap-2">
+              <div className={styles.badgesRow}>
                 {content.badges.map((badge) => (
-                  <div key={badge} className="inline-flex h-5 px-2 justify-center items-center rounded bg-white">
-                    <span className="text-[10px] font-bold text-foreground leading-[12.698px]">{badge}</span>
+                  <div key={badge} className={styles.badgePill}>
+                    <span className={styles.featureBadgeLabel}>{badge}</span>
                   </div>
                 ))}
               </div>
             )}
           </div>
         )}
-        <div className="p-2 space-y-2">
+        <div className={styles.paragraphsArea}>
           {content.paragraphs.map((p, i) => (
-            <p key={i} className="text-[12px] text-foreground">
-              {p.bold && <span className="font-bold">{p.bold}</span>}
+            <p key={i} className={styles.featureBodyText}>
+              {p.bold && <span style={{ fontWeight: 700 }}>{p.bold}</span>}
               {p.text}
             </p>
           ))}
@@ -125,10 +126,10 @@ export function FeatureGuideSection() {
   const displayCarouselScrollRef = useDragScroll();
 
   return (
-    <div className="px-3 py-4 border-t-8 border-[var(--ld-semantic-color-fill-subtle)] bg-[var(--ld-semantic-color-fill-accent-blue-subtle)]">
-      <div className="mb-3">
-        <h2 className="text-[16px] font-bold text-foreground mb-2">Features to consider when shopping for TVs</h2>
-        <div ref={featureFiltersScrollRef} className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+    <div className={styles.section}>
+      <div className={styles.headerRow}>
+        <h2 className={styles.sectionTitle}>Features to consider when shopping for TVs</h2>
+        <div ref={featureFiltersScrollRef} className={styles.chipRow}>
           {FEATURE_FILTERS.map((filter) => (
             <Chip
               key={filter}
@@ -142,8 +143,8 @@ export function FeatureGuideSection() {
         </div>
       </div>
 
-      <div ref={displayCarouselScrollRef} className="flex gap-2 items-start overflow-x-auto scrollbar-hide pb-2">
-        <div className="flex flex-col justify-start items-start bg-white flex-shrink-0 self-stretch rounded-2xl overflow-hidden gap-4 p-4" style={{ width: '300px' }}>
+      <div ref={displayCarouselScrollRef} className={styles.carousel}>
+        <div className={styles.featureCard} style={{ width: '300px' }}>
           <FeatureCard filter={selectedFilter} />
         </div>
       </div>

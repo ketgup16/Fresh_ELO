@@ -60,7 +60,7 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
   };
 
   return (
-    <div className="fixed inset-0 bg-white z-[100] max-w-[430px] mx-auto animate-fade-in flex flex-col">
+    <div className="fixed inset-0 bg-white z-[100] animate-fade-in flex flex-col">
       {/* iOS/Android Status Bar — always white in the search modal */}
       {isNative && (
         <div style={{ backgroundColor: 'var(--ld-semantic-color-surface, #fff)' }}>
