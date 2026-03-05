@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { SparklesIcon } from "@/components/icons-custom";
+import { AIResultsBanner } from "@/components/walmart/AIResultsBanner";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { PRODUCT_IMAGES } from "@/components/walmart/productImages";
 import { SearchResultsHeader } from "@/components/walmart/SearchResultsHeader";
@@ -49,21 +49,6 @@ const TOP_PRODUCTS: ProductCardListProps[] = [
   },
 ];
 
-function AIResultsBanner() {
-  return (
-    <div className="px-3 py-2 border-b border-border">
-      <div className="flex items-center gap-2">
-        <div className="w-5 h-5 flex-shrink-0">
-          <SparklesIcon />
-        </div>
-        <p className="text-[14px] text-foreground">
-          <span className="font-bold">AI-powered results</span> — Showing the best TVs based on your search
-        </p>
-      </div>
-    </div>
-  );
-}
-
 export default function SearchResults() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -75,7 +60,7 @@ export default function SearchResults() {
         <SearchResultsHeader query={query} onBack={() => navigate('/walmart')} />
         <SearchFilterBar chips={FILTER_CHIPS} />
         <div className="lg:-mx-16">
-          <AIResultsBanner />
+          <AIResultsBanner message="Showing the best TVs based on your search" />
 
           {/* Top product results */}
           <div className="flex flex-col">

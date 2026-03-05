@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { X, Camera, Microphone, ChevronLeft, Clock, ArrowUpLeft } from "@/components/icons";
 import { IconButton } from "@/components/ui/IconButton";
+import { HighlightText } from "@/components/ui/HighlightText";
 import { SparkyLookingDown } from "@/components/icons-custom";
 import { allSuggestions as sharedSuggestions } from "@/components/walmart/searchData";
 import { IOSKeyboard } from "./IOSKeyboard";
@@ -35,24 +36,6 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
   const filteredSuggestions = searchQuery
     ? allSuggestions.filter(s => s.toLowerCase().includes(searchQuery.toLowerCase()))
     : [];
-
-  const renderHighlightedText = (text: string, query: string) => {
-    if (!query) return <span className="font-normal">{text}</span>;
-    const lowerText = text.toLowerCase();
-    const lowerQuery = query.toLowerCase();
-    const index = lowerText.indexOf(lowerQuery);
-    if (index === -1) return <span className="font-normal">{text}</span>;
-    const before = text.slice(0, index);
-    const match = text.slice(index, index + query.length);
-    const after = text.slice(index + query.length);
-    return (
-      <>
-        {before && <span className="font-bold">{before}</span>}
-        <span className="font-normal">{match}</span>
-        {after && <span className="font-bold">{after}</span>}
-      </>
-    );
-  };
 
   const handleClose = () => {
     setSearchQuery('');
@@ -165,7 +148,7 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
                     className="flex items-center gap-2 py-2 w-full"
                   >
                     <div className="flex-1 text-left text-[14px] text-foreground leading-[20px] overflow-hidden text-ellipsis whitespace-nowrap">
-                      {renderHighlightedText(suggestion, searchQuery)}
+                      <HighlightText text={suggestion} query={searchQuery} />
                     </div>
                     <ArrowUpLeft className="w-4 h-4 text-foreground flex-shrink-0" />
                   </button>

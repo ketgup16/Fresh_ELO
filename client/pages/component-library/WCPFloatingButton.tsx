@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
-import { WCPFloatingButton } from '@/components/walmart/WCPFloatingButton';
+import { IconButton } from '@/components/ui/IconButton';
 import {
   ArrowLeft,
   ArrowRight,
@@ -46,7 +46,7 @@ export default function WCPFloatingButtonPage() {
     <ComponentPageLayout
       section="WCP Components"
       title="Floating Button"
-      description="A circular elevated icon button used for carousel controls and floating action scenarios. Combines LD 3.5 secondary action tokens with a box-shadow to communicate elevation."
+      description="A circular elevated icon button used for carousel controls and floating action scenarios. Use IconButton with the floating prop — it applies LD 3.5 secondary action tokens with an elevation box-shadow."
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
 
@@ -56,47 +56,36 @@ export default function WCPFloatingButtonPage() {
             Sizes
           </h2>
           <div>
-            <SectionLabel>XSmall (28px)</SectionLabel>
+            <SectionLabel>Small (24–32px)</SectionLabel>
             <div style={rowStyle}>
-              <WCPFloatingButton size="xsmall" aria-label="Previous">
+              <IconButton floating size="small" aria-label="Previous">
                 <ArrowLeft width={16} height={16} />
-              </WCPFloatingButton>
-              <WCPFloatingButton size="xsmall" aria-label="Next">
+              </IconButton>
+              <IconButton floating size="small" aria-label="Next">
                 <ArrowRight width={16} height={16} />
-              </WCPFloatingButton>
+              </IconButton>
             </div>
           </div>
           <div>
-            <SectionLabel>Small (32px)</SectionLabel>
+            <SectionLabel>Medium (32–40px) — default</SectionLabel>
             <div style={rowStyle}>
-              <WCPFloatingButton size="small" aria-label="Previous">
-                <ArrowLeft width={16} height={16} />
-              </WCPFloatingButton>
-              <WCPFloatingButton size="small" aria-label="Next">
-                <ArrowRight width={16} height={16} />
-              </WCPFloatingButton>
-            </div>
-          </div>
-          <div>
-            <SectionLabel>Medium (40px) — default</SectionLabel>
-            <div style={rowStyle}>
-              <WCPFloatingButton size="medium" aria-label="Previous">
+              <IconButton floating size="medium" aria-label="Previous">
                 <ArrowLeft />
-              </WCPFloatingButton>
-              <WCPFloatingButton size="medium" aria-label="Next">
+              </IconButton>
+              <IconButton floating size="medium" aria-label="Next">
                 <ArrowRight />
-              </WCPFloatingButton>
+              </IconButton>
             </div>
           </div>
           <div>
-            <SectionLabel>Large (52px)</SectionLabel>
+            <SectionLabel>Large (40px)</SectionLabel>
             <div style={rowStyle}>
-              <WCPFloatingButton size="large" aria-label="Previous">
+              <IconButton floating size="large" aria-label="Previous">
                 <ArrowLeft width={32} height={32} />
-              </WCPFloatingButton>
-              <WCPFloatingButton size="large" aria-label="Next">
+              </IconButton>
+              <IconButton floating size="large" aria-label="Next">
                 <ArrowRight width={32} height={32} />
-              </WCPFloatingButton>
+              </IconButton>
             </div>
           </div>
         </div>
@@ -109,15 +98,15 @@ export default function WCPFloatingButtonPage() {
           <div>
             <SectionLabel>Enabled (default)</SectionLabel>
             <div style={rowStyle}>
-              <WCPFloatingButton aria-label="Search"><Search /></WCPFloatingButton>
+              <IconButton floating aria-label="Search"><Search /></IconButton>
             </div>
           </div>
           <div>
             <SectionLabel>Disabled</SectionLabel>
             <div style={rowStyle}>
-              <WCPFloatingButton aria-label="Search" disabled><Search /></WCPFloatingButton>
-              <WCPFloatingButton size="small" aria-label="Dismiss" disabled><X width={16} height={16} /></WCPFloatingButton>
-              <WCPFloatingButton size="large" aria-label="Star" disabled><Star width={32} height={32} /></WCPFloatingButton>
+              <IconButton floating aria-label="Search" disabled><Search /></IconButton>
+              <IconButton floating size="small" aria-label="Dismiss" disabled><X width={16} height={16} /></IconButton>
+              <IconButton floating size="large" aria-label="Star" disabled><Star width={32} height={32} /></IconButton>
             </div>
           </div>
           <div style={{ background: 'var(--ld-semantic-color-background-subtle)', padding: '12px', borderRadius: '8px' }}>
@@ -141,14 +130,14 @@ export default function WCPFloatingButtonPage() {
                 Carousel content area
               </div>
               <div style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }}>
-                <WCPFloatingButton size="medium" aria-label="Previous slide">
+                <IconButton floating size="medium" aria-label="Previous slide">
                   <ArrowLeft />
-                </WCPFloatingButton>
+                </IconButton>
               </div>
               <div style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)' }}>
-                <WCPFloatingButton size="medium" aria-label="Next slide">
+                <IconButton floating size="medium" aria-label="Next slide">
                   <ArrowRight />
-                </WCPFloatingButton>
+                </IconButton>
               </div>
             </div>
           </div>
@@ -157,9 +146,9 @@ export default function WCPFloatingButtonPage() {
           <div>
             <SectionLabel>Scroll controls / misc</SectionLabel>
             <div style={rowStyle}>
-              <WCPFloatingButton aria-label="Scroll to top"><ChevronDown /></WCPFloatingButton>
-              <WCPFloatingButton aria-label="Dismiss"><X /></WCPFloatingButton>
-              <WCPFloatingButton aria-label="Search"><Search /></WCPFloatingButton>
+              <IconButton floating aria-label="Scroll to top"><ChevronDown /></IconButton>
+              <IconButton floating aria-label="Dismiss"><X /></IconButton>
+              <IconButton floating aria-label="Search"><Search /></IconButton>
             </div>
           </div>
         </div>
@@ -178,35 +167,32 @@ export default function WCPFloatingButtonPage() {
             overflowX: 'auto',
             margin: 0,
             color: 'var(--ld-semantic-color-text)',
-          }}>{`import { WCPFloatingButton } from '@/components/walmart/WCPFloatingButton';
+          }}>{`import { IconButton } from '@/components/ui/IconButton';
 import { ArrowLeft, ArrowRight } from '@/components/icons';
 
-// Carousel controls (most common)
-<WCPFloatingButton size="medium" aria-label="Previous slide">
+// Carousel controls (most common) — use floating prop on IconButton
+<IconButton floating size="medium" aria-label="Previous slide">
   <ArrowLeft />
-</WCPFloatingButton>
+</IconButton>
 
-<WCPFloatingButton size="medium" aria-label="Next slide">
+<IconButton floating size="medium" aria-label="Next slide">
   <ArrowRight />
-</WCPFloatingButton>
+</IconButton>
 
-// Sizes: 'xsmall' | 'small' | 'medium' (default) | 'large'
-<WCPFloatingButton size="small" aria-label="Dismiss">
-  <X size={16} />
-</WCPFloatingButton>
+// Sizes: 'small' | 'medium' (default) | 'large'
+<IconButton floating size="small" aria-label="Dismiss">
+  <X />
+</IconButton>
 
 // Disabled state
-<WCPFloatingButton aria-label="Previous slide" disabled>
+<IconButton floating aria-label="Previous slide" disabled>
   <ArrowLeft />
-</WCPFloatingButton>
+</IconButton>
 
 // With click handler
-<WCPFloatingButton
-  aria-label="Next slide"
-  onClick={() => carousel.next()}
->
+<IconButton floating aria-label="Next slide" onClick={() => carousel.next()}>
   <ArrowRight />
-</WCPFloatingButton>`}</pre>
+</IconButton>`}</pre>
         </div>
 
         {/* Do / Don't */}
@@ -219,18 +205,18 @@ import { ArrowLeft, ArrowRight } from '@/components/icons';
               <SectionLabel style={{ color: 'var(--ld-semantic-color-text-positive)' }}>Do</SectionLabel>
               <ul style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px', color: 'var(--ld-semantic-color-text)', paddingLeft: '20px', margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <li>Always provide a descriptive <code>aria-label</code> for each button</li>
-                <li>Use for carousel prev/next and floating action contexts</li>
-                <li>Match icon size to button size (xsmall/small → 16px, medium → 24px, large → 32px)</li>
-                <li>Ensure tap targets meet 44×44px minimum on touch devices (xsmall at 28px needs extra padding in context)</li>
+                <li>Use <code>floating</code> prop on <code>IconButton</code> for carousel prev/next and FAB contexts</li>
+                <li>Match icon size to button size (small → 16px, medium → 24px, large → 32px)</li>
+                <li>Ensure tap targets meet 44×44px minimum on touch devices</li>
               </ul>
             </div>
             <div>
               <SectionLabel style={{ color: 'var(--ld-semantic-color-text-negative)' }}>Don't</SectionLabel>
               <ul style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px', color: 'var(--ld-semantic-color-text)', paddingLeft: '20px', margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <li>Don't use for inline actions in text or forms — use IconButton instead</li>
+                <li>Don't use for inline actions in text or forms — use <code>IconButton</code> without <code>floating</code></li>
                 <li>Don't omit <code>aria-label</code> — icons alone are not accessible</li>
                 <li>Don't place text inside the button — it is icon-only by design</li>
-                <li>Don't override colors with UNSAFE_style hex values — use tokens only</li>
+                <li>Don't override colors with <code>UNSAFE_style</code> hex values — use tokens only</li>
               </ul>
             </div>
           </div>

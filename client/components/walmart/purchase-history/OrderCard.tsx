@@ -6,6 +6,7 @@ import { Divider } from '@/components/ui/Divider';
 import { Alert } from '@/components/ui/Alert';
 import { Link } from '@/components/ui/Link';
 import { ProgressTracker } from '@/components/ui/ProgressTracker';
+import { OrderTypeIcon } from '@/components/icons-custom/OrderTypeIcon';
 import { AmendsBanner } from './AmendsBanner';
 import styles from './OrderCard.module.css';
 
@@ -87,34 +88,6 @@ const STEP_INDEX: Record<TimelineStep, number> = {
   'on-the-way': 2,
   delivered: 3,
 };
-
-const FULFILLMENT_ICONS: Record<OrderType, { src: string; alt: string }> = {
-  curbside: {
-    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Feb8e854b1c2441668631c59d482af3f2',
-    alt: 'Curbside pickup',
-  },
-  delivery: {
-    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F06ac09fed4534c02b62a8d43e759a824',
-    alt: 'Delivery',
-  },
-  store: {
-    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F4ed8486e018848678a23689dc195dcd8',
-    alt: 'Store purchase',
-  },
-  shipping: {
-    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fae074f13699f44c0a142fc357711a02e',
-    alt: 'Shipping',
-  },
-  auto: {
-    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F26a934c359774221bf674b2fb62d93da',
-    alt: '',
-  },
-};
-
-function OrderTypeIcon({ type }: { type: OrderType }) {
-  const icon = FULFILLMENT_ICONS[type];
-  return <img src={icon.src} alt="" aria-hidden="true" width={64} height={64} />;
-}
 
 function RatingWidget({ orderType }: { orderType: OrderType }) {
   const [selected, setSelected] = useState(0);

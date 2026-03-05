@@ -26,6 +26,9 @@ export { SubscriptionLogoIcon } from './SubscriptionLogoIcon';
 export { CashLogoIcon } from './CashLogoIcon';
 export { SparklesIcon } from './SparklesIcon';
 
+// Order fulfillment type icon (image-based, not SVG)
+export { OrderTypeIcon, getOrderTypeIconSrc } from './OrderTypeIcon';
+
 // Navigation / utility (mono-color, use currentColor)
 export { CloseIcon } from './CloseIcon';
 export { InfoIcon } from './InfoIcon';

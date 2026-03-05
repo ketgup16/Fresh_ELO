@@ -4,6 +4,7 @@ import { Tag } from '@/components/ui/Tag';
 import { Alert } from '@/components/ui/Alert';
 import { ProgressTracker } from '@/components/ui/ProgressTracker';
 import { Clock, ChevronRight } from '@/components/icons';
+import { OrderTypeIcon } from '@/components/icons-custom/OrderTypeIcon';
 import type { OrderProduct } from './OrderCard';
 import styles from './DelayedDeliveryCard.module.css';
 
@@ -47,14 +48,7 @@ export function DelayedDeliveryCard({
         {/* Left: meta + status + progress + products */}
         <div className={styles.leftCol}>
           <div className={styles.meta}>
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F06ac09fed4534c02b62a8d43e759a824"
-              alt=""
-              aria-hidden="true"
-              width={48}
-              height={48}
-              className={styles.typeIcon}
-            />
+            <OrderTypeIcon type="delivery" width={48} height={48} className={styles.typeIcon} />
             <div>
               <span className={styles.eyebrow}>Delivery from store</span>
               <h3 className={styles.statusHeading}>{statusHeading}</h3>

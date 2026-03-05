@@ -2,7 +2,7 @@ import React from 'react';
 import ToggleExample from '@/components/examples/ToggleExample';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
-import { WCPIconSelector, type WCPIconSelectorSize, type WCPIconSelectorShape, type WCPIconSelectorColor } from '@/components/walmart/WCPIconSelector';
+import { WCPIconToggle, type WCPIconToggleSize, type WCPIconToggleShape, type WCPIconToggleColor } from '@/components/walmart/WCPIconToggle';
 import { Heart } from '@/components/icons/Heart';
 import { HeartFill } from '@/components/icons/HeartFill';
 import { Star } from '@/components/icons/Star';
@@ -32,7 +32,7 @@ export default function TogglePage() {
         </React.Suspense>
       </div>
 
-      {/* ── WCP Icon Selector ── */}
+      {/* ── WCP Icon Toggle ── */}
       <div style={{ marginBottom: '16px' }}>
         <h2 style={{
           fontSize: '24px',
@@ -41,7 +41,7 @@ export default function TogglePage() {
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
           marginBottom: '8px',
         }}>
-          WCP Icon Selector
+          WCP Icon Toggle
         </h2>
         <p style={{
           fontSize: '14px',
@@ -61,7 +61,7 @@ export default function TogglePage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)',
       }}>
-        <WCPIconSelectorShowcase />
+        <WCPIconToggleShowcase />
       </div>
     </ComponentPageLayout>
   );
@@ -115,17 +115,16 @@ function Chip({ children }: { children: React.ReactNode }) {
 
 /* Variants matrix ─ shape × size × color */
 
-const SIZES: WCPIconSelectorSize[] = ['small', 'medium', 'large'];
-const SHAPES: WCPIconSelectorShape[] = ['circle', 'rounded'];
-const COLORS: WCPIconSelectorColor[] = ['default', 'white'];
+const SIZES: WCPIconToggleSize[] = ['small', 'medium', 'large'];
+const SHAPES: WCPIconToggleShape[] = ['circle', 'rounded'];
 
-function IconSelectorRow({
+function IconToggleRow({
   shape,
   color,
   label,
 }: {
-  shape: WCPIconSelectorShape;
-  color: WCPIconSelectorColor;
+  shape: WCPIconToggleShape;
+  color: WCPIconToggleColor;
   label: string;
 }) {
   return (
@@ -134,7 +133,7 @@ function IconSelectorRow({
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' as const }}>
         {SIZES.map((size) => (
           <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-            <UncontrolledSelector shape={shape} size={size} color={color} />
+            <UncontrolledToggle shape={shape} size={size} color={color} />
             <Chip>{size}</Chip>
           </div>
         ))}
@@ -143,20 +142,20 @@ function IconSelectorRow({
   );
 }
 
-function UncontrolledSelector({
+function UncontrolledToggle({
   shape,
   size,
   color,
 }: {
-  shape: WCPIconSelectorShape;
-  size: WCPIconSelectorSize;
-  color: WCPIconSelectorColor;
+  shape: WCPIconToggleShape;
+  size: WCPIconToggleSize;
+  color: WCPIconToggleColor;
 }) {
   const [checked, setChecked] = React.useState(false);
   return (
-    <WCPIconSelector
-      outlineIcon={<Heart />}
-      filledIcon={<HeartFill />}
+    <WCPIconToggle
+      uncheckedIcon={<Heart />}
+      checkedIcon={<HeartFill />}
       aria-label="Save to favorites"
       shape={shape}
       size={size}
@@ -167,8 +166,7 @@ function UncontrolledSelector({
   );
 }
 
-function WCPIconSelectorShowcase() {
-  /* States demo — controlled */
+function WCPIconToggleShowcase() {
   const [heartOn, setHeartOn] = React.useState(false);
   const [starOn, setStarOn] = React.useState(true);
   const [bookmarkOn, setBookmarkOn] = React.useState(false);
@@ -184,7 +182,7 @@ function WCPIconSelectorShowcase() {
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
           {SHAPES.map((shape) => (
-            <IconSelectorRow key={shape} shape={shape} color="default" label={`Shape: ${shape}`} />
+            <IconToggleRow key={shape} shape={shape} color="default" label={`Shape: ${shape}`} />
           ))}
         </div>
       </section>
@@ -211,7 +209,7 @@ function WCPIconSelectorShowcase() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' as const }}>
                 {SIZES.map((size) => (
                   <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                    <UncontrolledSelectorWhite shape={shape} size={size} />
+                    <UncontrolledToggleWhite shape={shape} size={size} />
                     <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)' }}>{size}</span>
                   </div>
                 ))}
@@ -231,9 +229,9 @@ function WCPIconSelectorShowcase() {
 
           {/* Off */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <WCPIconSelector
-              outlineIcon={<Heart />}
-              filledIcon={<HeartFill />}
+            <WCPIconToggle
+              uncheckedIcon={<Heart />}
+              checkedIcon={<HeartFill />}
               aria-label="Save to favorites"
               shape="circle"
               size="medium"
@@ -246,9 +244,9 @@ function WCPIconSelectorShowcase() {
 
           {/* On */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <WCPIconSelector
-              outlineIcon={<Star />}
-              filledIcon={<StarFill />}
+            <WCPIconToggle
+              uncheckedIcon={<Star />}
+              checkedIcon={<StarFill />}
               aria-label="Star this item"
               shape="rounded"
               size="medium"
@@ -261,9 +259,9 @@ function WCPIconSelectorShowcase() {
 
           {/* Disabled off */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <WCPIconSelector
-              outlineIcon={<Pin />}
-              filledIcon={<PinFill />}
+            <WCPIconToggle
+              uncheckedIcon={<Pin />}
+              checkedIcon={<PinFill />}
               aria-label="Pin (disabled)"
               shape="circle"
               size="medium"
@@ -276,9 +274,9 @@ function WCPIconSelectorShowcase() {
 
           {/* Disabled on */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <WCPIconSelector
-              outlineIcon={<Pin />}
-              filledIcon={<PinFill />}
+            <WCPIconToggle
+              uncheckedIcon={<Pin />}
+              checkedIcon={<PinFill />}
               aria-label="Pin (disabled)"
               shape="rounded"
               size="medium"
@@ -289,11 +287,11 @@ function WCPIconSelectorShowcase() {
             <Chip>Disabled on</Chip>
           </div>
 
-          {/* Bookmark interactive */}
+          {/* Pin interactive */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <WCPIconSelector
-              outlineIcon={<Pin />}
-              filledIcon={<PinFill />}
+            <WCPIconToggle
+              uncheckedIcon={<Pin />}
+              checkedIcon={<PinFill />}
               aria-label="Pin this item"
               shape="rounded"
               size="large"
@@ -319,14 +317,14 @@ function WCPIconSelectorShowcase() {
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
           lineHeight: 1.6,
         }}>
-{`import { WCPIconSelector } from '@/components/walmart/WCPIconSelector';
+{`import { WCPIconToggle } from '@/components/walmart/WCPIconToggle';
 import { Heart } from '@/components/icons/Heart';
 import { HeartFill } from '@/components/icons/HeartFill';
 
 // Uncontrolled
-<WCPIconSelector
-  outlineIcon={<Heart />}
-  filledIcon={<HeartFill />}
+<WCPIconToggle
+  uncheckedIcon={<Heart />}
+  checkedIcon={<HeartFill />}
   aria-label="Save to favorites"
   shape="circle"        // 'circle' | 'rounded'
   size="medium"         // 'small' | 'medium' | 'large'
@@ -334,9 +332,9 @@ import { HeartFill } from '@/components/icons/HeartFill';
 />
 
 // Controlled
-<WCPIconSelector
-  outlineIcon={<Heart />}
-  filledIcon={<HeartFill />}
+<WCPIconToggle
+  uncheckedIcon={<Heart />}
+  checkedIcon={<HeartFill />}
   aria-label="Save to favorites"
   shape="circle"
   size="medium"
@@ -351,18 +349,18 @@ import { HeartFill } from '@/components/icons/HeartFill';
   );
 }
 
-function UncontrolledSelectorWhite({
+function UncontrolledToggleWhite({
   shape,
   size,
 }: {
-  shape: WCPIconSelectorShape;
-  size: WCPIconSelectorSize;
+  shape: WCPIconToggleShape;
+  size: WCPIconToggleSize;
 }) {
   const [checked, setChecked] = React.useState(false);
   return (
-    <WCPIconSelector
-      outlineIcon={<Heart />}
-      filledIcon={<HeartFill />}
+    <WCPIconToggle
+      uncheckedIcon={<Heart />}
+      checkedIcon={<HeartFill />}
       aria-label="Save to favorites"
       shape={shape}
       size={size}

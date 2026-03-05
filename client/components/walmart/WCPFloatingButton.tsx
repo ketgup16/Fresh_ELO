@@ -1,78 +1,52 @@
-import React from 'react';
-import styles from './WCPFloatingButton.module.css';
-
 /**
- * [WCP] Floating Button
+ * @deprecated Use `<IconButton floating>` from `@/components/ui/IconButton` instead.
+ * The `floating` prop applies the same elevated circular style.
  *
- * A circular elevated icon button used for carousel controls and floating
- * action scenarios. Based on the LD 3.5 secondary action token family but
- * with an added box-shadow to communicate elevation ("floating").
+ * Migration:
+ *   Before: <WCPFloatingButton size="medium" aria-label="Next"><ArrowRight /></WCPFloatingButton>
+ *   After:  <IconButton floating size="medium" aria-label="Next"><ArrowRight /></IconButton>
  *
- * Sizes: xsmall | small | medium | large
- * States: enabled, hovered, focused, pressed, disabled
- *
- * Tags: Carousel Controls, Floating Buttons
- * Figma: [WCP] Floating Button
+ * Note: WCPFloatingButton sizes map to IconButton sizes as follows:
+ *   xsmall → small, small → small, medium → medium, large → large
  */
+import React from 'react';
+import { IconButton, type IconButtonButtonProps } from '@/components/ui/IconButton';
 
 export type WCPFloatingButtonSize = 'xsmall' | 'small' | 'medium' | 'large';
 
 export interface WCPFloatingButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'style'> {
-  /**
-   * The icon to render inside the button.
-   */
   children: React.ReactNode;
-
-  /**
-   * Size of the button. Controls the overall diameter and icon size.
-   * @default 'medium'
-   */
   size?: WCPFloatingButtonSize;
-
-  /**
-   * Accessible label — required for all icon-only buttons.
-   */
   'aria-label': string;
-
-  /**
-   * Escape hatch for host-specific overrides (use sparingly).
-   */
   UNSAFE_className?: string;
-
-  /**
-   * Escape hatch for host-specific overrides (use sparingly).
-   */
   UNSAFE_style?: React.CSSProperties;
 }
 
+/**
+ * @deprecated Use `<IconButton floating>` instead.
+ */
 export function WCPFloatingButton({
   children,
   size = 'medium',
-  disabled = false,
   'aria-label': ariaLabel,
   UNSAFE_className,
   UNSAFE_style,
   ...rest
 }: WCPFloatingButtonProps) {
-  const className = [
-    styles.floatingButton,
-    styles[`size--${size}`],
-    UNSAFE_className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  // xsmall and small both map to IconButton's small size
+  const iconButtonSize = size === 'large' ? 'large' : size === 'medium' ? 'medium' : 'small';
 
   return (
-    <button
-      type="button"
-      className={className}
-      style={UNSAFE_style}
+    <IconButton
+      floating
+      size={iconButtonSize}
       aria-label={ariaLabel}
-      disabled={disabled}
-      {...rest}
+      UNSAFE_className={UNSAFE_className}
+      UNSAFE_style={UNSAFE_style}
+      {...(rest as Omit<IconButtonButtonProps, 'aria-label' | 'size' | 'children'>)}
     >
-      <span className={styles.iconWrap}>{children}</span>
-    </button>
+      {children}
+    </IconButton>
   );
 }

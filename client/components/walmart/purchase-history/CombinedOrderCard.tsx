@@ -2,22 +2,11 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Divider } from '@/components/ui/Divider';
 import { ProgressTracker } from '@/components/ui/ProgressTracker';
+import { OrderTypeIcon } from '@/components/icons-custom/OrderTypeIcon';
 import { AutoCareModals, AutoCareModalType } from './AutoCareModals';
 import { GetItNowModal } from './GetItNowModal';
 import type { OrderCardProps } from './OrderCard';
 import styles from './CombinedOrderCard.module.css';
-
-const FULFILLMENT_ICONS: Record<string, { src: string }> = {
-  delivery: {
-    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F06ac09fed4534c02b62a8d43e759a824',
-  },
-  curbside: {
-    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Feb8e854b1c2441668631c59d482af3f2',
-  },
-  auto: {
-    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F26a934c359774221bf674b2fb62d93da',
-  },
-};
 
 const ORDER_TYPE_LABELS: Record<string, string> = {
   delivery: 'Delivery from store',
@@ -58,7 +47,6 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
   const bundleTotal = `$${(parsePrice(autoCare.orderTotal) + parsePrice(delivery.orderTotal)).toFixed(2)}`;
 
   const activeStep = delivery.timelineStep ? STEP_INDEX[delivery.timelineStep] : undefined;
-  const rightIcon  = FULFILLMENT_ICONS[delivery.orderType] ?? FULFILLMENT_ICONS.delivery;
   const rightLabel = ORDER_TYPE_LABELS[delivery.orderType] ?? ORDER_TYPE_LABELS.delivery;
   const rightSteps = delivery.timelineVariant === 'pickup' ? PICKUP_STEPS : DELIVERY_STEPS;
   const rightTrackerStatus = delivery.timelineStep === 'delivered' ? 'success' : 'info';
@@ -72,12 +60,7 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
           {/* ── Left: Auto Care ── */}
           <div className={styles.section}>
             <div className={styles.orderMeta}>
-              <img
-                src={FULFILLMENT_ICONS.auto.src}
-                alt=""
-                aria-hidden="true"
-                className={styles.typeIcon}
-              />
+              <OrderTypeIcon type="auto" width={48} height={48} className={styles.typeIcon} />
               <div className={styles.metaText}>
                 <span className={styles.eyebrow}>{ORDER_TYPE_LABELS.auto}</span>
                 {autoCare.location && (
@@ -127,12 +110,7 @@ export function CombinedOrderCard({ autoCare, delivery, autoCareAppointmentDate 
           {/* ── Right: Delivery / Curbside ── */}
           <div className={styles.section}>
             <div className={styles.orderMeta} style={{ marginBottom: 1 }}>
-              <img
-                src={rightIcon.src}
-                alt=""
-                aria-hidden="true"
-                className={styles.typeIcon}
-              />
+              <OrderTypeIcon type={delivery.orderType} width={48} height={48} className={styles.typeIcon} />
               <div className={styles.metaText}>
                 <span className={styles.eyebrow}>{rightLabel}</span>
                 {delivery.location && (

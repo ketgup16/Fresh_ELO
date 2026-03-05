@@ -1,6 +1,7 @@
 import React from 'react';
 import { Heart } from '@/components/icons/Heart';
 import { HeartFill } from '@/components/icons/HeartFill';
+import { WCPIconToggle } from './WCPIconToggle';
 import { snackbar } from '@/hooks/use-snackbar';
 import styles from './WCPHeartView.module.css';
 
@@ -124,11 +125,9 @@ export function WCPHeartView({
 
   const defaultAriaLabel = activated ? `Remove from favorites` : `Add to favorites`;
 
-  const buttonClass = [
+  const toggleButtonClass = [
     styles.heartButton,
-    activated ? styles.activated : '',
     size === 'small' ? styles.sizeSmall : size === 'medium' ? styles.sizeMedium : styles.sizeResponsive,
-    disabled ? styles.disabled : '',
     UNSAFE_className,
   ].filter(Boolean).join(' ');
 
@@ -164,25 +163,19 @@ export function WCPHeartView({
         </div>
       )}
 
-      {/* Heart toggle button */}
-      <button
-        type="button"
-        className={buttonClass}
-        onClick={toggle}
+      {/* Heart toggle button — composed from WCPIconToggle */}
+      <WCPIconToggle
+        uncheckedIcon={<Heart className={styles.iconOutline} />}
+        checkedIcon={<HeartFill className={styles.iconFill} />}
+        checked={activated}
+        onChange={toggle}
+        aria-label={ariaLabel ?? defaultAriaLabel}
+        disabled={disabled}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        aria-label={ariaLabel ?? defaultAriaLabel}
-        aria-pressed={activated}
-        disabled={disabled}
-      >
-        <span className={styles.iconWrap}>
-          {activated ? (
-            <HeartFill className={styles.iconFill} />
-          ) : (
-            <Heart className={styles.iconOutline} />
-          )}
-        </span>
-      </button>
+        shape="circle"
+        UNSAFE_className={toggleButtonClass}
+      />
     </div>
   );
 }
