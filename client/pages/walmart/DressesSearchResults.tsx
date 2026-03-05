@@ -105,13 +105,15 @@ export default function DressesSearchResults() {
       <div className="bg-white font-sans">
         <SearchResultsHeader query="dresses for women" onBack={() => navigate('/walmart')} />
         <SearchFilterBar chips={FILTER_CHIPS} />
-        <AIResultsBanner />
+        <div className="lg:-mx-16">
+          <AIResultsBanner />
 
-        {/* Product list */}
-        <div className="flex flex-col">
-          {DRESS_PRODUCTS.map((product, i) => (
-            <ProductCardList key={i} {...product} />
-          ))}
+          {/* Product list */}
+          <div className="flex flex-col">
+            {DRESS_PRODUCTS.map((product, i) => (
+              <ProductCardList key={i} {...product} />
+            ))}
+          </div>
         </div>
       </div>
     </ResponsiveLayout>

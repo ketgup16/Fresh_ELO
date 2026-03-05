@@ -74,13 +74,15 @@ export default function SearchResults() {
       <div className="bg-white font-sans">
         <SearchResultsHeader query={query} onBack={() => navigate('/walmart')} />
         <SearchFilterBar chips={FILTER_CHIPS} />
-        <AIResultsBanner />
+        <div className="lg:-mx-16">
+          <AIResultsBanner />
 
-        {/* Top product results */}
-        <div className="flex flex-col">
-          {TOP_PRODUCTS.map((product, i) => (
-            <ProductCardList key={i} {...product} />
-          ))}
+          {/* Top product results */}
+          <div className="flex flex-col">
+            {TOP_PRODUCTS.map((product, i) => (
+              <ProductCardList key={i} {...product} />
+            ))}
+          </div>
         </div>
 
         {/* AI-powered sections */}
