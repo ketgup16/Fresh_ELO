@@ -75,7 +75,6 @@ function NumberedList({ items }: { items: { label: string; detail: string }[] })
 const RESOURCES = [
   { label: 'PRD Template', desc: 'Copy the structured PRD template to define your feature requirements', href: '#prd-template', external: false },
   { label: 'Builder Academy', desc: 'Video tutorials and guided learning paths', href: 'https://www.builder.io/c/docs', external: true },
-  { label: 'Figma Lunch & Learns', desc: 'Workshop recordings and session notes', href: 'https://airtable.com/appEGZA2KCbx3A6IP/shr35BhsPf4bNULE1', external: true },
   { label: 'Component Library', desc: 'Browse all 50+ LD 3.5 components with live examples', href: '/component-library', external: false },
   { label: 'Component Sandbox', desc: 'Test any component interactively with live controls', href: '/component-library/component-tester', external: false },
 ];
