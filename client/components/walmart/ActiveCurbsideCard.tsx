@@ -3,6 +3,7 @@ import { ChevronRight, FlashFill, X } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 import { GetItNowModal } from './purchase-history/GetItNowModal';
+import { PRODUCT_IMAGES } from './productImages';
 import styles from './ActiveCurbsideCard.module.css';
 
 const INITIAL_SECONDS = 57 * 60 + 23; // 57:23
@@ -16,7 +17,7 @@ interface ActiveCurbsideCardProps {
 }
 
 export function ActiveCurbsideCard({
-  productImage = 'https://api.builder.io/api/v1/image/assets/TEMP/73ac8b48f0f8a533bc0a6d04f64984317785bfb1?width=64',
+  productImage = PRODUCT_IMAGES.oatlyOatMilk,
   productName = 'Great Value Whole Vitamin D Milk, Gallon Plastic Jug',
   productPrice = '$3.36',
   location = 'Carrollton Supercenter',
