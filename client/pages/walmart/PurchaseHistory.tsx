@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IconButton } from '@/components/ui/IconButton';
 import { ChevronDown, Email, Gear } from '@/components/icons';
 import { Breadcrumb, BreadcrumbItem } from '@/components/ui/Breadcrumb';
@@ -355,7 +356,9 @@ function applyFilters(orders: OrderEntry[], f: FilterState): OrderEntry[] {
 
 // ── Page component ────────────────────────────────────────────────────────────
 export default function PurchaseHistory() {
+  const navigate = useNavigate();
   const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
+  const [openSection, setOpenSection] = useState<'settings' | null>(null);
 
   const visibleOrders = useMemo(() => applyFilters(ORDERS, filters), [filters]);
 
@@ -369,10 +372,10 @@ export default function PurchaseHistory() {
             <BreadcrumbItem isCurrent>Purchase History</BreadcrumbItem>
           </Breadcrumb>
           <div className={styles.breadcrumbActions}>
-            <IconButton variant="ghost" size="medium" aria-label="Messages">
+            <IconButton variant="ghost" size="medium" aria-label="Messages" onClick={() => navigate('/walmart/purchase-history')}>
               <Email style={{ width: 20, height: 20 }} />
             </IconButton>
-            <IconButton variant="ghost" size="medium" aria-label="Settings">
+            <IconButton variant="ghost" size="medium" aria-label="Settings" onClick={() => setOpenSection(s => s === 'settings' ? null : 'settings')}>
               <Gear style={{ width: 20, height: 20 }} />
             </IconButton>
           </div>
@@ -396,7 +399,7 @@ export default function PurchaseHistory() {
 
         {/* Body: side nav + main content */}
         <div className={styles.body}>
-          <AccountSideNav />
+          <AccountSideNav openSection={openSection ?? undefined} onSectionChange={setOpenSection} />
 
           <main className={styles.main}>
             <div className={styles.content}>

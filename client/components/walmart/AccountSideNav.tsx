@@ -106,7 +106,12 @@ function SectionRow({ icon, label, labelClassName, showChevron }: SectionRowProp
   );
 }
 
-export function AccountSideNav() {
+interface AccountSideNavProps {
+  openSection?: 'settings';
+  onSectionChange?: (section: 'settings' | null) => void;
+}
+
+export function AccountSideNav({ openSection, onSectionChange }: AccountSideNavProps = {}) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -153,7 +158,10 @@ export function AccountSideNav() {
       <Divider />
 
       {/* Settings Section (collapsible) */}
-      <Collapsible>
+      <Collapsible
+        open={openSection === 'settings' ? true : undefined}
+        onOpenChange={(open) => { if (!open) onSectionChange?.(null); }}
+      >
         <CollapsibleTrigger className={styles.collapsibleHeader}>
           <SectionRow icon={<Gear />} label="Settings" showChevron />
         </CollapsibleTrigger>
