@@ -18,8 +18,8 @@ interface ActiveCurbsideCardProps {
 
 export function ActiveCurbsideCard({
   productImage = PRODUCT_IMAGES.oatlyOatMilk,
-  productName = 'Great Value Whole Vitamin D Milk, Gallon Plastic Jug',
-  productPrice = '$3.36',
+  productName = 'Oatly Oat Milk, Non-Dairy Milk Alternative, 64 fl oz',
+  productPrice = '$5.98',
   location = 'Carrollton Supercenter',
   orderTotal = '$85.00',
 }: ActiveCurbsideCardProps) {
