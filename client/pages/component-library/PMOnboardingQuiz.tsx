@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/Button';
+import { ProgressTracker } from '@/components/ui/ProgressTracker';
 import { Alert } from '@/components/ui/Alert';
 import { Link } from '@/components/ui/Link';
 import { TextField } from '@/components/ui/TextField';
@@ -168,20 +169,6 @@ function generateReadingPath(answers: Record<string, string>): ReadingItem[] {
 }
 
 /* ── Sub-components ── */
-
-function ProgressDots({ total, current }: { total: number; current: number }) {
-  return (
-    <div className={styles.dots}>
-      {Array.from({ length: total }, (_, i) => (
-        <span
-          key={i}
-          className={`${styles.dot} ${i < current ? styles.dotDone : ''} ${i === current ? styles.dotActive : ''}`}
-          aria-hidden="true"
-        />
-      ))}
-    </div>
-  );
-}
 
 function AnswerOption({ option, selected, onSelect }: { option: QuizOption; selected: boolean; onSelect: () => void; }) {
   return (
@@ -389,19 +376,18 @@ export function PMOnboardingQuiz({ onComplete }: PMOnboardingQuizProps = {}) {
 
   /* ── Question ── */
   if (!currentQuestion) return null;
-  const progressPct = (currentIndex / QUESTIONS.length) * 100;
   const isOtherSelected = currentAnswer === 'other';
+  const stepLabels = QUESTIONS.map(q => QUESTION_LABELS[q.id]);
 
   return (
     <div className={styles.card}>
-      <div className={styles.progressHeader}>
-        <span className={styles.progressLabel}>Question {currentIndex + 1} of {QUESTIONS.length}</span>
-        <ProgressDots total={QUESTIONS.length} current={currentIndex} />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+        <span style={{ fontSize: 13, color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>
+          Question {currentIndex + 1} of {QUESTIONS.length}
+        </span>
         <Button variant="tertiary" size="small" onClick={skipAll}>Skip quiz</Button>
       </div>
-      <div className={styles.progressTrack} role="progressbar" aria-valuenow={currentIndex + 1} aria-valuemax={QUESTIONS.length}>
-        <div className={styles.progressFill} style={{ width: `${progressPct}%` }} />
-      </div>
+      <ProgressTracker steps={stepLabels} activeStep={currentIndex} status="info" />
 
       <h4 style={{ fontSize: 18, fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)', lineHeight: 1.4 }}>
         {currentQuestion.question}
