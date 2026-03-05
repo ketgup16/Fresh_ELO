@@ -10,7 +10,7 @@ import styles from './ComponentLibraryLayout.module.css';
 
 const COLLAPSED_STORAGE_KEY = 'cl-collapsed-sections';
 // Large sections start collapsed by default
-const DEFAULT_COLLAPSED = new Set(['componentLibrary.components', 'componentLibrary.sharedSection']);
+const DEFAULT_COLLAPSED = new Set<string>();
 
 function readCollapsed(): Set<string> {
   try {
