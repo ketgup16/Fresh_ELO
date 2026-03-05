@@ -131,11 +131,11 @@ const PATTERNS: PatternEntry[] = [
       />
     ),
   },
-  // ── Your Services card patterns ───────────────────────────────────────────────
+  // ── Your Services card patterns (A–D) ─────────────────────────────────────────
   {
-    id: 'services-ready-in-progress',
-    title: 'Services card: Ready + In Progress',
-    prompt: 'Show a "Your Services" card with a Prescription order ready for pickup and an Auto Care appointment in progress, collapsed to 2 rows with a View All link.',
+    id: 'services-urgency-focus',
+    title: 'Services: Prescription ready + Auto Care in progress (urgency focus)',
+    prompt: 'Show a "Your Services" card highlighting an urgent Prescription ready for pickup (with Alert banner) and Auto Care in progress. Optical is hidden in the collapsed view.',
     preview: (
       <ServicesCard
         services={[
@@ -144,7 +144,9 @@ const PATTERNS: PatternEntry[] = [
             serviceType: 'PHARMACY',
             serviceLabel: 'Prescription',
             status: 'READY_FOR_PICKUP',
-            microcopy: 'Ready at Oak Lawn Supercenter',
+            microcopy: 'Amoxicillin 500mg · ready since 9:15am',
+            pickupLocation: 'Oak Lawn Supercenter',
+            pickupDate: '2026-03-05',
           },
           {
             id: 'auto-in-progress',
@@ -159,15 +161,16 @@ const PATTERNS: PatternEntry[] = [
             serviceLabel: 'Optical',
             status: 'SCHEDULED',
             microcopy: 'Pickup: Mon, Mar 10',
+            pickupDate: '2026-03-10',
           },
         ]}
       />
     ),
   },
   {
-    id: 'services-all-statuses',
-    title: 'Services card: All statuses expanded',
-    prompt: 'Show an expanded "Your Services" card displaying all 4 service types — Prescription (Ready), Auto Care (In Progress), Optical (Scheduled), and Custom Cake (Canceled).',
+    id: 'services-all-expanded',
+    title: 'Services: All statuses expanded (full range)',
+    prompt: 'Show an expanded "Your Services" card with all 4 service types showing every status variant — Ready (green), In Progress (blue), Scheduled (gray), and Canceled (red).',
     preview: (
       <ServicesCard
         defaultExpanded
@@ -177,46 +180,87 @@ const PATTERNS: PatternEntry[] = [
             serviceType: 'PHARMACY',
             serviceLabel: 'Prescription',
             status: 'READY_FOR_PICKUP',
-            microcopy: 'Ready at Oak Lawn Supercenter',
+            microcopy: 'Lisinopril 10mg · ready since 8:30am',
+            pickupLocation: 'Carrollton Supercenter',
+            pickupDate: '2026-03-05',
           },
           {
             id: 'auto-in-progress',
             serviceType: 'AUTO',
             serviceLabel: 'Auto Care',
             status: 'IN_PROGRESS',
-            microcopy: 'Oil change in progress',
+            microcopy: 'Tire rotation — est. 45 min remaining',
           },
           {
             id: 'optical-scheduled',
             serviceType: 'OPTICAL',
             serviceLabel: 'Optical',
             status: 'SCHEDULED',
-            microcopy: 'Pickup: Mon, Mar 10',
+            microcopy: 'Contact lens pickup: Mon, Mar 10',
+            pickupDate: '2026-03-10',
           },
           {
             id: 'cake-cancelled',
             serviceType: 'BAKERY',
             serviceLabel: 'Custom Cake',
             status: 'CANCELLED',
-            microcopy: 'Order cancelled',
+            microcopy: 'Order cancelled on Mar 3',
           },
         ]}
       />
     ),
   },
   {
-    id: 'services-single-active',
-    title: 'Services card: Single active service',
-    prompt: 'Show a "Your Services" card with a single Optical appointment scheduled, no View All link needed.',
+    id: 'services-single-rx-ready',
+    title: 'Services: Single Rx ready (minimal state)',
+    prompt: 'Show a minimal "Your Services" card with a single Prescription ready for pickup and an urgency Alert banner. No toggle or View All needed.',
     preview: (
       <ServicesCard
         services={[
           {
-            id: 'optical-scheduled',
+            id: 'rx-ready',
+            serviceType: 'PHARMACY',
+            serviceLabel: 'Prescription',
+            status: 'READY_FOR_PICKUP',
+            microcopy: 'Metformin 1000mg · ready since 10:00am',
+            pickupLocation: 'Irving Supercenter',
+            pickupDate: '2026-03-05',
+          },
+        ]}
+      />
+    ),
+  },
+  {
+    id: 'services-multi-store',
+    title: 'Services: Multi-store services',
+    prompt: 'Show a "Your Services" card with 3 services across 2 different stores, demonstrating store context in each row microcopy.',
+    preview: (
+      <ServicesCard
+        defaultExpanded
+        services={[
+          {
+            id: 'rx-ready-store1',
+            serviceType: 'PHARMACY',
+            serviceLabel: 'Prescription',
+            status: 'READY_FOR_PICKUP',
+            microcopy: 'Oak Lawn Supercenter · ready since 9:00am',
+            pickupLocation: 'Oak Lawn Supercenter',
+            pickupDate: '2026-03-05',
+          },
+          {
+            id: 'optical-scheduled-store2',
             serviceType: 'OPTICAL',
             serviceLabel: 'Optical',
             status: 'SCHEDULED',
-            microcopy: 'Pickup: Mon, Mar 10',
+            microcopy: 'Carrollton Supercenter · pickup Mar 10',
+            pickupDate: '2026-03-10',
+          },
+          {
+            id: 'auto-processing-store1',
+            serviceType: 'AUTO',
+            serviceLabel: 'Auto Care',
+            status: 'PROCESSING',
+            microcopy: 'Oak Lawn Supercenter · submitted today',
           },
         ]}
       />

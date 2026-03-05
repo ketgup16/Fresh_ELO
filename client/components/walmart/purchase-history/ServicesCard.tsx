@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from '@/components/icons';
 import { Link } from '@/components/ui/Link';
+import { Button } from '@/components/ui/Button';
+import { Divider } from '@/components/ui/Divider';
+import { Alert } from '@/components/ui/Alert';
 import { ServiceRow, ServiceStatus } from './ServiceRow';
 import { ServiceType } from './ServiceTypeIcon';
 import styles from './ServicesCard.module.css';
@@ -12,6 +15,8 @@ export interface ServiceEntry {
   status: ServiceStatus;
   microcopy?: string;
   orderDetailPath?: string;
+  pickupDate?: string;
+  pickupLocation?: string;
 }
 
 interface ServicesCardProps {
@@ -29,6 +34,12 @@ const PRIORITY: Record<ServiceStatus, number> = {
   OTHER:            5,
 };
 
+function parsePickupDate(dateStr?: string): number {
+  if (!dateStr) return Infinity;
+  const parsed = Date.parse(dateStr);
+  return isNaN(parsed) ? Infinity : parsed;
+}
+
 export function ServicesCard({
   services,
   onViewAll,
@@ -38,13 +49,19 @@ export function ServicesCard({
 
   const activeCount = services.filter(s => s.status !== 'CANCELLED').length;
 
-  const sorted = [...services].sort(
-    (a, b) => PRIORITY[a.status] - PRIORITY[b.status]
-  );
+  const sorted = [...services].sort((a, b) => {
+    const priorityDiff = PRIORITY[a.status] - PRIORITY[b.status];
+    if (priorityDiff !== 0) return priorityDiff;
+    return parsePickupDate(a.pickupDate) - parsePickupDate(b.pickupDate);
+  });
 
   const displayed = isExpanded ? sorted : sorted.slice(0, 2);
   const showViewAll = sorted.length > 2 && !isExpanded;
   const showToggle = sorted.length > 2;
+
+  const readyServices = displayed.filter(
+    s => s.status === 'READY_FOR_PICKUP' && s.pickupLocation
+  );
 
   return (
     <article className={styles.card}>
@@ -58,53 +75,66 @@ export function ServicesCard({
         </h3>
 
         {showToggle && (
-          <button
-            className={styles.toggleBtn}
+          <Button
+            variant="tertiary"
+            size="small"
             onClick={() => setIsExpanded(prev => !prev)}
             aria-expanded={isExpanded}
             aria-controls="services-list"
+            trailing={
+              isExpanded
+                ? <ChevronUp aria-hidden="true" style={{ width: 16, height: 16 }} />
+                : <ChevronDown aria-hidden="true" style={{ width: 16, height: 16 }} />
+            }
           >
-            {isExpanded ? (
-              <>
-                Show less
-                <ChevronUp aria-hidden="true" className={styles.toggleIcon} />
-              </>
-            ) : (
-              <>
-                Show all
-                <ChevronDown aria-hidden="true" className={styles.toggleIcon} />
-              </>
-            )}
-          </button>
+            {isExpanded ? 'Show less' : 'Show all'}
+          </Button>
         )}
       </div>
+
+      <Divider />
+
+      {/* Urgency alert for ready-for-pickup services */}
+      {readyServices.length > 0 && (
+        <div className={styles.alertSection}>
+          {readyServices.map(s => (
+            <Alert key={s.id} variant="success">
+              {s.serviceLabel} ready for pickup at {s.pickupLocation}
+            </Alert>
+          ))}
+        </div>
+      )}
 
       {/* Service rows */}
       <div id="services-list">
         {displayed.map((entry, i) => (
-          <ServiceRow
-            key={entry.id}
-            serviceType={entry.serviceType}
-            serviceLabel={entry.serviceLabel}
-            status={entry.status}
-            microcopy={entry.microcopy}
-            isLast={i === displayed.length - 1 && !showViewAll}
-            onTap={
-              entry.orderDetailPath
-                ? () => window.location.assign(entry.orderDetailPath!)
-                : undefined
-            }
-          />
+          <React.Fragment key={entry.id}>
+            {i > 0 && <Divider />}
+            <ServiceRow
+              serviceType={entry.serviceType}
+              serviceLabel={entry.serviceLabel}
+              status={entry.status}
+              microcopy={entry.microcopy}
+              onTap={
+                entry.orderDetailPath
+                  ? () => window.location.assign(entry.orderDetailPath!)
+                  : undefined
+              }
+            />
+          </React.Fragment>
         ))}
       </div>
 
       {/* View All footer link */}
       {showViewAll && (
-        <div className={styles.viewAllRow}>
-          <Link href="#" underline onClick={e => { e.preventDefault(); onViewAll?.(); }}>
-            View all services
-          </Link>
-        </div>
+        <>
+          <Divider />
+          <div className={styles.viewAllRow}>
+            <Link href="#" underline onClick={e => { e.preventDefault(); onViewAll?.(); }}>
+              View all services
+            </Link>
+          </div>
+        </>
       )}
     </article>
   );

@@ -32,7 +32,6 @@ export interface ServiceRowProps {
   status: ServiceStatus;
   microcopy?: string;
   onTap?: () => void;
-  isLast?: boolean;
 }
 
 export function ServiceRow({
@@ -41,13 +40,12 @@ export function ServiceRow({
   status,
   microcopy,
   onTap,
-  isLast = false,
 }: ServiceRowProps) {
   const { label, color } = STATUS_CONFIG[status];
 
   return (
     <button
-      className={`${styles.row} ${isLast ? styles.rowLast : ''}`}
+      className={styles.row}
       onClick={onTap}
       aria-label={`${serviceLabel}, ${label}`}
     >
