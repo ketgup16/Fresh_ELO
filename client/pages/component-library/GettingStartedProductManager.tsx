@@ -274,17 +274,6 @@ function BeforeYouPromptChecklist() {
   );
 }
 
-/* ── 8. Data Feature Patterns ── */
-
-const DATA_PATTERNS = [
-  { name: 'Performance Dashboard', desc: 'Metric cards + chart + data table. Campaign overviews.', components: ['Card', 'DataTable'] },
-  { name: 'Data Table with Filters', desc: 'Filterable, sortable, resizable. Keyword/item reports.', components: ['DataTable', 'FilterChips'] },
-  { name: 'KPI Card Grid', desc: 'Responsive grid with trend indicators. Executive summaries.', components: ['Card', 'Tag'] },
-  { name: 'Recommendation Cards', desc: 'Carousel or list with Apply/Dismiss actions.', components: ['Card', 'Button'] },
-  { name: 'Chart + Summary', desc: 'Chart with legend, time controls, stats. Trend analysis.', components: ['Chart'] },
-  { name: 'Detail Panel', desc: 'Resizable side panel from row/card click. Drill-down views.', components: ['Panel', 'DataTable'] },
-];
-
 /* ── PM Quick-Start Prompts ── */
 
 interface Prompt { label: string; full: string; }
@@ -446,35 +435,6 @@ export function GettingStartedProductManager() {
           { label: 'The agent builds the feature', detail: 'Generates production-ready code using semantic tokens, correct components, and accessibility built in.' },
           { label: 'You review and iterate', detail: 'Changes appear in the live preview. Describe adjustments in plain language and the agent updates the code.' },
         ]} />
-      </SectionCard>
-
-      {/* 8. Data Feature Patterns */}
-      <SectionCard title="Data Feature Patterns">
-        <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', marginBottom: 20 }}>
-          Reference these patterns by name in your PRD to help designers and developers quickly identify the right components.
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 12 }}>
-          {DATA_PATTERNS.map(p => (
-            <div key={p.name} style={{
-              padding: '20px', borderRadius: 8,
-              background: 'var(--ld-semantic-color-fill-subtle)',
-              borderLeft: '3px solid var(--ld-semantic-color-border-brand)',
-            }}>
-              <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--ld-semantic-color-text)', marginBottom: 6 }}>{p.name}</div>
-              <div style={{ fontSize: 13, color: 'var(--ld-semantic-color-text-subtle)', lineHeight: 1.5, marginBottom: 12 }}>{p.desc}</div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                {p.components.map(c => (
-                  <span key={c} style={{
-                    padding: '2px 10px', borderRadius: 9999, fontSize: 12, fontWeight: 600,
-                    background: 'var(--ld-semantic-color-surface)',
-                    border: '1px solid var(--ld-semantic-color-border-moderate)',
-                    color: 'var(--ld-semantic-color-text-brand-bold)',
-                  }}>{c}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
       </SectionCard>
 
       {/* 9. Quick-Start Prompts — collapsed */}
