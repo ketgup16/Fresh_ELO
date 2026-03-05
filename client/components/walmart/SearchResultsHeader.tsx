@@ -1,6 +1,7 @@
 import { ChevronLeft } from "@/components/icons";
 import { SparklesIcon } from "@/components/icons-custom";
 import { IconButton } from "@/components/ui/IconButton";
+import { useLayoutSettings } from "@/contexts/LayoutSettingsContext";
 
 interface SearchResultsHeaderProps {
   query: string;
@@ -8,8 +9,18 @@ interface SearchResultsHeaderProps {
 }
 
 export function SearchResultsHeader({ query, onBack }: SearchResultsHeaderProps) {
+  const { platform } = useLayoutSettings();
+  const isNative = platform === 'ios' || platform === 'android';
+
   return (
-    <div className="sticky top-0 z-50 bg-white lg:hidden -mx-4">
+    <div
+      className={[
+        'sticky z-50 bg-white lg:hidden -mx-4',
+        // In native mode the status bar (54px) is its own sticky element above.
+        // Set top-[54px] so this header never slides under it.
+        isNative ? 'top-[54px]' : 'top-0',
+      ].join(' ')}
+    >
       <div className="flex items-center gap-1 px-4 pb-4 pt-2">
         <IconButton
           variant="ghost"
