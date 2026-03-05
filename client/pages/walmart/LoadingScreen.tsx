@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { SearchResultsHeader } from "@/components/walmart/SearchResultsHeader";
+import { SearchFilterBar } from "@/components/walmart/SearchFilterBar";
+
+const FILTER_CHIPS = ['In-store', 'Top rated', 'Brand', 'Screen size', 'Price', 'Special offers'] as const;
 
 export default function LoadingScreen() {
   const navigate = useNavigate();
@@ -21,18 +24,13 @@ export default function LoadingScreen() {
   }, [navigate, query]);
 
   return (
-    <ResponsiveLayout maxWidth="full">
+    <ResponsiveLayout maxWidth="full" showMobileTopNav={false} nativeStatusBarVariant="white">
       <div className="bg-white font-sans">
-        {/* Search header — matches live SearchResultsHeader */}
+        {/* Header — identical to search results page */}
         <SearchResultsHeader query={query} onBack={() => navigate('/walmart')} />
 
-        {/* Filter bar skeleton — mirrors SearchFilterBar layout */}
-        <div className="flex items-center gap-2 px-3 py-2 overflow-hidden border-b border-border">
-          <div className="w-8 h-8 rounded-full flex-shrink-0 animate-shimmer" />
-          {[80, 64, 96, 72, 88].map((w, i) => (
-            <div key={i} className="h-8 rounded-full flex-shrink-0 animate-shimmer" style={{ width: w }} />
-          ))}
-        </div>
+        {/* Filter bar — same component as search results page */}
+        <SearchFilterBar chips={FILTER_CHIPS} />
 
         {/* AI banner skeleton */}
         <div className="flex items-center gap-2 px-4 py-2 border-b border-border">
