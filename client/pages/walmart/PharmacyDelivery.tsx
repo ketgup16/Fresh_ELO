@@ -152,7 +152,7 @@ const HELPFUL_LINKS = [
 
 export default function PharmacyDelivery() {
   return (
-    <ResponsiveLayout maxWidth="full" mobileTopNavTitle="Pharmacy" nativeStatusBarVariant="white">
+    <ResponsiveLayout maxWidth="full" mobileTopNavTitle="Pharmacy">
       <div className={styles.page}>
 
         {/* 1 · Hero */}

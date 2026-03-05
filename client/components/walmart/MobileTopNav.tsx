@@ -84,17 +84,18 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTit
     return (
       <>
         <div className={styles.root}>
-          <div className={styles.l3Bar}>
+          <div className={[styles.l3Bar, isBlue ? styles.l3BarBlue : ''].filter(Boolean).join(' ')}>
             <div className={styles.l3Row}>
               <button
                 className={styles.l3BackButton}
+                style={{ color: isBlue ? 'white' : 'var(--ld-semantic-color-text, #2e2f32)' }}
                 aria-label="Go back"
                 onClick={() => navigate(-1)}
               >
                 <ChevronLeft className={styles.l3BackIcon} />
               </button>
-              <h1 className={styles.l3Title}>{pageTitle}</h1>
-              <CartIcon count={cartCount} price={cartPrice} />
+              <h1 className={styles.l3Title} style={{ color: isBlue ? 'white' : 'var(--ld-semantic-color-text, #2e2f32)' }}>{pageTitle}</h1>
+              <CartIcon count={cartCount} price={cartPrice} textColor={isBlue ? 'white' : 'var(--ld-semantic-color-text, #2e2f32)'} />
             </div>
           </div>
         </div>

@@ -325,6 +325,11 @@
   border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
+.l3BarBlue {
+  background: var(--ld-semantic-color-top-nav-fill, #0071dc);
+  border-bottom: none;
+}
+
 .l3Row {
   display: flex;
   align-items: center;
