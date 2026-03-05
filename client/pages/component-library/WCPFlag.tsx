@@ -74,74 +74,132 @@ const TEXT_TOKENS: Record<WCPFlagVariant, string> = {
 interface LabelRule {
   label: string;
   variant: WCPFlagVariant;
+  category: string;
   context: string;
   icon?: React.ReactNode;
   note?: string;
 }
 
 const LABEL_RULES: LabelRule[] = [
+  // ── Events & Specific Promotion ──────────────────────────────────────────
   {
-    label: 'Best seller',
-    variant: 'savings-bold',
-    context: 'Product tiles (WCPItemTile, item carousels)',
-    icon: <Dollar {...ICON_SIZE} />,
-    note: 'High-emphasis solid red — strongest commercial signal on a tile.',
+    category: 'Events & Promotion',
+    label: 'Early Access',
+    variant: 'confidence-alt',
+    icon: <Spark {...ICON_SIZE} />,
+    context: 'Early sale access, loyalty events',
+    note: 'Deep navy with gold Spark icon — exclusive access window. Always pair with Spark icon.',
   },
   {
-    label: 'Rollback',
-    variant: 'holiday-restricted',
-    context: 'Product tiles, search results list rows',
-    icon: undefined,
-    note: 'Subdued gray — Rollback is a price restoration, not a new promotion. No icon used.',
+    category: 'Events & Promotion',
+    label: 'Black Friday Deal',
+    variant: 'confidence-bold',
+    context: 'Black Friday sale event',
+    note: 'Darkest navy — high-emphasis event badge.',
   },
   {
+    category: 'Events & Promotion',
+    label: 'Preview Black Friday',
+    variant: 'confidence-bold',
+    context: 'Pre-Black Friday period',
+    note: 'Darkest navy — teaser flag shown before the main event starts.',
+  },
+  {
+    category: 'Events & Promotion',
     label: 'Deal',
-    variant: 'savings-subtle',
-    context: 'Product tiles',
-    icon: <Tag {...ICON_SIZE} />,
-    note: 'Outlined red — lower emphasis than Best seller; used for sale/deal pricing.',
+    variant: 'confidence-bold',
+    context: 'General deal events on product tiles',
+    note: 'Darkest navy — generic event deal label.',
   },
   {
-    label: 'Popular',
-    variant: 'confidence-subtle',
-    context: 'Product tiles',
-    icon: <ShieldCheck {...ICON_SIZE} />,
-    note: 'Light blue — social confidence signal; not a savings indicator.',
+    category: 'Events & Promotion',
+    label: 'Online only',
+    variant: 'social',
+    icon: <Check {...ICON_SIZE} />,
+    context: 'Items exclusive to walmart.com',
+    note: 'Outlined blue — signals digital exclusivity. Pair with Check icon.',
+  },
+  // ── Pricing & Promo ───────────────────────────────────────────────────────
+  {
+    category: 'Pricing & Promo',
+    label: 'Rollback',
+    variant: 'savings-bold',
+    context: 'Product tiles, search result rows',
+    note: 'Solid red — permanent price reduction. High emphasis, no icon.',
   },
   {
-    label: 'Clearance',
-    variant: 'holiday-restricted',
-    context: 'Product tiles (standard)',
-    icon: undefined,
-    note: 'Use holiday-restricted (gray) in regular product grids.',
-  },
-  {
+    category: 'Pricing & Promo',
     label: 'Clearance',
     variant: 'urgent',
-    context: 'Flash deals carousel only',
+    context: 'Clearance-priced items',
+    note: 'Bright yellow — last-chance clearance pricing.',
+  },
+  {
+    category: 'Pricing & Promo',
+    label: 'Reduced price',
+    variant: 'confidence-subtle',
+    context: 'Sale / reduced pricing',
+    note: 'Light blue tint — lower-emphasis price drop. Distinct from Rollback.',
+  },
+  {
+    category: 'Pricing & Promo',
+    label: 'Flash deal',
+    variant: 'savings-subtle',
     icon: <Flash {...ICON_SIZE} />,
-    note: 'Use urgent (yellow) in flash-deals context only — urgency is heightened.',
+    context: 'Time-limited flash deals carousel',
+    note: 'Outlined red — time-sensitive offer. Pair with Flash icon.',
+  },
+  // ── Trust ─────────────────────────────────────────────────────────────────
+  {
+    category: 'Trust',
+    label: 'Best seller',
+    variant: 'confidence-bold',
+    context: 'High-selling items on product tiles',
+    note: 'Darkest navy — strongest commercial trust signal on a tile.',
   },
   {
-    label: 'Only 3 left!',
-    variant: 'scarcity',
-    context: 'Product tiles, PDP',
-    icon: <Hourglass {...ICON_SIZE} />,
-    note: 'Orange — low-stock / limited availability. The number in the label is dynamic.',
+    category: 'Trust',
+    label: 'Popular pick',
+    variant: 'confidence-bold',
+    context: 'Editorial or algorithmic popularity',
+    note: 'Darkest navy — popularity signal; not a savings indicator.',
   },
+  // ── Social Proofing ───────────────────────────────────────────────────────
   {
-    label: 'Walmart+ member price',
-    variant: 'holiday-member',
-    context: 'Membership-gated offers',
-    icon: <Gift {...ICON_SIZE} />,
-    note: 'Green — reserved exclusively for Walmart+ member benefits and holiday member pricing.',
-  },
-  {
-    label: '1.2K+ viewed recently',
+    category: 'Social Proofing',
+    label: 'Bought X+ times',
     variant: 'social',
     context: 'PDP, product tiles',
-    icon: <UsersFill {...ICON_SIZE} />,
-    note: 'Cyan — social proof labels. Count is dynamic and formatted (1K, 1.2K, etc.).',
+    note: 'Outlined blue — total purchase count. "X+" is a dynamic formatted number.',
+  },
+  {
+    category: 'Social Proofing',
+    label: 'X+ bought since yesterday',
+    variant: 'social',
+    context: 'PDP, product tiles',
+    note: 'Outlined blue — recency-based purchase signal.',
+  },
+  {
+    category: 'Social Proofing',
+    label: "In X+ people's carts",
+    variant: 'social',
+    context: 'PDP, product tiles',
+    note: 'Outlined blue — cart demand / interest signal.',
+  },
+  {
+    category: 'Social Proofing',
+    label: 'X+ people viewing now',
+    variant: 'social',
+    context: 'PDP, product tiles',
+    note: 'Outlined blue — live browsing interest signal.',
+  },
+  // ── Availability ──────────────────────────────────────────────────────────
+  {
+    category: 'Availability',
+    label: 'Preorder',
+    variant: 'confidence',
+    context: 'Not-yet-released products',
+    note: 'Deep navy — available to order before the release date.',
   },
 ];
 
@@ -251,76 +309,104 @@ export default function WCPFlagPage() {
               ))}
             </div>
 
-            {LABEL_RULES.map((rule, i) => (
-              <div
-                key={`${rule.label}-${rule.variant}`}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '160px 180px minmax(0,1fr) minmax(0,1.5fr)',
-                  padding: '14px 16px',
-                  alignItems: 'start',
-                  gap: '12px',
-                  borderBottom: i < LABEL_RULES.length - 1
-                    ? '1px solid var(--ld-semantic-color-separator, #e3e4e5)'
-                    : 'none',
-                  background: i % 2 === 1
-                    ? 'var(--ld-semantic-color-fill-surface-secondary, #fafafa)'
-                    : undefined,
-                }}
-              >
-                {/* Live preview */}
-                <div style={{ paddingTop: '2px' }}>
-                  <WCPFlag variant={rule.variant} label={rule.label} leadingIcon={rule.icon} />
-                </div>
+            {/* Group rows by category */}
+            {(() => {
+              const categories = Array.from(new Set(LABEL_RULES.map(r => r.category)));
+              return categories.map(cat => {
+                const rows = LABEL_RULES.filter(r => r.category === cat);
+                return (
+                  <React.Fragment key={cat}>
+                    {/* Category header row */}
+                    <div style={{
+                      padding: '8px 16px',
+                      background: 'var(--ld-semantic-color-background-subtle, #f5f5f6)',
+                      borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
+                      borderTop: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
+                    }}>
+                      <span style={{
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.08em',
+                        color: 'var(--ld-semantic-color-text-brand, #0071dc)',
+                        fontFamily: 'var(--ld-semantic-font-family-sans)',
+                      }}>
+                        {cat}
+                      </span>
+                    </div>
 
-                {/* Label text */}
-                <div style={{
-                  fontSize: '13px',
-                  fontWeight: 600,
-                  fontFamily: 'var(--ld-semantic-font-family-sans)',
-                  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-                  paddingTop: '3px',
-                }}>
-                  "{rule.label}"
-                </div>
+                    {/* Data rows for this category */}
+                    {rows.map((rule, i) => (
+                      <div
+                        key={`${rule.label}-${rule.variant}`}
+                        style={{
+                          display: 'grid',
+                          gridTemplateColumns: '160px 180px minmax(0,1fr) minmax(0,1.5fr)',
+                          padding: '14px 16px',
+                          alignItems: 'start',
+                          gap: '12px',
+                          borderBottom: i < rows.length - 1
+                            ? '1px solid var(--ld-semantic-color-separator, #e3e4e5)'
+                            : 'none',
+                        }}
+                      >
+                        {/* Live preview */}
+                        <div style={{ paddingTop: '2px' }}>
+                          <WCPFlag variant={rule.variant} label={rule.label} leadingIcon={rule.icon} />
+                        </div>
 
-                {/* Variant */}
-                <div style={{ paddingTop: '3px' }}>
-                  <code style={{
-                    fontSize: '12px',
-                    fontFamily: 'monospace',
-                    fontWeight: 600,
-                    color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-                    background: 'var(--ld-semantic-color-fill-surface-secondary, #f5f5f6)',
-                    padding: '2px 6px',
-                    borderRadius: '4px',
-                    display: 'block',
-                    width: 'fit-content',
-                    marginBottom: '4px',
-                  }}>
-                    {rule.variant}
-                  </code>
-                  <span style={{
-                    fontSize: '11px',
-                    fontFamily: 'var(--ld-semantic-font-family-sans)',
-                    color: 'var(--ld-semantic-color-text-subtlest, #9b9ea4)',
-                  }}>
-                    {rule.context}
-                  </span>
-                </div>
+                        {/* Label text */}
+                        <div style={{
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          fontFamily: 'var(--ld-semantic-font-family-sans)',
+                          color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+                          paddingTop: '3px',
+                        }}>
+                          "{rule.label}"
+                        </div>
 
-                {/* When to use note */}
-                <div style={{
-                  fontSize: '13px',
-                  fontFamily: 'var(--ld-semantic-font-family-sans)',
-                  color: 'var(--ld-semantic-color-text-subtle, #74767c)',
-                  lineHeight: '1.5',
-                  paddingTop: '3px',
-                }}>
-                  {rule.note}
-                </div>
-              </div>
-            ))}
+                        {/* Variant */}
+                        <div style={{ paddingTop: '3px' }}>
+                          <code style={{
+                            fontSize: '12px',
+                            fontFamily: 'monospace',
+                            fontWeight: 600,
+                            color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+                            background: 'var(--ld-semantic-color-fill-surface-secondary, #f5f5f6)',
+                            padding: '2px 6px',
+                            borderRadius: '4px',
+                            display: 'block',
+                            width: 'fit-content',
+                            marginBottom: '4px',
+                          }}>
+                            {rule.variant}
+                          </code>
+                          <span style={{
+                            fontSize: '11px',
+                            fontFamily: 'var(--ld-semantic-font-family-sans)',
+                            color: 'var(--ld-semantic-color-text-subtlest, #9b9ea4)',
+                          }}>
+                            {rule.context}
+                          </span>
+                        </div>
+
+                        {/* When to use note */}
+                        <div style={{
+                          fontSize: '13px',
+                          fontFamily: 'var(--ld-semantic-font-family-sans)',
+                          color: 'var(--ld-semantic-color-text-subtle, #74767c)',
+                          lineHeight: '1.5',
+                          paddingTop: '3px',
+                        }}>
+                          {rule.note}
+                        </div>
+                      </div>
+                    ))}
+                  </React.Fragment>
+                );
+              });
+            })()}
           </div>
         </section>
 
