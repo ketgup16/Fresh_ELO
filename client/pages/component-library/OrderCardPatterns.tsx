@@ -7,6 +7,7 @@ import { CombinedOrderCard } from '@/components/walmart/purchase-history/Combine
 import { DelayedDeliveryCard } from '@/components/walmart/purchase-history/DelayedDeliveryCard';
 import { MaintenanceHealthCard } from '@/components/walmart/purchase-history/MaintenanceHealthCard';
 import { AutoCareUpsellOfferCard } from '@/components/walmart/purchase-history/AutoCareUpsellOfferCard';
+import { ServicesCard } from '@/components/walmart/purchase-history/ServicesCard';
 
 // ── Shared image helpers ────────────────────────────────────────────────────
 const CDN = 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F';
@@ -127,6 +128,97 @@ const PATTERNS: PatternEntry[] = [
         delayEstimate="Estimated up to 2 hours late"
         products={[P.strawberries, P.blueberries, P.bananas]}
         orderTotal="$32.47"
+      />
+    ),
+  },
+  // ── Your Services card patterns ───────────────────────────────────────────────
+  {
+    id: 'services-ready-in-progress',
+    title: 'Services card: Ready + In Progress',
+    prompt: 'Show a "Your Services" card with a Prescription order ready for pickup and an Auto Care appointment in progress, collapsed to 2 rows with a View All link.',
+    preview: (
+      <ServicesCard
+        services={[
+          {
+            id: 'rx-ready',
+            serviceType: 'PHARMACY',
+            serviceLabel: 'Prescription',
+            status: 'READY_FOR_PICKUP',
+            microcopy: 'Ready at Oak Lawn Supercenter',
+          },
+          {
+            id: 'auto-in-progress',
+            serviceType: 'AUTO',
+            serviceLabel: 'Auto Care',
+            status: 'IN_PROGRESS',
+            microcopy: 'Oil change in progress',
+          },
+          {
+            id: 'optical-scheduled',
+            serviceType: 'OPTICAL',
+            serviceLabel: 'Optical',
+            status: 'SCHEDULED',
+            microcopy: 'Pickup: Mon, Mar 10',
+          },
+        ]}
+      />
+    ),
+  },
+  {
+    id: 'services-all-statuses',
+    title: 'Services card: All statuses expanded',
+    prompt: 'Show an expanded "Your Services" card displaying all 4 service types — Prescription (Ready), Auto Care (In Progress), Optical (Scheduled), and Custom Cake (Canceled).',
+    preview: (
+      <ServicesCard
+        defaultExpanded
+        services={[
+          {
+            id: 'rx-ready',
+            serviceType: 'PHARMACY',
+            serviceLabel: 'Prescription',
+            status: 'READY_FOR_PICKUP',
+            microcopy: 'Ready at Oak Lawn Supercenter',
+          },
+          {
+            id: 'auto-in-progress',
+            serviceType: 'AUTO',
+            serviceLabel: 'Auto Care',
+            status: 'IN_PROGRESS',
+            microcopy: 'Oil change in progress',
+          },
+          {
+            id: 'optical-scheduled',
+            serviceType: 'OPTICAL',
+            serviceLabel: 'Optical',
+            status: 'SCHEDULED',
+            microcopy: 'Pickup: Mon, Mar 10',
+          },
+          {
+            id: 'cake-cancelled',
+            serviceType: 'BAKERY',
+            serviceLabel: 'Custom Cake',
+            status: 'CANCELLED',
+            microcopy: 'Order cancelled',
+          },
+        ]}
+      />
+    ),
+  },
+  {
+    id: 'services-single-active',
+    title: 'Services card: Single active service',
+    prompt: 'Show a "Your Services" card with a single Optical appointment scheduled, no View All link needed.',
+    preview: (
+      <ServicesCard
+        services={[
+          {
+            id: 'optical-scheduled',
+            serviceType: 'OPTICAL',
+            serviceLabel: 'Optical',
+            status: 'SCHEDULED',
+            microcopy: 'Pickup: Mon, Mar 10',
+          },
+        ]}
       />
     ),
   },
