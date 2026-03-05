@@ -224,15 +224,19 @@ export default function PharmacyDelivery() {
             <div className={styles.serviceCardsGrid}>
               {SERVICE_CARDS.map((card) => (
                 <div key={card.title} className={styles.serviceCard}>
-                  <img
-                    src={card.illustration}
-                    alt=""
-                    aria-hidden="true"
-                    className={styles.serviceCardIllustration}
-                  />
-                  <h3 className={styles.serviceCardTitle}>{card.title}</h3>
-                  <p className={styles.serviceCardDesc}>{card.desc}</p>
-                  <Button variant="secondary" size="small">{card.cta}</Button>
+                  <div className={styles.serviceCardImageWrap}>
+                    <img
+                      src={card.illustration}
+                      alt=""
+                      aria-hidden="true"
+                      className={styles.serviceCardIllustration}
+                    />
+                  </div>
+                  <div className={styles.serviceCardBody}>
+                    <h3 className={styles.serviceCardTitle}>{card.title}</h3>
+                    <p className={styles.serviceCardDesc}>{card.desc}</p>
+                    <Button variant="secondary" size="small">{card.cta}</Button>
+                  </div>
                 </div>
               ))}
             </div>

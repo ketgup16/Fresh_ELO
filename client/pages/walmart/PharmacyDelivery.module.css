@@ -1,6 +1,6 @@
 /* ── Page shell ── */
 .page {
-  background: var(--ld-semantic-color-background-subtle, #f5f5f5);
+  background: var(--ld-semantic-color-surface, #fff);
   font-family: var(--ld-semantic-font-family-sans);
   min-height: 100vh;
 }
@@ -9,22 +9,28 @@
 .hero {
   background: var(--ld-semantic-color-top-nav-fill, #0071dc);
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
-  padding: var(--ld-primitive-scale-space-600, 24px) var(--ld-primitive-scale-space-400, 16px);
+  padding: var(--ld-primitive-scale-space-600, 24px) var(--ld-primitive-scale-space-400, 16px) 0;
   gap: var(--ld-primitive-scale-space-400, 16px);
   overflow: hidden;
+  min-height: 148px;
 }
 
 @media (min-width: 768px) {
   .hero {
-    padding: var(--ld-primitive-scale-space-800, 32px) var(--ld-primitive-scale-space-600, 24px);
+    padding: var(--ld-primitive-scale-space-800, 32px) var(--ld-primitive-scale-space-600, 24px) 0;
+    min-height: 180px;
   }
 }
 
 .heroContent {
   flex: 1;
   min-width: 0;
+  padding-bottom: var(--ld-primitive-scale-space-600, 24px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .heroTitle {
@@ -37,41 +43,45 @@
 
 @media (max-width: 480px) {
   .heroTitle {
-    font-size: var(--ld-semantic-font-heading-large-size, 28px);
-    line-height: var(--ld-semantic-font-heading-large-lineheight, 36px);
+    font-size: var(--ld-semantic-font-heading-large-size, 24px);
+    line-height: var(--ld-semantic-font-heading-large-lineheight, 32px);
   }
 }
 
 .heroSubtitle {
-  font-size: var(--ld-semantic-font-body-default-size, 16px);
-  line-height: var(--ld-semantic-font-body-default-lineheight, 24px);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
   color: var(--ld-semantic-color-text-inverse, #fff);
   opacity: 0.9;
   margin: 0;
 }
 
 .heroIllustration {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 160px;
   flex-shrink: 0;
   object-fit: contain;
+  align-self: flex-end;
+  /* Allow the illustration to peek out at the bottom */
+  margin-bottom: -16px;
 }
 
 @media (min-width: 768px) {
   .heroIllustration {
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 220px;
+    margin-bottom: -24px;
   }
 }
 
-/* ── 2 · Delivery banner strip ── */
+/* ── 2 · Delivery announcement banner ── */
 .deliveryBanner {
-  background: var(--ld-semantic-color-surface, #fff);
-  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-fill-accent-yellow-subtle, #fff8db);
   display: flex;
   align-items: center;
   gap: var(--ld-primitive-scale-space-200, 8px);
-  padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px);
+  padding: var(--ld-primitive-scale-space-250, 10px) var(--ld-primitive-scale-space-400, 16px);
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
 .bannerIcon {
@@ -95,7 +105,7 @@
 
 /* ── Content wrapper ── */
 .content {
-  padding: 0 var(--ld-primitive-scale-space-400, 16px) 128px;
+  padding: var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-400, 16px) 128px;
   display: flex;
   flex-direction: column;
   gap: var(--ld-primitive-scale-space-600, 24px);
@@ -104,7 +114,7 @@
 
 @media (min-width: 768px) {
   .content {
-    padding: 0 var(--ld-primitive-scale-space-600, 24px) 128px;
+    padding: var(--ld-primitive-scale-space-600, 24px) var(--ld-primitive-scale-space-600, 24px) 128px;
   }
 }
 
@@ -122,13 +132,16 @@
   display: flex;
   align-items: center;
   gap: var(--ld-primitive-scale-space-300, 12px);
-  padding: var(--ld-primitive-scale-space-400, 16px) 0;
+  padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  background: var(--ld-semantic-color-surface, #fff);
   flex-wrap: wrap;
 }
 
 .connectIconWrap {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--ld-semantic-color-fill-brand-subtle, #e6f0fb);
   display: flex;
@@ -138,14 +151,14 @@
 }
 
 .connectIcon {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   color: var(--ld-semantic-color-text-brand, #0071dc);
 }
 
 .connectText {
   flex: 1;
-  min-width: 180px;
+  min-width: 160px;
   font-size: var(--ld-semantic-font-body-small-size, 14px);
   line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
   color: var(--ld-semantic-color-text, #2e2f32);
@@ -166,6 +179,7 @@
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   padding: var(--ld-primitive-scale-space-400, 16px);
   overflow: hidden;
+  min-height: 140px;
 }
 
 .vaccineContent {
@@ -174,9 +188,9 @@
 }
 
 .vaccineTitle {
-  font-size: var(--ld-semantic-font-heading-small-size, 20px);
-  font-weight: var(--ld-semantic-font-heading-small-weight-default, 700);
-  line-height: var(--ld-semantic-font-heading-small-lineheight, 28px);
+  font-size: var(--ld-semantic-font-heading-xsmall-size, 18px);
+  font-weight: var(--ld-semantic-font-heading-xsmall-weight-default, 700);
+  line-height: var(--ld-semantic-font-heading-xsmall-lineheight, 24px);
   color: var(--ld-semantic-color-text, #2e2f32);
   margin: 0 0 var(--ld-primitive-scale-space-200, 8px);
 }
@@ -185,20 +199,18 @@
   font-size: var(--ld-semantic-font-body-small-size, 14px);
   line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
   color: var(--ld-semantic-color-text-subtle, #6d6e72);
-  margin: 0 0 var(--ld-primitive-scale-space-400, 16px);
+  margin: 0 0 var(--ld-primitive-scale-space-300, 12px);
 }
 
 .vaccineIllustration {
-  width: 88px;
-  height: 88px;
+  width: 100px;
+  height: 100px;
   flex-shrink: 0;
   object-fit: contain;
 }
 
 /* ── 5 · How can we help ── */
-.helpSection {
-  padding-top: var(--ld-primitive-scale-space-400, 16px);
-}
+.helpSection {}
 
 .serviceCardsGrid {
   display: grid;
@@ -206,27 +218,49 @@
   gap: var(--ld-primitive-scale-space-300, 12px);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .serviceCardsGrid {
     grid-template-columns: 1fr;
   }
 }
 
 .serviceCard {
-  background: var(--ld-semantic-color-background-subtle, #f5f5f5);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  padding: var(--ld-primitive-scale-space-400, 16px);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: var(--ld-primitive-scale-space-200, 8px);
+}
+
+/* image area at top of service card */
+.serviceCardImageWrap {
+  background: var(--ld-semantic-color-background-subtle, #f5f5f5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .serviceCardImageWrap {
+    height: 160px;
+  }
 }
 
 .serviceCardIllustration {
-  width: 64px;
-  height: 64px;
+  width: 88px;
+  height: 88px;
   object-fit: contain;
-  margin-bottom: var(--ld-primitive-scale-space-100, 4px);
+}
+
+/* body area below image */
+.serviceCardBody {
+  padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-400, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-200, 8px);
+  flex: 1;
 }
 
 .serviceCardTitle {
@@ -246,9 +280,7 @@
 }
 
 /* ── 6 · Delivery steps ── */
-.deliverySection {
-  padding: var(--ld-primitive-scale-space-400, 16px) 0;
-}
+.deliverySection {}
 
 .deliveryInner {
   display: flex;
@@ -262,9 +294,9 @@
 }
 
 .deliveryHeading {
-  font-size: var(--ld-semantic-font-heading-small-size, 20px);
-  font-weight: var(--ld-semantic-font-heading-small-weight-default, 700);
-  line-height: var(--ld-semantic-font-heading-small-lineheight, 28px);
+  font-size: var(--ld-semantic-font-heading-xsmall-size, 18px);
+  font-weight: var(--ld-semantic-font-heading-xsmall-weight-default, 700);
+  line-height: var(--ld-semantic-font-heading-xsmall-lineheight, 24px);
   color: var(--ld-semantic-color-text, #2e2f32);
   margin: 0 0 var(--ld-primitive-scale-space-400, 16px);
 }
@@ -317,38 +349,60 @@
 
 .deliveryIllustration {
   width: 140px;
-  height: 200px;
-  object-fit: contain;
   flex-shrink: 0;
+  object-fit: contain;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .deliveryIllustration {
     display: none;
   }
 }
 
 /* ── 7 · For all your Rx needs ── */
-.rxSection {
-  padding-top: var(--ld-primitive-scale-space-400, 16px);
-}
+.rxSection {}
 
+/* horizontal scroll row */
 .rxCards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: var(--ld-primitive-scale-space-300, 12px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--ld-primitive-scale-space-200, 8px);
+  /* hide scrollbar */
+  scrollbar-width: none;
 }
 
-@media (max-width: 768px) {
+.rxCards::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) {
   .rxCards {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-x: visible;
+    scroll-snap-type: none;
   }
 }
 
 .rxCard {
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  overflow: hidden;
   border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  overflow: hidden;
+  flex: 0 0 72vw;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  background: var(--ld-semantic-color-surface, #fff);
+}
+
+@media (min-width: 768px) {
+  .rxCard {
+    flex: unset;
+    scroll-snap-align: unset;
+  }
 }
 
 .rxCardImageWrap {
@@ -372,6 +426,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--ld-primitive-scale-space-200, 8px);
+  flex: 1;
 }
 
 .rxCardTitle {
@@ -390,9 +445,7 @@
 }
 
 /* ── 8 · Additional services ── */
-.additionalSection {
-  padding-top: var(--ld-primitive-scale-space-400, 16px);
-}
+.additionalSection {}
 
 .additionalGrid {
   display: grid;
@@ -491,26 +544,26 @@
 .medicareLogoBadge {
   background: var(--ld-semantic-color-action-fill-primary, #0071dc);
   border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
-  padding: var(--ld-primitive-scale-space-200, 8px);
+  padding: var(--ld-primitive-scale-space-150, 6px) var(--ld-primitive-scale-space-200, 8px);
   flex-shrink: 0;
-  width: 72px;
+  width: 68px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .medicareLogoText {
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 700;
   color: var(--ld-semantic-color-text-inverse, #fff);
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.3;
   word-break: break-word;
 }
 
 .medicareTitle {
-  font-size: var(--ld-semantic-font-heading-small-size, 20px);
-  font-weight: var(--ld-semantic-font-heading-small-weight-default, 700);
+  font-size: var(--ld-semantic-font-heading-xsmall-size, 18px);
+  font-weight: var(--ld-semantic-font-heading-xsmall-weight-default, 700);
   color: var(--ld-semantic-color-text, #2e2f32);
   margin: 0 0 var(--ld-primitive-scale-space-100, 4px);
 }
@@ -522,16 +575,14 @@
 }
 
 .medicareIllustration {
-  width: 100px;
+  width: 96px;
   height: 80px;
   object-fit: contain;
   flex-shrink: 0;
 }
 
 /* ── 10 · Helpful links ── */
-.helpfulSection {
-  padding-top: var(--ld-primitive-scale-space-400, 16px);
-}
+.helpfulSection {}
 
 .helpfulGrid {
   display: grid;
@@ -607,7 +658,6 @@
   display: flex;
   align-items: center;
   gap: var(--ld-primitive-scale-space-600, 24px);
-  padding: var(--ld-primitive-scale-space-400, 16px) 0;
 }
 
 .accreditationContent {
@@ -629,34 +679,38 @@
   align-items: center;
   gap: 2px;
   border: 2px solid var(--ld-semantic-color-text-negative, #c40000);
-  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  padding: var(--ld-primitive-scale-space-300, 12px);
-  min-width: 88px;
+  border-radius: 50%;
+  padding: var(--ld-primitive-scale-space-400, 16px);
+  width: 88px;
+  height: 88px;
+  justify-content: center;
 }
 
 .nabpIcon {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   color: var(--ld-semantic-color-text-negative, #c40000);
 }
 
 .nabpTitle {
-  font-size: var(--ld-semantic-font-heading-small-size, 20px);
+  font-size: var(--ld-semantic-font-body-default-size, 16px);
   font-weight: 900;
   color: var(--ld-semantic-color-text-negative, #c40000);
   margin: 0;
+  line-height: 1;
 }
 
 .nabpSubtitle {
-  font-size: var(--ld-semantic-font-caption-size, 12px);
+  font-size: 9px;
   color: var(--ld-semantic-color-text-subtle, #6d6e72);
   margin: 0;
   text-align: center;
+  line-height: 1.2;
 }
 
 /* ── 12 · About ── */
 .aboutSection {
-  padding: var(--ld-primitive-scale-space-400, 16px) 0;
+  padding-bottom: var(--ld-primitive-scale-space-400, 16px);
   display: flex;
   flex-direction: column;
   gap: var(--ld-primitive-scale-space-200, 8px);
