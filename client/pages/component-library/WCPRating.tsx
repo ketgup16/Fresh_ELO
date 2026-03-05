@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { WCPRating } from '@/components/walmart/WCPRating';
-import { WCPRatingDisplay } from '@/components/walmart/WCPRatingDisplay';
 import { Tag } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import styles from './WCPRating.module.css';
@@ -99,7 +98,7 @@ function ServiceTile({ icon, title, description, price, rating, count, reviewCou
             )}
           </div>
           <p className={styles.serviceTileDesc}>{description}</p>
-          <WCPRatingDisplay
+          <WCPRating
             value={rating}
             size="small"
             count={count}
@@ -138,7 +137,7 @@ function ReviewPromptCard() {
         </p>
         <div className={styles.reviewCardStars}>
           <p className={styles.reviewCardStarsLabel}>Tap to rate your visit</p>
-          <WCPRatingDisplay value={0} size="medium" aria-label="Rate your Auto Care experience" />
+          <WCPRating value={0} size="medium" aria-label="Rate your Auto Care experience" />
         </div>
         <div className={styles.reviewCardActions}>
           <Button variant="primary" size="small">Write a Review</Button>
@@ -391,27 +390,27 @@ const [rating, setRating] = useState(0);
             <div className={styles.variantsGrid}>
               <div className={styles.variantBox}>
                 <span className={styles.variantLabel}>Default · Small · 0 stars</span>
-                <WCPRatingDisplay value={0} size="small" count="(1.5)" linkText="Link" text="Text string" />
+                <WCPRating value={0} size="small" count="(1.5)" linkText="Link" text="Text string" />
               </div>
               <div className={styles.variantBox}>
                 <span className={styles.variantLabel}>Default · Small · 2 stars</span>
-                <WCPRatingDisplay value={2} size="small" count="(2.0)" linkText="Link" text="Text string" />
+                <WCPRating value={2} size="small" count="(2.0)" linkText="Link" text="Text string" />
               </div>
               <div className={styles.variantBox}>
                 <span className={styles.variantLabel}>Default · Medium · 0 stars</span>
-                <WCPRatingDisplay value={0} size="medium" count="(1.5)" linkText="Link" text="Text string" />
+                <WCPRating value={0} size="medium" count="(1.5)" linkText="Link" text="Text string" />
               </div>
               <div className={styles.variantBox}>
                 <span className={styles.variantLabel}>Default · Medium · 2 stars</span>
-                <WCPRatingDisplay value={2} size="medium" count="(1.5)" linkText="Link" text="Text string" />
+                <WCPRating value={2} size="medium" count="(1.5)" linkText="Link" text="Text string" />
               </div>
               <div className={`${styles.variantBox} ${styles.variantBoxInverse}`}>
                 <span className={`${styles.variantLabel} ${styles.variantLabelInverse}`}>Inverse · Small</span>
-                <WCPRatingDisplay value={0} size="small" color="inverse" count="(1.5)" linkText="Link" text="Text string" />
+                <WCPRating value={0} size="small" color="inverse" count="(1.5)" linkText="Link" text="Text string" />
               </div>
               <div className={`${styles.variantBox} ${styles.variantBoxInverse}`}>
                 <span className={`${styles.variantLabel} ${styles.variantLabelInverse}`}>Inverse · Medium</span>
-                <WCPRatingDisplay value={0} size="medium" color="inverse" count="(1.5)" linkText="Link" text="Text string" />
+                <WCPRating value={0} size="medium" color="inverse" count="(1.5)" linkText="Link" text="Text string" />
               </div>
             </div>
           </section>
@@ -477,7 +476,7 @@ const [rating, setRating] = useState(0);
                   <span className={styles.simpleTileIcon}>🛢️</span>
                   <div className={styles.simpleTileBody}>
                     <p className={styles.simpleTileName}>Conventional Oil Change</p>
-                    <WCPRatingDisplay value={4.7} size="small" count="(4.7)" linkText="12,451 reviews" />
+                    <WCPRating value={4.7} size="small" count="(4.7)" linkText="12,451 reviews" />
                     <p className={styles.simpleTilePrice}>$19.88</p>
                   </div>
                   <Button variant="primary" size="small">Book</Button>
@@ -520,7 +519,7 @@ const [rating, setRating] = useState(0);
                   Embed the rating prompt in the completion screen for maximum visibility.
                 </p>
                 <div className={styles.promptVariantDemo}>
-                  <WCPRatingDisplay value={0} size="small" linkText="Rate your visit" text="takes 30 seconds" />
+                  <WCPRating value={0} size="small" linkText="Rate your visit" text="takes 30 seconds" />
                 </div>
               </div>
               <div className={styles.promptVariantCard}>
@@ -529,7 +528,7 @@ const [rating, setRating] = useState(0);
                   Surface unreviewed past services so customers can retroactively leave ratings.
                 </p>
                 <div className={styles.promptVariantDemo}>
-                  <WCPRatingDisplay value={0} size="small" linkText="Leave a review" text="Not yet reviewed" />
+                  <WCPRating value={0} size="small" linkText="Leave a review" text="Not yet reviewed" />
                 </div>
               </div>
               <div className={styles.promptVariantCard}>
@@ -538,7 +537,7 @@ const [rating, setRating] = useState(0);
                   A "Recent visit" widget nudges customers within 7 days of an appointment.
                 </p>
                 <div className={styles.promptVariantDemo}>
-                  <WCPRatingDisplay value={0} size="small" count="(0)" linkText="Rate your Oil Change" />
+                  <WCPRating value={0} size="small" count="(0)" linkText="Rate your Oil Change" />
                 </div>
               </div>
               <div className={styles.promptVariantCard}>
@@ -547,7 +546,7 @@ const [rating, setRating] = useState(0);
                   Use medium size for prominence alongside the full review list.
                 </p>
                 <div className={styles.promptVariantDemo}>
-                  <WCPRatingDisplay value={4.7} size="medium" count="(4.7)" linkText="12,451 reviews" text="Verified bookings" />
+                  <WCPRating value={4.7} size="medium" count="(4.7)" linkText="12,451 reviews" text="Verified bookings" />
                 </div>
               </div>
             </div>
@@ -559,7 +558,7 @@ const [rating, setRating] = useState(0);
             <pre className={styles.codeBlock}>{`import { WCPRatingDisplay } from '@/components/walmart/WCPRatingDisplay';
 
 // Item tile (small, default)
-<WCPRatingDisplay
+<WCPRating
   value={4.7}
   size="small"
   count="(4.7)"
@@ -569,10 +568,10 @@ const [rating, setRating] = useState(0);
 />
 
 // Review section header (medium)
-<WCPRatingDisplay value={4.7} size="medium" count="(4.7)" linkText="12,451 reviews" />
+<WCPRating value={4.7} size="medium" count="(4.7)" linkText="12,451 reviews" />
 
 // On a dark surface (inverse)
-<WCPRatingDisplay value={4.7} size="small" color="inverse" count="(4.7)" linkText="Reviews" />`}
+<WCPRating value={4.7} size="small" color="inverse" count="(4.7)" linkText="Reviews" />`}
             </pre>
           </section>
 

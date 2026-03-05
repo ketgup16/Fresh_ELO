@@ -235,3 +235,38 @@
 .iconButton--shape-rounded {
   border-radius: 9999px; /* Fully rounded/circular */
 }
+
+/* Floating modifier — elevates the button with a box-shadow (carousel, FAB) */
+.iconButton--floating {
+  border-radius: 9999px !important; /* Always circular when floating */
+  box-shadow:
+    0 1px 2px 0 rgba(0, 0, 0, 0.12),
+    0 2px 6px 0 rgba(0, 0, 0, 0.10);
+  background: var(--ld-semantic-color-action-fill-secondary);
+  color: var(--ld-semantic-color-action-text-onfill-secondary);
+  border-color: transparent;
+}
+
+.iconButton--floating:hover:not(:disabled) {
+  box-shadow:
+    0 2px 4px 0 rgba(0, 0, 0, 0.14),
+    0 4px 10px 0 rgba(0, 0, 0, 0.12);
+  background: var(--ld-semantic-color-action-fill-secondary-hovered);
+}
+
+.iconButton--floating:active:not(:disabled) {
+  box-shadow:
+    0 0px 2px 0 rgba(0, 0, 0, 0.10),
+    0 1px 4px 0 rgba(0, 0, 0, 0.08);
+  background: var(--ld-semantic-color-action-fill-secondary-pressed);
+}
+
+.iconButton--floating:disabled {
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iconButton--floating {
+    transition: none;
+  }
+}

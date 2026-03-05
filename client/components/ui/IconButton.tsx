@@ -36,6 +36,13 @@ interface IconButtonBaseProps extends CommonProps {
    * @default "rounded"
    */
   shape?: IconButtonShape;
+
+  /**
+   * When `true`, elevates the button with a box-shadow and forces circular shape.
+   * Equivalent to the former WCPFloatingButton — use for carousel controls and FABs.
+   * @default false
+   */
+  floating?: boolean;
 }
 
 /**
@@ -98,6 +105,7 @@ export const IconButton = React.forwardRef<
     size = 'medium',
     variant = 'ghost',
     shape = 'rounded',
+    floating = false,
     'aria-label': ariaLabel,
     UNSAFE_className,
     UNSAFE_style,
@@ -109,6 +117,7 @@ export const IconButton = React.forwardRef<
     styles[`iconButton--size-${size}`],
     styles[`iconButton--variant-${variant}`],
     styles[`iconButton--shape-${shape}`],
+    floating && styles['iconButton--floating'],
     UNSAFE_className,
   ]
     .filter(Boolean)

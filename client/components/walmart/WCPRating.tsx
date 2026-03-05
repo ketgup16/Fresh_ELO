@@ -1,28 +1,64 @@
 import * as React from 'react';
+import { Rating } from '@/components/ui/Rating';
 import styles from './WCPRating.module.css';
+import displayStyles from './WCPRatingDisplay.module.css';
 
 export type WCPRatingSize = 'small' | 'medium';
+export type WCPRatingColor = 'default' | 'inverse';
 
 export interface WCPRatingProps {
   /** Controlled value (0–5). 0 = unrated. */
   value?: number;
   /** Uncontrolled initial value. @default 0 */
   defaultValue?: number;
-  /** Called when the user selects a rating. */
+  /**
+   * Called when the user selects a rating.
+   * **When provided the component renders in interactive mode.**
+   * When omitted the component renders in read-only display mode
+   * (equivalent to the former WCPRatingDisplay component).
+   */
   onChange?: (value: number) => void;
   /**
-   * Size variant — affects star dimensions and gap, responsive across 900px breakpoint.
-   * small  → 20px mobile / 24px desktop
-   * medium → 28px mobile / 32px desktop
-   * @default 'medium'
+   * Size variant.
+   * Interactive mode: small → 20/24px, medium → 28/32px (responsive at 900px).
+   * Display mode:     small → 12px stars, medium → 20px stars.
+   * @default 'medium' (interactive) / 'small' (display)
    */
   size?: WCPRatingSize;
-  /** Disables all interaction. @default false */
+  /**
+   * Color scheme — display mode only.
+   * default → gold stars on light background
+   * inverse → white stars on dark background
+   * @default 'default'
+   */
+  color?: WCPRatingColor;
+  /** Disables all interaction (interactive mode only). @default false */
   disabled?: boolean;
-  /** Accessible label for the radiogroup. */
+  /** Accessible label for the radiogroup / star region. */
   'aria-label'?: string;
   /** Additional class for the wrapper. */
   className?: string;
+
+  // ── Display mode (read-only) props ──────────────────────────────
+  /**
+   * Aggregate count label shown next to the stars, e.g. "(4.7)".
+   * Display mode only. When omitted the count is not rendered.
+   */
+  count?: string;
+  /**
+   * Text for the clickable link, e.g. "2,341 reviews".
+   * Display mode only. When omitted the link is not rendered.
+   */
+  linkText?: string;
+  /** href for the link. Display mode only. @default '#' */
+  linkHref?: string;
+  /** Click handler for the link. Display mode only. */
+  onLinkClick?: (e: React.MouseEvent) => void;
+  /**
+   * Optional secondary text shown after a pipe separator, e.g. "Best seller".
+   * Display mode only. When omitted the pipe and text are not rendered.
+   */
+  text?: string;
 }
 
 const LABELS: Record<number, string> = {
@@ -119,19 +155,82 @@ export const WCPRating = React.forwardRef<HTMLDivElement, WCPRatingProps>(
       value: controlledValue,
       defaultValue = 0,
       onChange,
-      size = 'medium',
+      size,
+      color = 'default',
       disabled = false,
-      'aria-label': ariaLabel = 'Star rating',
+      'aria-label': ariaLabel,
       className,
+      // display-mode props
+      count,
+      linkText,
+      linkHref,
+      onLinkClick,
+      text,
     } = props;
 
+    const isDisplayMode = onChange === undefined;
+
+    // ── All hooks at the top (Rules of Hooks) ─────────────────────────────────
     const isControlled = controlledValue !== undefined;
     const [internalValue, setInternalValue] = React.useState(defaultValue);
     const value = isControlled ? controlledValue! : internalValue;
-
     const [hoverValue, setHoverValue] = React.useState(0);
-
     const displayValue = hoverValue > 0 ? hoverValue : value;
+
+    // ── Read-only / display mode (equivalent to WCPRatingDisplay) ───────────
+    if (isDisplayMode) {
+      const displaySize = size ?? 'small';
+      const starSize = displaySize === 'medium' ? 'large' : 'small';
+      const isInverse = color === 'inverse';
+
+      const wrapperClass = [
+        displayStyles.wrapper,
+        displayStyles[`wrapper--${displaySize}`],
+        isInverse && displayStyles['wrapper--inverse'],
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ');
+
+      const hasContent = count || linkText || text;
+
+      return (
+        <div ref={ref} className={wrapperClass}>
+          <Rating
+            value={controlledValue ?? defaultValue}
+            size={starSize}
+            className={isInverse ? displayStyles.starsInverse : ''}
+            aria-label={ariaLabel ?? `Rating: ${controlledValue ?? defaultValue} out of 5 stars`}
+          />
+          {hasContent && (
+            <div className={displayStyles.content}>
+              {(count || linkText) && (
+                <span className={displayStyles.leftGroup}>
+                  {count && <span className={displayStyles.count}>{count}</span>}
+                  {linkText && (
+                    <a
+                      href={linkHref ?? '#'}
+                      className={displayStyles.link}
+                      onClick={onLinkClick}
+                      aria-label={linkText}
+                    >
+                      {linkText}
+                    </a>
+                  )}
+                </span>
+              )}
+              {(count || linkText) && text && (
+                <span className={displayStyles.pipe} aria-hidden="true">|</span>
+              )}
+              {text && <span className={displayStyles.text}>{text}</span>}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // ── Interactive mode ─────────────────────────────────────────────────────
+    const interactiveSize = size ?? 'medium';
 
     const handleClick = (star: number) => {
       if (disabled) return;
@@ -159,7 +258,7 @@ export const WCPRating = React.forwardRef<HTMLDivElement, WCPRatingProps>(
 
     const wrapperClass = [
       styles.rating,
-      styles[`rating--${size}`],
+      styles[`rating--${interactiveSize}`],
       disabled && styles['rating--disabled'],
       className,
     ]
@@ -174,7 +273,7 @@ export const WCPRating = React.forwardRef<HTMLDivElement, WCPRatingProps>(
       >
         <div
           role="radiogroup"
-          aria-label={ariaLabel}
+          aria-label={ariaLabel ?? 'Star rating'}
           aria-disabled={disabled}
           className={styles.stars}
         >

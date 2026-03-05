@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ChevronRight } from '@/components/icons';
-import { Rating } from '@/components/ui/Rating';
+import { WCPRating } from '@/components/walmart/WCPRating';
 import { Button } from '@/components/ui/Button';
 import { Divider } from '@/components/ui/Divider';
 import { Alert } from '@/components/ui/Alert';
@@ -117,13 +117,16 @@ function OrderTypeIcon({ type }: { type: OrderType }) {
 }
 
 function RatingWidget({ orderType }: { orderType: OrderType }) {
-  const [hovered, setHovered] = useState(0);
   const [selected, setSelected] = useState(0);
 
   if (selected > 0) {
     return (
       <div className={styles.ratingSection}>
-        <Rating value={selected} size="large" className={styles.ratingDisplay} aria-label={`Your rating: ${selected} out of 5 stars`} />
+        <WCPRating
+          value={selected}
+          size="medium"
+          aria-label={`Your rating: ${selected} out of 5 stars`}
+        />
         <p className={styles.ratingThankYou}>Thanks for your feedback!</p>
       </div>
     );
@@ -133,33 +136,12 @@ function RatingWidget({ orderType }: { orderType: OrderType }) {
     <div className={styles.ratingSection}>
       <p className={styles.ratingTitle}>How was your {EXPERIENCE_LABELS[orderType]} experience?</p>
       <p className={styles.ratingSubtitle}>Select a rating to begin quick survey.</p>
-      <div
-        className={styles.starsWrapper}
-        onMouseLeave={() => setHovered(0)}
-      >
-        {/* LD Rating component as the visual layer */}
-        <Rating
-          value={hovered || selected || 0}
-          size="large"
-          className={styles.ratingDisplay}
-          aria-hidden
-        />
-        {/* Transparent interactive buttons overlaid on each star */}
-        <div className={styles.starOverlays} role="radiogroup" aria-label="Rate your experience">
-          {[1, 2, 3, 4, 5].map(n => (
-            <button
-              key={n}
-              type="button"
-              role="radio"
-              aria-checked={selected === n}
-              aria-label={`${n} star${n > 1 ? 's' : ''}`}
-              className={styles.starOverlayBtn}
-              onMouseEnter={() => setHovered(n)}
-              onClick={() => setSelected(n)}
-            />
-          ))}
-        </div>
-      </div>
+      <WCPRating
+        size="medium"
+        defaultValue={0}
+        onChange={(v) => setSelected(v)}
+        aria-label="Rate your experience"
+      />
     </div>
   );
 }
