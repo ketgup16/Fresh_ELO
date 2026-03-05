@@ -431,8 +431,10 @@ export function DesignerOnboardingQuiz({ onComplete }: DesignerOnboardingQuizPro
         {/* Reset */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Button variant="secondary" size="medium" onClick={restart}>
-            <Refresh width={16} height={16} aria-hidden="true" />
-            Start over
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <Refresh width={16} height={16} aria-hidden="true" />
+              Start over
+            </span>
           </Button>
         </div>
       </div>

@@ -27,30 +27,28 @@ interface QuizQuestion { id: string; question: string; why: string; options: Qui
 const QUESTIONS: QuizQuestion[] = [
   {
     id: 'featureType',
-    question: 'What type of data feature are you building?',
-    why: 'This maps your feature to the most relevant LD 3.5 components and pattern pages to read first.',
+    question: 'What type of ecommerce page are you building?',
+    why: 'This maps your page to the most relevant LD 3.5 components and pattern pages to read first.',
     options: [
-      { value: 'dashboard', label: 'Performance Dashboard', desc: 'Metric cards, charts, and data tables' },
-      { value: 'table', label: 'Data Table', desc: 'Filterable and sortable rows' },
-      { value: 'chart', label: 'Chart or Visualization', desc: 'Line, bar, pie, or area charts' },
-      { value: 'metrics', label: 'KPI / Metric Cards', desc: 'Summary numbers with trend indicators' },
-      { value: 'recommendations', label: 'Recommendations', desc: 'Cards with Apply/Dismiss actions' },
-      { value: 'filters', label: 'Filters UI', desc: 'Select, date range, and chip filters' },
-      { value: 'detail', label: 'Detail View', desc: 'Drill-down panel or page for a row' },
-      { value: 'form', label: 'Form or Data Entry', desc: 'Input fields and submit flow' },
-      { value: 'other', label: 'Something else', desc: 'A different type of feature' },
+      { value: 'search', label: 'Search results page', desc: 'Product list with filters and AI banner' },
+      { value: 'catalog', label: 'Product category / listing', desc: 'Browsable shelf of item tiles' },
+      { value: 'pdp', label: 'Product detail page (PDP)', desc: 'Item info, images, Add to cart' },
+      { value: 'cart', label: 'Cart or checkout flow', desc: 'Cart items, summary, promo codes' },
+      { value: 'orders', label: 'Orders or account', desc: 'Order history, tracking, returns' },
+      { value: 'promos', label: 'Promotions or deals', desc: 'Rollback banners, deal sections' },
+      { value: 'other', label: 'Something else', desc: 'A different type of page' },
     ],
   },
   {
     id: 'dataVolume',
-    question: 'How much data will this feature display?',
-    why: 'Data volume determines whether to use pagination, virtualization hints, or simpler list rendering.',
+    question: 'How many item tiles will this page display?',
+    why: 'Item count determines whether to use pagination, infinite scroll, or search + filter to keep the grid performant.',
     options: [
-      { value: 'small', label: 'Small (< 50 rows)', desc: 'Simple list, no pagination needed' },
-      { value: 'medium', label: 'Medium (50–500 rows)', desc: 'Pagination or infinite scroll' },
-      { value: 'large', label: 'Large (500+ rows)', desc: 'Server-side pagination, virtualized table' },
-      { value: 'unknown', label: 'Unknown', desc: "Not sure yet" },
-      { value: 'other', label: 'Other', desc: 'A different data scale' },
+      { value: 'few', label: 'A few items (< 20)', desc: 'Simple grid or static list' },
+      { value: 'moderate', label: 'Moderate (20–100)', desc: 'Paginated grid or scroll' },
+      { value: 'large', label: 'Large catalog (100+)', desc: 'Infinite scroll or search + filter required' },
+      { value: 'full', label: 'Full catalog', desc: 'Search, filter, and sort are essential' },
+      { value: 'unknown', label: 'Not sure yet', desc: 'Design for moderate, easy to scale' },
     ],
   },
   {
@@ -92,22 +90,20 @@ const QUESTIONS: QuizQuestion[] = [
 
 function generatePrompt(answers: Record<string, string>, otherTexts: Record<string, string>): string {
   const featureMap: Record<string, string> = {
-    dashboard: 'I am building a performance dashboard with metric summary cards, one or more charts, and a data table below.',
-    table: 'I am building a data table feature — filterable columns, sortable headers, and row-level actions.',
-    chart: 'I am building a chart or data visualization — include time controls, a legend, and summary stats alongside the chart.',
-    metrics: 'I am building a KPI metrics grid — responsive cards with a number, label, trend indicator, and optional sparkline.',
-    recommendations: 'I am building a recommendations list — cards with Apply and Dismiss actions, surfaced from a data source.',
-    filters: 'I am building a filters UI — Select dropdowns, date range pickers, filter chips, and an apply/reset flow.',
-    detail: 'I am building a detail view — a resizable side panel or dedicated page that shows row/card details with structured sections.',
-    form: 'I am building a data entry form — TextField, Select, Checkbox, and Textarea components with validation and submit.',
-    other: otherTexts.featureType ? `I am building: ${otherTexts.featureType}.` : 'I am building a data feature.',
+    search: 'I am building a search results page — product grid with filter chips, sort controls, and an AI-powered results banner.',
+    catalog: 'I am building a product category / listing page — a browsable shelf of item tiles with department filters and promotional slots.',
+    pdp: 'I am building a product detail page (PDP) — hero images, item info, Add to Cart CTA, ratings, and related products.',
+    cart: 'I am building a cart or checkout flow — line items, order summary, promo code entry, and a proceed-to-checkout CTA.',
+    orders: 'I am building an orders or account page — order history cards, tracking status, and returns initiation.',
+    promos: 'I am building a promotions or deals page — Rollback banners, deal tile grids, and countdown or savings indicators.',
+    other: otherTexts.featureType ? `I am building: ${otherTexts.featureType}.` : 'I am building an ecommerce page.',
   };
   const volumeMap: Record<string, string> = {
-    small: 'The data set is small (fewer than 50 rows) — a simple list or table without pagination is sufficient.',
-    medium: 'The data set is medium-sized (50–500 rows) — use pagination or infinite scroll.',
-    large: 'The data set is large (500+ rows) — implement server-side pagination and keep the UI performant.',
-    unknown: 'Data volume is unknown — design for medium scale and make pagination easy to add later.',
-    other: otherTexts.dataVolume ? `Data scale notes: ${otherTexts.dataVolume}.` : '',
+    few: 'The page shows a small number of item tiles (fewer than 20) — a simple grid or static list is sufficient.',
+    moderate: 'The page shows a moderate number of item tiles (20–100) — use a paginated grid or scrollable shelf.',
+    large: 'The page shows a large catalog (100+ items) — implement infinite scroll or require search + filter to reduce the visible set.',
+    full: 'The page exposes the full catalog — search, filter, and sort controls are essential from the start.',
+    unknown: 'Item count is unknown — design for a moderate grid and make pagination easy to add later.',
   };
   const prdMap: Record<string, string> = {
     yes: 'I have a complete PRD — use it as the primary requirements source.',
@@ -154,14 +150,12 @@ function generateReadingPath(answers: Record<string, string>): ReadingItem[] {
   }
 
   const featureRoutes: Record<string, ReadingItem[]> = {
-    dashboard: [{ label: 'Cards', path: '/component-library/cards' }, { label: 'Data Table', path: '/component-library/table' }],
-    table: [{ label: 'Data Table', path: '/component-library/table' }],
-    chart: [{ label: 'Overview', path: '/component-library' }],
-    metrics: [{ label: 'Cards', path: '/component-library/cards' }],
-    recommendations: [{ label: 'Cards', path: '/component-library/cards' }, { label: 'Buttons', path: '/component-library/buttons' }],
-    filters: [{ label: 'Select', path: '/component-library/select' }],
-    detail: [{ label: 'Data Table', path: '/component-library/table' }],
-    form: [{ label: 'Buttons', path: '/component-library/buttons' }],
+    search: [{ label: 'Filter Chips', path: '/component-library/filter-chips' }, { label: 'Cards', path: '/component-library/cards' }, { label: 'Buttons', path: '/component-library/buttons' }],
+    catalog: [{ label: 'Cards', path: '/component-library/cards' }, { label: 'Filter Chips', path: '/component-library/filter-chips' }],
+    pdp: [{ label: 'Buttons', path: '/component-library/buttons' }, { label: 'Cards', path: '/component-library/cards' }],
+    cart: [{ label: 'Buttons', path: '/component-library/buttons' }, { label: 'Select', path: '/component-library/select' }],
+    orders: [{ label: 'Cards', path: '/component-library/cards' }, { label: 'Data Table', path: '/component-library/table' }],
+    promos: [{ label: 'Cards', path: '/component-library/cards' }, { label: 'Buttons', path: '/component-library/buttons' }],
     other: [{ label: 'Overview', path: '/component-library' }],
   };
   (featureRoutes[answers.featureType] ?? featureRoutes['other']).forEach(r => path.push(r));
@@ -208,8 +202,8 @@ const QUESTION_LABELS: Record<string, string> = {
   featureType: 'Feature', dataVolume: 'Data volume', hasPRD: 'PRD', designRef: 'Design ref', experience: 'Experience',
 };
 const OPTION_LABEL_MAP: Record<string, Record<string, string>> = {
-  featureType: { dashboard: 'Dashboard', table: 'Data Table', chart: 'Chart', metrics: 'KPI Cards', recommendations: 'Recommendations', filters: 'Filters', detail: 'Detail View', form: 'Form', other: 'Other' },
-  dataVolume: { small: '< 50 rows', medium: '50–500 rows', large: '500+ rows', unknown: 'Unknown', other: 'Other' },
+  featureType: { search: 'Search results', catalog: 'Category / listing', pdp: 'PDP', cart: 'Cart / checkout', orders: 'Orders / account', promos: 'Promos / deals', other: 'Other' },
+  dataVolume: { few: '< 20 items', moderate: '20–100 items', large: '100+ items', full: 'Full catalog', unknown: 'Not sure' },
   hasPRD: { yes: 'Full PRD', rough: 'Rough notes', no: 'No PRD', other: 'Other' },
   designRef: { figma: 'Figma design', screenshot: 'Screenshot', none: 'No design', other: 'Other' },
   experience: { new: 'New to LD', familiar: 'Some experience', advanced: 'Advanced', other: 'Unsure' },
@@ -370,7 +364,12 @@ export function PMOnboardingQuiz({ onComplete }: PMOnboardingQuizProps = {}) {
             {readingPath.map((item, i) => (
               <li key={item.path} className={styles.readingItem}>
                 <span className={styles.readingNumber}>{i + 1}</span>
-                <Link href={item.path}>{item.label}<ArrowRight width={12} height={12} aria-hidden="true" style={{ marginLeft: 4 }} /></Link>
+                <Link href={item.path}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, whiteSpace: 'nowrap' }}>
+                    {item.label}
+                    <ArrowRight width={12} height={12} aria-hidden="true" />
+                  </span>
+                </Link>
               </li>
             ))}
           </ol>
@@ -378,7 +377,10 @@ export function PMOnboardingQuiz({ onComplete }: PMOnboardingQuizProps = {}) {
 
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Button variant="secondary" size="medium" onClick={restart}>
-            <Refresh width={16} height={16} aria-hidden="true" /> Start over
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <Refresh width={16} height={16} aria-hidden="true" />
+              Start over
+            </span>
           </Button>
         </div>
       </div>
@@ -433,15 +435,17 @@ export function PMOnboardingQuiz({ onComplete }: PMOnboardingQuizProps = {}) {
         </div>
       )}
 
-      <div className={styles.navRow}>
+      <div style={{ display: 'flex', gap: 8, justifyContent: 'space-between', alignItems: 'center' }}>
         <Button variant="secondary" size="medium" onClick={goBack}>
           <ChevronLeft width={16} height={16} aria-hidden="true" /> Back
         </Button>
-        <Button variant="tertiary" size="medium" onClick={skip}>Skip this question</Button>
-        <Button variant="primary" size="medium" onClick={goNext}>
-          {currentIndex === QUESTIONS.length - 1 ? 'Generate prompt' : 'Next'}
-          <ChevronRight width={16} height={16} aria-hidden="true" />
-        </Button>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <Button variant="tertiary" size="medium" onClick={skip}>Skip this question</Button>
+          <Button variant="primary" size="medium" onClick={goNext}>
+            {currentIndex === QUESTIONS.length - 1 ? 'Generate prompt' : 'Next'}
+            <ChevronRight width={16} height={16} aria-hidden="true" />
+          </Button>
+        </div>
       </div>
     </div>
   );
