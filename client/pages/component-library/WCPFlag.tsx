@@ -69,6 +69,107 @@ const TEXT_TOKENS: Record<WCPFlagVariant, string> = {
   'urgent':             '--wcp-semantic-color-text-onFill-urgent (gray-160)',
 };
 
+// ─── Real-world label → variant map ──────────────────────────────────────────
+
+interface LabelRule {
+  label: string;
+  variant: WCPFlagVariant;
+  context: string;
+  icon?: React.ReactNode;
+  note?: string;
+}
+
+const LABEL_RULES: LabelRule[] = [
+  {
+    label: 'Best seller',
+    variant: 'savings-bold',
+    context: 'Product tiles (WCPItemTile, item carousels)',
+    icon: <Dollar {...ICON_SIZE} />,
+    note: 'High-emphasis solid red — strongest commercial signal on a tile.',
+  },
+  {
+    label: 'Rollback',
+    variant: 'holiday-restricted',
+    context: 'Product tiles, search results list rows',
+    icon: undefined,
+    note: 'Subdued gray — Rollback is a price restoration, not a new promotion. No icon used.',
+  },
+  {
+    label: 'Deal',
+    variant: 'savings-subtle',
+    context: 'Product tiles',
+    icon: <Tag {...ICON_SIZE} />,
+    note: 'Outlined red — lower emphasis than Best seller; used for sale/deal pricing.',
+  },
+  {
+    label: 'Popular',
+    variant: 'confidence-subtle',
+    context: 'Product tiles',
+    icon: <ShieldCheck {...ICON_SIZE} />,
+    note: 'Light blue — social confidence signal; not a savings indicator.',
+  },
+  {
+    label: 'Clearance',
+    variant: 'holiday-restricted',
+    context: 'Product tiles (standard)',
+    icon: undefined,
+    note: 'Use holiday-restricted (gray) in regular product grids.',
+  },
+  {
+    label: 'Clearance',
+    variant: 'urgent',
+    context: 'Flash deals carousel only',
+    icon: <Flash {...ICON_SIZE} />,
+    note: 'Use urgent (yellow) in flash-deals context only — urgency is heightened.',
+  },
+  {
+    label: 'Only 3 left!',
+    variant: 'scarcity',
+    context: 'Product tiles, PDP',
+    icon: <Hourglass {...ICON_SIZE} />,
+    note: 'Orange — low-stock / limited availability. The number in the label is dynamic.',
+  },
+  {
+    label: 'Walmart+ member price',
+    variant: 'holiday-member',
+    context: 'Membership-gated offers',
+    icon: <Gift {...ICON_SIZE} />,
+    note: 'Green — reserved exclusively for Walmart+ member benefits and holiday member pricing.',
+  },
+  {
+    label: '1.2K+ viewed recently',
+    variant: 'social',
+    context: 'PDP, product tiles',
+    icon: <UsersFill {...ICON_SIZE} />,
+    note: 'Cyan — social proof labels. Count is dynamic and formatted (1K, 1.2K, etc.).',
+  },
+];
+
+// ─── Shared text styles ───────────────────────────────────────────────────────
+
+const headingStyle: React.CSSProperties = {
+  fontSize: '20px',
+  fontWeight: 700,
+  fontFamily: 'var(--ld-semantic-font-family-sans)',
+  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+  marginBottom: '8px',
+};
+
+const subheadStyle: React.CSSProperties = {
+  fontSize: '14px',
+  color: 'var(--ld-semantic-color-text-subtle, #74767c)',
+  fontFamily: 'var(--ld-semantic-font-family-sans)',
+  marginBottom: '24px',
+  lineHeight: '1.5',
+};
+
+const cardStyle: React.CSSProperties = {
+  background: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
+  borderRadius: '8px',
+  border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
+  overflow: 'hidden',
+};
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function WCPFlagPage() {
@@ -82,15 +183,7 @@ export default function WCPFlagPage() {
 
         {/* ── Variant grid ── */}
         <section style={{ marginBottom: '56px' }}>
-          <h2 style={{
-            fontSize: '20px',
-            fontWeight: 700,
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-            color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-            marginBottom: '24px',
-          }}>
-            All Variants
-          </h2>
+          <h2 style={headingStyle}>All Variants</h2>
 
           <div style={{
             display: 'grid',
@@ -126,36 +219,183 @@ export default function WCPFlagPage() {
           </div>
         </section>
 
+        {/* ── Real-world label → variant mapping ── */}
+        <section style={{ marginBottom: '56px' }}>
+          <h2 style={headingStyle}>Label → Variant Mapping</h2>
+          <p style={subheadStyle}>
+            These are the canonical label strings and matching variants used across Walmart.com product tiles,
+            search results, and the PDP. Use this as the source of truth when assigning a flag to a product badge.
+          </p>
+
+          <div style={cardStyle}>
+            {/* Header */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '160px 180px minmax(0,1fr) minmax(0,1.5fr)',
+              padding: '10px 16px',
+              background: 'var(--ld-semantic-color-fill-surface-secondary, #f5f5f6)',
+              borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
+              gap: '12px',
+            }}>
+              {['Live preview', 'Label text', 'Variant', 'When to use'].map(h => (
+                <span key={h} style={{
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.06em',
+                  color: 'var(--ld-semantic-color-text-subtle, #74767c)',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)',
+                }}>
+                  {h}
+                </span>
+              ))}
+            </div>
+
+            {LABEL_RULES.map((rule, i) => (
+              <div
+                key={`${rule.label}-${rule.variant}`}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '160px 180px minmax(0,1fr) minmax(0,1.5fr)',
+                  padding: '14px 16px',
+                  alignItems: 'start',
+                  gap: '12px',
+                  borderBottom: i < LABEL_RULES.length - 1
+                    ? '1px solid var(--ld-semantic-color-separator, #e3e4e5)'
+                    : 'none',
+                  background: i % 2 === 1
+                    ? 'var(--ld-semantic-color-fill-surface-secondary, #fafafa)'
+                    : undefined,
+                }}
+              >
+                {/* Live preview */}
+                <div style={{ paddingTop: '2px' }}>
+                  <WCPFlag variant={rule.variant} label={rule.label} leadingIcon={rule.icon} />
+                </div>
+
+                {/* Label text */}
+                <div style={{
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  fontFamily: 'var(--ld-semantic-font-family-sans)',
+                  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+                  paddingTop: '3px',
+                }}>
+                  "{rule.label}"
+                </div>
+
+                {/* Variant */}
+                <div style={{ paddingTop: '3px' }}>
+                  <code style={{
+                    fontSize: '12px',
+                    fontFamily: 'monospace',
+                    fontWeight: 600,
+                    color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+                    background: 'var(--ld-semantic-color-fill-surface-secondary, #f5f5f6)',
+                    padding: '2px 6px',
+                    borderRadius: '4px',
+                    display: 'block',
+                    width: 'fit-content',
+                    marginBottom: '4px',
+                  }}>
+                    {rule.variant}
+                  </code>
+                  <span style={{
+                    fontSize: '11px',
+                    fontFamily: 'var(--ld-semantic-font-family-sans)',
+                    color: 'var(--ld-semantic-color-text-subtlest, #9b9ea4)',
+                  }}>
+                    {rule.context}
+                  </span>
+                </div>
+
+                {/* When to use note */}
+                <div style={{
+                  fontSize: '13px',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)',
+                  color: 'var(--ld-semantic-color-text-subtle, #74767c)',
+                  lineHeight: '1.5',
+                  paddingTop: '3px',
+                }}>
+                  {rule.note}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── In Context — product tile mockup ── */}
+        <section style={{ marginBottom: '56px' }}>
+          <h2 style={headingStyle}>In Context — Product Tiles</h2>
+          <p style={subheadStyle}>
+            Flags appear in the top-left corner of product tiles (WCPItemTile) as an absolute overlay over
+            the product image. They should never stack — only one flag per tile.
+          </p>
+
+          <div style={{
+            display: 'flex',
+            gap: '12px',
+            flexWrap: 'wrap',
+            padding: '24px',
+            background: 'var(--ld-semantic-color-background-subtle, #f5f5f6)',
+            borderRadius: '8px',
+            border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
+          }}>
+            {[
+              { label: 'Best seller', variant: 'savings-bold' as WCPFlagVariant, icon: <Dollar {...ICON_SIZE} /> },
+              { label: 'Rollback',    variant: 'holiday-restricted' as WCPFlagVariant, icon: undefined },
+              { label: 'Deal',        variant: 'savings-subtle' as WCPFlagVariant, icon: <Tag {...ICON_SIZE} /> },
+              { label: 'Popular',     variant: 'confidence-subtle' as WCPFlagVariant, icon: <ShieldCheck {...ICON_SIZE} /> },
+              { label: 'Clearance',   variant: 'urgent' as WCPFlagVariant, icon: <Flash {...ICON_SIZE} /> },
+              { label: 'Only 2 left!', variant: 'scarcity' as WCPFlagVariant, icon: <Hourglass {...ICON_SIZE} /> },
+            ].map(({ label, variant, icon }) => (
+              <MockTile key={`${label}-${variant}`} label={label} variant={variant} icon={icon} />
+            ))}
+          </div>
+        </section>
+
+        {/* ── Rules ── */}
+        <section style={{ marginBottom: '56px' }}>
+          <h2 style={headingStyle}>Rules</h2>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <RulesCard
+              type="do"
+              rules={[
+                'Use the canonical label text shown in the mapping table above — label strings are copy-reviewed.',
+                'Match the label\'s intent to the variant: savings labels on savings variants, confidence labels on confidence variants.',
+                'Use "Rollback" with holiday-restricted (gray) — Rollback is a price restoration, not a bold promotion.',
+                'Use "Only X left!" with scarcity (orange) to signal urgency about inventory.',
+                'Use urgent (yellow) for clearance in flash-deals contexts only — it communicates heightened urgency.',
+                'Use holiday-member (green) exclusively for Walmart+ member benefit pricing.',
+                'Keep flags to one per tile — never stack two flags on the same product image.',
+              ]}
+            />
+            <RulesCard
+              type="dont"
+              rules={[
+                'Don\'t use savings-bold (red) for non-savings labels — it signals the highest savings emphasis.',
+                'Don\'t use urgent (yellow/dark red) outside of flash-deals — it reads as critical urgency.',
+                'Don\'t invent new label strings — all labels are defined by the merchandising copy team.',
+                'Don\'t use holiday-member for generic promotions — green is reserved for Walmart+ membership signals.',
+                'Don\'t add icons to "Rollback" flags — the Rollback label is icon-free by convention.',
+                'Don\'t place a flag on every tile — flags exist to differentiate, not to be the default state.',
+              ]}
+            />
+          </div>
+        </section>
+
         {/* ── Token reference table ── */}
         <section style={{ marginBottom: '56px' }}>
-          <h2 style={{
-            fontSize: '20px',
-            fontWeight: 700,
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-            color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-            marginBottom: '8px',
-          }}>
-            Token Reference
-          </h2>
-          <p style={{
-            fontSize: '14px',
-            color: 'var(--ld-semantic-color-text-subtle, #74767c)',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-            marginBottom: '8px',
-          }}>
+          <h2 style={headingStyle}>Token Reference</h2>
+          <p style={subheadStyle}>
             All variants use <code style={{ fontFamily: 'monospace' }}>--wcp-semantic-color-fill-*</code> for background
             and <code style={{ fontFamily: 'monospace' }}>--wcp-semantic-color-text-onFill-*</code> for text — proper semantic pairs.{' '}
             <strong>brand-subtle</strong> <span style={{ opacity: 0.7 }}>(*)</span> is the lone exception — it uses LD brand tokens
             so it tracks brand-theme overrides (Bodega green, etc.).
           </p>
 
-          <div style={{
-            background: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
-            borderRadius: '8px',
-            border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
-            overflow: 'hidden',
-            marginTop: '16px',
-          }}>
+          <div style={cardStyle}>
             {/* Header row */}
             <div style={{
               display: 'grid',
@@ -192,12 +432,8 @@ export default function WCPFlagPage() {
                     : 'none',
                 }}
               >
-                {/* Preview — color swatch only, no icons */}
-                <div>
-                  <WCPFlag variant={meta.variant} label="Flag name" />
-                </div>
+                <div><WCPFlag variant={meta.variant} label="Flag name" /></div>
 
-                {/* Variant name + description */}
                 <div>
                   <code style={{
                     fontSize: '12px',
@@ -218,12 +454,10 @@ export default function WCPFlagPage() {
                   </span>
                 </div>
 
-                {/* Fill (bg) token */}
                 <div style={{ fontSize: '11px', fontFamily: 'monospace', color: 'var(--ld-semantic-color-text-secondary, #74767c)', paddingRight: '8px' }}>
                   {BG_TOKENS[meta.variant]}
                 </div>
 
-                {/* Text-onFill token */}
                 <div style={{ fontSize: '11px', fontFamily: 'monospace', color: 'var(--ld-semantic-color-text-secondary, #74767c)' }}>
                   {TEXT_TOKENS[meta.variant]}
                 </div>
@@ -231,33 +465,15 @@ export default function WCPFlagPage() {
             ))}
           </div>
 
-          <p style={{
-            fontSize: '12px',
-            color: 'var(--ld-semantic-color-text-subtle, #74767c)',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-            marginTop: '10px',
-          }}>
+          <p style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle, #74767c)', fontFamily: 'var(--ld-semantic-font-family-sans)', marginTop: '10px' }}>
             * brand-subtle uses LD brand tokens by design — it responds to brand-theme overrides (Bodega: green).
           </p>
         </section>
 
-        {/* ── In Context ── */}
+        {/* ── Inline ── */}
         <section>
-          <h2 style={{
-            fontSize: '20px',
-            fontWeight: 700,
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-            color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-            marginBottom: '8px',
-          }}>
-            In Context
-          </h2>
-          <p style={{
-            fontSize: '14px',
-            color: 'var(--ld-semantic-color-text-subtle, #74767c)',
-            fontFamily: 'var(--ld-semantic-font-family-sans)',
-            marginBottom: '24px',
-          }}>
+          <h2 style={headingStyle}>Inline Display</h2>
+          <p style={subheadStyle}>
             Flags are inline elements that size to their content and sit naturally alongside text or within list items.
           </p>
 
@@ -278,5 +494,127 @@ export default function WCPFlagPage() {
 
       </div>
     </ComponentPageLayout>
+  );
+}
+
+// ─── Internal helpers ─────────────────────────────────────────────────────────
+
+function MockTile({
+  label,
+  variant,
+  icon,
+}: {
+  label: string;
+  variant: WCPFlagVariant;
+  icon?: React.ReactNode;
+}) {
+  return (
+    <div style={{
+      width: '140px',
+      background: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
+      borderRadius: '8px',
+      border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
+      overflow: 'hidden',
+      flexShrink: 0,
+    }}>
+      {/* Image placeholder with flag overlay */}
+      <div style={{ position: 'relative', height: '120px', background: 'var(--ld-semantic-color-fill-surface-secondary, #f5f5f6)' }}>
+        <div style={{
+          position: 'absolute',
+          top: '8px',
+          left: '8px',
+          zIndex: 1,
+        }}>
+          <WCPFlag variant={variant} label={label} leadingIcon={icon} />
+        </div>
+        {/* Placeholder product image */}
+        <div style={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'var(--ld-semantic-color-text-subtlest, #c5c7cb)',
+          fontSize: '11px',
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+        }}>
+          Product image
+        </div>
+      </div>
+
+      {/* Price + name */}
+      <div style={{ padding: '8px' }}>
+        <div style={{
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          fontWeight: 700,
+          fontSize: '16px',
+          color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+          marginBottom: '4px',
+        }}>
+          $24<sup style={{ fontSize: '10px', fontWeight: 400 }}>98</sup>
+        </div>
+        <div style={{
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          fontSize: '12px',
+          color: 'var(--ld-semantic-color-text-subtle, #74767c)',
+          lineHeight: '1.4',
+          display: '-webkit-box',
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+        }}>
+          Product name goes here
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RulesCard({ type, rules }: { type: 'do' | 'dont'; rules: string[] }) {
+  const isDo = type === 'do';
+  return (
+    <div style={{
+      background: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
+      borderRadius: '8px',
+      border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
+      overflow: 'hidden',
+    }}>
+      <div style={{
+        padding: '12px 16px',
+        background: isDo
+          ? 'var(--ld-semantic-color-fill-positive-subtle, #e8f5ed)'
+          : 'var(--ld-semantic-color-fill-negative-subtle, #fce8e7)',
+        borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
+      }}>
+        <span style={{
+          fontSize: '13px',
+          fontWeight: 700,
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          color: isDo
+            ? 'var(--ld-semantic-color-text-positive, #1a7a34)'
+            : 'var(--ld-semantic-color-text-negative, #b00)',
+        }}>
+          {isDo ? '✓  Do' : '✕  Don\'t'}
+        </span>
+      </div>
+      <ul style={{
+        margin: 0,
+        padding: '16px 16px 16px 32px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px',
+      }}>
+        {rules.map((r, i) => (
+          <li key={i} style={{
+            fontSize: '13px',
+            fontFamily: 'var(--ld-semantic-font-family-sans)',
+            color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+            lineHeight: '1.5',
+          }}>
+            {r}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
