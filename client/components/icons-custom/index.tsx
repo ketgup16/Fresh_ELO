@@ -30,6 +30,8 @@ export { SparklesIcon } from './SparklesIcon';
 export { OrderTypeIcon, getOrderTypeIconSrc } from './OrderTypeIcon';
 
 // Navigation / utility (mono-color, use currentColor)
+export { GlassShop } from './GlassShop';
+export { GlassShopFill } from './GlassShopFill';
 export { CloseIcon } from './CloseIcon';
 export { InfoIcon } from './InfoIcon';
 export { LocationIcon } from './LocationIcon';

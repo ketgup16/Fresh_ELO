@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Store, Heart, User } from '@/components/icons';
-import { SparkyAnimation } from '@/components/icons-custom';
+import { Services, ServicesFill, UserCircle, UserCircleFill } from '@/components/icons';
+import { SparkyAnimation, GlassShop, GlassShopFill } from '@/components/icons-custom';
 import { useLayoutSettings, type PlatformMode } from '@/contexts/LayoutSettingsContext';
 import styles from './BottomNav.module.css';
 
@@ -81,16 +81,14 @@ export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }
 
   const indicatorX = TAB_X[visualTab];
 
-  return (
-    <>
-      {!contained && <div className={`${styles.fadeOverlay} ${!isVisible ? styles.fadeOverlayHidden : ''}`} />}
-      <div className={[
+  const navEl = (
+    <div className={[
         styles.nav,
         !contained && !isVisible ? styles.navHidden : '',
         contained ? styles.navContained : '',
-      ].filter(Boolean).join(' ')}>
-        <div className={styles.navInner}>
-          <div className={styles.tabBar}>
+    ].filter(Boolean).join(' ')}>
+      <div className={styles.navInner}>
+        <div className={styles.tabBar}>
             <div
               className={`${styles.indicator} ${isMoving ? styles.indicatorMoving : ''}`}
               style={{ transform: `translateX(${indicatorX})` }}
@@ -101,19 +99,19 @@ export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }
               onClick={() => handleTabClick('shop')}
               aria-label="Shop"
             >
-              <Store
-                className={`${styles.tabIcon} ${visualTab === 'shop' ? styles.tabIconActive : styles.tabIconInactive}`}
-              />
+              {visualTab === 'shop'
+                ? <GlassShopFill className={`${styles.tabIcon} ${styles.tabIconActive}`} />
+                : <GlassShop className={`${styles.tabIcon} ${styles.tabIconInactive}`} />}
             </button>
 
             <button
               className={styles.tab}
               onClick={() => handleTabClick('heart')}
-              aria-label="My Items"
+              aria-label="Services"
             >
-              <Heart
-                className={`${styles.tabIcon} ${visualTab === 'heart' ? styles.tabIconActive : styles.tabIconInactive}`}
-              />
+              {visualTab === 'heart'
+                ? <ServicesFill className={`${styles.tabIcon} ${styles.tabIconActive}`} />
+                : <Services className={`${styles.tabIcon} ${styles.tabIconInactive}`} />}
             </button>
 
             <button
@@ -121,24 +119,39 @@ export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }
               onClick={() => handleTabClick('user')}
               aria-label="Account"
             >
-              <User
-                className={`${styles.tabIcon} ${visualTab === 'user' ? styles.tabIconActive : styles.tabIconInactive}`}
-              />
+              {visualTab === 'user'
+                ? <UserCircleFill className={`${styles.tabIcon} ${styles.tabIconActive}`} />
+                : <UserCircle className={`${styles.tabIcon} ${styles.tabIconInactive}`} />}
             </button>
           </div>
 
-          <button className={styles.sparkyButton} aria-label="Ask Sparky">
+        <button className={styles.sparkyButton} aria-label="Ask Sparky">
             <div className={styles.sparkyIcon}>
               <SparkyAnimation />
             </div>
           </button>
-        </div>
-
-        {platform === 'ios' && <div className={styles.homeIndicator} />}
-        {platform === 'android' && <div className={styles.androidNavBar}>
-          <div className={styles.androidGestureBar} />
-        </div>}
       </div>
+
+      {platform === 'ios' && <div className={styles.homeIndicator} />}
+      {platform === 'android' && <div className={styles.androidNavBar}>
+        <div className={styles.androidGestureBar} />
+      </div>}
+    </div>
+  );
+
+  if (contained) {
+    return (
+      <div className={styles.containedWrapper}>
+        <div className={styles.fadeOverlayContained} />
+        {navEl}
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div className={`${styles.fadeOverlay} ${!isVisible ? styles.fadeOverlayHidden : ''}`} />
+      {navEl}
     </>
   );
 }

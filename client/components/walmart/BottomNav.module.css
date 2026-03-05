@@ -194,6 +194,23 @@
   display: none;
 }
 
+/* ── Contained wrapper — lets the fade overlay be clipped by the parent ── */
+.containedWrapper {
+  position: relative;
+}
+
+/* Gradient fade rendered above the nav inside the phone preview frame */
+.fadeOverlayContained {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: 56px;
+  pointer-events: none;
+  z-index: 5;
+  background: linear-gradient(to top, rgba(242, 242, 247, 0.95), transparent);
+}
+
 /* ── Contained / in-flow mode (used in patterns page) ── */
 .navContained {
   position: relative !important;
