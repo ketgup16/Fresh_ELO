@@ -14,6 +14,7 @@
   font-weight: 700;
   line-height: 20px;
   font-family: var(--ld-semantic-font-family-sans);
+  white-space: nowrap;
 }
 
 .trigger:hover {
