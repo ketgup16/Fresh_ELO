@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { Barcode, ChevronDown, ChevronLeft, ChevronUp, Menu, Search, Grid } from '@/components/icons';
 import { CartIcon, LocationIcon, StoreIcon } from '@/components/icons-custom';
 import { CameraModal } from '@/components/walmart/CameraModal';
@@ -40,6 +40,39 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTit
   const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
   const [showMenuPanel, setShowMenuPanel] = useState(false);
+
+  // Drag-to-scroll for subNav
+  const subNavRef = useRef<HTMLDivElement>(null);
+  const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0, hasDragged: false });
+
+  const onSubNavMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const el = subNavRef.current;
+    if (!el) return;
+    dragState.current = { isDown: true, startX: e.pageX - el.offsetLeft, scrollLeft: el.scrollLeft, hasDragged: false };
+    el.style.cursor = 'grabbing';
+  }, []);
+
+  const onSubNavMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const el = subNavRef.current;
+    if (!el || !dragState.current.isDown) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = x - dragState.current.startX;
+    if (Math.abs(walk) > 4) dragState.current.hasDragged = true;
+    el.scrollLeft = dragState.current.scrollLeft - walk;
+  }, []);
+
+  const onSubNavMouseUp = useCallback(() => {
+    const el = subNavRef.current;
+    if (!el) return;
+    dragState.current.isDown = false;
+    el.style.cursor = '';
+  }, []);
+
+  const onSubNavClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    // Cancel click if the user dragged more than 4px
+    if (dragState.current.hasDragged) e.stopPropagation();
+  }, []);
 
   const isBlue = variant === 'blue';
   const isNative = platform === 'ios' || platform === 'android';
@@ -278,7 +311,15 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTit
 
         {/* Sub Nav — homepage only */}
         {showHomeExtras && (
-          <div className={`${styles.subNav} ${showDeliveryOptions ? styles.subNavHidden : ''}`}>
+          <div
+            ref={subNavRef}
+            className={`${styles.subNav} ${showDeliveryOptions ? styles.subNavHidden : ''}`}
+            onMouseDown={onSubNavMouseDown}
+            onMouseMove={onSubNavMouseMove}
+            onMouseUp={onSubNavMouseUp}
+            onMouseLeave={onSubNavMouseUp}
+            onClick={onSubNavClick}
+          >
             {isNative ? (
               <div className="flex-shrink-0">
                 <DepartmentsDropdown
