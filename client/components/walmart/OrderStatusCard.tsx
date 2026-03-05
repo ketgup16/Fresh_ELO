@@ -31,7 +31,7 @@ export function OrderStatusCard({
           href={trackHref}
           variant="default"
           underline
-          UNSAFE_className={styles.trackLink}
+          className={styles.trackLink}
         >
           Track
         </Link>

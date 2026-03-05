@@ -105,7 +105,7 @@ export default function DressesSearchResults() {
       <div className="bg-white font-sans">
         <SearchResultsHeader query="dresses for women" onBack={() => navigate('/walmart')} />
         <SearchFilterBar chips={FILTER_CHIPS} />
-        <div className="lg:-mx-16">
+        <div>
           <AIResultsBanner />
 
           {/* Product list */}

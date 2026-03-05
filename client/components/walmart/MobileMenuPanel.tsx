@@ -13,20 +13,20 @@ interface MenuLinkItem {
 }
 
 const accountLinks: MenuLinkItem[] = [
-  { label: 'Walmart+', path: '/walmart-plus' },
+  { label: 'Walmart+', path: '/walmart' },
   { label: 'Purchase History', path: '/walmart/purchase-history' },
-  { label: 'My Items', path: '/my-items' },
-  { label: 'Subscriptions', path: '/subscriptions' },
-  { label: 'Account', path: '/account' },
+  { label: 'My Items', path: '/walmart/purchase-history' },
+  { label: 'Subscriptions', path: '/walmart' },
+  { label: 'Account', path: '/walmart/purchase-history' },
 ];
 
 const supportLinks: MenuLinkItem[] = [
-  { label: 'Help', path: '/help' },
+  { label: 'Help', path: '/walmart' },
 ];
 
 const listLinks: MenuLinkItem[] = [
-  { label: 'Lists', path: '/lists' },
-  { label: 'Registries', path: '/registries' },
+  { label: 'Lists', path: '/walmart' },
+  { label: 'Registries', path: '/walmart' },
 ];
 
 const browseLinks: MenuLinkItem[] = [
