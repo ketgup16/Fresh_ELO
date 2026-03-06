@@ -47,9 +47,9 @@
   line-height: var(--ld-semantic-font-display-large-lineheight, 1.25);
   background: linear-gradient(
     90deg,
-    var(--ld-semantic-color-border-magic-start, #0053E2) 0%,
-    var(--ld-semantic-color-border-magic-middle, #3D90EC) 50%,
-    var(--ld-semantic-color-border-magic-stop, #79CDF6) 100%
+    var(--ld-semantic-color-text-magic-start, #0053E2) 0%,
+    var(--ld-semantic-color-text-magic-middle, #3D90EC) 50%,
+    var(--ld-semantic-color-text-magic-stop, #79CDF6) 100%
   );
   background-clip: text;
   -webkit-background-clip: text;

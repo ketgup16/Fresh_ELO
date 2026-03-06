@@ -35,9 +35,9 @@ function MagicSparkleIcon({ className }: { className?: string }) {
     >
       <defs>
         <linearGradient id="step-magic-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="var(--ld-semantic-color-border-magic-start, #0053E2)" />
-          <stop offset="50%" stopColor="var(--ld-semantic-color-border-magic-middle, #3D90EC)" />
-          <stop offset="100%" stopColor="var(--ld-semantic-color-border-magic-stop, #79CDF6)" />
+          <stop offset="0%" stopColor="var(--ld-semantic-color-text-magic-start, #0053E2)" />
+          <stop offset="50%" stopColor="var(--ld-semantic-color-text-magic-middle, #3D90EC)" />
+          <stop offset="100%" stopColor="var(--ld-semantic-color-text-magic-stop, #79CDF6)" />
         </linearGradient>
       </defs>
       <path
