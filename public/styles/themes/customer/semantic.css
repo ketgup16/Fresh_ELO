@@ -76,6 +76,24 @@
   --wcp-semantic-color-surface-overlay-brand-subtle: var(--ld-primitive-color-blue-5, #f0f5ff);
   --wcp-semantic-color-surface-overlay-subtle: var(--ld-primitive-color-gray-5, #f8f8f8);
 
+  /* ── Magic Tokens — override developer theme's green gradient ── */
+  /* Developer theme sets magic-2 to green (#a4fb6c); customer uses the standard blue gradient */
+  --ld-primitive-color-magic-1: #0053e2;
+  --ld-primitive-color-magic-2: #3d90ec;
+  --ld-primitive-color-magic-3: #79cdf6;
+  --ld-primitive-color-magic-4: #e9f1fe;
+  --ld-semantic-color-border-magic-start: #0053e2;
+  --ld-semantic-color-border-magic-middle: #3d90ec;
+  --ld-semantic-color-border-magic-stop: #79cdf6;
+  --ld-semantic-color-text-magic-start: #0053e2;
+  --ld-semantic-color-text-magic-middle: #3d90ec;
+  --ld-semantic-color-text-magic-stop: #79cdf6;
+  --ld-semantic-color-loading-magic: #3d90ec;
+  --ld-semantic-color-loading-magic-subtle: #e9f1fe;
+  --ld-semantic-color-field-border-magic: #0053e2;
+  --ld-semantic-color-field-border-magic-hovered: #0053e2;
+  --ld-semantic-color-field-border-magic-focused: #0053e2;
+
   /* ── Text on Fill Colors — white on blue ── */
   --wcp-semantic-color-text-on-fill-confidence: var(--ld-primitive-color-white, #ffffff);
   --wcp-semantic-color-text-on-fill-confidence-alt: var(--ld-primitive-color-white, #ffffff);

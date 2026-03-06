@@ -34,7 +34,7 @@
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2E2F32);
   margin: 0;
-  text-align: center;
+  text-align: left;
 }
 
 .introDesc {
@@ -43,9 +43,8 @@
   line-height: 1.65;
   color: var(--ld-semantic-color-text-subtle, #515357);
   margin: 0;
-  text-align: center;
+  text-align: left;
   max-width: 520px;
-  align-self: center;
 }
 
 .introMeta {
