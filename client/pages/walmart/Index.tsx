@@ -161,7 +161,7 @@ export default function Index() {
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute top-8 left-4 right-4 z-10">
-              <h2 className="text-white text-[48px] leading-[40px] max-w-[230px]">Bold animal prints</h2>
+              <h2 className="text-white text-[36px] font-bold leading-[38px] max-w-[230px]">Bold animal prints</h2>
             </div>
             <div className="absolute bottom-4 left-4 right-4 space-y-2 z-10">
               <div className="grid grid-cols-2 gap-2">
