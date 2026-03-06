@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react';
 import { CondensedItemTile } from './CondensedItemTile';
 import { DeliveryScheduler } from './DeliveryScheduler';
 import { Button } from '@/components/ui/Button';
-import { IconButton } from '@/components/ui/IconButton';
 import { FloatingFooter } from './FloatingFooter';
 import {
   ChevronDown,
@@ -94,11 +93,11 @@ const DEMO_ITEMS: BasketItem[] = [
   },
   {
     id: '6',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/8de62693db42c198562f27ca46ac63d0c1761cdd?width=161',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc112438161204b9d9db6bf5cae10363b?width=200',
     price: '3',
     cents: '77',
     tag: '5 oz',
-    name: 'Kikkoman Soy Sauce, 10 oz',
+    name: "Bettergoods S'mores Spread",
     quantity: 1,
   },
   {
@@ -443,9 +442,9 @@ export function ReplenishmentBasket({
                       <div className={styles.suggestionsSection}>
                         <div className={styles.suggestionHeader}>
                           <span className={styles.suggestionTitle}>Looking to add anything else?</span>
-                          <IconButton variant="ghost" size="small" aria-label="See all suggestions">
-                            <ChevronRight />
-                          </IconButton>
+                          <button className={styles.suggestionFloatingBtn} aria-label="See all suggestions">
+                            <ChevronRight width={16} height={16} />
+                          </button>
                         </div>
                         <div className={styles.suggestionGrid}>
                           {SUGGESTION_ITEMS.map((s) => (

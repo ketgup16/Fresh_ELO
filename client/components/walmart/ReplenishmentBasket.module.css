@@ -532,6 +532,27 @@
   color: var(--ld-semantic-color-text-subtle, #5b5c5e);
 }
 
+/* Floating pill button — suggestion header "See all" */
+.suggestionFloatingBtn {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: var(--ld-semantic-color-surface, #fff);
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.suggestionFloatingBtn:hover {
+  background: var(--ld-semantic-color-surface-hovered, #e8e8e9);
+}
+
 /* 3-column grid for suggestion tiles */
 .suggestionGrid {
   display: grid;
