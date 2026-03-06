@@ -153,7 +153,7 @@ const SUGGESTION_ITEMS: SuggestionItem[] = [
   },
   {
     id: 's4',
-    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F65987f1be18c4665b304fd33e2370962?width=200',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fd380b7dc612342bd96794e31c02002b8?width=200',
     price: '3',
     cents: '25',
     name: 'Large Eggs, 12 Count',
