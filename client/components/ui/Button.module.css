@@ -323,7 +323,7 @@
     transparent 100%
   );
   z-index: -1;
-  animation: stroke-rotate 2s linear infinite;
+  animation: stroke-rotate 4s linear infinite;
   /* Mask out the center so only the outer ring (border) is visible */
   -webkit-mask:
     linear-gradient(#000, #000) content-box,
@@ -338,6 +338,12 @@
 
 @keyframes stroke-rotate {
   to { --stroke-angle: 360deg; }
+}
+
+/* Hide the existing component border on secondary/tertiary when strokeOn is active */
+.button--variant-secondary.button--strokeOn,
+.button--variant-tertiary.button--strokeOn {
+  border-color: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {
