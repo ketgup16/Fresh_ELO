@@ -6,7 +6,7 @@
   height: 54px;
   width: 100%;
   padding: 14px 24px 0 24px;
-  color: #fff;
+  color: var(--ld-semantic-color-text-inverse, #ffffff);
   font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
   box-sizing: border-box;
 }
@@ -82,7 +82,7 @@
   height: 28px;
   width: 100%;
   padding: 4px 16px;
-  color: #fff;
+  color: var(--ld-semantic-color-text-inverse, #ffffff);
   font-family: Roboto, 'Google Sans', 'Noto Sans', sans-serif;
   box-sizing: border-box;
 }

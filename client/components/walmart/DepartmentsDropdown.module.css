@@ -18,12 +18,12 @@
 }
 
 .trigger:hover {
-  background: rgba(0, 30, 96, 0.06);
+  background: var(--ld-semantic-color-fill-activated-subtle, #f0f5ff);
   border-color: var(--ld-semantic-color-text-brand-bold);
 }
 
 .trigger:active {
-  background: rgba(0, 30, 96, 0.12);
+  background: var(--ld-semantic-color-fill-activated-subtle-hovered, #e9f1fe);
   border-color: var(--ld-semantic-color-text-brand-bold);
 }
 

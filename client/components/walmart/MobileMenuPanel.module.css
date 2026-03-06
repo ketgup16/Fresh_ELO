@@ -2,7 +2,7 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--ld-semantic-color-scrim, rgba(0, 0, 0, 0.4));
   z-index: 100;
   opacity: 0;
   pointer-events: none;
@@ -155,7 +155,7 @@
   height: 32px;
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
   background: var(--ld-semantic-color-action-fill-primary, #0071dc);
-  color: #fff;
+  color: var(--ld-semantic-color-text-inverse, #ffffff);
   font-size: 16px;
   font-weight: 700;
   flex-shrink: 0;

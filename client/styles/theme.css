@@ -1,8 +1,17 @@
-@custom-variant dark (&:is(.dark *));
+/**
+ * Customer token overrides
+ * Maps Tailwind / developer CSS variables to Living Design 3.5 semantic tokens.
+ * Values change automatically when the LD theme switches (e.g. Walmart → Bodega).
+ *
+ * Load order (see index.css):
+ *   1. primitive.css  — raw scale values (--ld-primitive-*)
+ *   2. semantic.css   — semantic meanings (--ld-semantic-*)
+ *   3. theme.css      — THIS FILE: Tailwind vars → LD semantic tokens
+ */
 
 :root {
+  /* ── Typography ─────────────────────────────────────────────── */
   --font-size: 16px;
-  /* Typography size variables */
   --text-xs: 12px;
   --text-sm: 14px;
   --text-base: 16px;
@@ -10,105 +19,90 @@
   --text-xl: 24px;
   --text-2xl: 28px;
   --text-3xl: 32px;
-  /* Font family variables */
-  --font-family-sans: 'Everyday Sans UI', sans-serif;
-  --font-family-mono: 'Everyday Sans Mono', monospace;
-  /* The default background color for the application. */
-  --background: rgba(255, 255, 255, 1);
-  /* The default color for elements or text that appears on top of the background. */
-  --foreground: rgba(46, 47, 50, 1);
-  /* The background color for cards, modals, and other containers. */
-  --card: rgba(255, 255, 255, 1);
-  /* The default color for text or elements that appear on top of cards, modals and other background containers. */
-  --card-foreground: rgba(46, 47, 50, 1);
-  /* The background color for dropdowns and tooltips. */
-  --popover: rgba(255, 255, 255, 1);
-  /* The default color for text or elements that appear on top of dropdowns and tooltips. */
-  --popover-foreground: rgba(46, 47, 50, 1);
-  /* The primary color used for buttons, links, and other interactive elements. */
-  --primary: rgba(0, 83, 226, 1);
-  /* The default color for text or elements that appear on top of primary colored elements. */
-  --primary-foreground: rgba(255, 255, 255, 1);
-  /* The secondary color used for secondary(but NOT-DESTRUCTIVE) buttons and interactive elements. */
-  --secondary: rgba(255, 255, 255, 1);
-  /* The default color for text or elements that appear on top of secondary colored elements. */
-  --secondary-foreground: rgba(46, 47, 50, 1);
-  /* The muted color used for less prominent elements, such as disabled buttons or disabled text. */
-  --muted: rgba(186, 187, 190, 1);
-  /* The default color for text or elements that appear on top of muted colored elements. */
-  --muted-foreground: rgba(116, 118, 124, 1);
-  /* The accent color used for highlights, links, and other interactive elements. */
-  --accent: rgba(0, 83, 226, 1);
-  /* The default color for text or elements that appear on top of accent colored elements. */
-  --accent-foreground: rgba(255, 255, 255, 1);
-  /* The color used for background in destructive actions, such as delete buttons or error messages. */
-  --destructive: rgba(234, 17, 0, 1);
-  /* The default color for text or elements that appear on top of destructive colored elements. */
-  --destructive-foreground: rgba(255, 255, 255, 1);
-  /* The default border color for elements such as inputs, buttons, and other containers. */
-  --border: rgba(144, 145, 150, 1);
-  /* The default background color for input fields once the text has been filled. Should be either transparent or match the input-background. */
-  --input: rgba(255, 255, 255, 1);
-  /* The default background color for input fields, text areas, and other input elements. */
-  --input-background: rgba(255, 255, 255, 1);
-  /* The color for focus rings, outlines, and other focus indicators. */
-  --ring: rgba(0, 83, 226, 1);
-  /* Shadow for small elevations, such as cards or modals. */
-  --elevation-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  /* The color for chart elements, such as a bar or line in a chart. */
-  --chart-1: rgba(0, 46, 153, 1);
-  /* The color for another chart element, such as a bar or line in a chart. */
-  --chart-2: rgba(223, 116, 177, 1);
-  /* The color for another chart element, such as a bar or line in a chart. */
-  --chart-3: rgba(204, 133, 26, 1);
-  /* The color for another chart element, such as a bar or line in a chart. */
-  --chart-4: rgba(0, 146, 219, 1);
-  /* The color for another chart element, such as a bar or line in a chart. */
-  --chart-5: rgba(175, 47, 0, 1);
-  /* The default border radius for elements such as buttons, cards, and other containers. */
-  --radius: 4px;
-  /* Fully rounded buttons border radius. */
-  --radius-button: 1000px;
-  /* Border radius for card containers. */
-  --radius-card: 4px;
-  /* Small border radius for tag components. */
-  --radius-tag: 2px;
-  /* The background color for sidebars, navigation menus, and other persistent elements. */
-  --sidebar: rgba(255, 255, 255, 1);
-  /* The default color for text or elements that appear on top of sidebars, navigation menus, and other persistent elements. */
-  --sidebar-foreground: rgba(46, 47, 50, 1);
-  /* The primary color used for buttons, links, and other interactive elements in sidebars and navigation menus. */
-  --sidebar-primary: rgba(0, 83, 226, 1);
-  /* The default color for text or elements that appear on top of primary colored elements in sidebars and navigation menus. */
-  --sidebar-primary-foreground: rgba(255, 255, 255, 1);
-  /* The accent color used for highlights, links, and other interactive elements in sidebars and navigation menus. */
-  --sidebar-accent: rgba(0, 83, 226, 1);
-  /* The default color for text or elements that appear on top of accent colored elements in sidebars and navigation menus. */
-  --sidebar-accent-foreground: rgba(255, 255, 255, 1);
-  /* The default border color for elements in sidebars and navigation menus. */
-  --sidebar-border: rgba(144, 145, 150, 1);
-  /* The default color for focus rings, outlines, and other focus indicators in sidebars and navigation menus. */
-  --sidebar-ring: rgba(0, 83, 226, 1);
-  /* Warning color for warning backgrounds and states. */
-  --warning: rgba(255, 194, 32, 1);
-  /* Text color for warning backgrounds. */
-  --warning-foreground: rgba(102, 43, 13, 1);
-  /* Success color for success backgrounds and states. */
-  --success: rgba(42, 135, 3, 1);
-  /* Text color for success backgrounds. */
-  --success-foreground: rgba(29, 95, 2, 1);
-  /* Info color for informational backgrounds and states. */
-  --info: rgba(0, 83, 226, 1);
-  /* Text color for info backgrounds. */
-  --info-foreground: rgba(255, 255, 255, 1);
-  /* Overlay color for modal backgrounds and overlays. */
-  --overlay: rgba(0, 0, 0, 0.6);
-  /* The default font weight for bold text. */
+  --font-family-sans: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  --font-family-mono: var(--ld-semantic-font-family-mono, 'Everyday Sans Mono', monospace);
   --font-weight-bold: 700;
-  /* The default font weight for normal text. */
   --font-weight-normal: 400;
+
+  /* ── Surfaces ───────────────────────────────────────────────── */
+  /* Page background */
+  --background: var(--ld-semantic-color-background, #ffffff);
+  /* Primary text */
+  --foreground: var(--ld-semantic-color-text, #2e2f32);
+
+  /* Cards */
+  --card: var(--ld-semantic-color-surface, #ffffff);
+  --card-foreground: var(--ld-semantic-color-text, #2e2f32);
+
+  /* Popovers / overlays */
+  --popover: var(--ld-semantic-color-surface-overlay, #ffffff);
+  --popover-foreground: var(--ld-semantic-color-text, #2e2f32);
+
+  /* ── Actions ────────────────────────────────────────────────── */
+  /* Primary button / brand fill */
+  --primary: var(--ld-semantic-color-action-fill-primary, #0053e2);
+  --primary-foreground: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
+
+  /* Secondary button */
+  --secondary: var(--ld-semantic-color-action-fill-secondary, #ffffff);
+  --secondary-foreground: var(--ld-semantic-color-action-text-on-fill-secondary, #2e2f32);
+
+  /* Muted / subdued elements (tab bars, code blocks, subtle surfaces) */
+  --muted: var(--ld-semantic-color-fill-subtle, #f8f8f8);
+  --muted-foreground: var(--ld-semantic-color-text-subtlest, #74767c);
+
+  /* Accent / brand hover highlight */
+  --accent: var(--ld-semantic-color-fill-brand, #0053e2);
+  --accent-foreground: var(--ld-semantic-color-text-on-fill-brand, #ffffff);
+
+  /* Destructive actions */
+  --destructive: var(--ld-semantic-color-action-fill-negative, #ea1100);
+  --destructive-foreground: var(--ld-semantic-color-action-text-on-fill-negative, #ffffff);
+
+  /* ── Borders / Inputs ───────────────────────────────────────── */
+  --border: var(--ld-semantic-color-field-border, #909196);
+  --input: var(--ld-semantic-color-field-fill, #ffffff);
+  --input-background: var(--ld-semantic-color-field-fill, #ffffff);
+  --ring: var(--ld-semantic-color-action-focus-outline, #0053e2);
+
+  /* ── Elevation ──────────────────────────────────────────────── */
+  --elevation-sm: var(--ld-semantic-elevation-100);
+
+  /* ── Charts ─────────────────────────────────────────────────── */
+  --chart-1: var(--ld-semantic-color-chart-categorical-1, #002e99);
+  --chart-2: var(--ld-semantic-color-chart-categorical-2, #df74b1);
+  --chart-3: var(--ld-semantic-color-chart-categorical-3, #cc851a);
+  --chart-4: var(--ld-semantic-color-chart-categorical-4, #0092db);
+  --chart-5: var(--ld-semantic-color-chart-categorical-5, #af2f00);
+
+  /* ── Border Radius ──────────────────────────────────────────── */
+  --radius: var(--ld-primitive-scale-border-radius-50, 0.25rem);          /* 4px  */
+  --radius-button: var(--ld-primitive-scale-border-radius-round, 62.5rem); /* pill */
+  --radius-card: var(--ld-primitive-scale-border-radius-50, 0.25rem);      /* 4px  */
+  --radius-tag: var(--ld-primitive-scale-border-radius-25, 0.125rem);      /* 2px  */
+
+  /* ── Sidebar ────────────────────────────────────────────────── */
+  --sidebar: var(--ld-semantic-color-surface, #ffffff);
+  --sidebar-foreground: var(--ld-semantic-color-text, #2e2f32);
+  --sidebar-primary: var(--ld-semantic-color-action-fill-primary, #0053e2);
+  --sidebar-primary-foreground: var(--ld-semantic-color-action-text-on-fill-primary, #ffffff);
+  --sidebar-accent: var(--ld-semantic-color-fill-brand, #0053e2);
+  --sidebar-accent-foreground: var(--ld-semantic-color-text-on-fill-brand, #ffffff);
+  --sidebar-border: var(--ld-semantic-color-separator, #e3e4e5);
+  --sidebar-ring: var(--ld-semantic-color-action-focus-outline, #0053e2);
+
+  /* ── Status colors ──────────────────────────────────────────── */
+  --warning: var(--ld-semantic-color-fill-warning, #ffc220);
+  --warning-foreground: var(--ld-semantic-color-text-warning-bold, #662b0d);
+  --success: var(--ld-semantic-color-fill-positive, #2a8703);
+  --success-foreground: var(--ld-semantic-color-text-positive-bold, #1d5f02);
+  --info: var(--ld-semantic-color-fill-info, #0053e2);
+  --info-foreground: var(--ld-semantic-color-text-on-fill-info, #ffffff);
+  --overlay: var(--ld-semantic-color-scrim, rgba(0, 0, 0, 0.4));
 }
 
+/* ── Dark mode — LD does not ship dark tokens so we preserve the
+      existing overrides rather than pointing at undefined vars ── */
 .dark {
   --background: rgba(23, 25, 29, 1);
   --foreground: rgba(235, 235, 235, 1);
@@ -152,6 +146,9 @@
   --overlay: rgba(0, 0, 0, 0.8);
 }
 
+/* ── Tailwind v4 @theme mapping ─────────────────────────────────
+   Registers CSS vars as Tailwind color utilities so classes like
+   bg-primary, text-muted-foreground, border-border, etc. work.  */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -201,83 +198,4 @@
   --color-info-foreground: var(--info-foreground);
   --color-overlay: var(--overlay);
   --shadow-elevation-sm: var(--elevation-sm);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-family-sans);
-  }
-}
-
-/**
- * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
- */
-@layer base {
-  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
-    h1 {
-      font-family: var(--font-family-sans);
-      font-size: var(--text-3xl);
-      font-weight: var(--font-weight-bold);
-      line-height: 1.2;
-    }
-
-    h2 {
-      font-family: var(--font-family-sans);
-      font-size: var(--text-2xl);
-      font-weight: var(--font-weight-bold);
-      line-height: 1.3;
-    }
-
-    h3 {
-      font-family: var(--font-family-sans);
-      font-size: var(--text-xl);
-      font-weight: var(--font-weight-bold);
-      line-height: 1.4;
-    }
-
-    h4 {
-      font-family: var(--font-family-sans);
-      font-size: var(--text-lg);
-      font-weight: var(--font-weight-bold);
-      line-height: 1.4;
-    }
-
-    p {
-      font-family: var(--font-family-sans);
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
-
-    label {
-      font-family: var(--font-family-sans);
-      font-size: var(--text-xs);
-      font-weight: var(--font-weight-bold);
-      line-height: 1.4;
-    }
-
-    button {
-      font-family: var(--font-family-sans);
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
-
-    input {
-      font-family: var(--font-family-sans);
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
-  }
-}
-
-html {
-  font-size: var(--font-size);
-  font-family: var(--font-family-sans);
 }

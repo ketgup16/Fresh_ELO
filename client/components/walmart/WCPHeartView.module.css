@@ -9,7 +9,7 @@
 
 /* ── Custom brand token ─────────────────────────────── */
 :root {
-  --wcp-heart-activated-color: #0053e2;
+  --wcp-heart-activated-color: var(--ld-semantic-color-action-fill-primary, #0053e2);
 }
 
 /* ── Wrapper (positions the callout) ─────────────────── */
