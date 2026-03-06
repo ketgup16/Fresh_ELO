@@ -7,7 +7,11 @@ import { CombinedOrderCard } from '@/components/walmart/purchase-history/Combine
 import { DelayedDeliveryCard } from '@/components/walmart/purchase-history/DelayedDeliveryCard';
 import { MaintenanceHealthCard } from '@/components/walmart/purchase-history/MaintenanceHealthCard';
 import { AutoCareUpsellOfferCard } from '@/components/walmart/purchase-history/AutoCareUpsellOfferCard';
-import { ServicesCard } from '@/components/walmart/purchase-history/ServicesCard';
+import { ServicesCard, type ServiceEntry } from '@/components/walmart/purchase-history/ServicesCard';
+import { PharmacyModals, type PharmacyModalType } from '@/components/walmart/purchase-history/PharmacyModals';
+import { OpticalModals, type OpticalModalType } from '@/components/walmart/purchase-history/OpticalModals';
+import { BakeryModals, type BakeryModalType } from '@/components/walmart/purchase-history/BakeryModals';
+import { AutoCareModals, type AutoCareModalType } from '@/components/walmart/purchase-history/AutoCareModals';
 
 // ── Shared image helpers ────────────────────────────────────────────────────
 const CDN = 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F';
@@ -77,6 +81,396 @@ const CURBSIDE_CARD = {
   ],
 };
 
+// ══════════════════════════════════════════════════════════════════════════════
+// ServicesCard wrapper — manages modal state for all service types
+// ══════════════════════════════════════════════════════════════════════════════
+
+interface ServicesCardWithModalsProps {
+  services: ServiceEntry[];
+  defaultExpanded?: boolean;
+  defaultExpandedRowId?: string;
+}
+
+function ServicesCardWithModals({
+  services,
+  defaultExpanded,
+  defaultExpandedRowId,
+}: ServicesCardWithModalsProps) {
+  const [pharmacyModal, setPharmacyModal] = useState<PharmacyModalType>(null);
+  const [opticalModal, setOpticalModal] = useState<OpticalModalType>(null);
+  const [bakeryModal, setBakeryModal] = useState<BakeryModalType>(null);
+  const [autoCareModal, setAutoCareModal] = useState<AutoCareModalType>(null);
+
+  // Track which service's data to pass to the modal
+  const [activeService, setActiveService] = useState<ServiceEntry | null>(null);
+
+  const openPharmacy = (type: PharmacyModalType, svc: ServiceEntry) => {
+    setActiveService(svc);
+    setPharmacyModal(type);
+  };
+  const openOptical = (type: OpticalModalType, svc: ServiceEntry) => {
+    setActiveService(svc);
+    setOpticalModal(type);
+  };
+  const openBakery = (type: BakeryModalType, svc: ServiceEntry) => {
+    setActiveService(svc);
+    setBakeryModal(type);
+  };
+  const openAutoCare = (type: AutoCareModalType, svc: ServiceEntry) => {
+    setActiveService(svc);
+    setAutoCareModal(type);
+  };
+
+  // Wire up actions for each service entry
+  const wiredServices = services.map((svc): ServiceEntry => {
+    switch (svc.serviceType) {
+      case 'PHARMACY':
+        return {
+          ...svc,
+          actions: getPharmacyActions(svc, openPharmacy),
+        };
+      case 'OPTICAL':
+        return {
+          ...svc,
+          actions: getOpticalActions(svc, openOptical),
+        };
+      case 'BAKERY':
+        return {
+          ...svc,
+          actions: getBakeryActions(svc, openBakery),
+        };
+      case 'AUTO':
+        return {
+          ...svc,
+          actions: getAutoCareActions(svc, openAutoCare),
+        };
+      default:
+        return svc;
+    }
+  });
+
+  return (
+    <>
+      <ServicesCard
+        services={wiredServices}
+        defaultExpanded={defaultExpanded}
+        defaultExpandedRowId={defaultExpandedRowId}
+      />
+
+      {/* Pharmacy modals */}
+      <PharmacyModals
+        openModal={pharmacyModal}
+        onClose={() => setPharmacyModal(null)}
+        rxName={activeService?.detail?.referenceId?.includes('Rx')
+          ? activeService?.microcopy?.split(' · ')[0]
+          : activeService?.serviceLabel}
+        rxNumber={activeService?.detail?.referenceId}
+        location={activeService?.pickupLocation}
+        pickupWindow={activeService?.detail?.pickupWindow}
+        provider={activeService?.detail?.provider}
+        plan={activeService?.detail?.plan}
+      />
+
+      {/* Optical modals */}
+      <OpticalModals
+        openModal={opticalModal}
+        onClose={() => setOpticalModal(null)}
+        orderRef={activeService?.detail?.referenceId}
+        location={activeService?.pickupLocation}
+        provider={activeService?.detail?.provider}
+        pickupWindow={activeService?.detail?.pickupWindow}
+      />
+
+      {/* Bakery modals */}
+      <BakeryModals
+        openModal={bakeryModal}
+        onClose={() => setBakeryModal(null)}
+        orderRef={activeService?.detail?.referenceId}
+        cakeType={activeService?.serviceLabel}
+        location={activeService?.pickupLocation}
+        pickupDate={activeService?.pickupDate}
+      />
+
+      {/* Auto Care modals */}
+      <AutoCareModals
+        openModal={autoCareModal}
+        onClose={() => setAutoCareModal(null)}
+        onSwitchToCheckIn={() => setAutoCareModal('checkIn')}
+        onSwitchToReschedule={() => setAutoCareModal('reschedule')}
+        serviceDetails={{
+          vehicle: activeService?.detail?.vehicle ?? '2019 Toyota Camry',
+          services: ['Oil change'],
+        }}
+        location={activeService?.pickupLocation}
+        statusHeading={activeService?.detail?.scheduledTime ?? 'Scheduled'}
+        appointmentDate={new Date(2026, 2, 7)}
+      />
+    </>
+  );
+}
+
+// ── Action builders per service type ──────────────────────────────────────────
+
+function getPharmacyActions(
+  svc: ServiceEntry,
+  open: (type: PharmacyModalType, svc: ServiceEntry) => void,
+) {
+  switch (svc.status) {
+    case 'READY_FOR_PICKUP':
+      return [
+        { label: 'Pick up', variant: 'primary' as const, onClick: () => open('pickup', svc) },
+        { label: 'Transfer Rx', variant: 'secondary' as const, onClick: () => open('transferRx', svc) },
+        { label: 'View details', variant: 'secondary' as const, onClick: () => open('viewDetails', svc) },
+      ];
+    default:
+      return [
+        { label: 'View details', variant: 'primary' as const, onClick: () => open('viewDetails', svc) },
+      ];
+  }
+}
+
+function getOpticalActions(
+  svc: ServiceEntry,
+  open: (type: OpticalModalType, svc: ServiceEntry) => void,
+) {
+  switch (svc.status) {
+    case 'READY_FOR_PICKUP':
+      return [
+        { label: 'Pick up', variant: 'primary' as const, onClick: () => open('pickup', svc) },
+        { label: 'View details', variant: 'secondary' as const, onClick: () => open('viewDetails', svc) },
+      ];
+    case 'SCHEDULED':
+      return [
+        { label: 'Reschedule', variant: 'primary' as const, onClick: () => open('reschedule', svc) },
+        { label: 'View details', variant: 'secondary' as const, onClick: () => open('viewDetails', svc) },
+      ];
+    default:
+      return [
+        { label: 'View details', variant: 'primary' as const, onClick: () => open('viewDetails', svc) },
+      ];
+  }
+}
+
+function getBakeryActions(
+  svc: ServiceEntry,
+  open: (type: BakeryModalType, svc: ServiceEntry) => void,
+) {
+  switch (svc.status) {
+    case 'READY_FOR_PICKUP':
+      return [
+        { label: 'Pick up', variant: 'primary' as const, onClick: () => open('pickup', svc) },
+        { label: 'View details', variant: 'secondary' as const, onClick: () => open('viewDetails', svc) },
+      ];
+    case 'CANCELLED':
+      return [
+        { label: 'Reorder', variant: 'primary' as const, onClick: () => open('reorder', svc) },
+        { label: 'View details', variant: 'secondary' as const, onClick: () => open('viewDetails', svc) },
+      ];
+    case 'IN_PROGRESS':
+    case 'PROCESSING':
+      return [
+        { label: 'Modify order', variant: 'primary' as const, onClick: () => open('modify', svc) },
+        { label: 'View details', variant: 'secondary' as const, onClick: () => open('viewDetails', svc) },
+      ];
+    case 'SCHEDULED':
+      return [
+        { label: 'Modify order', variant: 'primary' as const, onClick: () => open('modify', svc) },
+        { label: 'View details', variant: 'secondary' as const, onClick: () => open('viewDetails', svc) },
+      ];
+    default:
+      return [
+        { label: 'View details', variant: 'primary' as const, onClick: () => open('viewDetails', svc) },
+      ];
+  }
+}
+
+function getAutoCareActions(
+  svc: ServiceEntry,
+  open: (type: AutoCareModalType, svc: ServiceEntry) => void,
+) {
+  return [
+    { label: 'Check in', variant: 'primary' as const, onClick: () => open('checkIn', svc) },
+    { label: 'Reschedule', variant: 'secondary' as const, onClick: () => open('reschedule', svc) },
+    { label: 'View details', variant: 'secondary' as const, onClick: () => open('viewDetails', svc) },
+  ];
+}
+
+// ── Static service data for patterns ─────────────────────────────────────────
+
+const SERVICES_URGENCY: ServiceEntry[] = [
+  {
+    id: 'rx-ready',
+    serviceType: 'PHARMACY',
+    serviceLabel: 'Prescription',
+    status: 'READY_FOR_PICKUP',
+    microcopy: 'Amoxicillin 500mg · ready since 9:15am',
+    pickupLocation: 'Oak Lawn Supercenter',
+    pickupDate: '2026-03-05',
+    activeStep: 2,
+    detail: {
+      pickupWindow: 'Today until 9:00pm',
+      referenceId: 'Rx #4428710',
+      provider: 'Dr. Sarah Chen',
+      plan: 'Walmart Health Insurance',
+    },
+  },
+  {
+    id: 'auto-in-progress',
+    serviceType: 'AUTO',
+    serviceLabel: 'Auto Care',
+    status: 'IN_PROGRESS',
+    microcopy: 'Oil change in progress',
+    pickupLocation: 'Oak Lawn Supercenter',
+    activeStep: 2,
+    detail: {
+      scheduledTime: 'Sat, Mar 7, 10:00am–11:00am',
+      vehicle: '2019 Toyota Camry',
+      note: 'Est. 45 min remaining',
+    },
+  },
+  {
+    id: 'optical-scheduled',
+    serviceType: 'OPTICAL',
+    serviceLabel: 'Optical',
+    status: 'SCHEDULED',
+    microcopy: 'Pickup: Mon, Mar 10',
+    pickupLocation: 'Oak Lawn Supercenter',
+    pickupDate: '2026-03-10',
+    activeStep: 0,
+    detail: {
+      referenceId: 'Order #OPT-88214',
+      provider: 'Dr. James Park',
+      pickupWindow: 'Mon, Mar 10, 9:00am–8:00pm',
+      note: 'Progressive lenses — 7–10 business days',
+    },
+  },
+];
+
+const SERVICES_ALL_EXPANDED: ServiceEntry[] = [
+  {
+    id: 'rx-ready',
+    serviceType: 'PHARMACY',
+    serviceLabel: 'Prescription',
+    status: 'READY_FOR_PICKUP',
+    microcopy: 'Lisinopril 10mg · ready since 8:30am',
+    pickupLocation: 'Carrollton Supercenter',
+    pickupDate: '2026-03-05',
+    activeStep: 2,
+    detail: {
+      pickupWindow: 'Today until 9:00pm',
+      referenceId: 'Rx #3317204',
+      provider: 'Dr. Maria Lopez',
+    },
+  },
+  {
+    id: 'auto-in-progress',
+    serviceType: 'AUTO',
+    serviceLabel: 'Auto Care',
+    status: 'IN_PROGRESS',
+    microcopy: 'Tire rotation — est. 45 min remaining',
+    pickupLocation: 'Carrollton Supercenter',
+    activeStep: 2,
+    detail: {
+      scheduledTime: 'Sat, Mar 7, 2:00pm–3:00pm',
+      vehicle: '2021 Honda CR-V',
+    },
+  },
+  {
+    id: 'optical-scheduled',
+    serviceType: 'OPTICAL',
+    serviceLabel: 'Optical',
+    status: 'SCHEDULED',
+    microcopy: 'Contact lens pickup: Mon, Mar 10',
+    pickupLocation: 'Carrollton Supercenter',
+    pickupDate: '2026-03-10',
+    activeStep: 0,
+    detail: {
+      referenceId: 'Order #OPT-55102',
+      pickupWindow: 'Mon, Mar 10, 9:00am–8:00pm',
+      provider: 'Dr. James Park',
+    },
+  },
+  {
+    id: 'cake-cancelled',
+    serviceType: 'BAKERY',
+    serviceLabel: 'Custom Cake',
+    status: 'CANCELLED',
+    microcopy: 'Order cancelled on Mar 3',
+    activeStep: 0,
+    detail: {
+      referenceId: 'Order #BK-40091',
+      note: 'Refund of $34.99 issued to Visa ending 4821',
+    },
+  },
+];
+
+const SERVICES_SINGLE_RX: ServiceEntry[] = [
+  {
+    id: 'rx-ready',
+    serviceType: 'PHARMACY',
+    serviceLabel: 'Prescription',
+    status: 'READY_FOR_PICKUP',
+    microcopy: 'Metformin 1000mg · ready since 10:00am',
+    pickupLocation: 'Irving Supercenter',
+    pickupDate: '2026-03-05',
+    activeStep: 2,
+    detail: {
+      pickupWindow: 'Today until 9:00pm',
+      referenceId: 'Rx #5590123',
+      provider: 'Dr. Angela Reeves',
+      plan: 'Walmart Health+',
+    },
+  },
+];
+
+const SERVICES_MULTI_STORE: ServiceEntry[] = [
+  {
+    id: 'rx-ready-store1',
+    serviceType: 'PHARMACY',
+    serviceLabel: 'Prescription',
+    status: 'READY_FOR_PICKUP',
+    microcopy: 'Oak Lawn Supercenter · ready since 9:00am',
+    pickupLocation: 'Oak Lawn Supercenter',
+    pickupDate: '2026-03-05',
+    activeStep: 2,
+    detail: {
+      pickupWindow: 'Today until 9:00pm',
+      referenceId: 'Rx #7712045',
+      provider: 'Dr. David Kim',
+    },
+  },
+  {
+    id: 'optical-scheduled-store2',
+    serviceType: 'OPTICAL',
+    serviceLabel: 'Optical',
+    status: 'SCHEDULED',
+    microcopy: 'Carrollton Supercenter · pickup Mar 10',
+    pickupLocation: 'Carrollton Supercenter',
+    pickupDate: '2026-03-10',
+    activeStep: 0,
+    detail: {
+      referenceId: 'Order #OPT-33187',
+      pickupWindow: 'Mon, Mar 10, 9:00am–8:00pm',
+      provider: 'Dr. Lisa Tran',
+      note: 'Anti-reflective coating — allow 7–10 days',
+    },
+  },
+  {
+    id: 'auto-processing-store1',
+    serviceType: 'AUTO',
+    serviceLabel: 'Auto Care',
+    status: 'PROCESSING',
+    microcopy: 'Oak Lawn Supercenter · submitted today',
+    pickupLocation: 'Oak Lawn Supercenter',
+    activeStep: 1,
+    detail: {
+      scheduledTime: 'Today, 3:30pm–4:30pm',
+      vehicle: '2020 Ford F-150',
+      note: 'Checked in — waiting for bay',
+    },
+  },
+];
+
 // ── Pattern entry type ────────────────────────────────────────────────────────
 interface PatternEntry {
   id: string;
@@ -131,72 +525,15 @@ const PATTERNS: PatternEntry[] = [
       />
     ),
   },
-  // ── Your Services card patterns (A–D) ─────────────────────────────────────────
+  // ── Your Services card patterns ────────────────────────────────────────────
   {
     id: 'services-urgency-focus',
     title: 'Services: Prescription ready + Auto Care in progress (urgency focus)',
     prompt: 'Show a "Your Services" card highlighting an urgent Prescription ready for pickup (with Alert banner) and Auto Care in progress. Optical is hidden in the collapsed view.',
     preview: (
-      <ServicesCard
+      <ServicesCardWithModals
         defaultExpandedRowId="rx-ready"
-        services={[
-          {
-            id: 'rx-ready',
-            serviceType: 'PHARMACY',
-            serviceLabel: 'Prescription',
-            status: 'READY_FOR_PICKUP',
-            microcopy: 'Amoxicillin 500mg · ready since 9:15am',
-            pickupLocation: 'Oak Lawn Supercenter',
-            pickupDate: '2026-03-05',
-            activeStep: 2,
-            detail: {
-              pickupWindow: 'Today until 9:00pm',
-              referenceId: 'Rx #4428710',
-              provider: 'Dr. Sarah Chen',
-              plan: 'Walmart Health Insurance',
-            },
-            actions: [
-              { label: 'Pick up', variant: 'primary', onClick: () => alert('Pick up — Prescription Rx #4428710') },
-              { label: 'View details', variant: 'secondary', onClick: () => alert('View details — Prescription Rx #4428710') },
-            ],
-          },
-          {
-            id: 'auto-in-progress',
-            serviceType: 'AUTO',
-            serviceLabel: 'Auto Care',
-            status: 'IN_PROGRESS',
-            microcopy: 'Oil change in progress',
-            pickupLocation: 'Oak Lawn Supercenter',
-            activeStep: 2,
-            detail: {
-              scheduledTime: 'Sat, Mar 7, 10:00am–11:00am',
-              vehicle: '2019 Toyota Camry',
-              note: 'Est. 45 min remaining',
-            },
-            actions: [
-              { label: 'Check in', variant: 'primary', onClick: () => alert('Check in — Auto Care') },
-              { label: 'Reschedule', variant: 'secondary', onClick: () => alert('Reschedule — Auto Care') },
-              { label: 'View details', variant: 'secondary', onClick: () => alert('View details — Auto Care') },
-            ],
-          },
-          {
-            id: 'optical-scheduled',
-            serviceType: 'OPTICAL',
-            serviceLabel: 'Optical',
-            status: 'SCHEDULED',
-            microcopy: 'Pickup: Mon, Mar 10',
-            pickupDate: '2026-03-10',
-            activeStep: 0,
-            detail: {
-              referenceId: 'Order #OPT-88214',
-              provider: 'Dr. James Park',
-              note: 'Progressive lenses — 7–10 business days',
-            },
-            actions: [
-              { label: 'View details', variant: 'primary', onClick: () => alert('View details — Optical Order #OPT-88214') },
-            ],
-          },
-        ]}
+        services={SERVICES_URGENCY}
       />
     ),
   },
@@ -205,74 +542,10 @@ const PATTERNS: PatternEntry[] = [
     title: 'Services: All statuses expanded (full range)',
     prompt: 'Show an expanded "Your Services" card with all 4 service types showing every status variant — Ready (green), In Progress (blue), Scheduled (gray), and Canceled (red).',
     preview: (
-      <ServicesCard
+      <ServicesCardWithModals
         defaultExpanded
         defaultExpandedRowId="auto-in-progress"
-        services={[
-          {
-            id: 'rx-ready',
-            serviceType: 'PHARMACY',
-            serviceLabel: 'Prescription',
-            status: 'READY_FOR_PICKUP',
-            microcopy: 'Lisinopril 10mg · ready since 8:30am',
-            pickupLocation: 'Carrollton Supercenter',
-            pickupDate: '2026-03-05',
-            activeStep: 2,
-            detail: {
-              pickupWindow: 'Today until 9:00pm',
-              referenceId: 'Rx #3317204',
-              provider: 'Dr. Maria Lopez',
-            },
-            actions: [
-              { label: 'Pick up', variant: 'primary', onClick: () => alert('Pick up — Prescription Rx #3317204') },
-              { label: 'View details', variant: 'secondary', onClick: () => alert('View details — Prescription Rx #3317204') },
-            ],
-          },
-          {
-            id: 'auto-in-progress',
-            serviceType: 'AUTO',
-            serviceLabel: 'Auto Care',
-            status: 'IN_PROGRESS',
-            microcopy: 'Tire rotation — est. 45 min remaining',
-            pickupLocation: 'Carrollton Supercenter',
-            activeStep: 2,
-            detail: {
-              scheduledTime: 'Sat, Mar 7, 2:00pm–3:00pm',
-              vehicle: '2021 Honda CR-V',
-            },
-            actions: [
-              { label: 'Check in', variant: 'primary', onClick: () => alert('Check in — Auto Care') },
-              { label: 'Reschedule', variant: 'secondary', onClick: () => alert('Reschedule — Auto Care') },
-              { label: 'View details', variant: 'secondary', onClick: () => alert('View details — Auto Care') },
-            ],
-          },
-          {
-            id: 'optical-scheduled',
-            serviceType: 'OPTICAL',
-            serviceLabel: 'Optical',
-            status: 'SCHEDULED',
-            microcopy: 'Contact lens pickup: Mon, Mar 10',
-            pickupDate: '2026-03-10',
-            activeStep: 0,
-            detail: {
-              referenceId: 'Order #OPT-55102',
-              pickupWindow: 'Mon, Mar 10, 9:00am–8:00pm',
-              provider: 'Dr. James Park',
-            },
-          },
-          {
-            id: 'cake-cancelled',
-            serviceType: 'BAKERY',
-            serviceLabel: 'Custom Cake',
-            status: 'CANCELLED',
-            microcopy: 'Order cancelled on Mar 3',
-            activeStep: 0,
-            detail: {
-              referenceId: 'Order #BK-40091',
-              note: 'Refund of $34.99 issued to Visa ending 4821',
-            },
-          },
-        ]}
+        services={SERVICES_ALL_EXPANDED}
       />
     ),
   },
@@ -281,30 +554,9 @@ const PATTERNS: PatternEntry[] = [
     title: 'Services: Single Rx ready (minimal state)',
     prompt: 'Show a minimal "Your Services" card with a single Prescription ready for pickup and an urgency Alert banner. No toggle or View All needed.',
     preview: (
-      <ServicesCard
+      <ServicesCardWithModals
         defaultExpandedRowId="rx-ready"
-        services={[
-          {
-            id: 'rx-ready',
-            serviceType: 'PHARMACY',
-            serviceLabel: 'Prescription',
-            status: 'READY_FOR_PICKUP',
-            microcopy: 'Metformin 1000mg · ready since 10:00am',
-            pickupLocation: 'Irving Supercenter',
-            pickupDate: '2026-03-05',
-            activeStep: 2,
-            detail: {
-              pickupWindow: 'Today until 9:00pm',
-              referenceId: 'Rx #5590123',
-              provider: 'Dr. Angela Reeves',
-              plan: 'Walmart Health+',
-            },
-            actions: [
-              { label: 'Pick up', variant: 'primary', onClick: () => alert('Pick up — Prescription Rx #5590123') },
-              { label: 'View details', variant: 'secondary', onClick: () => alert('View details — Prescription Rx #5590123') },
-            ],
-          },
-        ]}
+        services={SERVICES_SINGLE_RX}
       />
     ),
   },
@@ -313,72 +565,14 @@ const PATTERNS: PatternEntry[] = [
     title: 'Services: Multi-store services',
     prompt: 'Show a "Your Services" card with 3 services across 2 different stores, demonstrating store context in each row microcopy.',
     preview: (
-      <ServicesCard
+      <ServicesCardWithModals
         defaultExpanded
         defaultExpandedRowId="rx-ready-store1"
-        services={[
-          {
-            id: 'rx-ready-store1',
-            serviceType: 'PHARMACY',
-            serviceLabel: 'Prescription',
-            status: 'READY_FOR_PICKUP',
-            microcopy: 'Oak Lawn Supercenter · ready since 9:00am',
-            pickupLocation: 'Oak Lawn Supercenter',
-            pickupDate: '2026-03-05',
-            activeStep: 2,
-            detail: {
-              pickupWindow: 'Today until 9:00pm',
-              referenceId: 'Rx #7712045',
-              provider: 'Dr. David Kim',
-            },
-            actions: [
-              { label: 'Pick up', variant: 'primary', onClick: () => alert('Pick up — Prescription Rx #7712045') },
-              { label: 'View details', variant: 'secondary', onClick: () => alert('View details — Prescription Rx #7712045') },
-            ],
-          },
-          {
-            id: 'optical-scheduled-store2',
-            serviceType: 'OPTICAL',
-            serviceLabel: 'Optical',
-            status: 'SCHEDULED',
-            microcopy: 'Carrollton Supercenter · pickup Mar 10',
-            pickupLocation: 'Carrollton Supercenter',
-            pickupDate: '2026-03-10',
-            activeStep: 0,
-            detail: {
-              referenceId: 'Order #OPT-33187',
-              pickupWindow: 'Mon, Mar 10, 9:00am–8:00pm',
-              provider: 'Dr. Lisa Tran',
-              note: 'Anti-reflective coating — allow 7–10 days',
-            },
-            actions: [
-              { label: 'View details', variant: 'primary', onClick: () => alert('View details — Optical Order #OPT-33187') },
-            ],
-          },
-          {
-            id: 'auto-processing-store1',
-            serviceType: 'AUTO',
-            serviceLabel: 'Auto Care',
-            status: 'PROCESSING',
-            microcopy: 'Oak Lawn Supercenter · submitted today',
-            pickupLocation: 'Oak Lawn Supercenter',
-            activeStep: 1,
-            detail: {
-              scheduledTime: 'Today, 3:30pm–4:30pm',
-              vehicle: '2020 Ford F-150',
-              note: 'Checked in — waiting for bay',
-            },
-            actions: [
-              { label: 'Check in', variant: 'primary', onClick: () => alert('Check in — Auto Care') },
-              { label: 'Reschedule', variant: 'secondary', onClick: () => alert('Reschedule — Auto Care') },
-              { label: 'View details', variant: 'secondary', onClick: () => alert('View details — Auto Care') },
-            ],
-          },
-        ]}
+        services={SERVICES_MULTI_STORE}
       />
     ),
   },
-  // ── Auto Care Engagement Examples (2 cards, one prompt) ─────────────────────
+  // ── Auto Care Engagement Examples ──────────────────────────────────────────
   {
     id: 'auto-care-engagement',
     title: 'Auto center engagement cards',
