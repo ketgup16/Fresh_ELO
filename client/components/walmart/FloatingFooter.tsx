@@ -6,6 +6,8 @@ interface FloatingFooterAction {
   label: string;
   subLabel?: string;
   icon?: React.ReactNode;
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  strokeOn?: boolean;
   onClick?: () => void;
 }
 
@@ -24,18 +26,20 @@ export function FloatingFooter({
   return (
     <div className={`${styles.bar} ${fixed ? styles.barFixed : ''}`}>
       <Button
-        variant="secondary"
+        variant={secondaryAction.variant ?? 'secondary'}
         size="medium"
         leading={secondaryAction.icon}
+        strokeOn={secondaryAction.strokeOn}
         onClick={secondaryAction.onClick}
       >
         {secondaryAction.label}
       </Button>
       <Button
-        variant="secondary"
+        variant={primaryAction.variant ?? 'secondary'}
         size="medium"
         leading={primaryAction.icon}
         subLabel={primaryAction.subLabel}
+        strokeOn={primaryAction.strokeOn}
         onClick={primaryAction.onClick}
       >
         {primaryAction.label}

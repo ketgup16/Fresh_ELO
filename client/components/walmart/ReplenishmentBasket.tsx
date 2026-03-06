@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CondensedItemTile } from './CondensedItemTile';
 import { DeliveryScheduler } from './DeliveryScheduler';
 import { Button } from '@/components/ui/Button';
+import { FloatingFooter } from './FloatingFooter';
 import {
   ChevronDown,
   ChevronRight,
@@ -458,53 +459,25 @@ export function ReplenishmentBasket({
             )}
           </div>
 
-          {/* ── Floating footer bar — outside panel, replaces BottomNav ── */}
-          <div className={styles.floatingFooterBar}>
-            {state === 'expanded' && isEditing && (
-              <>
-                <Button variant="secondary" size="medium" isFullWidth onClick={handleSave}>
-                  Save
-                </Button>
-                <Button variant="primary" size="medium" isFullWidth strokeOn onClick={handleAddToDelivery}>
-                  Add to {deliveryDayShort} delivery
-                </Button>
-              </>
-            )}
-            {state === 'expanded' && !isEditing && (
-              <>
-                <Button
-                  variant="secondary"
-                  size="medium"
-                  isFullWidth
-                  leading={<Pause width={16} height={16} />}
-                  onClick={onPauseDelivery}
-                >
-                  Pause Delivery
-                </Button>
-                <Button
-                  variant="primary"
-                  size="medium"
-                  isFullWidth
-                  strokeOn
-                  leading={<Flash width={16} height={16} />}
-                  subLabel="as soon as 37 mins"
-                  onClick={onGetItNow}
-                >
-                  Get it now
-                </Button>
-              </>
-            )}
-            {state === 'scheduling' && (
-              <>
-                <Button variant="secondary" size="medium" isFullWidth onClick={handleBackToBasket}>
-                  Back
-                </Button>
-                <Button variant="primary" size="medium" isFullWidth strokeOn onClick={handleConfirmDelivery}>
-                  Confirm delivery
-                </Button>
-              </>
-            )}
-          </div>
+          {/* ── Floating footer — outside panel, replaces BottomNav ── */}
+          {state === 'expanded' && isEditing && (
+            <FloatingFooter
+              secondaryAction={{ label: 'Save', onClick: handleSave }}
+              primaryAction={{ label: `Add to ${deliveryDayShort} delivery`, variant: 'primary', strokeOn: true, onClick: handleAddToDelivery }}
+            />
+          )}
+          {state === 'expanded' && !isEditing && (
+            <FloatingFooter
+              secondaryAction={{ label: 'Pause Delivery', icon: <Pause width={16} height={16} />, onClick: onPauseDelivery }}
+              primaryAction={{ label: 'Get it now', icon: <Flash width={16} height={16} />, subLabel: 'as soon as 37 mins', variant: 'primary', strokeOn: true, onClick: onGetItNow }}
+            />
+          )}
+          {state === 'scheduling' && (
+            <FloatingFooter
+              secondaryAction={{ label: 'Back', onClick: handleBackToBasket }}
+              primaryAction={{ label: 'Confirm delivery', variant: 'primary', strokeOn: true, onClick: handleConfirmDelivery }}
+            />
+          )}
         </>
       )}
     </div>
