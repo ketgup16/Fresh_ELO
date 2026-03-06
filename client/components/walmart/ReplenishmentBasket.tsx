@@ -298,7 +298,7 @@ export function ReplenishmentBasket({
             <>
               {/* Content card with rounded corners */}
               <div className={styles.contentCard}>
-                <div className={styles.contentCardInner}>
+                <div className={[styles.contentCardInner, isEditing ? styles.contentCardInnerEdit : ''].filter(Boolean).join(' ')}>
                   {/* Item grid — switches between 3-col and 2-col */}
                   <div className={isEditing ? styles.itemGridEdit : styles.itemGrid}>
                     {items.map((item, index) => (

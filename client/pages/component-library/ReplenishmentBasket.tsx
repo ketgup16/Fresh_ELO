@@ -52,7 +52,7 @@ export default function ReplenishmentBasketPage() {
       <div className={styles.section}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Live Demo</h2>
-          <Tag variant="warning">Resize to mobile width</Tag>
+          <Tag variant="neutral">Resize to mobile width</Tag>
         </div>
         <p className={styles.description}>
           The component is hidden on screens wider than 768px. Use the mobile preview or resize

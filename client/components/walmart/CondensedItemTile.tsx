@@ -51,75 +51,48 @@ export function CondensedItemTile({
   itemIndex = 0,
   animationClass,
 }: CondensedItemTileProps) {
-  if (variant === 'edit') {
-    return (
-      <div
-        className={[styles.editTile, animationClass].filter(Boolean).join(' ')}
-        style={{ '--item-delay': `${itemIndex * 40}ms` } as React.CSSProperties}
-      >
-        {/* Square image area with checkmark */}
-        <div className={styles.editImageArea}>
-          <img src={image} alt={name || 'Product'} className={styles.editImage} />
-          <button
-            className={styles.checkIcon}
-            onClick={() => onCheckChange?.(!isChecked)}
-            aria-label={isChecked ? 'Deselect item' : 'Select item'}
-          >
-            <CheckCircleFill
-              className={isChecked ? styles.checkSvg : styles.checkSvgUnchecked}
-            />
-          </button>
-        </div>
+  const isEdit = variant === 'edit';
 
-        {/* Price row + tag */}
-        <div className={styles.priceRow}>
-          <div className={styles.priceInner}>
-            <span className={styles.dollarSign}>$</span>
-            <span className={styles.price}>{price}</span>
-            <span className={styles.cents}>{cents}</span>
-          </div>
-          {tag && (
-            <div className={styles.tag}>
-              <span className={styles.tagText}>{tag}</span>
-            </div>
-          )}
-        </div>
-
-        {/* Product name */}
-        {name && <div className={styles.editName}>{name}</div>}
-
-        {/* Quantity stepper */}
-        <div className={styles.quantityStepper}>
-          <button
-            className={styles.stepperBtn}
-            onClick={() => onQuantityChange?.(Math.max(1, quantity - 1))}
-            aria-label="Decrease quantity"
-          >
-            <Minus className={styles.stepperBtnIcon} />
-          </button>
-          <span className={styles.stepperCount}>{quantity}</span>
-          <button
-            className={styles.stepperBtn}
-            onClick={() => onQuantityChange?.(quantity + 1)}
-            aria-label="Increase quantity"
-          >
-            <Plus className={styles.stepperBtnIcon} />
-          </button>
-        </div>
-      </div>
-    );
-  }
-
+  // Unified tile that renders both states — CSS handles the transition
   return (
-    <div className={`${styles.tile} ${loading ? styles.tileLoading : ''}`}>
-      <div className={styles.imageArea}>
-        <img src={image} alt="Product" className={styles.image} />
-        {onAddToCart && (
+    <div
+      className={[
+        styles.tile,
+        isEdit ? styles.tileEdit : '',
+        loading ? styles.tileLoading : '',
+        animationClass,
+      ].filter(Boolean).join(' ')}
+      style={{ '--item-delay': `${itemIndex * 41}ms` } as React.CSSProperties}
+    >
+      {/* Image area — grows from 96px to fill grid column in edit mode */}
+      <div className={[styles.imageArea, isEdit ? styles.imageAreaEdit : ''].filter(Boolean).join(' ')}>
+        <img
+          src={image}
+          alt={name || 'Product'}
+          className={[styles.image, isEdit ? styles.imageEdit : ''].filter(Boolean).join(' ')}
+        />
+
+        {/* Checkmark — edit mode only, animated enter */}
+        <button
+          className={[styles.checkIcon, isEdit ? styles.checkIconVisible : ''].filter(Boolean).join(' ')}
+          onClick={() => onCheckChange?.(!isChecked)}
+          aria-label={isChecked ? 'Deselect item' : 'Select item'}
+          tabIndex={isEdit ? 0 : -1}
+        >
+          <CheckCircleFill
+            className={isChecked ? styles.checkSvg : styles.checkSvgUnchecked}
+          />
+        </button>
+
+        {/* Quantity badge — default mode only, animated exit */}
+        {!isEdit && onAddToCart && (
           <div className={styles.addToCartWrap}>
             <WCPAddToCart variant={variant} onChange={onAddToCart} />
           </div>
         )}
       </div>
+
+      {/* Price row + tag */}
       <div className={styles.priceRow}>
         <div className={styles.priceInner}>
           <span className={styles.dollarSign}>$</span>
@@ -131,6 +104,31 @@ export function CondensedItemTile({
             <span className={styles.tagText}>{tag}</span>
           </div>
         )}
+      </div>
+
+      {/* Edit-only details: name + quantity stepper — animated expand/collapse */}
+      <div className={[styles.editDetails, isEdit ? styles.editDetailsVisible : ''].filter(Boolean).join(' ')}>
+        {name && <div className={styles.editName}>{name}</div>}
+
+        <div className={styles.quantityStepper}>
+          <button
+            className={styles.stepperBtn}
+            onClick={() => onQuantityChange?.(Math.max(1, quantity - 1))}
+            aria-label="Decrease quantity"
+            tabIndex={isEdit ? 0 : -1}
+          >
+            <Minus className={styles.stepperBtnIcon} />
+          </button>
+          <span className={styles.stepperCount}>{quantity}</span>
+          <button
+            className={styles.stepperBtn}
+            onClick={() => onQuantityChange?.(quantity + 1)}
+            aria-label="Increase quantity"
+            tabIndex={isEdit ? 0 : -1}
+          >
+            <Plus className={styles.stepperBtnIcon} />
+          </button>
+        </div>
       </div>
     </div>
   );
