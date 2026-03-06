@@ -10,7 +10,9 @@
   background: var(--ld-semantic-color-surface-brand, #D9E9FF);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* Do NOT use overflow:hidden — that clips card box-shadows.
+     Inner scroll containers (.cardScroll) handle their own overflow. */
+  overflow: clip;
 
   /* Slide-up enter animation */
   animation: overlayEnter 300ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -31,6 +33,53 @@
 }
 
 /* ============================================================
+   Status bar wrapper — brand bg so icons stay on brand color
+   ============================================================ */
+.statusBarWrap {
+  flex-shrink: 0;
+  /* Match the overlay brand background */
+  background: var(--ld-semantic-color-surface-brand, #D9E9FF);
+}
+
+/* ============================================================
+   Home indicator (iOS) / gesture bar (Android)
+   ============================================================ */
+.homeIndicator {
+  flex-shrink: 0;
+  height: 34px;
+  background: var(--ld-semantic-color-surface-brand, #D9E9FF);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homeIndicator::after {
+  content: '';
+  width: 134px;
+  height: 5px;
+  background: var(--ld-semantic-color-text, #2E2F32);
+  border-radius: 9999px;
+  opacity: 0.2;
+}
+
+.androidNavBar {
+  flex-shrink: 0;
+  height: 24px;
+  background: var(--ld-semantic-color-surface-brand, #D9E9FF);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.androidGestureBar {
+  width: 134px;
+  height: 4px;
+  background: var(--ld-semantic-color-text, #2E2F32);
+  border-radius: 9999px;
+  opacity: 0.15;
+}
+
+/* ============================================================
    Section wrapper (horizontal padding)
    ============================================================ */
 .section {
@@ -40,7 +89,8 @@
   gap: var(--ld-primitive-scale-space-200, 16px);
   padding: 0 var(--ld-primitive-scale-space-200, 16px);
   flex: 1 1 0;
-  overflow: hidden;
+  /* overflow visible so card box-shadows are not clipped */
+  overflow: visible;
   min-height: 0;
 }
 
@@ -440,7 +490,7 @@
   flex: 1 1 0;
   min-height: 0;
   gap: var(--ld-primitive-scale-space-200, 16px);
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Screens that have a bottom card (optin/terms): constrain the grid card */
@@ -450,7 +500,7 @@
   flex: 1 1 0;
   min-height: 0;
   gap: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .screenWithCardGrid {
@@ -478,7 +528,7 @@
   gap: var(--ld-primitive-scale-space-200, 16px);
   padding: 0 var(--ld-primitive-scale-space-200, 16px);
   flex: 1 1 0;
-  overflow: hidden;
+  overflow: visible;
   min-height: 0;
 }
 

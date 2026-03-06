@@ -20,8 +20,18 @@ const FRAMES: FrameData[] = [
   },
 ];
 
-const DISPLAY_DURATION = 3500;
-const EXIT_DURATION = 200;
+export const STEP_DISPLAY_DURATION = 3500;
+export const STEP_ENTER_DURATION = 350;
+export const STEP_EXIT_DURATION = 200;
+export const STEP_FRAME_COUNT = 3;
+// Total time to show all frames once:
+// frames × display + (frames-1) × (exit + enter)
+export const STEP_TOTAL_DURATION =
+  STEP_FRAME_COUNT * STEP_DISPLAY_DURATION +
+  (STEP_FRAME_COUNT - 1) * (STEP_EXIT_DURATION + STEP_ENTER_DURATION);
+
+const DISPLAY_DURATION = STEP_DISPLAY_DURATION;
+const EXIT_DURATION = STEP_EXIT_DURATION;
 
 function MagicSparkleIcon({ className }: { className?: string }) {
   return (

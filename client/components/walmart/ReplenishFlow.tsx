@@ -2,8 +2,10 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Button } from '@/components/ui/Button';
 import { CondensedItemTile } from './CondensedItemTile';
-import { StepAnimation } from './StepAnimation';
+import { StepAnimation, STEP_TOTAL_DURATION } from './StepAnimation';
+import { NativeStatusBar } from './NativeStatusBar';
 import { CartFill } from '@/components/icons';
+import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import styles from './ReplenishFlow.module.css';
 
 // ─── Demo data ────────────────────────────────────────────────────────────────
@@ -430,6 +432,8 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
   const [isExiting, setIsExiting] = useState(false);
   const [items, setItems] = useState<ReplenishItem[]>(REPLENISH_ITEMS);
   const loadingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { platform } = useLayoutSettings();
+  const isNative = platform === 'ios' || platform === 'android';
 
   // Body scroll lock
   useEffect(() => {
@@ -444,12 +448,12 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
-  // Auto-advance loading → overview
+  // Auto-advance loading → overview after all 3 frames have been shown
   useEffect(() => {
     if (screen !== 'loading') return;
     loadingTimerRef.current = setTimeout(() => {
       setScreen('overview');
-    }, 3500);
+    }, STEP_TOTAL_DURATION);
     return () => {
       if (loadingTimerRef.current) clearTimeout(loadingTimerRef.current);
     };
@@ -487,6 +491,16 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
       aria-modal="true"
       aria-label="Your replenishment basket"
     >
+      {/* Status bar — same brand bg, dark icons to match light surface */}
+      {isNative && (
+        <div className={styles.statusBarWrap}>
+          <NativeStatusBar
+            platform={platform as 'ios' | 'android'}
+            color="var(--ld-semantic-color-text, #2E2F32)"
+          />
+        </div>
+      )}
+
       {screen === 'loading' && <LoadingScreen />}
 
       {screen === 'overview' && (
@@ -525,6 +539,10 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
           onNotNow={handleClose}
         />
       )}
+
+      {/* Home indicator — iOS only */}
+      {platform === 'ios' && <div className={styles.homeIndicator} />}
+      {platform === 'android' && <div className={styles.androidNavBar}><div className={styles.androidGestureBar} /></div>}
     </div>,
     document.body
   );
