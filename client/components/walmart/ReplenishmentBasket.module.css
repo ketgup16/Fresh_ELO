@@ -503,12 +503,14 @@
   margin: 4px 0;
 }
 
-/* ── Suggestions section ── */
+/* ── Suggestions section — subtle card ── */
 .suggestionsSection {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding-bottom: 8px;
+  padding: 12px;
+  background: var(--ld-semantic-color-background-subtle, #f5f5f6);
+  border-radius: 12px;
 }
 
 .suggestionHeader {
@@ -539,6 +541,33 @@
 
 .suggestionTileWrap {
   width: 100%;
+}
+
+/* ── Estimated total bar ── */
+.estTotalBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 0 8px;
+}
+
+.estTotalText {
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  line-height: 1.4;
+}
+
+.estTotalMeta {
+  color: var(--ld-semantic-color-text-subtle, #5b5c5e);
+  font-weight: 400;
+}
+
+.estTotalAmount {
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
 }
 
 /* ── Animated stroke button wrapper ── */

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { CondensedItemTile } from './CondensedItemTile';
 import { DeliveryScheduler } from './DeliveryScheduler';
 import { Button } from '@/components/ui/Button';
@@ -137,44 +137,47 @@ const DEMO_ITEMS: BasketItem[] = [
 const SUGGESTION_ITEMS: SuggestionItem[] = [
   {
     id: 's1',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/42897fd4cbe669fcae12fa1ae43708b172dd0f60?width=161',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F7efa55b82a454e1bb30b1fb9f1985f60?width=200',
     price: '8',
     cents: '05',
+    originalPrice: '9.98',
     name: 'Ritz Crackers Family Size',
   },
   {
     id: 's2',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/ac05fd7183f5fe71dddb905644af34902c39c8d0?width=161',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff4b4de002b1a414d96a46c6d624bd333?width=200',
     price: '9',
     cents: '25',
+    originalPrice: '10.98',
     name: 'Viva Paper Towels',
   },
   {
     id: 's3',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/871720e670ad040e0f7d7b9860b4d5aca4098b8c?width=161',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Faa52a7fdf20d49a494421863f8a1e819?width=200',
     price: '15',
     cents: '80',
     name: 'Dreft Baby Detergent',
   },
   {
     id: 's4',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/b1c5486ccc017cbaa03f2a39e1b77fa28f88166f?width=161',
-    price: '4',
-    cents: '98',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F65987f1be18c4665b304fd33e2370962?width=200',
+    price: '3',
+    cents: '25',
     name: 'Large Eggs, 12 Count',
   },
   {
     id: 's5',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/8de62693db42c198562f27ca46ac63d0c1761cdd?width=161',
-    price: '3',
-    cents: '48',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff173c669f9d34d609da25b7c4fdd5a4b?width=200',
+    price: '9',
+    cents: '99',
+    originalPrice: '10.98',
     name: 'Great Value Whole Milk',
   },
   {
     id: 's6',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/a0aec7389b59c267fe9e6cb147a75e605ac97963?width=161',
-    price: '0',
-    cents: '68',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc7f9b738c9d34485922ff5cbfd87a048?width=200',
+    price: '4',
+    cents: '16',
     name: 'Bananas, each',
   },
 ];
@@ -202,6 +205,17 @@ export function ReplenishmentBasket({
   );
   const [selectedDay, setSelectedDay] = useState('Fri');
   const [selectedTime, setSelectedTime] = useState('4pm-5pm');
+
+  // Compute estimated total from checked items and quantities
+  const estimatedTotal = useMemo(() => {
+    const sum = items.reduce((acc, item) => {
+      if (checkedItems[item.id] === false) return acc;
+      const qty = quantities[item.id] ?? item.quantity ?? 1;
+      const price = parseFloat(`${item.price}.${item.cents.padStart(2, '0')}`);
+      return acc + price * qty;
+    }, 0);
+    return sum.toFixed(2);
+  }, [items, quantities, checkedItems]);
 
   const handleExpand = () => {
     // Go directly to expanded — no step animation
@@ -415,7 +429,7 @@ export function ReplenishmentBasket({
                     </div>
                   )}
 
-                  {/* Separator + Suggestions (non-edit only, max 3 tiles) */}
+                  {/* Separator + Suggestions + Est Total (non-edit only) */}
                   {!isEditing && (
                     <>
                       <div className={styles.sectionSep} />
@@ -425,7 +439,7 @@ export function ReplenishmentBasket({
                           <ChevronRight className={styles.suggestionArrow} />
                         </div>
                         <div className={styles.suggestionGrid}>
-                          {SUGGESTION_ITEMS.slice(0, 3).map((s) => (
+                          {SUGGESTION_ITEMS.map((s) => (
                             <div key={s.id} className={styles.suggestionTileWrap}>
                               <CondensedItemTile
                                 image={s.image}
@@ -437,6 +451,17 @@ export function ReplenishmentBasket({
                             </div>
                           ))}
                         </div>
+                      </div>
+                      <div className={styles.sectionSep} />
+                      <div className={styles.estTotalBar}>
+                        <span className={styles.estTotalText}>
+                          Est. total{' '}
+                          <span className={styles.estTotalMeta}>({itemCount} items):</span>{' '}
+                          <strong className={styles.estTotalAmount}>${estimatedTotal}</strong>
+                        </span>
+                        <Button variant="secondary" size="small" onClick={handleToggleEdit}>
+                          Edit
+                        </Button>
                       </div>
                     </>
                   )}
