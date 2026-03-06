@@ -121,7 +121,7 @@ function ReplenishHeader({ onClose }: ReplenishHeaderProps) {
 
 function LoadingScreen() {
   return (
-    <div className={styles.loadingSection}>
+    <div className={styles.section}>
       {/* Loading header (no close button on loading screen) */}
       <div className={styles.header}>
         <div className={styles.headerText}>
@@ -132,32 +132,34 @@ function LoadingScreen() {
         </div>
       </div>
 
-      {/* Product card with faded grid + StepAnimation overlay */}
-      <div className={styles.loadingCardWrap}>
-        <div className={styles.condensedGrid}>
-          {REPLENISH_ITEMS.map((item) => (
-            <CondensedItemTile
-              key={item.id}
-              image={item.image}
-              price={item.price}
-              cents={item.cents}
-              tag={item.tag}
-              variant="tertiary"
-              loading
-            />
-          ))}
+      <div className={styles.screenContent}>
+        {/* Product card with faded grid + StepAnimation overlay */}
+        <div className={styles.productCard}>
+          <div className={styles.condensedGrid}>
+            {REPLENISH_ITEMS.map((item) => (
+              <CondensedItemTile
+                key={item.id}
+                image={item.image}
+                price={item.price}
+                cents={item.cents}
+                tag={item.tag}
+                variant="tertiary"
+                loading
+              />
+            ))}
+          </div>
+
+          {/* StepAnimation centered over the grid */}
+          <div className={styles.stepAnimationWrap}>
+            <StepAnimation />
+          </div>
         </div>
 
-        {/* StepAnimation centered over the grid */}
-        <div className={styles.stepAnimationWrap}>
-          <StepAnimation />
-        </div>
-      </div>
-
-      {/* Skeleton pill footer */}
-      <div className={styles.loadingFooter}>
-        <div className={styles.skeletonPill}>
-          <div className={styles.skeletonBar} />
+        {/* Skeleton pill footer — same slot as real footer */}
+        <div className={styles.footer}>
+          <div className={styles.skeletonPill}>
+            <div className={styles.skeletonBar} />
+          </div>
         </div>
       </div>
     </div>

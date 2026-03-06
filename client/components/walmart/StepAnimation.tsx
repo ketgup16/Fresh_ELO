@@ -13,9 +13,6 @@ const FRAMES: FrameData[] = [
     checkItems: ['pantry items', 'easy dinners', 'kid-friendly snacks'],
   },
   {
-    headline: 'Checking for items that may be running low',
-  },
-  {
     headline: 'Keeping an eye on discounts',
   },
 ];
@@ -23,7 +20,7 @@ const FRAMES: FrameData[] = [
 export const STEP_DISPLAY_DURATION = 3500;
 export const STEP_ENTER_DURATION = 350;
 export const STEP_EXIT_DURATION = 200;
-export const STEP_FRAME_COUNT = 3;
+export const STEP_FRAME_COUNT = 2;
 // Total time to show all frames once:
 // frames × display + (frames-1) × (exit + enter)
 export const STEP_TOTAL_DURATION =
