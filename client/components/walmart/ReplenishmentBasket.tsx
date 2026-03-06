@@ -12,6 +12,7 @@ import {
   Flash,
   Pause,
 } from '@/components/icons';
+import { MinimizeIcon } from '@/components/icons-custom';
 import styles from './ReplenishmentBasket.module.css';
 import tileStyles from './CondensedItemTile.module.css';
 
@@ -338,7 +339,7 @@ export function ReplenishmentBasket({
                 onClick={handleCollapse}
                 aria-label="Minimize basket"
               >
-                <ChevronDown className={styles.closeIcon} />
+                <MinimizeIcon width={20} height={20} className={styles.closeIcon} />
               </button>
             </div>
           )}

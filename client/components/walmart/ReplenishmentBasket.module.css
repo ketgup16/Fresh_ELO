@@ -24,10 +24,12 @@
   }
 }
 
-/* When panel is expanded, cover the BottomNav */
+/* When panel is expanded — floating sheet, same width as collapsed card */
 .wrapperExpanded {
-  padding-bottom: 0 !important;
+  padding-bottom: 16px !important;
   z-index: 300;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 /* Force visible in docs demo frames */
@@ -90,12 +92,12 @@
   }
 }
 
-/* Notification strip — spark banner, bleeds to card edges */
+/* Notification strip — cyan banner, bleeds to card edges */
 .notificationStrip {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: var(--ld-semantic-color-fill-accent-spark-subtle, #fff8e1);
+  background: var(--ld-semantic-color-fill-accent-cyan-subtle, #e7f6fe);
   border-radius: 16px 16px 0 0;
   padding: 6px 12px;
   margin: -12px -12px 0;
@@ -166,7 +168,7 @@
   color: var(--ld-semantic-color-text-subtle, #5b5c5e);
 }
 
-/* Floating icon button (maximize/minimize) */
+/* Floating icon button (maximize) — ghost variant */
 .floatingIconBtn {
   display: flex;
   width: 32px;
@@ -174,13 +176,16 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
-  background: var(--ld-semantic-color-action-fill-secondary, #fff);
-  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+  background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
   flex-shrink: 0;
-  color: var(--ld-semantic-color-text, #2e2f32);
+  color: var(--ld-semantic-color-text-subtle, #5b5c5e);
+}
+
+.floatingIconBtn:hover {
+  background: rgba(0, 0, 0, 0.06);
 }
 
 /* Thumbnail strip */
@@ -228,14 +233,21 @@
 
 .expandedPanel {
   pointer-events: all;
-  width: 100%;
-  /* Covers full remaining height — pushes over BottomNav */
-  max-height: 92vh;
+  /* Same width as collapsed card */
+  width: calc(100% - 24px);
+  max-width: 360px;
+  /* Floats above bottom nav */
+  max-height: 85vh;
   display: flex;
   flex-direction: column;
-  background: var(--ld-semantic-color-surface, #ffffff);
-  border-radius: 20px 20px 0 0;
-  box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.12);
+  /* Glass — matches collapsed card */
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow:
+    0 2px 24px 0 rgba(0, 0, 0, 0.14),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
   overflow: hidden;
 }
 
@@ -245,8 +257,8 @@
 
 @keyframes panelSlideUp {
   from {
-    transform: translateY(100%);
-    opacity: 0.6;
+    transform: translateY(60px);
+    opacity: 0;
   }
   to {
     transform: translateY(0);
