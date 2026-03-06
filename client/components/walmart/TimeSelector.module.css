@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 4px 16px;
+  padding: 8px 16px;
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   border: 1.5px solid transparent;
   cursor: pointer;
