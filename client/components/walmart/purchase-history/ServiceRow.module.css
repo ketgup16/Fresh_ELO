@@ -25,6 +25,25 @@
   outline-offset: -2px;
 }
 
+.rowExpandable {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.rowExpandable:hover {
+  background: var(--ld-semantic-color-surface-hovered, #f2f3f3);
+}
+
+.rowExpandable:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline);
+  outline-offset: -2px;
+}
+
+.expandableWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .info {
   flex: 1;
   display: flex;

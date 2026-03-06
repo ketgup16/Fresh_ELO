@@ -17,12 +17,16 @@ export interface ServiceEntry {
   orderDetailPath?: string;
   pickupDate?: string;
   pickupLocation?: string;
+  /** Override the ProgressTracker active step (useful for demos) */
+  activeStep?: number;
 }
 
 interface ServicesCardProps {
   services: ServiceEntry[];
   onViewAll?: () => void;
   defaultExpanded?: boolean;
+  /** Pre-expand a specific service row by id */
+  defaultExpandedRowId?: string;
 }
 
 const PRIORITY: Record<ServiceStatus, number> = {
@@ -44,8 +48,12 @@ export function ServicesCard({
   services,
   onViewAll,
   defaultExpanded = false,
+  defaultExpandedRowId,
 }: ServicesCardProps) {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
+  const [expandedRowId, setExpandedRowId] = useState<string | null>(
+    defaultExpandedRowId ?? null
+  );
 
   const activeCount = services.filter(s => s.status !== 'CANCELLED').length;
 
@@ -115,11 +123,15 @@ export function ServicesCard({
               serviceLabel={entry.serviceLabel}
               status={entry.status}
               microcopy={entry.microcopy}
-              onTap={
-                entry.orderDetailPath
-                  ? () => window.location.assign(entry.orderDetailPath!)
-                  : undefined
+              isExpanded={expandedRowId === entry.id}
+              onToggle={() =>
+                setExpandedRowId(prev =>
+                  prev === entry.id ? null : entry.id
+                )
               }
+              activeStep={entry.activeStep}
+              pickupLocation={entry.pickupLocation}
+              pickupDate={entry.pickupDate}
             />
           </React.Fragment>
         ))}

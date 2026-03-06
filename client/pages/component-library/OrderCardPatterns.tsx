@@ -138,6 +138,7 @@ const PATTERNS: PatternEntry[] = [
     prompt: 'Show a "Your Services" card highlighting an urgent Prescription ready for pickup (with Alert banner) and Auto Care in progress. Optical is hidden in the collapsed view.',
     preview: (
       <ServicesCard
+        defaultExpandedRowId="rx-ready"
         services={[
           {
             id: 'rx-ready',
@@ -147,6 +148,7 @@ const PATTERNS: PatternEntry[] = [
             microcopy: 'Amoxicillin 500mg · ready since 9:15am',
             pickupLocation: 'Oak Lawn Supercenter',
             pickupDate: '2026-03-05',
+            activeStep: 2,
           },
           {
             id: 'auto-in-progress',
@@ -154,6 +156,7 @@ const PATTERNS: PatternEntry[] = [
             serviceLabel: 'Auto Care',
             status: 'IN_PROGRESS',
             microcopy: 'Oil change in progress',
+            activeStep: 2,
           },
           {
             id: 'optical-scheduled',
@@ -162,6 +165,7 @@ const PATTERNS: PatternEntry[] = [
             status: 'SCHEDULED',
             microcopy: 'Pickup: Mon, Mar 10',
             pickupDate: '2026-03-10',
+            activeStep: 0,
           },
         ]}
       />
@@ -174,6 +178,7 @@ const PATTERNS: PatternEntry[] = [
     preview: (
       <ServicesCard
         defaultExpanded
+        defaultExpandedRowId="auto-in-progress"
         services={[
           {
             id: 'rx-ready',
@@ -183,6 +188,7 @@ const PATTERNS: PatternEntry[] = [
             microcopy: 'Lisinopril 10mg · ready since 8:30am',
             pickupLocation: 'Carrollton Supercenter',
             pickupDate: '2026-03-05',
+            activeStep: 2,
           },
           {
             id: 'auto-in-progress',
@@ -190,6 +196,7 @@ const PATTERNS: PatternEntry[] = [
             serviceLabel: 'Auto Care',
             status: 'IN_PROGRESS',
             microcopy: 'Tire rotation — est. 45 min remaining',
+            activeStep: 2,
           },
           {
             id: 'optical-scheduled',
@@ -198,6 +205,7 @@ const PATTERNS: PatternEntry[] = [
             status: 'SCHEDULED',
             microcopy: 'Contact lens pickup: Mon, Mar 10',
             pickupDate: '2026-03-10',
+            activeStep: 0,
           },
           {
             id: 'cake-cancelled',
@@ -205,6 +213,7 @@ const PATTERNS: PatternEntry[] = [
             serviceLabel: 'Custom Cake',
             status: 'CANCELLED',
             microcopy: 'Order cancelled on Mar 3',
+            activeStep: 0,
           },
         ]}
       />
@@ -216,6 +225,7 @@ const PATTERNS: PatternEntry[] = [
     prompt: 'Show a minimal "Your Services" card with a single Prescription ready for pickup and an urgency Alert banner. No toggle or View All needed.',
     preview: (
       <ServicesCard
+        defaultExpandedRowId="rx-ready"
         services={[
           {
             id: 'rx-ready',
@@ -225,6 +235,7 @@ const PATTERNS: PatternEntry[] = [
             microcopy: 'Metformin 1000mg · ready since 10:00am',
             pickupLocation: 'Irving Supercenter',
             pickupDate: '2026-03-05',
+            activeStep: 2,
           },
         ]}
       />
@@ -237,6 +248,7 @@ const PATTERNS: PatternEntry[] = [
     preview: (
       <ServicesCard
         defaultExpanded
+        defaultExpandedRowId="rx-ready-store1"
         services={[
           {
             id: 'rx-ready-store1',
@@ -246,6 +258,7 @@ const PATTERNS: PatternEntry[] = [
             microcopy: 'Oak Lawn Supercenter · ready since 9:00am',
             pickupLocation: 'Oak Lawn Supercenter',
             pickupDate: '2026-03-05',
+            activeStep: 2,
           },
           {
             id: 'optical-scheduled-store2',
@@ -254,6 +267,7 @@ const PATTERNS: PatternEntry[] = [
             status: 'SCHEDULED',
             microcopy: 'Carrollton Supercenter · pickup Mar 10',
             pickupDate: '2026-03-10',
+            activeStep: 0,
           },
           {
             id: 'auto-processing-store1',
@@ -261,6 +275,7 @@ const PATTERNS: PatternEntry[] = [
             serviceLabel: 'Auto Care',
             status: 'PROCESSING',
             microcopy: 'Oak Lawn Supercenter · submitted today',
+            activeStep: 1,
           },
         ]}
       />

@@ -1,7 +1,8 @@
 import React from 'react';
-import { ChevronRight } from '@/components/icons';
+import { ChevronRight, ChevronDown, ChevronUp } from '@/components/icons';
 import { Tag } from '@/components/ui/Tag';
 import { ServiceTypeIcon, ServiceType } from './ServiceTypeIcon';
+import { ServiceRowDetail } from './ServiceRowDetail';
 import styles from './ServiceRow.module.css';
 
 export type ServiceStatus =
@@ -32,6 +33,12 @@ export interface ServiceRowProps {
   status: ServiceStatus;
   microcopy?: string;
   onTap?: () => void;
+  /** Expandable row props */
+  isExpanded?: boolean;
+  onToggle?: () => void;
+  activeStep?: number;
+  pickupLocation?: string;
+  pickupDate?: string;
 }
 
 export function ServiceRow({
@@ -40,10 +47,17 @@ export function ServiceRow({
   status,
   microcopy,
   onTap,
+  isExpanded,
+  onToggle,
+  activeStep,
+  pickupLocation,
+  pickupDate,
 }: ServiceRowProps) {
   const { label, color } = STATUS_CONFIG[status];
 
-  const content = (
+  const isExpandable = !!onToggle;
+
+  const rowContent = (
     <>
       <ServiceTypeIcon type={serviceType} size={32} />
 
@@ -58,15 +72,45 @@ export function ServiceRow({
         {label}
       </Tag>
 
-      {onTap && (
-        <ChevronRight
-          aria-hidden="true"
-          className={styles.chevron}
-        />
-      )}
+      {isExpandable ? (
+        isExpanded ? (
+          <ChevronUp aria-hidden="true" className={styles.chevron} />
+        ) : (
+          <ChevronDown aria-hidden="true" className={styles.chevron} />
+        )
+      ) : onTap ? (
+        <ChevronRight aria-hidden="true" className={styles.chevron} />
+      ) : null}
     </>
   );
 
+  /* Expandable accordion row */
+  if (isExpandable) {
+    return (
+      <div className={styles.expandableWrapper}>
+        <button
+          className={`${styles.row} ${styles.rowExpandable}`}
+          onClick={onToggle}
+          aria-expanded={isExpanded}
+          aria-label={`${serviceLabel}, ${label}`}
+        >
+          {rowContent}
+        </button>
+
+        {isExpanded && (
+          <ServiceRowDetail
+            serviceType={serviceType}
+            status={status}
+            activeStep={activeStep}
+            pickupLocation={pickupLocation}
+            pickupDate={pickupDate}
+          />
+        )}
+      </div>
+    );
+  }
+
+  /* Tappable navigation row */
   if (onTap) {
     return (
       <button
@@ -74,14 +118,15 @@ export function ServiceRow({
         onClick={onTap}
         aria-label={`${serviceLabel}, ${label}`}
       >
-        {content}
+        {rowContent}
       </button>
     );
   }
 
+  /* Static row */
   return (
     <div className={styles.row} aria-label={`${serviceLabel}, ${label}`}>
-      {content}
+      {rowContent}
     </div>
   );
 }
