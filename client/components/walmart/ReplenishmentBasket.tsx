@@ -321,20 +321,22 @@ export function ReplenishmentBasket({
                     ))}
                   </div>
 
-                  {/* Summary bar inline */}
-                  <div className={styles.summaryBar}>
-                    <div className={styles.summaryText}>
-                      <span>Est.total ({itemCount} items):</span>
-                      <span className={styles.summaryTotal}>${total}</span>
+                  {/* Summary bar inline — visible in default mode only */}
+                  {!isEditing && (
+                    <div className={styles.summaryBar}>
+                      <div className={styles.summaryText}>
+                        <span>Est.total ({itemCount} items):</span>
+                        <span className={styles.summaryTotal}>${total}</span>
+                      </div>
+                      <Button
+                        variant="tertiary"
+                        size="small"
+                        onClick={handleToggleEdit}
+                      >
+                        Edit
+                      </Button>
                     </div>
-                    <Button
-                      variant="tertiary"
-                      size="small"
-                      onClick={handleToggleEdit}
-                    >
-                      {isEditing ? 'Edit' : 'Edit'}
-                    </Button>
-                  </div>
+                  )}
                 </div>
               </div>
 
