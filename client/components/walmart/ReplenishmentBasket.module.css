@@ -24,6 +24,14 @@
   }
 }
 
+/* Smallest mobile: fill full width, no max-width cap */
+@media (max-width: 480px) {
+  .collapsedBar,
+  .expandedPanel {
+    max-width: none;
+  }
+}
+
 /* Mid-range: expand to 80vw centered */
 @media (min-width: 481px) and (max-width: 768px) {
   .collapsedBar,
@@ -481,12 +489,12 @@
   gap: 8px;
 }
 
-/* Item grid — auto-fill columns in edit mode, tiles cap at 155px */
+/* Item grid — auto-fill columns in edit mode, always ≥ 2 per row, tiles cap at ~155px */
 .itemGridEdit {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 155px));
+  /* min = min(50%-gap, 155px) guarantees at least 2 columns at any container width */
+  grid-template-columns: repeat(auto-fill, minmax(min(calc(50% - 6px), 155px), 1fr));
   gap: 12px;
-  justify-content: start;
 }
 
 /* Action row (Edit items + View all) */
