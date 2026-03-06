@@ -68,7 +68,7 @@ export function ServiceRow({
         )}
       </div>
 
-      <Tag variant="secondary" color={color}>
+      <Tag variant="tertiary" color={color}>
         {label}
       </Tag>
 
