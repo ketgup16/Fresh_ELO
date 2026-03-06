@@ -1,6 +1,7 @@
 import React from 'react';
 import { WCPAddToCart } from './WCPAddToCart';
 import { CheckCircleFill } from '@/components/icons/CheckCircleFill';
+import { Circle } from '@/components/icons/Circle';
 import { QuantityStepper } from '@/components/ui/QuantityStepper';
 import styles from './CondensedItemTile.module.css';
 
@@ -90,9 +91,11 @@ export function CondensedItemTile({
           aria-label={isChecked ? 'Deselect item' : 'Select item'}
           tabIndex={isEdit ? 0 : -1}
         >
-          <CheckCircleFill
-            className={isChecked ? styles.checkSvg : styles.checkSvgUnchecked}
-          />
+          {isChecked ? (
+            <CheckCircleFill className={styles.checkSvg} />
+          ) : (
+            <Circle className={styles.checkSvgUnchecked} />
+          )}
         </button>
 
         {/* Quantity badge — default mode only, animated exit */}

@@ -481,11 +481,12 @@
   gap: 8px;
 }
 
-/* Item grid — 2 columns (edit mode) */
+/* Item grid — auto-fill columns in edit mode, tiles cap at 155px */
 .itemGridEdit {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(100px, 155px));
   gap: 12px;
+  justify-content: start;
 }
 
 /* Action row (Edit items + View all) */
