@@ -324,6 +324,16 @@
   );
   z-index: -1;
   animation: stroke-rotate 2s linear infinite;
+  /* Mask out the center so only the outer ring (border) is visible */
+  -webkit-mask:
+    linear-gradient(#000, #000) content-box,
+    linear-gradient(#000, #000);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000, #000) content-box,
+    linear-gradient(#000, #000);
+  mask-composite: exclude;
+  padding: 3px;
 }
 
 @keyframes stroke-rotate {
