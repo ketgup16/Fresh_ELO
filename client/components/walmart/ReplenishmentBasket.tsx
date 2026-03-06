@@ -496,23 +496,21 @@ export function ReplenishmentBasket({
           </div>
 
           {/* ── Floating footer — outside panel, replaces BottomNav ── */}
-          {state === 'expanded' && isEditing && (
-            <FloatingFooter
-              secondaryAction={{ label: 'Pause Delivery', icon: <Pause width={16} height={16} />, onClick: onPauseDelivery }}
-              primaryAction={{ label: 'Get it now', icon: <Flash width={16} height={16} />, subLabel: 'as soon as 37 mins', variant: 'primary', strokeOn: true, onClick: onGetItNow }}
-            />
-          )}
-          {state === 'expanded' && !isEditing && (
-            <FloatingFooter
-              secondaryAction={{ label: 'Pause Delivery', icon: <Pause width={16} height={16} />, onClick: onPauseDelivery }}
-              primaryAction={{ label: 'Get it now', icon: <Flash width={16} height={16} />, subLabel: 'as soon as 37 mins', variant: 'primary', strokeOn: true, onClick: onGetItNow }}
-            />
+          {state === 'expanded' && (
+            <div className={styles.footerWrap}>
+              <FloatingFooter
+                secondaryAction={{ label: 'Pause Delivery', icon: <Pause width={16} height={16} />, onClick: onPauseDelivery }}
+                primaryAction={{ label: 'Get it now', icon: <Flash width={16} height={16} />, subLabel: 'as soon as 37 mins', variant: 'primary', strokeOn: true, onClick: onGetItNow }}
+              />
+            </div>
           )}
           {state === 'scheduling' && (
-            <FloatingFooter
-              secondaryAction={{ label: 'Back', onClick: handleBackToBasket }}
-              primaryAction={{ label: 'Confirm delivery', variant: 'primary', strokeOn: true, onClick: handleConfirmDelivery }}
-            />
+            <div className={styles.footerWrap}>
+              <FloatingFooter
+                secondaryAction={{ label: 'Back', onClick: handleBackToBasket }}
+                primaryAction={{ label: 'Confirm delivery', variant: 'primary', strokeOn: true, onClick: handleConfirmDelivery }}
+              />
+            </div>
           )}
         </>
       )}

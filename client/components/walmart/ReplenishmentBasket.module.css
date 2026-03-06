@@ -27,24 +27,9 @@
 /* Smallest mobile: fill full width, no max-width cap */
 @media (max-width: 480px) {
   .collapsedBar,
-  .expandedPanel {
+  .expandedPanel,
+  .footerWrap {
     max-width: none;
-  }
-}
-
-/* Mid-range: expand to 80vw centered */
-@media (min-width: 481px) and (max-width: 768px) {
-  .collapsedBar,
-  .expandedPanel {
-    max-width: 80vw;
-  }
-}
-
-/* Tablet: expand to 80vw centered */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .collapsedBar,
-  .expandedPanel {
-    max-width: 80vw;
   }
 }
 
@@ -672,6 +657,21 @@
 .animatedStrokeWrap > button {
   position: relative;
   z-index: 1;
+}
+
+/* ── Footer wrap — constrains FloatingFooter to match drawer width ── */
+.footerWrap {
+  width: calc(100% - 24px);
+  max-width: 80vw;
+  display: flex;
+  pointer-events: all;
+}
+
+/* Force the FloatingFooter bar to stretch and distribute buttons */
+.footerWrap > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* ── Reduced motion overrides ── */
