@@ -7,6 +7,9 @@ import { DesktopFooter } from '@/components/walmart/DesktopFooter';
 import { MwebFooter } from '@/components/walmart/MwebFooter';
 import { BottomNav } from '@/components/walmart/BottomNav';
 import { AndroidBottomNav } from '@/components/walmart/AndroidBottomNav';
+import { FloatingFooter } from '@/components/walmart/FloatingFooter';
+import { Pause } from '@/components/icons/Pause';
+import { Flash } from '@/components/icons/Flash';
 import styles from './FooterPatterns.module.css';
 
 type Platform = 'dweb' | 'mweb' | 'native' | 'android';
@@ -246,6 +249,24 @@ export default function FooterPatternsPage() {
 
         <div className={styles.noteBox}>
           <strong>Responsive pairing:</strong> <code>DesktopFooter</code> and <code>MwebFooter</code> each manage their own breakpoint visibility — render both and CSS handles which one shows. The project-level default for mobile footer is configured in <strong>Project Settings</strong>.
+        </div>
+      </div>
+
+      {/* ── Floating Action Bar ─────────────────────────────────── */}
+      <div className={styles.floatingSection}>
+        <div className={styles.previewHeader}>
+          <h2 className={styles.previewTitle}>Floating Action Bar</h2>
+          <Tag variant="neutral">iOS Glass</Tag>
+        </div>
+        <p className={styles.metaDesc}>
+          A glassmorphic floating pill bar with two action buttons. Uses the same iOS glass kit as the Bottom Nav. Set <code>fixed</code> to pin it to the viewport bottom in production screens.
+        </p>
+        <div className={styles.floatingDemo}>
+          <FloatingFooter
+            fixed={false}
+            secondaryAction={{ label: 'Pause Delivery', icon: <Pause width={20} height={20} /> }}
+            primaryAction={{ label: 'Get it now', subLabel: 'as soon as 37 mins', icon: <Flash width={20} height={20} /> }}
+          />
         </div>
       </div>
     </ComponentPageLayout>

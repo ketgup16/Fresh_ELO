@@ -352,6 +352,21 @@
   overflow: hidden;
 }
 
+/* ── Floating Action Bar section ── */
+.floatingSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-400, 16px);
+}
+
+.floatingDemo {
+  display: flex;
+  justify-content: center;
+  padding: 40px 24px;
+  background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .page {

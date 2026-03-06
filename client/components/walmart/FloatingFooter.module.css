@@ -1,0 +1,46 @@
+.bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 9999px;
+
+  /* iOS glass kit — matches BottomNav tabBar */
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    -4.5px -4.5px 1.5px -5.25px rgba(255, 255, 255, 0.5) inset,
+    4.5px 4.5px 1.5px -5.25px rgba(255, 255, 255, 0.7) inset,
+    3px 4.5px 1.5px -3px rgba(179, 179, 179, 0.2) inset,
+    -3px -4.5px 1.5px -3px rgba(179, 179, 179, 1) inset,
+    0 0 33px 0 rgba(242, 242, 242, 0.5) inset,
+    0 0 14px 0 rgba(0, 0, 0, 0.11);
+}
+
+.barFixed {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+/* Small screens: stretch full width when fixed */
+@media (max-width: 480px) {
+  .barFixed {
+    left: 12px;
+    right: 12px;
+    width: calc(100% - 24px);
+    transform: none;
+    justify-content: space-between;
+  }
+
+  .barFixed.bar {
+    display: flex;
+  }
+}
