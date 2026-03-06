@@ -103,7 +103,7 @@ const DEMO_ITEMS: BasketItem[] = [
   },
   {
     id: '7',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/a0aec7389b59c267fe9e6cb147a75e605ac97963?width=161',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F29e4090c4cb94c529c55a1c82f673ffb?width=200',
     price: '3',
     cents: '47',
     name: 'SkinnyPop Original Popcorn',
@@ -111,7 +111,7 @@ const DEMO_ITEMS: BasketItem[] = [
   },
   {
     id: '8',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/a0aec7389b59c267fe9e6cb147a75e605ac97963?width=161',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F511efb1f58ad425ba99c9144eea744d3?width=200',
     price: '1',
     cents: '98',
     name: 'Cold Pressed Orange Juice',
@@ -119,7 +119,7 @@ const DEMO_ITEMS: BasketItem[] = [
   },
   {
     id: '9',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/a0aec7389b59c267fe9e6cb147a75e605ac97963?width=161',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0c5401dc7df9426fb410ad0cdd614759?width=200',
     price: '5',
     cents: '27',
     name: 'Oatly Original Oat Milk',
@@ -138,11 +138,11 @@ const SUGGESTION_ITEMS: SuggestionItem[] = [
   },
   {
     id: 's2',
-    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff4b4de002b1a414d96a46c6d624bd333?width=200',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fd90e9369c42a4820a3e9eed9cf617b10?width=200',
     price: '9',
     cents: '25',
     originalPrice: '10.98',
-    name: 'Viva Paper Towels',
+    name: 'Angel Soft Toilet Paper',
   },
   {
     id: 's3',
@@ -160,11 +160,11 @@ const SUGGESTION_ITEMS: SuggestionItem[] = [
   },
   {
     id: 's5',
-    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff173c669f9d34d609da25b7c4fdd5a4b?width=200',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc9f82aaab7bd43a7b3e682bbe6f7f7bd?width=200',
     price: '9',
     cents: '99',
     originalPrice: '10.98',
-    name: 'Great Value Whole Milk',
+    name: 'Fresh Blueberries, 1 pt',
   },
   {
     id: 's6',
