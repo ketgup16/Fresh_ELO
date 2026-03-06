@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { CondensedItemTile } from './CondensedItemTile';
 import { DeliveryScheduler } from './DeliveryScheduler';
 import { Button } from '@/components/ui/Button';
-import { Tag } from '@/components/ui/Tag';
 import {
-  BoxCorners,
   ChevronDown,
   ChevronRight,
   Location,
@@ -12,7 +10,7 @@ import {
   Flash,
   Pause,
 } from '@/components/icons';
-import { MinimizeIcon } from '@/components/icons-custom';
+import { MinimizeIcon, MaximizeIcon } from '@/components/icons-custom';
 import styles from './ReplenishmentBasket.module.css';
 import tileStyles from './CondensedItemTile.module.css';
 
@@ -138,44 +136,42 @@ const DEMO_ITEMS: BasketItem[] = [
 const SUGGESTION_ITEMS: SuggestionItem[] = [
   {
     id: 's1',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/c1dc2c8eea1d21f8e8d8b7a8e5c8d3b9a2f1e4c7?width=200',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/42897fd4cbe669fcae12fa1ae43708b172dd0f60?width=161',
     price: '8',
     cents: '05',
-    originalPrice: '9.98',
     name: 'Ritz Crackers Family Size',
   },
   {
     id: 's2',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1?width=200',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/ac05fd7183f5fe71dddb905644af34902c39c8d0?width=161',
     price: '9',
     cents: '25',
-    originalPrice: '10.98',
-    name: 'Viva Multi-Surface Cloth Paper Towels',
+    name: 'Viva Paper Towels',
   },
   {
     id: 's3',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2?width=200',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/871720e670ad040e0f7d7b9860b4d5aca4098b8c?width=161',
     price: '15',
     cents: '80',
-    name: "Dreft Stage 1 Baby Laundry Detergent",
+    name: 'Dreft Baby Detergent',
   },
   {
     id: 's4',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3?width=200',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/b1c5486ccc017cbaa03f2a39e1b77fa28f88166f?width=161',
     price: '4',
     cents: '98',
     name: 'Large Eggs, 12 Count',
   },
   {
     id: 's5',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4?width=200',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/8de62693db42c198562f27ca46ac63d0c1761cdd?width=161',
     price: '3',
     cents: '48',
-    name: 'Great Value Whole Milk, 1 Gallon',
+    name: 'Great Value Whole Milk',
   },
   {
     id: 's6',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5?width=200',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/a0aec7389b59c267fe9e6cb147a75e605ac97963?width=161',
     price: '0',
     cents: '68',
     name: 'Bananas, each',
@@ -273,11 +269,6 @@ export function ReplenishmentBasket({
           onClick={handleExpand}
           aria-label="Expand upcoming delivery basket"
         >
-          <div className={styles.notificationStrip}>
-            <Tag variant="primary" color="spark">New</Tag>
-            <span className={styles.notifText}>Add items, edit, or pause anytime</span>
-          </div>
-
           <div className={styles.summaryRow}>
             <div className={styles.summaryLeft}>
               <div className={styles.cartIconWrap}>
@@ -295,7 +286,7 @@ export function ReplenishmentBasket({
               </div>
             </div>
             <span className={styles.floatingIconBtn} aria-hidden="true">
-              <BoxCorners width={16} height={16} />
+              <MaximizeIcon width={20} height={20} />
             </span>
           </div>
 
@@ -403,13 +394,12 @@ export function ReplenishmentBasket({
                   {/* Edit items + View all row */}
                   {!isEditing && (
                     <div className={styles.actionRow}>
-                      <Button variant="secondary" size="small" onClick={handleToggleEdit} isFullWidth>
+                      <Button variant="secondary" size="small" onClick={handleToggleEdit}>
                         Edit items
                       </Button>
                       <Button
                         variant="secondary"
                         size="small"
-                        isFullWidth
                         onClick={() => setShowAll((v) => !v)}
                       >
                         <span className={styles.viewAllLabel}>
@@ -435,21 +425,14 @@ export function ReplenishmentBasket({
                         </div>
                         <div className={styles.suggestionScroll}>
                           {SUGGESTION_ITEMS.map((s) => (
-                            <div key={s.id} className={styles.suggestionCard}>
-                              <div className={styles.suggestionImageWrap}>
-                                <img src={s.image} alt={s.name} className={styles.suggestionImage} />
-                                <button className={styles.addBtn} aria-label={`Add ${s.name}`}>
-                                  +
-                                </button>
-                              </div>
-                              <div className={styles.suggestionPriceRow}>
-                                <span className={styles.suggestSign}>$</span>
-                                <span className={styles.suggestMain}>{s.price}</span>
-                                <span className={styles.suggestCents}>{s.cents}</span>
-                                {s.originalPrice && (
-                                  <span className={styles.suggestOriginal}>${s.originalPrice}</span>
-                                )}
-                              </div>
+                            <div key={s.id} className={styles.suggestionTileWrap}>
+                              <CondensedItemTile
+                                image={s.image}
+                                price={s.price}
+                                cents={s.cents}
+                                variant="primary"
+                                onAddToCart={() => {}}
+                              />
                             </div>
                           ))}
                         </div>
@@ -457,22 +440,24 @@ export function ReplenishmentBasket({
                     </>
                   )}
                 </div>
-                <div className={styles.contentOverlay} aria-hidden="true" />
               </div>
 
               {/* ── Footer ── */}
               {isEditing ? (
                 /* Edit mode footer: Save + Add to [Day] delivery (animated stroke) */
                 <div className={styles.glassFooter}>
-                  <Button variant="secondary" size="medium" onClick={handleSave}>
+                  <Button variant="secondary" size="medium" isFullWidth onClick={handleSave}>
                     Save
                   </Button>
-                  <div className={styles.animatedStrokeWrap}>
-                    <Button variant="primary" size="medium" isFullWidth onClick={handleAddToDelivery}>
-                      Add to {deliveryDayShort} delivery
-                    </Button>
-                    <div className={styles.strokeAnimation} aria-hidden="true" />
-                  </div>
+                  <Button
+                    variant="primary"
+                    size="medium"
+                    isFullWidth
+                    strokeOn
+                    onClick={handleAddToDelivery}
+                  >
+                    Add to {deliveryDayShort} delivery
+                  </Button>
                 </div>
               ) : (
                 /* Default expanded footer: Pause Delivery + Get it now */
@@ -480,6 +465,7 @@ export function ReplenishmentBasket({
                   <Button
                     variant="secondary"
                     size="medium"
+                    isFullWidth
                     leading={<Pause width={16} height={16} />}
                     onClick={onPauseDelivery}
                   >
@@ -489,7 +475,9 @@ export function ReplenishmentBasket({
                     variant="primary"
                     size="medium"
                     isFullWidth
+                    strokeOn
                     leading={<Flash width={16} height={16} />}
+                    subLabel="as soon as 37 mins"
                     onClick={onGetItNow}
                   >
                     Get it now
@@ -514,15 +502,12 @@ export function ReplenishmentBasket({
               </div>
 
               <div className={styles.glassFooter}>
-                <Button variant="secondary" size="medium" onClick={handleBackToBasket}>
+                <Button variant="secondary" size="medium" isFullWidth onClick={handleBackToBasket}>
                   Back
                 </Button>
-                <div className={styles.animatedStrokeWrap}>
-                  <Button variant="primary" size="medium" isFullWidth onClick={handleConfirmDelivery}>
-                    Confirm delivery
-                  </Button>
-                  <div className={styles.strokeAnimation} aria-hidden="true" />
-                </div>
+                <Button variant="primary" size="medium" isFullWidth strokeOn onClick={handleConfirmDelivery}>
+                  Confirm delivery
+                </Button>
               </div>
             </>
           )}

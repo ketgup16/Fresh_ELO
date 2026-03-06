@@ -41,3 +41,4 @@ export { ListsIcon } from './ListsIcon';
 export { ReorderIcon } from './ReorderIcon';
 export { PurchaseHistoryIcon } from './PurchaseHistoryIcon';
 export { MinimizeIcon } from './MinimizeIcon';
+export { MaximizeIcon } from './MaximizeIcon';

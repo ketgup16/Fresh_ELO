@@ -419,20 +419,15 @@
   color: var(--ld-semantic-color-text-subtle, #5b5c5e);
 }
 
-/* ── Content card (has 16px side margins) ── */
+/* ── Content card — fills full width of panel ── */
 .contentCard {
-  --basket-content-overlay-opacity: 0.9;
-  --basket-content-overlay-radius: 24px;
-
   display: flex;
   flex-direction: column;
-  margin: 12px 16px 0;
-  border-radius: 24px;
-  box-shadow: 0 4px 19.6px 0 rgba(204, 217, 247, 0.25);
+  margin: 0;
+  border-radius: 0;
   overflow: hidden;
   flex: 1;
   min-height: 0;
-  position: relative;
 }
 
 .contentOverlay {
@@ -451,7 +446,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--ld-primitive-scale-space-100, 8px);
-  padding: var(--ld-primitive-scale-space-100, 8px) 12px;
+  padding: 8px 16px;
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -533,16 +528,16 @@
   color: var(--ld-semantic-color-text-subtle, #5b5c5e);
 }
 
-/* Horizontal scroll for suggestion cards */
+/* Horizontal scroll for suggestion tiles (CondensedItemTile primary) */
 .suggestionScroll {
   display: flex;
   gap: 8px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 4px;
-  margin: 0 -12px;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-bottom: 8px;
+  margin: 0 -16px;
+  padding-left: 16px;
+  padding-right: 16px;
   scrollbar-width: none;
 }
 
@@ -550,92 +545,9 @@
   display: none;
 }
 
-.suggestionCard {
+.suggestionTileWrap {
   flex-shrink: 0;
-  width: 92px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.suggestionImageWrap {
-  position: relative;
-  width: 92px;
-  height: 92px;
-  border-radius: 12px;
-  background: var(--ld-semantic-color-background-subtle, #f5f5f6);
-  overflow: visible;
-}
-
-.suggestionImage {
-  width: 76px;
-  height: 76px;
-  object-fit: contain;
-  position: absolute;
-  top: 8px;
-  left: 8px;
-}
-
-.addBtn {
-  position: absolute;
-  bottom: -4px;
-  right: -4px;
-  width: 24px;
-  height: 24px;
-  border-radius: 9999px;
-  background: var(--ld-semantic-color-action-fill-primary, #0071dc);
-  border: 2px solid var(--ld-semantic-color-surface, #fff);
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-}
-
-.addBtn:hover {
-  background: var(--ld-semantic-color-action-fill-primary-hovered, #004f9a);
-}
-
-.suggestionPriceRow {
-  display: flex;
-  align-items: baseline;
-  gap: 1px;
-}
-
-.suggestSign {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-.suggestMain {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-.suggestCents {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2e2f32);
-  align-self: flex-start;
-  margin-top: 2px;
-}
-
-.suggestOriginal {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 10px;
-  font-weight: 400;
-  color: var(--ld-semantic-color-text-subtlest, #74767c);
-  text-decoration: line-through;
-  margin-left: 2px;
+  width: 96px;
 }
 
 /* ── Glass footer pill — 16px from content card, full-width inside panel ── */
