@@ -1,0 +1,545 @@
+/* ============================================================
+   ReplenishFlow — Full-page overlay for basket editing
+   ============================================================ */
+
+/* Overlay backdrop */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--ld-semantic-color-surface-brand, #D9E9FF);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  /* Slide-up enter animation */
+  animation: overlayEnter 300ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.overlay.exiting {
+  animation: overlayExit 250ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes overlayEnter {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes overlayExit {
+  from { transform: translateY(0);    opacity: 1; }
+  to   { transform: translateY(100%); opacity: 0; }
+}
+
+/* ============================================================
+   Section wrapper (horizontal padding)
+   ============================================================ */
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  padding: 0 var(--ld-primitive-scale-space-200, 16px);
+  flex: 1 1 0;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ============================================================
+   Header row
+   ============================================================ */
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1 0 0;
+  height: 44px;
+}
+
+.headerTitle {
+  font-family: var(--ld-semantic-font-body-large-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-large-size, 18px);
+  font-weight: 700;
+  line-height: var(--ld-semantic-font-body-large-lineheight, 1.33);
+  color: var(--ld-semantic-color-text, #2E2F32);
+  align-self: stretch;
+}
+
+.headerSubtitle {
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 400;
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.43);
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.headerSubtitle span {
+  text-decoration: underline;
+}
+
+/* Close button (floating pill style from Figma) */
+.closeBtn {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  padding: var(--ld-primitive-scale-space-100, 8px);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+  background: var(--ld-semantic-color-action-fill-secondary, #fff);
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.closeBtn:hover {
+  background: var(--ld-semantic-color-action-fill-secondary-hovered, #f5f5f5);
+}
+
+/* ============================================================
+   Product card (white rounded card)
+   ============================================================ */
+.productCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 24px;
+  background: var(--ld-semantic-color-surface, #fff);
+  box-shadow: 0 4px 19.6px 0 rgba(204, 217, 247, 0.25);
+  overflow: hidden;
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+/* Loading state: no flex-grow */
+.productCardLoading {
+  flex: 0 0 auto;
+  overflow: visible;
+}
+
+/* ============================================================
+   Scrollable content area inside the product card
+   ============================================================ */
+.cardScroll {
+  flex: 1 1 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.cardScroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scroll fade-out at bottom */
+.cardScrollFade {
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
+  border-radius: 0 0 24px 24px;
+}
+
+/* ============================================================
+   3-column condensed grid
+   ============================================================ */
+.condensedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  padding: var(--ld-primitive-scale-space-100, 8px) 12px;
+  width: 100%;
+}
+
+/* 2-column edit grid */
+.editGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  padding: var(--ld-primitive-scale-space-100, 8px) 12px 48px;
+  width: 100%;
+}
+
+/* ============================================================
+   Est. total row (inside card, above footer overlay)
+   ============================================================ */
+.totalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px 12px;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.totalLeft {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex: 1 0 0;
+}
+
+.totalLabel {
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.totalCount {
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: 400;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.totalColon {
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 400;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.totalAmount {
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+/* ============================================================
+   Floating footer bar (glass pill with buttons)
+   ============================================================ */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  align-self: stretch;
+  padding-bottom: var(--ld-primitive-scale-space-200, 16px);
+  flex-shrink: 0;
+}
+
+.footerBar {
+  display: flex;
+  width: 100%;
+  padding: var(--ld-primitive-scale-space-150, 12px);
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 32px;
+  background: var(--ld-semantic-color-surface-overlay, rgba(255, 255, 255, 0.72));
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow:
+    0 2px 20px 2px rgba(53, 53, 53, 0.05) inset,
+    1px 0.5px 0 0 rgba(255, 255, 255, 0.60) inset,
+    -1px -1px 0 0 rgba(255, 255, 255, 0.40) inset,
+    0 0 5px 0 rgba(255, 255, 255, 0.15) inset,
+    0 2px 30px 0 rgba(0, 0, 0, 0.05),
+    0 8px 72px -5px rgba(0, 0, 0, 0.10);
+}
+
+/* Primary button in footer fills available space */
+.footerBar > button:last-child {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ============================================================
+   Loading screen: skeleton pill button
+   ============================================================ */
+.skeletonPill {
+  display: flex;
+  width: 100%;
+  padding: var(--ld-primitive-scale-space-150, 12px);
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 60px;
+  background: var(--ld-semantic-color-surface, #fff);
+  box-shadow:
+    0 0 5px 0 rgba(255, 255, 255, 0.15) inset,
+    0 2px 20px 2px rgba(53, 53, 53, 0.05) inset,
+    0 2px 30px 0 rgba(0, 0, 0, 0.05),
+    0 8px 72px -5px rgba(0, 0, 0, 0.10);
+}
+
+.skeletonBar {
+  height: 32px;
+  flex: 1;
+  border-radius: 9999px;
+  background: var(--ld-semantic-color-loading-magic-subtle, #E9F1FE);
+  overflow: hidden;
+  position: relative;
+}
+
+.skeletonBar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--ld-semantic-color-loading-magic-subtle, #E9F1FE) 14.62%,
+    var(--ld-semantic-color-loading-magic, #3D90EC) 49.95%,
+    var(--ld-semantic-color-loading-magic-subtle, #E9F1FE) 85.28%
+  );
+  animation: shimmer 1.8s linear infinite;
+  transform: translateX(-100%);
+}
+
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(200%); }
+}
+
+/* ============================================================
+   Loading screen: StepAnimation positioning
+   ============================================================ */
+.stepAnimationWrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Opt-in card (1.3) — slides up from bottom
+   ============================================================ */
+.optinCard {
+  margin: 0 var(--ld-primitive-scale-space-200, 16px);
+  padding: var(--ld-primitive-scale-space-200, 16px);
+  border-radius: 24px;
+  background: var(--ld-semantic-color-surface, #fff);
+  box-shadow: 0 -4px 20px 0 rgba(0, 0, 0, 0.08), 0 4px 20px 0 rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  flex-shrink: 0;
+  animation: cardSlideUp 300ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes cardSlideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.optinHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-150, 12px);
+}
+
+.optinIconWrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ld-semantic-color-surface-brand, #D9E9FF);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--ld-semantic-color-text-brand, #0071DC);
+}
+
+.optinTextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.optinTitle {
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.optinSubtitle {
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-subtle, #51535A);
+}
+
+.optinCtas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ============================================================
+   Terms card (1.4)
+   ============================================================ */
+.termsCard {
+  margin: 0 var(--ld-primitive-scale-space-200, 16px);
+  padding: var(--ld-primitive-scale-space-200, 16px);
+  border-radius: 24px;
+  background: var(--ld-semantic-color-surface, #fff);
+  box-shadow: 0 -4px 20px 0 rgba(0, 0, 0, 0.08), 0 4px 20px 0 rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  flex-shrink: 0;
+  animation: cardSlideUp 300ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.termsTitle {
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+.termsBody {
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ld-semantic-color-text-subtle, #51535A);
+}
+
+.termsCtas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ============================================================
+   Screen-level layout wrappers
+   ============================================================ */
+.screenContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  overflow: hidden;
+}
+
+/* Screens that have a bottom card (optin/terms): constrain the grid card */
+.screenWithCard {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+.screenWithCardGrid {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.screenWithCardFooter {
+  flex-shrink: 0;
+  padding-bottom: var(--ld-primitive-scale-space-200, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+}
+
+/* ============================================================
+   Loading screen outer layout
+   ============================================================ */
+.loadingSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  padding: 0 var(--ld-primitive-scale-space-200, 16px);
+  flex: 1 1 0;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.loadingCardWrap {
+  position: relative;
+  align-self: stretch;
+  border-radius: 24px;
+  background: var(--ld-semantic-color-surface, #fff);
+  box-shadow: 0 4px 19.6px 0 rgba(204, 217, 247, 0.25);
+  overflow: hidden;
+}
+
+.loadingFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  align-self: stretch;
+  padding-bottom: var(--ld-primitive-scale-space-400, 32px);
+  flex: 1 0 0;
+}
+
+/* ============================================================
+   Responsive: on wider screens, center the overlay like a modal
+   ============================================================ */
+@media (min-width: 480px) {
+  .overlay {
+    max-width: 430px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    animation: overlayEnterWide 300ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .overlay.exiting {
+    animation: overlayExitWide 250ms cubic-bezier(0.4, 0, 1, 1) forwards;
+  }
+
+  @keyframes overlayEnterWide {
+    from { transform: translateX(-50%) translateY(100%); opacity: 0; }
+    to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
+  }
+
+  @keyframes overlayExitWide {
+    from { transform: translateX(-50%) translateY(0);    opacity: 1; }
+    to   { transform: translateX(-50%) translateY(100%); opacity: 0; }
+  }
+}
+
+/* ============================================================
+   Reduced motion overrides
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .overlay.exiting,
+  .optinCard,
+  .termsCard {
+    animation-duration: 0ms;
+  }
+
+  .skeletonBar::after {
+    animation: none;
+  }
+}

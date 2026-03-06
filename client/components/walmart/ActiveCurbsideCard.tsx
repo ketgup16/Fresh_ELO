@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 import { GetItNowModal } from './purchase-history/GetItNowModal';
 import { ViewOrderBottomSheet } from './ViewOrderBottomSheet';
+import { ReplenishFlow } from './ReplenishFlow';
 import { PRODUCT_IMAGES } from './productImages';
 import styles from './ActiveCurbsideCard.module.css';
 
@@ -33,6 +34,7 @@ export function ActiveCurbsideCard({
   const [dismissed, setDismissed] = useState(false);
   const [showGetItNow, setShowGetItNow] = useState(false);
   const [showViewOrder, setShowViewOrder] = useState(false);
+  const [showReplenishFlow, setShowReplenishFlow] = useState(false);
   const [seconds, setSeconds] = useState(INITIAL_SECONDS);
 
   useEffect(() => {
@@ -133,7 +135,10 @@ export function ActiveCurbsideCard({
         onClose={() => setShowViewOrder(false)}
         deliveryDay={deliveryDay}
         deliveryTime="4pm"
-        onViewUsuals={() => setShowViewOrder(false)}
+        onViewUsuals={() => {
+          setShowViewOrder(false);
+          setShowReplenishFlow(true);
+        }}
       />
 
       <GetItNowModal
@@ -141,6 +146,11 @@ export function ActiveCurbsideCard({
         onClose={() => setShowGetItNow(false)}
         location={location}
         orderTotal={orderTotal}
+      />
+
+      <ReplenishFlow
+        isOpen={showReplenishFlow}
+        onClose={() => setShowReplenishFlow(false)}
       />
     </>
   );
