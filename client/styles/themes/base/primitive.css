@@ -95,9 +95,8 @@
   --ld-primitive-color-green-180: #081b01;
 
   /* Magic gradient colors */
-  /* Magic gradient (includes Developer green middle) */
   --ld-primitive-color-magic-1: #0053E2;
-  --ld-primitive-color-magic-2: #a4fb6c; /* Developer green */
+  --ld-primitive-color-magic-2: #3D90EC;
   --ld-primitive-color-magic-3: #79CDF6;
   --ld-primitive-color-magic-4: #E9F1FE;
 
