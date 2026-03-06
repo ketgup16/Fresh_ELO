@@ -18,6 +18,14 @@ export function PromotionalItemTile({
 }: PromotionalItemTileProps) {
   return (
     <div className={styles.tile}>
+      <div className={styles.stepperWrapper}>
+        <QuantityStepper
+          variant="tertiary"
+          size="small"
+          showAddLabel={false}
+          onChange={(qty) => onQuantityChange(idx, qty)}
+        />
+      </div>
       <div className={styles.imageWrapper}>
         <img src={image} alt="Product" className={styles.image} />
       </div>
@@ -26,14 +34,6 @@ export function PromotionalItemTile({
           <span className={styles.dollarSign}>$</span>
           <span className={styles.price}>{price}</span>
           <span className={styles.cents}>{cents}</span>
-        </div>
-        <div className={styles.stepperWrapper}>
-          <QuantityStepper
-            variant="tertiary"
-            size="small"
-            showAddLabel={false}
-            onChange={(qty) => onQuantityChange(idx, qty)}
-          />
         </div>
       </div>
     </div>
