@@ -14,6 +14,9 @@ interface ActiveCurbsideCardProps {
   productPrice?: string;
   location?: string;
   orderTotal?: string;
+  deliveryDay?: string;
+  itemCount?: number;
+  deliveryTotal?: string;
 }
 
 export function ActiveCurbsideCard({
@@ -22,6 +25,9 @@ export function ActiveCurbsideCard({
   productPrice = '$5.98',
   location = 'Carrollton Supercenter',
   orderTotal = '$85.00',
+  deliveryDay = 'Friday',
+  itemCount = 14,
+  deliveryTotal = '$55.59',
 }: ActiveCurbsideCardProps) {
   const [dismissed, setDismissed] = useState(false);
   const [showGetItNow, setShowGetItNow] = useState(false);
@@ -71,17 +77,17 @@ export function ActiveCurbsideCard({
             </IconButton>
           </div>
 
-          {/* Product row */}
+          {/* Delivery summary row */}
           <div className={styles.productRow}>
             <img
-              src={productImage}
-              alt={productName}
-              className={styles.productImage}
+              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F5ac1c437b00342a0b54f6649d7d6eeb8?width=80"
+              alt=""
+              className={styles.deliveryIcon}
             />
             <div className={styles.productInfo}>
-              <span className={styles.productName}>{productName}</span>
+              <span className={styles.deliveryLabel}>Your upcoming {deliveryDay} delivery</span>
+              <span className={styles.deliveryMeta}>{itemCount} items · Est. {deliveryTotal}</span>
             </div>
-            <span className={styles.productPrice}>{productPrice}</span>
           </div>
 
           {/* Actions row */}

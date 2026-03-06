@@ -92,9 +92,19 @@
   background: var(--ld-semantic-color-fill-subtle, #f8f8f8);
 }
 
+.deliveryIcon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .productInfo {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .productName {
@@ -106,6 +116,23 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.deliveryLabel {
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 700;
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
+  color: var(--ld-semantic-color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deliveryMeta {
+  font-size: var(--ld-semantic-font-caption-size, 12px);
+  font-weight: 400;
+  line-height: var(--ld-semantic-font-caption-lineheight, 16px);
+  color: var(--ld-semantic-color-text-subtle, #5b5c5e);
 }
 
 .productPrice {
