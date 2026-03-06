@@ -1,5 +1,7 @@
 import React from 'react';
 import { WCPAddToCart } from './WCPAddToCart';
+import { CheckCircleFill } from '@/components/icons/CheckCircleFill';
+import { Minus, Plus } from '@/components/icons';
 import styles from './CondensedItemTile.module.css';
 
 export interface CondensedItemTileProps {
@@ -11,12 +13,26 @@ export interface CondensedItemTileProps {
   cents: string;
   /** Optional size/options tag text, e.g. "5 oz" */
   tag?: string;
-  /** Add-to-cart button variant: 'primary' (solid) or 'tertiary' (bordered) */
-  variant?: 'primary' | 'tertiary';
+  /** Tile variant: 'primary' (solid), 'tertiary' (bordered), or 'edit' (large edit mode) */
+  variant?: 'primary' | 'tertiary' | 'edit';
   /** When true, renders the tile at reduced opacity with no interaction */
   loading?: boolean;
   /** Callback fired when add-to-cart quantity changes */
   onAddToCart?: (count: number) => void;
+  /** Product name — shown in edit variant */
+  name?: string;
+  /** Current quantity — shown in edit variant */
+  quantity?: number;
+  /** Callback when quantity changes in edit mode */
+  onQuantityChange?: (q: number) => void;
+  /** Whether item is checked/selected in edit mode */
+  isChecked?: boolean;
+  /** Toggle check state in edit mode */
+  onCheckChange?: (checked: boolean) => void;
+  /** Index for staggered animation delay */
+  itemIndex?: number;
+  /** Animation class name to apply */
+  animationClass?: string;
 }
 
 export function CondensedItemTile({
@@ -27,7 +43,73 @@ export function CondensedItemTile({
   variant = 'primary',
   loading = false,
   onAddToCart,
+  name,
+  quantity = 2,
+  onQuantityChange,
+  isChecked = true,
+  onCheckChange,
+  itemIndex = 0,
+  animationClass,
 }: CondensedItemTileProps) {
+  if (variant === 'edit') {
+    return (
+      <div
+        className={[styles.editTile, animationClass].filter(Boolean).join(' ')}
+        style={{ '--item-delay': `${itemIndex * 40}ms` } as React.CSSProperties}
+      >
+        {/* Square image area with checkmark */}
+        <div className={styles.editImageArea}>
+          <img src={image} alt={name || 'Product'} className={styles.editImage} />
+          <button
+            className={styles.checkIcon}
+            onClick={() => onCheckChange?.(!isChecked)}
+            aria-label={isChecked ? 'Deselect item' : 'Select item'}
+          >
+            <CheckCircleFill
+              className={isChecked ? styles.checkSvg : styles.checkSvgUnchecked}
+            />
+          </button>
+        </div>
+
+        {/* Price row + tag */}
+        <div className={styles.priceRow}>
+          <div className={styles.priceInner}>
+            <span className={styles.dollarSign}>$</span>
+            <span className={styles.price}>{price}</span>
+            <span className={styles.cents}>{cents}</span>
+          </div>
+          {tag && (
+            <div className={styles.tag}>
+              <span className={styles.tagText}>{tag}</span>
+            </div>
+          )}
+        </div>
+
+        {/* Product name */}
+        {name && <div className={styles.editName}>{name}</div>}
+
+        {/* Quantity stepper */}
+        <div className={styles.quantityStepper}>
+          <button
+            className={styles.stepperBtn}
+            onClick={() => onQuantityChange?.(Math.max(1, quantity - 1))}
+            aria-label="Decrease quantity"
+          >
+            <Minus className={styles.stepperBtnIcon} />
+          </button>
+          <span className={styles.stepperCount}>{quantity}</span>
+          <button
+            className={styles.stepperBtn}
+            onClick={() => onQuantityChange?.(quantity + 1)}
+            aria-label="Increase quantity"
+          >
+            <Plus className={styles.stepperBtnIcon} />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`${styles.tile} ${loading ? styles.tileLoading : ''}`}>
       <div className={styles.imageArea}>

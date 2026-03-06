@@ -112,3 +112,165 @@
   text-align: center;
   white-space: nowrap;
 }
+
+/* ═══════════════════════════════════════════════
+   EDIT TILE VARIANT — larger 2-column layout
+   ═══════════════════════════════════════════════ */
+
+.editTile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 0;
+}
+
+/* Image area — square, self-sizing in grid */
+.editImageArea {
+  position: relative;
+  align-self: stretch;
+  aspect-ratio: 1 / 1;
+  border-radius: 22.857px;
+  overflow: hidden;
+}
+
+.editImage {
+  width: 80px;
+  height: 80px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Checkmark icon — top-left, 44×44 hit area */
+.checkIcon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 2;
+}
+
+.checkIcon:hover {
+  background: var(--ld-semantic-color-surface-hovered, #e8e8e9);
+}
+
+.checkSvg {
+  width: var(--ld-semantic-scale-icon-medium, 24px);
+  height: var(--ld-semantic-scale-icon-medium, 24px);
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.checkSvgUnchecked {
+  width: var(--ld-semantic-scale-icon-medium, 24px);
+  height: var(--ld-semantic-scale-icon-medium, 24px);
+  color: var(--ld-semantic-color-text-subtlest, #74767c);
+}
+
+/* Product name — 2-line clamp */
+.editName {
+  align-self: stretch;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 400;
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.25rem);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-kerning: none;
+  font-feature-settings: 'liga' off;
+  min-height: 40px;
+}
+
+/* Quantity stepper — pill row (−/count/+) */
+.quantityStepper {
+  display: flex;
+  min-width: 108px;
+  min-height: 32px;
+  padding: var(--ld-primitive-scale-space-50, 4px);
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+  align-self: stretch;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  border: 1px solid var(--ld-semantic-color-action-border-secondary, #2e2f32);
+  background: var(--ld-semantic-color-action-fill-secondary, #fff);
+}
+
+.stepperBtn {
+  display: flex;
+  padding: var(--ld-primitive-scale-space-50, 4px);
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: var(--ld-semantic-color-action-fill-secondary, #fff);
+  border: none;
+  cursor: pointer;
+}
+
+.stepperBtn:hover {
+  background: var(--ld-semantic-color-action-fill-secondary-hovered, #f0f0f0);
+}
+
+.stepperBtnIcon {
+  width: var(--ld-semantic-scale-icon-small, 16px);
+  height: var(--ld-semantic-scale-icon-small, 16px);
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.stepperCount {
+  flex: 1 0 0;
+  text-align: center;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 700;
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.25rem);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-kerning: none;
+  font-feature-settings: 'liga' off;
+}
+
+/* Bounce-in animation for edit tiles */
+.itemBounceIn {
+  animation: bounceIn 420ms ease-out backwards;
+  animation-delay: var(--item-delay, 0ms);
+}
+
+@keyframes bounceIn {
+  0%   { transform: scale(0.65); opacity: 0; }
+  50%  { transform: scale(1.06); opacity: 1; }
+  70%  { transform: scale(0.97); opacity: 1; }
+  85%  { transform: scale(1.02); opacity: 1; }
+  100% { transform: scale(1.0);  opacity: 1; }
+}
+
+/* Bounce-out animation for returning to condensed */
+.itemBounceOut {
+  animation: bounceOut 250ms ease-in forwards;
+  animation-delay: var(--item-delay, 0ms);
+}
+
+@keyframes bounceOut {
+  0%   { transform: scale(1.0);  opacity: 1; }
+  30%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.6);  opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .itemBounceIn,
+  .itemBounceOut {
+    animation: none;
+  }
+}
