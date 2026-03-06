@@ -305,68 +305,68 @@ export function ReplenishmentBasket({
 
       {/* ── PANEL STATES (expanded / scheduling) ── */}
       {isPanel && (
-        <div className={`${styles.expandedPanel} ${styles.panelExpanded}`}>
+        <>
+          <div className={`${styles.expandedPanel} ${styles.panelExpanded}`}>
 
-          {/* Grabber handle */}
-          <div className={styles.grabberArea} onClick={handleCollapse} role="button" aria-label="Collapse basket">
-            <div className={styles.grabber} />
-          </div>
+            {/* Grabber handle */}
+            <div className={styles.grabberArea} onClick={handleCollapse} role="button" aria-label="Collapse basket">
+              <div className={styles.grabber} />
+            </div>
 
-          {/* ── Panel header: "Your upcoming delivery" ── */}
-          {state === 'expanded' && (
-            <div className={styles.panelTopHeader}>
-              <div className={styles.panelTopHeaderLeft}>
-                <div className={styles.sparkIconWrap}>
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F5ac1c437b00342a0b54f6649d7d6eeb8?width=80"
-                    alt=""
-                    className={styles.sparkIconInner}
-                  />
+            {/* ── Panel header: "Your upcoming delivery" ── */}
+            {state === 'expanded' && (
+              <div className={styles.panelTopHeader}>
+                <div className={styles.panelTopHeaderLeft}>
+                  <div className={styles.sparkIconWrap}>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F5ac1c437b00342a0b54f6649d7d6eeb8?width=80"
+                      alt=""
+                      className={styles.sparkIconInner}
+                    />
+                  </div>
+                  <span className={styles.panelTopTitle}>Your upcoming delivery</span>
                 </div>
-                <span className={styles.panelTopTitle}>Your upcoming delivery</span>
+                <button
+                  className={styles.closeBtn}
+                  onClick={handleCollapse}
+                  aria-label="Minimize basket"
+                >
+                  <MinimizeIcon width={20} height={20} className={styles.closeIcon} />
+                </button>
               </div>
-              <button
-                className={styles.closeBtn}
-                onClick={handleCollapse}
-                aria-label="Minimize basket"
-              >
-                <MinimizeIcon width={20} height={20} className={styles.closeIcon} />
-              </button>
-            </div>
-          )}
+            )}
 
-          {state === 'scheduling' && (
-            <div className={styles.panelTopHeader}>
-              <div className={styles.panelTopHeaderLeft}>
-                <span className={styles.panelTopTitle}>Schedule your delivery</span>
+            {state === 'scheduling' && (
+              <div className={styles.panelTopHeader}>
+                <div className={styles.panelTopHeaderLeft}>
+                  <span className={styles.panelTopTitle}>Schedule your delivery</span>
+                </div>
+                <button
+                  className={styles.closeBtn}
+                  onClick={handleBackToBasket}
+                  aria-label="Back to basket"
+                >
+                  <ChevronDown className={styles.closeIcon} />
+                </button>
               </div>
-              <button
-                className={styles.closeBtn}
-                onClick={handleBackToBasket}
-                aria-label="Back to basket"
-              >
-                <ChevronDown className={styles.closeIcon} />
-              </button>
-            </div>
-          )}
+            )}
 
-          {/* ── Delivery info row ── */}
-          {state === 'expanded' && !isEditing && (
-            <div className={styles.deliveryInfoRow}>
-              <Location className={styles.locationIcon} aria-hidden="true" />
-              <div className={styles.deliveryDetails}>
-                <span className={styles.deliveryTime}>Arriving {deliveryDay}, {deliveryTime}</span>
-                <span className={styles.deliveryAddress}>{address}</span>
+            {/* ── Delivery info row ── */}
+            {state === 'expanded' && !isEditing && (
+              <div className={styles.deliveryInfoRow}>
+                <Location className={styles.locationIcon} aria-hidden="true" />
+                <div className={styles.deliveryDetails}>
+                  <span className={styles.deliveryTime}>Arriving {deliveryDay}, {deliveryTime}</span>
+                  <span className={styles.deliveryAddress}>{address}</span>
+                </div>
+                <button className={styles.settingsBtn} aria-label="Edit delivery settings">
+                  <Gear className={styles.settingsIcon} />
+                </button>
               </div>
-              <button className={styles.settingsBtn} aria-label="Edit delivery settings">
-                <Gear className={styles.settingsIcon} />
-              </button>
-            </div>
-          )}
+            )}
 
-          {/* ── EXPANDED CONTENT ── */}
-          {state === 'expanded' && (
-            <>
+            {/* ── EXPANDED CONTENT ── */}
+            {state === 'expanded' && (
               <div className={styles.contentCard}>
                 <div className={[styles.contentCardInner, isEditing ? styles.contentCardInnerEdit : ''].filter(Boolean).join(' ')}>
                   {/* Item grid */}
@@ -414,7 +414,7 @@ export function ReplenishmentBasket({
                     </div>
                   )}
 
-                  {/* Separator + Suggestions (non-edit only) */}
+                  {/* Separator + Suggestions (non-edit only, max 3 tiles) */}
                   {!isEditing && (
                     <>
                       <div className={styles.sectionSep} />
@@ -423,8 +423,8 @@ export function ReplenishmentBasket({
                           <span className={styles.suggestionTitle}>Looking to add anything else?</span>
                           <ChevronRight className={styles.suggestionArrow} />
                         </div>
-                        <div className={styles.suggestionScroll}>
-                          {SUGGESTION_ITEMS.map((s) => (
+                        <div className={styles.suggestionGrid}>
+                          {SUGGESTION_ITEMS.slice(0, 3).map((s) => (
                             <div key={s.id} className={styles.suggestionTileWrap}>
                               <CondensedItemTile
                                 image={s.image}
@@ -441,55 +441,10 @@ export function ReplenishmentBasket({
                   )}
                 </div>
               </div>
+            )}
 
-              {/* ── Footer ── */}
-              {isEditing ? (
-                /* Edit mode footer: Save + Add to [Day] delivery (animated stroke) */
-                <div className={styles.glassFooter}>
-                  <Button variant="secondary" size="medium" isFullWidth onClick={handleSave}>
-                    Save
-                  </Button>
-                  <Button
-                    variant="primary"
-                    size="medium"
-                    isFullWidth
-                    strokeOn
-                    onClick={handleAddToDelivery}
-                  >
-                    Add to {deliveryDayShort} delivery
-                  </Button>
-                </div>
-              ) : (
-                /* Default expanded footer: Pause Delivery + Get it now */
-                <div className={styles.glassFooter}>
-                  <Button
-                    variant="secondary"
-                    size="medium"
-                    isFullWidth
-                    leading={<Pause width={16} height={16} />}
-                    onClick={onPauseDelivery}
-                  >
-                    Pause Delivery
-                  </Button>
-                  <Button
-                    variant="primary"
-                    size="medium"
-                    isFullWidth
-                    strokeOn
-                    leading={<Flash width={16} height={16} />}
-                    subLabel="as soon as 37 mins"
-                    onClick={onGetItNow}
-                  >
-                    Get it now
-                  </Button>
-                </div>
-              )}
-            </>
-          )}
-
-          {/* ── SCHEDULING CONTENT ── */}
-          {state === 'scheduling' && (
-            <>
+            {/* ── SCHEDULING CONTENT ── */}
+            {state === 'scheduling' && (
               <div className={styles.contentCard}>
                 <div className={styles.contentCardInner}>
                   <DeliveryScheduler
@@ -500,18 +455,57 @@ export function ReplenishmentBasket({
                   />
                 </div>
               </div>
+            )}
+          </div>
 
-              <div className={styles.glassFooter}>
+          {/* ── Floating footer bar — outside panel, replaces BottomNav ── */}
+          <div className={styles.floatingFooterBar}>
+            {state === 'expanded' && isEditing && (
+              <>
+                <Button variant="secondary" size="medium" isFullWidth onClick={handleSave}>
+                  Save
+                </Button>
+                <Button variant="primary" size="medium" isFullWidth strokeOn onClick={handleAddToDelivery}>
+                  Add to {deliveryDayShort} delivery
+                </Button>
+              </>
+            )}
+            {state === 'expanded' && !isEditing && (
+              <>
+                <Button
+                  variant="secondary"
+                  size="medium"
+                  isFullWidth
+                  leading={<Pause width={16} height={16} />}
+                  onClick={onPauseDelivery}
+                >
+                  Pause Delivery
+                </Button>
+                <Button
+                  variant="primary"
+                  size="medium"
+                  isFullWidth
+                  strokeOn
+                  leading={<Flash width={16} height={16} />}
+                  subLabel="as soon as 37 mins"
+                  onClick={onGetItNow}
+                >
+                  Get it now
+                </Button>
+              </>
+            )}
+            {state === 'scheduling' && (
+              <>
                 <Button variant="secondary" size="medium" isFullWidth onClick={handleBackToBasket}>
                   Back
                 </Button>
                 <Button variant="primary" size="medium" isFullWidth strokeOn onClick={handleConfirmDelivery}>
                   Confirm delivery
                 </Button>
-              </div>
-            </>
-          )}
-        </div>
+              </>
+            )}
+          </div>
+        </>
       )}
     </div>
   );
