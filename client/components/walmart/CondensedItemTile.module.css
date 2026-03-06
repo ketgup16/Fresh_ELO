@@ -29,7 +29,7 @@
   aspect-ratio: 1 / 1;
   border-radius: 22.857px;
   overflow: hidden;
-  background: transparent;
+  background: var(--ld-semantic-color-surface, #fff);
   transition:
     width 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
     height 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -48,6 +48,7 @@
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: transparent;
+  /* No background — images are transparent PNGs from CDN */
 }
 
 .imageFill {
