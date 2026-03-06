@@ -85,10 +85,10 @@ const DEMO_ITEMS: BasketItem[] = [
   },
   {
     id: '5',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/b1c5486ccc017cbaa03f2a39e1b77fa28f88166f?width=161',
+    image: 'https://d19oj5aeuefgv.cloudfront.net/0205383',
     price: '2',
     cents: '62',
-    name: 'Good Culture Cottage Cheese',
+    name: 'Chobani Plain Greek Yogurt',
     quantity: 3,
   },
   {
