@@ -8,6 +8,7 @@
   min-width: 0;
   transform: scale(1);
   transition: transform 0.525s cubic-bezier(0.25, 0.1, 0.25, 1);
+  mix-blend-mode: darken;
 }
 
 .tileEdit {
@@ -29,7 +30,7 @@
   aspect-ratio: 1 / 1;
   border-radius: 22.857px;
   overflow: hidden;
-  background: var(--ld-semantic-color-surface, #fff);
+  background: transparent;
   transition:
     width 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
     height 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -47,7 +48,7 @@
   height: auto;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background: var(--ld-semantic-color-surface, #fff);
+  background: transparent;
 }
 
 .imageFill {
@@ -56,7 +57,6 @@
   left: 0;
   top: 0;
   object-fit: contain;
-  mix-blend-mode: multiply;
 }
 
 .image {
@@ -67,7 +67,6 @@
   position: absolute;
   left: 8px;
   top: 8px;
-  mix-blend-mode: multiply;
   transition:
     left 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
     top 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
