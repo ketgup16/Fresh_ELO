@@ -155,6 +155,8 @@ const PATTERNS: PatternEntry[] = [
               provider: 'Dr. Sarah Chen',
               plan: 'Walmart Health Insurance',
             },
+            onPrimaryAction: () => alert('Pick up — Prescription Rx #4428710'),
+            onViewDetails: () => alert('View details — Prescription Rx #4428710'),
           },
           {
             id: 'auto-in-progress',
@@ -169,6 +171,7 @@ const PATTERNS: PatternEntry[] = [
               vehicle: '2019 Toyota Camry',
               note: 'Est. 45 min remaining',
             },
+            onViewDetails: () => alert('View details — Auto Care'),
           },
           {
             id: 'optical-scheduled',
@@ -183,6 +186,7 @@ const PATTERNS: PatternEntry[] = [
               provider: 'Dr. James Park',
               note: 'Progressive lenses — 7–10 business days',
             },
+            onViewDetails: () => alert('View details — Optical Order #OPT-88214'),
           },
         ]}
       />
@@ -211,6 +215,8 @@ const PATTERNS: PatternEntry[] = [
               referenceId: 'Rx #3317204',
               provider: 'Dr. Maria Lopez',
             },
+            onPrimaryAction: () => alert('Pick up — Prescription Rx #3317204'),
+            onViewDetails: () => alert('View details — Prescription Rx #3317204'),
           },
           {
             id: 'auto-in-progress',
@@ -224,6 +230,7 @@ const PATTERNS: PatternEntry[] = [
               scheduledTime: 'Sat, Mar 7, 2:00pm–3:00pm',
               vehicle: '2021 Honda CR-V',
             },
+            onViewDetails: () => alert('View details — Auto Care'),
           },
           {
             id: 'optical-scheduled',
@@ -278,6 +285,8 @@ const PATTERNS: PatternEntry[] = [
               provider: 'Dr. Angela Reeves',
               plan: 'Walmart Health+',
             },
+            onPrimaryAction: () => alert('Pick up — Prescription Rx #5590123'),
+            onViewDetails: () => alert('View details — Prescription Rx #5590123'),
           },
         ]}
       />
@@ -306,6 +315,8 @@ const PATTERNS: PatternEntry[] = [
               referenceId: 'Rx #7712045',
               provider: 'Dr. David Kim',
             },
+            onPrimaryAction: () => alert('Pick up — Prescription Rx #7712045'),
+            onViewDetails: () => alert('View details — Prescription Rx #7712045'),
           },
           {
             id: 'optical-scheduled-store2',
@@ -322,6 +333,7 @@ const PATTERNS: PatternEntry[] = [
               provider: 'Dr. Lisa Tran',
               note: 'Anti-reflective coating — allow 7–10 days',
             },
+            onViewDetails: () => alert('View details — Optical Order #OPT-33187'),
           },
           {
             id: 'auto-processing-store1',
@@ -336,6 +348,7 @@ const PATTERNS: PatternEntry[] = [
               vehicle: '2020 Ford F-150',
               note: 'Checked in — waiting for bay',
             },
+            onViewDetails: () => alert('View details — Auto Care'),
           },
         ]}
       />

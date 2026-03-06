@@ -38,6 +38,10 @@ export interface ServiceEntry {
   activeStep?: number;
   /** Extra contextual details shown in the expanded panel */
   detail?: ServiceEntryDetail;
+  /** Primary action callback (e.g. Pick up, Check in) */
+  onPrimaryAction?: () => void;
+  /** View details callback — opens detail page/modal */
+  onViewDetails?: () => void;
 }
 
 interface ServicesCardProps {
@@ -119,8 +123,6 @@ export function ServicesCard({
         )}
       </div>
 
-      <Divider />
-
       {/* Urgency alert for ready-for-pickup services */}
       {readyServices.length > 0 && (
         <div className={styles.alertSection}>
@@ -152,6 +154,8 @@ export function ServicesCard({
               pickupLocation={entry.pickupLocation}
               pickupDate={entry.pickupDate}
               detail={entry.detail}
+              onPrimaryAction={entry.onPrimaryAction}
+              onViewDetails={entry.onViewDetails}
             />
           </React.Fragment>
         ))}

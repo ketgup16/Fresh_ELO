@@ -85,6 +85,8 @@ export interface ServiceRowDetailProps {
   pickupLocation?: string;
   pickupDate?: string;
   detail?: ServiceEntryDetail;
+  onPrimaryAction?: () => void;
+  onViewDetails?: () => void;
 }
 
 export function ServiceRowDetail({
@@ -94,6 +96,8 @@ export function ServiceRowDetail({
   pickupLocation,
   pickupDate,
   detail,
+  onPrimaryAction,
+  onViewDetails,
 }: ServiceRowDetailProps) {
   const steps = STEPS[serviceType];
   const step = activeStep ?? STATUS_TO_STEP[serviceType][status];
@@ -148,11 +152,15 @@ export function ServiceRowDetail({
       )}
 
       <ButtonGroup UNSAFE_className={styles.actions}>
-        <Button variant="primary" size="small">
+        <Button
+          variant="primary"
+          size="small"
+          onClick={primaryLabel === 'View details' ? onViewDetails : onPrimaryAction}
+        >
           {primaryLabel}
         </Button>
         {showSecondary && (
-          <Button variant="secondary" size="small">
+          <Button variant="secondary" size="small" onClick={onViewDetails}>
             View details
           </Button>
         )}

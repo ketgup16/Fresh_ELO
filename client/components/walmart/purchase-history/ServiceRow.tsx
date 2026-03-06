@@ -41,6 +41,8 @@ export interface ServiceRowProps {
   pickupLocation?: string;
   pickupDate?: string;
   detail?: ServiceEntryDetail;
+  onPrimaryAction?: () => void;
+  onViewDetails?: () => void;
 }
 
 export function ServiceRow({
@@ -55,6 +57,8 @@ export function ServiceRow({
   pickupLocation,
   pickupDate,
   detail,
+  onPrimaryAction,
+  onViewDetails,
 }: ServiceRowProps) {
   const { label, color } = STATUS_CONFIG[status];
 
@@ -108,6 +112,8 @@ export function ServiceRow({
             pickupLocation={pickupLocation}
             pickupDate={pickupDate}
             detail={detail}
+            onPrimaryAction={onPrimaryAction}
+            onViewDetails={onViewDetails}
           />
         )}
       </div>
