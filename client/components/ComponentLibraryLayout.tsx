@@ -64,6 +64,7 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-queue', nameKey: 'componentLibrary.navWCPQueue', path: '/component-library/wcp-queue' },
       { id: 'carousels-grids', nameKey: 'componentLibrary.navCarouselsGrids', path: '/component-library/carousels-grids' },
       { id: 'order-status-cards', nameKey: 'componentLibrary.navOrderStatusCards', path: '/component-library/order-status-cards' },
+      { id: 'replenishment-basket', nameKey: 'componentLibrary.navReplenishmentBasket', path: '/component-library/replenishment-basket' },
     ]
   },
   {

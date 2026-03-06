@@ -128,6 +128,7 @@ const WCPQueuePage = React.lazy(() => import("./pages/component-library/WCPQueue
 const WCPUploadImagePage = React.lazy(() => import("./pages/component-library/WCPUploadImage"));
 const CarouselsAndGridsPage = React.lazy(() => import("./pages/component-library/CarouselsAndGrids"));
 const OrderStatusCardsPage = React.lazy(() => import("./pages/component-library/OrderStatusCards"));
+const ReplenishmentBasketPage = React.lazy(() => import("./pages/component-library/ReplenishmentBasket"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
 const FoundationsPage = React.lazy(() => import("./pages/component-library/Foundations"));
 const AssetsPage = React.lazy(() => import("./pages/component-library/Assets"));
@@ -287,6 +288,7 @@ const App = () => (
                 <Route path="wcp-upload-image" element={<WCPUploadImagePage />} />
                 <Route path="carousels-grids" element={<CarouselsAndGridsPage />} />
                 <Route path="order-status-cards" element={<OrderStatusCardsPage />} />
+                <Route path="replenishment-basket" element={<ReplenishmentBasketPage />} />
               </Route>
 
               {/* Walmart pages */}
