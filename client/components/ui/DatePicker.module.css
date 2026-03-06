@@ -25,6 +25,6 @@
   background: var(--ld-semantic-color-surface-overlay, #ffffff);
   border-radius: var(--ld-primitive-scale-border-radius-100, 8px);
   box-shadow: var(--ld-semantic-elevation-300);
-  border: 1px solid var(--ld-semantic-color-border-subtlest, #74767c);
+  border: none;
   z-index: 50;
 }

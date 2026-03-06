@@ -34,7 +34,7 @@
   justify-content: flex-end;
   gap: var(--ld-primitive-scale-space-150, 12px);
   padding-top: var(--ld-primitive-scale-space-200, 16px);
-  border-top: 1px solid var(--ld-semantic-color-border-subtle, #e5e7e8);
+  border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
 /* Responsive: Stack calendars vertically on smaller screens */
