@@ -53,18 +53,18 @@ const REPLENISH_ITEMS: ReplenishItem[] = [
   },
   {
     id: '7',
-    image: '/assets/products/blueberries.jpg',
-    price: '3', cents: '48', tag: '6 oz', name: 'Fresh Blueberries, 6 oz', quantity: 2,
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8206c77074484a9197d83dc1e2877e26?format=webp&width=800&height=1200',
+    price: '5', cents: '29', tag: '64 fl oz', name: 'Oatly Oat Milk, 64 fl oz', quantity: 2,
   },
   {
     id: '8',
-    image: '/assets/products/oranges.jpg',
-    price: '4', cents: '97', tag: '3 lb', name: 'Fresh Navel Oranges, 3 lb Bag', quantity: 1,
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F759d48cc33124307ac4a02f0d3b37c71?format=webp&width=800&height=1200',
+    price: '3', cents: '98', tag: '12 fl oz', name: 'bettergoods Cold Pressed Carrot Juice, 12 fl oz', quantity: 1,
   },
   {
     id: '9',
-    image: '/assets/products/tomato.jpg',
-    price: '1', cents: '24', tag: '1 lb', name: 'Fresh Tomatoes on the Vine, 1 lb', quantity: 3,
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0a07a194a7d8492fa5350edb76b4cb95?format=webp&width=800&height=1200',
+    price: '4', cents: '98', tag: '9.5 oz', name: 'SkinnyPop Popcorn, Sharing Size, 9.5 oz', quantity: 3,
   },
   {
     id: '10',
@@ -215,13 +215,6 @@ function OverviewScreen({ items, onClose, onEdit, onAddToDelivery }: OverviewScr
               <span className={styles.totalColon}>:</span>
             </div>
             <span className={styles.totalAmount}>${dollars}.{cents}</span>
-            <Button
-              variant="tertiary"
-              size="small"
-              onClick={onEdit}
-            >
-              Edit
-            </Button>
           </div>
         </div>
 
