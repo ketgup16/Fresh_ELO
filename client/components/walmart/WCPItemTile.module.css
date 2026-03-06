@@ -70,10 +70,11 @@
 /* ── Price row ── */
 .priceRow {
   display: flex;
-  align-items: flex-start;
-  gap: 1px;
+  align-items: baseline;
+  gap: 0;
   flex-wrap: wrap;
   min-height: 24px;
+  padding-right: 4px;
 }
 
 /* Green savings style when "Now" prefix present */
@@ -88,65 +89,60 @@
   color: inherit;
 }
 
-/* "Now" prefix — 20px bold green per Figma */
+/* "Now" prefix — bold green, baseline-aligned */
 .prefix {
   font-family: var(--ld-semantic-font-family-sans);
-  font-size: 20px;
+  font-size: var(--ld-semantic-font-body-large-size, 1.125rem);
   font-weight: 700;
   color: var(--ld-semantic-color-text-positive, #2a8703);
-  line-height: 24px;
+  line-height: var(--ld-semantic-font-body-large-lineheight, 1.5rem);
   margin-right: 2px;
+  font-kerning: none;
+  font-feature-settings: 'liga' off;
 }
 
-/* Dollar sign — 14px superscript */
+/* Dollar sign — OpenType superscript */
 .dollarSign {
   font-family: var(--ld-semantic-font-family-sans);
-  font-size: 14px;
+  font-size: var(--ld-semantic-font-body-large-size, 1.125rem);
   font-weight: 700;
-  line-height: 16px;
+  line-height: var(--ld-semantic-font-body-large-lineheight, 1.5rem);
   color: var(--ld-semantic-color-text, #2e2f32);
-  padding-bottom: 6px;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  font-kerning: none;
+  font-feature-settings: 'liga' off, 'sups' on;
 }
 
-/* Dollar value — 24px bold */
+/* Dollar value — bold, baseline-aligned */
 .price {
   font-family: var(--ld-semantic-font-family-sans);
-  font-size: 24px;
+  font-size: var(--ld-semantic-font-body-large-size, 1.125rem);
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2e2f32);
-  line-height: 20px;
+  line-height: var(--ld-semantic-font-body-large-lineheight, 1.5rem);
+  font-kerning: none;
+  font-feature-settings: 'liga' off;
 }
 
-/* Cents — 14px superscript */
+/* Cents — OpenType superscript */
 .cents {
   font-family: var(--ld-semantic-font-family-sans);
-  font-size: 14px;
+  font-size: var(--ld-semantic-font-body-large-size, 1.125rem);
   font-weight: 700;
-  line-height: 16px;
+  line-height: var(--ld-semantic-font-body-large-lineheight, 1.5rem);
   color: var(--ld-semantic-color-text, #2e2f32);
-  padding-bottom: 8px;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  font-kerning: none;
+  font-feature-settings: 'liga' off, 'sups' on;
 }
 
-/* "/mo" suffix — 14px bold, aligned to bottom */
+/* "/mo" suffix — OpenType superscript */
 .suffix {
   font-family: var(--ld-semantic-font-family-sans);
-  font-size: 14px;
+  font-size: var(--ld-semantic-font-body-large-size, 1.125rem);
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2e2f32);
-  line-height: 12px;
-  padding-bottom: 6px;
-  align-self: flex-end;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  line-height: var(--ld-semantic-font-body-large-lineheight, 1.5rem);
+  font-kerning: none;
+  font-feature-settings: 'liga' off, 'sups' on;
 }
 
 /* Strikethrough original price — 14px */
