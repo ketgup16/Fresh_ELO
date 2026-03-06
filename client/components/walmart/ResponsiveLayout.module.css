@@ -11,6 +11,14 @@
   width: 100%;
   padding-left: 16px;
   padding-right: 16px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .contentContainer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -52,6 +60,8 @@
   position: sticky;
   top: 0;
   z-index: 50;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .nativeNavWrapperWhite {

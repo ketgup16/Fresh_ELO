@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: space-between;
   height: 54px;
+  width: 100%;
   padding: 14px 24px 0 24px;
   color: #fff;
   font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
@@ -79,6 +80,7 @@
   align-items: center;
   justify-content: space-between;
   height: 28px;
+  width: 100%;
   padding: 4px 16px;
   color: #fff;
   font-family: Roboto, 'Google Sans', 'Noto Sans', sans-serif;

@@ -25,11 +25,11 @@
 }
 
 /* Smallest mobile: fill full width, no max-width cap */
-@media (max-width: 480px) {
+@media (max-width: 430px) {
   .collapsedBar,
   .expandedPanel,
   .footerWrap {
-    max-width: none;
+    max-width: calc(100% - 24px);
   }
 }
 
@@ -60,7 +60,7 @@
   pointer-events: all;
   margin: 0 12px;
   width: calc(100% - 24px);
-  max-width: 80vw;
+  max-width: 430px;
   align-self: center;
 
   display: flex;
@@ -244,7 +244,7 @@
   pointer-events: all;
   /* Same width as collapsed card */
   width: calc(100% - 24px);
-  max-width: 80vw;
+  max-width: 430px;
   /* Floats above the floating footer */
   max-height: calc(100dvh - 120px);
   display: flex;
@@ -662,7 +662,7 @@
 /* ── Footer wrap — constrains FloatingFooter to match drawer width ── */
 .footerWrap {
   width: calc(100% - 24px);
-  max-width: 80vw;
+  max-width: 430px;
   display: flex;
   pointer-events: all;
 }
