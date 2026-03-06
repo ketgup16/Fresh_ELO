@@ -68,18 +68,18 @@ const REPLENISH_ITEMS: ReplenishItem[] = [
   },
   {
     id: '10',
-    image: '/assets/products/watering-can.jpg',
-    price: '12', cents: '97', tag: '1.3 gal', name: 'Better Homes & Gardens Watering Can, 1.3 gal', quantity: 1,
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff5cf2e5441634561b83ce4c2a6ea857a?format=webp&width=800&height=1200',
+    price: '9', cents: '98', tag: '4 ct', name: 'Starbucks Dark Roast Coffee, 4 ct', quantity: 2,
   },
   {
     id: '11',
-    image: '/assets/products/blueberries.jpg',
-    price: '3', cents: '48', tag: '6 oz', name: 'Fresh Blueberries, 6 oz', quantity: 1,
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F1691325df52f44e7a21734ca9ae15151?format=webp&width=800&height=1200',
+    price: '3', cents: '48', tag: '12 oz', name: 'bettergoods Mac & Cheese, 12 oz', quantity: 1,
   },
   {
     id: '12',
-    image: '/assets/products/oranges.jpg',
-    price: '4', cents: '97', tag: '3 lb', name: 'Fresh Navel Oranges, 3 lb Bag', quantity: 2,
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F55aec88f3658458a885d94e858dcd7a6?format=webp&width=800&height=1200',
+    price: '3', cents: '98', tag: '6 ct', name: 'bettergoods Cage Free Large Eggs, 6 ct', quantity: 1,
   },
 ];
 
