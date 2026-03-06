@@ -8,6 +8,7 @@ import { WCPItemTile } from '@/components/walmart/WCPItemTile';
 import { WCPAddToCart } from '@/components/walmart/WCPAddToCart';
 import { FlashDealsItemTile } from '@/components/walmart/FlashDealsItemTile';
 import { PromotionalItemTile } from '@/components/walmart/PromotionalItemTile';
+import { CondensedItemTile } from '@/components/walmart/CondensedItemTile';
 import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
 import styles from './ProductCards.module.css';
 
@@ -50,6 +51,14 @@ const FLASH_DEALS_SAMPLES: import('@/components/walmart/FlashDealsItemTile').Fla
 ];
 
 // ── PromotionalItemTile samples ───────────────────────────────────────────────
+// ── CondensedItemTile samples ─────────────────────────────────────────────────
+const CONDENSED_TILE_SAMPLES = [
+  { image: PRODUCT_IMAGES.redApple, price: '3', cents: '25', tag: '5 oz' },
+  { image: PRODUCT_IMAGES.eggs6Count, price: '2', cents: '48' },
+  { image: PRODUCT_IMAGES.oatlyOatMilk, price: '4', cents: '98', tag: '64 oz' },
+  { image: PRODUCT_IMAGES.goodCultureCottageCheese, price: '3', cents: '97', tag: '16 oz' },
+];
+
 const PROMO_TILE_SAMPLES = [
   { image: PRODUCT_IMAGES.starbucksDoubleshot, price: '3', cents: '68' },
   { image: PRODUCT_IMAGES.oatlyOatMilk, price: '4', cents: '98' },
@@ -480,6 +489,78 @@ export default function ItemTilePage() {
         ]} />
       </div>
 
+      {/* ── CondensedItemTile ─────────────────────────────────── */}
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>CondensedItemTile</h2>
+        <p className={styles.sectionDesc}>
+          Compact circular-image tile used in grocery lists and shopping lists. Features a rounded product image with an add-to-cart overlay, price display with OpenType superscript formatting, and an optional size/options tag pill.
+        </p>
+
+        <div className={styles.metaRow}>
+          <span className={styles.metaLabel}>Primary variant</span>
+          <Tag variant="success">Grocery</Tag>
+          <p className={styles.metaDesc}>
+            Uses <code>variant="primary"</code> — solid blue add-to-cart button in the top-right corner of the image area.
+          </p>
+        </div>
+
+        <div className={styles.frame}>
+          <div className={styles.carouselFrame}>
+            {CONDENSED_TILE_SAMPLES.map((p, i) => (
+              <div key={i} className={styles.carouselCard} style={{ flex: '0 0 96px' }}>
+                <CondensedItemTile {...p} variant="primary" onAddToCart={() => {}} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.metaRow}>
+          <span className={styles.metaLabel}>Tertiary variant</span>
+          <Tag variant="neutral">Bordered</Tag>
+          <p className={styles.metaDesc}>
+            Uses <code>variant="tertiary"</code> — bordered add-to-cart button, lighter visual weight.
+          </p>
+        </div>
+
+        <div className={styles.frame}>
+          <div className={styles.carouselFrame}>
+            {CONDENSED_TILE_SAMPLES.map((p, i) => (
+              <div key={i} className={styles.carouselCard} style={{ flex: '0 0 96px' }}>
+                <CondensedItemTile {...p} variant="tertiary" onAddToCart={() => {}} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.metaRow}>
+          <span className={styles.metaLabel}>Loading state</span>
+          <Tag variant="info">State</Tag>
+          <p className={styles.metaDesc}>
+            Pass <code>loading=true</code> to dim the tile and disable interaction.
+          </p>
+        </div>
+
+        <div className={styles.frame}>
+          <div className={styles.carouselFrame}>
+            {CONDENSED_TILE_SAMPLES.slice(0, 2).map((p, i) => (
+              <div key={i} className={styles.carouselCard} style={{ flex: '0 0 96px' }}>
+                <CondensedItemTile {...p} loading onAddToCart={() => {}} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <PropTable rows={[
+          { name: 'image', required: true, description: 'Product image URL — use CDN with ?format=webp&width=400' },
+          { name: 'price', required: true, description: 'Dollar portion of the price, e.g. "3"' },
+          { name: 'cents', required: true, description: 'Cents portion of the price, e.g. "25"' },
+          { name: 'tag', required: false, description: 'Size/options tag text shown as a pill next to the price, e.g. "5 oz"' },
+          { name: 'variant', required: false, description: "'primary' (solid blue) or 'tertiary' (bordered). Defaults to 'primary'" },
+          { name: 'loading', required: false, description: 'When true, renders the tile at reduced opacity with no interaction' },
+          { name: 'onAddToCart', required: false, description: 'Callback (count) => void — renders WCPAddToCart in image area when provided' },
+        ]} />
+      </div>
+
       {/* ── PromotionalItemTile ────────────────────────────────── */}
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>PromotionalItemTile</h2>
@@ -565,6 +646,13 @@ export default function ItemTilePage() {
               tagVariant: 'success' as const,
               code: '<ProductCardGrid image="..." name="..." price="18" cents="98" rating={4.4} ratingCount="1,247" />',
               path: '@/components/walmart/ProductCardGrid',
+            },
+            {
+              name: 'CondensedItemTile',
+              tag: 'Grocery',
+              tagVariant: 'success' as const,
+              code: '<CondensedItemTile image="..." price="3" cents="25" tag="5 oz" onAddToCart={fn} />',
+              path: '@/components/walmart/CondensedItemTile',
             },
             {
               name: 'CarouselProductCard',
