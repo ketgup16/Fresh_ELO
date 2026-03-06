@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import { Check, X } from '@/components/icons';
+import { Check, X, Search } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
+import { TextField } from '@/components/ui/TextField';
 import { Scrim } from '@/components/ui/Scrim';
 import { PharmacyOrderDetailModal } from './PharmacyOrderDetailModal';
 import styles from './AutoCareModals.module.css';
@@ -99,6 +100,15 @@ function PickupModal({
   );
 }
 
+// ── Nearby Walmart Pharmacies (demo data) ────────────────────────────────────
+const NEARBY_PHARMACIES = [
+  { id: '1', name: 'Oak Lawn Supercenter', address: '1521 N Cockrell Hill Rd, Dallas, TX 75211', distance: '2.3 mi' },
+  { id: '2', name: 'Carrollton Supercenter', address: '1213 E Trinity Mills Rd, Carrollton, TX 75006', distance: '4.1 mi' },
+  { id: '3', name: 'Irving Supercenter', address: '4100 W Airport Fwy, Irving, TX 75062', distance: '5.8 mi' },
+  { id: '4', name: 'Garland Neighborhood Market', address: '555 W Centerville Rd, Garland, TX 75041', distance: '8.2 mi' },
+  { id: '5', name: 'Plano Supercenter', address: '6001 Central Expy, Plano, TX 75023', distance: '12.4 mi' },
+];
+
 // ── Transfer Rx Modal ─────────────────────────────────────────────────────────
 function TransferRxModal({
   open, onClose, rxName, currentLocation,
@@ -107,10 +117,36 @@ function TransferRxModal({
   rxName?: string; currentLocation?: string;
 }) {
   const [transferred, setTransferred] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedPharmacy, setSelectedPharmacy] = useState<typeof NEARBY_PHARMACIES[number] | null>(null);
+
   useModalEffects(open, onClose);
+
+  // Reset state when modal opens
+  useEffect(() => {
+    if (open) {
+      setTransferred(false);
+      setSearchQuery('');
+      setSelectedPharmacy(null);
+    }
+  }, [open]);
+
   if (!open) return null;
 
-  const handleDone = () => { setTransferred(false); onClose(); };
+  const handleDone = () => { setTransferred(false); setSelectedPharmacy(null); setSearchQuery(''); onClose(); };
+
+  const filteredPharmacies = useMemo(() => {
+    if (!searchQuery.trim()) return NEARBY_PHARMACIES;
+    const q = searchQuery.toLowerCase();
+    return NEARBY_PHARMACIES.filter(
+      p => p.name.toLowerCase().includes(q) || p.address.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
+
+  // Exclude current location from results
+  const results = filteredPharmacies.filter(
+    p => !currentLocation || !p.name.toLowerCase().includes(currentLocation.toLowerCase().replace(/ supercenter| neighborhood market/gi, '').trim().toLowerCase())
+  );
 
   return createPortal(
     <>
@@ -153,12 +189,91 @@ function TransferRxModal({
                   {currentLocation && <p className={styles.detailSub}>Current: {currentLocation}</p>}
                 </div>
               </div>
-              <div className={styles.apptFieldGroup}>
-                <span className={styles.apptFieldLabel}>Transfer to</span>
-                <div className={styles.apptFieldValueStatic}>
-                  Search for a Walmart Pharmacy near you
-                </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <TextField
+                  label="Transfer to"
+                  type="search"
+                  size="large"
+                  placeholder="Search for a Walmart Pharmacy near you"
+                  value={searchQuery}
+                  onChange={e => { setSearchQuery(e.target.value); setSelectedPharmacy(null); }}
+                  leadingIcon={<Search style={{ width: 18, height: 18 }} />}
+                />
+
+                {/* Results list */}
+                {!selectedPharmacy && (
+                  <div style={{
+                    display: 'flex', flexDirection: 'column',
+                    border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
+                    borderRadius: 8, overflow: 'hidden',
+                    maxHeight: 220, overflowY: 'auto',
+                  }}>
+                    {results.length > 0 ? results.map(p => (
+                      <button
+                        key={p.id}
+                        onClick={() => { setSelectedPharmacy(p); setSearchQuery(p.name); }}
+                        style={{
+                          display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
+                          gap: 12, padding: '12px 14px', border: 'none',
+                          borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
+                          background: 'none', cursor: 'pointer', textAlign: 'left',
+                          fontFamily: 'inherit', transition: 'background 120ms',
+                        }}
+                        onMouseEnter={e => (e.currentTarget.style.background = 'var(--ld-semantic-color-fill-subtle)')}
+                        onMouseLeave={e => (e.currentTarget.style.background = 'none')}
+                      >
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                          <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>
+                            {p.name}
+                          </span>
+                          <span style={{ fontSize: 12, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                            {p.address}
+                          </span>
+                        </div>
+                        <span style={{
+                          fontSize: 12, fontWeight: 600, flexShrink: 0, marginTop: 2,
+                          color: 'var(--ld-semantic-color-text-subtle)',
+                        }}>
+                          {p.distance}
+                        </span>
+                      </button>
+                    )) : (
+                      <div style={{ padding: '16px 14px', fontSize: 13, color: 'var(--ld-semantic-color-text-subtle)', textAlign: 'center' }}>
+                        No pharmacies found matching "{searchQuery}"
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Selected pharmacy confirmation */}
+                {selectedPharmacy && (
+                  <div style={{
+                    display: 'flex', alignItems: 'center', gap: 12,
+                    padding: '12px 14px',
+                    border: '1px solid var(--ld-semantic-color-action-fill-primary)',
+                    borderRadius: 8,
+                    background: 'var(--ld-semantic-color-fill-info-subtle)',
+                  }}>
+                    <Check style={{ width: 18, height: 18, color: 'var(--ld-semantic-color-action-fill-primary)', flexShrink: 0 }} />
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flex: 1 }}>
+                      <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>
+                        {selectedPharmacy.name}
+                      </span>
+                      <span style={{ fontSize: 12, color: 'var(--ld-semantic-color-text-subtle)' }}>
+                        {selectedPharmacy.address} · {selectedPharmacy.distance}
+                      </span>
+                    </div>
+                    <IconButton
+                      aria-label="Change pharmacy"
+                      variant="ghost" size="small"
+                      onClick={() => { setSelectedPharmacy(null); setSearchQuery(''); }}
+                    >
+                      <X style={{ width: 16, height: 16 }} />
+                    </IconButton>
+                  </div>
+                )}
               </div>
+
               <p className={styles.checkInNote}>
                 Transfers typically take 24–48 hours. Your pharmacist may contact you if additional information is needed.
               </p>
@@ -167,7 +282,12 @@ function TransferRxModal({
               <Button variant="secondary" onClick={onClose} UNSAFE_className={styles.halfWidthBtn}>
                 Cancel
               </Button>
-              <Button variant="primary" onClick={() => setTransferred(true)} UNSAFE_className={styles.halfWidthBtn}>
+              <Button
+                variant="primary"
+                onClick={() => setTransferred(true)}
+                UNSAFE_className={styles.halfWidthBtn}
+                disabled={!selectedPharmacy}
+              >
                 Transfer prescription
               </Button>
             </div>
