@@ -24,11 +24,19 @@
   }
 }
 
-/* Tablet: expand to 60vw centered */
+/* Mid-range: expand to 80vw centered */
+@media (min-width: 481px) and (max-width: 768px) {
+  .collapsedBar,
+  .expandedPanel {
+    max-width: 80vw;
+  }
+}
+
+/* Tablet: expand to 80vw centered */
 @media (min-width: 769px) and (max-width: 1024px) {
   .collapsedBar,
   .expandedPanel {
-    max-width: 60vw;
+    max-width: 80vw;
   }
 }
 
@@ -59,7 +67,7 @@
   pointer-events: all;
   margin: 0 12px;
   width: calc(100% - 24px);
-  max-width: 360px;
+  max-width: 80vw;
   align-self: center;
 
   display: flex;
@@ -243,7 +251,7 @@
   pointer-events: all;
   /* Same width as collapsed card */
   width: calc(100% - 24px);
-  max-width: 360px;
+  max-width: 80vw;
   /* Floats above the floating footer */
   max-height: calc(100dvh - 120px);
   display: flex;

@@ -45,10 +45,25 @@
   }
 }
 
-/* Tablet: match basket/nav width at 60vw centered */
+/* Mid-range: expand to 80vw centered */
+@media (min-width: 481px) and (max-width: 768px) {
+  .barFixed {
+    width: 80vw;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .barFixed.bar {
+    display: flex;
+  }
+}
+
+/* Tablet: match basket/nav width at 80vw centered */
 @media (min-width: 769px) and (max-width: 1024px) {
   .barFixed {
-    width: 60vw;
+    width: 80vw;
     left: 50%;
     transform: translateX(-50%);
     display: flex;

@@ -498,8 +498,8 @@ export function ReplenishmentBasket({
           {/* ── Floating footer — outside panel, replaces BottomNav ── */}
           {state === 'expanded' && isEditing && (
             <FloatingFooter
-              secondaryAction={{ label: 'Save', onClick: handleSave }}
-              primaryAction={{ label: `Add to ${deliveryDayShort} delivery`, variant: 'primary', strokeOn: true, onClick: handleAddToDelivery }}
+              secondaryAction={{ label: 'Pause Delivery', icon: <Pause width={16} height={16} />, onClick: onPauseDelivery }}
+              primaryAction={{ label: 'Get it now', icon: <Flash width={16} height={16} />, subLabel: 'as soon as 37 mins', variant: 'primary', strokeOn: true, onClick: onGetItNow }}
             />
           )}
           {state === 'expanded' && !isEditing && (
