@@ -346,6 +346,73 @@ export const ButtonExample: React.FC = () => {
 
       <section>
         <h2 style={{ marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>
+          With Sub-label
+        </h2>
+        <p style={{ marginBottom: '16px', fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)', lineHeight: 1.5 }}>
+          Use <code style={{ fontFamily: 'var(--ld-semantic-font-family-mono)', fontSize: '13px', backgroundColor: 'var(--ld-semantic-color-fill-subtle)', padding: '2px 6px', borderRadius: '4px' }}>subLabel</code> for a secondary caption line below the main label.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)' }}>All sizes (secondary)</p>
+            <ButtonGroup>
+              <Button variant="secondary" size="small" subLabel="sub-label">Button label</Button>
+              <Button variant="secondary" size="medium" subLabel="sub-label">Button label</Button>
+              <Button variant="secondary" size="large" subLabel="sub-label">Button label</Button>
+            </ButtonGroup>
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)' }}>All variants (medium)</p>
+            <ButtonGroup>
+              <Button variant="primary" size="medium" subLabel="sub-label">Button label</Button>
+              <Button variant="secondary" size="medium" subLabel="sub-label">Button label</Button>
+              <Button variant="tertiary" size="medium" subLabel="sub-label">Button label</Button>
+              <Button variant="destructive" size="medium" subLabel="sub-label">Button label</Button>
+            </ButtonGroup>
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)' }}>Disabled</p>
+            <ButtonGroup>
+              <Button variant="secondary" size="small" subLabel="sub-label" disabled>Button label</Button>
+              <Button variant="secondary" size="medium" subLabel="sub-label" disabled>Button label</Button>
+              <Button variant="secondary" size="large" subLabel="sub-label" disabled>Button label</Button>
+            </ButtonGroup>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style={{ marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>
+          Animated Stroke (<code style={{ fontFamily: 'var(--ld-semantic-font-family-mono)', fontSize: '16px' }}>strokeOn</code>)
+        </h2>
+        <p style={{ marginBottom: '16px', fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)', lineHeight: 1.5 }}>
+          A rotating conic-gradient glow stroke orbits the button border. Automatically disabled under <code style={{ fontFamily: 'var(--ld-semantic-font-family-mono)', fontSize: '13px', backgroundColor: 'var(--ld-semantic-color-fill-subtle)', padding: '2px 6px', borderRadius: '4px' }}>prefers-reduced-motion</code>.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)' }}>Primary (medium)</p>
+            <Button variant="primary" size="medium" strokeOn>Save changes</Button>
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)' }}>All variants</p>
+            <ButtonGroup>
+              <Button variant="primary" strokeOn>Primary</Button>
+              <Button variant="secondary" strokeOn>Secondary</Button>
+              <Button variant="tertiary" strokeOn>Tertiary</Button>
+            </ButtonGroup>
+          </div>
+          <div>
+            <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)' }}>All sizes (primary)</p>
+            <ButtonGroup>
+              <Button variant="primary" size="small" strokeOn>Small</Button>
+              <Button variant="primary" size="medium" strokeOn>Medium</Button>
+              <Button variant="primary" size="large" strokeOn>Large</Button>
+            </ButtonGroup>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style={{ marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>
           Destructive Actions
         </h2>
         <ButtonGroup>

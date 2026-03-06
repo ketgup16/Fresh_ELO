@@ -52,6 +52,17 @@ interface ButtonBaseProps extends CommonProps {
    * @default "secondary"
    */
   variant?: ButtonVariant;
+
+  /**
+   * Optional sub-label displayed below the main label in smaller caption text.
+   */
+  subLabel?: string;
+
+  /**
+   * When true, renders an animated rotating gradient border ("magic stroke") around the button.
+   * @default false
+   */
+  strokeOn?: boolean;
 }
 
 /**
@@ -138,6 +149,8 @@ export const Button = React.forwardRef<
     size = 'medium',
     trailing,
     variant = 'secondary',
+    subLabel,
+    strokeOn = false,
     'aria-label': ariaLabel,
     UNSAFE_className,
     UNSAFE_style,
@@ -150,6 +163,7 @@ export const Button = React.forwardRef<
     styles[`button--size-${size}`],
     isFullWidth && styles['button--fullWidth'],
     isLoading && styles['button--loading'],
+    strokeOn && styles['button--strokeOn'],
     UNSAFE_className,
   ]
     .filter(Boolean)
@@ -160,7 +174,14 @@ export const Button = React.forwardRef<
   ) : (
     <>
       {leading && <span className={styles.button__leading}>{leading}</span>}
-      <span className={styles.button__content}>{children}</span>
+      <span className={styles.button__content}>
+        {subLabel ? (
+          <span className={styles.button__labelGroup}>
+            <span>{children}</span>
+            <span className={styles.button__subLabel}>{subLabel}</span>
+          </span>
+        ) : children}
+      </span>
       {trailing && <span className={styles.button__trailing}>{trailing}</span>}
     </>
   );

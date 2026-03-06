@@ -275,3 +275,65 @@
     animation: none;
   }
 }
+
+/* ── Sub-label ── */
+
+.button__labelGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: -4px;
+  line-height: 1.2;
+}
+
+.button__subLabel {
+  font-family: var(--ld-semantic-font-caption-family);
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: 700;
+  line-height: var(--ld-semantic-font-caption-line-height, 1rem);
+  opacity: 0.85;
+}
+
+/* ── Animated stroke / "magic" border ── */
+
+@property --stroke-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.button--strokeOn {
+  position: relative;
+  isolation: isolate;
+}
+
+.button--strokeOn::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from var(--stroke-angle),
+    transparent 0%,
+    var(--ld-semantic-color-action-fill-primary, #0071dc) 15%,
+    rgba(226, 235, 255, 0.6) 35%,
+    transparent 50%,
+    var(--ld-semantic-color-action-fill-primary, #0071dc) 65%,
+    rgba(226, 235, 255, 0.6) 80%,
+    transparent 100%
+  );
+  z-index: -1;
+  animation: stroke-rotate 2s linear infinite;
+}
+
+@keyframes stroke-rotate {
+  to { --stroke-angle: 360deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button--strokeOn::before {
+    animation: none;
+    background: var(--ld-semantic-color-action-fill-primary, #0071dc);
+    opacity: 0.3;
+  }
+}

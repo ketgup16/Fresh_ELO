@@ -32,6 +32,43 @@ const labelStyle: React.CSSProperties = {
 export function QuantityStepperExample() {
   return (
     <div>
+      {/* ── XSmall ── */}
+      <div style={sectionStyle}>
+        <p style={headingStyle}>XSmall</p>
+
+        <p style={{ ...labelStyle, marginBottom: '8px' }}>Primary — + Add / icon only / Add to cart</p>
+        <div style={rowStyle}>
+          <QuantityStepper variant="primary" size="xsmall" />
+          <QuantityStepper variant="primary" size="xsmall" showAddLabel={false} />
+          <QuantityStepper variant="primary" size="xsmall" cartLabel="Add to cart" />
+          <QuantityStepper variant="primary" size="xsmall" disabled />
+        </div>
+
+        <p style={{ ...labelStyle, marginBottom: '8px' }}>Primary — expanded / max quantity</p>
+        <div style={rowStyle}>
+          <QuantityStepper variant="primary" size="xsmall" defaultCount={2} />
+          <QuantityStepper variant="primary" size="xsmall" defaultCount={2} maxQuantity={2} />
+          <QuantityStepper variant="primary" size="xsmall" defaultCount={1} showTrashOnRemove />
+        </div>
+
+        <p style={{ ...labelStyle, marginBottom: '8px' }}>Secondary — + Add / icon only / expanded</p>
+        <div style={rowStyle}>
+          <QuantityStepper variant="secondary" size="xsmall" />
+          <QuantityStepper variant="secondary" size="xsmall" showAddLabel={false} />
+          <QuantityStepper variant="secondary" size="xsmall" defaultCount={1} />
+          <QuantityStepper variant="secondary" size="xsmall" disabled />
+        </div>
+
+        <p style={{ ...labelStyle, marginBottom: '8px' }}>Tertiary — + Add / icon only / expanded / max</p>
+        <div style={rowStyle}>
+          <QuantityStepper variant="tertiary" size="xsmall" />
+          <QuantityStepper variant="tertiary" size="xsmall" showAddLabel={false} />
+          <QuantityStepper variant="tertiary" size="xsmall" cartLabel="Add to cart" />
+          <QuantityStepper variant="tertiary" size="xsmall" defaultCount={2} />
+          <QuantityStepper variant="tertiary" size="xsmall" defaultCount={2} maxQuantity={2} />
+        </div>
+      </div>
+
       {/* ── Primary ── */}
       <div style={sectionStyle}>
         <p style={headingStyle}>Primary</p>

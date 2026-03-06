@@ -36,6 +36,13 @@
 
 /* ── Sizes ── */
 
+.pill--xsmall {
+  height: 24px;
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: 700;
+  line-height: var(--ld-semantic-font-caption-line-height, 1rem);
+}
+
 .pill--small {
   height: 32px;
   font-size: 14px;
@@ -142,6 +149,7 @@
   gap: 4px;
 }
 
+.pill--xsmall.modeInitial { padding: 0 8px; }
 .pill--small.modeInitial { padding: 0 12px; }
 .pill--medium.modeInitial { padding: 0 16px; }
 .pill--large.modeInitial { padding: 0 20px; }
@@ -151,6 +159,7 @@
   padding: 0 !important;
 }
 
+.pill--xsmall.iconOnlyInitial { width: 24px; }
 .pill--small.iconOnlyInitial { width: 32px; }
 .pill--medium.iconOnlyInitial { width: 40px; }
 .pill--large.iconOnlyInitial { width: 52px; }
@@ -160,6 +169,7 @@
   padding: 0;
 }
 
+.pill--xsmall.modeCollapsed { width: 24px; }
 .pill--small.modeCollapsed { width: 32px; }
 .pill--medium.modeCollapsed { width: 40px; }
 .pill--large.modeCollapsed { width: 52px; }
@@ -171,6 +181,7 @@
   gap: 2px;
 }
 
+.pill--xsmall.modeExpanded { min-width: 88px; }
 .pill--small.modeExpanded { min-width: 112px; }
 .pill--medium.modeExpanded { min-width: 136px; }
 .pill--large.modeExpanded { min-width: 168px; }
@@ -199,6 +210,7 @@
 }
 
 /* Size-specific max-widths when visible */
+.pill--xsmall .slotVisible { max-width: 24px; }
 .pill--small .slotVisible { max-width: 28px; }
 .pill--medium .slotVisible { max-width: 36px; }
 .pill--large .slotVisible { max-width: 48px; }
@@ -237,6 +249,7 @@
   opacity: 0.4;
 }
 
+.iconBtn--xsmall { width: 20px; height: 20px; }
 .iconBtn--small  { width: 28px; height: 28px; }
 .iconBtn--medium { width: 36px; height: 36px; }
 .iconBtn--large  { width: 48px; height: 48px; }

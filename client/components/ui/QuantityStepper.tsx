@@ -3,7 +3,7 @@ import { Trash } from '@/components/icons/Trash';
 import styles from './QuantityStepper.module.css';
 
 export type QuantityStepperVariant = 'primary' | 'secondary' | 'tertiary';
-export type QuantityStepperSize = 'small' | 'medium' | 'large';
+export type QuantityStepperSize = 'xsmall' | 'small' | 'medium' | 'large';
 
 export interface QuantityStepperProps {
   /** Visual style variant */
@@ -35,6 +35,7 @@ export interface QuantityStepperProps {
 }
 
 const ICON_SIZES: Record<QuantityStepperSize, number> = {
+  xsmall: 16,
   small: 16,
   medium: 24,
   large: 32,
