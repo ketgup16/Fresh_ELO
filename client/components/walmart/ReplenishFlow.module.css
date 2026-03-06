@@ -87,7 +87,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--ld-primitive-scale-space-200, 16px);
-  padding: 0 var(--ld-primitive-scale-space-200, 16px);
+  padding: 24px var(--ld-primitive-scale-space-200, 16px) 0;
   flex: 1 1 0;
   /* overflow visible so card box-shadows are not clipped */
   overflow: visible;
