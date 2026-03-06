@@ -667,11 +667,11 @@
   pointer-events: all;
 }
 
-/* Force the FloatingFooter bar to stretch and distribute buttons */
+/* Force the FloatingFooter bar to stretch and center buttons */
 .footerWrap > div {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 /* ── Reduced motion overrides ── */
