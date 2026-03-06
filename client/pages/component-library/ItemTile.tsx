@@ -5,6 +5,7 @@ import { ProductCardList } from '@/components/walmart/ProductCardList';
 import { ProductCardGrid } from '@/components/walmart/ProductCardGrid';
 import { CarouselProductCard } from '@/components/walmart/CarouselProductCard';
 import { WCPItemTile } from '@/components/walmart/WCPItemTile';
+import { WCPAddToCart } from '@/components/walmart/WCPAddToCart';
 import { FlashDealsItemTile } from '@/components/walmart/FlashDealsItemTile';
 import { PromotionalItemTile } from '@/components/walmart/PromotionalItemTile';
 import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
@@ -232,6 +233,22 @@ export default function ItemTilePage() {
           </div>
         </div>
 
+        {/* With Add to Cart */}
+        <div className={styles.metaRow}>
+          <span className={styles.metaLabel}>With Add to Cart</span>
+          <Tag variant="success">New</Tag>
+          <p className={styles.metaDesc}>
+            Pass <code>onAddToCart</code> to render a <code>WCPAddToCart</code> button at the bottom-right of the image area. Choose <code>addToCartVariant</code> for primary (solid) or tertiary (bordered).
+          </p>
+        </div>
+
+        <div className={styles.frame}>
+          <div className={styles.gridFrame}>
+            <WCPItemTile {...ITEM_TILE_DEFAULT} onAddToCart={() => {}} addToCartVariant="primary" />
+            <WCPItemTile {...ITEM_TILE_PLAIN} onAddToCart={() => {}} addToCartVariant="tertiary" />
+          </div>
+        </div>
+
         <PropTable rows={[
           { name: 'image', required: true, description: 'Product image URL — use CDN with ?format=webp&width=400' },
           { name: 'name', required: true, description: 'Full product name, shown as 1-line clamp' },
@@ -241,6 +258,45 @@ export default function ItemTilePage() {
           { name: 'pricePrefix', required: false, description: '"Now" — triggers green savings style for the entire price row' },
           { name: 'priceSuffix', required: false, description: '"/mo" — appended after cents, aligned to bottom' },
           { name: 'badge', required: false, description: '{ label, type } — badge overlay using WCPFlag. Types: bestseller, deal, popular, rollback' },
+          { name: 'onAddToCart', required: false, description: 'Callback (count) => void — renders WCPAddToCart at bottom-right of image area' },
+          { name: 'addToCartVariant', required: false, description: "'primary' (solid blue) or 'tertiary' (bordered). Defaults to 'primary'" },
+        ]} />
+      </div>
+
+      {/* ── WCPAddToCart (standalone) ──────────────────────────── */}
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>WCPAddToCart</h2>
+        <p className={styles.sectionDesc}>
+          Compact add-to-cart trigger using the XSmall QuantityStepper with invisible 44&times;44px touch-target padding. Designed for use inside item tiles and product cards.
+        </p>
+
+        <div className={styles.metaRow}>
+          <span className={styles.metaLabel}>Variants</span>
+          <Tag variant="info">XSmall</Tag>
+          <p className={styles.metaDesc}>
+            Two variants: <code>primary</code> (solid blue pill, white icon) and <code>tertiary</code> (bordered pill, dark icon).
+          </p>
+        </div>
+
+        <div className={styles.frame}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '32px', padding: '16px' }}>
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)', marginBottom: '8px' }}>Primary</p>
+              <WCPAddToCart variant="primary" />
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)', marginBottom: '8px' }}>Tertiary</p>
+              <WCPAddToCart variant="tertiary" />
+            </div>
+          </div>
+        </div>
+
+        <PropTable rows={[
+          { name: 'variant', required: false, description: "'primary' (solid blue) or 'tertiary' (bordered). Defaults to 'tertiary'" },
+          { name: 'defaultCount', required: false, description: 'Initial quantity. 0 = show icon-only add button' },
+          { name: 'maxQuantity', required: false, description: 'Maximum allowed quantity' },
+          { name: 'disabled', required: false, description: 'Disables the entire component' },
+          { name: 'onChange', required: false, description: 'Callback (count) => void — fires on quantity change' },
         ]} />
       </div>
 
