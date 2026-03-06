@@ -9,6 +9,7 @@ import { PromotionalItemTile } from "@/components/walmart/PromotionalItemTile";
 import { ContinueShopping } from "@/components/walmart/ContinueShopping";
 import { FlashDealsCarousel } from "@/components/walmart/FlashDealsCarousel";
 import { PRODUCT_IMAGES } from "@/components/walmart/productImages";
+import { ReplenishmentBasket } from "@/components/walmart/ReplenishmentBasket";
 
 interface CarouselItem {
   img: string;
@@ -292,6 +293,9 @@ export default function Index() {
         <ContinueShopping />
 
       </div>
+
+      {/* Replenishment basket — mobile-only floating above BottomNav */}
+      <ReplenishmentBasket />
     </ResponsiveLayout>
   );
 }
