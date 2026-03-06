@@ -171,7 +171,7 @@ export const SpinnerExample: React.FC = () => {
             <Spinner size="small" a11yLabel="Uploading file…" />
             <span style={labelStyle}>aria-label: "Uploading file…"</span>
           </div>
-          <p style={{ ...sublabelStyle, marginTop: '8px', fontStyle: 'italic' }}>
+          <p style={{ ...sublabelStyle, marginTop: '8px' }}>
             All spinners include <code>role="status"</code> and a customizable <code>aria-label</code> for screen reader support.
           </p>
         </div>

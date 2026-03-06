@@ -663,7 +663,6 @@ function CopyPromptButton({ text }: { text: string }) {
         <span style={{
           display: 'block',
           fontSize: '13px',
-          fontStyle: 'italic',
           color: 'var(--ld-semantic-color-text, #2E2F32)',
           lineHeight: '1.5',
         }}>

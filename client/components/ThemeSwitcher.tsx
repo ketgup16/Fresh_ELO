@@ -37,7 +37,6 @@ export function ThemeSwitcher() {
             marginTop: '8px',
             fontSize: '12px',
             color: 'var(--ld-semantic-color-text-subtle)',
-            fontStyle: 'italic',
           }}
         >
           Switching theme...

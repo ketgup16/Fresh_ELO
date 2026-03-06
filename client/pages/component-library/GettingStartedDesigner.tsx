@@ -171,7 +171,7 @@ function PromptChip({ prompt }: { prompt: Prompt }) {
           marginTop: '6px', marginLeft: '8px', padding: '10px 14px',
           backgroundColor: 'var(--ld-semantic-color-fill-subtle)', borderRadius: '6px',
           borderLeft: '3px solid var(--ld-semantic-color-border-brand)',
-          fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', fontStyle: 'italic',
+          fontSize: '13px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)',
         }}>
           &ldquo;{prompt.full}&rdquo;
         </div>

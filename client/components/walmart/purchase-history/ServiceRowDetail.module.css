@@ -41,7 +41,6 @@
 .note {
   margin: 4px 0 0;
   font-size: var(--ld-semantic-font-caption-size, 0.75rem);
-  font-style: italic;
   color: var(--ld-semantic-color-text-subtle, #515357);
   line-height: 1rem;
 }

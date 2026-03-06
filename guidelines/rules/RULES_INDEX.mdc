@@ -61,7 +61,7 @@ Quick reference for all mandatory design system rules and enforcement policies.
 - NEVER hard-code OLQ color thresholds — built into `OLQTag`
 
 **Quick Check**:
-```tsx
+
 // WRONG
 const getOLQStyle = (olq: string) => ({ backgroundColor: '#FBD0CC', ... });
 <div style={getOLQStyle(item.olq)}>{item.olq}</div>
@@ -388,6 +388,28 @@ public/illustrations/
 - `1080` — toasts/notifications
 - `1090` — full-screen overlays
 - `1100` — highest (emergency banners)
+
+---
+
+### 12b. Typography — No Italics (HARD RULE — zero exceptions)
+**File**: `RULE_NoItalics.mdc`
+
+**When**: ALL code — CSS modules, inline styles, component markup
+
+**Key Requirements**:
+- ❌ NEVER use `font-style: italic` in CSS
+- ❌ NEVER use `fontStyle: 'italic'` in inline styles
+- ❌ NEVER use `<i>` tags for visual styling
+- ✅ Use color tokens, font-weight, or size to differentiate text instead
+
+**Quick Check**:
+```css
+/* ❌ WRONG */
+.note { font-style: italic; }
+
+/* ✅ CORRECT */
+.note { color: var(--ld-semantic-color-text-subtle); }
+```
 
 ---
 
