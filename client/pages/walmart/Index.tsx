@@ -1,5 +1,6 @@
 import { useRef, useCallback } from "react";
 import { useCart } from "@/contexts/CartContext";
+import { useLayoutSettings } from "@/contexts/LayoutSettingsContext";
 import { NewArrivalsCarousel } from "@/components/walmart/NewArrivalsCarousel";
 import { JumpRightBackIn } from "@/components/walmart/JumpRightBackIn";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
@@ -48,6 +49,7 @@ const VACUUM_ITEMS: CarouselItem[] = [
 
 export default function Index() {
   const { setItemQuantity } = useCart();
+  const { platform } = useLayoutSettings();
   const carouselRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -92,13 +94,15 @@ export default function Index() {
         {/* Active Curbside Order — countdown + express upgrade */}
         <ActiveCurbsideCard />
 
-        {/* Order Status Card — mobile only, dismissible */}
-        <OrderStatusCard
-          image="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F5f02b529221349099118d275e7e1d748"
-          statusLine="Your order is on the way"
-          deliveryLine="Arrives tomorrow by 8pm"
-          trackHref="/walmart/purchase-history"
-        />
+        {/* Order Status Card — mobile only, dismissible, hidden on iOS */}
+        {platform !== 'ios' && (
+          <OrderStatusCard
+            image="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F5f02b529221349099118d275e7e1d748"
+            statusLine="Your order is on the way"
+            deliveryLine="Arrives tomorrow by 8pm"
+            trackHref="/walmart/purchase-history"
+          />
+        )}
 
         {/* New Arrivals Carousel */}
         <NewArrivalsCarousel />

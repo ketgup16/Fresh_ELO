@@ -8,6 +8,7 @@ export interface OrderSummaryCardProps {
   estimatedTaxes?: string;
   paymentLast4?: string;
   onEdit?: () => void;
+  hideHeader?: boolean;
 }
 
 /**
@@ -23,6 +24,7 @@ export function OrderSummaryCard({
   estimatedTaxes = '$0.00',
   paymentLast4 = '1234',
   onEdit,
+  hideHeader = false,
 }: OrderSummaryCardProps) {
   const [dollars, cents] = total.includes('.') ? total.split('.') : [total, '00'];
 
@@ -33,18 +35,22 @@ export function OrderSummaryCard({
 
       <div className={styles.card}>
         {/* ── Header row ── */}
-        <div className={styles.headerRow}>
-          <p className={styles.headerLabel}>
-            Est.total{' '}
-            <span className={styles.headerMeta}>({itemCount} items):</span>{' '}
-            <strong className={styles.headerTotal}>${total}</strong>
-          </p>
-          <Button variant="secondary" size="small" onClick={onEdit}>
-            Edit
-          </Button>
-        </div>
+        {!hideHeader && (
+          <>
+            <div className={styles.headerRow}>
+              <p className={styles.headerLabel}>
+                Est.total{' '}
+                <span className={styles.headerMeta}>({itemCount} items):</span>{' '}
+                <strong className={styles.headerTotal}>${total}</strong>
+              </p>
+              <Button variant="secondary" size="small" onClick={onEdit}>
+                Edit
+              </Button>
+            </div>
 
-        <div className={styles.separator} />
+            <div className={styles.separator} />
+          </>
+        )}
 
         {/* ── Line items ── */}
         <div className={styles.lineItems}>

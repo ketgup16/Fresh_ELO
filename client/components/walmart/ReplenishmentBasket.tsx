@@ -3,6 +3,7 @@ import { CondensedItemTile } from './CondensedItemTile';
 import { DeliveryScheduler } from './DeliveryScheduler';
 import { Button } from '@/components/ui/Button';
 import { FloatingFooter } from './FloatingFooter';
+import { OrderSummaryCard } from './OrderSummaryCard';
 import {
   ChevronDown,
   ChevronRight,
@@ -431,6 +432,9 @@ export function ReplenishmentBasket({
                           <span className={styles.estTotalMeta}>({itemCount} items):</span>{' '}
                           <strong className={styles.estTotalAmount}>${estimatedTotal}</strong>
                         </span>
+                        <Button variant="secondary" size="small" onClick={handleSave}>
+                          Save
+                        </Button>
                       </div>
                     </>
                   )}
@@ -461,17 +465,12 @@ export function ReplenishmentBasket({
                           ))}
                         </div>
                       </div>
-                      <div className={styles.sectionSep} />
-                      <div className={styles.estTotalBar}>
-                        <span className={styles.estTotalText}>
-                          Est. total{' '}
-                          <span className={styles.estTotalMeta}>({itemCount} items):</span>{' '}
-                          <strong className={styles.estTotalAmount}>${estimatedTotal}</strong>
-                        </span>
-                        <Button variant="secondary" size="small" onClick={handleToggleEdit}>
-                          Edit
-                        </Button>
-                      </div>
+                      <OrderSummaryCard
+                        hideHeader
+                        itemCount={itemCount}
+                        total={estimatedTotal}
+                        onEdit={handleToggleEdit}
+                      />
                     </>
                   )}
                 </div>
