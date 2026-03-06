@@ -2,7 +2,7 @@ import React from 'react';
 import { CalloutExample } from '@/components/examples/CalloutExample';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
-import { Highlight, type HighlightPosition } from '@/components/ui/Highlight';
+import { Highlight, type HighlightPosition } from '@/components/ui/Callout';
 import { Button } from '@/components/ui/Button';
 
 const TooltipExample = React.lazy(() => import('@/components/examples/TooltipExample'));
