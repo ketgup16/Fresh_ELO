@@ -149,6 +149,12 @@ const PATTERNS: PatternEntry[] = [
             pickupLocation: 'Oak Lawn Supercenter',
             pickupDate: '2026-03-05',
             activeStep: 2,
+            detail: {
+              pickupWindow: 'Today until 9:00pm',
+              referenceId: 'Rx #4428710',
+              provider: 'Dr. Sarah Chen',
+              plan: 'Walmart Health Insurance',
+            },
           },
           {
             id: 'auto-in-progress',
@@ -156,7 +162,13 @@ const PATTERNS: PatternEntry[] = [
             serviceLabel: 'Auto Care',
             status: 'IN_PROGRESS',
             microcopy: 'Oil change in progress',
+            pickupLocation: 'Oak Lawn Supercenter',
             activeStep: 2,
+            detail: {
+              scheduledTime: 'Sat, Mar 7, 10:00am–11:00am',
+              vehicle: '2019 Toyota Camry',
+              note: 'Est. 45 min remaining',
+            },
           },
           {
             id: 'optical-scheduled',
@@ -166,6 +178,11 @@ const PATTERNS: PatternEntry[] = [
             microcopy: 'Pickup: Mon, Mar 10',
             pickupDate: '2026-03-10',
             activeStep: 0,
+            detail: {
+              referenceId: 'Order #OPT-88214',
+              provider: 'Dr. James Park',
+              note: 'Progressive lenses — 7–10 business days',
+            },
           },
         ]}
       />
@@ -189,6 +206,11 @@ const PATTERNS: PatternEntry[] = [
             pickupLocation: 'Carrollton Supercenter',
             pickupDate: '2026-03-05',
             activeStep: 2,
+            detail: {
+              pickupWindow: 'Today until 9:00pm',
+              referenceId: 'Rx #3317204',
+              provider: 'Dr. Maria Lopez',
+            },
           },
           {
             id: 'auto-in-progress',
@@ -196,7 +218,12 @@ const PATTERNS: PatternEntry[] = [
             serviceLabel: 'Auto Care',
             status: 'IN_PROGRESS',
             microcopy: 'Tire rotation — est. 45 min remaining',
+            pickupLocation: 'Carrollton Supercenter',
             activeStep: 2,
+            detail: {
+              scheduledTime: 'Sat, Mar 7, 2:00pm–3:00pm',
+              vehicle: '2021 Honda CR-V',
+            },
           },
           {
             id: 'optical-scheduled',
@@ -206,6 +233,11 @@ const PATTERNS: PatternEntry[] = [
             microcopy: 'Contact lens pickup: Mon, Mar 10',
             pickupDate: '2026-03-10',
             activeStep: 0,
+            detail: {
+              referenceId: 'Order #OPT-55102',
+              pickupWindow: 'Mon, Mar 10, 9:00am–8:00pm',
+              provider: 'Dr. James Park',
+            },
           },
           {
             id: 'cake-cancelled',
@@ -214,6 +246,10 @@ const PATTERNS: PatternEntry[] = [
             status: 'CANCELLED',
             microcopy: 'Order cancelled on Mar 3',
             activeStep: 0,
+            detail: {
+              referenceId: 'Order #BK-40091',
+              note: 'Refund of $34.99 issued to Visa ending 4821',
+            },
           },
         ]}
       />
@@ -236,6 +272,12 @@ const PATTERNS: PatternEntry[] = [
             pickupLocation: 'Irving Supercenter',
             pickupDate: '2026-03-05',
             activeStep: 2,
+            detail: {
+              pickupWindow: 'Today until 9:00pm',
+              referenceId: 'Rx #5590123',
+              provider: 'Dr. Angela Reeves',
+              plan: 'Walmart Health+',
+            },
           },
         ]}
       />
@@ -259,6 +301,11 @@ const PATTERNS: PatternEntry[] = [
             pickupLocation: 'Oak Lawn Supercenter',
             pickupDate: '2026-03-05',
             activeStep: 2,
+            detail: {
+              pickupWindow: 'Today until 9:00pm',
+              referenceId: 'Rx #7712045',
+              provider: 'Dr. David Kim',
+            },
           },
           {
             id: 'optical-scheduled-store2',
@@ -266,8 +313,15 @@ const PATTERNS: PatternEntry[] = [
             serviceLabel: 'Optical',
             status: 'SCHEDULED',
             microcopy: 'Carrollton Supercenter · pickup Mar 10',
+            pickupLocation: 'Carrollton Supercenter',
             pickupDate: '2026-03-10',
             activeStep: 0,
+            detail: {
+              referenceId: 'Order #OPT-33187',
+              pickupWindow: 'Mon, Mar 10, 9:00am–8:00pm',
+              provider: 'Dr. Lisa Tran',
+              note: 'Anti-reflective coating — allow 7–10 days',
+            },
           },
           {
             id: 'auto-processing-store1',
@@ -275,7 +329,13 @@ const PATTERNS: PatternEntry[] = [
             serviceLabel: 'Auto Care',
             status: 'PROCESSING',
             microcopy: 'Oak Lawn Supercenter · submitted today',
+            pickupLocation: 'Oak Lawn Supercenter',
             activeStep: 1,
+            detail: {
+              scheduledTime: 'Today, 3:30pm–4:30pm',
+              vehicle: '2020 Ford F-150',
+              note: 'Checked in — waiting for bay',
+            },
           },
         ]}
       />

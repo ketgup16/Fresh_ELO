@@ -11,9 +11,37 @@
   width: 100%;
 }
 
-.locationDate {
-  margin: 0;
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detailRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.detailLabel {
   font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: 600;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  line-height: 1rem;
+  min-width: 88px;
+  flex-shrink: 0;
+}
+
+.detailValue {
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  line-height: 1rem;
+}
+
+.note {
+  margin: 4px 0 0;
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-style: italic;
   color: var(--ld-semantic-color-text-subtle, #515357);
   line-height: 1rem;
 }

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { ServiceType } from './ServiceTypeIcon';
 import { type ServiceStatus } from './ServiceRow';
+import type { ServiceEntryDetail } from './ServicesCard';
 import styles from './ServiceRowDetail.module.css';
 
 /* ── Tracking steps per service type ─────────────────────────────────────── */
@@ -64,6 +65,17 @@ function getPrimaryAction(serviceType: ServiceType, status: ServiceStatus): stri
   return 'View details';
 }
 
+/* ── Detail row helper ───────────────────────────────────────────────────── */
+
+function DetailRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className={styles.detailRow}>
+      <span className={styles.detailLabel}>{label}</span>
+      <span className={styles.detailValue}>{value}</span>
+    </div>
+  );
+}
+
 /* ── Component ───────────────────────────────────────────────────────────── */
 
 export interface ServiceRowDetailProps {
@@ -72,6 +84,7 @@ export interface ServiceRowDetailProps {
   activeStep?: number;
   pickupLocation?: string;
   pickupDate?: string;
+  detail?: ServiceEntryDetail;
 }
 
 export function ServiceRowDetail({
@@ -80,6 +93,7 @@ export function ServiceRowDetail({
   activeStep,
   pickupLocation,
   pickupDate,
+  detail,
 }: ServiceRowDetailProps) {
   const steps = STEPS[serviceType];
   const step = activeStep ?? STATUS_TO_STEP[serviceType][status];
@@ -87,6 +101,9 @@ export function ServiceRowDetail({
 
   const primaryLabel = getPrimaryAction(serviceType, status);
   const showSecondary = primaryLabel !== 'View details';
+
+  const hasLocationOrDate = pickupLocation || pickupDate;
+  const hasDetail = detail && Object.values(detail).some(Boolean);
 
   return (
     <div className={styles.panel}>
@@ -97,12 +114,37 @@ export function ServiceRowDetail({
         className={styles.tracker}
       />
 
-      {(pickupLocation || pickupDate) && (
-        <p className={styles.locationDate}>
-          {pickupLocation}
-          {pickupLocation && pickupDate && ' · '}
-          {pickupDate}
-        </p>
+      {/* Contextual details */}
+      {(hasLocationOrDate || hasDetail) && (
+        <div className={styles.details}>
+          {pickupLocation && (
+            <DetailRow label="Location" value={pickupLocation} />
+          )}
+          {detail?.scheduledTime && (
+            <DetailRow label="Scheduled" value={detail.scheduledTime} />
+          )}
+          {detail?.pickupWindow && (
+            <DetailRow label="Pickup window" value={detail.pickupWindow} />
+          )}
+          {!detail?.scheduledTime && !detail?.pickupWindow && pickupDate && (
+            <DetailRow label="Date" value={pickupDate} />
+          )}
+          {detail?.referenceId && (
+            <DetailRow label="Reference" value={detail.referenceId} />
+          )}
+          {detail?.provider && (
+            <DetailRow label="Provider" value={detail.provider} />
+          )}
+          {detail?.plan && (
+            <DetailRow label="Plan" value={detail.plan} />
+          )}
+          {detail?.vehicle && (
+            <DetailRow label="Vehicle" value={detail.vehicle} />
+          )}
+          {detail?.note && (
+            <p className={styles.note}>{detail.note}</p>
+          )}
+        </div>
       )}
 
       <ButtonGroup UNSAFE_className={styles.actions}>

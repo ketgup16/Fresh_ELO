@@ -3,6 +3,7 @@ import { ChevronRight, ChevronDown, ChevronUp } from '@/components/icons';
 import { Tag } from '@/components/ui/Tag';
 import { ServiceTypeIcon, ServiceType } from './ServiceTypeIcon';
 import { ServiceRowDetail } from './ServiceRowDetail';
+import type { ServiceEntryDetail } from './ServicesCard';
 import styles from './ServiceRow.module.css';
 
 export type ServiceStatus =
@@ -39,6 +40,7 @@ export interface ServiceRowProps {
   activeStep?: number;
   pickupLocation?: string;
   pickupDate?: string;
+  detail?: ServiceEntryDetail;
 }
 
 export function ServiceRow({
@@ -52,6 +54,7 @@ export function ServiceRow({
   activeStep,
   pickupLocation,
   pickupDate,
+  detail,
 }: ServiceRowProps) {
   const { label, color } = STATUS_CONFIG[status];
 
@@ -104,6 +107,7 @@ export function ServiceRow({
             activeStep={activeStep}
             pickupLocation={pickupLocation}
             pickupDate={pickupDate}
+            detail={detail}
           />
         )}
       </div>

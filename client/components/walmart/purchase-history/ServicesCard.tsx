@@ -8,6 +8,23 @@ import { ServiceRow, ServiceStatus } from './ServiceRow';
 import { ServiceType } from './ServiceTypeIcon';
 import styles from './ServicesCard.module.css';
 
+export interface ServiceEntryDetail {
+  /** e.g. "Sat, Mar 7, 10:00am–11:00am" */
+  scheduledTime?: string;
+  /** e.g. "Today, 12:00pm–1:00pm" */
+  pickupWindow?: string;
+  /** e.g. "Rx #4428710" or "Order #123456" */
+  referenceId?: string;
+  /** e.g. "Dr. Sarah Chen" */
+  provider?: string;
+  /** e.g. "Walmart+ InHome" or "Walmart Health" */
+  plan?: string;
+  /** e.g. "2019 Toyota Camry" */
+  vehicle?: string;
+  /** Any extra note shown at the bottom */
+  note?: string;
+}
+
 export interface ServiceEntry {
   id: string;
   serviceType: ServiceType;
@@ -19,6 +36,8 @@ export interface ServiceEntry {
   pickupLocation?: string;
   /** Override the ProgressTracker active step (useful for demos) */
   activeStep?: number;
+  /** Extra contextual details shown in the expanded panel */
+  detail?: ServiceEntryDetail;
 }
 
 interface ServicesCardProps {
@@ -132,6 +151,7 @@ export function ServicesCard({
               activeStep={entry.activeStep}
               pickupLocation={entry.pickupLocation}
               pickupDate={entry.pickupDate}
+              detail={entry.detail}
             />
           </React.Fragment>
         ))}
