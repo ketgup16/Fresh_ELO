@@ -248,7 +248,7 @@ export function PMOnboardingQuiz({ onComplete }: PMOnboardingQuizProps = {}) {
   if (step === 'intro') {
     return (
       <div className={styles.card}>
-        <div style={{ textAlign: 'center' }}>
+        <div>
           <h3 className={styles.introTitle}>Build a better prompt</h3>
           <p className={styles.introDesc} style={{ marginTop: 8 }}>
             5 quick questions → a copy-ready AI prompt tailored to your data feature and requirements.
