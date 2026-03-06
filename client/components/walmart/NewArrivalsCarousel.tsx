@@ -79,6 +79,7 @@ export function NewArrivalsCarousel() {
           floating
           size="small"
           onClick={() => { setCurrent((c) => (c - 1 + SLIDES.length) % SLIDES.length); setIsPaused(true); }}
+          UNSAFE_className={styles.controlBtn}
         >
           <ChevronLeft />
         </IconButton>
@@ -87,6 +88,7 @@ export function NewArrivalsCarousel() {
           floating
           size="small"
           onClick={() => setIsPaused((p) => !p)}
+          UNSAFE_className={styles.controlBtn}
         >
           {isPaused ? <PlayFill /> : <Pause />}
         </IconButton>
@@ -95,6 +97,7 @@ export function NewArrivalsCarousel() {
           floating
           size="small"
           onClick={() => { setCurrent((c) => (c + 1) % SLIDES.length); setIsPaused(true); }}
+          UNSAFE_className={styles.controlBtn}
         >
           <ChevronRight />
         </IconButton>

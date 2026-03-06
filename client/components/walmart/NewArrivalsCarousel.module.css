@@ -89,3 +89,8 @@
 }
 
 @media (min-width: 768px) { .controls { top: 24px; right: 24px; } }
+
+.controlBtn {
+  width: 28px !important;
+  height: 28px !important;
+}
