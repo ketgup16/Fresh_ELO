@@ -1,7 +1,7 @@
 import React from 'react';
 import { WCPAddToCart } from './WCPAddToCart';
 import { CheckCircleFill } from '@/components/icons/CheckCircleFill';
-import { Minus, Plus } from '@/components/icons';
+import { QuantityStepper } from '@/components/ui/QuantityStepper';
 import styles from './CondensedItemTile.module.css';
 
 export interface CondensedItemTileProps {
@@ -15,6 +15,8 @@ export interface CondensedItemTileProps {
   tag?: string;
   /** Tile variant: 'primary' (solid), 'tertiary' (bordered), or 'edit' (large edit mode) */
   variant?: 'primary' | 'tertiary' | 'edit';
+  /** When true, image area fills its grid cell (for suggestion grids) */
+  fillContainer?: boolean;
   /** When true, renders the tile at reduced opacity with no interaction */
   loading?: boolean;
   /** Callback fired when add-to-cart quantity changes */
@@ -50,6 +52,7 @@ export function CondensedItemTile({
   onCheckChange,
   itemIndex = 0,
   animationClass,
+  fillContainer = false,
 }: CondensedItemTileProps) {
   const isEdit = variant === 'edit';
 
@@ -64,12 +67,20 @@ export function CondensedItemTile({
       ].filter(Boolean).join(' ')}
       style={{ '--item-delay': `${itemIndex * 41}ms` } as React.CSSProperties}
     >
-      {/* Image area — grows from 96px to fill grid column in edit mode */}
-      <div className={[styles.imageArea, isEdit ? styles.imageAreaEdit : ''].filter(Boolean).join(' ')}>
+      {/* Image area — grows from 96px to fill grid column in edit/fill mode */}
+      <div className={[
+        styles.imageArea,
+        isEdit ? styles.imageAreaEdit : '',
+        fillContainer ? styles.imageAreaFill : '',
+      ].filter(Boolean).join(' ')}>
         <img
           src={image}
           alt={name || 'Product'}
-          className={[styles.image, isEdit ? styles.imageEdit : ''].filter(Boolean).join(' ')}
+          className={[
+            styles.image,
+            isEdit ? styles.imageEdit : '',
+            fillContainer ? styles.imageFill : '',
+          ].filter(Boolean).join(' ')}
         />
 
         {/* Checkmark — edit mode only, animated enter */}
@@ -110,25 +121,13 @@ export function CondensedItemTile({
       <div className={[styles.editDetails, isEdit ? styles.editDetailsVisible : ''].filter(Boolean).join(' ')}>
         {name && <div className={styles.editName}>{name}</div>}
 
-        <div className={styles.quantityStepper}>
-          <button
-            className={styles.stepperBtn}
-            onClick={() => onQuantityChange?.(Math.max(1, quantity - 1))}
-            aria-label="Decrease quantity"
-            tabIndex={isEdit ? 0 : -1}
-          >
-            <Minus className={styles.stepperBtnIcon} />
-          </button>
-          <span className={styles.stepperCount}>{quantity}</span>
-          <button
-            className={styles.stepperBtn}
-            onClick={() => onQuantityChange?.(quantity + 1)}
-            aria-label="Increase quantity"
-            tabIndex={isEdit ? 0 : -1}
-          >
-            <Plus className={styles.stepperBtnIcon} />
-          </button>
-        </div>
+        <QuantityStepper
+          variant="tertiary"
+          size="small"
+          defaultCount={quantity}
+          showTrashOnRemove
+          onChange={(q) => onQuantityChange?.(q)}
+        />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { CondensedItemTile } from './CondensedItemTile';
 import { DeliveryScheduler } from './DeliveryScheduler';
 import { Button } from '@/components/ui/Button';
+import { IconButton } from '@/components/ui/IconButton';
 import { FloatingFooter } from './FloatingFooter';
 import {
   ChevronDown,
@@ -442,7 +443,9 @@ export function ReplenishmentBasket({
                       <div className={styles.suggestionsSection}>
                         <div className={styles.suggestionHeader}>
                           <span className={styles.suggestionTitle}>Looking to add anything else?</span>
-                          <ChevronRight className={styles.suggestionArrow} />
+                          <IconButton variant="ghost" size="small" aria-label="See all suggestions">
+                            <ChevronRight />
+                          </IconButton>
                         </div>
                         <div className={styles.suggestionGrid}>
                           {SUGGESTION_ITEMS.map((s) => (
@@ -452,6 +455,7 @@ export function ReplenishmentBasket({
                                 price={s.price}
                                 cents={s.cents}
                                 variant="primary"
+                                fillContainer
                                 onAddToCart={() => {}}
                               />
                             </div>

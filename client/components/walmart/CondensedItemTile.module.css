@@ -37,6 +37,22 @@
   height: auto;
 }
 
+/* Fill-container mode: image area fills its grid cell (suggestion grid) */
+.imageAreaFill {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.imageFill {
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  left: 8px;
+  top: 8px;
+  object-fit: contain;
+}
+
 .image {
   width: 80px;
   height: 80px;

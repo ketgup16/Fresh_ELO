@@ -3,11 +3,11 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 180px;
+  height: 320px;
   pointer-events: none;
   z-index: 40;
   transition: transform 0.3s ease;
-  background: linear-gradient(to top, white, rgba(255, 255, 255, 0.8), transparent);
+  background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 20%, rgba(255,255,255,0.7) 50%, transparent 100%);
 }
 
 .fadeOverlayHidden {
