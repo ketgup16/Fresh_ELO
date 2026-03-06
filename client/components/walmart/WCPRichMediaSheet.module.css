@@ -24,7 +24,7 @@
   inset: 0;
   /* Scrim = overlay component — must be above ALL UI (header 300, sidebar 200) */
   z-index: var(--ld-semantic-z-index-modal-backdrop, 1040);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.1);
   animation: fadeIn 200ms ease-out;
 }
 
