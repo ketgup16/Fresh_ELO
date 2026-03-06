@@ -14,6 +14,10 @@
   gap: var(--ld-primitive-scale-space-400, 16px);
 }
 
+.section + .section {
+  padding-top: var(--ld-primitive-scale-space-400, 16px);
+}
+
 .sectionTitle {
   font-family: var(--ld-semantic-font-family-sans, sans-serif);
   font-size: 18px;

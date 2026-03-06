@@ -1,0 +1,114 @@
+/* CondensedItemTile — compact circular-image tile used in grocery lists */
+
+.tile {
+  display: flex;
+  flex-direction: column;
+}
+
+.tileLoading {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* ── Image area ── */
+.imageArea {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+  border-radius: 22.857px;
+}
+
+.image {
+  width: 80px;
+  height: 80px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
+
+/* ── Add to cart — top-right of image area ── */
+.addToCartWrap {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* ── Price row ── */
+.priceRow {
+  display: flex;
+  padding: 0 var(--ld-primitive-scale-space-100, 8px) 4px var(--ld-primitive-scale-space-100, 8px);
+  align-items: center;
+  align-self: stretch;
+}
+
+.priceInner {
+  display: flex;
+  padding-right: 4px;
+  align-items: baseline;
+  flex: 1 0 0;
+}
+
+/* OpenType superscript price parts */
+.dollarSign {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-large-size, 1.125rem);
+  font-weight: 700;
+  line-height: var(--ld-semantic-font-body-large-lineheight, 1.5rem);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-kerning: none;
+  font-feature-settings: 'liga' off, 'sups' on;
+}
+
+.price {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-large-size, 1.125rem);
+  font-weight: 700;
+  line-height: var(--ld-semantic-font-body-large-lineheight, 1.5rem);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-kerning: none;
+  font-feature-settings: 'liga' off;
+}
+
+.cents {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-large-size, 1.125rem);
+  font-weight: 700;
+  line-height: var(--ld-semantic-font-body-large-lineheight, 1.5rem);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-kerning: none;
+  font-feature-settings: 'liga' off, 'sups' on;
+}
+
+/* ── Size/options tag pill ── */
+.tag {
+  display: flex;
+  padding: 0 5px;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: var(--ld-semantic-color-fill-accent-gray-subtle, #f5f5f6);
+}
+
+.tagText {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-caption-size, 12px);
+  font-weight: 400;
+  line-height: var(--ld-semantic-font-caption-lineheight, 1rem);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-kerning: none;
+  font-feature-settings: 'liga' off;
+  text-align: center;
+  white-space: nowrap;
+}
