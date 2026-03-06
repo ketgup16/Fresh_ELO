@@ -85,8 +85,11 @@ export interface ServiceRowDetailProps {
   pickupLocation?: string;
   pickupDate?: string;
   detail?: ServiceEntryDetail;
-  onPrimaryAction?: () => void;
-  onViewDetails?: () => void;
+  actions?: Array<{
+    label: string;
+    variant: 'primary' | 'secondary';
+    onClick?: () => void;
+  }>;
 }
 
 export function ServiceRowDetail({
@@ -96,15 +99,21 @@ export function ServiceRowDetail({
   pickupLocation,
   pickupDate,
   detail,
-  onPrimaryAction,
-  onViewDetails,
+  actions,
 }: ServiceRowDetailProps) {
   const steps = STEPS[serviceType];
   const step = activeStep ?? STATUS_TO_STEP[serviceType][status];
   const trackerStatus = getTrackerStatus(status);
 
-  const primaryLabel = getPrimaryAction(serviceType, status);
-  const showSecondary = primaryLabel !== 'View details';
+  const defaultPrimaryLabel = getPrimaryAction(serviceType, status);
+  const defaultShowSecondary = defaultPrimaryLabel !== 'View details';
+
+  const resolvedActions = actions ?? [
+    { label: defaultPrimaryLabel, variant: 'primary' as const },
+    ...(defaultShowSecondary
+      ? [{ label: 'View details', variant: 'secondary' as const }]
+      : []),
+  ];
 
   const hasLocationOrDate = pickupLocation || pickupDate;
   const hasDetail = detail && Object.values(detail).some(Boolean);
@@ -152,18 +161,16 @@ export function ServiceRowDetail({
       )}
 
       <ButtonGroup UNSAFE_className={styles.actions}>
-        <Button
-          variant="primary"
-          size="small"
-          onClick={primaryLabel === 'View details' ? onViewDetails : onPrimaryAction}
-        >
-          {primaryLabel}
-        </Button>
-        {showSecondary && (
-          <Button variant="secondary" size="small" onClick={onViewDetails}>
-            View details
+        {resolvedActions.map((action) => (
+          <Button
+            key={action.label}
+            variant={action.variant}
+            size="small"
+            onClick={action.onClick}
+          >
+            {action.label}
           </Button>
-        )}
+        ))}
       </ButtonGroup>
     </div>
   );

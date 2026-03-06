@@ -38,10 +38,12 @@ export interface ServiceEntry {
   activeStep?: number;
   /** Extra contextual details shown in the expanded panel */
   detail?: ServiceEntryDetail;
-  /** Primary action callback (e.g. Pick up, Check in) */
-  onPrimaryAction?: () => void;
-  /** View details callback — opens detail page/modal */
-  onViewDetails?: () => void;
+  /** Custom action buttons for the expanded panel (overrides default) */
+  actions?: Array<{
+    label: string;
+    variant: 'primary' | 'secondary';
+    onClick?: () => void;
+  }>;
 }
 
 interface ServicesCardProps {
@@ -154,8 +156,7 @@ export function ServicesCard({
               pickupLocation={entry.pickupLocation}
               pickupDate={entry.pickupDate}
               detail={entry.detail}
-              onPrimaryAction={entry.onPrimaryAction}
-              onViewDetails={entry.onViewDetails}
+              actions={entry.actions}
             />
           </React.Fragment>
         ))}
