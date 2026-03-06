@@ -1,3 +1,15 @@
+/* ── Compact wrapper (hideHeader mode) — no animated border ── */
+.compactWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 0 4px;
+}
+
+.compactWrapper .separator {
+  margin: 0;
+}
+
 /* ── Wrapper + animated stroke border ─────────────────────── */
 .wrapper {
   position: relative;
@@ -114,8 +126,13 @@
   color: var(--ld-semantic-color-text, #2e2f32);
 }
 
-.lineMeta {
+.lineLabelBold {
   font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.lineMeta {
+  font-weight: 400;
   color: var(--ld-semantic-color-text, #2e2f32);
 }
 

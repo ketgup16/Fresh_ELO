@@ -199,15 +199,18 @@ export function ReplenishmentBasket({
   const [selectedDay, setSelectedDay] = useState('Fri');
   const [selectedTime, setSelectedTime] = useState('4pm-5pm');
 
-  // Compute estimated total from checked items and quantities
-  const estimatedTotal = useMemo(() => {
-    const sum = items.reduce((acc, item) => {
-      if (checkedItems[item.id] === false) return acc;
+  // Compute estimated total and checked item count reactively
+  const { estimatedTotal, checkedItemCount } = useMemo(() => {
+    let sum = 0;
+    let count = 0;
+    for (const item of items) {
+      if (checkedItems[item.id] === false) continue;
       const qty = quantities[item.id] ?? item.quantity ?? 1;
       const price = parseFloat(`${item.price}.${item.cents.padStart(2, '0')}`);
-      return acc + price * qty;
-    }, 0);
-    return sum.toFixed(2);
+      sum += price * qty;
+      count += qty;
+    }
+    return { estimatedTotal: sum.toFixed(2), checkedItemCount: count };
   }, [items, quantities, checkedItems]);
 
   const handleExpand = () => {
@@ -429,7 +432,7 @@ export function ReplenishmentBasket({
                       <div className={styles.estTotalBar}>
                         <span className={styles.estTotalText}>
                           Est. total{' '}
-                          <span className={styles.estTotalMeta}>({itemCount} items):</span>{' '}
+                          <span className={styles.estTotalMeta}>({checkedItemCount} items):</span>{' '}
                           <strong className={styles.estTotalAmount}>${estimatedTotal}</strong>
                         </span>
                         <Button variant="secondary" size="small" onClick={handleSave}>
@@ -467,7 +470,7 @@ export function ReplenishmentBasket({
                       </div>
                       <OrderSummaryCard
                         hideHeader
-                        itemCount={itemCount}
+                        itemCount={checkedItemCount}
                         total={estimatedTotal}
                         onEdit={handleToggleEdit}
                       />
