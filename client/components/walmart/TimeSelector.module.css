@@ -22,7 +22,7 @@
 /* Unselected */
 .rowUnchecked {
   background: var(--ld-semantic-color-fill-brand-subtle, #ebf5ff);
-  border-color: var(--ld-semantic-color-border-subtlest, #74767c);
+  border-color: var(--ld-semantic-color-separator, #e3e4e5);
 }
 
 .rowUnchecked:hover:not(.rowDisabled) {
