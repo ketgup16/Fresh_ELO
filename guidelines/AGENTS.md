@@ -836,6 +836,47 @@ When a Figma layer is named `[WCP] Button`, `[WCP] Loading Button`, `[LD 3.5] Pl
 - UI primitives go in `client/components/ui/` with their own `.module.css`.
 - Check `guidelines/` folder for component documentation before creating new components.
 
+### Page Section Spacing (HARD RULE — No Exceptions)
+
+Every page — component-library pages, Walmart pages, settings pages — MUST have consistent vertical spacing between all sections and components. Sections must never visually butt up against each other with no breathing room.
+
+- **Always set `gap` on flex-column page layouts.** If a page's content wrapper uses `display: flex; flex-direction: column`, it MUST have a `gap` property (minimum `var(--ld-primitive-scale-space-800, 32px)` between major sections). Never rely on children to space themselves with individual margins.
+- **New sections inherit the page's gap automatically** when the parent uses `gap`. Do not add redundant `margin-top` if the parent already provides it.
+- **If the parent does NOT use `gap`**, add explicit `margin-top` or `padding-top` that matches the existing rhythm of the page. Check the CSS module for the page's established spacing pattern and replicate it exactly.
+- **Separators need breathing room.** Separator elements (borders, `<hr>`, divider components) must have vertical padding or margin on both sides — never render a separator flush against the content above or below it.
+- **Demo/preview frames need internal padding.** When rendering a component inside a preview frame (e.g., `<div className={styles.frame}>`), the frame must have internal padding so the component doesn't touch the frame edges.
+- **Never stack two `<div>` sections with zero spacing.** If two sibling sections render back-to-back with no gap, margin, or padding between them, that is a bug. Fix it before considering the task complete.
+
+```css
+/* ✅ CORRECT — page layout with consistent gap */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-800, 32px);
+}
+
+/* ✅ CORRECT — sections inside a gap-based parent need no extra margin */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-400, 16px);
+}
+
+/* ❌ WRONG — no gap, sections butt up against each other */
+.page {
+  display: flex;
+  flex-direction: column;
+  /* missing gap! */
+}
+
+/* ❌ WRONG — separator flush against content */
+.separator {
+  height: 1px;
+  background: var(--ld-semantic-color-separator, #e3e4e5);
+  /* no margin or padding above/below */
+}
+```
+
 ### Common Mistakes to Avoid
 
 ```tsx
