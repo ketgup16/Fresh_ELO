@@ -25,6 +25,7 @@
 /* Buttons fill the bar equally */
 .bar > button {
   flex: 1;
+  min-width: 0;
 }
 
 /* Fixed bar — standalone fixed-to-viewport usage (e.g. docs demo) */
