@@ -47,8 +47,7 @@
   height: auto;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background: transparent;
-  /* No background — images are transparent PNGs from CDN */
+  background: var(--ld-semantic-color-surface, #fff);
 }
 
 .imageFill {
