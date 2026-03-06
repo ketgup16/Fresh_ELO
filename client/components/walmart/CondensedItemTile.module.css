@@ -214,15 +214,17 @@
 }
 
 .editDetailsVisible {
-  max-height: 120px;
+  max-height: 200px;
   opacity: 1;
   transform: scaleY(1);
   pointer-events: auto;
   filter: none;
+  flex: 1;
 }
 
-/* Product name — 2-line clamp */
+/* Product name — 2-line clamp, fills available vertical space */
 .editName {
+  flex: 1;
   align-self: stretch;
   overflow: hidden;
   display: -webkit-box;
@@ -235,7 +237,6 @@
   color: var(--ld-semantic-color-text, #2e2f32);
   font-kerning: none;
   font-feature-settings: 'liga' off;
-  min-height: 22px;
   margin-bottom: 2px;
   padding: 0 var(--ld-primitive-scale-space-100, 8px);
 }

@@ -56,7 +56,6 @@ const DEMO_ITEMS: BasketItem[] = [
     image: 'https://api.builder.io/api/v1/image/assets/TEMP/580e227005cd83b0b46a623f6f2a90340fd2b3b4?width=161',
     price: '1',
     cents: '25',
-    tag: '5 oz',
     name: 'Fresh Honeycrisp Apple, Each',
     quantity: 2,
   },
@@ -65,7 +64,6 @@ const DEMO_ITEMS: BasketItem[] = [
     image: 'https://api.builder.io/api/v1/image/assets/TEMP/42897fd4cbe669fcae12fa1ae43708b172dd0f60?width=161',
     price: '3',
     cents: '85',
-    tag: '5 oz',
     name: 'Bettergoods Smoky Fire-Roasted Salsa',
     quantity: 1,
   },
@@ -74,7 +72,6 @@ const DEMO_ITEMS: BasketItem[] = [
     image: 'https://api.builder.io/api/v1/image/assets/TEMP/ac05fd7183f5fe71dddb905644af34902c39c8d0?width=161',
     price: '3',
     cents: '24',
-    tag: '5 oz',
     name: 'Fresh Strawberries, 1 lb',
     quantity: 1,
   },
@@ -83,7 +80,6 @@ const DEMO_ITEMS: BasketItem[] = [
     image: 'https://api.builder.io/api/v1/image/assets/TEMP/871720e670ad040e0f7d7b9860b4d5aca4098b8c?width=161',
     price: '8',
     cents: '86',
-    tag: '5 oz',
     name: 'Barilla Whole Grain Penne Pasta',
     quantity: 1,
   },
@@ -92,7 +88,6 @@ const DEMO_ITEMS: BasketItem[] = [
     image: 'https://api.builder.io/api/v1/image/assets/TEMP/b1c5486ccc017cbaa03f2a39e1b77fa28f88166f?width=161',
     price: '2',
     cents: '62',
-    tag: '5 oz',
     name: 'Good Culture Cottage Cheese',
     quantity: 3,
   },
@@ -110,7 +105,6 @@ const DEMO_ITEMS: BasketItem[] = [
     image: 'https://api.builder.io/api/v1/image/assets/TEMP/a0aec7389b59c267fe9e6cb147a75e605ac97963?width=161',
     price: '3',
     cents: '47',
-    tag: '5 oz',
     name: 'SkinnyPop Original Popcorn',
     quantity: 1,
   },
@@ -119,7 +113,6 @@ const DEMO_ITEMS: BasketItem[] = [
     image: 'https://api.builder.io/api/v1/image/assets/TEMP/a0aec7389b59c267fe9e6cb147a75e605ac97963?width=161',
     price: '1',
     cents: '98',
-    tag: '5 oz',
     name: 'Cold Pressed Orange Juice',
     quantity: 1,
   },
@@ -128,7 +121,6 @@ const DEMO_ITEMS: BasketItem[] = [
     image: 'https://api.builder.io/api/v1/image/assets/TEMP/a0aec7389b59c267fe9e6cb147a75e605ac97963?width=161',
     price: '5',
     cents: '27',
-    tag: '5 oz',
     name: 'Oatly Original Oat Milk',
     quantity: 1,
   },
@@ -427,6 +419,20 @@ export function ReplenishmentBasket({
                         </span>
                       </Button>
                     </div>
+                  )}
+
+                  {/* Est total row in edit mode */}
+                  {isEditing && (
+                    <>
+                      <div className={styles.sectionSep} />
+                      <div className={styles.estTotalBar}>
+                        <span className={styles.estTotalText}>
+                          Est. total{' '}
+                          <span className={styles.estTotalMeta}>({itemCount} items):</span>{' '}
+                          <strong className={styles.estTotalAmount}>${estimatedTotal}</strong>
+                        </span>
+                      </div>
+                    </>
                   )}
 
                   {/* Separator + Suggestions + Est Total (non-edit only) */}
