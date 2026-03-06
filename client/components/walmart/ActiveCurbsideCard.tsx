@@ -3,6 +3,7 @@ import { ChevronRight, FlashFill, X } from '@/components/icons';
 import { Button } from '@/components/ui/Button';
 import { IconButton } from '@/components/ui/IconButton';
 import { GetItNowModal } from './purchase-history/GetItNowModal';
+import { ViewOrderBottomSheet } from './ViewOrderBottomSheet';
 import { PRODUCT_IMAGES } from './productImages';
 import styles from './ActiveCurbsideCard.module.css';
 
@@ -31,6 +32,7 @@ export function ActiveCurbsideCard({
 }: ActiveCurbsideCardProps) {
   const [dismissed, setDismissed] = useState(false);
   const [showGetItNow, setShowGetItNow] = useState(false);
+  const [showViewOrder, setShowViewOrder] = useState(false);
   const [seconds, setSeconds] = useState(INITIAL_SECONDS);
 
   useEffect(() => {
@@ -95,7 +97,7 @@ export function ActiveCurbsideCard({
             <Button
               variant="secondary"
               size="small"
-              onClick={() => {}}
+              onClick={() => setShowViewOrder(true)}
               UNSAFE_className={styles.actionButton}
             >
               View order
@@ -120,6 +122,14 @@ export function ActiveCurbsideCard({
           </div>
         </div>
       </article>
+
+      <ViewOrderBottomSheet
+        isOpen={showViewOrder}
+        onClose={() => setShowViewOrder(false)}
+        deliveryDay={deliveryDay}
+        deliveryTime="4pm"
+        onViewUsuals={() => setShowViewOrder(false)}
+      />
 
       <GetItNowModal
         open={showGetItNow}
