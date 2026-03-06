@@ -17,7 +17,7 @@ interface ViewOrderBottomSheetProps {
 
 const DAYS = ['Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 
-const TIME_SLOTS = ['1pm\u20132pm', '3pm\u20134pm', '2pm\u20133pm', '3pm\u20134pm', '4pm\u20135pm'];
+const TIME_SLOTS = ['1pm\u20132pm', '2pm\u20133pm', '3pm\u20134pm', '4pm\u20135pm', '5pm\u20136pm'];
 
 const DAY_TO_FULL: Record<string, string> = {
   Tue: 'Tuesday',
@@ -140,15 +140,6 @@ function ScheduleView({
   return (
     <div className={styles.scheduleWrapper}>
       <div className={styles.scheduleContentLayer}>
-        <div className={styles.scheduleHeader}>
-          <h2 className={styles.scheduleTitle}>
-            Select your delivery day and time
-          </h2>
-          <span className={styles.scheduleSubtitle}>
-            This will be your preferred day and time for future orders.
-          </span>
-        </div>
-
         <div className={styles.scheduleBody}>
           <div className={styles.dayCarouselWrap}>
             <DaySelector
@@ -238,7 +229,9 @@ export function ViewOrderBottomSheet({
     <WCPRichMediaSheet
       isOpen={isOpen}
       onClose={handleClose}
-      headerVariant="none"
+      headerVariant={view === 'schedule' ? 'title-subtitle' : 'none'}
+      title={view === 'schedule' ? 'Select your delivery day and time' : undefined}
+      subtitle={view === 'schedule' ? 'This will be your preferred day and time for future orders.' : undefined}
       surfaceVariant={view === 'schedule' ? 'brand-gradient' : 'default'}
       adjustHeight="content"
       ariaLabel="View your upcoming delivery"

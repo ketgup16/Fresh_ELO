@@ -113,13 +113,18 @@ export function ActiveCurbsideCard({
             </Button>
           </div>
 
-          {/* Footer */}
-          <div className={styles.footer}>
+          {/* Footer — links to purchase history */}
+          <button
+            type="button"
+            className={styles.footer}
+            onClick={() => setShowGetItNow(true)}
+            aria-label={`View curbside pickup details at ${location}`}
+          >
             <span className={styles.footerLocation}>
               Curbside pickup at {location}
             </span>
             <ChevronRight width={16} height={16} className={styles.footerChevron} />
-          </div>
+          </button>
         </div>
       </article>
 

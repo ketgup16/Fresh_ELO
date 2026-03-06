@@ -84,7 +84,7 @@
   font-size: 15px;
   font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
   line-height: 22px;
-  color: var(--ld-semantic-color-text, #2E2F32);
+  color: var(--ld-semantic-color-text-inverse, #fff);
 }
 
 /* ── CTA Strip (dark navy) ── */
