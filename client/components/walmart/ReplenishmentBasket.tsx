@@ -1,24 +1,17 @@
 import { useState } from 'react';
 import { CondensedItemTile } from './CondensedItemTile';
 import { StepAnimation } from './StepAnimation';
-import { OrderSummaryCard } from './OrderSummaryCard';
+import { DeliveryScheduler } from './DeliveryScheduler';
 import { Button } from '@/components/ui/Button';
 import {
-  Flash,
-  Pause,
-  Location,
-  Settings,
-  ChevronDown,
-  ChevronRight,
   X,
-  Spark,
   CartFill,
   RotateCcw,
 } from '@/components/icons';
 import styles from './ReplenishmentBasket.module.css';
 import tileStyles from './CondensedItemTile.module.css';
 
-type BasketState = 'collapsed' | 'generating' | 'expanded';
+type BasketState = 'collapsed' | 'generating' | 'expanded' | 'scheduling';
 
 interface BasketItem {
   id: string;
@@ -30,14 +23,6 @@ interface BasketItem {
   quantity?: number;
 }
 
-interface SuggestedItem {
-  id: string;
-  image: string;
-  price: string;
-  cents: string;
-  originalPrice?: string;
-}
-
 export interface ReplenishmentBasketProps {
   deliveryDay?: string;
   deliveryTime?: string;
@@ -45,17 +30,10 @@ export interface ReplenishmentBasketProps {
   itemCount?: number;
   total?: string;
   items?: BasketItem[];
-  suggestedItems?: SuggestedItem[];
   onPauseDelivery?: () => void;
   onGetItNow?: () => void;
   onEditItems?: () => void;
-  /** Force the component visible regardless of viewport width (for docs demos) */
   forceVisible?: boolean;
-  /**
-   * When true, uses position:absolute instead of fixed — required when
-   * rendering inside a scrollable container or phone-frame demo.
-   * The parent must have position:relative.
-   */
   contained?: boolean;
 }
 
@@ -143,29 +121,6 @@ const DEMO_ITEMS: BasketItem[] = [
   },
 ];
 
-const DEMO_SUGGESTIONS: SuggestedItem[] = [
-  {
-    id: 's1',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/1a0ad125303b4f53a1b532e7490232fab0dc48db?width=161',
-    price: '8',
-    cents: '05',
-    originalPrice: '9.98',
-  },
-  {
-    id: 's2',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/4cdf6dad6c63310c2e6e655f2c02bd1b86fb1663?width=161',
-    price: '9',
-    cents: '25',
-    originalPrice: '10.98',
-  },
-  {
-    id: 's3',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/1a0ad125303b4f53a1b532e7490232fab0dc48db?width=161',
-    price: '15',
-    cents: '80',
-  },
-];
-
 export function ReplenishmentBasket({
   deliveryDay = 'Friday, Feb 6',
   deliveryTime = '4pm',
@@ -173,7 +128,6 @@ export function ReplenishmentBasket({
   itemCount = 14,
   total = '55.59',
   items = DEMO_ITEMS,
-  suggestedItems = DEMO_SUGGESTIONS,
   onPauseDelivery,
   onGetItNow,
   onEditItems,
@@ -188,6 +142,8 @@ export function ReplenishmentBasket({
   const [quantities, setQuantities] = useState<Record<string, number>>(() =>
     Object.fromEntries(items.map((item) => [item.id, item.quantity ?? 2]))
   );
+  const [selectedDay, setSelectedDay] = useState('Fri');
+  const [selectedTime, setSelectedTime] = useState('4pm-5pm');
 
   const handleExpand = () => {
     setState('generating');
@@ -205,6 +161,10 @@ export function ReplenishmentBasket({
     setIsEditing((prev) => !prev);
   };
 
+  const handleSave = () => {
+    setIsEditing(false);
+  };
+
   const handleCheckChange = (id: string, checked: boolean) => {
     setCheckedItems((prev) => ({ ...prev, [id]: checked }));
   };
@@ -212,6 +172,26 @@ export function ReplenishmentBasket({
   const handleQuantityChange = (id: string, q: number) => {
     setQuantities((prev) => ({ ...prev, [id]: q }));
   };
+
+  const handleOpenScheduling = () => {
+    setState('scheduling');
+    setIsEditing(false);
+  };
+
+  const handleBackToBasket = () => {
+    setState('expanded');
+  };
+
+  const handleConfirmDelivery = () => {
+    setState('collapsed');
+    setIsEditing(false);
+  };
+
+  const isPanel = state === 'generating' || state === 'expanded' || state === 'scheduling';
+
+  // Derive a friendly delivery label from selection
+  const deliveryDayLabel = selectedDay === 'Fri' ? 'Friday' : selectedDay === 'Sat' ? 'Saturday' : selectedDay === 'Thu' ? 'Thursday' : selectedDay === 'Wed' ? 'Wednesday' : selectedDay === 'Tue' ? 'Tuesday' : selectedDay;
+  const deliveryTimeLabel = selectedTime.split('-')[0] || '4pm';
 
   return (
     <div
@@ -240,7 +220,7 @@ export function ReplenishmentBasket({
                 <CartFill className={styles.cartIcon} />
               </div>
               <div className={styles.summaryInfo}>
-                <span className={styles.deliveryLabel}>Your upcoming Friday delivery</span>
+                <span className={styles.deliveryLabel}>Your upcoming {deliveryDayLabel} delivery</span>
                 <span className={styles.totalLabel}>
                   {itemCount} items: ${total}
                 </span>
@@ -262,25 +242,38 @@ export function ReplenishmentBasket({
         </button>
       )}
 
-      {/* ── GENERATING / EXPANDED STATES ── */}
-      {(state === 'generating' || state === 'expanded') && (
+      {/* ── PANEL STATES (generating / expanded / scheduling) ── */}
+      {isPanel && (
         <div
           className={`${styles.expandedPanel} ${state === 'generating' ? styles.panelGenerating : styles.panelExpanded}`}
         >
-          {/* Replenish-style header */}
+          {/* Header */}
           <div className={styles.replenishHeader}>
             <div className={styles.replenishHeaderText}>
-              <span className={styles.replenishTitle}>
-                Shop easily with items you buy often
-              </span>
-              <span className={styles.replenishSubtitle}>
-                Get it by <u>Friday, {deliveryTime}</u>
-              </span>
+              {state === 'scheduling' ? (
+                <>
+                  <span className={styles.replenishTitle}>
+                    Schedule your delivery
+                  </span>
+                  <span className={styles.replenishSubtitle}>
+                    {itemCount} items &middot; Est. ${total}
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className={styles.replenishTitle}>
+                    Shop easily with items you buy often
+                  </span>
+                  <span className={styles.replenishSubtitle}>
+                    Get it by <u>{deliveryDayLabel}, {deliveryTimeLabel}</u>
+                  </span>
+                </>
+              )}
             </div>
             <button
               className={styles.closeBtn}
-              onClick={handleCollapse}
-              aria-label="Close basket"
+              onClick={state === 'scheduling' ? handleBackToBasket : handleCollapse}
+              aria-label={state === 'scheduling' ? 'Back to basket' : 'Close basket'}
             >
               <X className={styles.closeIcon} />
             </button>
@@ -296,10 +289,8 @@ export function ReplenishmentBasket({
           {/* ── EXPANDED CONTENT ── */}
           {state === 'expanded' && (
             <>
-              {/* Content card with rounded corners */}
               <div className={styles.contentCard}>
                 <div className={[styles.contentCardInner, isEditing ? styles.contentCardInnerEdit : ''].filter(Boolean).join(' ')}>
-                  {/* Item grid — switches between 3-col and 2-col */}
                   <div className={isEditing ? styles.itemGridEdit : styles.itemGrid}>
                     {items.map((item, index) => (
                       <CondensedItemTile
@@ -321,7 +312,6 @@ export function ReplenishmentBasket({
                     ))}
                   </div>
 
-                  {/* Summary bar inline — visible in default mode only */}
                   {!isEditing && (
                     <div className={styles.summaryBar}>
                       <div className={styles.summaryText}>
@@ -340,20 +330,53 @@ export function ReplenishmentBasket({
                 </div>
               </div>
 
-              {/* Glass-style floating footer pill */}
               <div className={styles.glassFooter}>
                 <Button
                   variant="secondary"
                   size="medium"
-                  onClick={handleToggleEdit}
+                  onClick={isEditing ? handleSave : handleToggleEdit}
                 >
                   {isEditing ? 'Save' : 'Edit'}
                 </Button>
                 <Button
                   variant="primary"
                   size="medium"
+                  onClick={handleOpenScheduling}
                 >
-                  Add to Friday delivery
+                  Add to {deliveryDayLabel} delivery
+                </Button>
+              </div>
+            </>
+          )}
+
+          {/* ── SCHEDULING CONTENT ── */}
+          {state === 'scheduling' && (
+            <>
+              <div className={styles.contentCard}>
+                <div className={styles.contentCardInner}>
+                  <DeliveryScheduler
+                    selectedDay={selectedDay}
+                    selectedTime={selectedTime}
+                    onDayChange={setSelectedDay}
+                    onTimeChange={setSelectedTime}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.glassFooter}>
+                <Button
+                  variant="secondary"
+                  size="medium"
+                  onClick={handleBackToBasket}
+                >
+                  Back
+                </Button>
+                <Button
+                  variant="primary"
+                  size="medium"
+                  onClick={handleConfirmDelivery}
+                >
+                  Confirm delivery
                 </Button>
               </div>
             </>
