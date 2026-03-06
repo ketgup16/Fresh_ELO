@@ -22,55 +22,27 @@
     0 0 14px 0 rgba(0, 0, 0, 0.11);
 }
 
+/* Fixed bar — always matches the drawer panel width */
 .barFixed {
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
+  /* Mirror drawer: full width minus side margins, capped at 80vw */
+  width: calc(100% - 24px);
+  max-width: 80vw;
+  display: flex;
+  justify-content: space-between;
 }
 
-/* Small screens: stretch full width when fixed */
+/* Small screens (≤480px): anchor to edges instead of centering */
 @media (max-width: 480px) {
   .barFixed {
     left: 12px;
     right: 12px;
     width: calc(100% - 24px);
+    max-width: none;
     transform: none;
-    justify-content: space-between;
-  }
-
-  .barFixed.bar {
-    display: flex;
-  }
-}
-
-/* Mid-range: expand to 80vw centered */
-@media (min-width: 481px) and (max-width: 768px) {
-  .barFixed {
-    width: 80vw;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .barFixed.bar {
-    display: flex;
-  }
-}
-
-/* Tablet: match basket/nav width at 80vw centered */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .barFixed {
-    width: 80vw;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .barFixed.bar {
-    display: flex;
   }
 }
