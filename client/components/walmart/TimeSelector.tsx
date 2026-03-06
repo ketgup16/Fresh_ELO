@@ -1,4 +1,6 @@
 import React from 'react';
+import { RadioGroup } from '@/components/ui/radio-group';
+import { Radio } from '@/components/ui/Radio';
 import styles from './TimeSelector.module.css';
 
 export interface TimeSelectorProps {
@@ -19,16 +21,17 @@ export function TimeSelector({
   disabled = false,
 }: TimeSelectorProps) {
   return (
-    <div className={styles.list} role="radiogroup">
+    <RadioGroup
+      value={selectedSlot ?? undefined}
+      onValueChange={onChange}
+      disabled={disabled}
+      className={styles.list}
+    >
       {timeSlots.map((slot) => {
         const checked = slot === selectedSlot;
         return (
-          <button
+          <div
             key={slot}
-            type="button"
-            role="radio"
-            aria-checked={checked}
-            disabled={disabled}
             className={[
               styles.row,
               checked ? styles.rowChecked : styles.rowUnchecked,
@@ -36,22 +39,15 @@ export function TimeSelector({
             ]
               .filter(Boolean)
               .join(' ')}
-            onClick={() => !disabled && onChange(slot)}
           >
-            {/* Radio indicator */}
-            <span className={styles.radio} aria-hidden="true">
-              <span className={styles.radioOuter}>
-                {checked && <span className={styles.radioDot} />}
-              </span>
-            </span>
-
-            {/* Time label */}
-            <span className={[styles.label, checked ? styles.labelChecked : ''].filter(Boolean).join(' ')}>
-              {slot}
-            </span>
-          </button>
+            <Radio
+              value={slot}
+              label={slot}
+              UNSAFE_className={styles.radioBtn}
+            />
+          </div>
         );
       })}
-    </div>
+    </RadioGroup>
   );
 }
