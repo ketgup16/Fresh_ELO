@@ -188,6 +188,16 @@
   }
 }
 
+/* Tablet: constrain nav to 60vw centered */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav {
+    left: 50%;
+    right: auto;
+    width: 60vw;
+    transform: translateX(-50%);
+  }
+}
+
 /* ── Hide when search modal is open ── */
 :global(body.search-modal-open) .nav,
 :global(body.search-modal-open) .fadeOverlay {

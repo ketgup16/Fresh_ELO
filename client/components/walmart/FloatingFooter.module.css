@@ -44,3 +44,18 @@
     display: flex;
   }
 }
+
+/* Tablet: match basket/nav width at 60vw centered */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .barFixed {
+    width: 60vw;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .barFixed.bar {
+    display: flex;
+  }
+}

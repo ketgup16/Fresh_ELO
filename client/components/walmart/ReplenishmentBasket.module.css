@@ -18,9 +18,17 @@
   align-items: stretch;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .wrapper {
     display: flex;
+  }
+}
+
+/* Tablet: expand to 60vw centered */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .collapsedBar,
+  .expandedPanel {
+    max-width: 60vw;
   }
 }
 
