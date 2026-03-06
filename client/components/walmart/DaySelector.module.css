@@ -31,8 +31,8 @@
 
 /* Unselected */
 .dayBtnUnselected {
-  border-color: var(--ld-semantic-color-text, #2e2f32);
-  background: var(--ld-semantic-color-surface, #ffffff);
+  border-color: var(--ld-semantic-color-border-subtlest, #74767c);
+  background: var(--ld-semantic-color-fill-brand-subtle, #ebf5ff);
   color: var(--ld-semantic-color-text, #2e2f32);
 }
 
