@@ -12,8 +12,8 @@
   right: 0;
   z-index: 200;
   pointer-events: none;
-  /* Leave room above BottomNav (approx 56px) */
-  padding-bottom: 60px;
+  /* Leave room above BottomNav (92px) + 16px breathing room */
+  padding-bottom: 108px;
   flex-direction: column;
   align-items: stretch;
 }
@@ -24,13 +24,18 @@
   }
 }
 
+/* When panel is expanded, cover the BottomNav */
+.wrapperExpanded {
+  padding-bottom: 0 !important;
+  z-index: 300;
+}
+
 /* Force visible in docs demo frames */
 .wrapperForceVisible {
   display: flex !important;
 }
 
-/* Contained mode: use absolute positioning instead of fixed,
-   so the component respects a positioned parent container */
+/* Contained mode: absolute positioning for demo frames */
 .wrapperContained {
   position: absolute !important;
   padding-bottom: 0 !important;
@@ -42,7 +47,6 @@
 
 .collapsedBar {
   pointer-events: all;
-  /* Position at bottom center of the wrapper */
   margin: 0 12px;
   width: calc(100% - 24px);
   max-width: 360px;
@@ -56,7 +60,7 @@
   cursor: pointer;
   text-align: left;
 
-  /* iOS glass — matches BottomNav kit */
+  /* iOS glass */
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -72,7 +76,6 @@
     0 0 24px 0 rgba(242, 242, 242, 0.5) inset,
     0 4px 20px 0 rgba(0, 0, 0, 0.12);
 
-  /* Slide-up entrance */
   animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
@@ -87,23 +90,15 @@
   }
 }
 
-/* Notification strip */
+/* Notification strip — cyan banner */
 .notificationStrip {
   display: flex;
   align-items: center;
   gap: 6px;
-}
-
-.newBadge {
-  display: inline-flex;
-  padding: 1px 6px;
-  border-radius: 9999px;
-  background: var(--ld-semantic-color-fill-confidence-subtle, #FFF8E1);
-  color: var(--ld-semantic-color-text, #2e2f32);
-  font-size: 11px;
-  font-weight: 700;
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  white-space: nowrap;
+  background: var(--ld-semantic-color-fill-accent-cyan-subtle, #e7f6fe);
+  border-radius: 8px;
+  padding: 4px 8px;
+  margin: -4px -4px 0;
 }
 
 .notifText {
@@ -170,11 +165,21 @@
   color: var(--ld-semantic-color-text-subtle, #5b5c5e);
 }
 
-.refreshIcon {
+/* Floating icon button (maximize/minimize) */
+.floatingIconBtn {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: var(--ld-semantic-color-action-fill-secondary, #fff);
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
+  border: none;
+  cursor: pointer;
+  padding: 0;
   flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  color: var(--ld-semantic-color-text-subtle, #5b5c5e);
+  color: var(--ld-semantic-color-text, #2e2f32);
 }
 
 /* Thumbnail strip */
@@ -223,18 +228,14 @@
 .expandedPanel {
   pointer-events: all;
   width: 100%;
-  /* Sits just above BottomNav */
-  max-height: calc(88vh - 60px);
+  /* Covers full remaining height — pushes over BottomNav */
+  max-height: 92vh;
   display: flex;
   flex-direction: column;
   background: var(--ld-semantic-color-surface, #ffffff);
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.12);
   overflow: hidden;
-}
-
-.panelGenerating {
-  animation: panelSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .panelExpanded {
@@ -252,32 +253,65 @@
   }
 }
 
-/* Panel header */
-.panelHeader {
+/* ── Grabber/drag handle ── */
+.grabberArea {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  padding: 16px 16px 0;
+  padding: 8px 0 4px;
+  cursor: pointer;
   flex-shrink: 0;
 }
 
-.headerLeft {
+.grabber {
+  width: 36px;
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--ld-semantic-color-fill-accent-gray-subtle, #e3e4e5);
+}
+
+/* ── Panel top header ── */
+.panelTopHeader {
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: space-between;
+  padding: 4px 16px 8px;
+  flex-shrink: 0;
 }
 
-.sparkIcon {
-  width: 20px;
-  height: 20px;
-  color: var(--ld-semantic-color-action-fill-primary, #0071dc);
+.panelTopHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
 }
 
-.headerTitle {
+.sparkIconWrap {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--ld-semantic-color-action-fill-primary, #0071dc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sparkIconInner {
+  width: 18px;
+  height: 18px;
+  color: #fff;
+}
+
+.panelTopTitle {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2e2f32);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .closeBtn {
@@ -292,6 +326,7 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  flex-shrink: 0;
 }
 
 .closeBtn:hover {
@@ -304,12 +339,12 @@
   color: var(--ld-semantic-color-text, #2e2f32);
 }
 
-/* Delivery info row */
+/* ── Delivery info row ── */
 .deliveryInfoRow {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  padding: 12px 16px;
+  padding: 8px 16px 12px;
   flex-shrink: 0;
   border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
@@ -319,7 +354,7 @@
   height: 16px;
   color: var(--ld-semantic-color-text-subtle, #5b5c5e);
   flex-shrink: 0;
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
 .deliveryDetails {
@@ -327,6 +362,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
 .deliveryTime {
@@ -341,6 +377,9 @@
   font-size: 12px;
   font-weight: 400;
   color: var(--ld-semantic-color-text-subtle, #5b5c5e);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .settingsBtn {
@@ -367,32 +406,50 @@
   color: var(--ld-semantic-color-text-subtle, #5b5c5e);
 }
 
-/* ── GENERATING content — StepAnimation ── */
-.generatingContent {
-  flex: 1;
+/* ── Content card (has 16px side margins) ── */
+.contentCard {
+  --basket-content-overlay-opacity: 0.9;
+  --basket-content-overlay-radius: 24px;
+
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px 16px;
-  /* Apply customer theme magic tokens */
-  --ld-semantic-color-text-magic-start: var(--customer-magic-start, #0053e2);
-  --ld-semantic-color-text-magic-middle: var(--customer-magic-middle, #3d90ec);
-  --ld-semantic-color-text-magic-stop: var(--customer-magic-stop, #79cdf6);
+  flex-direction: column;
+  margin: 12px 16px 0;
+  border-radius: 24px;
+  box-shadow: 0 4px 19.6px 0 rgba(204, 217, 247, 0.25);
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+  position: relative;
 }
 
-/* ── EXPANDED content ── */
-.scrollContent {
+.contentOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  border-radius: 0 0 var(--basket-content-overlay-radius, 24px) var(--basket-content-overlay-radius, 24px);
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, var(--basket-content-overlay-opacity, 0.9)));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.contentCardInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  padding: var(--ld-primitive-scale-space-100, 8px) 12px;
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 16px;
 }
 
-/* Item grid — 3 equal columns (default) */
+.contentCardInnerEdit {
+  padding-bottom: 47px;
+}
+
+/* Item grid — 3 equal columns (default view) */
 .itemGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -406,11 +463,26 @@
   gap: 12px;
 }
 
-/* Action row */
+/* Action row (Edit items + View all) */
 .actionRow {
   display: flex;
   gap: 8px;
   align-items: center;
+}
+
+.viewAllLabel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.chevronDown {
+  transition: transform 0.2s ease;
+}
+
+.chevronUp {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease;
 }
 
 /* Section separator */
@@ -418,13 +490,15 @@
   height: 1px;
   background: var(--ld-semantic-color-separator, #e3e4e5);
   flex-shrink: 0;
+  margin: 4px 0;
 }
 
 /* ── Suggestions section ── */
 .suggestionsSection {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  padding-bottom: 8px;
 }
 
 .suggestionHeader {
@@ -453,7 +527,9 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 4px;
-  /* Hide scrollbar on webkit */
+  margin: 0 -12px;
+  padding-left: 12px;
+  padding-right: 12px;
   scrollbar-width: none;
 }
 
@@ -463,7 +539,7 @@
 
 .suggestionCard {
   flex-shrink: 0;
-  width: 96px;
+  width: 92px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -471,16 +547,16 @@
 
 .suggestionImageWrap {
   position: relative;
-  width: 96px;
-  height: 96px;
+  width: 92px;
+  height: 92px;
   border-radius: 12px;
   background: var(--ld-semantic-color-background-subtle, #f5f5f6);
   overflow: visible;
 }
 
 .suggestionImage {
-  width: 80px;
-  height: 80px;
+  width: 76px;
+  height: 76px;
   object-fit: contain;
   position: absolute;
   top: 8px;
@@ -519,75 +595,40 @@
 
 .suggestSign {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2e2f32);
 }
 
 .suggestMain {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2e2f32);
 }
 
 .suggestCents {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2e2f32);
+  align-self: flex-start;
+  margin-top: 2px;
 }
 
 .suggestOriginal {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
   color: var(--ld-semantic-color-text-subtlest, #74767c);
   text-decoration: line-through;
   margin-left: 2px;
 }
 
-/* ── Summary bar (inline at bottom of scroll content) ── */
-.summaryBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--ld-primitive-scale-space-100, 8px) 0;
-}
-
-.summaryText {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: 400;
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-.summaryTotal {
-  font-weight: 700;
-}
-
-/* ── Panel footer ── */
-.panelFooter {
-  display: flex;
-  gap: 8px;
-  padding: 12px 16px;
-  border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  flex-shrink: 0;
-  background: var(--ld-semantic-color-surface, #fff);
-  align-items: stretch;
-}
-
-.panelFooter > * {
-  flex: 1;
-}
-
-/* Glass-style floating footer pill for expanded/edit states */
+/* ── Glass footer pill — 16px from content card, full-width inside panel ── */
 .glassFooter {
   display: flex;
-  padding: var(--ld-primitive-scale-space-150, 12px);
+  padding: 12px 16px;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -603,82 +644,69 @@
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   flex-shrink: 0;
-  margin: 0 16px 8px;
+  margin: 16px 16px 12px;
 }
 
 .glassFooter > * {
   flex: 1;
 }
 
-/* ── Replenish header (no spark icon, simple title + subtitle) ── */
-.replenishHeader {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 16px 16px 0;
-  flex-shrink: 0;
-}
-
-.replenishHeaderText {
-  display: flex;
-  height: 44px;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1 0 0;
-}
-
-.replenishTitle {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-large-size, 18px);
-  font-weight: 700;
-  line-height: var(--ld-semantic-font-body-large-lineheight, 1.5rem);
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-.replenishSubtitle {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: 400;
-  line-height: var(--ld-semantic-font-body-small-lineheight, 1.25rem);
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
-.replenishSubtitle u {
-  text-decoration: underline;
-}
-
-/* Content card wrapper with rounded corners and shadow */
-.contentCard {
+/* ── Animated stroke button wrapper ── */
+.animatedStrokeWrap {
+  position: relative;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-self: stretch;
-  border-radius: 24px;
-  box-shadow: 0 4px 19.6px 0 rgba(204, 217, 247, 0.25);
+}
+
+/* Rotating glow border sweep using a spinning radial gradient element */
+.strokeAnimation {
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
   overflow: hidden;
-  flex: 1;
-  min-height: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.contentCardInner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ld-primitive-scale-space-100, 8px);
-  padding: var(--ld-primitive-scale-space-100, 8px) 12px;
-  flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+.strokeAnimation::before {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 60deg,
+    rgba(130, 180, 255, 0.95) 120deg,
+    transparent 180deg,
+    transparent 360deg
+  );
+  animation: rotateSweep 2s linear infinite;
 }
 
-.contentCardInnerEdit {
-  padding-bottom: 47px;
+.strokeAnimation::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 9999px;
+  background: var(--ld-semantic-color-action-fill-primary, #0071dc);
+}
+
+@keyframes rotateSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Ensure the button sits above the stroke animation */
+.animatedStrokeWrap > button {
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Reduced motion overrides ── */
 @media (prefers-reduced-motion: reduce) {
   .collapsedBar,
-  .panelGenerating,
-  .panelExpanded {
+  .panelExpanded,
+  .strokeAnimation {
     animation: none;
   }
 }

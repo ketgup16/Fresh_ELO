@@ -1,17 +1,23 @@
 import { useState } from 'react';
 import { CondensedItemTile } from './CondensedItemTile';
-import { StepAnimation } from './StepAnimation';
 import { DeliveryScheduler } from './DeliveryScheduler';
 import { Button } from '@/components/ui/Button';
+import { Tag } from '@/components/ui/Tag';
 import {
-  X,
   CartFill,
-  RotateCcw,
+  BoxCorners,
+  ChevronDown,
+  ChevronRight,
+  Location,
+  Gear,
+  Flash,
+  Pause,
+  BoxSparkFill,
 } from '@/components/icons';
 import styles from './ReplenishmentBasket.module.css';
 import tileStyles from './CondensedItemTile.module.css';
 
-type BasketState = 'collapsed' | 'generating' | 'expanded' | 'scheduling';
+type BasketState = 'collapsed' | 'expanded' | 'scheduling';
 
 interface BasketItem {
   id: string;
@@ -21,6 +27,15 @@ interface BasketItem {
   tag?: string;
   name?: string;
   quantity?: number;
+}
+
+interface SuggestionItem {
+  id: string;
+  image: string;
+  price: string;
+  cents: string;
+  originalPrice?: string;
+  name: string;
 }
 
 export interface ReplenishmentBasketProps {
@@ -40,7 +55,7 @@ export interface ReplenishmentBasketProps {
 const DEMO_ITEMS: BasketItem[] = [
   {
     id: '1',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/f1484020403bddc45dfa804d4e33949478f6895e?width=161',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/580e227005cd83b0b46a623f6f2a90340fd2b3b4?width=161',
     price: '1',
     cents: '25',
     tag: '5 oz',
@@ -54,7 +69,7 @@ const DEMO_ITEMS: BasketItem[] = [
     cents: '85',
     tag: '5 oz',
     name: 'Bettergoods Smoky Fire-Roasted Salsa',
-    quantity: 2,
+    quantity: 1,
   },
   {
     id: '3',
@@ -63,7 +78,7 @@ const DEMO_ITEMS: BasketItem[] = [
     cents: '24',
     tag: '5 oz',
     name: 'Fresh Strawberries, 1 lb',
-    quantity: 2,
+    quantity: 1,
   },
   {
     id: '4',
@@ -72,7 +87,7 @@ const DEMO_ITEMS: BasketItem[] = [
     cents: '86',
     tag: '5 oz',
     name: 'Barilla Whole Grain Penne Pasta',
-    quantity: 2,
+    quantity: 1,
   },
   {
     id: '5',
@@ -81,7 +96,7 @@ const DEMO_ITEMS: BasketItem[] = [
     cents: '62',
     tag: '5 oz',
     name: 'Good Culture Cottage Cheese',
-    quantity: 2,
+    quantity: 3,
   },
   {
     id: '6',
@@ -90,7 +105,7 @@ const DEMO_ITEMS: BasketItem[] = [
     cents: '77',
     tag: '5 oz',
     name: 'Kikkoman Soy Sauce, 10 oz',
-    quantity: 2,
+    quantity: 1,
   },
   {
     id: '7',
@@ -99,7 +114,7 @@ const DEMO_ITEMS: BasketItem[] = [
     cents: '47',
     tag: '5 oz',
     name: 'SkinnyPop Original Popcorn',
-    quantity: 2,
+    quantity: 1,
   },
   {
     id: '8',
@@ -108,7 +123,7 @@ const DEMO_ITEMS: BasketItem[] = [
     cents: '98',
     tag: '5 oz',
     name: 'Cold Pressed Orange Juice',
-    quantity: 2,
+    quantity: 1,
   },
   {
     id: '9',
@@ -117,7 +132,54 @@ const DEMO_ITEMS: BasketItem[] = [
     cents: '27',
     tag: '5 oz',
     name: 'Oatly Original Oat Milk',
-    quantity: 2,
+    quantity: 1,
+  },
+];
+
+const SUGGESTION_ITEMS: SuggestionItem[] = [
+  {
+    id: 's1',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/c1dc2c8eea1d21f8e8d8b7a8e5c8d3b9a2f1e4c7?width=200',
+    price: '8',
+    cents: '05',
+    originalPrice: '9.98',
+    name: 'Ritz Crackers Family Size',
+  },
+  {
+    id: 's2',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1?width=200',
+    price: '9',
+    cents: '25',
+    originalPrice: '10.98',
+    name: 'Viva Multi-Surface Cloth Paper Towels',
+  },
+  {
+    id: 's3',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2?width=200',
+    price: '15',
+    cents: '80',
+    name: "Dreft Stage 1 Baby Laundry Detergent",
+  },
+  {
+    id: 's4',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3?width=200',
+    price: '4',
+    cents: '98',
+    name: 'Large Eggs, 12 Count',
+  },
+  {
+    id: 's5',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4?width=200',
+    price: '3',
+    cents: '48',
+    name: 'Great Value Whole Milk, 1 Gallon',
+  },
+  {
+    id: 's6',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5?width=200',
+    price: '0',
+    cents: '68',
+    name: 'Bananas, each',
   },
 ];
 
@@ -130,12 +192,12 @@ export function ReplenishmentBasket({
   items = DEMO_ITEMS,
   onPauseDelivery,
   onGetItNow,
-  onEditItems,
   forceVisible = false,
   contained = false,
 }: ReplenishmentBasketProps) {
   const [state, setState] = useState<BasketState>('collapsed');
   const [isEditing, setIsEditing] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>(() =>
     Object.fromEntries(items.map((item) => [item.id, true]))
   );
@@ -146,23 +208,29 @@ export function ReplenishmentBasket({
   const [selectedTime, setSelectedTime] = useState('4pm-5pm');
 
   const handleExpand = () => {
-    setState('generating');
-    setTimeout(() => {
-      setState('expanded');
-    }, 3500);
+    // Go directly to expanded — no step animation
+    setState('expanded');
   };
 
   const handleCollapse = () => {
     setState('collapsed');
     setIsEditing(false);
+    setShowAll(false);
   };
 
   const handleToggleEdit = () => {
     setIsEditing((prev) => !prev);
+    setShowAll(false);
   };
 
   const handleSave = () => {
     setIsEditing(false);
+  };
+
+  const handleAddToDelivery = () => {
+    // Save and collapse — no scheduling modal
+    setIsEditing(false);
+    setState('collapsed');
   };
 
   const handleCheckChange = (id: string, checked: boolean) => {
@@ -171,11 +239,6 @@ export function ReplenishmentBasket({
 
   const handleQuantityChange = (id: string, q: number) => {
     setQuantities((prev) => ({ ...prev, [id]: q }));
-  };
-
-  const handleOpenScheduling = () => {
-    setState('scheduling');
-    setIsEditing(false);
   };
 
   const handleBackToBasket = () => {
@@ -187,16 +250,18 @@ export function ReplenishmentBasket({
     setIsEditing(false);
   };
 
-  const isPanel = state === 'generating' || state === 'expanded' || state === 'scheduling';
+  const isPanel = state === 'expanded' || state === 'scheduling';
 
-  // Derive a friendly delivery label from selection
-  const deliveryDayLabel = selectedDay === 'Fri' ? 'Friday' : selectedDay === 'Sat' ? 'Saturday' : selectedDay === 'Thu' ? 'Thursday' : selectedDay === 'Wed' ? 'Wednesday' : selectedDay === 'Tue' ? 'Tuesday' : selectedDay;
-  const deliveryTimeLabel = selectedTime.split('-')[0] || '4pm';
+  // Show only first 6 items unless showAll is true
+  const visibleItems = showAll ? items : items.slice(0, 6);
+
+  const deliveryDayShort = deliveryDay.split(',')[0] ?? deliveryDay;
 
   return (
     <div
       className={[
         styles.wrapper,
+        isPanel ? styles.wrapperExpanded : '',
         forceVisible ? styles.wrapperForceVisible : '',
         contained ? styles.wrapperContained : '',
       ].filter(Boolean).join(' ')}
@@ -210,7 +275,7 @@ export function ReplenishmentBasket({
           aria-label="Expand upcoming delivery basket"
         >
           <div className={styles.notificationStrip}>
-            <span className={styles.newBadge}>New</span>
+            <Tag variant="tertiary" color="cyan">New</Tag>
             <span className={styles.notifText}>Add items, edit, or pause anytime</span>
           </div>
 
@@ -220,13 +285,15 @@ export function ReplenishmentBasket({
                 <CartFill className={styles.cartIcon} />
               </div>
               <div className={styles.summaryInfo}>
-                <span className={styles.deliveryLabel}>Your upcoming {deliveryDayLabel} delivery</span>
+                <span className={styles.deliveryLabel}>Your upcoming {deliveryDayShort} delivery</span>
                 <span className={styles.totalLabel}>
                   {itemCount} items: ${total}
                 </span>
               </div>
             </div>
-            <RotateCcw className={styles.refreshIcon} aria-hidden="true" />
+            <span className={styles.floatingIconBtn} aria-hidden="true">
+              <BoxCorners width={16} height={16} />
+            </span>
           </div>
 
           <div className={styles.thumbnailRow}>
@@ -242,47 +309,60 @@ export function ReplenishmentBasket({
         </button>
       )}
 
-      {/* ── PANEL STATES (generating / expanded / scheduling) ── */}
+      {/* ── PANEL STATES (expanded / scheduling) ── */}
       {isPanel && (
-        <div
-          className={`${styles.expandedPanel} ${state === 'generating' ? styles.panelGenerating : styles.panelExpanded}`}
-        >
-          {/* Header */}
-          <div className={styles.replenishHeader}>
-            <div className={styles.replenishHeaderText}>
-              {state === 'scheduling' ? (
-                <>
-                  <span className={styles.replenishTitle}>
-                    Schedule your delivery
-                  </span>
-                  <span className={styles.replenishSubtitle}>
-                    {itemCount} items &middot; Est. ${total}
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className={styles.replenishTitle}>
-                    Shop easily with items you buy often
-                  </span>
-                  <span className={styles.replenishSubtitle}>
-                    Get it by <u>{deliveryDayLabel}, {deliveryTimeLabel}</u>
-                  </span>
-                </>
-              )}
-            </div>
-            <button
-              className={styles.closeBtn}
-              onClick={state === 'scheduling' ? handleBackToBasket : handleCollapse}
-              aria-label={state === 'scheduling' ? 'Back to basket' : 'Close basket'}
-            >
-              <X className={styles.closeIcon} />
-            </button>
+        <div className={`${styles.expandedPanel} ${styles.panelExpanded}`}>
+
+          {/* Grabber handle */}
+          <div className={styles.grabberArea} onClick={handleCollapse} role="button" aria-label="Collapse basket">
+            <div className={styles.grabber} />
           </div>
 
-          {/* ── GENERATING CONTENT (StepAnimation) ── */}
-          {state === 'generating' && (
-            <div className={styles.generatingContent}>
-              <StepAnimation />
+          {/* ── Panel header: "Your upcoming delivery" ── */}
+          {state === 'expanded' && (
+            <div className={styles.panelTopHeader}>
+              <div className={styles.panelTopHeaderLeft}>
+                <div className={styles.sparkIconWrap}>
+                  <BoxSparkFill className={styles.sparkIconInner} />
+                </div>
+                <span className={styles.panelTopTitle}>Your upcoming delivery</span>
+              </div>
+              <button
+                className={styles.closeBtn}
+                onClick={handleCollapse}
+                aria-label="Minimize basket"
+              >
+                <ChevronDown className={styles.closeIcon} />
+              </button>
+            </div>
+          )}
+
+          {state === 'scheduling' && (
+            <div className={styles.panelTopHeader}>
+              <div className={styles.panelTopHeaderLeft}>
+                <span className={styles.panelTopTitle}>Schedule your delivery</span>
+              </div>
+              <button
+                className={styles.closeBtn}
+                onClick={handleBackToBasket}
+                aria-label="Back to basket"
+              >
+                <ChevronDown className={styles.closeIcon} />
+              </button>
+            </div>
+          )}
+
+          {/* ── Delivery info row ── */}
+          {state === 'expanded' && !isEditing && (
+            <div className={styles.deliveryInfoRow}>
+              <Location className={styles.locationIcon} aria-hidden="true" />
+              <div className={styles.deliveryDetails}>
+                <span className={styles.deliveryTime}>Arriving {deliveryDay}, {deliveryTime}</span>
+                <span className={styles.deliveryAddress}>{address}</span>
+              </div>
+              <button className={styles.settingsBtn} aria-label="Edit delivery settings">
+                <Gear className={styles.settingsIcon} />
+              </button>
             </div>
           )}
 
@@ -291,8 +371,9 @@ export function ReplenishmentBasket({
             <>
               <div className={styles.contentCard}>
                 <div className={[styles.contentCardInner, isEditing ? styles.contentCardInnerEdit : ''].filter(Boolean).join(' ')}>
+                  {/* Item grid */}
                   <div className={isEditing ? styles.itemGridEdit : styles.itemGrid}>
-                    {items.map((item, index) => (
+                    {visibleItems.map((item, index) => (
                       <CondensedItemTile
                         key={item.id}
                         image={item.image}
@@ -312,40 +393,102 @@ export function ReplenishmentBasket({
                     ))}
                   </div>
 
+                  {/* Edit items + View all row */}
                   {!isEditing && (
-                    <div className={styles.summaryBar}>
-                      <div className={styles.summaryText}>
-                        <span>Est.total ({itemCount} items):</span>
-                        <span className={styles.summaryTotal}>${total}</span>
-                      </div>
+                    <div className={styles.actionRow}>
+                      <Button variant="secondary" size="small" onClick={handleToggleEdit} isFullWidth>
+                        Edit items
+                      </Button>
                       <Button
-                        variant="tertiary"
+                        variant="secondary"
                         size="small"
-                        onClick={handleToggleEdit}
+                        isFullWidth
+                        onClick={() => setShowAll((v) => !v)}
                       >
-                        Edit
+                        <span className={styles.viewAllLabel}>
+                          {showAll ? `Show less` : `View all ${itemCount} items`}
+                          <ChevronDown
+                            width={14}
+                            height={14}
+                            className={showAll ? styles.chevronUp : styles.chevronDown}
+                          />
+                        </span>
                       </Button>
                     </div>
                   )}
+
+                  {/* Separator + Suggestions (non-edit only) */}
+                  {!isEditing && (
+                    <>
+                      <div className={styles.sectionSep} />
+                      <div className={styles.suggestionsSection}>
+                        <div className={styles.suggestionHeader}>
+                          <span className={styles.suggestionTitle}>Looking to add anything else?</span>
+                          <ChevronRight className={styles.suggestionArrow} />
+                        </div>
+                        <div className={styles.suggestionScroll}>
+                          {SUGGESTION_ITEMS.map((s) => (
+                            <div key={s.id} className={styles.suggestionCard}>
+                              <div className={styles.suggestionImageWrap}>
+                                <img src={s.image} alt={s.name} className={styles.suggestionImage} />
+                                <button className={styles.addBtn} aria-label={`Add ${s.name}`}>
+                                  +
+                                </button>
+                              </div>
+                              <div className={styles.suggestionPriceRow}>
+                                <span className={styles.suggestSign}>$</span>
+                                <span className={styles.suggestMain}>{s.price}</span>
+                                <span className={styles.suggestCents}>{s.cents}</span>
+                                {s.originalPrice && (
+                                  <span className={styles.suggestOriginal}>${s.originalPrice}</span>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
+                <div className={styles.contentOverlay} aria-hidden="true" />
               </div>
 
-              <div className={styles.glassFooter}>
-                <Button
-                  variant="secondary"
-                  size="medium"
-                  onClick={isEditing ? handleSave : handleToggleEdit}
-                >
-                  {isEditing ? 'Save' : 'Edit'}
-                </Button>
-                <Button
-                  variant="primary"
-                  size="medium"
-                  onClick={handleOpenScheduling}
-                >
-                  Add to {deliveryDayLabel} delivery
-                </Button>
-              </div>
+              {/* ── Footer ── */}
+              {isEditing ? (
+                /* Edit mode footer: Save + Add to [Day] delivery (animated stroke) */
+                <div className={styles.glassFooter}>
+                  <Button variant="secondary" size="medium" onClick={handleSave}>
+                    Save
+                  </Button>
+                  <div className={styles.animatedStrokeWrap}>
+                    <Button variant="primary" size="medium" isFullWidth onClick={handleAddToDelivery}>
+                      Add to {deliveryDayShort} delivery
+                    </Button>
+                    <div className={styles.strokeAnimation} aria-hidden="true" />
+                  </div>
+                </div>
+              ) : (
+                /* Default expanded footer: Pause Delivery + Get it now */
+                <div className={styles.glassFooter}>
+                  <Button
+                    variant="secondary"
+                    size="medium"
+                    leading={<Pause width={16} height={16} />}
+                    onClick={onPauseDelivery}
+                  >
+                    Pause Delivery
+                  </Button>
+                  <Button
+                    variant="primary"
+                    size="medium"
+                    isFullWidth
+                    leading={<Flash width={16} height={16} />}
+                    onClick={onGetItNow}
+                  >
+                    Get it now
+                  </Button>
+                </div>
+              )}
             </>
           )}
 
@@ -364,20 +507,15 @@ export function ReplenishmentBasket({
               </div>
 
               <div className={styles.glassFooter}>
-                <Button
-                  variant="secondary"
-                  size="medium"
-                  onClick={handleBackToBasket}
-                >
+                <Button variant="secondary" size="medium" onClick={handleBackToBasket}>
                   Back
                 </Button>
-                <Button
-                  variant="primary"
-                  size="medium"
-                  onClick={handleConfirmDelivery}
-                >
-                  Confirm delivery
-                </Button>
+                <div className={styles.animatedStrokeWrap}>
+                  <Button variant="primary" size="medium" isFullWidth onClick={handleConfirmDelivery}>
+                    Confirm delivery
+                  </Button>
+                  <div className={styles.strokeAnimation} aria-hidden="true" />
+                </div>
               </div>
             </>
           )}
