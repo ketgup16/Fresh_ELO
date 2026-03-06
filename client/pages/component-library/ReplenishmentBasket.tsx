@@ -41,8 +41,15 @@ export default function ReplenishmentBasketPage() {
           <div className={styles.stateItem}>
             <span className={styles.stateLabel}>expanded</span>
             <span className={styles.stateDesc}>
-              Full panel: item grid (CondensedItemTile), suggestions, OrderSummaryCard, and
-              action footer (Pause Delivery / Get it now).
+              Full panel: item grid (CondensedItemTile) with edit mode toggle, summary bar,
+              and glass-style floating footer (Edit / Add to delivery).
+            </span>
+          </div>
+          <div className={styles.stateItem}>
+            <span className={styles.stateLabel}>scheduling</span>
+            <span className={styles.stateDesc}>
+              Delivery scheduling screen with day selector buttons and time slot radio list.
+              Shown after tapping &ldquo;Add to delivery&rdquo; from the expanded state.
             </span>
           </div>
         </div>
@@ -106,15 +113,9 @@ export default function ReplenishmentBasketPage() {
             </span>
           </div>
           <div className={styles.nestedItem}>
-            <code className={styles.nestedCode}>Button (with subLabel)</code>
+            <code className={styles.nestedCode}>DeliveryScheduler</code>
             <span className={styles.nestedDesc}>
-              "Get it now / as soon as 37 mins" uses the subLabel prop for the two-line footer CTA.
-            </span>
-          </div>
-          <div className={styles.nestedItem}>
-            <code className={styles.nestedCode}>OrderSummaryCard</code>
-            <span className={styles.nestedDesc}>
-              Payment details card at the bottom of the scrollable content area.
+              Day selector + time slot radio list for scheduling delivery day and time window.
             </span>
           </div>
         </div>
