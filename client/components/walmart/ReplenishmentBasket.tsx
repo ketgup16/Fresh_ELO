@@ -167,7 +167,7 @@ const SUGGESTION_ITEMS: SuggestionItem[] = [
   },
   {
     id: 's6',
-    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc7f9b738c9d34485922ff5cbfd87a048?width=200',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fa47f4e68c9df4012903189f6cf074bec?width=200',
     price: '4',
     cents: '16',
     name: 'Bananas, each',
