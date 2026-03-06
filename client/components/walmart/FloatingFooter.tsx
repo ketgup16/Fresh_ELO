@@ -32,7 +32,7 @@ export function FloatingFooter({
         {secondaryAction.label}
       </Button>
       <Button
-        variant="primary"
+        variant="secondary"
         size="medium"
         leading={primaryAction.icon}
         subLabel={primaryAction.subLabel}
