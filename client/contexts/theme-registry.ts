@@ -4,7 +4,7 @@
  */
 
 export interface Theme {
-  id: 'walmart' | 'walmart-b2b' |
+  id: 'walmart' | 'walmart-b2b' | 'customer' |
       'wcp' | 'ax' | 'ax-sams-club' | 'ax-walmart' |
       'px' | 'px-sams-club' | 'px-walmart' | 'data-ventures' |
       'sams-club' | 'cashi-mx' | 'bodega' | 'walmart-legacy' | 'walmart-plus' |
@@ -37,6 +37,17 @@ export const AVAILABLE_THEMES: Theme[] = [
     semanticCSS: '/styles/themes/walmart-b2b/semantic.css',
     previewColor: '#002e99',
     inherits: 'walmart',
+  },
+
+  // ========== CUSTOMER ==========
+  {
+    id: 'customer',
+    name: 'Customer',
+    description: 'Blue & light-blue customer experience with unified WCP tokens',
+    primitiveCSS: '/styles/themes/base/primitive.css',
+    semanticCSS: '/styles/themes/customer/semantic.css',
+    previewColor: '#0053e2',
+    inherits: 'wcp',
   },
 
   // ========== WCP (Commerce Platform) ==========
