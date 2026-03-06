@@ -4,7 +4,6 @@ import { DeliveryScheduler } from './DeliveryScheduler';
 import { Button } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
 import {
-  CartFill,
   BoxCorners,
   ChevronDown,
   ChevronRight,
@@ -12,7 +11,6 @@ import {
   Gear,
   Flash,
   Pause,
-  BoxSparkFill,
 } from '@/components/icons';
 import styles from './ReplenishmentBasket.module.css';
 import tileStyles from './CondensedItemTile.module.css';
@@ -275,14 +273,18 @@ export function ReplenishmentBasket({
           aria-label="Expand upcoming delivery basket"
         >
           <div className={styles.notificationStrip}>
-            <Tag variant="tertiary" color="cyan">New</Tag>
+            <Tag variant="primary" color="spark">New</Tag>
             <span className={styles.notifText}>Add items, edit, or pause anytime</span>
           </div>
 
           <div className={styles.summaryRow}>
             <div className={styles.summaryLeft}>
               <div className={styles.cartIconWrap}>
-                <CartFill className={styles.cartIcon} />
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F5ac1c437b00342a0b54f6649d7d6eeb8?width=80"
+                  alt=""
+                  className={styles.cartIcon}
+                />
               </div>
               <div className={styles.summaryInfo}>
                 <span className={styles.deliveryLabel}>Your upcoming {deliveryDayShort} delivery</span>
@@ -323,7 +325,11 @@ export function ReplenishmentBasket({
             <div className={styles.panelTopHeader}>
               <div className={styles.panelTopHeaderLeft}>
                 <div className={styles.sparkIconWrap}>
-                  <BoxSparkFill className={styles.sparkIconInner} />
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F5ac1c437b00342a0b54f6649d7d6eeb8?width=80"
+                    alt=""
+                    className={styles.sparkIconInner}
+                  />
                 </div>
                 <span className={styles.panelTopTitle}>Your upcoming delivery</span>
               </div>

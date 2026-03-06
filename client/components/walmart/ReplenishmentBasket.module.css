@@ -90,15 +90,15 @@
   }
 }
 
-/* Notification strip — cyan banner */
+/* Notification strip — spark banner, bleeds to card edges */
 .notificationStrip {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: var(--ld-semantic-color-fill-accent-cyan-subtle, #e7f6fe);
-  border-radius: 8px;
-  padding: 4px 8px;
-  margin: -4px -4px 0;
+  background: var(--ld-semantic-color-fill-accent-spark-subtle, #fff8e1);
+  border-radius: 16px 16px 0 0;
+  padding: 6px 12px;
+  margin: -12px -12px 0;
 }
 
 .notifText {
@@ -127,19 +127,20 @@
 
 .cartIconWrap {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: var(--ld-semantic-color-action-fill-primary, #0071dc);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--ld-semantic-color-background-subtle, #f5f5f6);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .cartIcon {
-  width: 16px;
-  height: 16px;
-  color: #fff;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
 }
 
 .summaryInfo {
@@ -185,14 +186,14 @@
 /* Thumbnail strip */
 .thumbnailRow {
   display: flex;
-  gap: 4px;
+  gap: 6px;
   align-items: center;
 }
 
 .thumbWrap {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
   background: var(--ld-semantic-color-background-subtle, #f5f5f6);
   overflow: hidden;
   flex-shrink: 0;
@@ -202,21 +203,21 @@
 }
 
 .thumb {
-  width: 30px;
-  height: 30px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
 }
 
 .thumbMore {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
   background: var(--ld-semantic-color-fill-accent-gray-subtle, #f5f5f6);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--ld-semantic-color-text-subtle, #5b5c5e);
 }
@@ -299,9 +300,9 @@
 }
 
 .sparkIconInner {
-  width: 18px;
-  height: 18px;
-  color: #fff;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .panelTopTitle {
