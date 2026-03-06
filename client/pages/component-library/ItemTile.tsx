@@ -9,6 +9,7 @@ import { WCPAddToCart } from '@/components/walmart/WCPAddToCart';
 import { FlashDealsItemTile } from '@/components/walmart/FlashDealsItemTile';
 import { PromotionalItemTile } from '@/components/walmart/PromotionalItemTile';
 import { CondensedItemTile } from '@/components/walmart/CondensedItemTile';
+import { OrderSummaryCard } from '@/components/walmart/OrderSummaryCard';
 import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
 import styles from './ProductCards.module.css';
 
@@ -602,6 +603,42 @@ export default function ItemTilePage() {
         ]} />
       </div>
 
+      {/* ── OrderSummaryCard ───────────────────────────────────── */}
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>OrderSummaryCard</h2>
+        <p className={styles.sectionDesc}>
+          Checkout summary card used when item tiles are grouped together. Shows an estimated total header with an Edit action, line items (total + estimated taxes), and a payment method row with a large price display. Features the LD 3.5 animated magic-stroke gradient border.
+        </p>
+
+        <div className={styles.metaRow}>
+          <span className={styles.metaLabel}>Default</span>
+          <Tag variant="neutral">Grouped tiles</Tag>
+          <p className={styles.metaDesc}>
+            Drop below a set of grouped <code>CondensedItemTile</code> components. Pass real order data via props — all values default to sample data.
+          </p>
+        </div>
+
+        <div className={styles.frame}>
+          <div style={{ maxWidth: '375px', margin: '0 auto', padding: '16px', background: '#fff' }}>
+            <OrderSummaryCard
+              itemCount={14}
+              total="55.59"
+              estimatedTaxes="$0.00"
+              paymentLast4="1234"
+              onEdit={() => {}}
+            />
+          </div>
+        </div>
+
+        <PropTable rows={[
+          { name: 'itemCount', required: false, description: 'Number of items in the order, shown in the header and line item label. Defaults to 14.' },
+          { name: 'total', required: false, description: 'Order total as a decimal string, e.g. "55.59". Used for the header, line item, and large payment amount.' },
+          { name: 'estimatedTaxes', required: false, description: 'Estimated tax string shown in the line items row, e.g. "$0.00".' },
+          { name: 'paymentLast4', required: false, description: 'Last 4 digits of the payment card shown next to the VISA logo.' },
+          { name: 'onEdit', required: false, description: 'Callback fired when the "Edit" button is tapped.' },
+        ]} />
+      </div>
+
       {/* ── Import Reference ──────────────────────────────────── */}
       <div className={styles.usageSection}>
         <h2 className={styles.usageTitle}>Import Reference</h2>
@@ -660,6 +697,13 @@ export default function ItemTilePage() {
               tagVariant: 'neutral' as const,
               code: '<CarouselProductCard image="..." price="3" cents="68" idx={0} onQuantityChange={fn} />',
               path: '@/components/walmart/CarouselProductCard',
+            },
+            {
+              name: 'OrderSummaryCard',
+              tag: 'Grouped tiles',
+              tagVariant: 'info' as const,
+              code: '<OrderSummaryCard itemCount={14} total="55.59" estimatedTaxes="$0.00" paymentLast4="1234" />',
+              path: '@/components/walmart/OrderSummaryCard',
             },
           ].map((row) => (
             <div key={row.name} className={styles.usageRow}>
