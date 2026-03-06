@@ -24,7 +24,7 @@ export type WCPRichMediaSheetHeaderVariant =
   | 'inverse'
   | 'none';
 
-export type WCPRichMediaSheetSurfaceVariant = 'default' | 'brand' | 'brand-bold' | 'media';
+export type WCPRichMediaSheetSurfaceVariant = 'default' | 'brand' | 'brand-bold' | 'brand-gradient' | 'media';
 
 export interface WCPRichMediaSheetProps {
   /** Whether the sheet is open. */
@@ -176,7 +176,6 @@ function SheetHeader({ variant, title, subtitle, logoSlot, onClose, forceInverse
           </div>
           <CloseButton onClose={onClose} inverse={forceInverseChrome} />
         </div>
-        <div className={forceInverseChrome ? styles.headerDividerInverse : styles.headerDivider} />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 .bar {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  width: 100%;
   gap: 6px;
   padding: 6px;
   border-radius: 9999px;
@@ -32,7 +33,16 @@
 .barFixed {
   position: fixed;
   bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 12px;
+  right: 12px;
+  width: auto;
   z-index: 100;
+}
+
+@media (min-width: 480px) {
+  .barFixed {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
 }

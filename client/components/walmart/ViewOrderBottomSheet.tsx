@@ -139,7 +139,6 @@ function ScheduleView({
 }) {
   return (
     <div className={styles.scheduleWrapper}>
-      <div className={styles.scheduleBackground} />
       <div className={styles.scheduleContentLayer}>
         <div className={styles.scheduleHeader}>
           <h2 className={styles.scheduleTitle}>
@@ -240,6 +239,7 @@ export function ViewOrderBottomSheet({
       isOpen={isOpen}
       onClose={handleClose}
       headerVariant="none"
+      surfaceVariant={view === 'schedule' ? 'brand-gradient' : 'default'}
       adjustHeight="content"
       ariaLabel="View your upcoming delivery"
     >
