@@ -76,28 +76,25 @@ export function NewArrivalsCarousel() {
       <div className={styles.controls}>
         <IconButton
           aria-label="Previous slide"
-          variant="ghost"
+          floating
           size="small"
           onClick={() => { setCurrent((c) => (c - 1 + SLIDES.length) % SLIDES.length); setIsPaused(true); }}
-          UNSAFE_className={styles.controlBtn}
         >
           <ChevronLeft />
         </IconButton>
         <IconButton
           aria-label={isPaused ? 'Play carousel' : 'Pause carousel'}
-          variant="ghost"
+          floating
           size="small"
           onClick={() => setIsPaused((p) => !p)}
-          UNSAFE_className={styles.controlBtn}
         >
           {isPaused ? <PlayFill /> : <Pause />}
         </IconButton>
         <IconButton
           aria-label="Next slide"
-          variant="ghost"
+          floating
           size="small"
           onClick={() => { setCurrent((c) => (c + 1) % SLIDES.length); setIsPaused(true); }}
-          UNSAFE_className={styles.controlBtn}
         >
           <ChevronRight />
         </IconButton>
