@@ -670,20 +670,20 @@
   gap: var(--ld-primitive-scale-space-100, 8px);
 }
 
-/* Mini tile */
+/* Mini tile — fixed 80px width so card hugs content */
 .naMiniTile {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-  flex: 1 1 0;
-  min-width: 0;
+  width: 80px;
+  flex: 0 0 80px;
 }
 
 .naMiniTileImageWrap {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  width: 80px;
+  height: 80px;
   border-radius: 12px;
   background: var(--ld-semantic-color-surface, #fff);
   overflow: hidden;
@@ -693,8 +693,8 @@
 }
 
 .naMiniTileImage {
-  width: 80%;
-  height: 80%;
+  width: 72%;
+  height: 72%;
   object-fit: contain;
 }
 
