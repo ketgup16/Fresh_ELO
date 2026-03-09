@@ -657,12 +657,25 @@
 
 /* Wrapper to clip the bg image independently (so card content isn't clipped) */
 .naCategoryBgImageWrap {
-  display: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Decorative background image — hidden */
+/* Decorative background image — absolutely positioned top-right */
 .naCategoryBgImage {
-  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 55%;
+  object-fit: cover;
+  object-position: center top;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .naCategoryTop {
