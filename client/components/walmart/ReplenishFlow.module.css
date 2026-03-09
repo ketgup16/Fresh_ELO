@@ -665,15 +665,15 @@
   z-index: 0;
 }
 
-/* Decorative background image — absolutely positioned top-right, overflows to cut off */
+/* Decorative background image — fills right side of card, cut off at right edge */
 .naCategoryBgImage {
   position: absolute;
-  right: -15%;
-  top: 10%;
+  right: -10%;
+  top: 0;
   height: 100%;
   width: 65%;
   object-fit: cover;
-  object-position: center center;
+  object-position: right top;
   pointer-events: none;
   z-index: 0;
 }
