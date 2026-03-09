@@ -20,7 +20,8 @@ const FRAMES: FrameData[] = [
   },
 ];
 
-export const STEP_DISPLAY_DURATION = 1000;
+// 3 frames × 1633ms + 2 transitions × (200ms exit + 350ms enter) = ~6000ms total
+export const STEP_DISPLAY_DURATION = 1633;
 export const STEP_ENTER_DURATION = 350;
 export const STEP_EXIT_DURATION = 200;
 export const STEP_FRAME_COUNT = 3;
