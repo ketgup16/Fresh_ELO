@@ -578,6 +578,7 @@
   flex: 1 1 0;
   min-height: 0;
   overflow: hidden;
+  position: relative;
   animation: overlayEnter 300ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
@@ -627,6 +628,7 @@
 /* Scrollable category list */
 .naCategoryList {
   flex: 1 1 0;
+  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -634,7 +636,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--ld-primitive-scale-space-200, 16px);
-  padding: 0 var(--ld-primitive-scale-space-200, 16px) var(--ld-primitive-scale-space-200, 16px);
+  /* Extra bottom padding so last card isn't hidden under sticky footer */
+  padding: 0 var(--ld-primitive-scale-space-200, 16px) 96px;
 }
 
 .naCategoryList::-webkit-scrollbar {
@@ -814,13 +817,16 @@
   color: var(--ld-semantic-color-text-subtle, #51535A);
 }
 
-/* NeedAnythingElse floating footer */
+/* NeedAnythingElse floating footer — always anchored to bottom of naSection */
 .naFooter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-200, 16px) var(--ld-primitive-scale-space-200, 16px);
-  flex-shrink: 0;
   animation: footerSlideUp 350ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
