@@ -217,7 +217,7 @@
    ============================================================ */
 .condensedGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(96px, 143px));
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   gap: var(--ld-primitive-scale-space-100, 8px);
   padding: var(--ld-primitive-scale-space-100, 8px) 12px;
