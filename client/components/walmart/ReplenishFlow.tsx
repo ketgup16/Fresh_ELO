@@ -533,13 +533,15 @@ function NeedAnythingElseScreen({ onClose }: NeedAnythingElseScreenProps) {
             className={styles.naCategoryCard}
             style={{ backgroundColor: cat.bgColor }}
           >
-            {/* Decorative background image */}
-            <img
-              src={cat.bgImage}
-              alt=""
-              aria-hidden="true"
-              className={styles.naCategoryBgImage}
-            />
+            {/* Decorative background image — wrapped to clip independently from card content */}
+            <div className={styles.naCategoryBgImageWrap}>
+              <img
+                src={cat.bgImage}
+                alt=""
+                aria-hidden="true"
+                className={styles.naCategoryBgImage}
+              />
+            </div>
 
             {/* Category headline + chevron */}
             <div className={styles.naCategoryTop}>
