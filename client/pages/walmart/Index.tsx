@@ -1,4 +1,4 @@
-import { useRef, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { useLayoutSettings } from "@/contexts/LayoutSettingsContext";
 import { NewArrivalsCarousel } from "@/components/walmart/NewArrivalsCarousel";
@@ -50,6 +50,7 @@ const VACUUM_ITEMS: CarouselItem[] = [
 export default function Index() {
   const { setItemQuantity } = useCart();
   const { platform } = useLayoutSettings();
+  const [basketVisible, setBasketVisible] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -92,7 +93,7 @@ export default function Index() {
       <div className="pt-6 pb-32 space-y-4">
 
         {/* Active Curbside Order — countdown + express upgrade */}
-        <ActiveCurbsideCard />
+        <ActiveCurbsideCard onFlowComplete={() => setBasketVisible(true)} />
 
         {/* Order Status Card — mobile only, dismissible, hidden on iOS */}
         {platform !== 'ios' && (
@@ -298,8 +299,8 @@ export default function Index() {
 
       </div>
 
-      {/* Replenishment basket — mobile-only floating above BottomNav */}
-      <ReplenishmentBasket />
+      {/* Replenishment basket — hidden until ReplenishFlow completes */}
+      {basketVisible && <ReplenishmentBasket />}
     </ResponsiveLayout>
   );
 }

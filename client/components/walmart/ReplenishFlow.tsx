@@ -605,9 +605,10 @@ function NeedAnythingElseScreen({ onClose }: NeedAnythingElseScreenProps) {
 interface ReplenishFlowProps {
   isOpen: boolean;
   onClose: () => void;
+  onFlowComplete?: () => void;
 }
 
-export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
+export function ReplenishFlow({ isOpen, onClose, onFlowComplete }: ReplenishFlowProps) {
   const [screen, setScreen] = useState<ReplenishScreen>('loading');
   const [isExiting, setIsExiting] = useState(false);
   const [items, setItems] = useState<ReplenishItem[]>(REPLENISH_ITEMS);
@@ -687,6 +688,15 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
     dragStartY.current = null;
   }, []);
 
+  // NeedAnythingElse close → triggers iOS Home Screen flow
+  const handleNeedAnythingClose = useCallback(() => {
+    setIsExiting(true);
+    setTimeout(() => {
+      setIsExiting(false);
+      setShowIOSHome(true);
+    }, 250);
+  }, []);
+
   const handleNotificationTap = useCallback(() => {
     setShowDeliveryTracking(true);
   }, []);
@@ -697,7 +707,10 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
 
   const handleCloseIOSHome = useCallback(() => {
     setShowIOSHome(false);
-  }, []);
+    setShowDeliveryTracking(false);
+    onClose();
+    onFlowComplete?.();
+  }, [onClose, onFlowComplete]);
 
   if (!isOpen && !showIOSHome && !showDeliveryTracking) return null;
 
@@ -734,7 +747,7 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
       )}
 
       {screen === 'needAnythingElse' && (
-        <NeedAnythingElseScreen onClose={handleClose} />
+        <NeedAnythingElseScreen onClose={handleNeedAnythingClose} />
       )}
 
       {platform === 'ios' && (

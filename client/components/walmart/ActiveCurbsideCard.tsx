@@ -19,6 +19,7 @@ interface ActiveCurbsideCardProps {
   deliveryDay?: string;
   itemCount?: number;
   deliveryTotal?: string;
+  onFlowComplete?: () => void;
 }
 
 export function ActiveCurbsideCard({
@@ -30,6 +31,7 @@ export function ActiveCurbsideCard({
   deliveryDay = 'Friday',
   itemCount = 14,
   deliveryTotal = '$55.59',
+  onFlowComplete,
 }: ActiveCurbsideCardProps) {
   const [dismissed, setDismissed] = useState(false);
   const [showGetItNow, setShowGetItNow] = useState(false);
@@ -151,6 +153,7 @@ export function ActiveCurbsideCard({
       <ReplenishFlow
         isOpen={showReplenishFlow}
         onClose={() => setShowReplenishFlow(false)}
+        onFlowComplete={onFlowComplete}
       />
     </>
   );
