@@ -650,6 +650,7 @@
   gap: var(--ld-primitive-scale-space-150, 12px);
   padding: var(--ld-primitive-scale-space-200, 16px) var(--ld-primitive-scale-space-200, 16px) var(--ld-primitive-scale-space-150, 12px);
   position: relative;
+  width: fit-content;
 }
 
 /* Decorative background image — absolutely positioned top-right */
