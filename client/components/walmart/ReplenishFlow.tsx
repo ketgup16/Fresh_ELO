@@ -83,7 +83,83 @@ const REPLENISH_ITEMS: ReplenishItem[] = [
   },
 ];
 
-type ReplenishScreen = 'loading' | 'overview' | 'edit' | 'optin' | 'terms';
+// ─── NeedAnythingElse data ────────────────────────────────────────────────────
+
+interface NeedAnythingCategoryItem {
+  image: string;
+  price: string;
+  cents: string;
+  tag: string;
+}
+
+interface NeedAnythingCategory {
+  id: string;
+  headline: string;
+  bgColor: string;
+  headlineColor: string;
+  items: NeedAnythingCategoryItem[];
+}
+
+const NEED_ANYTHING_CATEGORIES: NeedAnythingCategory[] = [
+  {
+    id: 'valentines',
+    headline: 'Fun V-day treats for the whole class',
+    bgColor: 'rgba(255, 210, 227, 0.8)',
+    headlineColor: '#5C0A3E',
+    items: [
+      { image: REPLENISH_ITEMS[8].image, price: '3', cents: '25', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[11].image, price: '3', cents: '25', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[0].image, price: '3', cents: '25', tag: '5 oz' },
+    ],
+  },
+  {
+    id: 'meals',
+    headline: 'Enjoy quick and easy meals',
+    bgColor: 'rgba(255, 232, 190, 0.8)',
+    headlineColor: '#5C3D0A',
+    items: [
+      { image: REPLENISH_ITEMS[5].image, price: '0', cents: '90', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[7].image, price: '1', cents: '46', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[6].image, price: '8', cents: '66', tag: '5 oz' },
+    ],
+  },
+  {
+    id: 'pet',
+    headline: 'Spoil Luna with love & treats',
+    bgColor: 'rgba(220, 200, 170, 0.8)',
+    headlineColor: '#3D2A0A',
+    items: [
+      { image: REPLENISH_ITEMS[9].image, price: '5', cents: '98', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[4].image, price: '7', cents: '65', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[3].image, price: '8', cents: '58', tag: '5 oz' },
+    ],
+  },
+  {
+    id: 'cleaning',
+    headline: 'Start spring cleaning early',
+    bgColor: 'rgba(190, 230, 205, 0.8)',
+    headlineColor: '#0A3D1A',
+    items: [
+      { image: REPLENISH_ITEMS[10].image, price: '9', cents: '30', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[3].image, price: '0', cents: '33', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[1].image, price: '6', cents: '24', tag: '5 oz' },
+    ],
+  },
+  {
+    id: 'birthday',
+    headline: "Celebrate Ellie's 8th birthday on Feb 16",
+    bgColor: 'rgba(255, 248, 180, 0.8)',
+    headlineColor: '#3D3A0A',
+    items: [
+      { image: REPLENISH_ITEMS[11].image, price: '6', cents: '91', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[8].image, price: '3', cents: '25', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[0].image, price: '3', cents: '25', tag: '5 oz' },
+    ],
+  },
+];
+
+type ReplenishScreen = 'loading' | 'overview' | 'edit' | 'needAnythingElse';
+type FooterMode = 'default' | 'optin' | 'terms';
 
 // ─── Sub-components ────────────────────────────────────────────────────────────
 
@@ -117,12 +193,75 @@ function ReplenishHeader({ onClose }: ReplenishHeaderProps) {
   );
 }
 
+// ─── Shared inline footer cards ───────────────────────────────────────────────
+
+interface InlineOptinCardProps {
+  onYes: () => void;
+  onNotNow: () => void;
+}
+
+function InlineOptinCard({ onYes, onNotNow }: InlineOptinCardProps) {
+  return (
+    <div className={styles.inlineFooterCard}>
+      <div className={styles.optinCard}>
+        <div className={styles.optinHeader}>
+          <div className={styles.optinIconWrap}>
+            <CartFill width={20} height={20} />
+          </div>
+          <div className={styles.optinTextBlock}>
+            <div className={styles.optinTitle}>Add your usuals automatically?</div>
+            <div className={styles.optinSubtitle}>You can add items, edit, or pause anytime.</div>
+          </div>
+        </div>
+        <div className={styles.optinCtas}>
+          <Button variant="primary" size="medium" isFullWidth onClick={onYes}>
+            Yes, do it every week
+          </Button>
+          <Button variant="tertiary" size="medium" isFullWidth onClick={onNotNow}>
+            Not right now
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface InlineTermsCardProps {
+  onAgree: () => void;
+  onNotNow: () => void;
+}
+
+function InlineTermsCard({ onAgree, onNotNow }: InlineTermsCardProps) {
+  return (
+    <div className={styles.inlineFooterCard}>
+      <div className={styles.termsCard}>
+        <div className={styles.termsTitle}>Review the terms and conditions</div>
+        <div className={styles.termsBody}>
+          By selecting &ldquo;I agree&rdquo;, you agree that your auto-reorder(s) will begin when
+          you place your order and renew on a recurring basis at the chosen frequency on your
+          scheduled day and time. We&apos;ll charge you the price then in effect, plus taxes. To
+          avoid charges, pause in Auto-reorder 3 days before your delivery day. To pause, go to
+          Account &gt; My items &gt; Auto-reorder &gt; Pause. If your payment method is ineligible,
+          we&apos;ll charge any on file.
+        </div>
+        <div className={styles.termsCtas}>
+          <Button variant="primary" size="medium" isFullWidth onClick={onAgree}>
+            I agree
+          </Button>
+          <Button variant="tertiary" size="medium" isFullWidth onClick={onNotNow}>
+            Not right now
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Loading Screen ───────────────────────────────────────────────────────────
 
 function LoadingScreen() {
   return (
     <div className={styles.section}>
-      {/* Loading header (no close button on loading screen) */}
       <div className={styles.header}>
         <div className={styles.headerText}>
           <div className={styles.headerTitle}>Shop easily with items you buy often</div>
@@ -133,7 +272,6 @@ function LoadingScreen() {
       </div>
 
       <div className={styles.screenContent}>
-        {/* Product card with faded grid + StepAnimation overlay */}
         <div className={styles.productCard}>
           <div className={styles.condensedGrid}>
             {REPLENISH_ITEMS.map((item) => (
@@ -149,13 +287,11 @@ function LoadingScreen() {
             ))}
           </div>
 
-          {/* StepAnimation centered over the grid */}
           <div className={styles.stepAnimationWrap}>
             <StepAnimation />
           </div>
         </div>
 
-        {/* Skeleton pill footer — same slot as real footer */}
         <div className={styles.footer}>
           <div className={styles.skeletonPill}>
             <div className={styles.skeletonBar} />
@@ -172,10 +308,12 @@ interface OverviewScreenProps {
   items: ReplenishItem[];
   onClose: () => void;
   onEdit: () => void;
-  onAddToDelivery: () => void;
+  onAgree: () => void;
 }
 
-function OverviewScreen({ items, onClose, onEdit, onAddToDelivery }: OverviewScreenProps) {
+function OverviewScreen({ items, onClose, onEdit, onAgree }: OverviewScreenProps) {
+  const [footerMode, setFooterMode] = useState<FooterMode>('default');
+
   const total = items.reduce(
     (sum, item) => sum + (parseInt(item.price) * 100 + parseInt(item.cents)) * item.quantity,
     0
@@ -188,7 +326,6 @@ function OverviewScreen({ items, onClose, onEdit, onAddToDelivery }: OverviewScr
       <ReplenishHeader onClose={onClose} />
 
       <div className={styles.screenContent}>
-        {/* Scrollable product card */}
         <div className={styles.productCard}>
           <div className={styles.cardScroll}>
             <div className={styles.condensedGrid}>
@@ -207,7 +344,6 @@ function OverviewScreen({ items, onClose, onEdit, onAddToDelivery }: OverviewScr
           </div>
           <div className={styles.cardScrollFade} />
 
-          {/* Est. total row at bottom of card */}
           <div className={styles.totalRow}>
             <div className={styles.totalLeft}>
               <span className={styles.totalLabel}>Est. total</span>
@@ -218,17 +354,32 @@ function OverviewScreen({ items, onClose, onEdit, onAddToDelivery }: OverviewScr
           </div>
         </div>
 
-        {/* Floating footer */}
-        <div className={styles.footer}>
-          <div className={styles.footerBar}>
-            <Button variant="secondary" size="medium" onClick={onEdit}>
-              Edit
-            </Button>
-            <Button variant="primary" size="medium" strokeOn onClick={onAddToDelivery}>
-              Add to Friday delivery
-            </Button>
+        {footerMode === 'default' && (
+          <div className={styles.footer}>
+            <div className={styles.footerBar}>
+              <Button variant="secondary" size="medium" onClick={onEdit}>
+                Edit
+              </Button>
+              <Button variant="primary" size="medium" strokeOn onClick={() => setFooterMode('optin')}>
+                Add to Friday delivery
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
+
+        {footerMode === 'optin' && (
+          <InlineOptinCard
+            onYes={() => setFooterMode('terms')}
+            onNotNow={onClose}
+          />
+        )}
+
+        {footerMode === 'terms' && (
+          <InlineTermsCard
+            onAgree={onAgree}
+            onNotNow={onClose}
+          />
+        )}
       </div>
     </div>
   );
@@ -240,17 +391,18 @@ interface EditScreenProps {
   items: ReplenishItem[];
   onClose: () => void;
   onSave: () => void;
-  onAddToDelivery: () => void;
+  onAgree: () => void;
   onQuantityChange: (id: string, q: number) => void;
 }
 
-function EditScreen({ items, onClose, onSave, onAddToDelivery, onQuantityChange }: EditScreenProps) {
+function EditScreen({ items, onClose, onSave, onAgree, onQuantityChange }: EditScreenProps) {
+  const [footerMode, setFooterMode] = useState<FooterMode>('default');
+
   return (
     <div className={styles.section}>
       <ReplenishHeader onClose={onClose} />
 
       <div className={styles.screenContent}>
-        {/* Scrollable 2-col edit grid */}
         <div className={styles.productCard}>
           <div className={styles.cardScroll}>
             <div className={styles.editGrid}>
@@ -273,143 +425,137 @@ function EditScreen({ items, onClose, onSave, onAddToDelivery, onQuantityChange 
           <div className={styles.cardScrollFade} />
         </div>
 
-        {/* Floating footer */}
-        <div className={styles.footer}>
-          <div className={styles.footerBar}>
-            <Button variant="secondary" size="medium" onClick={onSave}>
-              Save
-            </Button>
-            <Button variant="primary" size="medium" onClick={onAddToDelivery}>
-              Add to Friday delivery
-            </Button>
+        {footerMode === 'default' && (
+          <div className={styles.footer}>
+            <div className={styles.footerBar}>
+              <Button variant="secondary" size="medium" onClick={onSave}>
+                Save
+              </Button>
+              <Button variant="primary" size="medium" onClick={() => setFooterMode('optin')}>
+                Add to Friday delivery
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
+
+        {footerMode === 'optin' && (
+          <InlineOptinCard
+            onYes={() => setFooterMode('terms')}
+            onNotNow={onClose}
+          />
+        )}
+
+        {footerMode === 'terms' && (
+          <InlineTermsCard
+            onAgree={onAgree}
+            onNotNow={onClose}
+          />
+        )}
       </div>
     </div>
   );
 }
 
-// ─── Opt-in Screen ────────────────────────────────────────────────────────────
+// ─── Need Anything Else Screen ────────────────────────────────────────────────
 
-interface OptinScreenProps {
-  items: ReplenishItem[];
+interface NeedAnythingElseScreenProps {
   onClose: () => void;
-  onYes: () => void;
-  onNotNow: () => void;
 }
 
-function OptinScreen({ items, onClose, onYes, onNotNow }: OptinScreenProps) {
+function NeedAnythingElseMiniTile({ image, price, cents, tag }: NeedAnythingCategoryItem) {
   return (
-    <div className={styles.section}>
-      <ReplenishHeader onClose={onClose} />
-
-      <div className={styles.screenWithCard}>
-        {/* Grid — partial height, scrollable */}
-        <div className={styles.screenWithCardGrid}>
-          <div className={styles.productCard}>
-            <div className={styles.cardScroll}>
-              <div className={styles.condensedGrid}>
-                {items.map((item) => (
-                  <CondensedItemTile
-                    key={item.id}
-                    image={item.image}
-                    price={item.price}
-                    cents={item.cents}
-                    tag={item.tag}
-                    variant="tertiary"
-                  />
-                ))}
-              </div>
-            </div>
-            <div className={styles.cardScrollFade} />
-          </div>
-        </div>
-
-        {/* Opt-in card */}
-        <div className={styles.screenWithCardFooter}>
-          <div className={styles.optinCard}>
-            <div className={styles.optinHeader}>
-              <div className={styles.optinIconWrap}>
-                <CartFill width={20} height={20} />
-              </div>
-              <div className={styles.optinTextBlock}>
-                <div className={styles.optinTitle}>Add your usuals automatically?</div>
-                <div className={styles.optinSubtitle}>You can add items, edit, or pause anytime.</div>
-              </div>
-            </div>
-            <div className={styles.optinCtas}>
-              <Button variant="primary" size="medium" isFullWidth onClick={onYes}>
-                Yes, do it every week
-              </Button>
-              <Button variant="tertiary" size="medium" isFullWidth onClick={onNotNow}>
-                Not right now
-              </Button>
-            </div>
-          </div>
-        </div>
+    <div className={styles.naMiniTile}>
+      <div className={styles.naMiniTileImageWrap}>
+        <img src={image} alt="Product" className={styles.naMiniTileImage} />
+        <button
+          type="button"
+          className={styles.naMiniTileAddBtn}
+          aria-label="Add to cart"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M7.5 8.5V13H8.5V8.5H13V7.5H8.5V3H7.5V7.5H3V8.5H7.5Z" fill="currentColor" />
+          </svg>
+        </button>
       </div>
+      <div className={styles.naMiniTilePrice}>
+        <span className={styles.naMiniTileDollar}>$</span>
+        <span className={styles.naMiniTilePriceNum}>{price}</span>
+        <span className={styles.naMiniTileCents}>{cents}</span>
+      </div>
+      <div className={styles.naMiniTileTag}>{tag}</div>
     </div>
   );
 }
 
-// ─── Terms Screen ─────────────────────────────────────────────────────────────
-
-interface TermsScreenProps {
-  items: ReplenishItem[];
-  onClose: () => void;
-  onAgree: () => void;
-  onNotNow: () => void;
-}
-
-function TermsScreen({ items, onClose, onAgree, onNotNow }: TermsScreenProps) {
+function NeedAnythingElseScreen({ onClose }: NeedAnythingElseScreenProps) {
   return (
-    <div className={styles.section}>
-      <ReplenishHeader onClose={onClose} />
+    <div className={styles.naSection}>
+      {/* Header */}
+      <div className={styles.naHeader}>
+        <div className={styles.naHeaderTitle}>Need anything else?</div>
+        <div className={styles.naHeaderActions}>
+          <button type="button" className={styles.naIconBtn} aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path
+                d="M13.4762 12.6191L17.5 16.6429M8.57143 14.2857C11.7264 14.2857 14.2857 11.7264 14.2857 8.57143C14.2857 5.41649 11.7264 2.85714 8.57143 2.85714C5.41649 2.85714 2.85714 5.41649 2.85714 8.57143C2.85714 11.7264 5.41649 14.2857 8.57143 14.2857Z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+          <button type="button" className={styles.naIconBtn} onClick={onClose} aria-label="Close">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M7.85355 8.72082L12 12.8673L12.7071 12.1602L8.56066 8.01371L12.7071 3.86726L12 3.16016L7.85355 7.3066L3.70711 3.16016L3 3.86726L7.14645 8.01371L3 12.1602L3.70711 12.8673L7.85355 8.72082Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
 
-      <div className={styles.screenWithCard}>
-        {/* Grid */}
-        <div className={styles.screenWithCardGrid}>
-          <div className={styles.productCard}>
-            <div className={styles.cardScroll}>
-              <div className={styles.condensedGrid}>
-                {items.map((item) => (
-                  <CondensedItemTile
-                    key={item.id}
-                    image={item.image}
-                    price={item.price}
-                    cents={item.cents}
-                    tag={item.tag}
-                    variant="tertiary"
-                  />
-                ))}
+      {/* Scrollable category rows */}
+      <div className={styles.naCategoryList}>
+        {NEED_ANYTHING_CATEGORIES.map((cat) => (
+          <div
+            key={cat.id}
+            className={styles.naCategoryCard}
+            style={{ backgroundColor: cat.bgColor }}
+          >
+            {/* Category headline + chevron */}
+            <div className={styles.naCategoryTop}>
+              <div
+                className={styles.naCategoryHeadline}
+                style={{ color: cat.headlineColor }}
+              >
+                {cat.headline}
               </div>
+              <button
+                type="button"
+                className={styles.naCategoryChevron}
+                aria-label={`See all ${cat.headline}`}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path
+                    d="M6 3L10.5 8L6 13"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
             </div>
-            <div className={styles.cardScrollFade} />
-          </div>
-        </div>
 
-        {/* Terms card */}
-        <div className={styles.screenWithCardFooter}>
-          <div className={styles.termsCard}>
-            <div className={styles.termsTitle}>Review the terms and conditions</div>
-            <div className={styles.termsBody}>
-              By selecting "I agree", you agree that your auto-reorder(s) will begin when you place
-              your order and renew on a recurring basis at the chosen frequency on your scheduled day
-              and time. We'll charge you the price then in effect, plus taxes. To avoid charges,
-              pause in Auto-reorder 3 days before your delivery day. To pause, go to Account &gt;
-              My items &gt; Auto-reorder &gt; Pause. If your payment method is ineligible, we'll
-              charge any on file.
-            </div>
-            <div className={styles.termsCtas}>
-              <Button variant="primary" size="medium" isFullWidth onClick={onAgree}>
-                I agree
-              </Button>
-              <Button variant="tertiary" size="medium" isFullWidth onClick={onNotNow}>
-                Not right now
-              </Button>
+            {/* Mini product tiles */}
+            <div className={styles.naMiniTileRow}>
+              {cat.items.map((item, idx) => (
+                <NeedAnythingElseMiniTile key={idx} {...item} />
+              ))}
             </div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
@@ -430,11 +576,9 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
   const { platform } = useLayoutSettings();
   const isNative = platform === 'ios' || platform === 'android';
 
-  // Body scroll lock
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-      // Reset to loading screen when re-opened
       setScreen('loading');
       setIsExiting(false);
     } else {
@@ -443,7 +587,6 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
-  // Auto-advance loading → overview after all 3 frames have been shown
   useEffect(() => {
     if (screen !== 'loading') return;
     loadingTimerRef.current = setTimeout(() => {
@@ -454,7 +597,6 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
     };
   }, [screen]);
 
-  // Escape key
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') handleClose();
@@ -486,7 +628,6 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
       aria-modal="true"
       aria-label="Your replenishment basket"
     >
-      {/* Status bar — same brand bg, dark icons to match light surface */}
       {isNative && (
         <div className={styles.statusBarWrap}>
           <NativeStatusBar
@@ -503,7 +644,7 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
           items={items}
           onClose={handleClose}
           onEdit={() => setScreen('edit')}
-          onAddToDelivery={() => setScreen('optin')}
+          onAgree={() => setScreen('needAnythingElse')}
         />
       )}
 
@@ -512,30 +653,15 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
           items={items}
           onClose={handleClose}
           onSave={() => setScreen('overview')}
-          onAddToDelivery={() => setScreen('optin')}
+          onAgree={() => setScreen('needAnythingElse')}
           onQuantityChange={handleQuantityChange}
         />
       )}
 
-      {screen === 'optin' && (
-        <OptinScreen
-          items={items}
-          onClose={handleClose}
-          onYes={() => setScreen('terms')}
-          onNotNow={handleClose}
-        />
+      {screen === 'needAnythingElse' && (
+        <NeedAnythingElseScreen onClose={handleClose} />
       )}
 
-      {screen === 'terms' && (
-        <TermsScreen
-          items={items}
-          onClose={handleClose}
-          onAgree={handleClose}
-          onNotNow={handleClose}
-        />
-      )}
-
-      {/* Home indicator — iOS only */}
       {platform === 'ios' && <div className={styles.homeIndicator} />}
       {platform === 'android' && <div className={styles.androidNavBar}><div className={styles.androidGestureBar} /></div>}
     </div>,
