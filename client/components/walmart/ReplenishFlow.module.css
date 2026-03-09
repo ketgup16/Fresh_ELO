@@ -527,7 +527,7 @@
 /* ============================================================
    Responsive: on wider screens, center the overlay like a modal
    ============================================================ */
-@media (min-width: 480px) {
+@media (min-width: 768px) {
   .overlay {
     max-width: 430px;
     left: 50%;
@@ -554,11 +554,6 @@
 /* ============================================================
    Reduced motion overrides
    ============================================================ */
-@media (min-width: 768px) {
-  .overlay {
-    display: none;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .overlay,
