@@ -182,10 +182,48 @@ export function GuidelinesDocIndex() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingTop: '24px' }}>
 
-      {/* Summary stats */}
+      {/* Hero totals */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '12px',
+      }}>
+        {[
+          { label: 'Total Components & Patterns', count: 90 },
+          { label: 'Icons in Library', count: 303 },
+          { label: 'Guideline Documents', count: docSections.reduce((sum, s) => sum + s.docs.length, 0) },
+        ].map((stat) => (
+          <div key={stat.label} style={{
+            padding: '24px 20px',
+            backgroundColor: 'var(--ld-semantic-color-surface)',
+            borderRadius: '8px',
+            boxShadow: 'var(--ld-semantic-elevation-100)',
+            textAlign: 'center',
+          }}>
+            <div style={{
+              fontSize: '40px',
+              fontWeight: 800,
+              color: 'var(--ld-semantic-color-text-brand-bold)',
+              marginBottom: '4px',
+              lineHeight: 1,
+            }}>
+              {stat.count}+
+            </div>
+            <div style={{
+              fontSize: '14px',
+              color: 'var(--ld-semantic-color-text-subtle)',
+              fontWeight: 500,
+            }}>
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Breakdown stats */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
         gap: '12px',
       }}>
         {[
@@ -196,26 +234,26 @@ export function GuidelinesDocIndex() {
           { label: 'Component Docs', count: docSections[0].docs.length },
           { label: 'Design System Docs', count: docSections[1].docs.length },
           { label: 'Enforcement Rules', count: docSections[2].docs.length },
-          { label: 'Cross-Cutting Guides', count: docSections[3].docs.length },
+          { label: 'Implementation Skills', count: docSections[3].docs.length },
           { label: 'Migrations & History', count: docSections[4].docs.length },
         ].map((stat) => (
           <div key={stat.label} style={{
-            padding: '16px 20px',
+            padding: '12px 16px',
             backgroundColor: 'var(--ld-semantic-color-surface)',
             borderRadius: '8px',
             boxShadow: 'var(--ld-semantic-elevation-100)',
             textAlign: 'center',
           }}>
             <div style={{
-              fontSize: '28px',
+              fontSize: '22px',
               fontWeight: 700,
-              color: 'var(--ld-semantic-color-text-brand-bold)',
-              marginBottom: '4px',
+              color: 'var(--ld-semantic-color-text)',
+              marginBottom: '2px',
             }}>
               {stat.count}
             </div>
             <div style={{
-              fontSize: '13px',
+              fontSize: '12px',
               color: 'var(--ld-semantic-color-text-subtle)',
               fontWeight: 500,
             }}>
