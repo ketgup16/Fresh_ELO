@@ -653,8 +653,6 @@
   padding: var(--ld-primitive-scale-space-200, 16px);
   position: relative;
   width: 100%;
-  height: 228px;
-  overflow: hidden;
 }
 
 /* Wrapper to clip the bg image independently (so card content isn't clipped) */
