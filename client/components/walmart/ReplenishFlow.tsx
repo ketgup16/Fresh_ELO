@@ -327,7 +327,20 @@ function MainScreen({ items, onClose, onAgree, onQuantityChange }: MainScreenPro
   const [isEditing, setIsEditing] = useState(false);
   const [animPhase, setAnimPhase] = useState<AnimPhase>('idle');
   const [footerMode, setFooterMode] = useState<FooterMode>('default');
+  const [checkedItems, setCheckedItems] = useState<Set<string>>(() => new Set(items.map(i => i.id)));
   const animTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleCheckChange = useCallback((id: string, checked: boolean) => {
+    setCheckedItems(prev => {
+      const next = new Set(prev);
+      if (checked) {
+        next.add(id);
+      } else {
+        next.delete(id);
+      }
+      return next;
+    });
+  }, []);
 
   const total = items.reduce(
     (sum, item) => sum + (parseInt(item.price) * 100 + parseInt(item.cents)) * item.quantity,
@@ -385,11 +398,12 @@ function MainScreen({ items, onClose, onAgree, onQuantityChange }: MainScreenPro
                   name={isEditing ? item.name : undefined}
                   variant={isEditing ? 'edit' : 'tertiary'}
                   quantity={item.quantity}
-                  isChecked={isEditing}
+                  isChecked={checkedItems.has(item.id)}
                   itemIndex={idx}
                   animationClass={getAnimClass()}
                   onAddToCart={!isEditing ? () => {} : undefined}
                   onQuantityChange={isEditing ? (q) => onQuantityChange(item.id, q) : undefined}
+                  onCheckChange={isEditing ? (checked) => handleCheckChange(item.id, checked) : undefined}
                 />
               ))}
             </div>
