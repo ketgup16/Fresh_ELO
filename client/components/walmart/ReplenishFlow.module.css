@@ -657,25 +657,12 @@
 
 /* Wrapper to clip the bg image independently (so card content isn't clipped) */
 .naCategoryBgImageWrap {
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
-/* Decorative background image — absolutely positioned top-right */
+/* Decorative background image — hidden */
 .naCategoryBgImage {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 55%;
-  object-fit: cover;
-  object-position: center top;
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 .naCategoryTop {
@@ -728,6 +715,9 @@
   gap: var(--ld-primitive-scale-space-100, 8px);
   position: relative;
   z-index: 1;
+  background: var(--ld-semantic-color-surface, #fff);
+  border-radius: var(--ld-primitive-scale-borderradius-200, 16px);
+  padding: var(--ld-primitive-scale-space-100, 8px);
 }
 
 .naMiniTileRow > * {
