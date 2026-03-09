@@ -60,6 +60,7 @@ const ModalsPage = React.lazy(() => import("./pages/component-library/Modals"));
 const NudgesPage = React.lazy(() => import("./pages/component-library/Nudges"));
 const PanelsPage = React.lazy(() => import("./pages/component-library/Panels"));
 const GuidelinesPage = React.lazy(() => import("./pages/component-library/Guidelines"));
+const DocIndexPage = React.lazy(() => import("./pages/component-library/DocIndexPage"));
 const GettingStartedPage = React.lazy(() => import("./pages/component-library/GettingStarted"));
 
 // Shadcn/Radix component pages (lazy loaded to avoid blocking initial render)
@@ -222,6 +223,7 @@ const App = () => (
                 <Route path="text-fields" element={<TextFieldsPage />} />
                 <Route path="textarea" element={<TextAreaPage />} />
                 <Route path="guidelines" element={<GuidelinesPage />} />
+                <Route path="doc-index" element={<DocIndexPage />} />
                 <Route path="getting-started" element={<GettingStartedPage />} />
                 {/* Shadcn/Radix Components */}
                 <Route path="accordion" element={<AccordionPage />} />

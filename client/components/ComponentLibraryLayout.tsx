@@ -37,6 +37,7 @@ const navigationSections: NavSection[] = [
     titleKey: 'componentLibrary.gettingStarted',
     items: [
       { id: 'overview', nameKey: 'componentLibrary.overview', path: '/component-library' },
+      { id: 'doc-index', nameKey: 'componentLibrary.navDocIndex', path: '/component-library/doc-index' },
       { id: 'getting-started', nameKey: 'componentLibrary.gettingStartedNav', path: '/component-library/getting-started' },
       { id: 'guidelines', nameKey: 'componentLibrary.guidelines', path: '/component-library/guidelines' },
       { id: 'foundations', nameKey: 'componentLibrary.navFoundations', path: '/component-library/foundations' },
