@@ -81,11 +81,11 @@
 }
 
 .checkItem:nth-child(2).visible {
-  animation-delay: 120ms;
+  animation-delay: 70ms;
 }
 
 .checkItem:nth-child(3).visible {
-  animation-delay: 240ms;
+  animation-delay: 140ms;
 }
 
 .checkIcon {

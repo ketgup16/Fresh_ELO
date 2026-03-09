@@ -20,7 +20,7 @@ const FRAMES: FrameData[] = [
   },
 ];
 
-export const STEP_DISPLAY_DURATION = 3500;
+export const STEP_DISPLAY_DURATION = 1000;
 export const STEP_ENTER_DURATION = 350;
 export const STEP_EXIT_DURATION = 200;
 export const STEP_FRAME_COUNT = 3;
