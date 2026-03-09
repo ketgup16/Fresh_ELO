@@ -15,12 +15,15 @@ const FRAMES: FrameData[] = [
   {
     headline: 'Keeping an eye on discounts',
   },
+  {
+    headline: 'Getting your cart ready',
+  },
 ];
 
 export const STEP_DISPLAY_DURATION = 3500;
 export const STEP_ENTER_DURATION = 350;
 export const STEP_EXIT_DURATION = 200;
-export const STEP_FRAME_COUNT = 2;
+export const STEP_FRAME_COUNT = 3;
 // Total time to show all frames once:
 // frames × display + (frames-1) × (exit + enter)
 export const STEP_TOTAL_DURATION =
