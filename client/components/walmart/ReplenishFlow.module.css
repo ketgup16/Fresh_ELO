@@ -402,6 +402,12 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  background: radial-gradient(
+    ellipse 70% 50% at center,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 /* ============================================================
