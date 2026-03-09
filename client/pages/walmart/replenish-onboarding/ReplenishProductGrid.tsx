@@ -1,325 +1,252 @@
-import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
+import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/Button';
-import { X, Minus, Plus, Check, Circle } from '@/components/icons';
+import { X, Minus, Plus } from '@/components/icons';
+import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
 import styles from './ReplenishProductGrid.module.css';
-import pageStyles from './ReplenishOnboarding.module.css';
 
-export interface ProductItem {
-  id: string;
-  image: string;
+interface ProductItem {
+  id: number;
   name: string;
-  priceDollars: string;
-  priceCents: string;
-  quantity: number;
-  sizeLabel?: string;
+  img: string;
+  price: string;
+  cents: string;
+  qty: number;
+  size: string;
 }
 
-const DEFAULT_ITEMS: ProductItem[] = [
-  { id: '1', image: PRODUCT_IMAGES.redApple, name: 'Fresh Honeycrisp Apple, Each', priceDollars: '1', priceCents: '25', quantity: 3, sizeLabel: '5 oz' },
-  { id: '2', image: PRODUCT_IMAGES.oatlyOatMilk, name: 'Oatly Oat Milk, 64 fl oz', priceDollars: '3', priceCents: '85', quantity: 2, sizeLabel: '5 oz' },
-  { id: '3', image: PRODUCT_IMAGES.eggs6Count, name: 'Great Value Large Eggs, 12 ct', priceDollars: '8', priceCents: '86', quantity: 1, sizeLabel: '5 oz' },
-  { id: '4', image: PRODUCT_IMAGES.starbucksDoubleshot, name: 'Starbucks Doubleshot Espresso', priceDollars: '2', priceCents: '62', quantity: 5, sizeLabel: '5 oz' },
-  { id: '5', image: PRODUCT_IMAGES.bettergooodsFruitSnacks, name: 'Bettergoods Fruit Snacks', priceDollars: '3', priceCents: '77', quantity: 2, sizeLabel: '5 oz' },
-  { id: '6', image: PRODUCT_IMAGES.skinnyPopPopcorn, name: 'SkinnyPop Original Popcorn', priceDollars: '3', priceCents: '24', quantity: 1, sizeLabel: '5 oz' },
-  { id: '7', image: PRODUCT_IMAGES.kikkomanSoySauce, name: 'Kikkoman Soy Sauce, 10 fl oz', priceDollars: '3', priceCents: '47', quantity: 2, sizeLabel: '5 oz' },
-  { id: '8', image: PRODUCT_IMAGES.freshStrawberries, name: 'Fresh Strawberries, 1 lb', priceDollars: '5', priceCents: '27', quantity: 1, sizeLabel: '5 oz' },
-  { id: '9', image: PRODUCT_IMAGES.bettergoodsSalsa, name: 'Bettergoods Medium Salsa', priceDollars: '1', priceCents: '98', quantity: 2, sizeLabel: '5 oz' },
-  { id: '10', image: PRODUCT_IMAGES.bettergoodsFrozenMeal, name: 'Bettergoods Frozen Meal', priceDollars: '4', priceCents: '75', quantity: 1, sizeLabel: '5 oz' },
-  { id: '11', image: PRODUCT_IMAGES.goodCultureCottageCheese, name: 'Good Culture Cottage Cheese', priceDollars: '4', priceCents: '22', quantity: 2, sizeLabel: '5 oz' },
-  { id: '12', image: PRODUCT_IMAGES.bettergoodsCarrotJuice, name: 'Bettergoods Carrot Juice', priceDollars: '4', priceCents: '66', quantity: 1, sizeLabel: '5 oz' },
+export const DEFAULT_ITEMS: ProductItem[] = [
+  { id: 1, name: 'Fresh Honeycrisp Apple, Each', img: PRODUCT_IMAGES.airFryer, price: '1', cents: '25', qty: 3, size: '5 oz' },
+  { id: 2, name: 'Organic Whole Milk, 1 Gallon', img: PRODUCT_IMAGES.cookwareSet, price: '3', cents: '85', qty: 2, size: '5 oz' },
+  { id: 3, name: 'Great Value Sliced Bread', img: PRODUCT_IMAGES.mugSet, price: '8', cents: '86', qty: 1, size: '5 oz' },
+  { id: 4, name: 'Bananas, Each', img: PRODUCT_IMAGES.cordlessVacuum, price: '2', cents: '62', qty: 5, size: '5 oz' },
+  { id: 5, name: 'Large Eggs, 12 Count', img: PRODUCT_IMAGES.comforterSet, price: '3', cents: '77', qty: 2, size: '5 oz' },
+  { id: 6, name: 'Baby Spinach, 5 oz', img: PRODUCT_IMAGES.headphones, price: '3', cents: '47', qty: 1, size: '5 oz' },
+  { id: 7, name: 'Greek Yogurt, Plain', img: PRODUCT_IMAGES.tablet, price: '1', cents: '98', qty: 2, size: '5 oz' },
+  { id: 8, name: 'Chicken Breast, Fresh', img: PRODUCT_IMAGES.digitalCamera, price: '5', cents: '27', qty: 1, size: '5 oz' },
+  { id: 9, name: 'Cheddar Cheese Block', img: PRODUCT_IMAGES.boucleArmchair, price: '4', cents: '75', qty: 2, size: '5 oz' },
+  { id: 10, name: 'Pasta Sauce, Marinara', img: PRODUCT_IMAGES.leatherHandbag, price: '4', cents: '22', qty: 1, size: '5 oz' },
+  { id: 11, name: 'Brown Rice, 2 lb', img: PRODUCT_IMAGES.blackCardigan, price: '4', cents: '66', qty: 2, size: '5 oz' },
+  { id: 12, name: 'Orange Juice, 52 oz', img: PRODUCT_IMAGES.rattanCabinet, price: '3', cents: '24', qty: 1, size: '5 oz' },
 ];
 
-/* ── Condensed Tile (3-column view) ── */
-function CondensedTile({ item }: { item: ProductItem }) {
-  return (
-    <div className={styles.tile}>
-      <div className={styles.tileImageArea}>
-        <div className={styles.tileImageWrap}>
-          <img src={item.image} alt={item.name} className={styles.tileImage} />
-          <div className={styles.quantityBadge}>
-            <span className={styles.quantityText}>{item.quantity}</span>
-            <span className={styles.quantityText} style={{ width: 6 }}>x</span>
-          </div>
-        </div>
-      </div>
-      <div className={styles.priceRow}>
-        <span className={styles.priceDollar}>$</span>
-        <span className={styles.priceWhole}>{item.priceDollars}</span>
-        <span className={styles.priceCents}>{item.priceCents}</span>
-      </div>
-    </div>
-  );
-}
-
-/* ── Edit Tile (2-column view) ── */
-function EditTile({
-  item,
-  onIncrement,
-  onDecrement,
-}: {
-  item: ProductItem;
-  onIncrement: () => void;
-  onDecrement: () => void;
-}) {
-  return (
-    <div className={styles.editTile}>
-      <div className={styles.editImageArea}>
-        <div className={styles.editImageWrap}>
-          <img src={item.image} alt={item.name} className={styles.editImage} />
-          <button type="button" className={styles.circleSelector} aria-label="Select item">
-            <Circle style={{ width: 24, height: 24, color: 'var(--ld-semantic-color-text, #2E2F32)' }} />
-          </button>
-        </div>
-      </div>
-      <div className={styles.priceRow}>
-        <span className={styles.priceDollar}>$</span>
-        <span className={styles.priceWhole}>{item.priceDollars}</span>
-        <span className={styles.priceCents}>{item.priceCents}</span>
-        {item.sizeLabel && (
-          <div className={styles.sizeTag}>
-            <span className={styles.sizeTagText}>{item.sizeLabel}</span>
-          </div>
-        )}
-      </div>
-      <div className={styles.editName}>{item.name}</div>
-      <div className={styles.quantityStepper}>
-        <button type="button" className={styles.stepperBtn} onClick={onDecrement} aria-label="Decrease quantity">
-          <Minus style={{ width: 16, height: 16, color: 'var(--ld-semantic-color-text, #2E2F32)' }} />
-        </button>
-        <span className={styles.stepperCount}>{item.quantity}</span>
-        <button type="button" className={styles.stepperBtn} onClick={onIncrement} aria-label="Increase quantity">
-          <Plus style={{ width: 16, height: 16, color: 'var(--ld-semantic-color-text, #2E2F32)' }} />
-        </button>
-      </div>
-    </div>
-  );
-}
-
-/* ── View modes ── */
 export type GridView = 'browse' | 'edit' | 'confirm' | 'terms';
 
 interface ReplenishProductGridProps {
-  deliveryDay: string;
-  deliveryTime: string;
-  view: GridView;
-  items: ProductItem[];
+  selectedDay: string;
+  selectedTime: string;
+  gridView: GridView;
+  onGridViewChange: (view: GridView) => void;
   onClose: () => void;
-  onEdit: () => void;
-  onAddToDelivery: () => void;
-  onSave: () => void;
-  onConfirmWeekly: () => void;
-  onDecline: () => void;
-  onAgree: () => void;
-  onUpdateItem: (id: string, qty: number) => void;
 }
 
 export function ReplenishProductGrid({
-  deliveryDay,
-  deliveryTime,
-  view,
-  items,
+  selectedDay,
+  selectedTime,
+  gridView,
+  onGridViewChange,
   onClose,
-  onEdit,
-  onAddToDelivery,
-  onSave,
-  onConfirmWeekly,
-  onDecline,
-  onAgree,
-  onUpdateItem,
 }: ReplenishProductGridProps) {
-  const totalPrice = items.reduce((sum, item) => {
-    const price = parseFloat(`${item.priceDollars}.${item.priceCents}`);
-    return sum + price * item.quantity;
-  }, 0);
-  const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  const [items, setItems] = useState<ProductItem[]>(DEFAULT_ITEMS);
 
-  // Build rows for condensed view (3 cols)
-  const condensedRows: ProductItem[][] = [];
+  const totalItems = items.reduce((sum, item) => sum + item.qty, 0);
+  const totalPrice = items.reduce((sum, item) => sum + (parseFloat(item.price) + parseFloat(item.cents) / 100) * item.qty, 0);
+
+  const updateQty = useCallback((id: number, delta: number) => {
+    setItems(prev => prev.map(item =>
+      item.id === id ? { ...item, qty: Math.max(0, item.qty + delta) } : item
+    ).filter(item => item.qty > 0));
+  }, []);
+
+  const browseRows = [];
   for (let i = 0; i < items.length; i += 3) {
-    condensedRows.push(items.slice(i, i + 3));
+    browseRows.push(items.slice(i, i + 3));
   }
 
-  // Build rows for edit view (2 cols)
-  const editRows: ProductItem[][] = [];
+  const editRows = [];
   for (let i = 0; i < items.length; i += 2) {
     editRows.push(items.slice(i, i + 2));
   }
 
-  const isEditMode = view === 'edit';
-  const showOverlay = view === 'confirm' || view === 'terms';
-
   return (
-    <div className={pageStyles.section}>
-      {/* Header */}
-      <div className={pageStyles.header}>
-        <div className={pageStyles.headerText}>
-          <div className={pageStyles.headerTitle}>
-            Shop easily with items you buy often
+    <div className={styles.page}>
+      <div className={styles.section}>
+        <div className={styles.headerRow}>
+          <div className={styles.headerInfo}>
+            <div className={styles.headerTitle}>Shop easily with items you buy often</div>
+            <div className={styles.headerSub}>
+              Get it by <span className={styles.headerSubLink}>{selectedDay}, {selectedTime}</span>
+            </div>
           </div>
-          <span className={pageStyles.headerSubtext}>
-            Get it by{' '}
-            <span className={pageStyles.headerSubtextLink}>
-              {deliveryDay}, {deliveryTime}
-            </span>
-          </span>
+          <button type="button" className={styles.closeButton} onClick={onClose} aria-label="Close">
+            <X width={16} height={16} />
+          </button>
         </div>
-        <button type="button" className={pageStyles.closeButton} onClick={onClose} aria-label="Close">
-          <X style={{ width: 16, height: 16, color: 'var(--ld-semantic-color-text, #2E2F32)' }} />
+
+        <div className={styles.contentProducts}>
+          {gridView === 'edit' ? (
+            <div className={styles.editContent}>
+              {editRows.map((row, rowIdx) => (
+                <div key={rowIdx} className={styles.editRow}>
+                  {row.map((item) => (
+                    <EditTile key={item.id} item={item} onUpdateQty={updateQty} />
+                  ))}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className={styles.browseContent}>
+              {browseRows.map((row, rowIdx) => (
+                <div key={rowIdx} className={styles.browseRow}>
+                  {row.map((item) => (
+                    <CondensedTile key={item.id} item={item} />
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
+          {(gridView === 'browse' || gridView === 'confirm' || gridView === 'terms') && (
+            <div className={styles.overlay} />
+          )}
+        </div>
+      </div>
+
+      <div className={styles.footer}>
+        {gridView === 'browse' && (
+          <BrowseFooter
+            selectedDay={selectedDay}
+            onEdit={() => onGridViewChange('edit')}
+            onAdd={() => onGridViewChange('confirm')}
+          />
+        )}
+        {gridView === 'edit' && (
+          <EditFooter
+            selectedDay={selectedDay}
+            onSave={() => onGridViewChange('browse')}
+            onAdd={() => onGridViewChange('confirm')}
+          />
+        )}
+        {gridView === 'confirm' && (
+          <ConfirmFooter
+            totalItems={totalItems}
+            totalPrice={totalPrice}
+            onEdit={() => onGridViewChange('edit')}
+            onConfirm={() => onGridViewChange('terms')}
+            onDecline={onClose}
+          />
+        )}
+        {gridView === 'terms' && (
+          <TermsFooter
+            onAgree={onClose}
+            onDecline={onClose}
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+function CondensedTile({ item }: { item: ProductItem }) {
+  return (
+    <div className={styles.condensedTile}>
+      <div className={styles.condensedImageWrap}>
+        <img src={item.img} alt={item.name} className={styles.condensedImg} />
+        <div className={styles.qtyBadge}>
+          <span className={styles.qtyBadgeCount}>{item.qty}</span>
+          <span className={styles.qtyBadgeX}>x</span>
+        </div>
+      </div>
+      <div className={styles.priceRow}>
+        <span className={styles.priceDollar}>${item.price}</span>
+        <span className={styles.priceDollar}>{item.cents}</span>
+      </div>
+    </div>
+  );
+}
+
+function EditTile({ item, onUpdateQty }: { item: ProductItem; onUpdateQty: (id: number, delta: number) => void }) {
+  return (
+    <div className={styles.editTile}>
+      <div className={styles.editImageWrap}>
+        <img src={item.img} alt={item.name} className={styles.editImg} />
+      </div>
+      <div className={styles.editPriceRow}>
+        <span className={styles.priceDollar}>${item.price}</span>
+        <span className={styles.priceDollar}>{item.cents}</span>
+        <div className={styles.sizeTag}>
+          <span className={styles.sizeTagText}>{item.size}</span>
+        </div>
+      </div>
+      <div className={styles.editName}>{item.name}</div>
+      <div className={styles.stepper}>
+        <button type="button" className={styles.stepperBtn} onClick={() => onUpdateQty(item.id, -1)} aria-label="Decrease quantity">
+          <Minus width={16} height={16} />
+        </button>
+        <span className={styles.stepperCount}>{item.qty}</span>
+        <button type="button" className={styles.stepperBtn} onClick={() => onUpdateQty(item.id, 1)} aria-label="Increase quantity">
+          <Plus width={16} height={16} />
         </button>
       </div>
-
-      {/* Product content area */}
-      <div className={styles.contentProducts}>
-        {isEditMode ? (
-          /* Edit mode — 2-column expanded tiles */
-          <div className={styles.editContent}>
-            {editRows.map((row, rowIdx) => (
-              <div key={rowIdx} className={styles.editRow}>
-                {row.map((item) => (
-                  <EditTile
-                    key={item.id}
-                    item={item}
-                    onIncrement={() => onUpdateItem(item.id, item.quantity + 1)}
-                    onDecrement={() => onUpdateItem(item.id, Math.max(0, item.quantity - 1))}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
-        ) : (
-          /* Browse mode — 3-column condensed tiles */
-          <div className={styles.contentInner}>
-            {condensedRows.map((row, rowIdx) => (
-              <div key={rowIdx} className={styles.productRow}>
-                {row.map((item) => (
-                  <CondensedTile key={item.id} item={item} />
-                ))}
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Overlay for confirm/terms views */}
-        {showOverlay && <div className={styles.overlay} />}
-      </div>
-
-      {/* Footer area — varies by view */}
-      {view === 'browse' && (
-        <BrowseFooter onEdit={onEdit} onAddToDelivery={onAddToDelivery} deliveryDay={deliveryDay} />
-      )}
-      {view === 'edit' && (
-        <EditFooter
-          onSave={onSave}
-          onAddToDelivery={onAddToDelivery}
-          deliveryDay={deliveryDay}
-          itemCount={itemCount}
-          totalPrice={totalPrice}
-        />
-      )}
-      {view === 'confirm' && (
-        <ConfirmFooter
-          itemCount={itemCount}
-          totalPrice={totalPrice}
-          deliveryDay={deliveryDay}
-          onConfirmWeekly={onConfirmWeekly}
-          onDecline={onDecline}
-        />
-      )}
-      {view === 'terms' && (
-        <TermsFooter onAgree={onAgree} onDecline={onDecline} />
-      )}
     </div>
   );
 }
 
-/* ── Browse Footer ── */
-function BrowseFooter({
-  onEdit,
-  onAddToDelivery,
-  deliveryDay,
-}: {
-  onEdit: () => void;
-  onAddToDelivery: () => void;
-  deliveryDay: string;
-}) {
+function BrowseFooter({ selectedDay, onEdit, onAdd }: { selectedDay: string; onEdit: () => void; onAdd: () => void }) {
   return (
-    <div className={pageStyles.footerSection}>
-      <div className={pageStyles.floatingFooter}>
-        <Button variant="secondary" size="medium" onClick={onEdit}>
-          Edit
+    <div className={styles.floatingFooter}>
+      <Button variant="secondary" size="medium" onClick={onEdit}>Edit</Button>
+      <div className={styles.footerPrimary}>
+        <Button variant="primary" size="medium" isFullWidth onClick={onAdd}>
+          Add to {selectedDay} delivery
         </Button>
-        <div style={{ flex: 1 }}>
-          <Button variant="primary" size="medium" isFullWidth onClick={onAddToDelivery}>
-            Add to {deliveryDay} delivery
-          </Button>
-        </div>
       </div>
     </div>
   );
 }
 
-/* ── Edit Footer ── */
-function EditFooter({
-  onSave,
-  onAddToDelivery,
-  deliveryDay,
-  itemCount,
-  totalPrice,
-}: {
-  onSave: () => void;
-  onAddToDelivery: () => void;
-  deliveryDay: string;
-  itemCount: number;
-  totalPrice: number;
-}) {
+function EditFooter({ selectedDay, onSave, onAdd }: { selectedDay: string; onSave: () => void; onAdd: () => void }) {
   return (
-    <div className={pageStyles.footerSection}>
-      <div className={pageStyles.floatingFooter}>
-        <Button variant="secondary" size="medium" onClick={onSave}>
-          Save
+    <div className={styles.floatingFooter}>
+      <Button variant="secondary" size="medium" onClick={onSave}>Save</Button>
+      <div className={styles.footerPrimary}>
+        <Button variant="primary" size="medium" isFullWidth onClick={onAdd}>
+          Add to {selectedDay} delivery
         </Button>
-        <div style={{ flex: 1 }}>
-          <Button variant="primary" size="medium" isFullWidth onClick={onAddToDelivery}>
-            Add to {deliveryDay} delivery
-          </Button>
-        </div>
       </div>
     </div>
   );
 }
 
-/* ── Confirm Footer (Replenish 1.3) ── */
 function ConfirmFooter({
-  itemCount,
+  totalItems,
   totalPrice,
-  deliveryDay,
-  onConfirmWeekly,
+  onEdit,
+  onConfirm,
   onDecline,
 }: {
-  itemCount: number;
+  totalItems: number;
   totalPrice: number;
-  deliveryDay: string;
-  onConfirmWeekly: () => void;
+  onEdit: () => void;
+  onConfirm: () => void;
   onDecline: () => void;
 }) {
   return (
-    <div className={styles.confirmSection}>
-      <div className={styles.summaryRow}>
-        <span className={styles.summaryLabel}>Estimated total</span>
-        <span className={styles.summaryLabel}>({itemCount} items)</span>
-        <span className={styles.summaryLabel}>:</span>
-        <span className={styles.summaryPrice}>${totalPrice.toFixed(2)}</span>
-        <div style={{ flex: 1 }} />
-        <Button variant="tertiary" size="small" onClick={() => {}}>
-          Edit
-        </Button>
+    <div className={styles.confirmFooter}>
+      <div className={styles.confirmHeader}>
+        <div className={styles.confirmTitle}>Set up weekly delivery?</div>
+        <div className={styles.confirmSummary}>
+          <span className={styles.confirmSummaryLabel}>Est. total</span>
+          <span className={styles.confirmSummaryCount}>({totalItems} items)</span>
+          <span className={styles.confirmSummaryCount}>:</span>
+          <span className={styles.confirmSummaryPrice}>${totalPrice.toFixed(2)}</span>
+        </div>
+        <button type="button" className={styles.confirmEditBtn} onClick={onEdit}>Edit</button>
       </div>
-      <p className={styles.confirmText}>
-        <span className={styles.confirmTextBold}>Get your usuals delivered every {deliveryDay}.</span>{' '}
+      <p className={styles.confirmDesc}>
+        <span className={styles.confirmBold}>Never run out of your favorites.</span>{' '}
         You can add items, edit, or pause anytime.
       </p>
-      <div className={styles.confirmButtons}>
-        <Button variant="primary" size="medium" isFullWidth onClick={onConfirmWeekly}>
+      <div className={styles.confirmCtas}>
+        <Button variant="primary" size="medium" isFullWidth onClick={onConfirm}>
           Yes, do it every week
         </Button>
         <Button variant="tertiary" size="medium" isFullWidth onClick={onDecline}>
@@ -330,22 +257,15 @@ function ConfirmFooter({
   );
 }
 
-/* ── Terms Footer (Replenish 1.4) ── */
-function TermsFooter({
-  onAgree,
-  onDecline,
-}: {
-  onAgree: () => void;
-  onDecline: () => void;
-}) {
+function TermsFooter({ onAgree, onDecline }: { onAgree: () => void; onDecline: () => void }) {
   return (
-    <div className={styles.termsSection}>
+    <div className={styles.termsFooter}>
+      <div className={styles.termsTitle}>Review the terms and conditions</div>
       <p className={styles.termsText}>
-        By tapping &quot;I agree&quot;, you accept the{' '}
-        <span className={styles.termsLink}>Terms &amp; Conditions</span>{' '}
-        for recurring delivery. You can modify or cancel anytime from your account settings.
+        By clicking "I agree" you accept the terms and conditions for recurring weekly delivery of your selected items.
+        You can modify or cancel at any time from your account settings.
       </p>
-      <div className={styles.termsButtons}>
+      <div className={styles.termsCtas}>
         <Button variant="primary" size="medium" isFullWidth onClick={onAgree}>
           I agree
         </Button>
@@ -356,5 +276,3 @@ function TermsFooter({
     </div>
   );
 }
-
-export { DEFAULT_ITEMS };

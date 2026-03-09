@@ -1,7 +1,7 @@
-import { MagicFill } from '@/components/icons';
+import { useCallback } from 'react';
 import { Button } from '@/components/ui/Button';
+import { MagicFill } from '@/components/icons';
 import styles from './OnboardingBottomSheet.module.css';
-import sheetStyles from './ReplenishOnboarding.module.css';
 
 interface OnboardingBottomSheetProps {
   selectedDay: string;
@@ -16,28 +16,27 @@ export function OnboardingBottomSheet({
   onChangeDayTime,
   onViewUsuals,
 }: OnboardingBottomSheetProps) {
+  const handleScrimClick = useCallback((e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) return;
+  }, []);
+
   return (
-    <div className={sheetStyles.scrim}>
-      <div className={sheetStyles.bottomSheet} style={{ maxHeight: '65vh' }}>
-        {/* Background image */}
+    <div className={styles.scrim} onClick={handleScrimClick}>
+      <div className={styles.sheet}>
         <img
           src="https://api.builder.io/api/v1/image/assets/TEMP/9b6d8a55f90c242ac141216aed48aeaabde06936?width=750"
           alt=""
-          className={styles.backgroundImage}
-          aria-hidden="true"
+          className={styles.background}
         />
-
-        <div className={sheetStyles.bottomSheetContent} style={{ paddingBottom: 62 }}>
-          <div className={sheetStyles.grabber} />
-
-          <div className={styles.sheetContent}>
-            {/* Title + Link */}
-            <div className={styles.titleSection}>
-              <h2 className={styles.title}>
+        <div className={styles.content}>
+          <div className={styles.grabber} />
+          <div className={styles.innerContent}>
+            <div className={styles.titleBlock}>
+              <div className={styles.title}>
                 Rest easy—get your groceries delivered every{' '}
                 <span className={styles.titleUnderline}>{selectedDay}</span> at{' '}
                 <span className={styles.titleUnderline}>{selectedTime}</span>
-              </h2>
+              </div>
               <button
                 className={styles.changeDayTime}
                 onClick={onChangeDayTime}
@@ -46,30 +45,23 @@ export function OnboardingBottomSheet({
                 Change day &amp; time
               </button>
             </div>
-
-            {/* Visual */}
             <div className={styles.visual}>
               <img
                 src="https://api.builder.io/api/v1/image/assets/TEMP/171cfbc3f0fc02a2d28dfad5a6afbac8b5eb2c57?width=1038"
                 alt="Groceries"
                 className={styles.groceriesImage}
               />
-              <div className={styles.curatedLabel}>
-                <MagicFill
-                  className={styles.magicIcon}
-                  style={{ color: 'var(--ld-semantic-color-text, #2E2F32)' }}
-                />
+              <div className={styles.curatedRow}>
+                <MagicFill width={16} height={16} />
                 <span className={styles.curatedText}>
                   Curated for you, based on your history
                 </span>
               </div>
             </div>
           </div>
-
-          {/* CTA */}
           <div className={styles.ctaSection}>
-            <p className={styles.ctaSubtext}>Add, edit, or pause anytime.</p>
-            <div className={styles.ctaButtonWrap}>
+            <div className={styles.subtitle}>Add, edit, or pause anytime.</div>
+            <div className={styles.buttonWrapper}>
               <Button
                 variant="primary"
                 size="medium"

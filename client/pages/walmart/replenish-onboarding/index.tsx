@@ -2,44 +2,28 @@ import { useState, useCallback } from 'react';
 import { OnboardingBottomSheet } from './OnboardingBottomSheet';
 import { DayTimePicker } from './DayTimePicker';
 import { ReplenishLoading } from './ReplenishLoading';
-import {
-  ReplenishProductGrid,
-  DEFAULT_ITEMS,
-  type GridView,
-  type ProductItem,
-} from './ReplenishProductGrid';
-import styles from './ReplenishOnboarding.module.css';
+import { ReplenishProductGrid, type GridView } from './ReplenishProductGrid';
 
-type OnboardingStep =
-  | 'bottomSheet'
-  | 'dayTimePicker'
-  | 'loading'
-  | 'productGrid';
+type OnboardingStep = 'bottomSheet' | 'dayTimePicker' | 'loading' | 'productGrid';
 
 export default function ReplenishOnboarding() {
   const [step, setStep] = useState<OnboardingStep>('bottomSheet');
-  const [gridView, setGridView] = useState<GridView>('browse');
   const [selectedDay, setSelectedDay] = useState('Friday');
   const [selectedTime, setSelectedTime] = useState('4pm');
-  const [items, setItems] = useState<ProductItem[]>(DEFAULT_ITEMS);
+  const [gridView, setGridView] = useState<GridView>('browse');
 
   const handleChangeDayTime = useCallback(() => {
     setStep('dayTimePicker');
   }, []);
 
   const handleSaveDayTime = useCallback((day: string, time: string) => {
-    setSelectedDay(day);
-    // Map abbreviated day to full day name
     const dayMap: Record<string, string> = {
-      Tue: 'Tuesday',
-      Wed: 'Wednesday',
-      Thur: 'Thursday',
-      Fri: 'Friday',
-      Sat: 'Saturday',
+      Tue: 'Tuesday', Wed: 'Wednesday', Thur: 'Thursday',
+      Fri: 'Friday', Sat: 'Saturday',
     };
     setSelectedDay(dayMap[day] || day);
-    // Extract the start time from the time range
-    const startTime = time.split('–')[0] || time;
+    // Extract the start time from time slots like "4pm–5pm"
+    const startTime = time.split('–')[0];
     setSelectedTime(startTime);
     setStep('bottomSheet');
   }, []);
@@ -53,86 +37,65 @@ export default function ReplenishOnboarding() {
     setGridView('browse');
   }, []);
 
+  const handleGridViewChange = useCallback((view: GridView) => {
+    setGridView(view);
+  }, []);
+
   const handleClose = useCallback(() => {
+    // Reset to initial state
     setStep('bottomSheet');
-  }, []);
-
-  const handleEdit = useCallback(() => {
-    setGridView('edit');
-  }, []);
-
-  const handleSave = useCallback(() => {
     setGridView('browse');
   }, []);
 
-  const handleAddToDelivery = useCallback(() => {
-    setGridView('confirm');
-  }, []);
-
-  const handleConfirmWeekly = useCallback(() => {
-    setGridView('terms');
-  }, []);
-
-  const handleDecline = useCallback(() => {
-    setStep('bottomSheet');
-  }, []);
-
-  const handleAgree = useCallback(() => {
-    // Completed — go back to bottomSheet or a success state
-    setStep('bottomSheet');
-  }, []);
-
-  const handleUpdateItem = useCallback((id: string, qty: number) => {
-    setItems((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, quantity: qty } : item))
-    );
-  }, []);
-
-  return (
-    <div className={styles.page}>
-      {/* Product grid / loading views are always mounted behind bottom sheets */}
-      {step === 'loading' && (
-        <ReplenishLoading
-          deliveryDay={selectedDay}
-          deliveryTime={selectedTime}
-          onLoadingComplete={handleLoadingComplete}
-        />
-      )}
-
-      {step === 'productGrid' && (
-        <ReplenishProductGrid
-          deliveryDay={selectedDay}
-          deliveryTime={selectedTime}
-          view={gridView}
-          items={items}
-          onClose={handleClose}
-          onEdit={handleEdit}
-          onAddToDelivery={handleAddToDelivery}
-          onSave={handleSave}
-          onConfirmWeekly={handleConfirmWeekly}
-          onDecline={handleDecline}
-          onAgree={handleAgree}
-          onUpdateItem={handleUpdateItem}
-        />
-      )}
-
-      {/* Bottom sheets overlay on top */}
-      {step === 'bottomSheet' && (
+  switch (step) {
+    case 'bottomSheet':
+      return (
         <OnboardingBottomSheet
           selectedDay={selectedDay}
           selectedTime={selectedTime}
           onChangeDayTime={handleChangeDayTime}
           onViewUsuals={handleViewUsuals}
         />
-      )}
-
-      {step === 'dayTimePicker' && (
+      );
+    case 'dayTimePicker':
+      return (
         <DayTimePicker
-          initialDay="Fri"
-          initialTime="4pm–5pm"
+          initialDay={
+            // Reverse map full name to abbreviation
+            ({ Tuesday: 'Tue', Wednesday: 'Wed', Thursday: 'Thur', Friday: 'Fri', Saturday: 'Sat' } as Record<string, string>)[selectedDay] || 'Fri'
+          }
+          initialTime={`${selectedTime}–${getNextHour(selectedTime)}`}
           onSave={handleSaveDayTime}
         />
-      )}
-    </div>
-  );
+      );
+    case 'loading':
+      return (
+        <ReplenishLoading
+          selectedDay={selectedDay}
+          selectedTime={selectedTime}
+          onLoadingComplete={handleLoadingComplete}
+        />
+      );
+    case 'productGrid':
+      return (
+        <ReplenishProductGrid
+          selectedDay={selectedDay}
+          selectedTime={selectedTime}
+          gridView={gridView}
+          onGridViewChange={handleGridViewChange}
+          onClose={handleClose}
+        />
+      );
+  }
+}
+
+function getNextHour(time: string): string {
+  const match = time.match(/^(\d+)(am|pm)$/);
+  if (!match) return '5pm';
+  let hour = parseInt(match[1]);
+  const period = match[2];
+  hour += 1;
+  if (hour === 12) return `12${period === 'am' ? 'pm' : 'am'}`;
+  if (hour === 13) return `1${period}`;
+  return `${hour}${period}`;
 }

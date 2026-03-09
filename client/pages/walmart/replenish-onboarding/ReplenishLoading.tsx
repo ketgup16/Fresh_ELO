@@ -1,118 +1,82 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { MagicFill, Check } from '@/components/icons';
 import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
 import styles from './ReplenishLoading.module.css';
-import pageStyles from './ReplenishOnboarding.module.css';
 
-const LOADING_ITEMS = [
-  { image: PRODUCT_IMAGES.redApple, qty: 3 },
-  { image: PRODUCT_IMAGES.oatlyOatMilk, qty: 2 },
-  { image: PRODUCT_IMAGES.eggs6Count, qty: 1 },
-  { image: PRODUCT_IMAGES.starbucksDoubleshot, qty: 2 },
-  { image: PRODUCT_IMAGES.bettergooodsFruitSnacks, qty: 1 },
-  { image: PRODUCT_IMAGES.skinnyPopPopcorn, qty: 3 },
-  { image: PRODUCT_IMAGES.kikkomanSoySauce, qty: 1 },
-  { image: PRODUCT_IMAGES.freshStrawberries, qty: 2 },
-  { image: PRODUCT_IMAGES.bettergoodsSalsa, qty: 1 },
+const LOADING_PRODUCTS = [
+  PRODUCT_IMAGES.airFryer,
+  PRODUCT_IMAGES.cookwareSet,
+  PRODUCT_IMAGES.mugSet,
+  PRODUCT_IMAGES.cordlessVacuum,
+  PRODUCT_IMAGES.comforterSet,
+  PRODUCT_IMAGES.headphones,
+  PRODUCT_IMAGES.tablet,
+  PRODUCT_IMAGES.digitalCamera,
+  PRODUCT_IMAGES.boucleArmchair,
 ];
 
 const VALUE_PROPS = ['pantry items', 'easy dinners', 'kid-friendly snacks'];
 
 interface ReplenishLoadingProps {
-  deliveryDay: string;
-  deliveryTime: string;
+  selectedDay: string;
+  selectedTime: string;
   onLoadingComplete: () => void;
 }
 
 export function ReplenishLoading({
-  deliveryDay,
-  deliveryTime,
+  selectedDay,
+  selectedTime,
   onLoadingComplete,
 }: ReplenishLoadingProps) {
-  const [visibleProps, setVisibleProps] = useState(0);
-
   useEffect(() => {
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    VALUE_PROPS.forEach((_, idx) => {
-      timers.push(
-        setTimeout(() => setVisibleProps(idx + 1), 800 * (idx + 1))
-      );
-    });
-    timers.push(
-      setTimeout(onLoadingComplete, 800 * VALUE_PROPS.length + 1200)
-    );
-    return () => timers.forEach(clearTimeout);
+    const timer = setTimeout(onLoadingComplete, 4000);
+    return () => clearTimeout(timer);
   }, [onLoadingComplete]);
 
-  // Build 3-column rows
-  const rows: typeof LOADING_ITEMS[] = [];
-  for (let i = 0; i < LOADING_ITEMS.length; i += 3) {
-    rows.push(LOADING_ITEMS.slice(i, i + 3));
+  const rows = [];
+  for (let i = 0; i < LOADING_PRODUCTS.length; i += 3) {
+    rows.push(LOADING_PRODUCTS.slice(i, i + 3));
   }
 
   return (
-    <div className={pageStyles.section}>
-      {/* Header */}
-      <div className={pageStyles.header}>
-        <div className={pageStyles.headerText}>
-          <div className={pageStyles.headerTitle}>
-            Shop easily with items you buy often
+    <div className={styles.page}>
+      <div className={styles.section}>
+        <div className={styles.header}>
+          <div className={styles.headerTitle}>Shop easily with items you buy often</div>
+          <div className={styles.headerSub}>
+            Get it by <span className={styles.headerSubLink}>{selectedDay}, {selectedTime}</span>
           </div>
-          <span className={pageStyles.headerSubtext}>
-            Get it by{' '}
-            <span className={pageStyles.headerSubtextLink}>
-              {deliveryDay}, {deliveryTime}
-            </span>
-          </span>
         </div>
-      </div>
-
-      {/* Product card with loading overlay */}
-      <div className={styles.productCard}>
-        {rows.map((row, rowIdx) => (
-          <div key={rowIdx} className={styles.productRow}>
-            {row.map((item, itemIdx) => (
-              <div key={`${rowIdx}-${itemIdx}`} className={styles.tileLoading}>
-                <div className={styles.tileImageArea}>
-                  <img src={item.image} alt="" className={styles.tileImage} />
-                  <div className={styles.quantityBadge}>
-                    <span className={styles.quantityText}>{item.qty}</span>
-                    <span className={styles.quantityText} style={{ width: 6 }}>x</span>
+        <div className={styles.contentProducts}>
+          {rows.map((row, rowIdx) => (
+            <div key={rowIdx} className={styles.productRow}>
+              {row.map((img, colIdx) => (
+                <div key={colIdx} className={styles.tile}>
+                  <div className={styles.tileImage}>
+                    <img src={img} alt="" className={styles.tileImg} />
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        ))}
-
-        {/* Step Animation overlay */}
-        <div className={styles.stepAnimation}>
-          <MagicFill className={styles.magicIconLarge} />
-          <div className={styles.animatedTitle}>
-            Adding what you usually buy
-          </div>
-          <div className={styles.valueProps}>
-            {VALUE_PROPS.map((prop, idx) => (
-              idx < visibleProps && (
-                <div
-                  key={prop}
-                  className={`${styles.valueProp} ${styles.fadeIn}`}
-                  style={{ animationDelay: `${idx * 100}ms` }}
-                >
-                  <Check className={styles.checkIcon} />
+              ))}
+            </div>
+          ))}
+          <div className={styles.stepAnimation}>
+            <MagicFill width={32} height={32} />
+            <div className={styles.magicTitle}>Adding what you usually buy</div>
+            <div className={styles.valueProps}>
+              {VALUE_PROPS.map((prop) => (
+                <div key={prop} className={styles.valueProp}>
+                  <Check width={16} height={16} />
                   <span className={styles.valuePropText}>{prop}</span>
                 </div>
-              )
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Skeleton footer */}
-      <div className={pageStyles.footerSection}>
-        <div className={styles.skeletonFooter}>
+      <div className={styles.footer}>
+        <div className={styles.skeletonBar}>
           <div className={styles.skeleton}>
-            <div className={styles.skeletonGradient} />
+            <div className={styles.skeletonGlow} />
           </div>
         </div>
       </div>
