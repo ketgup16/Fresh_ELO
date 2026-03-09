@@ -1,0 +1,134 @@
+/* OnboardingBottomSheet — initial bottom sheet with delivery schedule intro */
+
+.sheetContent {
+  display: flex;
+  padding-bottom: var(--ld-primitive-scale-space-300, 24px);
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-25, 2px);
+  align-self: stretch;
+}
+
+.title {
+  align-self: stretch;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  text-align: center;
+  font-family: var(--ld-semantic-font-display-large-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-display-large-size, 32px);
+  font-weight: var(--ld-semantic-font-display-large-weight-alt, 700);
+  line-height: var(--ld-semantic-font-display-large-lineheight, 40px);
+  padding: 0 var(--ld-primitive-scale-space-200, 16px);
+}
+
+.titleUnderline {
+  text-decoration: underline;
+}
+
+.changeDayTime {
+  color: var(--ld-semantic-color-text, #2E2F32);
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  height: var(--ld-primitive-scale-space-400, 32px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+}
+
+/* ── Visual section ── */
+.visual {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+}
+
+.groceriesImage {
+  width: 100%;
+  max-width: 519px;
+  height: auto;
+  object-fit: contain;
+}
+
+.curatedLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+  align-self: stretch;
+  padding: 0 var(--ld-primitive-scale-space-200, 16px);
+}
+
+.curatedText {
+  color: var(--ld-semantic-color-text, #2E2F32);
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: 15px;
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: 22px;
+}
+
+/* ── CTA section ── */
+.ctaSection {
+  display: flex;
+  padding: 0 var(--ld-primitive-scale-space-200, 16px);
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-300, 24px);
+  align-self: stretch;
+}
+
+.ctaSubtext {
+  color: var(--ld-semantic-color-text-inverse, #FFF);
+  text-align: center;
+  font-family: var(--ld-semantic-font-heading-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-heading-small-size, 18px);
+  font-weight: var(--ld-semantic-font-heading-small-weight-default, 700);
+  line-height: var(--ld-semantic-font-heading-small-lineheight, 24px);
+}
+
+.ctaButtonWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+/* ── Background image ── */
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* ── Arch decoration ── */
+.arch {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Magic icon gradient */
+.magicIcon {
+  width: var(--ld-semantic-scale-icon-small, 16px);
+  height: var(--ld-semantic-scale-icon-small, 16px);
+  flex-shrink: 0;
+}
