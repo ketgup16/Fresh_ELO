@@ -321,9 +321,10 @@ interface MainScreenProps {
   onClose: () => void;
   onAgree: () => void;
   onQuantityChange: (id: string, q: number) => void;
+  onRemoveItems: (ids: string[]) => void;
 }
 
-function MainScreen({ items, onClose, onAgree, onQuantityChange }: MainScreenProps) {
+function MainScreen({ items, onClose, onAgree, onQuantityChange, onRemoveItems }: MainScreenProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [animPhase, setAnimPhase] = useState<AnimPhase>('idle');
   const [footerMode, setFooterMode] = useState<FooterMode>('default');
@@ -433,6 +434,13 @@ function MainScreen({ items, onClose, onAgree, onQuantityChange }: MainScreenPro
                 size="medium"
                 onClick={() => {
                   if (isEditing) {
+                    // Remove unchecked items before transitioning back
+                    const removedIds = items
+                      .filter(i => !checkedItems.has(i.id))
+                      .map(i => i.id);
+                    if (removedIds.length > 0) {
+                      onRemoveItems(removedIds);
+                    }
                     triggerTransition(false);
                   } else {
                     triggerTransition(true);
@@ -646,6 +654,10 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
     setItems((prev) => prev.map((item) => item.id === id ? { ...item, quantity: q } : item));
   }, []);
 
+  const handleRemoveItems = useCallback((ids: string[]) => {
+    setItems((prev) => prev.filter((item) => !ids.includes(item.id)));
+  }, []);
+
   if (!isOpen) return null;
 
   const overlayClass = [styles.overlay, isExiting ? styles.exiting : ''].filter(Boolean).join(' ');
@@ -674,6 +686,7 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
           onClose={handleClose}
           onAgree={() => setScreen('needAnythingElse')}
           onQuantityChange={handleQuantityChange}
+          onRemoveItems={handleRemoveItems}
         />
       )}
 
