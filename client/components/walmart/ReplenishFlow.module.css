@@ -626,11 +626,25 @@
   position: relative;
 }
 
+/* Decorative background image — absolutely positioned top-right */
+.naCategoryBgImage {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 55%;
+  object-fit: cover;
+  object-position: center top;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .naCategoryTop {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
   gap: 8px;
+  position: relative;
+  z-index: 1;
 }
 
 .naCategoryHeadline {
@@ -646,28 +660,35 @@
   overflow: hidden;
 }
 
+/* WCP Floating Button XSmall */
 .naCategoryChevron {
   display: flex;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  background: var(--ld-semantic-color-surface, rgba(255, 255, 255, 0.80));
+  background: var(--ld-semantic-color-action-fill-secondary, #fff);
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
   border: none;
   cursor: pointer;
   color: var(--ld-semantic-color-text, #2E2F32);
   flex-shrink: 0;
+  z-index: 2;
 }
 
 .naCategoryChevron:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--ld-semantic-color-action-fill-secondary-hovered, #f5f5f5);
 }
 
 /* Mini tile row */
 .naMiniTileRow {
   display: flex;
   gap: var(--ld-primitive-scale-space-100, 8px);
+  position: relative;
+  z-index: 1;
 }
 
 /* Mini tile — fixed 80px width so card hugs content */

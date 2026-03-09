@@ -97,6 +97,7 @@ interface NeedAnythingCategory {
   headline: string;
   bgColor: string;
   headlineColor: string;
+  bgImage: string;
   items: NeedAnythingCategoryItem[];
 }
 
@@ -106,10 +107,11 @@ const NEED_ANYTHING_CATEGORIES: NeedAnythingCategory[] = [
     headline: 'Fun V-day treats for the whole class',
     bgColor: 'rgba(255, 210, 227, 0.8)',
     headlineColor: '#5C0A3E',
+    bgImage: 'https://images.pexels.com/photos/4887162/pexels-photo-4887162.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop',
     items: [
       { image: REPLENISH_ITEMS[8].image, price: '3', cents: '25', tag: '5 oz' },
-      { image: REPLENISH_ITEMS[11].image, price: '3', cents: '25', tag: '5 oz' },
-      { image: REPLENISH_ITEMS[0].image, price: '3', cents: '25', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[5].image, price: '3', cents: '25', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[10].image, price: '3', cents: '25', tag: '5 oz' },
     ],
   },
   {
@@ -117,8 +119,9 @@ const NEED_ANYTHING_CATEGORIES: NeedAnythingCategory[] = [
     headline: 'Enjoy quick and easy meals',
     bgColor: 'rgba(255, 232, 190, 0.8)',
     headlineColor: '#5C3D0A',
+    bgImage: 'https://images.pexels.com/photos/36480176/pexels-photo-36480176.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop',
     items: [
-      { image: REPLENISH_ITEMS[5].image, price: '0', cents: '90', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[10].image, price: '0', cents: '90', tag: '5 oz' },
       { image: REPLENISH_ITEMS[7].image, price: '1', cents: '46', tag: '5 oz' },
       { image: REPLENISH_ITEMS[6].image, price: '8', cents: '66', tag: '5 oz' },
     ],
@@ -128,6 +131,7 @@ const NEED_ANYTHING_CATEGORIES: NeedAnythingCategory[] = [
     headline: 'Spoil Luna with love & treats',
     bgColor: 'rgba(220, 200, 170, 0.8)',
     headlineColor: '#3D2A0A',
+    bgImage: 'https://images.pexels.com/photos/20871530/pexels-photo-20871530.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop',
     items: [
       { image: REPLENISH_ITEMS[9].image, price: '5', cents: '98', tag: '5 oz' },
       { image: REPLENISH_ITEMS[4].image, price: '7', cents: '65', tag: '5 oz' },
@@ -139,8 +143,9 @@ const NEED_ANYTHING_CATEGORIES: NeedAnythingCategory[] = [
     headline: 'Start spring cleaning early',
     bgColor: 'rgba(190, 230, 205, 0.8)',
     headlineColor: '#0A3D1A',
+    bgImage: 'https://images.pexels.com/photos/3854583/pexels-photo-3854583.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop',
     items: [
-      { image: REPLENISH_ITEMS[10].image, price: '9', cents: '30', tag: '5 oz' },
+      { image: REPLENISH_ITEMS[4].image, price: '9', cents: '30', tag: '5 oz' },
       { image: REPLENISH_ITEMS[3].image, price: '0', cents: '33', tag: '5 oz' },
       { image: REPLENISH_ITEMS[1].image, price: '6', cents: '24', tag: '5 oz' },
     ],
@@ -150,6 +155,7 @@ const NEED_ANYTHING_CATEGORIES: NeedAnythingCategory[] = [
     headline: "Celebrate Ellie's 8th birthday on Feb 16",
     bgColor: 'rgba(255, 248, 180, 0.8)',
     headlineColor: '#3D3A0A',
+    bgImage: 'https://images.pexels.com/photos/9405268/pexels-photo-9405268.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop',
     items: [
       { image: REPLENISH_ITEMS[11].image, price: '6', cents: '91', tag: '5 oz' },
       { image: REPLENISH_ITEMS[8].image, price: '3', cents: '25', tag: '5 oz' },
@@ -523,6 +529,14 @@ function NeedAnythingElseScreen({ onClose }: NeedAnythingElseScreenProps) {
             className={styles.naCategoryCard}
             style={{ backgroundColor: cat.bgColor }}
           >
+            {/* Decorative background image */}
+            <img
+              src={cat.bgImage}
+              alt=""
+              aria-hidden="true"
+              className={styles.naCategoryBgImage}
+            />
+
             {/* Category headline + chevron */}
             <div className={styles.naCategoryTop}>
               <div
