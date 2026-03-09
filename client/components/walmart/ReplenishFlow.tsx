@@ -308,24 +308,60 @@ function LoadingScreen() {
   );
 }
 
-// ─── Overview Screen ──────────────────────────────────────────────────────────
+// ─── Main Screen (Overview + Edit unified with animation) ─────────────────────
 
-interface OverviewScreenProps {
+type AnimPhase = 'idle' | 'shrink' | 'grow';
+
+interface MainScreenProps {
   items: ReplenishItem[];
   onClose: () => void;
-  onEdit: () => void;
   onAgree: () => void;
+  onQuantityChange: (id: string, q: number) => void;
 }
 
-function OverviewScreen({ items, onClose, onEdit, onAgree }: OverviewScreenProps) {
+function MainScreen({ items, onClose, onAgree, onQuantityChange }: MainScreenProps) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [animPhase, setAnimPhase] = useState<AnimPhase>('idle');
   const [footerMode, setFooterMode] = useState<FooterMode>('default');
+  const animTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const total = items.reduce(
     (sum, item) => sum + (parseInt(item.price) * 100 + parseInt(item.cents)) * item.quantity,
     0
   );
   const dollars = Math.floor(total / 100);
-  const cents = (total % 100).toString().padStart(2, '0');
+  const centsStr = (total % 100).toString().padStart(2, '0');
+
+  const triggerTransition = useCallback((toEditing: boolean) => {
+    // Phase 1: shrink
+    setAnimPhase('shrink');
+    if (animTimerRef.current) clearTimeout(animTimerRef.current);
+
+    animTimerRef.current = setTimeout(() => {
+      // Phase 2: switch layout + bounce in
+      setIsEditing(toEditing);
+      setAnimPhase('grow');
+
+      animTimerRef.current = setTimeout(() => {
+        // Phase 3: idle
+        setAnimPhase('idle');
+      }, 550);
+    }, 175);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (animTimerRef.current) clearTimeout(animTimerRef.current);
+    };
+  }, []);
+
+  const getAnimClass = () => {
+    if (animPhase === 'shrink') return styles.tileShrinkAnim;
+    if (animPhase === 'grow') return styles.tileBounceIn;
+    return undefined;
+  };
+
+  const gridClass = isEditing ? styles.editGrid : styles.condensedGrid;
 
   return (
     <div className={styles.section}>
@@ -334,108 +370,55 @@ function OverviewScreen({ items, onClose, onEdit, onAgree }: OverviewScreenProps
       <div className={styles.screenContent}>
         <div className={styles.productCard}>
           <div className={styles.cardScroll}>
-            <div className={styles.condensedGrid}>
-              {items.map((item) => (
+            <div className={gridClass}>
+              {items.map((item, idx) => (
                 <CondensedItemTile
                   key={item.id}
                   image={item.image}
                   price={item.price}
                   cents={item.cents}
                   tag={item.tag}
-                  variant="tertiary"
-                  onAddToCart={() => {}}
-                />
-              ))}
-            </div>
-          </div>
-          <div className={styles.cardScrollFade} />
-
-          <div className={styles.totalRow}>
-            <div className={styles.totalLeft}>
-              <span className={styles.totalLabel}>Est. total</span>
-              <span className={styles.totalCount}>({items.length} items)</span>
-              <span className={styles.totalColon}>:</span>
-            </div>
-            <span className={styles.totalAmount}>${dollars}.{cents}</span>
-          </div>
-        </div>
-
-        {footerMode === 'default' && (
-          <div className={styles.footer}>
-            <div className={styles.footerBar}>
-              <Button variant="secondary" size="medium" onClick={onEdit}>
-                Edit
-              </Button>
-              <Button variant="primary" size="medium" strokeOn onClick={() => setFooterMode('optin')}>
-                Add to Friday delivery
-              </Button>
-            </div>
-          </div>
-        )}
-
-        {footerMode === 'optin' && (
-          <InlineOptinCard
-            onYes={() => setFooterMode('terms')}
-            onNotNow={onClose}
-          />
-        )}
-
-        {footerMode === 'terms' && (
-          <InlineTermsCard
-            onAgree={onAgree}
-            onNotNow={onClose}
-          />
-        )}
-      </div>
-    </div>
-  );
-}
-
-// ─── Edit Screen ──────────────────────────────────────────────────────────────
-
-interface EditScreenProps {
-  items: ReplenishItem[];
-  onClose: () => void;
-  onSave: () => void;
-  onAgree: () => void;
-  onQuantityChange: (id: string, q: number) => void;
-}
-
-function EditScreen({ items, onClose, onSave, onAgree, onQuantityChange }: EditScreenProps) {
-  const [footerMode, setFooterMode] = useState<FooterMode>('default');
-
-  return (
-    <div className={styles.section}>
-      <ReplenishHeader onClose={onClose} />
-
-      <div className={styles.screenContent}>
-        <div className={styles.productCard}>
-          <div className={styles.cardScroll}>
-            <div className={styles.editGrid}>
-              {items.map((item) => (
-                <CondensedItemTile
-                  key={item.id}
-                  image={item.image}
-                  price={item.price}
-                  cents={item.cents}
-                  tag={item.tag}
-                  name={item.name}
-                  variant="edit"
+                  name={isEditing ? item.name : undefined}
+                  variant={isEditing ? 'edit' : 'tertiary'}
                   quantity={item.quantity}
-                  isChecked
-                  onQuantityChange={(q) => onQuantityChange(item.id, q)}
+                  isChecked={isEditing}
+                  itemIndex={idx}
+                  animationClass={getAnimClass()}
+                  onAddToCart={!isEditing ? () => {} : undefined}
+                  onQuantityChange={isEditing ? (q) => onQuantityChange(item.id, q) : undefined}
                 />
               ))}
             </div>
           </div>
           <div className={styles.cardScrollFade} />
+
+          {!isEditing && (
+            <div className={styles.totalRow}>
+              <div className={styles.totalLeft}>
+                <span className={styles.totalLabel}>Est. total</span>
+                <span className={styles.totalCount}>({items.length} items)</span>
+                <span className={styles.totalColon}>:</span>
+              </div>
+              <span className={styles.totalAmount}>${dollars}.{centsStr}</span>
+            </div>
+          )}
         </div>
 
         {footerMode === 'default' && (
           <div className={styles.footer}>
             <div className={styles.footerBar}>
-              <Button variant="secondary" size="medium" onClick={onSave}>
-                Save
+              <Button
+                variant="secondary"
+                size="medium"
+                onClick={() => {
+                  if (isEditing) {
+                    triggerTransition(false);
+                  } else {
+                    triggerTransition(true);
+                  }
+                }}
+              >
+                {isEditing ? 'Save' : 'Edit'}
               </Button>
               <Button variant="primary" size="medium" onClick={() => setFooterMode('optin')}>
                 Add to Friday delivery
@@ -679,20 +662,10 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
 
       {screen === 'loading' && <LoadingScreen />}
 
-      {screen === 'overview' && (
-        <OverviewScreen
+      {(screen === 'overview' || screen === 'edit') && (
+        <MainScreen
           items={items}
           onClose={handleClose}
-          onEdit={() => setScreen('edit')}
-          onAgree={() => setScreen('needAnythingElse')}
-        />
-      )}
-
-      {screen === 'edit' && (
-        <EditScreen
-          items={items}
-          onClose={handleClose}
-          onSave={() => setScreen('overview')}
           onAgree={() => setScreen('needAnythingElse')}
           onQuantityChange={handleQuantityChange}
         />
