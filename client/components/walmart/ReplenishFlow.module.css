@@ -665,15 +665,15 @@
   z-index: 0;
 }
 
-/* Decorative background image — absolutely positioned top-right */
+/* Decorative background image — absolutely positioned top-right, overflows to cut off */
 .naCategoryBgImage {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: -15%;
+  top: 10%;
   height: 100%;
-  width: 55%;
+  width: 65%;
   object-fit: cover;
-  object-position: right top;
+  object-position: center center;
   pointer-events: none;
   z-index: 0;
 }
