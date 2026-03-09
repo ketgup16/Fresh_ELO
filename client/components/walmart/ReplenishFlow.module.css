@@ -715,14 +715,14 @@
   gap: var(--ld-primitive-scale-space-100, 8px);
   position: relative;
   z-index: 1;
-  background: var(--ld-semantic-color-surface, #fff);
-  border-radius: var(--ld-primitive-scale-borderradius-200, 16px);
-  padding: var(--ld-primitive-scale-space-100, 8px);
 }
 
 .naMiniTileRow > * {
   flex: 1 1 0;
   min-width: 0;
+  background: var(--ld-semantic-color-surface, #fff);
+  border-radius: var(--ld-primitive-scale-borderradius-200, 16px);
+  padding: var(--ld-primitive-scale-space-050, 4px) var(--ld-primitive-scale-space-050, 4px) 0;
 }
 
 /* NeedAnythingElse floating footer — sticky at bottom of naSection */
