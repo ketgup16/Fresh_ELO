@@ -212,7 +212,11 @@ function InlineOptinCard({ onYes, onNotNow }: InlineOptinCardProps) {
       <div className={styles.optinCard}>
         <div className={styles.optinHeader}>
           <div className={styles.optinIconWrap}>
-            <CartFill width={20} height={20} />
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F4526ee07be934094992f00b9d8ca6ab7?format=webp&width=800&height=1200"
+              alt="Grocery bag"
+              className={styles.optinIconImg}
+            />
           </div>
           <div className={styles.optinTextBlock}>
             <div className={styles.optinTitle}>Add your usuals automatically?</div>
@@ -404,8 +408,11 @@ function MainScreen({ items, onClose, onAgree, onQuantityChange }: MainScreenPro
           )}
         </div>
 
-        {footerMode === 'default' && (
-          <div className={styles.footer}>
+        <div className={styles.footerArea}>
+          <div className={[
+            styles.footer,
+            footerMode !== 'default' ? styles.footerHidden : '',
+          ].filter(Boolean).join(' ')}>
             <div className={styles.footerBar}>
               <Button
                 variant="secondary"
@@ -425,21 +432,21 @@ function MainScreen({ items, onClose, onAgree, onQuantityChange }: MainScreenPro
               </Button>
             </div>
           </div>
-        )}
 
-        {footerMode === 'optin' && (
-          <InlineOptinCard
-            onYes={() => setFooterMode('terms')}
-            onNotNow={() => setFooterMode('default')}
-          />
-        )}
+          {footerMode === 'optin' && (
+            <InlineOptinCard
+              onYes={() => setFooterMode('terms')}
+              onNotNow={() => setFooterMode('default')}
+            />
+          )}
 
-        {footerMode === 'terms' && (
-          <InlineTermsCard
-            onAgree={onAgree}
-            onNotNow={() => setFooterMode('optin')}
-          />
-        )}
+          {footerMode === 'terms' && (
+            <InlineTermsCard
+              onAgree={onAgree}
+              onNotNow={() => setFooterMode('optin')}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
