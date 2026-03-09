@@ -106,6 +106,8 @@ export function StepAnimation() {
   }, []);
 
   useEffect(() => {
+    // Only start the display timer when the frame is fully visible
+    if (phase !== 'visible') return;
     const timer = setTimeout(advanceFrame, DISPLAY_DURATION);
     return () => clearTimeout(timer);
   }, [currentFrame, phase, advanceFrame]);
