@@ -216,7 +216,8 @@
    ============================================================ */
 .condensedGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(96px, 143px));
+  justify-content: center;
   gap: var(--ld-primitive-scale-space-100, 8px);
   padding: var(--ld-primitive-scale-space-100, 8px) 12px;
   width: 100%;
@@ -527,29 +528,7 @@
 /* ============================================================
    Responsive: on wider screens, center the overlay like a modal
    ============================================================ */
-@media (min-width: 768px) {
-  .overlay {
-    max-width: 430px;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    animation: overlayEnterWide 300ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-
-  .overlay.exiting {
-    animation: overlayExitWide 250ms cubic-bezier(0.4, 0, 1, 1) forwards;
-  }
-
-  @keyframes overlayEnterWide {
-    from { transform: translateX(-50%) translateY(100%); opacity: 0; }
-    to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
-  }
-
-  @keyframes overlayExitWide {
-    from { transform: translateX(-50%) translateY(0);    opacity: 1; }
-    to   { transform: translateX(-50%) translateY(100%); opacity: 0; }
-  }
-}
+/* Overlay is always full-bleed; tile sizing is handled by grid + tile max-width */
 
 /* ============================================================
    Reduced motion overrides
