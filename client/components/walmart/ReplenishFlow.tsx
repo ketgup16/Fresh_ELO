@@ -559,31 +559,31 @@ function NeedAnythingElseScreen({ onClose }: NeedAnythingElseScreenProps) {
             </div>
           </div>
         ))}
-      </div>
 
-      {/* Floating footer */}
-      <div className={styles.naFooter}>
-        <div className={styles.naFooterBar}>
-          <Button variant="secondary" size="medium">
-            <span className={styles.naFooterBtnContent}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6.375 5.25V18.75H8.625V5.25H6.375Z" fill="currentColor" />
-                <path d="M15.375 5.25V18.75H17.625V5.25H15.375Z" fill="currentColor" />
-              </svg>
-              Pause delivery
-            </span>
-          </Button>
-          <Button variant="secondary" size="medium" UNSAFE_className={styles.naFooterGetItNow}>
-            <span className={styles.naFooterBtnContent}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M6.56588 1.25193C6.6549 1.09614 6.82057 1 7 1H11C11.1772 1 11.3411 1.09375 11.4309 1.24644C11.5208 1.39912 11.5231 1.58796 11.4371 1.74282L9.34975 5.5H13C13.1935 5.5 13.3696 5.61163 13.4522 5.7866C13.5347 5.96158 13.509 6.1685 13.386 6.31785L6.38596 14.8178C6.22841 15.0092 5.95447 15.0562 5.74213 14.9284C5.52979 14.8005 5.44314 14.5365 5.53846 14.3077L7.75 9H3C2.82176 9 2.65701 8.90512 2.56754 8.75096C2.47808 8.5968 2.47745 8.40668 2.56588 8.25193L6.56588 1.25193Z" fill="currentColor" />
-              </svg>
-              <span className={styles.naFooterGetItNowLabel}>
-                <span>Get it now</span>
-                <span className={styles.naFooterSubLabel}>as soon as 37 mins</span>
+        {/* Sticky footer — inside scroll container so sticky works */}
+        <div className={styles.naFooter}>
+          <div className={styles.naFooterBar}>
+            <Button variant="secondary" size="medium">
+              <span className={styles.naFooterBtnContent}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6.375 5.25V18.75H8.625V5.25H6.375Z" fill="currentColor" />
+                  <path d="M15.375 5.25V18.75H17.625V5.25H15.375Z" fill="currentColor" />
+                </svg>
+                Pause delivery
               </span>
-            </span>
-          </Button>
+            </Button>
+            <Button variant="secondary" size="medium" UNSAFE_className={styles.naFooterGetItNow}>
+              <span className={styles.naFooterBtnContent}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M6.56588 1.25193C6.6549 1.09614 6.82057 1 7 1H11C11.1772 1 11.3411 1.09375 11.4309 1.24644C11.5208 1.39912 11.5231 1.58796 11.4371 1.74282L9.34975 5.5H13C13.1935 5.5 13.3696 5.61163 13.4522 5.7866C13.5347 5.96158 13.509 6.1685 13.386 6.31785L6.38596 14.8178C6.22841 15.0092 5.95447 15.0562 5.74213 14.9284C5.52979 14.8005 5.44314 14.5365 5.53846 14.3077L7.75 9H3C2.82176 9 2.65701 8.90512 2.56754 8.75096C2.47808 8.5968 2.47745 8.40668 2.56588 8.25193L6.56588 1.25193Z" fill="currentColor" />
+                </svg>
+                <span className={styles.naFooterGetItNowLabel}>
+                  <span>Get it now</span>
+                  <span className={styles.naFooterSubLabel}>as soon as 37 mins</span>
+                </span>
+              </span>
+            </Button>
+          </div>
         </div>
       </div>
     </div>
