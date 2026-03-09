@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/Button';
 import { CondensedItemTile } from './CondensedItemTile';
 import { StepAnimation, STEP_TOTAL_DURATION } from './StepAnimation';
 import { NativeStatusBar } from './NativeStatusBar';
+import { IOSHomeScreen } from './IOSHomeScreen';
+import { DeliveryTracking } from './DeliveryTracking';
 import { CartFill } from '@/components/icons';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import styles from './ReplenishFlow.module.css';
@@ -609,7 +611,10 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
   const [screen, setScreen] = useState<ReplenishScreen>('loading');
   const [isExiting, setIsExiting] = useState(false);
   const [items, setItems] = useState<ReplenishItem[]>(REPLENISH_ITEMS);
+  const [showIOSHome, setShowIOSHome] = useState(false);
+  const [showDeliveryTracking, setShowDeliveryTracking] = useState(false);
   const loadingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dragStartY = useRef<number | null>(null);
   const { platform } = useLayoutSettings();
   const isNative = platform === 'ios' || platform === 'android';
 
@@ -658,11 +663,49 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
     setItems((prev) => prev.filter((item) => !ids.includes(item.id)));
   }, []);
 
-  if (!isOpen) return null;
+  // Drag-up gesture on the home indicator to show iOS Home Screen
+  const handleIndicatorPointerDown = useCallback((e: React.PointerEvent) => {
+    dragStartY.current = e.clientY;
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+  }, []);
+
+  const handleIndicatorPointerMove = useCallback((e: React.PointerEvent) => {
+    if (dragStartY.current === null) return;
+    const delta = dragStartY.current - e.clientY;
+    if (delta > 60) {
+      dragStartY.current = null;
+      // Exit ReplenishFlow and show iOS Home Screen
+      setIsExiting(true);
+      setTimeout(() => {
+        setIsExiting(false);
+        setShowIOSHome(true);
+      }, 250);
+    }
+  }, []);
+
+  const handleIndicatorPointerUp = useCallback(() => {
+    dragStartY.current = null;
+  }, []);
+
+  const handleNotificationTap = useCallback(() => {
+    setShowDeliveryTracking(true);
+  }, []);
+
+  const handleCloseDeliveryTracking = useCallback(() => {
+    setShowDeliveryTracking(false);
+  }, []);
+
+  const handleCloseIOSHome = useCallback(() => {
+    setShowIOSHome(false);
+  }, []);
+
+  if (!isOpen && !showIOSHome && !showDeliveryTracking) return null;
 
   const overlayClass = [styles.overlay, isExiting ? styles.exiting : ''].filter(Boolean).join(' ');
 
-  return createPortal(
+  const showOverlay = isOpen && !showIOSHome;
+
+  const overlayPortal = showOverlay ? createPortal(
     <div
       className={overlayClass}
       role="dialog"
@@ -694,9 +737,33 @@ export function ReplenishFlow({ isOpen, onClose }: ReplenishFlowProps) {
         <NeedAnythingElseScreen onClose={handleClose} />
       )}
 
-      {platform === 'ios' && <div className={styles.homeIndicator} />}
+      {platform === 'ios' && (
+        <div
+          className={styles.homeIndicator}
+          onPointerDown={handleIndicatorPointerDown}
+          onPointerMove={handleIndicatorPointerMove}
+          onPointerUp={handleIndicatorPointerUp}
+          onPointerCancel={handleIndicatorPointerUp}
+          style={{ touchAction: 'none', cursor: 'grab' }}
+        />
+      )}
       {platform === 'android' && <div className={styles.androidNavBar}><div className={styles.androidGestureBar} /></div>}
     </div>,
     document.body
+  ) : null;
+
+  return (
+    <>
+      {overlayPortal}
+      <IOSHomeScreen
+        isOpen={showIOSHome}
+        onClose={handleCloseIOSHome}
+        onNotificationTap={handleNotificationTap}
+      />
+      <DeliveryTracking
+        isOpen={showDeliveryTracking}
+        onClose={handleCloseDeliveryTracking}
+      />
+    </>
   );
 }
