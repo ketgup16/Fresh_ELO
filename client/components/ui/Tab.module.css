@@ -10,13 +10,21 @@
   background: var(--ld-semantic-color-page-nav-fill, transparent);
   position: relative;
   border-bottom: 1px solid var(--ld-semantic-color-separator, var(--ld-primitive-color-gray-20, #e3e4e5));
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.tabList::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 /* Filled variant — white surface + rounded top corners */
 .tabList--filled {
   background: var(--ld-semantic-color-surface, #ffffff);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px) var(--ld-primitive-scale-borderradius-100, 8px) 0 0;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 /* Small screen mode - tabs fill width evenly */

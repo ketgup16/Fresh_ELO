@@ -189,6 +189,10 @@ export function GuidelinesDocIndex() {
         gap: '12px',
       }}>
         {[
+          { label: 'LD Components', count: 44 },
+          { label: 'WCP Components', count: 16 },
+          { label: 'WCP Patterns', count: 12 },
+          { label: 'Shared Components', count: 18 },
           { label: 'Component Docs', count: docSections[0].docs.length },
           { label: 'Design System Docs', count: docSections[1].docs.length },
           { label: 'Enforcement Rules', count: docSections[2].docs.length },
