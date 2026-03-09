@@ -733,8 +733,7 @@
 }
 
 .naMiniTileRow > * {
-  flex: 0 0 80px;
-  width: 80px;
+  flex: 1 1 0;
   min-width: 0;
 }
 
