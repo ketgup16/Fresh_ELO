@@ -472,30 +472,6 @@ interface NeedAnythingElseScreenProps {
   onClose: () => void;
 }
 
-function NeedAnythingElseMiniTile({ image, price, cents, tag }: NeedAnythingCategoryItem) {
-  return (
-    <div className={styles.naMiniTile}>
-      <div className={styles.naMiniTileImageWrap}>
-        <img src={image} alt="Product" className={styles.naMiniTileImage} />
-        <button
-          type="button"
-          className={styles.naMiniTileAddBtn}
-          aria-label="Add to cart"
-        >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M7.5 8.5V13H8.5V8.5H13V7.5H8.5V3H7.5V7.5H3V8.5H7.5Z" fill="currentColor" />
-          </svg>
-        </button>
-      </div>
-      <div className={styles.naMiniTilePrice}>
-        <span className={styles.naMiniTileDollar}>$</span>
-        <span className={styles.naMiniTilePriceNum}>{price}</span>
-        <span className={styles.naMiniTileCents}>{cents}</span>
-      </div>
-      <div className={styles.naMiniTileTag}>{tag}</div>
-    </div>
-  );
-}
 
 function NeedAnythingElseScreen({ onClose }: NeedAnythingElseScreenProps) {
   return (
@@ -571,7 +547,14 @@ function NeedAnythingElseScreen({ onClose }: NeedAnythingElseScreenProps) {
             {/* Mini product tiles */}
             <div className={styles.naMiniTileRow}>
               {cat.items.map((item, idx) => (
-                <NeedAnythingElseMiniTile key={idx} {...item} />
+                <CondensedItemTile
+                  key={idx}
+                  image={item.image}
+                  price={item.price}
+                  cents={item.cents}
+                  tag={item.tag}
+                  variant="tertiary"
+                />
               ))}
             </div>
           </div>

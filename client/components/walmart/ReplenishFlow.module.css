@@ -724,7 +724,7 @@
   background: var(--ld-semantic-color-action-fill-secondary-hovered, #f5f5f5);
 }
 
-/* Mini tile row */
+/* Mini tile row — each child is a CondensedItemTile constrained to 80px */
 .naMiniTileRow {
   display: flex;
   gap: var(--ld-primitive-scale-space-100, 8px);
@@ -732,89 +732,10 @@
   z-index: 1;
 }
 
-/* Mini tile — fixed 80px width so card hugs content */
-.naMiniTile {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  width: 80px;
+.naMiniTileRow > * {
   flex: 0 0 80px;
-}
-
-.naMiniTileImageWrap {
-  position: relative;
   width: 80px;
-  height: 80px;
-  border-radius: 12px;
-  background: var(--ld-semantic-color-surface, #fff);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.naMiniTileImage {
-  width: 72%;
-  height: 72%;
-  object-fit: contain;
-}
-
-.naMiniTileAddBtn {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 24px;
-  height: 24px;
-  border-radius: 9999px;
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  background: var(--ld-semantic-color-surface, #fff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--ld-semantic-color-text, #2E2F32);
-}
-
-.naMiniTileAddBtn:hover {
-  background: var(--ld-semantic-color-surface-hovered, #f5f5f5);
-}
-
-.naMiniTilePrice {
-  display: flex;
-  align-items: baseline;
-  gap: 0;
-  line-height: 1.2;
-}
-
-.naMiniTileDollar {
-  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
-}
-
-.naMiniTilePriceNum {
-  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
-}
-
-.naMiniTileCents {
-  font-family: var(--ld-semantic-font-caption-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-caption-size, 12px);
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2E2F32);
-  vertical-align: super;
-  line-height: 1;
-}
-
-.naMiniTileTag {
-  font-family: var(--ld-semantic-font-caption-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-caption-size, 12px);
-  font-weight: 400;
-  color: var(--ld-semantic-color-text-subtle, #51535A);
+  min-width: 0;
 }
 
 /* NeedAnythingElse floating footer — always anchored to bottom of naSection */
