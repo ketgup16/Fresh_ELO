@@ -500,6 +500,7 @@
   gap: var(--ld-primitive-scale-space-200, 16px);
   overflow: visible;
   width: 100%;
+  position: relative;
 }
 
 /* Screens that have a bottom card (optin/terms): constrain the grid card */
@@ -528,10 +529,13 @@
 }
 
 /* ============================================================
-   Inline footer card wrapper (replaces footerBar in-place)
+   Inline footer card wrapper (overlays the product card from bottom)
    ============================================================ */
 .inlineFooterCard {
-  flex-shrink: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   padding-bottom: var(--ld-primitive-scale-space-200, 16px);
   display: flex;
   flex-direction: column;
