@@ -430,14 +430,14 @@ function MainScreen({ items, onClose, onAgree, onQuantityChange }: MainScreenPro
         {footerMode === 'optin' && (
           <InlineOptinCard
             onYes={() => setFooterMode('terms')}
-            onNotNow={onClose}
+            onNotNow={() => setFooterMode('default')}
           />
         )}
 
         {footerMode === 'terms' && (
           <InlineTermsCard
             onAgree={onAgree}
-            onNotNow={onClose}
+            onNotNow={() => setFooterMode('optin')}
           />
         )}
       </div>
