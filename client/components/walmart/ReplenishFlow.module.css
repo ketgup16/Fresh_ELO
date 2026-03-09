@@ -673,7 +673,7 @@
   height: 100%;
   width: 55%;
   object-fit: cover;
-  object-position: center top;
+  object-position: right top;
   pointer-events: none;
   z-index: 0;
 }
@@ -731,7 +731,8 @@
 }
 
 .naMiniTileRow > * {
-  flex: 1 1 0;
+  flex: 0 1 80px;
+  max-width: 80px;
   min-width: 0;
   background: var(--ld-semantic-color-surface, #fff);
   border-radius: var(--ld-primitive-scale-borderradius-200, 16px);
