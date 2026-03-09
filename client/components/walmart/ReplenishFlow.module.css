@@ -166,7 +166,7 @@
   align-items: flex-start;
   align-self: stretch;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.40);
+  background: rgba(255, 255, 255, 1);
   box-shadow: 0 4px 19.6px 0 rgba(204, 217, 247, 0.25);
   overflow: hidden;
   position: relative;
