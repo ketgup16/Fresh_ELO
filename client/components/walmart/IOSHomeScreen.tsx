@@ -146,7 +146,7 @@ function WalmartNotification({ onTap }: WalmartNotificationProps) {
     >
       <div className={styles.notifContent}>
         <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/d975c8dc11620de9814e54c07aefa26b8a3d1885?width=200"
+          src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F071f75c7f44f44da9ec21b2af26d5719?format=webp&width=800&height=1200"
           alt="Walmart Groceries"
           className={styles.notifIcon}
         />
@@ -154,7 +154,7 @@ function WalmartNotification({ onTap }: WalmartNotificationProps) {
           <div className={styles.notifTitleRow}>
             <div className={styles.notifLogo}>
               <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/a8ac70b0c382dce9cd9ac324977c39d938d4d12b?width=400"
+                src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F069ebdd2d106417f8a39726e22915452?format=webp&width=800&height=1200"
                 alt="Walmart"
                 className={styles.notifLogoImg}
               />
@@ -217,7 +217,7 @@ function DeliveryProgressTracker({ animate }: { animate: boolean }) {
         onAnimationEnd={handleTruckAnimationEnd}
       >
         <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/d99928d67846308c0fb4a789704042abce313c7d?width=400"
+          src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F167162e363d44fcdb32ae1c6295cbc96?format=webp&width=800&height=1200"
           alt="Delivery truck"
           className={styles.truckImg}
         />
