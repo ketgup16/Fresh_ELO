@@ -154,7 +154,7 @@ function WalmartNotification({ onTap }: WalmartNotificationProps) {
           <div className={styles.notifTitleRow}>
             <div className={styles.notifLogo}>
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F069ebdd2d106417f8a39726e22915452?format=webp&width=800&height=1200"
+                src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F654563cb4f1d4e37b78d60082ee2d864?format=webp&width=800&height=1200"
                 alt="Walmart"
                 className={styles.notifLogoImg}
               />
