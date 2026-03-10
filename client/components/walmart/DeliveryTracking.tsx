@@ -10,7 +10,7 @@ const PRODUCT_IMAGES = [
   'https://api.builder.io/api/v1/image/assets/TEMP/8ded24e41f31729df5de979560ad4f18e7b409cd?width=148',
 ];
 
-const INITIAL_SECONDS = 420; // 7 minutes
+const INITIAL_SECONDS = 360; // 6 minutes
 
 interface DeliveryTrackingProps {
   isOpen: boolean;
@@ -70,12 +70,13 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
         />
       </div>
 
-      {/* Card container — ring floats above the card top edge */}
-      <div className={styles.cardContainer}>
+      {/* Card with ring floating above */}
+      <div className={styles.card}>
+        {/* Progress Ring — positioned absolutely above card edge */}
         <div className={styles.ringWrapper}>
           <ProgressRing minutes={minutesLeft} progress={progress} />
         </div>
-        <div className={styles.card}>
+
         {/* Address */}
         <div className={styles.addressBlock}>
           <div className={styles.addressTitle}>Your delivery is on the way</div>
@@ -100,12 +101,11 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
           </div>
         </div>
 
-          {/* Payment */}
-          <div className={styles.paymentRow}>
-            <span className={styles.paymentLabel}>Payment details</span>
-            <span className={styles.paymentValue}>VISA</span>
-            <span className={styles.paymentCard}>···· 1234</span>
-          </div>
+        {/* Payment */}
+        <div className={styles.paymentRow}>
+          <span className={styles.paymentLabel}>Payment details</span>
+          <span className={styles.paymentValue}>VISA</span>
+          <span className={styles.paymentCard}>···· 1234</span>
         </div>
       </div>
 
@@ -195,6 +195,13 @@ function ProgressRing({ minutes, progress }: ProgressRingProps) {
         </defs>
         {/* White background circle */}
         <circle cx="101" cy="101" r="101" className={styles.ringBg} />
+        {/* Background track (unfilled) */}
+        <circle
+          cx="101"
+          cy="101"
+          r={radius}
+          className={styles.ringTrack}
+        />
         {/* Progress arc with animated magic gradient */}
         <circle
           cx="101"

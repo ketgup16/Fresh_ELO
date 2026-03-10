@@ -100,28 +100,6 @@
   object-fit: cover;
 }
 
-/* ---- Card Container — holds ring + card, ring floats above ---- */
-.cardContainer {
-  position: relative;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  margin-top: -32px;
-}
-
-/* ---- Ring Wrapper — floats above card top edge ---- */
-.ringWrapper {
-  position: absolute;
-  top: -69px;
-  left: 0;
-  right: 0;
-  z-index: 4;
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-}
-
 /* ---- Card ---- */
 .card {
   display: flex;
@@ -133,13 +111,21 @@
   background: var(--ld-semantic-color-surface-overlay, #fff);
   position: relative;
   flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  overflow: visible;
 }
 
 .card::-webkit-scrollbar {
   display: none;
+}
+
+/* ---- Ring Wrapper — floats above card top edge ---- */
+.ringWrapper {
+  position: absolute;
+  top: -112px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  pointer-events: none;
 }
 
 /* ---- Progress Ring ---- */
@@ -164,6 +150,12 @@
 
 .ringBg {
   fill: var(--ld-semantic-color-surface-overlay, #fff);
+}
+
+.ringTrack {
+  fill: none;
+  stroke: var(--ld-semantic-color-background-subtle, #F2F3F3);
+  stroke-width: 24;
 }
 
 .ringStroke {
