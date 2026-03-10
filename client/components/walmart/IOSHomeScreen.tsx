@@ -174,6 +174,7 @@ function WalmartNotification({ onTap }: WalmartNotificationProps) {
 
 function DeliveryProgressTracker({ animate }: { animate: boolean }) {
   const [animating, setAnimating] = useState(false);
+  const [truckArrived, setTruckArrived] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -184,6 +185,10 @@ function DeliveryProgressTracker({ animate }: { animate: boolean }) {
     timerRef.current = setTimeout(() => setAnimating(true), 3000);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [animate]);
+
+  const handleTruckAnimationEnd = useCallback(() => {
+    setTruckArrived(true);
+  }, []);
 
   return (
     <div className={styles.progressTracker}>
@@ -198,7 +203,7 @@ function DeliveryProgressTracker({ animate }: { animate: boolean }) {
           <div className={`${styles.progressStopDot} ${styles.progressStopDotActive}`} />
         </div>
         <div className={styles.progressStop}>
-          <div className={`${styles.progressStopDot} ${styles.progressStopDotActive}`} />
+          <div className={`${styles.progressStopDot} ${truckArrived ? styles.progressStopDotActive : styles.progressStopDotInactive}`} />
         </div>
         <div className={styles.progressStop}>
           <div className={`${styles.progressStopDot} ${styles.progressStopDotInactive}`} />
@@ -206,7 +211,10 @@ function DeliveryProgressTracker({ animate }: { animate: boolean }) {
       </div>
 
       {/* Animated truck */}
-      <div className={[styles.truckWrap, animating ? styles.truckAnimating : ''].filter(Boolean).join(' ')}>
+      <div
+        className={[styles.truckWrap, animating ? styles.truckAnimating : ''].filter(Boolean).join(' ')}
+        onAnimationEnd={handleTruckAnimationEnd}
+      >
         <img
           src="https://api.builder.io/api/v1/image/assets/TEMP/d99928d67846308c0fb4a789704042abce313c7d?width=400"
           alt="Delivery truck"
