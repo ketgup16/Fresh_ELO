@@ -70,13 +70,13 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
         />
       </div>
 
-      {/* Card with ring floating above */}
-      <div className={styles.card}>
-        {/* Progress Ring — positioned absolutely above card edge */}
-        <div className={styles.ringWrapper}>
-          <ProgressRing minutes={minutesLeft} progress={progress} />
-        </div>
+      {/* Ring — overlaps map bottom and card top */}
+      <div className={styles.ringWrapper}>
+        <ProgressRing minutes={minutesLeft} progress={progress} />
+      </div>
 
+      {/* Card */}
+      <div className={styles.card}>
         {/* Address */}
         <div className={styles.addressBlock}>
           <div className={styles.addressTitle}>Your delivery is on the way</div>

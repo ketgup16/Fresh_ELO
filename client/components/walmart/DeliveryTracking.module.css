@@ -100,32 +100,35 @@
   object-fit: cover;
 }
 
+/* ---- Ring Wrapper — overlaps map bottom and card top ---- */
+.ringWrapper {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  margin-top: -101px;
+  margin-bottom: -101px;
+  pointer-events: none;
+}
+
 /* ---- Card ---- */
 .card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 16px 0;
+  padding: 112px 16px 0;
   gap: 16px;
   border-radius: var(--ld-primitive-scale-borderradius-400, 32px) var(--ld-primitive-scale-borderradius-400, 32px) 0 0;
   background: var(--ld-semantic-color-surface-overlay, #fff);
   position: relative;
   flex: 1;
-  overflow: visible;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
 .card::-webkit-scrollbar {
   display: none;
-}
-
-/* ---- Ring Wrapper — floats above card top edge ---- */
-.ringWrapper {
-  position: absolute;
-  top: -112px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
-  pointer-events: none;
 }
 
 /* ---- Progress Ring ---- */
