@@ -101,7 +101,7 @@ export function CondensedItemTile({
         {/* Quantity badge — default mode only, animated exit */}
         {!isEdit && onAddToCart && (
           <div className={styles.addToCartWrap}>
-            <WCPAddToCart variant={variant} onChange={onAddToCart} />
+            <WCPAddToCart variant={variant} defaultCount={quantity} onChange={onAddToCart} />
           </div>
         )}
       </div>
