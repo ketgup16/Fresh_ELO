@@ -11,7 +11,7 @@ const PRODUCT_IMAGES = [
   'https://api.builder.io/api/v1/image/assets/TEMP/8ded24e41f31729df5de979560ad4f18e7b409cd?width=148',
 ];
 
-const INITIAL_SECONDS = 360; // 6 minutes
+const INITIAL_SECONDS = 300; // 5 minutes
 
 interface DeliveryTrackingProps {
   isOpen: boolean;
@@ -179,7 +179,7 @@ function ProgressRing({ minutes, progress }: ProgressRingProps) {
     const speed = 20; // degrees per second
     const tick = (ts: number) => {
       if (start === null) start = ts;
-      setAngle(((ts - start) * speed / 1000) % 360);
+      setAngle((360 - ((ts - start) * speed / 1000) % 360) % 360);
       rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);

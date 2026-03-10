@@ -148,7 +148,7 @@
   inset: 0;
   width: 202px;
   height: 202px;
-  transform: rotate(-90deg);
+  transform: rotate(-90deg) scaleX(-1);
 }
 
 .ringBg {
