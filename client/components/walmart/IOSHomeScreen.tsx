@@ -162,7 +162,7 @@ function WalmartNotification({ onTap }: WalmartNotificationProps) {
             <span className={styles.notifTime}>now</span>
           </div>
           <div className={styles.notifTextBlock}>
-            <div className={styles.notifHeadline}>Your delivery is 6 min away</div>
+            <div className={styles.notifHeadline}>Your delivery is 5 min away</div>
             <div className={styles.notifSubtitle}>Arrives by 4:12pm</div>
           </div>
           <DeliveryProgressTracker animate={!hasBeenTapped} />
