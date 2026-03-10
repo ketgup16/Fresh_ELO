@@ -26,7 +26,7 @@ const REPLENISH_ITEMS: ReplenishItem[] = [
   {
     id: '1',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fa15cb75189e0433a8216488ded94874b?format=webp&width=800&height=1200',
-    price: '0', cents: '58', tag: '1 lb', name: 'Fresh Bananas, Each', quantity: 2,
+    price: '0', cents: '58', tag: '1 lb', name: 'Fresh Bananas, Each', quantity: 1,
   },
   {
     id: '2',
@@ -46,7 +46,7 @@ const REPLENISH_ITEMS: ReplenishItem[] = [
   {
     id: '5',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc4898f852f7943649ef09692a0a725f2?format=webp&width=800&height=1200',
-    price: '9', cents: '97', tag: '6 ct', name: 'Viva Multi-Surface Paper Towels, Double Rolls, 6 ct', quantity: 2,
+    price: '9', cents: '97', tag: '6 ct', name: 'Viva Multi-Surface Paper Towels, Double Rolls, 6 ct', quantity: 1,
   },
   {
     id: '6',
@@ -56,7 +56,7 @@ const REPLENISH_ITEMS: ReplenishItem[] = [
   {
     id: '7',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8206c77074484a9197d83dc1e2877e26?format=webp&width=800&height=1200',
-    price: '5', cents: '29', tag: '64 fl oz', name: 'Oatly Oat Milk, 64 fl oz', quantity: 2,
+    price: '5', cents: '29', tag: '64 fl oz', name: 'Oatly Oat Milk, 64 fl oz', quantity: 1,
   },
   {
     id: '8',
@@ -66,12 +66,12 @@ const REPLENISH_ITEMS: ReplenishItem[] = [
   {
     id: '9',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0a07a194a7d8492fa5350edb76b4cb95?format=webp&width=800&height=1200',
-    price: '4', cents: '98', tag: '9.5 oz', name: 'SkinnyPop Popcorn, Sharing Size, 9.5 oz', quantity: 3,
+    price: '4', cents: '98', tag: '9.5 oz', name: 'SkinnyPop Popcorn, Sharing Size, 9.5 oz', quantity: 1,
   },
   {
     id: '10',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff5cf2e5441634561b83ce4c2a6ea857a?format=webp&width=800&height=1200',
-    price: '9', cents: '98', tag: '4 ct', name: 'Starbucks Dark Roast Coffee, 4 ct', quantity: 2,
+    price: '9', cents: '98', tag: '4 ct', name: 'Starbucks Dark Roast Coffee, 4 ct', quantity: 1,
   },
   {
     id: '11',
