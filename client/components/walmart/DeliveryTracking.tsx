@@ -31,15 +31,18 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
     return () => clearInterval(timer);
   }, [isOpen]);
 
-  // Escape key
+  // Escape key — stop propagation so IOSHomeScreen's handler doesn't also fire
   useEffect(() => {
     if (!isOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') handleClose();
+      if (e.key === 'Escape') {
+        e.stopImmediatePropagation();
+        handleClose();
+      }
     };
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
-  }, [isOpen]);
+    document.addEventListener('keydown', onKey, true);
+    return () => document.removeEventListener('keydown', onKey, true);
+  }, [isOpen, handleClose]);
 
   const handleClose = useCallback(() => {
     setIsExiting(true);
@@ -57,7 +60,7 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
   const screenClass = [styles.screen, isExiting ? styles.exiting : ''].filter(Boolean).join(' ');
 
   return createPortal(
-    <div className={screenClass} role="dialog" aria-modal="true" aria-label="Delivery tracking">
+    <div className={screenClass} role="dialog" aria-modal="true" aria-label="Delivery tracking" onClick={(e) => e.stopPropagation()}>
       {/* Top Nav */}
       <TopNav onClose={handleClose} />
 

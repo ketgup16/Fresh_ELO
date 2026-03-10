@@ -241,10 +241,16 @@ export function ReplenishmentBasket({
 
   const handleCheckChange = (id: string, checked: boolean) => {
     setCheckedItems((prev) => ({ ...prev, [id]: checked }));
+    if (!checked) {
+      setQuantities((prev) => ({ ...prev, [id]: 0 }));
+    }
   };
 
   const handleQuantityChange = (id: string, q: number) => {
     setQuantities((prev) => ({ ...prev, [id]: q }));
+    if (q === 0) {
+      setCheckedItems((prev) => ({ ...prev, [id]: false }));
+    }
   };
 
   const handleBackToBasket = () => {
