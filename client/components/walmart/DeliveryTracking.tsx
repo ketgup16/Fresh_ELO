@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Button } from '@/components/ui/Button';
 import styles from './DeliveryTracking.module.css';
@@ -71,11 +71,13 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
         />
       </div>
 
+      {/* Progress Ring — outside card so overflow doesn't clip it */}
+      <div className={styles.ringWrapper}>
+        <ProgressRing minutes={minutesLeft} progress={progress} />
+      </div>
+
       {/* Card overlapping the map */}
       <div className={styles.card}>
-        {/* Progress Ring */}
-        <ProgressRing minutes={minutesLeft} progress={progress} />
-
         {/* Address */}
         <div className={styles.addressBlock}>
           <div className={styles.addressTitle}>Your delivery is on the way</div>
@@ -164,21 +166,46 @@ interface ProgressRingProps {
 }
 
 function ProgressRing({ minutes, progress }: ProgressRingProps) {
-  const radius = 77; // inner radius (202/2 - 24/2)
+  const radius = 77;
   const circumference = 2 * Math.PI * radius;
   const dashOffset = circumference * (1 - progress);
+  const [angle, setAngle] = useState(0);
+  const rafRef = useRef<number>(0);
+
+  useEffect(() => {
+    let start: number | null = null;
+    const speed = 20; // degrees per second
+    const tick = (ts: number) => {
+      if (start === null) start = ts;
+      setAngle(((ts - start) * speed / 1000) % 360);
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
 
   return (
     <div className={styles.progressRing}>
       <svg className={styles.ringSvg} viewBox="0 0 202 202">
+        <defs>
+          <linearGradient
+            id="magicRingGradient"
+            gradientTransform={`rotate(${angle}, 0.5, 0.5)`}
+          >
+            <stop offset="0%" className={styles.ringGradientStop1} />
+            <stop offset="50%" className={styles.ringGradientStop2} />
+            <stop offset="100%" className={styles.ringGradientStop3} />
+          </linearGradient>
+        </defs>
         {/* White background circle */}
         <circle cx="101" cy="101" r="101" className={styles.ringBg} />
-        {/* Progress arc */}
+        {/* Progress arc with animated magic gradient */}
         <circle
           cx="101"
           cy="101"
           r={radius}
           className={styles.ringStroke}
+          stroke="url(#magicRingGradient)"
           strokeDasharray={circumference}
           strokeDashoffset={dashOffset}
         />
