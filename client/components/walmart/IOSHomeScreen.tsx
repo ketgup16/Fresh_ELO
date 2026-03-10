@@ -128,18 +128,25 @@ interface WalmartNotificationProps {
 }
 
 function WalmartNotification({ onTap }: WalmartNotificationProps) {
+  const [hasBeenTapped, setHasBeenTapped] = useState(false);
+
+  const handleTap = () => {
+    setHasBeenTapped(true);
+    onTap();
+  };
+
   return (
     <div
       className={styles.notification}
-      onClick={onTap}
+      onClick={handleTap}
       role="button"
       tabIndex={0}
       aria-label="Walmart delivery notification - tap to view tracking"
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onTap(); }}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleTap(); }}
     >
       <div className={styles.notifContent}>
         <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/d975c8dc11620de9814e54c07aefa26b8a3d1885?width=72"
+          src="https://api.builder.io/api/v1/image/assets/TEMP/d975c8dc11620de9814e54c07aefa26b8a3d1885?width=200"
           alt="Walmart Groceries"
           className={styles.notifIcon}
         />
@@ -147,7 +154,7 @@ function WalmartNotification({ onTap }: WalmartNotificationProps) {
           <div className={styles.notifTitleRow}>
             <div className={styles.notifLogo}>
               <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/a8ac70b0c382dce9cd9ac324977c39d938d4d12b?width=124"
+                src="https://api.builder.io/api/v1/image/assets/TEMP/a8ac70b0c382dce9cd9ac324977c39d938d4d12b?width=400"
                 alt="Walmart"
                 className={styles.notifLogoImg}
               />
@@ -158,28 +165,32 @@ function WalmartNotification({ onTap }: WalmartNotificationProps) {
             <div className={styles.notifHeadline}>Your delivery is 8 min away</div>
             <div className={styles.notifSubtitle}>Arrives by 4:12pm</div>
           </div>
-          <DeliveryProgressTracker />
+          <DeliveryProgressTracker animate={!hasBeenTapped} />
         </div>
       </div>
     </div>
   );
 }
 
-function DeliveryProgressTracker() {
+function DeliveryProgressTracker({ animate }: { animate: boolean }) {
   const [animating, setAnimating] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
+    if (!animate) {
+      setAnimating(false);
+      return;
+    }
     timerRef.current = setTimeout(() => setAnimating(true), 3000);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, []);
+  }, [animate]);
 
   return (
     <div className={styles.progressTracker}>
       {/* Track background */}
       <div className={styles.progressTrackBg} />
-      {/* Active fill (50% = stop 1 to stop 2) */}
-      <div className={styles.progressTrackFill} />
+      {/* Active fill — animates with the truck */}
+      <div className={[styles.progressTrackFill, animating ? styles.trackFillAnimating : ''].filter(Boolean).join(' ')} />
 
       {/* Stops */}
       <div className={styles.progressStops}>
@@ -197,7 +208,7 @@ function DeliveryProgressTracker() {
       {/* Animated truck */}
       <div className={[styles.truckWrap, animating ? styles.truckAnimating : ''].filter(Boolean).join(' ')}>
         <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/d99928d67846308c0fb4a789704042abce313c7d?width=108"
+          src="https://api.builder.io/api/v1/image/assets/TEMP/d99928d67846308c0fb4a789704042abce313c7d?width=400"
           alt="Delivery truck"
           className={styles.truckImg}
         />

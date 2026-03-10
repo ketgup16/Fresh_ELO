@@ -15,9 +15,9 @@
     #2a8fd4 20%,
     #4da8e0 35%,
     #6bc0ea 50%,
-    #c8a84e 70%,
-    #e8c84a 85%,
-    #f0d84e 100%
+    #3a7fc8 70%,
+    #2563a8 85%,
+    #1a4d8f 100%
   );
   overflow: hidden;
   animation: screenFadeIn 400ms ease-out forwards;
@@ -269,9 +269,22 @@
   top: 50%;
   left: 8px;
   height: 2px;
-  width: 50%;
+  width: 0%;
   background: #0053E2;
   transform: translateY(-50%);
+}
+
+.trackFillAnimating {
+  animation: trackFillGrow 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes trackFillGrow {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 50%;
+  }
 }
 
 .progressStops {
@@ -308,7 +321,7 @@
 /* ---- Truck Animation ---- */
 .truckWrap {
   position: absolute;
-  top: -14px;
+  top: -4px;
   left: 0%;
 }
 
