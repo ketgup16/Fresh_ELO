@@ -182,7 +182,7 @@ function DeliveryProgressTracker({ animate }: { animate: boolean }) {
       setAnimating(false);
       return;
     }
-    timerRef.current = setTimeout(() => setAnimating(true), 3000);
+    timerRef.current = setTimeout(() => setAnimating(true), 2000);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [animate]);
 
