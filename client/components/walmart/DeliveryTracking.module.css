@@ -100,14 +100,25 @@
   object-fit: cover;
 }
 
-/* ---- Ring Wrapper — sits above the card, not clipped ---- */
-.ringWrapper {
+/* ---- Card Container — holds ring + card, ring floats above ---- */
+.cardContainer {
   position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin-top: -32px;
+}
+
+/* ---- Ring Wrapper — floats above card top edge ---- */
+.ringWrapper {
+  position: absolute;
+  top: -69px;
+  left: 0;
+  right: 0;
   z-index: 4;
-  height: 0;
   display: flex;
   justify-content: center;
-  margin-top: -112px;
   pointer-events: none;
 }
 

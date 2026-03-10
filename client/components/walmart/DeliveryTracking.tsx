@@ -71,13 +71,12 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
         />
       </div>
 
-      {/* Progress Ring — outside card so overflow doesn't clip it */}
-      <div className={styles.ringWrapper}>
-        <ProgressRing minutes={minutesLeft} progress={progress} />
-      </div>
-
-      {/* Card overlapping the map */}
-      <div className={styles.card}>
+      {/* Card container — ring floats above the card top edge */}
+      <div className={styles.cardContainer}>
+        <div className={styles.ringWrapper}>
+          <ProgressRing minutes={minutesLeft} progress={progress} />
+        </div>
+        <div className={styles.card}>
         {/* Address */}
         <div className={styles.addressBlock}>
           <div className={styles.addressTitle}>Your delivery is on the way</div>
@@ -102,11 +101,12 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
           </div>
         </div>
 
-        {/* Payment */}
-        <div className={styles.paymentRow}>
-          <span className={styles.paymentLabel}>Payment details</span>
-          <span className={styles.paymentValue}>VISA</span>
-          <span className={styles.paymentCard}>···· 1234</span>
+          {/* Payment */}
+          <div className={styles.paymentRow}>
+            <span className={styles.paymentLabel}>Payment details</span>
+            <span className={styles.paymentValue}>VISA</span>
+            <span className={styles.paymentCard}>···· 1234</span>
+          </div>
         </div>
       </div>
 
