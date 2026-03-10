@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './IOSHomeScreen.module.css';
 
@@ -166,6 +166,14 @@ function WalmartNotification({ onTap }: WalmartNotificationProps) {
 }
 
 function DeliveryProgressTracker() {
+  const [animating, setAnimating] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    timerRef.current = setTimeout(() => setAnimating(true), 3000);
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, []);
+
   return (
     <div className={styles.progressTracker}>
       {/* Track background */}
@@ -187,7 +195,7 @@ function DeliveryProgressTracker() {
       </div>
 
       {/* Animated truck */}
-      <div className={styles.truckWrap}>
+      <div className={[styles.truckWrap, animating ? styles.truckAnimating : ''].filter(Boolean).join(' ')}>
         <img
           src="https://api.builder.io/api/v1/image/assets/TEMP/d99928d67846308c0fb4a789704042abce313c7d?width=108"
           alt="Delivery truck"

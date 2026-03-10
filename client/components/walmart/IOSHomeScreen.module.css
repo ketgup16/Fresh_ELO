@@ -309,16 +309,19 @@
 .truckWrap {
   position: absolute;
   top: -14px;
-  left: 0;
+  left: 0%;
+}
+
+.truckAnimating {
   animation: truckSlide 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes truckSlide {
-  from {
-    transform: translateX(0);
+  0% {
+    left: 0%;
   }
-  to {
-    transform: translateX(calc(50% + 36px));
+  100% {
+    left: 45%;
   }
 }
 
