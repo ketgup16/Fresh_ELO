@@ -105,7 +105,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
     ref
   ) => {
     const [count, setCount] = useState(defaultCount);
-    const initialMode: StepperMode = defaultCount > 0 ? 'expanded' : 'initial';
+    const initialMode: StepperMode = defaultCount > 0 ? 'collapsed' : 'initial';
     const [mode, setMode] = useState<StepperMode>(initialMode);
     const [hasInteracted, setHasInteracted] = useState(false);
     const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
