@@ -23,23 +23,23 @@ export default function GuidelinesPage() {
       <Tabs defaultValue="overview">
         <TabList>
           <Tab value="overview">{t('componentLibrary.tabOverview')}</Tab>
+          <Tab value="docs">{t('componentLibrary.tabDocIndex')}</Tab>
           <Tab value="principles">{t('componentLibrary.tabDesignPrinciples')}</Tab>
           <Tab value="components">{t('componentLibrary.tabComponentUsage')}</Tab>
           <Tab value="accessibility">{t('componentLibrary.tabAccessibility')}</Tab>
           <Tab value="code">{t('componentLibrary.tabCodeStandards')}</Tab>
           <Tab value="tokens">{t('componentLibrary.tabTokenUsage')}</Tab>
           <Tab value="agent">{t('componentLibrary.tabAgentRules')}</Tab>
-          <Tab value="docs">{t('componentLibrary.tabDocIndex')}</Tab>
         </TabList>
 
         <TabPanel value="overview"><Suspense fallback={TabFallback}><OverviewTab /></Suspense></TabPanel>
+        <TabPanel value="docs"><Suspense fallback={TabFallback}><GuidelinesDocIndex /></Suspense></TabPanel>
         <TabPanel value="principles"><Suspense fallback={TabFallback}><PrinciplesTab /></Suspense></TabPanel>
         <TabPanel value="components"><Suspense fallback={TabFallback}><ComponentUsageTab /></Suspense></TabPanel>
         <TabPanel value="accessibility"><Suspense fallback={TabFallback}><AccessibilityTab /></Suspense></TabPanel>
         <TabPanel value="code"><Suspense fallback={TabFallback}><CodeStandardsTab /></Suspense></TabPanel>
         <TabPanel value="tokens"><Suspense fallback={TabFallback}><TokenUsageTab /></Suspense></TabPanel>
         <TabPanel value="agent"><Suspense fallback={TabFallback}><AgentRulesTab /></Suspense></TabPanel>
-        <TabPanel value="docs"><Suspense fallback={TabFallback}><GuidelinesDocIndex /></Suspense></TabPanel>
       </Tabs>
     </ComponentPageLayout>
   );
