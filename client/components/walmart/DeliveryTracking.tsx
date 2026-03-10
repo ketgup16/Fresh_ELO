@@ -21,6 +21,14 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
   const [secondsLeft, setSecondsLeft] = useState(INITIAL_SECONDS);
   const [isExiting, setIsExiting] = useState(false);
 
+  const handleClose = useCallback(() => {
+    setIsExiting(true);
+    setTimeout(() => {
+      setIsExiting(false);
+      onClose();
+    }, 280);
+  }, [onClose]);
+
   // Countdown timer
   useEffect(() => {
     if (!isOpen) return;
@@ -43,14 +51,6 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
     document.addEventListener('keydown', onKey, true);
     return () => document.removeEventListener('keydown', onKey, true);
   }, [isOpen, handleClose]);
-
-  const handleClose = useCallback(() => {
-    setIsExiting(true);
-    setTimeout(() => {
-      setIsExiting(false);
-      onClose();
-    }, 280);
-  }, [onClose]);
 
   if (!isOpen) return null;
 
