@@ -16,9 +16,10 @@ const INITIAL_SECONDS = 360; // 6 minutes
 interface DeliveryTrackingProps {
   isOpen: boolean;
   onClose: () => void;
+  onNavigateHome?: () => void;
 }
 
-export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
+export function DeliveryTracking({ isOpen, onClose, onNavigateHome }: DeliveryTrackingProps) {
   const navigate = useNavigate();
   const [secondsLeft, setSecondsLeft] = useState(INITIAL_SECONDS);
   const [isExiting, setIsExiting] = useState(false);
@@ -92,7 +93,7 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
         </div>
 
         {/* Products */}
-        <div className={styles.productsSection} onClick={() => { onClose(); navigate('/'); }} style={{ cursor: 'pointer' }}>
+        <div className={styles.productsSection} onClick={() => { navigate('/'); onNavigateHome ? onNavigateHome() : onClose(); }} style={{ cursor: 'pointer' }}>
           <div className={styles.productsTitle}>Your order</div>
           <div className={styles.productTiles}>
             {PRODUCT_IMAGES.map((src, i) => (

@@ -776,6 +776,7 @@ export function ReplenishFlow({ isOpen, onClose, onFlowComplete }: ReplenishFlow
       <DeliveryTracking
         isOpen={showDeliveryTracking}
         onClose={handleCloseDeliveryTracking}
+        onNavigateHome={handleCloseIOSHome}
       />
     </>
   );
