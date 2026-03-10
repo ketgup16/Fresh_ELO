@@ -107,6 +107,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
     const [count, setCount] = useState(defaultCount);
     const initialMode: StepperMode = defaultCount > 0 ? 'expanded' : 'initial';
     const [mode, setMode] = useState<StepperMode>(initialMode);
+    const [hasInteracted, setHasInteracted] = useState(false);
     const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
     const iconSize = ICON_SIZES[size];
     const isAtMax = maxQuantity !== undefined && count >= maxQuantity;
@@ -138,6 +139,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
 
     const handleInitialClick = useCallback(() => {
       if (disabled) return;
+      setHasInteracted(true);
       setCount(1);
       setMode('expanded');
       onChange?.(1);
@@ -146,6 +148,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
     const handleIncrement = useCallback((e: React.MouseEvent) => {
       e.stopPropagation();
       if (disabled || isAtMax) return;
+      setHasInteracted(true);
       const next = count + 1;
       setCount(next);
       setMode('expanded');
@@ -155,6 +158,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
     const handleDecrement = useCallback((e: React.MouseEvent) => {
       e.stopPropagation();
       if (disabled) return;
+      setHasInteracted(true);
       const next = Math.max(0, count - 1);
       setCount(next);
       if (next === 0) {
@@ -167,6 +171,7 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
 
     const handleCollapsedClick = useCallback(() => {
       if (disabled) return;
+      setHasInteracted(true);
       setMode('expanded');
     }, [disabled]);
 
@@ -223,11 +228,11 @@ export const QuantityStepper = React.forwardRef<HTMLDivElement, QuantityStepperP
         </>
       );
     } else {
-      // Expanded normal: show "{count} added"
+      // Expanded normal: show "{count} added" only after user interaction
       centerContent = (
         <>
           <span className={styles.countValue}>{count}</span>
-          <span className={styles.labelText}>{countLabel}</span>
+          {hasInteracted && <span className={styles.labelText}>{countLabel}</span>}
         </>
       );
     }
