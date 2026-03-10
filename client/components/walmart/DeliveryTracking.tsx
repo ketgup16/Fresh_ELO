@@ -104,7 +104,7 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
         {/* Payment */}
         <div className={styles.paymentRow}>
           <span className={styles.paymentLabel}>Payment details</span>
-          <span className={styles.paymentValue}>VISA</span>
+          <VisaLogo />
           <span className={styles.paymentCard}>···· 1234</span>
         </div>
       </div>
@@ -218,6 +218,14 @@ function ProgressRing({ minutes, progress }: ProgressRingProps) {
         <div className={styles.ringLabel}>until delivered</div>
       </div>
     </div>
+  );
+}
+
+function VisaLogo() {
+  return (
+    <svg width="48" height="16" viewBox="0 0 48 16" fill="none" aria-label="Visa" role="img">
+      <path d="M19.614 15.186h-3.907L18.11.9h3.908l-2.404 14.286zM13.31.9L9.585 10.567l-.44-2.245L7.77 2.19S7.615.9 6.014.9H.067L0 1.178s1.795.372 3.895 1.633L7.27 15.186h4.07L17.54.9H13.31zM43.66 15.186H47.1L44.086.9h-3.15c-1.378 0-1.722.952-1.722.952l-5.833 13.334h4.07l.808-2.23h4.97l.43 2.23zm-4.317-5.3l2.056-5.66 1.148 5.66H39.343zM34.478 3.983l.557-3.225S33.424.1 31.713.1c-1.852 0-6.252.81-6.252 4.758 0 3.72 5.183 3.765 5.183 5.72 0 1.955-4.648 1.603-6.182.372l-.58 3.373s1.634.798 4.134.798c2.5 0 6.32-1.296 6.32-4.92 0-3.744-5.228-4.09-5.228-5.72 0-1.63 3.644-1.421 5.37-.498z" fill="#1A1F71"/>
+    </svg>
   );
 }
 
