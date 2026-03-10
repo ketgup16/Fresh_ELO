@@ -202,7 +202,7 @@
   flex-shrink: 0;
   overflow: hidden;
   /* Smooth transition for expand/collapse */
-  transition: max-width 0.3s ease, opacity 0.3s ease;
+  transition: max-width 0.15s ease, opacity 0.15s ease;
 }
 
 .slotVisible {
