@@ -354,16 +354,16 @@ export function GettingStartedDesigner() {
         </p>
       </div>
 
-      {/* 2. Resources Card */}
-      <ResourcesCard />
-
-      {/* 3. First Steps Checklist */}
+      {/* 2. First Steps Checklist */}
       <SectionCard title="First Steps">
         <FirstStepsChecklist />
       </SectionCard>
 
-      {/* 4. Onboarding Quiz */}
+      {/* 3. Onboarding Quiz */}
       <DesignerOnboardingQuiz />
+
+      {/* 4. Resources Card */}
+      <ResourcesCard />
 
       {/* 9. Quick-Start Prompts — collapsed */}
       <CollapsibleSection title="Quick-Start Prompts">
