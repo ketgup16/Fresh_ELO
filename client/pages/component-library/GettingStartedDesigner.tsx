@@ -355,9 +355,9 @@ export function GettingStartedDesigner() {
       </div>
 
       {/* 2. First Steps Checklist */}
-      <SectionCard title="First Steps">
+      <CollapsibleSection title="First Steps" defaultOpen>
         <FirstStepsChecklist />
-      </SectionCard>
+      </CollapsibleSection>
 
       {/* 3. Onboarding Quiz */}
       <DesignerOnboardingQuiz />

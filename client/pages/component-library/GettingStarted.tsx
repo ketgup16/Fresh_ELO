@@ -139,8 +139,8 @@ export default function GettingStartedPage() {
       <Tabs defaultValue="designer">
         <TabList>
           <Tab value="designer">{t('componentLibrary.tabDesigner')}</Tab>
-          <Tab value="developer">{t('componentLibrary.tabDeveloper')}</Tab>
           <Tab value="product-manager">{t('componentLibrary.tabProductManager')}</Tab>
+          <Tab value="developer">{t('componentLibrary.tabDeveloper')}</Tab>
           <Tab value="agent">{t('componentLibrary.tabAgent')}</Tab>
           <Tab value="component-designer">{t('componentLibrary.tabComponentDesigner')}</Tab>
         </TabList>

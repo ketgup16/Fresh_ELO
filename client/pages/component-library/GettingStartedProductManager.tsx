@@ -405,11 +405,11 @@ export function GettingStartedProductManager() {
         </p>
       </div>
 
-      {/* 2. Resources Card */}
-      <ResourcesCard />
-
-      {/* 4. Onboarding Quiz */}
+      {/* 2. Onboarding Quiz */}
       <PMOnboardingQuiz onComplete={setHasPRD} />
+
+      {/* 3. Resources Card */}
+      <ResourcesCard />
 
       {/* 5. Conditional PRD Template */}
       {showPRDTemplate && (
