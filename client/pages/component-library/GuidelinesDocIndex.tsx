@@ -189,7 +189,7 @@ export function GuidelinesDocIndex() {
         gap: '12px',
       }}>
         {[
-          { label: 'Total Components & Patterns', count: 90 },
+          { label: 'Components, Variants & Patterns', count: 200 },
           { label: 'Icons in Library', count: 303 },
           { label: 'Guideline Documents', count: docSections.reduce((sum, s) => sum + s.docs.length, 0) },
         ].map((stat) => (
