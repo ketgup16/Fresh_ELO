@@ -151,7 +151,7 @@
     0 4px 24px -4px rgba(0, 0, 0, 0.16);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  overflow: hidden;
+  overflow: visible;
   padding: 10px;
   cursor: pointer;
   z-index: 1;
