@@ -125,11 +125,15 @@ export function CondensedItemTile({
         {name && <div className={styles.editName}>{name}</div>}
 
         <QuantityStepper
+          key={isChecked ? 'checked' : 'unchecked'}
           variant="tertiary"
           size="small"
-          defaultCount={quantity}
+          defaultCount={isChecked ? quantity : 0}
           showTrashOnRemove
-          onChange={(q) => onQuantityChange?.(q)}
+          onChange={(q) => {
+            if (!isChecked && q > 0) onCheckChange?.(true);
+            onQuantityChange?.(q);
+          }}
         />
       </div>
     </div>
