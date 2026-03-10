@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './DeliveryTracking.module.css';
 
 const PRODUCT_IMAGES = [
@@ -18,6 +19,7 @@ interface DeliveryTrackingProps {
 }
 
 export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
+  const navigate = useNavigate();
   const [secondsLeft, setSecondsLeft] = useState(INITIAL_SECONDS);
   const [isExiting, setIsExiting] = useState(false);
 
@@ -90,7 +92,7 @@ export function DeliveryTracking({ isOpen, onClose }: DeliveryTrackingProps) {
         </div>
 
         {/* Products */}
-        <div className={styles.productsSection}>
+        <div className={styles.productsSection} onClick={() => { onClose(); navigate('/'); }} style={{ cursor: 'pointer' }}>
           <div className={styles.productsTitle}>Your order</div>
           <div className={styles.productTiles}>
             {PRODUCT_IMAGES.map((src, i) => (
