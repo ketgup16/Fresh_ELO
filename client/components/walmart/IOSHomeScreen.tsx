@@ -180,6 +180,7 @@ function DeliveryProgressTracker({ animate }: { animate: boolean }) {
   useEffect(() => {
     if (!animate) {
       setAnimating(false);
+      setTruckArrived(false);
       return;
     }
     timerRef.current = setTimeout(() => setAnimating(true), 2000);
