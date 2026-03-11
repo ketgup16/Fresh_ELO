@@ -48,7 +48,7 @@ Inline styles are permitted **only** when the value is computed at runtime from 
 
 When using tokens in inline styles, always include a fallback value:
 
-```tsx
+
 // ✅ CORRECT — token with fallback
 style={{ color: 'var(--ld-semantic-color-text-positive, #1A7A34)' }}
 
@@ -150,6 +150,25 @@ Before writing `style={{}}`:
 - [ ] Does this value reference a design token? → **CSS module**
 - [ ] Is this value computed from a number at runtime (drag, scroll, progress)? → **Inline OK**
 - [ ] Is this value unique per data item (objectPosition, image URL as background)? → **Inline OK, with token fallback**
+
+---
+
+## Builder.io Editor Inline Style Overrides
+
+The Builder.io visual editor sometimes injects inline styles (e.g., `width`, `max-width`) on content blocks. Override these in the CSS module with `!important` — never with competing inline styles:
+
+```css
+/* ✅ CORRECT — counters Builder editor inline style injections */
+.content {
+  width: 100% !important;
+  max-width: none !important;
+}
+```
+
+```tsx
+// ❌ WRONG — fighting inline with inline
+<div style={{ width: '100%', maxWidth: 'none' }}>
+```
 
 ---
 

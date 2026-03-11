@@ -32,7 +32,7 @@ Missing even one image from the Figma is a **blocking error** that must be corre
 ## Image URL Formats
 
 ### Builder.io TEMP URLs (primary Figma export format)
-```
+
 https://api.builder.io/api/v1/image/assets/TEMP/<hash>?width=<n>
 ```
 These are valid, permanent production URLs. Use them as-is in `<img src>`.
@@ -78,6 +78,26 @@ If the Figma HTML uses `data:image/...` base64 inline images, preserve them exac
 ## Rationale for Change
 
 The previous rule (only extract "exportable" assets) caused product images, illustrations, and ad banners embedded in Figma designs to be silently dropped or replaced with placeholders. This broke fidelity to the design and required manual fixes every iteration. The new rule eliminates ambiguity: **all images present in Figma designs are production assets and must appear in code**.
+
+## Figma Component → Code Mapping
+
+When extracting from Figma, map design components to their LD code equivalents:
+
+| Figma Component | Code Component | Import Path |
+|---|---|---|
+| Button (any variant) | `Button` | `@/components/ui/Button` |
+| Input Field | `TextField` | `@/components/ui/TextField` |
+| Dropdown | `Select` | `@/components/ui/Select` |
+| Checkbox | `Checkbox` | `@/components/ui/Checkbox` |
+| Radio Button | `Radio` | `@/components/ui/Radio` |
+| Toggle | `Switch` | `@/components/ui/Switch` |
+| Tag / Badge | `Tag` | `@/components/ui/tag` |
+| Star Rating | `Rating` | `@/components/ui/Rating` |
+| Tab Bar | `Tabs` / `TabList` / `Tab` | `@/components/ui/Tab` |
+| Modal / Dialog | `Dialog` | `@/components/ui/Dialog` |
+| Table | `DataTable` | `@/components/ui/DataTable` |
+| Link Text | `Link` | `@/components/ui/Link` |
+| Spinner | `Spinner` | `@/components/ui/Spinner` |
 
 ## Related Rules
 - [RULE_DesignSystemEnforcement](./RULE_DesignSystemEnforcement.mdc)

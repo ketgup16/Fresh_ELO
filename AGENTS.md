@@ -1,554 +1,143 @@
 # Builder.io Agent Rules
 
----
+## Build Verification (MANDATORY)
 
-## MANDATORY PRE-TASK PROTOCOL — Ask Before You Build
+After code changes, run `pnpm run build` and fix all errors before considering the task complete.
 
-Before writing a single line of code for any design or UI request, ask the relevant questions below. Do not assume. Do not guess. Do not start implementing.
+## Pre-Task Protocol (MANDATORY)
 
-| Task type | Ask about |
-|---|---|
-| New page or layout | Breakpoints, tokens, states, data freshness |
-| Carousel / scroll list | Shadow clipping, auto-advance, touch targets |
-| Tabs / nav / buttons | Active state per page, navigation route + delay |
-| Animation / transition | Feel (spring? ease? instant?), duration, timing |
-| Data / content update | Dates relative to today? Real vs randomized names/addresses? |
+Before writing code for any UI request, ask clarifying questions about breakpoints, tokens, states, animation feel, and data freshness. If told "just go ahead," use defaults from `.builder/rules/prompt-driven-design.mdc`.
 
-Only after receiving answers should implementation begin. If told "just go ahead," document assumptions and use defaults from `.builder/rules/prompt-driven-design.mdc`.
+## CRITICAL: Always Use Existing Components First
 
----
-
-## Component Reuse Policy
-
-### CRITICAL: Always Use Existing Components First
-
-- `client/components/ui/` — LD 3.5 design system primitives. Always use these first.
-- `client/components/` — Custom components. Use if no LD equivalent exists.
-- Check `.builder/rules/` folder for component documentation before creating anything new.
-- Only create new components if nothing suitable exists in either location.
-
-**Priority order: Reuse > Adapt > Create**
-
-### Consult Design System Documentation
-
-- `.builder/rules/` — component specs and enforced rules
-- Reference implementations in `client/components/ButtonExample.tsx`
-
----
-
-## Specific Component Rules
-
-### Buttons
-
-- **ALWAYS use**: `client/components/ui/Button.tsx` (uppercase B)
-- **NEVER create**: Custom button elements with inline styles or hard-coded colors
-- **Variants**: `primary`, `secondary`, `tertiary`, `destructive`, `primary-alt` (Walmart+ only)
-- **Sizes**: `small`, `medium`, `large`
-- **Width**: Use `isFullWidth` prop for full-width buttons — never force width with styles
-- **Import**: `import { Button } from '@/components/ui/Button'`
-
-`primary-alt` is exclusively for Walmart+ membership CTAs (gold fill, dark navy text).
-
-### Button Groups
-
-- **ALWAYS use**: `client/components/ui/ButtonGroup.tsx`
-- **Never use**: Manual flex containers for buttons
-
-### Tags & Badges
-
-- **For OLQ scores**: `client/components/ui/olq-tag.tsx` (OLQTag)
-- **For general tags**: `client/components/ui/tag.tsx` (Tag)
-- **Never use**: Custom styled spans or Badge component for tags
-
-### Popovers & Overlays
-
-- **ALWAYS use**: Portal-based LD components (`Popover`, `Modal`, `Menu`, `Select`) — they escape `overflow: hidden` ancestors
-- **NEVER**: Create custom absolute-positioned dropdowns
-- **NEVER**: Set `overflow: hidden` on containers holding overlay triggers unless the overlay portals out
-- **Import**: `import { Popover, PopoverTrigger, PopoverContent, PopoverArrow } from '@/components/ui/Popover'`
-- **NEVER**: Install or import from `@radix-ui/*`, `shadcn`, or any external overlay library
-
-### Forms (No Exceptions)
-
-- **Checkboxes**: Always `<Checkbox />` from `@/components/ui/Checkbox` — never `<input type="checkbox">`
-- **Radio**: Always `<Radio />` and `<RadioGroup />` — never `<input type="radio">`
-- **Text inputs**: Always `<TextField />` — never raw `<input>`
-- **Selects**: Always `<Select />` — never raw `<select>`
-- **Text areas**: Always `<TextArea />` — never raw `<textarea>`
-
-### Tables (No Exceptions)
-
-- **ALWAYS use**: `DataTable` component system — never raw `<table>` elements
-- Standalone DataTables use the `rounded` prop; DataTables inside cards do NOT (parent provides the frame)
-- **NEVER customize** DataTable colors or visual styling — it must look identical everywhere
-
-### Tabs (No Exceptions)
-
-- Always use `Tabs`, `TabList`, `Tab`, `TabPanel` from the Tab component
-- Never create custom tab components
-
-### Links (No Exceptions)
-
-- Never create raw `<a>` tags or custom hyperlink styles
-- Always use the LD `Link` component — variants: `default`, `subtle`, `white`
-
-### Side Navigation (No Exceptions)
-
-- Always use `AppSidebar` from `@/components/ui/AppSidebar`
-- Pass different `menuItems` to configure links — never recreate the sidebar structure
-
-### Rating Stars
-
-- Always use `<Rating value={4.4} size="small" />` — never manually render star SVGs
-
-### Panels & Drawers
-
-- ALL panels MUST be resizable — see `.builder/rules/component-panel.mdc`
-- Required: Min width 420px, Max width 800px
-- Required: Resize handle on left edge with visual indicator
-- Required: localStorage persistence of user's preferred width
-- Required: Responsive behavior for small screens
-- Reference: `client/components/RecommendationsPanel.tsx`
-
----
-
-## Component Import Paths
-
-
-// LD 3.5 components — uppercase imports
-import { Button } from '@/components/ui/Button';
-import { ButtonGroup } from '@/components/ui/ButtonGroup';
-import { Tag } from '@/components/ui/tag';
-import { OLQTag } from '@/components/ui/olq-tag';
-import { Rating } from '@/components/ui/Rating';
-import { Popover, PopoverTrigger, PopoverContent, PopoverArrow } from '@/components/ui/Popover';
-import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/Dialog';
-import { Select, SelectItem } from '@/components/ui/Select';
-
-// ❌ WRONG — never from external packages
-import { Popover } from '@radix-ui/react-popover';
-import { Button } from 'shadcn/ui';
-
-
----
-
-## Page Templates & Layout Components (HARD RULE)
-
-### Every Page Must Have: Top Nav + Content + Bottom Nav
-
-Page files (`client/pages/**/*.tsx`) MUST NOT render shell components (`DesktopHeader`, `MobileTopNav`, `SubNav`, `BottomNav`) directly — the layout wrapper provides them automatically.
-
-#### Top Navigation
-
-- **ALWAYS use**: The existing top nav provided by the layout shell
-- **NEVER create**: Custom headers, nav bars, or top-level navigation from scratch
-- Top nav appears on every page — no exceptions
-- Do not hide, override, or conditionally remove the top nav unless explicitly instructed
-
-#### Bottom Navigation
-
-- **ALWAYS use**: The bottom nav provided by the layout shell
-- **NEVER create**: Custom footers or bottom bars from scratch
-- Bottom nav appears on every page — no exceptions
-- **NEVER** add `max-width` or `margin: 0 auto` to `BottomNav`
-
-#### Page Template Shell
-
-- Before building a new page, check `client/components/` for an existing layout wrapper (e.g., `PageLayout`, `ComponentPageLayout`)
-- All new pages MUST use the appropriate layout wrapper
-- If no wrapper exists for the use case, create one that includes the top nav, bottom nav, and a content slot
-
-
-// ❌ WRONG — rendering shell components that are already provided
-export default function MyPage() {
-  return (
-    <>
-      <DesktopHeader />   {/* Already in shell — remove */}
-      <BottomNav />       {/* Already in shell — remove */}
-      <div>Page content</div>
-    </>
-  );
-}
-
-// ✅ CORRECT — page content only; shell components are injected by layout
-export default function MyPage() {
-  return (
-    <div className={styles.page}>
-      {/* page-specific content */}
-    </div>
-  );
-}
-
-
----
-
-## Responsive Layout & Page Structure
-
-### Standard Breakpoints (Do NOT invent new ones)
-
-| Breakpoint | Target | Padding |
-|---|---|---|
-| `> 1024px` | Desktop | `24px–32px` |
-| `<= 1024px` | Tablet | `20px–24px` |
-| `<= 768px` | Small tablet | `16px` |
-| `<= 480px` | Phone | `12px` |
-
-### Rules
-
-- **NEVER** use `max-width` constraints on page content containers — content must fill full available width
-- **ALWAYS** use `align-items: stretch` (not `center`) on flex column containers holding page content
-- Padding reduces at each breakpoint: `32px → 24px → 16px → 12px`
-- Multi-column layouts MUST stack at `768px`
-- Card grids MUST reduce columns at `1024px` and `768px`
-- Page titles MUST scale to `24px` at `768px`
-- Form rows MUST stack vertically at `768px`
-- All spacing uses 8px multiples (4, 8, 12, 16, 24, 32, 48px)
-
-### Full-Bleed vs Padded Content
-
-```css
-/* ✅ Full-bleed (hero, carousels) */
-.heroSection { width: 100%; overflow: hidden; }
-
-/* ✅ Padded content sections */
-.section { padding: 24px 32px; }
-@media (max-width: 1024px) { .section { padding: 20px 24px; } }
-@media (max-width: 768px) { .section { padding: 16px; } }
-@media (max-width: 480px) { .section { padding: 12px; } }
-
-/* ❌ WRONG — constrains content */
-.page { max-width: 1280px; margin: 0 auto; }
-```
-
-### Walmart Page Stacking Order
-
-```
-1. Hero / Banner (full-bleed)
-2. Promotional rows
-3. Section headers with optional "See all" link
-4. Content grids (product tiles, order cards)
-5. Inline ad banners
-6. Footer content (rare)
-```
-
----
-
-## Living Design 3.5 Token Usage (CRITICAL — Zero Exceptions)
-
-**NEVER use hard-coded hex colors, spacing, or font values. ALWAYS use semantic tokens.**
-
-### Token Categories
-
-| Category | Pattern | Example |
-|---|---|---|
-| Colors | `var(--ld-semantic-color-*)` | `var(--ld-semantic-color-text)` |
-| Spacing | `var(--ld-primitive-scale-space-*)` | `var(--ld-primitive-scale-space-200)` = 16px |
-| Typography | `var(--ld-semantic-font-*)` | `var(--ld-semantic-font-body-small-size)` |
-| Border Radius | `var(--ld-primitive-scale-borderradius-*)` | `var(--ld-primitive-scale-borderradius-100)` = 8px |
-| Elevation | `var(--ld-semantic-elevation-*)` | `var(--ld-semantic-elevation-100)` |
-| Icon Sizes | `var(--ld-semantic-scale-icon-*)` | `var(--ld-semantic-scale-icon-small)` = 16px |
-
-### Common Color Tokens
-
-```css
-/* Text */
-color: var(--ld-semantic-color-text);                    /* primary */
-color: var(--ld-semantic-color-text-subtle);             /* secondary */
-color: var(--ld-semantic-color-text-subtlest);           /* tertiary */
-color: var(--ld-semantic-color-text-brand);              /* brand */
-color: var(--ld-semantic-color-text-negative);           /* error/negative */
-color: var(--ld-semantic-color-text-positive);           /* success/positive */
-
-/* Backgrounds */
-background: var(--ld-semantic-color-background-subtle);  /* page background */
-background: var(--ld-semantic-color-surface);            /* cards/panels */
-background: var(--ld-semantic-color-surface-hovered);    /* hover state */
-
-/* Ratings */
-color: var(--ld-semantic-color-rating-fill);             /* never hardcode #FFC220 */
-```
-
-### Separator Token Rule (Zero Exceptions)
-
-For ALL divider lines, section separators, table row borders:
-
-```css
-/* ✅ CORRECT */
-border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-
-/* ❌ WRONG — resolves inconsistently */
-border-bottom: 1px solid var(--ld-semantic-color-border-subtle);
-```
-
-`border-subtle` is reserved ONLY for interactive component borders (inputs, interactive card frames).
-
-### Primitive Token Rule
-
-- `--ld-primitive-color-*` tokens are **FORBIDDEN** in component/page CSS
-- Only semantic tokens (`--ld-semantic-*`) may be used in components
-- Primitive tokens are only for building the semantic layer in theme files
-
----
-
-## Inline Style vs CSS Module
-
-> CSS modules for everything static. Inline styles only for values that change per render.
-
-### Always CSS Modules
-
-- Variant-based colors, state-based styles (hover, focus, active, disabled)
-- Layout: padding, gap, margin, display, flex-direction
-- Typography: font-family, font-size, font-weight, line-height
-- Border radius, responsive breakpoints, animations, token references
-
-### Inline Styles — Only These Cases
-
-| Approved use | Example |
-|---|---|
-| Image focal point per slide | `style={{ objectPosition: slide.objectPosition }}` |
-| Panel width from user drag | `style={{ width: panelWidth + 'px' }}` |
-| Tooltip/popover position | `style={{ top: tooltipY + 'px', left: tooltipX + 'px' }}` |
-| Progress bar fill | `style={{ width: progress + '%' }}` |
-
-Always include a token fallback when using tokens inline:
-```tsx
-// ✅ CORRECT
-style={{ color: 'var(--ld-semantic-color-text-positive, #1A7A34)' }}
-// ❌ WRONG
-style={{ color: '#1A7A34' }}
-```
-
-### Never Inline
-
-```tsx
-// ❌ WRONG — all of these belong in CSS modules
-<div style={{ backgroundColor: '#0071DC' }}>
-<div style={{ padding: '16px', gap: '12px' }}>
-<div style={{ fontFamily: 'Everyday Sans UI', fontSize: '14px' }}>
-<div style={{ borderRadius: '8px' }}>
-```
-
----
-
-## Icon Usage (CRITICAL — No Exceptions)
-
-### Always Search First — 303+ Icons Available
-
-Before creating any icon, search `client/components/icons/` and `/component-library#icons`.
-
-```tsx
-// ✅ CORRECT — use existing
-import { Search, User, Cart, Settings } from '@/components/icons';
-
-// ❌ WRONG — creating duplicates
-// Don't create SearchIcon.tsx when Search.tsx exists!
-```
-
-### Icon Rules
-
-- **NEVER** create inline SVG icons
-- **NEVER** use external icon libraries (`react-icons`, `heroicons`, `lucide-react`, etc.)
-- **NEVER** add new icons to `client/components/icons/` — that is the core LD library
-- New custom icons go in `client/components/icons-custom/` only
-
-### New Icon Specs (Last Resort Only)
-
-```tsx
-// client/components/icons-custom/MyIcon.tsx
-export const MyIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" {...props}>
-    <path d="M..." stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-  </svg>
-);
-```
-
-Specs: 20×20 viewBox, 1.5px stroke, `strokeLinecap="square"`, `currentColor`
-
----
-
-## Component Variant Naming
-
-| Variant type | Values | Used for |
-|---|---|---|
-| Action-intent | `primary \| secondary \| tertiary \| destructive` | Button, IconButton only |
-| Visual-theme | `default \| brand \| inverse` | WCP banners, callouts, promo components |
-| Status/sentiment | `success \| warning \| error \| info \| neutral` | Tag, Alert, Badge |
-
-- Always a string union type — never an enum
-- Always optional with a `default` fallback
-- Map variant classes with `styles[variant]` — never switch/if chains
-- **NEVER** apply action-intent names (`primary/secondary`) to visual-theme components
-- **NEVER** apply visual-theme names (`brand/inverse`) to action components
-
----
-
-## WCP Component Creation
-
-- **LD components** live in `client/components/ui/` — design system primitives
-- **WCP components** live in `client/components/walmart/` — Walmart product-level, built on LD primitives
-- WCP uses visual-theme variants: `default | brand | inverse`
-- Variant class composition: `[styles.banner, styles[variant]].filter(Boolean).join(' ')`
-- Render as `<button>` when `onClick` provided, `<div>` otherwise
-- Named exports only — never `export default`
-- Every new WCP component requires: Component Library page + route + Overview.tsx entry + i18n keys
-- See `.builder/rules/wcp-component-creation.mdc`
-
----
-
-## Animation & Motion
-
-- **EVERY** animation MUST have a `@media (prefers-reduced-motion: reduce)` override — no exceptions
-- Use `@keyframes` for multi-step sequences; use `transition` for 2-state hover/focus changes
-- Standard durations: 150ms (micro), 250ms (standard), 400ms (complex), 2500ms (insertion glow)
-- Auto-advance carousels must pause on user interaction and disable under `prefers-reduced-motion`
-- **NEVER** create a custom spinner — use the existing `Spinner` component
-
----
-
-## Accessibility — Never Disable Buttons
-
-- **ALWAYS** keep buttons enabled — use label changes or helper text instead of `disabled`
-- Disabled buttons cannot receive focus — screen readers and keyboard users cannot reach them
-
-```tsx
-// ❌ WRONG
-<Button variant="primary" disabled={!hasChanges}>Save changes</Button>
-
-// ✅ CORRECT
-<Button variant="primary" onClick={() => hasChanges ? save() : dismiss()}>
-  {hasChanges ? 'Save changes' : 'Done'}
-</Button>
-```
-
----
-
-## SVG & Illustration Assets
-
-- **ALWAYS** check `public/illustrations/` for an existing match before generating a new image
-- **ALWAYS** provide `alt` text on every `<img>` using an illustration
-- Use `alt=""` + `aria-hidden="true"` only for purely decorative illustrations
-- Fulfillment/category pictograms render at 64×64px
-- **NEVER** generate a new illustration when a semantically matching one already exists locally
-- **NEVER** use CDN URLs with `?format=webp` for SVG files — host locally
-
-```html
-<!-- ✅ CORRECT -->
-<img src="/illustrations/mono-large/Toys.svg" alt="Toys" width="64" height="64" />
-
-<!-- ❌ WRONG — CDN re-encodes SVG as WebP → blurry -->
-<img src="https://cdn.builder.io/.../icon?format=webp&width=800" />
-```
-
----
-
-## Data-Driven Components
-
-- Static demo data lives in the **same `.tsx` file** as the component, above the component function
-- Array names: `UPPER_SNAKE_CASE` (e.g., `PRODUCTS`, `SLIDES`, `ORDERS`)
-- Always define a TypeScript interface for the data shape
-- Use `headlineParts?: string[]` for multi-line text — never `\n` in strings
-- Use Walmart CDN or local illustration URLs — never `placeholder.com` or `picsum.photos`
-
----
-
-## File Naming Conventions
-
-| File type | Convention | Examples |
-|---|---|---|
-| All UI components (LD 3.5) | PascalCase | `Button.tsx`, `Dialog.tsx` |
-| CSS modules | PascalCase (match component) | `Button.module.css` |
-| Pages | PascalCase | `Index.tsx`, `Catalog.tsx` |
-| Page CSS modules | camelCase | `detailItem.module.css` |
-| React hooks | camelCase with `use` prefix | `useMobile.tsx` |
-| Context files | PascalCase | `ThemeRegistry.ts` |
-| Example files | PascalCase + `Example` suffix | `ButtonExample.tsx` |
-| Token CSS files | lowercase | `semantic.css`, `primitive.css` |
-
----
-
-## Figma Import Rules (HARD RULES — No Exceptions)
-
-When implementing any Figma design, ALWAYS use existing LD 3.5 design system. Never hardcode colors or values from Figma exports.
-
-- **Colors**: Every Figma color maps to an `ld-semantic-color-*` token
-- **Typography**: Every Figma font maps to `ld-semantic-font-*` tokens
-- **Spacing**: Use `ld-primitive-scale-space-*` tokens — never arbitrary px values
-- **Border radius**: Use `ld-primitive-scale-borderradius-*` tokens; `9999px` for pill shapes
-- **State tokens**: Figma hover/focus/pressed states map to `ld-semantic-color-action-fill-primary-hovered` etc. — never approximate with `opacity`
-- Convert Figma absolute positioning to flexbox/grid — never use `position: absolute` for page layout
-
-```css
-/* ❌ WRONG — hardcoded from Figma export */
-.button { background: #0071DC; font-family: 'Everyday Sans UI'; font-size: 14px; border-radius: 1000px; }
-
-/* ✅ CORRECT — mapped to design tokens */
-.button {
-  background: var(--ld-semantic-color-action-fill-primary);
-  font-family: var(--ld-semantic-font-body-small-family);
-  font-size: var(--ld-semantic-font-body-small-size);
-  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
-}
-```
-
----
-
-## Theme Compliance — Pre-Completion Requirement
-
-**Every new component and page MUST pass a theme compliance check before it is considered done.**
-
-1. Zero hardcoded hex colors in component/page CSS
-2. Zero `--ld-primitive-color-*` references in component CSS
-3. Zero hardcoded `font-size`, `padding`, `border-radius` values (use token vars)
-4. Switch to Bodega (green) theme → brand colors must be green, not blue
-5. Switch to Walmart Legacy theme → verify correct rendering
-
----
+- `client/components/ui/` — LD 3.5 primitives. **ALWAYS** use these first.
+- `client/components/` — Custom components. Use if no LD equivalent.
+- `.builder/rules/` — 40+ component specs. Check before creating anything new.
+- **Priority: Reuse > Adapt > Create**
+- **NEVER modify** existing LD components in `client/components/ui/`.
 
 ## External Library Policy (HARD RULE)
 
-**NEVER install or import from external UI libraries** including:
+**NEVER install or import** from `shadcn/ui`, `@radix-ui/*`, `@headlessui/*`, `@mui/*`, `antd`, `chakra-ui`, `react-icons`, `heroicons`, `lucide-react`, or any external UI/icon library. All UI from `client/components/ui/`. All icons from `client/components/icons/`. **NEVER use emojis.**
 
-- `shadcn/ui`
-- `@radix-ui/*`
-- `@headlessui/*`
-- `@mui/*` (Material UI)
-- `antd` (Ant Design)
-- `chakra-ui`
-- `react-icons`, `heroicons`, `lucide-react` (icons)
-- Any other third-party component or icon library
+## TOP VIOLATIONS — Check Every Time
 
-All UI components MUST come from `client/components/ui/`. All icons from `client/components/icons/`. If a needed component doesn't exist, build it using LD 3.5 design tokens.
+1. Hard-coded hex colors instead of `var(--ld-semantic-color-*)`
+2. Raw HTML elements (`<button>`, `<input>`, `<table>`, `<a>`) instead of LD components
+3. External library imports
+4. Inline styles for static values
+5. Missing `prefers-reduced-motion` on animations
+6. Custom spinners instead of `<Spinner />`
+7. Modifying files in `client/components/ui/`
 
----
+## Component Rules
+
+| Need | Use | Never |
+|---|---|---|
+| Buttons | `Button` (default: `medium`) | Custom `<button>` |
+| Button groups | `ButtonGroup` | Manual flex |
+| Checkboxes | `Checkbox` | `<input type="checkbox">` |
+| Radio | `Radio` / `RadioGroup` | `<input type="radio">` |
+| Text inputs | `TextField` | Raw `<input>` |
+| Selects | `Select` | Raw `<select>` |
+| Text areas | `TextArea` | Raw `<textarea>` |
+| Tables | `DataTable` | Raw `<table>` |
+| Tabs | `Tabs`, `TabList`, `Tab`, `TabPanel` | Custom tabs |
+| Links | `Link` (`default`, `subtle`, `white`) | `<a>`, `<button>`, `<span>` |
+| Sidebar | `AppSidebar` | Custom sidebar |
+| Rating | `Rating` | Manual star SVGs |
+| Tags | `Tag` / `OLQTag` | Custom spans |
+| Overlays | `Popover`, `Modal`, `Menu` | Absolute dropdowns |
+| Number input | `QuantityStepper` | Custom input |
+| Header | `DesktopHeader` (shell) | Custom header |
+
+- Button variants: `primary`, `secondary`, `tertiary`, `destructive`, `primary-alt` (W+ only)
+- Button sizes: `small`, `medium` (default), `large` — `isFullWidth` for full-width
+- Panels MUST be resizable (min 420px, max 800px)
+
+## Page Layout (HARD RULE)
+
+- Pages MUST NOT render shell components — layout wrapper provides them
+- Never add `max-width` or `margin: 0 auto` to page containers
+
+## Design Tokens (CRITICAL)
+
+**Never hardcode hex colors, spacing, or fonts. Always use semantic tokens.**
+
+| Category | Pattern |
+|---|---|
+| Colors | `var(--ld-semantic-color-*)` |
+| Spacing | `var(--ld-primitive-scale-space-*)` |
+| Typography | `var(--ld-semantic-font-*)` |
+| Border Radius | `var(--ld-primitive-scale-borderradius-*)` |
+| Elevation | `var(--ld-semantic-elevation-*)` |
+
+- `--ld-primitive-color-*` is **FORBIDDEN** in component CSS
+- Separators: `var(--ld-semantic-color-separator)` — never `border-subtle`
+
+## Styling
+
+- CSS modules for static styles. Inline only for dynamic per-render values.
+- Inline tokens must include fallback: `var(--token, #hex)`
+
+## Icons
+
+- Search `client/components/icons/` first (303+). Never inline SVGs or external libs.
+- New custom icons: `client/components/icons-custom/` (20x20, 1.5px stroke, `currentColor`)
+
+## Responsive Breakpoints
+
+| Breakpoint | Target | Padding |
+|---|---|---|
+| `> 1024px` | Desktop | `24-32px` |
+| `<= 1024px` | Tablet | `20-24px` |
+| `<= 768px` | Small tablet | `16px` |
+| `<= 480px` | Phone | `12px` |
+
+Multi-column stacks at 768px. 8px-multiple spacing only.
+
+## Accessibility
+
+- Never disable buttons — use label changes. Every animation needs `prefers-reduced-motion`.
+
+## Figma Import
+
+- Map Figma colors to `--ld-semantic-color-*`. Convert absolute positioning to flex/grid.
+- All `<img>` in Figma HTML must appear in code. See `figma-asset-extraction.mdc`.
+
+## Theme Compliance
+
+Zero hardcoded hex. Zero primitive color tokens. Test Bodega + Legacy themes.
 
 ## Pre-Implementation Checklist
 
-Before creating ANY new component, icon, page, or design:
+- [ ] Searched `client/components/ui/` and 303+ icons
+- [ ] Checked `.builder/rules/` for specs
+- [ ] Semantic tokens only (no hex)
+- [ ] Layout shell used (no manual Header/BottomNav)
+- [ ] Breakpoints: 1024, 768, 480
+- [ ] `prefers-reduced-motion` for animations
+- [ ] Theme compliance passed
 
-- [ ] Searched existing components in `client/components/ui/`
-- [ ] Searched all 303+ icons at `/component-library#icons`
-- [ ] Checked relevant guideline docs in `.builder/rules/`
-- [ ] Verified no duplicates exist
-- [ ] Confirmed using semantic design tokens only (no hardcoded hex)
-- [ ] Page uses top nav + bottom nav shell (or existing layout wrapper)
-- [ ] All interactive states included (hover, focus, active, disabled)
-- [ ] Responsive breakpoints covered (1024px, 768px, 480px)
-- [ ] `prefers-reduced-motion` override added for any animations
-- [ ] Theme compliance check passed (no primitive tokens, no hardcoded colors)
+## Additional Rules (`.builder/rules/`)
 
----
-
-## Build Verification (MUST DO)
-
-After ANY code changes, you MUST run `pnpm run build` and fix all errors before considering the task complete. Do not skip this step. If the build fails, diagnose and correct the errors, then re-run until the build succeeds.
-
----
+| Topic | File |
+|---|---|
+| Animation | `animation-and-motion.mdc` |
+| Inline styles | `inline-style-vs-css-module.mdc` |
+| Theme compliance | `theme-compliance.mdc` |
+| WCP components | `wcp-component-creation.mdc` |
+| Page composition | `walmart-page-composition.mdc` |
+| Responsive layout | `responsive-layout.mdc` |
+| Prompt design | `prompt-driven-design.mdc` |
+| Section spacing | `page-section-spacing.mdc` |
+| Figma handoff | `designer-figma-handoff.mdc` |
 
 ## Quick Links
 
 | Resource | Location |
 |---|---|
-| Component specs | `.builder/rules/` (component-specific rule files) |
-| Design tokens | `.builder/rules/design-tokens.mdc` |
-| Icon library | `client/components/icons/` + `/component-library#icons` |
-| Skills | `.builder/skills/` (step-by-step recipes) |
+| Component specs | `.builder/rules/` |
+| Design tokens | `design-tokens.mdc` |
+| Icon library | `client/components/icons/` |
+| Skills | `.builder/skills/` |

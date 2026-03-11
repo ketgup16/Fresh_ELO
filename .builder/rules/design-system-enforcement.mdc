@@ -42,7 +42,7 @@ This rule ensures ALL code follows Living Design 3.5 (LD 3.5) design system prin
 
 ### Do / Don't
 
-```css
+
 /* WRONG */
 .card { background: #ffffff; padding: 16px; border-radius: 8px; color: #2e2f32; }
 
@@ -147,6 +147,21 @@ grep -r "<svg" client/pages/ client/components/ --include="*.tsx"
 # External icon imports
 grep -r "react-icons\|heroicons\|lucide-react" client/ --include="*.tsx"
 ```
+
+---
+
+## 4. Design System Package Ingestion Process
+
+When a new version of the LD 3.5 design system package is delivered:
+
+1. **Compare tokens** — Diff `semantic.css` and `primitive.css` against current files in `client/styles/themes/`
+2. **Update token files** — Replace token CSS files with new versions. Never modify token values manually.
+3. **Check for new components** — If new LD components are included, add them to `client/components/ui/` following existing patterns
+4. **Run theme compliance** — Switch between all themes (Walmart, Bodega, Legacy) and verify no regressions
+5. **Update component specs** — If component APIs changed, update the corresponding `.builder/rules/component-*.mdc` file
+6. **Run build** — `pnpm run build` must pass with zero errors
+
+**NEVER** modify token values in `semantic.css` or `primitive.css` directly — these are generated from the design system source.
 
 ---
 
