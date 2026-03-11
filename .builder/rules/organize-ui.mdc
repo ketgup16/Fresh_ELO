@@ -1,7 +1,7 @@
 ---
 description: Keep component and files small
 globs:
-alwaysApply: true
+alwaysApply: false
 ---
 
 As development goes, break down complex UI into smaller components, avoiding very nested JSX trees.

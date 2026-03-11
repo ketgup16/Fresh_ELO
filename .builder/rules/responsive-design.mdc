@@ -1,3 +1,8 @@
+---
+description: All pages and components must be responsive using CSS Grid auto-fit and flexbox wrap
+alwaysApply: false
+---
+
 # Responsive Design Rule
 
 ## CRITICAL RULE: All Designs Must Be Responsive
@@ -9,7 +14,7 @@ Every page, component, and layout MUST be responsive and adapt gracefully to dif
 ### ✅ DO - Use Responsive Patterns
 
 **1. Use CSS Grid with auto-fit/auto-fill**
-```css
+
 /* Responsive grid that wraps */
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

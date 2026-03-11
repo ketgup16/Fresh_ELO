@@ -14,7 +14,7 @@ Before writing a single line of code for any design or UI request, ask the relev
 | Animation / transition | Feel (spring? ease? instant?), duration, timing |
 | Data / content update | Dates relative to today? Real vs randomized names/addresses? |
 
-Only after receiving answers should implementation begin. If told "just go ahead," document assumptions and use defaults from `guidelines/rules/RULE_PromptDrivenDesign.md`.
+Only after receiving answers should implementation begin. If told "just go ahead," document assumptions and use defaults from `.builder/rules/prompt-driven-design.mdc`.
 
 ---
 
@@ -24,15 +24,14 @@ Only after receiving answers should implementation begin. If told "just go ahead
 
 - `client/components/ui/` — LD 3.5 design system primitives. Always use these first.
 - `client/components/` — Custom components. Use if no LD equivalent exists.
-- Check `guidelines/` folder for component documentation before creating anything new.
+- Check `.builder/rules/` folder for component documentation before creating anything new.
 - Only create new components if nothing suitable exists in either location.
 
 **Priority order: Reuse > Adapt > Create**
 
 ### Consult Design System Documentation
 
-- `guidelines/components/` — 40+ component spec files
-- `guidelines/rules/RULES_INDEX.md` — all enforced rules at a glance
+- `.builder/rules/` — component specs and enforced rules
 - Reference implementations in `client/components/ButtonExample.tsx`
 
 ---
@@ -104,7 +103,7 @@ Only after receiving answers should implementation begin. If told "just go ahead
 
 ### Panels & Drawers
 
-- ALL panels MUST be resizable — see `guidelines/components/Panel.md`
+- ALL panels MUST be resizable — see `.builder/rules/component-panel.mdc`
 - Required: Min width 420px, Max width 800px
 - Required: Resize handle on left edge with visual indicator
 - Required: localStorage persistence of user's preferred width
@@ -129,7 +128,7 @@ import { Select, SelectItem } from '@/components/ui/Select';
 // ❌ WRONG — never from external packages
 import { Popover } from '@radix-ui/react-popover';
 import { Button } from 'shadcn/ui';
-```
+
 
 ---
 
@@ -159,7 +158,7 @@ Page files (`client/pages/**/*.tsx`) MUST NOT render shell components (`DesktopH
 - All new pages MUST use the appropriate layout wrapper
 - If no wrapper exists for the use case, create one that includes the top nav, bottom nav, and a content slot
 
-```tsx
+
 // ❌ WRONG — rendering shell components that are already provided
 export default function MyPage() {
   return (
@@ -179,7 +178,7 @@ export default function MyPage() {
     </div>
   );
 }
-```
+
 
 ---
 
@@ -392,7 +391,7 @@ Specs: 20×20 viewBox, 1.5px stroke, `strokeLinecap="square"`, `currentColor`
 - Render as `<button>` when `onClick` provided, `<div>` otherwise
 - Named exports only — never `export default`
 - Every new WCP component requires: Component Library page + route + Overview.tsx entry + i18n keys
-- See `guidelines/rules/RULE_WCPComponentCreation.md`
+- See `.builder/rules/wcp-component-creation.mdc`
 
 ---
 
@@ -528,7 +527,7 @@ Before creating ANY new component, icon, page, or design:
 
 - [ ] Searched existing components in `client/components/ui/`
 - [ ] Searched all 303+ icons at `/component-library#icons`
-- [ ] Checked relevant guideline docs in `guidelines/`
+- [ ] Checked relevant guideline docs in `.builder/rules/`
 - [ ] Verified no duplicates exist
 - [ ] Confirmed using semantic design tokens only (no hardcoded hex)
 - [ ] Page uses top nav + bottom nav shell (or existing layout wrapper)
@@ -539,17 +538,17 @@ Before creating ANY new component, icon, page, or design:
 
 ---
 
+## Build Verification (MUST DO)
+
+After ANY code changes, you MUST run `pnpm run build` and fix all errors before considering the task complete. Do not skip this step. If the build fails, diagnose and correct the errors, then re-run until the build succeeds.
+
+---
+
 ## Quick Links
 
 | Resource | Location |
 |---|---|
-| All rules index | `guidelines/rules/RULES_INDEX.md` |
-| Component specs | `guidelines/components/` |
-| Design tokens | `guidelines/design-system/DesignTokens.md` |
+| Component specs | `.builder/rules/` (component-specific rule files) |
+| Design tokens | `.builder/rules/design-tokens.mdc` |
 | Icon library | `client/components/icons/` + `/component-library#icons` |
-| Responsive layout rule | `guidelines/rules/RULE_ResponsiveLayout.md` |
-| WCP component rule | `guidelines/rules/RULE_WCPComponentCreation.md` |
-| Walmart page composition | `guidelines/rules/RULE_WalmartPageComposition.md` |
-| Inline style rule | `guidelines/rules/RULE_InlineStyleVsCSSModule.md` |
-| Animation rule | `guidelines/rules/RULE_AnimationAndMotion.md` |
-| Theme compliance | `guidelines/rules/RULE_ThemeCompliance.md` |
+| Skills | `.builder/skills/` (step-by-step recipes) |

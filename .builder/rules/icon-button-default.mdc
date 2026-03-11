@@ -1,3 +1,8 @@
+---
+description: IconButton must default to ghost variant and medium size
+alwaysApply: false
+---
+
 # IconButton Default Variant Rule
 
 ## CRITICAL RULE: Always Use Ghost Variant and Rounded Style for IconButton
@@ -8,7 +13,7 @@ When using IconButton components, ALWAYS use:
 
 ## ✅ CORRECT - Use Ghost Variant with Rounded Shape
 
-```tsx
+
 // Default - Use ghost variant with rounded/circular style
 <IconButton
   variant="ghost"

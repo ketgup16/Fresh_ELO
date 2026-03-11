@@ -1,7 +1,7 @@
 ---
 description: Deploy the app to production using Netlify or Vercel to make the site live
 globs:
-alwaysApply: true
+alwaysApply: false
 ---
 
 Deploying the app to production is powered by either Netlify or Vercel through MCP (Model Context Protocol) integrations:

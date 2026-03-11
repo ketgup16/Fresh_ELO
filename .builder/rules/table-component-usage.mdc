@@ -1,3 +1,8 @@
+---
+description: Always use DataTable component system instead of raw HTML table elements
+alwaysApply: false
+---
+
 # Table Component Usage Rule
 
 ## CRITICAL RULE: Always Use Existing Table Components
@@ -6,7 +11,7 @@ When creating ANY table in the application, you MUST use the existing shadcn/rad
 
 ## Required Imports
 
-```tsx
+
 import {
   Table,
   TableHeader,

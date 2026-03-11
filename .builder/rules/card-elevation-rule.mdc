@@ -1,3 +1,8 @@
+---
+description: Cards must use box-shadow elevation instead of borders for visual separation
+alwaysApply: false
+---
+
 # Card Styling Rule - Elevation Over Borders
 
 ## CRITICAL RULE: Cards Use Elevation, Not Borders
@@ -7,7 +12,7 @@ All card components and card-like containers MUST use `box-shadow` (elevation) f
 ## Default Card Styling
 
 ### ✅ CORRECT - Use Elevation
-```tsx
+
 <div style={{
   backgroundColor: 'var(--ld-semantic-color-surface)',
   borderRadius: '8px',
