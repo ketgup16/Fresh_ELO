@@ -164,14 +164,16 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navToggle', descKey: 'componentLibrary.descToggle', path: '/component-library/toggle', icon: 'Check', section: 'shadcn' },
 ];
 
-function ComponentCard({ entry }: { entry: ComponentEntry }) {
+function ComponentCard({ entry, hidePreview }: { entry: ComponentEntry; hidePreview?: boolean }) {
   const { t } = useTranslation();
   const title = t(entry.titleKey);
   return (
     <Link to={entry.path} className={styles.componentCard}>
-      <div className={styles.cardPreview}>
-        {getComponentPreview(title, entry.icon)}
-      </div>
+      {!hidePreview && (
+        <div className={styles.cardPreview}>
+          {getComponentPreview(title, entry.icon)}
+        </div>
+      )}
       <div className={styles.cardBody}>
         {entry.section === 'shadcn' && (
           <span className={styles.sharedBadge}>{t('componentLibrary.sharedBadge')}</span>
@@ -386,7 +388,7 @@ export default function ComponentLibraryOverview() {
             gap: '24px',
           }}>
             {patternEntries.map((entry) => (
-              <ComponentCard key={entry.path} entry={entry} />
+              <ComponentCard key={entry.path} entry={entry} hidePreview />
             ))}
           </div>
         </div>
