@@ -649,3 +649,298 @@ export function OrderCardPatternsPreview() {
     </PreviewFrame>
   );
 }
+
+export function FloatingButtonPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        {[28, 36, 28].map((size, i) => (
+          <div key={i} style={{
+            width: `${size}px`, height: `${size}px`, borderRadius: '50%',
+            background: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
+            boxShadow: 'var(--ld-semantic-elevation-200)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            {i === 0 && <ChevronDown style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-text, #2E2F32)', transform: 'rotate(90deg)' }} />}
+            {i === 1 && <ArrowRight style={{ width: 16, height: 16, color: 'var(--ld-semantic-color-text, #2E2F32)' }} />}
+            {i === 2 && <ChevronDown style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-text, #2E2F32)', transform: 'rotate(-90deg)' }} />}
+          </div>
+        ))}
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function QueueBannerPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{
+        width: '200px', borderRadius: '6px', padding: '8px 12px',
+        background: 'var(--ld-semantic-color-text, #2E2F32)',
+        display: 'flex', alignItems: 'center', gap: '8px',
+      }}>
+        <div style={{
+          padding: '2px 8px', borderRadius: '9999px', fontSize: '10px', fontWeight: 700,
+          background: 'var(--ld-semantic-color-action-fill-primary, #0071DC)', color: 'white',
+        }}>14:59</div>
+        <span style={{ fontSize: '11px', color: 'white', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Your cart is reserved</span>
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function HeartViewPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <path d="M16 28S3 20.5 3 11.5C3 7.36 6.36 4 10.5 4c2.54 0 4.78 1.26 6.15 3.19L16 7.5l-.65-.31C16.72 5.26 18.96 4 21.5 4 25.64 4 29 7.36 29 11.5 29 20.5 16 28 16 28Z"
+            stroke="var(--ld-semantic-color-text-subtle, #74767C)" strokeWidth="2" />
+        </svg>
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <path d="M16 28S3 20.5 3 11.5C3 7.36 6.36 4 10.5 4c2.54 0 4.78 1.26 6.15 3.19L16 7.5l-.65-.31C16.72 5.26 18.96 4 21.5 4 25.64 4 29 7.36 29 11.5 29 20.5 16 28 16 28Z"
+            fill="var(--ld-semantic-color-text-negative, #C5221F)" stroke="var(--ld-semantic-color-text-negative, #C5221F)" strokeWidth="2" />
+        </svg>
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function RichSnackbarPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{
+        borderRadius: '8px', padding: '8px 14px', fontSize: '12px', color: 'white',
+        background: 'var(--ld-semantic-color-text, #2E2F32)',
+        display: 'flex', alignItems: 'center', gap: '8px',
+      }}>
+        <div style={{
+          width: '20px', height: '20px', borderRadius: '50%',
+          background: 'var(--ld-semantic-color-text-positive, #2A8703)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+        }}>
+          <Check style={{ width: 12, height: 12, color: 'white' }} />
+        </div>
+        Item added to cart
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function TimerViewPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        {[
+          { label: '59m', bg: 'var(--ld-semantic-color-fill-info-subtle, #E5F0FF)', color: 'var(--ld-semantic-color-text-brand-bold, #0071DC)' },
+          { label: '5m', bg: 'var(--ld-semantic-color-fill-warning-subtle, #FFF3E0)', color: 'var(--ld-semantic-color-text-warning, #F57C00)' },
+          { label: '1m', bg: 'var(--ld-semantic-color-fill-negative-subtle, #FDE7E7)', color: 'var(--ld-semantic-color-text-negative, #C5221F)' },
+        ].map((t, i) => (
+          <div key={i} style={{
+            padding: '4px 10px', borderRadius: '9999px', fontSize: '11px', fontWeight: 700,
+            background: t.bg, color: t.color,
+          }}>{t.label}</div>
+        ))}
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function SearchBarPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: '8px',
+        border: '1px solid var(--ld-semantic-color-border-strong, #BABBBE)',
+        borderRadius: '9999px', padding: '6px 14px', width: '180px', background: 'white',
+      }}>
+        <Search style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-text-subtle, #74767C)', flexShrink: 0 }} />
+        <span style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>Search items...</span>
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function SignatureCapturePreview() {
+  return (
+    <PreviewFrame>
+      <div style={{
+        width: '160px', height: '56px', borderRadius: '6px',
+        border: '1px dashed var(--ld-semantic-color-border-strong, #BABBBE)',
+        background: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px',
+      }}>
+        <span style={{ fontSize: '16px', fontFamily: 'cursive', color: 'var(--ld-semantic-color-text, #2E2F32)', opacity: 0.6 }}>John Doe</span>
+        <div style={{ width: '80px', height: '1px', background: 'var(--ld-semantic-color-border-strong, #BABBBE)' }} />
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function UploadImagePreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+        {[0, 1].map(i => (
+          <div key={i} style={{
+            width: '36px', height: '36px', borderRadius: '6px',
+            background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <Star style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+          </div>
+        ))}
+        <div style={{
+          width: '36px', height: '36px', borderRadius: '6px',
+          border: '1px dashed var(--ld-semantic-color-border-strong, #BABBBE)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: '18px', color: 'var(--ld-semantic-color-text-subtle, #74767C)',
+        }}>+</div>
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function CountrySelectPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: '8px',
+        border: '1px solid var(--ld-semantic-color-border-strong, #BABBBE)',
+        borderRadius: '4px', padding: '6px 12px', background: 'white',
+      }}>
+        <div style={{
+          width: '20px', height: '14px', borderRadius: '2px',
+          background: 'linear-gradient(180deg, #B22234 0%, #B22234 30%, white 30%, white 45%, #3C3B6E 45%, #3C3B6E 100%)',
+        }} />
+        <span style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text, #2E2F32)', flex: 1 }}>United States</span>
+        <ChevronDown style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function FlagPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+        {[
+          { label: 'Save', bg: 'var(--ld-semantic-color-fill-negative-subtle, #FDE7E7)', color: 'var(--ld-semantic-color-text-negative, #C5221F)' },
+          { label: 'Best seller', bg: 'var(--ld-semantic-color-fill-info-subtle, #E5F0FF)', color: 'var(--ld-semantic-color-text-brand-bold, #0071DC)' },
+          { label: 'Limited', bg: 'var(--ld-semantic-color-fill-warning-subtle, #FFF3E0)', color: 'var(--ld-semantic-color-text-warning, #F57C00)' },
+        ].map((f, i) => (
+          <div key={i} style={{
+            padding: '2px 8px', borderRadius: '9999px', fontSize: '10px', fontWeight: 700,
+            background: f.bg, color: f.color,
+          }}>{f.label}</div>
+        ))}
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function RatingsPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ display: 'flex', gap: '2px', alignItems: 'center' }}>
+        {[1, 2, 3, 4, 5].map(n => (
+          <Star key={n} style={{
+            width: 18, height: 18,
+            color: n <= 3 ? 'var(--ld-semantic-color-text-warning, #F57C00)' : 'var(--ld-semantic-color-border-strong, #BABBBE)',
+          }} />
+        ))}
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function ButtonGroupsPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        <span style={{ padding: '6px 16px', borderRadius: '9999px', background: 'var(--ld-semantic-color-action-fill-primary, #0071DC)', color: 'white', fontSize: '13px', fontWeight: 700 }}>Primary</span>
+        <span style={{ padding: '6px 16px', borderRadius: '9999px', border: '1px solid var(--ld-semantic-color-action-border-secondary, #74767C)', color: 'var(--ld-semantic-color-text, #2E2F32)', fontSize: '13px', fontWeight: 700 }}>Secondary</span>
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function RichMediaSheetPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ width: '140px', height: '70px', position: 'relative', background: 'rgba(0,0,0,0.15)', borderRadius: '6px', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '50px', background: 'var(--ld-semantic-color-fill-surface-primary, #fff)', borderTopLeftRadius: '12px', borderTopRightRadius: '12px', boxShadow: 'var(--ld-semantic-elevation-300)', padding: '6px 10px' }}>
+          <div style={{ width: '24px', height: '3px', borderRadius: '2px', background: 'var(--ld-semantic-color-border-strong, #BABBBE)', margin: '0 auto 4px' }} />
+          <div style={{ fontSize: '10px', fontWeight: 700, color: 'var(--ld-semantic-color-text, #2E2F32)', marginBottom: '4px' }}>Media Sheet</div>
+          <div style={{ display: 'flex', gap: '4px' }}>
+            <div style={{ width: '24px', height: '16px', borderRadius: '3px', background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)' }} />
+            <div style={{ width: '24px', height: '16px', borderRadius: '3px', background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)' }} />
+          </div>
+        </div>
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function ItemTilePreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ width: '80px', borderRadius: '6px', overflow: 'hidden', background: 'var(--ld-semantic-color-fill-surface-primary, #fff)', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
+        <div style={{ position: 'relative' }}>
+          <div style={{ width: '100%', height: '56px', background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Star style={{ width: 16, height: 16, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+          </div>
+          <div style={{ position: 'absolute', top: '3px', left: '3px', padding: '1px 4px', borderRadius: '2px', fontSize: '8px', fontWeight: 700, background: 'var(--ld-semantic-color-fill-negative-subtle, #FDE7E7)', color: 'var(--ld-semantic-color-text-negative, #C5221F)' }}>Save</div>
+        </div>
+        <div style={{ padding: '4px 6px' }}>
+          <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--ld-semantic-color-text, #2E2F32)' }}>$9.99</div>
+          <div style={{ fontSize: '9px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>Product</div>
+        </div>
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function DropdownsPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ borderRadius: '6px', padding: '4px', background: 'white', width: '130px', boxShadow: 'var(--ld-semantic-elevation-200)' }}>
+        {['Departments', 'Services', 'Account'].map((t, i) => (
+          <div key={i} style={{
+            padding: '6px 10px', fontSize: '12px', borderRadius: '4px',
+            color: 'var(--ld-semantic-color-text, #2E2F32)',
+            background: i === 0 ? 'var(--ld-semantic-color-fill-subtle, #F5F5F6)' : 'transparent',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          }}>
+            {t}
+            <ChevronRight style={{ width: 10, height: 10, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+          </div>
+        ))}
+      </div>
+    </PreviewFrame>
+  );
+}
+
+export function SearchUtilityPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: '6px',
+          border: '1px solid var(--ld-semantic-color-border-strong, #BABBBE)',
+          borderRadius: '9999px', padding: '6px 12px', background: 'white', flex: 1,
+        }}>
+          <Search style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+          <span style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>Search...</span>
+        </div>
+        <div style={{
+          width: '28px', height: '28px', borderRadius: '50%',
+          border: '1px solid var(--ld-semantic-color-border-strong, #BABBBE)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <InfoCircle style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
+        </div>
+      </div>
+    </PreviewFrame>
+  );
+}
