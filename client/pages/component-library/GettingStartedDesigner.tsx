@@ -17,7 +17,6 @@ const PROMPT_CATEGORIES: { category: string; value: string; prompts: Prompt[] }[
     category: 'Generate Pages',
     value: 'pages',
     prompts: [
-      { label: 'Campaign dashboard', full: 'Create a new dashboard page with a page header titled "Campaign Overview", a row of 4 metric cards showing impressions, clicks, spend, and CTR, and a data table below with campaign data.' },
       { label: 'Settings page', full: 'Build a settings page with a sidebar navigation for General, Notifications, and Security sections. Each section should have form fields using TextField and Select components inside Cards.' },
       { label: 'Product detail page', full: 'Create a product detail page with breadcrumbs, a two-column layout (image gallery on left, product info on right), a tabbed section for Description/Reviews/Specs, and a sticky add-to-cart bar at the bottom.' },
       { label: 'Marketing landing page', full: 'Design a landing page with a hero section, a 3-column feature grid using Cards, a testimonial carousel, and a CTA section with a primary Button.' },
