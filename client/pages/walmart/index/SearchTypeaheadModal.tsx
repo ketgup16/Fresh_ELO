@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { X, Camera, Microphone, ChevronLeft, Clock, ArrowUpLeft } from "@/components/icons";
 import { IconButton } from "@/components/ui/IconButton";
 import { HighlightText } from "@/components/ui/HighlightText";
-import { SparkyLookingDown } from "@/components/icons-custom";
 import { allSuggestions as sharedSuggestions } from "@/components/walmart/searchData";
 import { IOSKeyboard } from "./IOSKeyboard";
 import { NativeStatusBar } from "@/components/walmart/NativeStatusBar";
@@ -79,9 +78,6 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
         </button>
         <div className="flex-1 rainbow-border animate-search-bar-expand">
           <div className="bg-white rounded-full px-3 py-2 flex items-center gap-2 h-[42px] w-full">
-            <div className="w-6 h-6 flex-shrink-0">
-              <SparkyLookingDown />
-            </div>
             <div className="flex items-center gap-1 flex-1">
               {isSearchFocused && !searchQuery && (
                 <div className="w-[1.5px] h-5 bg-primary animate-pulse"></div>

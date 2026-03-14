@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { Highlight } from '@/components/ui/Callout';
 import { Search, ChevronDown } from '@/components/icons';
 import {
-  SparkyLookingDown, CartIcon,
+  CartIcon,
   FulfillmentShippingIcon, CloseIcon as X,
 } from '@/components/icons-custom';
 import { useNavigate } from 'react-router-dom';
@@ -172,7 +172,6 @@ export function DesktopHeader() {
             }}
           >
             <div className={`${styles.searchInputWrap} ${showTypeahead ? styles.searchInputWrapActive : ''}`}>
-              <div className={styles.sparkyWrap}><SparkyLookingDown /></div>
               <input
                 aria-label="Search"
                 name="q"

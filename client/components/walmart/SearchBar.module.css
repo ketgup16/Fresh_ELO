@@ -68,12 +68,6 @@
   cursor: pointer;
 }
 
-.sparkyIcon {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-}
-
 .queryText {
   flex: 1;
   width: 100%;

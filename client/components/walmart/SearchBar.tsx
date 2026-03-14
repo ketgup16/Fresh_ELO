@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Camera, Microphone, ChevronLeft } from '@/components/icons';
-import { SparkyLookingDown, CartIcon } from '@/components/icons-custom';
+import { CartIcon } from '@/components/icons-custom';
 import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
@@ -41,9 +41,6 @@ export function SearchBar({
             }}
             onBlur={() => setIsActive(false)}
           >
-            <div className={styles.sparkyIcon}>
-              <SparkyLookingDown />
-            </div>
             <div className={styles.queryText}>{query}</div>
             <div className={styles.actionButtons}>
               <button className={styles.circleButton} aria-label="Search by camera">
