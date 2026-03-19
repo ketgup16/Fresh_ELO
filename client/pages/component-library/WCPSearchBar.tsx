@@ -18,7 +18,7 @@ export default function WCPSearchBarPage() {
   return (
     <ComponentPageLayout
       section="WCP Components"
-      title="[WCP] Search Bar"
+      title="Search Field"
       description="Inline page search component positioned within a page — not used for global navigation. Supports two breakpoints (0–899px and 900+px) and states: Enabled, Hovered, Activated (empty & with value), and Disabled."
     >
       <div className={styles.page}>
