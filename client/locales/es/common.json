@@ -215,6 +215,8 @@
     "descOrderStatusCards": "Tarjetas de recogida activa, estado de pedido y entrega con temporizadores y acciones",
     "navWCPSearchBar": "Barra de Búsqueda",
     "descWCPSearchBar": "Barra de búsqueda de página WCP con dos puntos de quiebre y estados: Habilitado, Hover, Activado y Deshabilitado",
+    "navWCPSearchField": "Campo de Búsqueda",
+    "descWCPSearchField": "Campo de búsqueda AX con estados Habilitado, Enfocado, Deshabilitado y Solo lectura, y variantes de contenido",
     "navWCPSignatureCapture": "Captura de Firma",
     "descWCPSignatureCapture": "Flujo de firma de suscripción WCP con variantes Disparador, Términos, Formulario base y Reautenticación",
     "descWCPFloatingButton": "Botón de ícono circular elevado para controles de carrusel y acciones flotantes",

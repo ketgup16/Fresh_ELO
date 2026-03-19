@@ -127,6 +127,7 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navWCPTimerView', descKey: 'componentLibrary.descWCPTimerView', path: '/component-library/wcp-timer-view', icon: 'Refresh', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPQueueBanner', descKey: 'componentLibrary.descWCPQueueBanner', path: '/component-library/wcp-queue-banner', icon: 'Note', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPSearchBar', descKey: 'componentLibrary.descWCPSearchBar', path: '/component-library/wcp-search-bar', icon: 'Search', section: 'ld' },
+  { titleKey: 'componentLibrary.navWCPSearchField', descKey: 'componentLibrary.descWCPSearchField', path: '/component-library/wcp-search-field', icon: 'Search', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPSignatureCapture', descKey: 'componentLibrary.descWCPSignatureCapture', path: '/component-library/wcp-signature-capture', icon: 'Edit', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPUploadImage', descKey: 'componentLibrary.descWCPUploadImage', path: '/component-library/wcp-upload-image', icon: 'Image', section: 'ld' },
   { titleKey: 'componentLibrary.navWCPCountry', descKey: 'componentLibrary.descWCPCountry', path: '/component-library/wcp-country', icon: 'Circle', section: 'ld' },

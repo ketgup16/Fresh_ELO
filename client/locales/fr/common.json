@@ -215,6 +215,8 @@
     "descOrderStatusCards": "Cartes de retrait actif, statut de commande et livraison avec minuteries et actions",
     "navWCPSearchBar": "Barre de Recherche",
     "descWCPSearchBar": "Barre de recherche de page WCP avec deux points d'arrêt et états : Activé, Survolé, Activé, Désactivé",
+    "navWCPSearchField": "Champ de Recherche",
+    "descWCPSearchField": "Champ de recherche AX avec les états Activé, Focalisé, Désactivé et Lecture seule, et variantes de contenu",
     "navWCPSignatureCapture": "Capture de Signature",
     "descWCPSignatureCapture": "Flux de signature d'abonnement WCP avec variantes Déclencheur, Conditions, Formulaire de base et Réauthentification",
     "descWCPFloatingButton": "Bouton icône circulaire élevé pour les contrôles de carrousel et les actions flottantes",

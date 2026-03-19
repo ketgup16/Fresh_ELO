@@ -122,6 +122,7 @@ const WCPFloatingButtonPage = React.lazy(() => import("./pages/component-library
 const WCPHeartViewPage = React.lazy(() => import("./pages/component-library/WCPHeartView"));
 const WCPRatingPage = React.lazy(() => import("./pages/component-library/WCPRating"));
 const WCPSearchBarPage = React.lazy(() => import("./pages/component-library/WCPSearchBar"));
+const WCPSearchFieldPage = React.lazy(() => import("./pages/component-library/WCPSearchField"));
 const WCPSignatureCapturePage = React.lazy(() => import("./pages/component-library/WCPSignatureCapture"));
 const WCPRichMediaSheetPage = React.lazy(() => import("./pages/component-library/WCPRichMediaSheet"));
 const WCPRichSnackbarPage = React.lazy(() => import("./pages/component-library/WCPRichSnackbar"));
@@ -281,6 +282,7 @@ const App = () => (
                 <Route path="wcp-heart-view" element={<WCPHeartViewPage />} />
                 <Route path="wcp-rating" element={<WCPRatingPage />} />
                 <Route path="wcp-search-bar" element={<WCPSearchBarPage />} />
+                <Route path="wcp-search-field" element={<WCPSearchFieldPage />} />
                 <Route path="wcp-signature-capture" element={<WCPSignatureCapturePage />} />
                 <Route path="wcp-rich-media-sheet" element={<WCPRichMediaSheetPage />} />
                 <Route path="wcp-rich-snackbar" element={<WCPRichSnackbarPage />} />

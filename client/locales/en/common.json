@@ -201,6 +201,8 @@
     "descWCPRating": "Interactive star rating component with labels for the WCP consumer experience",
     "navWCPSearchBar": "Search Bar",
     "descWCPSearchBar": "WCP inline page search bar with two breakpoints and states: Enabled, Hovered, Activated, and Disabled",
+    "navWCPSearchField": "Search Field",
+    "descWCPSearchField": "AX Search Field with Enabled, Focused, Disabled, and Read-only states and Unfilled/Filled content variants",
     "navWCPSignatureCapture": "Signature Capture",
     "descWCPSignatureCapture": "WCP subscription signature flow with Trigger, Terms, Base form, and Reauth variants",
     "navWCPUploadImage": "Upload Image",

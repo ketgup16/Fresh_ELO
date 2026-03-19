@@ -1,0 +1,155 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-150, 6px);
+  flex: 1;
+  height: var(--ld-primitive-scale-space-700, 56px);
+  padding: 0 var(--ld-primitive-scale-space-150, 6px) 0 var(--ld-primitive-scale-space-200, 8px);
+  border-bottom: var(--ld-semantic-scale-borderwidth-interactive, 1px) solid
+    var(--ld-semantic-color-field-border, #babbbe);
+  background: var(--ld-semantic-color-field-fill, #fff);
+  overflow: hidden;
+  cursor: text;
+}
+
+.container.focused {
+  border-bottom-width: var(--ld-semantic-scale-borderwidth-interactive-focused, 2px);
+  border-bottom-color: var(--ld-semantic-color-field-border-focused, #0053e2);
+  background: var(--ld-semantic-color-field-fill-focused, #fff);
+}
+
+.container.disabled {
+  border-bottom-color: var(--ld-semantic-color-field-border-disabled, #e0e1e2);
+  background: var(--ld-semantic-color-field-fill-disabled, #f5f6f7);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.container.readOnly {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Leading search icon */
+.leadingIcon {
+  width: var(--ld-semantic-scale-icon-medium, 24px);
+  height: var(--ld-semantic-scale-icon-medium, 24px);
+  flex-shrink: 0;
+  color: var(--ld-semantic-color-field-text-subtle-onfill, #515357);
+}
+
+.disabled .leadingIcon {
+  color: var(--ld-semantic-color-field-text-onfill-disabled, #babbbe);
+}
+
+/* Input */
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
+  color: var(--ld-semantic-color-field-text-subtle-onfill, #515357);
+  caret-color: var(--ld-semantic-color-text-brand, #0053e2);
+}
+
+.input::placeholder {
+  color: var(--ld-semantic-color-field-text-subtle-onfill, #515357);
+}
+
+/* Hide browser default clear/search UI */
+.input[type='search']::-webkit-search-cancel-button,
+.input[type='search']::-webkit-search-decoration {
+  appearance: none;
+}
+
+/* Read-only / disabled display text */
+.readOnlyText {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
+  color: var(--ld-semantic-color-field-text-subtle-onfill, #515357);
+}
+
+.disabled .readOnlyText {
+  color: var(--ld-semantic-color-field-text-onfill-disabled, #babbbe);
+}
+
+/* Trailing area */
+.trailing {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Icon buttons (mic, barcode, X) */
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: var(--ld-primitive-scale-space-100, 4px);
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  flex-shrink: 0;
+}
+
+.iconBtn:hover {
+  background: var(--ld-semantic-color-action-fill-ghost-hovered, rgba(0, 0, 0, 0.06));
+}
+
+.iconBtn:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-field-border-focused, #0053e2);
+  outline-offset: 1px;
+}
+
+.trailingIcon {
+  width: var(--ld-semantic-scale-icon-medium, 24px);
+  height: var(--ld-semantic-scale-icon-medium, 24px);
+}
+
+/* Cancel link button */
+.cancelBtn {
+  display: flex;
+  align-items: center;
+  height: var(--ld-primitive-scale-space-500, 40px);
+  padding: 0 var(--ld-primitive-scale-space-150, 6px);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.cancelBtn:hover {
+  color: var(--ld-semantic-color-link-text-hovered, #002699);
+}
+
+.cancelBtn:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-field-border-focused, #0053e2);
+  outline-offset: 2px;
+  border-radius: 2px;
+}

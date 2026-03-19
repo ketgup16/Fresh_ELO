@@ -81,6 +81,7 @@ const navigationSections: NavSection[] = [
       { id: 'wcp-heart-view', nameKey: 'componentLibrary.navWCPHeartView', path: '/component-library/wcp-heart-view' },
       { id: 'wcp-rating', nameKey: 'componentLibrary.navWCPRating', path: '/component-library/wcp-rating' },
       { id: 'wcp-search-bar', nameKey: 'componentLibrary.navWCPSearchBar', path: '/component-library/wcp-search-bar' },
+      { id: 'wcp-search-field', nameKey: 'componentLibrary.navWCPSearchField', path: '/component-library/wcp-search-field' },
       { id: 'wcp-signature-capture', nameKey: 'componentLibrary.navWCPSignatureCapture', path: '/component-library/wcp-signature-capture' },
       { id: 'wcp-rich-media-sheet', nameKey: 'componentLibrary.navWCPRichMediaSheet', path: '/component-library/wcp-rich-media-sheet' },
       { id: 'wcp-rich-snackbar', nameKey: 'componentLibrary.navWCPRichSnackbar', path: '/component-library/wcp-rich-snackbar' },
