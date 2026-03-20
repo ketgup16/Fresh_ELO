@@ -1,7 +1,7 @@
 import { useDragScroll } from '@/hooks/useDragScroll';
 import { InfoCircle as Info } from "@/components/icons";
 import { Chip } from "@/components/ui/Chip";
-import { WCPItemTile } from "@/components/walmart/WCPItemTile";
+import { AXItemTile } from "@/components/walmart/AXItemTile";
 import { PRODUCT_IMAGES } from "@/components/walmart/productImages";
 import styles from "./PopularByPriceSection.module.css";
 
@@ -41,7 +41,7 @@ export function PopularByPriceSection() {
       <div ref={carouselScrollRef} className={styles.carousel}>
         {PRODUCTS.map((product, i) => (
           <div key={i} style={{ width: 160, flexShrink: 0 }}>
-            <WCPItemTile
+            <AXItemTile
               image={product.image}
               name={product.name}
               price={product.price}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
-import { WCPButtonGroup } from '@/components/ui/WCPButtonGroup';
+import { AXButtonGroup } from '@/components/ui/AXButtonGroup';
 import { Plus, ChevronRight, Download, Trash } from '@/components/icons';
 
 /**
@@ -227,15 +227,15 @@ export const ButtonExample: React.FC = () => {
 
       <section>
         <h2 style={{ marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>
-          WCP Button Group — Inline Patterns
+          AX Button Group — Inline Patterns
         </h2>
         <p style={{ marginBottom: '16px', fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)', lineHeight: 1.5 }}>
-          Standard WCP button group combinations for side-by-side actions. Use <strong>Preferred</strong> for the primary CTA and <strong>Alternate</strong> for the secondary action.
+          Standard AX button group combinations for side-by-side actions. Use <strong>Preferred</strong> for the primary CTA and <strong>Alternate</strong> for the secondary action.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '440px' }}>
           <div>
             <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Primary + Secondary (full width)</p>
-            <WCPButtonGroup
+            <AXButtonGroup
               layout="inline"
               pattern="primary-secondary"
               preferredLabel="Preferred"
@@ -245,7 +245,7 @@ export const ButtonExample: React.FC = () => {
           </div>
           <div>
             <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Primary + Secondary (auto width)</p>
-            <WCPButtonGroup
+            <AXButtonGroup
               layout="inline"
               pattern="primary-secondary"
               preferredLabel="Preferred"
@@ -255,7 +255,7 @@ export const ButtonExample: React.FC = () => {
           </div>
           <div>
             <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Primary + Tertiary (link left, primary right)</p>
-            <WCPButtonGroup
+            <AXButtonGroup
               layout="inline"
               pattern="primary-tertiary"
               preferredLabel="Preferred"
@@ -265,7 +265,7 @@ export const ButtonExample: React.FC = () => {
           </div>
           <div>
             <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Secondary + Tertiary (link left, secondary right)</p>
-            <WCPButtonGroup
+            <AXButtonGroup
               layout="inline"
               pattern="secondary-tertiary"
               preferredLabel="Preferred"
@@ -275,7 +275,7 @@ export const ButtonExample: React.FC = () => {
           </div>
           <div>
             <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Secondary + Tertiary (secondary left, link right)</p>
-            <WCPButtonGroup
+            <AXButtonGroup
               layout="inline"
               pattern="secondary-tertiary"
               preferredLabel="Preferred"
@@ -285,7 +285,7 @@ export const ButtonExample: React.FC = () => {
           </div>
           <div>
             <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Tertiary + Tertiary (centered)</p>
-            <WCPButtonGroup
+            <AXButtonGroup
               layout="inline"
               pattern="tertiary-tertiary"
               preferredLabel="Preferred"
@@ -298,7 +298,7 @@ export const ButtonExample: React.FC = () => {
 
       <section>
         <h2 style={{ marginBottom: '16px', fontSize: '20px', fontWeight: 700 }}>
-          WCP Button Group — Stacked Patterns
+          AX Button Group — Stacked Patterns
         </h2>
         <p style={{ marginBottom: '16px', fontSize: '14px', color: 'var(--ld-semantic-color-text-subtle)', lineHeight: 1.5 }}>
           Vertically stacked button groups where all buttons expand to full width. Preferred action always appears on top.
@@ -306,7 +306,7 @@ export const ButtonExample: React.FC = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '343px' }}>
           <div>
             <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Primary + Secondary</p>
-            <WCPButtonGroup
+            <AXButtonGroup
               layout="stacked"
               pattern="primary-secondary"
               preferredLabel="Preferred"
@@ -315,7 +315,7 @@ export const ButtonExample: React.FC = () => {
           </div>
           <div>
             <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Primary + Tertiary</p>
-            <WCPButtonGroup
+            <AXButtonGroup
               layout="stacked"
               pattern="primary-tertiary"
               preferredLabel="Preferred"
@@ -324,7 +324,7 @@ export const ButtonExample: React.FC = () => {
           </div>
           <div>
             <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Secondary + Tertiary</p>
-            <WCPButtonGroup
+            <AXButtonGroup
               layout="stacked"
               pattern="secondary-tertiary"
               preferredLabel="Preferred"
@@ -333,7 +333,7 @@ export const ButtonExample: React.FC = () => {
           </div>
           <div>
             <p style={{ marginBottom: '8px', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600 }}>Three Options (Primary + Secondary inline, link below)</p>
-            <WCPButtonGroup
+            <AXButtonGroup
               layout="stacked"
               pattern="three-options"
               preferredLabel="Preferred"

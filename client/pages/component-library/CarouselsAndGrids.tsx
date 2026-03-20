@@ -18,7 +18,7 @@ function DemoCard({ title, note, children }: { title: string; note?: string; chi
 export default function CarouselsAndGridsPage() {
   return (
     <ComponentPageLayout
-      section="WCP Patterns"
+      section="AX Patterns"
       title="Carousels & Product Grids"
       description="Horizontally scrollable product sections used on the Walmart home page. Each carousel uses drag-to-scroll with snap points and optional auto-advance."
     >
@@ -41,7 +41,7 @@ export default function CarouselsAndGridsPage() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Jump Right Back In</h2>
           <p className={styles.sectionDesc}>
-            Horizontal scroll row of category cards. Each card contains a header with title and "Shop all" link, plus a 2×2 grid of <code>WCPItemTile</code> product tiles. Uses drag-to-scroll.
+            Horizontal scroll row of category cards. Each card contains a header with title and "Shop all" link, plus a 2×2 grid of <code>AXItemTile</code> product tiles. Uses drag-to-scroll.
           </p>
           <DemoCard title="Category cards with 2×2 product grids" note="Drag to scroll. Each category has its own 'Shop all' link.">
             <div className={styles.demoWrapper}>
@@ -67,9 +67,9 @@ export default function CarouselsAndGridsPage() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Continue Shopping</h2>
           <p className={styles.sectionDesc}>
-            Horizontal scroll row of standalone <code>WCPItemTile</code> cards on a subtle background. Header with title and "View all" link. Uses the same drag-to-scroll pattern.
+            Horizontal scroll row of standalone <code>AXItemTile</code> cards on a subtle background. Header with title and "View all" link. Uses the same drag-to-scroll pattern.
           </p>
-          <DemoCard title="Product tile scroll row" note="Uses WCPItemTile with the standard badge and pricing patterns.">
+          <DemoCard title="Product tile scroll row" note="Uses AXItemTile with the standard badge and pricing patterns.">
             <div className={styles.demoWrapper}>
               <ContinueShopping />
             </div>

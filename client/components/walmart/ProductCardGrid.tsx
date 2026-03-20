@@ -3,7 +3,7 @@ import { Heart, HeartFill } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import { IconButton } from "@/components/ui/IconButton";
 import { Rating } from "@/components/ui/Rating";
-import { WCPTimerView } from "./WCPTimerView";
+import { AXTimerView } from "./AXTimerView";
 import styles from "./ProductCardGrid.module.css";
 
 export interface ProductCardGridProps {
@@ -67,7 +67,7 @@ export function ProductCardGrid({
         <img src={image} alt={name} className={styles.productImage} />
         {timerEndTime && (
           <div className={styles.timerBadge}>
-            <WCPTimerView endTime={timerEndTime} variant="badge" label={timerLabel} showLabel={false} />
+            <AXTimerView endTime={timerEndTime} variant="badge" label={timerLabel} showLabel={false} />
           </div>
         )}
       </div>

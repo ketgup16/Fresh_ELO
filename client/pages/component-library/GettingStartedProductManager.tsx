@@ -318,7 +318,7 @@ const PM_PROMPT_CATEGORIES: { category: string; value: string; prompts: Prompt[]
     category: 'Promotions & Deals',
     value: 'promos',
     prompts: [
-      { label: 'Rollback promo banner', full: 'Create a Rollback promotional banner row. Background: var(--ld-semantic-color-fill-accent-yellow-subtle). Left side: a yellow "Rollback" WCPFlag badge + bold headline + short description. Right side: "Shop Rollbacks" Link with ChevronRight icon. Full-bleed width, 16px vertical padding. Add a thin separator below.' },
+      { label: 'Rollback promo banner', full: 'Create a Rollback promotional banner row. Background: var(--ld-semantic-color-fill-accent-yellow-subtle). Left side: a yellow "Rollback" AXFlag badge + bold headline + short description. Right side: "Shop Rollbacks" Link with ChevronRight icon. Full-bleed width, 16px vertical padding. Add a thin separator below.' },
       { label: 'Deal countdown section', full: 'Build a "Deal of the Day" section with: a bold section header, a live countdown timer (HH:MM:SS using setInterval + useState, clears on unmount). Below: a horizontal-scroll row of deal product cards. Each card has a red "Limited time" Tag, original price struck-through in subtle color, and sale price in bold brand color.' },
       { label: 'Savings summary row', full: 'Add a savings summary banner between the cart items and order summary. Shows a green CheckCircleFill icon + "You\'re saving $X.XX on this order" in text-positive color. Background: var(--ld-semantic-color-fill-positive-subtle). Full-width, 12px 16px padding, 8px border-radius.' },
     ],
@@ -328,7 +328,7 @@ const PM_PROMPT_CATEGORIES: { category: string; value: string; prompts: Prompt[]
     value: 'scratch',
     prompts: [
       { label: 'New Walmart page shell', full: 'Create a new ecommerce page at client/pages/walmart/MyPage.tsx using ResponsiveLayout (maxWidth="full", showMobileTopNav={false}, nativeStatusBarVariant="white"). Add the route to App.tsx. Include a SearchResultsHeader (with back button navigating to /walmart), a SearchFilterBar below it, and a scrollable content area. Follow the pattern in client/pages/walmart/SearchResults.tsx.' },
-      { label: 'Generate from PRD notes', full: 'Here are my rough requirements for a Walmart ecommerce feature: [paste your notes here]. Build the page using WCP components (ProductCardList, SearchFilterBar, ResponsiveLayout, etc.) from client/components/walmart/. Use PRODUCT_IMAGES from @/components/walmart/productImages for product images. Follow the pattern in client/pages/walmart/SearchResults.tsx as a reference for page structure.' },
+      { label: 'Generate from PRD notes', full: 'Here are my rough requirements for a Walmart ecommerce feature: [paste your notes here]. Build the page using AX components (ProductCardList, SearchFilterBar, ResponsiveLayout, etc.) from client/components/walmart/. Use PRODUCT_IMAGES from @/components/walmart/productImages for product images. Follow the pattern in client/pages/walmart/SearchResults.tsx as a reference for page structure.' },
     ],
   },
 ];
@@ -519,7 +519,7 @@ export function GettingStartedProductManager() {
             { q: 'What if I disagree with what the agent built?', a: 'Be specific about what to change. Instead of "that\'s wrong", say "change the metric card to show a line chart instead of the number" — the more precise the feedback, the better the result.' },
             { q: 'How do I see my changes?', a: 'Changes appear in the live preview panel in real time. You can also open the preview in a full browser window using the Open Preview button.' },
             { q: 'How do I share my work?', a: 'Push your changes using the Push button in the top-right corner to send them to the git remote. You can also deploy to Netlify or Vercel via the MCP integrations.' },
-            { q: 'What if the component I described doesn\'t exist?', a: 'The agent will use the closest available LD 3.5 component and note the substitution. If a truly custom component is needed, it will build one following the WCP component creation rules.' },
+            { q: 'What if the component I described doesn\'t exist?', a: 'The agent will use the closest available LD 3.5 component and note the substitution. If a truly custom component is needed, it will build one following the AX component creation rules.' },
           ].map(({ q, a }) => (
             <AccordionItem key={q} value={q}>
               <AccordionTrigger style={{ fontSize: 15, fontWeight: 600, textAlign: 'left', padding: '20px 0' }}>{q}</AccordionTrigger>

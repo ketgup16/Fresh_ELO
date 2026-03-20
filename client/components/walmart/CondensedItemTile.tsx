@@ -1,5 +1,5 @@
 import React from 'react';
-import { WCPAddToCart } from './WCPAddToCart';
+import { AXAddToCart } from './AXAddToCart';
 import { CheckCircleFill } from '@/components/icons/CheckCircleFill';
 import { Circle } from '@/components/icons/Circle';
 import { QuantityStepper } from '@/components/ui/QuantityStepper';
@@ -101,7 +101,7 @@ export function CondensedItemTile({
         {/* Quantity badge — default mode only, animated exit */}
         {!isEdit && onAddToCart && (
           <div className={styles.addToCartWrap}>
-            <WCPAddToCart variant={variant} defaultCount={quantity} onChange={onAddToCart} />
+            <AXAddToCart variant={variant} defaultCount={quantity} onChange={onAddToCart} />
           </div>
         )}
       </div>

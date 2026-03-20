@@ -1,12 +1,12 @@
-import { WCPFlag } from '@/components/walmart/WCPFlag';
-import { WCPHeartView } from '@/components/walmart/WCPHeartView';
+import { AXFlag } from '@/components/walmart/AXFlag';
+import { AXHeartView } from '@/components/walmart/AXHeartView';
 import { Button } from '@/components/ui/Button';
 import { QuantityStepper } from '@/components/ui/QuantityStepper';
 import { useCart } from '@/contexts/CartContext';
-import { ItemTileBadgeType } from '@/components/walmart/WCPItemTile';
+import { ItemTileBadgeType } from '@/components/walmart/AXItemTile';
 import styles from './FlashDealsItemTile.module.css';
 
-const BADGE_VARIANT_MAP: Record<ItemTileBadgeType, import('@/components/walmart/WCPFlag').WCPFlagVariant> = {
+const BADGE_VARIANT_MAP: Record<ItemTileBadgeType, import('@/components/walmart/AXFlag').AXFlagVariant> = {
   bestseller: 'savings-bold',
   deal: 'savings-subtle',
   popular: 'confidence-subtle',
@@ -50,14 +50,14 @@ export function FlashDealsItemTile({
     <div className={styles.card}>
       {badge && (
         <div className={styles.flagWrap}>
-          <WCPFlag
+          <AXFlag
             label={badge.label}
             variant={BADGE_VARIANT_MAP[badge.type]}
           />
         </div>
       )}
       <div className={styles.heartWrap}>
-        <WCPHeartView size="small" calloutPosition="bottom" />
+        <AXHeartView size="small" calloutPosition="bottom" />
       </div>
       <div className={styles.imageWrapper}>
         <img src={image} alt={name} className={styles.image} />

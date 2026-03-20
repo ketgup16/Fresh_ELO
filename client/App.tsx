@@ -3,7 +3,7 @@ import "./global.css";
 import "./i18n";
 import { createRoot } from "react-dom/client";
 import { SnackbarContainer } from "@/components/ui/SnackbarContainer";
-import { WCPRichSnackbarContainer } from "@/components/walmart/WCPRichSnackbarContainer";
+import { AXRichSnackbarContainer } from "@/components/walmart/AXRichSnackbarContainer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -103,32 +103,32 @@ const ThemesPage = React.lazy(() => import("./pages/component-library/Themes"));
 const TogglePage = React.lazy(() => import("./pages/component-library/Toggle"));
 const OrderCardPatternsPage = React.lazy(() => import("./pages/component-library/OrderCardPatterns"));
 const BasicBannerPage = React.lazy(() => import("./pages/component-library/BasicBanner"));
-const WCPCountryComponentsPage = React.lazy(() => import("./pages/component-library/WCPCountryComponents"));
+const AXCountryComponentsPage = React.lazy(() => import("./pages/component-library/AXCountryComponents"));
 const DesignTokensPage = React.lazy(() => import("./pages/component-library/DesignTokens"));
-const WCPFlagPage = React.lazy(() => import("./pages/component-library/WCPFlag"));
+const AXFlagPage = React.lazy(() => import("./pages/component-library/AXFlag"));
 const ThemeEditorPage = React.lazy(() => import("./pages/component-library/ThemeEditorPage"));
 const FooterPatternsPage = React.lazy(() => import("./pages/component-library/FooterPatterns"));
 const TopNavPage = React.lazy(() => import("./pages/component-library/TopNav"));
 const SideNavPage = React.lazy(() => import("./pages/component-library/SideNav"));
 const PageTemplatesPage = React.lazy(() => import("./pages/component-library/PageTemplates"));
 const SearchResultsPatternPage = React.lazy(() => import("./pages/component-library/SearchResults"));
-const WCPButtonGroupsPage = React.lazy(() => import("./pages/component-library/WCPButtonGroups"));
+const AXButtonGroupsPage = React.lazy(() => import("./pages/component-library/AXButtonGroups"));
 const ItemTilePage = React.lazy(() => import("./pages/component-library/ItemTile"));
 const HomePageWidgetsPage = React.lazy(() => import("./pages/component-library/HomePageWidgets"));
 const PromoBannersPage = React.lazy(() => import("./pages/component-library/PromoBanners"));
 const DropdownsPage = React.lazy(() => import("./pages/component-library/Dropdowns"));
-const WCPSearchAndUtilityPage = React.lazy(() => import("./pages/component-library/WCPSearchAndUtility"));
-const WCPFloatingButtonPage = React.lazy(() => import("./pages/component-library/WCPFloatingButton"));
-const WCPHeartViewPage = React.lazy(() => import("./pages/component-library/WCPHeartView"));
-const WCPRatingPage = React.lazy(() => import("./pages/component-library/WCPRating"));
-const WCPSearchBarPage = React.lazy(() => import("./pages/component-library/WCPSearchBar"));
-const WCPSearchFieldPage = React.lazy(() => import("./pages/component-library/WCPSearchField"));
-const WCPSignatureCapturePage = React.lazy(() => import("./pages/component-library/WCPSignatureCapture"));
-const WCPRichMediaSheetPage = React.lazy(() => import("./pages/component-library/WCPRichMediaSheet"));
-const WCPRichSnackbarPage = React.lazy(() => import("./pages/component-library/WCPRichSnackbar"));
-const WCPTimerViewPage = React.lazy(() => import("./pages/component-library/WCPTimerView"));
-const WCPQueuePage = React.lazy(() => import("./pages/component-library/WCPQueue"));
-const WCPUploadImagePage = React.lazy(() => import("./pages/component-library/WCPUploadImage"));
+const AXSearchAndUtilityPage = React.lazy(() => import("./pages/component-library/AXSearchAndUtility"));
+const AXFloatingButtonPage = React.lazy(() => import("./pages/component-library/AXFloatingButton"));
+const AXHeartViewPage = React.lazy(() => import("./pages/component-library/AXHeartView"));
+const AXRatingPage = React.lazy(() => import("./pages/component-library/AXRating"));
+const AXSearchBarPage = React.lazy(() => import("./pages/component-library/AXSearchBar"));
+const AXSearchFieldPage = React.lazy(() => import("./pages/component-library/AXSearchField"));
+const AXSignatureCapturePage = React.lazy(() => import("./pages/component-library/AXSignatureCapture"));
+const AXRichMediaSheetPage = React.lazy(() => import("./pages/component-library/AXRichMediaSheet"));
+const AXRichSnackbarPage = React.lazy(() => import("./pages/component-library/AXRichSnackbar"));
+const AXTimerViewPage = React.lazy(() => import("./pages/component-library/AXTimerView"));
+const AXQueuePage = React.lazy(() => import("./pages/component-library/AXQueue"));
+const AXUploadImagePage = React.lazy(() => import("./pages/component-library/AXUploadImage"));
 const CarouselsAndGridsPage = React.lazy(() => import("./pages/component-library/CarouselsAndGrids"));
 const OrderStatusCardsPage = React.lazy(() => import("./pages/component-library/OrderStatusCards"));
 const ReplenishmentBasketPage = React.lazy(() => import("./pages/component-library/ReplenishmentBasket"));
@@ -179,7 +179,7 @@ const App = () => (
         <CartProvider>
         <QueryClientProvider client={queryClient}>
       <SnackbarContainer />
-      <WCPRichSnackbarContainer />
+      <AXRichSnackbarContainer />
       <MartyProvider>
           <BrowserRouter>
             <React.Suspense fallback={LazyFallback}>
@@ -262,8 +262,10 @@ const App = () => (
                 <Route path="toggle" element={<TogglePage />} />
                 <Route path="order-card-patterns" element={<OrderCardPatternsPage />} />
                 <Route path="basic-banner" element={<BasicBannerPage />} />
-                <Route path="wcp-country" element={<WCPCountryComponentsPage />} />
-                <Route path="wcp-flag" element={<WCPFlagPage />} />
+                <Route path="ax-country" element={<AXCountryComponentsPage />} />
+                <Route path="wcp-country" element={<Navigate to="/component-library/ax-country" replace />} />
+                <Route path="ax-flag" element={<AXFlagPage />} />
+                <Route path="wcp-flag" element={<Navigate to="/component-library/ax-flag" replace />} />
                 <Route path="theme-editor" element={<ThemeEditorPage />} />
                 <Route path="project-settings" element={<ProjectSettingsPage />} />
                 <Route path="footer-patterns" element={<FooterPatternsPage />} />
@@ -276,21 +278,35 @@ const App = () => (
                 <Route path="home-page-widgets" element={<HomePageWidgetsPage />} />
                 <Route path="promo-banners" element={<PromoBannersPage />} />
                 <Route path="dropdowns" element={<DropdownsPage />} />
-                <Route path="search-utility" element={<WCPSearchAndUtilityPage />} />
-                <Route path="wcp-button-groups" element={<WCPButtonGroupsPage />} />
-                <Route path="wcp-floating-button" element={<WCPFloatingButtonPage />} />
-                <Route path="wcp-heart-view" element={<WCPHeartViewPage />} />
-                <Route path="wcp-rating" element={<WCPRatingPage />} />
-                <Route path="wcp-search-bar" element={<WCPSearchBarPage />} />
-                <Route path="wcp-search-field" element={<WCPSearchFieldPage />} />
-                <Route path="wcp-signature-capture" element={<WCPSignatureCapturePage />} />
-                <Route path="wcp-rich-media-sheet" element={<WCPRichMediaSheetPage />} />
-                <Route path="wcp-rich-snackbar" element={<WCPRichSnackbarPage />} />
-                <Route path="wcp-timer-view" element={<WCPTimerViewPage />} />
-                <Route path="wcp-queue-banner" element={<Navigate to="/component-library/wcp-queue" replace />} />
-                <Route path="wcp-queue-card" element={<Navigate to="/component-library/wcp-queue" replace />} />
-                <Route path="wcp-queue" element={<WCPQueuePage />} />
-                <Route path="wcp-upload-image" element={<WCPUploadImagePage />} />
+                <Route path="search-utility" element={<AXSearchAndUtilityPage />} />
+                <Route path="ax-button-groups" element={<AXButtonGroupsPage />} />
+                <Route path="wcp-button-groups" element={<Navigate to="/component-library/ax-button-groups" replace />} />
+                <Route path="ax-floating-button" element={<AXFloatingButtonPage />} />
+                <Route path="wcp-floating-button" element={<Navigate to="/component-library/ax-floating-button" replace />} />
+                <Route path="ax-heart-view" element={<AXHeartViewPage />} />
+                <Route path="wcp-heart-view" element={<Navigate to="/component-library/ax-heart-view" replace />} />
+                <Route path="ax-rating" element={<AXRatingPage />} />
+                <Route path="wcp-rating" element={<Navigate to="/component-library/ax-rating" replace />} />
+                <Route path="ax-search-bar" element={<AXSearchBarPage />} />
+                <Route path="wcp-search-bar" element={<Navigate to="/component-library/ax-search-bar" replace />} />
+                <Route path="ax-search-field" element={<AXSearchFieldPage />} />
+                <Route path="wcp-search-field" element={<Navigate to="/component-library/ax-search-field" replace />} />
+                <Route path="ax-signature-capture" element={<AXSignatureCapturePage />} />
+                <Route path="wcp-signature-capture" element={<Navigate to="/component-library/ax-signature-capture" replace />} />
+                <Route path="ax-rich-media-sheet" element={<AXRichMediaSheetPage />} />
+                <Route path="wcp-rich-media-sheet" element={<Navigate to="/component-library/ax-rich-media-sheet" replace />} />
+                <Route path="ax-rich-snackbar" element={<AXRichSnackbarPage />} />
+                <Route path="wcp-rich-snackbar" element={<Navigate to="/component-library/ax-rich-snackbar" replace />} />
+                <Route path="ax-timer-view" element={<AXTimerViewPage />} />
+                <Route path="wcp-timer-view" element={<Navigate to="/component-library/ax-timer-view" replace />} />
+                <Route path="ax-queue-banner" element={<Navigate to="/component-library/ax-queue" replace />} />
+                <Route path="ax-queue-card" element={<Navigate to="/component-library/ax-queue" replace />} />
+                <Route path="ax-queue" element={<AXQueuePage />} />
+                <Route path="wcp-queue-banner" element={<Navigate to="/component-library/ax-queue" replace />} />
+                <Route path="wcp-queue-card" element={<Navigate to="/component-library/ax-queue" replace />} />
+                <Route path="wcp-queue" element={<Navigate to="/component-library/ax-queue" replace />} />
+                <Route path="ax-upload-image" element={<AXUploadImagePage />} />
+                <Route path="wcp-upload-image" element={<Navigate to="/component-library/ax-upload-image" replace />} />
                 <Route path="carousels-grids" element={<CarouselsAndGridsPage />} />
                 <Route path="order-status-cards" element={<OrderStatusCardsPage />} />
                 <Route path="replenishment-basket" element={<ReplenishmentBasketPage />} />

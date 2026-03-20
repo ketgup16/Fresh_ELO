@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
-import { WCPFlag, WCP_FLAG_VARIANTS } from '@/components/walmart/WCPFlag';
+import { AXFlag, AX_FLAG_VARIANTS } from '@/components/walmart/AXFlag';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { useTheme } from '@/contexts/ThemeContext';
 import { DesktopFooter } from '@/components/walmart/DesktopFooter';
@@ -20,12 +20,12 @@ import {
   UsersFill,
   Flash,
 } from '@/components/icons';
-import type { WCPFlagVariant } from '@/components/walmart/WCPFlag';
+import type { AXFlagVariant } from '@/components/walmart/AXFlag';
 import styles from './PreviewPanel.module.css';
 
 const ICON_SIZE = { width: 16, height: 16 } as const;
 
-const FLAG_ICONS: Record<WCPFlagVariant, React.ReactNode> = {
+const FLAG_ICONS: Record<AXFlagVariant, React.ReactNode> = {
   'holiday-restricted': <Lock        {...ICON_SIZE} />,
   'brand-subtle':       <Star        {...ICON_SIZE} />,
   'scarcity':           <Hourglass   {...ICON_SIZE} />,
@@ -128,12 +128,12 @@ export function PreviewPanel({ overrideCount: _ }: PreviewPanelProps) {
         </div>
       </section>
 
-      {/* WCP Flags */}
+      {/* AX Flags */}
       <section className={styles.section}>
-        <h3 className={styles.sectionTitle}>WCP Flags</h3>
+        <h3 className={styles.sectionTitle}>AX Flags</h3>
         <div className={styles.flagGrid}>
-          {WCP_FLAG_VARIANTS.map(({ variant, label }) => (
-            <WCPFlag
+          {AX_FLAG_VARIANTS.map(({ variant, label }) => (
+            <AXFlag
               key={variant}
               variant={variant}
               label={label}

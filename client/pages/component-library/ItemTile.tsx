@@ -4,8 +4,8 @@ import { Tag } from '@/components/ui/Tag';
 import { ProductCardList } from '@/components/walmart/ProductCardList';
 import { ProductCardGrid } from '@/components/walmart/ProductCardGrid';
 import { CarouselProductCard } from '@/components/walmart/CarouselProductCard';
-import { WCPItemTile } from '@/components/walmart/WCPItemTile';
-import { WCPAddToCart } from '@/components/walmart/WCPAddToCart';
+import { AXItemTile } from '@/components/walmart/AXItemTile';
+import { AXAddToCart } from '@/components/walmart/AXAddToCart';
 import { FlashDealsItemTile } from '@/components/walmart/FlashDealsItemTile';
 import { PromotionalItemTile } from '@/components/walmart/PromotionalItemTile';
 import { CondensedItemTile } from '@/components/walmart/CondensedItemTile';
@@ -67,7 +67,7 @@ const PROMO_TILE_SAMPLES = [
   { image: PRODUCT_IMAGES.freshStrawberries, price: '2', cents: '97' },
 ];
 
-// ── WCPItemTile samples ───────────────────────────────────────────────────────
+// ── AXItemTile samples ───────────────────────────────────────────────────────
 const ITEM_TILE_DEFAULT = {
   image: PRODUCT_IMAGES.airFryer,
   name: 'Ninja 4 Qt Air Fryer, Nonstick Basket...',
@@ -186,11 +186,11 @@ export default function ItemTilePage() {
       description="Product tile and card components used across search results, category pages, home-page carousels, and 2×2 category grids. Each card is a standalone component — combine them to build rich product browsing experiences."
     >
 
-      {/* ── WCPItemTile ───────────────────────────────────────── */}
+      {/* ── AXItemTile ───────────────────────────────────────── */}
       <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>WCPItemTile</h2>
+        <h2 className={styles.sectionTitle}>AXItemTile</h2>
         <p className={styles.sectionDesc}>
-          Compact product tile used inside 2×2 category grids (e.g. "Jump right back in" on the home page). Features a product image, WCPFlag badge, WCPHeartView toggle, and flexible price display with default and savings variants.
+          Compact product tile used inside 2×2 category grids (e.g. "Jump right back in" on the home page). Features a product image, AXFlag badge, AXHeartView toggle, and flexible price display with default and savings variants.
         </p>
 
         {/* Default price variant */}
@@ -204,8 +204,8 @@ export default function ItemTilePage() {
 
         <div className={styles.frame}>
           <div className={styles.gridFrame}>
-            <WCPItemTile {...ITEM_TILE_DEFAULT} />
-            <WCPItemTile {...ITEM_TILE_PLAIN} />
+            <AXItemTile {...ITEM_TILE_DEFAULT} />
+            <AXItemTile {...ITEM_TILE_PLAIN} />
           </div>
         </div>
 
@@ -220,8 +220,8 @@ export default function ItemTilePage() {
 
         <div className={styles.frame}>
           <div className={styles.gridFrame}>
-            <WCPItemTile {...ITEM_TILE_SAVINGS} />
-            <WCPItemTile {...ITEM_TILE_ROLLBACK} />
+            <AXItemTile {...ITEM_TILE_SAVINGS} />
+            <AXItemTile {...ITEM_TILE_ROLLBACK} />
           </div>
         </div>
 
@@ -236,10 +236,10 @@ export default function ItemTilePage() {
 
         <div className={styles.frame}>
           <div className={styles.gridFrame}>
-            <WCPItemTile {...ITEM_TILE_SAVINGS} />
-            <WCPItemTile {...ITEM_TILE_DEFAULT} />
-            <WCPItemTile {...ITEM_TILE_ROLLBACK} />
-            <WCPItemTile {...ITEM_TILE_PLAIN} />
+            <AXItemTile {...ITEM_TILE_SAVINGS} />
+            <AXItemTile {...ITEM_TILE_DEFAULT} />
+            <AXItemTile {...ITEM_TILE_ROLLBACK} />
+            <AXItemTile {...ITEM_TILE_PLAIN} />
           </div>
         </div>
 
@@ -248,14 +248,14 @@ export default function ItemTilePage() {
           <span className={styles.metaLabel}>With Add to Cart</span>
           <Tag variant="success">New</Tag>
           <p className={styles.metaDesc}>
-            Pass <code>onAddToCart</code> to render a <code>WCPAddToCart</code> button at the bottom-right of the image area. Choose <code>addToCartVariant</code> for primary (solid) or tertiary (bordered).
+            Pass <code>onAddToCart</code> to render a <code>AXAddToCart</code> button at the bottom-right of the image area. Choose <code>addToCartVariant</code> for primary (solid) or tertiary (bordered).
           </p>
         </div>
 
         <div className={styles.frame}>
           <div className={styles.gridFrame}>
-            <WCPItemTile {...ITEM_TILE_DEFAULT} onAddToCart={() => {}} addToCartVariant="primary" />
-            <WCPItemTile {...ITEM_TILE_PLAIN} onAddToCart={() => {}} addToCartVariant="tertiary" />
+            <AXItemTile {...ITEM_TILE_DEFAULT} onAddToCart={() => {}} addToCartVariant="primary" />
+            <AXItemTile {...ITEM_TILE_PLAIN} onAddToCart={() => {}} addToCartVariant="tertiary" />
           </div>
         </div>
 
@@ -267,15 +267,15 @@ export default function ItemTilePage() {
           { name: 'originalPrice', required: false, description: 'Strikethrough original price, e.g. "$200.00"' },
           { name: 'pricePrefix', required: false, description: '"Now" — triggers green savings style for the entire price row' },
           { name: 'priceSuffix', required: false, description: '"/mo" — appended after cents, aligned to bottom' },
-          { name: 'badge', required: false, description: '{ label, type } — badge overlay using WCPFlag. Types: bestseller, deal, popular, rollback' },
-          { name: 'onAddToCart', required: false, description: 'Callback (count) => void — renders WCPAddToCart at bottom-right of image area' },
+          { name: 'badge', required: false, description: '{ label, type } — badge overlay using AXFlag. Types: bestseller, deal, popular, rollback' },
+          { name: 'onAddToCart', required: false, description: 'Callback (count) => void — renders AXAddToCart at bottom-right of image area' },
           { name: 'addToCartVariant', required: false, description: "'primary' (solid blue) or 'tertiary' (bordered). Defaults to 'primary'" },
         ]} />
       </div>
 
-      {/* ── WCPAddToCart (standalone) ──────────────────────────── */}
+      {/* ── AXAddToCart (standalone) ──────────────────────────── */}
       <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>WCPAddToCart</h2>
+        <h2 className={styles.sectionTitle}>AXAddToCart</h2>
         <p className={styles.sectionDesc}>
           Compact add-to-cart trigger using the XSmall QuantityStepper with invisible 44&times;44px touch-target padding. Designed for use inside item tiles and product cards.
         </p>
@@ -292,11 +292,11 @@ export default function ItemTilePage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '32px', padding: '16px' }}>
             <div style={{ textAlign: 'center' }}>
               <p style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)', marginBottom: '8px' }}>Primary</p>
-              <WCPAddToCart variant="primary" />
+              <AXAddToCart variant="primary" />
             </div>
             <div style={{ textAlign: 'center' }}>
               <p style={{ fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)', marginBottom: '8px' }}>Tertiary</p>
-              <WCPAddToCart variant="tertiary" />
+              <AXAddToCart variant="tertiary" />
             </div>
           </div>
         </div>
@@ -436,7 +436,7 @@ export default function ItemTilePage() {
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>FlashDealsItemTile</h2>
         <p className={styles.sectionDesc}>
-          Card variant used inside the Flash Deals carousel on the home page. Features a no-fill bordered card with a WCPFlag badge overlay, WCPHeartView toggle, green &quot;Now&quot; savings pricing, and a compact &quot;+ Add&quot; or &quot;Options&quot; action button.
+          Card variant used inside the Flash Deals carousel on the home page. Features a no-fill bordered card with a AXFlag badge overlay, AXHeartView toggle, green &quot;Now&quot; savings pricing, and a compact &quot;+ Add&quot; or &quot;Options&quot; action button.
         </p>
 
         <div className={styles.metaRow}>
@@ -485,7 +485,7 @@ export default function ItemTilePage() {
           { name: 'idx', required: true, description: 'Index used to identify the tile in cart state updates' },
           { name: 'originalPrice', required: false, description: 'Strikethrough original price, e.g. "$12.99"' },
           { name: 'pricePrefix', required: false, description: '"Now" — triggers green savings style' },
-          { name: 'badge', required: false, description: '{ label, type } — WCPFlag badge overlay. Types: bestseller, deal, popular, rollback, clearance' },
+          { name: 'badge', required: false, description: '{ label, type } — AXFlag badge overlay. Types: bestseller, deal, popular, rollback, clearance' },
           { name: 'optionsText', required: false, description: 'Text shown below price, e.g. "3 options"' },
         ]} />
       </div>
@@ -558,7 +558,7 @@ export default function ItemTilePage() {
           { name: 'tag', required: false, description: 'Size/options tag text shown as a pill next to the price, e.g. "5 oz"' },
           { name: 'variant', required: false, description: "'primary' (solid blue) or 'tertiary' (bordered). Defaults to 'primary'" },
           { name: 'loading', required: false, description: 'When true, renders the tile at reduced opacity with no interaction' },
-          { name: 'onAddToCart', required: false, description: 'Callback (count) => void — renders WCPAddToCart in image area when provided' },
+          { name: 'onAddToCart', required: false, description: 'Callback (count) => void — renders AXAddToCart in image area when provided' },
         ]} />
       </div>
 
@@ -664,11 +664,11 @@ export default function ItemTilePage() {
               path: '@/components/walmart/PromotionalItemTile',
             },
             {
-              name: 'WCPItemTile',
+              name: 'AXItemTile',
               tag: 'Item Tile',
               tagVariant: 'success' as const,
-              code: '<WCPItemTile image="..." name="..." price="98" cents="00" />',
-              path: '@/components/walmart/WCPItemTile',
+              code: '<AXItemTile image="..." name="..." price="98" cents="00" />',
+              path: '@/components/walmart/AXItemTile',
             },
             {
               name: 'ProductCardList',

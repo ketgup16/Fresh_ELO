@@ -39,7 +39,7 @@ interface IconButtonBaseProps extends CommonProps {
 
   /**
    * When `true`, elevates the button with a box-shadow and forces circular shape.
-   * Equivalent to the former WCPFloatingButton — use for carousel controls and FABs.
+   * Equivalent to the former AXFloatingButton — use for carousel controls and FABs.
    * @default false
    */
   floating?: boolean;

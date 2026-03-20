@@ -2,7 +2,7 @@ import React from 'react';
 import ToggleExample from '@/components/examples/ToggleExample';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
-import { WCPIconToggle, type WCPIconToggleSize, type WCPIconToggleShape, type WCPIconToggleColor } from '@/components/walmart/WCPIconToggle';
+import { AXIconToggle, type AXIconToggleSize, type AXIconToggleShape, type AXIconToggleColor } from '@/components/walmart/AXIconToggle';
 import { Heart } from '@/components/icons/Heart';
 import { HeartFill } from '@/components/icons/HeartFill';
 import { Star } from '@/components/icons/Star';
@@ -32,7 +32,7 @@ export default function TogglePage() {
         </React.Suspense>
       </div>
 
-      {/* ── WCP Icon Toggle ── */}
+      {/* ── AX Icon Toggle ── */}
       <div style={{ marginBottom: '16px' }}>
         <h2 style={{
           fontSize: '24px',
@@ -41,7 +41,7 @@ export default function TogglePage() {
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
           marginBottom: '8px',
         }}>
-          WCP Icon Toggle
+          AX Icon Toggle
         </h2>
         <p style={{
           fontSize: '14px',
@@ -61,7 +61,7 @@ export default function TogglePage() {
         borderRadius: '8px',
         boxShadow: 'var(--ld-semantic-elevation-100)',
       }}>
-        <WCPIconToggleShowcase />
+        <AXIconToggleShowcase />
       </div>
     </ComponentPageLayout>
   );
@@ -115,16 +115,16 @@ function Chip({ children }: { children: React.ReactNode }) {
 
 /* Variants matrix ─ shape × size × color */
 
-const SIZES: WCPIconToggleSize[] = ['small', 'medium', 'large'];
-const SHAPES: WCPIconToggleShape[] = ['circle', 'rounded'];
+const SIZES: AXIconToggleSize[] = ['small', 'medium', 'large'];
+const SHAPES: AXIconToggleShape[] = ['circle', 'rounded'];
 
 function IconToggleRow({
   shape,
   color,
   label,
 }: {
-  shape: WCPIconToggleShape;
-  color: WCPIconToggleColor;
+  shape: AXIconToggleShape;
+  color: AXIconToggleColor;
   label: string;
 }) {
   return (
@@ -147,13 +147,13 @@ function UncontrolledToggle({
   size,
   color,
 }: {
-  shape: WCPIconToggleShape;
-  size: WCPIconToggleSize;
-  color: WCPIconToggleColor;
+  shape: AXIconToggleShape;
+  size: AXIconToggleSize;
+  color: AXIconToggleColor;
 }) {
   const [checked, setChecked] = React.useState(false);
   return (
-    <WCPIconToggle
+    <AXIconToggle
       uncheckedIcon={<Heart />}
       checkedIcon={<HeartFill />}
       aria-label="Save to favorites"
@@ -166,7 +166,7 @@ function UncontrolledToggle({
   );
 }
 
-function WCPIconToggleShowcase() {
+function AXIconToggleShowcase() {
   const [heartOn, setHeartOn] = React.useState(false);
   const [starOn, setStarOn] = React.useState(true);
   const [bookmarkOn, setBookmarkOn] = React.useState(false);
@@ -229,7 +229,7 @@ function WCPIconToggleShowcase() {
 
           {/* Off */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <WCPIconToggle
+            <AXIconToggle
               uncheckedIcon={<Heart />}
               checkedIcon={<HeartFill />}
               aria-label="Save to favorites"
@@ -244,7 +244,7 @@ function WCPIconToggleShowcase() {
 
           {/* On */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <WCPIconToggle
+            <AXIconToggle
               uncheckedIcon={<Star />}
               checkedIcon={<StarFill />}
               aria-label="Star this item"
@@ -259,7 +259,7 @@ function WCPIconToggleShowcase() {
 
           {/* Disabled off */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <WCPIconToggle
+            <AXIconToggle
               uncheckedIcon={<Pin />}
               checkedIcon={<PinFill />}
               aria-label="Pin (disabled)"
@@ -274,7 +274,7 @@ function WCPIconToggleShowcase() {
 
           {/* Disabled on */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <WCPIconToggle
+            <AXIconToggle
               uncheckedIcon={<Pin />}
               checkedIcon={<PinFill />}
               aria-label="Pin (disabled)"
@@ -289,7 +289,7 @@ function WCPIconToggleShowcase() {
 
           {/* Pin interactive */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <WCPIconToggle
+            <AXIconToggle
               uncheckedIcon={<Pin />}
               checkedIcon={<PinFill />}
               aria-label="Pin this item"
@@ -317,12 +317,12 @@ function WCPIconToggleShowcase() {
           color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
           lineHeight: 1.6,
         }}>
-{`import { WCPIconToggle } from '@/components/walmart/WCPIconToggle';
+{`import { AXIconToggle } from '@/components/walmart/AXIconToggle';
 import { Heart } from '@/components/icons/Heart';
 import { HeartFill } from '@/components/icons/HeartFill';
 
 // Uncontrolled
-<WCPIconToggle
+<AXIconToggle
   uncheckedIcon={<Heart />}
   checkedIcon={<HeartFill />}
   aria-label="Save to favorites"
@@ -332,7 +332,7 @@ import { HeartFill } from '@/components/icons/HeartFill';
 />
 
 // Controlled
-<WCPIconToggle
+<AXIconToggle
   uncheckedIcon={<Heart />}
   checkedIcon={<HeartFill />}
   aria-label="Save to favorites"
@@ -353,12 +353,12 @@ function UncontrolledToggleWhite({
   shape,
   size,
 }: {
-  shape: WCPIconToggleShape;
-  size: WCPIconToggleSize;
+  shape: AXIconToggleShape;
+  size: AXIconToggleSize;
 }) {
   const [checked, setChecked] = React.useState(false);
   return (
-    <WCPIconToggle
+    <AXIconToggle
       uncheckedIcon={<Heart />}
       checkedIcon={<HeartFill />}
       aria-label="Save to favorites"

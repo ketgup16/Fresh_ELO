@@ -80,7 +80,7 @@ const COMPONENT_PROMPTS: { category: string; value: string; prompts: Prompt[] }[
     category: 'Enhance Existing Components',
     value: 'enhance',
     prompts: [
-      { label: 'Add variant to WCPFlag', full: 'Add a new "loyalty" variant to the WCPFlag component. It should use a gold/amber color scheme with dark text. Update the WCP_FLAG_VARIANTS metadata array, add the CSS class in WCPFlag.module.css using semantic tokens, and update the Component Library page to show the new variant.' },
+      { label: 'Add variant to AXFlag', full: 'Add a new "loyalty" variant to the AXFlag component. It should use a gold/amber color scheme with dark text. Update the AX_FLAG_VARIANTS metadata array, add the CSS class in AXFlag.module.css using semantic tokens, and update the Component Library page to show the new variant.' },
       { label: 'Add size to a component', full: 'Add an "xlarge" size variant to the existing Button component. It should be 56px tall with 20px horizontal padding and 18px font size. Add the CSS class, update the TypeScript type union, and add it to the Component Sandbox.' },
       { label: 'Make component responsive', full: 'Make the existing DataTable component responsive. At 768px and below, switch to a card-based layout where each row becomes a stacked card. Use CSS modules with media queries at the standard breakpoints (1024px, 768px, 480px).' },
       { label: 'Add animation', full: 'Add a subtle entrance animation to the Alert component. Use @keyframes for a slide-down + fade-in effect with 250ms duration and ease-out timing. Include a @media (prefers-reduced-motion: reduce) override that disables the animation.' },
@@ -100,7 +100,7 @@ const COMPONENT_PROMPTS: { category: string; value: string; prompts: Prompt[] }[
     value: 'patterns',
     prompts: [
       { label: 'Compound component', full: 'Create a compound component pattern with a parent container and child sub-components. Example: <CardGroup><CardGroupItem title="..." /><CardGroupItem title="..." /></CardGroup>. The parent should manage layout and spacing, children should be self-contained. Use React.Children or context for communication.' },
-      { label: 'Controlled + uncontrolled', full: 'Implement a component that supports both controlled and uncontrolled usage patterns. Accept an optional "value" prop for controlled mode and a "defaultValue" for uncontrolled. Use an internal state that defers to the controlled prop when provided. Follow the WCPHeartView pattern.' },
+      { label: 'Controlled + uncontrolled', full: 'Implement a component that supports both controlled and uncontrolled usage patterns. Accept an optional "value" prop for controlled mode and a "defaultValue" for uncontrolled. Use an internal state that defers to the controlled prop when provided. Follow the AXHeartView pattern.' },
       { label: 'Portal-based overlay', full: 'Create an overlay component (tooltip, popover, or dropdown) that renders via a React portal to escape overflow:hidden ancestors. Use the existing Popover pattern from @/components/ui/Popover as a reference. Never use absolute positioning without a portal.' },
     ],
   },

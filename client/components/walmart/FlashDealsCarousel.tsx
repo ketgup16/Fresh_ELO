@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { FlashDealsItemTile } from '@/components/walmart/FlashDealsItemTile';
 import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
-import { ItemTileBadgeType } from '@/components/walmart/WCPItemTile';
+import { ItemTileBadgeType } from '@/components/walmart/AXItemTile';
 import { ChevronRight } from '@/components/icons/ChevronRight';
 import styles from './FlashDealsCarousel.module.css';
 

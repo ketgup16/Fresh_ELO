@@ -18,9 +18,9 @@ import { Rating } from '@/components/ui/Rating';
 import { Alert } from '@/components/ui/Alert';
 import { Spinner } from '@/components/ui/Spinner';
 import { ProgressIndicator } from '@/components/ui/ProgressIndicator';
-import { WCPFlag, WCP_FLAG_VARIANTS } from '@/components/walmart/WCPFlag';
-import type { WCPFlagVariant } from '@/components/walmart/WCPFlag';
-import { WCPHeartView } from '@/components/walmart/WCPHeartView';
+import { AXFlag, AX_FLAG_VARIANTS } from '@/components/walmart/AXFlag';
+import type { AXFlagVariant } from '@/components/walmart/AXFlag';
+import { AXHeartView } from '@/components/walmart/AXHeartView';
 import * as Icons from '@/components/icons';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 
@@ -49,8 +49,8 @@ const components = [
   { id: 'alert', name: 'Alert', category: 'Feedback' },
   { id: 'spinner', name: 'Spinner', category: 'Feedback' },
   { id: 'progressindicator', name: 'Progress Indicator', category: 'Feedback' },
-  { id: 'wcpflag', name: 'WCP Flag', category: 'WCP' },
-  { id: 'wcpheartview', name: 'WCP Heart View', category: 'WCP' },
+  { id: 'wcpflag', name: 'AX Flag', category: 'AX' },
+  { id: 'wcpheartview', name: 'AX Heart View', category: 'AX' },
 ];
 
 export default function ComponentTester() {
@@ -140,11 +140,11 @@ export default function ComponentTester() {
   const [progressShowValue, setProgressShowValue] = React.useState(true);
   const [progressLabel, setProgressLabel] = React.useState('Progress');
 
-  // WCPFlag props
-  const [flagVariant, setFlagVariant] = React.useState<WCPFlagVariant>('brand-subtle');
+  // AXFlag props
+  const [flagVariant, setFlagVariant] = React.useState<AXFlagVariant>('brand-subtle');
   const [flagLabel, setFlagLabel] = React.useState('Flag name');
 
-  // WCPHeartView props
+  // AXHeartView props
   const [heartActivated, setHeartActivated] = React.useState(false);
   const [heartSize, setHeartSize] = React.useState<'small' | 'medium'>('medium');
 
@@ -330,12 +330,12 @@ export default function ComponentTester() {
 
       case 'wcpflag':
         return (
-          <WCPFlag variant={flagVariant} label={flagLabel} />
+          <AXFlag variant={flagVariant} label={flagLabel} />
         );
 
       case 'wcpheartview':
         return (
-          <WCPHeartView
+          <AXHeartView
             activated={heartActivated}
             onChange={setHeartActivated}
             size={heartSize}
@@ -956,7 +956,7 @@ export default function ComponentTester() {
                 {t('componentLibrary.variant')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {WCP_FLAG_VARIANTS.map(({ variant, label }) => (
+                {AX_FLAG_VARIANTS.map(({ variant, label }) => (
                   <Chip
                     key={variant}
                     size="small"
@@ -1232,7 +1232,7 @@ export default function ComponentTester() {
           )}
           {selectedComponent === 'wcpflag' && (
             <pre style={{ margin: 0 }}>
-              {`<WCPFlag
+              {`<AXFlag
   variant="${flagVariant}"
   label="${flagLabel}"
 />`}
@@ -1240,7 +1240,7 @@ export default function ComponentTester() {
           )}
           {selectedComponent === 'wcpheartview' && (
             <pre style={{ margin: 0 }}>
-              {`<WCPHeartView
+              {`<AXHeartView
   activated={${heartActivated}}
   onChange={setActivated}
   size="${heartSize}"

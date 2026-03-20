@@ -225,7 +225,7 @@ function generateReadingPath(answers: Record<string, string>): ReadingItem[] {
   if (answers.designFocus === 'components') {
     path.push({ label: 'Component Designer', path: '/component-library/getting-started' });
     path.push({ label: 'Component Sandbox', path: '/component-library/component-tester' });
-    path.push({ label: 'WCP Queue (reference)', path: '/component-library/wcp-queue' });
+    path.push({ label: 'WCP Queue (reference)', path: '/component-library/ax-queue' });
   }
   if (answers.designFocus === 'theming') {
     path.push({ label: 'Themes & Tokens', path: '/component-library/themes' });

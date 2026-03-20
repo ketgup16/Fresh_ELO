@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ChevronRight } from '@/components/icons';
-import { WCPRating } from '@/components/walmart/WCPRating';
+import { AXRating } from '@/components/walmart/AXRating';
 import { Button } from '@/components/ui/Button';
 import { Divider } from '@/components/ui/Divider';
 import { Alert } from '@/components/ui/Alert';
@@ -95,7 +95,7 @@ function RatingWidget({ orderType }: { orderType: OrderType }) {
   if (selected > 0) {
     return (
       <div className={styles.ratingSection}>
-        <WCPRating
+        <AXRating
           value={selected}
           size="medium"
           aria-label={`Your rating: ${selected} out of 5 stars`}
@@ -109,7 +109,7 @@ function RatingWidget({ orderType }: { orderType: OrderType }) {
     <div className={styles.ratingSection}>
       <p className={styles.ratingTitle}>How was your {EXPERIENCE_LABELS[orderType]} experience?</p>
       <p className={styles.ratingSubtitle}>Select a rating to begin quick survey.</p>
-      <WCPRating
+      <AXRating
         size="medium"
         defaultValue={0}
         onChange={(v) => setSelected(v)}

@@ -1,5 +1,5 @@
 import { useDragScroll } from '@/hooks/useDragScroll';
-import { WCPItemTile, ItemTileBadgeType } from '@/components/walmart/WCPItemTile';
+import { AXItemTile, ItemTileBadgeType } from '@/components/walmart/AXItemTile';
 import { PRODUCT_IMAGES } from '@/components/walmart/productImages';
 import styles from './JumpRightBackIn.module.css';
 
@@ -217,7 +217,7 @@ export function JumpRightBackIn() {
             </div>
             <div className={styles.productGrid}>
               {category.products.map((product, i) => (
-                <WCPItemTile key={i} {...product} />
+                <AXItemTile key={i} {...product} />
               ))}
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { WCPRichMediaSheet } from './WCPRichMediaSheet';
+import { AXRichMediaSheet } from './AXRichMediaSheet';
 import { DaySelector } from './DaySelector';
 import { TimeSelector } from './TimeSelector';
 import { Button } from '@/components/ui/Button';
@@ -226,7 +226,7 @@ export function ViewOrderBottomSheet({
   };
 
   return (
-    <WCPRichMediaSheet
+    <AXRichMediaSheet
       isOpen={isOpen}
       onClose={handleClose}
       headerVariant={view === 'schedule' ? 'title-subtitle' : 'none'}
@@ -252,6 +252,6 @@ export function ViewOrderBottomSheet({
           onSave={handleSave}
         />
       )}
-    </WCPRichMediaSheet>
+    </AXRichMediaSheet>
   );
 }

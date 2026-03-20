@@ -17,7 +17,7 @@ function DemoCard({ title, note, children }: { title: string; note?: string; chi
 export default function OrderStatusCardsPage() {
   return (
     <ComponentPageLayout
-      section="WCP Patterns"
+      section="AX Patterns"
       title="Order & Status Cards"
       description="Dismissible cards and banners that show active order status, curbside pickup countdowns, and delivery tracking on the Walmart home page."
     >

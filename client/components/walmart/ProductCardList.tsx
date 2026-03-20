@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { Rating } from "@/components/ui/Rating";
-import { WCPHeartView } from "./WCPHeartView";
-import { WCPTimerView } from "./WCPTimerView";
+import { AXHeartView } from "./AXHeartView";
+import { AXTimerView } from "./AXTimerView";
 import styles from "./ProductCardList.module.css";
 
 export interface ProductCardListProps {
@@ -55,19 +55,19 @@ export function ProductCardList({
           </div>
         )}
         <div className={styles.favoriteButton}>
-          <WCPHeartView size="small" calloutPosition="right" />
+          <AXHeartView size="small" calloutPosition="right" />
         </div>
         <img src={image} alt={name} className={styles.productImage} />
         {timerEndTime && (
           <div className={styles.timerBadge}>
-            <WCPTimerView endTime={timerEndTime} variant="badge" label={timerLabel} showLabel={false} />
+            <AXTimerView endTime={timerEndTime} variant="badge" label={timerLabel} showLabel={false} />
           </div>
         )}
       </div>
 
       {/* Content column */}
       <div className={styles.contentCol}>
-        {/* Price — matches WCPItemTile superscript pattern */}
+        {/* Price — matches AXItemTile superscript pattern */}
         <div className={[styles.priceRow, wasPrice ? styles.priceRowSavings : ''].filter(Boolean).join(' ')}>
           {wasPrice && (
             <span className={styles.prefix}>Now </span>
