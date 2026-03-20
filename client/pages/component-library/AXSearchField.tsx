@@ -124,7 +124,7 @@ export default function AXSearchFieldPage() {
               <div style={labelStyle}>Focused — Unfilled</div>
               <FocusedDemo value="" />
               <p style={descStyle}>
-                Blue bottom border (2px). Trailing: Cancel link. Cursor blinks in input.
+                Border thickens to 2px. Trailing: Cancel link. Cursor blinks in input.
               </p>
             </div>
 
@@ -133,7 +133,7 @@ export default function AXSearchFieldPage() {
               <div style={labelStyle}>Focused — Filled</div>
               <FocusedDemo value="Text value" />
               <p style={descStyle}>
-                Blue border + value present. Trailing: clear (✕) + Cancel link.
+                Border thickens to 2px + value present. Trailing: clear (✕) + Cancel link.
               </p>
             </div>
 
