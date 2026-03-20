@@ -107,8 +107,8 @@ export function AXSearchField({
         )}
 
         <div className={styles.trailing}>
-          {hasValue ? (
-            /* Single stable X button — present whenever value exists, focused or not.
+          {hasValue && !isDisabled && !isReadOnly ? (
+            /* Single stable X button — present whenever value exists and field is editable.
                Keeping it in one JSX branch prevents blur-before-click from unmounting
                the node mid-interaction and swallowing the click event. */
             <button
