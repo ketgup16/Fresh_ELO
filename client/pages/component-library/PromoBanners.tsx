@@ -14,7 +14,7 @@ const TANYE_PRODUCT = `${CDN}b9a1addd35da48df88f41a3052039cd0?format=webp&width=
 export default function PromoBannersPage() {
   return (
     <ComponentPageLayout
-      section="WCP Patterns"
+      section="AX Patterns"
       title="Promotions & Banners"
       description="Sponsored and promotional banner components used across search results, purchase history, and home pages. SkylineBanner is the primary sponsored ad unit; PromoBanner is a full-bleed image link."
     >

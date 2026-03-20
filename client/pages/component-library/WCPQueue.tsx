@@ -28,7 +28,7 @@ const LANDING_PRODUCT = {
 export default function WCPQueuePage() {
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Queue"
       description="Queue components for managing reservation flows, waiting rooms, and checkout countdowns. Includes Timer View, Queue Card, Queue Banner, and Queue Landing."
     >

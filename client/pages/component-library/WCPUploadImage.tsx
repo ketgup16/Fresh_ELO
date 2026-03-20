@@ -74,7 +74,7 @@ function FullImagesDemo() {
 export default function WCPUploadImagePage() {
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Upload Image"
       description="Used in customer reviews to collect product photos. Supports up to 5 images with mobile (96px) and desktop (112px) tile sizes."
     >

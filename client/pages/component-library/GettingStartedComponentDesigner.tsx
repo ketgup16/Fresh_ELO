@@ -70,10 +70,10 @@ const COMPONENT_PROMPTS: { category: string; value: string; prompts: Prompt[] }[
     category: 'Create New Components',
     value: 'create',
     prompts: [
-      { label: 'Status card with icon', full: 'Create a WCP StatusCard component in client/components/walmart/ with variants: success, warning, error, info. Each variant should use semantic tokens for fill and text colors. Include a leading icon slot, title, description, and optional action button. Use CSS modules with variant class mapping. Add it to the Component Library.' },
-      { label: 'Metric tile', full: 'Create a WCP MetricTile component with props: label (string), value (string|number), trend ("up"|"down"|"flat"), trendValue (string). Use semantic color tokens for trend colors (positive for up, negative for down, subtle for flat). Include a sparkline placeholder area. Use CSS modules.' },
-      { label: 'Step indicator', full: 'Create a WCP StepIndicator component that shows numbered steps with states: completed, active, upcoming. Props: steps (array of {label, description}), currentStep (number). Use semantic tokens for all colors. Include connecting lines between steps that change color based on completion.' },
-      { label: 'Info banner', full: 'Create a WCP InfoBanner component with visual-theme variants: default, brand, inverse. Props: title, description, icon (optional), action (optional ReactNode). Use CSS modules with variant class composition pattern: [styles.banner, styles[variant]].filter(Boolean).join(" ").' },
+      { label: 'Status card with icon', full: 'Create an AX StatusCard component in client/components/walmart/ with variants: success, warning, error, info. Each variant should use semantic tokens for fill and text colors. Include a leading icon slot, title, description, and optional action button. Use CSS modules with variant class mapping. Add it to the Component Library.' },
+      { label: 'Metric tile', full: 'Create an AX MetricTile component with props: label (string), value (string|number), trend ("up"|"down"|"flat"), trendValue (string). Use semantic color tokens for trend colors (positive for up, negative for down, subtle for flat). Include a sparkline placeholder area. Use CSS modules.' },
+      { label: 'Step indicator', full: 'Create an AX StepIndicator component that shows numbered steps with states: completed, active, upcoming. Props: steps (array of {label, description}), currentStep (number). Use semantic tokens for all colors. Include connecting lines between steps that change color based on completion.' },
+      { label: 'Info banner', full: 'Create an AX InfoBanner component with visual-theme variants: default, brand, inverse. Props: title, description, icon (optional), action (optional ReactNode). Use CSS modules with variant class composition pattern: [styles.banner, styles[variant]].filter(Boolean).join(" ").' },
     ],
   },
   {
@@ -218,7 +218,7 @@ export function GettingStartedComponentDesigner() {
           margin: 0,
         }}>
           This guide covers how to design, create, and extend components within the Living Design 3.5
-          system. Whether you&rsquo;re building a new WCP component, adding variants to an existing one,
+          system. Whether you&rsquo;re building a new AX component, adding variants to an existing one,
           or documenting components for the library &mdash; these patterns and prompts will help you
           follow the system correctly.
         </p>
@@ -265,7 +265,7 @@ export function GettingStartedComponentDesigner() {
       </SectionCard>
 
       {/* Component Types */}
-      <SectionCard title="LD vs WCP Components">
+      <SectionCard title="LD vs AX Components">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div style={{
             display: 'grid',
@@ -296,11 +296,11 @@ export function GettingStartedComponentDesigner() {
               borderTop: '4px solid var(--ld-semantic-color-border-positive)',
             }}>
               <div style={{ fontWeight: 700, fontSize: '16px', marginBottom: '8px', color: 'var(--ld-semantic-color-text)' }}>
-                WCP Components
+                AX Components
               </div>
               <div style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ld-semantic-color-text-subtle)', marginBottom: '12px' }}>
                 Product-level components built on LD primitives, in <code style={{ fontFamily: 'var(--ld-semantic-font-family-mono)', fontSize: '13px' }}>client/components/walmart/</code>.
-                These are domain-specific: WCPFlag, WCPHeartView, WCPQueueBanner, etc.
+                These are domain-specific: AXFlag, AXHeartView, AXQueueBanner, etc.
               </div>
               <div style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)' }}>
                 <strong>Variants:</strong> visual-theme (default, brand, inverse)
@@ -315,7 +315,7 @@ export function GettingStartedComponentDesigner() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           {[
             { type: 'Action-intent', values: 'primary | secondary | tertiary | destructive', use: 'Button, IconButton only' },
-            { type: 'Visual-theme', values: 'default | brand | inverse', use: 'WCP banners, callouts, promo components' },
+            { type: 'Visual-theme', values: 'default | brand | inverse', use: 'AX banners, callouts, promo components' },
             { type: 'Status/sentiment', values: 'success | warning | error | info | neutral', use: 'Tag, Alert, Badge' },
           ].map((rule) => (
             <div key={rule.type} style={{
@@ -387,7 +387,7 @@ export function GettingStartedComponentDesigner() {
             'Plan responsive breakpoints: 1024px, 768px, 480px',
             'Plan prefers-reduced-motion override for any animations',
             'Choose the correct variant naming scheme (action-intent vs visual-theme vs status)',
-            'Decide file location: client/components/ui/ (LD) or client/components/walmart/ (WCP)',
+            'Decide file location: client/components/ui/ (LD) or client/components/walmart/ (AX)',
             'Plan documentation: Component Library page and/or Component Sandbox entry',
           ].map((item, i) => (
             <div key={i} style={{
@@ -423,7 +423,7 @@ export function GettingStartedComponentDesigner() {
           color: 'var(--ld-semantic-color-text-subtle)',
           marginBottom: '16px',
         }}>
-          A new WCP component follows this file structure:
+          A new AX component follows this file structure:
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
           {[
@@ -524,7 +524,7 @@ export function GettingStartedComponentDesigner() {
             { label: 'Icons', path: '/component-library/icons' },
             { label: 'Guidelines', path: '/component-library/guidelines' },
             { label: 'Buttons', path: '/component-library/buttons' },
-            { label: 'WCP Queue', path: '/component-library/wcp-queue' },
+            { label: 'AX Queue', path: '/component-library/wcp-queue' },
           ].map((item) => (
             <Link key={item.path} href={item.path} style={{
               padding: '10px 20px',

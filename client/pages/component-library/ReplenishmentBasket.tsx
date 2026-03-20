@@ -7,7 +7,7 @@ import styles from './ReplenishmentBasket.module.css';
 export default function ReplenishmentBasketPage() {
   return (
     <ComponentPageLayout
-      section="WCP Patterns"
+      section="AX Patterns"
       title="Replenishment Basket"
       description="A mobile-only floating panel anchored to the bottom of the viewport. Lets users review, edit, and confirm a personalized replenishment delivery basket. Features three states: collapsed summary bar, AI-generating animation, and expanded item review."
     >

@@ -123,9 +123,9 @@ function Stacked3Options() {
 export default function WCPButtonGroupsPage() {
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Button Groups"
-      description="WCP button group patterns for mobile cards, action footers, and bottom sheets. Each pattern specifies which LD 3.5 button variants to pair and in what order — primary action always on the right (inline) or top (stacked)."
+      description="AX button group patterns for mobile cards, action footers, and bottom sheets. Each pattern specifies which LD 3.5 button variants to pair and in what order — primary action always on the right (inline) or top (stacked)."
     >
 
       {/* ── Inline Patterns ───────────────────────────────────── */}

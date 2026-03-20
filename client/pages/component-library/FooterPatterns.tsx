@@ -57,7 +57,7 @@ export default function FooterPatternsPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Patterns"
+      section="AX Patterns"
       title="Footer & Bottom Nav"
       description="Three navigation patterns — one for each platform. The project-wide mobile default is now configured in Project Settings."
     >

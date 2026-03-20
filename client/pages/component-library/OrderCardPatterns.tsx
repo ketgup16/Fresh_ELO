@@ -763,7 +763,7 @@ function PromptsTable() {
 export default function OrderCardPatternsPage() {
   return (
     <ComponentPageLayout
-      section="WCP Patterns"
+      section="AX Patterns"
       title="Order Cards"
       description="Ready-to-use card templates for the Purchase History page. Each pattern is a live component — click the prompt below it to copy it, then paste it into Fusion."
     >

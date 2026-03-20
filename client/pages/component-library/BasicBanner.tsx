@@ -33,7 +33,7 @@ function VariantRow({ label, children }: { label: string; children: React.ReactN
 export default function BasicBannerPage() {
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Basic Banner"
       description="A generic banner component used to communicate value propositions, branded messages, or contextual callouts. Supports three visual variants and an optional leading icon."
     >

@@ -233,9 +233,9 @@ const cardStyle: React.CSSProperties = {
 export default function WCPFlagPage() {
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Flag"
-      description="Contextual labels for promotions, membership tiers, confidence badges, and more. All variants use WCP semantic tokens and are fully theme-responsive."
+      description="Contextual labels for promotions, membership tiers, confidence badges, and more. All variants use AX semantic tokens and are fully theme-responsive."
     >
       <div>
 

@@ -136,9 +136,9 @@ export default function WCPRichSnackbarPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Components"
-      title="[WCP] Rich Snackbar"
-      description="The WCP Rich Snackbar extends the LD Snackbar with a leading media slot (icon, spot icon, image, or animation) and 4 color variants. Use it for non-critical, transient messages that include contextual media."
+      section="AX Components"
+      title="[AX] Rich Snackbar"
+      description="The AX Rich Snackbar extends the LD Snackbar with a leading media slot (icon, spot icon, image, or animation) and 4 color variants. Use it for non-critical, transient messages that include contextual media."
     >
       <div className={styles.page}>
 

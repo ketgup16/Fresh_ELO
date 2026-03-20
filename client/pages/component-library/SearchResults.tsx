@@ -82,7 +82,7 @@ export default function SearchResultsPatternPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Patterns"
+      section="AX Patterns"
       title="Search Results"
       description="The search results page combines three layers — a sticky header with back navigation, a scrollable filter chip bar, and a product list or grid. Toggle between list and grid views below."
     >

@@ -85,7 +85,7 @@ function PropTable({ rows }: { rows: PropRow[] }) {
 export default function ProductCardsPage() {
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Product Cards"
       description="Three product card components used across search results, category pages, and home-page carousels. Each card is a standalone component — combine them with SearchFilterBar and SearchResultsHeader to build full search patterns."
     >

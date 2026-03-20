@@ -7,7 +7,7 @@ import styles from './SideNav.module.css';
 export default function SideNavPage() {
   return (
     <ComponentPageLayout
-      section="WCP Patterns"
+      section="AX Patterns"
       title="Side Nav"
       description="Collapsible side navigation patterns used for account management and contextual sub-navigation within Walmart pages."
     >

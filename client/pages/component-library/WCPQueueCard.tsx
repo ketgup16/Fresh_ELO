@@ -24,8 +24,8 @@ export default function WCPQueueCardPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Components"
-      title="[WCP] Queue Card"
+      section="AX Components"
+      title="[AX] Queue Card"
       description="A compact card displaying a reservation timer, product thumbnail, pricing, and queue actions. Comes in three urgency variants: waiting (blue), warning (yellow), and expiring (red)."
     >
       <div className={styles.page}>

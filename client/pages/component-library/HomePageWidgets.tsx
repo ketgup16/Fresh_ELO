@@ -16,7 +16,7 @@ export default function HomePageWidgetsPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Patterns"
+      section="AX Patterns"
       title="Home Page Widgets"
       description="Contextual widgets rendered on the Walmart home page — an order status notification card, a desktop-only order status banner, an auto-playing promotional carousel, and a personalized 'Jump right back in' product shelf."
     >

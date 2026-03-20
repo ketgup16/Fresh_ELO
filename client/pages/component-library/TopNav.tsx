@@ -43,9 +43,9 @@ export default function TopNavPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Patterns"
+      section="AX Patterns"
       title="Top Nav"
-      description="Three WCP top navigation patterns — one for desktop web, one for mobile web, and one for native apps. All share the same Walmart brand identity and navigation hierarchy."
+      description="Three AX top navigation patterns — one for desktop web, one for mobile web, and one for native apps. All share the same Walmart brand identity and navigation hierarchy."
     >
 
       {/* ── Platform Component Preview ── */}

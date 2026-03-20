@@ -41,7 +41,7 @@ export default function PageTemplatesPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Patterns"
+      section="AX Patterns"
       title="Page Templates"
       description="Standard page shell compositions used across Walmart web experiences. Each template defines how the top nav, content area, side nav, and footer are arranged for different page types."
     >

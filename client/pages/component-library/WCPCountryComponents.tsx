@@ -21,7 +21,7 @@ export default function WCPCountryComponentsPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Country Select"
       description="Country picker, phone input with country code selector, and country select group for shipping and contact flows."
     >

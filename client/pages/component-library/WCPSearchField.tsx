@@ -56,7 +56,7 @@ export default function WCPSearchFieldPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Search Bar"
       description='An inline search input based on the [AX] Search Bar V2 spec. Supports Enabled, Focused, Disabled, and Read-only states with Unfilled and Filled content variants.'
     >

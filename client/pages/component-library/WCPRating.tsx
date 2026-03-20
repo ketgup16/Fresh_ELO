@@ -165,7 +165,7 @@ export default function WCPRatingPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Ratings"
       description="Two complementary rating components: an interactive star picker (WCPRating) for collecting user feedback, and a read-only aggregate display (WCPRatingDisplay) for item tiles and review sections."
     >

@@ -67,8 +67,8 @@ export default function WCPQueueBannerPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Components"
-      title="[WCP] Queue Banner"
+      section="AX Components"
+      title="[AX] Queue Banner"
       description="A banner with a live countdown timer for reserved carts, flash sales, and limited-time queue flows. Supports multiple variants: line-joined (card), checkout (compact bar), and error (warning message)."
     >
       <div className={styles.page}>

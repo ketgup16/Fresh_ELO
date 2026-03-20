@@ -14,7 +14,7 @@ export default function WCPSearchAndUtilityPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Search & Utility"
       description="Standalone utility components used across Walmart pages — the mobile search bar, the Add to Cart quantity control, the desktop Sub Nav, and the Mobile Top Nav."
     >

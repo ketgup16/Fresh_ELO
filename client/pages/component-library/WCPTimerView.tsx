@@ -6,7 +6,7 @@ import styles from './WCPQueue.module.css';
 export default function WCPTimerViewPage() {
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Timer View"
       description="Urgency-colored countdown timer pill used across queue flows, banners, and product cards. Displays time remaining with color-coded urgency states."
     >

@@ -27,7 +27,7 @@ function DropdownPreviewRow({ children }: { children: React.ReactNode }) {
 export default function DropdownsPage() {
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Dropdowns"
       description="Navigation and utility dropdown menus used in the Desktop Header and Sub Nav. Each dropdown manages its own open/close state, keyboard navigation, and outside-click dismissal."
     >

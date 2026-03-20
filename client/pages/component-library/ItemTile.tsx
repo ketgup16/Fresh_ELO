@@ -181,7 +181,7 @@ function PropTable({ rows }: { rows: PropRow[] }) {
 export default function ItemTilePage() {
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Item Tile"
       description="Product tile and card components used across search results, category pages, home-page carousels, and 2×2 category grids. Each card is a standalone component — combine them to build rich product browsing experiences."
     >

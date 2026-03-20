@@ -60,8 +60,8 @@ export default function WCPSignatureCapturePage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Components"
-      title="[WCP] Signature Capture"
+      section="AX Components"
+      title="[AX] Signature Capture"
       description="A set of composable components for capturing a typed signature during subscription flows. Includes Trigger, Terms preview, Base signature form, and Reauth variants — each with appropriate error and warning states."
     >
       <div className={styles.page}>

@@ -21,7 +21,7 @@ export default function WCPHeartViewPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Heart View"
       description="A circular toggle button for adding items to a favorites list. Similar to the Floating Button but acts as a toggle. On desktop (900px+) it shows a callout on hover; on mobile it triggers a snackbar after toggling."
     >

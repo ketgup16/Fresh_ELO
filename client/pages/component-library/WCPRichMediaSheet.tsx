@@ -176,9 +176,9 @@ export default function WCPRichMediaSheetPage() {
 
   return (
     <ComponentPageLayout
-      section="WCP Components"
-      title="[WCP] Rich Media Sheet"
-      description="A slot-driven, themeable bottom sheet for media-rich experiences that require multiple actions and interactions. Different from the LD Bottom Sheet — this WCP component supports multiple header layouts, surface theming, and desktop-centered behavior."
+      section="AX Components"
+      title="[AX] Rich Media Sheet"
+      description="A slot-driven, themeable bottom sheet for media-rich experiences that require multiple actions and interactions. Different from the LD Bottom Sheet — this AX component supports multiple header layouts, surface theming, and desktop-centered behavior."
     >
       <div className={styles.page}>
 

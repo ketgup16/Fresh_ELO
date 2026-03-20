@@ -44,7 +44,7 @@ function SectionLabel({ children, style }: { children: React.ReactNode; style?: 
 export default function WCPFloatingButtonPage() {
   return (
     <ComponentPageLayout
-      section="WCP Components"
+      section="AX Components"
       title="Floating Button"
       description="A circular elevated icon button used for carousel controls and floating action scenarios. Use IconButton with the floating prop — it applies LD 3.5 secondary action tokens with an elevation box-shadow."
     >
