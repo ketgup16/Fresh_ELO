@@ -51,9 +51,10 @@ export function AXSearchField({
 
   const handleClear = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
+    onChange?.('');
     onClear?.();
     inputRef.current?.focus();
-  }, [onClear]);
+  }, [onChange, onClear]);
 
   const handleCancel = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
