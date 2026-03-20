@@ -107,20 +107,10 @@ export function AXSearchField({
         )}
 
         <div className={styles.trailing}>
-          {isFocused ? (
-            /* Focused: clear button (if value present) inside container */
-            hasValue ? (
-              <button
-                className={styles.iconBtn}
-                onClick={handleClear}
-                aria-label="Clear search"
-                type="button"
-              >
-                <X className={styles.trailingIcon} />
-              </button>
-            ) : null
-          ) : hasValue ? (
-            /* Enabled filled (not focused): X only */
+          {hasValue ? (
+            /* Single stable X button — present whenever value exists, focused or not.
+               Keeping it in one JSX branch prevents blur-before-click from unmounting
+               the node mid-interaction and swallowing the click event. */
             <button
               className={styles.iconBtn}
               onClick={handleClear}
@@ -129,7 +119,7 @@ export function AXSearchField({
             >
               <X className={styles.trailingIcon} />
             </button>
-          ) : !isDisabled && !isReadOnly ? (
+          ) : !isFocused && !isDisabled && !isReadOnly ? (
             /* Enabled unfilled: mic + barcode */
             <>
               {showMic && (
