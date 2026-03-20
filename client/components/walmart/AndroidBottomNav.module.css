@@ -118,23 +118,6 @@
   display: none;
 }
 
-/* ── Sparky animation wrapper ── */
-.sparkyWrap {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 9999px;
-  border: 2px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.sparkyWrapActive {
-  border-color: var(--ld-semantic-color-action-fill-primary, #0071dc);
-}
-
 /* ── Contained / in-flow mode ── */
 .navContained {
   position: relative !important;

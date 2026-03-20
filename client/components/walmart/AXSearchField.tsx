@@ -35,6 +35,7 @@ export function AXSearchField({
   className = '',
 }: AXSearchFieldProps) {
   const [focused, setFocused] = useState(false);
+  const valueOnFocus = useRef<string>(value);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const isDisabled = state === 'disabled';
@@ -56,9 +57,11 @@ export function AXSearchField({
 
   const handleCancel = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
+    // Revert to the value captured when the field was activated
+    onChange?.(valueOnFocus.current);
     inputRef.current?.blur();
     onCancel?.();
-  }, [onCancel]);
+  }, [onChange, onCancel]);
 
   const containerClass = [
     styles.container,
@@ -96,7 +99,7 @@ export function AXSearchField({
             disabled={isDisabled}
             readOnly={isReadOnly}
             onChange={(e) => onChange?.(e.target.value)}
-            onFocus={() => setFocused(true)}
+            onFocus={() => { valueOnFocus.current = value; setFocused(true); }}
             onBlur={() => setFocused(false)}
             aria-label={placeholder}
           />

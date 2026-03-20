@@ -35,7 +35,6 @@
   align-items: center;
   height: 48px;
   margin-top: 17px;
-  gap: 8px;
   padding: 0 16px;
 }
 
@@ -122,33 +121,6 @@
   transform: scale(1);
 }
 
-.sparkyButton {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 9999px;
-  backdrop-filter: blur(8px);
-  flex-shrink: 0;
-  border-top: 1px solid rgba(255, 255, 255, 1);
-  border-left: 1px solid rgba(255, 255, 255, 1);
-  background: rgba(255, 255, 255, 0.89);
-  border: none;
-  cursor: pointer;
-  box-shadow:
-    -4.5px -4.5px 1.5px -5.25px rgba(255, 255, 255, 0.5) inset,
-    4.5px 4.5px 1.5px -5.25px rgba(255, 255, 255, 0.7) inset,
-    3px 4.5px 1.5px -3px rgba(179, 179, 179, 0.2) inset,
-    -3px -4.5px 1.5px -3px rgba(179, 179, 179, 1) inset,
-    0 0 33px 0 rgba(242, 242, 242, 0.5) inset,
-    0 0 14px 0 rgba(0, 0, 0, 0.11);
-}
-
-.sparkyIcon {
-  width: 32px;
-  height: 32px;
-}
 
 .homeIndicator {
   position: absolute;

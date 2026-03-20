@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Store, StoreFill, Heart, HeartFill, Services, ServicesFill, User, UserCircleFill } from '@/components/icons';
-import { SparkyAnimation } from '@/components/icons-custom';
 import styles from './AndroidBottomNav.module.css';
 
-type AndroidTab = 'shop' | 'heart' | 'search' | 'services' | 'account';
+type AndroidTab = 'shop' | 'heart' | 'services' | 'account';
 
 interface AndroidBottomNavProps {
   activeTab?: AndroidTab;
@@ -15,7 +14,6 @@ interface AndroidBottomNavProps {
 const NAV_PATHS: Record<AndroidTab, string | undefined> = {
   shop: '/walmart',
   heart: undefined,
-  search: undefined,
   services: undefined,
   account: '/walmart/purchase-history',
 };
@@ -23,7 +21,6 @@ const NAV_PATHS: Record<AndroidTab, string | undefined> = {
 const TABS: { id: AndroidTab; label: string }[] = [
   { id: 'shop', label: 'Shop' },
   { id: 'heart', label: 'My Items' },
-  { id: 'search', label: 'Ask Sparky' },
   { id: 'services', label: 'Services' },
   { id: 'account', label: 'Account' },
 ];
@@ -35,12 +32,6 @@ function TabIcon({ id, active }: { id: AndroidTab; active: boolean }) {
       return active ? <StoreFill className={cls} /> : <Store className={cls} />;
     case 'heart':
       return active ? <HeartFill className={cls} /> : <Heart className={cls} />;
-    case 'search':
-      return (
-        <div className={[styles.sparkyWrap, active ? styles.sparkyWrapActive : ''].filter(Boolean).join(' ')}>
-          <SparkyAnimation />
-        </div>
-      );
     case 'services':
       return active ? <ServicesFill className={cls} /> : <Services className={cls} />;
     case 'account':

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Services, ServicesFill, UserCircle, UserCircleFill } from '@/components/icons';
-import { SparkyAnimation, GlassShop, GlassShopFill } from '@/components/icons-custom';
+import { GlassShop, GlassShopFill } from '@/components/icons-custom';
 import { useLayoutSettings, type PlatformMode } from '@/contexts/LayoutSettingsContext';
 import styles from './BottomNav.module.css';
 
@@ -125,11 +125,6 @@ export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }
             </button>
           </div>
 
-        <button className={styles.sparkyButton} aria-label="Ask Sparky">
-            <div className={styles.sparkyIcon}>
-              <SparkyAnimation />
-            </div>
-          </button>
       </div>
 
       {platform === 'ios' && <div className={styles.homeIndicator} />}

@@ -14,7 +14,7 @@ import styles from './FooterPatterns.module.css';
 
 type Platform = 'dweb' | 'mweb' | 'native' | 'android';
 type NativeTab = 'shop' | 'heart' | 'user';
-type AndroidTab = 'shop' | 'heart' | 'search' | 'services' | 'account';
+type AndroidTab = 'shop' | 'heart' | 'services' | 'account';
 
 const PLATFORM_META: Record<Platform, {
   component: string;
@@ -38,13 +38,13 @@ const PLATFORM_META: Record<Platform, {
     component: 'WCP Bottom Nav (iOS)',
     tag: 'iOS',
     tagVariant: 'neutral',
-    description: 'Glassmorphic bottom navigation bar with animated spring indicator. Three primary destinations: Shop, My Items, and Account. Includes the Sparky AI button. iOS home indicator included.',
+    description: 'Glassmorphic bottom navigation bar with animated spring indicator. Three primary destinations: Shop, My Items, and Account. iOS home indicator included.',
   },
   android: {
     component: 'WCP Bottom Nav (Android)',
     tag: 'Android',
     tagVariant: 'neutral',
-    description: 'Material-style bottom navigation bar with five tabs: Shop, My Items, Sparky, Services, and Account. Includes Android gesture bar. Active tab highlighted in brand blue.',
+    description: 'Material-style bottom navigation bar with four tabs: Shop, My Items, Services, and Account. Includes Android gesture bar. Active tab highlighted in brand blue.',
   },
 };
 
@@ -138,14 +138,14 @@ export default function FooterPatternsPage() {
               <div className={styles.nativeTabSwitcher}>
                 <p className={styles.nativeTabLabel}>Active tab:</p>
                 <ButtonGroup>
-                  {(['shop', 'heart', 'search', 'services', 'account'] as AndroidTab[]).map((tab) => (
+                  {(['shop', 'heart', 'services', 'account'] as AndroidTab[]).map((tab) => (
                     <Button
                       key={tab}
                       variant={androidTab === tab ? 'primary' : 'secondary'}
                       size="small"
                       onClick={() => setAndroidTab(tab)}
                     >
-                      {tab === 'shop' ? 'Shop' : tab === 'heart' ? 'My Items' : tab === 'search' ? 'Sparky' : tab === 'services' ? 'Services' : 'Account'}
+                      {tab === 'shop' ? 'Shop' : tab === 'heart' ? 'My Items' : tab === 'services' ? 'Services' : 'Account'}
                     </Button>
                   ))}
                 </ButtonGroup>
