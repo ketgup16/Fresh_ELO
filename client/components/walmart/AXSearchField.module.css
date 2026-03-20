@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   align-items: center;
+  gap: var(--ld-primitive-scale-space-100, 4px);
   width: 100%;
 }
 
@@ -9,6 +10,7 @@
   align-items: center;
   gap: var(--ld-primitive-scale-space-150, 6px);
   flex: 1;
+  min-width: 0;
   height: var(--ld-primitive-scale-space-700, 56px);
   padding: 0 var(--ld-primitive-scale-space-150, 6px) 0 var(--ld-primitive-scale-space-200, 8px);
   border-bottom: var(--ld-semantic-scale-borderwidth-interactive, 1px) solid

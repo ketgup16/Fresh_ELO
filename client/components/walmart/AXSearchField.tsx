@@ -100,27 +100,18 @@ export function AXSearchField({
         )}
 
         <div className={styles.trailing}>
-          {/* When focused: show clear button (if has value) + cancel */}
           {isFocused ? (
-            <>
-              {hasValue && (
-                <button
-                  className={styles.iconBtn}
-                  onClick={handleClear}
-                  aria-label="Clear search"
-                  type="button"
-                >
-                  <X className={styles.trailingIcon} />
-                </button>
-              )}
+            /* Focused: clear button (if value present) inside container */
+            hasValue ? (
               <button
-                className={styles.cancelBtn}
-                onClick={handleCancel}
+                className={styles.iconBtn}
+                onClick={handleClear}
+                aria-label="Clear search"
                 type="button"
               >
-                Cancel
+                <X className={styles.trailingIcon} />
               </button>
-            </>
+            ) : null
           ) : hasValue ? (
             /* Enabled filled (not focused): X only */
             <button
@@ -158,6 +149,17 @@ export function AXSearchField({
           ) : null}
         </div>
       </div>
+
+      {/* Cancel sits OUTSIDE the field container, per Figma */}
+      {isFocused && (
+        <button
+          className={styles.cancelBtn}
+          onClick={handleCancel}
+          type="button"
+        >
+          Cancel
+        </button>
+      )}
     </div>
   );
 }
