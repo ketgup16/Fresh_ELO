@@ -89,7 +89,7 @@ export default function WCPSearchFieldPage() {
         <div style={sectionStyle}>
           <h2 style={h2Style}>States</h2>
           <p style={descStyle}>
-            The search field has four states (Enabled, Focused, Disabled, Read-only) and two
+            The search bar has four states (Enabled, Focused, Disabled, Read-only) and two
             content modes (Unfilled and Filled).
           </p>
 
@@ -248,13 +248,13 @@ export default function WCPSearchFieldPage() {
             color: 'var(--ld-semantic-color-text)',
             overflowX: 'auto',
             lineHeight: 1.6,
-          }}>{`import { WCPSearchField } from '@/components/walmart/WCPSearchField';
+          }}>{`import { WCPSearchBar } from '@/components/walmart/WCPSearchBar';
 
 function MyPage() {
   const [query, setQuery] = React.useState('');
 
   return (
-    <WCPSearchField
+    <WCPSearchBar
       value={query}
       onChange={setQuery}
       onClear={() => setQuery('')}
