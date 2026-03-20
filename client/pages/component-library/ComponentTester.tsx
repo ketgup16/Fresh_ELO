@@ -1023,17 +1023,23 @@ export default function ComponentTester() {
                 ))}
               </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <Checkbox
-                checked={searchShowMic}
-                onCheckedChange={(v) => setSearchShowMic(v as boolean)}
-                label="Show mic button"
-              />
-              <Checkbox
-                checked={searchShowBarcode}
-                onCheckedChange={(v) => setSearchShowBarcode(v as boolean)}
-                label="Show barcode button"
-              />
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Mic button
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <Chip size="small" selected={searchShowMic} onClick={() => setSearchShowMic(true)}>On</Chip>
+                <Chip size="small" selected={!searchShowMic} onClick={() => setSearchShowMic(false)}>Off</Chip>
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Barcode button
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <Chip size="small" selected={searchShowBarcode} onClick={() => setSearchShowBarcode(true)}>On</Chip>
+                <Chip size="small" selected={!searchShowBarcode} onClick={() => setSearchShowBarcode(false)}>Off</Chip>
+              </div>
             </div>
           </div>
         );
