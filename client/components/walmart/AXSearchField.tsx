@@ -10,6 +10,8 @@ interface AXSearchFieldProps {
   state?: AXSearchFieldState;
   showMic?: boolean;
   showBarcode?: boolean;
+  /** Force focused appearance regardless of actual browser focus (for demos/docs). */
+  simulateFocused?: boolean;
   onChange?: (value: string) => void;
   onClear?: () => void;
   onCancel?: () => void;
@@ -24,6 +26,7 @@ export function AXSearchField({
   state = 'enabled',
   showMic = true,
   showBarcode = true,
+  simulateFocused = false,
   onChange,
   onClear,
   onCancel,
@@ -36,7 +39,7 @@ export function AXSearchField({
 
   const isDisabled = state === 'disabled';
   const isReadOnly = state === 'readOnly';
-  const isFocused = focused && !isDisabled && !isReadOnly;
+  const isFocused = (focused || simulateFocused) && !isDisabled && !isReadOnly;
   const hasValue = value.length > 0;
 
   const handleContainerClick = useCallback(() => {

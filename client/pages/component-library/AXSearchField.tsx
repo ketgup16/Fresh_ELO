@@ -303,24 +303,16 @@ function MyPage() {
   );
 }
 
-/** Demo helper — auto-focuses the input to show the focused state visually */
+/** Demo helper — shows the focused visual state without requiring actual browser focus */
 function FocusedDemo({ value: initialValue }: { value: string }) {
   const [val, setVal] = useState(initialValue);
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const input = ref.current?.querySelector('input');
-    if (input) input.focus();
-  }, []);
-
   return (
-    <div ref={ref}>
-      <AXSearchField
-        value={val}
-        onChange={setVal}
-        onClear={() => setVal('')}
-        onCancel={() => setVal('')}
-      />
-    </div>
+    <AXSearchField
+      value={val}
+      onChange={setVal}
+      onClear={() => setVal('')}
+      onCancel={() => setVal('')}
+      simulateFocused
+    />
   );
 }
