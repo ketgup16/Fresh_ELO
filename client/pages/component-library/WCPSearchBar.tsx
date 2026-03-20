@@ -27,7 +27,7 @@ export default function WCPSearchBarPage() {
         <div className={styles.section}>
           <SectionTitle>Overview</SectionTitle>
           <SectionDesc>
-            The WCP Search Bar is an inline search field for filtering content within a page. It
+            The WCP Search Field is an inline search field for filtering content within a page. It
             differs from the global navigation search — it is scoped to a single section or page.
             On mobile (0–899px) it uses a slightly more compact height (48px) and on desktop
             (900+px) it uses 56px. When activated, a blinking cursor appears and a Cancel link
@@ -39,7 +39,7 @@ export default function WCPSearchBarPage() {
         <div className={styles.section}>
           <SectionTitle>Interactive Demo</SectionTitle>
           <SectionDesc>
-            Try typing to activate the search bar. The clear button appears once text is entered,
+            Try typing to activate the search field. The clear button appears once text is entered,
             and the Cancel link dismisses focus and clears the value.
           </SectionDesc>
           <div className={styles.demoWrapper}>
@@ -62,7 +62,7 @@ export default function WCPSearchBarPage() {
         <div className={styles.section}>
           <SectionTitle>States</SectionTitle>
           <SectionDesc>
-            The search bar has four interaction states. Hover is desktop-only (900+px). The
+            The search field has four interaction states. Hover is desktop-only (900+px). The
             Activated state shows a focus ring and Cancel link; the entered variant shows the
             typed value and a clear button.
           </SectionDesc>
@@ -265,7 +265,7 @@ function MyPage() {
               <div className={styles.dontLabel}>Don't</div>
               <p className={styles.guidelineText}>
                 Don't use this component in the global header for site-wide search. Use the
-                dedicated global search bar component for that use case.
+                dedicated global search field component for that use case.
               </p>
             </div>
             <div className={styles.guidelineCard}>
@@ -278,7 +278,7 @@ function MyPage() {
             <div className={styles.guidelineCard}>
               <div className={styles.dontLabel}>Don't</div>
               <p className={styles.guidelineText}>
-                Don't stack multiple search bars on the same page. Only one inline search per
+                Don't stack multiple search fields on the same page. Only one inline search per
                 content area is recommended.
               </p>
             </div>
