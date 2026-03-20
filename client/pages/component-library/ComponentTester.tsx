@@ -21,6 +21,8 @@ import { ProgressIndicator } from '@/components/ui/ProgressIndicator';
 import { AXFlag, AX_FLAG_VARIANTS } from '@/components/walmart/AXFlag';
 import type { AXFlagVariant } from '@/components/walmart/AXFlag';
 import { AXHeartView } from '@/components/walmart/AXHeartView';
+import { AXSearchField } from '@/components/walmart/AXSearchField';
+import type { AXSearchFieldState } from '@/components/walmart/AXSearchField';
 import * as Icons from '@/components/icons';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 
@@ -28,7 +30,7 @@ type ComponentType =
   | 'button' | 'badge' | 'chip' | 'filterchip' | 'tag'
   | 'iconbutton' | 'checkbox' | 'switch' | 'textfield' | 'textarea'
   | 'datefield' | 'select' | 'divider' | 'spoticon' | 'rating'
-  | 'alert' | 'spinner' | 'progressindicator' | 'wcpflag' | 'wcpheartview';
+  | 'alert' | 'spinner' | 'progressindicator' | 'wcpflag' | 'wcpheartview' | 'axsearchfield';
 
 const components = [
   { id: 'button', name: 'Button', category: 'Actions' },
@@ -51,6 +53,7 @@ const components = [
   { id: 'progressindicator', name: 'Progress Indicator', category: 'Feedback' },
   { id: 'wcpflag', name: 'AX Flag', category: 'AX' },
   { id: 'wcpheartview', name: 'AX Heart View', category: 'AX' },
+  { id: 'axsearchfield', name: 'AX Search Bar', category: 'AX' },
 ];
 
 export default function ComponentTester() {
@@ -143,6 +146,12 @@ export default function ComponentTester() {
   // AXFlag props
   const [flagVariant, setFlagVariant] = React.useState<AXFlagVariant>('brand-subtle');
   const [flagLabel, setFlagLabel] = React.useState('Flag name');
+
+  // AXSearchField props
+  const [searchValue, setSearchValue] = React.useState('');
+  const [searchState, setSearchState] = React.useState<AXSearchFieldState>('enabled');
+  const [searchShowMic, setSearchShowMic] = React.useState(true);
+  const [searchShowBarcode, setSearchShowBarcode] = React.useState(true);
 
   // AXHeartView props
   const [heartActivated, setHeartActivated] = React.useState(false);
@@ -331,6 +340,21 @@ export default function ComponentTester() {
       case 'wcpflag':
         return (
           <AXFlag variant={flagVariant} label={flagLabel} />
+        );
+
+      case 'axsearchfield':
+        return (
+          <div style={{ width: '100%', maxWidth: '360px' }}>
+            <AXSearchField
+              value={searchValue}
+              onChange={setSearchValue}
+              state={searchState}
+              showMic={searchShowMic}
+              showBarcode={searchShowBarcode}
+              onClear={() => setSearchValue('')}
+              onCancel={() => setSearchValue('')}
+            />
+          </div>
         );
 
       case 'wcpheartview':
@@ -979,6 +1003,41 @@ export default function ComponentTester() {
           </div>
         );
 
+      case 'axsearchfield':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                State
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['enabled', 'disabled', 'readOnly'] as const).map((s) => (
+                  <Chip
+                    key={s}
+                    size="small"
+                    selected={searchState === s}
+                    onClick={() => setSearchState(s)}
+                  >
+                    {s === 'readOnly' ? 'Read Only' : s.charAt(0).toUpperCase() + s.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <Checkbox
+                checked={searchShowMic}
+                onCheckedChange={(v) => setSearchShowMic(v as boolean)}
+                label="Show mic button"
+              />
+              <Checkbox
+                checked={searchShowBarcode}
+                onCheckedChange={(v) => setSearchShowBarcode(v as boolean)}
+                label="Show barcode button"
+              />
+            </div>
+          </div>
+        );
+
       case 'wcpheartview':
         return (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -1228,6 +1287,21 @@ export default function ComponentTester() {
   variant="${progressVariant}"
   label="${progressLabel}"${progressShowValue ? '\n  showValue' : ''}
 />`}
+            </pre>
+          )}
+          {selectedComponent === 'axsearchfield' && (
+            <pre style={{ margin: 0 }}>
+              {[
+                '<AXSearchField',
+                `  value={value}`,
+                `  onChange={setValue}`,
+                `  state="${searchState}"`,
+                ...(searchShowMic ? [] : ['  showMic={false}']),
+                ...(searchShowBarcode ? [] : ['  showBarcode={false}']),
+                `  onClear={() => setValue('')}`,
+                `  onCancel={() => setValue('')}`,
+                '/>',
+              ].join('\n')}
             </pre>
           )}
           {selectedComponent === 'wcpflag' && (
