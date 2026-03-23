@@ -262,7 +262,9 @@ export default function AXSearchFieldPage() {
               <tr><td>showBarcode</td><td>boolean</td><td>true</td><td>Show barcode icon button in resting/unfilled state.</td></tr>
               <tr><td>onMicClick</td><td>() =&gt; void</td><td>—</td><td>Called when the microphone button is pressed.</td></tr>
               <tr><td>onBarcodeClick</td><td>() =&gt; void</td><td>—</td><td>Called when the barcode button is pressed.</td></tr>
-              <tr><td>placeholder</td><td>string</td><td>'Enter search term(s)'</td><td>Placeholder text shown when the field is empty.</td></tr>
+              <tr><td>placeholder</td><td>string</td><td>'Search'</td><td>Placeholder text shown when the field is empty.</td></tr>
+              <tr><td>size</td><td>'xsmall' | 'small' | 'medium' | 'large'</td><td>'large'</td><td>Height variant. xsmall=32px, small=40px, medium=48px, large=56px. xsmall/small use small icons; medium/large use medium icons.</td></tr>
+              <tr><td>simulateFocused</td><td>boolean</td><td>false</td><td>Forces the activated visual state without real browser focus. Useful for docs and design previews.</td></tr>
               <tr><td>disabled</td><td>boolean</td><td>false</td><td>Disables all interaction.</td></tr>
               <tr><td>className</td><td>string</td><td>—</td><td>Optional extra CSS class on the root wrapper.</td></tr>
             </tbody>
