@@ -23,6 +23,7 @@ import type { AXFlagVariant } from '@/components/walmart/AXFlag';
 import { AXHeartView } from '@/components/walmart/AXHeartView';
 import { AXSearchField } from '@/components/walmart/AXSearchField';
 import type { AXSearchFieldState } from '@/components/walmart/AXSearchField';
+import { AXSearchBar } from '@/components/walmart/AXSearchBar';
 import * as Icons from '@/components/icons';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 
@@ -30,7 +31,7 @@ type ComponentType =
   | 'button' | 'badge' | 'chip' | 'filterchip' | 'tag'
   | 'iconbutton' | 'checkbox' | 'switch' | 'textfield' | 'textarea'
   | 'datefield' | 'select' | 'divider' | 'spoticon' | 'rating'
-  | 'alert' | 'spinner' | 'progressindicator' | 'wcpflag' | 'wcpheartview' | 'axsearchfield';
+  | 'alert' | 'spinner' | 'progressindicator' | 'wcpflag' | 'wcpheartview' | 'axsearchfield' | 'axsearchbar';
 
 const components = [
   { id: 'button', name: 'Button', category: 'Actions' },
@@ -54,6 +55,7 @@ const components = [
   { id: 'wcpflag', name: 'AX Flag', category: 'AX' },
   { id: 'wcpheartview', name: 'AX Heart View', category: 'AX' },
   { id: 'axsearchfield', name: 'AX Search Bar', category: 'AX' },
+  { id: 'axsearchbar', name: 'AX Search Field', category: 'AX' },
 ];
 
 export default function ComponentTester() {
@@ -146,6 +148,11 @@ export default function ComponentTester() {
   // AXFlag props
   const [flagVariant, setFlagVariant] = React.useState<AXFlagVariant>('brand-subtle');
   const [flagLabel, setFlagLabel] = React.useState('Flag name');
+
+  // AXSearchBar (Search Field) props
+  const [searchBarValue, setSearchBarValue] = React.useState('');
+  const [searchBarPlaceholder, setSearchBarPlaceholder] = React.useState('Enter search term(s)');
+  const [searchBarDisabled, setSearchBarDisabled] = React.useState(false);
 
   // AXSearchField props
   const [searchValue, setSearchValue] = React.useState('');
@@ -340,6 +347,19 @@ export default function ComponentTester() {
       case 'wcpflag':
         return (
           <AXFlag variant={flagVariant} label={flagLabel} />
+        );
+
+      case 'axsearchbar':
+        return (
+          <div style={{ width: '100%', maxWidth: '400px' }}>
+            <AXSearchBar
+              value={searchBarValue}
+              onChange={setSearchBarValue}
+              onClear={() => setSearchBarValue('')}
+              placeholder={searchBarPlaceholder}
+              disabled={searchBarDisabled}
+            />
+          </div>
         );
 
       case 'axsearchfield':
@@ -1002,6 +1022,29 @@ export default function ComponentTester() {
           </div>
         );
 
+      case 'axsearchbar':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                State
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <Chip size="small" selected={!searchBarDisabled} onClick={() => setSearchBarDisabled(false)}>Enabled</Chip>
+                <Chip size="small" selected={searchBarDisabled} onClick={() => setSearchBarDisabled(true)}>Disabled</Chip>
+              </div>
+            </div>
+            <div>
+              <TextField
+                label="Placeholder"
+                size="small"
+                value={searchBarPlaceholder}
+                onChange={(e) => setSearchBarPlaceholder(e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
       case 'axsearchfield':
         return (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -1292,6 +1335,19 @@ export default function ComponentTester() {
   variant="${progressVariant}"
   label="${progressLabel}"${progressShowValue ? '\n  showValue' : ''}
 />`}
+            </pre>
+          )}
+          {selectedComponent === 'axsearchbar' && (
+            <pre style={{ margin: 0 }}>
+              {[
+                '<AXSearchBar',
+                `  value={value}`,
+                `  onChange={setValue}`,
+                `  placeholder="${searchBarPlaceholder}"`,
+                ...(searchBarDisabled ? ['  disabled'] : []),
+                `  onClear={() => setValue('')}`,
+                '/>',
+              ].join('\n')}
             </pre>
           )}
           {selectedComponent === 'axsearchfield' && (
