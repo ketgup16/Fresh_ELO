@@ -41,7 +41,7 @@ interface MobileTopNavProps {
   nativeSubtitle?: string;
   /** Whether to show the subtitle. @default false */
   showNativeSubtitle?: boolean;
-  /** Show/hide each of the 3 trailing action icon buttons. @default true */
+  /** Show/hide each of the 3 trailing action icon buttons. Action 1 defaults to true, Actions 2 & 3 default to false. */
   showNativeAction1?: boolean;
   showNativeAction2?: boolean;
   showNativeAction3?: boolean;
@@ -57,8 +57,8 @@ export function MobileTopNav({
   nativeSubtitle = 'Subtitle',
   showNativeSubtitle = false,
   showNativeAction1 = true,
-  showNativeAction2 = true,
-  showNativeAction3 = true,
+  showNativeAction2 = false,
+  showNativeAction3 = false,
 }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();

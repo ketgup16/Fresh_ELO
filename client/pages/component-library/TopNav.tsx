@@ -45,8 +45,8 @@ export default function TopNavPage() {
   const [nativeSubtitle, setNativeSubtitle] = useState('Subtitle');
   const [showNativeSubtitle, setShowNativeSubtitle] = useState(false);
   const [showNativeAction1, setShowNativeAction1] = useState(true);
-  const [showNativeAction2, setShowNativeAction2] = useState(true);
-  const [showNativeAction3, setShowNativeAction3] = useState(true);
+  const [showNativeAction2, setShowNativeAction2] = useState(false);
+  const [showNativeAction3, setShowNativeAction3] = useState(false);
   const meta = PLATFORM_META[platform];
 
   return (
