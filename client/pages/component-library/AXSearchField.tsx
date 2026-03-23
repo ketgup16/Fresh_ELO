@@ -182,8 +182,8 @@ export default function AXSearchFieldPage() {
                     onChange={() => {}}
                     placeholder="Search"
                     size={size}
-                    showMic={false}
-                    showBarcode={false}
+                    showMic
+                    showBarcode
                   />
                 </div>
               </div>
