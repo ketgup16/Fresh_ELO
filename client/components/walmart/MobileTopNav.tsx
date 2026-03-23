@@ -9,6 +9,7 @@ import { ServicesDropdown } from '@/components/walmart/ServicesDropdown';
 import { MoreLinksDropdown } from '@/components/walmart/MoreLinksDropdown';
 import { SubNavButton } from '@/components/walmart/SubNavButton';
 import { SearchTypeaheadModal } from '@/pages/walmart/index/SearchTypeaheadModal';
+import { AXSearchBar } from '@/components/walmart/AXSearchBar';
 import { useNavigate } from 'react-router-dom';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import { useCart } from '@/contexts/CartContext';
@@ -64,6 +65,7 @@ export function MobileTopNav({
   const { cartCount, cartPrice } = useCart();
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [showCameraModal, setShowCameraModal] = useState(false);
+  const [nativeSearchValue, setNativeSearchValue] = useState('');
   const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
   const [showMenuPanel, setShowMenuPanel] = useState(false);
@@ -174,22 +176,14 @@ export function MobileTopNav({
               </div>
             </div>
 
-            {/* Row 2: Search pill */}
+            {/* Row 2: AX Search Bar */}
             <div className={styles.nativeSearchRow}>
-              <div
-                className={styles.nativeSearchPill}
-                onClick={() => setShowSearchModal(true)}
-              >
-                <Search className={styles.nativeSearchIcon} />
-                <span className={styles.searchPillText}>Search Walmart</span>
-                <button
-                  onClick={(e) => { e.stopPropagation(); setShowCameraModal(true); }}
-                  className={styles.nativeBarcodeBtn}
-                  aria-label="Scan barcode"
-                >
-                  <Barcode className={styles.nativeBarcodeIcon} />
-                </button>
-              </div>
+              <AXSearchBar
+                value={nativeSearchValue}
+                onChange={setNativeSearchValue}
+                onBarcodeClick={() => setShowCameraModal(true)}
+                showMic={false}
+              />
             </div>
           </div>
         ) : (
