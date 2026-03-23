@@ -32,8 +32,8 @@ export interface AXSearchFieldProps {
   size?: AXSearchFieldSize;
   /**
    * Border-radius style.
-   * - rounded: full pill shape (default)
-   * - default: no border-radius (square corners)
+   * - default: no border-radius, square corners (default)
+   * - rounded: full pill shape
    */
   cornerStyle?: AXSearchFieldCornerStyle;
   className?: string;
@@ -59,7 +59,7 @@ export function AXSearchField({
   disabled = false,
   simulateFocused = false,
   size = 'large',
-  cornerStyle = 'rounded',
+  cornerStyle = 'default',
   className,
 }: AXSearchFieldProps) {
   const [isFocused, setIsFocused] = React.useState(false);
