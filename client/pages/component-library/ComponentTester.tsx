@@ -22,7 +22,7 @@ import { AXFlag, AX_FLAG_VARIANTS } from '@/components/walmart/AXFlag';
 import type { AXFlagVariant } from '@/components/walmart/AXFlag';
 import { AXHeartView } from '@/components/walmart/AXHeartView';
 import { AXSearchField } from '@/components/walmart/AXSearchField';
-import type { AXSearchFieldCornerStyle } from '@/components/walmart/AXSearchField';
+import type { AXSearchFieldCornerStyle, AXSearchFieldSize } from '@/components/walmart/AXSearchField';
 import type { AXSearchBarState } from '@/components/walmart/AXSearchBar';
 import { AXSearchBar } from '@/components/walmart/AXSearchBar';
 import * as Icons from '@/components/icons';
@@ -157,6 +157,7 @@ export default function ComponentTester() {
   const [searchBarShowMic, setSearchBarShowMic] = React.useState(true);
   const [searchBarShowBarcode, setSearchBarShowBarcode] = React.useState(true);
   const [searchBarCornerStyle, setSearchBarCornerStyle] = React.useState<AXSearchFieldCornerStyle>('default');
+  const [searchBarSize, setSearchBarSize] = React.useState<AXSearchFieldSize>('large');
 
   // AXSearchField props
   const [searchValue, setSearchValue] = React.useState('');
@@ -365,6 +366,7 @@ export default function ComponentTester() {
               showMic={searchBarShowMic}
               showBarcode={searchBarShowBarcode}
               cornerStyle={searchBarCornerStyle}
+              size={searchBarSize}
             />
           </div>
         );
@@ -1057,6 +1059,18 @@ export default function ComponentTester() {
               <div style={{ display: 'flex', gap: '8px' }}>
                 <Chip size="small" selected={searchBarShowBarcode} onClick={() => setSearchBarShowBarcode(true)}>On</Chip>
                 <Chip size="small" selected={!searchBarShowBarcode} onClick={() => setSearchBarShowBarcode(false)}>Off</Chip>
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Size
+              </div>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                {(['xsmall', 'small', 'medium', 'large'] as AXSearchFieldSize[]).map((s) => (
+                  <Chip key={s} size="small" selected={searchBarSize === s} onClick={() => setSearchBarSize(s)}>
+                    {s.charAt(0).toUpperCase() + s.slice(1)}
+                  </Chip>
+                ))}
               </div>
             </div>
             <div>
