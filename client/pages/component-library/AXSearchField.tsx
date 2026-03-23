@@ -48,7 +48,7 @@ export default function AXSearchFieldPage() {
               onChange={setLiveValue}
               onClear={() => setLiveValue('')}
               onCancel={() => setLiveValue('')}
-              placeholder="Enter search term(s)"
+              placeholder="Search"
             />
           </div>
           {liveValue && (
@@ -75,7 +75,7 @@ export default function AXSearchFieldPage() {
                 <AXSearchField
                   value=""
                   onChange={() => {}}
-                  placeholder="Enter search term(s)"
+                  placeholder="Search"
                   showMic={false}
                   showBarcode={false}
                 />
@@ -90,7 +90,7 @@ export default function AXSearchFieldPage() {
                 <AXSearchField
                   value="running shoes"
                   onChange={() => {}}
-                  placeholder="Enter search term(s)"
+                  placeholder="Search"
                   showMic={false}
                   showBarcode={false}
                 />
@@ -127,7 +127,7 @@ export default function AXSearchFieldPage() {
                 <AXSearchField
                   value=""
                   onChange={() => {}}
-                  placeholder="Enter search term(s)"
+                  placeholder="Search"
                   showMic
                   showBarcode
                 />
@@ -144,7 +144,7 @@ export default function AXSearchFieldPage() {
                 <AXSearchField
                   value={disabledValue}
                   onChange={() => {}}
-                  placeholder="Enter search term(s)"
+                  placeholder="Search"
                   disabled
                 />
               </div>
@@ -292,7 +292,7 @@ function ActivatedEmptyDemo() {
       onChange={setVal}
       onClear={() => setVal('')}
       onCancel={() => setVal('')}
-      placeholder="Enter search term(s)"
+      placeholder="Search"
       simulateFocused
     />
   );
@@ -307,7 +307,7 @@ function ActivatedWithValueDemo() {
       onChange={setVal}
       onClear={() => setVal('')}
       onCancel={() => setVal('')}
-      placeholder="Enter search term(s)"
+      placeholder="Search"
       simulateFocused
     />
   );
