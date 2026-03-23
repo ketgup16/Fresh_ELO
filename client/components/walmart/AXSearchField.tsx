@@ -41,7 +41,6 @@ export function AXSearchField({
   const handleClear = () => {
     onChange('');
     onClear?.();
-    inputRef.current?.focus();
   };
 
   const handleCancel = () => {
@@ -57,13 +56,14 @@ export function AXSearchField({
     }
   };
 
-  // Trailing slot: mic+barcode when resting/empty, clear when activated+filled
+  // Trailing slot: X when filled, mic+barcode when resting/empty
   const trailingSlot = (() => {
-    if (isActivated && hasValue) {
+    if (hasValue && !disabled) {
       return (
         <button
           type="button"
           className={styles.clearBtn}
+          onMouseDown={e => e.preventDefault()}
           onClick={e => { e.stopPropagation(); handleClear(); }}
           aria-label="Clear search"
           tabIndex={0}
@@ -74,7 +74,7 @@ export function AXSearchField({
         </button>
       );
     }
-    if (!isActivated && !hasValue && !disabled && (showMic || showBarcode)) {
+    if (!hasValue && !isActivated && !disabled && (showMic || showBarcode)) {
       return (
         <div className={styles.trailingIcons}>
           {showMic && (
