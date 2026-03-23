@@ -83,6 +83,21 @@ export default function AXSearchFieldPage() {
               <p className={styles.stateDesc}>Default resting state. Subtle border and fill.</p>
             </div>
 
+            {/* Enabled — with value */}
+            <div className={styles.stateCard}>
+              <div className={styles.stateLabel}>Enabled — with value</div>
+              <div className={styles.stateDemo}>
+                <AXSearchField
+                  value="running shoes"
+                  onChange={() => {}}
+                  placeholder="Enter search term(s)"
+                  showMic={false}
+                  showBarcode={false}
+                />
+              </div>
+              <p className={styles.stateDesc}>Resting state with a filled value. Clear (✕) button visible on the right.</p>
+            </div>
+
             {/* Activated — empty (cursor shown) */}
             <div className={styles.stateCard}>
               <div className={styles.stateLabel}>Activated — empty</div>
