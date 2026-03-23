@@ -14,7 +14,7 @@
   display: flex;
   min-height: 48px;
   padding: var(--ld-primitive-scale-space-150, 12px);
-  justify-content: space-between;
+  gap: var(--ld-primitive-scale-space-150, 6px);
   align-items: center;
   flex: 1 0 0;
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
