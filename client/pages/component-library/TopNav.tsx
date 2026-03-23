@@ -100,7 +100,7 @@ export default function TopNavPage() {
             <div className={styles.nativeFrame}>
               <div className={styles.nativePhone}>
                 <div className={styles.nativeScreen}>
-                  <MobileTopNav variant={nativeVariant} showHomeExtras={nativeVariant === 'blue'} />
+                  <MobileTopNav variant={nativeVariant} showHomeExtras={nativeVariant === 'blue'} forceVisible />
                   <div className={styles.nativePageContent}>
                     <p className={styles.nativePageHint}>
                       {nativeVariant === 'blue' ? 'Home page content' : 'Search results / inner page content'}

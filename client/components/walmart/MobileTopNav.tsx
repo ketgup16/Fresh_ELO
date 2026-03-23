@@ -29,9 +29,11 @@ interface MobileTopNavProps {
   showHomeExtras?: boolean;
   variant?: MobileTopNavVariant;
   pageTitle?: string;
+  /** Override the @media (min-width:1024px) display:none — use in docs/demos. */
+  forceVisible?: boolean;
 }
 
-export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTitle }: MobileTopNavProps) {
+export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTitle, forceVisible = false }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
   const { cartCount, cartPrice } = useCart();
@@ -83,7 +85,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTit
   if (pageTitle) {
     return (
       <>
-        <div className={styles.root}>
+        <div className={styles.root} style={forceVisible ? { display: 'block' } : undefined}>
           <div className={[styles.l3Bar, isBlue ? styles.l3BarBlue : ''].filter(Boolean).join(' ')}>
             <div className={styles.l3Row}>
               <button
@@ -105,7 +107,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTit
 
   return (
     <>
-      <div className={`${styles.root} ${isNative && isBlue && showHomeExtras ? styles.rootNativeBlue : ''}`}>
+      <div className={`${styles.root} ${isNative && isBlue && showHomeExtras ? styles.rootNativeBlue : ''}`} style={forceVisible ? { display: 'block' } : undefined}>
         {/* === NATIVE HOME LAYOUT === */}
         {isNative && isBlue && showHomeExtras ? (
           <div className={styles.nativeHomeContainer}>
