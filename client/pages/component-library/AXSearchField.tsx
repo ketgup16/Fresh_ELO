@@ -164,8 +164,8 @@ export default function AXSearchFieldPage() {
           <div className={styles.statesGrid}>
             {(
               [
-                { cornerStyle: 'rounded', label: 'Rounded', desc: 'Full pill shape. Default state.' },
                 { cornerStyle: 'default', label: 'Default', desc: 'No border-radius. Square corners.' },
+                { cornerStyle: 'rounded', label: 'Rounded', desc: 'Full pill shape. Default state.' },
               ] as { cornerStyle: AXSearchFieldCornerStyle; label: string; desc: string }[]
             ).map(({ cornerStyle, label, desc }) => (
               <div key={cornerStyle} className={styles.stateCard}>
