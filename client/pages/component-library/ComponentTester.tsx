@@ -22,7 +22,7 @@ import { AXFlag, AX_FLAG_VARIANTS } from '@/components/walmart/AXFlag';
 import type { AXFlagVariant } from '@/components/walmart/AXFlag';
 import { AXHeartView } from '@/components/walmart/AXHeartView';
 import { AXSearchField } from '@/components/walmart/AXSearchField';
-import type { AXSearchFieldState } from '@/components/walmart/AXSearchField';
+import type { AXSearchBarState } from '@/components/walmart/AXSearchBar';
 import { AXSearchBar } from '@/components/walmart/AXSearchBar';
 import * as Icons from '@/components/icons';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
@@ -156,7 +156,7 @@ export default function ComponentTester() {
 
   // AXSearchField props
   const [searchValue, setSearchValue] = React.useState('');
-  const [searchState, setSearchState] = React.useState<AXSearchFieldState>('enabled');
+  const [searchState, setSearchState] = React.useState<AXSearchBarState>('enabled');
   const [searchShowMic, setSearchShowMic] = React.useState(true);
   const [searchShowBarcode, setSearchShowBarcode] = React.useState(true);
 
@@ -352,7 +352,7 @@ export default function ComponentTester() {
       case 'axsearchbar':
         return (
           <div style={{ width: '100%', maxWidth: '400px' }}>
-            <AXSearchBar
+            <AXSearchField
               value={searchBarValue}
               onChange={setSearchBarValue}
               onClear={() => setSearchBarValue('')}
@@ -365,7 +365,7 @@ export default function ComponentTester() {
       case 'axsearchfield':
         return (
           <div style={{ width: '100%', maxWidth: '360px' }}>
-            <AXSearchField
+            <AXSearchBar
               value={searchValue}
               onChange={setSearchValue}
               state={searchState}
@@ -1340,7 +1340,7 @@ export default function ComponentTester() {
           {selectedComponent === 'axsearchbar' && (
             <pre style={{ margin: 0 }}>
               {[
-                '<AXSearchBar',
+                '<AXSearchField',
                 `  value={value}`,
                 `  onChange={setValue}`,
                 `  placeholder="${searchBarPlaceholder}"`,
@@ -1353,7 +1353,7 @@ export default function ComponentTester() {
           {selectedComponent === 'axsearchfield' && (
             <pre style={{ margin: 0 }}>
               {[
-                '<AXSearchField',
+                '<AXSearchBar',
                 `  value={value}`,
                 `  onChange={setValue}`,
                 `  state="${searchState}"`,

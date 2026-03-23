@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { Link } from '@/components/ui/Link';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { MobileFilterBottomSheet } from './MobileFilterBottomSheet';
-import { AXSearchBar } from '@/components/walmart/AXSearchBar';
+import { AXSearchField } from '@/components/walmart/AXSearchField';
 import styles from './PurchaseHistoryFilters.module.css';
 
 export interface FilterState {
@@ -117,7 +117,7 @@ export function PurchaseHistoryFilters({ filters, onFiltersChange }: PurchaseHis
     <div className={styles.wrapper}>
       {/* Search */}
       <div className={styles.searchRow}>
-        <AXSearchBar
+        <AXSearchField
           value={filters.search}
           onChange={val => update({ search: val })}
           onClear={() => update({ search: '' })}

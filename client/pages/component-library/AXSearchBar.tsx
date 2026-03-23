@@ -1,239 +1,226 @@
 import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { AXSearchBar } from '@/components/walmart/AXSearchBar';
-import styles from './AXSearchBar.module.css';
 
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h2 className={styles.sectionTitle}>{children}</h2>;
-}
+const sectionStyle: React.CSSProperties = {
+  backgroundColor: 'var(--ld-semantic-color-surface)',
+  padding: '32px',
+  borderRadius: '8px',
+  boxShadow: 'var(--ld-semantic-elevation-100)',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '24px',
+};
 
-function SectionDesc({ children }: { children: React.ReactNode }) {
-  return <p className={styles.sectionDesc}>{children}</p>;
-}
+const h2Style: React.CSSProperties = {
+  fontFamily: 'var(--ld-semantic-font-family-sans)',
+  fontSize: '18px',
+  fontWeight: 700,
+  margin: 0,
+  color: 'var(--ld-semantic-color-text)',
+};
+
+const labelStyle: React.CSSProperties = {
+  fontFamily: 'var(--ld-semantic-font-family-sans)',
+  fontSize: '11px',
+  fontWeight: 600,
+  color: 'var(--ld-semantic-color-text-subtle)',
+  textTransform: 'uppercase',
+  letterSpacing: '0.06em',
+  marginBottom: '8px',
+};
+
+const descStyle: React.CSSProperties = {
+  fontFamily: 'var(--ld-semantic-font-family-sans)',
+  fontSize: '14px',
+  color: 'var(--ld-semantic-color-text-subtle)',
+  margin: 0,
+  lineHeight: 1.5,
+};
+
+const stateGridStyle: React.CSSProperties = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+  gap: '24px',
+};
+
+const stateCardStyle: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px',
+};
 
 export default function AXSearchBarPage() {
   const [liveValue, setLiveValue] = useState('');
-  const [disabledValue] = useState('');
+  const [filledValue, setFilledValue] = useState('Text value');
 
   return (
     <ComponentPageLayout
       section="AX Components"
-      title="Search Field"
-      description="Inline page search component positioned within a page — not used for global navigation. Supports two breakpoints (0–899px and 900+px) and states: Enabled, Hovered, Activated (empty & with value), and Disabled."
+      title="Search Bar"
+      description='An inline search input based on the [AX] Search Bar V2 spec. Supports Enabled, Focused, Disabled, and Read-only states with Unfilled and Filled content variants.'
     >
-      <div className={styles.page}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
 
-        {/* ── Overview ─────────────────────────────────────────── */}
-        <div className={styles.section}>
-          <SectionTitle>Overview</SectionTitle>
-          <SectionDesc>
-            The AX Search Field is an inline search field for filtering content within a page. It
-            differs from the global navigation search — it is scoped to a single section or page.
-            On mobile (0–899px) it uses a slightly more compact height (48px) and on desktop
-            (900+px) it uses 56px. When activated, a blinking cursor appears and a Cancel link
-            is shown; when text is entered, a clear (✕) button replaces the cursor.
-          </SectionDesc>
-        </div>
-
-        {/* ── Interactive Demo ─────────────────────────────────── */}
-        <div className={styles.section}>
-          <SectionTitle>Interactive Demo</SectionTitle>
-          <SectionDesc>
-            Try typing to activate the search field. The clear button appears once text is entered,
-            and the Cancel link dismisses focus and clears the value.
-          </SectionDesc>
-          <div className={styles.demoWrapper}>
+        {/* Interactive Demo */}
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>Interactive Demo</h2>
+          <p style={descStyle}>
+            Click to focus. Type to fill. The trailing icons adapt per state — mic and barcode
+            icons appear when empty, a clear (✕) button when filled, and a Cancel link while
+            focused.
+          </p>
+          <div style={{ maxWidth: '480px' }}>
             <AXSearchBar
               value={liveValue}
               onChange={setLiveValue}
               onClear={() => setLiveValue('')}
-              onCancel={() => setLiveValue('')}
-              placeholder="Enter search term(s)"
             />
           </div>
           {liveValue && (
-            <p className={styles.searchValueDisplay}>
-              Current value: <code>{liveValue}</code>
+            <p style={{ ...descStyle, marginTop: '8px' }}>
+              Current value: <code style={{ fontFamily: 'monospace', fontSize: '13px' }}>{liveValue}</code>
             </p>
           )}
         </div>
 
-        {/* ── States ───────────────────────────────────────────── */}
-        <div className={styles.section}>
-          <SectionTitle>States</SectionTitle>
-          <SectionDesc>
-            The search field has four interaction states. Hover is desktop-only (900+px). The
-            Activated state shows a focus ring and Cancel link; the entered variant shows the
-            typed value and a clear button.
-          </SectionDesc>
+        {/* States */}
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>States</h2>
+          <p style={descStyle}>
+            The search bar has four states (Enabled, Focused, Disabled, Read-only) and two
+            content modes (Unfilled and Filled).
+          </p>
 
-          <div className={styles.statesGrid}>
-            {/* Enabled */}
-            <div className={styles.stateCard}>
-              <div className={styles.stateLabel}>Enabled</div>
-              <div className={styles.stateDemo}>
-                <AXSearchBar
-                  value=""
-                  onChange={() => {}}
-                  placeholder="Enter search term(s)"
-                />
-              </div>
-              <p className={styles.stateDesc}>Default resting state. Subtle border and fill.</p>
+          <div style={stateGridStyle}>
+            {/* Enabled / Unfilled */}
+            <div style={stateCardStyle}>
+              <div style={labelStyle}>Enabled — Unfilled</div>
+              <AXSearchBar value="" onChange={() => {}} />
+              <p style={descStyle}>Default resting state. Trailing: mic and barcode icon buttons.</p>
             </div>
 
-            {/* Activated — empty (cursor shown) */}
-            <div className={styles.stateCard}>
-              <div className={styles.stateLabel}>Activated — empty</div>
-              <div className={styles.stateDemo}>
-                <ActivatedEmptyDemo />
-              </div>
-              <p className={styles.stateDesc}>
-                Focused with no input. Blue border (2px), white fill, blinking cursor.
-              </p>
+            {/* Enabled / Filled */}
+            <div style={stateCardStyle}>
+              <div style={labelStyle}>Enabled — Filled</div>
+              <AXSearchBar
+                value={filledValue}
+                onChange={setFilledValue}
+                onClear={() => setFilledValue('')}
+              />
+              <p style={descStyle}>Value present. Trailing: clear (✕) button replaces mic/barcode.</p>
             </div>
 
-            {/* Activated — with value */}
-            <div className={styles.stateCard}>
-              <div className={styles.stateLabel}>Activated — with value</div>
-              <div className={styles.stateDemo}>
-                <ActivatedWithValueDemo />
-              </div>
-              <p className={styles.stateDesc}>
-                Focused with input text. Clear (✕) button appears on the right.
-              </p>
+            {/* Focused / Unfilled */}
+            <div style={stateCardStyle}>
+              <div style={labelStyle}>Focused — Unfilled</div>
+              <FocusedDemo value="" />
+              <p style={descStyle}>Border thickens to 2px. Trailing: Cancel link. Cursor blinks in input.</p>
+            </div>
+
+            {/* Focused / Filled */}
+            <div style={stateCardStyle}>
+              <div style={labelStyle}>Focused — Filled</div>
+              <FocusedDemo value="Text value" />
+              <p style={descStyle}>Border thickens to 2px + value present. Trailing: clear (✕) + Cancel link.</p>
             </div>
 
             {/* Disabled */}
-            <div className={styles.stateCard}>
-              <div className={styles.stateLabel}>Disabled</div>
-              <div className={styles.stateDemo}>
-                <AXSearchBar
-                  value={disabledValue}
-                  onChange={() => {}}
-                  placeholder="Enter search term(s)"
-                  disabled
-                />
-              </div>
-              <p className={styles.stateDesc}>
-                Cannot be interacted with. Muted border and text colors.
-              </p>
+            <div style={stateCardStyle}>
+              <div style={labelStyle}>Disabled</div>
+              <AXSearchBar value="" placeholder="Search" state="disabled" />
+              <p style={descStyle}>Non-interactive. Muted border, fill, and text.</p>
+            </div>
+
+            {/* Read-only / Filled */}
+            <div style={stateCardStyle}>
+              <div style={labelStyle}>Read-only — Filled</div>
+              <AXSearchBar value="Text value" state="readOnly" />
+              <p style={descStyle}>Value shown but cannot be edited or interacted with.</p>
             </div>
           </div>
         </div>
 
-        {/* ── Breakpoints ───────────────────────────────────────── */}
-        <div className={styles.section}>
-          <SectionTitle>Breakpoints</SectionTitle>
-          <SectionDesc>
-            The component automatically adapts between two breakpoints. At 900+px (desktop) the
-            pill height increases to 56px and horizontal padding grows to 16px. At 0–899px (mobile
-            and tablet) the height is 48px with 12px padding. The "Hovered" state only applies on
-            desktop.
-          </SectionDesc>
-
-          <div className={styles.breakpointTable}>
-            <table className={styles.table}>
+        {/* Anatomy */}
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>Anatomy</h2>
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
               <thead>
-                <tr>
-                  <th>Property</th>
-                  <th>0–899px (Mobile/Tablet)</th>
-                  <th>900+px (Desktop)</th>
+                <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                  {['Element', 'Description', 'Visibility'].map((h) => (
+                    <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>{h}</th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Min height (enabled)</td>
-                  <td>48px</td>
-                  <td>56px</td>
-                </tr>
-                <tr>
-                  <td>Padding (enabled)</td>
-                  <td>12px (all sides)</td>
-                  <td>8px top/bottom, 16px left/right</td>
-                </tr>
-                <tr>
-                  <td>Padding (activated)</td>
-                  <td>4px top/bottom/right, 12px left</td>
-                  <td>8px top/bottom/right, 16px left</td>
-                </tr>
-                <tr>
-                  <td>Hover state</td>
-                  <td>No (touch devices)</td>
-                  <td>Yes — slightly darker border + fill</td>
-                </tr>
-                <tr>
-                  <td>Cancel link</td>
-                  <td>Shown when activated</td>
-                  <td>Shown when activated</td>
-                </tr>
+                {[
+                  ['Search icon', 'Leading icon. Always visible.', 'Always'],
+                  ['Placeholder / Value', 'Input text or placeholder hint.', 'Always'],
+                  ['Mic icon button', 'Triggers voice search.', 'Enabled, unfilled only'],
+                  ['Barcode icon button', 'Triggers camera scan.', 'Enabled, unfilled only'],
+                  ['Clear (✕) button', 'Clears field value.', 'When value is present'],
+                  ['Cancel link', 'Dismisses focus and reverts value.', 'While focused'],
+                  ['Bottom border', 'Semantic field border. Thicker (2px) when focused.', 'Always'],
+                ].map(([el, desc, vis]) => (
+                  <tr key={el} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                    <td style={{ padding: '8px 12px', fontWeight: 500, color: 'var(--ld-semantic-color-text)' }}>{el}</td>
+                    <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
+                    <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{vis}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
         </div>
 
-        {/* ── Component Props ───────────────────────────────────── */}
-        <div className={styles.section}>
-          <SectionTitle>Component Props</SectionTitle>
-          <table className={styles.propsTable}>
-            <thead>
-              <tr>
-                <th>Prop</th>
-                <th>Type</th>
-                <th>Default</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>value</td>
-                <td>string</td>
-                <td>—</td>
-                <td>Required. Controlled input value.</td>
-              </tr>
-              <tr>
-                <td>onChange</td>
-                <td>(value: string) =&gt; void</td>
-                <td>—</td>
-                <td>Required. Called on every keystroke.</td>
-              </tr>
-              <tr>
-                <td>onClear</td>
-                <td>() =&gt; void</td>
-                <td>—</td>
-                <td>Called when the clear (✕) button is pressed. Clears value and keeps focus.</td>
-              </tr>
-              <tr>
-                <td>onCancel</td>
-                <td>() =&gt; void</td>
-                <td>—</td>
-                <td>Called when the Cancel link is pressed. Clears value and removes focus.</td>
-              </tr>
-              <tr>
-                <td>placeholder</td>
-                <td>string</td>
-                <td>'Enter search term(s)'</td>
-                <td>Placeholder text shown when the field is empty.</td>
-              </tr>
-              <tr>
-                <td>disabled</td>
-                <td>boolean</td>
-                <td>false</td>
-                <td>Disables all interaction. Applies muted visual styling.</td>
-              </tr>
-              <tr>
-                <td>className</td>
-                <td>string</td>
-                <td>—</td>
-                <td>Optional extra CSS class on the root wrapper.</td>
-              </tr>
-            </tbody>
-          </table>
+        {/* Props */}
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>Component Props</h2>
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                  {['Prop', 'Type', 'Default', 'Description'].map((h) => (
+                    <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ['value', 'string', "''", 'Controlled input value.'],
+                  ['placeholder', 'string', "'Search'", 'Placeholder text when empty.'],
+                  ['state', "'enabled' | 'disabled' | 'readOnly'", "'enabled'", 'Visual and interaction state.'],
+                  ['showMic', 'boolean', 'true', 'Show microphone icon button in unfilled state.'],
+                  ['showBarcode', 'boolean', 'true', 'Show barcode icon button in unfilled state.'],
+                  ['onChange', '(value: string) => void', '—', 'Called on every keystroke.'],
+                  ['onClear', '() => void', '—', 'Called when clear (✕) button is pressed.'],
+                  ['onCancel', '() => void', '—', 'Called when Cancel link is pressed.'],
+                  ['onMicClick', '() => void', '—', 'Called when microphone button is pressed.'],
+                  ['onBarcodeClick', '() => void', '—', 'Called when barcode button is pressed.'],
+                  ['className', 'string', '—', 'Optional extra class on the root wrapper.'],
+                ].map(([prop, type, def, desc]) => (
+                  <tr key={prop} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                    <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '13px', color: 'var(--ld-semantic-color-text-brand)' }}>{prop}</td>
+                    <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{type}</td>
+                    <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{def}</td>
+                    <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        {/* ── Usage ─────────────────────────────────────────────── */}
-        <div className={styles.section}>
-          <SectionTitle>Usage</SectionTitle>
-          <pre className={styles.codeBlock}>{`import { AXSearchBar } from '@/components/walmart/AXSearchBar';
+        {/* Usage */}
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>Usage</h2>
+          <pre style={{
+            margin: 0, padding: '20px',
+            background: 'var(--ld-semantic-color-background-subtle)',
+            borderRadius: '6px', fontFamily: 'monospace', fontSize: '13px',
+            color: 'var(--ld-semantic-color-text)', overflowX: 'auto', lineHeight: 1.6,
+          }}>{`import { AXSearchBar } from '@/components/walmart/AXSearchBar';
 
 function MyPage() {
   const [query, setQuery] = React.useState('');
@@ -243,45 +230,37 @@ function MyPage() {
       value={query}
       onChange={setQuery}
       onClear={() => setQuery('')}
-      onCancel={() => setQuery('')}
-      placeholder="Search products"
+      placeholder="Search"
     />
   );
 }`}</pre>
         </div>
 
-        {/* ── Do / Don't ───────────────────────────────────────── */}
-        <div className={styles.section}>
-          <SectionTitle>Guidelines</SectionTitle>
-          <div className={styles.guidelineGrid}>
-            <div className={styles.guidelineCard}>
-              <div className={styles.doLabel}>Do</div>
-              <p className={styles.guidelineText}>
-                Use this component for inline/page-scoped search — filtering a list, table, or
-                product catalog on the current page.
-              </p>
-            </div>
-            <div className={styles.guidelineCard}>
-              <div className={styles.dontLabel}>Don't</div>
-              <p className={styles.guidelineText}>
-                Don't use this component in the global header for site-wide search. Use the
-                dedicated global search field component for that use case.
-              </p>
-            </div>
-            <div className={styles.guidelineCard}>
-              <div className={styles.doLabel}>Do</div>
-              <p className={styles.guidelineText}>
-                Always provide both <code>onClear</code> and <code>onCancel</code> callbacks so
-                users can exit the search state cleanly on both desktop and mobile.
-              </p>
-            </div>
-            <div className={styles.guidelineCard}>
-              <div className={styles.dontLabel}>Don't</div>
-              <p className={styles.guidelineText}>
-                Don't stack multiple search fields on the same page. Only one inline search per
-                content area is recommended.
-              </p>
-            </div>
+        {/* Guidelines */}
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>Guidelines</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
+            {[
+              { type: 'do', text: 'Use for inline / page-scoped search — filtering a list, table, or catalog within the current view.' },
+              { type: 'dont', text: "Don't use in the global header for site-wide search — use the dedicated header search bar for that." },
+              { type: 'do', text: 'Provide onClear and onCancel callbacks so users can cleanly exit the search state.' },
+              { type: 'dont', text: "Don't stack multiple search bars on the same page. One per content area is recommended." },
+            ].map(({ type, text }, i) => (
+              <div key={i} style={{
+                padding: '16px', borderRadius: '6px',
+                borderLeft: `3px solid ${type === 'do' ? 'var(--ld-semantic-color-feedback-success-border, #008561)' : 'var(--ld-semantic-color-feedback-error-border, #c40b0b)'}`,
+                background: 'var(--ld-semantic-color-background-subtle)',
+              }}>
+                <div style={{
+                  fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '11px',
+                  fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px',
+                  color: type === 'do' ? 'var(--ld-semantic-color-feedback-success-text, #008561)' : 'var(--ld-semantic-color-feedback-error-text, #c40b0b)',
+                }}>
+                  {type === 'do' ? 'Do' : "Don't"}
+                </div>
+                <p style={{ ...descStyle, margin: 0 }}>{text}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -290,48 +269,15 @@ function MyPage() {
   );
 }
 
-// ── Helper demos with pre-triggered focus state ───────────────────────────
-
-function ActivatedEmptyDemo() {
-  const [val, setVal] = React.useState('');
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const input = ref.current?.querySelector('input');
-    if (input) input.focus();
-  }, []);
-
+/** Demo helper — shows the focused visual state without requiring actual browser focus */
+function FocusedDemo({ value: initialValue }: { value: string }) {
+  const [val, setVal] = useState(initialValue);
   return (
-    <div ref={ref}>
-      <AXSearchBar
-        value={val}
-        onChange={setVal}
-        onClear={() => setVal('')}
-        onCancel={() => setVal('')}
-        placeholder="Enter search term(s)"
-      />
-    </div>
-  );
-}
-
-function ActivatedWithValueDemo() {
-  const [val, setVal] = React.useState('running shoes');
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const input = ref.current?.querySelector('input');
-    if (input) input.focus();
-  }, []);
-
-  return (
-    <div ref={ref}>
-      <AXSearchBar
-        value={val}
-        onChange={setVal}
-        onClear={() => setVal('')}
-        onCancel={() => setVal('')}
-        placeholder="Enter search term(s)"
-      />
-    </div>
+    <AXSearchBar
+      value={val}
+      onChange={setVal}
+      onClear={() => setVal('')}
+      simulateFocused
+    />
   );
 }

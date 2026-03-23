@@ -1,162 +1,115 @@
-import { useRef, useState, useCallback } from 'react';
-import { Search, Microphone, Barcode, X } from '@/components/icons';
-import { IconButton } from '@/components/ui/IconButton';
+import * as React from 'react';
 import styles from './AXSearchField.module.css';
 
-export type AXSearchFieldState = 'enabled' | 'disabled' | 'readOnly';
-
-interface AXSearchFieldProps {
-  value?: string;
-  placeholder?: string;
-  state?: AXSearchFieldState;
-  showMic?: boolean;
-  showBarcode?: boolean;
-  /** Force focused appearance regardless of actual browser focus (for demos/docs). */
-  simulateFocused?: boolean;
-  onChange?: (value: string) => void;
+export interface AXSearchFieldProps {
+  value: string;
+  onChange: (value: string) => void;
   onClear?: () => void;
   onCancel?: () => void;
-  onMicClick?: () => void;
-  onBarcodeClick?: () => void;
+  placeholder?: string;
+  disabled?: boolean;
   className?: string;
 }
 
 export function AXSearchField({
-  value = '',
-  placeholder = 'Search',
-  state = 'enabled',
-  showMic = true,
-  showBarcode = true,
-  simulateFocused = false,
+  value,
   onChange,
   onClear,
   onCancel,
-  onMicClick,
-  onBarcodeClick,
-  className = '',
+  placeholder = 'Enter search term(s)',
+  disabled = false,
+  className,
 }: AXSearchFieldProps) {
-  const [focused, setFocused] = useState(false);
-  const valueOnFocus = useRef<string>(value);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [isFocused, setIsFocused] = React.useState(false);
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const isDisabled = state === 'disabled';
-  const isReadOnly = state === 'readOnly';
-  const isFocused = (focused || simulateFocused) && !isDisabled && !isReadOnly;
+  const isActivated = isFocused;
   const hasValue = value.length > 0;
 
-  const handleContainerClick = useCallback(() => {
-    if (!isDisabled && !isReadOnly) {
+  const handleClear = () => {
+    onChange('');
+    onClear?.();
+    inputRef.current?.focus();
+  };
+
+  const handleCancel = () => {
+    onChange('');
+    onCancel?.();
+    setIsFocused(false);
+    inputRef.current?.blur();
+  };
+
+  const handlePillClick = () => {
+    if (!disabled) {
       inputRef.current?.focus();
     }
-  }, [isDisabled, isReadOnly]);
-
-  const handleClear = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    onChange?.('');
-    onClear?.();
-    // Do NOT re-focus here — doing so fires onFocus which would overwrite valueOnFocus
-    // with the stale pre-clear value, corrupting Cancel revert behaviour.
-  }, [onChange, onClear]);
-
-  const handleCancel = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    // Revert to the value captured when the field was activated
-    onChange?.(valueOnFocus.current);
-    inputRef.current?.blur();
-    onCancel?.();
-  }, [onChange, onCancel]);
-
-  const containerClass = [
-    styles.container,
-    isFocused ? styles.focused : '',
-    isDisabled ? styles.disabled : '',
-    isReadOnly ? styles.readOnly : '',
-    className,
-  ].filter(Boolean).join(' ');
+  };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={[styles.wrapper, className].filter(Boolean).join(' ')}>
       <div
-        className={containerClass}
-        onClick={handleContainerClick}
-        role={isReadOnly || isDisabled ? undefined : 'button'}
-        tabIndex={isReadOnly || isDisabled ? -1 : undefined}
-        aria-disabled={isDisabled}
+        className={[
+          styles.pill,
+          isActivated ? styles.pillActivated : '',
+          disabled ? styles.pillDisabled : '',
+        ].filter(Boolean).join(' ')}
+        onClick={handlePillClick}
       >
-        <Search
-          className={styles.leadingIcon}
-          aria-hidden="true"
-        />
+        {/* Search icon */}
+        <div className={styles.iconWrapper} aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.searchIcon}>
+            <path d="M15.2465 16.3073C13.9536 17.3652 12.3009 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5C18 12.301 17.3652 13.9537 16.3072 15.2466L21.5303 20.4697L20.4696 21.5304L15.2465 16.3073ZM16.5 10.5C16.5 7.18629 13.8137 4.5 10.5 4.5C7.18629 4.5 4.5 7.18629 4.5 10.5C4.5 13.8137 7.18629 16.5 10.5 16.5C13.8137 16.5 16.5 13.8137 16.5 10.5Z" fill="currentColor" />
+          </svg>
+        </div>
 
-        {isReadOnly || isDisabled ? (
-          <span className={styles.readOnlyText}>
-            {hasValue ? value : placeholder}
-          </span>
-        ) : (
+        {/* Input area */}
+        <div className={styles.inputArea}>
           <input
             ref={inputRef}
             type="search"
             className={styles.input}
             value={value}
-            placeholder={placeholder}
-            disabled={isDisabled}
-            readOnly={isReadOnly}
-            onChange={(e) => onChange?.(e.target.value)}
-            onFocus={() => { valueOnFocus.current = value; setFocused(true); }}
-            onBlur={() => setFocused(false)}
+            onChange={e => onChange(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            placeholder={isActivated ? placeholder : ''}
+            disabled={disabled}
             aria-label={placeholder}
+            autoComplete="off"
           />
-        )}
-
-        <div className={styles.trailing}>
-          {hasValue && !isDisabled && !isReadOnly ? (
-            /* Single stable X button — present whenever value exists and field is editable.
-               Keeping it in one JSX branch prevents blur-before-click from unmounting
-               the node mid-interaction and swallowing the click event. */
-            <IconButton
-              variant="ghost"
-              size="medium"
-              onMouseDown={(e) => e.preventDefault()} // keep input focused so click always lands
-              onClick={handleClear}
-              aria-label="Clear search"
-            >
-              <X />
-            </IconButton>
-          ) : !isFocused && !isDisabled && !isReadOnly ? (
-            /* Enabled unfilled: mic + barcode */
-            <>
-              {showMic && (
-                <IconButton
-                  variant="ghost"
-                  size="medium"
-                  onClick={(e) => { e.stopPropagation(); onMicClick?.(); }}
-                  aria-label="Search by voice"
-                >
-                  <Microphone />
-                </IconButton>
-              )}
-              {showBarcode && (
-                <IconButton
-                  variant="ghost"
-                  size="medium"
-                  onClick={(e) => { e.stopPropagation(); onBarcodeClick?.(); }}
-                  aria-label="Scan barcode"
-                >
-                  <Barcode />
-                </IconButton>
-              )}
-            </>
-          ) : null}
+          {!isActivated && !hasValue && (
+            <span className={styles.placeholder} aria-hidden="true">
+              {placeholder}
+            </span>
+          )}
         </div>
+
+        {/* Clear (X) button — only when activated + has value */}
+        {isActivated && hasValue && (
+          <button
+            type="button"
+            className={styles.clearBtn}
+            onClick={e => { e.stopPropagation(); handleClear(); }}
+            aria-label="Clear search"
+            tabIndex={0}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M11.7803 13.0788L18 19.2985L19.0607 18.2378L12.841 12.0181L19.0607 5.79845L18 4.73779L11.7803 10.9575L5.56066 4.73779L4.5 5.79845L10.7197 12.0181L4.5 18.2378L5.56066 19.2985L11.7803 13.0788Z" fill="currentColor" />
+            </svg>
+          </button>
+        )}
       </div>
 
-      {/* Cancel sits OUTSIDE the field container, per Figma */}
-      {isFocused && (
+      {/* Cancel link — only when activated and not disabled */}
+      {isActivated && !disabled && (
         <button
-          className={styles.cancelBtn}
-          onMouseDown={(e) => e.preventDefault()} // prevent input blur before click fires
-          onClick={handleCancel}
           type="button"
+          className={styles.cancelBtn}
+          onMouseDown={e => {
+            // Prevent blur from firing before click
+            e.preventDefault();
+            handleCancel();
+          }}
         >
           Cancel
         </button>
