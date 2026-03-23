@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Microphone, Barcode } from '@/components/icons';
 import { IconButton } from '@/components/ui/IconButton';
+import { LinkButton } from '@/components/ui/LinkButton';
 import styles from './AXSearchField.module.css';
 
 export type AXSearchFieldSize = 'xsmall' | 'small' | 'medium' | 'large';
@@ -189,16 +190,17 @@ export function AXSearchField({
 
       {/* Cancel link — only when activated and not disabled */}
       {isActivated && !disabled && (
-        <button
+        <LinkButton
           type="button"
-          className={styles.cancelBtn}
-          onMouseDown={e => {
+          size="medium"
+          color="default"
+          onMouseDown={(e: React.MouseEvent) => {
             e.preventDefault();
             handleCancel();
           }}
         >
           Cancel
-        </button>
+        </LinkButton>
       )}
     </div>
   );

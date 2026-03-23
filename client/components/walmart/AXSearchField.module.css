@@ -220,29 +220,6 @@
   height: 24px;
 }
 
-/* ── Cancel button ────────────────────────────────────────────────────────── */
-
-.cancelBtn {
-  display: flex;
-  align-items: flex-start;
-  flex-shrink: 0;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  color: var(--ld-semantic-color-link-text, #2E2F32);
-  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif);
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4286);
-  text-decoration: underline;
-  white-space: nowrap;
-}
-
-.cancelBtn:hover {
-  opacity: 0.8;
-}
-
 /* ── Reduced motion ───────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
