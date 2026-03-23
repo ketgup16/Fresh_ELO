@@ -31,9 +31,11 @@ interface MobileTopNavProps {
   pageTitle?: string;
   /** Override the @media (min-width:1024px) display:none — use in docs/demos. */
   forceVisible?: boolean;
+  /** Force native app layout regardless of platform context — use in docs/demos. */
+  forceNative?: boolean;
 }
 
-export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTitle, forceVisible = false }: MobileTopNavProps) {
+export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTitle, forceVisible = false, forceNative = false }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
   const { cartCount, cartPrice } = useCart();
@@ -77,7 +79,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTit
   }, []);
 
   const isBlue = variant === 'blue';
-  const isNative = platform === 'ios' || platform === 'android';
+  const isNative = forceNative || platform === 'ios' || platform === 'android';
   const iconVariant = isBlue ? 'white' : undefined;
   const textColor = isBlue ? 'white' : 'var(--ld-semantic-color-text, #2e2f32)';
 
