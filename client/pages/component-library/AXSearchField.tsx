@@ -76,6 +76,8 @@ export default function AXSearchFieldPage() {
                   value=""
                   onChange={() => {}}
                   placeholder="Enter search term(s)"
+                  showMic={false}
+                  showBarcode={false}
                 />
               </div>
               <p className={styles.stateDesc}>Default resting state. Subtle border and fill.</p>
