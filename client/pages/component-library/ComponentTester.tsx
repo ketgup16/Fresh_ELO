@@ -352,7 +352,6 @@ export default function ComponentTester() {
               showMic={searchShowMic}
               showBarcode={searchShowBarcode}
               onClear={() => setSearchValue('')}
-              onCancel={() => setSearchValue('')}
             />
           </div>
         );

@@ -75,7 +75,6 @@ export default function AXSearchFieldPage() {
               value={liveValue}
               onChange={setLiveValue}
               onClear={() => setLiveValue('')}
-              onCancel={() => setLiveValue('')}
             />
           </div>
           {liveValue && (
@@ -258,7 +257,6 @@ function MyPage() {
       value={query}
       onChange={setQuery}
       onClear={() => setQuery('')}
-      onCancel={() => setQuery('')}
       placeholder="Search"
     />
   );
@@ -311,7 +309,6 @@ function FocusedDemo({ value: initialValue }: { value: string }) {
       value={val}
       onChange={setVal}
       onClear={() => setVal('')}
-      onCancel={() => setVal('')}
       simulateFocused
     />
   );
