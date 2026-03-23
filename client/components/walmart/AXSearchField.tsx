@@ -64,6 +64,7 @@ export function AXSearchField({
 }: AXSearchFieldProps) {
   const [isFocused, setIsFocused] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const valueOnFocus = React.useRef(value);
 
   const isActivated = (isFocused || simulateFocused) && !disabled;
   const hasValue = value.length > 0;
@@ -79,7 +80,7 @@ export function AXSearchField({
   };
 
   const handleCancel = () => {
-    onChange('');
+    onChange(valueOnFocus.current);
     onCancel?.();
     setIsFocused(false);
     inputRef.current?.blur();
@@ -179,7 +180,7 @@ export function AXSearchField({
             className={styles.input}
             value={value}
             onChange={e => onChange(e.target.value)}
-            onFocus={() => setIsFocused(true)}
+            onFocus={() => { valueOnFocus.current = value; setIsFocused(true); }}
             onBlur={() => setIsFocused(false)}
             placeholder=""
             disabled={disabled}
