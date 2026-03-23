@@ -22,6 +22,7 @@ import { AXFlag, AX_FLAG_VARIANTS } from '@/components/walmart/AXFlag';
 import type { AXFlagVariant } from '@/components/walmart/AXFlag';
 import { AXHeartView } from '@/components/walmart/AXHeartView';
 import { AXSearchField } from '@/components/walmart/AXSearchField';
+import type { AXSearchFieldCornerStyle } from '@/components/walmart/AXSearchField';
 import type { AXSearchBarState } from '@/components/walmart/AXSearchBar';
 import { AXSearchBar } from '@/components/walmart/AXSearchBar';
 import * as Icons from '@/components/icons';
@@ -155,6 +156,7 @@ export default function ComponentTester() {
   const [searchBarDisabled, setSearchBarDisabled] = React.useState(false);
   const [searchBarShowMic, setSearchBarShowMic] = React.useState(true);
   const [searchBarShowBarcode, setSearchBarShowBarcode] = React.useState(true);
+  const [searchBarCornerStyle, setSearchBarCornerStyle] = React.useState<AXSearchFieldCornerStyle>('default');
 
   // AXSearchField props
   const [searchValue, setSearchValue] = React.useState('');
@@ -362,6 +364,7 @@ export default function ComponentTester() {
               disabled={searchBarDisabled}
               showMic={searchBarShowMic}
               showBarcode={searchBarShowBarcode}
+              cornerStyle={searchBarCornerStyle}
             />
           </div>
         );
@@ -1054,6 +1057,15 @@ export default function ComponentTester() {
               <div style={{ display: 'flex', gap: '8px' }}>
                 <Chip size="small" selected={searchBarShowBarcode} onClick={() => setSearchBarShowBarcode(true)}>On</Chip>
                 <Chip size="small" selected={!searchBarShowBarcode} onClick={() => setSearchBarShowBarcode(false)}>Off</Chip>
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Corner Style
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <Chip size="small" selected={searchBarCornerStyle === 'default'} onClick={() => setSearchBarCornerStyle('default')}>Default</Chip>
+                <Chip size="small" selected={searchBarCornerStyle === 'rounded'} onClick={() => setSearchBarCornerStyle('rounded')}>Rounded</Chip>
               </div>
             </div>
             <div>
