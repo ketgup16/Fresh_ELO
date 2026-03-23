@@ -63,6 +63,12 @@
   }
 }
 
+/* ── Corner style variants ────────────────────────────────────────────────── */
+
+.pillSquare {
+  border-radius: 0;
+}
+
 /* ── Explicit size variants ───────────────────────────────────────────────── */
 
 .pillXSmall {

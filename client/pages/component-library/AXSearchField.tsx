@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
-import { AXSearchField, AXSearchFieldSize } from '@/components/walmart/AXSearchField';
+import { AXSearchField, AXSearchFieldSize, AXSearchFieldCornerStyle } from '@/components/walmart/AXSearchField';
 import styles from './AXSearchField.module.css';
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
@@ -152,6 +152,37 @@ export default function AXSearchFieldPage() {
                 Cannot be interacted with. Muted border and text colors.
               </p>
             </div>
+          </div>
+        </div>
+
+        {/* ── Corner Style ─────────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Corner Style</SectionTitle>
+          <SectionDesc>
+            Two corner style variants are available via the <code>cornerStyle</code> prop.
+          </SectionDesc>
+          <div className={styles.statesGrid}>
+            {(
+              [
+                { cornerStyle: 'rounded', label: 'Rounded', desc: 'Full pill shape. Default state.' },
+                { cornerStyle: 'default', label: 'Default', desc: 'No border-radius. Square corners.' },
+              ] as { cornerStyle: AXSearchFieldCornerStyle; label: string; desc: string }[]
+            ).map(({ cornerStyle, label, desc }) => (
+              <div key={cornerStyle} className={styles.stateCard}>
+                <div className={styles.stateLabel}>{label}</div>
+                <div className={styles.stateDemo}>
+                  <AXSearchField
+                    value=""
+                    onChange={() => {}}
+                    placeholder="Search"
+                    cornerStyle={cornerStyle}
+                    showMic={false}
+                    showBarcode={false}
+                  />
+                </div>
+                <p className={styles.stateDesc}>{desc}</p>
+              </div>
+            ))}
           </div>
         </div>
 

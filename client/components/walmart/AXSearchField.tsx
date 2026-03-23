@@ -5,6 +5,7 @@ import { LinkButton } from '@/components/ui/LinkButton';
 import styles from './AXSearchField.module.css';
 
 export type AXSearchFieldSize = 'xsmall' | 'small' | 'medium' | 'large';
+export type AXSearchFieldCornerStyle = 'rounded' | 'default';
 
 export interface AXSearchFieldProps {
   value: string;
@@ -29,6 +30,12 @@ export interface AXSearchFieldProps {
    * - large:  56px — medium icons & icon buttons (default)
    */
   size?: AXSearchFieldSize;
+  /**
+   * Border-radius style.
+   * - rounded: full pill shape (default)
+   * - default: no border-radius (square corners)
+   */
+  cornerStyle?: AXSearchFieldCornerStyle;
   className?: string;
 }
 
@@ -52,6 +59,7 @@ export function AXSearchField({
   disabled = false,
   simulateFocused = false,
   size = 'large',
+  cornerStyle = 'rounded',
   className,
 }: AXSearchFieldProps) {
   const [isFocused, setIsFocused] = React.useState(false);
@@ -143,6 +151,7 @@ export function AXSearchField({
         className={[
           styles.pill,
           PILL_SIZE_CLASS[size],
+          cornerStyle === 'default' ? styles.pillSquare : '',
           isActivated ? styles.pillActivated : '',
           disabled ? styles.pillDisabled : '',
         ].filter(Boolean).join(' ')}
