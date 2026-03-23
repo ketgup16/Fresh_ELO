@@ -30,7 +30,7 @@ export function AXSearchField({
   showBarcode = true,
   onMicClick,
   onBarcodeClick,
-  placeholder = 'Enter search term(s)',
+  placeholder = 'Search',
   disabled = false,
   simulateFocused = false,
   className,
