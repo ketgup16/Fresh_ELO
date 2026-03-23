@@ -16,6 +16,8 @@ export interface AXSearchFieldProps {
   onBarcodeClick?: () => void;
   placeholder?: string;
   disabled?: boolean;
+  /** Force the activated/focused visual state without real browser focus (for demos/docs). */
+  simulateFocused?: boolean;
   className?: string;
 }
 
@@ -30,12 +32,13 @@ export function AXSearchField({
   onBarcodeClick,
   placeholder = 'Enter search term(s)',
   disabled = false,
+  simulateFocused = false,
   className,
 }: AXSearchFieldProps) {
   const [isFocused, setIsFocused] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const isActivated = isFocused;
+  const isActivated = (isFocused || simulateFocused) && !disabled;
   const hasValue = value.length > 0;
 
   const handleClear = () => {

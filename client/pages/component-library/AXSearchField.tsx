@@ -285,44 +285,30 @@ function MyPage() {
 
 function ActivatedEmptyDemo() {
   const [val, setVal] = React.useState('');
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const input = ref.current?.querySelector('input');
-    if (input) input.focus();
-  }, []);
 
   return (
-    <div ref={ref}>
-      <AXSearchField
-        value={val}
-        onChange={setVal}
-        onClear={() => setVal('')}
-        onCancel={() => setVal('')}
-        placeholder="Enter search term(s)"
-      />
-    </div>
+    <AXSearchField
+      value={val}
+      onChange={setVal}
+      onClear={() => setVal('')}
+      onCancel={() => setVal('')}
+      placeholder="Enter search term(s)"
+      simulateFocused
+    />
   );
 }
 
 function ActivatedWithValueDemo() {
   const [val, setVal] = React.useState('running shoes');
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const input = ref.current?.querySelector('input');
-    if (input) input.focus();
-  }, []);
 
   return (
-    <div ref={ref}>
-      <AXSearchField
-        value={val}
-        onChange={setVal}
-        onClear={() => setVal('')}
-        onCancel={() => setVal('')}
-        placeholder="Enter search term(s)"
-      />
-    </div>
+    <AXSearchField
+      value={val}
+      onChange={setVal}
+      onClear={() => setVal('')}
+      onCancel={() => setVal('')}
+      placeholder="Enter search term(s)"
+      simulateFocused
+    />
   );
 }
