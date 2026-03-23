@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
-import { Barcode, ChevronDown, ChevronLeft, ChevronUp, Menu, Search, Placeholder } from '@/components/icons';
+import { Barcode, ChevronDown, ChevronLeft, ChevronUp, Grid, Menu, Placeholder, Search } from '@/components/icons';
 import { IconButton } from '@/components/ui/IconButton';
 import { CartIcon, LocationIcon, StoreIcon } from '@/components/icons-custom';
 import { CameraModal } from '@/components/walmart/CameraModal';
