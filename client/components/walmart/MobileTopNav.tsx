@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import { Barcode, ChevronDown, ChevronLeft, ChevronUp, Menu, Search, Grid } from '@/components/icons';
+import { IconButton } from '@/components/ui/IconButton';
 import { CartIcon, LocationIcon, StoreIcon } from '@/components/icons-custom';
 import { CameraModal } from '@/components/walmart/CameraModal';
 import { MobileMenuPanel } from '@/components/walmart/MobileMenuPanel';
@@ -113,23 +114,17 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTit
         {/* === NATIVE HOME LAYOUT === */}
         {isNative && isBlue && showHomeExtras ? (
           <div className={styles.nativeHomeContainer}>
-            {/* Row 1: Header — greeting / spark / cart */}
+            {/* Row 1: Header — menu button */}
             <div className={styles.nativeHeader}>
-              <span className={styles.greeting}>Hi, Emilia</span>
-              <div className={styles.sparkCenter}>
-                <a
-                  href="/walmart"
-                  onClick={(e) => { e.preventDefault(); navigate('/walmart'); }}
-                  aria-label="Walmart Homepage"
-                >
-                  <img
-                    src="https://i5.walmartimages.com/dfw/63fd9f59-14e2/9d304ce6-96de-4331-b8ec-c5191226d378/v1/spark-icon.svg"
-                    alt="Walmart"
-                    className={styles.sparkImg}
-                  />
-                </a>
-              </div>
-              <CartIcon count={cartCount} price={cartPrice} textColor="white" />
+              <IconButton
+                variant="ghost"
+                size="medium"
+                aria-label="Menu"
+                onClick={() => setShowMenuPanel(true)}
+                UNSAFE_style={{ color: 'white' }}
+              >
+                <Menu />
+              </IconButton>
             </div>
 
             {/* Row 2: Search pill */}
