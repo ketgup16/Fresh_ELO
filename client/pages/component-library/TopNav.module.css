@@ -174,8 +174,8 @@
 /* ── Native phone shell ── */
 .nativeFrame {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
   gap: var(--ld-primitive-scale-space-600, 24px);
   padding: var(--ld-primitive-scale-space-600, 24px);
 }
@@ -213,12 +213,19 @@
   margin: 0;
 }
 
+.nativePropertiesPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-400, 16px);
+  padding-top: var(--ld-primitive-scale-space-200, 8px);
+  flex-shrink: 0;
+}
+
 .nativeVariantSwitcher {
   display: flex;
   align-items: center;
   gap: var(--ld-primitive-scale-space-300, 12px);
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .nativeVariantLabel {
@@ -237,7 +244,7 @@
   border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
   background: var(--ld-semantic-color-surface, #fff);
   width: 100%;
-  max-width: 360px;
+  width: 280px;
   box-sizing: border-box;
 }
 

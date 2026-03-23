@@ -128,75 +128,77 @@ export default function TopNavPage() {
                 </div>
               </div>
 
-              <div className={styles.nativeVariantSwitcher}>
-                <p className={styles.nativeVariantLabel}>Color variant:</p>
-                <ButtonGroup>
-                  <Button
-                    variant={nativeVariant === 'blue' ? 'primary' : 'secondary'}
-                    size="small"
-                    onClick={() => setNativeVariant('blue')}
-                  >
-                    Blue (Home)
-                  </Button>
-                  <Button
-                    variant={nativeVariant === 'white' ? 'primary' : 'secondary'}
-                    size="small"
-                    onClick={() => setNativeVariant('white')}
-                  >
-                    White (Search)
-                  </Button>
-                </ButtonGroup>
-              </div>
-
-              {/* Native header controls — only relevant on blue/home variant */}
-              {nativeVariant === 'blue' && (
-                <div className={styles.nativeControls}>
-                  <div className={styles.nativeControlRow}>
-                    <TextField
-                      label="Title"
+              <div className={styles.nativePropertiesPanel}>
+                <div className={styles.nativeVariantSwitcher}>
+                  <p className={styles.nativeVariantLabel}>Color variant:</p>
+                  <ButtonGroup>
+                    <Button
+                      variant={nativeVariant === 'blue' ? 'primary' : 'secondary'}
                       size="small"
-                      value={nativeTitle}
-                      onChange={(e) => setNativeTitle(e.target.value)}
-                    />
-                  </div>
-                  <div className={styles.nativeControlRow}>
-                    <span className={styles.nativeControlLabel}>Subtitle</span>
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      <Chip size="small" selected={showNativeSubtitle} onClick={() => setShowNativeSubtitle(true)}>On</Chip>
-                      <Chip size="small" selected={!showNativeSubtitle} onClick={() => setShowNativeSubtitle(false)}>Off</Chip>
-                    </div>
-                    {showNativeSubtitle && (
-                      <TextField
-                        label="Subtitle text"
-                        size="small"
-                        value={nativeSubtitle}
-                        onChange={(e) => setNativeSubtitle(e.target.value)}
-                      />
-                    )}
-                  </div>
-                  <div className={styles.nativeControlRow}>
-                    <span className={styles.nativeControlLabel}>Action button 1</span>
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      <Chip size="small" selected={showNativeAction1} onClick={() => setShowNativeAction1(true)}>On</Chip>
-                      <Chip size="small" selected={!showNativeAction1} onClick={() => setShowNativeAction1(false)}>Off</Chip>
-                    </div>
-                  </div>
-                  <div className={styles.nativeControlRow}>
-                    <span className={styles.nativeControlLabel}>Action button 2</span>
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      <Chip size="small" selected={showNativeAction2} onClick={() => setShowNativeAction2(true)}>On</Chip>
-                      <Chip size="small" selected={!showNativeAction2} onClick={() => setShowNativeAction2(false)}>Off</Chip>
-                    </div>
-                  </div>
-                  <div className={styles.nativeControlRow}>
-                    <span className={styles.nativeControlLabel}>Action button 3</span>
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      <Chip size="small" selected={showNativeAction3} onClick={() => setShowNativeAction3(true)}>On</Chip>
-                      <Chip size="small" selected={!showNativeAction3} onClick={() => setShowNativeAction3(false)}>Off</Chip>
-                    </div>
-                  </div>
+                      onClick={() => setNativeVariant('blue')}
+                    >
+                      Blue (Home)
+                    </Button>
+                    <Button
+                      variant={nativeVariant === 'white' ? 'primary' : 'secondary'}
+                      size="small"
+                      onClick={() => setNativeVariant('white')}
+                    >
+                      White (Search)
+                    </Button>
+                  </ButtonGroup>
                 </div>
-              )}
+
+                {/* Native header controls — only relevant on blue/home variant */}
+                {nativeVariant === 'blue' && (
+                  <div className={styles.nativeControls}>
+                    <div className={styles.nativeControlRow}>
+                      <TextField
+                        label="Title"
+                        size="small"
+                        value={nativeTitle}
+                        onChange={(e) => setNativeTitle(e.target.value)}
+                      />
+                    </div>
+                    <div className={styles.nativeControlRow}>
+                      <span className={styles.nativeControlLabel}>Subtitle</span>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <Chip size="small" selected={showNativeSubtitle} onClick={() => setShowNativeSubtitle(true)}>On</Chip>
+                        <Chip size="small" selected={!showNativeSubtitle} onClick={() => setShowNativeSubtitle(false)}>Off</Chip>
+                      </div>
+                      {showNativeSubtitle && (
+                        <TextField
+                          label="Subtitle text"
+                          size="small"
+                          value={nativeSubtitle}
+                          onChange={(e) => setNativeSubtitle(e.target.value)}
+                        />
+                      )}
+                    </div>
+                    <div className={styles.nativeControlRow}>
+                      <span className={styles.nativeControlLabel}>Action button 1</span>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <Chip size="small" selected={showNativeAction1} onClick={() => setShowNativeAction1(true)}>On</Chip>
+                        <Chip size="small" selected={!showNativeAction1} onClick={() => setShowNativeAction1(false)}>Off</Chip>
+                      </div>
+                    </div>
+                    <div className={styles.nativeControlRow}>
+                      <span className={styles.nativeControlLabel}>Action button 2</span>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <Chip size="small" selected={showNativeAction2} onClick={() => setShowNativeAction2(true)}>On</Chip>
+                        <Chip size="small" selected={!showNativeAction2} onClick={() => setShowNativeAction2(false)}>Off</Chip>
+                      </div>
+                    </div>
+                    <div className={styles.nativeControlRow}>
+                      <span className={styles.nativeControlLabel}>Action button 3</span>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <Chip size="small" selected={showNativeAction3} onClick={() => setShowNativeAction3(true)}>On</Chip>
+                        <Chip size="small" selected={!showNativeAction3} onClick={() => setShowNativeAction3(false)}>Off</Chip>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
