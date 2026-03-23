@@ -49,19 +49,51 @@
   cursor: not-allowed;
 }
 
-/* ── 900+ desktop adjustments ─────────────────────────────────────────────── */
+/* ── 900+ desktop adjustments (only when no explicit size is set) ─────────── */
 
 @media (min-width: 900px) {
-  .pill {
+  .pill:not(.pillXSmall):not(.pillSmall):not(.pillMedium):not(.pillLarge) {
     min-height: 56px;
     padding: var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-200, 16px);
   }
 
-  .pillActivated {
+  .pillActivated:not(.pillXSmall):not(.pillSmall):not(.pillMedium):not(.pillLarge) {
     min-height: 56px;
     padding: var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-200, 16px);
   }
 }
+
+/* ── Explicit size variants ───────────────────────────────────────────────── */
+
+.pillXSmall {
+  min-height: 32px;
+  max-height: 32px;
+  padding: 0 var(--ld-primitive-scale-space-100, 8px);
+}
+
+.pillSmall {
+  min-height: 40px;
+  max-height: 40px;
+  padding: 0 var(--ld-primitive-scale-space-150, 12px);
+}
+
+.pillMedium {
+  min-height: 48px;
+  max-height: 48px;
+  padding: 0 var(--ld-primitive-scale-space-150, 12px);
+}
+
+.pillLarge {
+  min-height: 56px;
+  max-height: 56px;
+  padding: 0 var(--ld-primitive-scale-space-200, 16px);
+}
+
+/* Activated padding adjustments per size — right side makes room for cancel gap */
+.pillActivated.pillXSmall { padding: 0 4px 0 var(--ld-primitive-scale-space-100, 8px); }
+.pillActivated.pillSmall  { padding: 0 4px 0 var(--ld-primitive-scale-space-150, 12px); }
+.pillActivated.pillMedium { padding: 0 4px 0 var(--ld-primitive-scale-space-150, 12px); }
+.pillActivated.pillLarge  { padding: 0 4px 0 var(--ld-primitive-scale-space-200, 16px); }
 
 /* ── Icon ─────────────────────────────────────────────────────────────────── */
 

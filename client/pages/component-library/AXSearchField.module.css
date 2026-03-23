@@ -205,8 +205,50 @@
   line-height: 1.5;
 }
 
+.sizesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sizeRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 20px;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-surface, #fff);
+}
+
+.sizeRowLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 72px;
+  flex-shrink: 0;
+}
+
+.sizeName {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text);
+}
+
+.sizeHeight {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: var(--ld-semantic-color-text-subtle);
+}
+
+.sizeDemo {
+  flex: 1;
+  min-width: 0;
+}
+
 @media (max-width: 768px) {
   .page { padding: 24px 16px 48px; gap: 32px; }
   .statesGrid { grid-template-columns: 1fr; }
   .guidelineGrid { grid-template-columns: 1fr; }
+  .sizeRow { flex-direction: column; align-items: flex-start; }
 }

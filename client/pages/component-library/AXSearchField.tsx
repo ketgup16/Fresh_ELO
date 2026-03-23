@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
-import { AXSearchField } from '@/components/walmart/AXSearchField';
+import { AXSearchField, AXSearchFieldSize } from '@/components/walmart/AXSearchField';
 import styles from './AXSearchField.module.css';
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
@@ -152,6 +152,42 @@ export default function AXSearchFieldPage() {
                 Cannot be interacted with. Muted border and text colors.
               </p>
             </div>
+          </div>
+        </div>
+
+        {/* ── Sizes ────────────────────────────────────────────────── */}
+        <div className={styles.section}>
+          <SectionTitle>Sizes</SectionTitle>
+          <SectionDesc>
+            Four height variants are available via the <code>size</code> prop. X Small and Small
+            use the small icon variant (20px); Medium and Large use the medium icon variant (24px).
+          </SectionDesc>
+          <div className={styles.sizesGrid}>
+            {(
+              [
+                { size: 'xsmall', label: 'X Small', height: '32px' },
+                { size: 'small',  label: 'Small',   height: '40px' },
+                { size: 'medium', label: 'Medium',  height: '48px' },
+                { size: 'large',  label: 'Large',   height: '56px' },
+              ] as { size: AXSearchFieldSize; label: string; height: string }[]
+            ).map(({ size, label, height }) => (
+              <div key={size} className={styles.sizeRow}>
+                <div className={styles.sizeRowLabel}>
+                  <span className={styles.sizeName}>{label}</span>
+                  <span className={styles.sizeHeight}>{height}</span>
+                </div>
+                <div className={styles.sizeDemo}>
+                  <AXSearchField
+                    value=""
+                    onChange={() => {}}
+                    placeholder="Search"
+                    size={size}
+                    showMic={false}
+                    showBarcode={false}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
