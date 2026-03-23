@@ -152,7 +152,7 @@ export default function ComponentTester() {
 
   // AXSearchBar (Search Field) props
   const [searchBarValue, setSearchBarValue] = React.useState('');
-  const [searchBarPlaceholder, setSearchBarPlaceholder] = React.useState('Enter search term(s)');
+  const [searchBarPlaceholder, setSearchBarPlaceholder] = React.useState('Search');
   const [searchBarDisabled, setSearchBarDisabled] = React.useState(false);
   const [searchBarShowMic, setSearchBarShowMic] = React.useState(true);
   const [searchBarShowBarcode, setSearchBarShowBarcode] = React.useState(true);
