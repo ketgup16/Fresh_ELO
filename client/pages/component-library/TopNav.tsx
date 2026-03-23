@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
+import { Chip } from '@/components/ui/Chip';
 import { Tag } from '@/components/ui/Tag';
+import { TextField } from '@/components/ui/TextField';
 import { DesktopHeader } from '@/components/walmart/DesktopHeader';
 import { MobileHeader } from '@/components/walmart/MobileHeader';
 import { MobileTopNav, type MobileTopNavVariant } from '@/components/walmart/MobileTopNav';
@@ -39,6 +41,12 @@ const PLATFORM_META: Record<Platform, {
 export default function TopNavPage() {
   const [platform, setPlatform] = useState<Platform>('dweb');
   const [nativeVariant, setNativeVariant] = useState<MobileTopNavVariant>('blue');
+  const [nativeTitle, setNativeTitle] = useState('Page Title');
+  const [nativeSubtitle, setNativeSubtitle] = useState('Subtitle');
+  const [showNativeSubtitle, setShowNativeSubtitle] = useState(false);
+  const [showNativeAction1, setShowNativeAction1] = useState(true);
+  const [showNativeAction2, setShowNativeAction2] = useState(true);
+  const [showNativeAction3, setShowNativeAction3] = useState(true);
   const meta = PLATFORM_META[platform];
 
   return (
@@ -100,7 +108,18 @@ export default function TopNavPage() {
             <div className={styles.nativeFrame}>
               <div className={styles.nativePhone}>
                 <div className={styles.nativeScreen}>
-                  <MobileTopNav variant={nativeVariant} showHomeExtras={nativeVariant === 'blue'} forceVisible forceNative />
+                  <MobileTopNav
+                    variant={nativeVariant}
+                    showHomeExtras={nativeVariant === 'blue'}
+                    forceVisible
+                    forceNative
+                    nativeTitle={nativeTitle}
+                    nativeSubtitle={nativeSubtitle}
+                    showNativeSubtitle={showNativeSubtitle}
+                    showNativeAction1={showNativeAction1}
+                    showNativeAction2={showNativeAction2}
+                    showNativeAction3={showNativeAction3}
+                  />
                   <div className={styles.nativePageContent}>
                     <p className={styles.nativePageHint}>
                       {nativeVariant === 'blue' ? 'Home page content' : 'Search results / inner page content'}
@@ -128,6 +147,56 @@ export default function TopNavPage() {
                   </Button>
                 </ButtonGroup>
               </div>
+
+              {/* Native header controls — only relevant on blue/home variant */}
+              {nativeVariant === 'blue' && (
+                <div className={styles.nativeControls}>
+                  <div className={styles.nativeControlRow}>
+                    <TextField
+                      label="Title"
+                      size="small"
+                      value={nativeTitle}
+                      onChange={(e) => setNativeTitle(e.target.value)}
+                    />
+                  </div>
+                  <div className={styles.nativeControlRow}>
+                    <span className={styles.nativeControlLabel}>Subtitle</span>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <Chip size="small" selected={showNativeSubtitle} onClick={() => setShowNativeSubtitle(true)}>On</Chip>
+                      <Chip size="small" selected={!showNativeSubtitle} onClick={() => setShowNativeSubtitle(false)}>Off</Chip>
+                    </div>
+                    {showNativeSubtitle && (
+                      <TextField
+                        label="Subtitle text"
+                        size="small"
+                        value={nativeSubtitle}
+                        onChange={(e) => setNativeSubtitle(e.target.value)}
+                      />
+                    )}
+                  </div>
+                  <div className={styles.nativeControlRow}>
+                    <span className={styles.nativeControlLabel}>Action button 1</span>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <Chip size="small" selected={showNativeAction1} onClick={() => setShowNativeAction1(true)}>On</Chip>
+                      <Chip size="small" selected={!showNativeAction1} onClick={() => setShowNativeAction1(false)}>Off</Chip>
+                    </div>
+                  </div>
+                  <div className={styles.nativeControlRow}>
+                    <span className={styles.nativeControlLabel}>Action button 2</span>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <Chip size="small" selected={showNativeAction2} onClick={() => setShowNativeAction2(true)}>On</Chip>
+                      <Chip size="small" selected={!showNativeAction2} onClick={() => setShowNativeAction2(false)}>Off</Chip>
+                    </div>
+                  </div>
+                  <div className={styles.nativeControlRow}>
+                    <span className={styles.nativeControlLabel}>Action button 3</span>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <Chip size="small" selected={showNativeAction3} onClick={() => setShowNativeAction3(true)}>On</Chip>
+                      <Chip size="small" selected={!showNativeAction3} onClick={() => setShowNativeAction3(false)}>Off</Chip>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

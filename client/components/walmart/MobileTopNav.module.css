@@ -180,6 +180,44 @@
   flex-shrink: 0;
 }
 
+/* Native header — title + subtitle text block */
+.nativeTitleArea {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  padding: 0 8px;
+}
+
+.nativeTitleText {
+  font-family: var(--ld-semantic-font-heading-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-heading-small-size, 16px);
+  font-weight: var(--ld-semantic-font-heading-small-weight, 700);
+  line-height: var(--ld-semantic-font-heading-small-lineheight, 1.25);
+  color: var(--ld-semantic-color-text-inverse, #fff);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nativeSubtitleText {
+  font-family: var(--ld-semantic-font-caption-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-caption-size, 12px);
+  font-weight: var(--ld-semantic-font-caption-weight-default, 400);
+  line-height: var(--ld-semantic-font-caption-lineheight, 1.33);
+  color: rgba(255, 255, 255, 0.75);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Native header — trailing action buttons */
+.nativeActions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 .sparkCenter {
   position: absolute;
   left: 50%;

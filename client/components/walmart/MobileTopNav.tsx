@@ -34,9 +34,31 @@ interface MobileTopNavProps {
   forceVisible?: boolean;
   /** Force native app layout regardless of platform context — use in docs/demos. */
   forceNative?: boolean;
+  /** Title text shown in native header next to menu button. */
+  nativeTitle?: string;
+  /** Subtitle shown below title in native header. */
+  nativeSubtitle?: string;
+  /** Whether to show the subtitle. @default false */
+  showNativeSubtitle?: boolean;
+  /** Show/hide each of the 3 trailing action icon buttons. @default true */
+  showNativeAction1?: boolean;
+  showNativeAction2?: boolean;
+  showNativeAction3?: boolean;
 }
 
-export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTitle, forceVisible = false, forceNative = false }: MobileTopNavProps) {
+export function MobileTopNav({
+  showHomeExtras = false,
+  variant = 'blue',
+  pageTitle,
+  forceVisible = false,
+  forceNative = false,
+  nativeTitle = 'Page Title',
+  nativeSubtitle = 'Subtitle',
+  showNativeSubtitle = false,
+  showNativeAction1 = true,
+  showNativeAction2 = true,
+  showNativeAction3 = true,
+}: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
   const { cartCount, cartPrice } = useCart();
@@ -114,7 +136,7 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTit
         {/* === NATIVE HOME LAYOUT === */}
         {isNative && isBlue && showHomeExtras ? (
           <div className={styles.nativeHomeContainer}>
-            {/* Row 1: Header — menu button */}
+            {/* Row 1: Header — menu | title+subtitle | action buttons */}
             <div className={styles.nativeHeader}>
               <IconButton
                 variant="ghost"
@@ -125,6 +147,31 @@ export function MobileTopNav({ showHomeExtras = false, variant = 'blue', pageTit
               >
                 <Menu />
               </IconButton>
+
+              <div className={styles.nativeTitleArea}>
+                <span className={styles.nativeTitleText}>{nativeTitle}</span>
+                {showNativeSubtitle && (
+                  <span className={styles.nativeSubtitleText}>{nativeSubtitle}</span>
+                )}
+              </div>
+
+              <div className={styles.nativeActions}>
+                {showNativeAction1 && (
+                  <IconButton variant="ghost" size="medium" aria-label="Action 1" UNSAFE_style={{ color: 'white' }}>
+                    <Grid />
+                  </IconButton>
+                )}
+                {showNativeAction2 && (
+                  <IconButton variant="ghost" size="medium" aria-label="Action 2" UNSAFE_style={{ color: 'white' }}>
+                    <Grid />
+                  </IconButton>
+                )}
+                {showNativeAction3 && (
+                  <IconButton variant="ghost" size="medium" aria-label="Action 3" UNSAFE_style={{ color: 'white' }}>
+                    <Grid />
+                  </IconButton>
+                )}
+              </div>
             </div>
 
             {/* Row 2: Search pill */}
