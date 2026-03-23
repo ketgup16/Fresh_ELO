@@ -1,5 +1,6 @@
 import { useRef, useState, useCallback } from 'react';
 import { Search, Microphone, Barcode, X } from '@/components/icons';
+import { IconButton } from '@/components/ui/IconButton';
 import styles from './AXSearchField.module.css';
 
 export type AXSearchFieldState = 'enabled' | 'disabled' | 'readOnly';
@@ -111,36 +112,36 @@ export function AXSearchField({
             /* Single stable X button — present whenever value exists and field is editable.
                Keeping it in one JSX branch prevents blur-before-click from unmounting
                the node mid-interaction and swallowing the click event. */
-            <button
-              className={styles.iconBtn}
+            <IconButton
+              variant="ghost"
+              size="medium"
               onClick={handleClear}
               aria-label="Clear search"
-              type="button"
             >
-              <X className={styles.trailingIcon} />
-            </button>
+              <X />
+            </IconButton>
           ) : !isFocused && !isDisabled && !isReadOnly ? (
             /* Enabled unfilled: mic + barcode */
             <>
               {showMic && (
-                <button
-                  className={styles.iconBtn}
+                <IconButton
+                  variant="ghost"
+                  size="medium"
                   onClick={(e) => { e.stopPropagation(); onMicClick?.(); }}
                   aria-label="Search by voice"
-                  type="button"
                 >
-                  <Microphone className={styles.trailingIcon} />
-                </button>
+                  <Microphone />
+                </IconButton>
               )}
               {showBarcode && (
-                <button
-                  className={styles.iconBtn}
+                <IconButton
+                  variant="ghost"
+                  size="medium"
                   onClick={(e) => { e.stopPropagation(); onBarcodeClick?.(); }}
                   aria-label="Scan barcode"
-                  type="button"
                 >
-                  <Barcode className={styles.trailingIcon} />
-                </button>
+                  <Barcode />
+                </IconButton>
               )}
             </>
           ) : null}

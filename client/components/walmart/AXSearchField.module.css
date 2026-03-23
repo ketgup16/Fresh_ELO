@@ -99,36 +99,6 @@
   flex-shrink: 0;
 }
 
-/* Icon buttons (mic, barcode, X) */
-.iconBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: var(--ld-primitive-scale-space-100, 4px);
-  border: none;
-  border-radius: 9999px;
-  background: transparent;
-  cursor: pointer;
-  color: var(--ld-semantic-color-text, #2e2f32);
-  flex-shrink: 0;
-}
-
-.iconBtn:hover {
-  background: var(--ld-semantic-color-action-fill-ghost-hovered, rgba(0, 0, 0, 0.06));
-}
-
-.iconBtn:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-field-border-focused, #0053e2);
-  outline-offset: 1px;
-}
-
-.trailingIcon {
-  width: var(--ld-semantic-scale-icon-medium, 24px);
-  height: var(--ld-semantic-scale-icon-medium, 24px);
-}
-
 /* Cancel link button */
 .cancelBtn {
   display: flex;
