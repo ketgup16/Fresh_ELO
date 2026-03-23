@@ -155,6 +155,14 @@
   color: var(--ld-semantic-color-field-text-subtle-onfill-disabled, #BABBBB);
 }
 
+/* ── Trailing icon buttons (mic + barcode) ───────────────────────────────── */
+
+.trailingIcons {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 /* ── Clear (X) button ─────────────────────────────────────────────────────── */
 
 .clearBtn {

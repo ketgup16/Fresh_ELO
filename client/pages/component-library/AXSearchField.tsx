@@ -103,6 +103,23 @@ export default function AXSearchFieldPage() {
               </p>
             </div>
 
+            {/* Enabled — with trailing icons */}
+            <div className={styles.stateCard}>
+              <div className={styles.stateLabel}>Enabled — with trailing icons</div>
+              <div className={styles.stateDemo}>
+                <AXSearchField
+                  value=""
+                  onChange={() => {}}
+                  placeholder="Enter search term(s)"
+                  showMic
+                  showBarcode
+                />
+              </div>
+              <p className={styles.stateDesc}>
+                Resting state with mic and barcode icon buttons visible. Both are optional and independently toggleable.
+              </p>
+            </div>
+
             {/* Disabled */}
             <div className={styles.stateCard}>
               <div className={styles.stateLabel}>Disabled</div>
@@ -188,6 +205,10 @@ export default function AXSearchFieldPage() {
               <tr><td>onChange</td><td>(value: string) =&gt; void</td><td>—</td><td>Required. Called on every keystroke.</td></tr>
               <tr><td>onClear</td><td>() =&gt; void</td><td>—</td><td>Called when the clear (✕) button is pressed.</td></tr>
               <tr><td>onCancel</td><td>() =&gt; void</td><td>—</td><td>Called when the Cancel link is pressed.</td></tr>
+              <tr><td>showMic</td><td>boolean</td><td>true</td><td>Show microphone icon button in resting/unfilled state.</td></tr>
+              <tr><td>showBarcode</td><td>boolean</td><td>true</td><td>Show barcode icon button in resting/unfilled state.</td></tr>
+              <tr><td>onMicClick</td><td>() =&gt; void</td><td>—</td><td>Called when the microphone button is pressed.</td></tr>
+              <tr><td>onBarcodeClick</td><td>() =&gt; void</td><td>—</td><td>Called when the barcode button is pressed.</td></tr>
               <tr><td>placeholder</td><td>string</td><td>'Enter search term(s)'</td><td>Placeholder text shown when the field is empty.</td></tr>
               <tr><td>disabled</td><td>boolean</td><td>false</td><td>Disables all interaction.</td></tr>
               <tr><td>className</td><td>string</td><td>—</td><td>Optional extra CSS class on the root wrapper.</td></tr>

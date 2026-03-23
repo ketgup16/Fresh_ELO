@@ -153,6 +153,8 @@ export default function ComponentTester() {
   const [searchBarValue, setSearchBarValue] = React.useState('');
   const [searchBarPlaceholder, setSearchBarPlaceholder] = React.useState('Enter search term(s)');
   const [searchBarDisabled, setSearchBarDisabled] = React.useState(false);
+  const [searchBarShowMic, setSearchBarShowMic] = React.useState(true);
+  const [searchBarShowBarcode, setSearchBarShowBarcode] = React.useState(true);
 
   // AXSearchField props
   const [searchValue, setSearchValue] = React.useState('');
@@ -358,6 +360,8 @@ export default function ComponentTester() {
               onClear={() => setSearchBarValue('')}
               placeholder={searchBarPlaceholder}
               disabled={searchBarDisabled}
+              showMic={searchBarShowMic}
+              showBarcode={searchBarShowBarcode}
             />
           </div>
         );
@@ -1035,6 +1039,24 @@ export default function ComponentTester() {
               </div>
             </div>
             <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Mic button
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <Chip size="small" selected={searchBarShowMic} onClick={() => setSearchBarShowMic(true)}>On</Chip>
+                <Chip size="small" selected={!searchBarShowMic} onClick={() => setSearchBarShowMic(false)}>Off</Chip>
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Barcode button
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <Chip size="small" selected={searchBarShowBarcode} onClick={() => setSearchBarShowBarcode(true)}>On</Chip>
+                <Chip size="small" selected={!searchBarShowBarcode} onClick={() => setSearchBarShowBarcode(false)}>Off</Chip>
+              </div>
+            </div>
+            <div>
               <TextField
                 label="Placeholder"
                 size="small"
@@ -1345,6 +1367,8 @@ export default function ComponentTester() {
                 `  onChange={setValue}`,
                 `  placeholder="${searchBarPlaceholder}"`,
                 ...(searchBarDisabled ? ['  disabled'] : []),
+                ...(searchBarShowMic ? [] : ['  showMic={false}']),
+                ...(searchBarShowBarcode ? [] : ['  showBarcode={false}']),
                 `  onClear={() => setValue('')}`,
                 '/>',
               ].join('\n')}

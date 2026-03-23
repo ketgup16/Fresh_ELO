@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Microphone, Barcode } from '@/components/icons';
+import { IconButton } from '@/components/ui/IconButton';
 import styles from './AXSearchField.module.css';
 
 export interface AXSearchFieldProps {
@@ -6,6 +8,12 @@ export interface AXSearchFieldProps {
   onChange: (value: string) => void;
   onClear?: () => void;
   onCancel?: () => void;
+  /** Show microphone icon button in unfilled, resting state. @default true */
+  showMic?: boolean;
+  /** Show barcode icon button in unfilled, resting state. @default true */
+  showBarcode?: boolean;
+  onMicClick?: () => void;
+  onBarcodeClick?: () => void;
   placeholder?: string;
   disabled?: boolean;
   className?: string;
@@ -16,6 +24,10 @@ export function AXSearchField({
   onChange,
   onClear,
   onCancel,
+  showMic = true,
+  showBarcode = true,
+  onMicClick,
+  onBarcodeClick,
   placeholder = 'Enter search term(s)',
   disabled = false,
   className,
@@ -44,6 +56,52 @@ export function AXSearchField({
       inputRef.current?.focus();
     }
   };
+
+  // Trailing slot: mic+barcode when resting/empty, clear when activated+filled
+  const trailingSlot = (() => {
+    if (isActivated && hasValue) {
+      return (
+        <button
+          type="button"
+          className={styles.clearBtn}
+          onClick={e => { e.stopPropagation(); handleClear(); }}
+          aria-label="Clear search"
+          tabIndex={0}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M11.7803 13.0788L18 19.2985L19.0607 18.2378L12.841 12.0181L19.0607 5.79845L18 4.73779L11.7803 10.9575L5.56066 4.73779L4.5 5.79845L10.7197 12.0181L4.5 18.2378L5.56066 19.2985L11.7803 13.0788Z" fill="currentColor" />
+          </svg>
+        </button>
+      );
+    }
+    if (!isActivated && !hasValue && !disabled && (showMic || showBarcode)) {
+      return (
+        <div className={styles.trailingIcons}>
+          {showMic && (
+            <IconButton
+              variant="ghost"
+              size="medium"
+              aria-label="Search by voice"
+              onClick={e => { e.stopPropagation(); onMicClick?.(); }}
+            >
+              <Microphone />
+            </IconButton>
+          )}
+          {showBarcode && (
+            <IconButton
+              variant="ghost"
+              size="medium"
+              aria-label="Scan barcode"
+              onClick={e => { e.stopPropagation(); onBarcodeClick?.(); }}
+            >
+              <Barcode />
+            </IconButton>
+          )}
+        </div>
+      );
+    }
+    return null;
+  })();
 
   return (
     <div className={[styles.wrapper, className].filter(Boolean).join(' ')}>
@@ -84,20 +142,8 @@ export function AXSearchField({
           )}
         </div>
 
-        {/* Clear (X) button — only when activated + has value */}
-        {isActivated && hasValue && (
-          <button
-            type="button"
-            className={styles.clearBtn}
-            onClick={e => { e.stopPropagation(); handleClear(); }}
-            aria-label="Clear search"
-            tabIndex={0}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M11.7803 13.0788L18 19.2985L19.0607 18.2378L12.841 12.0181L19.0607 5.79845L18 4.73779L11.7803 10.9575L5.56066 4.73779L4.5 5.79845L10.7197 12.0181L4.5 18.2378L5.56066 19.2985L11.7803 13.0788Z" fill="currentColor" />
-            </svg>
-          </button>
-        )}
+        {/* Trailing slot */}
+        {trailingSlot}
       </div>
 
       {/* Cancel link — only when activated and not disabled */}
@@ -106,7 +152,6 @@ export function AXSearchField({
           type="button"
           className={styles.cancelBtn}
           onMouseDown={e => {
-            // Prevent blur from firing before click
             e.preventDefault();
             handleCancel();
           }}
