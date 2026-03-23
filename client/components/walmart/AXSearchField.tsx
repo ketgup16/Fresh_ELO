@@ -152,6 +152,7 @@ export function AXSearchField({
       {isFocused && (
         <button
           className={styles.cancelBtn}
+          onMouseDown={(e) => e.preventDefault()} // prevent input blur before click fires
           onClick={handleCancel}
           type="button"
         >
