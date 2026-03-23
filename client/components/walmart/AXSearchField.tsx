@@ -54,7 +54,8 @@ export function AXSearchField({
     e.stopPropagation();
     onChange?.('');
     onClear?.();
-    inputRef.current?.focus();
+    // Do NOT re-focus here — doing so fires onFocus which would overwrite valueOnFocus
+    // with the stale pre-clear value, corrupting Cancel revert behaviour.
   }, [onChange, onClear]);
 
   const handleCancel = useCallback((e: React.MouseEvent) => {
@@ -115,6 +116,7 @@ export function AXSearchField({
             <IconButton
               variant="ghost"
               size="medium"
+              onMouseDown={(e) => e.preventDefault()} // keep input focused so click always lands
               onClick={handleClear}
               aria-label="Clear search"
             >
