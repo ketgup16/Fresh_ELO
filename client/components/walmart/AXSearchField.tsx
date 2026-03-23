@@ -172,7 +172,7 @@ export function AXSearchField({
             onChange={e => onChange(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            placeholder={isActivated ? placeholder : ''}
+            placeholder=""
             disabled={disabled}
             aria-label={placeholder}
             autoComplete="off"

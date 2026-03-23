@@ -323,16 +323,26 @@ function MyPage() {
 
 function ActivatedEmptyDemo() {
   const [val, setVal] = React.useState('');
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    // Focus the input so the cursor blinks; simulateFocused keeps the visual
+    // state correct even if the user clicks elsewhere on the page.
+    const input = wrapperRef.current?.querySelector('input');
+    input?.focus();
+  }, []);
 
   return (
-    <AXSearchField
-      value={val}
-      onChange={setVal}
-      onClear={() => setVal('')}
-      onCancel={() => setVal('')}
-      placeholder="Search"
-      simulateFocused
-    />
+    <div ref={wrapperRef}>
+      <AXSearchField
+        value={val}
+        onChange={setVal}
+        onClear={() => setVal('')}
+        onCancel={() => setVal('')}
+        placeholder="Search"
+        simulateFocused
+      />
+    </div>
   );
 }
 

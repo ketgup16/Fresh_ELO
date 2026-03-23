@@ -143,6 +143,7 @@
   font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
   color: var(--ld-semantic-color-field-text-onfill, #2E2F32);
+  caret-color: var(--ld-semantic-color-text-brand, #0053E2);
   /* Remove native search input controls */
   -webkit-appearance: none;
   appearance: none;
