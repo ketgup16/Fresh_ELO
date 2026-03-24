@@ -58,25 +58,23 @@ AXAvatar.Fallback = AvatarFallback;
 // ─── Badge Indicator ──────────────────────────────────────────────────────────
 
 function BadgeIndicator() {
+  // Render the Badge directly — no wrapper span — matching the Badges library page.
+  // Only layout/positioning styles are applied; no component style overrides.
   return (
-    <span
-      aria-hidden="true"
+    <Badge
+      variant="blue"
+      size="small"
+      value={1}
+      aria-label="1 notification"
       style={{
         position: 'absolute',
         top: 0,
         right: 0,
-        display: 'inline-flex',
-        /* white separator ring */
-        boxShadow: '0 0 0 2px var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-        borderRadius: '50%',
+        /* white separator ring — layout concern, not a style override */
+        outline: '2px solid var(--ld-semantic-color-fill-surface-primary, #ffffff)',
+        outlineOffset: 0,
       }}
-    >
-      <Badge
-        variant="blue"
-        size="small"
-        aria-label="Status badge"
-      />
-    </span>
+    />
   );
 }
 
