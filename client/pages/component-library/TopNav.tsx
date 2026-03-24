@@ -9,7 +9,15 @@ import { DesktopHeader } from '@/components/walmart/DesktopHeader';
 import { MobileHeader } from '@/components/walmart/MobileHeader';
 import { MobileTopNav, type MobileTopNavVariant } from '@/components/walmart/MobileTopNav';
 import { MeasureTool } from './MeasureTool';
+import * as Icons from '@/components/icons';
 import styles from './TopNav.module.css';
+
+const ICON_NAMES: string[] = Object.keys(Icons).sort();
+
+function renderIcon(name: string): React.ReactNode {
+  const Comp = (Icons as Record<string, React.ComponentType>)[name];
+  return Comp ? <Comp /> : <Icons.Placeholder />;
+}
 
 type Platform = 'dweb' | 'mweb' | 'native';
 
@@ -49,6 +57,9 @@ export default function TopNavPage() {
   const [showNativeAction2, setShowNativeAction2] = useState(false);
   const [showNativeAction3, setShowNativeAction3] = useState(false);
   const [showNativeSearchBar, setShowNativeSearchBar] = useState(true);
+  const [action1IconName, setAction1IconName] = useState('Placeholder');
+  const [action2IconName, setAction2IconName] = useState('Placeholder');
+  const [action3IconName, setAction3IconName] = useState('Placeholder');
   const [measureMode, setMeasureMode] = useState(false);
   const meta = PLATFORM_META[platform];
 
@@ -124,6 +135,9 @@ export default function TopNavPage() {
                     showNativeAction2={showNativeAction2}
                     showNativeAction3={showNativeAction3}
                     showNativeSearchBar={showNativeSearchBar}
+                    action1Icon={renderIcon(action1IconName)}
+                    action2Icon={renderIcon(action2IconName)}
+                    action3Icon={renderIcon(action3IconName)}
                   />
                   <div className={styles.nativePageContent}>
                     <p className={styles.nativePageHint}>
@@ -198,6 +212,15 @@ export default function TopNavPage() {
                         <Chip size="small" selected={showNativeAction1} onClick={() => setShowNativeAction1(true)}>On</Chip>
                         <Chip size="small" selected={!showNativeAction1} onClick={() => setShowNativeAction1(false)}>Off</Chip>
                       </div>
+                      <select
+                        className={styles.iconSelect}
+                        value={action1IconName}
+                        onChange={(e) => setAction1IconName(e.target.value)}
+                      >
+                        {ICON_NAMES.map(n => (
+                          <option key={n} value={n}>{n === action1IconName ? `✓ ${n}` : n}</option>
+                        ))}
+                      </select>
                     </div>
                     <div className={styles.nativeControlRow}>
                       <span className={styles.nativeControlLabel}>Action button 2</span>
@@ -205,6 +228,15 @@ export default function TopNavPage() {
                         <Chip size="small" selected={showNativeAction2} onClick={() => setShowNativeAction2(true)}>On</Chip>
                         <Chip size="small" selected={!showNativeAction2} onClick={() => setShowNativeAction2(false)}>Off</Chip>
                       </div>
+                      <select
+                        className={styles.iconSelect}
+                        value={action2IconName}
+                        onChange={(e) => setAction2IconName(e.target.value)}
+                      >
+                        {ICON_NAMES.map(n => (
+                          <option key={n} value={n}>{n === action2IconName ? `✓ ${n}` : n}</option>
+                        ))}
+                      </select>
                     </div>
                     <div className={styles.nativeControlRow}>
                       <span className={styles.nativeControlLabel}>Action button 3</span>
@@ -212,6 +244,15 @@ export default function TopNavPage() {
                         <Chip size="small" selected={showNativeAction3} onClick={() => setShowNativeAction3(true)}>On</Chip>
                         <Chip size="small" selected={!showNativeAction3} onClick={() => setShowNativeAction3(false)}>Off</Chip>
                       </div>
+                      <select
+                        className={styles.iconSelect}
+                        value={action3IconName}
+                        onChange={(e) => setAction3IconName(e.target.value)}
+                      >
+                        {ICON_NAMES.map(n => (
+                          <option key={n} value={n}>{n === action3IconName ? `✓ ${n}` : n}</option>
+                        ))}
+                      </select>
                     </div>
                     <div className={styles.nativeControlRow}>
                       <span className={styles.nativeControlLabel}>AX Search Bar</span>

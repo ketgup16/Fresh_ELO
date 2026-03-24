@@ -241,6 +241,18 @@
   margin: 0;
 }
 
+.iconSelect {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: 12px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 4px;
+  padding: 4px 6px;
+  width: 100%;
+  cursor: pointer;
+}
+
 .nativeControls {
   display: flex;
   flex-direction: column;

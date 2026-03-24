@@ -47,6 +47,10 @@ interface MobileTopNavProps {
   showNativeAction3?: boolean;
   /** Show/hide the AX Search Bar row. @default true */
   showNativeSearchBar?: boolean;
+  /** Icon node rendered inside action button 1/2/3. Defaults to Placeholder icon. */
+  action1Icon?: React.ReactNode;
+  action2Icon?: React.ReactNode;
+  action3Icon?: React.ReactNode;
 }
 
 export function MobileTopNav({
@@ -62,6 +66,9 @@ export function MobileTopNav({
   showNativeAction2 = false,
   showNativeAction3 = false,
   showNativeSearchBar = true,
+  action1Icon = <Placeholder />,
+  action2Icon = <Placeholder />,
+  action3Icon = <Placeholder />,
 }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
@@ -190,17 +197,17 @@ export function MobileTopNav({
               <div className={styles.nativeActions}>
                 {showNativeAction1 && (
                   <IconButton variant="ghost" size="medium" aria-label="Action 1" UNSAFE_style={{ color: 'white' }}>
-                    <Placeholder />
+                    {action1Icon}
                   </IconButton>
                 )}
                 {showNativeAction2 && (
                   <IconButton variant="ghost" size="medium" aria-label="Action 2" UNSAFE_style={{ color: 'white' }}>
-                    <Placeholder />
+                    {action2Icon}
                   </IconButton>
                 )}
                 {showNativeAction3 && (
                   <IconButton variant="ghost" size="medium" aria-label="Action 3" UNSAFE_style={{ color: 'white' }}>
-                    <Placeholder />
+                    {action3Icon}
                   </IconButton>
                 )}
               </div>
