@@ -34,6 +34,18 @@
 
 /* Size Variants — Mobile first */
 
+/* xsmall: 24×24 (fixed, no responsive change) */
+.iconButton--size-xsmall {
+  width: var(--ld-primitive-scale-space-300, 24px);
+  height: var(--ld-primitive-scale-space-300, 24px);
+  padding: var(--ld-primitive-scale-space-50);
+}
+
+.iconButton--size-xsmall .iconButton__icon svg {
+  width: var(--ld-semantic-scale-icon-small, 16px);
+  height: var(--ld-semantic-scale-icon-small, 16px);
+}
+
 /* small: 24×24 on mobile, 32×32 on desktop */
 .iconButton--size-small {
   width: 24px;

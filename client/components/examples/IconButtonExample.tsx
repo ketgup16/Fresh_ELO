@@ -21,6 +21,13 @@ export default function IconButtonExample() {
         <h2 className="text-xl font-semibold mb-4">Ghost Variant (Transparent)</h2>
         <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
           <div className="flex flex-col items-center gap-2">
+            <IconButton aria-label="Information" variant="ghost" size="xsmall">
+              <InfoCircle />
+            </IconButton>
+            <span className="text-xs text-gray-600">XSmall</span>
+          </div>
+
+          <div className="flex flex-col items-center gap-2">
             <IconButton aria-label="Information" variant="ghost" size="small">
               <InfoCircle style={{ width: 16, height: 16 }} />
             </IconButton>
