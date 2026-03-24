@@ -69,6 +69,7 @@ function ClockIndicatorDot({ state }: ClockIndicatorDotProps) {
   const separator = '0 0 0 2px var(--ld-semantic-color-fill-surface-primary, #ffffff)';
 
   return (
+    /* 12×12 outer container — provides the white separator ring and hit area */
     <span
       aria-hidden="true"
       style={{
@@ -78,10 +79,26 @@ function ClockIndicatorDot({ state }: ClockIndicatorDotProps) {
         width: '12px',
         height: '12px',
         borderRadius: '50%',
-        background,
-        boxShadow: `${insetStroke}, ${separator}`,
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        /* white separator ring */
+        boxShadow: separator,
+        background: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
         flexShrink: 0,
       }}
-    />
+    >
+      {/* 8×8 inner circle — carries the fill and inset stroke */}
+      <span
+        style={{
+          width: '8px',
+          height: '8px',
+          borderRadius: '50%',
+          background,
+          boxShadow: insetStroke,
+          flexShrink: 0,
+        }}
+      />
+    </span>
   );
 }
