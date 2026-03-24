@@ -1,0 +1,132 @@
+/* ── Floating Action Button ── */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 100px;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+}
+
+.fab:hover {
+  background: #292940;
+  border-color: #ff00ff;
+  box-shadow: 0 4px 20px rgba(255, 0, 255, 0.2);
+}
+
+.fabActive {
+  background: #ff00ff;
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 24px rgba(255, 0, 255, 0.5);
+}
+
+.fabActive:hover {
+  background: #e000e0;
+  border-color: transparent;
+}
+
+.fabLabel {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ── Highlight box (fixed, viewport coords) ── */
+.highlight {
+  position: fixed;
+  border: 1.5px solid #ff00ff;
+  background: rgba(255, 0, 255, 0.07);
+  pointer-events: none;
+  box-sizing: border-box;
+  z-index: 9996;
+}
+
+/* ── Floating tooltip ── */
+.tooltip {
+  position: fixed;
+  background: #1e1e2e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cdd6f4;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  min-width: 210px;
+  max-width: 260px;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+  line-height: 1.5;
+}
+
+.tooltipTag {
+  font-size: 10px;
+  color: #ff79c6;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 6px 0;
+}
+
+.sectionLabel {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ff00ff;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 1px 0;
+}
+
+.lbl {
+  color: #6c7086;
+  flex-shrink: 0;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.val {
+  color: #cdd6f4;
+  text-align: right;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.colorSwatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}

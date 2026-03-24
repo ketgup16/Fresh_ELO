@@ -6,6 +6,7 @@ import { DesktopHeader } from '@/components/walmart/DesktopHeader';
 import { Menu } from '@/components/icons/Menu';
 import { X } from '@/components/icons/X';
 import { ChevronDown } from '@/components/icons/ChevronDown';
+import { GlobalMeasureTool } from '@/pages/component-library/GlobalMeasureTool';
 import styles from './ComponentLibraryLayout.module.css';
 
 const COLLAPSED_STORAGE_KEY = 'cl-collapsed-sections';
@@ -307,6 +308,7 @@ export function ComponentLibraryLayout() {
           <Outlet />
         </main>
       </div>
+      <GlobalMeasureTool />
     </div>
   );
 }
