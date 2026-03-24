@@ -71,8 +71,8 @@ export default function AXAvatarExample() {
 
   const options: { value: AXAvatarClockIndicator; label: string }[] = [
     { value: 'none', label: 'None' },
-    { value: 'active', label: 'Active' },
-    { value: 'subtle', label: 'Subtle' },
+    { value: 'active', label: 'ClockedIn' },
+    { value: 'subtle', label: 'ClockedOut' },
   ];
 
   return (
