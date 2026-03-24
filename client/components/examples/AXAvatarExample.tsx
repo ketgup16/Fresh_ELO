@@ -87,7 +87,7 @@ export default function AXAvatarExample() {
         <div style={CONTROL_ROW}>
 
           {/* Indicator type dropdown */}
-          <span style={{ fontSize: '13px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', fontWeight: 500, whiteSpace: 'nowrap' }}>
+          <span style={{ fontSize: '13px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)', fontWeight: 700, whiteSpace: 'nowrap' }}>
             Type:
           </span>
           <select
