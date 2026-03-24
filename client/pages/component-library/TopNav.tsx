@@ -192,8 +192,8 @@ export default function TopNavPage() {
                         value={menuIconName}
                         onChange={(e) => setMenuIconName(e.target.value)}
                       >
-                        {['Menu', 'ChevronLeft', 'Close'].map(n => (
-                          <option key={n} value={n}>{n === menuIconName ? `✓ ${n}` : n}</option>
+                        {[['Menu', 'Menu'], ['ChevronLeft', 'ChevronLeft'], ['X', 'Close']].map(([val, label]) => (
+                          <option key={val} value={val}>{val === menuIconName ? `✓ ${label}` : label}</option>
                         ))}
                       </select>
                     </div>
