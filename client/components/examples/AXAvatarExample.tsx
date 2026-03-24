@@ -149,6 +149,44 @@ export default function AXAvatarExample() {
         </div>
       </div>
 
+      {/* ── Badge types ── */}
+      <section>
+        <h3 style={HEADING}>Badge types</h3>
+        <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+            <AXAvatar indicator="badge">
+              <AvatarFallback>JD</AvatarFallback>
+            </AXAvatar>
+            <span style={LABEL}>Badge</span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+            <AXAvatar indicator="none">
+              <AvatarFallback>AL</AvatarFallback>
+            </AXAvatar>
+            <span style={LABEL}>None</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Clock indicator status ── */}
+      <section>
+        <h3 style={HEADING}>Clock indicator status</h3>
+        <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+            <AXAvatar indicator="clock" clockState="active">
+              <AvatarFallback>MK</AvatarFallback>
+            </AXAvatar>
+            <span style={LABEL}>Clocked in</span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+            <AXAvatar indicator="clock" clockState="subtle">
+              <AvatarFallback>EM</AvatarFallback>
+            </AXAvatar>
+            <span style={LABEL}>Clocked out</span>
+          </div>
+        </div>
+      </section>
+
       {/* ── Avatar with Image ── */}
       <section>
         <h3 style={HEADING}>Avatar with Image</h3>
