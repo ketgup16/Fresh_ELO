@@ -118,10 +118,8 @@ export default function AXAvatarExample() {
         </section>
       </div>
 
-      {/* ── Reference sections — own card ── */}
-      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)', display: 'flex', flexDirection: 'column', gap: '40px' }}>
-
-        {/* ── Badge types ── */}
+      {/* ── Badge types ── */}
+      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
         <section>
           <h3 style={HEADING}>Badge types</h3>
           <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
@@ -139,8 +137,10 @@ export default function AXAvatarExample() {
             </div>
           </div>
         </section>
+      </div>
 
-        {/* ── Clock indicator status ── */}
+      {/* ── Clock indicator status ── */}
+      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
         <section>
           <h3 style={HEADING}>Clock indicator status</h3>
           <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
@@ -158,8 +158,10 @@ export default function AXAvatarExample() {
             </div>
           </div>
         </section>
+      </div>
 
-        {/* ── Avatar with Image ── */}
+      {/* ── Avatar with Image ── */}
+      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
         <section>
           <h3 style={HEADING}>Avatar with Image</h3>
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
@@ -177,8 +179,10 @@ export default function AXAvatarExample() {
             </AXAvatar>
           </div>
         </section>
+      </div>
 
-        {/* ── Avatar with Fallback ── */}
+      {/* ── Avatar with Fallback ── */}
+      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
         <section>
           <h3 style={HEADING}>Avatar with Fallback</h3>
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
@@ -193,10 +197,12 @@ export default function AXAvatarExample() {
             </AXAvatar>
           </div>
         </section>
+      </div>
 
-        {/* ── Different Sizes ── */}
+      {/* ── Sizes ── */}
+      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
         <section>
-          <h3 style={HEADING}>Different Sizes</h3>
+          <h3 style={HEADING}>Sizes</h3>
           <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
               <AXAvatar indicator={indicator} clockState={clockState} avatarStyle={{ width: '32px', height: '32px' }}>
@@ -218,7 +224,6 @@ export default function AXAvatarExample() {
             </div>
           </div>
         </section>
-
       </div>
     </div>
   );
