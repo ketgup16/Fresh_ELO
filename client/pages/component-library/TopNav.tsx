@@ -136,12 +136,13 @@ export default function TopNavPage() {
 
               <div className={styles.nativePropertiesPanel}>
                 <div className={styles.measureToggleRow}>
+                  <span className={styles.nativeControlLabel}>Measure tool</span>
                   <Button
                     variant={measureMode ? 'primary' : 'secondary'}
                     size="small"
                     onClick={() => setMeasureMode(m => !m)}
                   >
-                    {measureMode ? 'Measure: On' : 'Measure: Off'}
+                    {measureMode ? 'On' : 'Off'}
                   </Button>
                 </div>
 
