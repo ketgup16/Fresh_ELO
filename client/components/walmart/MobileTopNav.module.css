@@ -163,6 +163,45 @@
   flex-direction: column;
 }
 
+/* ── iOS Status bar with dynamic island ── */
+.nativeStatusBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--ld-primitive-scale-space-200, 16px);
+  height: 54px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.nativeStatusTime {
+  font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+  line-height: 1;
+  z-index: 1;
+}
+
+.nativeDynamicIsland {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 34px;
+  background: #000;
+  border-radius: 20px;
+}
+
+.nativeStatusIcons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 1;
+}
+
 .nativeHeader {
   display: flex;
   align-items: center;

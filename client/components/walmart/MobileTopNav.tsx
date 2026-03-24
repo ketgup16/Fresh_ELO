@@ -138,6 +138,33 @@ export function MobileTopNav({
         {/* === NATIVE HOME LAYOUT === */}
         {isNative && isBlue && showHomeExtras ? (
           <div className={styles.nativeHomeContainer}>
+            {/* iOS Status bar: time | dynamic island | status icons */}
+            <div className={styles.nativeStatusBar}>
+              <span className={styles.nativeStatusTime}>9:41</span>
+              <div className={styles.nativeDynamicIsland} />
+              <div className={styles.nativeStatusIcons}>
+                {/* Cellular signal */}
+                <svg width="17" height="12" viewBox="0 0 17 12" fill="white" aria-hidden="true">
+                  <rect x="0" y="7" width="3" height="5" rx="0.8" />
+                  <rect x="4.5" y="5" width="3" height="7" rx="0.8" />
+                  <rect x="9" y="2.5" width="3" height="9.5" rx="0.8" />
+                  <rect x="13.5" y="0" width="3" height="12" rx="0.8" />
+                </svg>
+                {/* Wi-Fi */}
+                <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                  <path d="M8 8.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" fill="white"/>
+                  <path d="M3.3 5.8A6.7 6.7 0 0 1 8 3.8c1.8 0 3.5.74 4.7 1.98l1.15-1.15A8.35 8.35 0 0 0 8 2.2c-2.3 0-4.38.94-5.88 2.44L3.3 5.8z" fill="white"/>
+                  <path d="M.7 3.1A10.5 10.5 0 0 1 8 .5c2.9 0 5.53 1.17 7.45 3.07L16.6 2.4A12.1 12.1 0 0 0 8-.1C4.58-.1 1.5 1.28-.55 3.52L.7 3.1z" fill="white" fillOpacity="0.5"/>
+                </svg>
+                {/* Battery */}
+                <svg width="25" height="12" viewBox="0 0 25 12" fill="none" aria-hidden="true">
+                  <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="white" strokeOpacity="0.35" strokeWidth="1"/>
+                  <rect x="1.5" y="1.5" width="18" height="9" rx="2.5" fill="white"/>
+                  <path d="M23 4v4c.83-.5 1.5-1.1 1.5-2s-.67-1.5-1.5-2z" fill="white" fillOpacity="0.4"/>
+                </svg>
+              </div>
+            </div>
+
             {/* Row 1: Header — menu | title+subtitle | action buttons */}
             <div className={styles.nativeHeader}>
               <IconButton
