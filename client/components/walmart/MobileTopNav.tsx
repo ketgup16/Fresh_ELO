@@ -45,6 +45,8 @@ interface MobileTopNavProps {
   showNativeAction1?: boolean;
   showNativeAction2?: boolean;
   showNativeAction3?: boolean;
+  /** Show/hide the AX Search Bar row. @default true */
+  showNativeSearchBar?: boolean;
 }
 
 export function MobileTopNav({
@@ -59,6 +61,7 @@ export function MobileTopNav({
   showNativeAction1 = true,
   showNativeAction2 = false,
   showNativeAction3 = false,
+  showNativeSearchBar = true,
 }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
@@ -204,14 +207,14 @@ export function MobileTopNav({
             </div>
 
             {/* Row 2: AX Search Bar */}
-            <div className={styles.nativeSearchRow}>
+            {showNativeSearchBar && <div className={styles.nativeSearchRow}>
               <AXSearchBar
                 value={nativeSearchValue}
                 onChange={setNativeSearchValue}
                 onBarcodeClick={() => setShowCameraModal(true)}
                 showMic={false}
               />
-            </div>
+            </div>}
           </div>
         ) : (
           /* === STANDARD TOP BAR (mweb home / non-home / native non-home) === */

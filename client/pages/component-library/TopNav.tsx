@@ -48,6 +48,7 @@ export default function TopNavPage() {
   const [showNativeAction1, setShowNativeAction1] = useState(true);
   const [showNativeAction2, setShowNativeAction2] = useState(false);
   const [showNativeAction3, setShowNativeAction3] = useState(false);
+  const [showNativeSearchBar, setShowNativeSearchBar] = useState(true);
   const [measureMode, setMeasureMode] = useState(false);
   const meta = PLATFORM_META[platform];
 
@@ -122,6 +123,7 @@ export default function TopNavPage() {
                     showNativeAction1={showNativeAction1}
                     showNativeAction2={showNativeAction2}
                     showNativeAction3={showNativeAction3}
+                    showNativeSearchBar={showNativeSearchBar}
                   />
                   <div className={styles.nativePageContent}>
                     <p className={styles.nativePageHint}>
@@ -208,6 +210,13 @@ export default function TopNavPage() {
                       <div style={{ display: 'flex', gap: '8px' }}>
                         <Chip size="small" selected={showNativeAction3} onClick={() => setShowNativeAction3(true)}>On</Chip>
                         <Chip size="small" selected={!showNativeAction3} onClick={() => setShowNativeAction3(false)}>Off</Chip>
+                      </div>
+                    </div>
+                    <div className={styles.nativeControlRow}>
+                      <span className={styles.nativeControlLabel}>AX Search Bar</span>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <Chip size="small" selected={showNativeSearchBar} onClick={() => setShowNativeSearchBar(true)}>On</Chip>
+                        <Chip size="small" selected={!showNativeSearchBar} onClick={() => setShowNativeSearchBar(false)}>Off</Chip>
                       </div>
                     </div>
                   </div>
