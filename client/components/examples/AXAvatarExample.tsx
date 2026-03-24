@@ -18,37 +18,6 @@ const LABEL: React.CSSProperties = {
   textAlign: 'center',
 };
 
-const CONTROL_ROW: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '12px',
-  flexWrap: 'wrap',
-  marginBottom: '32px',
-  padding: '16px',
-  background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
-  borderRadius: '8px',
-};
-
-const CHIP_BASE: React.CSSProperties = {
-  padding: '6px 14px',
-  borderRadius: '999px',
-  border: '1px solid var(--ld-semantic-color-separator, #D9DADB)',
-  background: 'white',
-  fontFamily: 'var(--ld-semantic-font-family-sans)',
-  fontSize: '13px',
-  fontWeight: 500,
-  cursor: 'pointer',
-  color: 'var(--ld-semantic-color-text, #2E2F32)',
-  transition: 'all 0.15s ease',
-};
-
-const CHIP_ACTIVE: React.CSSProperties = {
-  ...CHIP_BASE,
-  background: 'var(--ld-semantic-color-action-fill-primary, #0071DC)',
-  borderColor: 'var(--ld-semantic-color-action-fill-primary, #0071DC)',
-  color: 'white',
-};
-
 const SELECT_STYLE: React.CSSProperties = {
   fontFamily: 'var(--ld-semantic-font-family-sans)',
   fontSize: '13px',
@@ -73,63 +42,69 @@ export default function AXAvatarExample() {
   const [indicator, setIndicator] = useState<AXAvatarIndicatorType>('none');
   const [clockState, setClockState] = useState<AXAvatarClockState>('active');
 
-  const clockStateOptions: { value: AXAvatarClockState; label: string }[] = [
-    { value: 'active', label: 'Clocked in' },
-    { value: 'subtle', label: 'Clocked out' },
-  ];
-
   return (
     <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
 
       {/* ── Properties Panel ── */}
-      <div>
-        <h3 style={{ ...HEADING, marginBottom: '12px' }}>Indicator</h3>
-        <div style={CONTROL_ROW}>
+      <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start' }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          border: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
+          borderRadius: '8px',
+          background: 'var(--ld-semantic-color-surface, #fff)',
+          width: '240px',
+          overflow: 'hidden',
+          flexShrink: 0,
+        }}>
+          {/* Panel heading */}
+          <div style={{
+            padding: '8px 16px',
+            borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
+            background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+          }}>
+            <span style={{
+              fontSize: '11px',
+              fontWeight: 700,
+              fontFamily: 'var(--ld-semantic-font-family-sans)',
+              color: 'var(--ld-semantic-color-text-subtle, #74767C)',
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+            }}>
+              Properties
+            </span>
+          </div>
 
-          {/* Indicator type dropdown */}
-          <span style={{ fontSize: '13px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)', fontWeight: 700, whiteSpace: 'nowrap' }}>
-            Type:
-          </span>
-          <select
-            value={indicator}
-            onChange={e => setIndicator(e.target.value as AXAvatarIndicatorType)}
-            style={SELECT_STYLE}
-          >
-            <option value="none">None</option>
-            <option value="badge">Badge</option>
-            <option value="clock">Clock indicator</option>
-          </select>
+          {/* Badge property row */}
+          <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)' }}>
+            <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
+              Badge
+            </span>
+            <select
+              value={indicator}
+              onChange={e => setIndicator(e.target.value as AXAvatarIndicatorType)}
+              style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
+            >
+              <option value="none">None</option>
+              <option value="badge">Badge</option>
+              <option value="clock">Clock indicator</option>
+            </select>
+          </div>
 
-          {/* Clock state chips — only when clock indicator is selected */}
-          {indicator === 'clock' && (
-            <>
-              <div style={DIVIDER} />
-              <span style={{ fontSize: '13px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', fontWeight: 500, whiteSpace: 'nowrap' }}>
-                State:
-              </span>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                {clockStateOptions.map(opt => (
-                  <button
-                    key={opt.value}
-                    style={clockState === opt.value ? CHIP_ACTIVE : CHIP_BASE}
-                    onClick={() => setClockState(opt.value)}
-                  >
-                    {opt.label}
-                  </button>
-                ))}
-              </div>
-            </>
-          )}
-
-          {/* Badge note */}
-          {indicator === 'badge' && (
-            <>
-              <div style={DIVIDER} />
-              <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>
-                Variant: Brand Bold (blue)
-              </span>
-            </>
-          )}
+          {/* Clock status property row */}
+          <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
+              Clock status
+            </span>
+            <select
+              value={clockState}
+              onChange={e => setClockState(e.target.value as AXAvatarClockState)}
+              style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
+            >
+              <option value="active">Clocked in</option>
+              <option value="subtle">Clocked out</option>
+            </select>
+          </div>
         </div>
 
         {/* Indicator reference row */}
