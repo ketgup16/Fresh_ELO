@@ -181,11 +181,10 @@ export function MobileTopNav({
             {/* Row 1: Header — menu | title+subtitle | action buttons */}
             <div className={styles.nativeHeader}>
               <IconButton
-                variant="ghost"
+                variant="white"
                 size="medium"
                 aria-label="Menu"
                 onClick={() => setShowMenuPanel(true)}
-                UNSAFE_style={{ color: 'white' }}
               >
                 {menuIcon}
               </IconButton>
@@ -199,17 +198,17 @@ export function MobileTopNav({
 
               <div className={styles.nativeActions}>
                 {showNativeAction1 && (
-                  <IconButton variant="ghost" size="medium" aria-label="Action 1" UNSAFE_style={{ color: 'white' }}>
+                  <IconButton variant="white" size="medium" aria-label="Action 1">
                     {action1Icon}
                   </IconButton>
                 )}
                 {showNativeAction2 && (
-                  <IconButton variant="ghost" size="medium" aria-label="Action 2" UNSAFE_style={{ color: 'white' }}>
+                  <IconButton variant="white" size="medium" aria-label="Action 2">
                     {action2Icon}
                   </IconButton>
                 )}
                 {showNativeAction3 && (
-                  <IconButton variant="ghost" size="medium" aria-label="Action 3" UNSAFE_style={{ color: 'white' }}>
+                  <IconButton variant="white" size="medium" aria-label="Action 3">
                     {action3Icon}
                   </IconButton>
                 )}

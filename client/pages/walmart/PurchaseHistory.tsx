@@ -373,10 +373,10 @@ export default function PurchaseHistory() {
           </Breadcrumb>
           <div className={styles.breadcrumbActions}>
             <IconButton variant="ghost" size="medium" aria-label="Messages" onClick={() => navigate('/walmart/purchase-history')}>
-              <Email style={{ width: 20, height: 20 }} />
+              <Email />
             </IconButton>
             <IconButton variant="ghost" size="medium" aria-label="Settings" onClick={() => setOpenSection(s => s === 'settings' ? null : 'settings')}>
-              <Gear style={{ width: 20, height: 20 }} />
+              <Gear />
             </IconButton>
           </div>
         </div>
