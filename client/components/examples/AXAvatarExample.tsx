@@ -124,13 +124,13 @@ export default function AXAvatarExample() {
               <AXAvatar clockIndicator="active">
                 <AvatarFallback>JD</AvatarFallback>
               </AXAvatar>
-              <span style={LABEL}>Active</span>
+              <span style={LABEL}>Clocked in</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
               <AXAvatar clockIndicator="subtle">
                 <AvatarFallback>MK</AvatarFallback>
               </AXAvatar>
-              <span style={LABEL}>Subtle</span>
+              <span style={LABEL}>Clocked out</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
               <AXAvatar clockIndicator="none">
