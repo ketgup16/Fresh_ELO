@@ -29,28 +29,28 @@ export default function IconButtonExample() {
 
           <div className="flex flex-col items-center gap-2">
             <IconButton aria-label="Information" variant="ghost" size="small">
-              <InfoCircle style={{ width: 16, height: 16 }} />
+              <InfoCircle />
             </IconButton>
             <span className="text-xs text-gray-600">Small</span>
           </div>
 
           <div className="flex flex-col items-center gap-2">
             <IconButton aria-label="Information" variant="ghost" size="medium">
-              <InfoCircle style={{ width: 20, height: 20 }} />
+              <InfoCircle />
             </IconButton>
             <span className="text-xs text-gray-600">Medium</span>
           </div>
 
           <div className="flex flex-col items-center gap-2">
             <IconButton aria-label="Information" variant="ghost" size="large">
-              <InfoCircle style={{ width: 24, height: 24 }} />
+              <InfoCircle />
             </IconButton>
             <span className="text-xs text-gray-600">Large</span>
           </div>
 
           <div className="flex flex-col items-center gap-2">
             <IconButton aria-label="Information" variant="ghost" size="medium" disabled>
-              <InfoCircle style={{ width: 20, height: 20 }} />
+              <InfoCircle />
             </IconButton>
             <span className="text-xs text-gray-600">Disabled</span>
           </div>
@@ -70,13 +70,13 @@ export default function IconButtonExample() {
               <Plus />
             </IconButton>
             <IconButton aria-label="Add item" variant="primary" shape="rounded" size="small">
-              <Plus style={{ width: 16, height: 16 }} />
+              <Plus />
             </IconButton>
             <IconButton aria-label="Add item" variant="primary" shape="rounded" size="medium">
-              <Plus style={{ width: 20, height: 20 }} />
+              <Plus />
             </IconButton>
             <IconButton aria-label="Add item" variant="primary" shape="rounded" size="large">
-              <Plus style={{ width: 24, height: 24 }} />
+              <Plus />
             </IconButton>
           </div>
 
@@ -86,13 +86,13 @@ export default function IconButtonExample() {
               <Edit />
             </IconButton>
             <IconButton aria-label="Edit" variant="secondary" shape="rounded" size="small">
-              <Edit style={{ width: 16, height: 16 }} />
+              <Edit />
             </IconButton>
             <IconButton aria-label="Edit" variant="secondary" shape="rounded" size="medium">
-              <Edit style={{ width: 20, height: 20 }} />
+              <Edit />
             </IconButton>
             <IconButton aria-label="Edit" variant="secondary" shape="rounded" size="large">
-              <Edit style={{ width: 24, height: 24 }} />
+              <Edit />
             </IconButton>
           </div>
 
@@ -102,13 +102,13 @@ export default function IconButtonExample() {
               <X />
             </IconButton>
             <IconButton aria-label="Close" variant="ghost" shape="rounded" size="small">
-              <X style={{ width: 16, height: 16 }} />
+              <X />
             </IconButton>
             <IconButton aria-label="Close" variant="ghost" shape="rounded" size="medium">
-              <X style={{ width: 20, height: 20 }} />
+              <X />
             </IconButton>
             <IconButton aria-label="Close" variant="ghost" shape="rounded" size="large">
-              <X style={{ width: 24, height: 24 }} />
+              <X />
             </IconButton>
           </div>
 
@@ -118,13 +118,13 @@ export default function IconButtonExample() {
               <Trash />
             </IconButton>
             <IconButton aria-label="Delete" variant="destructive" shape="rounded" size="small">
-              <Trash style={{ width: 16, height: 16 }} />
+              <Trash />
             </IconButton>
             <IconButton aria-label="Delete" variant="destructive" shape="rounded" size="medium">
-              <Trash style={{ width: 20, height: 20 }} />
+              <Trash />
             </IconButton>
             <IconButton aria-label="Delete" variant="destructive" shape="rounded" size="large">
-              <Trash style={{ width: 24, height: 24 }} />
+              <Trash />
             </IconButton>
           </div>
         </div>
@@ -135,19 +135,19 @@ export default function IconButtonExample() {
         <h2 className="text-xl font-semibold mb-4">Primary Variant</h2>
         <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
           <IconButton aria-label="Add item" variant="primary" size="small">
-            <Plus style={{ width: 16, height: 16 }} />
+            <Plus />
           </IconButton>
 
           <IconButton aria-label="Add item" variant="primary" size="medium">
-            <Plus style={{ width: 20, height: 20 }} />
+            <Plus />
           </IconButton>
 
           <IconButton aria-label="Add item" variant="primary" size="large">
-            <Plus style={{ width: 24, height: 24 }} />
+            <Plus />
           </IconButton>
 
           <IconButton aria-label="Add item" variant="primary" size="medium" disabled>
-            <Plus style={{ width: 20, height: 20 }} />
+            <Plus />
           </IconButton>
         </div>
       </section>
@@ -157,19 +157,19 @@ export default function IconButtonExample() {
         <h2 className="text-xl font-semibold mb-4">Secondary Variant</h2>
         <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
           <IconButton aria-label="Edit" variant="secondary" size="small">
-            <Edit style={{ width: 16, height: 16 }} />
+            <Edit />
           </IconButton>
 
           <IconButton aria-label="Edit" variant="secondary" size="medium">
-            <Edit style={{ width: 20, height: 20 }} />
+            <Edit />
           </IconButton>
 
           <IconButton aria-label="Edit" variant="secondary" size="large">
-            <Edit style={{ width: 24, height: 24 }} />
+            <Edit />
           </IconButton>
 
           <IconButton aria-label="Edit" variant="secondary" size="medium" disabled>
-            <Edit style={{ width: 20, height: 20 }} />
+            <Edit />
           </IconButton>
         </div>
       </section>
@@ -179,19 +179,19 @@ export default function IconButtonExample() {
         <h2 className="text-xl font-semibold mb-4">Destructive Variant</h2>
         <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
           <IconButton aria-label="Delete" variant="destructive" size="small">
-            <Trash style={{ width: 16, height: 16 }} />
+            <Trash />
           </IconButton>
 
           <IconButton aria-label="Delete" variant="destructive" size="medium">
-            <Trash style={{ width: 20, height: 20 }} />
+            <Trash />
           </IconButton>
 
           <IconButton aria-label="Delete" variant="destructive" size="large">
-            <Trash style={{ width: 24, height: 24 }} />
+            <Trash />
           </IconButton>
 
           <IconButton aria-label="Delete" variant="destructive" size="medium" disabled>
-            <Trash style={{ width: 20, height: 20 }} />
+            <Trash />
           </IconButton>
         </div>
       </section>
@@ -203,21 +203,21 @@ export default function IconButtonExample() {
           <div className="flex items-center gap-2 p-4 bg-gray-50 rounded">
             <span className="text-sm text-gray-600 mr-auto">Close Dialog:</span>
             <IconButton aria-label="Close dialog" variant="ghost">
-              <X style={{ width: 20, height: 20 }} />
+              <X />
             </IconButton>
           </div>
 
           <div className="flex items-center gap-2 p-4 bg-gray-50 rounded">
             <span className="text-sm text-gray-600 mr-auto">Menu Toggle:</span>
             <IconButton aria-label="Open menu" variant="ghost">
-              <Menu style={{ width: 20, height: 20 }} />
+              <Menu />
             </IconButton>
           </div>
 
           <div className="flex items-center gap-2 p-4 bg-gray-50 rounded">
             <span className="text-sm text-gray-600 mr-auto">Dropdown Arrow:</span>
             <IconButton aria-label="Expand options" variant="ghost" size="small">
-              <ChevronDown style={{ width: 16, height: 16 }} />
+              <ChevronDown />
             </IconButton>
           </div>
         </div>
