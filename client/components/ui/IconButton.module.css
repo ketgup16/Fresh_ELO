@@ -72,10 +72,10 @@
   }
 }
 
-/* large: 40×40 (unchanged) */
+/* large: 48×48 */
 .iconButton--size-large {
-  width: 40px;
-  height: 40px;
+  width: var(--ld-primitive-scale-space-600, 48px);
+  height: var(--ld-primitive-scale-space-600, 48px);
   padding: var(--ld-primitive-scale-space-100);
 }
 
