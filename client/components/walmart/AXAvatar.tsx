@@ -74,7 +74,7 @@ function ClockIndicatorDot({ state }: ClockIndicatorDotProps) {
       aria-hidden="true"
       style={{
         position: 'absolute',
-        bottom: 0,
+        top: 0,
         right: 0,
         width: '12px',
         height: '12px',
