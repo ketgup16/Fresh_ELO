@@ -350,8 +350,8 @@ export function MobileTopNav({
           </div>
         )}
 
-        {/* Sub Nav — homepage only */}
-        {showHomeExtras && (
+        {/* Sub Nav — homepage only, not shown on native */}
+        {showHomeExtras && !isNative && (
           <div
             ref={subNavRef}
             className={`${styles.subNav} ${showDeliveryOptions ? styles.subNavHidden : ''}`}
