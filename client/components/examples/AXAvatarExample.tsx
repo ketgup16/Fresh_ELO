@@ -37,183 +37,189 @@ export default function AXAvatarExample() {
   const [clockState, setClockState] = useState<AXAvatarClockState>('active');
 
   return (
-    <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
-      {/* ── Interactive demo ── */}
-      <section>
-        <h3 style={HEADING}>Interactive demo</h3>
-        <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start' }}>
+      {/* ── Interactive demo — own card ── */}
+      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
+        <section>
+          <h3 style={HEADING}>Interactive demo</h3>
+          <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start' }}>
 
-          {/* Properties panel */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            border: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-            borderRadius: '8px',
-            background: 'var(--ld-semantic-color-surface, #fff)',
-            width: '240px',
-            overflow: 'hidden',
-            flexShrink: 0,
-          }}>
-            {/* Panel heading */}
+            {/* Properties panel */}
             <div style={{
-              padding: '8px 16px',
-              borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-              background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+              display: 'flex',
+              flexDirection: 'column',
+              border: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
+              borderRadius: '8px',
+              background: 'var(--ld-semantic-color-surface, #fff)',
+              width: '240px',
+              overflow: 'hidden',
+              flexShrink: 0,
             }}>
-              <span style={{
-                fontSize: '11px',
-                fontWeight: 700,
-                fontFamily: 'var(--ld-semantic-font-family-sans)',
-                color: 'var(--ld-semantic-color-text-subtle, #74767C)',
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
+              {/* Panel heading */}
+              <div style={{
+                padding: '8px 16px',
+                borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
+                background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
               }}>
-                Properties
-              </span>
+                <span style={{
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  fontFamily: 'var(--ld-semantic-font-family-sans)',
+                  color: 'var(--ld-semantic-color-text-subtle, #74767C)',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                }}>
+                  Properties
+                </span>
+              </div>
+
+              {/* Badge property row */}
+              <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)' }}>
+                <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
+                  Badge
+                </span>
+                <select
+                  value={indicator}
+                  onChange={e => setIndicator(e.target.value as AXAvatarIndicatorType)}
+                  style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
+                >
+                  <option value="none">None</option>
+                  <option value="badge">Badge</option>
+                  <option value="clock">Clock indicator</option>
+                </select>
+              </div>
+
+              {/* Clock status property row */}
+              <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
+                  Clock status
+                </span>
+                <select
+                  value={clockState}
+                  onChange={e => setClockState(e.target.value as AXAvatarClockState)}
+                  style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
+                >
+                  <option value="active">Clocked in</option>
+                  <option value="subtle">Clocked out</option>
+                </select>
+              </div>
             </div>
 
-            {/* Badge property row */}
-            <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)' }}>
-              <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
-                Badge
-              </span>
-              <select
-                value={indicator}
-                onChange={e => setIndicator(e.target.value as AXAvatarIndicatorType)}
-                style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
-              >
-                <option value="none">None</option>
-                <option value="badge">Badge</option>
-                <option value="clock">Clock indicator</option>
-              </select>
+            {/* Live preview */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator={indicator} clockState={clockState}>
+                <AvatarFallback>AB</AvatarFallback>
+              </AXAvatar>
+              <span style={LABEL}>Preview</span>
             </div>
 
-            {/* Clock status property row */}
-            <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
-                Clock status
-              </span>
-              <select
-                value={clockState}
-                onChange={e => setClockState(e.target.value as AXAvatarClockState)}
-                style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
-              >
-                <option value="active">Clocked in</option>
-                <option value="subtle">Clocked out</option>
-              </select>
+          </div>
+        </section>
+      </div>
+
+      {/* ── Reference sections — own card ── */}
+      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)', display: 'flex', flexDirection: 'column', gap: '40px' }}>
+
+        {/* ── Badge types ── */}
+        <section>
+          <h3 style={HEADING}>Badge types</h3>
+          <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator="badge">
+                <AvatarFallback>JD</AvatarFallback>
+              </AXAvatar>
+              <span style={LABEL}>Badge</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator="none">
+                <AvatarFallback>AL</AvatarFallback>
+              </AXAvatar>
+              <span style={LABEL}>None</span>
             </div>
           </div>
+        </section>
 
-          {/* Live preview */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+        {/* ── Clock indicator status ── */}
+        <section>
+          <h3 style={HEADING}>Clock indicator status</h3>
+          <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator="clock" clockState="active">
+                <AvatarFallback>MK</AvatarFallback>
+              </AXAvatar>
+              <span style={LABEL}>Clocked in</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator="clock" clockState="subtle">
+                <AvatarFallback>EM</AvatarFallback>
+              </AXAvatar>
+              <span style={LABEL}>Clocked out</span>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Avatar with Image ── */}
+        <section>
+          <h3 style={HEADING}>Avatar with Image</h3>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+            <AXAvatar indicator={indicator} clockState={clockState}>
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback>CN</AvatarFallback>
+            </AXAvatar>
+            <AXAvatar indicator={indicator} clockState={clockState}>
+              <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+              <AvatarFallback>VC</AvatarFallback>
+            </AXAvatar>
+            <AXAvatar indicator={indicator} clockState={clockState}>
+              <AvatarImage src="https://github.com/react.png" alt="@react" />
+              <AvatarFallback>RC</AvatarFallback>
+            </AXAvatar>
+          </div>
+        </section>
+
+        {/* ── Avatar with Fallback ── */}
+        <section>
+          <h3 style={HEADING}>Avatar with Fallback</h3>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
             <AXAvatar indicator={indicator} clockState={clockState}>
               <AvatarFallback>AB</AvatarFallback>
             </AXAvatar>
-            <span style={LABEL}>Preview</span>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── Badge types ── */}
-      <section>
-        <h3 style={HEADING}>Badge types</h3>
-        <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <AXAvatar indicator="badge">
-              <AvatarFallback>JD</AvatarFallback>
-            </AXAvatar>
-            <span style={LABEL}>Badge</span>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <AXAvatar indicator="none">
-              <AvatarFallback>AL</AvatarFallback>
-            </AXAvatar>
-            <span style={LABEL}>None</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Clock indicator status ── */}
-      <section>
-        <h3 style={HEADING}>Clock indicator status</h3>
-        <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <AXAvatar indicator="clock" clockState="active">
-              <AvatarFallback>MK</AvatarFallback>
-            </AXAvatar>
-            <span style={LABEL}>Clocked in</span>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <AXAvatar indicator="clock" clockState="subtle">
-              <AvatarFallback>EM</AvatarFallback>
-            </AXAvatar>
-            <span style={LABEL}>Clocked out</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Avatar with Image ── */}
-      <section>
-        <h3 style={HEADING}>Avatar with Image</h3>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-          <AXAvatar indicator={indicator} clockState={clockState}>
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-            <AvatarFallback>CN</AvatarFallback>
-          </AXAvatar>
-          <AXAvatar indicator={indicator} clockState={clockState}>
-            <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
-            <AvatarFallback>VC</AvatarFallback>
-          </AXAvatar>
-          <AXAvatar indicator={indicator} clockState={clockState}>
-            <AvatarImage src="https://github.com/react.png" alt="@react" />
-            <AvatarFallback>RC</AvatarFallback>
-          </AXAvatar>
-        </div>
-      </section>
-
-      {/* ── Avatar with Fallback ── */}
-      <section>
-        <h3 style={HEADING}>Avatar with Fallback</h3>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-          <AXAvatar indicator={indicator} clockState={clockState}>
-            <AvatarFallback>AB</AvatarFallback>
-          </AXAvatar>
-          <AXAvatar indicator={indicator} clockState={clockState}>
-            <AvatarFallback>CD</AvatarFallback>
-          </AXAvatar>
-          <AXAvatar indicator={indicator} clockState={clockState}>
-            <AvatarFallback>EF</AvatarFallback>
-          </AXAvatar>
-        </div>
-      </section>
-
-      {/* ── Different Sizes ── */}
-      <section>
-        <h3 style={HEADING}>Different Sizes</h3>
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <AXAvatar indicator={indicator} clockState={clockState} avatarStyle={{ width: '32px', height: '32px' }}>
-              <AvatarFallback style={{ fontSize: '12px' }}>SM</AvatarFallback>
-            </AXAvatar>
-            <span style={LABEL}>Small</span>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
             <AXAvatar indicator={indicator} clockState={clockState}>
-              <AvatarFallback>MD</AvatarFallback>
+              <AvatarFallback>CD</AvatarFallback>
             </AXAvatar>
-            <span style={LABEL}>Medium</span>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <AXAvatar indicator={indicator} clockState={clockState} avatarStyle={{ width: '56px', height: '56px' }}>
-              <AvatarFallback style={{ fontSize: '18px' }}>LG</AvatarFallback>
+            <AXAvatar indicator={indicator} clockState={clockState}>
+              <AvatarFallback>EF</AvatarFallback>
             </AXAvatar>
-            <span style={LABEL}>Large</span>
           </div>
-        </div>
-      </section>
+        </section>
 
+        {/* ── Different Sizes ── */}
+        <section>
+          <h3 style={HEADING}>Different Sizes</h3>
+          <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator={indicator} clockState={clockState} avatarStyle={{ width: '32px', height: '32px' }}>
+                <AvatarFallback style={{ fontSize: '12px' }}>SM</AvatarFallback>
+              </AXAvatar>
+              <span style={LABEL}>Small</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator={indicator} clockState={clockState}>
+                <AvatarFallback>MD</AvatarFallback>
+              </AXAvatar>
+              <span style={LABEL}>Medium</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator={indicator} clockState={clockState} avatarStyle={{ width: '56px', height: '56px' }}>
+                <AvatarFallback style={{ fontSize: '18px' }}>LG</AvatarFallback>
+              </AXAvatar>
+              <span style={LABEL}>Large</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </div>
   );
 }
