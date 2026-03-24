@@ -42,8 +42,8 @@
 }
 
 .iconButton--size-small .iconButton__icon svg {
-  width: var(--ld-semantic-scale-icon-small);
-  height: var(--ld-semantic-scale-icon-small);
+  width: var(--ld-semantic-scale-icon-small, 16px);
+  height: var(--ld-semantic-scale-icon-small, 16px);
 }
 
 @media (min-width: 1024px) {
@@ -61,8 +61,8 @@
 }
 
 .iconButton--size-medium .iconButton__icon svg {
-  width: var(--ld-semantic-scale-icon-medium);
-  height: var(--ld-semantic-scale-icon-medium);
+  width: var(--ld-semantic-scale-icon-medium, 24px);
+  height: var(--ld-semantic-scale-icon-medium, 24px);
 }
 
 @media (min-width: 1024px) {
@@ -80,8 +80,8 @@
 }
 
 .iconButton--size-large .iconButton__icon svg {
-  width: var(--ld-primitive-scale-space-300);
-  height: var(--ld-primitive-scale-space-300);
+  width: var(--ld-primitive-scale-space-400, 32px);
+  height: var(--ld-primitive-scale-space-400, 32px);
 }
 
 /* Ghost Variant (transparent background) */
