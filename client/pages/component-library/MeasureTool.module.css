@@ -1,0 +1,95 @@
+.measureWrap {
+  position: relative;
+}
+
+/* Full overlay that captures mouse events */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 999;
+  cursor: crosshair;
+  border-radius: inherit;
+}
+
+/* Blue highlight box drawn over the hovered element */
+.highlight {
+  position: absolute;
+  border: 1.5px solid #0053e2;
+  background: rgba(0, 83, 226, 0.08);
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+/* Size label that appears at top-left of the highlight */
+.sizeLabel {
+  position: absolute;
+  top: -20px;
+  left: -1px;
+  background: #0053e2;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 5px;
+  border-radius: 3px 3px 3px 0;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+/* Floating measurement tooltip */
+.tooltip {
+  position: absolute;
+  background: #1e1e2e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cdd6f4;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  min-width: 190px;
+  max-width: 240px;
+  pointer-events: none;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+  line-height: 1.5;
+}
+
+/* Element tag / identifier */
+.tooltipTag {
+  font-size: 10px;
+  color: #89b4fa;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 210px;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 6px 0;
+}
+
+/* Each measurement row */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 1px 0;
+}
+
+.lbl {
+  color: #6c7086;
+  flex-shrink: 0;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.val {
+  color: #cdd6f4;
+  text-align: right;
+  font-size: 11px;
+}

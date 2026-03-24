@@ -213,6 +213,11 @@
   margin: 0;
 }
 
+.measureToggleRow {
+  display: flex;
+  align-items: center;
+}
+
 .nativePropertiesPanel {
   display: flex;
   flex-direction: column;

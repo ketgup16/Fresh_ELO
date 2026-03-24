@@ -8,6 +8,7 @@ import { TextField } from '@/components/ui/TextField';
 import { DesktopHeader } from '@/components/walmart/DesktopHeader';
 import { MobileHeader } from '@/components/walmart/MobileHeader';
 import { MobileTopNav, type MobileTopNavVariant } from '@/components/walmart/MobileTopNav';
+import { MeasureTool } from './MeasureTool';
 import styles from './TopNav.module.css';
 
 type Platform = 'dweb' | 'mweb' | 'native';
@@ -47,6 +48,7 @@ export default function TopNavPage() {
   const [showNativeAction1, setShowNativeAction1] = useState(true);
   const [showNativeAction2, setShowNativeAction2] = useState(false);
   const [showNativeAction3, setShowNativeAction3] = useState(false);
+  const [measureMode, setMeasureMode] = useState(false);
   const meta = PLATFORM_META[platform];
 
   return (
@@ -106,6 +108,7 @@ export default function TopNavPage() {
           )}
           {platform === 'native' && (
             <div className={styles.nativeFrame}>
+              <MeasureTool active={measureMode}>
               <div className={styles.nativePhone}>
                 <div className={styles.nativeScreen}>
                   <MobileTopNav
@@ -127,8 +130,19 @@ export default function TopNavPage() {
                   </div>
                 </div>
               </div>
+              </MeasureTool>
 
               <div className={styles.nativePropertiesPanel}>
+                <div className={styles.measureToggleRow}>
+                  <Button
+                    variant={measureMode ? 'primary' : 'secondary'}
+                    size="small"
+                    onClick={() => setMeasureMode(m => !m)}
+                  >
+                    {measureMode ? 'Measure: On' : 'Measure: Off'}
+                  </Button>
+                </div>
+
                 <div className={styles.nativeVariantSwitcher}>
                   <p className={styles.nativeVariantLabel}>Color variant:</p>
                   <ButtonGroup>
