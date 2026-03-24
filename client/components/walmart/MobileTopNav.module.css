@@ -260,7 +260,7 @@
    ═══════════════════════════════════════════ */
 
 .nativeSearchRow {
-  padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-400, 16px);
+  padding: var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-200, 16px);
 }
 
 .nativeSearchPill {
