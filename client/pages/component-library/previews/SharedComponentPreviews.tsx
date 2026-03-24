@@ -64,6 +64,22 @@ export function AvatarPreview() {
   );
 }
 
+export function AXAvatarPreview() {
+  return (
+    <PreviewFrame>
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        {[
+          { initials: 'AH', bg: 'var(--ld-semantic-color-fill-accent-blue, #0053e2)' },
+          { initials: 'JD', bg: 'var(--ld-semantic-color-fill-accent-green, #2a8703)' },
+          { initials: 'MK', bg: 'var(--ld-semantic-color-fill-accent-purple, #63327e)' },
+        ].map((a, i) => (
+          <div key={i} style={{ width: '36px', height: '36px', borderRadius: '50%', background: a.bg, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700 }}>{a.initials}</div>
+        ))}
+      </div>
+    </PreviewFrame>
+  );
+}
+
 export function CalendarPreview() {
   return (
     <PreviewFrame>

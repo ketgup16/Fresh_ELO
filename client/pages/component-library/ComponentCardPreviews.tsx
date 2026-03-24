@@ -95,6 +95,7 @@ const PREVIEW_MAP: Record<string, React.FC> = {
   'Accordion': Shared.AccordionPreview,
   'Alert Dialog': Shared.AlertDialogPreview,
   'Avatar': Shared.AvatarPreview,
+  'AX Avatar': Shared.AXAvatarPreview,
   'Calendar': Shared.CalendarPreview,
   'Carousel': Shared.CarouselPreview,
   'Chart': Shared.ChartPreview,
