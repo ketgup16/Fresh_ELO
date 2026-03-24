@@ -207,6 +207,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--ld-primitive-scale-space-100, 8px);
+  min-height: 56px;
   position: relative;
 }
 
