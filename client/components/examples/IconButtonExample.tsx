@@ -66,6 +66,9 @@ export default function IconButtonExample() {
         <div className="space-y-4">
           <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
             <span className="text-sm text-gray-600 w-24">Primary:</span>
+            <IconButton aria-label="Add item" variant="primary" shape="rounded" size="xsmall">
+              <Plus />
+            </IconButton>
             <IconButton aria-label="Add item" variant="primary" shape="rounded" size="small">
               <Plus style={{ width: 16, height: 16 }} />
             </IconButton>
@@ -79,6 +82,9 @@ export default function IconButtonExample() {
 
           <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
             <span className="text-sm text-gray-600 w-24">Secondary:</span>
+            <IconButton aria-label="Edit" variant="secondary" shape="rounded" size="xsmall">
+              <Edit />
+            </IconButton>
             <IconButton aria-label="Edit" variant="secondary" shape="rounded" size="small">
               <Edit style={{ width: 16, height: 16 }} />
             </IconButton>
@@ -92,6 +98,9 @@ export default function IconButtonExample() {
 
           <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
             <span className="text-sm text-gray-600 w-24">Ghost:</span>
+            <IconButton aria-label="Close" variant="ghost" shape="rounded" size="xsmall">
+              <X />
+            </IconButton>
             <IconButton aria-label="Close" variant="ghost" shape="rounded" size="small">
               <X style={{ width: 16, height: 16 }} />
             </IconButton>
@@ -105,6 +114,9 @@ export default function IconButtonExample() {
 
           <div className="flex items-center gap-4 p-4 bg-gray-50 rounded">
             <span className="text-sm text-gray-600 w-24">Destructive:</span>
+            <IconButton aria-label="Delete" variant="destructive" shape="rounded" size="xsmall">
+              <Trash />
+            </IconButton>
             <IconButton aria-label="Delete" variant="destructive" shape="rounded" size="small">
               <Trash style={{ width: 16, height: 16 }} />
             </IconButton>
