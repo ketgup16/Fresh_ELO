@@ -11,11 +11,11 @@
   border-radius: inherit;
 }
 
-/* Blue highlight box drawn over the hovered element */
+/* Magenta highlight box drawn over the hovered element */
 .highlight {
   position: absolute;
-  border: 1.5px solid #0053e2;
-  background: rgba(0, 83, 226, 0.08);
+  border: 1.5px solid #ff00ff;
+  background: rgba(255, 0, 255, 0.08);
   pointer-events: none;
   box-sizing: border-box;
 }
@@ -25,7 +25,7 @@
   position: absolute;
   top: -20px;
   left: -1px;
-  background: #0053e2;
+  background: #ff00ff;
   color: #fff;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10px;
