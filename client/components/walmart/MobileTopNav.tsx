@@ -350,48 +350,6 @@ export function MobileTopNav({
           </div>
         )}
 
-        {/* Sub Nav — homepage only, not shown on native */}
-        {showHomeExtras && !isNative && (
-          <div
-            ref={subNavRef}
-            className={`${styles.subNav} ${showDeliveryOptions ? styles.subNavHidden : ''}`}
-            onMouseDown={onSubNavMouseDown}
-            onMouseMove={onSubNavMouseMove}
-            onMouseUp={onSubNavMouseUp}
-            onMouseLeave={onSubNavMouseUp}
-            onClick={onSubNavClick}
-          >
-            {isNative ? (
-              <div className="flex-shrink-0">
-                <DepartmentsDropdown
-                  leadingIcon={<Grid />}
-                  iconOnly
-                  overlayMode
-                />
-              </div>
-            ) : (
-              <>
-                <div className="flex-shrink-0">
-                  <DepartmentsDropdown />
-                </div>
-                <div className="flex-shrink-0">
-                  <ServicesDropdown />
-                </div>
-              </>
-            )}
-            {mobileSecondaryLinks.map((link) => (
-              <SubNavButton
-                key={link.label}
-                label={link.label}
-                href={link.path}
-                onClick={(e) => { e.preventDefault(); navigate(link.path); }}
-              />
-            ))}
-            <div className="flex-shrink-0">
-              <MoreLinksDropdown />
-            </div>
-          </div>
-        )}
       </div>
 
       {showSearchModal && (
