@@ -75,7 +75,6 @@ function BadgeIndicator() {
         variant="blue"
         size="small"
         aria-label="Status badge"
-        style={{ minWidth: '8px', height: '8px', padding: 0 }}
       />
     </span>
   );
