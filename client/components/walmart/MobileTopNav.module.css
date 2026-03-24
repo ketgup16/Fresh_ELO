@@ -167,7 +167,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px 8px 16px;
+  padding: 0 var(--ld-primitive-scale-space-100, 8px);
   position: relative;
 }
 
