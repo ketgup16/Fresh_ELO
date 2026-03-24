@@ -1,30 +1,39 @@
 import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/Badge';
 
+export type AXAvatarIndicatorType = 'none' | 'badge' | 'clock';
+export type AXAvatarClockState = 'active' | 'subtle';
+
+/** @deprecated Use `indicator` + `clockState` instead */
 export type AXAvatarClockIndicator = 'none' | 'active' | 'subtle';
 
 /**
- * AX Avatar — wraps the base Avatar with an optional Clock Indicator badge.
+ * AX Avatar — wraps the base Avatar with an optional indicator overlay.
  *
- * Clock Indicator states:
- *  - 'active'  → fill + inset stroke both use --ld-semantic-color-border-positive (#2A8703)
- *  - 'subtle'  → fill uses --ld-semantic-color-background-subtle (#F8F8F8),
- *                inset stroke uses --ld-semantic-color-border-subtle (#515357)
- *  - 'none'    → no indicator (default)
+ * Indicator types:
+ *  - 'none'   → no indicator (default)
+ *  - 'badge'  → LD Badge component, Brand Bold (blue) variant, positioned top-right
+ *  - 'clock'  → Clock indicator dot, state controlled by `clockState`:
+ *      - 'active' (Clocked in)  → fill + inset stroke: --ld-semantic-color-border-positive (#2A8703)
+ *      - 'subtle' (Clocked out) → fill: --ld-semantic-color-background-subtle (#F8F8F8),
+ *                                  inset stroke: --ld-semantic-color-border-subtle (#515357)
  *
  * Stroke is always positioned inside the indicator circle (inset box-shadow, 1px).
  */
-
 interface AXAvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
-  /** Show/hide and set the state of the clock indicator dot. @default 'none' */
-  clockIndicator?: AXAvatarClockIndicator;
+  /** Which indicator to show. @default 'none' */
+  indicator?: AXAvatarIndicatorType;
+  /** State of the clock indicator. Only used when indicator === 'clock'. @default 'active' */
+  clockState?: AXAvatarClockState;
   /** Forwarded to the inner Avatar span. */
   avatarStyle?: React.CSSProperties;
   children?: React.ReactNode;
 }
 
 export function AXAvatar({
-  clockIndicator = 'none',
+  indicator = 'none',
+  clockState = 'active',
   style,
   avatarStyle,
   children,
@@ -35,9 +44,8 @@ export function AXAvatar({
       <Avatar style={avatarStyle} {...props}>
         {children}
       </Avatar>
-      {clockIndicator !== 'none' && (
-        <ClockIndicatorDot state={clockIndicator} />
-      )}
+      {indicator === 'badge' && <BadgeIndicator />}
+      {indicator === 'clock' && <ClockIndicatorDot state={clockState} />}
     </span>
   );
 }
@@ -47,10 +55,36 @@ export function AXAvatar({
 AXAvatar.Image = AvatarImage;
 AXAvatar.Fallback = AvatarFallback;
 
+// ─── Badge Indicator ──────────────────────────────────────────────────────────
+
+function BadgeIndicator() {
+  return (
+    <span
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        display: 'inline-flex',
+        /* white separator ring */
+        boxShadow: '0 0 0 2px var(--ld-semantic-color-fill-surface-primary, #ffffff)',
+        borderRadius: '50%',
+      }}
+    >
+      <Badge
+        variant="blue"
+        size="small"
+        aria-label="Status badge"
+        style={{ minWidth: '8px', height: '8px', padding: 0 }}
+      />
+    </span>
+  );
+}
+
 // ─── Clock Indicator Dot ──────────────────────────────────────────────────────
 
 interface ClockIndicatorDotProps {
-  state: 'active' | 'subtle';
+  state: AXAvatarClockState;
 }
 
 function ClockIndicatorDot({ state }: ClockIndicatorDotProps) {
@@ -82,7 +116,6 @@ function ClockIndicatorDot({ state }: ClockIndicatorDotProps) {
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
-        /* white separator ring */
         boxShadow: separator,
         background: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
         flexShrink: 0,

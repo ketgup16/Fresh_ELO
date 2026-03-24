@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { AXAvatar, AXAvatarClockIndicator } from '@/components/walmart/AXAvatar';
+import { AXAvatar, AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatar';
 
 const HEADING: React.CSSProperties = {
   fontSize: '20px',
@@ -22,6 +22,7 @@ const CONTROL_ROW: React.CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   gap: '12px',
+  flexWrap: 'wrap',
   marginBottom: '32px',
   padding: '16px',
   background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
@@ -48,93 +49,124 @@ const CHIP_ACTIVE: React.CSSProperties = {
   color: 'white',
 };
 
-const INDICATOR_SWATCH_ACTIVE: React.CSSProperties = {
-  width: '12px',
-  height: '12px',
-  borderRadius: '50%',
-  background: 'var(--ld-semantic-color-border-positive, #2A8703)',
-  boxShadow: 'inset 0 0 0 1px var(--ld-semantic-color-border-positive, #2A8703)',
-  flexShrink: 0,
+const SELECT_STYLE: React.CSSProperties = {
+  fontFamily: 'var(--ld-semantic-font-family-sans)',
+  fontSize: '13px',
+  fontWeight: 500,
+  color: 'var(--ld-semantic-color-text, #2E2F32)',
+  background: 'white',
+  border: '1px solid var(--ld-semantic-color-separator, #D9DADB)',
+  borderRadius: '6px',
+  padding: '5px 28px 5px 10px',
+  cursor: 'pointer',
+  appearance: 'auto',
+  outline: 'none',
 };
 
-const INDICATOR_SWATCH_SUBTLE: React.CSSProperties = {
-  width: '12px',
-  height: '12px',
-  borderRadius: '50%',
-  background: 'var(--ld-semantic-color-background-subtle, #F8F8F8)',
-  boxShadow: 'inset 0 0 0 1px var(--ld-semantic-color-border-subtle, #515357)',
-  flexShrink: 0,
+const DIVIDER: React.CSSProperties = {
+  width: '1px',
+  background: 'var(--ld-semantic-color-separator, #D9DADB)',
+  alignSelf: 'stretch',
 };
 
 export default function AXAvatarExample() {
-  const [clockIndicator, setClockIndicator] = useState<AXAvatarClockIndicator>('none');
+  const [indicator, setIndicator] = useState<AXAvatarIndicatorType>('none');
+  const [clockState, setClockState] = useState<AXAvatarClockState>('active');
 
-  const options: { value: AXAvatarClockIndicator; label: string }[] = [
-    { value: 'none', label: 'None' },
-    { value: 'active', label: 'ClockedIn' },
-    { value: 'subtle', label: 'ClockedOut' },
+  const clockStateOptions: { value: AXAvatarClockState; label: string }[] = [
+    { value: 'active', label: 'Clocked in' },
+    { value: 'subtle', label: 'Clocked out' },
   ];
 
   return (
     <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
 
-      {/* ── Clock Indicator Control ── */}
+      {/* ── Properties Panel ── */}
       <div>
-        <h3 style={{ ...HEADING, marginBottom: '12px' }}>Clock Indicator</h3>
+        <h3 style={{ ...HEADING, marginBottom: '12px' }}>Indicator</h3>
         <div style={CONTROL_ROW}>
+
+          {/* Indicator type dropdown */}
           <span style={{ fontSize: '13px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', fontWeight: 500, whiteSpace: 'nowrap' }}>
-            State:
+            Type:
           </span>
-          <div style={{ display: 'flex', gap: '8px' }}>
-            {options.map(opt => (
-              <button
-                key={opt.value}
-                style={clockIndicator === opt.value ? CHIP_ACTIVE : CHIP_BASE}
-                onClick={() => setClockIndicator(opt.value)}
-              >
-                {opt.label}
-              </button>
-            ))}
-          </div>
-          {clockIndicator !== 'none' && (
-            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={clockIndicator === 'active' ? INDICATOR_SWATCH_ACTIVE : INDICATOR_SWATCH_SUBTLE} />
-              <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>
-                {clockIndicator === 'active'
-                  ? 'Fill + stroke: --ld-semantic-color-border-positive'
-                  : 'Fill: --ld-semantic-color-background-subtle · Stroke: --ld-semantic-color-border-subtle'}
+          <select
+            value={indicator}
+            onChange={e => setIndicator(e.target.value as AXAvatarIndicatorType)}
+            style={SELECT_STYLE}
+          >
+            <option value="none">None</option>
+            <option value="badge">Badge</option>
+            <option value="clock">Clock indicator</option>
+          </select>
+
+          {/* Clock state chips — only when clock indicator is selected */}
+          {indicator === 'clock' && (
+            <>
+              <div style={DIVIDER} />
+              <span style={{ fontSize: '13px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', fontWeight: 500, whiteSpace: 'nowrap' }}>
+                State:
               </span>
-            </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                {clockStateOptions.map(opt => (
+                  <button
+                    key={opt.value}
+                    style={clockState === opt.value ? CHIP_ACTIVE : CHIP_BASE}
+                    onClick={() => setClockState(opt.value)}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Badge note */}
+          {indicator === 'badge' && (
+            <>
+              <div style={DIVIDER} />
+              <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>
+                Variant: Brand Bold (blue)
+              </span>
+            </>
           )}
         </div>
 
-        {/* Both indicator states side-by-side for reference */}
+        {/* Indicator reference row */}
         <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start' }}>
+          {/* Live preview */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
-            <AXAvatar clockIndicator={clockIndicator}>
+            <AXAvatar indicator={indicator} clockState={clockState}>
               <AvatarFallback>AB</AvatarFallback>
             </AXAvatar>
             <span style={LABEL}>Preview</span>
           </div>
 
-          <div style={{ width: '1px', background: 'var(--ld-semantic-color-separator, #D9DADB)', alignSelf: 'stretch' }} />
+          <div style={DIVIDER} />
 
+          {/* All states reference */}
           <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-              <AXAvatar clockIndicator="active">
+              <AXAvatar indicator="badge">
                 <AvatarFallback>JD</AvatarFallback>
+              </AXAvatar>
+              <span style={LABEL}>Badge</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator="clock" clockState="active">
+                <AvatarFallback>MK</AvatarFallback>
               </AXAvatar>
               <span style={LABEL}>Clocked in</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-              <AXAvatar clockIndicator="subtle">
-                <AvatarFallback>MK</AvatarFallback>
+              <AXAvatar indicator="clock" clockState="subtle">
+                <AvatarFallback>EM</AvatarFallback>
               </AXAvatar>
               <span style={LABEL}>Clocked out</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-              <AXAvatar clockIndicator="none">
-                <AvatarFallback>EM</AvatarFallback>
+              <AXAvatar indicator="none">
+                <AvatarFallback>AL</AvatarFallback>
               </AXAvatar>
               <span style={LABEL}>None</span>
             </div>
@@ -146,15 +178,15 @@ export default function AXAvatarExample() {
       <section>
         <h3 style={HEADING}>Avatar with Image</h3>
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-          <AXAvatar clockIndicator={clockIndicator}>
+          <AXAvatar indicator={indicator} clockState={clockState}>
             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
             <AvatarFallback>CN</AvatarFallback>
           </AXAvatar>
-          <AXAvatar clockIndicator={clockIndicator}>
+          <AXAvatar indicator={indicator} clockState={clockState}>
             <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
             <AvatarFallback>VC</AvatarFallback>
           </AXAvatar>
-          <AXAvatar clockIndicator={clockIndicator}>
+          <AXAvatar indicator={indicator} clockState={clockState}>
             <AvatarImage src="https://github.com/react.png" alt="@react" />
             <AvatarFallback>RC</AvatarFallback>
           </AXAvatar>
@@ -165,13 +197,13 @@ export default function AXAvatarExample() {
       <section>
         <h3 style={HEADING}>Avatar with Fallback</h3>
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-          <AXAvatar clockIndicator={clockIndicator}>
+          <AXAvatar indicator={indicator} clockState={clockState}>
             <AvatarFallback>AB</AvatarFallback>
           </AXAvatar>
-          <AXAvatar clockIndicator={clockIndicator}>
+          <AXAvatar indicator={indicator} clockState={clockState}>
             <AvatarFallback>CD</AvatarFallback>
           </AXAvatar>
-          <AXAvatar clockIndicator={clockIndicator}>
+          <AXAvatar indicator={indicator} clockState={clockState}>
             <AvatarFallback>EF</AvatarFallback>
           </AXAvatar>
         </div>
@@ -182,19 +214,19 @@ export default function AXAvatarExample() {
         <h3 style={HEADING}>Different Sizes</h3>
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <AXAvatar clockIndicator={clockIndicator} avatarStyle={{ width: '32px', height: '32px' }}>
+            <AXAvatar indicator={indicator} clockState={clockState} avatarStyle={{ width: '32px', height: '32px' }}>
               <AvatarFallback style={{ fontSize: '12px' }}>SM</AvatarFallback>
             </AXAvatar>
             <span style={LABEL}>Small</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <AXAvatar clockIndicator={clockIndicator}>
+            <AXAvatar indicator={indicator} clockState={clockState}>
               <AvatarFallback>MD</AvatarFallback>
             </AXAvatar>
             <span style={LABEL}>Medium</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <AXAvatar clockIndicator={clockIndicator} avatarStyle={{ width: '56px', height: '56px' }}>
+            <AXAvatar indicator={indicator} clockState={clockState} avatarStyle={{ width: '56px', height: '56px' }}>
               <AvatarFallback style={{ fontSize: '18px' }}>LG</AvatarFallback>
             </AXAvatar>
             <span style={LABEL}>Large</span>
