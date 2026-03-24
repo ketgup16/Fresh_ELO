@@ -57,6 +57,7 @@ export default function TopNavPage() {
   const [showNativeAction2, setShowNativeAction2] = useState(false);
   const [showNativeAction3, setShowNativeAction3] = useState(false);
   const [showNativeSearchBar, setShowNativeSearchBar] = useState(true);
+  const [menuIconName, setMenuIconName] = useState('Menu');
   const [action1IconName, setAction1IconName] = useState('Placeholder');
   const [action2IconName, setAction2IconName] = useState('Placeholder');
   const [action3IconName, setAction3IconName] = useState('Placeholder');
@@ -138,6 +139,7 @@ export default function TopNavPage() {
                     action1Icon={renderIcon(action1IconName)}
                     action2Icon={renderIcon(action2IconName)}
                     action3Icon={renderIcon(action3IconName)}
+                    menuIcon={renderIcon(menuIconName)}
                   />
                   <div className={styles.nativePageContent}>
                     <p className={styles.nativePageHint}>
@@ -183,6 +185,18 @@ export default function TopNavPage() {
                 {/* Native header controls — only relevant on blue/home variant */}
                 {nativeVariant === 'blue' && (
                   <div className={styles.nativeControls}>
+                    <div className={styles.nativeControlRow}>
+                      <span className={styles.nativeControlLabel}>Trailing</span>
+                      <select
+                        className={styles.iconSelect}
+                        value={menuIconName}
+                        onChange={(e) => setMenuIconName(e.target.value)}
+                      >
+                        {['Menu', 'ChevronLeft', 'Close'].map(n => (
+                          <option key={n} value={n}>{n === menuIconName ? `✓ ${n}` : n}</option>
+                        ))}
+                      </select>
+                    </div>
                     <div className={styles.nativeControlRow}>
                       <TextField
                         label="Title"

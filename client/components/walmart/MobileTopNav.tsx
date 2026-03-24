@@ -51,6 +51,8 @@ interface MobileTopNavProps {
   action1Icon?: React.ReactNode;
   action2Icon?: React.ReactNode;
   action3Icon?: React.ReactNode;
+  /** Icon node rendered inside the leading menu button. Defaults to Menu icon. */
+  menuIcon?: React.ReactNode;
 }
 
 export function MobileTopNav({
@@ -69,6 +71,7 @@ export function MobileTopNav({
   action1Icon = <Placeholder />,
   action2Icon = <Placeholder />,
   action3Icon = <Placeholder />,
+  menuIcon = <Menu />,
 }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
@@ -184,7 +187,7 @@ export function MobileTopNav({
                 onClick={() => setShowMenuPanel(true)}
                 UNSAFE_style={{ color: 'white' }}
               >
-                <Menu />
+                {menuIcon}
               </IconButton>
 
               <div className={styles.nativeTitleArea}>
