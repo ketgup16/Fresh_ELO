@@ -343,6 +343,72 @@ export default function AXAvatarExample() {
           </div>
         </section>
       </div>
+
+      {/* ── Anatomy ── */}
+      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>Anatomy</h2>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                {['Element', 'Description', 'Visibility'].map(h => (
+                  <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['Avatar circle', 'Circular container that clips the image or fallback content.', 'Always'],
+                ['Avatar image', 'Profile photo rendered inside the circle.', 'When image src is provided and loaded'],
+                ['Fallback initials', 'Two-letter initials shown when no image is available.', 'When image is absent or fails to load'],
+                ['Fallback icon', 'Icon (e.g. User) shown instead of initials.', 'When icon is passed as fallback child'],
+                ['Badge indicator', 'Notification count badge positioned at the top-right of the circle.', 'When indicator="badge"'],
+                ['Clock indicator dot', 'Small status dot indicating clocked-in (green) or clocked-out (grey) state.', 'When indicator="clock"'],
+              ].map(([el, desc, vis]) => (
+                <tr key={el} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                  <td style={{ padding: '8px 12px', fontWeight: 500, color: 'var(--ld-semantic-color-text)' }}>{el}</td>
+                  <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
+                  <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{vis}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* ── Component Props ── */}
+      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>Component Props</h2>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                {['Prop', 'Type', 'Default', 'Description'].map(h => (
+                  <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['indicator', "'none' | 'badge' | 'clock'", "'none'", 'Which indicator overlay to show on the avatar.'],
+                ['clockState', "'active' | 'subtle'", "'active'", 'State of the clock indicator dot. active = clocked in (green), subtle = clocked out (grey). Only used when indicator="clock".'],
+                ['size', "'small' | 'medium' | 'large'", "'medium'", 'Avatar size — affects indicator positioning. Small offsets indicator outward; large offsets it inward.'],
+                ['avatarStyle', 'React.CSSProperties', '—', 'Style forwarded to the inner Avatar circle element. Use to set custom width/height.'],
+                ['children', 'ReactNode', '—', 'Content rendered inside the avatar circle — typically AvatarImage and/or AvatarFallback.'],
+                ['style', 'React.CSSProperties', '—', 'Style applied to the outer positioning wrapper span.'],
+              ].map(([prop, type, def, desc]) => (
+                <tr key={prop} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '13px', color: 'var(--ld-semantic-color-text-brand)' }}>{prop}</td>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{type}</td>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{def}</td>
+                  <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
   );
 }
