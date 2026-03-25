@@ -189,7 +189,7 @@ export default function AXAvatarExample() {
               </div>
             </div>
             <div>
-              <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)', display: 'block', marginBottom: '12px' }}>With fallback</span>
+              <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)', display: 'block', marginBottom: '12px' }}>With live text initials</span>
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <AXAvatar indicator={indicator} clockState={clockState}>
                   <AvatarFallback>AB</AvatarFallback>
