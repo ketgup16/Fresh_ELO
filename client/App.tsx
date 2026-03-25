@@ -68,6 +68,7 @@ const AccordionPage = React.lazy(() => import("./pages/component-library/Accordi
 const AlertDialogPage = React.lazy(() => import("./pages/component-library/AlertDialog"));
 const AvatarPage = React.lazy(() => import("./pages/component-library/Avatar"));
 const AXAvatarPage = React.lazy(() => import("./pages/component-library/AXAvatar"));
+const AXAvatarButtonPage = React.lazy(() => import("./pages/component-library/AXAvatarButton"));
 const BottomSheetPage = React.lazy(() => import("./pages/component-library/BottomSheet"));
 const CalendarPage = React.lazy(() => import("./pages/component-library/Calendar"));
 const DateRangePickerPage = React.lazy(() => import("./pages/component-library/DateRangePicker"));
@@ -232,6 +233,7 @@ const App = () => (
                 <Route path="alert-dialog" element={<AlertDialogPage />} />
                 <Route path="avatar" element={<AvatarPage />} />
                 <Route path="ax-avatar" element={<AXAvatarPage />} />
+                <Route path="ax-avatar-button" element={<AXAvatarButtonPage />} />
                 <Route path="bottom-sheet" element={<BottomSheetPage />} />
                 <Route path="calendar" element={<CalendarPage />} />
                 <Route path="carousel" element={<CarouselPage />} />
