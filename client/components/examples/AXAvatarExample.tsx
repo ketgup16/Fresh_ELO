@@ -179,7 +179,7 @@ export default function AXAvatarExample() {
                   <AvatarFallback>CN</AvatarFallback>
                 </AXAvatar>
                 <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarImage src="https://images.pexels.com/photos/7717254/pexels-photo-7717254.jpeg" alt="Person" />
+                  <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" />
                   <AvatarFallback>VC</AvatarFallback>
                 </AXAvatar>
                 <AXAvatar indicator={indicator} clockState={clockState}>
