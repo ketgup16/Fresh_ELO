@@ -36,6 +36,7 @@ const SELECT_STYLE: React.CSSProperties = {
 export default function AXAvatarExample() {
   const [indicator, setIndicator] = useState<AXAvatarIndicatorType>('none');
   const [clockState, setClockState] = useState<AXAvatarClockState>('active');
+  const [imageType, setImageType] = useState<'image' | 'initials' | 'icon'>('initials');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -91,6 +92,22 @@ export default function AXAvatarExample() {
                 </select>
               </div>
 
+              {/* Image type property row */}
+              <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)' }}>
+                <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
+                  Image type
+                </span>
+                <select
+                  value={imageType}
+                  onChange={e => setImageType(e.target.value as 'image' | 'initials' | 'icon')}
+                  style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
+                >
+                  <option value="initials">Initials</option>
+                  <option value="image">Image</option>
+                  <option value="icon">Icon</option>
+                </select>
+              </div>
+
               {/* Clock status property row */}
               <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
@@ -110,7 +127,18 @@ export default function AXAvatarExample() {
             {/* Live preview */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
               <AXAvatar indicator={indicator} clockState={clockState}>
-                <AvatarFallback>AB</AvatarFallback>
+                {imageType === 'image' && (
+                  <>
+                    <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" />
+                    <AvatarFallback>AB</AvatarFallback>
+                  </>
+                )}
+                {imageType === 'initials' && <AvatarFallback>AB</AvatarFallback>}
+                {imageType === 'icon' && (
+                  <AvatarFallback>
+                    <User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
+                  </AvatarFallback>
+                )}
               </AXAvatar>
               <span style={LABEL}>Preview</span>
             </div>
