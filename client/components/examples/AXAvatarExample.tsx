@@ -166,41 +166,42 @@ export default function AXAvatarExample() {
         </section>
       </div>
 
-      {/* ── Avatar with Image ── */}
+      {/* ── Image type ── */}
       <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
         <section>
-          <h3 style={HEADING}>Avatar with Image</h3>
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-            <AXAvatar indicator={indicator} clockState={clockState}>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
-            </AXAvatar>
-            <AXAvatar indicator={indicator} clockState={clockState}>
-              <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
-              <AvatarFallback>VC</AvatarFallback>
-            </AXAvatar>
-            <AXAvatar indicator={indicator} clockState={clockState}>
-              <AvatarImage src="https://github.com/react.png" alt="@react" />
-              <AvatarFallback>RC</AvatarFallback>
-            </AXAvatar>
-          </div>
-        </section>
-      </div>
-
-      {/* ── Avatar with Fallback ── */}
-      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <section>
-          <h3 style={HEADING}>Avatar with Fallback</h3>
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-            <AXAvatar indicator={indicator} clockState={clockState}>
-              <AvatarFallback>AB</AvatarFallback>
-            </AXAvatar>
-            <AXAvatar indicator={indicator} clockState={clockState}>
-              <AvatarFallback>CD</AvatarFallback>
-            </AXAvatar>
-            <AXAvatar indicator={indicator} clockState={clockState}>
-              <AvatarFallback>EF</AvatarFallback>
-            </AXAvatar>
+          <h3 style={HEADING}>Image type</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)', display: 'block', marginBottom: '12px' }}>With image</span>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+                <AXAvatar indicator={indicator} clockState={clockState}>
+                  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </AXAvatar>
+                <AXAvatar indicator={indicator} clockState={clockState}>
+                  <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+                  <AvatarFallback>VC</AvatarFallback>
+                </AXAvatar>
+                <AXAvatar indicator={indicator} clockState={clockState}>
+                  <AvatarImage src="https://github.com/react.png" alt="@react" />
+                  <AvatarFallback>RC</AvatarFallback>
+                </AXAvatar>
+              </div>
+            </div>
+            <div>
+              <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)', display: 'block', marginBottom: '12px' }}>With fallback</span>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+                <AXAvatar indicator={indicator} clockState={clockState}>
+                  <AvatarFallback>AB</AvatarFallback>
+                </AXAvatar>
+                <AXAvatar indicator={indicator} clockState={clockState}>
+                  <AvatarFallback>CD</AvatarFallback>
+                </AXAvatar>
+                <AXAvatar indicator={indicator} clockState={clockState}>
+                  <AvatarFallback>EF</AvatarFallback>
+                </AXAvatar>
+              </div>
+            </div>
           </div>
         </section>
       </div>
