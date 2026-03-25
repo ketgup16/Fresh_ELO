@@ -303,7 +303,7 @@ export default function AXAvatarExample() {
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="badge" avatarStyle={{ width: '64px', height: '64px' }}>
+                  <AXAvatar indicator="badge" size="large" avatarStyle={{ width: '64px', height: '64px' }}>
                     <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }}>LG</AvatarFallback>
                   </AXAvatar>
                 </div>
