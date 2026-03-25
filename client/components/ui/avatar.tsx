@@ -59,7 +59,7 @@ interface AvatarFallbackProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 const AvatarFallback = React.forwardRef<HTMLSpanElement, AvatarFallbackProps>(
-  ({ className, delayMs, children, ...props }, ref) => {
+  ({ className, delayMs, style, children, ...props }, ref) => {
     const [show, setShow] = React.useState(!delayMs);
 
     React.useEffect(() => {
@@ -83,6 +83,7 @@ const AvatarFallback = React.forwardRef<HTMLSpanElement, AvatarFallbackProps>(
           fontFamily: 'var(--ld-semantic-font-family-sans)',
           fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)',
           fontWeight: 700,
+          ...style,
         }}
         {...props}
       >
