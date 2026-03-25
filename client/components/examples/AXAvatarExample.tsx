@@ -37,6 +37,9 @@ export default function AXAvatarExample() {
   const [indicator, setIndicator] = useState<AXAvatarIndicatorType>('none');
   const [clockState, setClockState] = useState<AXAvatarClockState>('active');
   const [imageType, setImageType] = useState<'image' | 'initials' | 'icon'>('initials');
+  const [avatarSize, setAvatarSize] = useState<'small' | 'medium' | 'large'>('medium');
+
+  const sizeStyle = avatarSize === 'small' ? { width: '32px', height: '32px' } : avatarSize === 'large' ? { width: '64px', height: '64px' } : undefined;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -74,6 +77,22 @@ export default function AXAvatarExample() {
                 }}>
                   Properties
                 </span>
+              </div>
+
+              {/* Size property row */}
+              <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)' }}>
+                <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
+                  Size
+                </span>
+                <select
+                  value={avatarSize}
+                  onChange={e => setAvatarSize(e.target.value as 'small' | 'medium' | 'large')}
+                  style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
+                >
+                  <option value="small">Small · 32px</option>
+                  <option value="medium">Medium · 40px</option>
+                  <option value="large">Large · 64px</option>
+                </select>
               </div>
 
               {/* Badge property row */}
@@ -128,7 +147,7 @@ export default function AXAvatarExample() {
 
             {/* Live preview */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-              <AXAvatar indicator={indicator} clockState={clockState}>
+              <AXAvatar indicator={indicator} clockState={clockState} size={avatarSize} avatarStyle={sizeStyle}>
                 {imageType === 'image' && (
                   <>
                     <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" />
