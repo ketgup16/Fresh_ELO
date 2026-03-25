@@ -225,17 +225,17 @@ export default function AXAvatarExample() {
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <AXAvatar indicator={indicator} clockState={clockState}>
                   <AvatarFallback>
-                    <User width={32} height={32} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
+                    <User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
                   </AvatarFallback>
                 </AXAvatar>
                 <AXAvatar indicator={indicator} clockState={clockState}>
                   <AvatarFallback>
-                    <User width={32} height={32} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
+                    <User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
                   </AvatarFallback>
                 </AXAvatar>
                 <AXAvatar indicator={indicator} clockState={clockState}>
                   <AvatarFallback>
-                    <User width={32} height={32} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
+                    <User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
                   </AvatarFallback>
                 </AXAvatar>
               </div>
