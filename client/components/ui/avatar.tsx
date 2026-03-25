@@ -78,7 +78,7 @@ const AvatarFallback = React.forwardRef<HTMLSpanElement, AvatarFallbackProps>(
           className,
         )}
         style={{
-          backgroundColor: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+          backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle, #E9F1FE)',
           color: 'var(--ld-semantic-color-text, #2E2F32)',
           fontFamily: 'var(--ld-semantic-font-family-sans)',
           fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)',
