@@ -175,8 +175,10 @@ export default function AXAvatarExample() {
       <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
         <section>
           <h3 style={HEADING}>Image type</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <div>
+          <div style={{ display: 'flex', gap: '0', alignItems: 'flex-start' }}>
+
+            {/* With image */}
+            <div style={{ flex: 1 }}>
               <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With image</span>
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <AXAvatar indicator={indicator} clockState={clockState}>
@@ -193,7 +195,12 @@ export default function AXAvatarExample() {
                 </AXAvatar>
               </div>
             </div>
-            <div>
+
+            {/* Vertical divider */}
+            <div style={{ width: '1px', alignSelf: 'stretch', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)', margin: '0 32px', flexShrink: 0 }} role="separator" aria-orientation="vertical" />
+
+            {/* With live text initials */}
+            <div style={{ flex: 1 }}>
               <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With live text initials</span>
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <AXAvatar indicator={indicator} clockState={clockState}>
@@ -207,6 +214,7 @@ export default function AXAvatarExample() {
                 </AXAvatar>
               </div>
             </div>
+
           </div>
         </section>
       </div>
