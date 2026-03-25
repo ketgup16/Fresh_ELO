@@ -172,7 +172,7 @@ export default function AXAvatarExample() {
           <h3 style={HEADING}>Image type</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)', display: 'block', marginBottom: '12px' }}>With image</span>
+              <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With image</span>
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <AXAvatar indicator={indicator} clockState={clockState}>
                   <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -189,7 +189,7 @@ export default function AXAvatarExample() {
               </div>
             </div>
             <div>
-              <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)', display: 'block', marginBottom: '12px' }}>With live text initials</span>
+              <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With live text initials</span>
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <AXAvatar indicator={indicator} clockState={clockState}>
                   <AvatarFallback>AB</AvatarFallback>
