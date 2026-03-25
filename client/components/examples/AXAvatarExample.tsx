@@ -435,7 +435,7 @@ export default function AXAvatarExample() {
             <thead>
               <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
                 {['Prop', 'Type', 'Default', 'Description'].map((h, i) => (
-                  <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)', whiteSpace: i === 2 ? 'nowrap' : undefined }}>{h}</th>
+                  <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)', whiteSpace: i === 0 || i === 2 ? 'nowrap' : undefined }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -449,7 +449,7 @@ export default function AXAvatarExample() {
                 ['style', 'React.CSSProperties', '—', 'Style applied to the outer positioning wrapper span.'],
               ].map(([prop, type, def, desc]) => (
                 <tr key={prop} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
-                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '13px', color: 'var(--ld-semantic-color-text-brand)' }}>{prop}</td>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '13px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{prop}</td>
                   <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{type}</td>
                   <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>{def}</td>
                   <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
