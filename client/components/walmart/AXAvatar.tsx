@@ -103,7 +103,7 @@ function ClockIndicatorDot({ state, size = 'medium' }: ClockIndicatorDotProps) {
   /* white separator ring so the dot is visually lifted off the avatar */
   const separator = '0 0 0 2px var(--ld-semantic-color-fill-surface-primary, #ffffff)';
 
-  const offset = size === 'small' ? -3 : 0;
+  const offset = size === 'small' ? -3 : size === 'large' ? 3 : 0;
 
   return (
     /* 12×12 outer container — provides the white separator ring and hit area */
