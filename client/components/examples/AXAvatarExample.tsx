@@ -108,20 +108,22 @@ export default function AXAvatarExample() {
                 </select>
               </div>
 
-              {/* Clock status property row */}
-              <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
-                  Clock status
-                </span>
-                <select
-                  value={clockState}
-                  onChange={e => setClockState(e.target.value as AXAvatarClockState)}
-                  style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
-                >
-                  <option value="active">Clocked in</option>
-                  <option value="subtle">Clocked out</option>
-                </select>
-              </div>
+              {/* Clock status property row — only visible when Badge = Clock indicator */}
+              {indicator === 'clock' && (
+                <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
+                    Clock status
+                  </span>
+                  <select
+                    value={clockState}
+                    onChange={e => setClockState(e.target.value as AXAvatarClockState)}
+                    style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
+                  >
+                    <option value="active">Clocked in</option>
+                    <option value="subtle">Clocked out</option>
+                  </select>
+                </div>
+              )}
             </div>
 
             {/* Live preview */}
