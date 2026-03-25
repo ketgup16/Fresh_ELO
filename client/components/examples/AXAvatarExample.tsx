@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { User } from '@/components/icons/User';
 import { AXAvatar, AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatar';
 
 const HEADING: React.CSSProperties = {
@@ -211,6 +212,31 @@ export default function AXAvatarExample() {
                 </AXAvatar>
                 <AXAvatar indicator={indicator} clockState={clockState}>
                   <AvatarFallback>EF</AvatarFallback>
+                </AXAvatar>
+              </div>
+            </div>
+
+            {/* Vertical divider */}
+            <div style={{ width: '1px', alignSelf: 'stretch', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)', margin: '0 32px', flexShrink: 0 }} role="separator" aria-orientation="vertical" />
+
+            {/* With icon */}
+            <div style={{ flex: 1 }}>
+              <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With icon</span>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+                <AXAvatar indicator={indicator} clockState={clockState}>
+                  <AvatarFallback>
+                    <User width={32} height={32} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
+                  </AvatarFallback>
+                </AXAvatar>
+                <AXAvatar indicator={indicator} clockState={clockState}>
+                  <AvatarFallback>
+                    <User width={32} height={32} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
+                  </AvatarFallback>
+                </AXAvatar>
+                <AXAvatar indicator={indicator} clockState={clockState}>
+                  <AvatarFallback>
+                    <User width={32} height={32} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
+                  </AvatarFallback>
                 </AXAvatar>
               </div>
             </div>
