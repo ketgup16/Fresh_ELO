@@ -48,7 +48,7 @@ export default function AXAvatarExample() {
       <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
         <section>
           <h3 style={HEADING}>Interactive demo</h3>
-          <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start' }}>
+          <div style={{ display: 'flex', gap: '40px', alignItems: 'stretch' }}>
 
             {/* Properties panel */}
             <div style={{
@@ -146,7 +146,8 @@ export default function AXAvatarExample() {
             </div>
 
             {/* Live preview */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+              <span style={{ ...LABEL, marginTop: 0 }}>Preview</span>
               <AXAvatar indicator={indicator} clockState={clockState} size={avatarSize} avatarStyle={sizeStyle}>
                 {imageType === 'image' && (
                   <>
@@ -161,7 +162,6 @@ export default function AXAvatarExample() {
                   </AvatarFallback>
                 )}
               </AXAvatar>
-              <span style={LABEL}>Preview</span>
             </div>
 
           </div>
