@@ -47,7 +47,7 @@ export function AXAvatar({
       <Avatar style={avatarStyle} {...props}>
         {children}
       </Avatar>
-      {indicator === 'badge' && <BadgeIndicator />}
+      {indicator === 'badge' && <BadgeIndicator size={size} />}
       {indicator === 'clock' && <ClockIndicatorDot state={clockState} size={size} />}
     </span>
   );
@@ -60,7 +60,8 @@ AXAvatar.Fallback = AvatarFallback;
 
 // ─── Badge Indicator ──────────────────────────────────────────────────────────
 
-function BadgeIndicator() {
+function BadgeIndicator({ size = 'medium' }: { size?: 'small' | 'medium' | 'large' }) {
+  const offset = size === 'small' ? -4 : 0;
   // Render the Badge directly — no wrapper span — matching the Badges library page.
   // Only layout/positioning styles are applied; no component style overrides.
   return (
@@ -71,8 +72,8 @@ function BadgeIndicator() {
       aria-label="1 notification"
       style={{
         position: 'absolute',
-        top: 0,
-        right: 0,
+        top: offset,
+        right: offset,
         /* white separator ring — layout concern, not a style override */
         outline: '2px solid var(--ld-semantic-color-fill-surface-primary, #ffffff)',
         outlineOffset: 0,

@@ -293,7 +293,7 @@ export default function AXAvatarExample() {
               </div>
               <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="badge" avatarStyle={{ width: '32px', height: '32px' }}>
+                  <AXAvatar indicator="badge" size="small" avatarStyle={{ width: '32px', height: '32px' }}>
                     <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' }}>SM</AvatarFallback>
                   </AXAvatar>
                 </div>
