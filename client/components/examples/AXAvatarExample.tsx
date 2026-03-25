@@ -225,7 +225,12 @@ export default function AXAvatarExample() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
               <AXAvatar indicator={indicator} clockState={clockState} avatarStyle={{ width: '64px', height: '64px' }}>
-                <AvatarFallback style={{ fontSize: '20px' }}>LG</AvatarFallback>
+                <AvatarFallback style={{
+                  fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)',
+                  fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)',
+                  fontFamily: 'var(--ld-semantic-font-heading-large-family)',
+                  lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)',
+                }}>LG</AvatarFallback>
               </AXAvatar>
               <span style={LABEL}>Large · 64px</span>
             </div>
