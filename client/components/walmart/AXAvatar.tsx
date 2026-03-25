@@ -26,6 +26,8 @@ interface AXAvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
   indicator?: AXAvatarIndicatorType;
   /** State of the clock indicator. Only used when indicator === 'clock'. @default 'active' */
   clockState?: AXAvatarClockState;
+  /** Avatar size — affects indicator positioning. @default 'medium' */
+  size?: 'small' | 'medium' | 'large';
   /** Forwarded to the inner Avatar span. */
   avatarStyle?: React.CSSProperties;
   children?: React.ReactNode;
@@ -34,6 +36,7 @@ interface AXAvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
 export function AXAvatar({
   indicator = 'none',
   clockState = 'active',
+  size = 'medium',
   style,
   avatarStyle,
   children,
@@ -45,7 +48,7 @@ export function AXAvatar({
         {children}
       </Avatar>
       {indicator === 'badge' && <BadgeIndicator />}
-      {indicator === 'clock' && <ClockIndicatorDot state={clockState} />}
+      {indicator === 'clock' && <ClockIndicatorDot state={clockState} size={size} />}
     </span>
   );
 }
@@ -82,9 +85,10 @@ function BadgeIndicator() {
 
 interface ClockIndicatorDotProps {
   state: AXAvatarClockState;
+  size?: 'small' | 'medium' | 'large';
 }
 
-function ClockIndicatorDot({ state }: ClockIndicatorDotProps) {
+function ClockIndicatorDot({ state, size = 'medium' }: ClockIndicatorDotProps) {
   const isActive = state === 'active';
 
   const background = isActive
@@ -99,14 +103,16 @@ function ClockIndicatorDot({ state }: ClockIndicatorDotProps) {
   /* white separator ring so the dot is visually lifted off the avatar */
   const separator = '0 0 0 2px var(--ld-semantic-color-fill-surface-primary, #ffffff)';
 
+  const offset = size === 'small' ? -3 : 0;
+
   return (
     /* 12×12 outer container — provides the white separator ring and hit area */
     <span
       aria-hidden="true"
       style={{
         position: 'absolute',
-        top: 0,
-        right: 0,
+        top: offset,
+        right: offset,
         width: '12px',
         height: '12px',
         borderRadius: '50%',
