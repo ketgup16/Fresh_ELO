@@ -146,22 +146,24 @@ export default function AXAvatarExample() {
             </div>
 
             {/* Live preview */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <span style={{ ...LABEL, marginTop: 0 }}>Preview</span>
-              <AXAvatar indicator={indicator} clockState={clockState} size={avatarSize} avatarStyle={sizeStyle}>
-                {imageType === 'image' && (
-                  <>
-                    <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" />
-                    <AvatarFallback>AB</AvatarFallback>
-                  </>
-                )}
-                {imageType === 'initials' && <AvatarFallback>AB</AvatarFallback>}
-                {imageType === 'icon' && (
-                  <AvatarFallback>
-                    <User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
-                  </AvatarFallback>
-                )}
-              </AXAvatar>
+              <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <AXAvatar indicator={indicator} clockState={clockState} size={avatarSize} avatarStyle={sizeStyle}>
+                  {imageType === 'image' && (
+                    <>
+                      <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" />
+                      <AvatarFallback>AB</AvatarFallback>
+                    </>
+                  )}
+                  {imageType === 'initials' && <AvatarFallback>AB</AvatarFallback>}
+                  {imageType === 'icon' && (
+                    <AvatarFallback>
+                      <User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
+                    </AvatarFallback>
+                  )}
+                </AXAvatar>
+              </div>
             </div>
 
           </div>
