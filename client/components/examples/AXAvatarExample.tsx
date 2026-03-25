@@ -224,10 +224,10 @@ export default function AXAvatarExample() {
               <span style={LABEL}>Medium · 40px</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-              <AXAvatar indicator={indicator} clockState={clockState} avatarStyle={{ width: '56px', height: '56px' }}>
-                <AvatarFallback style={{ fontSize: '18px' }}>LG</AvatarFallback>
+              <AXAvatar indicator={indicator} clockState={clockState} avatarStyle={{ width: '64px', height: '64px' }}>
+                <AvatarFallback style={{ fontSize: '20px' }}>LG</AvatarFallback>
               </AXAvatar>
-              <span style={LABEL}>Large · 56px</span>
+              <span style={LABEL}>Large · 64px</span>
             </div>
           </div>
         </section>
