@@ -175,16 +175,16 @@ export default function AXAvatarExample() {
               <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With image</span>
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                  <AvatarFallback>CN</AvatarFallback>
+                  <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person 1" />
+                  <AvatarFallback>P1</AvatarFallback>
                 </AXAvatar>
                 <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
-                  <AvatarFallback>VC</AvatarFallback>
+                  <AvatarImage src="https://images.pexels.com/photos/7717254/pexels-photo-7717254.jpeg" alt="Person 2" />
+                  <AvatarFallback>P2</AvatarFallback>
                 </AXAvatar>
                 <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarImage src="https://github.com/react.png" alt="@react" />
-                  <AvatarFallback>RC</AvatarFallback>
+                  <AvatarImage src="https://images.pexels.com/photos/1820575/pexels-photo-1820575.jpeg" alt="Person 3" />
+                  <AvatarFallback>P3</AvatarFallback>
                 </AXAvatar>
               </div>
             </div>
