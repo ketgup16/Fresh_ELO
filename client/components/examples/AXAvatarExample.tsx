@@ -124,16 +124,22 @@ export default function AXAvatarExample() {
           <h3 style={HEADING}>Badge types</h3>
           <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator="none">
+                <AvatarFallback>AL</AvatarFallback>
+              </AXAvatar>
+              <span style={LABEL}>None</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
               <AXAvatar indicator="badge">
                 <AvatarFallback>JD</AvatarFallback>
               </AXAvatar>
               <span style={LABEL}>Badge</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-              <AXAvatar indicator="none">
-                <AvatarFallback>AL</AvatarFallback>
+              <AXAvatar indicator="clock" clockState="active">
+                <AvatarFallback>MK</AvatarFallback>
               </AXAvatar>
-              <span style={LABEL}>None</span>
+              <span style={LABEL}>Clock indicator</span>
             </div>
           </div>
         </section>
