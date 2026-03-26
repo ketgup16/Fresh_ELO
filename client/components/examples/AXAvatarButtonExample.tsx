@@ -68,7 +68,7 @@ export default function AXAvatarButtonExample() {
   const [clockState, setClockState] = useState<AXAvatarClockState>('active');
   const [imageType, setImageType] = useState<'image' | 'initials' | 'icon'>('initials');
   const [avatarSize, setAvatarSize] = useState<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>('medium');
-  const [disabled, setDisabled] = useState(false);
+  const [buttonState, setButtonState] = useState<'default' | 'focused' | 'pressed' | 'disabled'>('default');
   const [lastClicked, setLastClicked] = useState<string | null>(null);
 
   // Fallback initials font style per avatar size
@@ -157,10 +157,15 @@ export default function AXAvatarButtonExample() {
                 </div>
               )}
 
-              {/* Disabled */}
-              <div style={{ ...PROP_ROW, borderBottom: 'none', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={PROP_LABEL}>Disabled</span>
-                <input type="checkbox" checked={disabled} onChange={e => setDisabled(e.target.checked)} style={{ width: '16px', height: '16px', cursor: 'pointer' }} />
+              {/* State */}
+              <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
+                <span style={PROP_LABEL}>State</span>
+                <select value={buttonState} onChange={e => setButtonState(e.target.value as 'default' | 'focused' | 'pressed' | 'disabled')} style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}>
+                  <option value="default">Default</option>
+                  <option value="focused">Focused</option>
+                  <option value="pressed">Pressed</option>
+                  <option value="disabled">Disabled</option>
+                </select>
               </div>
             </div>
 
@@ -173,9 +178,10 @@ export default function AXAvatarButtonExample() {
                   clockState={clockState}
                   size={avatarSize}
                   avatarStyle={sizeStyle}
-                  disabled={disabled}
+                  disabled={buttonState === 'disabled'}
                   aria-label="User avatar"
-                  onClick={() => setLastClicked(`Clicked at ${new Date().toLocaleTimeString()}`)}
+                  onClick={() => buttonState !== 'disabled' && setLastClicked(`Clicked at ${new Date().toLocaleTimeString()}`)}
+                  style={buttonState === 'focused' ? { boxShadow: '0 0 0 3px var(--ld-semantic-color-border-focus, #0071CE)' } : undefined}
                 >
                   {imageType === 'image' && (
                     <>
@@ -183,7 +189,13 @@ export default function AXAvatarButtonExample() {
                       <AvatarFallback>AB</AvatarFallback>
                     </>
                   )}
-                  {imageType === 'initials' && <AvatarFallback style={fallbackTextStyle}>AB</AvatarFallback>}
+                  {imageType === 'initials' && (
+                    <AvatarFallback style={{
+                      ...fallbackTextStyle,
+                      ...(buttonState === 'focused' ? { backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-focused)' } : {}),
+                      ...(buttonState === 'pressed' ? { backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-pressed)' } : {}),
+                    }}>AB</AvatarFallback>
+                  )}
                   {imageType === 'icon' && (
                     <AvatarFallback>
                       <User
