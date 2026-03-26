@@ -366,6 +366,37 @@ export default function AXAvatarButtonExample() {
         </section>
       </div>
 
+      {/* ── Badge Offsets ── */}
+      <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>Badge Offsets</h2>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                {['Size', 'Resolved', 'CSS Token Expression'].map((h, i) => (
+                  <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)', whiteSpace: i < 2 ? 'nowrap' : undefined }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['XSmall · 24px', '−8px', 'calc(-1 * var(--ld-primitive-scale-space-100, 8px))'],
+                ['Small · 32px',  '−6px', 'calc(-1 * (var(--ld-primitive-scale-space-50, 4px) + var(--ld-primitive-scale-space-25, 2px)))'],
+                ['Medium · 40px', '−4px', 'calc(-1 * var(--ld-primitive-scale-space-50, 4px))'],
+                ['Large · 48px',  '−2px', 'calc(-1 * var(--ld-primitive-scale-space-25, 2px))'],
+                ['XLarge · 64px', '+2px', 'var(--ld-primitive-scale-space-25, 2px)'],
+              ].map(([size, resolved, token]) => (
+                <tr key={size} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                  <td style={{ padding: '8px 12px', fontWeight: 500, color: 'var(--ld-semantic-color-text)', whiteSpace: 'nowrap' }}>{size}</td>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '13px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{resolved}</td>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{token}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       {/* ── Anatomy ── */}
       <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
         <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>Anatomy</h2>
