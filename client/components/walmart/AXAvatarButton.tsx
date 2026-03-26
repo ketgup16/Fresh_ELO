@@ -27,12 +27,14 @@ interface AXAvatarButtonProps {
   style?: React.CSSProperties;
 }
 
-const SIZE_PX: Record<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge', number> = {
-  xsmall: 24,
-  small: 32,
-  medium: 40,
-  large: 48,
-  xlarge: 64,
+// Avatar dimensions via primitive scale tokens:
+// space-300=24px · space-400=32px · space-500=40px · space-600=48px · space-800=64px
+const SIZE_DIM: Record<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge', string> = {
+  xsmall: 'var(--ld-primitive-scale-space-300, 1.5rem)',
+  small:  'var(--ld-primitive-scale-space-400, 2rem)',
+  medium: 'var(--ld-primitive-scale-space-500, 2.5rem)',
+  large:  'var(--ld-primitive-scale-space-600, 3rem)',
+  xlarge: 'var(--ld-primitive-scale-space-800, 4rem)',
 };
 
 /**
@@ -53,8 +55,8 @@ export function AXAvatarButton({
   style,
   'aria-label': ariaLabel,
 }: AXAvatarButtonProps) {
-  const px = SIZE_PX[size];
-  const resolvedAvatarStyle = avatarStyle ?? { width: `${px}px`, height: `${px}px` };
+  const dim = SIZE_DIM[size];
+  const resolvedAvatarStyle = avatarStyle ?? { width: dim, height: dim };
 
   return (
     <button

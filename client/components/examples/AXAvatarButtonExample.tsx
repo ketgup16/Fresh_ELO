@@ -3,6 +3,14 @@ import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { AXAvatarButton, AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatarButton';
 import { User } from '@/components/icons/User';
 
+// Avatar dimensions via primitive scale tokens (space-300=24px · space-400=32px · space-500=40px · space-600=48px · space-800=64px)
+const AVATAR_DIM = {
+  xsmall: { width: 'var(--ld-primitive-scale-space-300, 1.5rem)', height: 'var(--ld-primitive-scale-space-300, 1.5rem)' },
+  small:  { width: 'var(--ld-primitive-scale-space-400, 2rem)',   height: 'var(--ld-primitive-scale-space-400, 2rem)' },
+  large:  { width: 'var(--ld-primitive-scale-space-600, 3rem)',   height: 'var(--ld-primitive-scale-space-600, 3rem)' },
+  xlarge: { width: 'var(--ld-primitive-scale-space-800, 4rem)',   height: 'var(--ld-primitive-scale-space-800, 4rem)' },
+} as const;
+
 const HEADING: React.CSSProperties = {
   fontSize: '20px',
   fontWeight: '700',
@@ -59,15 +67,18 @@ export default function AXAvatarButtonExample() {
   const [indicator, setIndicator] = useState<AXAvatarIndicatorType>('none');
   const [clockState, setClockState] = useState<AXAvatarClockState>('active');
   const [imageType, setImageType] = useState<'image' | 'initials' | 'icon'>('initials');
-  const [avatarSize, setAvatarSize] = useState<'small' | 'medium' | 'large'>('medium');
+  const [avatarSize, setAvatarSize] = useState<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>('medium');
   const [disabled, setDisabled] = useState(false);
   const [lastClicked, setLastClicked] = useState<string | null>(null);
 
-  const sizeStyle = avatarSize === 'small'
-    ? { width: '32px', height: '32px' }
-    : avatarSize === 'large'
-    ? { width: '64px', height: '64px' }
-    : undefined;
+  const SIZE_STYLE: Record<string, { width: string; height: string } | undefined> = {
+    xsmall: AVATAR_DIM.xsmall,
+    small:  AVATAR_DIM.small,
+    medium: undefined,
+    large:  AVATAR_DIM.large,
+    xlarge: AVATAR_DIM.xlarge,
+  };
+  const sizeStyle = SIZE_STYLE[avatarSize];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>

@@ -3,6 +3,14 @@ import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { User } from '@/components/icons/User';
 import { AXAvatar, AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatar';
 
+// Avatar dimensions via primitive scale tokens (space-300=24px · space-400=32px · space-500=40px · space-600=48px · space-800=64px)
+const AVATAR_DIM = {
+  xsmall: { width: 'var(--ld-primitive-scale-space-300, 1.5rem)', height: 'var(--ld-primitive-scale-space-300, 1.5rem)' },
+  small:  { width: 'var(--ld-primitive-scale-space-400, 2rem)',   height: 'var(--ld-primitive-scale-space-400, 2rem)' },
+  large:  { width: 'var(--ld-primitive-scale-space-600, 3rem)',   height: 'var(--ld-primitive-scale-space-600, 3rem)' },
+  xlarge: { width: 'var(--ld-primitive-scale-space-800, 4rem)',   height: 'var(--ld-primitive-scale-space-800, 4rem)' },
+} as const;
+
 const HEADING: React.CSSProperties = {
   fontSize: '20px',
   fontWeight: '700',
@@ -40,11 +48,11 @@ export default function AXAvatarExample() {
   const [avatarSize, setAvatarSize] = useState<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>('medium');
 
   const SIZE_STYLE: Record<string, { width: string; height: string } | undefined> = {
-    xsmall: { width: '24px', height: '24px' },
-    small: { width: '32px', height: '32px' },
+    xsmall: AVATAR_DIM.xsmall,
+    small:  AVATAR_DIM.small,
     medium: undefined,
-    large: { width: '48px', height: '48px' },
-    xlarge: { width: '64px', height: '64px' },
+    large:  AVATAR_DIM.large,
+    xlarge: AVATAR_DIM.xlarge,
   };
   const sizeStyle = SIZE_STYLE[avatarSize];
 
@@ -327,12 +335,12 @@ export default function AXAvatarExample() {
               {/* Avatars row — vertically centered */}
               <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="none" size="xsmall" avatarStyle={{ width: '24px', height: '24px' }}>
+                  <AXAvatar indicator="none" size="xsmall" avatarStyle={AVATAR_DIM.xsmall}>
                     <AvatarFallback style={{ fontSize: '10px', fontWeight: 400 }}>XS</AvatarFallback>
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="none" size="small" avatarStyle={{ width: '32px', height: '32px' }}>
+                  <AXAvatar indicator="none" size="small" avatarStyle={AVATAR_DIM.small}>
                     <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' }}>SM</AvatarFallback>
                   </AXAvatar>
                 </div>
@@ -342,12 +350,12 @@ export default function AXAvatarExample() {
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="none" size="large" avatarStyle={{ width: '48px', height: '48px' }}>
+                  <AXAvatar indicator="none" size="large" avatarStyle={AVATAR_DIM.large}>
                     <AvatarFallback>LG</AvatarFallback>
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="none" size="xlarge" avatarStyle={{ width: '64px', height: '64px' }}>
+                  <AXAvatar indicator="none" size="xlarge" avatarStyle={AVATAR_DIM.xlarge}>
                     <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }}>XL</AvatarFallback>
                   </AXAvatar>
                 </div>
@@ -367,12 +375,12 @@ export default function AXAvatarExample() {
               </div>
               <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="badge" size="xsmall" avatarStyle={{ width: '24px', height: '24px' }}>
+                  <AXAvatar indicator="badge" size="xsmall" avatarStyle={AVATAR_DIM.xsmall}>
                     <AvatarFallback style={{ fontSize: '10px', fontWeight: 400 }}>XS</AvatarFallback>
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="badge" size="small" avatarStyle={{ width: '32px', height: '32px' }}>
+                  <AXAvatar indicator="badge" size="small" avatarStyle={AVATAR_DIM.small}>
                     <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' }}>SM</AvatarFallback>
                   </AXAvatar>
                 </div>
@@ -382,12 +390,12 @@ export default function AXAvatarExample() {
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="badge" size="large" avatarStyle={{ width: '48px', height: '48px' }}>
+                  <AXAvatar indicator="badge" size="large" avatarStyle={AVATAR_DIM.large}>
                     <AvatarFallback>LG</AvatarFallback>
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="badge" size="xlarge" avatarStyle={{ width: '64px', height: '64px' }}>
+                  <AXAvatar indicator="badge" size="xlarge" avatarStyle={AVATAR_DIM.xlarge}>
                     <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }}>XL</AvatarFallback>
                   </AXAvatar>
                 </div>
@@ -407,12 +415,12 @@ export default function AXAvatarExample() {
               </div>
               <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="clock" clockState="active" size="xsmall" avatarStyle={{ width: '24px', height: '24px' }}>
+                  <AXAvatar indicator="clock" clockState="active" size="xsmall" avatarStyle={AVATAR_DIM.xsmall}>
                     <AvatarFallback style={{ fontSize: '10px', fontWeight: 400 }}>XS</AvatarFallback>
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="clock" clockState="active" size="small" avatarStyle={{ width: '32px', height: '32px' }}>
+                  <AXAvatar indicator="clock" clockState="active" size="small" avatarStyle={AVATAR_DIM.small}>
                     <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' }}>SM</AvatarFallback>
                   </AXAvatar>
                 </div>
@@ -422,12 +430,12 @@ export default function AXAvatarExample() {
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="clock" clockState="active" size="large" avatarStyle={{ width: '48px', height: '48px' }}>
+                  <AXAvatar indicator="clock" clockState="active" size="large" avatarStyle={AVATAR_DIM.large}>
                     <AvatarFallback>LG</AvatarFallback>
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="clock" clockState="active" size="xlarge" avatarStyle={{ width: '64px', height: '64px' }}>
+                  <AXAvatar indicator="clock" clockState="active" size="xlarge" avatarStyle={AVATAR_DIM.xlarge}>
                     <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }}>XL</AvatarFallback>
                   </AXAvatar>
                 </div>

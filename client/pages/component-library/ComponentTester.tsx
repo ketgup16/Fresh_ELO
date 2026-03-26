@@ -406,23 +406,37 @@ export default function ComponentTester() {
         );
 
       case 'axavatar': {
-        const SIZE_MAP: Record<string, number> = { xsmall: 24, small: 32, medium: 40, large: 48, xlarge: 64 };
-        const ICON_MAP: Record<string, number> = { xsmall: 12, small: 16, medium: 24, large: 24, xlarge: 32 };
-        const sizePx = SIZE_MAP[avatarSize];
-        const iconPx = ICON_MAP[avatarSize];
+        // Dimensions use primitive scale tokens: space-300=24px · space-400=32px · space-500=40px · space-600=48px · space-800=64px
+        const SIZE_MAP: Record<string, string> = {
+          xsmall: 'var(--ld-primitive-scale-space-300, 1.5rem)',
+          small:  'var(--ld-primitive-scale-space-400, 2rem)',
+          medium: 'var(--ld-primitive-scale-space-500, 2.5rem)',
+          large:  'var(--ld-primitive-scale-space-600, 3rem)',
+          xlarge: 'var(--ld-primitive-scale-space-800, 4rem)',
+        };
+        // Icon sizes: space-150=12px · space-200=16px · space-300=24px · space-400=32px
+        const ICON_MAP: Record<string, string> = {
+          xsmall: 'var(--ld-primitive-scale-space-150, 0.75rem)',
+          small:  'var(--ld-primitive-scale-space-200, 1rem)',
+          medium: 'var(--ld-primitive-scale-space-300, 1.5rem)',
+          large:  'var(--ld-primitive-scale-space-300, 1.5rem)',
+          xlarge: 'var(--ld-primitive-scale-space-400, 2rem)',
+        };
+        const sizeDim = SIZE_MAP[avatarSize];
+        const iconDim = ICON_MAP[avatarSize];
         return (
           <AXAvatar
             indicator={avatarIndicator}
             clockState={avatarClockState}
             size={avatarSize}
-            avatarStyle={{ width: sizePx, height: sizePx }}
+            avatarStyle={{ width: sizeDim, height: sizeDim }}
           >
             {avatarImageType === 'image' && (
               <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Avatar" />
             )}
             {avatarImageType === 'icon' && (
               <AvatarFallback>
-                <Icons.User style={{ width: iconPx, height: iconPx, color: 'var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)' }} />
+                <Icons.User style={{ width: iconDim, height: iconDim, color: 'var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)' }} />
               </AvatarFallback>
             )}
             {avatarImageType === 'initials' && (
@@ -1564,7 +1578,7 @@ export default function ComponentTester() {
                 `  size="${avatarSize}"`,
                 avatarIndicator !== 'none' ? `  indicator="${avatarIndicator}"` : null,
                 avatarIndicator === 'clock' ? `  clockState="${avatarClockState}"` : null,
-                `  avatarStyle={{ width: ${{ xsmall: 24, small: 32, medium: 40, large: 48, xlarge: 64 }[avatarSize]}, height: ${{ xsmall: 24, small: 32, medium: 40, large: 48, xlarge: 64 }[avatarSize]} }}`,
+                `  avatarStyle={{ width: '${{ xsmall: 'var(--ld-primitive-scale-space-300)', small: 'var(--ld-primitive-scale-space-400)', medium: 'var(--ld-primitive-scale-space-500)', large: 'var(--ld-primitive-scale-space-600)', xlarge: 'var(--ld-primitive-scale-space-800)' }[avatarSize]}', height: '...' }}`,
                 '>',
                 avatarImageType === 'image' ? '  <AXAvatar.Image src="..." alt="Avatar" />' : null,
                 avatarImageType === 'icon' ? '  <AXAvatar.Fallback>\n    <UserIcon style={{ width: 24, height: 24 }} />\n  </AXAvatar.Fallback>' : null,
