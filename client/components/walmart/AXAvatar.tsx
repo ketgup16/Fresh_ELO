@@ -115,11 +115,11 @@ function ClockIndicatorDot({ state, size = 'medium' }: ClockIndicatorDotProps) {
   const separator = '0 0 0 2px var(--ld-semantic-color-fill-surface-primary, #ffffff)';
 
   // Clock indicator offsets by size — primitive scale tokens where exact match exists
-  // space-50 = 4px · no token for 3px (use literal)
+  // space-50 = 4px · space-25 = 2px · no token for 3px (use literal)
   const CLOCK_OFFSET: Record<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge', string | number> = {
     xsmall: 'calc(-1 * var(--ld-primitive-scale-space-50, 4px))',
-    small:  '-3px',
-    medium: 0,
+    small:  'calc(-1 * var(--ld-primitive-scale-space-50, 4px))',
+    medium: 'calc(-1 * var(--ld-primitive-scale-space-50, 4px))',
     large:  0,
     xlarge: '3px',
   };

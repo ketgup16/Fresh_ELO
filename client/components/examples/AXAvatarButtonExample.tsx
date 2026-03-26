@@ -375,8 +375,8 @@ export default function AXAvatarButtonExample() {
                         ]
                       : [
                           ['XSmall · 24px', '−4px'],
-                          ['Small · 32px',  '−3px'],
-                          ['Medium · 40px', '0'],
+                          ['Small · 32px',  '−4px'],
+                          ['Medium · 40px', '−4px'],
                           ['Large · 48px',  '0'],
                           ['XLarge · 64px', '+3px'],
                         ];
