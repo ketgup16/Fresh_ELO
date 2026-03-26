@@ -365,26 +365,26 @@ export default function AXAvatarButtonExample() {
                   {/* Badge offset table — only shown on the Badge row */}
                   {ind === 'badge' && (
                     <div style={{ flex: 1, overflowX: 'auto' }}>
-                      <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '11px' }}>
+                      <p style={{ margin: '0 0 6px 0', fontSize: '11px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Badge offset values</p>
+                      <table style={{ borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '11px' }}>
                         <thead>
                           <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
-                            {['Size', 'Offset', 'CSS Token Expression'].map((h, i) => (
-                              <th key={h} style={{ textAlign: 'left', padding: '4px 8px', fontWeight: 600, color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: i < 2 ? 'nowrap' : undefined }}>{h}</th>
+                            {['Size', 'Offset'].map(h => (
+                              <th key={h} style={{ textAlign: 'left', padding: '4px 8px', fontWeight: 600, color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>{h}</th>
                             ))}
                           </tr>
                         </thead>
                         <tbody>
                           {[
-                            ['XSmall · 24px', '−8px', 'calc(-1 * var(--ld-primitive-scale-space-100, 8px))'],
-                            ['Small · 32px',  '−6px', 'calc(-1 * (var(--ld-primitive-scale-space-50, 4px) + var(--ld-primitive-scale-space-25, 2px)))'],
-                            ['Medium · 40px', '−4px', 'calc(-1 * var(--ld-primitive-scale-space-50, 4px))'],
-                            ['Large · 48px',  '−2px', 'calc(-1 * var(--ld-primitive-scale-space-25, 2px))'],
-                            ['XLarge · 64px', '+2px', 'var(--ld-primitive-scale-space-25, 2px)'],
-                          ].map(([size, resolved, token]) => (
+                            ['XSmall · 24px', '−8px'],
+                            ['Small · 32px',  '−6px'],
+                            ['Medium · 40px', '−4px'],
+                            ['Large · 48px',  '−2px'],
+                            ['XLarge · 64px', '+2px'],
+                          ].map(([size, resolved]) => (
                             <tr key={size} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
                               <td style={{ padding: '4px 8px', color: 'var(--ld-semantic-color-text)', whiteSpace: 'nowrap' }}>{size}</td>
                               <td style={{ padding: '4px 8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{resolved}</td>
-                              <td style={{ padding: '4px 8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ld-semantic-color-text-subtle)' }}>{token}</td>
                             </tr>
                           ))}
                         </tbody>
