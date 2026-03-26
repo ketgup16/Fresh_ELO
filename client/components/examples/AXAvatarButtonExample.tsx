@@ -64,7 +64,7 @@ const PROP_LABEL: React.CSSProperties = {
 };
 
 export default function AXAvatarButtonExample() {
-  const [indicator, setIndicator] = useState<AXAvatarIndicatorType>('none');
+  const [indicator, setIndicator] = useState<AXAvatarIndicatorType>('clock');
   const [clockState, setClockState] = useState<AXAvatarClockState>('active');
   const [imageType, setImageType] = useState<'image' | 'initials' | 'icon'>('initials');
   const [avatarSize, setAvatarSize] = useState<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>('medium');
