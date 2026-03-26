@@ -336,7 +336,7 @@ export default function AXAvatarButtonExample() {
                     <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                       <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
                         <AXAvatarButton indicator={ind} clockState={cs} size="xsmall" aria-label={`${label} xsmall`} onClick={() => {}}>
-                          <AvatarFallback style={{ fontSize: '10px', fontWeight: 400 }}>XS</AvatarFallback>
+                          <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)', lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)' }}>XS</AvatarFallback>
                         </AXAvatarButton>
                       </div>
                       <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>

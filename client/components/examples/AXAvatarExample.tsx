@@ -59,7 +59,7 @@ export default function AXAvatarExample() {
 
   // Fallback initials font style per avatar size
   const FALLBACK_TEXT_STYLE: Record<string, React.CSSProperties> = {
-    xsmall: { fontSize: '10px', fontWeight: 400 },
+    xsmall: { fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)' as React.CSSProperties['fontWeight'], fontFamily: 'var(--ld-semantic-font-caption-family)', lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)' },
     small:  { fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)' as React.CSSProperties['fontWeight'], fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' },
     medium: {},
     large:  {},
@@ -347,7 +347,7 @@ export default function AXAvatarExample() {
               <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
                   <AXAvatar indicator="none" size="xsmall" avatarStyle={AVATAR_DIM.xsmall}>
-                    <AvatarFallback style={{ fontSize: '10px', fontWeight: 400 }}>XS</AvatarFallback>
+                    <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)', lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)' }}>XS</AvatarFallback>
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
@@ -388,7 +388,7 @@ export default function AXAvatarExample() {
                 <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                   <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
                     <AXAvatar indicator="badge" size="xsmall" avatarStyle={AVATAR_DIM.xsmall}>
-                      <AvatarFallback style={{ fontSize: '10px', fontWeight: 400 }}>XS</AvatarFallback>
+                      <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)', lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)' }}>XS</AvatarFallback>
                     </AXAvatar>
                   </div>
                   <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
@@ -456,7 +456,7 @@ export default function AXAvatarExample() {
                 <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                   <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
                     <AXAvatar indicator="clock" clockState="active" size="xsmall" avatarStyle={AVATAR_DIM.xsmall}>
-                      <AvatarFallback style={{ fontSize: '10px', fontWeight: 400 }}>XS</AvatarFallback>
+                      <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)', lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)' }}>XS</AvatarFallback>
                     </AXAvatar>
                   </div>
                   <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
