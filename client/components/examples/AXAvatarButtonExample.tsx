@@ -364,7 +364,7 @@ export default function AXAvatarButtonExample() {
 
                   {/* Badge offset table — only shown on the Badge row */}
                   {ind === 'badge' && (
-                    <div style={{ flex: 1, overflowX: 'auto' }}>
+                    <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
                       <p style={{ margin: '0 0 6px 0', fontSize: '11px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Badge offset values</p>
                       <table style={{ borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '11px' }}>
                         <thead>
