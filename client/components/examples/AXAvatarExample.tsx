@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import React from 'react';
 import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { User } from '@/components/icons/User';
 import { AXAvatar, AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatar';
@@ -55,6 +56,16 @@ export default function AXAvatarExample() {
     xlarge: AVATAR_DIM.xlarge,
   };
   const sizeStyle = SIZE_STYLE[avatarSize];
+
+  // Fallback initials font style per avatar size
+  const FALLBACK_TEXT_STYLE: Record<string, React.CSSProperties> = {
+    xsmall: { fontSize: '10px', fontWeight: 400 },
+    small:  { fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)' as React.CSSProperties['fontWeight'], fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' },
+    medium: {},
+    large:  {},
+    xlarge: { fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)' as React.CSSProperties['fontWeight'], fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' },
+  };
+  const fallbackTextStyle = FALLBACK_TEXT_STYLE[avatarSize];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -173,7 +184,7 @@ export default function AXAvatarExample() {
                       <AvatarFallback>AB</AvatarFallback>
                     </>
                   )}
-                  {imageType === 'initials' && <AvatarFallback>AB</AvatarFallback>}
+                  {imageType === 'initials' && <AvatarFallback style={fallbackTextStyle}>AB</AvatarFallback>}
                   {imageType === 'icon' && (
                     <AvatarFallback>
                       <User
