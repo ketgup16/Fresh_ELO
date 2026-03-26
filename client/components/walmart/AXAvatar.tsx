@@ -121,7 +121,7 @@ function ClockIndicatorDot({ state, size = 'medium' }: ClockIndicatorDotProps) {
     small:  'calc(-1 * var(--ld-primitive-scale-space-50, 4px))',
     medium: 'calc(-1 * var(--ld-primitive-scale-space-25, 2px))',
     large:  0,
-    xlarge: 'var(--ld-primitive-scale-space-25, 2px)',
+    xlarge: 'var(--ld-primitive-scale-space-50, 4px)',
   };
   const offset = CLOCK_OFFSET[size];
 

@@ -378,7 +378,7 @@ export default function AXAvatarButtonExample() {
                           ['Small · 32px',  '−4px'],
                           ['Medium · 40px', '−2px'],
                           ['Large · 48px',  '0'],
-                          ['XLarge · 64px', '+2px'],
+                          ['XLarge · 64px', '+4px'],
                         ];
                     return (
                       <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
