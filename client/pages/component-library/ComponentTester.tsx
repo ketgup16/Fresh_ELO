@@ -21,6 +21,9 @@ import { ProgressIndicator } from '@/components/ui/ProgressIndicator';
 import { AXFlag, AX_FLAG_VARIANTS } from '@/components/walmart/AXFlag';
 import type { AXFlagVariant } from '@/components/walmart/AXFlag';
 import { AXHeartView } from '@/components/walmart/AXHeartView';
+import { AXAvatar } from '@/components/walmart/AXAvatar';
+import type { AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatar';
+import { AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { AXSearchField } from '@/components/walmart/AXSearchField';
 import type { AXSearchFieldCornerStyle, AXSearchFieldSize } from '@/components/walmart/AXSearchField';
 import type { AXSearchBarState } from '@/components/walmart/AXSearchBar';
@@ -32,7 +35,7 @@ type ComponentType =
   | 'button' | 'badge' | 'chip' | 'filterchip' | 'tag'
   | 'iconbutton' | 'checkbox' | 'switch' | 'textfield' | 'textarea'
   | 'datefield' | 'select' | 'divider' | 'spoticon' | 'rating'
-  | 'alert' | 'spinner' | 'progressindicator' | 'wcpflag' | 'wcpheartview' | 'axsearchfield' | 'axsearchbar';
+  | 'alert' | 'spinner' | 'progressindicator' | 'wcpflag' | 'wcpheartview' | 'axsearchfield' | 'axsearchbar' | 'axavatar';
 
 const components = [
   { id: 'button', name: 'Button', category: 'Actions' },
@@ -57,6 +60,7 @@ const components = [
   { id: 'wcpheartview', name: 'AX Heart View', category: 'AX' },
   { id: 'axsearchfield', name: 'AX Search Bar', category: 'AX' },
   { id: 'axsearchbar', name: 'AX Search Field', category: 'AX' },
+  { id: 'axavatar', name: 'AX Avatar', category: 'AX' },
 ];
 
 export default function ComponentTester() {
@@ -168,6 +172,13 @@ export default function ComponentTester() {
   // AXHeartView props
   const [heartActivated, setHeartActivated] = React.useState(false);
   const [heartSize, setHeartSize] = React.useState<'small' | 'medium'>('medium');
+
+  // AXAvatar props
+  const [avatarIndicator, setAvatarIndicator] = React.useState<AXAvatarIndicatorType>('none');
+  const [avatarClockState, setAvatarClockState] = React.useState<AXAvatarClockState>('active');
+  const [avatarSize, setAvatarSize] = React.useState<'small' | 'medium' | 'large'>('medium');
+  const [avatarImageType, setAvatarImageType] = React.useState<'initials' | 'image' | 'icon'>('initials');
+  const [avatarInitials, setAvatarInitials] = React.useState('AB');
 
   const renderComponent = () => {
     switch (selectedComponent) {
@@ -393,6 +404,38 @@ export default function ComponentTester() {
             size={heartSize}
           />
         );
+
+      case 'axavatar': {
+        const sizePx = avatarSize === 'small' ? 32 : avatarSize === 'large' ? 64 : 40;
+        return (
+          <AXAvatar
+            indicator={avatarIndicator}
+            clockState={avatarClockState}
+            size={avatarSize}
+            avatarStyle={{ width: sizePx, height: sizePx }}
+          >
+            {avatarImageType === 'image' && (
+              <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Avatar" />
+            )}
+            {avatarImageType === 'icon' && (
+              <AvatarFallback>
+                <Icons.User style={{ width: 24, height: 24, color: 'var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)' }} />
+              </AvatarFallback>
+            )}
+            {avatarImageType === 'initials' && (
+              <AvatarFallback
+                style={avatarSize === 'small'
+                  ? { fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)' }
+                  : avatarSize === 'large'
+                  ? { fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 400 }
+                  : undefined}
+              >
+                {avatarInitials.slice(0, 2).toUpperCase()}
+              </AvatarFallback>
+            )}
+          </AXAvatar>
+        );
+      }
 
       default:
         return null;
@@ -1164,6 +1207,77 @@ export default function ComponentTester() {
           </div>
         );
 
+      case 'axavatar':
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Size
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['small', 'medium', 'large'] as const).map((size) => (
+                  <Chip key={size} size="small" selected={avatarSize === size} onClick={() => setAvatarSize(size)}>
+                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Image type
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['initials', 'image', 'icon'] as const).map((type) => (
+                  <Chip key={type} size="small" selected={avatarImageType === type} onClick={() => setAvatarImageType(type)}>
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+
+            {avatarImageType === 'initials' && (
+              <div>
+                <TextField
+                  label="Initials"
+                  size="small"
+                  value={avatarInitials}
+                  onChange={(e) => setAvatarInitials(e.target.value.slice(0, 2))}
+                  placeholder="AB"
+                />
+              </div>
+            )}
+
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                Indicator
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {(['none', 'badge', 'clock'] as const).map((ind) => (
+                  <Chip key={ind} size="small" selected={avatarIndicator === ind} onClick={() => setAvatarIndicator(ind)}>
+                    {ind === 'none' ? 'None' : ind === 'badge' ? 'Badge' : 'Clock indicator'}
+                  </Chip>
+                ))}
+              </div>
+            </div>
+
+            {avatarIndicator === 'clock' && (
+              <div>
+                <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '12px', color: 'var(--ld-semantic-color-text)' }}>
+                  Clock status
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  {(['active', 'subtle'] as const).map((state) => (
+                    <Chip key={state} size="small" selected={avatarClockState === state} onClick={() => setAvatarClockState(state)}>
+                      {state === 'active' ? 'Active (clocked in)' : 'Subtle (clocked out)'}
+                    </Chip>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        );
+
       default:
         return (
           <div style={{
@@ -1430,6 +1544,22 @@ export default function ComponentTester() {
   onChange={setActivated}
   size="${heartSize}"
 />`}
+            </pre>
+          )}
+          {selectedComponent === 'axavatar' && (
+            <pre style={{ margin: 0 }}>
+              {[
+                '<AXAvatar',
+                `  size="${avatarSize}"`,
+                avatarIndicator !== 'none' ? `  indicator="${avatarIndicator}"` : null,
+                avatarIndicator === 'clock' ? `  clockState="${avatarClockState}"` : null,
+                `  avatarStyle={{ width: ${avatarSize === 'small' ? 32 : avatarSize === 'large' ? 64 : 40}, height: ${avatarSize === 'small' ? 32 : avatarSize === 'large' ? 64 : 40} }}`,
+                '>',
+                avatarImageType === 'image' ? '  <AXAvatar.Image src="..." alt="Avatar" />' : null,
+                avatarImageType === 'icon' ? '  <AXAvatar.Fallback>\n    <UserIcon style={{ width: 24, height: 24 }} />\n  </AXAvatar.Fallback>' : null,
+                avatarImageType === 'initials' ? `  <AXAvatar.Fallback>${avatarInitials.slice(0, 2).toUpperCase()}</AXAvatar.Fallback>` : null,
+                '</AXAvatar>',
+              ].filter(Boolean).join('\n')}
             </pre>
           )}
         </div>
