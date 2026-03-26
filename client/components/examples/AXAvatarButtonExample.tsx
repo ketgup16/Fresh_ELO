@@ -362,35 +362,47 @@ export default function AXAvatarButtonExample() {
                     </div>
                   </div>
 
-                  {/* Badge offset table — only shown on the Badge row */}
-                  {ind === 'badge' && (
-                    <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
-                      <p style={{ margin: '0 0 6px 0', fontSize: '11px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Badge offset values</p>
-                      <table style={{ borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '11px' }}>
-                        <thead>
-                          <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
-                            {['Size', 'Offset'].map(h => (
-                              <th key={h} style={{ textAlign: 'left', padding: '4px 8px', fontWeight: 600, color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>{h}</th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {[
-                            ['XSmall · 24px', '−8px'],
-                            ['Small · 32px',  '−6px'],
-                            ['Medium · 40px', '−4px'],
-                            ['Large · 48px',  '−2px'],
-                            ['XLarge · 64px', '+2px'],
-                          ].map(([size, resolved]) => (
-                            <tr key={size} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
-                              <td style={{ padding: '4px 8px', color: 'var(--ld-semantic-color-text)', whiteSpace: 'nowrap' }}>{size}</td>
-                              <td style={{ padding: '4px 8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{resolved}</td>
+                  {/* Offset table — shown for Badge and Clock indicator rows */}
+                  {(ind === 'badge' || ind === 'clock') && (() => {
+                    const title = ind === 'badge' ? 'Badge offset values' : 'Clock indicator offset values';
+                    const rows: [string, string][] = ind === 'badge'
+                      ? [
+                          ['XSmall · 24px', '−8px'],
+                          ['Small · 32px',  '−6px'],
+                          ['Medium · 40px', '−4px'],
+                          ['Large · 48px',  '−2px'],
+                          ['XLarge · 64px', '+2px'],
+                        ]
+                      : [
+                          ['XSmall · 24px', '−4px'],
+                          ['Small · 32px',  '−3px'],
+                          ['Medium · 40px', '0'],
+                          ['Large · 48px',  '0'],
+                          ['XLarge · 64px', '+3px'],
+                        ];
+                    return (
+                      <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
+                        <p style={{ margin: '0 0 6px 0', fontSize: '11px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>{title}</p>
+                        <table style={{ borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '11px' }}>
+                          <thead>
+                            <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                              {['Size', 'Offset'].map(h => (
+                                <th key={h} style={{ textAlign: 'left', padding: '4px 8px', fontWeight: 600, color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>{h}</th>
+                              ))}
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  )}
+                          </thead>
+                          <tbody>
+                            {rows.map(([size, resolved]) => (
+                              <tr key={size} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                                <td style={{ padding: '4px 8px', color: 'var(--ld-semantic-color-text)', whiteSpace: 'nowrap' }}>{size}</td>
+                                <td style={{ padding: '4px 8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{resolved}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    );
+                  })()}
                 </div>
               </React.Fragment>
             ))}
