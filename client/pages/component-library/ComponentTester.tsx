@@ -407,6 +407,7 @@ export default function ComponentTester() {
 
       case 'axavatar': {
         const sizePx = avatarSize === 'small' ? 32 : avatarSize === 'large' ? 64 : 40;
+        const iconPx = avatarSize === 'small' ? 16 : avatarSize === 'large' ? 32 : 24;
         return (
           <AXAvatar
             indicator={avatarIndicator}
@@ -419,7 +420,7 @@ export default function ComponentTester() {
             )}
             {avatarImageType === 'icon' && (
               <AvatarFallback>
-                <Icons.User style={{ width: 24, height: 24, color: 'var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)' }} />
+                <Icons.User style={{ width: iconPx, height: iconPx, color: 'var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)' }} />
               </AvatarFallback>
             )}
             {avatarImageType === 'initials' && (
