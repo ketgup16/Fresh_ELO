@@ -119,7 +119,7 @@ function ClockIndicatorDot({ state, size = 'medium' }: ClockIndicatorDotProps) {
   const CLOCK_OFFSET: Record<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge', string | number> = {
     xsmall: 'calc(-1 * var(--ld-primitive-scale-space-50, 4px))',
     small:  'calc(-1 * var(--ld-primitive-scale-space-50, 4px))',
-    medium: 'calc(-1 * var(--ld-primitive-scale-space-50, 4px))',
+    medium: 'calc(-1 * var(--ld-primitive-scale-space-25, 2px))',
     large:  0,
     xlarge: '3px',
   };
