@@ -69,23 +69,6 @@ export default function AXAvatarButtonExample() {
     ? { width: '64px', height: '64px' }
     : undefined;
 
-  const previewChildren = (
-    <>
-      {imageType === 'image' && (
-        <>
-          <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" />
-          <AvatarFallback>AB</AvatarFallback>
-        </>
-      )}
-      {imageType === 'initials' && <AvatarFallback>AB</AvatarFallback>}
-      {imageType === 'icon' && (
-        <AvatarFallback>
-          <User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
-        </AvatarFallback>
-      )}
-    </>
-  );
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
@@ -171,7 +154,22 @@ export default function AXAvatarButtonExample() {
                   aria-label="User avatar"
                   onClick={() => setLastClicked(`Clicked at ${new Date().toLocaleTimeString()}`)}
                 >
-                  {previewChildren}
+                  {imageType === 'image' && (
+                    <>
+                      <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" />
+                      <AvatarFallback>AB</AvatarFallback>
+                    </>
+                  )}
+                  {imageType === 'initials' && <AvatarFallback>AB</AvatarFallback>}
+                  {imageType === 'icon' && (
+                    <AvatarFallback>
+                      <User
+                        width={avatarSize === 'xsmall' ? 12 : avatarSize === 'small' ? 16 : avatarSize === 'xlarge' ? 32 : 24}
+                        height={avatarSize === 'xsmall' ? 12 : avatarSize === 'small' ? 16 : avatarSize === 'xlarge' ? 32 : 24}
+                        color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)"
+                      />
+                    </AvatarFallback>
+                  )}
                 </AXAvatarButton>
                 {lastClicked && (
                   <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>
@@ -316,11 +314,16 @@ export default function AXAvatarButtonExample() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '4px' }}>{label}</span>
                   <div style={{ display: 'flex', gap: '20px' }}>
-                    {(['Small · 32px', 'Medium · 40px', 'Large · 64px'] as const).map(l => (
+                    {['XSmall · 24px', 'Small · 32px', 'Medium · 40px', 'Large · 48px', 'XLarge · 64px'].map(l => (
                       <span key={l} style={{ ...LABEL, marginTop: 0, minWidth: '80px', textAlign: 'center' }}>{l}</span>
                     ))}
                   </div>
                   <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                    <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                      <AXAvatarButton indicator={ind} clockState={cs} size="xsmall" aria-label={`${label} xsmall`} onClick={() => {}}>
+                        <AvatarFallback style={{ fontSize: '10px', fontWeight: 400 }}>XS</AvatarFallback>
+                      </AXAvatarButton>
+                    </div>
                     <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
                       <AXAvatarButton indicator={ind} clockState={cs} size="small" aria-label={`${label} small`} onClick={() => {}}>
                         <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' }}>SM</AvatarFallback>
@@ -333,7 +336,12 @@ export default function AXAvatarButtonExample() {
                     </div>
                     <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
                       <AXAvatarButton indicator={ind} clockState={cs} size="large" aria-label={`${label} large`} onClick={() => {}}>
-                        <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }}>LG</AvatarFallback>
+                        <AvatarFallback>LG</AvatarFallback>
+                      </AXAvatarButton>
+                    </div>
+                    <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                      <AXAvatarButton indicator={ind} clockState={cs} size="xlarge" aria-label={`${label} xlarge`} onClick={() => {}}>
+                        <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }}>XL</AvatarFallback>
                       </AXAvatarButton>
                     </div>
                   </div>
@@ -395,7 +403,7 @@ export default function AXAvatarButtonExample() {
               {[
                 ['indicator', "'none' | 'badge' | 'clock'", "'none'", 'Which indicator overlay to show on the avatar.'],
                 ['clockState', "'active' | 'subtle'", "'active'", 'State of the clock indicator dot. Only used when indicator="clock".'],
-                ['size', "'small' | 'medium' | 'large'", "'medium'", 'Avatar size — also controls indicator offset positioning.'],
+                ['size', "'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'", "'medium'", 'Avatar size — also controls indicator offset positioning.'],
                 ['disabled', 'boolean', 'false', 'Disables the button interaction and reduces opacity to 40%.'],
                 ['onClick', '(e: MouseEvent) => void', '—', 'Called when the button is clicked.'],
                 ['aria-label', 'string', '—', 'Accessible label for the button. Required when no visible text is present.'],

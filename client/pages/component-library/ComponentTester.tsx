@@ -176,7 +176,7 @@ export default function ComponentTester() {
   // AXAvatar props
   const [avatarIndicator, setAvatarIndicator] = React.useState<AXAvatarIndicatorType>('none');
   const [avatarClockState, setAvatarClockState] = React.useState<AXAvatarClockState>('active');
-  const [avatarSize, setAvatarSize] = React.useState<'small' | 'medium' | 'large'>('medium');
+  const [avatarSize, setAvatarSize] = React.useState<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>('medium');
   const [avatarImageType, setAvatarImageType] = React.useState<'initials' | 'image' | 'icon'>('initials');
   const [avatarInitials, setAvatarInitials] = React.useState('AB');
 
@@ -406,8 +406,10 @@ export default function ComponentTester() {
         );
 
       case 'axavatar': {
-        const sizePx = avatarSize === 'small' ? 32 : avatarSize === 'large' ? 64 : 40;
-        const iconPx = avatarSize === 'small' ? 16 : avatarSize === 'large' ? 32 : 24;
+        const SIZE_MAP: Record<string, number> = { xsmall: 24, small: 32, medium: 40, large: 48, xlarge: 64 };
+        const ICON_MAP: Record<string, number> = { xsmall: 12, small: 16, medium: 24, large: 24, xlarge: 32 };
+        const sizePx = SIZE_MAP[avatarSize];
+        const iconPx = ICON_MAP[avatarSize];
         return (
           <AXAvatar
             indicator={avatarIndicator}
@@ -425,9 +427,11 @@ export default function ComponentTester() {
             )}
             {avatarImageType === 'initials' && (
               <AvatarFallback
-                style={avatarSize === 'small'
+                style={avatarSize === 'xsmall'
+                  ? { fontSize: '10px', fontWeight: 400 }
+                  : avatarSize === 'small'
                   ? { fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)' }
-                  : avatarSize === 'large'
+                  : avatarSize === 'xlarge'
                   ? { fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 400 }
                   : undefined}
               >
@@ -1216,9 +1220,15 @@ export default function ComponentTester() {
                 Size
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {(['small', 'medium', 'large'] as const).map((size) => (
-                  <Chip key={size} size="small" selected={avatarSize === size} onClick={() => setAvatarSize(size)}>
-                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                {([
+                  { value: 'xsmall', label: 'XSmall' },
+                  { value: 'small', label: 'Small' },
+                  { value: 'medium', label: 'Medium' },
+                  { value: 'large', label: 'Large' },
+                  { value: 'xlarge', label: 'XLarge' },
+                ] as const).map(({ value, label }) => (
+                  <Chip key={value} size="small" selected={avatarSize === value} onClick={() => setAvatarSize(value)}>
+                    {label}
                   </Chip>
                 ))}
               </div>
@@ -1554,7 +1564,7 @@ export default function ComponentTester() {
                 `  size="${avatarSize}"`,
                 avatarIndicator !== 'none' ? `  indicator="${avatarIndicator}"` : null,
                 avatarIndicator === 'clock' ? `  clockState="${avatarClockState}"` : null,
-                `  avatarStyle={{ width: ${avatarSize === 'small' ? 32 : avatarSize === 'large' ? 64 : 40}, height: ${avatarSize === 'small' ? 32 : avatarSize === 'large' ? 64 : 40} }}`,
+                `  avatarStyle={{ width: ${{ xsmall: 24, small: 32, medium: 40, large: 48, xlarge: 64 }[avatarSize]}, height: ${{ xsmall: 24, small: 32, medium: 40, large: 48, xlarge: 64 }[avatarSize]} }}`,
                 '>',
                 avatarImageType === 'image' ? '  <AXAvatar.Image src="..." alt="Avatar" />' : null,
                 avatarImageType === 'icon' ? '  <AXAvatar.Fallback>\n    <UserIcon style={{ width: 24, height: 24 }} />\n  </AXAvatar.Fallback>' : null,

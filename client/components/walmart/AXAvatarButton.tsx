@@ -10,7 +10,7 @@ interface AXAvatarButtonProps {
   /** State of the clock indicator dot. Only used when indicator="clock". @default 'active' */
   clockState?: AXAvatarClockState;
   /** Avatar size — affects indicator positioning. @default 'medium' */
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
   /** Forwarded to the inner Avatar circle element. Use to set custom width/height. */
   avatarStyle?: React.CSSProperties;
   /** Whether the button is disabled. @default false */
@@ -27,10 +27,12 @@ interface AXAvatarButtonProps {
   style?: React.CSSProperties;
 }
 
-const SIZE_PX: Record<'small' | 'medium' | 'large', number> = {
+const SIZE_PX: Record<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge', number> = {
+  xsmall: 24,
   small: 32,
   medium: 40,
-  large: 64,
+  large: 48,
+  xlarge: 64,
 };
 
 /**
@@ -42,7 +44,7 @@ const SIZE_PX: Record<'small' | 'medium' | 'large', number> = {
 export function AXAvatarButton({
   indicator = 'none',
   clockState = 'active',
-  size = 'medium',
+  size = 'medium' as 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge',
   avatarStyle,
   disabled = false,
   onClick,

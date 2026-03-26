@@ -27,7 +27,7 @@ interface AXAvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
   /** State of the clock indicator. Only used when indicator === 'clock'. @default 'active' */
   clockState?: AXAvatarClockState;
   /** Avatar size — affects indicator positioning. @default 'medium' */
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
   /** Forwarded to the inner Avatar span. */
   avatarStyle?: React.CSSProperties;
   children?: React.ReactNode;
@@ -36,7 +36,7 @@ interface AXAvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
 export function AXAvatar({
   indicator = 'none',
   clockState = 'active',
-  size = 'medium',
+  size = 'medium' as 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge',
   style,
   avatarStyle,
   children,
@@ -60,8 +60,8 @@ AXAvatar.Fallback = AvatarFallback;
 
 // ─── Badge Indicator ──────────────────────────────────────────────────────────
 
-function BadgeIndicator({ size = 'medium' }: { size?: 'small' | 'medium' | 'large' }) {
-  const offset = size === 'small' || size === 'medium' ? -4 : 0;
+function BadgeIndicator({ size = 'medium' }: { size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' }) {
+  const offset = size === 'xsmall' || size === 'small' || size === 'medium' ? -4 : 0;
   // Render the Badge directly — no wrapper span — matching the Badges library page.
   // Only layout/positioning styles are applied; no component style overrides.
   return (
@@ -86,7 +86,7 @@ function BadgeIndicator({ size = 'medium' }: { size?: 'small' | 'medium' | 'larg
 
 interface ClockIndicatorDotProps {
   state: AXAvatarClockState;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 }
 
 function ClockIndicatorDot({ state, size = 'medium' }: ClockIndicatorDotProps) {
@@ -104,7 +104,7 @@ function ClockIndicatorDot({ state, size = 'medium' }: ClockIndicatorDotProps) {
   /* white separator ring so the dot is visually lifted off the avatar */
   const separator = '0 0 0 2px var(--ld-semantic-color-fill-surface-primary, #ffffff)';
 
-  const offset = size === 'small' ? -3 : size === 'large' ? 3 : 0;
+  const offset = size === 'xsmall' || size === 'small' ? -3 : size === 'xlarge' ? 3 : 0;
 
   return (
     /* 12×12 outer container — provides the white separator ring and hit area */
