@@ -71,6 +71,16 @@ export default function AXAvatarButtonExample() {
   const [disabled, setDisabled] = useState(false);
   const [lastClicked, setLastClicked] = useState<string | null>(null);
 
+  // Fallback initials font style per avatar size
+  const FALLBACK_TEXT_STYLE: Record<string, React.CSSProperties> = {
+    xsmall: { fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)', lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)' },
+    small:  { fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' },
+    medium: {},
+    large:  {},
+    xlarge: { fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' },
+  };
+  const fallbackTextStyle = FALLBACK_TEXT_STYLE[avatarSize];
+
   const SIZE_STYLE: Record<string, { width: string; height: string } | undefined> = {
     xsmall: AVATAR_DIM.xsmall,
     small:  AVATAR_DIM.small,
@@ -173,7 +183,7 @@ export default function AXAvatarButtonExample() {
                       <AvatarFallback>AB</AvatarFallback>
                     </>
                   )}
-                  {imageType === 'initials' && <AvatarFallback>AB</AvatarFallback>}
+                  {imageType === 'initials' && <AvatarFallback style={fallbackTextStyle}>AB</AvatarFallback>}
                   {imageType === 'icon' && (
                     <AvatarFallback>
                       <User
