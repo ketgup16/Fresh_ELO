@@ -255,12 +255,39 @@ export default function AXAvatarButtonExample() {
         <section>
           <h3 style={HEADING}>States</h3>
           <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }}>
+            {/* Default */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
               <AXAvatarButton aria-label="Default" onClick={() => {}}>
                 <AvatarFallback>DE</AvatarFallback>
               </AXAvatarButton>
               <span style={LABEL}>Default</span>
             </div>
+
+            {/* Focused — circle uses fill.activated.subtle.focused; focus ring shown */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatarButton
+                aria-label="Focused"
+                onClick={() => {}}
+                style={{ boxShadow: '0 0 0 3px var(--ld-semantic-color-border-focus, #0071CE)' }}
+              >
+                <AvatarFallback style={{ backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-focused)' }}>
+                  FO
+                </AvatarFallback>
+              </AXAvatarButton>
+              <span style={LABEL}>Focused</span>
+            </div>
+
+            {/* Pressed — circle uses fill.activated.subtle.pressed */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatarButton aria-label="Pressed" onClick={() => {}}>
+                <AvatarFallback style={{ backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-pressed)' }}>
+                  PR
+                </AvatarFallback>
+              </AXAvatarButton>
+              <span style={LABEL}>Pressed</span>
+            </div>
+
+            {/* Disabled */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
               <AXAvatarButton disabled aria-label="Disabled">
                 <AvatarFallback>DS</AvatarFallback>
