@@ -96,10 +96,12 @@ export default function AXAvatarButtonExample() {
               {/* Size */}
               <div style={PROP_ROW}>
                 <span style={PROP_LABEL}>Size</span>
-                <select value={avatarSize} onChange={e => setAvatarSize(e.target.value as 'small' | 'medium' | 'large')} style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}>
+                <select value={avatarSize} onChange={e => setAvatarSize(e.target.value as 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge')} style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}>
+                  <option value="xsmall">XSmall · 24px</option>
                   <option value="small">Small · 32px</option>
                   <option value="medium">Medium · 40px</option>
-                  <option value="large">Large · 64px</option>
+                  <option value="large">Large · 48px</option>
+                  <option value="xlarge">XLarge · 64px</option>
                 </select>
               </div>
 
