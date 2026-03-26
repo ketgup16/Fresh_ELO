@@ -61,7 +61,7 @@ AXAvatar.Fallback = AvatarFallback;
 // ─── Badge Indicator ──────────────────────────────────────────────────────────
 
 function BadgeIndicator({ size = 'medium' }: { size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' }) {
-  const offset = size === 'xsmall' ? -5 : size === 'small' || size === 'medium' ? -4 : 0;
+  const offset = size === 'xsmall' ? -8 : size === 'small' || size === 'medium' ? -4 : 0;
   // Render the Badge directly — no wrapper span — matching the Badges library page.
   // Only layout/positioning styles are applied; no component style overrides.
   return (
