@@ -30,8 +30,16 @@ interface AXAvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
   size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
   /** Forwarded to the inner Avatar span. */
   avatarStyle?: React.CSSProperties;
+  /** When true, injects disabled color tokens into AvatarFallback children. @default false */
+  disabled?: boolean;
   children?: React.ReactNode;
 }
+
+// Disabled color tokens for the avatar circle and text
+const DISABLED_FALLBACK_STYLE: React.CSSProperties = {
+  backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-disabled)',
+  color: 'var(--ld-semantic-color-text-on-fill-activated-subtle-disabled)',
+};
 
 export function AXAvatar({
   indicator = 'none',
@@ -39,13 +47,28 @@ export function AXAvatar({
   size = 'medium' as 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge',
   style,
   avatarStyle,
+  disabled = false,
   children,
   ...props
 }: AXAvatarProps) {
+  // When disabled, clone AvatarFallback children to inject disabled color tokens.
+  // AvatarFallback spreads `style` after its own inline styles, so these override the defaults.
+  const resolvedChildren = disabled
+    ? React.Children.map(children, child => {
+        if (React.isValidElement(child) && child.type === AvatarFallback) {
+          const el = child as React.ReactElement<React.HTMLAttributes<HTMLSpanElement>>;
+          return React.cloneElement(el, {
+            style: { ...DISABLED_FALLBACK_STYLE, ...el.props.style },
+          });
+        }
+        return child;
+      })
+    : children;
+
   return (
     <span style={{ position: 'relative', display: 'inline-flex', ...style }}>
       <Avatar style={avatarStyle} {...props}>
-        {children}
+        {resolvedChildren}
       </Avatar>
       {indicator === 'badge' && <BadgeIndicator size={size} />}
       {indicator === 'clock' && <ClockIndicatorDot state={clockState} size={size} />}

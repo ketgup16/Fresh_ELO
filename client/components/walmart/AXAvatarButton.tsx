@@ -70,8 +70,7 @@ export function AXAvatarButton({
         cursor: disabled ? 'not-allowed' : 'pointer',
         display: 'inline-flex',
         borderRadius: '50%',
-        opacity: disabled ? 0.4 : 1,
-        transition: 'opacity 0.15s, box-shadow 0.15s',
+        transition: 'box-shadow 0.15s',
         /* Focus ring */
         outline: 'none',
         ...style,
@@ -89,7 +88,7 @@ export function AXAvatarButton({
         }
       }}
       onMouseLeave={e => {
-        (e.currentTarget as HTMLElement).style.opacity = disabled ? '0.4' : '1';
+        (e.currentTarget as HTMLElement).style.opacity = '1';
       }}
     >
       <AXAvatar
@@ -97,6 +96,7 @@ export function AXAvatarButton({
         clockState={clockState}
         size={size}
         avatarStyle={resolvedAvatarStyle}
+        disabled={disabled}
       >
         {children}
       </AXAvatar>
