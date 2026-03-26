@@ -324,75 +324,79 @@ export default function AXAvatarButtonExample() {
             ].map(({ label, ind, cs }, idx) => (
               <React.Fragment key={label}>
                 {idx > 0 && <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} role="separator" />}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '4px' }}>{label}</span>
-                  <div style={{ display: 'flex', gap: '20px' }}>
-                    {['XSmall · 24px', 'Small · 32px', 'Medium · 40px', 'Large · 48px', 'XLarge · 64px'].map(l => (
-                      <span key={l} style={{ ...LABEL, marginTop: 0, minWidth: '80px', textAlign: 'center' }}>{l}</span>
-                    ))}
+                <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }}>
+                  {/* Avatar previews column */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flexShrink: 0 }}>
+                    <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '4px' }}>{label}</span>
+                    <div style={{ display: 'flex', gap: '20px' }}>
+                      {['XSmall · 24px', 'Small · 32px', 'Medium · 40px', 'Large · 48px', 'XLarge · 64px'].map(l => (
+                        <span key={l} style={{ ...LABEL, marginTop: 0, minWidth: '80px', textAlign: 'center' }}>{l}</span>
+                      ))}
+                    </div>
+                    <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                      <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                        <AXAvatarButton indicator={ind} clockState={cs} size="xsmall" aria-label={`${label} xsmall`} onClick={() => {}}>
+                          <AvatarFallback style={{ fontSize: '10px', fontWeight: 400 }}>XS</AvatarFallback>
+                        </AXAvatarButton>
+                      </div>
+                      <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                        <AXAvatarButton indicator={ind} clockState={cs} size="small" aria-label={`${label} small`} onClick={() => {}}>
+                          <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' }}>SM</AvatarFallback>
+                        </AXAvatarButton>
+                      </div>
+                      <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                        <AXAvatarButton indicator={ind} clockState={cs} size="medium" aria-label={`${label} medium`} onClick={() => {}}>
+                          <AvatarFallback>MD</AvatarFallback>
+                        </AXAvatarButton>
+                      </div>
+                      <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                        <AXAvatarButton indicator={ind} clockState={cs} size="large" aria-label={`${label} large`} onClick={() => {}}>
+                          <AvatarFallback>LG</AvatarFallback>
+                        </AXAvatarButton>
+                      </div>
+                      <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                        <AXAvatarButton indicator={ind} clockState={cs} size="xlarge" aria-label={`${label} xlarge`} onClick={() => {}}>
+                          <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }}>XL</AvatarFallback>
+                        </AXAvatarButton>
+                      </div>
+                    </div>
                   </div>
-                  <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                    <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                      <AXAvatarButton indicator={ind} clockState={cs} size="xsmall" aria-label={`${label} xsmall`} onClick={() => {}}>
-                        <AvatarFallback style={{ fontSize: '10px', fontWeight: 400 }}>XS</AvatarFallback>
-                      </AXAvatarButton>
+
+                  {/* Badge offset table — only shown on the Badge row */}
+                  {ind === 'badge' && (
+                    <div style={{ flex: 1, overflowX: 'auto' }}>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '11px' }}>
+                        <thead>
+                          <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                            {['Size', 'Offset', 'CSS Token Expression'].map((h, i) => (
+                              <th key={h} style={{ textAlign: 'left', padding: '4px 8px', fontWeight: 600, color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: i < 2 ? 'nowrap' : undefined }}>{h}</th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {[
+                            ['XSmall · 24px', '−8px', 'calc(-1 * var(--ld-primitive-scale-space-100, 8px))'],
+                            ['Small · 32px',  '−6px', 'calc(-1 * (var(--ld-primitive-scale-space-50, 4px) + var(--ld-primitive-scale-space-25, 2px)))'],
+                            ['Medium · 40px', '−4px', 'calc(-1 * var(--ld-primitive-scale-space-50, 4px))'],
+                            ['Large · 48px',  '−2px', 'calc(-1 * var(--ld-primitive-scale-space-25, 2px))'],
+                            ['XLarge · 64px', '+2px', 'var(--ld-primitive-scale-space-25, 2px)'],
+                          ].map(([size, resolved, token]) => (
+                            <tr key={size} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                              <td style={{ padding: '4px 8px', color: 'var(--ld-semantic-color-text)', whiteSpace: 'nowrap' }}>{size}</td>
+                              <td style={{ padding: '4px 8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{resolved}</td>
+                              <td style={{ padding: '4px 8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ld-semantic-color-text-subtle)' }}>{token}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
-                    <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                      <AXAvatarButton indicator={ind} clockState={cs} size="small" aria-label={`${label} small`} onClick={() => {}}>
-                        <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' }}>SM</AvatarFallback>
-                      </AXAvatarButton>
-                    </div>
-                    <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                      <AXAvatarButton indicator={ind} clockState={cs} size="medium" aria-label={`${label} medium`} onClick={() => {}}>
-                        <AvatarFallback>MD</AvatarFallback>
-                      </AXAvatarButton>
-                    </div>
-                    <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                      <AXAvatarButton indicator={ind} clockState={cs} size="large" aria-label={`${label} large`} onClick={() => {}}>
-                        <AvatarFallback>LG</AvatarFallback>
-                      </AXAvatarButton>
-                    </div>
-                    <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                      <AXAvatarButton indicator={ind} clockState={cs} size="xlarge" aria-label={`${label} xlarge`} onClick={() => {}}>
-                        <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }}>XL</AvatarFallback>
-                      </AXAvatarButton>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </React.Fragment>
             ))}
 
           </div>
 
-          {/* Badge offset reference */}
-          <div style={{ marginTop: '8px', height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} role="separator" />
-          <div style={{ overflowX: 'auto', marginTop: '8px' }}>
-            <p style={{ fontSize: '11px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)', marginBottom: '6px', marginTop: 0 }}>Badge offsets by size</p>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '11px' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
-                  {['Size', 'Offset', 'CSS Token Expression'].map((h, i) => (
-                    <th key={h} style={{ textAlign: 'left', padding: '4px 8px', fontWeight: 600, color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: i < 2 ? 'nowrap' : undefined }}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ['XSmall · 24px', '−8px', 'calc(-1 * var(--ld-primitive-scale-space-100, 8px))'],
-                  ['Small · 32px',  '−6px', 'calc(-1 * (var(--ld-primitive-scale-space-50, 4px) + var(--ld-primitive-scale-space-25, 2px)))'],
-                  ['Medium · 40px', '−4px', 'calc(-1 * var(--ld-primitive-scale-space-50, 4px))'],
-                  ['Large · 48px',  '−2px', 'calc(-1 * var(--ld-primitive-scale-space-25, 2px))'],
-                  ['XLarge · 64px', '+2px', 'var(--ld-primitive-scale-space-25, 2px)'],
-                ].map(([size, resolved, token]) => (
-                  <tr key={size} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
-                    <td style={{ padding: '4px 8px', color: 'var(--ld-semantic-color-text)', whiteSpace: 'nowrap' }}>{size}</td>
-                    <td style={{ padding: '4px 8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{resolved}</td>
-                    <td style={{ padding: '4px 8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ld-semantic-color-text-subtle)' }}>{token}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </section>
       </div>
 
