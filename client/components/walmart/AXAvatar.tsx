@@ -114,7 +114,16 @@ function ClockIndicatorDot({ state, size = 'medium' }: ClockIndicatorDotProps) {
   /* white separator ring so the dot is visually lifted off the avatar */
   const separator = '0 0 0 2px var(--ld-semantic-color-fill-surface-primary, #ffffff)';
 
-  const offset = size === 'xsmall' ? -4 : size === 'small' ? -3 : size === 'xlarge' ? 3 : 0;
+  // Clock indicator offsets by size — primitive scale tokens where exact match exists
+  // space-50 = 4px · no token for 3px (use literal)
+  const CLOCK_OFFSET: Record<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge', string | number> = {
+    xsmall: 'calc(-1 * var(--ld-primitive-scale-space-50, 4px))',
+    small:  '-3px',
+    medium: 0,
+    large:  0,
+    xlarge: '3px',
+  };
+  const offset = CLOCK_OFFSET[size];
 
   return (
     /* 12×12 outer container — provides the white separator ring and hit area */
@@ -122,8 +131,8 @@ function ClockIndicatorDot({ state, size = 'medium' }: ClockIndicatorDotProps) {
       aria-hidden="true"
       style={{
         position: 'absolute',
-        top: offset,
-        right: offset,
+        top: offset as string | number,
+        right: offset as string | number,
         width: '12px',
         height: '12px',
         borderRadius: '50%',
