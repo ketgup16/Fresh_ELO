@@ -60,8 +60,18 @@ AXAvatar.Fallback = AvatarFallback;
 
 // ─── Badge Indicator ──────────────────────────────────────────────────────────
 
+// Badge offset by avatar size, expressed as CSS calc() with primitive scale tokens.
+// space-25 = 2px · space-50 = 4px · space-100 = 8px
+const BADGE_OFFSET: Record<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge', string> = {
+  xsmall: 'calc(-1 * var(--ld-primitive-scale-space-100, 8px))',                                                   // -8px
+  small:  'calc(-1 * (var(--ld-primitive-scale-space-50, 4px) + var(--ld-primitive-scale-space-25, 2px)))',        // -6px
+  medium: 'calc(-1 * var(--ld-primitive-scale-space-50, 4px))',                                                    // -4px
+  large:  'calc(-1 * var(--ld-primitive-scale-space-25, 2px))',                                                    // -2px
+  xlarge: 'var(--ld-primitive-scale-space-25, 2px)',                                                               // +2px
+};
+
 function BadgeIndicator({ size = 'medium' }: { size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' }) {
-  const offset = size === 'xsmall' ? -8 : size === 'small' ? -6 : size === 'medium' ? -4 : size === 'large' ? -2 : 2;
+  const offset = BADGE_OFFSET[size];
   // Render the Badge directly — no wrapper span — matching the Badges library page.
   // Only layout/positioning styles are applied; no component style overrides.
   return (
