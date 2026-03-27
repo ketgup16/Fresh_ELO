@@ -541,48 +541,57 @@ export default function AXAvatarButtonExample() {
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
-          {([
+        {(() => {
+          const HIT_ITEMS = [
             { label: 'XSmall', size: 'xsmall', avatarPx: 24, hitPx: 48, avatarDim: AVATAR_DIM.xsmall },
             { label: 'Small',  size: 'small',  avatarPx: 32, hitPx: 48, avatarDim: AVATAR_DIM.small },
             { label: 'Medium', size: 'medium', avatarPx: 40, hitPx: 48, avatarDim: undefined },
             { label: 'Large',  size: 'large',  avatarPx: 48, hitPx: 48, avatarDim: AVATAR_DIM.large },
             { label: 'XLarge', size: 'xlarge', avatarPx: 64, hitPx: 64, avatarDim: AVATAR_DIM.xlarge },
-          ] as const).map(({ label, size, avatarPx, hitPx, avatarDim }) => {
-            const meetsMin = avatarPx >= 48;
-            return (
-              <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
-                {/* Annotation wrapper — sized to the hit slot */}
-                <div style={{ position: 'relative', width: `${hitPx}px`, height: `${hitPx}px`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {/* Dashed hit-slot border (only shown when slot is expanded beyond avatar) */}
-                  {!meetsMin && (
-                    <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '1.5px dashed var(--ld-semantic-color-border-brand, #0071DC)', pointerEvents: 'none' }} />
-                  )}
-                  {/* Live avatar button centered in slot */}
-                  <AXAvatarButton indicator="badge" size={size} avatarStyle={avatarDim} aria-label={`${label} avatar`} onClick={() => {}}>
-                    <AvatarFallback style={
-                      size === 'xsmall' ? { fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)' }
-                      : size === 'small'  ? { fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)' }
-                      : size === 'xlarge' ? { fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }
-                      : undefined
-                    }>
-                      {size === 'xsmall' ? 'XS' : size === 'small' ? 'SM' : size === 'medium' ? 'MD' : size === 'large' ? 'LG' : 'XL'}
-                    </AvatarFallback>
-                  </AXAvatarButton>
-                </div>
-
-                {/* Size labels */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px' }}>
-                  <span style={{ fontSize: '12px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text)' }}>{label}</span>
-                  <span style={{ fontSize: '11px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Avatar: {avatarPx}px</span>
-                  <span style={{ fontSize: '11px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: meetsMin ? 'var(--ld-semantic-color-text-subtle)' : 'var(--ld-semantic-color-text-brand)' }}>
-                    Hit: {hitPx}px{meetsMin ? '' : ' (expanded)'}
-                  </span>
-                </div>
+          ] as const;
+          return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {/* Avatar row — all instances centered on the same horizontal line */}
+              <div style={{ display: 'flex', gap: '40px', alignItems: 'center' }}>
+                {HIT_ITEMS.map(({ label, size, avatarPx, hitPx, avatarDim }) => {
+                  const meetsMin = avatarPx >= 48;
+                  return (
+                    <div key={size} style={{ position: 'relative', width: `${hitPx}px`, height: `${hitPx}px`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      {!meetsMin && (
+                        <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '1.5px dashed var(--ld-semantic-color-border-brand, #0071DC)', pointerEvents: 'none' }} />
+                      )}
+                      <AXAvatarButton indicator="badge" size={size} avatarStyle={avatarDim} aria-label={`${label} avatar`} onClick={() => {}}>
+                        <AvatarFallback style={
+                          size === 'xsmall' ? { fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)' }
+                          : size === 'small'  ? { fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)' }
+                          : size === 'xlarge' ? { fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }
+                          : undefined
+                        }>
+                          {size === 'xsmall' ? 'XS' : size === 'small' ? 'SM' : size === 'medium' ? 'MD' : size === 'large' ? 'LG' : 'XL'}
+                        </AvatarFallback>
+                      </AXAvatarButton>
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
+              {/* Label row — all label groups top-aligned */}
+              <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start' }}>
+                {HIT_ITEMS.map(({ label, size, avatarPx, hitPx }) => {
+                  const meetsMin = avatarPx >= 48;
+                  return (
+                    <div key={size} style={{ width: `${hitPx}px`, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text)' }}>{label}</span>
+                      <span style={{ fontSize: '11px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Avatar: {avatarPx}px</span>
+                      <span style={{ fontSize: '11px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: meetsMin ? 'var(--ld-semantic-color-text-subtle)' : 'var(--ld-semantic-color-text-brand)' }}>
+                        Hit: {hitPx}px{meetsMin ? '' : ' (expanded)'}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Legend */}
         <div style={{ display: 'flex', gap: '24px', alignItems: 'center', paddingTop: '8px', borderTop: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
