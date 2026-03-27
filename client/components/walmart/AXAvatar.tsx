@@ -69,7 +69,7 @@ export const AXAvatar = React.forwardRef<HTMLSpanElement, AXAvatarProps>(functio
     : children;
 
   return (
-    <span ref={ref} style={{ position: 'relative', display: 'inline-flex', transition: 'box-shadow 0.15s', ...style }}>
+    <span ref={ref} style={{ position: 'relative', display: 'inline-flex', borderRadius: '50%', transition: 'box-shadow 0.15s', ...style }}>
       <Avatar style={avatarStyle} {...props}>
         {resolvedChildren}
       </Avatar>
