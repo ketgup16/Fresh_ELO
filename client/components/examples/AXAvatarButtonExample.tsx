@@ -174,8 +174,8 @@ export default function AXAvatarButtonExample() {
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <span style={{ ...LABEL, marginTop: 0 }}>Preview</span>
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
-                {/* Button + optional menu — right-aligned together so menu aligns under button */}
-                <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                {/* Button anchor — menu is absolutely positioned below so button never moves */}
+                <div style={{ position: 'relative', display: 'inline-flex' }}>
                   <AXAvatarButton
                     indicator={indicator}
                     clockState={clockState}
@@ -214,10 +214,9 @@ export default function AXAvatarButtonExample() {
                     )}
                   </AXAvatarButton>
 
-                  {/* Account menu — shown only in Pressed state */}
+                  {/* Account menu — absolutely positioned so button stays in place */}
                   {buttonState === 'pressed' && (
-                    <>
-                      <div style={{ height: 'var(--ld-primitive-scale-space-100, 8px)' }} />
+                    <div style={{ position: 'absolute', top: 'calc(100% + var(--ld-primitive-scale-space-100, 8px))', right: 0, zIndex: 10 }}>
                       <div style={{ width: '280px', borderRadius: 'var(--ld-primitive-scale-border-radius-50, 4px)', background: 'var(--ld-semantic-color-fill-surface-primary, #FFF)', boxShadow: '0 -1px 4px 0 rgba(0,0,0,0.10), 0 5px 10px 3px rgba(0,0,0,0.15)', display: 'flex', flexDirection: 'column' }}>
                         {/* Header */}
                         <div style={{ display: 'flex', width: '100%', padding: 'var(--ld-primitive-scale-space-250, 1.25rem) var(--ld-primitive-scale-space-200, 1rem) var(--ld-primitive-scale-space-200, 1rem)', justifyContent: 'center', boxSizing: 'border-box' }}>
@@ -267,7 +266,7 @@ export default function AXAvatarButtonExample() {
                           </div>
                         </div>
                       </div>
-                    </>
+                    </div>
                   )}
                 </div>
 
