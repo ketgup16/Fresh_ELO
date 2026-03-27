@@ -181,7 +181,7 @@ export default function AXAvatarButtonExample() {
                   disabled={buttonState === 'disabled'}
                   aria-label="User avatar"
                   onClick={() => buttonState !== 'disabled' && setLastClicked(`Clicked at ${new Date().toLocaleTimeString()}`)}
-                  style={buttonState === 'focused' ? { boxShadow: '0 0 0 3px var(--ld-semantic-color-border-focus, #0071CE)' } : undefined}
+                  wrapperStyle={buttonState === 'focused' ? { boxShadow: '0 0 0 3px var(--ld-semantic-color-border-focus, #0071CE)' } : undefined}
                 >
                   {imageType === 'image' && (
                     <>
@@ -281,7 +281,7 @@ export default function AXAvatarButtonExample() {
                 indicator="clock" clockState="active"
                 aria-label="Focused"
                 onClick={() => {}}
-                style={{ boxShadow: '0 0 0 3px var(--ld-semantic-color-border-focus, #0071CE)' }}
+                wrapperStyle={{ boxShadow: '0 0 0 3px var(--ld-semantic-color-border-focus, #0071CE)' }}
               >
                 <AvatarFallback style={{ backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-focused)' }}>
                   FO

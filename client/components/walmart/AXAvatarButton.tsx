@@ -25,6 +25,8 @@ interface AXAvatarButtonProps {
   className?: string;
   /** Style applied to the button wrapper. */
   style?: React.CSSProperties;
+  /** Style forwarded to the AXAvatar outer span (e.g. focus ring for static state demos). */
+  wrapperStyle?: React.CSSProperties;
 }
 
 // Avatar dimensions via primitive scale tokens:
@@ -58,6 +60,7 @@ export function AXAvatarButton({
   children,
   className,
   style,
+  wrapperStyle,
   'aria-label': ariaLabel,
 }: AXAvatarButtonProps) {
   const dim = SIZE_DIM[size];
@@ -113,6 +116,7 @@ export function AXAvatarButton({
         clockState={clockState}
         size={size}
         avatarStyle={resolvedAvatarStyle}
+        style={wrapperStyle}
         disabled={disabled}
       >
         {children}
