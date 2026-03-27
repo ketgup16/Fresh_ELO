@@ -512,8 +512,8 @@ export default function AXAvatarButtonExample() {
               {[
                 ['indicator', "'none' | 'badge' | 'clock'", "'none'", 'Which indicator overlay to show on the avatar.'],
                 ['clockState', "'active' | 'subtle'", "'active'", 'State of the clock indicator dot. Only used when indicator="clock".'],
-                ['size', "'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'", "'medium'", 'Avatar size — also controls indicator offset positioning.'],
-                ['disabled', 'boolean', 'false', 'Disables the button interaction and reduces opacity to 40%.'],
+                ['size', "'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'", "'medium'", 'Avatar size. XSmall/Small/Medium use a transparent 48×48px hit slot (iOS & Android a11y minimum). Large and XLarge already meet or exceed 48px.'],
+                ['disabled', 'boolean', 'false', 'Disables the button interaction and applies disabled color tokens to the avatar circle and text.'],
                 ['onClick', '(e: MouseEvent) => void', '—', 'Called when the button is clicked.'],
                 ['aria-label', 'string', '—', 'Accessible label for the button. Required when no visible text is present.'],
                 ['avatarStyle', 'React.CSSProperties', '—', 'Style forwarded to the inner Avatar circle element.'],

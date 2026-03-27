@@ -41,16 +41,19 @@ const DISABLED_FALLBACK_STYLE: React.CSSProperties = {
   color: 'var(--ld-semantic-color-text-on-fill-activated-subtle-disabled)',
 };
 
-export function AXAvatar({
-  indicator = 'none',
-  clockState = 'active',
-  size = 'medium' as 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge',
-  style,
-  avatarStyle,
-  disabled = false,
-  children,
-  ...props
-}: AXAvatarProps) {
+export const AXAvatar = React.forwardRef<HTMLSpanElement, AXAvatarProps>(function AXAvatar(
+  {
+    indicator = 'none',
+    clockState = 'active',
+    size = 'medium' as 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge',
+    style,
+    avatarStyle,
+    disabled = false,
+    children,
+    ...props
+  },
+  ref,
+) {
   // When disabled, clone AvatarFallback children to inject disabled color tokens.
   // AvatarFallback spreads `style` after its own inline styles, so these override the defaults.
   const resolvedChildren = disabled
@@ -66,7 +69,7 @@ export function AXAvatar({
     : children;
 
   return (
-    <span style={{ position: 'relative', display: 'inline-flex', ...style }}>
+    <span ref={ref} style={{ position: 'relative', display: 'inline-flex', transition: 'box-shadow 0.15s', ...style }}>
       <Avatar style={avatarStyle} {...props}>
         {resolvedChildren}
       </Avatar>
@@ -74,7 +77,7 @@ export function AXAvatar({
       {indicator === 'clock' && <ClockIndicatorDot state={clockState} size={size} />}
     </span>
   );
-}
+});
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 

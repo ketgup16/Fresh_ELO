@@ -43,6 +43,11 @@ const SIZE_DIM: Record<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge', strin
  * Inherits all indicator/size props from AXAvatar and adds button-specific
  * behaviour: click handling, disabled state, and focus/hover ring.
  */
+// Sizes below 48px need an expanded transparent hit slot for iOS/Android a11y minimum touch target.
+// Large (48px) and XLarge (64px) already meet the requirement.
+const NEEDS_HIT_SLOT = new Set(['xsmall', 'small', 'medium']);
+const HIT_SLOT_PX = '48px';
+
 export function AXAvatarButton({
   indicator = 'none',
   clockState = 'active',
@@ -58,6 +63,12 @@ export function AXAvatarButton({
   const dim = SIZE_DIM[size];
   const resolvedAvatarStyle = avatarStyle ?? { width: dim, height: dim };
 
+  // Ref to the AXAvatar outer span — used to apply focus ring directly on the
+  // avatar circle rather than on the (possibly larger) transparent hit-slot button.
+  const avatarRef = React.useRef<HTMLSpanElement>(null);
+
+  const needsHitSlot = NEEDS_HIT_SLOT.has(size);
+
   return (
     <button
       type="button"
@@ -69,18 +80,23 @@ export function AXAvatarButton({
         all: 'unset',
         cursor: disabled ? 'not-allowed' : 'pointer',
         display: 'inline-flex',
-        borderRadius: '50%',
-        transition: 'box-shadow 0.15s',
-        /* Focus ring */
+        alignItems: 'center',
+        justifyContent: 'center',
+        // Expand to 48×48 transparent hit slot for sizes below the a11y minimum
+        ...(needsHitSlot ? { minWidth: HIT_SLOT_PX, minHeight: HIT_SLOT_PX } : { borderRadius: '50%' }),
         outline: 'none',
         ...style,
       }}
-      onFocus={e => {
-        (e.currentTarget as HTMLElement).style.boxShadow =
-          '0 0 0 3px var(--ld-semantic-color-border-focus, #0071CE)';
+      onFocus={() => {
+        // Apply focus ring to the avatar circle (not the full hit-slot button)
+        if (avatarRef.current) {
+          avatarRef.current.style.boxShadow = '0 0 0 3px var(--ld-semantic-color-border-focus, #0071CE)';
+        }
       }}
-      onBlur={e => {
-        (e.currentTarget as HTMLElement).style.boxShadow = '';
+      onBlur={() => {
+        if (avatarRef.current) {
+          avatarRef.current.style.boxShadow = '';
+        }
       }}
       onMouseEnter={e => {
         if (!disabled) {
@@ -92,6 +108,7 @@ export function AXAvatarButton({
       }}
     >
       <AXAvatar
+        ref={avatarRef}
         indicator={indicator}
         clockState={clockState}
         size={size}
