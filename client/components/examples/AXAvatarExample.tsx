@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import React from 'react';
 import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { User } from '@/components/icons/User';
 import { AXAvatar, AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatar';
