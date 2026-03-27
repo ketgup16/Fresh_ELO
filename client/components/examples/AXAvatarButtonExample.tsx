@@ -462,76 +462,6 @@ export default function AXAvatarButtonExample() {
         </section>
       </div>
 
-      {/* ── Anatomy ── */}
-      <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>Anatomy</h2>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
-                {['Element', 'Description', 'Visibility'].map(h => (
-                  <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ['Button wrapper', 'Focusable <button> element wrapping the avatar. Provides click, focus ring, and disabled state.', 'Always'],
-                ['Avatar circle', 'Circular container that clips the image or fallback content.', 'Always'],
-                ['Avatar image', 'Profile photo rendered inside the circle.', 'When image src is provided and loaded'],
-                ['Fallback initials', 'Two-letter initials shown when no image is available.', 'When image is absent or fails to load'],
-                ['Fallback icon', 'Icon (e.g. User) shown instead of initials.', 'When icon is passed as fallback child'],
-                ['Badge indicator', 'Notification count badge at top-right of the circle.', 'When indicator="badge"'],
-                ['Clock indicator dot', 'Status dot: green (clocked in) or grey (clocked out).', 'When indicator="clock"'],
-                ['Focus ring', 'Blue outline ring shown on keyboard focus.', 'When button is focused'],
-              ].map(([el, desc, vis]) => (
-                <tr key={el} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
-                  <td style={{ padding: '8px 12px', fontWeight: 500, color: 'var(--ld-semantic-color-text)' }}>{el}</td>
-                  <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
-                  <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{vis}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* ── Component Props ── */}
-      <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>Component Props</h2>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
-                {['Prop', 'Type', 'Default', 'Description'].map((h, i) => (
-                  <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)', whiteSpace: i === 0 || i === 2 ? 'nowrap' : undefined }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ['indicator', "'none' | 'badge' | 'clock'", "'none'", 'Which indicator overlay to show on the avatar.'],
-                ['clockState', "'active' | 'subtle'", "'active'", 'State of the clock indicator dot. Only used when indicator="clock".'],
-                ['size', "'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'", "'medium'", 'Avatar size. XSmall/Small/Medium use a transparent 48×48px hit slot (iOS & Android a11y minimum). Large and XLarge already meet or exceed 48px.'],
-                ['disabled', 'boolean', 'false', 'Disables the button interaction and applies disabled color tokens to the avatar circle and text.'],
-                ['onClick', '(e: MouseEvent) => void', '—', 'Called when the button is clicked.'],
-                ['aria-label', 'string', '—', 'Accessible label for the button. Required when no visible text is present.'],
-                ['avatarStyle', 'React.CSSProperties', '—', 'Style forwarded to the inner Avatar circle element.'],
-                ['children', 'ReactNode', '—', 'Avatar content — typically AvatarImage and/or AvatarFallback.'],
-                ['style', 'React.CSSProperties', '—', 'Style applied to the outer button element.'],
-              ].map(([prop, type, def, desc]) => (
-                <tr key={prop} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
-                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '13px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{prop}</td>
-                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{type}</td>
-                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>{def}</td>
-                  <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
       {/* ── Hit Targets ── */}
       <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
         <div>
@@ -603,6 +533,76 @@ export default function AXAvatarButtonExample() {
             <div style={{ width: '24px', borderTop: '1.5px solid var(--ld-semantic-color-border-subtle)' }} />
             <span style={{ fontSize: '11px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Avatar meets minimum · Large · XLarge</span>
           </div>
+        </div>
+      </div>
+
+      {/* ── Anatomy ── */}
+      <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>Anatomy</h2>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                {['Element', 'Description', 'Visibility'].map(h => (
+                  <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['Button wrapper', 'Focusable <button> element wrapping the avatar. Provides click, focus ring, and disabled state.', 'Always'],
+                ['Avatar circle', 'Circular container that clips the image or fallback content.', 'Always'],
+                ['Avatar image', 'Profile photo rendered inside the circle.', 'When image src is provided and loaded'],
+                ['Fallback initials', 'Two-letter initials shown when no image is available.', 'When image is absent or fails to load'],
+                ['Fallback icon', 'Icon (e.g. User) shown instead of initials.', 'When icon is passed as fallback child'],
+                ['Badge indicator', 'Notification count badge at top-right of the circle.', 'When indicator="badge"'],
+                ['Clock indicator dot', 'Status dot: green (clocked in) or grey (clocked out).', 'When indicator="clock"'],
+                ['Focus ring', 'Blue outline ring shown on keyboard focus.', 'When button is focused'],
+              ].map(([el, desc, vis]) => (
+                <tr key={el} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                  <td style={{ padding: '8px 12px', fontWeight: 500, color: 'var(--ld-semantic-color-text)' }}>{el}</td>
+                  <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
+                  <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{vis}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* ── Component Props ── */}
+      <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>Component Props</h2>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                {['Prop', 'Type', 'Default', 'Description'].map((h, i) => (
+                  <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)', whiteSpace: i === 0 || i === 2 ? 'nowrap' : undefined }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['indicator', "'none' | 'badge' | 'clock'", "'none'", 'Which indicator overlay to show on the avatar.'],
+                ['clockState', "'active' | 'subtle'", "'active'", 'State of the clock indicator dot. Only used when indicator="clock".'],
+                ['size', "'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'", "'medium'", 'Avatar size. XSmall/Small/Medium use a transparent 48×48px hit slot (iOS & Android a11y minimum). Large and XLarge already meet or exceed 48px.'],
+                ['disabled', 'boolean', 'false', 'Disables the button interaction and applies disabled color tokens to the avatar circle and text.'],
+                ['onClick', '(e: MouseEvent) => void', '—', 'Called when the button is clicked.'],
+                ['aria-label', 'string', '—', 'Accessible label for the button. Required when no visible text is present.'],
+                ['avatarStyle', 'React.CSSProperties', '—', 'Style forwarded to the inner Avatar circle element.'],
+                ['children', 'ReactNode', '—', 'Avatar content — typically AvatarImage and/or AvatarFallback.'],
+                ['style', 'React.CSSProperties', '—', 'Style applied to the outer button element.'],
+              ].map(([prop, type, def, desc]) => (
+                <tr key={prop} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '13px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{prop}</td>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{type}</td>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>{def}</td>
+                  <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 
