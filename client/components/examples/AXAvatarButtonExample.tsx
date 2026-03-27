@@ -70,6 +70,7 @@ export default function AXAvatarButtonExample() {
   const [avatarSize, setAvatarSize] = useState<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>('medium');
   const [buttonState, setButtonState] = useState<'default' | 'focused' | 'pressed' | 'disabled'>('default');
   const [lastClicked, setLastClicked] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState(true);
 
   // Fallback initials font style per avatar size
   const FALLBACK_TEXT_STYLE: Record<string, React.CSSProperties> = {
@@ -473,16 +474,18 @@ export default function AXAvatarButtonExample() {
           </p>
         </div>
 
-        {/* Preview: pressed avatar + account menu positioned below */}
+        {/* Preview: interactive — click button to open/close menu */}
         <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-end' }}>
 
-          {/* Avatar Button — pressed state */}
-          <AXAvatarButton size="medium" aria-label="Account" onClick={() => {}}>
-            <AvatarFallback style={{ backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-pressed)' }}>
+          {/* Avatar Button — pressed while menu is open */}
+          <AXAvatarButton size="medium" aria-label="Account" onClick={() => setMenuOpen(o => !o)}>
+            <AvatarFallback style={menuOpen ? { backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-pressed)' } : undefined}>
               SC
             </AvatarFallback>
           </AXAvatarButton>
 
+          {menuOpen && (
+            <>
           {/* 8px spacer — var(--ld-primitive-scale-space-100, 8px) */}
           <div style={{ height: 'var(--ld-primitive-scale-space-100, 8px)' }} />
 
@@ -596,6 +599,8 @@ export default function AXAvatarButtonExample() {
             </div>
 
           </div>
+            </>
+          )}
         </div>
       </div>
 
