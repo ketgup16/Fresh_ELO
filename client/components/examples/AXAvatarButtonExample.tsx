@@ -174,39 +174,99 @@ export default function AXAvatarButtonExample() {
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <span style={{ ...LABEL, marginTop: 0 }}>Preview</span>
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
-                <AXAvatarButton
-                  indicator={indicator}
-                  clockState={clockState}
-                  size={avatarSize}
-                  avatarStyle={sizeStyle}
-                  disabled={buttonState === 'disabled'}
-                  aria-label="User avatar"
-                  onClick={() => buttonState !== 'disabled' && setLastClicked(`Clicked at ${new Date().toLocaleTimeString()}`)}
-                  wrapperStyle={buttonState === 'focused' ? { boxShadow: '0 0 0 3px var(--ld-semantic-color-border-focus, #0071CE)' } : undefined}
-                >
-                  {imageType === 'image' && (
+                {/* Button + optional menu — right-aligned together so menu aligns under button */}
+                <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                  <AXAvatarButton
+                    indicator={indicator}
+                    clockState={clockState}
+                    size={avatarSize}
+                    avatarStyle={sizeStyle}
+                    disabled={buttonState === 'disabled'}
+                    aria-label="User avatar"
+                    onClick={() => buttonState !== 'disabled' && setLastClicked(`Clicked at ${new Date().toLocaleTimeString()}`)}
+                    wrapperStyle={buttonState === 'focused' ? { boxShadow: '0 0 0 3px var(--ld-semantic-color-border-focus, #0071CE)' } : undefined}
+                  >
+                    {imageType === 'image' && (
+                      <>
+                        <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" />
+                        <AvatarFallback>AB</AvatarFallback>
+                      </>
+                    )}
+                    {imageType === 'initials' && (
+                      <AvatarFallback style={{
+                        ...fallbackTextStyle,
+                        ...(buttonState === 'focused' ? { backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-focused)' } : {}),
+                        ...(buttonState === 'pressed' ? { backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-pressed)' } : {}),
+                      }}>AB</AvatarFallback>
+                    )}
+                    {imageType === 'icon' && (
+                      <AvatarFallback>
+                        <User
+                          width={avatarSize === 'xsmall' ? 12 : avatarSize === 'small' ? 16 : avatarSize === 'xlarge' ? 32 : 24}
+                          height={avatarSize === 'xsmall' ? 12 : avatarSize === 'small' ? 16 : avatarSize === 'xlarge' ? 32 : 24}
+                          color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)"
+                        />
+                      </AvatarFallback>
+                    )}
+                  </AXAvatarButton>
+
+                  {/* Account menu — shown only in Pressed state */}
+                  {buttonState === 'pressed' && (
                     <>
-                      <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" />
-                      <AvatarFallback>AB</AvatarFallback>
+                      <div style={{ height: 'var(--ld-primitive-scale-space-100, 8px)' }} />
+                      <div style={{ width: '280px', borderRadius: 'var(--ld-primitive-scale-border-radius-50, 4px)', background: 'var(--ld-semantic-color-fill-surface-primary, #FFF)', boxShadow: '0 -1px 4px 0 rgba(0,0,0,0.10), 0 5px 10px 3px rgba(0,0,0,0.15)', display: 'flex', flexDirection: 'column' }}>
+                        {/* Header */}
+                        <div style={{ display: 'flex', width: '100%', padding: 'var(--ld-primitive-scale-space-250, 1.25rem) var(--ld-primitive-scale-space-200, 1rem) var(--ld-primitive-scale-space-200, 1rem)', justifyContent: 'center', boxSizing: 'border-box' }}>
+                          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', flex: 1 }}>
+                            <div style={{ width: 'var(--ld-primitive-scale-space-600, 3rem)', height: 'var(--ld-primitive-scale-space-600, 3rem)', borderRadius: '50%', backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle, #E9F1FE)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                              <span style={{ color: 'var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-heading-small-size, 1.125rem)', fontWeight: 700, lineHeight: 1 }}>SC</span>
+                            </div>
+                            <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Firstname Lastname</span>
+                            <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)', textDecoration: 'underline' }}>Sign out</span>
+                          </div>
+                        </div>
+                        {/* Club info */}
+                        <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+                        <div style={{ display: 'flex', padding: 'var(--ld-primitive-scale-space-200, 1rem)', alignItems: 'center', gap: 'var(--ld-primitive-scale-space-100, 0.5rem)' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--ld-primitive-scale-space-150, 0.75rem)', flex: 1 }}>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}><path fillRule="evenodd" clipRule="evenodd" d="M3 6.83055C3.02367 5.52738 3.56347 4.28685 4.5009 3.38129C5.43833 2.47573 6.69679 1.97914 8 2.00055C9.30321 1.97914 10.5617 2.47573 11.4991 3.38129C12.4365 4.28685 12.9763 5.52738 13 6.83055C12.8431 8.3715 12.1618 9.81182 11.07 10.9106C10.1454 11.9585 9.14254 12.9346 8.07001 13.8306L8 13.8906L7.92999 13.8306C6.85746 12.9346 5.85457 11.9585 4.92999 10.9106C3.83823 9.81182 3.15691 8.3715 3 6.83055ZM8 1.00055C6.43158 0.979175 4.9188 1.58112 3.79384 2.67421C2.66888 3.7673 2.0237 5.26217 2 6.83055C2 10.0106 5.5 13.0406 7.27 14.5806L7.56 14.8406C7.68395 14.9428 7.83932 14.9993 8 15.0006C8.16068 14.9993 8.31605 14.9428 8.44 14.8406L8.73 14.5806C10.5 13.0006 14 10.0006 14 6.83055C13.9763 5.26217 13.3311 3.7673 12.2062 2.67421C11.0812 1.58112 9.56842 0.979175 8 1.00055ZM6.5 7.00055C6.5 6.60273 6.65804 6.22119 6.93935 5.93989C7.22065 5.65859 7.60218 5.50055 8 5.50055V4.50055C7.33696 4.50055 6.70108 4.76394 6.23224 5.23278C5.7634 5.70162 5.5 6.33751 5.5 7.00055C5.5 7.66359 5.7634 8.29948 6.23224 8.76832C6.70108 9.23716 7.33696 9.50055 8 9.50055C8.66304 9.50055 9.29892 9.23716 9.76776 8.76832C10.2366 8.29948 10.5 7.66359 10.5 7.00055H9.5C9.5 7.39838 9.34196 7.77991 9.06065 8.06121C8.77935 8.34251 8.39782 8.50055 8 8.50055C7.60218 8.50055 7.22065 8.34251 6.93935 8.06121C6.65804 7.77991 6.5 7.39838 6.5 7.00055Z" fill="#74767C"/></svg>
+                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                              <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>Club #0001</span>
+                              <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Member Services</span>
+                            </div>
+                          </div>
+                          <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)', textDecoration: 'underline', whiteSpace: 'nowrap' }}>Change</span>
+                        </div>
+                        {/* Report issues */}
+                        <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+                        <div style={{ display: 'flex', padding: 'var(--ld-primitive-scale-space-200, 1rem)', alignItems: 'center', gap: 'var(--ld-primitive-scale-space-100, 0.5rem)' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--ld-primitive-scale-space-150, 0.75rem)', flex: 1 }}>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}><path d="M14 14V2H1V1H15V15H1V2H2V14H14Z" fill="#74767C"/><path fillRule="evenodd" clipRule="evenodd" d="M3.438 7V3.172H4.56C4.996 3.172 5.336 3.27 5.58 3.466C5.828 3.662 5.952 3.954 5.952 4.342C5.952 4.718 5.828 5.01 5.58 5.218C5.336 5.426 4.996 5.53 4.56 5.53H3.924V7H3.438ZM4.518 3.58H3.924V5.128H4.518C4.862 5.128 5.106 5.06 5.25 4.924C5.394 4.784 5.466 4.594 5.466 4.354C5.466 4.106 5.394 3.916 5.25 3.784C5.106 3.648 4.862 3.58 4.518 3.58Z" fill="#74767C"/><path d="M6.5895 3.598C6.6455 3.65 6.7175 3.676 6.8055 3.676C6.8935 3.676 6.9655 3.65 7.0215 3.598C7.0815 3.542 7.1115 3.472 7.1115 3.388C7.1115 3.308 7.0815 3.242 7.0215 3.19C6.9655 3.138 6.8935 3.112 6.8055 3.112C6.7175 3.112 6.6455 3.138 6.5895 3.19C6.5335 3.242 6.5055 3.308 6.5055 3.388C6.5055 3.472 6.5335 3.542 6.5895 3.598Z" fill="#74767C"/><path d="M7.0395 7V4.162H6.5775V7H7.0395Z" fill="#74767C"/><path d="M9.91997 4.342V4.816C9.81997 4.716 9.69997 4.638 9.55997 4.582C9.42397 4.526 9.27597 4.498 9.11597 4.498C8.93197 4.498 8.76197 4.54 8.60597 4.624C8.44997 4.708 8.32597 4.83 8.23397 4.99C8.14197 5.15 8.09597 5.348 8.09597 5.584C8.09597 5.82 8.14197 6.018 8.23397 6.178C8.32597 6.334 8.44997 6.454 8.60597 6.538C8.76197 6.618 8.93197 6.658 9.11597 6.658C9.29597 6.658 9.45197 6.632 9.58397 6.58C9.71597 6.528 9.82797 6.462 9.91997 6.382V6.802C9.86397 6.854 9.76797 6.91 9.63197 6.97C9.49597 7.03 9.31597 7.06 9.09197 7.06C8.83197 7.06 8.58997 7.002 8.36597 6.886C8.14197 6.77 7.96397 6.602 7.83197 6.382C7.69997 6.162 7.63397 5.896 7.63397 5.584C7.63397 5.268 7.69997 5 7.83197 4.78C7.96397 4.56 8.14197 4.392 8.36597 4.276C8.58997 4.16 8.83197 4.102 9.09197 4.102C9.30397 4.102 9.47597 4.128 9.60797 4.18C9.74397 4.232 9.84797 4.286 9.91997 4.342Z" fill="#74767C"/><path d="M11.0119 2.998V5.42358L12.2179 4.162H12.7279L11.45 5.49879L12.7819 7H12.2419L11.0119 5.63086V7H10.5499V2.998H11.0119Z" fill="#74767C"/><path fillRule="evenodd" clipRule="evenodd" d="M8.37558 12.554C8.10758 12.554 7.86758 12.49 7.65558 12.362C7.44758 12.234 7.28358 12.058 7.16358 11.834C7.04358 11.61 6.98358 11.358 6.98358 11.078C6.98358 10.79 7.04358 10.536 7.16358 10.316C7.28358 10.092 7.44758 9.916 7.65558 9.788C7.86758 9.656 8.10758 9.59 8.37558 9.59C8.65158 9.59 8.89358 9.656 9.10158 9.788C9.31358 9.916 9.47958 10.092 9.59958 10.316C9.71958 10.536 9.77958 10.79 9.77958 11.078C9.77958 11.358 9.71958 11.61 9.59958 11.834C9.47958 12.058 9.31358 12.234 9.10158 12.362C8.89358 12.49 8.65158 12.554 8.37558 12.554ZM8.37558 12.17C8.57558 12.17 8.74558 12.122 8.88558 12.026C9.02558 11.93 9.13358 11.8 9.20958 11.636C9.28558 11.472 9.32358 11.286 9.32358 11.078C9.32358 10.866 9.28558 10.678 9.20958 10.514C9.13758 10.35 9.03158 10.22 8.89158 10.124C8.75158 10.028 8.57958 9.98 8.37558 9.98C8.17958 9.98 8.01158 10.028 7.87158 10.124C7.73158 10.22 7.62358 10.35 7.54758 10.514C7.47558 10.678 7.43958 10.866 7.43958 11.078C7.43958 11.286 7.47758 11.472 7.55358 11.636C7.62958 11.8 7.73758 11.93 7.87758 12.026C8.01758 12.122 8.18358 12.17 8.37558 12.17Z" fill="#74767C"/><path d="M6.54497 10.316V9.842C6.47297 9.786 6.36897 9.732 6.23297 9.68C6.10097 9.628 5.92897 9.602 5.71697 9.602C5.45697 9.602 5.21497 9.66 4.99097 9.776C4.76697 9.892 4.58897 10.06 4.45697 10.28C4.32497 10.5 4.25897 10.768 4.25897 11.084C4.25897 11.396 4.32497 11.662 4.45697 11.882C4.58897 12.102 4.76697 12.27 4.99097 12.386C5.21497 12.502 5.45697 12.56 5.71697 12.56C5.94097 12.56 6.12097 12.53 6.25697 12.47C6.39297 12.41 6.48897 12.354 6.54497 12.302V11.882C6.45297 11.962 6.34097 12.028 6.20897 12.08C6.07697 12.132 5.92097 12.158 5.74097 12.158C5.55697 12.158 5.38697 12.118 5.23097 12.038C5.07497 11.954 4.95097 11.834 4.85897 11.678C4.76697 11.518 4.72097 11.32 4.72097 11.084C4.72097 10.848 4.76697 10.65 4.85897 10.49C4.95097 10.33 5.07497 10.208 5.23097 10.124C5.38397 10.04 5.55697 9.998 5.74097 9.998C5.90097 9.998 6.04897 10.026 6.18497 10.082C6.32497 10.138 6.44497 10.216 6.54497 10.316Z" fill="#74767C"/><path d="M3.6645 9.662V12.5H3.2025V9.662H3.6645Z" fill="#74767C"/><path d="M3.4305 9.176C3.3425 9.176 3.2705 9.15 3.2145 9.098C3.1585 9.042 3.1305 8.972 3.1305 8.888C3.1305 8.808 3.1585 8.742 3.2145 8.69C3.2705 8.638 3.3425 8.612 3.4305 8.612C3.5185 8.612 3.5905 8.638 3.6465 8.69C3.7065 8.742 3.7365 8.808 3.7365 8.888C3.7365 8.972 3.7065 9.042 3.6465 9.098C3.5905 9.15 3.5185 9.176 3.4305 9.176Z" fill="#74767C"/><path d="M10.8421 10.3253C10.8515 10.2999 10.8615 10.2748 10.8721 10.25C10.9561 10.05 11.0821 9.89 11.2501 9.77C11.4181 9.65 11.6241 9.59 11.8681 9.59C12.1481 9.59 12.3741 9.678 12.5461 9.854C12.7221 10.03 12.8101 10.3 12.8101 10.664V12.5H12.3481V10.718C12.3481 10.45 12.2901 10.262 12.1741 10.154C12.0581 10.046 11.9001 9.992 11.7001 9.992C11.4561 9.992 11.2521 10.088 11.0881 10.28C10.9281 10.472 10.8481 10.748 10.8481 11.108V12.5H10.3801V9.662H10.8421V10.3253Z" fill="#74767C"/></svg>
+                            <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Report issues or leave feedback</span>
+                          </div>
+                        </div>
+                        {/* See what's new */}
+                        <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+                        <div style={{ display: 'flex', padding: 'var(--ld-primitive-scale-space-200, 1rem)', alignItems: 'center', gap: 'var(--ld-primitive-scale-space-100, 0.5rem)' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--ld-primitive-scale-space-150, 0.75rem)', flex: 1 }}>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}><path d="M8.24807 2.29245C7.37049 3.27509 7.06444 4.62347 7.39918 5.86897L7.42663 5.96193L1.14651 12.2406C0.951168 12.4359 0.951162 12.7525 1.1465 12.9478L3.05236 14.853L3.1216 14.9109C3.31643 15.0458 3.58577 15.0265 3.75931 14.853L10.0415 8.57178L10.1362 8.59992C11.4494 8.94995 12.8756 8.58887 13.8668 7.59799C14.9416 6.5236 15.2769 4.93669 14.7638 3.53472L14.7262 3.45418C14.5664 3.1781 14.178 3.11624 13.9411 3.35272L12.4383 4.85199L11.3804 4.62001L11.1484 3.56307L12.653 2.06149C12.9112 1.80354 12.8149 1.36484 12.4725 1.23865C11.0683 0.721282 9.47664 1.05548 8.39962 2.13214L8.24807 2.29245ZM11.185 2.00015L11.2934 2.00516L10.2483 3.05045C10.1276 3.17107 10.0767 3.34494 10.1134 3.51161L10.4734 5.14728C10.5153 5.3376 10.6639 5.48624 10.8542 5.52811L12.4906 5.88814L12.5908 5.89977C12.7244 5.9017 12.8548 5.85 12.9513 5.75369L13.9933 4.712L13.9993 4.81804C14.0117 5.57707 13.7224 6.32849 13.1599 6.8908C12.3475 7.7029 11.1413 7.94447 10.0893 7.53408L10.0088 7.51023C9.84587 7.47651 9.6744 7.52604 9.55412 7.64628L3.40486 13.7925L2.20693 12.5935L8.35341 6.45049C8.49409 6.30987 8.53803 6.09923 8.46531 5.91409C8.05183 4.86148 8.29272 3.6529 9.10656 2.83933C9.67032 2.27576 10.4241 1.98655 11.185 2.00015Z" fill="#74767C"/></svg>
+                            <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>See what's new</span>
+                          </div>
+                          <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', whiteSpace: 'nowrap' }}>v 3.5.1</span>
+                        </div>
+                        {/* Supervisor sign in */}
+                        <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+                        <div style={{ display: 'flex', padding: 'var(--ld-primitive-scale-space-200, 1rem)', alignItems: 'center', gap: 'var(--ld-primitive-scale-space-100, 0.5rem)' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--ld-primitive-scale-space-150, 0.75rem)', flex: 1 }}>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}><path d="M7.99978 9.33337C8.36797 9.33337 8.66645 9.0349 8.66645 8.66671C8.66645 8.29852 8.36797 8.00004 7.99978 8.00004C7.63159 8.00004 7.33311 8.29852 7.33311 8.66671C7.33311 9.0349 7.63159 9.33337 7.99978 9.33337Z" fill="#74767C"/><path fillRule="evenodd" clipRule="evenodd" d="M10.9491 6.11336L7.99978 0.583374L5.05046 6.11336L1.23242 4.20434L2.00153 13.0491C2.01751 13.2626 2.13583 13.4646 2.3357 13.5788C2.3914 13.6107 2.44872 13.6417 2.50757 13.6721C3.43782 14.2578 5.54694 14.6667 7.99984 14.6667C10.4531 14.6667 12.5625 14.2577 13.4925 13.6718C13.5512 13.6415 13.6083 13.6106 13.6639 13.5788C13.8641 13.4644 13.9825 13.2619 13.9981 13.048L14.7671 4.20434L10.9491 6.11336ZM12.7524 11.9826L13.2324 6.46241L10.3838 7.88673L7.99978 3.41671L5.61577 7.88673L2.76714 6.46241L3.24716 11.9826C4.34436 11.5877 6.06516 11.3334 7.99984 11.3334C9.93445 11.3334 11.6552 11.5877 12.7524 11.9826ZM12.5767 12.6282C11.5003 13.0779 9.79433 13.3333 7.99979 13.3333C6.20527 13.3333 4.49935 13.0779 3.42292 12.6282C3.57349 12.5722 3.74434 12.517 3.93563 12.4639C4.94839 12.1826 6.38554 12 7.99984 12C9.61413 12 11.0513 12.1826 12.064 12.4639C12.2553 12.517 12.4262 12.5722 12.5767 12.6282Z" fill="#74767C"/></svg>
+                            <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Supervisor sign in</span>
+                          </div>
+                        </div>
+                      </div>
                     </>
                   )}
-                  {imageType === 'initials' && (
-                    <AvatarFallback style={{
-                      ...fallbackTextStyle,
-                      ...(buttonState === 'focused' ? { backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-focused)' } : {}),
-                      ...(buttonState === 'pressed' ? { backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-pressed)' } : {}),
-                    }}>AB</AvatarFallback>
-                  )}
-                  {imageType === 'icon' && (
-                    <AvatarFallback>
-                      <User
-                        width={avatarSize === 'xsmall' ? 12 : avatarSize === 'small' ? 16 : avatarSize === 'xlarge' ? 32 : 24}
-                        height={avatarSize === 'xsmall' ? 12 : avatarSize === 'small' ? 16 : avatarSize === 'xlarge' ? 32 : 24}
-                        color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)"
-                      />
-                    </AvatarFallback>
-                  )}
-                </AXAvatarButton>
+                </div>
+
                 {lastClicked && (
                   <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>
                     {lastClicked}
