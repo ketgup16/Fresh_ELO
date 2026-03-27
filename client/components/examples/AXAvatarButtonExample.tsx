@@ -183,7 +183,11 @@ export default function AXAvatarButtonExample() {
                     avatarStyle={sizeStyle}
                     disabled={buttonState === 'disabled'}
                     aria-label="User avatar"
-                    onClick={() => buttonState !== 'disabled' && setLastClicked(`Clicked at ${new Date().toLocaleTimeString()}`)}
+                    onClick={() => {
+                      if (buttonState !== 'disabled') {
+                        setButtonState(s => s === 'pressed' ? 'default' : 'pressed');
+                      }
+                    }}
                     wrapperStyle={buttonState === 'focused' ? { boxShadow: '0 0 0 3px var(--ld-semantic-color-border-focus, #0071CE)' } : undefined}
                   >
                     {imageType === 'image' && (
