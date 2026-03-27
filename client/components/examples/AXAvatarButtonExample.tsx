@@ -676,34 +676,78 @@ export default function AXAvatarButtonExample() {
       {/* ── Anatomy ── */}
       <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
         <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>Anatomy</h2>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
-                {['Element', 'Description', 'Visibility'].map(h => (
-                  <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ['Button wrapper', 'Focusable <button> element wrapping the avatar. Provides click, focus ring, and disabled state.', 'Always'],
-                ['Avatar circle', 'Circular container that clips the image or fallback content.', 'Always'],
-                ['Avatar image', 'Profile photo rendered inside the circle.', 'When image src is provided and loaded'],
-                ['Fallback initials', 'Two-letter initials shown when no image is available.', 'When image is absent or fails to load'],
-                ['Fallback icon', 'Icon (e.g. User) shown instead of initials.', 'When icon is passed as fallback child'],
-                ['Badge indicator', 'Notification count badge at top-right of the circle.', 'When indicator="badge"'],
-                ['Clock indicator dot', 'Status dot: green (clocked in) or grey (clocked out).', 'When indicator="clock"'],
-                ['Focus ring', 'Blue outline ring shown on keyboard focus.', 'When button is focused'],
-              ].map(([el, desc, vis]) => (
-                <tr key={el} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
-                  <td style={{ padding: '8px 12px', fontWeight: 500, color: 'var(--ld-semantic-color-text)' }}>{el}</td>
-                  <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
-                  <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{vis}</td>
+
+        {/* Avatar Button subsection */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <h3 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px', fontWeight: 600, margin: 0, color: 'var(--ld-semantic-color-text-subtle)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Avatar Button</h3>
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                  {['Element', 'Description', 'Visibility'].map(h => (
+                    <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>{h}</th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {[
+                  ['Button wrapper', 'Focusable <button> element wrapping the avatar. Provides click, focus ring, and disabled state.', 'Always'],
+                  ['Avatar circle', 'Circular container that clips the image or fallback content.', 'Always'],
+                  ['Avatar image', 'Profile photo rendered inside the circle.', 'When image src is provided and loaded'],
+                  ['Fallback initials', 'Two-letter initials shown when no image is available.', 'When image is absent or fails to load'],
+                  ['Fallback icon', 'Icon (e.g. User) shown instead of initials.', 'When icon is passed as fallback child'],
+                  ['Badge indicator', 'Notification count badge at top-right of the circle.', 'When indicator="badge"'],
+                  ['Clock indicator dot', 'Status dot: green (clocked in) or grey (clocked out).', 'When indicator="clock"'],
+                  ['Focus ring', 'Blue outline ring shown on keyboard focus.', 'When button is focused'],
+                ].map(([el, desc, vis]) => (
+                  <tr key={el} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                    <td style={{ padding: '8px 12px', fontWeight: 500, color: 'var(--ld-semantic-color-text)' }}>{el}</td>
+                    <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
+                    <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{vis}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Divider between subsections */}
+        <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+
+        {/* Menu subsection */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <h3 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px', fontWeight: 600, margin: 0, color: 'var(--ld-semantic-color-text-subtle)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Menu</h3>
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                  {['Element', 'Description', 'Visibility'].map(h => (
+                    <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ['Menu surface', 'White card (280px wide) with drop shadow, appearing below the avatar button.', 'When avatar button is activated'],
+                  ['Header', 'Contains a large (48px) avatar, the user\'s full name, and a "Sign out" link.', 'Always when menu is open'],
+                  ['Avatar (header)', '48px avatar circle showing the user\'s initials or image inside the menu header.', 'Always when menu is open'],
+                  ['Full name', 'User\'s first and last name displayed below the header avatar.', 'Always when menu is open'],
+                  ['Sign out', 'Link button that signs the user out of the session.', 'Always when menu is open'],
+                  ['Club info item', 'Shows the current club number (subtext) and "Member Services" label with a "Change" link.', 'Always when menu is open'],
+                  ['Report issues item', 'Link to report issues or leave feedback, with a leading icon.', 'Always when menu is open'],
+                  ['See what\'s new item', 'Shows release notes entry; displays version number (e.g. v 3.5.1) as trailing detail.', 'Always when menu is open'],
+                  ['Supervisor sign in item', 'Allows a supervisor to sign in to the session, with a leading admin icon.', 'Always when menu is open'],
+                  ['Item dividers', '1px separator lines between each menu item.', 'Always when menu is open'],
+                ].map(([el, desc, vis]) => (
+                  <tr key={el} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                    <td style={{ padding: '8px 12px', fontWeight: 500, color: 'var(--ld-semantic-color-text)', whiteSpace: 'nowrap' }}>{el}</td>
+                    <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
+                    <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>{vis}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
