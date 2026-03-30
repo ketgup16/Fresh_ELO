@@ -54,19 +54,19 @@
   color: var(--ld-semantic-color-text-subtlest, #74767C);
 }
 
-/* info — brand blue icon, primary label */
-.color--info .icon {
+/* brand — brand blue icon, primary label */
+.color--brand .icon {
   color: var(--ld-semantic-color-text-brand, #0053E2);
 }
-.color--info .label {
+.color--brand .label {
   color: var(--ld-semantic-color-text, #2E2F32);
 }
 
-/* error — critical red icon, primary label */
-.color--error .icon {
+/* negative — critical red icon, primary label */
+.color--negative .icon {
   color: var(--ld-semantic-color-text-critical, #C00000);
 }
-.color--error .label {
+.color--negative .label {
   color: var(--ld-semantic-color-text, #2E2F32);
 }
 
@@ -78,11 +78,11 @@
   color: var(--ld-semantic-color-text, #2E2F32);
 }
 
-/* selected — brand blue icon, bold brand label */
-.color--selected .icon {
+/* highlight — brand blue icon, bold brand label */
+.color--highlight .icon {
   color: var(--ld-semantic-color-text-brand, #0053E2);
 }
-.color--selected .label {
+.color--highlight .label {
   color: var(--ld-semantic-color-text-brand, #0053E2);
   font-weight: 700;
 }

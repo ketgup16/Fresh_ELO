@@ -7,7 +7,7 @@ export type AXAttributeSize = 'small' | 'large';
 /**
  * Small supports 5 color variants; Large supports 4 (no 'success').
  */
-export type AXAttributeColor = 'default' | 'info' | 'error' | 'success' | 'selected';
+export type AXAttributeColor = 'default' | 'brand' | 'negative' | 'success' | 'highlight';
 
 export interface AXAttributeProps {
   /** Display label — required. */

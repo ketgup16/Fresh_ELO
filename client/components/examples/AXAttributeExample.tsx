@@ -51,17 +51,17 @@ const CHIP_LABEL: React.CSSProperties = {
 
 const SMALL_COLORS: { color: AXAttributeColor; label: string }[] = [
   { color: 'default',  label: 'Default'  },
-  { color: 'info',     label: 'Info'     },
-  { color: 'error',    label: 'Error'    },
+  { color: 'brand',    label: 'Brand'    },
+  { color: 'negative', label: 'Negative' },
   { color: 'success',  label: 'Success'  },
-  { color: 'selected', label: 'Selected' },
+  { color: 'highlight', label: 'Highlight' },
 ];
 
 const LARGE_COLORS: { color: AXAttributeColor; label: string }[] = [
   { color: 'default',  label: 'Default'  },
-  { color: 'info',     label: 'Info'     },
-  { color: 'error',    label: 'Error'    },
-  { color: 'selected', label: 'Selected' },
+  { color: 'brand',    label: 'Brand'    },
+  { color: 'negative', label: 'Negative' },
+  { color: 'highlight', label: 'Highlight' },
 ];
 
 // ── Component ────────────────────────────────────────────────────────────────
@@ -89,7 +89,7 @@ export default function AXAttributeExample() {
 
 // Custom icon
 import { Star } from '@/components/icons/Star';
-<AXAttribute label="Label" size="small" color="info" icon={<Star width={16} height={16} />} />`;
+<AXAttribute label="Label" size="small" color="brand" icon={<Star width={16} height={16} />} />`;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -246,10 +246,10 @@ import { Star } from '@/components/icons/Star';
             <tbody>
               {[
                 ['default',  'ld-semantic-color-text-subtlest',  'ld-semantic-color-text-subtlest',  '400', 'Small, Large'],
-                ['info',     'ld-semantic-color-text-brand',     'ld-semantic-color-text',            '400', 'Small, Large'],
-                ['error',    'ld-semantic-color-text-critical',  'ld-semantic-color-text',            '400', 'Small, Large'],
+                ['brand',    'ld-semantic-color-text-brand',     'ld-semantic-color-text',            '400', 'Small, Large'],
+                ['negative', 'ld-semantic-color-text-critical',  'ld-semantic-color-text',            '400', 'Small, Large'],
                 ['success',  'ld-semantic-color-text-positive',  'ld-semantic-color-text',            '400', 'Small only'],
-                ['selected', 'ld-semantic-color-text-brand',     'ld-semantic-color-text-brand',      '700', 'Small, Large'],
+                ['highlight','ld-semantic-color-text-brand',     'ld-semantic-color-text-brand',      '700', 'Small, Large'],
               ].map(([variant, iconTok, labelTok, weight, sizes]) => (
                 <tr key={variant} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
                   <td style={{ padding: '8px 12px' }}>
