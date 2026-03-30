@@ -600,25 +600,35 @@ export default function AXAvatarButtonExample() {
           ];
 
           return (
-            <div style={{ display: 'flex', gap: '40px', overflowX: 'auto', paddingBottom: '340px' }}>
-              {SIZE_ITEMS.map(({ label, size, dim, initials, fallback }) => (
-                <div key={size} style={{ display: 'flex', flexDirection: 'column', gap: '8px', flexShrink: 0, minWidth: '280px' }}>
-                  <span style={{ fontSize: '12px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)', textAlign: 'right' }}>{label}</span>
-                  {/* Button anchored; menu positioned absolutely below */}
-                  <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                    <AXAvatarButton size={size} avatarStyle={dim} aria-label="Account" onClick={() => setMenuOpen(o => !o)}>
-                      <AvatarFallback style={{ ...fallback, ...(menuOpen ? { backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-pressed)' } : {}) }}>
-                        {initials}
-                      </AvatarFallback>
-                    </AXAvatarButton>
-                    {menuOpen && (
-                      <div style={{ position: 'absolute', top: 'calc(100% + var(--ld-primitive-scale-space-100, 8px))', right: 0, zIndex: 10 }}>
-                        <MenuContent />
-                      </div>
-                    )}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', overflowX: 'auto', paddingBottom: '340px' }}>
+              {/* Label row — top-aligned */}
+              <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start' }}>
+                {SIZE_ITEMS.map(({ label, size }) => (
+                  <div key={size} style={{ minWidth: '280px', flexShrink: 0 }}>
+                    <span style={{ fontSize: '12px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)', display: 'block', textAlign: 'right' }}>{label}</span>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              {/* Button row — all avatars centered on the same horizontal line */}
+              <div style={{ display: 'flex', gap: '40px', alignItems: 'center' }}>
+                {SIZE_ITEMS.map(({ label, size, dim, initials, fallback }) => (
+                  <div key={size} style={{ minWidth: '280px', flexShrink: 0, display: 'flex', justifyContent: 'flex-end' }}>
+                    {/* Button anchored; menu positioned absolutely below */}
+                    <div style={{ position: 'relative', display: 'inline-flex' }}>
+                      <AXAvatarButton size={size} avatarStyle={dim} aria-label="Account" onClick={() => setMenuOpen(o => !o)}>
+                        <AvatarFallback style={{ ...fallback, ...(menuOpen ? { backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-pressed)' } : {}) }}>
+                          {initials}
+                        </AvatarFallback>
+                      </AXAvatarButton>
+                      {menuOpen && (
+                        <div style={{ position: 'absolute', top: 'calc(100% + var(--ld-primitive-scale-space-100, 8px))', right: 0, zIndex: 10 }}>
+                          <MenuContent />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           );
         })()}
