@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Tag } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
+import { LinkButton } from '@/components/ui/LinkButton';
 import styles from './AXButtonGroups.module.css';
 
 // ── Shared preview wrappers ───────────────────────────────────────────────────
@@ -51,7 +52,7 @@ function InlinePrimarySecondary({ fullWidth = true }: { fullWidth?: boolean }) {
 function InlinePrimaryTertiary({ fullWidth = true }: { fullWidth?: boolean }) {
   return (
     <div className={fullWidth ? styles.inlineFull : styles.inlineAuto}>
-      <Button variant="tertiary" size="medium" isFullWidth={fullWidth}>Alternate</Button>
+      <LinkButton size="medium" UNSAFE_style={fullWidth ? { flex: 1, justifyContent: 'center' } : undefined}>Alternate</LinkButton>
       <Button variant="primary" size="medium" isFullWidth={fullWidth}>Preferred</Button>
     </div>
   );
@@ -60,7 +61,7 @@ function InlinePrimaryTertiary({ fullWidth = true }: { fullWidth?: boolean }) {
 function InlineSecondaryTertiary({ fullWidth = true }: { fullWidth?: boolean }) {
   return (
     <div className={fullWidth ? styles.inlineFull : styles.inlineAuto}>
-      <Button variant="tertiary" size="medium" isFullWidth={fullWidth}>Alternate</Button>
+      <LinkButton size="medium" UNSAFE_style={fullWidth ? { flex: 1, justifyContent: 'center' } : undefined}>Alternate</LinkButton>
       <Button variant="secondary" size="medium" isFullWidth={fullWidth}>Preferred</Button>
     </div>
   );
@@ -69,8 +70,8 @@ function InlineSecondaryTertiary({ fullWidth = true }: { fullWidth?: boolean }) 
 function InlineTertiaryTertiary({ fullWidth = true }: { fullWidth?: boolean }) {
   return (
     <div className={fullWidth ? styles.inlineFull : styles.inlineAuto}>
-      <Button variant="tertiary" size="medium" isFullWidth={fullWidth}>Alternate</Button>
-      <Button variant="tertiary" size="medium" isFullWidth={fullWidth}>Preferred</Button>
+      <LinkButton size="medium" UNSAFE_style={fullWidth ? { flex: 1, justifyContent: 'center' } : undefined}>Alternate</LinkButton>
+      <LinkButton size="medium" UNSAFE_style={fullWidth ? { flex: 1, justifyContent: 'center' } : undefined}>Preferred</LinkButton>
     </div>
   );
 }
@@ -90,7 +91,7 @@ function StackedPrimaryTertiary() {
   return (
     <div className={styles.stacked}>
       <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
-      <Button variant="tertiary" size="medium" isFullWidth>Alternate</Button>
+      <LinkButton size="medium" UNSAFE_style={{ alignSelf: 'center' }}>Alternate</LinkButton>
     </div>
   );
 }
@@ -99,7 +100,7 @@ function StackedSecondaryTertiary() {
   return (
     <div className={styles.stacked}>
       <Button variant="secondary" size="medium" isFullWidth>Preferred</Button>
-      <Button variant="tertiary" size="medium" isFullWidth>Alternate</Button>
+      <LinkButton size="medium" UNSAFE_style={{ alignSelf: 'center' }}>Alternate</LinkButton>
     </div>
   );
 }
@@ -112,8 +113,8 @@ function Stacked3Options() {
         <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>
         <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
       </div>
-      {/* Bottom tertiary link */}
-      <Button variant="tertiary" size="medium" isFullWidth>Alternate</Button>
+      {/* Bottom link button */}
+      <LinkButton size="medium" UNSAFE_style={{ alignSelf: 'center' }}>Alternate</LinkButton>
     </div>
   );
 }
@@ -276,7 +277,7 @@ export default function AXButtonGroupsPage() {
     <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>
     <Button variant="primary"   size="medium" isFullWidth>Preferred</Button>
   </div>
-  <Button variant="tertiary" size="medium" isFullWidth>Alternate</Button>
+  <LinkButton size="medium">Alternate</LinkButton>
 </div>`}</pre>
       </section>
     </ComponentPageLayout>
