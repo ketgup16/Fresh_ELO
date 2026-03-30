@@ -3,6 +3,7 @@ import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { AXAvatarButton, AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatarButton';
 import { User } from '@/components/icons/User';
+import { Placeholder } from '@/components/icons/Placeholder';
 
 // Avatar dimensions via primitive scale tokens (space-300=24px · space-400=32px · space-500=40px · space-600=48px · space-800=64px)
 const AVATAR_DIM = {
@@ -675,11 +676,8 @@ export default function AXAvatarButtonExample() {
                   <div style={containerStyle}>
                     {/* Leading: icon + stacked label */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--ld-primitive-scale-space-150, 0.75rem)', flex: 1 }}>
-                      {/* Placeholder icon */}
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
-                        <path d="M14 14V2H1V1H15V15H1V2H2V14H14Z" fill={iconFill} />
-                        <path fillRule="evenodd" clipRule="evenodd" d="M3.438 7V3.172H4.56C4.996 3.172 5.336 3.27 5.58 3.466C5.828 3.662 5.952 3.954 5.952 4.342C5.952 4.718 5.828 5.01 5.58 5.218C5.336 5.426 4.996 5.53 4.56 5.53H3.924V7H3.438ZM4.518 3.58H3.924V5.128H4.518C4.862 5.128 5.106 5.06 5.25 4.924C5.394 4.784 5.466 4.594 5.466 4.354C5.466 4.106 5.394 3.916 5.25 3.784C5.106 3.648 4.862 3.58 4.518 3.58Z" fill={iconFill} />
-                      </svg>
+                      {/* Placeholder icon — [LD 3.5] Placeholder, Size=Small */}
+                      <Placeholder width={16} height={16} style={{ flexShrink: 0, color: iconFill }} />
                       {/* Subtext + label stack */}
                       <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
                         <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: subtleColor }}>Detail</span>
