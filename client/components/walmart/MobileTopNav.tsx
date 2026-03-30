@@ -10,6 +10,8 @@ import { MoreLinksDropdown } from '@/components/walmart/MoreLinksDropdown';
 import { SubNavButton } from '@/components/walmart/SubNavButton';
 import { SearchTypeaheadModal } from '@/pages/walmart/index/SearchTypeaheadModal';
 import { AXSearchBar } from '@/components/walmart/AXSearchBar';
+import { AXAvatarButton } from '@/components/walmart/AXAvatarButton';
+import { AvatarFallback } from '@/components/ui/avatar';
 import { useNavigate } from 'react-router-dom';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import { useCart } from '@/contexts/CartContext';
@@ -53,6 +55,8 @@ interface MobileTopNavProps {
   action3Icon?: React.ReactNode;
   /** Icon node rendered inside the leading menu button. Defaults to Menu icon. */
   menuIcon?: React.ReactNode;
+  /** Show an AX Avatar Button as the rightmost trailing element in the native header. @default false */
+  showNativeAvatarButton?: boolean;
 }
 
 export function MobileTopNav({
@@ -72,6 +76,7 @@ export function MobileTopNav({
   action2Icon = <Placeholder />,
   action3Icon = <Placeholder />,
   menuIcon = <Menu />,
+  showNativeAvatarButton = false,
 }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
@@ -211,6 +216,11 @@ export function MobileTopNav({
                   <IconButton variant="white" size="medium" aria-label="Action 3">
                     {action3Icon}
                   </IconButton>
+                )}
+                {showNativeAvatarButton && (
+                  <AXAvatarButton size="xsmall" aria-label="Account">
+                    <AvatarFallback>WM</AvatarFallback>
+                  </AXAvatarButton>
                 )}
               </div>
             </div>

@@ -56,6 +56,7 @@ export default function TopNavPage() {
   const [showNativeAction2, setShowNativeAction2] = useState(true);
   const [showNativeAction3, setShowNativeAction3] = useState(true);
   const [showNativeSearchBar, setShowNativeSearchBar] = useState(true);
+  const [showNativeAvatarButton, setShowNativeAvatarButton] = useState(true);
   const [menuIconName, setMenuIconName] = useState('Menu');
   const [action1IconName, setAction1IconName] = useState('Placeholder');
   const [action2IconName, setAction2IconName] = useState('Placeholder');
@@ -133,6 +134,7 @@ export default function TopNavPage() {
                     showNativeAction2={showNativeAction2}
                     showNativeAction3={showNativeAction3}
                     showNativeSearchBar={showNativeSearchBar}
+                    showNativeAvatarButton={showNativeAvatarButton}
                     action1Icon={renderIcon(action1IconName)}
                     action2Icon={renderIcon(action2IconName)}
                     action3Icon={renderIcon(action3IconName)}
@@ -258,6 +260,13 @@ export default function TopNavPage() {
                       <div style={{ display: 'flex', gap: '8px' }}>
                         <Chip size="small" selected={showNativeSearchBar} onClick={() => setShowNativeSearchBar(true)}>On</Chip>
                         <Chip size="small" selected={!showNativeSearchBar} onClick={() => setShowNativeSearchBar(false)}>Off</Chip>
+                      </div>
+                    </div>
+                    <div className={styles.nativeControlRow}>
+                      <span className={styles.nativeControlLabel}>AX Avatar Button</span>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <Chip size="small" selected={showNativeAvatarButton} onClick={() => setShowNativeAvatarButton(true)}>On</Chip>
+                        <Chip size="small" selected={!showNativeAvatarButton} onClick={() => setShowNativeAvatarButton(false)}>Off</Chip>
                       </div>
                     </div>
                   </div>
