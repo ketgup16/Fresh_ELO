@@ -144,7 +144,7 @@ export function ListExample() {
             )}
 
             {/* Eyebrow toggle */}
-            <div style={PROP_ROW}>
+            <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
               <span style={PROP_LABEL}>Eyebrow</span>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                 <input
