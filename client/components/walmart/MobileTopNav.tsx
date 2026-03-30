@@ -277,10 +277,10 @@ export function MobileTopNav({
                       onClick={handleAvatarClick}
                     >
                       <AvatarFallback style={{
-                        fontFamily: 'var(--ld-semantic-font-caption-family)',
-                        fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)',
-                        fontWeight: 'var(--ld-semantic-font-caption-weight-alt, 700)',
-                        lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)',
+                        fontFamily: 'var(--ld-semantic-font-body-small-family)',
+                        fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)',
+                        fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)',
+                        lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)',
                       }}>
                         WM
                       </AvatarFallback>
