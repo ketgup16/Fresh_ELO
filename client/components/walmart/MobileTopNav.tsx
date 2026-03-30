@@ -106,6 +106,24 @@ export function MobileTopNav({
     return () => document.removeEventListener('mousedown', handler);
   }, [showAvatarMenu]);
 
+  // Keep menu anchored to button while scrolling or resizing
+  useEffect(() => {
+    if (!showAvatarMenu) return;
+    const updatePos = () => {
+      const rect = buttonWrapperRef.current?.getBoundingClientRect();
+      if (rect) {
+        setMenuPos({ top: rect.bottom + 4, right: window.innerWidth - rect.right });
+      }
+    };
+    // true = capture phase catches scroll on any ancestor (including the phone frame)
+    window.addEventListener('scroll', updatePos, true);
+    window.addEventListener('resize', updatePos);
+    return () => {
+      window.removeEventListener('scroll', updatePos, true);
+      window.removeEventListener('resize', updatePos);
+    };
+  }, [showAvatarMenu]);
+
   const handleAvatarClick = useCallback(() => {
     if (showAvatarMenu) {
       setShowAvatarMenu(false);
@@ -258,7 +276,7 @@ export function MobileTopNav({
                       aria-label="Account"
                       onClick={handleAvatarClick}
                     >
-                      <AvatarFallback style={{ fontFamily: 'var(--ld-semantic-font-caption-family)', fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 700 }}>
+                      <AvatarFallback style={{ fontFamily: 'var(--ld-semantic-font-caption-family)', fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 700, lineHeight: 'var(--ld-semantic-font-caption-lineheight, 1rem)' }}>
                         WM
                       </AvatarFallback>
                     </AXAvatarButton>
