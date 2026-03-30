@@ -637,6 +637,98 @@ export default function AXAvatarButtonExample() {
         })()}
       </div>
 
+      {/* ── Menu Item States ── */}
+      <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div>
+          <h3 style={HEADING}>Menu Item States</h3>
+          <p style={{ margin: 0, fontSize: '13px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>
+            Each <code style={{ fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-brand)' }}>.account menu-item</code> supports four interaction states. The full-width container row is the hit slot. All text uses <code style={{ fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-brand)' }}>ld.semantic.textStyle.body.small.default</code>.
+          </p>
+        </div>
+
+        {/* State previews */}
+        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+          {([
+            { state: 'Enabled',  bg: 'transparent',                                                              focusRing: false, disabled: false },
+            { state: 'Pressed',  bg: 'var(--ld-semantic-color-fill-activated-subtle-pressed, #D2E3FB)',           focusRing: false, disabled: false },
+            { state: 'Focused',  bg: 'transparent',                                                              focusRing: true,  disabled: false },
+            { state: 'Disabled', bg: 'transparent',                                                              focusRing: false, disabled: true  },
+          ] as const).map(({ state, bg, focusRing, disabled }) => {
+            const textColor   = disabled ? 'var(--ld-semantic-color-action-text-onfill-transparent-disabled, #BABBBD)' : 'var(--ld-semantic-color-text, #2E2F32)';
+            const subtleColor = disabled ? 'var(--ld-semantic-color-action-text-onfill-transparent-disabled, #BABBBD)' : 'var(--ld-semantic-color-text-subtlest, #74767C)';
+            const iconFill    = disabled ? '#BABBBD' : '#74767C';
+            const containerStyle: React.CSSProperties = {
+              display: 'flex',
+              padding: 'var(--ld-primitive-scale-space-200, 1rem)',
+              alignItems: 'center',
+              gap: 'var(--ld-primitive-scale-space-100, 0.5rem)',
+              backgroundColor: bg,
+              ...(focusRing ? { outline: '2px solid var(--ld-semantic-color-border-focus, #0071CE)', outlineOffset: '-2px' } : {}),
+            };
+            return (
+              <div key={state} style={{ flex: '1 1 200px', minWidth: '200px' }}>
+                <span style={{ fontSize: '12px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)', display: 'block', marginBottom: '8px' }}>{state}</span>
+                <div style={{ border: '1px solid var(--ld-semantic-color-separator, #E3E4E5)', borderRadius: 'var(--ld-primitive-scale-border-radius-50, 4px)', overflow: 'hidden' }}>
+                  {/* Divider */}
+                  <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+                  {/* Container — hit slot */}
+                  <div style={containerStyle}>
+                    {/* Leading: icon + stacked label */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--ld-primitive-scale-space-150, 0.75rem)', flex: 1 }}>
+                      {/* Placeholder icon */}
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
+                        <path d="M14 14V2H1V1H15V15H1V2H2V14H14Z" fill={iconFill} />
+                        <path fillRule="evenodd" clipRule="evenodd" d="M3.438 7V3.172H4.56C4.996 3.172 5.336 3.27 5.58 3.466C5.828 3.662 5.952 3.954 5.952 4.342C5.952 4.718 5.828 5.01 5.58 5.218C5.336 5.426 4.996 5.53 4.56 5.53H3.924V7H3.438ZM4.518 3.58H3.924V5.128H4.518C4.862 5.128 5.106 5.06 5.25 4.924C5.394 4.784 5.466 4.594 5.466 4.354C5.466 4.106 5.394 3.916 5.25 3.784C5.106 3.648 4.862 3.58 4.518 3.58Z" fill={iconFill} />
+                      </svg>
+                      {/* Subtext + label stack */}
+                      <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+                        <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: subtleColor }}>Detail</span>
+                        <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: textColor }}>Menu item label</span>
+                      </div>
+                    </div>
+                    {/* Trailing: version detail + link button */}
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
+                      <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: subtleColor, whiteSpace: 'nowrap' }}>v 3.5.1</span>
+                      <LinkButton size="small" disabled={disabled}>Action</LinkButton>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Properties table — from Figma component spec */}
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                {['Property', 'Type', 'Default', 'Description'].map(h => (
+                  <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['Leading icon',    'boolean',                         'true',  'Optional leading icon (16×16). Designer can swap with any LD icon. Fill inherits state color.'],
+                ['Subtext',         'boolean',                         'true',  'Optional detail row above the label. Uses ld.semantic.textStyle.body.small.default. Color: ld-semantic-color-text-subtlest (disabled: ld-semantic-color-action-text-onfill-transparent-disabled).'],
+                ['Text Label',      'string',                          '—',     'Required. Primary label text. Uses ld.semantic.textStyle.body.small.default. Color: ld-semantic-color-text-onfill-transparent (disabled: ld-semantic-color-action-text-onfill-transparent-disabled).'],
+                ['Trailing Detail', 'boolean',                         'true',  'Optional right-aligned version string or metadata. Uses ld.semantic.textStyle.body.small.default. Color: ld-semantic-color-text-subtlest (disabled: ld-semantic-color-action-text-onfill-transparent-disabled).'],
+                ['Trailing Action', 'boolean',                         'true',  'Optional [LD 3.5] Link Button, Color=Default, Size=Small. Disabled state passes disabled prop to LinkButton.'],
+                ['State',           "'Enabled' | 'Pressed' | 'Focused' | 'Disabled'", "'Enabled'", 'Enabled: transparent bg. Pressed: ld-semantic-color-fill-activated-subtle-pressed. Focused: 2px outline ld-semantic-color-border-focus, offset -2px. Disabled: all content uses ld-semantic-color-action-text-onfill-transparent-disabled.'],
+              ].map(([prop, type, def, desc]) => (
+                <tr key={prop} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '13px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{prop}</td>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{type}</td>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>{def}</td>
+                  <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       {/* ── Hit Targets ── */}
       <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
         <div>
