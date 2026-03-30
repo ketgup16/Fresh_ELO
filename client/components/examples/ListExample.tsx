@@ -77,6 +77,8 @@ export function ListExample() {
   const [attr1Label, setAttr1Label] = useState('Attribute 1');
   const [showAttr2, setShowAttr2] = useState(false);
   const [attr2Label, setAttr2Label] = useState('Attribute 2');
+  const [showAttr3, setShowAttr3] = useState(false);
+  const [attr3Label, setAttr3Label] = useState('Attribute 3');
   const [showDivider, setShowDivider] = useState(true);
   const [linkLabel, setLinkLabel] = useState('Link');
   const [selectChecked, setSelectChecked] = useState(false);
@@ -252,6 +254,31 @@ export function ListExample() {
               </div>
             )}
 
+            {/* Attribute 3 */}
+            <div style={PROP_ROW}>
+              <span style={PROP_LABEL}>Attribute 3</span>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={showAttr3}
+                  onChange={e => setShowAttr3(e.target.checked)}
+                  style={{ cursor: 'pointer' }}
+                />
+                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Show</span>
+              </label>
+            </div>
+            {showAttr3 && (
+              <div style={PROP_ROW}>
+                <span style={PROP_LABEL}>Attribute 3 label</span>
+                <input
+                  type="text"
+                  value={attr3Label}
+                  onChange={e => setAttr3Label(e.target.value)}
+                  style={INPUT_STYLE}
+                />
+              </div>
+            )}
+
             {/* Divider */}
             <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
               <span style={PROP_LABEL}>Divider</span>
@@ -296,6 +323,7 @@ export function ListExample() {
                   attributes={[
                     ...(showAttr1 ? [{ label: attr1Label }] : []),
                     ...(showAttr2 ? [{ label: attr2Label }] : []),
+                    ...(showAttr3 ? [{ label: attr3Label }] : []),
                   ].filter(Boolean) as { label: string }[]}
                   divider={showDivider}
                 />
@@ -549,7 +577,7 @@ export function ListExample() {
                   ['trailing',        "'empty' | 'icon' | 'link' | 'select'", "'empty'", 'Trailing slot variant. "icon" shows a 24px ChevronRight. "link" shows a LinkButton. "select" shows a Checkbox.'],
                   ['trailingIcon',    'ReactNode',                                  'ChevronRight', 'Custom icon node for trailing="icon". Defaults to a 24×24 ChevronRight from the icon library.'],
                   ['trailingLink',    '{ text: string; onClick?: () => void }', 'undefined', 'Link config for trailing="link". Renders a LinkButton (small).'],
-                  ['attributes',      'Array<{ label: string; icon?: ReactNode }>', 'undefined', 'Up to 2 optional AXAttribute Small items shown below the description. Separated by 4px; container offset from description by 8px.'],
+                  ['attributes',      'Array<{ label: string; icon?: ReactNode }>', 'undefined', 'Optional AXAttribute Small items shown below the description (up to 3). Separated by 4px; container offset from description by 8px.'],
                   ['divider',         'boolean',                                    'undefined', 'When true, renders a horizontal Divider at the bottom of the list item with a 16px top margin.'],
                   ['className',       'string',                                     'undefined', 'Additional CSS class names forwarded to the <li> element.'],
                 ].map(([prop, type, def, desc]) => (

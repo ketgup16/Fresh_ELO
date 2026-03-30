@@ -162,7 +162,7 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
             )}
             {attributes && attributes.length > 0 && (
               <div className={styles.listItemAttributes}>
-                {attributes.slice(0, 2).map((attr, i) => (
+                {attributes.slice(0, 3).map((attr, i) => (
                   <AXAttribute key={i} size="small" label={attr.label} icon={attr.icon} />
                 ))}
               </div>
