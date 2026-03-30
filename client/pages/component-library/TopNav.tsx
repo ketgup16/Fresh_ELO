@@ -3,6 +3,7 @@ import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { Chip } from '@/components/ui/Chip';
+import { Divider } from '@/components/ui/Divider';
 import { Tag } from '@/components/ui/Tag';
 import { TextField } from '@/components/ui/TextField';
 import { DesktopHeader } from '@/components/walmart/DesktopHeader';
@@ -207,6 +208,7 @@ export default function TopNavPage() {
                         />
                       )}
                     </div>
+                    <Divider />
                     <div className={styles.nativeControlRow}>
                       <span className={styles.nativeControlLabel}>Action button 1</span>
                       <div style={{ display: 'flex', gap: '8px' }}>
@@ -256,17 +258,18 @@ export default function TopNavPage() {
                       </select>
                     </div>
                     <div className={styles.nativeControlRow}>
-                      <span className={styles.nativeControlLabel}>AX Search Bar</span>
-                      <div style={{ display: 'flex', gap: '8px' }}>
-                        <Chip size="small" selected={showNativeSearchBar} onClick={() => setShowNativeSearchBar(true)}>On</Chip>
-                        <Chip size="small" selected={!showNativeSearchBar} onClick={() => setShowNativeSearchBar(false)}>Off</Chip>
-                      </div>
-                    </div>
-                    <div className={styles.nativeControlRow}>
                       <span className={styles.nativeControlLabel}>AX Avatar Button</span>
                       <div style={{ display: 'flex', gap: '8px' }}>
                         <Chip size="small" selected={showNativeAvatarButton} onClick={() => setShowNativeAvatarButton(true)}>On</Chip>
                         <Chip size="small" selected={!showNativeAvatarButton} onClick={() => setShowNativeAvatarButton(false)}>Off</Chip>
+                      </div>
+                    </div>
+                    <Divider />
+                    <div className={styles.nativeControlRow}>
+                      <span className={styles.nativeControlLabel}>AX Search Bar</span>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <Chip size="small" selected={showNativeSearchBar} onClick={() => setShowNativeSearchBar(true)}>On</Chip>
+                        <Chip size="small" selected={!showNativeSearchBar} onClick={() => setShowNativeSearchBar(false)}>Off</Chip>
                       </div>
                     </div>
                   </div>
