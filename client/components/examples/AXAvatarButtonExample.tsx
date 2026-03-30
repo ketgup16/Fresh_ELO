@@ -600,7 +600,7 @@ export default function AXAvatarButtonExample() {
           ];
 
           return (
-            <div style={{ overflowX: 'auto', paddingBottom: '380px', marginRight: '-32px', paddingRight: '32px' }}>
+            <div style={{ overflowX: 'auto', paddingBottom: '460px', paddingLeft: '8px', marginLeft: '-8px', marginRight: '-32px', paddingRight: '32px' }}>
             <div style={{ display: 'inline-flex', flexDirection: 'column', gap: '8px', minWidth: '100%' }}>
               {/* Label row — top-aligned */}
               <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start' }}>
