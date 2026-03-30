@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import ReactDOM from 'react-dom';
 import { Barcode, ChevronDown, ChevronLeft, ChevronUp, Grid, Menu, Placeholder, Search } from '@/components/icons';
 import { IconButton } from '@/components/ui/IconButton';
 import { CartIcon, LocationIcon, StoreIcon } from '@/components/icons-custom';
@@ -86,17 +87,36 @@ export function MobileTopNav({
   const [showCameraModal, setShowCameraModal] = useState(false);
   const [nativeSearchValue, setNativeSearchValue] = useState('');
   const [showAvatarMenu, setShowAvatarMenu] = useState(false);
-  const avatarMenuRef = useRef<HTMLDivElement>(null);
+  const [menuPos, setMenuPos] = useState<{ top: number; right: number } | null>(null);
+  const buttonWrapperRef = useRef<HTMLDivElement>(null);
+  const menuPortalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!showAvatarMenu) return;
     const handler = (e: MouseEvent) => {
-      if (avatarMenuRef.current && !avatarMenuRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      const inButton = buttonWrapperRef.current?.contains(target);
+      const inMenu = menuPortalRef.current?.contains(target);
+      if (!inButton && !inMenu) {
         setShowAvatarMenu(false);
+        setMenuPos(null);
       }
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
+  }, [showAvatarMenu]);
+
+  const handleAvatarClick = useCallback(() => {
+    if (showAvatarMenu) {
+      setShowAvatarMenu(false);
+      setMenuPos(null);
+    } else {
+      const rect = buttonWrapperRef.current?.getBoundingClientRect();
+      if (rect) {
+        setMenuPos({ top: rect.bottom + 4, right: window.innerWidth - rect.right });
+      }
+      setShowAvatarMenu(true);
+    }
   }, [showAvatarMenu]);
   const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
@@ -232,45 +252,16 @@ export function MobileTopNav({
                   </IconButton>
                 )}
                 {showNativeAvatarButton && (
-                  <div ref={avatarMenuRef} style={{ position: 'relative', display: 'inline-flex' }}>
+                  <div ref={buttonWrapperRef} style={{ display: 'inline-flex', alignItems: 'center' }}>
                     <AXAvatarButton
                       size="small"
                       aria-label="Account"
-                      onClick={() => setShowAvatarMenu(o => !o)}
+                      onClick={handleAvatarClick}
                     >
-                      <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)' }}>
+                      <AvatarFallback style={{ fontFamily: 'var(--ld-semantic-font-caption-family)', fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 700 }}>
                         WM
                       </AvatarFallback>
                     </AXAvatarButton>
-                    {showAvatarMenu && (
-                      <div style={{
-                        position: 'absolute',
-                        top: 'calc(100% + 4px)',
-                        right: 0,
-                        zIndex: 200,
-                        backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
-                        borderRadius: '8px',
-                        boxShadow: 'var(--ld-semantic-elevation-300)',
-                        minWidth: '220px',
-                        overflow: 'hidden',
-                      }}>
-                        {/* User header */}
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '20px 16px 16px' }}>
-                          <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle, #E9F1FE)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <span style={{ color: 'var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-heading-small-size, 1.125rem)', fontWeight: 700, lineHeight: 1 }}>WM</span>
-                          </div>
-                          <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text)' }}>Walmart Associate</span>
-                          <LinkButton size="small" onClick={() => setShowAvatarMenu(false)}>Sign out</LinkButton>
-                        </div>
-                        <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
-                        <div style={{ padding: '8px 0' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 16px' }}>
-                            <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text-subtle)' }}>Club #0001</span>
-                            <LinkButton size="small" onClick={() => setShowAvatarMenu(false)}>Change</LinkButton>
-                          </div>
-                        </div>
-                      </div>
-                    )}
                   </div>
                 )}
               </div>
@@ -451,6 +442,86 @@ export function MobileTopNav({
         )}
 
       </div>
+
+      {showNativeAvatarButton && showAvatarMenu && menuPos && ReactDOM.createPortal(
+        <div
+          ref={menuPortalRef}
+          style={{
+            position: 'fixed',
+            top: menuPos.top,
+            right: menuPos.right,
+            zIndex: 9999,
+            width: '280px',
+            backgroundColor: 'var(--ld-semantic-color-surface-overlay, #fff)',
+            borderRadius: 'var(--ld-primitive-scale-borderRadius-50, 4px)',
+            boxShadow: '0 -1px 4px 0 rgba(0,0,0,0.10), 0 5px 10px 3px rgba(0,0,0,0.15)',
+            overflow: 'hidden',
+          }}
+        >
+          {/* Header: avatar + name + sign out */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '20px 16px 16px', backgroundColor: 'var(--ld-semantic-color-fill-transparent, transparent)' }}>
+            <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle, #E9F1FE)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <span style={{ color: 'var(--ld-semantic-color-text-onfill-brand-subtle, #114AB6)', fontFamily: 'var(--ld-semantic-font-heading-small-family)', fontSize: 'var(--ld-semantic-font-heading-small-size, 1.125rem)', fontWeight: 700, lineHeight: 1 }}>WM</span>
+            </div>
+            <span style={{ fontFamily: 'var(--ld-semantic-font-body-small-family)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text-onfill-transparent, #2e2f32)' }}>Walmart Associate</span>
+            <LinkButton size="small" onClick={() => { setShowAvatarMenu(false); setMenuPos(null); }}>Sign out</LinkButton>
+          </div>
+
+          {/* Club Info row */}
+          <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+          <div style={{ display: 'flex', padding: '16px', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: '1 0 0' }}>
+              {/* Location icon */}
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+                <path fillRule="evenodd" clipRule="evenodd" d="M3 6.83C3.024 5.527 3.563 4.287 4.501 3.381C5.438 2.476 6.697 1.979 8 2.001C9.303 1.979 10.562 2.476 11.499 3.381C12.437 4.287 12.976 5.527 13 6.831C12.843 8.372 12.162 9.812 11.07 10.911C10.145 11.959 9.143 12.935 8.07 13.831L8 13.891L7.93 13.831C6.857 12.935 5.855 11.959 4.93 10.911C3.838 9.812 3.157 8.372 3 6.831ZM8 1.001C6.432.979 4.919 1.581 3.794 2.674C2.669 3.767 2.024 5.262 2 6.831C2 10.011 5.5 13.041 7.27 14.581L7.56 14.841C7.684 14.943 7.839 14.999 8 15.001C8.161 14.999 8.316 14.943 8.44 14.841L8.73 14.581C10.5 13.001 14 10.001 14 6.831C13.976 5.262 13.331 3.767 12.206 2.674C11.081 1.581 9.568.979 8 1.001ZM6.5 7.001C6.5 6.603 6.658 6.221 6.939 5.940C7.221 5.659 7.602 5.501 8 5.501V4.501C7.337 4.501 6.701 4.764 6.232 5.233C5.763 5.702 5.5 6.338 5.5 7.001C5.5 7.664 5.763 8.299 6.232 8.768C6.701 9.237 7.337 9.501 8 9.501C8.663 9.501 9.299 9.237 9.768 8.768C10.237 8.299 10.5 7.664 10.5 7.001H9.5C9.5 7.398 9.342 7.780 9.061 8.061C8.779 8.343 8.398 8.501 8 8.501C7.602 8.501 7.221 8.343 6.939 8.061C6.658 7.780 6.5 7.398 6.5 7.001Z" fill="var(--ld-semantic-color-text-subtlest, #74767C)"/>
+              </svg>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', flex: '1 0 0' }}>
+                <span style={{ fontFamily: 'var(--ld-semantic-font-body-small-family)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text-subtlest, #74767C)' }}>Club #0001</span>
+                <span style={{ fontFamily: 'var(--ld-semantic-font-body-small-family)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text-onfill-transparent, #2e2f32)' }}>Member Services</span>
+              </div>
+            </div>
+            <LinkButton size="small" onClick={() => { setShowAvatarMenu(false); setMenuPos(null); }}>Change</LinkButton>
+          </div>
+
+          {/* Report Issues row */}
+          <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+          <div style={{ display: 'flex', padding: '16px', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: '1 0 0' }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+                <path d="M14 14V2H1V1H15V15H1V2H2V14H14Z" fill="var(--ld-semantic-color-text-subtlest, #74767C)"/>
+              </svg>
+              <span style={{ fontFamily: 'var(--ld-semantic-font-body-small-family)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text-onfill-transparent, #2e2f32)' }}>Report issues or leave feedback</span>
+            </div>
+          </div>
+
+          {/* See What's New row */}
+          <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+          <div style={{ display: 'flex', padding: '16px', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: '1 0 0' }}>
+              {/* Wrench icon */}
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+                <path d="M8.248 2.292C7.37 3.275 7.064 4.623 7.399 5.869L7.427 5.962L1.147 12.241C0.951 12.436 0.951 12.753 1.147 12.948L3.052 14.853L3.122 14.911C3.316 15.046 3.586 15.027 3.759 14.853L10.042 8.572L10.136 8.600C11.449 8.950 12.876 8.589 13.867 7.598C14.942 6.524 15.277 4.937 14.764 3.535L14.726 3.454C14.566 3.178 14.178 3.116 13.941 3.353L12.438 4.852L11.380 4.620L11.148 3.563L12.653 2.061C12.911 1.804 12.815 1.365 12.473 1.239C11.068 0.721 9.477 1.055 8.400 2.132L8.248 2.292Z" fill="var(--ld-semantic-color-text-subtlest, #74767C)"/>
+              </svg>
+              <span style={{ fontFamily: 'var(--ld-semantic-font-body-small-family)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text-onfill-transparent, #2e2f32)', flex: 1 }}>See what's new</span>
+            </div>
+            <span style={{ fontFamily: 'var(--ld-semantic-font-body-small-family)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text-subtlest, #74767C)', textAlign: 'right' }}>v 3.5.1</span>
+          </div>
+
+          {/* Supervisor Sign In row */}
+          <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+          <div style={{ display: 'flex', padding: '16px', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: '1 0 0' }}>
+              {/* Admin icon */}
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+                <path d="M8 9.333C8.368 9.333 8.666 9.035 8.666 8.667C8.666 8.299 8.368 8 8 8C7.632 8 7.333 8.299 7.333 8.667C7.333 9.035 7.632 9.333 8 9.333Z" fill="var(--ld-semantic-color-text-subtlest, #74767C)"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M10.949 6.113L8 0.583L5.05 6.113L1.232 4.204L2.002 13.049C2.018 13.263 2.136 13.465 2.336 13.579C2.391 13.611 2.449 13.642 2.508 13.672C3.438 14.258 5.547 14.667 8 14.667C10.453 14.667 12.563 14.258 13.493 13.672C13.551 13.642 13.608 13.611 13.664 13.579C13.864 13.464 13.983 13.262 13.998 13.048L14.767 4.204L10.949 6.113ZM12.752 11.983L13.232 6.462L10.384 7.887L8 3.417L5.616 7.887L2.767 6.462L3.247 11.983C4.344 11.588 6.065 11.333 8 11.333C9.934 11.333 11.655 11.588 12.752 11.983ZM12.577 12.628C11.500 13.078 9.794 13.333 8 13.333C6.205 13.333 4.499 13.078 3.423 12.628C3.573 12.572 3.744 12.517 3.936 12.464C4.948 12.183 6.386 12 8 12C9.614 12 11.051 12.183 12.064 12.464C12.255 12.517 12.426 12.572 12.577 12.628Z" fill="var(--ld-semantic-color-text-subtlest, #74767C)"/>
+              </svg>
+              <span style={{ fontFamily: 'var(--ld-semantic-font-body-small-family)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text-onfill-transparent, #2e2f32)' }}>Supervisor sign in</span>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
 
       {showSearchModal && (
         <SearchTypeaheadModal
