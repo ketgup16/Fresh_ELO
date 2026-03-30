@@ -97,10 +97,10 @@
   flex-shrink: 0;
 }
 
-/* Trailing Icon inner (small chevron) */
+/* Trailing Icon inner (medium chevron) */
 .listItemTrailingIconInner {
-  width: var(--ld-semantic-scale-icon-small, 16px);
-  height: var(--ld-semantic-scale-icon-small, 16px);
+  width: var(--ld-semantic-scale-icon-medium, 24px);
+  height: var(--ld-semantic-scale-icon-medium, 24px);
   color: var(--ld-semantic-color-text);
   display: flex;
   align-items: center;

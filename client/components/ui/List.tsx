@@ -2,6 +2,7 @@ import * as React from 'react';
 import styles from './List.module.css';
 import { AXAttribute } from '@/components/walmart/AXAttribute';
 import { Divider } from './Divider';
+import { ChevronRight } from '@/components/icons/ChevronRight';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -52,23 +53,6 @@ export interface ListItemProps {
   className?: string;
 }
 
-// ─── Default ChevronRight SVG ─────────────────────────────────────────────────
-
-const ChevronRightIcon: React.FC = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
-    <path
-      d="M11.834 8.37659L5.69175 13.9998L5 13.2461L10.7307 7.99976L5 2.75342L5.69175 1.99976L11.834 7.62292C11.9398 7.71975 12 7.85646 12 7.99975C12 8.14305 11.9398 8.27976 11.834 8.37659Z"
-      fill="currentColor"
-    />
-  </svg>
-);
 
 // ─── List Component ───────────────────────────────────────────────────────────
 
@@ -119,7 +103,7 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
       return (
         <div className={styles.listItemTrailingIcon}>
           <span className={styles.listItemTrailingIconInner}>
-            {trailingIcon ?? <ChevronRightIcon />}
+            {trailingIcon ?? <ChevronRight width={24} height={24} aria-hidden="true" />}
           </span>
         </div>
       );
