@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { LinkButton } from '@/components/ui/LinkButton';
 import { AXAvatarButton, AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatarButton';
 import { User } from '@/components/icons/User';
 
@@ -225,7 +226,7 @@ export default function AXAvatarButtonExample() {
                               <span style={{ color: 'var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-heading-small-size, 1.125rem)', fontWeight: 700, lineHeight: 1 }}>SC</span>
                             </div>
                             <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Firstname Lastname</span>
-                            <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)', textDecoration: 'underline' }}>Sign out</span>
+                            <LinkButton size="small">Sign out</LinkButton>
                           </div>
                         </div>
                         {/* Club info */}
@@ -238,7 +239,7 @@ export default function AXAvatarButtonExample() {
                               <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Member Services</span>
                             </div>
                           </div>
-                          <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)', textDecoration: 'underline', whiteSpace: 'nowrap' }}>Change</span>
+                          <LinkButton size="small">Change</LinkButton>
                         </div>
                         {/* Report issues */}
                         <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
@@ -552,7 +553,7 @@ export default function AXAvatarButtonExample() {
                     <span style={{ color: 'var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-heading-small-size, 1.125rem)', fontWeight: 700, lineHeight: 1 }}>SC</span>
                   </div>
                   <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Firstname Lastname</span>
-                  <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)', textDecoration: 'underline' }}>Sign out</span>
+                  <LinkButton size="small">Sign out</LinkButton>
                 </div>
               </div>
               {SEP}
@@ -564,7 +565,7 @@ export default function AXAvatarButtonExample() {
                     <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Member Services</span>
                   </div>
                 </div>
-                <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text, #2E2F32)', textDecoration: 'underline', whiteSpace: 'nowrap' }}>Change</span>
+                <LinkButton size="small">Change</LinkButton>
               </div>
               {SEP}
               <div style={ITEM_PAD}>
