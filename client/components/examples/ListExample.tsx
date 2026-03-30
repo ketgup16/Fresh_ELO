@@ -259,7 +259,7 @@ export function ListExample() {
             )}
 
             {/* Attribute 3 */}
-            <div style={PROP_ROW}>
+            <div style={showAttr3 ? { ...PROP_ROW, borderBottom: 'none' } : PROP_ROW}>
               <span style={PROP_LABEL}>Attribute 3</span>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                 <input
