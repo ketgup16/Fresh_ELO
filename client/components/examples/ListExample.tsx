@@ -389,6 +389,77 @@ export function ListExample() {
         </div>
       </div>
 
+      {/* ── Trailing options ─────────────────────────────────────────── */}
+      <div style={CARD}>
+        <h3 style={{ ...HEADING, marginBottom: '4px' }}>Trailing options</h3>
+        <p style={{
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          fontSize: 'var(--ld-semantic-font-body-medium-size, 1rem)',
+          fontWeight: 'var(--ld-semantic-font-body-medium-weight-default, 400)',
+          lineHeight: 'var(--ld-semantic-font-body-medium-lineheight, 1.5)',
+          color: 'var(--ld-semantic-color-text-subtle)',
+          margin: '0 0 24px',
+        }}>
+          Display each of the trailing types — the trailing slot anchors to the top-right of the list item.
+        </p>
+        <div style={{
+          padding: '24px',
+          borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+          border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)',
+          backgroundColor: 'var(--ld-semantic-color-surface, #fff)',
+        }}>
+          <List aria-label="Trailing options demo" style={{ width: '100%' }}>
+
+            {/* Empty */}
+            <ListItem
+              eyebrow="trailing=&quot;empty&quot;"
+              title="No trailing"
+              text="The trailing slot is omitted."
+              trailing="empty"
+              divider
+            />
+
+            {/* Icon */}
+            <ListItem
+              eyebrow="trailing=&quot;icon&quot;"
+              title="Icon"
+              text="A 24×24 ChevronRight icon from the icon library."
+              trailing="icon"
+              divider
+            />
+
+            {/* Link */}
+            <ListItem
+              eyebrow="trailing=&quot;link&quot;"
+              title="Link"
+              text="A LinkButton component (small size) for secondary actions."
+              trailing="link"
+              trailingLink={{ text: 'Action' }}
+              divider
+            />
+
+            {/* Select */}
+            <ListItem
+              eyebrow="trailing=&quot;select&quot;"
+              title="Select"
+              text="A Checkbox component for multi-select list patterns."
+              trailing="select"
+              divider
+            />
+
+            {/* Custom */}
+            <ListItem
+              eyebrow="trailing=&quot;custom&quot;"
+              title="Custom"
+              text="Arbitrary content via the trailingContent slot."
+              trailing="custom"
+              trailingContent={<CustomSlotPlaceholder />}
+            />
+
+          </List>
+        </div>
+      </div>
+
       {/* ── Component Props ──────────────────────────────────────────── */}
       <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
         <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>
