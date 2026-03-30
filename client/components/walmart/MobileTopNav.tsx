@@ -12,6 +12,7 @@ import { SearchTypeaheadModal } from '@/pages/walmart/index/SearchTypeaheadModal
 import { AXSearchBar } from '@/components/walmart/AXSearchBar';
 import { AXAvatarButton } from '@/components/walmart/AXAvatarButton';
 import { AvatarFallback } from '@/components/ui/avatar';
+import { LinkButton } from '@/components/ui/LinkButton';
 import { useNavigate } from 'react-router-dom';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import { useCart } from '@/contexts/CartContext';
@@ -84,6 +85,19 @@ export function MobileTopNav({
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [showCameraModal, setShowCameraModal] = useState(false);
   const [nativeSearchValue, setNativeSearchValue] = useState('');
+  const [showAvatarMenu, setShowAvatarMenu] = useState(false);
+  const avatarMenuRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (!showAvatarMenu) return;
+    const handler = (e: MouseEvent) => {
+      if (avatarMenuRef.current && !avatarMenuRef.current.contains(e.target as Node)) {
+        setShowAvatarMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [showAvatarMenu]);
   const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
   const [showMenuPanel, setShowMenuPanel] = useState(false);
@@ -218,9 +232,46 @@ export function MobileTopNav({
                   </IconButton>
                 )}
                 {showNativeAvatarButton && (
-                  <AXAvatarButton size="small" aria-label="Account">
-                    <AvatarFallback>WM</AvatarFallback>
-                  </AXAvatarButton>
+                  <div ref={avatarMenuRef} style={{ position: 'relative', display: 'inline-flex' }}>
+                    <AXAvatarButton
+                      size="small"
+                      aria-label="Account"
+                      onClick={() => setShowAvatarMenu(o => !o)}
+                    >
+                      <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)' }}>
+                        WM
+                      </AvatarFallback>
+                    </AXAvatarButton>
+                    {showAvatarMenu && (
+                      <div style={{
+                        position: 'absolute',
+                        top: 'calc(100% + 4px)',
+                        right: 0,
+                        zIndex: 200,
+                        backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #fff)',
+                        borderRadius: '8px',
+                        boxShadow: 'var(--ld-semantic-elevation-300)',
+                        minWidth: '220px',
+                        overflow: 'hidden',
+                      }}>
+                        {/* User header */}
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '20px 16px 16px' }}>
+                          <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle, #E9F1FE)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <span style={{ color: 'var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-heading-small-size, 1.125rem)', fontWeight: 700, lineHeight: 1 }}>WM</span>
+                          </div>
+                          <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text)' }}>Walmart Associate</span>
+                          <LinkButton size="small" onClick={() => setShowAvatarMenu(false)}>Sign out</LinkButton>
+                        </div>
+                        <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+                        <div style={{ padding: '8px 0' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 16px' }}>
+                            <span style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', color: 'var(--ld-semantic-color-text-subtle)' }}>Club #0001</span>
+                            <LinkButton size="small" onClick={() => setShowAvatarMenu(false)}>Change</LinkButton>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
             </div>
