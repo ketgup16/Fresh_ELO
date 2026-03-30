@@ -251,7 +251,7 @@ import { Star } from '@/components/icons/Star';
             </thead>
             <tbody>
               {[
-                ['default',  'ld-semantic-color-text-subtlest',  'ld-semantic-color-text-subtlest',  '—',                                        '400', 'Small, Large'],
+                ['default',  'ld-semantic-color-text',            'ld-semantic-color-text',            '—',                                        '400', 'Small, Large'],
                 ['brand',    'ld-semantic-color-text-brand',     'ld-semantic-color-text',            '—',                                        '400', 'Small, Large'],
                 ['negative', 'ld-semantic-color-text-critical',  'ld-semantic-color-text',            '—',                                        '400', 'Small'],
                 ['inverse',  'ld-semantic-color-text-inverse',   'ld-semantic-color-text-inverse',    'ld-semantic-color-background-inverse',     '400', 'Small, Large'],

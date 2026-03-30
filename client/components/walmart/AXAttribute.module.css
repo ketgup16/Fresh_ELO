@@ -46,12 +46,12 @@
 
 /* ── Color variants ── */
 
-/* default — icon and label both use subtle text color */
+/* default — icon and label both use primary text color */
 .color--default .icon {
-  color: var(--ld-semantic-color-text-subtlest, #74767C);
+  color: var(--ld-semantic-color-text);
 }
 .color--default .label {
-  color: var(--ld-semantic-color-text-subtlest, #74767C);
+  color: var(--ld-semantic-color-text);
 }
 
 /* brand — brand blue icon, primary label */
