@@ -218,8 +218,8 @@ export function MobileTopNav({
                   </IconButton>
                 )}
                 {showNativeAvatarButton && (
-                  <AXAvatarButton size="xsmall" aria-label="Account">
-                    <AvatarFallback style={{ fontSize: '10px', fontWeight: 600, lineHeight: 1 }}>WM</AvatarFallback>
+                  <AXAvatarButton size="small" aria-label="Account">
+                    <AvatarFallback>WM</AvatarFallback>
                   </AXAvatarButton>
                 )}
               </div>

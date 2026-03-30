@@ -253,9 +253,12 @@
 
 /* Native header — trailing action buttons */
 .nativeActions {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  width: fit-content;
+  height: fit-content;
 }
 
 .sparkCenter {
