@@ -1,0 +1,38 @@
+/* AXButtonGroup */
+
+.group {
+  display: flex;
+  align-items: center;
+}
+
+/* Stacked layout */
+.group--stacked {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--ld-primitive-scale-space-150, 0.75rem);
+}
+
+/* Inline row used inside three-options stacked */
+.inlineRow {
+  display: flex;
+  gap: var(--ld-primitive-scale-space-150, 0.75rem);
+  align-items: center;
+}
+
+/* Inline layout */
+.group--inline {
+  flex-direction: row;
+  gap: var(--ld-primitive-scale-space-150, 0.75rem);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Full-width inline: both buttons share equal width */
+.group--inline-fullWidth {
+  width: 100%;
+}
+
+.group--inline-fullWidth > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
