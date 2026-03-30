@@ -69,6 +69,7 @@ const AlertDialogPage = React.lazy(() => import("./pages/component-library/Alert
 const AvatarPage = React.lazy(() => import("./pages/component-library/Avatar"));
 const AXAvatarPage = React.lazy(() => import("./pages/component-library/AXAvatar"));
 const AXAvatarButtonPage = React.lazy(() => import("./pages/component-library/AXAvatarButton"));
+const AXAttributePage = React.lazy(() => import("./pages/component-library/AXAttribute"));
 const BottomSheetPage = React.lazy(() => import("./pages/component-library/BottomSheet"));
 const CalendarPage = React.lazy(() => import("./pages/component-library/Calendar"));
 const DateRangePickerPage = React.lazy(() => import("./pages/component-library/DateRangePicker"));
@@ -234,6 +235,7 @@ const App = () => (
                 <Route path="avatar" element={<AvatarPage />} />
                 <Route path="ax-avatar" element={<AXAvatarPage />} />
                 <Route path="ax-avatar-button" element={<AXAvatarButtonPage />} />
+                <Route path="ax-attribute" element={<AXAttributePage />} />
                 <Route path="bottom-sheet" element={<BottomSheetPage />} />
                 <Route path="calendar" element={<CalendarPage />} />
                 <Route path="carousel" element={<CarouselPage />} />

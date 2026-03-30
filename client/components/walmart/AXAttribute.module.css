@@ -1,0 +1,88 @@
+/* ── AXAttribute ────────────────────────────────────────────────────────── */
+
+.attribute {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Sizes ── */
+
+.attribute--small {
+  gap: var(--ld-primitive-scale-space-50, 4px);
+}
+
+.attribute--large {
+  gap: var(--ld-primitive-scale-space-100, 8px);
+}
+
+/* ── Icon wrapper ── */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Label ── */
+
+.label {
+  font-family: var(--ld-semantic-font-family-sans);
+  line-height: 1;
+}
+
+.label--small {
+  font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.25rem);
+}
+
+.label--large {
+  font-size: var(--ld-semantic-font-body-medium-size, 1rem);
+  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5rem);
+}
+
+/* ── Color variants ── */
+
+/* default — icon and label both use subtle text color */
+.color--default .icon {
+  color: var(--ld-semantic-color-text-subtlest, #74767C);
+}
+.color--default .label {
+  color: var(--ld-semantic-color-text-subtlest, #74767C);
+}
+
+/* info — brand blue icon, primary label */
+.color--info .icon {
+  color: var(--ld-semantic-color-text-brand, #0053E2);
+}
+.color--info .label {
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+/* error — critical red icon, primary label */
+.color--error .icon {
+  color: var(--ld-semantic-color-text-critical, #C00000);
+}
+.color--error .label {
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+/* success — positive green icon, primary label (Small only) */
+.color--success .icon {
+  color: var(--ld-semantic-color-text-positive, #006E09);
+}
+.color--success .label {
+  color: var(--ld-semantic-color-text, #2E2F32);
+}
+
+/* selected — brand blue icon, bold brand label */
+.color--selected .icon {
+  color: var(--ld-semantic-color-text-brand, #0053E2);
+}
+.color--selected .label {
+  color: var(--ld-semantic-color-text-brand, #0053E2);
+  font-weight: 700;
+}

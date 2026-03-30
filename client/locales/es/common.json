@@ -156,6 +156,8 @@
     "navAvatar": "Avatar",
     "navAXAvatar": "AX Avatar",
     "navAXAvatarButton": "AX Avatar Button",
+    "navAXAttribute": "AX Attribute",
+    "descAXAttribute": "Componente compacto de icono + etiqueta para mostrar metadatos, estado o categorización.",
     "navCalendar": "Calendario",
     "navCarousel": "Carrusel",
     "navChart": "Gráfico",

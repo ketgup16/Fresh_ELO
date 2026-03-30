@@ -90,6 +90,7 @@ const navigationSections: NavSection[] = [
       { id: 'ax-upload-image', nameKey: 'componentLibrary.navAXUploadImage', path: '/component-library/ax-upload-image' },
       { id: 'ax-avatar', nameKey: 'componentLibrary.navAXAvatar', path: '/component-library/ax-avatar' },
       { id: 'ax-avatar-button', nameKey: 'componentLibrary.navAXAvatarButton', path: '/component-library/ax-avatar-button' },
+      { id: 'ax-attribute', nameKey: 'componentLibrary.navAXAttribute', path: '/component-library/ax-attribute' },
     ]
   },
   {
