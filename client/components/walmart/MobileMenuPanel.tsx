@@ -124,7 +124,7 @@ export function MobileMenuPanel({ isOpen, onClose }: MobileMenuPanelProps) {
           {/* Account links */}
           <nav className={styles.menuSection}>
             {accountLinks.map((item) => (
-              <MenuItem key={item.path} item={item} onNavigate={handleNav} />
+              <MenuItem key={item.label} item={item} onNavigate={handleNav} />
             ))}
           </nav>
 
@@ -133,7 +133,7 @@ export function MobileMenuPanel({ isOpen, onClose }: MobileMenuPanelProps) {
           {/* Help */}
           <nav className={styles.menuSection}>
             {supportLinks.map((item) => (
-              <MenuItem key={item.path} item={item} onNavigate={handleNav} />
+              <MenuItem key={item.label} item={item} onNavigate={handleNav} />
             ))}
           </nav>
 
@@ -142,7 +142,7 @@ export function MobileMenuPanel({ isOpen, onClose }: MobileMenuPanelProps) {
           {/* Lists / Registries */}
           <nav className={styles.menuSection}>
             {listLinks.map((item) => (
-              <MenuItem key={item.path} item={item} onNavigate={handleNav} />
+              <MenuItem key={item.label} item={item} onNavigate={handleNav} />
             ))}
           </nav>
 
@@ -151,7 +151,7 @@ export function MobileMenuPanel({ isOpen, onClose }: MobileMenuPanelProps) {
           {/* Departments / Services */}
           <nav className={styles.menuSection}>
             {browseLinks.map((item) => (
-              <MenuItem key={item.path} item={item} onNavigate={handleNav} />
+              <MenuItem key={item.label} item={item} onNavigate={handleNav} />
             ))}
           </nav>
 
@@ -160,7 +160,7 @@ export function MobileMenuPanel({ isOpen, onClose }: MobileMenuPanelProps) {
           {/* Give Feedback */}
           <nav className={styles.menuSection}>
             {feedbackLinks.map((item) => (
-              <MenuItem key={item.path} item={item} onNavigate={handleNav} />
+              <MenuItem key={item.label} item={item} onNavigate={handleNav} />
             ))}
           </nav>
         </div>

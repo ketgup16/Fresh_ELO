@@ -136,6 +136,9 @@ function SheetHeader({ variant, title, subtitle, logoSlot, onClose, forceInverse
   if (variant === 'none') {
     return (
       <div className={styles.headerNone}>
+        <DrawerPrimitive.Title className="sr-only">
+          {title || 'Media Sheet'}
+        </DrawerPrimitive.Title>
         <DragHandle inverse={forceInverseChrome} />
         <div className={styles.headerNoneRow}>
           <CloseButton onClose={onClose} inverse={forceInverseChrome} />
@@ -183,6 +186,9 @@ function SheetHeader({ variant, title, subtitle, logoSlot, onClose, forceInverse
   if (variant === 'logo-left') {
     return (
       <div className={[styles.header, forceInverseChrome ? styles.headerBrandBold : ''].filter(Boolean).join(' ')}>
+        <DrawerPrimitive.Title className="sr-only">
+          {title || 'Media Sheet'}
+        </DrawerPrimitive.Title>
         <DragHandle inverse={forceInverseChrome} />
         <div className={styles.headerRow}>
           <div className={styles.headerLogoLeft}>
@@ -197,6 +203,9 @@ function SheetHeader({ variant, title, subtitle, logoSlot, onClose, forceInverse
   if (variant === 'logo-center') {
     return (
       <div className={[styles.header, forceInverseChrome ? styles.headerBrandBold : ''].filter(Boolean).join(' ')}>
+        <DrawerPrimitive.Title className="sr-only">
+          {title || 'Media Sheet'}
+        </DrawerPrimitive.Title>
         <DragHandle inverse={forceInverseChrome} />
         <div className={styles.headerRow}>
           <div className={styles.headerLogoCenter}>
