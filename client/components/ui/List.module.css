@@ -121,12 +121,3 @@
   align-self: flex-start;
   flex-shrink: 0;
 }
-
-/* Trailing custom slot */
-.listItemTrailingCustom {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  align-self: flex-start;
-  flex-shrink: 0;
-}

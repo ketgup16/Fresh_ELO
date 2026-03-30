@@ -9,7 +9,7 @@ import { Checkbox } from './Checkbox';
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export type ListItemLeading = 'empty' | 'custom';
-export type ListItemTrailing = 'empty' | 'icon' | 'link' | 'custom' | 'select';
+export type ListItemTrailing = 'empty' | 'icon' | 'link' | 'select';
 
 export interface ListProps extends Omit<React.HTMLAttributes<HTMLUListElement>, 'role'> {
   children: React.ReactNode;
@@ -37,8 +37,6 @@ export interface ListItemProps {
   trailingIcon?: React.ReactNode;
   /** Link config for trailing="link" */
   trailingLink?: { text: string; href?: string; onClick?: () => void };
-  /** Custom content for trailing="custom" */
-  trailingContent?: React.ReactNode;
   /** Controlled checked state for trailing="select" checkbox. */
   trailingChecked?: boolean;
   /** Callback for trailing="select" checkbox state changes. */
@@ -134,13 +132,6 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
             onCheckedChange={props.onTrailingCheckedChange}
             aria-label="Select item"
           />
-        </div>
-      );
-
-    case 'custom':
-      return (
-        <div className={styles.listItemTrailingCustom}>
-          {trailingContent}
         </div>
       );
 

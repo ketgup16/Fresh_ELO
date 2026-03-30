@@ -121,7 +121,6 @@ export function ListExample() {
                 <option value="icon">Icon</option>
                 <option value="link">Link</option>
                 <option value="select">Select</option>
-                <option value="custom">Custom</option>
               </select>
             </div>
 
@@ -292,7 +291,6 @@ export function ListExample() {
                   leadingContent={leading === 'custom' ? <CustomSlotPlaceholder /> : undefined}
                   trailing={trailing}
                   trailingLink={trailing === 'link' ? { text: linkLabel || 'Link' } : undefined}
-                  trailingContent={trailing === 'custom' ? <CustomSlotPlaceholder /> : undefined}
                   trailingChecked={trailing === 'select' ? selectChecked : undefined}
                   onTrailingCheckedChange={trailing === 'select' ? (v) => setSelectChecked(v === true) : undefined}
                   attributes={[
@@ -333,12 +331,6 @@ export function ListExample() {
               trailing="link"
               trailingLink={{ text: 'Trailing link', href: '#' }}
             />
-            <ListItem
-              title="Action title"
-              text="Action description (optional)."
-              trailing="custom"
-              trailingContent={<CustomSlotPlaceholder />}
-            />
           </List>
         </div>
       </div>
@@ -377,14 +369,6 @@ export function ListExample() {
               trailing="link"
               trailingLink={{ text: 'Trailing link', href: '#' }}
             />
-            <ListItem
-              title="Action title"
-              text="Action description (optional)."
-              leading="custom"
-              leadingContent={<CustomSlotPlaceholder />}
-              trailing="custom"
-              trailingContent={<CustomSlotPlaceholder />}
-            />
           </List>
         </div>
       </div>
@@ -398,7 +382,7 @@ export function ListExample() {
           color: 'var(--ld-semantic-color-text-subtle)',
           margin: '0 0 24px',
         }}>
-          The trailing slot anchors to the top-right of the list item and supports five variants.
+          The trailing slot anchors to the top-right of the list item and supports four variants.
         </p>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -426,12 +410,6 @@ export function ListExample() {
               title: 'Select',
               desc: 'A Checkbox component. Use for multi-select list patterns.',
               demo: <ListItem title="Action title" text="Action description (optional)." trailing="select" />,
-            },
-            {
-              prop: 'trailing="custom"',
-              title: 'Custom',
-              desc: 'Arbitrary content via the trailingContent slot — badges, avatars, stepper controls, etc.',
-              demo: <ListItem title="Action title" text="Action description (optional)." trailing="custom" trailingContent={<CustomSlotPlaceholder />} />,
             },
           ] as const).map(({ prop, title, desc, demo }, i, arr) => (
             <div
@@ -552,10 +530,9 @@ export function ListExample() {
                   ['text',            'string',                                     'undefined', 'Optional secondary text below the title using body-medium default token.'],
                   ['leading',         "'empty' | 'custom'",                         "'empty'",  'Leading slot variant. "empty" renders no leading content. "custom" renders the leadingContent node.'],
                   ['leadingContent',  'ReactNode',                                  'undefined', 'Custom content for leading="custom". Any node — image, avatar, chart, etc.'],
-                  ['trailing',        "'empty' | 'icon' | 'link' | 'select' | 'custom'", "'empty'", 'Trailing slot variant. "icon" shows a 24px ChevronRight. "link" shows a LinkButton. "select" shows a Checkbox. "custom" renders trailingContent.'],
-                  ['trailingIcon',    'ReactNode',                                  'ChevronRight', 'Custom icon node for trailing="icon". Defaults to a 16×16 ChevronRight SVG.'],
-                  ['trailingLink',    '{ text: string; href?: string; onClick?: () => void }', 'undefined', 'Link config for trailing="link". Renders an <a> if href is provided, otherwise a <button>.'],
-                  ['trailingContent', 'ReactNode',                                  'undefined', 'Custom content for trailing="custom".'],
+                  ['trailing',        "'empty' | 'icon' | 'link' | 'select'", "'empty'", 'Trailing slot variant. "icon" shows a 24px ChevronRight. "link" shows a LinkButton. "select" shows a Checkbox.'],
+                  ['trailingIcon',    'ReactNode',                                  'ChevronRight', 'Custom icon node for trailing="icon". Defaults to a 24×24 ChevronRight from the icon library.'],
+                  ['trailingLink',    '{ text: string; onClick?: () => void }', 'undefined', 'Link config for trailing="link". Renders a LinkButton (small).'],
                   ['attributes',      'Array<{ label: string; icon?: ReactNode }>', 'undefined', 'Up to 2 optional AXAttribute Small items shown below the description. Separated by 4px; container offset from description by 8px.'],
                   ['divider',         'boolean',                                    'undefined', 'When true, renders a horizontal Divider at the bottom of the list item with a 16px top margin.'],
                   ['className',       'string',                                     'undefined', 'Additional CSS class names forwarded to the <li> element.'],
