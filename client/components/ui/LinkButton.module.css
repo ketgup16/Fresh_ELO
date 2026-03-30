@@ -10,6 +10,8 @@
   background: transparent;
   border: none;
   padding: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
   text-decoration: underline;
   text-decoration-thickness: var(--ld-semantic-scale-border-width-interactive);
   text-underline-offset: var(--ld-primitive-scale-space-50);
