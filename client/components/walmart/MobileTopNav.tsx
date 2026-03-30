@@ -276,7 +276,12 @@ export function MobileTopNav({
                       aria-label="Account"
                       onClick={handleAvatarClick}
                     >
-                      <AvatarFallback>
+                      <AvatarFallback style={{
+                        fontFamily: 'var(--ld-semantic-font-caption-family)',
+                        fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)',
+                        fontWeight: 'var(--ld-semantic-font-caption-weight-alt, 700)',
+                        lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)',
+                      }}>
                         WM
                       </AvatarFallback>
                     </AXAvatarButton>
