@@ -284,7 +284,7 @@ export function ListExample() {
 
             {/* Footer action */}
             <div style={PROP_ROW}>
-              <span style={PROP_LABEL}>Footer action</span>
+              <span style={PROP_LABEL}>Button options</span>
               <select value={footerAction} onChange={e => setFooterAction(e.target.value as typeof footerAction)} style={SELECT_STYLE}>
                 <option value="none">None</option>
                 <option value="button-secondary">Secondary button</option>
