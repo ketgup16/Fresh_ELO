@@ -68,9 +68,9 @@ export function ListExample() {
   // ── Interactive demo state ──
   const [leading, setLeading] = useState<ListItemLeading>('empty');
   const [trailing, setTrailing] = useState<ListItemTrailing>('empty');
-  const [title, setTitle] = useState('ListItem title');
+  const [title, setTitle] = useState('Action title');
   const [showText, setShowText] = useState(true);
-  const [itemText, setItemText] = useState('List item text');
+  const [itemText, setItemText] = useState('Action description (optional).');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -128,7 +128,7 @@ export function ListExample() {
 
             {/* Show description toggle */}
             <div style={{ ...PROP_ROW }}>
-              <span style={PROP_LABEL}>Description</span>
+              <span style={PROP_LABEL}>Action description</span>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                 <input
                   type="checkbox"
@@ -143,7 +143,7 @@ export function ListExample() {
             {/* Description text — only when showText */}
             {showText && (
               <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
-                <span style={PROP_LABEL}>Description text</span>
+                <span style={PROP_LABEL}>Action description text</span>
                 <input
                   type="text"
                   value={itemText}
@@ -200,21 +200,21 @@ export function ListExample() {
           backgroundColor: 'var(--ld-semantic-color-surface, #fff)',
         }}>
           <List aria-label="Empty leading demo" style={{ gap: '16px', width: '100%' }}>
-            <ListItem title="ListItem title" text="List item text" />
+            <ListItem title="Action title" text="Action description (optional)." />
             <ListItem
-              title="ListItem title"
-              text="List item text"
+              title="Action title"
+              text="Action description (optional)."
               trailing="icon"
             />
             <ListItem
-              title="ListItem title"
-              text="List item text"
+              title="Action title"
+              text="Action description (optional)."
               trailing="link"
               trailingLink={{ text: 'Trailing link', href: '#' }}
             />
             <ListItem
-              title="ListItem title"
-              text="List item text"
+              title="Action title"
+              text="Action description (optional)."
               trailing="custom"
               trailingContent={<CustomSlotPlaceholder />}
             />
@@ -236,29 +236,29 @@ export function ListExample() {
         }}>
           <List aria-label="Custom leading demo" style={{ gap: '16px', width: '100%' }}>
             <ListItem
-              title="ListItem title"
-              text="List item text"
+              title="Action title"
+              text="Action description (optional)."
               leading="custom"
               leadingContent={<CustomSlotPlaceholder />}
             />
             <ListItem
-              title="ListItem title"
-              text="List item text"
+              title="Action title"
+              text="Action description (optional)."
               leading="custom"
               leadingContent={<CustomSlotPlaceholder />}
               trailing="icon"
             />
             <ListItem
-              title="ListItem title"
-              text="List item text"
+              title="Action title"
+              text="Action description (optional)."
               leading="custom"
               leadingContent={<CustomSlotPlaceholder />}
               trailing="link"
               trailingLink={{ text: 'Trailing link', href: '#' }}
             />
             <ListItem
-              title="ListItem title"
-              text="List item text"
+              title="Action title"
+              text="Action description (optional)."
               leading="custom"
               leadingContent={<CustomSlotPlaceholder />}
               trailing="custom"
