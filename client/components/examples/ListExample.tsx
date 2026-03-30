@@ -84,7 +84,8 @@ export function ListExample() {
   const [showDivider, setShowDivider] = useState(true);
   const [linkLabel, setLinkLabel] = useState('Link');
   const [selectChecked, setSelectChecked] = useState(false);
-  const [footerAction, setFooterAction] = useState<'none' | 'button-secondary' | 'group-primary-secondary' | 'group-primary-tertiary'>('none');
+  const [showFooterAction, setShowFooterAction] = useState(false);
+  const [footerAction, setFooterAction] = useState<'button-secondary' | 'group-primary-secondary' | 'group-primary-tertiary'>('button-secondary');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -282,16 +283,31 @@ export function ListExample() {
               </div>
             )}
 
-            {/* Footer action */}
+            {/* Button options toggle */}
             <div style={PROP_ROW}>
               <span style={PROP_LABEL}>Button options</span>
-              <select value={footerAction} onChange={e => setFooterAction(e.target.value as typeof footerAction)} style={SELECT_STYLE}>
-                <option value="none">None</option>
-                <option value="button-secondary">Secondary button</option>
-                <option value="group-primary-secondary">Button group: Primary / Secondary</option>
-                <option value="group-primary-tertiary">Button group: Primary / Tertiary</option>
-              </select>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={showFooterAction}
+                  onChange={e => setShowFooterAction(e.target.checked)}
+                  style={{ cursor: 'pointer' }}
+                />
+                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Show</span>
+              </label>
             </div>
+
+            {/* Button type — only when showFooterAction */}
+            {showFooterAction && (
+              <div style={PROP_ROW}>
+                <span style={PROP_LABEL}>Button type</span>
+                <select value={footerAction} onChange={e => setFooterAction(e.target.value as typeof footerAction)} style={SELECT_STYLE}>
+                  <option value="button-secondary">Secondary button</option>
+                  <option value="group-primary-secondary">Button group: Primary / Secondary</option>
+                  <option value="group-primary-tertiary">Button group: Primary / Tertiary</option>
+                </select>
+              </div>
+            )}
 
             {/* Divider */}
             <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
@@ -341,6 +357,7 @@ export function ListExample() {
                   ].filter(Boolean) as { label: string }[]}
                   divider={showDivider}
                   footerAction={
+                    !showFooterAction ? undefined :
                     footerAction === 'button-secondary' ? (
                       <Button variant="secondary" size="medium" isFullWidth>Action</Button>
                     ) : footerAction === 'group-primary-secondary' ? (
