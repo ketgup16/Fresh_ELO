@@ -120,7 +120,6 @@ const ItemTilePage = React.lazy(() => import("./pages/component-library/ItemTile
 const HomePageWidgetsPage = React.lazy(() => import("./pages/component-library/HomePageWidgets"));
 const PromoBannersPage = React.lazy(() => import("./pages/component-library/PromoBanners"));
 const DropdownsPage = React.lazy(() => import("./pages/component-library/Dropdowns"));
-const AXSearchAndUtilityPage = React.lazy(() => import("./pages/component-library/AXSearchAndUtility"));
 const AXFloatingButtonPage = React.lazy(() => import("./pages/component-library/AXFloatingButton"));
 const AXHeartViewPage = React.lazy(() => import("./pages/component-library/AXHeartView"));
 const AXRatingPage = React.lazy(() => import("./pages/component-library/AXRating"));
@@ -284,7 +283,6 @@ const App = () => (
                 <Route path="home-page-widgets" element={<HomePageWidgetsPage />} />
                 <Route path="promo-banners" element={<PromoBannersPage />} />
                 <Route path="dropdowns" element={<DropdownsPage />} />
-                <Route path="search-utility" element={<AXSearchAndUtilityPage />} />
                 <Route path="ax-button-groups" element={<AXButtonGroupsPage />} />
                 <Route path="wcp-button-groups" element={<Navigate to="/component-library/ax-button-groups" replace />} />
                 <Route path="ax-floating-button" element={<AXFloatingButtonPage />} />
