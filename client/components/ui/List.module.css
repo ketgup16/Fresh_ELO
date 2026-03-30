@@ -114,6 +114,13 @@
   white-space: nowrap;
 }
 
+/* Footer action — full-width button or button group below content */
+.listItemFooterAction {
+  align-self: stretch;
+  margin-top: var(--ld-primitive-scale-space-100, 8px);
+  display: flex;
+}
+
 /* Trailing Select (Checkbox) slot */
 .listItemTrailingSelect {
   display: flex;

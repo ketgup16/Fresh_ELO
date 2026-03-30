@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { List, ListItem, ListItemLeading, ListItemTrailing } from '@/components/ui/List';
+import { Button } from '@/components/ui/Button';
+import { LinkButton } from '@/components/ui/LinkButton';
 
 // ─── Shared style constants (matches AXAvatarButtonExample) ──────────────────
 
@@ -82,6 +84,7 @@ export function ListExample() {
   const [showDivider, setShowDivider] = useState(true);
   const [linkLabel, setLinkLabel] = useState('Link');
   const [selectChecked, setSelectChecked] = useState(false);
+  const [footerAction, setFooterAction] = useState<'none' | 'button-secondary' | 'group-primary-secondary' | 'group-primary-tertiary'>('none');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -279,6 +282,17 @@ export function ListExample() {
               </div>
             )}
 
+            {/* Footer action */}
+            <div style={PROP_ROW}>
+              <span style={PROP_LABEL}>Footer action</span>
+              <select value={footerAction} onChange={e => setFooterAction(e.target.value as typeof footerAction)} style={SELECT_STYLE}>
+                <option value="none">None</option>
+                <option value="button-secondary">Secondary button</option>
+                <option value="group-primary-secondary">Button group: Primary / Secondary</option>
+                <option value="group-primary-tertiary">Button group: Primary / Tertiary</option>
+              </select>
+            </div>
+
             {/* Divider */}
             <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
               <span style={PROP_LABEL}>Divider</span>
@@ -326,6 +340,21 @@ export function ListExample() {
                     ...(showAttr3 ? [{ label: attr3Label }] : []),
                   ].filter(Boolean) as { label: string }[]}
                   divider={showDivider}
+                  footerAction={
+                    footerAction === 'button-secondary' ? (
+                      <Button variant="secondary" size="medium" isFullWidth>Action</Button>
+                    ) : footerAction === 'group-primary-secondary' ? (
+                      <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
+                        <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>
+                        <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
+                      </div>
+                    ) : footerAction === 'group-primary-tertiary' ? (
+                      <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
+                        <LinkButton size="medium">Alternate</LinkButton>
+                        <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
+                      </div>
+                    ) : undefined
+                  }
                 />
               </List>
             </div>
@@ -579,6 +608,7 @@ export function ListExample() {
                   ['trailingLink',    '{ text: string; onClick?: () => void }', 'undefined', 'Link config for trailing="link". Renders a LinkButton (small).'],
                   ['attributes',      'Array<{ label: string; icon?: ReactNode }>', 'undefined', 'Optional AXAttribute Small items shown below the description (up to 3). Separated by 4px; container offset from description by 8px.'],
                   ['divider',         'boolean',                                    'undefined', 'When true, renders a horizontal Divider at the bottom of the list item with a 16px top margin.'],
+                  ['footerAction',    'ReactNode',                                  'undefined', 'Optional full-width action below the description/attributes. Does not overlap the trailing slot. Accepts a Button or any button-group wrapper.'],
                   ['className',       'string',                                     'undefined', 'Additional CSS class names forwarded to the <li> element.'],
                 ].map(([prop, type, def, desc]) => (
                   <tr key={prop} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>

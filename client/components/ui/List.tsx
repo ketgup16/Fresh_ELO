@@ -54,6 +54,13 @@ export interface ListItemProps {
    */
   divider?: boolean;
 
+  /**
+   * Optional action rendered below the description/attributes,
+   * spanning the full width of the content column (does not overlap trailing).
+   * Accepts any ReactNode — use a Button, or a button-group wrapper.
+   */
+  footerAction?: React.ReactNode;
+
   className?: string;
 }
 
@@ -144,7 +151,7 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   (props, ref) => {
-    const { eyebrow, title, text, attributes, divider, className } = props;
+    const { eyebrow, title, text, attributes, divider, footerAction, className } = props;
     const classNames = [styles.listItem, className].filter(Boolean).join(' ');
 
     return (
@@ -165,6 +172,11 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
                 {attributes.slice(0, 3).map((attr, i) => (
                   <AXAttribute key={i} size="small" label={attr.label} icon={attr.icon} />
                 ))}
+              </div>
+            )}
+            {footerAction && (
+              <div className={styles.listItemFooterAction}>
+                {footerAction}
               </div>
             )}
           </div>
