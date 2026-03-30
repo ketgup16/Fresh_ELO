@@ -182,7 +182,7 @@ export function ListExample() {
             </div>
 
             {/* Show description toggle */}
-            <div style={{ ...PROP_ROW, borderBottom: showText ? 'none' : undefined }}>
+            <div style={showText ? { ...PROP_ROW, borderBottom: 'none' } : PROP_ROW}>
               <span style={PROP_LABEL}>Action description</span>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                 <input
