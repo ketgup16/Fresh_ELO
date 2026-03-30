@@ -174,12 +174,14 @@ import { Star } from '@/components/icons/Star';
 
         {/* Small */}
         <h3 style={H3}>Small — 5 variants</h3>
-        <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', alignItems: 'flex-start', marginBottom: '32px' }}>
+        <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', alignItems: 'stretch', marginBottom: '32px' }}>
           {SMALL_COLORS.map(({ color, label }) => (
-            <div key={color} style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
-              <span style={CHIP_LABEL}>{label}</span>
-              <div style={color === 'inverse' ? { backgroundColor: 'var(--ld-semantic-color-background-inverse)', padding: '6px 10px', borderRadius: '4px', display: 'inline-flex' } : {}}>
-                <AXAttribute label="Label" size="small" color={color} />
+            <div key={color} style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+              <span style={{ ...CHIP_LABEL, alignSelf: 'flex-start' }}>{label}</span>
+              <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={color === 'inverse' ? { backgroundColor: 'var(--ld-semantic-color-background-inverse)', padding: '6px 10px', borderRadius: '4px', display: 'inline-flex' } : {}}>
+                  <AXAttribute label="Label" size="small" color={color} />
+                </div>
               </div>
             </div>
           ))}
@@ -187,12 +189,14 @@ import { Star } from '@/components/icons/Star';
 
         {/* Large */}
         <h3 style={H3}>Large — 4 variants</h3>
-        <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+        <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', alignItems: 'stretch' }}>
           {LARGE_COLORS.map(({ color, label }) => (
-            <div key={color} style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
-              <span style={CHIP_LABEL}>{label}</span>
-              <div style={color === 'inverse' ? { backgroundColor: 'var(--ld-semantic-color-background-inverse)', padding: '6px 10px', borderRadius: '4px', display: 'inline-flex' } : {}}>
-                <AXAttribute label="Label" size="large" color={color} />
+            <div key={color} style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+              <span style={{ ...CHIP_LABEL, alignSelf: 'flex-start' }}>{label}</span>
+              <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={color === 'inverse' ? { backgroundColor: 'var(--ld-semantic-color-background-inverse)', padding: '6px 10px', borderRadius: '4px', display: 'inline-flex' } : {}}>
+                  <AXAttribute label="Label" size="large" color={color} />
+                </div>
               </div>
             </div>
           ))}
