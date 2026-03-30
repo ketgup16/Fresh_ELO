@@ -90,6 +90,7 @@ const navigationSections: NavSection[] = [
       { id: 'ax-avatar', nameKey: 'componentLibrary.navAXAvatar', path: '/component-library/ax-avatar' },
       { id: 'ax-avatar-button', nameKey: 'componentLibrary.navAXAvatarButton', path: '/component-library/ax-avatar-button' },
       { id: 'ax-attribute', nameKey: 'componentLibrary.navAXAttribute', path: '/component-library/ax-attribute' },
+      { id: 'lists', nameKey: 'componentLibrary.navLists', path: '/component-library/lists' },
     ]
   },
   {
@@ -118,7 +119,6 @@ const navigationSections: NavSection[] = [
       { id: 'icon-buttons', nameKey: 'componentLibrary.navIconButtons', path: '/component-library/icon-buttons' },
       { id: 'link-buttons', nameKey: 'componentLibrary.navLinkButtons', path: '/component-library/link-buttons' },
       { id: 'links', nameKey: 'componentLibrary.navLinks', path: '/component-library/links' },
-      { id: 'lists', nameKey: 'componentLibrary.navLists', path: '/component-library/lists' },
       { id: 'magic-box', nameKey: 'componentLibrary.navMagicBox', path: '/component-library/magic-box' },
       { id: 'menu', nameKey: 'componentLibrary.navMenu', path: '/component-library/menu' },
       { id: 'metrics', nameKey: 'componentLibrary.navMetrics', path: '/component-library/metrics' },

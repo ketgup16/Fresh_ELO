@@ -44,88 +44,6 @@ export function ListExample() {
         </List>
       </ExampleSection>
 
-      {/* ── Row 2 : Leading = Icon ─────────────────────────────────── */}
-      <ExampleSection
-        title="Leading: Icon"
-        description="Small 16 px leading icon with top padding aligned to the title baseline."
-      >
-        <List aria-label="Icon leading demo" style={{ gap: '16px', width: '100%' }}>
-          <ListItem
-            title="ListItem title"
-            text="List item text"
-            leading="icon"
-            leadingIcon={<Article style={{ width: 16, height: 16 }} />}
-          />
-
-          <ListItem
-            title="ListItem title"
-            text="List item text"
-            leading="icon"
-            leadingIcon={<Star style={{ width: 16, height: 16 }} />}
-            trailing="icon"
-          />
-
-          <ListItem
-            title="ListItem title"
-            text="List item text"
-            leading="icon"
-            leadingIcon={<Settings style={{ width: 16, height: 16 }} />}
-            trailing="link"
-            trailingLink={{ text: 'Trailing link', href: '#' }}
-          />
-
-          <ListItem
-            title="ListItem title"
-            text="List item text"
-            leading="icon"
-            leadingIcon={<Bell style={{ width: 16, height: 16 }} />}
-            trailing="custom"
-            trailingContent={<CustomSlotPlaceholder />}
-          />
-        </List>
-      </ExampleSection>
-
-      {/* ── Row 3 : Leading = Spot Icon ────────────────────────────── */}
-      <ExampleSection
-        title="Leading: Spot Icon"
-        description="48 px circular brand-subtle background with a 24 px icon centred inside."
-      >
-        <List aria-label="Spot icon leading demo" style={{ gap: '16px', width: '100%' }}>
-          <ListItem
-            title="ListItem title"
-            text="List item text"
-            leading="spot-icon"
-            spotIcon={<SpotIcon icon={<Article />} size="small" color="brand" />}
-          />
-
-          <ListItem
-            title="ListItem title"
-            text="List item text"
-            leading="spot-icon"
-            spotIcon={<SpotIcon icon={<Star />} size="small" color="brand" />}
-            trailing="icon"
-          />
-
-          <ListItem
-            title="ListItem title"
-            text="List item text"
-            leading="spot-icon"
-            spotIcon={<SpotIcon icon={<Settings />} size="small" color="brand" />}
-            trailing="link"
-            trailingLink={{ text: 'Trailing link', href: '#' }}
-          />
-
-          <ListItem
-            title="ListItem title"
-            text="List item text"
-            leading="spot-icon"
-            spotIcon={<SpotIcon icon={<Bell />} size="small" color="brand" />}
-            trailing="custom"
-            trailingContent={<CustomSlotPlaceholder />}
-          />
-        </List>
-      </ExampleSection>
-
       {/* ── Row 4 : Leading = Custom ───────────────────────────────── */}
       <ExampleSection
         title="Leading: Custom"
@@ -167,22 +85,6 @@ export function ListExample() {
         </List>
       </ExampleSection>
 
-      {/* ── Title visibility ───────────────────────────────────────── */}
-      <ExampleSection
-        title="Title Hidden"
-        description="Set showTitle={false} to hide the title and only display the text."
-      >
-        <List aria-label="Title hidden demo" style={{ gap: '16px', width: '100%' }}>
-          <ListItem
-            title="ListItem title"
-            text="Only this text is visible"
-            showTitle={false}
-            leading="icon"
-            leadingIcon={<Article style={{ width: 16, height: 16 }} />}
-            trailing="icon"
-          />
-        </List>
-      </ExampleSection>
     </div>
   );
 }
