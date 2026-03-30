@@ -10,6 +10,12 @@
 /* ListItem */
 .listItem {
   display: flex;
+  flex-direction: column;
+}
+
+/* Inner row: leading + content + trailing */
+.listItemRow {
+  display: flex;
   align-items: flex-start;
   gap: var(--ld-semantic-spacing-3, 12px);
 }

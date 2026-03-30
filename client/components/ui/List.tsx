@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styles from './List.module.css';
 import { AXAttribute } from '@/components/walmart/AXAttribute';
+import { Divider } from './Divider';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -41,6 +42,12 @@ export interface ListItemProps {
    * Each entry requires at minimum a `label` string.
    */
   attributes?: Array<{ label: string; icon?: React.ReactNode }>;
+
+  /**
+   * When true, renders a Divider at the bottom of the list item
+   * with a 16px top margin.
+   */
+  divider?: boolean;
 
   className?: string;
 }
@@ -154,31 +161,36 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   (props, ref) => {
-    const { eyebrow, title, text, attributes, className } = props;
+    const { eyebrow, title, text, attributes, divider, className } = props;
     const classNames = [styles.listItem, className].filter(Boolean).join(' ');
 
     return (
       <li ref={ref} className={classNames} role="listitem">
-        {renderLeading(props)}
+        <div className={styles.listItemRow}>
+          {renderLeading(props)}
 
-        <div className={styles.listItemContent}>
-          {eyebrow && (
-            <p className={styles.listItemEyebrow}>{eyebrow}</p>
-          )}
-          <p className={styles.listItemTitle}>{title}</p>
-          {text && (
-            <p className={styles.listItemText}>{text}</p>
-          )}
-          {attributes && attributes.length > 0 && (
-            <div className={styles.listItemAttributes}>
-              {attributes.slice(0, 2).map((attr, i) => (
-                <AXAttribute key={i} size="small" label={attr.label} icon={attr.icon} />
-              ))}
-            </div>
-          )}
+          <div className={styles.listItemContent}>
+            {eyebrow && (
+              <p className={styles.listItemEyebrow}>{eyebrow}</p>
+            )}
+            <p className={styles.listItemTitle}>{title}</p>
+            {text && (
+              <p className={styles.listItemText}>{text}</p>
+            )}
+            {attributes && attributes.length > 0 && (
+              <div className={styles.listItemAttributes}>
+                {attributes.slice(0, 2).map((attr, i) => (
+                  <AXAttribute key={i} size="small" label={attr.label} icon={attr.icon} />
+                ))}
+              </div>
+            )}
+          </div>
+
+          {renderTrailing(props)}
         </div>
-
-        {renderTrailing(props)}
+        {divider && (
+          <Divider UNSAFE_style={{ marginTop: 'var(--ld-primitive-scale-space-200, 16px)' }} />
+        )}
       </li>
     );
   }

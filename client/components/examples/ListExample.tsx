@@ -77,6 +77,7 @@ export function ListExample() {
   const [attr1Label, setAttr1Label] = useState('Attribute 1');
   const [showAttr2, setShowAttr2] = useState(false);
   const [attr2Label, setAttr2Label] = useState('Attribute 2');
+  const [showDivider, setShowDivider] = useState(false);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -225,7 +226,7 @@ export function ListExample() {
               </label>
             </div>
             {showAttr2 && (
-              <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
+              <div style={PROP_ROW}>
                 <span style={PROP_LABEL}>Attribute 2 label</span>
                 <input
                   type="text"
@@ -235,6 +236,20 @@ export function ListExample() {
                 />
               </div>
             )}
+
+            {/* Divider */}
+            <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
+              <span style={PROP_LABEL}>Divider</span>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={showDivider}
+                  onChange={e => setShowDivider(e.target.checked)}
+                  style={{ cursor: 'pointer' }}
+                />
+                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Show</span>
+              </label>
+            </div>
           </div>
 
           {/* Live preview */}
@@ -266,6 +281,7 @@ export function ListExample() {
                     ...(showAttr1 ? [{ label: attr1Label }] : []),
                     ...(showAttr2 ? [{ label: attr2Label }] : []),
                   ].filter(Boolean) as { label: string }[]}
+                  divider={showDivider}
                 />
               </List>
             </div>
@@ -422,6 +438,7 @@ export function ListExample() {
                   ['trailingLink',    '{ text: string; href?: string; onClick?: () => void }', 'undefined', 'Link config for trailing="link". Renders an <a> if href is provided, otherwise a <button>.'],
                   ['trailingContent', 'ReactNode',                                  'undefined', 'Custom content for trailing="custom".'],
                   ['attributes',      'Array<{ label: string; icon?: ReactNode }>', 'undefined', 'Up to 2 optional AXAttribute Small items shown below the description. Separated by 4px; container offset from description by 8px.'],
+                  ['divider',         'boolean',                                    'undefined', 'When true, renders a horizontal Divider at the bottom of the list item with a 16px top margin.'],
                   ['className',       'string',                                     'undefined', 'Additional CSS class names forwarded to the <li> element.'],
                 ].map(([prop, type, def, desc]) => (
                   <tr key={prop} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
