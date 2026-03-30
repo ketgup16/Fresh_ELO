@@ -188,7 +188,7 @@ import { Star } from '@/components/icons/Star';
             { size: 'large' as AXAttributeSize, desc: 'Large · 20px icon · body-medium text · 8px gap' },
           ]).map(({ size, desc }) => (
             <div key={size} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <AXAttribute label="Label" size={size} color="default" />
+              <AXAttribute label="Label" size={size} color="default" additionalLabel />
               <span style={{ fontSize: '11px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</span>
             </div>
           ))}
