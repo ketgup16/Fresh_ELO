@@ -68,6 +68,8 @@ export function ListExample() {
   // ── Interactive demo state ──
   const [leading, setLeading] = useState<ListItemLeading>('empty');
   const [trailing, setTrailing] = useState<ListItemTrailing>('empty');
+  const [showEyebrow, setShowEyebrow] = useState(false);
+  const [eyebrow, setEyebrow] = useState('Eyebrow label');
   const [title, setTitle] = useState('Action title');
   const [showText, setShowText] = useState(true);
   const [itemText, setItemText] = useState('Action description (optional).');
@@ -114,6 +116,33 @@ export function ListExample() {
                 <option value="custom">Custom</option>
               </select>
             </div>
+
+            {/* Eyebrow toggle */}
+            <div style={PROP_ROW}>
+              <span style={PROP_LABEL}>Eyebrow</span>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={showEyebrow}
+                  onChange={e => setShowEyebrow(e.target.checked)}
+                  style={{ cursor: 'pointer' }}
+                />
+                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Show</span>
+              </label>
+            </div>
+
+            {/* Eyebrow text — only when showEyebrow */}
+            {showEyebrow && (
+              <div style={PROP_ROW}>
+                <span style={PROP_LABEL}>Eyebrow text</span>
+                <input
+                  type="text"
+                  value={eyebrow}
+                  onChange={e => setEyebrow(e.target.value)}
+                  style={INPUT_STYLE}
+                />
+              </div>
+            )}
 
             {/* Title */}
             <div style={PROP_ROW}>
@@ -172,7 +201,8 @@ export function ListExample() {
             }}>
               <List aria-label="Interactive demo" style={{ width: '100%' }}>
                 <ListItem
-                  title={title || 'ListItem title'}
+                  eyebrow={showEyebrow ? eyebrow : undefined}
+                  title={title || 'Action title'}
                   text={showText ? itemText : undefined}
                   leading={leading}
                   leadingContent={leading === 'custom' ? <CustomSlotPlaceholder /> : undefined}
@@ -325,6 +355,7 @@ export function ListExample() {
               </thead>
               <tbody>
                 {[
+                  ['eyebrow',         'string',                                     'undefined', 'Optional text displayed above the title. Uses caption/default text style and text-subtle color.'],
                   ['title',           'string',                                     '—',        'Required. Primary label using body-large bold token.'],
                   ['text',            'string',                                     'undefined', 'Optional secondary text below the title using body-medium default token.'],
                   ['leading',         "'empty' | 'custom'",                         "'empty'",  'Leading slot variant. "empty" renders no leading content. "custom" renders the leadingContent node.'],

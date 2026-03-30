@@ -11,6 +11,8 @@ export interface ListProps extends Omit<React.HTMLAttributes<HTMLUListElement>, 
 }
 
 export interface ListItemProps {
+  /** Optional eyebrow text displayed above the title */
+  eyebrow?: string;
   /** Title text for the list item */
   title: string;
   /** Secondary text below the title */
@@ -145,7 +147,7 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   (props, ref) => {
-    const { title, text, className } = props;
+    const { eyebrow, title, text, className } = props;
     const classNames = [styles.listItem, className].filter(Boolean).join(' ');
 
     return (
@@ -153,6 +155,9 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
         {renderLeading(props)}
 
         <div className={styles.listItemContent}>
+          {eyebrow && (
+            <p className={styles.listItemEyebrow}>{eyebrow}</p>
+          )}
           <p className={styles.listItemTitle}>{title}</p>
           {text && (
             <p className={styles.listItemText}>{text}</p>
