@@ -114,6 +114,14 @@
   white-space: nowrap;
 }
 
+/* Trailing Select (Checkbox) slot */
+.listItemTrailingSelect {
+  display: flex;
+  align-items: flex-start;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
 /* Trailing custom slot */
 .listItemTrailingCustom {
   display: flex;

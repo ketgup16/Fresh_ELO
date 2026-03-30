@@ -4,11 +4,12 @@ import { AXAttribute } from '@/components/walmart/AXAttribute';
 import { Divider } from './Divider';
 import { ChevronRight } from '@/components/icons/ChevronRight';
 import { LinkButton } from './LinkButton';
+import { Checkbox } from './Checkbox';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export type ListItemLeading = 'empty' | 'custom';
-export type ListItemTrailing = 'empty' | 'icon' | 'link' | 'custom';
+export type ListItemTrailing = 'empty' | 'icon' | 'link' | 'custom' | 'select';
 
 export interface ListProps extends Omit<React.HTMLAttributes<HTMLUListElement>, 'role'> {
   children: React.ReactNode;
@@ -38,6 +39,10 @@ export interface ListItemProps {
   trailingLink?: { text: string; href?: string; onClick?: () => void };
   /** Custom content for trailing="custom" */
   trailingContent?: React.ReactNode;
+  /** Controlled checked state for trailing="select" checkbox. */
+  trailingChecked?: boolean;
+  /** Callback for trailing="select" checkbox state changes. */
+  onTrailingCheckedChange?: (checked: boolean | 'indeterminate') => void;
 
   /**
    * Up to 2 optional AXAttribute Small items shown below the description text.
@@ -119,6 +124,17 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
         >
           {trailingLink.text}
         </LinkButton>
+      );
+
+    case 'select':
+      return (
+        <div className={styles.listItemTrailingSelect}>
+          <Checkbox
+            checked={props.trailingChecked}
+            onCheckedChange={props.onTrailingCheckedChange}
+            aria-label="Select item"
+          />
+        </div>
       );
 
     case 'custom':
