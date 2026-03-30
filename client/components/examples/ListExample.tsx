@@ -144,7 +144,7 @@ export function ListExample() {
             )}
 
             {/* Eyebrow toggle */}
-            <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
+            <div style={showEyebrow ? { ...PROP_ROW, borderBottom: 'none' } : PROP_ROW}>
               <span style={PROP_LABEL}>Eyebrow</span>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                 <input
@@ -284,7 +284,7 @@ export function ListExample() {
             )}
 
             {/* Button options toggle */}
-            <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
+            <div style={showFooterAction ? { ...PROP_ROW, borderBottom: 'none' } : PROP_ROW}>
               <span style={PROP_LABEL}>Button options</span>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                 <input
