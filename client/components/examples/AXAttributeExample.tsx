@@ -53,7 +53,7 @@ const SMALL_COLORS: { color: AXAttributeColor; label: string }[] = [
   { color: 'default',  label: 'Default'  },
   { color: 'brand',    label: 'Brand'    },
   { color: 'negative', label: 'Negative' },
-  { color: 'success',  label: 'Success'  },
+  { color: 'inverse',  label: 'Inverse'  },
   { color: 'highlight', label: 'Highlight' },
 ];
 
@@ -61,6 +61,7 @@ const LARGE_COLORS: { color: AXAttributeColor; label: string }[] = [
   { color: 'default',  label: 'Default'  },
   { color: 'brand',    label: 'Brand'    },
   { color: 'negative', label: 'Negative' },
+  { color: 'inverse',  label: 'Inverse'  },
   { color: 'highlight', label: 'Highlight' },
 ];
 
@@ -73,10 +74,8 @@ export default function AXAttributeExample() {
 
   const availableColors = demoSize === 'small' ? SMALL_COLORS : LARGE_COLORS;
 
-  // Reset color if 'success' is selected when switching to large
   const handleSizeChange = (size: AXAttributeSize) => {
     setDemoSize(size);
-    if (size === 'large' && demoColor === 'success') setDemoColor('default');
   };
 
   const codeSnippet = `import { AXAttribute } from '@/components/walmart/AXAttribute';
@@ -152,7 +151,7 @@ import { Star } from '@/components/icons/Star';
       <div style={CARD}>
         <h2 style={H2}>Sizes</h2>
         <p style={DESC}>
-          AX Attribute comes in two sizes. Small uses a 16×16px icon with body-small text and a 4px gap. Large uses a 20×20px icon with body-medium text and an 8px gap.
+          AX Attribute comes in two sizes. Small uses a 16×16px icon with body-small text and a 4px gap. Large uses a 20×20px icon with body-medium text and an 8px gap. Both sizes support all 5 color variants.
         </p>
         <div style={{ display: 'flex', gap: '48px', flexWrap: 'wrap', alignItems: 'center' }}>
           {([
@@ -171,7 +170,7 @@ import { Star } from '@/components/icons/Star';
       <div style={CARD}>
         <h2 style={H2}>Color variants</h2>
         <p style={DESC}>
-          Color communicates semantic meaning. Small has 5 variants; Large has 4 (no Success).
+          Color communicates semantic meaning. Both Small and Large support all 5 variants.
         </p>
 
         {/* Small */}
@@ -186,7 +185,7 @@ import { Star } from '@/components/icons/Star';
         </div>
 
         {/* Large */}
-        <h3 style={H3}>Large — 4 variants</h3>
+        <h3 style={H3}>Large — 5 variants</h3>
         <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
           {LARGE_COLORS.map(({ color, label }) => (
             <div key={color} style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
@@ -214,7 +213,7 @@ import { Star } from '@/components/icons/Star';
               {[
                 ['label',     'string',                                                         '—',         'Required. Text displayed to the right of the icon.'],
                 ['size',      "'small' | 'large'",                                              "'small'",   'Controls icon size (16px / 20px), gap (4px / 8px), and text style (body-small / body-medium).'],
-                ['color',     "'default' | 'info' | 'error' | 'success' | 'selected'",  "'default'",  "'success' is only available in Small. All other variants are available in both sizes."],
+                ['color',     "'default' | 'brand' | 'negative' | 'inverse' | 'highlight'",  "'default'",  'All 5 variants are available in both Small and Large.'],
                 ['icon',      'React.ReactNode',                                                'Placeholder','Leading icon. Defaults to the Placeholder icon from the LD icon library. Designer can swap with any LD icon.'],
                 ['className', 'string',                                                         '—',         'Optional class name forwarded to the root <span> element.'],
               ].map(([prop, type, def, desc]) => (
@@ -248,7 +247,7 @@ import { Star } from '@/components/icons/Star';
                 ['default',  'ld-semantic-color-text-subtlest',  'ld-semantic-color-text-subtlest',  '400', 'Small, Large'],
                 ['brand',    'ld-semantic-color-text-brand',     'ld-semantic-color-text',            '400', 'Small, Large'],
                 ['negative', 'ld-semantic-color-text-critical',  'ld-semantic-color-text',            '400', 'Small, Large'],
-                ['success',  'ld-semantic-color-text-positive',  'ld-semantic-color-text',            '400', 'Small only'],
+                ['inverse',  'ld-semantic-color-text-inverse',   'ld-semantic-color-text-inverse',    '400', 'Small, Large'],
                 ['highlight','ld-semantic-color-text-brand',     'ld-semantic-color-text-brand',      '700', 'Small, Large'],
               ].map(([variant, iconTok, labelTok, weight, sizes]) => (
                 <tr key={variant} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>

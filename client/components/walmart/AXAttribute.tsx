@@ -5,9 +5,9 @@ import styles from './AXAttribute.module.css';
 export type AXAttributeSize = 'small' | 'large';
 
 /**
- * Small supports 5 color variants; Large supports 4 (no 'success').
+ * Both sizes support 5 color variants: default, brand, negative, inverse, highlight.
  */
-export type AXAttributeColor = 'default' | 'brand' | 'negative' | 'success' | 'highlight';
+export type AXAttributeColor = 'default' | 'brand' | 'negative' | 'inverse' | 'highlight';
 
 export interface AXAttributeProps {
   /** Display label — required. */

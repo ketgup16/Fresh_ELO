@@ -70,12 +70,12 @@
   color: var(--ld-semantic-color-text, #2E2F32);
 }
 
-/* success — positive green icon, primary label (Small only) */
-.color--success .icon {
-  color: var(--ld-semantic-color-text-positive, #006E09);
+/* inverse — both icon and label use inverse text color */
+.color--inverse .icon {
+  color: var(--ld-semantic-color-text-inverse);
 }
-.color--success .label {
-  color: var(--ld-semantic-color-text, #2E2F32);
+.color--inverse .label {
+  color: var(--ld-semantic-color-text-inverse);
 }
 
 /* highlight — brand blue icon, bold brand label */
