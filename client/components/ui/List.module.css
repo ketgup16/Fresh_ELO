@@ -77,7 +77,7 @@
 /* Attributes row — up to 2 AXAttribute Small items below description */
 .listItemAttributes {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: var(--ld-primitive-scale-space-50, 4px);
   margin-top: var(--ld-primitive-scale-space-100, 8px);
 }
