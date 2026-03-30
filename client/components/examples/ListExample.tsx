@@ -182,7 +182,7 @@ export function ListExample() {
             </div>
 
             {/* Show description toggle */}
-            <div style={{ ...PROP_ROW }}>
+            <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
               <span style={PROP_LABEL}>Action description</span>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                 <input
@@ -209,7 +209,7 @@ export function ListExample() {
             )}
 
             {/* Attribute 1 */}
-            <div style={PROP_ROW}>
+            <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
               <span style={PROP_LABEL}>Attribute 1</span>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                 <input
@@ -222,7 +222,7 @@ export function ListExample() {
               </label>
             </div>
             {showAttr1 && (
-              <div style={PROP_ROW}>
+              <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
                 <span style={PROP_LABEL}>Attribute 1 label</span>
                 <input
                   type="text"
@@ -247,7 +247,7 @@ export function ListExample() {
               </label>
             </div>
             {showAttr2 && (
-              <div style={PROP_ROW}>
+              <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
                 <span style={PROP_LABEL}>Attribute 2 label</span>
                 <input
                   type="text"
@@ -284,7 +284,7 @@ export function ListExample() {
             )}
 
             {/* Button options toggle */}
-            <div style={PROP_ROW}>
+            <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
               <span style={PROP_LABEL}>Button options</span>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                 <input
