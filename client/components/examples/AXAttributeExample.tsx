@@ -60,7 +60,6 @@ const SMALL_COLORS: { color: AXAttributeColor; label: string }[] = [
 const LARGE_COLORS: { color: AXAttributeColor; label: string }[] = [
   { color: 'default',  label: 'Default'  },
   { color: 'brand',    label: 'Brand'    },
-  { color: 'negative', label: 'Negative' },
   { color: 'inverse',  label: 'Inverse'  },
   { color: 'highlight', label: 'Highlight' },
 ];
@@ -151,7 +150,7 @@ import { Star } from '@/components/icons/Star';
       <div style={CARD}>
         <h2 style={H2}>Sizes</h2>
         <p style={DESC}>
-          AX Attribute comes in two sizes. Small uses a 16×16px icon with body-small text and a 4px gap. Large uses a 20×20px icon with body-medium text and an 8px gap. Both sizes support all 5 color variants.
+          AX Attribute comes in two sizes. Small uses a 16×16px icon with body-small text and a 4px gap. Large uses a 20×20px icon with body-medium text and an 8px gap. Small supports all 5 color variants; Large supports 4 (Default, Brand, Inverse, Highlight).
         </p>
         <div style={{ display: 'flex', gap: '48px', flexWrap: 'wrap', alignItems: 'center' }}>
           {([
@@ -170,7 +169,7 @@ import { Star } from '@/components/icons/Star';
       <div style={CARD}>
         <h2 style={H2}>Color variants</h2>
         <p style={DESC}>
-          Color communicates semantic meaning. Both Small and Large support all 5 variants.
+          Color communicates semantic meaning. Small supports all 5 variants; Large supports 4 (Default, Brand, Inverse, Highlight).
         </p>
 
         {/* Small */}
@@ -179,18 +178,22 @@ import { Star } from '@/components/icons/Star';
           {SMALL_COLORS.map(({ color, label }) => (
             <div key={color} style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
               <span style={CHIP_LABEL}>{label}</span>
-              <AXAttribute label="Label" size="small" color={color} />
+              <div style={color === 'inverse' ? { backgroundColor: 'var(--ld-semantic-color-background-inverse)', padding: '6px 10px', borderRadius: '4px', display: 'inline-flex' } : {}}>
+                <AXAttribute label="Label" size="small" color={color} />
+              </div>
             </div>
           ))}
         </div>
 
         {/* Large */}
-        <h3 style={H3}>Large — 5 variants</h3>
+        <h3 style={H3}>Large — 4 variants</h3>
         <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
           {LARGE_COLORS.map(({ color, label }) => (
             <div key={color} style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
               <span style={CHIP_LABEL}>{label}</span>
-              <AXAttribute label="Label" size="large" color={color} />
+              <div style={color === 'inverse' ? { backgroundColor: 'var(--ld-semantic-color-background-inverse)', padding: '6px 10px', borderRadius: '4px', display: 'inline-flex' } : {}}>
+                <AXAttribute label="Label" size="large" color={color} />
+              </div>
             </div>
           ))}
         </div>
@@ -213,7 +216,7 @@ import { Star } from '@/components/icons/Star';
               {[
                 ['label',     'string',                                                         '—',         'Required. Text displayed to the right of the icon.'],
                 ['size',      "'small' | 'large'",                                              "'small'",   'Controls icon size (16px / 20px), gap (4px / 8px), and text style (body-small / body-medium).'],
-                ['color',     "'default' | 'brand' | 'negative' | 'inverse' | 'highlight'",  "'default'",  'All 5 variants are available in both Small and Large.'],
+                ['color',     "'default' | 'brand' | 'negative' | 'inverse' | 'highlight'",  "'default'",  'Small supports all 5 variants. Large supports 4 (Default, Brand, Inverse, Highlight); Negative is Small only.'],
                 ['icon',      'React.ReactNode',                                                'Placeholder','Leading icon. Defaults to the Placeholder icon from the LD icon library. Designer can swap with any LD icon.'],
                 ['className', 'string',                                                         '—',         'Optional class name forwarded to the root <span> element.'],
               ].map(([prop, type, def, desc]) => (
@@ -237,25 +240,28 @@ import { Star } from '@/components/icons/Star';
           <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
             <thead>
               <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
-                {['Variant', 'Icon color', 'Label color', 'Label weight', 'Sizes'].map(h => (
+                {['Variant', 'Icon color', 'Label color', 'Background', 'Label weight', 'Sizes'].map(h => (
                   <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 600, color: 'var(--ld-semantic-color-text)' }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {[
-                ['default',  'ld-semantic-color-text-subtlest',  'ld-semantic-color-text-subtlest',  '400', 'Small, Large'],
-                ['brand',    'ld-semantic-color-text-brand',     'ld-semantic-color-text',            '400', 'Small, Large'],
-                ['negative', 'ld-semantic-color-text-critical',  'ld-semantic-color-text',            '400', 'Small, Large'],
-                ['inverse',  'ld-semantic-color-text-inverse',   'ld-semantic-color-text-inverse',    '400', 'Small, Large'],
-                ['highlight','ld-semantic-color-text-brand',     'ld-semantic-color-text-brand',      '700', 'Small, Large'],
-              ].map(([variant, iconTok, labelTok, weight, sizes]) => (
+                ['default',  'ld-semantic-color-text-subtlest',  'ld-semantic-color-text-subtlest',  '—',                                        '400', 'Small, Large'],
+                ['brand',    'ld-semantic-color-text-brand',     'ld-semantic-color-text',            '—',                                        '400', 'Small, Large'],
+                ['negative', 'ld-semantic-color-text-critical',  'ld-semantic-color-text',            '—',                                        '400', 'Small'],
+                ['inverse',  'ld-semantic-color-text-inverse',   'ld-semantic-color-text-inverse',    'ld-semantic-color-background-inverse',     '400', 'Small, Large'],
+                ['highlight','ld-semantic-color-text-brand',     'ld-semantic-color-text-brand',      '—',                                        '700', 'Small, Large'],
+              ].map(([variant, iconTok, labelTok, bgTok, weight, sizes]) => (
                 <tr key={variant} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
                   <td style={{ padding: '8px 12px' }}>
-                    <AXAttribute label={variant} size="small" color={variant as AXAttributeColor} />
+                    <div style={variant === 'inverse' ? { backgroundColor: 'var(--ld-semantic-color-background-inverse)', padding: '4px 8px', borderRadius: '4px', display: 'inline-flex' } : {}}>
+                      <AXAttribute label={variant} size="small" color={variant as AXAttributeColor} />
+                    </div>
                   </td>
                   <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{iconTok}</td>
                   <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{labelTok}</td>
+                  <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{bgTok}</td>
                   <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{weight}</td>
                   <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{sizes}</td>
                 </tr>
