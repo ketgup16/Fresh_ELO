@@ -84,8 +84,18 @@ export function ListExample() {
   const [showDivider, setShowDivider] = useState(true);
   const [linkLabel, setLinkLabel] = useState('Link');
   const [selectChecked, setSelectChecked] = useState(false);
-  const [showFooterAction, setShowFooterAction] = useState(false);
-  const [footerAction, setFooterAction] = useState<'button-secondary' | 'group-primary-secondary' | 'group-primary-tertiary'>('button-secondary');
+  const [showFooterAction, setShowFooterAction] = useState(true);
+  type FooterActionType =
+    | 'button-secondary'
+    | 'inline-primary-secondary'
+    | 'inline-primary-tertiary'
+    | 'inline-secondary-tertiary'
+    | 'inline-tertiary-tertiary'
+    | 'stacked-primary-secondary'
+    | 'stacked-primary-tertiary'
+    | 'stacked-secondary-tertiary'
+    | 'stacked-3options';
+  const [footerAction, setFooterAction] = useState<FooterActionType>('button-secondary');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -301,10 +311,20 @@ export function ListExample() {
             {showFooterAction && (
               <div style={PROP_ROW}>
                 <span style={PROP_LABEL}>Button type</span>
-                <select value={footerAction} onChange={e => setFooterAction(e.target.value as typeof footerAction)} style={SELECT_STYLE}>
+                <select value={footerAction} onChange={e => setFooterAction(e.target.value as FooterActionType)} style={SELECT_STYLE}>
                   <option value="button-secondary">Secondary button</option>
-                  <option value="group-primary-secondary">Button group: Primary / Secondary</option>
-                  <option value="group-primary-tertiary">Button group: Primary / Tertiary</option>
+                  <optgroup label="Inline (full width)">
+                    <option value="inline-primary-secondary">Primary / Secondary</option>
+                    <option value="inline-primary-tertiary">Primary / Tertiary</option>
+                    <option value="inline-secondary-tertiary">Secondary / Tertiary</option>
+                    <option value="inline-tertiary-tertiary">Tertiary / Tertiary</option>
+                  </optgroup>
+                  <optgroup label="Stacked">
+                    <option value="stacked-primary-secondary">Primary / Secondary</option>
+                    <option value="stacked-primary-tertiary">Primary / Tertiary</option>
+                    <option value="stacked-secondary-tertiary">Secondary / Tertiary</option>
+                    <option value="stacked-3options">3 Options</option>
+                  </optgroup>
                 </select>
               </div>
             )}
@@ -360,15 +380,48 @@ export function ListExample() {
                     !showFooterAction ? undefined :
                     footerAction === 'button-secondary' ? (
                       <Button variant="secondary" size="medium" isFullWidth>Action</Button>
-                    ) : footerAction === 'group-primary-secondary' ? (
+                    ) : footerAction === 'inline-primary-secondary' ? (
                       <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
                         <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>
                         <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
                       </div>
-                    ) : footerAction === 'group-primary-tertiary' ? (
+                    ) : footerAction === 'inline-primary-tertiary' ? (
                       <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
                         <LinkButton size="medium">Alternate</LinkButton>
                         <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
+                      </div>
+                    ) : footerAction === 'inline-secondary-tertiary' ? (
+                      <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
+                        <LinkButton size="medium">Alternate</LinkButton>
+                        <Button variant="secondary" size="medium" isFullWidth>Preferred</Button>
+                      </div>
+                    ) : footerAction === 'inline-tertiary-tertiary' ? (
+                      <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
+                        <LinkButton size="medium" UNSAFE_style={{ flex: 1, justifyContent: 'center' }}>Alternate</LinkButton>
+                        <LinkButton size="medium" UNSAFE_style={{ flex: 1, justifyContent: 'center' }}>Preferred</LinkButton>
+                      </div>
+                    ) : footerAction === 'stacked-primary-secondary' ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
+                        <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
+                        <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>
+                      </div>
+                    ) : footerAction === 'stacked-primary-tertiary' ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
+                        <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
+                        <LinkButton size="medium">Alternate</LinkButton>
+                      </div>
+                    ) : footerAction === 'stacked-secondary-tertiary' ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
+                        <Button variant="secondary" size="medium" isFullWidth>Preferred</Button>
+                        <LinkButton size="medium">Alternate</LinkButton>
+                      </div>
+                    ) : footerAction === 'stacked-3options' ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
+                          <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>
+                          <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
+                        </div>
+                        <LinkButton size="medium">Alternate</LinkButton>
                       </div>
                     ) : undefined
                   }
