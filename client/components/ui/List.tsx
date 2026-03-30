@@ -167,6 +167,13 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
             {text && (
               <p className={styles.listItemText}>{text}</p>
             )}
+          </div>
+
+          {renderTrailing(props)}
+        </div>
+
+        {((attributes && attributes.length > 0) || footerAction) && (
+          <div className={styles.listItemExtras}>
             {attributes && attributes.length > 0 && (
               <div className={styles.listItemAttributes}>
                 {attributes.slice(0, 3).map((attr, i) => (
@@ -180,9 +187,7 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
               </div>
             )}
           </div>
-
-          {renderTrailing(props)}
-        </div>
+        )}
         {divider && (
           <Divider UNSAFE_style={{ marginTop: 'var(--ld-primitive-scale-space-200, 16px)' }} />
         )}
