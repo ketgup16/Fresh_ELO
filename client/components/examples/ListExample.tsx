@@ -285,7 +285,7 @@ export function ListExample() {
 
             {/* Button options toggle */}
             <div style={showFooterAction ? { ...PROP_ROW, borderBottom: 'none' } : PROP_ROW}>
-              <span style={PROP_LABEL}>Button options</span>
+              <span style={PROP_LABEL}>Button</span>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                 <input
                   type="checkbox"
