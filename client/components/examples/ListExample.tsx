@@ -395,68 +395,98 @@ export function ListExample() {
         <p style={{
           fontFamily: 'var(--ld-semantic-font-family-sans)',
           fontSize: 'var(--ld-semantic-font-body-medium-size, 1rem)',
-          fontWeight: 'var(--ld-semantic-font-body-medium-weight-default, 400)',
-          lineHeight: 'var(--ld-semantic-font-body-medium-lineheight, 1.5)',
           color: 'var(--ld-semantic-color-text-subtle)',
           margin: '0 0 24px',
         }}>
-          Display each of the trailing types — the trailing slot anchors to the top-right of the list item.
+          The trailing slot anchors to the top-right of the list item and supports five variants.
         </p>
-        <div style={{
-          padding: '24px',
-          borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
-          border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)',
-          backgroundColor: 'var(--ld-semantic-color-surface, #fff)',
-        }}>
-          <List aria-label="Trailing options demo" style={{ width: '100%' }}>
 
-            {/* Empty */}
-            <ListItem
-              eyebrow="trailing=&quot;empty&quot;"
-              title="No trailing"
-              text="The trailing slot is omitted."
-              trailing="empty"
-              divider
-            />
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {([
+            {
+              prop: 'trailing="empty"',
+              title: 'Empty',
+              desc: 'The trailing slot is omitted. Use when no trailing action or indicator is needed.',
+              demo: <ListItem title="Action title" text="Action description (optional)." trailing="empty" />,
+            },
+            {
+              prop: 'trailing="icon"',
+              title: 'Icon',
+              desc: 'A 24×24 ChevronRight from the icon library. Signals navigation or drill-down.',
+              demo: <ListItem title="Action title" text="Action description (optional)." trailing="icon" />,
+            },
+            {
+              prop: 'trailing="link"',
+              title: 'Link',
+              desc: 'A LinkButton (small) for secondary in-row actions such as "Edit" or "Change".',
+              demo: <ListItem title="Action title" text="Action description (optional)." trailing="link" trailingLink={{ text: 'Action' }} />,
+            },
+            {
+              prop: 'trailing="select"',
+              title: 'Select',
+              desc: 'A Checkbox component. Use for multi-select list patterns.',
+              demo: <ListItem title="Action title" text="Action description (optional)." trailing="select" />,
+            },
+            {
+              prop: 'trailing="custom"',
+              title: 'Custom',
+              desc: 'Arbitrary content via the trailingContent slot — badges, avatars, stepper controls, etc.',
+              demo: <ListItem title="Action title" text="Action description (optional)." trailing="custom" trailingContent={<CustomSlotPlaceholder />} />,
+            },
+          ] as const).map(({ prop, title, desc, demo }, i, arr) => (
+            <div
+              key={prop}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: 'var(--ld-primitive-scale-space-400, 2rem)',
+                alignItems: 'start',
+                padding: 'var(--ld-primitive-scale-space-300, 1.5rem) 0',
+                borderBottom: i < arr.length - 1
+                  ? '1px solid var(--ld-semantic-color-separator, #E3E4E5)'
+                  : 'none',
+              }}
+            >
+              {/* Left: annotation */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-50, 4px)' }}>
+                <code style={{
+                  fontFamily: 'monospace',
+                  fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)',
+                  color: 'var(--ld-semantic-color-text-brand)',
+                  background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                  display: 'inline-block',
+                  width: 'fit-content',
+                }}>
+                  {prop}
+                </code>
+                <p style={{
+                  margin: 0,
+                  fontFamily: 'var(--ld-semantic-font-family-sans)',
+                  fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)',
+                  fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)',
+                  lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)',
+                  color: 'var(--ld-semantic-color-text-subtle)',
+                }}>
+                  <strong style={{ fontWeight: 700, color: 'var(--ld-semantic-color-text)' }}>{title}. </strong>
+                  {desc}
+                </p>
+              </div>
 
-            {/* Icon */}
-            <ListItem
-              eyebrow="trailing=&quot;icon&quot;"
-              title="Icon"
-              text="A 24×24 ChevronRight icon from the icon library."
-              trailing="icon"
-              divider
-            />
-
-            {/* Link */}
-            <ListItem
-              eyebrow="trailing=&quot;link&quot;"
-              title="Link"
-              text="A LinkButton component (small size) for secondary actions."
-              trailing="link"
-              trailingLink={{ text: 'Action' }}
-              divider
-            />
-
-            {/* Select */}
-            <ListItem
-              eyebrow="trailing=&quot;select&quot;"
-              title="Select"
-              text="A Checkbox component for multi-select list patterns."
-              trailing="select"
-              divider
-            />
-
-            {/* Custom */}
-            <ListItem
-              eyebrow="trailing=&quot;custom&quot;"
-              title="Custom"
-              text="Arbitrary content via the trailingContent slot."
-              trailing="custom"
-              trailingContent={<CustomSlotPlaceholder />}
-            />
-
-          </List>
+              {/* Right: live variant */}
+              <div style={{
+                padding: 'var(--ld-primitive-scale-space-200, 1rem)',
+                borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
+                border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)',
+                backgroundColor: 'var(--ld-semantic-color-surface, #fff)',
+              }}>
+                <List aria-label={`${title} trailing demo`}>
+                  {demo}
+                </List>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
