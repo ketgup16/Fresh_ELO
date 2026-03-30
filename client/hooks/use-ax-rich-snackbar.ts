@@ -63,6 +63,9 @@ export const axRichSnackbar = (options: AXRichSnackbarOptions): string => {
   return id;
 };
 
+/** Alias for axRichSnackbar — use this name in product code. */
+export const wcpRichSnackbar = axRichSnackbar;
+
 export const dismissAXRichSnackbar = () => {
   if (state) {
     state = { ...state, open: false };
