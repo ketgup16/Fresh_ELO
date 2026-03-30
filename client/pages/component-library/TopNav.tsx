@@ -47,7 +47,7 @@ const PLATFORM_META: Record<Platform, {
 };
 
 export default function TopNavPage() {
-  const [platform, setPlatform] = useState<Platform>('dweb');
+  const [platform, setPlatform] = useState<Platform>('native');
   const [nativeVariant, setNativeVariant] = useState<MobileTopNavVariant>('blue');
   const [nativeTitle, setNativeTitle] = useState('Page Title');
   const [nativeSubtitle, setNativeSubtitle] = useState('Subtitle');
