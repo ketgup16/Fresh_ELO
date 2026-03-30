@@ -475,7 +475,7 @@ export function ListExample() {
                 border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)',
                 backgroundColor: 'var(--ld-semantic-color-surface, #fff)',
               }}>
-                <List aria-label={`${title} trailing demo`}>
+                <List aria-label={`${title} trailing demo`} style={{ gap: 'var(--ld-primitive-scale-space-200, 16px)' }}>
                   {items}
                 </List>
               </div>
