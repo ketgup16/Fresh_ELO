@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Barcode, ChevronDown, ChevronLeft, ChevronUp, Grid, Menu, Placeholder, Search } from '@/components/icons';
 import { IconButton } from '@/components/ui/IconButton';
 import { CartIcon, LocationIcon, StoreIcon } from '@/components/icons-custom';
@@ -86,9 +86,9 @@ export function MobileTopNav({
   const [showCameraModal, setShowCameraModal] = useState(false);
   const [nativeSearchValue, setNativeSearchValue] = useState('');
   const [showAvatarMenu, setShowAvatarMenu] = useState(false);
-  const avatarMenuRef = React.useRef<HTMLDivElement>(null);
+  const avatarMenuRef = useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!showAvatarMenu) return;
     const handler = (e: MouseEvent) => {
       if (avatarMenuRef.current && !avatarMenuRef.current.contains(e.target as Node)) {
