@@ -600,7 +600,8 @@ export default function AXAvatarButtonExample() {
           ];
 
           return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', overflowX: 'auto', paddingBottom: '340px' }}>
+            <div style={{ overflowX: 'auto', paddingBottom: '340px' }}>
+            <div style={{ display: 'inline-flex', flexDirection: 'column', gap: '8px', minWidth: '100%' }}>
               {/* Label row — top-aligned */}
               <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start' }}>
                 {SIZE_ITEMS.map(({ label, size }) => (
@@ -629,6 +630,7 @@ export default function AXAvatarButtonExample() {
                   </div>
                 ))}
               </div>
+            </div>
             </div>
           );
         })()}
