@@ -35,7 +35,17 @@ interface AXAvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
   children?: React.ReactNode;
 }
 
-// Disabled color tokens for the avatar circle and text
+// Base avatar initials typography + brand colors — always applied to AvatarFallback
+const BASE_FALLBACK_STYLE: React.CSSProperties = {
+  backgroundColor: 'var(--ld-semantic-color-fill-brand-subtle, #E9F1FE)',
+  color: 'var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)',
+  fontFamily: 'var(--ld-semantic-font-caption-family)',
+  fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)',
+  fontWeight: 'var(--ld-semantic-font-caption-weight-alt, 700)',
+  lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)',
+};
+
+// Disabled color overrides — layered on top of BASE_FALLBACK_STYLE when disabled
 const DISABLED_FALLBACK_STYLE: React.CSSProperties = {
   backgroundColor: 'var(--ld-semantic-color-fill-activated-subtle-disabled)',
   color: 'var(--ld-semantic-color-text-on-fill-activated-subtle-disabled)',
@@ -54,19 +64,21 @@ export const AXAvatar = React.forwardRef<HTMLSpanElement, AXAvatarProps>(functio
   },
   ref,
 ) {
-  // When disabled, clone AvatarFallback children to inject disabled color tokens.
-  // AvatarFallback spreads `style` after its own inline styles, so these override the defaults.
-  const resolvedChildren = disabled
-    ? React.Children.map(children, child => {
-        if (React.isValidElement(child) && child.type === AvatarFallback) {
-          const el = child as React.ReactElement<React.HTMLAttributes<HTMLSpanElement>>;
-          return React.cloneElement(el, {
-            style: { ...DISABLED_FALLBACK_STYLE, ...el.props.style },
-          });
-        }
-        return child;
-      })
-    : children;
+  // Always inject base caption typography into AvatarFallback children.
+  // When disabled, overlay the disabled color tokens on top.
+  // Consumer-provided style (el.props.style) is spread last so it can still override.
+  const resolvedChildren = React.Children.map(children, child => {
+    if (React.isValidElement(child) && child.type === AvatarFallback) {
+      const el = child as React.ReactElement<React.HTMLAttributes<HTMLSpanElement>>;
+      const injected = disabled
+        ? { ...BASE_FALLBACK_STYLE, ...DISABLED_FALLBACK_STYLE }
+        : BASE_FALLBACK_STYLE;
+      return React.cloneElement(el, {
+        style: { ...injected, ...el.props.style },
+      });
+    }
+    return child;
+  });
 
   return (
     <span ref={ref} style={{ position: 'relative', display: 'inline-flex', borderRadius: '50%', transition: 'box-shadow 0.15s', ...style }}>
