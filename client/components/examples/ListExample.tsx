@@ -77,7 +77,7 @@ export function ListExample() {
   const [attr1Label, setAttr1Label] = useState('Attribute 1');
   const [showAttr2, setShowAttr2] = useState(false);
   const [attr2Label, setAttr2Label] = useState('Attribute 2');
-  const [showDivider, setShowDivider] = useState(false);
+  const [showDivider, setShowDivider] = useState(true);
   const [linkLabel, setLinkLabel] = useState('Link');
   const [selectChecked, setSelectChecked] = useState(false);
 
