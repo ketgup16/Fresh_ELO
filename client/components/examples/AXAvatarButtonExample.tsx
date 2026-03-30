@@ -602,7 +602,7 @@ export default function AXAvatarButtonExample() {
           return (
             <div style={{ display: 'flex', gap: '40px', overflowX: 'auto', paddingBottom: '340px' }}>
               {SIZE_ITEMS.map(({ label, size, dim, initials, fallback }) => (
-                <div key={size} style={{ display: 'flex', flexDirection: 'column', gap: '8px', flexShrink: 0 }}>
+                <div key={size} style={{ display: 'flex', flexDirection: 'column', gap: '8px', flexShrink: 0, minWidth: '280px' }}>
                   <span style={{ fontSize: '12px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)', textAlign: 'right' }}>{label}</span>
                   {/* Button anchored; menu positioned absolutely below */}
                   <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
