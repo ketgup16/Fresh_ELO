@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { List, ListItem } from '@/components/ui/List';
-import { SpotIcon } from '@/components/ui/SpotIcon';
-import { Article, Star, Settings, Bell } from '@/components/icons';
 
 /**
  * Example component demonstrating all 16 List / ListItem variants

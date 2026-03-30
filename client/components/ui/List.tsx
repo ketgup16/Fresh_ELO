@@ -3,7 +3,7 @@ import styles from './List.module.css';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type ListItemLeading = 'empty' | 'icon' | 'spot-icon' | 'custom';
+export type ListItemLeading = 'empty' | 'custom';
 export type ListItemTrailing = 'empty' | 'icon' | 'link' | 'custom';
 
 export interface ListProps extends Omit<React.HTMLAttributes<HTMLUListElement>, 'role'> {
@@ -15,17 +15,10 @@ export interface ListItemProps {
   title: string;
   /** Secondary text below the title */
   text?: string;
-  /** Whether to show the title. @default true */
-  showTitle?: boolean;
-
   // ── Leading variants ──────────────────────────────────────────────────────
 
   /** The leading content type */
   leading?: ListItemLeading;
-  /** Icon element for leading="icon" (rendered at 16px) */
-  leadingIcon?: React.ReactNode;
-  /** Icon element for leading="spot-icon" (rendered at 24px inside a 48px circle) */
-  spotIcon?: React.ReactNode;
   /** Custom content for leading="custom" */
   leadingContent?: React.ReactNode;
 
@@ -85,27 +78,9 @@ List.displayName = 'List';
 // ─── Leading Renderer ─────────────────────────────────────────────────────────
 
 function renderLeading(props: ListItemProps): React.ReactNode {
-  const { leading = 'empty', leadingIcon, spotIcon, leadingContent } = props;
+  const { leading = 'empty', leadingContent } = props;
 
   switch (leading) {
-    case 'icon':
-      return (
-        <div className={styles.listItemLeading}>
-          <span className={styles.listItemLeadingIcon}>
-            {leadingIcon}
-          </span>
-        </div>
-      );
-
-    case 'spot-icon':
-      return (
-        <div className={styles.listItemSpotIcon}>
-          <span className={styles.listItemSpotIconInner}>
-            {spotIcon}
-          </span>
-        </div>
-      );
-
     case 'custom':
       return (
         <div className={styles.listItemLeadingCustom}>
@@ -170,7 +145,7 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   (props, ref) => {
-    const { title, text, showTitle = true, className } = props;
+    const { title, text, className } = props;
     const classNames = [styles.listItem, className].filter(Boolean).join(' ');
 
     return (
@@ -178,9 +153,7 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
         {renderLeading(props)}
 
         <div className={styles.listItemContent}>
-          {showTitle && (
-            <p className={styles.listItemTitle}>{title}</p>
-          )}
+          <p className={styles.listItemTitle}>{title}</p>
           {text && (
             <p className={styles.listItemText}>{text}</p>
           )}

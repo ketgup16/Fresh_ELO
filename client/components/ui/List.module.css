@@ -14,48 +14,6 @@
   gap: var(--ld-semantic-spacing-3, 12px);
 }
 
-/* Leading container - icon variant */
-.listItemLeading {
-  display: flex;
-  padding-top: var(--ld-primitive-scale-space-50, 4px);
-  align-items: flex-start;
-  flex-shrink: 0;
-}
-
-/* Leading icon (small 16px) */
-.listItemLeadingIcon {
-  width: var(--ld-semantic-scale-icon-small, 16px);
-  height: var(--ld-semantic-scale-icon-small, 16px);
-  color: var(--ld-semantic-color-text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Spot Icon container */
-.listItemSpotIcon {
-  display: flex;
-  width: var(--ld-primitive-scale-space-600, 48px);
-  height: var(--ld-primitive-scale-space-600, 48px);
-  padding: var(--ld-primitive-scale-space-150, 12px);
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
-  background: var(--ld-semantic-color-fill-brand-subtle);
-}
-
-/* Spot Icon inner icon (medium 24px) */
-.listItemSpotIconInner {
-  width: var(--ld-semantic-scale-icon-medium, 24px);
-  height: var(--ld-semantic-scale-icon-medium, 24px);
-  color: var(--ld-semantic-color-text-onfill-brand-subtle, #2E2F32);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
 /* Leading custom slot */
 .listItemLeadingCustom {
   display: flex;
