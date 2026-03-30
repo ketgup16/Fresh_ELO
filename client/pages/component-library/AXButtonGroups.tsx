@@ -70,8 +70,8 @@ function InlineSecondaryTertiary({ fullWidth = true }: { fullWidth?: boolean }) 
 function InlineTertiaryTertiary({ fullWidth = true }: { fullWidth?: boolean }) {
   return (
     <div className={fullWidth ? styles.inlineFull : styles.inlineAuto}>
-      <LinkButton size="medium">Alternate</LinkButton>
-      <LinkButton size="medium">Preferred</LinkButton>
+      <LinkButton size="medium" UNSAFE_style={fullWidth ? { flex: 1, justifyContent: 'center' } : undefined}>Alternate</LinkButton>
+      <LinkButton size="medium" UNSAFE_style={fullWidth ? { flex: 1, justifyContent: 'center' } : undefined}>Preferred</LinkButton>
     </div>
   );
 }
