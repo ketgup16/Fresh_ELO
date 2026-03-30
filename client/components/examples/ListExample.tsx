@@ -391,27 +391,43 @@ export function ListExample() {
               prop: 'trailing="empty"',
               title: 'Empty',
               desc: 'The trailing slot is omitted. Use when no trailing action or indicator is needed.',
-              demo: <ListItem title="Action title" text="Action description (optional)." trailing="empty" />,
+              items: [
+                <ListItem key="1" title="Action title" text="Action description (optional)." trailing="empty" divider />,
+                <ListItem key="2" title="Action title" text="Action description (optional)." trailing="empty" divider />,
+                <ListItem key="3" title="Action title" text="Action description (optional)." trailing="empty" />,
+              ],
             },
             {
               prop: 'trailing="icon"',
               title: 'Icon',
               desc: 'A 24×24 ChevronRight from the icon library. Signals navigation or drill-down.',
-              demo: <ListItem title="Action title" text="Action description (optional)." trailing="icon" />,
+              items: [
+                <ListItem key="1" title="Action title" text="Action description (optional)." trailing="icon" divider />,
+                <ListItem key="2" title="Action title" text="Action description (optional)." trailing="icon" divider />,
+                <ListItem key="3" title="Action title" text="Action description (optional)." trailing="icon" />,
+              ],
             },
             {
               prop: 'trailing="link"',
               title: 'Link',
               desc: 'A LinkButton (small) for secondary in-row actions such as "Edit" or "Change".',
-              demo: <ListItem title="Action title" text="Action description (optional)." trailing="link" trailingLink={{ text: 'Action' }} />,
+              items: [
+                <ListItem key="1" title="Action title" text="Action description (optional)." trailing="link" trailingLink={{ text: 'Action' }} divider />,
+                <ListItem key="2" title="Action title" text="Action description (optional)." trailing="link" trailingLink={{ text: 'Action' }} divider />,
+                <ListItem key="3" title="Action title" text="Action description (optional)." trailing="link" trailingLink={{ text: 'Action' }} />,
+              ],
             },
             {
               prop: 'trailing="select"',
               title: 'Select',
               desc: 'A Checkbox component. Use for multi-select list patterns.',
-              demo: <ListItem title="Action title" text="Action description (optional)." trailing="select" />,
+              items: [
+                <ListItem key="1" title="Action title" text="Action description (optional)." trailing="select" divider />,
+                <ListItem key="2" title="Action title" text="Action description (optional)." trailing="select" divider />,
+                <ListItem key="3" title="Action title" text="Action description (optional)." trailing="select" />,
+              ],
             },
-          ] as const).map(({ prop, title, desc, demo }, i, arr) => (
+          ]).map(({ prop, title, desc, items }, i, arr) => (
             <div
               key={prop}
               style={{
@@ -452,7 +468,7 @@ export function ListExample() {
                 </p>
               </div>
 
-              {/* Right: live variant */}
+              {/* Right: live variant — 3 items, dividers on first two */}
               <div style={{
                 padding: 'var(--ld-primitive-scale-space-200, 1rem)',
                 borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
@@ -460,7 +476,7 @@ export function ListExample() {
                 backgroundColor: 'var(--ld-semantic-color-surface, #fff)',
               }}>
                 <List aria-label={`${title} trailing demo`}>
-                  {demo}
+                  {items}
                 </List>
               </div>
             </div>
