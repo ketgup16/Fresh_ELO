@@ -26,7 +26,7 @@ export interface AXAttributeProps {
    */
   icon?: React.ReactNode;
   /**
-   * When true, renders an ArrowRight icon + "Label 2" to the left of the
+   * When true, appends an ArrowRight icon + "Label 2" to the right of the
    * original label, all separated by 4px space tokens.
    */
   additionalLabel?: boolean;
@@ -69,9 +69,9 @@ export const AXAttribute: React.FC<AXAttributeProps> = ({
       <span className={styles.icon}>{resolvedIcon}</span>
       {additionalLabel ? (
         <span className={styles.additionalContainer}>
+          <span className={labelClass}>{label}</span>
           <ArrowRight width={16} height={16} aria-hidden="true" className={styles.additionalIcon} />
           <span className={labelClass}>Label 2</span>
-          <span className={labelClass}>{label}</span>
         </span>
       ) : (
         <span className={labelClass}>{label}</span>
