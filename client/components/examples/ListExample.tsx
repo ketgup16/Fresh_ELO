@@ -67,12 +67,16 @@ const INPUT_STYLE: React.CSSProperties = {
 export function ListExample() {
   // ── Interactive demo state ──
   const [leading, setLeading] = useState<ListItemLeading>('empty');
-  const [trailing, setTrailing] = useState<ListItemTrailing>('empty');
-  const [showEyebrow, setShowEyebrow] = useState(false);
+  const [trailing, setTrailing] = useState<ListItemTrailing>('icon');
+  const [showEyebrow, setShowEyebrow] = useState(true);
   const [eyebrow, setEyebrow] = useState('Eyebrow label');
   const [title, setTitle] = useState('Action title');
   const [showText, setShowText] = useState(true);
   const [itemText, setItemText] = useState('Action description (optional).');
+  const [showAttr1, setShowAttr1] = useState(false);
+  const [attr1Label, setAttr1Label] = useState('Attribute 1');
+  const [showAttr2, setShowAttr2] = useState(false);
+  const [attr2Label, setAttr2Label] = useState('Attribute 2');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -171,7 +175,7 @@ export function ListExample() {
 
             {/* Description text — only when showText */}
             {showText && (
-              <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
+              <div style={PROP_ROW}>
                 <span style={PROP_LABEL}>Action description text</span>
                 <input
                   type="text"
@@ -181,7 +185,56 @@ export function ListExample() {
                 />
               </div>
             )}
-            {!showText && <div style={{ flex: 1 }} />}
+
+            {/* Attribute 1 */}
+            <div style={PROP_ROW}>
+              <span style={PROP_LABEL}>Attribute 1</span>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={showAttr1}
+                  onChange={e => setShowAttr1(e.target.checked)}
+                  style={{ cursor: 'pointer' }}
+                />
+                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Show</span>
+              </label>
+            </div>
+            {showAttr1 && (
+              <div style={PROP_ROW}>
+                <span style={PROP_LABEL}>Attribute 1 label</span>
+                <input
+                  type="text"
+                  value={attr1Label}
+                  onChange={e => setAttr1Label(e.target.value)}
+                  style={INPUT_STYLE}
+                />
+              </div>
+            )}
+
+            {/* Attribute 2 */}
+            <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
+              <span style={PROP_LABEL}>Attribute 2</span>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={showAttr2}
+                  onChange={e => setShowAttr2(e.target.checked)}
+                  style={{ cursor: 'pointer' }}
+                />
+                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Show</span>
+              </label>
+            </div>
+            {showAttr2 && (
+              <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
+                <span style={PROP_LABEL}>Attribute 2 label</span>
+                <input
+                  type="text"
+                  value={attr2Label}
+                  onChange={e => setAttr2Label(e.target.value)}
+                  style={INPUT_STYLE}
+                />
+              </div>
+            )}
           </div>
 
           {/* Live preview */}
@@ -209,6 +262,10 @@ export function ListExample() {
                   trailing={trailing}
                   trailingLink={trailing === 'link' ? { text: 'Trailing link', href: '#' } : undefined}
                   trailingContent={trailing === 'custom' ? <CustomSlotPlaceholder /> : undefined}
+                  attributes={[
+                    ...(showAttr1 ? [{ label: attr1Label }] : []),
+                    ...(showAttr2 ? [{ label: attr2Label }] : []),
+                  ].filter(Boolean) as { label: string }[]}
                 />
               </List>
             </div>
@@ -364,6 +421,7 @@ export function ListExample() {
                   ['trailingIcon',    'ReactNode',                                  'ChevronRight', 'Custom icon node for trailing="icon". Defaults to a 16×16 ChevronRight SVG.'],
                   ['trailingLink',    '{ text: string; href?: string; onClick?: () => void }', 'undefined', 'Link config for trailing="link". Renders an <a> if href is provided, otherwise a <button>.'],
                   ['trailingContent', 'ReactNode',                                  'undefined', 'Custom content for trailing="custom".'],
+                  ['attributes',      'Array<{ label: string; icon?: ReactNode }>', 'undefined', 'Up to 2 optional AXAttribute Small items shown below the description. Separated by 4px; container offset from description by 8px.'],
                   ['className',       'string',                                     'undefined', 'Additional CSS class names forwarded to the <li> element.'],
                 ].map(([prop, type, def, desc]) => (
                   <tr key={prop} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>

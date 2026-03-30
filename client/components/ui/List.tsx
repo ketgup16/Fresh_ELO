@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styles from './List.module.css';
+import { AXAttribute } from '@/components/walmart/AXAttribute';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -34,6 +35,12 @@ export interface ListItemProps {
   trailingLink?: { text: string; href?: string; onClick?: () => void };
   /** Custom content for trailing="custom" */
   trailingContent?: React.ReactNode;
+
+  /**
+   * Up to 2 optional AXAttribute Small items shown below the description text.
+   * Each entry requires at minimum a `label` string.
+   */
+  attributes?: Array<{ label: string; icon?: React.ReactNode }>;
 
   className?: string;
 }
@@ -147,7 +154,7 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   (props, ref) => {
-    const { eyebrow, title, text, className } = props;
+    const { eyebrow, title, text, attributes, className } = props;
     const classNames = [styles.listItem, className].filter(Boolean).join(' ');
 
     return (
@@ -161,6 +168,13 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
           <p className={styles.listItemTitle}>{title}</p>
           {text && (
             <p className={styles.listItemText}>{text}</p>
+          )}
+          {attributes && attributes.length > 0 && (
+            <div className={styles.listItemAttributes}>
+              {attributes.slice(0, 2).map((attr, i) => (
+                <AXAttribute key={i} size="small" label={attr.label} icon={attr.icon} />
+              ))}
+            </div>
           )}
         </div>
 
