@@ -26,10 +26,12 @@ export interface AXAttributeProps {
    */
   icon?: React.ReactNode;
   /**
-   * When true, appends an ArrowRight icon + "Label 2" to the right of the
+   * When true, appends an ArrowRight icon + label2 to the right of the
    * original label, all separated by 4px space tokens.
    */
   additionalLabel?: boolean;
+  /** Text for the secondary label rendered when additionalLabel is true. @default 'Label 2' */
+  label2?: string;
   /** Additional class name forwarded to the root element. */
   className?: string;
 }
@@ -45,6 +47,7 @@ export const AXAttribute: React.FC<AXAttributeProps> = ({
   color = 'default',
   icon,
   additionalLabel = false,
+  label2 = 'Label 2',
   className,
 }) => {
   const iconSize = ICON_SIZE[size];
@@ -71,7 +74,7 @@ export const AXAttribute: React.FC<AXAttributeProps> = ({
         <span className={styles.additionalContainer}>
           <span className={labelClass}>{label}</span>
           <ArrowRight width={16} height={16} aria-hidden="true" className={styles.additionalIcon} />
-          <span className={labelClass}>Label 2</span>
+          <span className={labelClass}>{label2}</span>
         </span>
       ) : (
         <span className={labelClass}>{label}</span>
