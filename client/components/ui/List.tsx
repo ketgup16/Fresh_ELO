@@ -3,6 +3,7 @@ import styles from './List.module.css';
 import { AXAttribute } from '@/components/walmart/AXAttribute';
 import { Divider } from './Divider';
 import { ChevronRight } from '@/components/icons/ChevronRight';
+import { LinkButton } from './LinkButton';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -110,23 +111,14 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
 
     case 'link':
       if (!trailingLink) return null;
-      return trailingLink.href ? (
-        <a
-          href={trailingLink.href}
-          className={styles.listItemTrailingLink}
+      return (
+        <LinkButton
+          size="small"
           onClick={trailingLink.onClick}
+          UNSAFE_className={styles.listItemTrailingLink}
         >
           {trailingLink.text}
-        </a>
-      ) : (
-        <button
-          type="button"
-          className={styles.listItemTrailingLink}
-          onClick={trailingLink.onClick}
-          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
-        >
-          {trailingLink.text}
-        </button>
+        </LinkButton>
       );
 
     case 'custom':

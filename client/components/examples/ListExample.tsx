@@ -78,6 +78,7 @@ export function ListExample() {
   const [showAttr2, setShowAttr2] = useState(false);
   const [attr2Label, setAttr2Label] = useState('Attribute 2');
   const [showDivider, setShowDivider] = useState(false);
+  const [linkLabel, setLinkLabel] = useState('Link');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -121,6 +122,19 @@ export function ListExample() {
                 <option value="custom">Custom</option>
               </select>
             </div>
+
+            {/* Link label — only when trailing=link */}
+            {trailing === 'link' && (
+              <div style={PROP_ROW}>
+                <span style={PROP_LABEL}>Link label</span>
+                <input
+                  type="text"
+                  value={linkLabel}
+                  onChange={e => setLinkLabel(e.target.value)}
+                  style={INPUT_STYLE}
+                />
+              </div>
+            )}
 
             {/* Eyebrow toggle */}
             <div style={PROP_ROW}>
@@ -275,7 +289,7 @@ export function ListExample() {
                   leading={leading}
                   leadingContent={leading === 'custom' ? <CustomSlotPlaceholder /> : undefined}
                   trailing={trailing}
-                  trailingLink={trailing === 'link' ? { text: 'Trailing link', href: '#' } : undefined}
+                  trailingLink={trailing === 'link' ? { text: linkLabel || 'Link' } : undefined}
                   trailingContent={trailing === 'custom' ? <CustomSlotPlaceholder /> : undefined}
                   attributes={[
                     ...(showAttr1 ? [{ label: attr1Label }] : []),
