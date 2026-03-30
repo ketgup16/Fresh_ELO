@@ -592,11 +592,11 @@ export default function AXAvatarButtonExample() {
           );
 
           const SIZE_ITEMS = [
-            { label: 'XSmall · 24px', size: 'xsmall' as const, dim: AVATAR_DIM.xsmall, initials: 'XS', fallback: { fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)' } as React.CSSProperties },
-            { label: 'Small · 32px',  size: 'small'  as const, dim: AVATAR_DIM.small,  initials: 'SM', fallback: { fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)' } as React.CSSProperties },
-            { label: 'Medium · 40px', size: 'medium' as const, dim: undefined,          initials: 'MD', fallback: {} as React.CSSProperties },
-            { label: 'Large · 48px',  size: 'large'  as const, dim: AVATAR_DIM.large,  initials: 'LG', fallback: {} as React.CSSProperties },
-            { label: 'XLarge · 64px', size: 'xlarge' as const, dim: AVATAR_DIM.xlarge, initials: 'XL', fallback: { fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' } as React.CSSProperties },
+            { label: 'XSmall · 24px', size: 'xsmall' as const, dim: AVATAR_DIM.xsmall, initials: 'XS', menuGap: '0px',                                              fallback: { fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)' } as React.CSSProperties },
+            { label: 'Small · 32px',  size: 'small'  as const, dim: AVATAR_DIM.small,  initials: 'SM', menuGap: '0px',                                              fallback: { fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)' } as React.CSSProperties },
+            { label: 'Medium · 40px', size: 'medium' as const, dim: undefined,          initials: 'MD', menuGap: 'var(--ld-primitive-scale-space-50, 4px)',          fallback: {} as React.CSSProperties },
+            { label: 'Large · 48px',  size: 'large'  as const, dim: AVATAR_DIM.large,  initials: 'LG', menuGap: 'var(--ld-primitive-scale-space-100, 8px)',         fallback: {} as React.CSSProperties },
+            { label: 'XLarge · 64px', size: 'xlarge' as const, dim: AVATAR_DIM.xlarge, initials: 'XL', menuGap: 'var(--ld-primitive-scale-space-100, 8px)',         fallback: { fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' } as React.CSSProperties },
           ];
 
           return (
@@ -612,7 +612,7 @@ export default function AXAvatarButtonExample() {
               </div>
               {/* Button row — all avatars centered on the same horizontal line */}
               <div style={{ display: 'flex', gap: '40px', alignItems: 'center' }}>
-                {SIZE_ITEMS.map(({ label, size, dim, initials, fallback }) => (
+                {SIZE_ITEMS.map(({ label, size, dim, initials, fallback, menuGap }) => (
                   <div key={size} style={{ minWidth: '280px', flexShrink: 0, display: 'flex', justifyContent: 'flex-end' }}>
                     {/* Button anchored; menu positioned absolutely below */}
                     <div style={{ position: 'relative', display: 'inline-flex' }}>
@@ -622,7 +622,7 @@ export default function AXAvatarButtonExample() {
                         </AvatarFallback>
                       </AXAvatarButton>
                       {menuOpen && (
-                        <div style={{ position: 'absolute', top: 'calc(100% + var(--ld-primitive-scale-space-100, 8px))', right: 0, zIndex: 10 }}>
+                        <div style={{ position: 'absolute', top: menuGap === '0px' ? '100%' : `calc(100% + ${menuGap})`, right: 0, zIndex: 10 }}>
                           <MenuContent />
                         </div>
                       )}
