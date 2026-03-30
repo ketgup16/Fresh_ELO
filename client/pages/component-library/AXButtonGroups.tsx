@@ -52,7 +52,7 @@ function InlinePrimarySecondary({ fullWidth = true }: { fullWidth?: boolean }) {
 function InlinePrimaryTertiary({ fullWidth = true }: { fullWidth?: boolean }) {
   return (
     <div className={fullWidth ? styles.inlineFull : styles.inlineAuto}>
-      <LinkButton size="medium" UNSAFE_style={fullWidth ? { flex: 1, justifyContent: 'center' } : undefined}>Alternate</LinkButton>
+      <LinkButton size="medium">Alternate</LinkButton>
       <Button variant="primary" size="medium" isFullWidth={fullWidth}>Preferred</Button>
     </div>
   );
@@ -61,7 +61,7 @@ function InlinePrimaryTertiary({ fullWidth = true }: { fullWidth?: boolean }) {
 function InlineSecondaryTertiary({ fullWidth = true }: { fullWidth?: boolean }) {
   return (
     <div className={fullWidth ? styles.inlineFull : styles.inlineAuto}>
-      <LinkButton size="medium" UNSAFE_style={fullWidth ? { flex: 1, justifyContent: 'center' } : undefined}>Alternate</LinkButton>
+      <LinkButton size="medium">Alternate</LinkButton>
       <Button variant="secondary" size="medium" isFullWidth={fullWidth}>Preferred</Button>
     </div>
   );
@@ -70,8 +70,8 @@ function InlineSecondaryTertiary({ fullWidth = true }: { fullWidth?: boolean }) 
 function InlineTertiaryTertiary({ fullWidth = true }: { fullWidth?: boolean }) {
   return (
     <div className={fullWidth ? styles.inlineFull : styles.inlineAuto}>
-      <LinkButton size="medium" UNSAFE_style={fullWidth ? { flex: 1, justifyContent: 'center' } : undefined}>Alternate</LinkButton>
-      <LinkButton size="medium" UNSAFE_style={fullWidth ? { flex: 1, justifyContent: 'center' } : undefined}>Preferred</LinkButton>
+      <LinkButton size="medium">Alternate</LinkButton>
+      <LinkButton size="medium">Preferred</LinkButton>
     </div>
   );
 }
