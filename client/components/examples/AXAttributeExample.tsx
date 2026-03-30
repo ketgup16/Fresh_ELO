@@ -70,6 +70,7 @@ export default function AXAttributeExample() {
   const [demoSize, setDemoSize] = useState<AXAttributeSize>('small');
   const [demoColor, setDemoColor] = useState<AXAttributeColor>('default');
   const [demoLabel, setDemoLabel] = useState('Label');
+  const [demoAdditionalLabel, setDemoAdditionalLabel] = useState(false);
 
   const availableColors = demoSize === 'small' ? SMALL_COLORS : LARGE_COLORS;
 
@@ -84,7 +85,10 @@ export default function AXAttributeExample() {
 
 // With size and color
 <AXAttribute label="Label" size="${demoSize}" color="${demoColor}" />
-
+${demoAdditionalLabel ? `
+// With additional label
+<AXAttribute label="Label" size="${demoSize}" color="${demoColor}" additionalLabel />
+` : ''}
 // Custom icon
 import { Star } from '@/components/icons/Star';
 <AXAttribute label="Label" size="small" color="brand" icon={<Star width={16} height={16} />} />`;
@@ -128,7 +132,7 @@ import { Star } from '@/components/icons/Star';
               </select>
             </div>
             {/* Label */}
-            <div style={{ padding: '12px 0', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            <div style={{ padding: '12px 0', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)', display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text)' }}>Label</span>
               <input
                 type="text"
@@ -137,11 +141,24 @@ import { Star } from '@/components/icons/Star';
                 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '13px', padding: '4px 8px', borderRadius: '6px', border: '1px solid var(--ld-semantic-color-separator)', outline: 'none' }}
               />
             </div>
+            {/* Additional Label */}
+            <div style={{ padding: '12px 0', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text)' }}>Additional Label</span>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '13px', color: 'var(--ld-semantic-color-text-subtle)' }}>
+                <input
+                  type="checkbox"
+                  checked={demoAdditionalLabel}
+                  onChange={e => setDemoAdditionalLabel(e.target.checked)}
+                  style={{ width: '14px', height: '14px', cursor: 'pointer' }}
+                />
+                {demoAdditionalLabel ? 'On' : 'Off'}
+              </label>
+            </div>
           </div>
 
           {/* Preview */}
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100px' }}>
-            <AXAttribute label={demoLabel || 'Label'} size={demoSize} color={demoColor} />
+            <AXAttribute label={demoLabel || 'Label'} size={demoSize} color={demoColor} additionalLabel={demoAdditionalLabel} />
           </div>
         </div>
       </div>
@@ -222,6 +239,7 @@ import { Star } from '@/components/icons/Star';
                 ['size',      "'small' | 'large'",                                              "'small'",   'Controls icon size (16px / 20px), gap (4px / 8px), and text style (body-small / body-medium).'],
                 ['color',     "'default' | 'brand' | 'negative' | 'inverse' | 'highlight'",  "'default'",  'Small supports all 5 variants. Large supports 4 (Default, Brand, Inverse, Highlight); Negative is Small only.'],
                 ['icon',      'React.ReactNode',                                                'Placeholder','Leading icon. Defaults to the Placeholder icon from the LD icon library. Designer can swap with any LD icon.'],
+                ['additionalLabel', 'boolean',                                                  'false',     'When true, renders an ArrowRight icon + “Label 2” to the left of the original label, all separated by a 4px space token.'],
                 ['className', 'string',                                                         '—',         'Optional class name forwarded to the root <span> element.'],
               ].map(([prop, type, def, desc]) => (
                 <tr key={prop} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>

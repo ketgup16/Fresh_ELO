@@ -1,5 +1,6 @@
 import React from 'react';
 import { Placeholder } from '@/components/icons/Placeholder';
+import { ArrowRight } from '@/components/icons/ArrowRight';
 import styles from './AXAttribute.module.css';
 
 export type AXAttributeSize = 'small' | 'large';
@@ -24,6 +25,11 @@ export interface AXAttributeProps {
    * Designer can swap with any LD icon component.
    */
   icon?: React.ReactNode;
+  /**
+   * When true, renders an ArrowRight icon + "Label 2" to the left of the
+   * original label, all separated by 4px space tokens.
+   */
+  additionalLabel?: boolean;
   /** Additional class name forwarded to the root element. */
   className?: string;
 }
@@ -38,6 +44,7 @@ export const AXAttribute: React.FC<AXAttributeProps> = ({
   size = 'small',
   color = 'default',
   icon,
+  additionalLabel = false,
   className,
 }) => {
   const iconSize = ICON_SIZE[size];
@@ -60,7 +67,15 @@ export const AXAttribute: React.FC<AXAttributeProps> = ({
   return (
     <span className={rootClass}>
       <span className={styles.icon}>{resolvedIcon}</span>
-      <span className={labelClass}>{label}</span>
+      {additionalLabel ? (
+        <span className={styles.additionalContainer}>
+          <ArrowRight width={16} height={16} aria-hidden="true" className={styles.additionalIcon} />
+          <span className={labelClass}>Label 2</span>
+          <span className={labelClass}>{label}</span>
+        </span>
+      ) : (
+        <span className={labelClass}>{label}</span>
+      )}
     </span>
   );
 };

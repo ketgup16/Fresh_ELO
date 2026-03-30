@@ -44,6 +44,18 @@
   line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5rem);
 }
 
+/* ── Additional label container ── */
+
+.additionalContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+}
+
+.additionalIcon {
+  flex-shrink: 0;
+}
+
 /* ── Color variants ── */
 
 /* default — icon and label both use primary text color */
