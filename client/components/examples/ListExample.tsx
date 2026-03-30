@@ -69,7 +69,7 @@ export function ListExample() {
   const [leading, setLeading] = useState<ListItemLeading>('empty');
   const [trailing, setTrailing] = useState<ListItemTrailing>('icon');
   const [showEyebrow, setShowEyebrow] = useState(true);
-  const [eyebrow, setEyebrow] = useState('Eyebrow label');
+  const [eyebrow, setEyebrow] = useState('Goal name');
   const [title, setTitle] = useState('Action title');
   const [showText, setShowText] = useState(true);
   const [itemText, setItemText] = useState('Action description (optional).');
