@@ -3,21 +3,19 @@ import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { AXSearchBar } from '@/components/walmart/AXSearchBar';
 
 const sectionStyle: React.CSSProperties = {
-  backgroundColor: 'var(--ld-semantic-color-surface)',
-  padding: '32px',
-  borderRadius: '8px',
-  boxShadow: 'var(--ld-semantic-elevation-100)',
   display: 'flex',
   flexDirection: 'column',
   gap: '24px',
 };
 
 const h2Style: React.CSSProperties = {
-  fontFamily: 'var(--ld-semantic-font-family-sans)',
-  fontSize: '18px',
+  fontSize: '22px',
   fontWeight: 700,
-  margin: 0,
-  color: 'var(--ld-semantic-color-text)',
+  fontFamily: 'var(--ld-semantic-font-family-sans)',
+  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+  margin: '0 0 0',
+  paddingBottom: '12px',
+  borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
 };
 
 const labelStyle: React.CSSProperties = {
@@ -60,7 +58,7 @@ export default function AXSearchBarPage() {
       title="Search Bar"
       description='An inline search input based on the [AX] Search Bar V2 spec. Supports Enabled, Focused, Disabled, and Read-only states with Unfilled and Filled content variants.'
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
 
         {/* Interactive Demo */}
         <div style={sectionStyle}>

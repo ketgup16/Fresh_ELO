@@ -9,19 +9,16 @@ import { Alert } from '@/components/ui/Alert';
 // ─── Shared style constants ───────────────────────────────────────────────────
 
 const HEADING: React.CSSProperties = {
-  fontSize: '20px',
-  fontWeight: '700',
+  fontSize: '22px',
+  fontWeight: 700,
   fontFamily: 'var(--ld-semantic-font-family-sans)',
-  color: 'var(--ld-semantic-color-text-primary)',
-  marginBottom: '16px',
+  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+  margin: '0 0 24px',
+  paddingBottom: '12px',
+  borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
 };
 
-const CARD: React.CSSProperties = {
-  backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-  padding: '32px',
-  borderRadius: '8px',
-  boxShadow: 'var(--ld-semantic-elevation-100)',
-};
+const CARD: React.CSSProperties = {};
 
 const PROP_ROW: React.CSSProperties = {
   padding: '12px 16px',
@@ -106,7 +103,7 @@ export function ListActionExample() {
   const [footerAction, setFooterAction] = useState<FooterActionType>('button-secondary');
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
 
       {/* ── Interactive Demo ─────────────────────────────────────────── */}
       <div style={CARD}>

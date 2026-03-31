@@ -4,19 +4,16 @@ import { Placeholder } from '@/components/icons/Placeholder';
 
 // ── Shared card / heading tokens ────────────────────────────────────────────
 
-const CARD: React.CSSProperties = {
-  backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-  padding: '32px',
-  borderRadius: '8px',
-  boxShadow: 'var(--ld-semantic-elevation-100)',
-};
+const CARD: React.CSSProperties = {};
 
 const H2: React.CSSProperties = {
-  fontFamily: 'var(--ld-semantic-font-family-sans)',
-  fontSize: '20px',
+  fontSize: '22px',
   fontWeight: 700,
-  margin: '0 0 8px',
-  color: 'var(--ld-semantic-color-text-primary)',
+  fontFamily: 'var(--ld-semantic-font-family-sans)',
+  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+  margin: '0 0 24px',
+  paddingBottom: '12px',
+  borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
 };
 
 const H3: React.CSSProperties = {
@@ -95,7 +92,7 @@ import { Star } from '@/components/icons/Star';
 <AXAttribute label="Label" size="small" color="brand" icon={<Star width={16} height={16} />} />`;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
 
       {/* ── Live Demo ── */}
       <div style={CARD}>
