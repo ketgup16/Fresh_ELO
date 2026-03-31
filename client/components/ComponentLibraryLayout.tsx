@@ -28,9 +28,16 @@ interface NavItem {
   path: string;
 }
 
+interface NavSubGroup {
+  id: string;
+  titleKey: string;
+  items: NavItem[];
+}
+
 interface NavSection {
   titleKey: string;
   items: NavItem[];
+  subGroups?: NavSubGroup[];
 }
 
 const navigationSections: NavSection[] = [
@@ -90,14 +97,17 @@ const navigationSections: NavSection[] = [
       { id: 'ax-avatar', nameKey: 'componentLibrary.navAXAvatar', path: '/component-library/ax-avatar' },
       { id: 'ax-avatar-button', nameKey: 'componentLibrary.navAXAvatarButton', path: '/component-library/ax-avatar-button' },
       { id: 'ax-attribute', nameKey: 'componentLibrary.navAXAttribute', path: '/component-library/ax-attribute' },
-    ]
-  },
-  {
-    titleKey: 'componentLibrary.listCategory',
-    items: [
-      { id: 'list-action',    nameKey: 'componentLibrary.navListAction',    path: '/component-library/list-action' },
-      { id: 'list-associate', nameKey: 'componentLibrary.navListAssociate', path: '/component-library/list-associate' },
-    ]
+    ],
+    subGroups: [
+      {
+        id: 'list',
+        titleKey: 'componentLibrary.listCategory',
+        items: [
+          { id: 'list-action',    nameKey: 'componentLibrary.navListAction',    path: '/component-library/list-action' },
+          { id: 'list-associate', nameKey: 'componentLibrary.navListAssociate', path: '/component-library/list-associate' },
+        ],
+      },
+    ],
   },
   {
     titleKey: 'componentLibrary.components',
@@ -178,6 +188,16 @@ export function ComponentLibraryLayout() {
   const { t } = useTranslation();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [collapsed, setCollapsed] = useState<Set<string>>(readCollapsed);
+  const [collapsedSubGroups, setCollapsedSubGroups] = useState<Set<string>>(new Set());
+
+  const toggleSubGroup = useCallback((id: string) => {
+    setCollapsedSubGroups(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }, []);
 
   const toggleSection = useCallback((titleKey: string) => {
     setCollapsed(prev => {
@@ -235,7 +255,9 @@ export function ComponentLibraryLayout() {
             {navigationSections.map((section, sectionIndex) => {
               const isCollapsed = collapsed.has(section.titleKey);
               // Auto-expand section if the current page lives inside it
-              const hasActiveItem = section.items.some(item => item.path === location.pathname);
+              const hasActiveItem =
+                section.items.some(item => item.path === location.pathname) ||
+                (section.subGroups ?? []).some(sg => sg.items.some(item => item.path === location.pathname));
               const effectivelyOpen = hasActiveItem || !isCollapsed;
 
               return (
@@ -278,6 +300,52 @@ export function ComponentLibraryLayout() {
                           );
                         })}
                       </SideNavigation>
+
+                      {/* Nested sub-groups */}
+                      {(section.subGroups ?? []).map((sg) => {
+                        const sgCollapsed = collapsedSubGroups.has(sg.id);
+                        const sgHasActive = sg.items.some(item => item.path === location.pathname);
+                        const sgOpen = sgHasActive || !sgCollapsed;
+                        return (
+                          <div key={sg.id}>
+                            <button
+                              className={styles.subGroupToggle}
+                              onClick={() => toggleSubGroup(sg.id)}
+                              aria-expanded={sgOpen}
+                              aria-controls={`subgroup-${sg.id}`}
+                            >
+                              <span className={styles.subGroupLabelText}>{t(sg.titleKey)}</span>
+                              <ChevronDown
+                                width={12}
+                                height={12}
+                                className={[styles.sectionChevron, sgOpen ? styles.sectionChevronOpen : ''].join(' ')}
+                              />
+                            </button>
+                            <div
+                              id={`subgroup-${sg.id}`}
+                              className={[styles.subGroupContent, sgOpen ? styles.subGroupContentOpen : ''].join(' ')}
+                            >
+                              <div className={styles.subGroupContentInner}>
+                                <SideNavigation aria-label={`${t(sg.titleKey)} Navigation`}>
+                                  {sg.items.map((item) => {
+                                    const isActive = location.pathname === item.path;
+                                    return (
+                                      <SideNavigationItem
+                                        key={item.id}
+                                        href={item.path}
+                                        isCurrent={isActive}
+                                        onClick={(e) => handleNavClick(e, item.path)}
+                                      >
+                                        {t(item.nameKey)}
+                                      </SideNavigationItem>
+                                    );
+                                  })}
+                                </SideNavigation>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

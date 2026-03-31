@@ -105,6 +105,50 @@
   padding-bottom: 4px;
 }
 
+/* ─── Nested sub-group inside a section ─── */
+.subGroupToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 4px 8px 4px 8px;
+  margin-top: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  gap: 4px;
+}
+
+.subGroupToggle:hover {
+  background: var(--ld-semantic-color-fill-surface-secondary, #f5f5f6);
+}
+
+.subGroupLabelText {
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: 700;
+  line-height: 1rem;
+  color: var(--ld-semantic-color-text-subtle, #74767C);
+  font-family: var(--ld-semantic-font-family-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.subGroupContent {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 220ms ease;
+  overflow: hidden;
+}
+
+.subGroupContentOpen {
+  grid-template-rows: 1fr;
+}
+
+.subGroupContentInner {
+  min-height: 0;
+}
+
 /* Keep the old static label class for anything still using it */
 .sectionLabel {
   font-size: 11px;
