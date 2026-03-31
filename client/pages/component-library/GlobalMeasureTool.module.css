@@ -24,19 +24,19 @@
 
 .fab:hover {
   background: #292940;
-  border-color: #ff00ff;
-  box-shadow: 0 4px 20px rgba(255, 0, 255, 0.2);
+  border-color: #60a5fa;
+  box-shadow: 0 4px 20px rgba(96, 165, 250, 0.2);
 }
 
 .fabActive {
-  background: #ff00ff;
+  background: #1d4ed8;
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 4px 24px rgba(255, 0, 255, 0.5);
+  box-shadow: 0 4px 24px rgba(96, 165, 250, 0.5);
 }
 
 .fabActive:hover {
-  background: #e000e0;
+  background: #1e40af;
   border-color: transparent;
 }
 
@@ -45,11 +45,33 @@
   font-weight: 600;
 }
 
-/* ── Highlight box (fixed, viewport coords) ── */
+/* ── Box-model overlays (stacked, pointer-events: none) ── */
+
+/* Margin — orange dashed, extends beyond border-box */
+.highlightMargin {
+  position: fixed;
+  border: 1.5px dashed #fb923c;
+  background: rgba(251, 146, 60, 0.08);
+  pointer-events: none;
+  box-sizing: border-box;
+  z-index: 9994;
+}
+
+/* Size / border-box — blue solid */
 .highlight {
   position: fixed;
-  border: 1.5px solid #ff00ff;
-  background: rgba(255, 0, 255, 0.07);
+  border: 2px solid #60a5fa;
+  background: rgba(96, 165, 250, 0.08);
+  pointer-events: none;
+  box-sizing: border-box;
+  z-index: 9995;
+}
+
+/* Padding — green dashed, inset from border-box */
+.highlightPadding {
+  position: fixed;
+  border: 1.5px dashed #4ade80;
+  background: rgba(74, 222, 128, 0.12);
   pointer-events: none;
   box-sizing: border-box;
   z-index: 9996;
@@ -65,8 +87,8 @@
   padding: 10px 12px;
   font-family: 'Courier New', Courier, monospace;
   font-size: 11px;
-  min-width: 210px;
-  max-width: 260px;
+  min-width: 220px;
+  max-width: 280px;
   pointer-events: none;
   z-index: 9999;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -75,7 +97,7 @@
 
 .tooltipTag {
   font-size: 10px;
-  color: #ff79c6;
+  color: #94a3b8;
   margin-bottom: 4px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -92,7 +114,7 @@
   font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #ff00ff;
+  color: #60a5fa;
   font-weight: 700;
   margin-bottom: 4px;
 }
@@ -100,9 +122,17 @@
 .row {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: 12px;
-  padding: 1px 0;
+  padding: 2px 0;
+}
+
+/* Left side of a row: swatch + label grouped */
+.legendCell {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
 }
 
 .lbl {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './GlobalMeasureTool.module.css';
 
@@ -29,10 +29,20 @@ function cleanFontFamily(raw: string): string {
 }
 
 interface HighlightState {
+  // Content/border box
   top: number;
   left: number;
   width: number;
   height: number;
+  // Spacing (in px numbers for overlay math)
+  marginTop: number;
+  marginRight: number;
+  marginBottom: number;
+  marginLeft: number;
+  paddingTop: number;
+  paddingRight: number;
+  paddingBottom: number;
+  paddingLeft: number;
 }
 
 interface TooltipData {
@@ -51,6 +61,11 @@ interface TooltipData {
   textColor: string;
 }
 
+// Color tokens for box-model layers
+const COLOR_MARGIN  = '#fb923c'; // orange
+const COLOR_SIZE    = '#60a5fa'; // blue
+const COLOR_PADDING = '#4ade80'; // green
+
 // Pencil ruler icon
 function RulerIcon() {
   return (
@@ -58,6 +73,22 @@ function RulerIcon() {
       <path d="M2.5 14L14 2.5l3.5 3.5L6 17.5H2.5V14z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
       <path d="M10 5.5L14.5 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
+  );
+}
+
+function LegendSwatch({ color }: { color: string }) {
+  return (
+    <span
+      style={{
+        display: 'inline-block',
+        width: 8,
+        height: 8,
+        borderRadius: 2,
+        background: color,
+        flexShrink: 0,
+        border: '1px solid rgba(255,255,255,0.15)',
+      }}
+    />
   );
 }
 
@@ -82,7 +113,22 @@ export function GlobalMeasureTool() {
     const computed = getComputedStyle(el);
     const rect = el.getBoundingClientRect();
 
-    setHighlight({ top: rect.top, left: rect.left, width: rect.width, height: rect.height });
+    const px = (v: string) => parseFloat(v) || 0;
+
+    setHighlight({
+      top: rect.top,
+      left: rect.left,
+      width: rect.width,
+      height: rect.height,
+      marginTop:    px(computed.marginTop),
+      marginRight:  px(computed.marginRight),
+      marginBottom: px(computed.marginBottom),
+      marginLeft:   px(computed.marginLeft),
+      paddingTop:    px(computed.paddingTop),
+      paddingRight:  px(computed.paddingRight),
+      paddingBottom: px(computed.paddingBottom),
+      paddingLeft:   px(computed.paddingLeft),
+    });
 
     const tag = el.tagName.toLowerCase();
     const isFlexOrGrid = computed.display === 'flex' || computed.display === 'grid';
@@ -93,7 +139,7 @@ export function GlobalMeasureTool() {
       width: Math.round(rect.width),
       height: Math.round(rect.height),
       padding: [computed.paddingTop, computed.paddingRight, computed.paddingBottom, computed.paddingLeft],
-      margin: [computed.marginTop, computed.marginRight, computed.marginBottom, computed.marginLeft],
+      margin:  [computed.marginTop, computed.marginRight, computed.marginBottom, computed.marginLeft],
       gap: isFlexOrGrid ? computed.gap : null,
       borderRadius: computed.borderRadius,
       showType,
@@ -128,10 +174,13 @@ export function GlobalMeasureTool() {
   }, [active, handleMouseMove, handleMouseLeave]);
 
   // Clamp tooltip so it stays in viewport
-  const TIP_W = 250;
-  const TIP_H = tooltip?.showType ? 220 : 140;
-  const tipX = mouse.x + 16 + TIP_W > window.innerWidth ? mouse.x - TIP_W - 8 : mouse.x + 16;
+  const TIP_W = 260;
+  const TIP_H = tooltip?.showType ? 240 : 160;
+  const tipX = mouse.x + 16 + TIP_W > window.innerWidth  ? mouse.x - TIP_W - 8 : mouse.x + 16;
   const tipY = mouse.y + 16 + TIP_H > window.innerHeight ? mouse.y - TIP_H - 8 : mouse.y + 16;
+
+  const hasMargin  = highlight && (highlight.marginTop || highlight.marginRight || highlight.marginBottom || highlight.marginLeft);
+  const hasPadding = highlight && (highlight.paddingTop || highlight.paddingRight || highlight.paddingBottom || highlight.paddingLeft);
 
   return (
     <>
@@ -149,21 +198,49 @@ export function GlobalMeasureTool() {
 
       {active && createPortal(
         <>
-          {/* Magenta highlight box */}
+          {/* ── Margin overlay — orange dashed, extends beyond element ── */}
+          {highlight && hasMargin && (
+            <div
+              data-measure-ignore="true"
+              className={styles.highlightMargin}
+              style={{
+                top:    highlight.top    - highlight.marginTop,
+                left:   highlight.left   - highlight.marginLeft,
+                width:  highlight.width  + highlight.marginLeft + highlight.marginRight,
+                height: highlight.height + highlight.marginTop  + highlight.marginBottom,
+              }}
+            />
+          )}
+
+          {/* ── Element size highlight — blue solid ── */}
           {highlight && (
             <div
               data-measure-ignore="true"
               className={styles.highlight}
               style={{
-                top: highlight.top,
-                left: highlight.left,
-                width: highlight.width,
+                top:    highlight.top,
+                left:   highlight.left,
+                width:  highlight.width,
                 height: highlight.height,
               }}
             />
           )}
 
-          {/* Floating tooltip */}
+          {/* ── Padding overlay — green dashed, inset by padding ── */}
+          {highlight && hasPadding && (
+            <div
+              data-measure-ignore="true"
+              className={styles.highlightPadding}
+              style={{
+                top:    highlight.top    + highlight.paddingTop,
+                left:   highlight.left   + highlight.paddingLeft,
+                width:  highlight.width  - highlight.paddingLeft - highlight.paddingRight,
+                height: highlight.height - highlight.paddingTop  - highlight.paddingBottom,
+              }}
+            />
+          )}
+
+          {/* ── Floating tooltip ── */}
           {tooltip && (
             <div
               data-measure-ignore="true"
@@ -173,35 +250,53 @@ export function GlobalMeasureTool() {
               <div className={styles.tooltipTag}>{tooltip.tag}</div>
               <div className={styles.divider} />
 
+              {/* Size row */}
               <div className={styles.row}>
-                <span className={styles.lbl}>Size</span>
+                <span className={styles.legendCell}>
+                  <LegendSwatch color={COLOR_SIZE} />
+                  <span className={styles.lbl}>Size</span>
+                </span>
                 <span className={styles.val}>{tooltip.width} × {tooltip.height}</span>
               </div>
 
+              {/* Padding row */}
               {!allZero(tooltip.padding) && (
                 <div className={styles.row}>
-                  <span className={styles.lbl}>Padding</span>
+                  <span className={styles.legendCell}>
+                    <LegendSwatch color={COLOR_PADDING} />
+                    <span className={styles.lbl}>Padding</span>
+                  </span>
                   <span className={styles.val}>{shorthand(...tooltip.padding)}</span>
                 </div>
               )}
 
+              {/* Margin row */}
               {!allZero(tooltip.margin) && (
                 <div className={styles.row}>
-                  <span className={styles.lbl}>Margin</span>
+                  <span className={styles.legendCell}>
+                    <LegendSwatch color={COLOR_MARGIN} />
+                    <span className={styles.lbl}>Margin</span>
+                  </span>
                   <span className={styles.val}>{shorthand(...tooltip.margin)}</span>
                 </div>
               )}
 
               {tooltip.gap && tooltip.gap !== 'normal' && !tooltip.gap.startsWith('0px') && (
                 <div className={styles.row}>
-                  <span className={styles.lbl}>Gap</span>
+                  <span className={styles.legendCell}>
+                    <span style={{ width: 8, flexShrink: 0 }} />
+                    <span className={styles.lbl}>Gap</span>
+                  </span>
                   <span className={styles.val}>{tooltip.gap}</span>
                 </div>
               )}
 
               {tooltip.borderRadius && !tooltip.borderRadius.startsWith('0px') && (
                 <div className={styles.row}>
-                  <span className={styles.lbl}>Radius</span>
+                  <span className={styles.legendCell}>
+                    <span style={{ width: 8, flexShrink: 0 }} />
+                    <span className={styles.lbl}>Radius</span>
+                  </span>
                   <span className={styles.val}>{tooltip.borderRadius}</span>
                 </div>
               )}
@@ -217,22 +312,18 @@ export function GlobalMeasureTool() {
                       {tooltip.fontFamily}
                     </span>
                   </div>
-
                   <div className={styles.row}>
                     <span className={styles.lbl}>Size</span>
                     <span className={styles.val}>{fmt(tooltip.fontSize)}</span>
                   </div>
-
                   <div className={styles.row}>
                     <span className={styles.lbl}>Weight</span>
                     <span className={styles.val}>{tooltip.fontWeight}</span>
                   </div>
-
                   <div className={styles.row}>
                     <span className={styles.lbl}>Leading</span>
                     <span className={styles.val}>{fmt(tooltip.lineHeight)}</span>
                   </div>
-
                   <div className={styles.row}>
                     <span className={styles.lbl}>Color</span>
                     <span className={styles.val}>
