@@ -17,7 +17,7 @@
 .listItemRow {
   display: flex;
   align-items: flex-start;
-  gap: var(--ld-semantic-spacing-3, 12px);
+  gap: var(--ld-primitive-scale-space-200, 16px);
 }
 
 /* Leading custom slot */
