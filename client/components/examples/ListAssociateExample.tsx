@@ -572,44 +572,6 @@ export function ListAssociateExample() {
         </div>
       </div>
 
-      {/* ── Leading: Avatar ──────────────────────────────────────────── */}
-      <div style={CARD}>
-        <h3 style={{ ...HEADING, marginBottom: '4px' }}>Leading: Avatar</h3>
-        <p style={{ fontSize: '14px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 24px' }}>
-          AX Avatar in the leading slot with clock indicator — shown across trailing variants.
-        </p>
-        <div style={{
-          padding: '24px',
-          borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
-          border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)',
-          backgroundColor: 'var(--ld-semantic-color-surface, #fff)',
-        }}>
-          <List aria-label="Avatar leading demo" style={{ gap: '16px', width: '100%' }}>
-            <ListItem
-              title="Action title"
-              text="Action description (optional)."
-              leading="custom"
-              leadingContent={<CustomSlotPlaceholder />}
-            />
-            <ListItem
-              title="Action title"
-              text="Action description (optional)."
-              leading="custom"
-              leadingContent={<CustomSlotPlaceholder />}
-              trailing="icon"
-            />
-            <ListItem
-              title="Action title"
-              text="Action description (optional)."
-              leading="custom"
-              leadingContent={<CustomSlotPlaceholder />}
-              trailing="link"
-              trailingLink={{ text: 'Trailing link', href: '#' }}
-            />
-          </List>
-        </div>
-      </div>
-
       {/* ── Trailing options ─────────────────────────────────────────── */}
       <div style={CARD}>
         <h3 style={{ ...HEADING, marginBottom: '4px' }}>Trailing options</h3>
