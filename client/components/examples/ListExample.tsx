@@ -87,7 +87,7 @@ export function ListExample() {
   const [showDivider, setShowDivider] = useState(true);
   const [linkLabel, setLinkLabel] = useState('Link');
   const [selectChecked, setSelectChecked] = useState(false);
-  const [showTag, setShowTag] = useState(false);
+  const [showTag, setShowTag] = useState(true);
   const [tagLabel, setTagLabel] = useState('Tag label');
   const [showFooterAction, setShowFooterAction] = useState(true);
   type FooterActionType =
@@ -153,6 +153,31 @@ export function ListExample() {
                   type="text"
                   value={linkLabel}
                   onChange={e => setLinkLabel(e.target.value)}
+                  style={INPUT_STYLE}
+                />
+              </div>
+            )}
+
+            {/* Tag toggle */}
+            <div style={showTag ? { ...PROP_ROW, borderBottom: 'none' } : PROP_ROW}>
+              <span style={PROP_LABEL}>Tag</span>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={showTag}
+                  onChange={e => setShowTag(e.target.checked)}
+                  style={{ cursor: 'pointer' }}
+                />
+                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Show</span>
+              </label>
+            </div>
+            {showTag && (
+              <div style={PROP_ROW}>
+                <span style={PROP_LABEL}>Tag label</span>
+                <input
+                  type="text"
+                  value={tagLabel}
+                  onChange={e => setTagLabel(e.target.value)}
                   style={INPUT_STYLE}
                 />
               </div>
@@ -293,31 +318,6 @@ export function ListExample() {
                   type="text"
                   value={attr3Label}
                   onChange={e => setAttr3Label(e.target.value)}
-                  style={INPUT_STYLE}
-                />
-              </div>
-            )}
-
-            {/* Tag toggle */}
-            <div style={showTag ? { ...PROP_ROW, borderBottom: 'none' } : PROP_ROW}>
-              <span style={PROP_LABEL}>Tag</span>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-                <input
-                  type="checkbox"
-                  checked={showTag}
-                  onChange={e => setShowTag(e.target.checked)}
-                  style={{ cursor: 'pointer' }}
-                />
-                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Show</span>
-              </label>
-            </div>
-            {showTag && (
-              <div style={PROP_ROW}>
-                <span style={PROP_LABEL}>Tag label</span>
-                <input
-                  type="text"
-                  value={tagLabel}
-                  onChange={e => setTagLabel(e.target.value)}
                   style={INPUT_STYLE}
                 />
               </div>
