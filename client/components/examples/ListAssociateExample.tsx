@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { AXAvatar } from '@/components/walmart/AXAvatar';
+import { AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { List, ListItem, ListItemLeading, ListItemTrailing, ListItemTagPreset, ListItemTagCustom } from '@/components/ui/List';
 import { TagVariant, TagColor } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
@@ -849,24 +851,12 @@ export function ListAssociateExample() {
 
 function CustomSlotPlaceholder() {
   return (
-    <div
-      style={{
-        display: 'flex',
-        width: 80,
-        height: 48,
-        justifyContent: 'center',
-        alignItems: 'center',
-        border: '1px dashed var(--ld-semantic-color-border-subtle, #ccc)',
-        borderRadius: 'var(--ld-primitive-scale-border-radius-50, 4px)',
-        backgroundColor: 'var(--ld-semantic-color-fill-subtle, #f5f5f5)',
-        fontSize: '11px',
-        color: 'var(--ld-semantic-color-text-subtle)',
-        fontFamily: 'var(--ld-semantic-font-family-sans)',
-        textAlign: 'center',
-        padding: '4px',
-      }}
-    >
-      Custom
-    </div>
+    <AXAvatar size="medium" indicator="clock" clockState="active">
+      <AvatarImage
+        src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg"
+        alt="Associate"
+      />
+      <AvatarFallback>AS</AvatarFallback>
+    </AXAvatar>
   );
 }
