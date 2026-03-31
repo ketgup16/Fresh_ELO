@@ -90,7 +90,13 @@ const navigationSections: NavSection[] = [
       { id: 'ax-avatar', nameKey: 'componentLibrary.navAXAvatar', path: '/component-library/ax-avatar' },
       { id: 'ax-avatar-button', nameKey: 'componentLibrary.navAXAvatarButton', path: '/component-library/ax-avatar-button' },
       { id: 'ax-attribute', nameKey: 'componentLibrary.navAXAttribute', path: '/component-library/ax-attribute' },
-      { id: 'lists', nameKey: 'componentLibrary.navLists', path: '/component-library/lists' },
+    ]
+  },
+  {
+    titleKey: 'componentLibrary.listCategory',
+    items: [
+      { id: 'list-action',    nameKey: 'componentLibrary.navListAction',    path: '/component-library/list-action' },
+      { id: 'list-associate', nameKey: 'componentLibrary.navListAssociate', path: '/component-library/list-associate' },
     ]
   },
   {

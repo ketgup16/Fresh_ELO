@@ -52,7 +52,8 @@ const ContentMessagesPage = React.lazy(() => import("./pages/component-library/C
 const DateFieldsPage = React.lazy(() => import("./pages/component-library/DateFields"));
 const DatePickersPage = React.lazy(() => import("./pages/component-library/DatePickers"));
 const DividersPage = React.lazy(() => import("./pages/component-library/Dividers"));
-const ListsPage = React.lazy(() => import("./pages/component-library/Lists"));
+const ListActionPage = React.lazy(() => import("./pages/component-library/ListAction"));
+const ListAssociatePage = React.lazy(() => import("./pages/component-library/ListAssociate"));
 const MagicBoxPage = React.lazy(() => import("./pages/component-library/MagicBox"));
 const MenuPage = React.lazy(() => import("./pages/component-library/Menu"));
 const MetricsPage = React.lazy(() => import("./pages/component-library/Metrics"));
@@ -216,7 +217,9 @@ const App = () => (
                 <Route path="date-pickers" element={<DatePickersPage />} />
                 <Route path="date-range-picker" element={<DateRangePickerPage />} />
                 <Route path="dividers" element={<DividersPage />} />
-                <Route path="lists" element={<ListsPage />} />
+                <Route path="lists" element={<Navigate to="/component-library/list-action" replace />} />
+                <Route path="list-action" element={<ListActionPage />} />
+                <Route path="list-associate" element={<ListAssociatePage />} />
                 <Route path="magic-box" element={<MagicBoxPage />} />
                 <Route path="menu" element={<MenuPage />} />
                 <Route path="metrics" element={<MetricsPage />} />
