@@ -67,6 +67,15 @@
   z-index: 9995;
 }
 
+/* Gap — yellow fill, renders in the space between flex/grid siblings */
+.highlightGap {
+  position: fixed;
+  background: rgba(250, 204, 21, 0.4);
+  pointer-events: none;
+  box-sizing: border-box;
+  z-index: 9993;
+}
+
 /* Padding — green dashed, inset from border-box */
 .highlightPadding {
   position: fixed;

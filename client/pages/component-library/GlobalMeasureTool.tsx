@@ -28,6 +28,13 @@ function cleanFontFamily(raw: string): string {
   return raw.split(',')[0].replace(/['"]/g, '').trim();
 }
 
+interface GapRect {
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+}
+
 interface HighlightState {
   // Content/border box
   top: number;
@@ -65,6 +72,7 @@ interface TooltipData {
 const COLOR_MARGIN  = '#fb923c'; // orange
 const COLOR_SIZE    = '#60a5fa'; // blue
 const COLOR_PADDING = '#4ade80'; // green
+const COLOR_GAP     = '#facc15'; // yellow
 
 // Pencil ruler icon
 function RulerIcon() {
@@ -97,6 +105,7 @@ export function GlobalMeasureTool() {
   const [highlight, setHighlight] = useState<HighlightState | null>(null);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [gapRects, setGapRects] = useState<GapRect[]>([]);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     setMouse({ x: e.clientX, y: e.clientY });
@@ -149,17 +158,66 @@ export function GlobalMeasureTool() {
       lineHeight: computed.lineHeight,
       textColor: computed.color,
     });
+
+    // ── Gap overlays: detect flex/grid gap on parent, show between siblings ──
+    const parent = el.parentElement;
+    const newGapRects: GapRect[] = [];
+    if (parent) {
+      const parentComputed = getComputedStyle(parent);
+      const parentDisplay = parentComputed.display;
+      if (parentDisplay === 'flex' || parentDisplay === 'inline-flex' ||
+          parentDisplay === 'grid' || parentDisplay === 'inline-grid') {
+        const colGap = parseFloat(parentComputed.columnGap) || 0;
+        const rowGap = parseFloat(parentComputed.rowGap) || 0;
+        if (colGap > 0 || rowGap > 0) {
+          const children = Array.from(parent.children).filter(
+            c => !(c as HTMLElement).closest('[data-measure-ignore]')
+          ) as HTMLElement[];
+          const flexDir = parentComputed.flexDirection;
+          const isRow = flexDir === 'row' || flexDir === 'row-reverse' ||
+                        parentDisplay === 'grid' || parentDisplay === 'inline-grid';
+          for (let i = 0; i < children.length - 1; i++) {
+            const a = children[i].getBoundingClientRect();
+            const b = children[i + 1].getBoundingClientRect();
+            if (isRow && colGap > 0) {
+              const gapW = b.left - a.right;
+              if (gapW > 0) {
+                newGapRects.push({
+                  top: Math.min(a.top, b.top),
+                  left: a.right,
+                  width: gapW,
+                  height: Math.max(a.bottom, b.bottom) - Math.min(a.top, b.top),
+                });
+              }
+            } else if (!isRow && rowGap > 0) {
+              const gapH = b.top - a.bottom;
+              if (gapH > 0) {
+                newGapRects.push({
+                  top: a.bottom,
+                  left: Math.min(a.left, b.left),
+                  width: Math.max(a.right, b.right) - Math.min(a.left, b.left),
+                  height: gapH,
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+    setGapRects(newGapRects);
   }, []);
 
   const handleMouseLeave = useCallback(() => {
     setHighlight(null);
     setTooltip(null);
+    setGapRects([]);
   }, []);
 
   useEffect(() => {
     if (!active) {
       setHighlight(null);
       setTooltip(null);
+      setGapRects([]);
       document.body.style.cursor = '';
       return;
     }
@@ -198,6 +256,21 @@ export function GlobalMeasureTool() {
 
       {active && createPortal(
         <>
+          {/* ── Gap overlays — yellow fill, between flex/grid siblings ── */}
+          {gapRects.map((rect, i) => (
+            <div
+              key={i}
+              data-measure-ignore="true"
+              className={styles.highlightGap}
+              style={{
+                top: rect.top,
+                left: rect.left,
+                width: rect.width,
+                height: rect.height,
+              }}
+            />
+          ))}
+
           {/* ── Margin overlay — orange dashed, extends beyond element ── */}
           {highlight && hasMargin && (
             <div
@@ -284,7 +357,7 @@ export function GlobalMeasureTool() {
               {tooltip.gap && tooltip.gap !== 'normal' && !tooltip.gap.startsWith('0px') && (
                 <div className={styles.row}>
                   <span className={styles.legendCell}>
-                    <span style={{ width: 8, flexShrink: 0 }} />
+                    <LegendSwatch color={COLOR_GAP} />
                     <span className={styles.lbl}>Gap</span>
                   </span>
                   <span className={styles.val}>{tooltip.gap}</span>
