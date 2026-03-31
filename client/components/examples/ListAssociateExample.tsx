@@ -572,11 +572,11 @@ export function ListAssociateExample() {
         </div>
       </div>
 
-      {/* ── Leading: Empty ───────────────────────────────────────────── */}
+      {/* ── Leading: Avatar ──────────────────────────────────────────── */}
       <div style={CARD}>
-        <h3 style={{ ...HEADING, marginBottom: '4px' }}>Leading: Empty</h3>
+        <h3 style={{ ...HEADING, marginBottom: '4px' }}>Leading: Avatar</h3>
         <p style={{ fontSize: '14px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 24px' }}>
-          No leading content — text-only list items with all four trailing variants.
+          AX Avatar in the leading slot with clock indicator — shown across trailing variants.
         </p>
         <div style={{
           padding: '24px',
@@ -584,36 +584,7 @@ export function ListAssociateExample() {
           border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)',
           backgroundColor: 'var(--ld-semantic-color-surface, #fff)',
         }}>
-          <List aria-label="Empty leading demo" style={{ gap: '16px', width: '100%' }}>
-            <ListItem title="Action title" text="Action description (optional)." />
-            <ListItem
-              title="Action title"
-              text="Action description (optional)."
-              trailing="icon"
-            />
-            <ListItem
-              title="Action title"
-              text="Action description (optional)."
-              trailing="link"
-              trailingLink={{ text: 'Trailing link', href: '#' }}
-            />
-          </List>
-        </div>
-      </div>
-
-      {/* ── Leading: Custom ──────────────────────────────────────────── */}
-      <div style={CARD}>
-        <h3 style={{ ...HEADING, marginBottom: '4px' }}>Leading: Custom</h3>
-        <p style={{ fontSize: '14px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)', margin: '0 0 24px' }}>
-          Arbitrary custom content in the leading slot (e.g. images, avatars, charts).
-        </p>
-        <div style={{
-          padding: '24px',
-          borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
-          border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)',
-          backgroundColor: 'var(--ld-semantic-color-surface, #fff)',
-        }}>
-          <List aria-label="Custom leading demo" style={{ gap: '16px', width: '100%' }}>
+          <List aria-label="Avatar leading demo" style={{ gap: '16px', width: '100%' }}>
             <ListItem
               title="Action title"
               text="Action description (optional)."
