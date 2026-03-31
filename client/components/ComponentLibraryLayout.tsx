@@ -315,8 +315,8 @@ export function ComponentLibraryLayout() {
                             >
                               <span className={styles.subGroupLabelText}>{t(sg.titleKey)}</span>
                               <ChevronDown
-                                width={12}
-                                height={12}
+                                width={14}
+                                height={14}
                                 className={[styles.sectionChevron, sgOpen ? styles.sectionChevronOpen : ''].join(' ')}
                               />
                             </button>
