@@ -5,11 +5,17 @@ import { Divider } from './Divider';
 import { ChevronRight } from '@/components/icons/ChevronRight';
 import { LinkButton } from './LinkButton';
 import { Checkbox } from './Checkbox';
-import { Tag } from './Tag';
+import { Tag, TagVariant, TagColor } from './Tag';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export type ListItemTagPreset = 'unassigned' | 'assigned' | 'complete';
+
+export interface ListItemTagCustom {
+  variant: TagVariant;
+  color?: TagColor;
+  label: string;
+}
 
 const TAG_PRESET_MAP: Record<ListItemTagPreset, { label: string; color: 'gray' | 'blue' | 'green' }> = {
   unassigned: { label: 'Unassigned', color: 'gray' },
@@ -78,9 +84,10 @@ export interface ListItemProps {
 
   /**
    * Optional Tag rendered in the top-right corner of the content block.
-   * Accepts one of three pre-set values: 'unassigned' | 'assigned' | 'complete'.
+   * Use a preset ('unassigned' | 'assigned' | 'complete') for standardised styling,
+   * or a ListItemTagCustom object ({ variant, color?, label }) for a custom Tag.
    */
-  tag?: ListItemTagPreset;
+  tag?: ListItemTagPreset | ListItemTagCustom;
 
   className?: string;
 }
@@ -195,10 +202,17 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
               </div>
               {/* Tag — top-right of content area */}
               {tag && (() => {
-                const { label, color } = TAG_PRESET_MAP[tag];
+                if (typeof tag === 'string') {
+                  const { label, color } = TAG_PRESET_MAP[tag];
+                  return (
+                    <div className={styles.listItemTag}>
+                      <Tag variant="tertiary" color={color}>{label}</Tag>
+                    </div>
+                  );
+                }
                 return (
                   <div className={styles.listItemTag}>
-                    <Tag variant="tertiary" color={color}>{label}</Tag>
+                    <Tag variant={tag.variant} color={tag.color}>{tag.label}</Tag>
                   </div>
                 );
               })()}

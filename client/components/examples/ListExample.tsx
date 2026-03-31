@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { List, ListItem, ListItemLeading, ListItemTrailing, ListItemTagPreset } from '@/components/ui/List';
+import { List, ListItem, ListItemLeading, ListItemTrailing, ListItemTagPreset, ListItemTagCustom } from '@/components/ui/List';
+import { TagVariant, TagColor } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Alert } from '@/components/ui/Alert';
@@ -87,7 +88,11 @@ export function ListExample() {
   const [linkLabel, setLinkLabel] = useState('Link');
   const [selectChecked, setSelectChecked] = useState(false);
   const [showTag, setShowTag] = useState(true);
-  const [tagPreset, setTagPreset] = useState<ListItemTagPreset>('unassigned');
+  type TagOption = ListItemTagPreset | 'custom';
+  const [tagPreset, setTagPreset] = useState<TagOption>('unassigned');
+  const [tagCustomVariant, setTagCustomVariant] = useState<TagVariant>('secondary');
+  const [tagCustomColor, setTagCustomColor] = useState<TagColor>('brand');
+  const [tagCustomLabel, setTagCustomLabel] = useState('Custom');
   const [showFooterAction, setShowFooterAction] = useState(true);
   type FooterActionType =
     | 'button-secondary'
@@ -173,12 +178,45 @@ export function ListExample() {
             {showTag && (
               <div style={PROP_ROW}>
                 <span style={PROP_LABEL}>Tag preset</span>
-                <select value={tagPreset} onChange={e => setTagPreset(e.target.value as ListItemTagPreset)} style={SELECT_STYLE}>
+                <select value={tagPreset} onChange={e => setTagPreset(e.target.value as TagOption)} style={SELECT_STYLE}>
                   <option value="unassigned">Unassigned</option>
                   <option value="assigned">Assigned</option>
                   <option value="complete">Complete</option>
+                  <option value="custom">Custom</option>
                 </select>
               </div>
+            )}
+            {showTag && tagPreset === 'custom' && (
+              <>
+                <div style={PROP_ROW}>
+                  <span style={PROP_LABEL}>Variant</span>
+                  <select value={tagCustomVariant} onChange={e => setTagCustomVariant(e.target.value as TagVariant)} style={SELECT_STYLE}>
+                    <option value="primary">Primary</option>
+                    <option value="secondary">Secondary</option>
+                    <option value="tertiary">Tertiary</option>
+                    <option value="info">Info</option>
+                    <option value="neutral">Neutral</option>
+                    <option value="success">Success</option>
+                  </select>
+                </div>
+                <div style={PROP_ROW}>
+                  <span style={PROP_LABEL}>Color</span>
+                  <select value={tagCustomColor} onChange={e => setTagCustomColor(e.target.value as TagColor)} style={SELECT_STYLE}>
+                    {(['brand','positive','negative','warning','info','edited','blue','spark','green','red','purple','gray','cyan','orange','pink','yellow','teal'] as TagColor[]).map(c => (
+                      <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>
+                    ))}
+                  </select>
+                </div>
+                <div style={PROP_ROW}>
+                  <span style={PROP_LABEL}>Label</span>
+                  <input
+                    type="text"
+                    value={tagCustomLabel}
+                    onChange={e => setTagCustomLabel(e.target.value)}
+                    style={INPUT_STYLE}
+                  />
+                </div>
+              </>
             )}
 
             {/* Eyebrow toggle */}
@@ -472,7 +510,12 @@ export function ListExample() {
                         ...(showAttr2 ? [{ label: attr2Label }] : []),
                         ...(showAttr3 ? [{ label: attr3Label }] : []),
                       ].filter(Boolean) as { label: string }[]}
-                      tag={showTag ? tagPreset : undefined}
+                      tag={showTag
+                        ? tagPreset === 'custom'
+                          ? { variant: tagCustomVariant, color: tagCustomColor, label: tagCustomLabel } satisfies ListItemTagCustom
+                          : tagPreset
+                        : undefined
+                      }
                       divider={showDivider}
                       alert={showAlert ? (
                         <Alert variant="error">Something went wrong. Please try again.</Alert>
