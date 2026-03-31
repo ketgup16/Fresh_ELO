@@ -241,6 +241,25 @@
   color: var(--ld-semantic-color-text-subtle);
 }
 
+.sizeDemoColumns {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.sizeColumnLabel {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ld-semantic-color-text-subtle);
+  font-family: var(--ld-semantic-font-family-sans);
+  padding-left: 4px;
+}
+
 .sizeDemo {
   flex: 1;
   min-width: 0;
@@ -251,4 +270,5 @@
   .statesGrid { grid-template-columns: 1fr; }
   .guidelineGrid { grid-template-columns: 1fr; }
   .sizeRow { flex-direction: column; align-items: flex-start; }
+  .sizeDemoColumns { grid-template-columns: 1fr; }
 }

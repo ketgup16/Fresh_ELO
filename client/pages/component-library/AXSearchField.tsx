@@ -192,8 +192,17 @@ export default function AXSearchFieldPage() {
           <SectionDesc>
             Four height variants are available via the <code>size</code> prop. X Small and Small
             use the small icon variant (20px); Medium and Large use the medium icon variant (24px).
+            Each size is available in both Default (square) and Rounded (pill) corner styles.
           </SectionDesc>
           <div className={styles.sizesGrid}>
+            {/* Column headers */}
+            <div className={styles.sizeRow}>
+              <div className={styles.sizeRowLabel} />
+              <div className={styles.sizeDemoColumns}>
+                <span className={styles.sizeColumnLabel}>Default</span>
+                <span className={styles.sizeColumnLabel}>Rounded</span>
+              </div>
+            </div>
             {(
               [
                 { size: 'xsmall', label: 'X Small', height: '32px' },
@@ -207,15 +216,29 @@ export default function AXSearchFieldPage() {
                   <span className={styles.sizeName}>{label}</span>
                   <span className={styles.sizeHeight}>{height}</span>
                 </div>
-                <div className={styles.sizeDemo}>
-                  <AXSearchField
-                    value=""
-                    onChange={() => {}}
-                    placeholder="Search"
-                    size={size}
-                    showMic
-                    showBarcode
-                  />
+                <div className={styles.sizeDemoColumns}>
+                  <div className={styles.sizeDemo}>
+                    <AXSearchField
+                      value=""
+                      onChange={() => {}}
+                      placeholder="Search"
+                      size={size}
+                      cornerStyle="default"
+                      showMic
+                      showBarcode
+                    />
+                  </div>
+                  <div className={styles.sizeDemo}>
+                    <AXSearchField
+                      value=""
+                      onChange={() => {}}
+                      placeholder="Search"
+                      size={size}
+                      cornerStyle="rounded"
+                      showMic
+                      showBarcode
+                    />
+                  </div>
                 </div>
               </div>
             ))}
