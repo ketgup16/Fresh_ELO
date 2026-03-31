@@ -3,7 +3,7 @@ import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { User } from '@/components/icons/User';
 import { AXAvatar, AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatar';
 
-// Avatar dimensions via primitive scale tokens (space-300=24px · space-400=32px · space-500=40px · space-600=48px · space-800=64px)
+// Avatar dimensions via primitive scale tokens
 const AVATAR_DIM = {
   xsmall: { width: 'var(--ld-primitive-scale-space-300, 1.5rem)', height: 'var(--ld-primitive-scale-space-300, 1.5rem)' },
   small:  { width: 'var(--ld-primitive-scale-space-400, 2rem)',   height: 'var(--ld-primitive-scale-space-400, 2rem)' },
@@ -11,12 +11,15 @@ const AVATAR_DIM = {
   xlarge: { width: 'var(--ld-primitive-scale-space-800, 4rem)',   height: 'var(--ld-primitive-scale-space-800, 4rem)' },
 } as const;
 
-const HEADING: React.CSSProperties = {
-  fontSize: '20px',
-  fontWeight: '700',
+// Section title — matches AXCountry sectionTitle style
+const SECTION_TITLE: React.CSSProperties = {
+  fontSize: '22px',
+  fontWeight: 700,
   fontFamily: 'var(--ld-semantic-font-family-sans)',
-  color: 'var(--ld-semantic-color-text-primary)',
-  marginBottom: '16px',
+  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
+  margin: '0 0 24px',
+  paddingBottom: '12px',
+  borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
 };
 
 const LABEL: React.CSSProperties = {
@@ -56,7 +59,6 @@ export default function AXAvatarExample() {
   };
   const sizeStyle = SIZE_STYLE[avatarSize];
 
-  // Fallback initials font style per avatar size
   const FALLBACK_TEXT_STYLE: Record<string, React.CSSProperties> = {
     xsmall: { fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)' as React.CSSProperties['fontWeight'], fontFamily: 'var(--ld-semantic-font-caption-family)', lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)' },
     small:  { fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)' as React.CSSProperties['fontWeight'], fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' },
@@ -67,454 +69,338 @@ export default function AXAvatarExample() {
   const fallbackTextStyle = FALLBACK_TEXT_STYLE[avatarSize];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
 
-      {/* ── Interactive demo — own card ── */}
-      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <section>
-          <h3 style={HEADING}>Interactive demo</h3>
-          <div style={{ display: 'flex', gap: '40px', alignItems: 'stretch' }}>
+      {/* ── Interactive demo ── */}
+      <section>
+        <h2 style={SECTION_TITLE}>Interactive demo</h2>
+        <div style={{ display: 'flex', gap: '40px', alignItems: 'stretch' }}>
 
-            {/* Properties panel */}
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              border: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-              borderRadius: '8px',
-              background: 'var(--ld-semantic-color-surface, #fff)',
-              width: '240px',
-              overflow: 'hidden',
-              flexShrink: 0,
-            }}>
-              {/* Panel heading */}
-              <div style={{
-                padding: '8px 16px',
-                borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-                background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)',
-              }}>
-                <span style={{
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  fontFamily: 'var(--ld-semantic-font-family-sans)',
-                  color: 'var(--ld-semantic-color-text-subtle, #74767C)',
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                }}>
-                  Properties
-                </span>
-              </div>
-
-              {/* Size property row */}
-              <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)' }}>
-                <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
-                  Size
-                </span>
-                <select
-                  value={avatarSize}
-                  onChange={e => setAvatarSize(e.target.value as 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge')}
-                  style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
-                >
-                  <option value="xsmall">XSmall · 24px</option>
-                  <option value="small">Small · 32px</option>
-                  <option value="medium">Medium · 40px</option>
-                  <option value="large">Large · 48px</option>
-                  <option value="xlarge">XLarge · 64px</option>
-                </select>
-              </div>
-
-              {/* Badge property row */}
-              <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)' }}>
-                <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
-                  Badge
-                </span>
-                <select
-                  value={indicator}
-                  onChange={e => setIndicator(e.target.value as AXAvatarIndicatorType)}
-                  style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
-                >
-                  <option value="none">None</option>
-                  <option value="badge">Badge</option>
-                  <option value="clock">Clock indicator</option>
-                </select>
-              </div>
-
-              {/* Image type property row */}
-              <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)' }}>
-                <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
-                  Image type
-                </span>
-                <select
-                  value={imageType}
-                  onChange={e => setImageType(e.target.value as 'image' | 'initials' | 'icon')}
-                  style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
-                >
-                  <option value="initials">Initials</option>
-                  <option value="image">Image</option>
-                  <option value="icon">Icon</option>
-                </select>
-              </div>
-
-              {/* Clock status property row — only visible when Badge = Clock indicator */}
-              {indicator === 'clock' && (
-                <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>
-                    Clock status
-                  </span>
-                  <select
-                    value={clockState}
-                    onChange={e => setClockState(e.target.value as AXAvatarClockState)}
-                    style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}
-                  >
-                    <option value="active">Clocked in</option>
-                    <option value="subtle">Clocked out</option>
-                  </select>
-                </div>
-              )}
+          {/* Properties panel */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            border: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
+            borderRadius: '8px',
+            background: 'var(--ld-semantic-color-surface, #fff)',
+            width: '240px',
+            overflow: 'hidden',
+            flexShrink: 0,
+          }}>
+            <div style={{ padding: '8px 16px', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)', background: 'var(--ld-semantic-color-fill-subtle, #F5F5F6)' }}>
+              <span style={{ fontSize: '11px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                Properties
+              </span>
             </div>
 
-            {/* Live preview */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <span style={{ ...LABEL, marginTop: 0 }}>Preview</span>
-              <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <AXAvatar indicator={indicator} clockState={clockState} size={avatarSize} avatarStyle={sizeStyle}>
-                  {imageType === 'image' && (
-                    <>
-                      <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" />
-                      <AvatarFallback>AB</AvatarFallback>
-                    </>
-                  )}
-                  {imageType === 'initials' && <AvatarFallback style={fallbackTextStyle}>AB</AvatarFallback>}
-                  {imageType === 'icon' && (
-                    <AvatarFallback>
-                      <User
-                        width={avatarSize === 'xsmall' ? 12 : avatarSize === 'small' ? 16 : avatarSize === 'xlarge' ? 32 : avatarSize === 'large' ? 24 : 24}
-                        height={avatarSize === 'xsmall' ? 12 : avatarSize === 'small' ? 16 : avatarSize === 'xlarge' ? 32 : avatarSize === 'large' ? 24 : 24}
-                        color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)"
-                      />
-                    </AvatarFallback>
-                  )}
-                </AXAvatar>
-              </div>
+            <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)' }}>
+              <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Size</span>
+              <select value={avatarSize} onChange={e => setAvatarSize(e.target.value as 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge')} style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}>
+                <option value="xsmall">XSmall · 24px</option>
+                <option value="small">Small · 32px</option>
+                <option value="medium">Medium · 40px</option>
+                <option value="large">Large · 48px</option>
+                <option value="xlarge">XLarge · 64px</option>
+              </select>
             </div>
 
+            <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)' }}>
+              <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Badge</span>
+              <select value={indicator} onChange={e => setIndicator(e.target.value as AXAvatarIndicatorType)} style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}>
+                <option value="none">None</option>
+                <option value="badge">Badge</option>
+                <option value="clock">Clock indicator</option>
+              </select>
+            </div>
+
+            <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px', borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)' }}>
+              <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Image type</span>
+              <select value={imageType} onChange={e => setImageType(e.target.value as 'image' | 'initials' | 'icon')} style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}>
+                <option value="initials">Initials</option>
+                <option value="image">Image</option>
+                <option value="icon">Icon</option>
+              </select>
+            </div>
+
+            {indicator === 'clock' && (
+              <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <span style={{ fontSize: '13px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text, #2E2F32)' }}>Clock status</span>
+                <select value={clockState} onChange={e => setClockState(e.target.value as AXAvatarClockState)} style={{ ...SELECT_STYLE, padding: '4px 6px', width: '100%' }}>
+                  <option value="active">Clocked in</option>
+                  <option value="subtle">Clocked out</option>
+                </select>
+              </div>
+            )}
+          </div>
+
+          {/* Live preview */}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <span style={{ ...LABEL, marginTop: 0 }}>Preview</span>
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <AXAvatar indicator={indicator} clockState={clockState} size={avatarSize} avatarStyle={sizeStyle}>
+                {imageType === 'image' && (
+                  <>
+                    <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" />
+                    <AvatarFallback>AB</AvatarFallback>
+                  </>
+                )}
+                {imageType === 'initials' && <AvatarFallback style={fallbackTextStyle}>AB</AvatarFallback>}
+                {imageType === 'icon' && (
+                  <AvatarFallback>
+                    <User
+                      width={avatarSize === 'xsmall' ? 12 : avatarSize === 'small' ? 16 : avatarSize === 'xlarge' ? 32 : 24}
+                      height={avatarSize === 'xsmall' ? 12 : avatarSize === 'small' ? 16 : avatarSize === 'xlarge' ? 32 : 24}
+                      color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)"
+                    />
+                  </AvatarFallback>
+                )}
+              </AXAvatar>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── Badge types + Clock indicator status (side by side) ── */}
+      <div style={{ display: 'flex', gap: '64px', alignItems: 'flex-start' }}>
+
+        <section style={{ flex: 1 }}>
+          <h2 style={SECTION_TITLE}>Badge types</h2>
+          <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator="none"><AvatarFallback>AL</AvatarFallback></AXAvatar>
+              <span style={LABEL}>None</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator="badge"><AvatarFallback>JD</AvatarFallback></AXAvatar>
+              <span style={LABEL}>Badge</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator="clock" clockState="active"><AvatarFallback>MK</AvatarFallback></AXAvatar>
+              <span style={LABEL}>Clock indicator</span>
+            </div>
           </div>
         </section>
-      </div>
 
-      {/* ── Badge types + Clock indicator status (same row) ── */}
-      <div style={{ display: 'flex', gap: '24px' }}>
-
-        {/* Badge types */}
-        <div style={{ flex: 1, backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-          <section>
-            <h3 style={HEADING}>Badge types</h3>
-            <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <AXAvatar indicator="none">
-                  <AvatarFallback>AL</AvatarFallback>
-                </AXAvatar>
-                <span style={LABEL}>None</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <AXAvatar indicator="badge">
-                  <AvatarFallback>JD</AvatarFallback>
-                </AXAvatar>
-                <span style={LABEL}>Badge</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <AXAvatar indicator="clock" clockState="active">
-                  <AvatarFallback>MK</AvatarFallback>
-                </AXAvatar>
-                <span style={LABEL}>Clock indicator</span>
-              </div>
+        <section style={{ flex: 1 }}>
+          <h2 style={SECTION_TITLE}>Clock indicator status</h2>
+          <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator="clock" clockState="active"><AvatarFallback>MK</AvatarFallback></AXAvatar>
+              <span style={LABEL}>Clocked in</span>
             </div>
-          </section>
-        </div>
-
-        {/* Clock indicator status */}
-        <div style={{ flex: 1, backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-          <section>
-            <h3 style={HEADING}>Clock indicator status</h3>
-            <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <AXAvatar indicator="clock" clockState="active">
-                  <AvatarFallback>MK</AvatarFallback>
-                </AXAvatar>
-                <span style={LABEL}>Clocked in</span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <AXAvatar indicator="clock" clockState="subtle">
-                  <AvatarFallback>EM</AvatarFallback>
-                </AXAvatar>
-                <span style={LABEL}>Clocked out</span>
-              </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <AXAvatar indicator="clock" clockState="subtle"><AvatarFallback>EM</AvatarFallback></AXAvatar>
+              <span style={LABEL}>Clocked out</span>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
 
       </div>
 
       {/* ── Image type ── */}
-      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <section>
-          <h3 style={HEADING}>Image type</h3>
-          <div style={{ display: 'flex', gap: '0', alignItems: 'flex-start' }}>
+      <section>
+        <h2 style={SECTION_TITLE}>Image type</h2>
+        <div style={{ display: 'flex', gap: '0', alignItems: 'flex-start' }}>
 
-            {/* With image */}
-            <div style={{ flex: 1 }}>
-              <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With image</span>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </AXAvatar>
-                <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" />
-                  <AvatarFallback>VC</AvatarFallback>
-                </AXAvatar>
-                <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarImage src="https://github.com/react.png" alt="@react" />
-                  <AvatarFallback>RC</AvatarFallback>
-                </AXAvatar>
-              </div>
+          <div style={{ flex: 1 }}>
+            <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With image</span>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <AXAvatar indicator={indicator} clockState={clockState}>
+                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" /><AvatarFallback>CN</AvatarFallback>
+              </AXAvatar>
+              <AXAvatar indicator={indicator} clockState={clockState}>
+                <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" /><AvatarFallback>VC</AvatarFallback>
+              </AXAvatar>
+              <AXAvatar indicator={indicator} clockState={clockState}>
+                <AvatarImage src="https://github.com/react.png" alt="@react" /><AvatarFallback>RC</AvatarFallback>
+              </AXAvatar>
             </div>
-
-            {/* Vertical divider */}
-            <div style={{ width: '1px', alignSelf: 'stretch', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)', margin: '0 32px', flexShrink: 0 }} role="separator" aria-orientation="vertical" />
-
-            {/* With live text initials */}
-            <div style={{ flex: 1 }}>
-              <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With live text initials</span>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarFallback>AB</AvatarFallback>
-                </AXAvatar>
-                <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarFallback>CD</AvatarFallback>
-                </AXAvatar>
-                <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarFallback>EF</AvatarFallback>
-                </AXAvatar>
-              </div>
-            </div>
-
-            {/* Vertical divider */}
-            <div style={{ width: '1px', alignSelf: 'stretch', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)', margin: '0 32px', flexShrink: 0 }} role="separator" aria-orientation="vertical" />
-
-            {/* With icon */}
-            <div style={{ flex: 1 }}>
-              <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With icon</span>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarFallback>
-                    <User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
-                  </AvatarFallback>
-                </AXAvatar>
-                <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarFallback>
-                    <User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
-                  </AvatarFallback>
-                </AXAvatar>
-                <AXAvatar indicator={indicator} clockState={clockState}>
-                  <AvatarFallback>
-                    <User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" />
-                  </AvatarFallback>
-                </AXAvatar>
-              </div>
-            </div>
-
           </div>
-        </section>
-      </div>
+
+          <div style={{ width: '1px', alignSelf: 'stretch', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)', margin: '0 32px', flexShrink: 0 }} role="separator" aria-orientation="vertical" />
+
+          <div style={{ flex: 1 }}>
+            <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With live text initials</span>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <AXAvatar indicator={indicator} clockState={clockState}><AvatarFallback>AB</AvatarFallback></AXAvatar>
+              <AXAvatar indicator={indicator} clockState={clockState}><AvatarFallback>CD</AvatarFallback></AXAvatar>
+              <AXAvatar indicator={indicator} clockState={clockState}><AvatarFallback>EF</AvatarFallback></AXAvatar>
+            </div>
+          </div>
+
+          <div style={{ width: '1px', alignSelf: 'stretch', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)', margin: '0 32px', flexShrink: 0 }} role="separator" aria-orientation="vertical" />
+
+          <div style={{ flex: 1 }}>
+            <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With icon</span>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <AXAvatar indicator={indicator} clockState={clockState}><AvatarFallback><User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" /></AvatarFallback></AXAvatar>
+              <AXAvatar indicator={indicator} clockState={clockState}><AvatarFallback><User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" /></AvatarFallback></AXAvatar>
+              <AXAvatar indicator={indicator} clockState={clockState}><AvatarFallback><User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" /></AvatarFallback></AXAvatar>
+            </div>
+          </div>
+
+        </div>
+      </section>
 
       {/* ── Sizes ── */}
-      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <section>
-          <h3 style={HEADING}>Sizes</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <section>
+        <h2 style={SECTION_TITLE}>Sizes</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
-            {/* No badge */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '4px' }}>No badge</span>
-              {/* Labels row — all aligned */}
+          {/* No badge */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '4px' }}>No badge</span>
+            <div style={{ display: 'flex', gap: '20px' }}>
+              {['XSmall · 24px', 'Small · 32px', 'Medium · 40px', 'Large · 48px', 'XLarge · 64px'].map(l => (
+                <span key={l} style={{ ...LABEL, marginTop: 0, minWidth: '80px', textAlign: 'center' }}>{l}</span>
+              ))}
+            </div>
+            <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+              <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                <AXAvatar indicator="none" size="xsmall" avatarStyle={AVATAR_DIM.xsmall}>
+                  <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)' }}>XS</AvatarFallback>
+                </AXAvatar>
+              </div>
+              <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                <AXAvatar indicator="none" size="small" avatarStyle={AVATAR_DIM.small}>
+                  <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontFamily: 'var(--ld-semantic-font-body-small-family)' }}>SM</AvatarFallback>
+                </AXAvatar>
+              </div>
+              <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                <AXAvatar indicator="none"><AvatarFallback>MD</AvatarFallback></AXAvatar>
+              </div>
+              <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                <AXAvatar indicator="none" size="large" avatarStyle={AVATAR_DIM.large}><AvatarFallback>LG</AvatarFallback></AXAvatar>
+              </div>
+              <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                <AXAvatar indicator="none" size="xlarge" avatarStyle={AVATAR_DIM.xlarge}>
+                  <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontFamily: 'var(--ld-semantic-font-heading-large-family)' }}>XL</AvatarFallback>
+                </AXAvatar>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} role="separator" />
+
+          {/* Badge */}
+          <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flexShrink: 0 }}>
+              <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '4px' }}>Badge</span>
               <div style={{ display: 'flex', gap: '20px' }}>
                 {['XSmall · 24px', 'Small · 32px', 'Medium · 40px', 'Large · 48px', 'XLarge · 64px'].map(l => (
                   <span key={l} style={{ ...LABEL, marginTop: 0, minWidth: '80px', textAlign: 'center' }}>{l}</span>
                 ))}
               </div>
-              {/* Avatars row — vertically centered */}
               <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="none" size="xsmall" avatarStyle={AVATAR_DIM.xsmall}>
-                    <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)', lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)' }}>XS</AvatarFallback>
+                  <AXAvatar indicator="badge" size="xsmall" avatarStyle={AVATAR_DIM.xsmall}>
+                    <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontFamily: 'var(--ld-semantic-font-caption-family)' }}>XS</AvatarFallback>
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="none" size="small" avatarStyle={AVATAR_DIM.small}>
-                    <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' }}>SM</AvatarFallback>
+                  <AXAvatar indicator="badge" size="small" avatarStyle={AVATAR_DIM.small}>
+                    <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontFamily: 'var(--ld-semantic-font-body-small-family)' }}>SM</AvatarFallback>
                   </AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="none">
-                    <AvatarFallback>MD</AvatarFallback>
-                  </AXAvatar>
+                  <AXAvatar indicator="badge"><AvatarFallback>MD</AvatarFallback></AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="none" size="large" avatarStyle={AVATAR_DIM.large}>
-                    <AvatarFallback>LG</AvatarFallback>
-                  </AXAvatar>
+                  <AXAvatar indicator="badge" size="large" avatarStyle={AVATAR_DIM.large}><AvatarFallback>LG</AvatarFallback></AXAvatar>
                 </div>
                 <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                  <AXAvatar indicator="none" size="xlarge" avatarStyle={AVATAR_DIM.xlarge}>
-                    <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }}>XL</AvatarFallback>
+                  <AXAvatar indicator="badge" size="xlarge" avatarStyle={AVATAR_DIM.xlarge}>
+                    <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontFamily: 'var(--ld-semantic-font-heading-large-family)' }}>XL</AvatarFallback>
                   </AXAvatar>
                 </div>
               </div>
             </div>
-
-            {/* Horizontal divider */}
-            <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} role="separator" />
-
-            {/* Badge */}
-            <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flexShrink: 0 }}>
-                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '4px' }}>Badge</span>
-                <div style={{ display: 'flex', gap: '20px' }}>
-                  {['XSmall · 24px', 'Small · 32px', 'Medium · 40px', 'Large · 48px', 'XLarge · 64px'].map(l => (
-                    <span key={l} style={{ ...LABEL, marginTop: 0, minWidth: '80px', textAlign: 'center' }}>{l}</span>
-                  ))}
-                </div>
-                <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                  <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                    <AXAvatar indicator="badge" size="xsmall" avatarStyle={AVATAR_DIM.xsmall}>
-                      <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)', lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)' }}>XS</AvatarFallback>
-                    </AXAvatar>
-                  </div>
-                  <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                    <AXAvatar indicator="badge" size="small" avatarStyle={AVATAR_DIM.small}>
-                      <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' }}>SM</AvatarFallback>
-                    </AXAvatar>
-                  </div>
-                  <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                    <AXAvatar indicator="badge">
-                      <AvatarFallback>MD</AvatarFallback>
-                    </AXAvatar>
-                  </div>
-                  <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                    <AXAvatar indicator="badge" size="large" avatarStyle={AVATAR_DIM.large}>
-                      <AvatarFallback>LG</AvatarFallback>
-                    </AXAvatar>
-                  </div>
-                  <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                    <AXAvatar indicator="badge" size="xlarge" avatarStyle={AVATAR_DIM.xlarge}>
-                      <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }}>XL</AvatarFallback>
-                    </AXAvatar>
-                  </div>
-                </div>
-              </div>
-              <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
-                <p style={{ margin: '0 0 6px 0', fontSize: '11px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Badge offset values</p>
-                <table style={{ borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '11px' }}>
-                  <thead>
-                    <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
-                      {['Size', 'Offset'].map(h => (
-                        <th key={h} style={{ textAlign: 'left', padding: '4px 8px', fontWeight: 600, color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>{h}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {([
-                      ['XSmall · 24px', '−8px'],
-                      ['Small · 32px',  '−6px'],
-                      ['Medium · 40px', '−4px'],
-                      ['Large · 48px',  '−2px'],
-                      ['XLarge · 64px', '+2px'],
-                    ] as [string, string][]).map(([size, resolved]) => (
-                      <tr key={size} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
-                        <td style={{ padding: '4px 8px', color: 'var(--ld-semantic-color-text)', whiteSpace: 'nowrap' }}>{size}</td>
-                        <td style={{ padding: '4px 8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{resolved}</td>
-                      </tr>
+            <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
+              <p style={{ margin: '0 0 6px 0', fontSize: '11px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Badge offset values</p>
+              <table style={{ borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '11px' }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                    {['Size', 'Offset'].map(h => (
+                      <th key={h} style={{ textAlign: 'left', padding: '4px 8px', fontWeight: 600, color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>{h}</th>
                     ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Horizontal divider */}
-            <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} role="separator" />
-
-            {/* Clock indicator */}
-            <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flexShrink: 0 }}>
-                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '4px' }}>Clock indicator</span>
-                <div style={{ display: 'flex', gap: '20px' }}>
-                  {['XSmall · 24px', 'Small · 32px', 'Medium · 40px', 'Large · 48px', 'XLarge · 64px'].map(l => (
-                    <span key={l} style={{ ...LABEL, marginTop: 0, minWidth: '80px', textAlign: 'center' }}>{l}</span>
-                  ))}
-                </div>
-                <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                  <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                    <AXAvatar indicator="clock" clockState="active" size="xsmall" avatarStyle={AVATAR_DIM.xsmall}>
-                      <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontWeight: 'var(--ld-semantic-font-caption-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-caption-family)', lineHeight: 'var(--ld-semantic-font-caption-line-height, 1rem)' }}>XS</AvatarFallback>
-                    </AXAvatar>
-                  </div>
-                  <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                    <AXAvatar indicator="clock" clockState="active" size="small" avatarStyle={AVATAR_DIM.small}>
-                      <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)', fontFamily: 'var(--ld-semantic-font-body-small-family)', lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)' }}>SM</AvatarFallback>
-                    </AXAvatar>
-                  </div>
-                  <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                    <AXAvatar indicator="clock" clockState="active">
-                      <AvatarFallback>MD</AvatarFallback>
-                    </AXAvatar>
-                  </div>
-                  <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                    <AXAvatar indicator="clock" clockState="active" size="large" avatarStyle={AVATAR_DIM.large}>
-                      <AvatarFallback>LG</AvatarFallback>
-                    </AXAvatar>
-                  </div>
-                  <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
-                    <AXAvatar indicator="clock" clockState="active" size="xlarge" avatarStyle={AVATAR_DIM.xlarge}>
-                      <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontWeight: 'var(--ld-semantic-font-heading-large-weight-alt, 400)', fontFamily: 'var(--ld-semantic-font-heading-large-family)', lineHeight: 'var(--ld-semantic-font-heading-large-line-height-b-s, 2rem)' }}>XL</AvatarFallback>
-                    </AXAvatar>
-                  </div>
-                </div>
-              </div>
-              <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
-                <p style={{ margin: '0 0 6px 0', fontSize: '11px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Clock indicator offset values</p>
-                <table style={{ borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '11px' }}>
-                  <thead>
-                    <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
-                      {['Size', 'Offset'].map(h => (
-                        <th key={h} style={{ textAlign: 'left', padding: '4px 8px', fontWeight: 600, color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>{h}</th>
-                      ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {(['XSmall · 24px', '−8px'], ['Small · 32px', '−6px'], ['Medium · 40px', '−4px'], ['Large · 48px', '−2px'], ['XLarge · 64px', '+2px']).map(([size, offset]) => (
+                    <tr key={size} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                      <td style={{ padding: '4px 8px', color: 'var(--ld-semantic-color-text)', whiteSpace: 'nowrap' }}>{size}</td>
+                      <td style={{ padding: '4px 8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{offset}</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {([
-                      ['XSmall · 24px', '−4px'],
-                      ['Small · 32px',  '−4px'],
-                      ['Medium · 40px', '−2px'],
-                      ['Large · 48px',  '0'],
-                      ['XLarge · 64px', '+4px'],
-                    ] as [string, string][]).map(([size, resolved]) => (
-                      <tr key={size} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
-                        <td style={{ padding: '4px 8px', color: 'var(--ld-semantic-color-text)', whiteSpace: 'nowrap' }}>{size}</td>
-                        <td style={{ padding: '4px 8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{resolved}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                  ))}
+                </tbody>
+              </table>
             </div>
-
           </div>
-        </section>
-      </div>
+
+          <div style={{ height: '1px', backgroundColor: 'var(--ld-semantic-color-separator, #E3E4E5)' }} role="separator" />
+
+          {/* Clock indicator */}
+          <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flexShrink: 0 }}>
+              <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '4px' }}>Clock indicator</span>
+              <div style={{ display: 'flex', gap: '20px' }}>
+                {['XSmall · 24px', 'Small · 32px', 'Medium · 40px', 'Large · 48px', 'XLarge · 64px'].map(l => (
+                  <span key={l} style={{ ...LABEL, marginTop: 0, minWidth: '80px', textAlign: 'center' }}>{l}</span>
+                ))}
+              </div>
+              <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                  <AXAvatar indicator="clock" clockState="active" size="xsmall" avatarStyle={AVATAR_DIM.xsmall}>
+                    <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-caption-size, 0.75rem)', fontFamily: 'var(--ld-semantic-font-caption-family)' }}>XS</AvatarFallback>
+                  </AXAvatar>
+                </div>
+                <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                  <AXAvatar indicator="clock" clockState="active" size="small" avatarStyle={AVATAR_DIM.small}>
+                    <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)', fontFamily: 'var(--ld-semantic-font-body-small-family)' }}>SM</AvatarFallback>
+                  </AXAvatar>
+                </div>
+                <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                  <AXAvatar indicator="clock" clockState="active"><AvatarFallback>MD</AvatarFallback></AXAvatar>
+                </div>
+                <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                  <AXAvatar indicator="clock" clockState="active" size="large" avatarStyle={AVATAR_DIM.large}><AvatarFallback>LG</AvatarFallback></AXAvatar>
+                </div>
+                <div style={{ minWidth: '80px', display: 'flex', justifyContent: 'center' }}>
+                  <AXAvatar indicator="clock" clockState="active" size="xlarge" avatarStyle={AVATAR_DIM.xlarge}>
+                    <AvatarFallback style={{ fontSize: 'var(--ld-semantic-font-heading-large-size-b-s, 1.5rem)', fontFamily: 'var(--ld-semantic-font-heading-large-family)' }}>XL</AvatarFallback>
+                  </AXAvatar>
+                </div>
+              </div>
+            </div>
+            <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
+              <p style={{ margin: '0 0 6px 0', fontSize: '11px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Clock indicator offset values</p>
+              <table style={{ borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '11px' }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
+                    {['Size', 'Offset'].map(h => (
+                      <th key={h} style={{ textAlign: 'left', padding: '4px 8px', fontWeight: 600, color: 'var(--ld-semantic-color-text-subtle)', whiteSpace: 'nowrap' }}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {(['XSmall · 24px', '−4px'], ['Small · 32px', '−4px'], ['Medium · 40px', '−2px'], ['Large · 48px', '0'], ['XLarge · 64px', '+4px']).map(([size, offset]) => (
+                    <tr key={size} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
+                      <td style={{ padding: '4px 8px', color: 'var(--ld-semantic-color-text)', whiteSpace: 'nowrap' }}>{size}</td>
+                      <td style={{ padding: '4px 8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ld-semantic-color-text-brand)', whiteSpace: 'nowrap' }}>{offset}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </section>
 
       {/* ── Anatomy ── */}
-      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)', display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>Anatomy</h2>
+      <section>
+        <h2 style={SECTION_TITLE}>Anatomy</h2>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
             <thead>
@@ -542,11 +428,11 @@ export default function AXAvatarExample() {
             </tbody>
           </table>
         </div>
-      </div>
+      </section>
 
       {/* ── Component Props ── */}
-      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)', display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>Component Props</h2>
+      <section>
+        <h2 style={SECTION_TITLE}>Component Props</h2>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
             <thead>
@@ -560,7 +446,7 @@ export default function AXAvatarExample() {
               {[
                 ['indicator', "'none' | 'badge' | 'clock'", "'none'", 'Which indicator overlay to show on the avatar.'],
                 ['clockState', "'active' | 'subtle'", "'active'", 'State of the clock indicator dot. active = clocked in (green), subtle = clocked out (grey). Only used when indicator="clock".'],
-                ['size', "'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'", "'medium'", 'Avatar size — affects indicator positioning. XSmall/Small offset indicators outward; XLarge offsets inward.'],
+                ['size', "'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'", "'medium'", 'Avatar size — affects indicator positioning.'],
                 ['avatarStyle', 'React.CSSProperties', '—', 'Style forwarded to the inner Avatar circle element. Use to set custom width/height.'],
                 ['children', 'ReactNode', '—', 'Content rendered inside the avatar circle — typically AvatarImage and/or AvatarFallback.'],
                 ['style', 'React.CSSProperties', '—', 'Style applied to the outer positioning wrapper span.'],
@@ -575,7 +461,7 @@ export default function AXAvatarExample() {
             </tbody>
           </table>
         </div>
-      </div>
+      </section>
 
     </div>
   );
