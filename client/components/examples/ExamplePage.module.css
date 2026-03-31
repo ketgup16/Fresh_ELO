@@ -1,0 +1,15 @@
+/**
+ * Shared styles for component documentation example pages.
+ * Import this module in any example page that uses the section-based layout.
+ */
+
+/* Section title — used as <h2> headings that divide documentation sections */
+.sectionTitle {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--ld-semantic-font-family-sans);
+  color: var(--ld-semantic-color-text-primary, #2e2f32);
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}

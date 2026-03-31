@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { User } from '@/components/icons/User';
 import { AXAvatar, AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatar';
+import styles from './ExamplePage.module.css';
 
 // Avatar dimensions via primitive scale tokens
 const AVATAR_DIM = {
@@ -11,16 +12,6 @@ const AVATAR_DIM = {
   xlarge: { width: 'var(--ld-primitive-scale-space-800, 4rem)',   height: 'var(--ld-primitive-scale-space-800, 4rem)' },
 } as const;
 
-// Section title — matches AXCountry sectionTitle style
-const SECTION_TITLE: React.CSSProperties = {
-  fontSize: '22px',
-  fontWeight: 700,
-  fontFamily: 'var(--ld-semantic-font-family-sans)',
-  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-  margin: '0 0 24px',
-  paddingBottom: '12px',
-  borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-};
 
 const LABEL: React.CSSProperties = {
   fontSize: '12px',
@@ -73,7 +64,7 @@ export default function AXAvatarExample() {
 
       {/* ── Interactive demo ── */}
       <section>
-        <h2 style={SECTION_TITLE}>Interactive demo</h2>
+        <h2 className={styles.sectionTitle}>Interactive demo</h2>
         <div style={{ display: 'flex', gap: '40px', alignItems: 'stretch' }}>
 
           {/* Properties panel */}
@@ -165,7 +156,7 @@ export default function AXAvatarExample() {
       <div style={{ display: 'flex', gap: '64px', alignItems: 'flex-start' }}>
 
         <section style={{ flex: 1 }}>
-          <h2 style={SECTION_TITLE}>Badge types</h2>
+          <h2 className={styles.sectionTitle}>Badge types</h2>
           <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
               <AXAvatar indicator="none"><AvatarFallback>AL</AvatarFallback></AXAvatar>
@@ -183,7 +174,7 @@ export default function AXAvatarExample() {
         </section>
 
         <section style={{ flex: 1 }}>
-          <h2 style={SECTION_TITLE}>Clock indicator status</h2>
+          <h2 className={styles.sectionTitle}>Clock indicator status</h2>
           <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
               <AXAvatar indicator="clock" clockState="active"><AvatarFallback>MK</AvatarFallback></AXAvatar>
@@ -200,7 +191,7 @@ export default function AXAvatarExample() {
 
       {/* ── Image type ── */}
       <section>
-        <h2 style={SECTION_TITLE}>Image type</h2>
+        <h2 className={styles.sectionTitle}>Image type</h2>
         <div style={{ display: 'flex', gap: '0', alignItems: 'flex-start' }}>
 
           <div style={{ flex: 1 }}>
@@ -245,7 +236,7 @@ export default function AXAvatarExample() {
 
       {/* ── Sizes ── */}
       <section>
-        <h2 style={SECTION_TITLE}>Sizes</h2>
+        <h2 className={styles.sectionTitle}>Sizes</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
           {/* No badge */}
@@ -400,7 +391,7 @@ export default function AXAvatarExample() {
 
       {/* ── Anatomy ── */}
       <section>
-        <h2 style={SECTION_TITLE}>Anatomy</h2>
+        <h2 className={styles.sectionTitle}>Anatomy</h2>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
             <thead>
@@ -432,7 +423,7 @@ export default function AXAvatarExample() {
 
       {/* ── Component Props ── */}
       <section>
-        <h2 style={SECTION_TITLE}>Component Props</h2>
+        <h2 className={styles.sectionTitle}>Component Props</h2>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
             <thead>

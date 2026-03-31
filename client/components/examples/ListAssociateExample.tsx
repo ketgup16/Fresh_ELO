@@ -7,18 +7,10 @@ import { TagVariant, TagColor } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Alert } from '@/components/ui/Alert';
+import styles from './ExamplePage.module.css';
 
 // ─── Shared style constants (matches AXAvatarButtonExample) ──────────────────
 
-const HEADING: React.CSSProperties = {
-  fontSize: '22px',
-  fontWeight: 700,
-  fontFamily: 'var(--ld-semantic-font-family-sans)',
-  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-  margin: '0 0 24px',
-  paddingBottom: '12px',
-  borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-};
 
 const CARD: React.CSSProperties = {};
 
@@ -109,7 +101,7 @@ export function ListAssociateExample() {
 
       {/* ── Interactive Demo ─────────────────────────────────────────── */}
       <div style={CARD}>
-        <h3 style={HEADING}>Interactive demo</h3>
+        <h3 className={styles.sectionTitle}>Interactive demo</h3>
         <div style={{ display: 'flex', gap: '40px', alignItems: 'stretch' }}>
 
           {/* Properties panel */}

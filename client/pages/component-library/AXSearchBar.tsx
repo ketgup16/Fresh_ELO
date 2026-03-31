@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { AXSearchBar } from '@/components/walmart/AXSearchBar';
+import styles from '@/components/examples/ExamplePage.module.css';
 
 const sectionStyle: React.CSSProperties = {
   display: 'flex',
@@ -8,15 +9,6 @@ const sectionStyle: React.CSSProperties = {
   gap: '24px',
 };
 
-const h2Style: React.CSSProperties = {
-  fontSize: '22px',
-  fontWeight: 700,
-  fontFamily: 'var(--ld-semantic-font-family-sans)',
-  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-  margin: '0 0 0',
-  paddingBottom: '12px',
-  borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-};
 
 const labelStyle: React.CSSProperties = {
   fontFamily: 'var(--ld-semantic-font-family-sans)',
@@ -62,7 +54,7 @@ export default function AXSearchBarPage() {
 
         {/* Interactive Demo */}
         <div style={sectionStyle}>
-          <h2 style={h2Style}>Interactive Demo</h2>
+          <h2 className={styles.sectionTitle}>Interactive Demo</h2>
           <p style={descStyle}>
             Click to focus. Type to fill. The trailing icons adapt per state — mic and barcode
             icons appear when empty, a clear (✕) button when filled, and a Cancel link while
@@ -84,7 +76,7 @@ export default function AXSearchBarPage() {
 
         {/* States */}
         <div style={sectionStyle}>
-          <h2 style={h2Style}>States</h2>
+          <h2 className={styles.sectionTitle}>States</h2>
           <p style={descStyle}>
             The search bar has four states (Enabled, Focused, Disabled, Read-only) and two
             content modes (Unfilled and Filled).
@@ -141,7 +133,7 @@ export default function AXSearchBarPage() {
 
         {/* Anatomy */}
         <div style={sectionStyle}>
-          <h2 style={h2Style}>Anatomy</h2>
+          <h2 className={styles.sectionTitle}>Anatomy</h2>
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
               <thead>
@@ -174,7 +166,7 @@ export default function AXSearchBarPage() {
 
         {/* Props */}
         <div style={sectionStyle}>
-          <h2 style={h2Style}>Component Props</h2>
+          <h2 className={styles.sectionTitle}>Component Props</h2>
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
               <thead>
@@ -212,7 +204,7 @@ export default function AXSearchBarPage() {
 
         {/* Usage */}
         <div style={sectionStyle}>
-          <h2 style={h2Style}>Usage</h2>
+          <h2 className={styles.sectionTitle}>Usage</h2>
           <pre style={{
             margin: 0, padding: '20px',
             background: 'var(--ld-semantic-color-background-subtle)',
@@ -236,7 +228,7 @@ function MyPage() {
 
         {/* Guidelines */}
         <div style={sectionStyle}>
-          <h2 style={h2Style}>Guidelines</h2>
+          <h2 className={styles.sectionTitle}>Guidelines</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
             {[
               { type: 'do', text: 'Use for inline / page-scoped search — filtering a list, table, or catalog within the current view.' },

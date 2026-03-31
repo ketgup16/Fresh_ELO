@@ -4,6 +4,7 @@ import { LinkButton } from '@/components/ui/LinkButton';
 import { AXAvatarButton, AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatarButton';
 import { User } from '@/components/icons/User';
 import { Placeholder } from '@/components/icons/Placeholder';
+import styles from './ExamplePage.module.css';
 
 // Avatar dimensions via primitive scale tokens (space-300=24px · space-400=32px · space-500=40px · space-600=48px · space-800=64px)
 const AVATAR_DIM = {
@@ -13,15 +14,6 @@ const AVATAR_DIM = {
   xlarge: { width: 'var(--ld-primitive-scale-space-800, 4rem)',   height: 'var(--ld-primitive-scale-space-800, 4rem)' },
 } as const;
 
-const HEADING: React.CSSProperties = {
-  fontSize: '22px',
-  fontWeight: 700,
-  fontFamily: 'var(--ld-semantic-font-family-sans)',
-  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-  margin: '0 0 24px',
-  paddingBottom: '12px',
-  borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-};
 
 const LABEL: React.CSSProperties = {
   fontSize: '12px',
@@ -96,7 +88,7 @@ export default function AXAvatarButtonExample() {
       {/* ── Interactive demo ── */}
       <div style={CARD}>
         <section>
-          <h3 style={HEADING}>Interactive demo</h3>
+          <h3 className={styles.sectionTitle}>Interactive demo</h3>
           <div style={{ display: 'flex', gap: '40px', alignItems: 'stretch' }}>
 
             {/* Properties panel */}
@@ -286,7 +278,7 @@ export default function AXAvatarButtonExample() {
 
         <div style={{ flex: 1, ...CARD }}>
           <section>
-            <h3 style={HEADING}>Badge types</h3>
+            <h3 className={styles.sectionTitle}>Badge types</h3>
             <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
               {[
                 { indicator: 'none' as AXAvatarIndicatorType, label: 'None', initials: 'AL' },
@@ -306,7 +298,7 @@ export default function AXAvatarButtonExample() {
 
         <div style={{ flex: 1, ...CARD }}>
           <section>
-            <h3 style={HEADING}>Clock indicator status</h3>
+            <h3 className={styles.sectionTitle}>Clock indicator status</h3>
             <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
               {[
                 { clockState: 'active' as AXAvatarClockState, label: 'Clocked in', initials: 'MK' },
@@ -328,7 +320,7 @@ export default function AXAvatarButtonExample() {
       {/* ── States ── */}
       <div style={CARD}>
         <section>
-          <h3 style={HEADING}>States</h3>
+          <h3 className={styles.sectionTitle}>States</h3>
           <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }}>
             {/* Default */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
@@ -377,7 +369,7 @@ export default function AXAvatarButtonExample() {
       {/* ── Image type ── */}
       <div style={CARD}>
         <section>
-          <h3 style={HEADING}>Image type</h3>
+          <h3 className={styles.sectionTitle}>Image type</h3>
           <div style={{ display: 'flex', gap: '0', alignItems: 'flex-start' }}>
             <div style={{ flex: 1 }}>
               <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With image</span>
@@ -427,7 +419,7 @@ export default function AXAvatarButtonExample() {
       {/* ── Sizes ── */}
       <div style={CARD}>
         <section>
-          <h3 style={HEADING}>Sizes</h3>
+          <h3 className={styles.sectionTitle}>Sizes</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
             {[
@@ -528,7 +520,7 @@ export default function AXAvatarButtonExample() {
       {/* ── Menu ── */}
       <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
         <div>
-          <h3 style={HEADING}>Menu</h3>
+          <h3 className={styles.sectionTitle}>Menu</h3>
           <p style={{ margin: 0, fontSize: '13px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>
             Activating the AX Avatar Button opens an account menu. The menu is offset{' '}
             <code style={{ fontFamily: 'monospace', fontSize: '12px' }}>var(--ld-primitive-scale-space-100, 8px)</code>{' '}
@@ -638,7 +630,7 @@ export default function AXAvatarButtonExample() {
       {/* ── Menu Item States ── */}
       <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
         <div>
-          <h3 style={HEADING}>Menu Item States</h3>
+          <h3 className={styles.sectionTitle}>Menu Item States</h3>
           <p style={{ margin: 0, fontSize: '13px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>
             Each <code style={{ fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-brand)' }}>.account menu-item</code> supports four interaction states. The full-width container row is the hit slot. All text uses <code style={{ fontFamily: 'monospace', fontSize: '12px', color: 'var(--ld-semantic-color-text-brand)' }}>ld.semantic.textStyle.body.small.default</code>.
           </p>

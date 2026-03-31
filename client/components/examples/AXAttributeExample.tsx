@@ -1,20 +1,12 @@
 import React, { useState } from 'react';
 import { AXAttribute, AXAttributeSize, AXAttributeColor } from '@/components/walmart/AXAttribute';
 import { Placeholder } from '@/components/icons/Placeholder';
+import styles from './ExamplePage.module.css';
 
 // ── Shared card / heading tokens ────────────────────────────────────────────
 
 const CARD: React.CSSProperties = {};
 
-const H2: React.CSSProperties = {
-  fontSize: '22px',
-  fontWeight: 700,
-  fontFamily: 'var(--ld-semantic-font-family-sans)',
-  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-  margin: '0 0 24px',
-  paddingBottom: '12px',
-  borderBottom: '1px solid var(--ld-semantic-color-separator, #E3E4E5)',
-};
 
 const H3: React.CSSProperties = {
   fontFamily: 'var(--ld-semantic-font-family-sans)',
@@ -96,7 +88,7 @@ import { Star } from '@/components/icons/Star';
 
       {/* ── Live Demo ── */}
       <div style={CARD}>
-        <h2 style={H2}>Interactive demo</h2>
+        <h2 className={styles.sectionTitle}>Interactive demo</h2>
         <p style={DESC}>
           AX Attribute pairs a leading icon with a text label. Use it to surface metadata, status, or categorisation in compact contexts.
         </p>
@@ -175,7 +167,7 @@ import { Star } from '@/components/icons/Star';
 
       {/* ── Sizes ── */}
       <div style={CARD}>
-        <h2 style={H2}>Sizes</h2>
+        <h2 className={styles.sectionTitle}>Sizes</h2>
         <p style={DESC}>
           AX Attribute comes in two sizes. Small uses a 16×16px icon with body-small text and a 4px gap. Large uses a 20×20px icon with body-medium text and an 8px gap. Small supports all 5 color variants; Large supports 4 (Default, Brand, Inverse, Highlight).
         </p>
@@ -194,7 +186,7 @@ import { Star } from '@/components/icons/Star';
 
       {/* ── Color variants ── */}
       <div style={CARD}>
-        <h2 style={H2}>Color variants</h2>
+        <h2 className={styles.sectionTitle}>Color variants</h2>
         <p style={DESC}>
           Color communicates semantic meaning. Small supports all 5 variants; Large supports 4 (Default, Brand, Inverse, Highlight).
         </p>
@@ -232,7 +224,7 @@ import { Star } from '@/components/icons/Star';
 
       {/* ── Properties ── */}
       <div style={CARD}>
-        <h2 style={H2}>Properties</h2>
+        <h2 className={styles.sectionTitle}>Properties</h2>
         <p style={DESC}>All props accepted by the AXAttribute component.</p>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
@@ -267,7 +259,7 @@ import { Star } from '@/components/icons/Star';
 
       {/* ── Color token reference ── */}
       <div style={CARD}>
-        <h2 style={H2}>Color token reference</h2>
+        <h2 className={styles.sectionTitle}>Color token reference</h2>
         <p style={DESC}>Semantic tokens applied per color variant.</p>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '14px' }}>
@@ -306,7 +298,7 @@ import { Star } from '@/components/icons/Star';
 
       {/* ── Code ── */}
       <div style={CARD}>
-        <h2 style={H2}>Code</h2>
+        <h2 className={styles.sectionTitle}>Code</h2>
         <p style={DESC}>Current demo configuration. Update the controls above to see the snippet change.</p>
         <pre style={{
           margin: 0,
