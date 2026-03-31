@@ -422,7 +422,14 @@ export function ListExample() {
                 </div>
 
                 {/* Scrollable content area */}
-                <div style={{ flex: 1, overflowY: 'auto', padding: '12px 0' }}>
+                <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{
+                    flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    margin: 'var(--ld-primitive-scale-space-200, 16px)',
+                  }}>
                   <List aria-label="Interactive demo" style={{ width: '100%' }}>
                     <ListItem
                       eyebrow={showEyebrow ? eyebrow : undefined}
@@ -494,6 +501,7 @@ export function ListExample() {
                       }
                     />
                   </List>
+                  </div>
                 </div>
               </div>
             </div>
