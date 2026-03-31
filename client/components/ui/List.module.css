@@ -90,7 +90,7 @@
 .listItemExtras {
   display: flex;
   flex-direction: column;
-  gap: var(--ld-primitive-scale-space-100, 8px);
+  gap: var(--ld-primitive-scale-space-150, 12px);
   margin-top: var(--ld-primitive-scale-space-100, 8px);
 }
 
