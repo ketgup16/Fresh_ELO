@@ -304,8 +304,7 @@ export function ComponentLibraryLayout() {
                       {/* Nested sub-groups */}
                       {(section.subGroups ?? []).map((sg) => {
                         const sgCollapsed = collapsedSubGroups.has(sg.id);
-                        const sgHasActive = sg.items.some(item => item.path === location.pathname);
-                        const sgOpen = sgHasActive || !sgCollapsed;
+                        const sgOpen = !sgCollapsed;
                         return (
                           <div key={sg.id}>
                             <button
