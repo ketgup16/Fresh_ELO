@@ -88,7 +88,8 @@ export function ListExample() {
   const [linkLabel, setLinkLabel] = useState('Link');
   const [selectChecked, setSelectChecked] = useState(false);
   const [showTag, setShowTag] = useState(true);
-  const [tagLabel, setTagLabel] = useState('Tag label');
+  type TagPreset = 'unassigned' | 'assigned' | 'complete';
+  const [tagPreset, setTagPreset] = useState<TagPreset>('unassigned');
   const [showFooterAction, setShowFooterAction] = useState(true);
   type FooterActionType =
     | 'button-secondary'
@@ -173,13 +174,12 @@ export function ListExample() {
             </div>
             {showTag && (
               <div style={PROP_ROW}>
-                <span style={PROP_LABEL}>Tag label</span>
-                <input
-                  type="text"
-                  value={tagLabel}
-                  onChange={e => setTagLabel(e.target.value)}
-                  style={INPUT_STYLE}
-                />
+                <span style={PROP_LABEL}>Tag preset</span>
+                <select value={tagPreset} onChange={e => setTagPreset(e.target.value as TagPreset)} style={SELECT_STYLE}>
+                  <option value="unassigned">Unassigned</option>
+                  <option value="assigned">Assigned</option>
+                  <option value="complete">Complete</option>
+                </select>
               </div>
             )}
 
@@ -474,7 +474,11 @@ export function ListExample() {
                         ...(showAttr2 ? [{ label: attr2Label }] : []),
                         ...(showAttr3 ? [{ label: attr3Label }] : []),
                       ].filter(Boolean) as { label: string }[]}
-                      tag={showTag ? <Tag variant="secondary">{tagLabel}</Tag> : undefined}
+                      tag={showTag ? (
+                        tagPreset === 'unassigned' ? <Tag variant="tertiary" color="gray">Unassigned</Tag> :
+                        tagPreset === 'assigned'   ? <Tag variant="tertiary" color="blue">Assigned</Tag> :
+                                                     <Tag variant="tertiary" color="green">Complete</Tag>
+                      ) : undefined}
                       divider={showDivider}
                       alert={showAlert ? (
                         <Alert variant="error">Something went wrong. Please try again.</Alert>
