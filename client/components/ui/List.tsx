@@ -5,8 +5,17 @@ import { Divider } from './Divider';
 import { ChevronRight } from '@/components/icons/ChevronRight';
 import { LinkButton } from './LinkButton';
 import { Checkbox } from './Checkbox';
+import { Tag } from './Tag';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
+
+export type ListItemTagPreset = 'unassigned' | 'assigned' | 'complete';
+
+const TAG_PRESET_MAP: Record<ListItemTagPreset, { label: string; color: 'gray' | 'blue' | 'green' }> = {
+  unassigned: { label: 'Unassigned', color: 'gray' },
+  assigned:   { label: 'Assigned',   color: 'blue' },
+  complete:   { label: 'Complete',   color: 'green' },
+};
 
 export type ListItemLeading = 'empty' | 'custom';
 export type ListItemTrailing = 'empty' | 'icon' | 'link' | 'select';
@@ -68,10 +77,10 @@ export interface ListItemProps {
   alert?: React.ReactNode;
 
   /**
-   * Optional Tag rendered in the top-right corner of the content block,
-   * beside the text column. Accepts any ReactNode — use a Tag component.
+   * Optional Tag rendered in the top-right corner of the content block.
+   * Accepts one of three pre-set values: 'unassigned' | 'assigned' | 'complete'.
    */
-  tag?: React.ReactNode;
+  tag?: ListItemTagPreset;
 
   className?: string;
 }
@@ -185,9 +194,14 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
                 )}
               </div>
               {/* Tag — top-right of content area */}
-              {tag && (
-                <div className={styles.listItemTag}>{tag}</div>
-              )}
+              {tag && (() => {
+                const { label, color } = TAG_PRESET_MAP[tag];
+                return (
+                  <div className={styles.listItemTag}>
+                    <Tag variant="tertiary" color={color}>{label}</Tag>
+                  </div>
+                );
+              })()}
             </div>
 
             {hasExtras && (

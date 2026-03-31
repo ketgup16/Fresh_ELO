@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { List, ListItem, ListItemLeading, ListItemTrailing } from '@/components/ui/List';
+import { List, ListItem, ListItemLeading, ListItemTrailing, ListItemTagPreset } from '@/components/ui/List';
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Alert } from '@/components/ui/Alert';
-import { Tag } from '@/components/ui/Tag';
 
 // ─── Shared style constants (matches AXAvatarButtonExample) ──────────────────
 
@@ -88,8 +87,7 @@ export function ListExample() {
   const [linkLabel, setLinkLabel] = useState('Link');
   const [selectChecked, setSelectChecked] = useState(false);
   const [showTag, setShowTag] = useState(true);
-  type TagPreset = 'unassigned' | 'assigned' | 'complete';
-  const [tagPreset, setTagPreset] = useState<TagPreset>('unassigned');
+  const [tagPreset, setTagPreset] = useState<ListItemTagPreset>('unassigned');
   const [showFooterAction, setShowFooterAction] = useState(true);
   type FooterActionType =
     | 'button-secondary'
@@ -175,7 +173,7 @@ export function ListExample() {
             {showTag && (
               <div style={PROP_ROW}>
                 <span style={PROP_LABEL}>Tag preset</span>
-                <select value={tagPreset} onChange={e => setTagPreset(e.target.value as TagPreset)} style={SELECT_STYLE}>
+                <select value={tagPreset} onChange={e => setTagPreset(e.target.value as ListItemTagPreset)} style={SELECT_STYLE}>
                   <option value="unassigned">Unassigned</option>
                   <option value="assigned">Assigned</option>
                   <option value="complete">Complete</option>
@@ -474,11 +472,7 @@ export function ListExample() {
                         ...(showAttr2 ? [{ label: attr2Label }] : []),
                         ...(showAttr3 ? [{ label: attr3Label }] : []),
                       ].filter(Boolean) as { label: string }[]}
-                      tag={showTag ? (
-                        tagPreset === 'unassigned' ? <Tag variant="tertiary" color="gray">Unassigned</Tag> :
-                        tagPreset === 'assigned'   ? <Tag variant="tertiary" color="blue">Assigned</Tag> :
-                                                     <Tag variant="tertiary" color="green">Complete</Tag>
-                      ) : undefined}
+                      tag={showTag ? tagPreset : undefined}
                       divider={showDivider}
                       alert={showAlert ? (
                         <Alert variant="error">Something went wrong. Please try again.</Alert>
