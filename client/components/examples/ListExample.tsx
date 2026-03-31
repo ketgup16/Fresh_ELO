@@ -4,6 +4,7 @@ import { List, ListItem, ListItemLeading, ListItemTrailing } from '@/components/
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Alert } from '@/components/ui/Alert';
+import { Tag } from '@/components/ui/Tag';
 
 // ─── Shared style constants (matches AXAvatarButtonExample) ──────────────────
 
@@ -86,6 +87,8 @@ export function ListExample() {
   const [showDivider, setShowDivider] = useState(true);
   const [linkLabel, setLinkLabel] = useState('Link');
   const [selectChecked, setSelectChecked] = useState(false);
+  const [showTag, setShowTag] = useState(false);
+  const [tagLabel, setTagLabel] = useState('Tag label');
   const [showFooterAction, setShowFooterAction] = useState(true);
   type FooterActionType =
     | 'button-secondary'
@@ -295,6 +298,31 @@ export function ListExample() {
               </div>
             )}
 
+            {/* Tag toggle */}
+            <div style={showTag ? { ...PROP_ROW, borderBottom: 'none' } : PROP_ROW}>
+              <span style={PROP_LABEL}>Tag</span>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={showTag}
+                  onChange={e => setShowTag(e.target.checked)}
+                  style={{ cursor: 'pointer' }}
+                />
+                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Show</span>
+              </label>
+            </div>
+            {showTag && (
+              <div style={PROP_ROW}>
+                <span style={PROP_LABEL}>Tag label</span>
+                <input
+                  type="text"
+                  value={tagLabel}
+                  onChange={e => setTagLabel(e.target.value)}
+                  style={INPUT_STYLE}
+                />
+              </div>
+            )}
+
             {/* Alert toggle */}
             <div style={PROP_ROW}>
               <span style={PROP_LABEL}>Alert</span>
@@ -446,6 +474,7 @@ export function ListExample() {
                         ...(showAttr2 ? [{ label: attr2Label }] : []),
                         ...(showAttr3 ? [{ label: attr3Label }] : []),
                       ].filter(Boolean) as { label: string }[]}
+                      tag={showTag ? <Tag variant="secondary">{tagLabel}</Tag> : undefined}
                       divider={showDivider}
                       alert={showAlert ? (
                         <Alert variant="error">Something went wrong. Please try again.</Alert>

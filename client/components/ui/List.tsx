@@ -67,6 +67,12 @@ export interface ListItemProps {
    */
   alert?: React.ReactNode;
 
+  /**
+   * Optional Tag rendered in the top-right corner of the content block,
+   * beside the text column. Accepts any ReactNode — use a Tag component.
+   */
+  tag?: React.ReactNode;
+
   className?: string;
 }
 
@@ -157,7 +163,7 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   (props, ref) => {
-    const { eyebrow, title, text, attributes, divider, footerAction, alert, className } = props;
+    const { eyebrow, title, text, attributes, divider, footerAction, alert, tag, className } = props;
     const classNames = [styles.listItem, className].filter(Boolean).join(' ');
     const hasExtras = (attributes && attributes.length > 0) || !!alert || !!footerAction;
 
@@ -168,12 +174,19 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
 
           <div className={styles.listItemContentWrapper}>
             <div className={styles.listItemContent}>
-              {eyebrow && (
-                <p className={styles.listItemEyebrow}>{eyebrow}</p>
-              )}
-              <p className={styles.listItemTitle}>{title}</p>
-              {text && (
-                <p className={styles.listItemText}>{text}</p>
+              {/* Text column — eyebrow, title, text */}
+              <div className={styles.listItemContentText}>
+                {eyebrow && (
+                  <p className={styles.listItemEyebrow}>{eyebrow}</p>
+                )}
+                <p className={styles.listItemTitle}>{title}</p>
+                {text && (
+                  <p className={styles.listItemText}>{text}</p>
+                )}
+              </div>
+              {/* Tag — top-right of content area */}
+              {tag && (
+                <div className={styles.listItemTag}>{tag}</div>
               )}
             </div>
 
