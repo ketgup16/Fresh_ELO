@@ -24,19 +24,19 @@
 
 .fab:hover {
   background: #292940;
-  border-color: #60a5fa;
-  box-shadow: 0 4px 20px rgba(96, 165, 250, 0.2);
+  border-color: #e879f9;
+  box-shadow: 0 4px 20px rgba(232, 121, 249, 0.2);
 }
 
 .fabActive {
-  background: #1d4ed8;
+  background: #86198f;
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 4px 24px rgba(96, 165, 250, 0.5);
+  box-shadow: 0 4px 24px rgba(232, 121, 249, 0.5);
 }
 
 .fabActive:hover {
-  background: #1e40af;
+  background: #701a75;
   border-color: transparent;
 }
 
@@ -57,20 +57,20 @@
   z-index: 9994;
 }
 
-/* Size / border-box — blue solid */
+/* Size / border-box — magenta solid */
 .highlight {
   position: fixed;
-  border: 2px solid #60a5fa;
-  background: rgba(96, 165, 250, 0.08);
+  border: 2px solid #e879f9;
+  background: rgba(232, 121, 249, 0.08);
   pointer-events: none;
   box-sizing: border-box;
   z-index: 9995;
 }
 
-/* Gap — yellow fill, renders in the space between flex/grid siblings */
+/* Gap — cyan fill, renders in the space between flex/grid siblings */
 .highlightGap {
   position: fixed;
-  background: rgba(250, 204, 21, 0.4);
+  background: rgba(34, 211, 238, 0.35);
   pointer-events: none;
   box-sizing: border-box;
   z-index: 9993;

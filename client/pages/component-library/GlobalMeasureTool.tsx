@@ -70,9 +70,9 @@ interface TooltipData {
 
 // Color tokens for box-model layers
 const COLOR_MARGIN  = '#fb923c'; // orange
-const COLOR_SIZE    = '#60a5fa'; // blue
+const COLOR_SIZE    = '#e879f9'; // magenta
 const COLOR_PADDING = '#4ade80'; // green
-const COLOR_GAP     = '#facc15'; // yellow
+const COLOR_GAP     = '#22d3ee'; // cyan
 
 // Pencil ruler icon
 function RulerIcon() {
