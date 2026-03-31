@@ -563,7 +563,7 @@ export function ListAssociateExample() {
 
       {/* ── Trailing options ─────────────────────────────────────────── */}
       <div style={CARD}>
-        <h3 style={{ ...HEADING, marginBottom: '4px' }}>Trailing options</h3>
+        <h3 className={styles.sectionTitle} style={{ marginBottom: '4px' }}>Trailing options</h3>
         <p style={{
           fontFamily: 'var(--ld-semantic-font-family-sans)',
           fontSize: 'var(--ld-semantic-font-body-medium-size, 1rem)',
