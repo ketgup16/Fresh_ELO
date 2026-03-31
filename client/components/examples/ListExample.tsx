@@ -360,92 +360,142 @@ export function ListExample() {
             </div>
           </div>
 
-          {/* Live preview */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', marginBottom: '12px' }}>
+          {/* Live preview — phone frame */}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', marginBottom: '12px', alignSelf: 'flex-start' }}>
               Preview
             </span>
+            {/* Phone shell */}
             <div style={{
-              flex: 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '1px solid var(--ld-semantic-color-border-subtlest, #E8E9EB)',
-              borderRadius: 'var(--ld-primitive-scale-border-radius-100)',
-              background: 'var(--ld-semantic-color-surface, #fff)',
-              padding: '24px',
+              width: '375px',
+              borderRadius: '40px',
+              border: '8px solid var(--ld-semantic-color-text, #2e2f32)',
+              overflow: 'hidden',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.12)',
+              flexShrink: 0,
             }}>
-              <List aria-label="Interactive demo" style={{ width: '100%' }}>
-                <ListItem
-                  eyebrow={showEyebrow ? eyebrow : undefined}
-                  title={title || 'Action title'}
-                  text={showText ? itemText : undefined}
-                  leading={leading}
-                  leadingContent={leading === 'custom' ? <CustomSlotPlaceholder /> : undefined}
-                  trailing={trailing}
-                  trailingLink={trailing === 'link' ? { text: linkLabel || 'Link' } : undefined}
-                  trailingChecked={trailing === 'select' ? selectChecked : undefined}
-                  onTrailingCheckedChange={trailing === 'select' ? (v) => setSelectChecked(v === true) : undefined}
-                  attributes={[
-                    ...(showAttr1 ? [{ label: attr1Label }] : []),
-                    ...(showAttr2 ? [{ label: attr2Label }] : []),
-                    ...(showAttr3 ? [{ label: attr3Label }] : []),
-                  ].filter(Boolean) as { label: string }[]}
-                  divider={showDivider}
-                  alert={showAlert ? (
-                    <Alert variant="error">Something went wrong. Please try again.</Alert>
-                  ) : undefined}
-                  footerAction={
-                    !showFooterAction ? undefined :
-                    footerAction === 'button-secondary' ? (
-                      <Button variant="secondary" size="medium" isFullWidth>Action</Button>
-                    ) : footerAction === 'inline-primary-secondary' ? (
-                      <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
-                        <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>
-                        <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
-                      </div>
-                    ) : footerAction === 'inline-primary-tertiary' ? (
-                      <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
-                        <LinkButton size="medium">Alternate</LinkButton>
-                        <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
-                      </div>
-                    ) : footerAction === 'inline-secondary-tertiary' ? (
-                      <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
-                        <LinkButton size="medium">Alternate</LinkButton>
-                        <Button variant="secondary" size="medium" isFullWidth>Preferred</Button>
-                      </div>
-                    ) : footerAction === 'inline-tertiary-tertiary' ? (
-                      <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
-                        <LinkButton size="medium" UNSAFE_style={{ flex: 1, justifyContent: 'center' }}>Alternate</LinkButton>
-                        <LinkButton size="medium" UNSAFE_style={{ flex: 1, justifyContent: 'center' }}>Preferred</LinkButton>
-                      </div>
-                    ) : footerAction === 'stacked-primary-secondary' ? (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
-                        <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
-                        <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>
-                      </div>
-                    ) : footerAction === 'stacked-primary-tertiary' ? (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
-                        <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
-                        <LinkButton size="medium">Alternate</LinkButton>
-                      </div>
-                    ) : footerAction === 'stacked-secondary-tertiary' ? (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
-                        <Button variant="secondary" size="medium" isFullWidth>Preferred</Button>
-                        <LinkButton size="medium">Alternate</LinkButton>
-                      </div>
-                    ) : footerAction === 'stacked-3options' ? (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
-                        <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
-                          <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>
-                          <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
-                        </div>
-                        <LinkButton size="medium">Alternate</LinkButton>
-                      </div>
-                    ) : undefined
-                  }
-                />
-              </List>
+              {/* Screen */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                height: '812px',
+                background: 'var(--ld-semantic-color-surface, #fff)',
+                overflow: 'hidden',
+                position: 'relative',
+              }}>
+                {/* Status bar + dynamic island */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '14px 24px 6px',
+                  flexShrink: 0,
+                  position: 'relative',
+                }}>
+                  <span style={{ fontSize: '15px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', zIndex: 1 }}>9:41</span>
+                  {/* Dynamic island */}
+                  <div style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: '10px',
+                    transform: 'translateX(-50%)',
+                    width: '120px',
+                    height: '34px',
+                    backgroundColor: '#000',
+                    borderRadius: '20px',
+                    zIndex: 2,
+                  }} />
+                  {/* Battery / signal icons */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', zIndex: 1 }}>
+                    <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" aria-hidden="true">
+                      <rect x="0" y="7" width="3" height="5" rx="0.8" /><rect x="4.5" y="5" width="3" height="7" rx="0.8" /><rect x="9" y="2.5" width="3" height="9.5" rx="0.8" /><rect x="13.5" y="0" width="3" height="12" rx="0.8" />
+                    </svg>
+                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                      <path d="M8 8.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" fill="currentColor"/>
+                      <path d="M3.3 5.8A6.7 6.7 0 0 1 8 3.8c1.8 0 3.5.74 4.7 1.98l1.15-1.15A8.35 8.35 0 0 0 8 2.2c-2.3 0-4.38.94-5.88 2.44L3.3 5.8z" fill="currentColor"/>
+                    </svg>
+                    <svg width="25" height="12" viewBox="0 0 25 12" fill="none" aria-hidden="true">
+                      <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" strokeOpacity="0.35"/>
+                      <rect x="1.5" y="1.5" width="18" height="9" rx="2.5" fill="currentColor"/>
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Scrollable content area */}
+                <div style={{ flex: 1, overflowY: 'auto', padding: '12px 0' }}>
+                  <List aria-label="Interactive demo" style={{ width: '100%' }}>
+                    <ListItem
+                      eyebrow={showEyebrow ? eyebrow : undefined}
+                      title={title || 'Action title'}
+                      text={showText ? itemText : undefined}
+                      leading={leading}
+                      leadingContent={leading === 'custom' ? <CustomSlotPlaceholder /> : undefined}
+                      trailing={trailing}
+                      trailingLink={trailing === 'link' ? { text: linkLabel || 'Link' } : undefined}
+                      trailingChecked={trailing === 'select' ? selectChecked : undefined}
+                      onTrailingCheckedChange={trailing === 'select' ? (v) => setSelectChecked(v === true) : undefined}
+                      attributes={[
+                        ...(showAttr1 ? [{ label: attr1Label }] : []),
+                        ...(showAttr2 ? [{ label: attr2Label }] : []),
+                        ...(showAttr3 ? [{ label: attr3Label }] : []),
+                      ].filter(Boolean) as { label: string }[]}
+                      divider={showDivider}
+                      alert={showAlert ? (
+                        <Alert variant="error">Something went wrong. Please try again.</Alert>
+                      ) : undefined}
+                      footerAction={
+                        !showFooterAction ? undefined :
+                        footerAction === 'button-secondary' ? (
+                          <Button variant="secondary" size="medium" isFullWidth>Action</Button>
+                        ) : footerAction === 'inline-primary-secondary' ? (
+                          <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
+                            <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>
+                            <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
+                          </div>
+                        ) : footerAction === 'inline-primary-tertiary' ? (
+                          <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
+                            <LinkButton size="medium">Alternate</LinkButton>
+                            <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
+                          </div>
+                        ) : footerAction === 'inline-secondary-tertiary' ? (
+                          <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
+                            <LinkButton size="medium">Alternate</LinkButton>
+                            <Button variant="secondary" size="medium" isFullWidth>Preferred</Button>
+                          </div>
+                        ) : footerAction === 'inline-tertiary-tertiary' ? (
+                          <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
+                            <LinkButton size="medium" UNSAFE_style={{ flex: 1, justifyContent: 'center' }}>Alternate</LinkButton>
+                            <LinkButton size="medium" UNSAFE_style={{ flex: 1, justifyContent: 'center' }}>Preferred</LinkButton>
+                          </div>
+                        ) : footerAction === 'stacked-primary-secondary' ? (
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
+                            <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
+                            <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>
+                          </div>
+                        ) : footerAction === 'stacked-primary-tertiary' ? (
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
+                            <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
+                            <LinkButton size="medium">Alternate</LinkButton>
+                          </div>
+                        ) : footerAction === 'stacked-secondary-tertiary' ? (
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
+                            <Button variant="secondary" size="medium" isFullWidth>Preferred</Button>
+                            <LinkButton size="medium">Alternate</LinkButton>
+                          </div>
+                        ) : footerAction === 'stacked-3options' ? (
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%', alignItems: 'center' }}>
+                            <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
+                              <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>
+                              <Button variant="primary" size="medium" isFullWidth>Preferred</Button>
+                            </div>
+                            <LinkButton size="medium">Alternate</LinkButton>
+                          </div>
+                        ) : undefined
+                      }
+                    />
+                  </List>
+                </div>
+              </div>
             </div>
           </div>
 
