@@ -668,7 +668,7 @@ export function ListActionExample() {
 
       {/* ── Component Props ──────────────────────────────────────────── */}
       <div style={{ ...CARD, display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        <h2 style={{ fontFamily: 'var(--ld-semantic-font-family-sans)', fontSize: '18px', fontWeight: 700, margin: 0, color: 'var(--ld-semantic-color-text)' }}>
+        <h2 className={styles.sectionTitle}>
           Component Props
         </h2>
 
