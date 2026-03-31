@@ -78,7 +78,7 @@ export function ListExample() {
   const [itemText, setItemText] = useState('Action description (optional).');
   const [showAttr1, setShowAttr1] = useState(true);
   const [attr1Label, setAttr1Label] = useState('Attribute 1');
-  const [showAttr2, setShowAttr2] = useState(false);
+  const [showAttr2, setShowAttr2] = useState(true);
   const [attr2Label, setAttr2Label] = useState('Attribute 2');
   const [showAttr3, setShowAttr3] = useState(false);
   const [attr3Label, setAttr3Label] = useState('Attribute 3');
