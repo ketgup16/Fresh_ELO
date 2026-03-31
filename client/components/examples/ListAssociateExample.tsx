@@ -629,9 +629,9 @@ export function ListAssociateExample() {
               title: 'Empty',
               desc: 'The trailing slot is omitted. Use when no trailing action or indicator is needed.',
               items: [
-                <ListItem key="1" title="Action title" text="Action description (optional)." trailing="empty" divider />,
-                <ListItem key="2" title="Action title" text="Action description (optional)." trailing="empty" divider />,
-                <ListItem key="3" title="Action title" text="Action description (optional)." trailing="empty" />,
+                <ListItem key="1" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="empty" divider />,
+                <ListItem key="2" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="empty" divider />,
+                <ListItem key="3" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="empty" />,
               ],
             },
             {
@@ -639,9 +639,9 @@ export function ListAssociateExample() {
               title: 'Icon',
               desc: 'A 24×24 ChevronRight from the icon library. Signals navigation or drill-down.',
               items: [
-                <ListItem key="1" title="Action title" text="Action description (optional)." trailing="icon" divider />,
-                <ListItem key="2" title="Action title" text="Action description (optional)." trailing="icon" divider />,
-                <ListItem key="3" title="Action title" text="Action description (optional)." trailing="icon" />,
+                <ListItem key="1" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="icon" divider />,
+                <ListItem key="2" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="icon" divider />,
+                <ListItem key="3" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="icon" />,
               ],
             },
             {
@@ -649,9 +649,9 @@ export function ListAssociateExample() {
               title: 'Link',
               desc: 'A LinkButton (small) for secondary in-row actions such as "Edit" or "Change".',
               items: [
-                <ListItem key="1" title="Action title" text="Action description (optional)." trailing="link" trailingLink={{ text: 'Action' }} divider />,
-                <ListItem key="2" title="Action title" text="Action description (optional)." trailing="link" trailingLink={{ text: 'Action' }} divider />,
-                <ListItem key="3" title="Action title" text="Action description (optional)." trailing="link" trailingLink={{ text: 'Action' }} />,
+                <ListItem key="1" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="link" trailingLink={{ text: 'Action' }} divider />,
+                <ListItem key="2" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="link" trailingLink={{ text: 'Action' }} divider />,
+                <ListItem key="3" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="link" trailingLink={{ text: 'Action' }} />,
               ],
             },
             {
@@ -659,9 +659,9 @@ export function ListAssociateExample() {
               title: 'Select',
               desc: 'A Checkbox component. Use for multi-select list patterns.',
               items: [
-                <ListItem key="1" title="Action title" text="Action description (optional)." trailing="select" divider />,
-                <ListItem key="2" title="Action title" text="Action description (optional)." trailing="select" divider />,
-                <ListItem key="3" title="Action title" text="Action description (optional)." trailing="select" />,
+                <ListItem key="1" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="select" divider />,
+                <ListItem key="2" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="select" divider />,
+                <ListItem key="3" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="select" />,
               ],
             },
           ]).map(({ prop, title, desc, items }, i, arr) => (
