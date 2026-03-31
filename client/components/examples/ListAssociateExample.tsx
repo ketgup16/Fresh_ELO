@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { AXAvatar } from '@/components/walmart/AXAvatar';
 import { AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { List, ListItem, ListItemLeading, ListItemTrailing, ListItemTagPreset, ListItemTagCustom } from '@/components/ui/List';
+import { List, ListItem, ListItemTrailing, ListItemTagPreset, ListItemTagCustom } from '@/components/ui/List';
 import { TagVariant, TagColor } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
@@ -72,7 +72,6 @@ const INPUT_STYLE: React.CSSProperties = {
 
 export function ListAssociateExample() {
   // ── Interactive demo state ──
-  const [leading, setLeading] = useState<ListItemLeading>('empty');
   const [trailing, setTrailing] = useState<ListItemTrailing>('icon');
   const [showEyebrow, setShowEyebrow] = useState(true);
   const [eyebrow, setEyebrow] = useState('Goal name');
@@ -129,15 +128,6 @@ export function ListAssociateExample() {
               <span style={{ fontSize: '11px', fontWeight: 700, fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                 Properties
               </span>
-            </div>
-
-            {/* Leading */}
-            <div style={PROP_ROW}>
-              <span style={PROP_LABEL}>Leading</span>
-              <select value={leading} onChange={e => setLeading(e.target.value as ListItemLeading)} style={SELECT_STYLE}>
-                <option value="empty">Empty</option>
-                <option value="custom">Custom</option>
-              </select>
             </div>
 
             {/* Trailing */}
@@ -501,8 +491,8 @@ export function ListAssociateExample() {
                       eyebrow={showEyebrow ? eyebrow : undefined}
                       title={title || 'Action title'}
                       text={showText ? itemText : undefined}
-                      leading={leading}
-                      leadingContent={leading === 'custom' ? <CustomSlotPlaceholder /> : undefined}
+                      leading="custom"
+                      leadingContent={<CustomSlotPlaceholder />}
                       trailing={trailing}
                       trailingLink={trailing === 'link' ? { text: linkLabel || 'Link' } : undefined}
                       trailingChecked={trailing === 'select' ? selectChecked : undefined}
