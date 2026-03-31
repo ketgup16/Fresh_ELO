@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { List, ListItem, ListItemLeading, ListItemTrailing } from '@/components/ui/List';
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
+import { Alert } from '@/components/ui/Alert';
 
 // ─── Shared style constants (matches AXAvatarButtonExample) ──────────────────
 
@@ -75,12 +76,13 @@ export function ListExample() {
   const [title, setTitle] = useState('Action title');
   const [showText, setShowText] = useState(true);
   const [itemText, setItemText] = useState('Action description (optional).');
-  const [showAttr1, setShowAttr1] = useState(false);
+  const [showAttr1, setShowAttr1] = useState(true);
   const [attr1Label, setAttr1Label] = useState('Attribute 1');
   const [showAttr2, setShowAttr2] = useState(false);
   const [attr2Label, setAttr2Label] = useState('Attribute 2');
   const [showAttr3, setShowAttr3] = useState(false);
   const [attr3Label, setAttr3Label] = useState('Attribute 3');
+  const [showAlert, setShowAlert] = useState(false);
   const [showDivider, setShowDivider] = useState(true);
   const [linkLabel, setLinkLabel] = useState('Link');
   const [selectChecked, setSelectChecked] = useState(false);
@@ -293,6 +295,20 @@ export function ListExample() {
               </div>
             )}
 
+            {/* Alert toggle */}
+            <div style={PROP_ROW}>
+              <span style={PROP_LABEL}>Alert</span>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={showAlert}
+                  onChange={e => setShowAlert(e.target.checked)}
+                  style={{ cursor: 'pointer' }}
+                />
+                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Show</span>
+              </label>
+            </div>
+
             {/* Button options toggle */}
             <div style={showFooterAction ? { ...PROP_ROW, borderBottom: 'none' } : PROP_ROW}>
               <span style={PROP_LABEL}>Button</span>
@@ -376,6 +392,9 @@ export function ListExample() {
                     ...(showAttr3 ? [{ label: attr3Label }] : []),
                   ].filter(Boolean) as { label: string }[]}
                   divider={showDivider}
+                  alert={showAlert ? (
+                    <Alert variant="error">Something went wrong. Please try again.</Alert>
+                  ) : undefined}
                   footerAction={
                     !showFooterAction ? undefined :
                     footerAction === 'button-secondary' ? (

@@ -61,6 +61,12 @@ export interface ListItemProps {
    */
   footerAction?: React.ReactNode;
 
+  /**
+   * Optional alert rendered above the footer action in the extras area.
+   * Accepts any ReactNode — use an Alert component.
+   */
+  alert?: React.ReactNode;
+
   className?: string;
 }
 
@@ -151,43 +157,51 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   (props, ref) => {
-    const { eyebrow, title, text, attributes, divider, footerAction, className } = props;
+    const { eyebrow, title, text, attributes, divider, footerAction, alert, className } = props;
     const classNames = [styles.listItem, className].filter(Boolean).join(' ');
+    const hasExtras = (attributes && attributes.length > 0) || !!alert || !!footerAction;
 
     return (
       <li ref={ref} className={classNames} role="listitem">
         <div className={styles.listItemRow}>
           {renderLeading(props)}
 
-          <div className={styles.listItemContent}>
-            {eyebrow && (
-              <p className={styles.listItemEyebrow}>{eyebrow}</p>
-            )}
-            <p className={styles.listItemTitle}>{title}</p>
-            {text && (
-              <p className={styles.listItemText}>{text}</p>
+          <div className={styles.listItemContentWrapper}>
+            <div className={styles.listItemContent}>
+              {eyebrow && (
+                <p className={styles.listItemEyebrow}>{eyebrow}</p>
+              )}
+              <p className={styles.listItemTitle}>{title}</p>
+              {text && (
+                <p className={styles.listItemText}>{text}</p>
+              )}
+            </div>
+
+            {hasExtras && (
+              <div className={styles.listItemExtras}>
+                {attributes && attributes.length > 0 && (
+                  <div className={styles.listItemAttributes}>
+                    {attributes.slice(0, 3).map((attr, i) => (
+                      <AXAttribute key={i} size="small" label={attr.label} icon={attr.icon} />
+                    ))}
+                  </div>
+                )}
+                {alert && (
+                  <div className={styles.listItemAlert}>
+                    {alert}
+                  </div>
+                )}
+                {footerAction && (
+                  <div className={styles.listItemFooterAction}>
+                    {footerAction}
+                  </div>
+                )}
+              </div>
             )}
           </div>
 
           {renderTrailing(props)}
         </div>
-
-        {((attributes && attributes.length > 0) || footerAction) && (
-          <div className={styles.listItemExtras}>
-            {attributes && attributes.length > 0 && (
-              <div className={styles.listItemAttributes}>
-                {attributes.slice(0, 3).map((attr, i) => (
-                  <AXAttribute key={i} size="small" label={attr.label} icon={attr.icon} />
-                ))}
-              </div>
-            )}
-            {footerAction && (
-              <div className={styles.listItemFooterAction}>
-                {footerAction}
-              </div>
-            )}
-          </div>
-        )}
         {divider && (
           <Divider UNSAFE_style={{ marginTop: 'var(--ld-primitive-scale-space-200, 16px)' }} />
         )}
