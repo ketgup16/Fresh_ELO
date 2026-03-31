@@ -159,51 +159,52 @@ export function GlobalMeasureTool() {
       textColor: computed.color,
     });
 
-    // ── Gap overlays: detect flex/grid gap on parent, show between siblings ──
-    const parent = el.parentElement;
-    const newGapRects: GapRect[] = [];
-    if (parent) {
-      const parentComputed = getComputedStyle(parent);
-      const parentDisplay = parentComputed.display;
-      if (parentDisplay === 'flex' || parentDisplay === 'inline-flex' ||
-          parentDisplay === 'grid' || parentDisplay === 'inline-grid') {
-        const colGap = parseFloat(parentComputed.columnGap) || 0;
-        const rowGap = parseFloat(parentComputed.rowGap) || 0;
-        if (colGap > 0 || rowGap > 0) {
-          const children = Array.from(parent.children).filter(
-            c => !(c as HTMLElement).closest('[data-measure-ignore]')
-          ) as HTMLElement[];
-          const flexDir = parentComputed.flexDirection;
-          const isRow = flexDir === 'row' || flexDir === 'row-reverse' ||
-                        parentDisplay === 'grid' || parentDisplay === 'inline-grid';
-          for (let i = 0; i < children.length - 1; i++) {
-            const a = children[i].getBoundingClientRect();
-            const b = children[i + 1].getBoundingClientRect();
-            if (isRow && colGap > 0) {
-              const gapW = b.left - a.right;
-              if (gapW > 0) {
-                newGapRects.push({
-                  top: Math.min(a.top, b.top),
-                  left: a.right,
-                  width: gapW,
-                  height: Math.max(a.bottom, b.bottom) - Math.min(a.top, b.top),
-                });
-              }
-            } else if (!isRow && rowGap > 0) {
-              const gapH = b.top - a.bottom;
-              if (gapH > 0) {
-                newGapRects.push({
-                  top: a.bottom,
-                  left: Math.min(a.left, b.left),
-                  width: Math.max(a.right, b.right) - Math.min(a.left, b.left),
-                  height: gapH,
-                });
-              }
-            }
+    // ── Gap overlays: show gaps between children of a flex/grid container ──
+    function collectGapRects(container: HTMLElement, rects: GapRect[]) {
+      const cs = getComputedStyle(container);
+      const disp = cs.display;
+      if (!['flex', 'inline-flex', 'grid', 'inline-grid'].includes(disp)) return;
+      const colGap = parseFloat(cs.columnGap) || 0;
+      const rowGap = parseFloat(cs.rowGap) || 0;
+      if (colGap === 0 && rowGap === 0) return;
+      const kids = Array.from(container.children).filter(
+        c => !(c as HTMLElement).closest('[data-measure-ignore]')
+      ) as HTMLElement[];
+      const flexDir = cs.flexDirection;
+      const isRow = flexDir === 'row' || flexDir === 'row-reverse' ||
+                    disp === 'grid' || disp === 'inline-grid';
+      for (let i = 0; i < kids.length - 1; i++) {
+        const a = kids[i].getBoundingClientRect();
+        const b = kids[i + 1].getBoundingClientRect();
+        if (isRow && colGap > 0) {
+          const gapW = b.left - a.right;
+          if (gapW > 0) {
+            rects.push({
+              top: Math.min(a.top, b.top),
+              left: a.right,
+              width: gapW,
+              height: Math.max(a.bottom, b.bottom) - Math.min(a.top, b.top),
+            });
+          }
+        } else if (!isRow && rowGap > 0) {
+          const gapH = b.top - a.bottom;
+          if (gapH > 0) {
+            rects.push({
+              top: a.bottom,
+              left: Math.min(a.left, b.left),
+              width: Math.max(a.right, b.right) - Math.min(a.left, b.left),
+              height: gapH,
+            });
           }
         }
       }
     }
+
+    const newGapRects: GapRect[] = [];
+    // 1. Gaps between the hovered element's own children (element is the container)
+    collectGapRects(el, newGapRects);
+    // 2. Gaps between siblings in the parent (element is a child of a gap container)
+    if (el.parentElement) collectGapRects(el.parentElement, newGapRects);
     setGapRects(newGapRects);
   }, []);
 
