@@ -147,6 +147,7 @@
   align-items: flex-start;
   align-self: flex-start;
   flex-shrink: 0;
+  margin-left: var(--ld-primitive-scale-space-100, 8px);
 }
 
 /* Trailing Icon inner (medium chevron) */
@@ -164,6 +165,7 @@
   align-self: flex-start;
   flex-shrink: 0;
   white-space: nowrap;
+  margin-left: var(--ld-primitive-scale-space-100, 8px);
 }
 
 /* Footer action — full-width button or button group */
@@ -178,4 +180,5 @@
   align-items: flex-start;
   align-self: flex-start;
   flex-shrink: 0;
+  margin-left: var(--ld-primitive-scale-space-100, 8px);
 }
