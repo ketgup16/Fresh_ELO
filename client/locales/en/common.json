@@ -136,7 +136,7 @@
     "listCategory": "List",
     "navListAction": "List Action",
     "descListAction": "Action lists with trailing content, attributes, tags and footer actions",
-    "navListAssociate": "List / Associate",
+    "navListAssociate": "List Associate",
     "descListAssociate": "Associate lists with leading content, trailing, attributes, tags and footer actions",
     "navMagicBox": "Magic Box",
     "navMenu": "Menu",
