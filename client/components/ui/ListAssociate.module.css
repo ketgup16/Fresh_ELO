@@ -110,6 +110,23 @@
   margin-top: var(--ld-primitive-scale-space-100, 8px);
 }
 
+/* Monitoring slot — ProgressIndicator with a "Progress status" label above */
+.listItemMonitoring {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  align-self: stretch;
+}
+
+.listItemMonitoringLabel {
+  margin: 0;
+  color: var(--ld-semantic-color-text, #2E2F32);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 1rem);
+  font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
+}
+
 /* Alert slot */
 .listItemAlert {
   align-self: stretch;

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styles from './ListAssociate.module.css';
 import { AXAttribute } from '@/components/walmart/AXAttribute';
+import { ProgressIndicator } from './ProgressIndicator';
 import { Divider } from './Divider';
 import { ChevronRight } from '@/components/icons/ChevronRight';
 import { LinkButton } from './LinkButton';
@@ -75,6 +76,12 @@ export interface ListItemProps {
    * Accepts any ReactNode — use a Button, or a button-group wrapper.
    */
   footerAction?: React.ReactNode;
+
+  /**
+   * Optional monitoring section rendered between the attributes and the alert.
+   * Pass a ProgressIndicator element — the container adds a "Progress status" label above it.
+   */
+  monitoring?: React.ReactNode;
 
   /**
    * Optional alert rendered above the footer action in the extras area.
@@ -179,9 +186,9 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   (props, ref) => {
-    const { eyebrow, title, text, attributes, divider, footerAction, alert, tag, className } = props;
+    const { eyebrow, title, text, attributes, divider, footerAction, alert, monitoring, tag, className } = props;
     const classNames = [styles.listItem, className].filter(Boolean).join(' ');
-    const hasExtras = (attributes && attributes.length > 0) || !!alert || !!footerAction;
+    const hasExtras = (attributes && attributes.length > 0) || !!monitoring || !!alert || !!footerAction;
 
     return (
       <li ref={ref} className={classNames} role="listitem">
@@ -225,6 +232,12 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
                     {attributes.slice(0, 3).map((attr, i) => (
                       <AXAttribute key={i} size="small" label={attr.label} icon={attr.icon} />
                     ))}
+                  </div>
+                )}
+                {monitoring && (
+                  <div className={styles.listItemMonitoring}>
+                    <p className={styles.listItemMonitoringLabel}>Progress status</p>
+                    {monitoring}
                   </div>
                 )}
                 {alert && (

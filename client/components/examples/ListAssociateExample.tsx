@@ -7,6 +7,7 @@ import { TagVariant, TagColor } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Alert } from '@/components/ui/Alert';
+import { ProgressIndicator } from '@/components/ui/ProgressIndicator';
 import styles from './ExamplePage.module.css';
 
 // ─── Shared style constants (matches AXAvatarButtonExample) ──────────────────
@@ -83,6 +84,9 @@ export function ListAssociateExample() {
   const [tagCustomVariant, setTagCustomVariant] = useState<TagVariant>('secondary');
   const [tagCustomColor, setTagCustomColor] = useState<TagColor>('brand');
   const [tagCustomLabel, setTagCustomLabel] = useState('Custom');
+  const [showMonitoring, setShowMonitoring] = useState(false);
+  const [monitoringValue, setMonitoringValue] = useState(65);
+  const [monitoringVariant, setMonitoringVariant] = useState<'info' | 'success' | 'warning' | 'error'>('info');
   const [showFooterAction, setShowFooterAction] = useState(true);
   type FooterActionType =
     | 'button-primary'
@@ -341,6 +345,44 @@ export function ListAssociateExample() {
               </div>
             )}
 
+            {/* Monitoring toggle */}
+            <div style={showMonitoring ? { ...PROP_ROW, borderBottom: 'none' } : PROP_ROW}>
+              <span style={PROP_LABEL}>Monitoring</span>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={showMonitoring}
+                  onChange={e => setShowMonitoring(e.target.checked)}
+                  style={{ cursor: 'pointer' }}
+                />
+                <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Show</span>
+              </label>
+            </div>
+            {showMonitoring && (
+              <>
+                <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
+                  <span style={PROP_LABEL}>Progress value — {monitoringValue}</span>
+                  <input
+                    type="range"
+                    min={0}
+                    max={100}
+                    value={monitoringValue}
+                    onChange={e => setMonitoringValue(Number(e.target.value))}
+                    style={{ width: '100%', cursor: 'pointer', accentColor: 'var(--ld-semantic-color-action-fill-primary, #0071DC)' }}
+                  />
+                </div>
+                <div style={PROP_ROW}>
+                  <span style={PROP_LABEL}>Variant</span>
+                  <select value={monitoringVariant} onChange={e => setMonitoringVariant(e.target.value as typeof monitoringVariant)} style={SELECT_STYLE}>
+                    <option value="info">Info</option>
+                    <option value="success">Success</option>
+                    <option value="warning">Warning</option>
+                    <option value="error">Error</option>
+                  </select>
+                </div>
+              </>
+            )}
+
             {/* Alert toggle */}
             <div style={PROP_ROW}>
               <span style={PROP_LABEL}>Alert</span>
@@ -500,6 +542,13 @@ export function ListAssociateExample() {
                         : undefined
                       }
                       divider={showDivider}
+                      monitoring={showMonitoring ? (
+                        <ProgressIndicator
+                          value={monitoringValue}
+                          variant={monitoringVariant}
+                          valueLabel={`${monitoringValue}%`}
+                        />
+                      ) : undefined}
                       alert={showAlert ? (
                         <Alert variant="error">Something went wrong. Please try again.</Alert>
                       ) : undefined}
