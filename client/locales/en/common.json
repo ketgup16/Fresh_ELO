@@ -377,7 +377,7 @@
     "progressWhenNotToUse1": "For indeterminate loading states (use Spinner instead)",
     "progressWhenNotToUse2": "For stepper navigation (use Stepper component instead)",
     "progressWhenNotToUse3": "As a decorative element without meaningful progress data",
-    "progressVariantPrimary": "Default variant for general progress indication",
+    "progressVariantInfo": "Default variant for general progress indication",
     "progressVariantSuccess": "Use when progress indicates successful completion or positive state",
     "progressVariantWarning": "Use when progress is in a cautionary state (e.g., storage almost full)",
     "progressVariantError": "Use when progress indicates a critical or error state",

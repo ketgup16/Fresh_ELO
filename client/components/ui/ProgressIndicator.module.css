@@ -39,8 +39,8 @@
 
 /* Color Variants */
 
-/* Primary - Walmart Blue */
-.fill-primary {
+/* Info - Walmart Blue */
+.fill-info {
   background-color: var(--ld-semantic-color-action-fill-primary, #0071DC);
 }
 

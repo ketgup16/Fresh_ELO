@@ -146,8 +146,7 @@ export default function ComponentTester() {
 
   // ProgressIndicator props
   const [progressValue, setProgressValue] = React.useState(65);
-  const [progressVariant, setProgressVariant] = React.useState<'primary' | 'success' | 'warning' | 'error'>('primary');
-  const [progressShowValue, setProgressShowValue] = React.useState(true);
+  const [progressVariant, setProgressVariant] = React.useState<'info' | 'success' | 'warning' | 'error'>('info');
   const [progressLabel, setProgressLabel] = React.useState('Progress');
 
   // AXFlag props
@@ -354,7 +353,6 @@ export default function ComponentTester() {
             <ProgressIndicator
               value={progressValue}
               variant={progressVariant}
-              showValue={progressShowValue}
               label={progressLabel}
             />
           </div>
@@ -1022,7 +1020,7 @@ export default function ComponentTester() {
                 {t('componentLibrary.variant')}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {(['primary', 'success', 'warning', 'error'] as const).map((variant) => (
+                {(['info', 'success', 'warning', 'error'] as const).map((variant) => (
                   <Chip
                     key={variant}
                     size="small"
@@ -1050,13 +1048,6 @@ export default function ComponentTester() {
                 size="small"
                 value={progressLabel}
                 onChange={(e) => setProgressLabel(e.target.value)}
-              />
-            </div>
-            <div>
-              <Checkbox
-                checked={progressShowValue}
-                onCheckedChange={(checked) => setProgressShowValue(checked as boolean)}
-                label="Show percentage"
               />
             </div>
           </div>
@@ -1520,7 +1511,7 @@ export default function ComponentTester() {
               {`<ProgressIndicator
   value={${progressValue}}
   variant="${progressVariant}"
-  label="${progressLabel}"${progressShowValue ? '\n  showValue' : ''}
+  label="${progressLabel}"
 />`}
             </pre>
           )}

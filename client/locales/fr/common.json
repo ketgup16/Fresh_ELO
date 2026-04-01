@@ -345,7 +345,7 @@
     "progressWhenNotToUse1": "Pour les états de chargement indéterminés (utiliser Spinner à la place)",
     "progressWhenNotToUse2": "Pour la navigation par étapes (utiliser le composant Stepper à la place)",
     "progressWhenNotToUse3": "Comme élément décoratif sans données de progression significatives",
-    "progressVariantPrimary": "Variante par défaut pour l'indication de progression générale",
+    "progressVariantInfo": "Variante par défaut pour l'indication de progression générale",
     "progressVariantSuccess": "Utiliser quand la progression indique un achèvement réussi ou un état positif",
     "progressVariantWarning": "Utiliser quand la progression est dans un état de prudence (ex., stockage presque plein)",
     "progressVariantError": "Utiliser quand la progression indique un état critique ou d'erreur",
