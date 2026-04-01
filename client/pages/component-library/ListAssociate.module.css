@@ -1,0 +1,9 @@
+/* Scope subtitle (list item text) to body-small-default tokens for this page only.
+   ListItem renders its `text` prop using --ld-semantic-font-body-medium-* tokens;
+   redefining them here overrides only within this wrapper. */
+.exampleWrapper {
+  --ld-semantic-font-body-medium-family: var(--ld-semantic-font-body-small-family);
+  --ld-semantic-font-body-medium-size: var(--ld-semantic-font-body-small-size, 14px);
+  --ld-semantic-font-body-medium-weight-default: var(--ld-semantic-font-body-small-weight-default, 400);
+  --ld-semantic-font-body-medium-lineheight: var(--ld-semantic-font-body-small-lineheight, 20px);
+}
