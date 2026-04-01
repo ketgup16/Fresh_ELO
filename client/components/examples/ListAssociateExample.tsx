@@ -69,7 +69,7 @@ export function ListAssociateExample() {
   const [itemText, setItemText] = useState('Role or position');
   const [showAttr1, setShowAttr1] = useState(true);
   const [attr1Label, setAttr1Label] = useState('Attribute 1');
-  const [showAttr2, setShowAttr2] = useState(true);
+  const [showAttr2, setShowAttr2] = useState(false);
   const [attr2Label, setAttr2Label] = useState('Attribute 2');
   const [showAttr3, setShowAttr3] = useState(false);
   const [attr3Label, setAttr3Label] = useState('Attribute 3');
@@ -85,6 +85,7 @@ export function ListAssociateExample() {
   const [tagCustomLabel, setTagCustomLabel] = useState('Custom');
   const [showFooterAction, setShowFooterAction] = useState(true);
   type FooterActionType =
+    | 'button-primary'
     | 'button-secondary'
     | 'inline-primary-secondary'
     | 'inline-primary-tertiary'
@@ -94,7 +95,7 @@ export function ListAssociateExample() {
     | 'stacked-primary-tertiary'
     | 'stacked-secondary-tertiary'
     | 'stacked-3options';
-  const [footerAction, setFooterAction] = useState<FooterActionType>('button-secondary');
+  const [footerAction, setFooterAction] = useState<FooterActionType>('button-primary');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
@@ -373,6 +374,7 @@ export function ListAssociateExample() {
               <div style={PROP_ROW}>
                 <span style={PROP_LABEL}>Button type</span>
                 <select value={footerAction} onChange={e => setFooterAction(e.target.value as FooterActionType)} style={SELECT_STYLE}>
+                  <option value="button-primary">Primary button</option>
                   <option value="button-secondary">Secondary button</option>
                   <optgroup label="Inline (full width)">
                     <option value="inline-primary-secondary">Primary / Secondary</option>
@@ -503,7 +505,9 @@ export function ListAssociateExample() {
                       ) : undefined}
                       footerAction={
                         !showFooterAction ? undefined :
-                        footerAction === 'button-secondary' ? (
+                        footerAction === 'button-primary' ? (
+                          <Button variant="primary" size="medium" isFullWidth>Action</Button>
+                        ) : footerAction === 'button-secondary' ? (
                           <Button variant="secondary" size="medium" isFullWidth>Action</Button>
                         ) : footerAction === 'inline-primary-secondary' ? (
                           <div style={{ display: 'flex', gap: 'var(--ld-primitive-scale-space-100, 8px)', width: '100%' }}>
