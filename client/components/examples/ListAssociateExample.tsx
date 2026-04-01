@@ -85,6 +85,7 @@ export function ListAssociateExample() {
   const [tagCustomColor, setTagCustomColor] = useState<TagColor>('brand');
   const [tagCustomLabel, setTagCustomLabel] = useState('Custom');
   const [showMonitoring, setShowMonitoring] = useState(false);
+  const [monitoringLabel, setMonitoringLabel] = useState('Progress status');
   const [monitoringValue, setMonitoringValue] = useState(65);
   const [monitoringVariant, setMonitoringVariant] = useState<'info' | 'success' | 'warning' | 'error'>('info');
   const [showFooterAction, setShowFooterAction] = useState(true);
@@ -361,6 +362,15 @@ export function ListAssociateExample() {
             {showMonitoring && (
               <>
                 <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
+                  <span style={PROP_LABEL}>Progress label</span>
+                  <input
+                    type="text"
+                    value={monitoringLabel}
+                    onChange={e => setMonitoringLabel(e.target.value)}
+                    style={INPUT_STYLE}
+                  />
+                </div>
+                <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
                   <span style={PROP_LABEL}>Progress value — {monitoringValue}</span>
                   <input
                     type="range"
@@ -549,6 +559,7 @@ export function ListAssociateExample() {
                           valueLabel={`${monitoringValue}%`}
                         />
                       ) : undefined}
+                      monitoringLabel={monitoringLabel}
                       alert={showAlert ? (
                         <Alert variant="error">Something went wrong. Please try again.</Alert>
                       ) : undefined}

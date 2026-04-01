@@ -79,9 +79,15 @@ export interface ListItemProps {
 
   /**
    * Optional monitoring section rendered between the attributes and the alert.
-   * Pass a ProgressIndicator element — the container adds a "Progress status" label above it.
+   * Pass a ProgressIndicator element — the container adds a label above it.
    */
   monitoring?: React.ReactNode;
+
+  /**
+   * Label text displayed above the monitoring content.
+   * @default 'Progress status'
+   */
+  monitoringLabel?: string;
 
   /**
    * Optional alert rendered above the footer action in the extras area.
@@ -186,7 +192,7 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   (props, ref) => {
-    const { eyebrow, title, text, attributes, divider, footerAction, alert, monitoring, tag, className } = props;
+    const { eyebrow, title, text, attributes, divider, footerAction, alert, monitoring, monitoringLabel = 'Progress status', tag, className } = props;
     const classNames = [styles.listItem, className].filter(Boolean).join(' ');
     const hasExtras = (attributes && attributes.length > 0) || !!monitoring || !!alert || !!footerAction;
 
@@ -236,7 +242,7 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
                 )}
                 {monitoring && (
                   <div className={styles.listItemMonitoring}>
-                    <p className={styles.listItemMonitoringLabel}>Progress status</p>
+                    <p className={styles.listItemMonitoringLabel}>{monitoringLabel}</p>
                     {monitoring}
                   </div>
                 )}
