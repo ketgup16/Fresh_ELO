@@ -197,13 +197,13 @@ export default function AXAvatarExample() {
           <div style={{ flex: 1 }}>
             <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With image</span>
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-              <AXAvatar indicator={indicator} clockState={clockState}>
+              <AXAvatar indicator="none">
                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" /><AvatarFallback>CN</AvatarFallback>
               </AXAvatar>
-              <AXAvatar indicator={indicator} clockState={clockState}>
+              <AXAvatar indicator="none">
                 <AvatarImage src="https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg" alt="Person" /><AvatarFallback>VC</AvatarFallback>
               </AXAvatar>
-              <AXAvatar indicator={indicator} clockState={clockState}>
+              <AXAvatar indicator="none">
                 <AvatarImage src="https://github.com/react.png" alt="@react" /><AvatarFallback>RC</AvatarFallback>
               </AXAvatar>
             </div>
@@ -214,9 +214,9 @@ export default function AXAvatarExample() {
           <div style={{ flex: 1 }}>
             <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With live text initials</span>
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-              <AXAvatar indicator={indicator} clockState={clockState}><AvatarFallback>AB</AvatarFallback></AXAvatar>
-              <AXAvatar indicator={indicator} clockState={clockState}><AvatarFallback>CD</AvatarFallback></AXAvatar>
-              <AXAvatar indicator={indicator} clockState={clockState}><AvatarFallback>EF</AvatarFallback></AXAvatar>
+              <AXAvatar indicator="none"><AvatarFallback>AB</AvatarFallback></AXAvatar>
+              <AXAvatar indicator="none"><AvatarFallback>CD</AvatarFallback></AXAvatar>
+              <AXAvatar indicator="none"><AvatarFallback>EF</AvatarFallback></AXAvatar>
             </div>
           </div>
 
@@ -225,9 +225,9 @@ export default function AXAvatarExample() {
           <div style={{ flex: 1 }}>
             <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle, #74767C)', display: 'block', marginBottom: '12px' }}>With icon</span>
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-              <AXAvatar indicator={indicator} clockState={clockState}><AvatarFallback><User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" /></AvatarFallback></AXAvatar>
-              <AXAvatar indicator={indicator} clockState={clockState}><AvatarFallback><User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" /></AvatarFallback></AXAvatar>
-              <AXAvatar indicator={indicator} clockState={clockState}><AvatarFallback><User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" /></AvatarFallback></AXAvatar>
+              <AXAvatar indicator="none"><AvatarFallback><User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" /></AvatarFallback></AXAvatar>
+              <AXAvatar indicator="none"><AvatarFallback><User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" /></AvatarFallback></AXAvatar>
+              <AXAvatar indicator="none"><AvatarFallback><User width={24} height={24} color="var(--ld-semantic-color-text-on-fill-brand-subtle, #114AB6)" /></AvatarFallback></AXAvatar>
             </div>
           </div>
 
