@@ -64,9 +64,9 @@ export function ListAssociateExample() {
   const [trailing, setTrailing] = useState<ListItemTrailing>('icon');
   const [showEyebrow, setShowEyebrow] = useState(true);
   const [eyebrow, setEyebrow] = useState('Goal name');
-  const [title, setTitle] = useState('Action title');
+  const [title, setTitle] = useState('Associate Name');
   const [showText, setShowText] = useState(true);
-  const [itemText, setItemText] = useState('Action description (optional).');
+  const [itemText, setItemText] = useState('Role or position');
   const [showAttr1, setShowAttr1] = useState(true);
   const [attr1Label, setAttr1Label] = useState('Attribute 1');
   const [showAttr2, setShowAttr2] = useState(true);
@@ -255,7 +255,7 @@ export function ListAssociateExample() {
             {/* Description text — only when showText */}
             {showText && (
               <div style={PROP_ROW}>
-                <span style={PROP_LABEL}>Action description text</span>
+                <span style={PROP_LABEL}>Subtitle</span>
                 <input
                   type="text"
                   value={itemText}
