@@ -1,15 +1,8 @@
 import { useState, useRef, useCallback } from "react";
 import { useCart } from "@/contexts/CartContext";
-import { useLayoutSettings } from "@/contexts/LayoutSettingsContext";
-import { NewArrivalsCarousel } from "@/components/walmart/NewArrivalsCarousel";
-import { JumpRightBackIn } from "@/components/walmart/JumpRightBackIn";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
-import { OrderStatusCard } from "@/components/walmart/OrderStatusCard";
-import { ActiveCurbsideCard } from "@/components/walmart/ActiveCurbsideCard";
-import { PromotionalItemTile } from "@/components/walmart/PromotionalItemTile";
-import { ContinueShopping } from "@/components/walmart/ContinueShopping";
-import { FlashDealsCarousel } from "@/components/walmart/FlashDealsCarousel";
 import { PRODUCT_IMAGES } from "@/components/walmart/productImages";
+import { PromotionalItemTile } from "@/components/walmart/PromotionalItemTile";
 import { ReplenishmentBasket } from "@/components/walmart/ReplenishmentBasket";
 
 interface CarouselItem {
@@ -49,7 +42,6 @@ const VACUUM_ITEMS: CarouselItem[] = [
 
 export default function Index() {
   const { setItemQuantity } = useCart();
-  const { platform } = useLayoutSettings();
   const [basketVisible, setBasketVisible] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -91,28 +83,6 @@ export default function Index() {
   return (
     <ResponsiveLayout maxWidth="full" showHomeExtras>
       <div className="pt-6 pb-32 space-y-4">
-
-        {/* Active Curbside Order — countdown + express upgrade */}
-        <ActiveCurbsideCard onFlowComplete={() => setBasketVisible(true)} />
-
-        {/* Order Status Card — mobile only, dismissible, hidden on iOS */}
-        {platform !== 'ios' && (
-          <OrderStatusCard
-            image="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F5f02b529221349099118d275e7e1d748"
-            statusLine="Your order is on the way"
-            deliveryLine="Arrives tomorrow by 8pm"
-            trackHref="/walmart/purchase-history"
-          />
-        )}
-
-        {/* New Arrivals Carousel */}
-        <NewArrivalsCarousel />
-
-        {/* Jump right back in — recently viewed products */}
-        <JumpRightBackIn />
-
-        {/* Flash Deals — horizontal scroll of deal cards */}
-        <FlashDealsCarousel />
 
         {/* Promo Carousel Container */}
         <div
@@ -293,9 +263,6 @@ export default function Index() {
           </div>
 
         </div>
-
-        {/* Continue Shopping section */}
-        <ContinueShopping />
 
       </div>
 

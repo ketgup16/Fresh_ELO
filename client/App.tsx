@@ -25,7 +25,6 @@ const WalmartSearchResults = React.lazy(() => import("./pages/walmart/SearchResu
 const WalmartDressesSearch = React.lazy(() => import("./pages/walmart/DressesSearchResults"));
 const WalmartCerealSearch = React.lazy(() => import("./pages/walmart/CerealSearchResults"));
 const WalmartProductDetail = React.lazy(() => import("./pages/walmart/ProductDetail"));
-const WalmartPurchaseHistory = React.lazy(() => import("./pages/walmart/PurchaseHistory"));
 const WalmartPharmacyDelivery = React.lazy(() => import("./pages/walmart/PharmacyDelivery"));
 const WalmartReplenishOnboarding = React.lazy(() => import("./pages/walmart/replenish-onboarding"));
 
@@ -105,7 +104,6 @@ const TextAreaPage = React.lazy(() => import("./pages/component-library/TextArea
 const TextFieldsPage = React.lazy(() => import("./pages/component-library/TextFields"));
 const ThemesPage = React.lazy(() => import("./pages/component-library/Themes"));
 const TogglePage = React.lazy(() => import("./pages/component-library/Toggle"));
-const OrderCardPatternsPage = React.lazy(() => import("./pages/component-library/OrderCardPatterns"));
 const BasicBannerPage = React.lazy(() => import("./pages/component-library/BasicBanner"));
 const DesignTokensPage = React.lazy(() => import("./pages/component-library/DesignTokens"));
 const ThemeEditorPage = React.lazy(() => import("./pages/component-library/ThemeEditorPage"));
@@ -116,9 +114,6 @@ const PageTemplatesPage = React.lazy(() => import("./pages/component-library/Pag
 const SearchResultsPatternPage = React.lazy(() => import("./pages/component-library/SearchResults"));
 const AXButtonGroupsPage = React.lazy(() => import("./pages/component-library/AXButtonGroups"));
 const ItemTilePage = React.lazy(() => import("./pages/component-library/ItemTile"));
-const HomePageWidgetsPage = React.lazy(() => import("./pages/component-library/HomePageWidgets"));
-const PromoBannersPage = React.lazy(() => import("./pages/component-library/PromoBanners"));
-const DropdownsPage = React.lazy(() => import("./pages/component-library/Dropdowns"));
 const AXFloatingButtonPage = React.lazy(() => import("./pages/component-library/AXFloatingButton"));
 const AXHeartViewPage = React.lazy(() => import("./pages/component-library/AXHeartView"));
 const AXRatingPage = React.lazy(() => import("./pages/component-library/AXRating"));
@@ -127,11 +122,7 @@ const AXSearchFieldPage = React.lazy(() => import("./pages/component-library/AXS
 const AXSignatureCapturePage = React.lazy(() => import("./pages/component-library/AXSignatureCapture"));
 const AXRichMediaSheetPage = React.lazy(() => import("./pages/component-library/AXRichMediaSheet"));
 const AXRichSnackbarPage = React.lazy(() => import("./pages/component-library/AXRichSnackbar"));
-const AXTimerViewPage = React.lazy(() => import("./pages/component-library/AXTimerView"));
-const AXQueuePage = React.lazy(() => import("./pages/component-library/AXQueue"));
 const AXUploadImagePage = React.lazy(() => import("./pages/component-library/AXUploadImage"));
-const CarouselsAndGridsPage = React.lazy(() => import("./pages/component-library/CarouselsAndGrids"));
-const OrderStatusCardsPage = React.lazy(() => import("./pages/component-library/OrderStatusCards"));
 const ReplenishmentBasketPage = React.lazy(() => import("./pages/component-library/ReplenishmentBasket"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
 const FoundationsPage = React.lazy(() => import("./pages/component-library/Foundations"));
@@ -266,7 +257,6 @@ const App = () => (
                 <Route path="tabs" element={<TabsPage />} />
                 <Route path="tags" element={<TagsPage />} />
                 <Route path="toggle" element={<TogglePage />} />
-                <Route path="order-card-patterns" element={<OrderCardPatternsPage />} />
                 <Route path="basic-banner" element={<BasicBannerPage />} />
                 <Route path="theme-editor" element={<ThemeEditorPage />} />
                 <Route path="project-settings" element={<ProjectSettingsPage />} />
@@ -277,9 +267,6 @@ const App = () => (
                 <Route path="search-results" element={<SearchResultsPatternPage />} />
                 <Route path="item-tile" element={<ItemTilePage />} />
                 <Route path="product-cards" element={<Navigate to="/component-library/item-tile" replace />} />
-                <Route path="home-page-widgets" element={<HomePageWidgetsPage />} />
-                <Route path="promo-banners" element={<PromoBannersPage />} />
-                <Route path="dropdowns" element={<DropdownsPage />} />
                 <Route path="ax-button-groups" element={<AXButtonGroupsPage />} />
                 <Route path="wcp-button-groups" element={<Navigate to="/component-library/ax-button-groups" replace />} />
                 <Route path="ax-floating-button" element={<AXFloatingButtonPage />} />
@@ -298,18 +285,8 @@ const App = () => (
                 <Route path="wcp-rich-media-sheet" element={<Navigate to="/component-library/ax-rich-media-sheet" replace />} />
                 <Route path="ax-rich-snackbar" element={<AXRichSnackbarPage />} />
                 <Route path="wcp-rich-snackbar" element={<Navigate to="/component-library/ax-rich-snackbar" replace />} />
-                <Route path="ax-timer-view" element={<AXTimerViewPage />} />
-                <Route path="wcp-timer-view" element={<Navigate to="/component-library/ax-timer-view" replace />} />
-                <Route path="ax-queue-banner" element={<Navigate to="/component-library/ax-queue" replace />} />
-                <Route path="ax-queue-card" element={<Navigate to="/component-library/ax-queue" replace />} />
-                <Route path="ax-queue" element={<AXQueuePage />} />
-                <Route path="wcp-queue-banner" element={<Navigate to="/component-library/ax-queue" replace />} />
-                <Route path="wcp-queue-card" element={<Navigate to="/component-library/ax-queue" replace />} />
-                <Route path="wcp-queue" element={<Navigate to="/component-library/ax-queue" replace />} />
                 <Route path="ax-upload-image" element={<AXUploadImagePage />} />
                 <Route path="wcp-upload-image" element={<Navigate to="/component-library/ax-upload-image" replace />} />
-                <Route path="carousels-grids" element={<CarouselsAndGridsPage />} />
-                <Route path="order-status-cards" element={<OrderStatusCardsPage />} />
                 <Route path="replenishment-basket" element={<ReplenishmentBasketPage />} />
               </Route>
 
@@ -320,7 +297,6 @@ const App = () => (
               <Route path="/walmart/search/dresses" element={<WalmartDressesSearch />} />
               <Route path="/walmart/search/cereal" element={<WalmartCerealSearch />} />
               <Route path="/walmart/product/:productId" element={<WalmartProductDetail />} />
-              <Route path="/walmart/purchase-history" element={<WalmartPurchaseHistory />} />
               <Route path="/walmart/pharmacy-delivery" element={<WalmartPharmacyDelivery />} />
               <Route path="/walmart/replenish-onboarding" element={<WalmartReplenishOnboarding />} />
 

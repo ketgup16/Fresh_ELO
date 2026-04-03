@@ -124,8 +124,6 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navAXFloatingButton', descKey: 'componentLibrary.descAXFloatingButton', path: '/component-library/ax-floating-button', icon: 'Circle', section: 'ld' },
   { titleKey: 'componentLibrary.navAXHeartView', descKey: 'componentLibrary.descAXHeartView', path: '/component-library/ax-heart-view', icon: 'Star', section: 'ld' },
   { titleKey: 'componentLibrary.navAXRichSnackbar', descKey: 'componentLibrary.descAXRichSnackbar', path: '/component-library/ax-rich-snackbar', icon: 'Chat', section: 'ld' },
-  { titleKey: 'componentLibrary.navAXTimerView', descKey: 'componentLibrary.descAXTimerView', path: '/component-library/ax-timer-view', icon: 'Refresh', section: 'ld' },
-  { titleKey: 'componentLibrary.navAXQueueBanner', descKey: 'componentLibrary.descAXQueueBanner', path: '/component-library/ax-queue-banner', icon: 'Note', section: 'ld' },
   { titleKey: 'componentLibrary.navAXSearchBar', descKey: 'componentLibrary.descAXSearchBar', path: '/component-library/ax-search-bar', icon: 'Search', section: 'ld' },
   { titleKey: 'componentLibrary.navAXSearchField', descKey: 'componentLibrary.descAXSearchField', path: '/component-library/ax-search-field', icon: 'Search', section: 'ld' },
   { titleKey: 'componentLibrary.navAXSignatureCapture', descKey: 'componentLibrary.descAXSignatureCapture', path: '/component-library/ax-signature-capture', icon: 'Edit', section: 'ld' },
@@ -134,7 +132,6 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navAXFlag', descKey: 'componentLibrary.descAXFlag', path: '/component-library/ax-flag', icon: 'Tag', section: 'ld' },
   { titleKey: 'componentLibrary.navAXRating', descKey: 'componentLibrary.descAXRating', path: '/component-library/ax-rating', icon: 'Star', section: 'ld' },
   { titleKey: 'componentLibrary.navAXButtonGroups', descKey: 'componentLibrary.descAXButtonGroups', path: '/component-library/ax-button-groups', icon: 'Circle', section: 'ld' },
-  { titleKey: 'componentLibrary.navDropdowns', descKey: 'componentLibrary.descDropdowns', path: '/component-library/dropdowns', icon: 'ChevronDown', section: 'ld' },
   { titleKey: 'componentLibrary.navSearchUtility', descKey: 'componentLibrary.descSearchUtility', path: '/component-library/search-utility', icon: 'Search', section: 'ld' },
   { titleKey: 'componentLibrary.navAXRichMediaSheet', descKey: 'componentLibrary.descAXRichMediaSheet', path: '/component-library/ax-rich-media-sheet', icon: 'Box', section: 'ld' },
   { titleKey: 'componentLibrary.navItemTile', descKey: 'componentLibrary.descItemTile', path: '/component-library/item-tile', icon: 'Box', section: 'ld' },
@@ -188,17 +185,11 @@ function ComponentCard({ entry, hidePreview }: { entry: ComponentEntry; hidePrev
 }
 
 const patternComponents: ComponentEntry[] = [
-  { titleKey: 'componentLibrary.navOrderCardPatterns', descKey: 'componentLibrary.descOrderCardPatterns', path: '/component-library/order-card-patterns', icon: 'List', section: 'ld' },
-  { titleKey: 'componentLibrary.navAXQueue', descKey: 'componentLibrary.descAXQueue', path: '/component-library/ax-queue', icon: 'Refresh', section: 'ld' },
   { titleKey: 'componentLibrary.navFooterPatterns', descKey: 'componentLibrary.descFooterPatterns', path: '/component-library/footer-patterns', icon: 'List', section: 'ld' },
   { titleKey: 'componentLibrary.navTopNav', descKey: 'componentLibrary.descTopNav', path: '/component-library/top-nav', icon: 'Menu', section: 'ld' },
   { titleKey: 'componentLibrary.navPageTemplates', descKey: 'componentLibrary.descPageTemplates', path: '/component-library/page-templates', icon: 'Box', section: 'ld' },
   { titleKey: 'componentLibrary.navSideNav', descKey: 'componentLibrary.descSideNav', path: '/component-library/side-nav', icon: 'PanelLeft', section: 'ld' },
   { titleKey: 'componentLibrary.navSearchResults', descKey: 'componentLibrary.descSearchResults', path: '/component-library/search-results', icon: 'Search', section: 'ld' },
-  { titleKey: 'componentLibrary.navHomePageWidgets', descKey: 'componentLibrary.descHomePageWidgets', path: '/component-library/home-page-widgets', icon: 'Box', section: 'ld' },
-  { titleKey: 'componentLibrary.navPromoBanners', descKey: 'componentLibrary.descPromoBanners', path: '/component-library/promo-banners', icon: 'Note', section: 'ld' },
-  { titleKey: 'componentLibrary.navCarouselsGrids', descKey: 'componentLibrary.descCarouselsGrids', path: '/component-library/carousels-grids', icon: 'ArrowRight', section: 'ld' },
-  { titleKey: 'componentLibrary.navOrderStatusCards', descKey: 'componentLibrary.descOrderStatusCards', path: '/component-library/order-status-cards', icon: 'List', section: 'ld' },
 ];
 
 export default function ComponentLibraryOverview() {

@@ -630,26 +630,6 @@ export function QuantityStepperPreview() {
   );
 }
 
-export function OrderCardPatternsPreview() {
-  return (
-    <PreviewFrame>
-      <div style={{ width: '180px', borderRadius: '8px', border: '1px solid var(--ld-semantic-color-separator, #e3e4e5)', background: 'var(--ld-semantic-color-fill-surface-primary, #fff)', overflow: 'hidden' }}>
-        <div style={{ background: 'var(--ld-semantic-color-fill-subtle, #f8f8f8)', padding: '8px 12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--ld-semantic-color-text-secondary, #74767c)', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>ORDER #12345</span>
-          <span style={{ fontSize: '10px', color: 'var(--ld-semantic-color-text-positive, #2a8703)', fontWeight: 600 }}>Delivered</span>
-        </div>
-        <div style={{ padding: '8px 12px', display: 'flex', gap: '8px', alignItems: 'center' }}>
-          <div style={{ width: '32px', height: '32px', borderRadius: '4px', background: 'var(--ld-semantic-color-fill-subtle, #f0f0f2)' }} />
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--ld-semantic-color-text, #2e2f32)', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Product Name</div>
-            <div style={{ fontSize: '10px', color: 'var(--ld-semantic-color-text-secondary, #74767c)' }}>Qty 1 · $12.99</div>
-          </div>
-        </div>
-      </div>
-    </PreviewFrame>
-  );
-}
-
 export function FloatingButtonPreview() {
   return (
     <PreviewFrame>
@@ -666,24 +646,6 @@ export function FloatingButtonPreview() {
             {i === 2 && <ChevronDown style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-text, #2E2F32)', transform: 'rotate(-90deg)' }} />}
           </div>
         ))}
-      </div>
-    </PreviewFrame>
-  );
-}
-
-export function QueueBannerPreview() {
-  return (
-    <PreviewFrame>
-      <div style={{
-        width: '200px', borderRadius: '6px', padding: '8px 12px',
-        background: 'var(--ld-semantic-color-text, #2E2F32)',
-        display: 'flex', alignItems: 'center', gap: '8px',
-      }}>
-        <div style={{
-          padding: '2px 8px', borderRadius: '9999px', fontSize: '10px', fontWeight: 700,
-          background: 'var(--ld-semantic-color-action-fill-primary, #0071DC)', color: 'white',
-        }}>14:59</div>
-        <span style={{ fontSize: '11px', color: 'white', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Your cart is reserved</span>
       </div>
     </PreviewFrame>
   );
@@ -722,25 +684,6 @@ export function RichSnackbarPreview() {
           <Check style={{ width: 12, height: 12, color: 'white' }} />
         </div>
         Item added to cart
-      </div>
-    </PreviewFrame>
-  );
-}
-
-export function TimerViewPreview() {
-  return (
-    <PreviewFrame>
-      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-        {[
-          { label: '59m', bg: 'var(--ld-semantic-color-fill-info-subtle, #E5F0FF)', color: 'var(--ld-semantic-color-text-brand-bold, #0071DC)' },
-          { label: '5m', bg: 'var(--ld-semantic-color-fill-warning-subtle, #FFF3E0)', color: 'var(--ld-semantic-color-text-warning, #F57C00)' },
-          { label: '1m', bg: 'var(--ld-semantic-color-fill-negative-subtle, #FDE7E7)', color: 'var(--ld-semantic-color-text-negative, #C5221F)' },
-        ].map((t, i) => (
-          <div key={i} style={{
-            padding: '4px 10px', borderRadius: '9999px', fontSize: '11px', fontWeight: 700,
-            background: t.bg, color: t.color,
-          }}>{t.label}</div>
-        ))}
       </div>
     </PreviewFrame>
   );
@@ -877,26 +820,6 @@ export function ItemTilePreview() {
           <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--ld-semantic-color-text, #2E2F32)' }}>$9.99</div>
           <div style={{ fontSize: '9px', color: 'var(--ld-semantic-color-text-subtle, #74767C)' }}>Product</div>
         </div>
-      </div>
-    </PreviewFrame>
-  );
-}
-
-export function DropdownsPreview() {
-  return (
-    <PreviewFrame>
-      <div style={{ borderRadius: '6px', padding: '4px', background: 'white', width: '130px', boxShadow: 'var(--ld-semantic-elevation-200)' }}>
-        {['Departments', 'Services', 'Account'].map((t, i) => (
-          <div key={i} style={{
-            padding: '6px 10px', fontSize: '12px', borderRadius: '4px',
-            color: 'var(--ld-semantic-color-text, #2E2F32)',
-            background: i === 0 ? 'var(--ld-semantic-color-fill-subtle, #F5F5F6)' : 'transparent',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          }}>
-            {t}
-            <ChevronRight style={{ width: 10, height: 10, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
-          </div>
-        ))}
       </div>
     </PreviewFrame>
   );

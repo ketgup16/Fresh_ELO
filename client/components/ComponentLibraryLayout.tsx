@@ -63,15 +63,9 @@ const navigationSections: NavSection[] = [
     items: [
       { id: 'footer-patterns', nameKey: 'componentLibrary.navFooterPatterns', path: '/component-library/footer-patterns' },
       { id: 'top-nav', nameKey: 'componentLibrary.navTopNav', path: '/component-library/top-nav' },
-      { id: 'order-card-patterns', nameKey: 'componentLibrary.navOrderCardPatterns', path: '/component-library/order-card-patterns' },
       { id: 'page-templates', nameKey: 'componentLibrary.navPageTemplates', path: '/component-library/page-templates' },
       { id: 'side-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/side-nav' },
       { id: 'search-results', nameKey: 'componentLibrary.navSearchResults', path: '/component-library/search-results' },
-      { id: 'home-page-widgets', nameKey: 'componentLibrary.navHomePageWidgets', path: '/component-library/home-page-widgets' },
-      { id: 'promo-banners', nameKey: 'componentLibrary.navPromoBanners', path: '/component-library/promo-banners' },
-      { id: 'ax-queue', nameKey: 'componentLibrary.navAXQueue', path: '/component-library/ax-queue' },
-      { id: 'carousels-grids', nameKey: 'componentLibrary.navCarouselsGrids', path: '/component-library/carousels-grids' },
-      { id: 'order-status-cards', nameKey: 'componentLibrary.navOrderStatusCards', path: '/component-library/order-status-cards' },
       { id: 'replenishment-basket', nameKey: 'componentLibrary.navReplenishmentBasket', path: '/component-library/replenishment-basket' },
     ]
   },
@@ -80,7 +74,6 @@ const navigationSections: NavSection[] = [
     items: [
       { id: 'basic-banner', nameKey: 'componentLibrary.navBasicBanner', path: '/component-library/basic-banner' },
       { id: 'item-tile', nameKey: 'componentLibrary.navItemTile', path: '/component-library/item-tile' },
-      { id: 'dropdowns', nameKey: 'componentLibrary.navDropdowns', path: '/component-library/dropdowns' },
       { id: 'ax-button-groups', nameKey: 'componentLibrary.navAXButtonGroups', path: '/component-library/ax-button-groups' },
       { id: 'ax-floating-button', nameKey: 'componentLibrary.navAXFloatingButton', path: '/component-library/ax-floating-button' },
       { id: 'ax-heart-view', nameKey: 'componentLibrary.navAXHeartView', path: '/component-library/ax-heart-view' },
@@ -90,7 +83,6 @@ const navigationSections: NavSection[] = [
       { id: 'ax-signature-capture', nameKey: 'componentLibrary.navAXSignatureCapture', path: '/component-library/ax-signature-capture' },
       { id: 'ax-rich-media-sheet', nameKey: 'componentLibrary.navAXRichMediaSheet', path: '/component-library/ax-rich-media-sheet' },
       { id: 'ax-rich-snackbar', nameKey: 'componentLibrary.navAXRichSnackbar', path: '/component-library/ax-rich-snackbar' },
-      { id: 'ax-timer-view', nameKey: 'componentLibrary.navAXTimerView', path: '/component-library/ax-timer-view' },
       { id: 'ax-upload-image', nameKey: 'componentLibrary.navAXUploadImage', path: '/component-library/ax-upload-image' },
       { id: 'ax-avatar', nameKey: 'componentLibrary.navAXAvatar', path: '/component-library/ax-avatar' },
       { id: 'ax-avatar-button', nameKey: 'componentLibrary.navAXAvatarButton', path: '/component-library/ax-avatar-button' },

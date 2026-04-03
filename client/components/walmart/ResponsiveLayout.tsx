@@ -7,8 +7,6 @@ import { MwebFooter } from './MwebFooter';
 import { MobileTopNav } from './MobileTopNav';
 import { MobileHeader } from './MobileHeader';
 import { SubNav } from './SubNav';
-import { PromoBanner } from './PromoBanner';
-import { OrderStatusBanner } from './OrderStatusBanner';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import { NativeStatusBar } from './NativeStatusBar';
 import styles from './ResponsiveLayout.module.css';
@@ -66,11 +64,8 @@ export function ResponsiveLayout({
       {/* Desktop header — hidden on mobile via CSS */}
       {showDesktopHeader && <DesktopHeader />}
       {showDesktopHeader && <SubNav />}
-      {showDesktopHeader && <PromoBanner />}
-
       <main className={styles.main}>
         <div className={`${styles.contentContainer} ${maxWidthClass}`}>
-          {showOrderStatusBanner && <OrderStatusBanner />}
           {children}
         </div>
       </main>
