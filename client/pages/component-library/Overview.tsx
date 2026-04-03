@@ -123,7 +123,6 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navQuantityStepper', descKey: 'componentLibrary.descQuantityStepper', path: '/component-library/quantity-stepper', icon: 'Minus', section: 'ld' },
   { titleKey: 'componentLibrary.navAXFloatingButton', descKey: 'componentLibrary.descAXFloatingButton', path: '/component-library/ax-floating-button', icon: 'Circle', section: 'ld' },
   { titleKey: 'componentLibrary.navAXHeartView', descKey: 'componentLibrary.descAXHeartView', path: '/component-library/ax-heart-view', icon: 'Star', section: 'ld' },
-  { titleKey: 'componentLibrary.navAXRichSnackbar', descKey: 'componentLibrary.descAXRichSnackbar', path: '/component-library/ax-rich-snackbar', icon: 'Chat', section: 'ld' },
   { titleKey: 'componentLibrary.navAXSearchBar', descKey: 'componentLibrary.descAXSearchBar', path: '/component-library/ax-search-bar', icon: 'Search', section: 'ld' },
   { titleKey: 'componentLibrary.navAXSearchField', descKey: 'componentLibrary.descAXSearchField', path: '/component-library/ax-search-field', icon: 'Search', section: 'ld' },
   { titleKey: 'componentLibrary.navAXSignatureCapture', descKey: 'componentLibrary.descAXSignatureCapture', path: '/component-library/ax-signature-capture', icon: 'Edit', section: 'ld' },

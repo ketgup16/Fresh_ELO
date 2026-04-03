@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import { Barcode, ChevronDown, ChevronLeft, ChevronUp, Grid, Menu, Placeholder, Search } from '@/components/icons';
 import { IconButton } from '@/components/ui/IconButton';
-import { CartIcon, LocationIcon, StoreIcon } from '@/components/icons-custom';
+import { LocationIcon, StoreIcon } from '@/components/icons-custom';
 import { CameraModal } from '@/components/walmart/CameraModal';
 import { MobileMenuPanel } from '@/components/walmart/MobileMenuPanel';
 import { DepartmentsDropdown } from '@/components/walmart/DepartmentsDropdown';
@@ -16,7 +16,6 @@ import { AvatarFallback } from '@/components/ui/avatar';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { useNavigate } from 'react-router-dom';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
-import { useCart } from '@/contexts/CartContext';
 import styles from './MobileTopNav.module.css';
 
 const mobileSecondaryLinks = [
@@ -82,7 +81,6 @@ export function MobileTopNav({
 }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
-  const { cartCount, cartPrice } = useCart();
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [showCameraModal, setShowCameraModal] = useState(false);
   const [nativeSearchValue, setNativeSearchValue] = useState('');
@@ -194,7 +192,6 @@ export function MobileTopNav({
                 <ChevronLeft className={styles.l3BackIcon} />
               </button>
               <h1 className={styles.l3Title} style={{ color: isBlue ? 'white' : 'var(--ld-semantic-color-text, #2e2f32)' }}>{pageTitle}</h1>
-              <CartIcon count={cartCount} price={cartPrice} textColor={isBlue ? 'white' : 'var(--ld-semantic-color-text, #2e2f32)'} />
             </div>
           </div>
         </div>
@@ -383,7 +380,6 @@ export function MobileTopNav({
                 </div>
               </div>
 
-              <CartIcon count={cartCount} price={cartPrice} textColor={textColor} />
             </div>
           </div>
         )}

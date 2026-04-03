@@ -12,9 +12,6 @@ export { FulfillmentShippingIcon } from './FulfillmentShippingIcon';
 export { FulfillmentPickupIcon } from './FulfillmentPickupIcon';
 export { FulfillmentDeliveryIcon } from './FulfillmentDeliveryIcon';
 
-// Cart with badge + price
-export { CartIcon } from './CartIcon';
-
 // Sparky mascot (Lottie animations)
 export { SparkyLookingDown } from './SparkyLookingDown';
 export { SparkyAnimation } from './SparkyAnimation';

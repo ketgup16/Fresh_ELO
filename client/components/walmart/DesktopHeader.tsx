@@ -2,7 +2,6 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { Highlight } from '@/components/ui/Callout';
 import { Search, ChevronDown } from '@/components/icons';
 import {
-  CartIcon,
   FulfillmentShippingIcon, CloseIcon as X,
 } from '@/components/icons-custom';
 import { useNavigate } from 'react-router-dom';
@@ -12,12 +11,10 @@ import { DesktopSearchTypeahead } from './DesktopSearchTypeahead';
 import { ReorderDropdown } from './ReorderDropdown';
 import { AccountDropdown } from './AccountDropdown';
 import { defaultRecentSearches } from './searchData';
-import { useCart } from '@/contexts/CartContext';
 import styles from './DesktopHeader.module.css';
 
 export function DesktopHeader() {
   const navigate = useNavigate();
-  const { cartCount, cartPrice } = useCart();
   const [showGIC, setShowGIC] = useState(false);
   const [showHighlight, setShowHighlight] = useState(true);
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
@@ -234,16 +231,6 @@ export function DesktopHeader() {
             </li>
             <li className={styles.accountItem}>
               <AccountDropdown userName="Hi, Emilia" />
-            </li>
-            <li className={styles.cartItem}>
-              <button
-                type="button"
-                aria-label="Cart contains 1 item Total Amount $5.00"
-                className={styles.cartButton}
-                onClick={() => navigate('/cart')}
-              >
-                <CartIcon count={cartCount} price={cartPrice} textColor="var(--ld-semantic-color-top-nav-text-on-fill)" />
-              </button>
             </li>
           </ul>
         </nav>

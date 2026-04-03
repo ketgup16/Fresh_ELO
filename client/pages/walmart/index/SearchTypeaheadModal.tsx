@@ -7,8 +7,6 @@ import { allSuggestions as sharedSuggestions } from "@/components/walmart/search
 import { IOSKeyboard } from "./IOSKeyboard";
 import { NativeStatusBar } from "@/components/walmart/NativeStatusBar";
 import { useLayoutSettings } from "@/contexts/LayoutSettingsContext";
-import { useCart } from "@/contexts/CartContext";
-import { CartIcon } from "@/components/icons-custom";
 import navStyles from "@/components/walmart/MobileTopNav.module.css";
 
 interface SearchTypeaheadModalProps {
@@ -19,7 +17,6 @@ interface SearchTypeaheadModalProps {
 export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeaheadModalProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
-  const { cartCount, cartPrice } = useCart();
   const isNative = platform === 'ios' || platform === 'android';
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(true);
@@ -63,11 +60,6 @@ export function SearchTypeaheadModal({ onClose, onCameraClick }: SearchTypeahead
               className={navStyles.sparkImg}
             />
           </div>
-          <CartIcon
-            count={cartCount}
-            price={cartPrice}
-            textColor="var(--ld-semantic-color-text, #2e2f32)"
-          />
         </div>
       )}
 

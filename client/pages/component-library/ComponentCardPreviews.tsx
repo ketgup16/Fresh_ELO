@@ -76,7 +76,6 @@ const PREVIEW_MAP: Record<string, React.FC> = {
   'Quantity Stepper': LD.QuantityStepperPreview,
   'Floating Button': LD.FloatingButtonPreview,
   'Heart View': LD.HeartViewPreview,
-  'Rich Snackbar': LD.RichSnackbarPreview,
   'Search Bar': LD.SearchBarPreview,
   'Signature Capture': LD.SignatureCapturePreview,
   'Upload Image': LD.UploadImagePreview,

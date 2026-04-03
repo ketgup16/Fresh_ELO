@@ -82,7 +82,6 @@ const navigationSections: NavSection[] = [
       { id: 'ax-search-field', nameKey: 'componentLibrary.navAXSearchField', path: '/component-library/ax-search-field' },
       { id: 'ax-signature-capture', nameKey: 'componentLibrary.navAXSignatureCapture', path: '/component-library/ax-signature-capture' },
       { id: 'ax-rich-media-sheet', nameKey: 'componentLibrary.navAXRichMediaSheet', path: '/component-library/ax-rich-media-sheet' },
-      { id: 'ax-rich-snackbar', nameKey: 'componentLibrary.navAXRichSnackbar', path: '/component-library/ax-rich-snackbar' },
       { id: 'ax-upload-image', nameKey: 'componentLibrary.navAXUploadImage', path: '/component-library/ax-upload-image' },
       { id: 'ax-avatar', nameKey: 'componentLibrary.navAXAvatar', path: '/component-library/ax-avatar' },
       { id: 'ax-avatar-button', nameKey: 'componentLibrary.navAXAvatarButton', path: '/component-library/ax-avatar-button' },

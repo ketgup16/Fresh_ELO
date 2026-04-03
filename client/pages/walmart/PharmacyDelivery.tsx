@@ -2,7 +2,7 @@ import {
   ArrowUpRight,
   BottleEach,
   Calendar,
-  Cart,
+  Plus,
   ChatBubbleSquare,
   ChevronRight,
   Clock,
@@ -53,7 +53,7 @@ const DELIVERY_STEPS = [
     desc: 'Same professional service, same low cost.',
   },
   {
-    Icon: Cart,
+    Icon: Plus,
     title: 'When the Rx is ready add it to your cart',
     desc: "You'll receive a notification on how to get started.",
   },

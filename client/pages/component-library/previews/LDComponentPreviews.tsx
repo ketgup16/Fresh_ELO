@@ -668,27 +668,6 @@ export function HeartViewPreview() {
   );
 }
 
-export function RichSnackbarPreview() {
-  return (
-    <PreviewFrame>
-      <div style={{
-        borderRadius: '8px', padding: '8px 14px', fontSize: '12px', color: 'white',
-        background: 'var(--ld-semantic-color-text, #2E2F32)',
-        display: 'flex', alignItems: 'center', gap: '8px',
-      }}>
-        <div style={{
-          width: '20px', height: '20px', borderRadius: '50%',
-          background: 'var(--ld-semantic-color-text-positive, #2A8703)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-        }}>
-          <Check style={{ width: 12, height: 12, color: 'white' }} />
-        </div>
-        Item added to cart
-      </div>
-    </PreviewFrame>
-  );
-}
-
 export function SearchBarPreview() {
   return (
     <PreviewFrame>

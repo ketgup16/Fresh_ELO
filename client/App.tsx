@@ -3,7 +3,6 @@ import "./global.css";
 import "./i18n";
 import { createRoot } from "react-dom/client";
 import { SnackbarContainer } from "@/components/ui/SnackbarContainer";
-import { AXRichSnackbarContainer } from "@/components/walmart/AXRichSnackbarContainer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -121,7 +120,6 @@ const AXSearchBarPage = React.lazy(() => import("./pages/component-library/AXSea
 const AXSearchFieldPage = React.lazy(() => import("./pages/component-library/AXSearchField"));
 const AXSignatureCapturePage = React.lazy(() => import("./pages/component-library/AXSignatureCapture"));
 const AXRichMediaSheetPage = React.lazy(() => import("./pages/component-library/AXRichMediaSheet"));
-const AXRichSnackbarPage = React.lazy(() => import("./pages/component-library/AXRichSnackbar"));
 const AXUploadImagePage = React.lazy(() => import("./pages/component-library/AXUploadImage"));
 const ReplenishmentBasketPage = React.lazy(() => import("./pages/component-library/ReplenishmentBasket"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
@@ -171,7 +169,6 @@ const App = () => (
         <CartProvider>
         <QueryClientProvider client={queryClient}>
       <SnackbarContainer />
-      <AXRichSnackbarContainer />
       <MartyProvider>
           <BrowserRouter>
             <React.Suspense fallback={LazyFallback}>
@@ -283,8 +280,6 @@ const App = () => (
                 <Route path="wcp-signature-capture" element={<Navigate to="/component-library/ax-signature-capture" replace />} />
                 <Route path="ax-rich-media-sheet" element={<AXRichMediaSheetPage />} />
                 <Route path="wcp-rich-media-sheet" element={<Navigate to="/component-library/ax-rich-media-sheet" replace />} />
-                <Route path="ax-rich-snackbar" element={<AXRichSnackbarPage />} />
-                <Route path="wcp-rich-snackbar" element={<Navigate to="/component-library/ax-rich-snackbar" replace />} />
                 <Route path="ax-upload-image" element={<AXUploadImagePage />} />
                 <Route path="wcp-upload-image" element={<Navigate to="/component-library/ax-upload-image" replace />} />
                 <Route path="replenishment-basket" element={<ReplenishmentBasketPage />} />

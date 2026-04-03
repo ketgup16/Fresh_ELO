@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SpotIcon } from '@/components/ui/SpotIcon';
-import { Article, Bell, Settings, Star, User, Cart, Calendar, Search } from '@/components/icons';
+import { Article, Bell, Settings, Star, User, Calendar, Search } from '@/components/icons';
 
 /**
  * Example component demonstrating SpotIcon usage with Living Design 3.5
@@ -158,7 +158,7 @@ export function SpotIconExample() {
           <SpotIcon icon={<Settings />} size="small" color="brand" />
           <SpotIcon icon={<Star />} size="small" color="brand" />
           <SpotIcon icon={<User />} size="small" color="brand" />
-          <SpotIcon icon={<Cart />} size="small" color="brand" />
+          <SpotIcon icon={<Star />} size="small" color="brand" />
           <SpotIcon icon={<Calendar />} size="small" color="brand" />
           <SpotIcon icon={<Search />} size="small" color="brand" />
         </div>

@@ -6,7 +6,6 @@ import { StepAnimation, STEP_TOTAL_DURATION } from './StepAnimation';
 import { NativeStatusBar } from './NativeStatusBar';
 import { IOSHomeScreen } from './IOSHomeScreen';
 import { DeliveryTracking } from './DeliveryTracking';
-import { CartFill } from '@/components/icons';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import styles from './ReplenishFlow.module.css';
 
