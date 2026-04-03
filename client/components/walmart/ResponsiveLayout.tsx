@@ -6,7 +6,6 @@ import { DesktopFooter } from './DesktopFooter';
 import { MwebFooter } from './MwebFooter';
 import { MobileTopNav } from './MobileTopNav';
 import { MobileHeader } from './MobileHeader';
-import { SubNav } from './SubNav';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import { NativeStatusBar } from './NativeStatusBar';
 import styles from './ResponsiveLayout.module.css';
@@ -63,7 +62,6 @@ export function ResponsiveLayout({
       {showMobileNav && showMobileTopNav && mobileTopNav === 'mweb' && <MobileHeader />}
       {/* Desktop header — hidden on mobile via CSS */}
       {showDesktopHeader && <DesktopHeader />}
-      {showDesktopHeader && <SubNav />}
       <main className={styles.main}>
         <div className={`${styles.contentContainer} ${maxWidthClass}`}>
           {children}
