@@ -133,7 +133,6 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navAXButtonGroups', descKey: 'componentLibrary.descAXButtonGroups', path: '/component-library/ax-button-groups', icon: 'Circle', section: 'ld' },
   { titleKey: 'componentLibrary.navSearchUtility', descKey: 'componentLibrary.descSearchUtility', path: '/component-library/search-utility', icon: 'Search', section: 'ld' },
   { titleKey: 'componentLibrary.navAXRichMediaSheet', descKey: 'componentLibrary.descAXRichMediaSheet', path: '/component-library/ax-rich-media-sheet', icon: 'Box', section: 'ld' },
-  { titleKey: 'componentLibrary.navItemTile', descKey: 'componentLibrary.descItemTile', path: '/component-library/item-tile', icon: 'Box', section: 'ld' },
   { titleKey: 'componentLibrary.navAXAvatar', descKey: 'componentLibrary.descAXAvatar', path: '/component-library/ax-avatar', icon: 'Circle', section: 'ld' },
   // ── Shared Components ──
   { titleKey: 'componentLibrary.navAlertDialog', descKey: 'componentLibrary.descAlertDialog', path: '/component-library/alert-dialog', icon: 'ExclamationCircle', section: 'shadcn' },
@@ -188,7 +187,6 @@ const patternComponents: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navTopNav', descKey: 'componentLibrary.descTopNav', path: '/component-library/top-nav', icon: 'Menu', section: 'ld' },
   { titleKey: 'componentLibrary.navPageTemplates', descKey: 'componentLibrary.descPageTemplates', path: '/component-library/page-templates', icon: 'Box', section: 'ld' },
   { titleKey: 'componentLibrary.navSideNav', descKey: 'componentLibrary.descSideNav', path: '/component-library/side-nav', icon: 'PanelLeft', section: 'ld' },
-  { titleKey: 'componentLibrary.navSearchResults', descKey: 'componentLibrary.descSearchResults', path: '/component-library/search-results', icon: 'Search', section: 'ld' },
 ];
 
 export default function ComponentLibraryOverview() {

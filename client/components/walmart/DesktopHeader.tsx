@@ -1,16 +1,14 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import { Highlight } from '@/components/ui/Callout';
-import { Search, ChevronDown } from '@/components/icons';
+import { ChevronDown } from '@/components/icons';
 import {
-  FulfillmentShippingIcon, CloseIcon as X,
+  FulfillmentShippingIcon,
 } from '@/components/icons-custom';
 import { useNavigate } from 'react-router-dom';
-import { createPortal } from 'react-dom';
 import { DesktopGICDropdown } from './DesktopGICDropdown';
-import { DesktopSearchTypeahead } from './DesktopSearchTypeahead';
 import { ReorderDropdown } from './ReorderDropdown';
 import { AccountDropdown } from './AccountDropdown';
-import { defaultRecentSearches } from './searchData';
+import { AXSearchField } from './AXSearchField';
 import styles from './DesktopHeader.module.css';
 
 export function DesktopHeader() {
@@ -19,21 +17,6 @@ export function DesktopHeader() {
   const [showHighlight, setShowHighlight] = useState(true);
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
   const [searchQuery, setSearchQuery] = useState('');
-  const [showTypeahead, setShowTypeahead] = useState(false);
-  const [recentSearches, setRecentSearches] = useState(defaultRecentSearches);
-  const searchFormRef = useRef<HTMLDivElement>(null);
-
-  const closeTypeahead = useCallback(() => {
-    setShowTypeahead(false);
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeTypeahead();
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [closeTypeahead]);
 
   return (
     <header className={styles.header}>
@@ -147,81 +130,17 @@ export function DesktopHeader() {
           </section>
         </Highlight>
 
-        {/* Search Form */}
-        <div
-          ref={searchFormRef}
-          className={`${styles.searchFormWrap} ${showTypeahead ? styles.searchFormWrapFocused : ''}`}
-        >
-          <form
-            action="/walmart/search"
-            autoComplete="off"
-            role="search"
-            aria-label="Walmart Site-Wide"
-            className="flex items-center"
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (searchQuery.trim()) {
-                navigate(`/walmart/loading?q=${encodeURIComponent(searchQuery.trim())}`);
-              } else {
-                navigate('/walmart/search');
-              }
-              closeTypeahead();
-            }}
-          >
-            <div className={`${styles.searchInputWrap} ${showTypeahead ? styles.searchInputWrapActive : ''}`}>
-              <input
-                aria-label="Search"
-                name="q"
-                placeholder="Search everything at Walmart online and in store"
-                type="search"
-                autoComplete="off"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setShowTypeahead(true)}
-                className={styles.searchInput}
-              />
-              <div className={styles.searchActions}>
-                {searchQuery ? (
-                  <button
-                    type="button"
-                    aria-label="Clear search"
-                    onClick={() => setSearchQuery('')}
-                    className={styles.clearButton}
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                ) : (
-                  <button
-                    aria-label="Search"
-                    type="button"
-                    onClick={() => setShowTypeahead(true)}
-                    className={styles.searchButton}
-                  >
-                    <Search className="w-5 h-5" />
-                  </button>
-                )}
-              </div>
-            </div>
-          </form>
-          {showTypeahead && (
-            <DesktopSearchTypeahead
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              recentSearches={recentSearches}
-              setRecentSearches={setRecentSearches}
-              onClose={closeTypeahead}
-            />
-          )}
+        {/* Search */}
+        <div className={styles.searchFormWrap}>
+          <AXSearchField
+            size="medium"
+            cornerStyle="rounded"
+            value={searchQuery}
+            onChange={setSearchQuery}
+            showMic={false}
+            showBarcode={false}
+          />
         </div>
-
-        {/* Scrim overlay */}
-        {showTypeahead && createPortal(
-          <div
-            className={styles.scrim}
-            onClick={closeTypeahead}
-          />,
-          document.body
-        )}
 
         {/* Navigation */}
         <nav aria-label="Account and Cart" className={styles.nav}>

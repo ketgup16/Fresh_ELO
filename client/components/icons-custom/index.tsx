@@ -21,7 +21,6 @@ export { WalmartCashLogoIcon } from './WalmartCashLogoIcon';
 export { WalmartPlusLogoIcon } from './WalmartPlusLogoIcon';
 export { SubscriptionLogoIcon } from './SubscriptionLogoIcon';
 export { CashLogoIcon } from './CashLogoIcon';
-export { SparklesIcon } from './SparklesIcon';
 
 // Order fulfillment type icon (image-based, not SVG)
 export { OrderTypeIcon, getOrderTypeIconSrc } from './OrderTypeIcon';

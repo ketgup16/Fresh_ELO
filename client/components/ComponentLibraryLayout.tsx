@@ -65,14 +65,12 @@ const navigationSections: NavSection[] = [
       { id: 'top-nav', nameKey: 'componentLibrary.navTopNav', path: '/component-library/top-nav' },
       { id: 'page-templates', nameKey: 'componentLibrary.navPageTemplates', path: '/component-library/page-templates' },
       { id: 'side-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/side-nav' },
-      { id: 'search-results', nameKey: 'componentLibrary.navSearchResults', path: '/component-library/search-results' },
     ]
   },
   {
     titleKey: 'componentLibrary.wcpComponents',
     items: [
       { id: 'basic-banner', nameKey: 'componentLibrary.navBasicBanner', path: '/component-library/basic-banner' },
-      { id: 'item-tile', nameKey: 'componentLibrary.navItemTile', path: '/component-library/item-tile' },
       { id: 'ax-button-groups', nameKey: 'componentLibrary.navAXButtonGroups', path: '/component-library/ax-button-groups' },
       { id: 'ax-floating-button', nameKey: 'componentLibrary.navAXFloatingButton', path: '/component-library/ax-floating-button' },
       { id: 'ax-heart-view', nameKey: 'componentLibrary.navAXHeartView', path: '/component-library/ax-heart-view' },

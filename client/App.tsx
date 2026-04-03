@@ -19,10 +19,6 @@ const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 // Walmart pages (lazy loaded)
 const WalmartIndex = React.lazy(() => import("./pages/walmart/Index"));
-const WalmartLoadingScreen = React.lazy(() => import("./pages/walmart/LoadingScreen"));
-const WalmartSearchResults = React.lazy(() => import("./pages/walmart/SearchResults"));
-const WalmartDressesSearch = React.lazy(() => import("./pages/walmart/DressesSearchResults"));
-const WalmartCerealSearch = React.lazy(() => import("./pages/walmart/CerealSearchResults"));
 const WalmartProductDetail = React.lazy(() => import("./pages/walmart/ProductDetail"));
 const WalmartPharmacyDelivery = React.lazy(() => import("./pages/walmart/PharmacyDelivery"));
 // Component library pages (lazy loaded)
@@ -108,9 +104,7 @@ const FooterPatternsPage = React.lazy(() => import("./pages/component-library/Fo
 const TopNavPage = React.lazy(() => import("./pages/component-library/TopNav"));
 const SideNavPage = React.lazy(() => import("./pages/component-library/SideNav"));
 const PageTemplatesPage = React.lazy(() => import("./pages/component-library/PageTemplates"));
-const SearchResultsPatternPage = React.lazy(() => import("./pages/component-library/SearchResults"));
 const AXButtonGroupsPage = React.lazy(() => import("./pages/component-library/AXButtonGroups"));
-const ItemTilePage = React.lazy(() => import("./pages/component-library/ItemTile"));
 const AXFloatingButtonPage = React.lazy(() => import("./pages/component-library/AXFloatingButton"));
 const AXHeartViewPage = React.lazy(() => import("./pages/component-library/AXHeartView"));
 const AXRatingPage = React.lazy(() => import("./pages/component-library/AXRating"));
@@ -258,9 +252,6 @@ const App = () => (
                 <Route path="top-nav" element={<TopNavPage />} />
                 <Route path="side-nav" element={<SideNavPage />} />
                 <Route path="page-templates" element={<PageTemplatesPage />} />
-                <Route path="search-results" element={<SearchResultsPatternPage />} />
-                <Route path="item-tile" element={<ItemTilePage />} />
-                <Route path="product-cards" element={<Navigate to="/component-library/item-tile" replace />} />
                 <Route path="ax-button-groups" element={<AXButtonGroupsPage />} />
                 <Route path="wcp-button-groups" element={<Navigate to="/component-library/ax-button-groups" replace />} />
                 <Route path="ax-floating-button" element={<AXFloatingButtonPage />} />
@@ -283,10 +274,6 @@ const App = () => (
 
               {/* Walmart pages */}
               <Route path="/walmart" element={<WalmartIndex />} />
-              <Route path="/walmart/loading" element={<WalmartLoadingScreen />} />
-              <Route path="/walmart/search" element={<WalmartSearchResults />} />
-              <Route path="/walmart/search/dresses" element={<WalmartDressesSearch />} />
-              <Route path="/walmart/search/cereal" element={<WalmartCerealSearch />} />
               <Route path="/walmart/product/:productId" element={<WalmartProductDetail />} />
               <Route path="/walmart/pharmacy-delivery" element={<WalmartPharmacyDelivery />} />
               {/* Redirect home to Walmart, but only in production to avoid HMR reload issues jumping back to home */}

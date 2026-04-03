@@ -9,9 +9,6 @@ export function MobileHeader() {
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/walmart/search?q=${encodeURIComponent(searchQuery.trim())}`);
-    }
   };
 
   return (
