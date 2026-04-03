@@ -25,8 +25,6 @@ const WalmartDressesSearch = React.lazy(() => import("./pages/walmart/DressesSea
 const WalmartCerealSearch = React.lazy(() => import("./pages/walmart/CerealSearchResults"));
 const WalmartProductDetail = React.lazy(() => import("./pages/walmart/ProductDetail"));
 const WalmartPharmacyDelivery = React.lazy(() => import("./pages/walmart/PharmacyDelivery"));
-const WalmartReplenishOnboarding = React.lazy(() => import("./pages/walmart/replenish-onboarding"));
-
 // Component library pages (lazy loaded)
 const ComponentLibraryOverview = React.lazy(() => import("./pages/component-library/Overview"));
 const ComponentTester = React.lazy(() => import("./pages/component-library/ComponentTester"));
@@ -121,7 +119,6 @@ const AXSearchFieldPage = React.lazy(() => import("./pages/component-library/AXS
 const AXSignatureCapturePage = React.lazy(() => import("./pages/component-library/AXSignatureCapture"));
 const AXRichMediaSheetPage = React.lazy(() => import("./pages/component-library/AXRichMediaSheet"));
 const AXUploadImagePage = React.lazy(() => import("./pages/component-library/AXUploadImage"));
-const ReplenishmentBasketPage = React.lazy(() => import("./pages/component-library/ReplenishmentBasket"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
 const FoundationsPage = React.lazy(() => import("./pages/component-library/Foundations"));
 const AssetsPage = React.lazy(() => import("./pages/component-library/Assets"));
@@ -282,7 +279,6 @@ const App = () => (
                 <Route path="wcp-rich-media-sheet" element={<Navigate to="/component-library/ax-rich-media-sheet" replace />} />
                 <Route path="ax-upload-image" element={<AXUploadImagePage />} />
                 <Route path="wcp-upload-image" element={<Navigate to="/component-library/ax-upload-image" replace />} />
-                <Route path="replenishment-basket" element={<ReplenishmentBasketPage />} />
               </Route>
 
               {/* Walmart pages */}
@@ -293,8 +289,6 @@ const App = () => (
               <Route path="/walmart/search/cereal" element={<WalmartCerealSearch />} />
               <Route path="/walmart/product/:productId" element={<WalmartProductDetail />} />
               <Route path="/walmart/pharmacy-delivery" element={<WalmartPharmacyDelivery />} />
-              <Route path="/walmart/replenish-onboarding" element={<WalmartReplenishOnboarding />} />
-
               {/* Redirect home to Walmart, but only in production to avoid HMR reload issues jumping back to home */}
               {import.meta.env.PROD && <Route path="/" element={<Navigate to="/walmart" replace />} />}
               {import.meta.env.DEV && <Route path="/" element={<WalmartIndex />} />}

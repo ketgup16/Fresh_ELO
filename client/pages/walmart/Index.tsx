@@ -1,10 +1,8 @@
-import { useState, useRef, useCallback } from "react";
+import { useRef, useCallback } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { ResponsiveLayout } from "@/components/walmart/ResponsiveLayout";
 import { PRODUCT_IMAGES } from "@/components/walmart/productImages";
 import { PromotionalItemTile } from "@/components/walmart/PromotionalItemTile";
-import { ReplenishmentBasket } from "@/components/walmart/ReplenishmentBasket";
-
 interface CarouselItem {
   img: string;
   price: string;
@@ -42,7 +40,6 @@ const VACUUM_ITEMS: CarouselItem[] = [
 
 export default function Index() {
   const { setItemQuantity } = useCart();
-  const [basketVisible, setBasketVisible] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -266,8 +263,6 @@ export default function Index() {
 
       </div>
 
-      {/* Replenishment basket — hidden until ReplenishFlow completes */}
-      {basketVisible && <ReplenishmentBasket />}
     </ResponsiveLayout>
   );
 }

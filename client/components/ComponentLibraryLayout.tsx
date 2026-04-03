@@ -66,7 +66,6 @@ const navigationSections: NavSection[] = [
       { id: 'page-templates', nameKey: 'componentLibrary.navPageTemplates', path: '/component-library/page-templates' },
       { id: 'side-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/side-nav' },
       { id: 'search-results', nameKey: 'componentLibrary.navSearchResults', path: '/component-library/search-results' },
-      { id: 'replenishment-basket', nameKey: 'componentLibrary.navReplenishmentBasket', path: '/component-library/replenishment-basket' },
     ]
   },
   {
