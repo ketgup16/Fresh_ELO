@@ -8,6 +8,22 @@ import { LinkButton } from './LinkButton';
 import { Checkbox } from './Checkbox';
 import { Tag, TagVariant, TagColor } from './Tag';
 
+// ─── AssignedGoal (private) ─────────────────────────────────────────────────
+
+interface AssignedGoalProps {
+  title?: string;
+  actions?: string;
+}
+
+function AssignedGoal({ title = 'Goal name', actions = '[Action], [Action], [Action]' }: AssignedGoalProps) {
+  return (
+    <div className={styles.assignedGoal}>
+      <p className={styles.assignedGoalTitle}>{title}</p>
+      <p className={styles.assignedGoalActions}>{actions}</p>
+    </div>
+  );
+}
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export type ListItemTagPreset = 'unassigned' | 'assigned' | 'complete';
@@ -94,6 +110,13 @@ export interface ListItemProps {
    * Accepts any ReactNode — use an Alert component.
    */
   alert?: React.ReactNode;
+
+  /**
+   * Optional array of assigned goals rendered at the bottom of the monitoring container.
+   * Each item shows a goal title (caption) and its actions (body-small).
+   * Only renders when at least one goal is provided.
+   */
+  monitoringGoals?: AssignedGoalProps[];
 
   /**
    * Optional Tag rendered in the top-right corner of the content block.
@@ -192,9 +215,9 @@ function renderTrailing(props: ListItemProps): React.ReactNode {
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   (props, ref) => {
-    const { eyebrow, title, text, attributes, divider, footerAction, alert, monitoring, monitoringLabel = 'Progress status', tag, className } = props;
+    const { eyebrow, title, text, attributes, divider, footerAction, alert, monitoring, monitoringLabel = 'Progress status', monitoringGoals, tag, className } = props;
     const classNames = [styles.listItem, className].filter(Boolean).join(' ');
-    const hasExtras = (attributes && attributes.length > 0) || !!monitoring || !!alert || !!footerAction;
+    const hasExtras = (attributes && attributes.length > 0) || !!monitoring || !!monitoringGoals?.length || !!alert || !!footerAction;
 
     return (
       <li ref={ref} className={classNames} role="listitem">
@@ -240,10 +263,17 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
                     ))}
                   </div>
                 )}
-                {monitoring && (
+                {(monitoring || (monitoringGoals && monitoringGoals.length > 0)) && (
                   <div className={styles.listItemMonitoring}>
                     <p className={styles.listItemMonitoringLabel}>{monitoringLabel}</p>
                     {monitoring}
+                    {monitoringGoals && monitoringGoals.length > 0 && (
+                      <div className={styles.assignedGoalList}>
+                        {monitoringGoals.map((goal, i) => (
+                          <AssignedGoal key={i} {...goal} />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
                 {alert && (

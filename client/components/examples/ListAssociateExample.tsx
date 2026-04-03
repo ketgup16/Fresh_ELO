@@ -85,6 +85,7 @@ export function ListAssociateExample() {
   const [tagCustomColor, setTagCustomColor] = useState<TagColor>('brand');
   const [tagCustomLabel, setTagCustomLabel] = useState('Custom');
   const [showMonitoring, setShowMonitoring] = useState(false);
+  const [showGoals, setShowGoals] = useState(false);
   const [monitoringLabel, setMonitoringLabel] = useState('Progress status');
   const [monitoringValue, setMonitoringValue] = useState(65);
   const [monitoringVariant, setMonitoringVariant] = useState<'info' | 'success' | 'warning' | 'error'>('info');
@@ -381,7 +382,7 @@ export function ListAssociateExample() {
                     style={{ width: '100%', cursor: 'pointer', accentColor: 'var(--ld-semantic-color-action-fill-primary, #0071DC)' }}
                   />
                 </div>
-                <div style={PROP_ROW}>
+                <div style={{ ...PROP_ROW, borderBottom: 'none' }}>
                   <span style={PROP_LABEL}>Variant</span>
                   <select value={monitoringVariant} onChange={e => setMonitoringVariant(e.target.value as typeof monitoringVariant)} style={SELECT_STYLE}>
                     <option value="info">Info</option>
@@ -389,6 +390,18 @@ export function ListAssociateExample() {
                     <option value="warning">Warning</option>
                     <option value="error">Error</option>
                   </select>
+                </div>
+                <div style={PROP_ROW}>
+                  <span style={PROP_LABEL}>Assigned goals</span>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                    <input
+                      type="checkbox"
+                      checked={showGoals}
+                      onChange={e => setShowGoals(e.target.checked)}
+                      style={{ cursor: 'pointer' }}
+                    />
+                    <span style={{ fontSize: '12px', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-subtle)' }}>Show</span>
+                  </label>
                 </div>
               </>
             )}
@@ -560,6 +573,10 @@ export function ListAssociateExample() {
                         />
                       ) : undefined}
                       monitoringLabel={monitoringLabel}
+                      monitoringGoals={showMonitoring && showGoals ? [
+                        { title: 'Goal name', actions: '[Action], [Action], [Action]' },
+                        { title: 'Goal name', actions: '[Action], [Action], [Action]' },
+                      ] : undefined}
                       alert={showAlert ? (
                         <Alert variant="error">Something went wrong. Please try again.</Alert>
                       ) : undefined}

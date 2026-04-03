@@ -182,3 +182,35 @@
   flex-shrink: 0;
   margin-left: var(--ld-primitive-scale-space-100, 8px);
 }
+
+/* AssignedGoal — stacked title + actions, no internal gap */
+.assignedGoal {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.assignedGoalTitle {
+  margin: 0;
+  color: var(--ld-semantic-color-text-subtle);
+  font-family: var(--ld-semantic-font-caption-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: var(--ld-semantic-font-caption-weight-default, 400);
+  line-height: var(--ld-semantic-font-caption-line-height, 1rem);
+}
+
+.assignedGoalActions {
+  margin: 0;
+  color: var(--ld-semantic-color-text);
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 0.875rem);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-line-height, 1.25rem);
+}
+
+/* Container for multiple AssignedGoal items — 8px gap between them */
+.assignedGoalList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+}
