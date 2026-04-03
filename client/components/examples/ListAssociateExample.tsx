@@ -78,7 +78,7 @@ export function ListAssociateExample() {
   const [showDivider, setShowDivider] = useState(true);
   const [linkLabel, setLinkLabel] = useState('Link');
   const [selectChecked, setSelectChecked] = useState(false);
-  const [showTag, setShowTag] = useState(true);
+  const [showTag, setShowTag] = useState(false);
   type TagOption = ListItemTagPreset | 'custom';
   const [tagPreset, setTagPreset] = useState<TagOption>('absent');
   const [tagCustomVariant, setTagCustomVariant] = useState<TagVariant>('secondary');
