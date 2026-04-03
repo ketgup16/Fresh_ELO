@@ -666,9 +666,9 @@ export function ListAssociateExample() {
               title: 'Empty',
               desc: 'The trailing slot is omitted. Use when no trailing action or indicator is needed.',
               items: [
-                <ListItem key="1" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="empty" divider />,
-                <ListItem key="2" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="empty" divider />,
-                <ListItem key="3" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="empty" />,
+                <ListItem key="1" eyebrow="Goal name" title="Associate Name" text="Role or position" leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="empty" attributes={[{ label: 'Attribute 1' }]} monitoring={<ProgressIndicator value={65} variant="info" valueLabel="65%" />} monitoringLabel="Progress status" monitoringGoals={[{ title: 'Goal name', actions: '[Action], [Action], [Action]' }, { title: 'Goal name', actions: '[Action], [Action], [Action]' }]} footerAction={<Button variant="primary" size="medium" isFullWidth>Action</Button>} divider />,
+                <ListItem key="2" eyebrow="Goal name" title="Associate Name" text="Role or position" leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="empty" attributes={[{ label: 'Attribute 1' }]} monitoring={<ProgressIndicator value={40} variant="warning" valueLabel="40%" />} monitoringLabel="Progress status" monitoringGoals={[{ title: 'Goal name', actions: '[Action], [Action], [Action]' }, { title: 'Goal name', actions: '[Action], [Action], [Action]' }]} footerAction={<Button variant="primary" size="medium" isFullWidth>Action</Button>} divider />,
+                <ListItem key="3" eyebrow="Goal name" title="Associate Name" text="Role or position" leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="empty" attributes={[{ label: 'Attribute 1' }]} monitoring={<ProgressIndicator value={90} variant="success" valueLabel="90%" />} monitoringLabel="Progress status" monitoringGoals={[{ title: 'Goal name', actions: '[Action], [Action], [Action]' }, { title: 'Goal name', actions: '[Action], [Action], [Action]' }]} footerAction={<Button variant="primary" size="medium" isFullWidth>Action</Button>} />,
               ],
             },
             {
@@ -676,9 +676,9 @@ export function ListAssociateExample() {
               title: 'Icon',
               desc: 'A 24×24 ChevronRight from the icon library. Signals navigation or drill-down.',
               items: [
-                <ListItem key="1" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="icon" divider />,
-                <ListItem key="2" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="icon" divider />,
-                <ListItem key="3" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="icon" />,
+                <ListItem key="1" eyebrow="Goal name" title="Associate Name" text="Role or position" leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="icon" attributes={[{ label: 'Attribute 1' }]} monitoring={<ProgressIndicator value={65} variant="info" valueLabel="65%" />} monitoringLabel="Progress status" monitoringGoals={[{ title: 'Goal name', actions: '[Action], [Action], [Action]' }, { title: 'Goal name', actions: '[Action], [Action], [Action]' }]} footerAction={<Button variant="primary" size="medium" isFullWidth>Action</Button>} divider />,
+                <ListItem key="2" eyebrow="Goal name" title="Associate Name" text="Role or position" leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="icon" attributes={[{ label: 'Attribute 1' }]} monitoring={<ProgressIndicator value={40} variant="warning" valueLabel="40%" />} monitoringLabel="Progress status" monitoringGoals={[{ title: 'Goal name', actions: '[Action], [Action], [Action]' }, { title: 'Goal name', actions: '[Action], [Action], [Action]' }]} footerAction={<Button variant="primary" size="medium" isFullWidth>Action</Button>} divider />,
+                <ListItem key="3" eyebrow="Goal name" title="Associate Name" text="Role or position" leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="icon" attributes={[{ label: 'Attribute 1' }]} monitoring={<ProgressIndicator value={90} variant="success" valueLabel="90%" />} monitoringLabel="Progress status" monitoringGoals={[{ title: 'Goal name', actions: '[Action], [Action], [Action]' }, { title: 'Goal name', actions: '[Action], [Action], [Action]' }]} footerAction={<Button variant="primary" size="medium" isFullWidth>Action</Button>} />,
               ],
             },
             {
@@ -686,9 +686,9 @@ export function ListAssociateExample() {
               title: 'Link',
               desc: 'A LinkButton (small) for secondary in-row actions such as "Edit" or "Change".',
               items: [
-                <ListItem key="1" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="link" trailingLink={{ text: 'Action' }} divider />,
-                <ListItem key="2" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="link" trailingLink={{ text: 'Action' }} divider />,
-                <ListItem key="3" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="link" trailingLink={{ text: 'Action' }} />,
+                <ListItem key="1" eyebrow="Goal name" title="Associate Name" text="Role or position" leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="link" trailingLink={{ text: 'Action' }} attributes={[{ label: 'Attribute 1' }]} monitoring={<ProgressIndicator value={65} variant="info" valueLabel="65%" />} monitoringLabel="Progress status" monitoringGoals={[{ title: 'Goal name', actions: '[Action], [Action], [Action]' }, { title: 'Goal name', actions: '[Action], [Action], [Action]' }]} footerAction={<Button variant="primary" size="medium" isFullWidth>Action</Button>} divider />,
+                <ListItem key="2" eyebrow="Goal name" title="Associate Name" text="Role or position" leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="link" trailingLink={{ text: 'Action' }} attributes={[{ label: 'Attribute 1' }]} monitoring={<ProgressIndicator value={40} variant="warning" valueLabel="40%" />} monitoringLabel="Progress status" monitoringGoals={[{ title: 'Goal name', actions: '[Action], [Action], [Action]' }, { title: 'Goal name', actions: '[Action], [Action], [Action]' }]} footerAction={<Button variant="primary" size="medium" isFullWidth>Action</Button>} divider />,
+                <ListItem key="3" eyebrow="Goal name" title="Associate Name" text="Role or position" leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="link" trailingLink={{ text: 'Action' }} attributes={[{ label: 'Attribute 1' }]} monitoring={<ProgressIndicator value={90} variant="success" valueLabel="90%" />} monitoringLabel="Progress status" monitoringGoals={[{ title: 'Goal name', actions: '[Action], [Action], [Action]' }, { title: 'Goal name', actions: '[Action], [Action], [Action]' }]} footerAction={<Button variant="primary" size="medium" isFullWidth>Action</Button>} />,
               ],
             },
             {
@@ -696,9 +696,9 @@ export function ListAssociateExample() {
               title: 'Select',
               desc: 'A Checkbox component. Use for multi-select list patterns.',
               items: [
-                <ListItem key="1" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="select" divider />,
-                <ListItem key="2" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="select" divider />,
-                <ListItem key="3" title="Action title" text="Action description (optional)." leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="select" />,
+                <ListItem key="1" eyebrow="Goal name" title="Associate Name" text="Role or position" leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="select" attributes={[{ label: 'Attribute 1' }]} monitoring={<ProgressIndicator value={65} variant="info" valueLabel="65%" />} monitoringLabel="Progress status" monitoringGoals={[{ title: 'Goal name', actions: '[Action], [Action], [Action]' }, { title: 'Goal name', actions: '[Action], [Action], [Action]' }]} footerAction={<Button variant="primary" size="medium" isFullWidth>Action</Button>} divider />,
+                <ListItem key="2" eyebrow="Goal name" title="Associate Name" text="Role or position" leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="select" attributes={[{ label: 'Attribute 1' }]} monitoring={<ProgressIndicator value={40} variant="warning" valueLabel="40%" />} monitoringLabel="Progress status" monitoringGoals={[{ title: 'Goal name', actions: '[Action], [Action], [Action]' }, { title: 'Goal name', actions: '[Action], [Action], [Action]' }]} footerAction={<Button variant="primary" size="medium" isFullWidth>Action</Button>} divider />,
+                <ListItem key="3" eyebrow="Goal name" title="Associate Name" text="Role or position" leading="custom" leadingContent={<CustomSlotPlaceholder />} trailing="select" attributes={[{ label: 'Attribute 1' }]} monitoring={<ProgressIndicator value={90} variant="success" valueLabel="90%" />} monitoringLabel="Progress status" monitoringGoals={[{ title: 'Goal name', actions: '[Action], [Action], [Action]' }, { title: 'Goal name', actions: '[Action], [Action], [Action]' }]} footerAction={<Button variant="primary" size="medium" isFullWidth>Action</Button>} />,
               ],
             },
           ]).map(({ prop, title, desc, items }, i, arr) => (
