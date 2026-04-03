@@ -78,7 +78,6 @@ const navigationSections: NavSection[] = [
   {
     titleKey: 'componentLibrary.wcpComponents',
     items: [
-      { id: 'ax-country', nameKey: 'componentLibrary.navAXCountry', path: '/component-library/ax-country' },
       { id: 'basic-banner', nameKey: 'componentLibrary.navBasicBanner', path: '/component-library/basic-banner' },
       { id: 'item-tile', nameKey: 'componentLibrary.navItemTile', path: '/component-library/item-tile' },
       { id: 'dropdowns', nameKey: 'componentLibrary.navDropdowns', path: '/component-library/dropdowns' },

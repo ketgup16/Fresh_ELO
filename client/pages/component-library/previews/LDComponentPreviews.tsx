@@ -801,25 +801,6 @@ export function UploadImagePreview() {
   );
 }
 
-export function CountrySelectPreview() {
-  return (
-    <PreviewFrame>
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: '8px',
-        border: '1px solid var(--ld-semantic-color-border-strong, #BABBBE)',
-        borderRadius: '4px', padding: '6px 12px', background: 'white',
-      }}>
-        <div style={{
-          width: '20px', height: '14px', borderRadius: '2px',
-          background: 'linear-gradient(180deg, #B22234 0%, #B22234 30%, white 30%, white 45%, #3C3B6E 45%, #3C3B6E 100%)',
-        }} />
-        <span style={{ fontSize: '13px', color: 'var(--ld-semantic-color-text, #2E2F32)', flex: 1 }}>United States</span>
-        <ChevronDown style={{ width: 14, height: 14, color: 'var(--ld-semantic-color-text-subtle, #74767C)' }} />
-      </div>
-    </PreviewFrame>
-  );
-}
-
 export function FlagPreview() {
   return (
     <PreviewFrame>

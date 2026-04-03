@@ -107,7 +107,6 @@ const ThemesPage = React.lazy(() => import("./pages/component-library/Themes"));
 const TogglePage = React.lazy(() => import("./pages/component-library/Toggle"));
 const OrderCardPatternsPage = React.lazy(() => import("./pages/component-library/OrderCardPatterns"));
 const BasicBannerPage = React.lazy(() => import("./pages/component-library/BasicBanner"));
-const AXCountryComponentsPage = React.lazy(() => import("./pages/component-library/AXCountryComponents"));
 const DesignTokensPage = React.lazy(() => import("./pages/component-library/DesignTokens"));
 const ThemeEditorPage = React.lazy(() => import("./pages/component-library/ThemeEditorPage"));
 const FooterPatternsPage = React.lazy(() => import("./pages/component-library/FooterPatterns"));
@@ -269,8 +268,6 @@ const App = () => (
                 <Route path="toggle" element={<TogglePage />} />
                 <Route path="order-card-patterns" element={<OrderCardPatternsPage />} />
                 <Route path="basic-banner" element={<BasicBannerPage />} />
-                <Route path="ax-country" element={<AXCountryComponentsPage />} />
-                <Route path="wcp-country" element={<Navigate to="/component-library/ax-country" replace />} />
                 <Route path="theme-editor" element={<ThemeEditorPage />} />
                 <Route path="project-settings" element={<ProjectSettingsPage />} />
                 <Route path="footer-patterns" element={<FooterPatternsPage />} />

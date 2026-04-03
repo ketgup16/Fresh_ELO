@@ -83,7 +83,6 @@ const PREVIEW_MAP: Record<string, React.FC> = {
   'Search Bar': LD.SearchBarPreview,
   'Signature Capture': LD.SignatureCapturePreview,
   'Upload Image': LD.UploadImagePreview,
-  'Country Select': LD.CountrySelectPreview,
   'Flag': LD.FlagPreview,
   'Ratings': LD.RatingsPreview,
   'Button Groups': LD.ButtonGroupsPreview,
