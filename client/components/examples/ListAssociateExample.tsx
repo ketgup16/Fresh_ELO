@@ -84,8 +84,8 @@ export function ListAssociateExample() {
   const [tagCustomVariant, setTagCustomVariant] = useState<TagVariant>('secondary');
   const [tagCustomColor, setTagCustomColor] = useState<TagColor>('brand');
   const [tagCustomLabel, setTagCustomLabel] = useState('Custom');
-  const [showMonitoring, setShowMonitoring] = useState(false);
-  const [showGoals, setShowGoals] = useState(false);
+  const [showMonitoring, setShowMonitoring] = useState(true);
+  const [showGoals, setShowGoals] = useState(true);
   const [monitoringLabel, setMonitoringLabel] = useState('Progress status');
   const [monitoringValue, setMonitoringValue] = useState(65);
   const [monitoringVariant, setMonitoringVariant] = useState<'info' | 'success' | 'warning' | 'error'>('info');
