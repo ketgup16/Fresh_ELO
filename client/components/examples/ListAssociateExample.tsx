@@ -80,7 +80,7 @@ export function ListAssociateExample() {
   const [selectChecked, setSelectChecked] = useState(false);
   const [showTag, setShowTag] = useState(true);
   type TagOption = ListItemTagPreset | 'custom';
-  const [tagPreset, setTagPreset] = useState<TagOption>('unassigned');
+  const [tagPreset, setTagPreset] = useState<TagOption>('absent');
   const [tagCustomVariant, setTagCustomVariant] = useState<TagVariant>('secondary');
   const [tagCustomColor, setTagCustomColor] = useState<TagColor>('brand');
   const [tagCustomLabel, setTagCustomLabel] = useState('Custom');
@@ -167,9 +167,14 @@ export function ListAssociateExample() {
               <div style={PROP_ROW}>
                 <span style={PROP_LABEL}>Tag preset</span>
                 <select value={tagPreset} onChange={e => setTagPreset(e.target.value as TagOption)} style={SELECT_STYLE}>
-                  <option value="unassigned">Unassigned</option>
-                  <option value="assigned">Assigned</option>
-                  <option value="complete">Complete</option>
+                  <option value="absent">Absent</option>
+                  <option value="tardy">Tardy</option>
+                  <option value="unavailable">Unavailable</option>
+                  <option value="removed">Removed</option>
+                  <option value="do-not-disturb">Do not disturb</option>
+                  <option value="meal">Meal</option>
+                  <option value="ppto">PPTO</option>
+                  <option value="not-scheduled">Not scheduled</option>
                   <option value="custom">Custom</option>
                 </select>
               </div>

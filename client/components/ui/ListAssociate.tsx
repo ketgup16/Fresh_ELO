@@ -26,7 +26,15 @@ function AssignedGoal({ title = 'Goal name', actions = '[Action], [Action], [Act
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type ListItemTagPreset = 'unassigned' | 'assigned' | 'complete';
+export type ListItemTagPreset =
+  | 'absent'
+  | 'tardy'
+  | 'unavailable'
+  | 'removed'
+  | 'do-not-disturb'
+  | 'meal'
+  | 'ppto'
+  | 'not-scheduled';
 
 export interface ListItemTagCustom {
   variant: TagVariant;
@@ -34,10 +42,15 @@ export interface ListItemTagCustom {
   label: string;
 }
 
-const TAG_PRESET_MAP: Record<ListItemTagPreset, { label: string; color: 'gray' | 'blue' | 'green' }> = {
-  unassigned: { label: 'Unassigned', color: 'gray' },
-  assigned:   { label: 'Assigned',   color: 'blue' },
-  complete:   { label: 'Complete',   color: 'green' },
+const TAG_PRESET_MAP: Record<ListItemTagPreset, { label: string; color: TagColor }> = {
+  'absent':        { label: 'Absent',         color: 'red'   },
+  'tardy':         { label: 'Tardy',          color: 'spark' },
+  'unavailable':   { label: 'Unavailable',    color: 'gray'  },
+  'removed':       { label: 'Removed',        color: 'gray'  },
+  'do-not-disturb':{ label: 'Do not disturb', color: 'spark' },
+  'meal':          { label: 'Meal',           color: 'blue'  },
+  'ppto':          { label: 'PPTO',           color: 'gray'  },
+  'not-scheduled': { label: 'Not scheduled',  color: 'gray'  },
 };
 
 export type ListItemLeading = 'empty' | 'custom';
