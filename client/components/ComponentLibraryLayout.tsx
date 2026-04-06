@@ -89,6 +89,7 @@ const navigationSections: NavSection[] = [
         id: 'list',
         titleKey: 'componentLibrary.listCategory',
         items: [
+          { id: 'lists',          nameKey: 'componentLibrary.navLists',          path: '/component-library/lists' },
           { id: 'list-action',    nameKey: 'componentLibrary.navListAction',    path: '/component-library/list-action' },
           { id: 'list-associate', nameKey: 'componentLibrary.navListAssociate', path: '/component-library/list-associate' },
         ],
