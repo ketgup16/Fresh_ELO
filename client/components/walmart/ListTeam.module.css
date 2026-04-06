@@ -1,0 +1,128 @@
+/* ─── List Team component styles ─────────────────────────────────────────── */
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  /* Padding: top/bottom 8px, right 16px, left 8px */
+  padding: var(--ld-primitive-scale-space-100, 8px)
+    var(--ld-primitive-scale-space-200, 16px)
+    var(--ld-primitive-scale-space-100, 8px)
+    var(--ld-primitive-scale-space-100, 8px);
+  border-radius: 28px;
+  border: transparent solid 0px;
+  box-sizing: border-box;
+  cursor: default;
+  outline: none;
+  transition: background-color 0.1s ease;
+}
+
+.item:focus-visible {
+  box-shadow: 0 0 0 3px var(--ld-semantic-color-action-focus-outline, #0053e2);
+}
+
+/* ─── Variant: Navigational ──────────────────────────────────────────────── */
+
+.item--navigational {
+  background: transparent;
+}
+
+.item--navigational.item--pressed {
+  background: var(--ld-semantic-color-fill-pressed, #f0f1f2);
+}
+
+/* ─── Variant: Selectable ────────────────────────────────────────────────── */
+
+.item--selectable {
+  background: var(--ld-semantic-color-fill, #ffffff);
+  border: var(--ld-semantic-scale-borderwidth-interactive, 1px) solid
+    var(--ld-semantic-color-border-subtlest, #dcdde0);
+}
+
+.item--selectable.item--pressed {
+  background: var(--ld-semantic-color-fill-pressed, #f0f1f2);
+  border-width: var(--ld-semantic-scale-borderwidth-interactive-pressed, 2px);
+  border-color: var(--ld-semantic-color-border, #74767c);
+}
+
+.item--selectable.item--selected {
+  background: var(--ld-semantic-color-fill, #ffffff);
+  border-width: var(--ld-semantic-scale-borderwidth-interactive-activated, 2px);
+  border-color: var(--ld-semantic-color-border, #74767c);
+}
+
+/* ─── Leading illustration ───────────────────────────────────────────────── */
+
+.illustration {
+  width: var(--ld-primitive-scale-space-500, 40px);
+  height: var(--ld-primitive-scale-space-500, 40px);
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── Content area ───────────────────────────────────────────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  align-self: stretch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--ld-semantic-color-text-onfill, #2e2f32);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 1rem);
+  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5rem);
+  font-kerning: none;
+}
+
+.subtitle {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  align-self: stretch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  font-family: var(--ld-semantic-font-caption-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-caption-size, 0.75rem);
+  font-weight: var(--ld-semantic-font-caption-weight-default, 400);
+  line-height: var(--ld-semantic-font-caption-lineheight, 1rem);
+  font-kerning: none;
+}
+
+/* ─── Trailing cluster ───────────────────────────────────────────────────── */
+
+.trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+  flex-shrink: 0;
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  flex-shrink: 0;
+}

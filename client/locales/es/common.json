@@ -134,6 +134,8 @@
     "descListAction": "Listas de acción con contenido al final, atributos, etiquetas y acciones de pie",
     "navListAssociate": "Lista Associate",
     "descListAssociate": "Listas de asociado con contenido al inicio, al final, atributos, etiquetas y acciones de pie",
+    "navListTeam": "Lista Equipo",
+    "descListTeam": "Elementos de lista de equipo con variantes de navegación y seleccionable, ilustraciones principales, atributos y etiquetas",
     "navMagicBox": "Caja mágica",
     "navMenu": "Menú",
     "navMetrics": "Métricas",
