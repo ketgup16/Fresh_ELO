@@ -7,6 +7,7 @@ import {
   ListTeamIllustration,
   TEAM_ILLUSTRATIONS,
 } from '@/components/walmart/ListTeam';
+import { TEAM_ILLUSTRATION_ELEMENTS } from '@/components/walmart/TeamIllustrationSVGs';
 import styles from './ExamplePage.module.css';
 
 // ─── Shared control styles (matches ListAssociateExample pattern) ─────────────
@@ -90,6 +91,7 @@ export function ListTeamExample() {
   };
 
   const illustrationSrc = TEAM_ILLUSTRATIONS[illustration].src;
+  const illustrationElement = TEAM_ILLUSTRATION_ELEMENTS[illustration];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
@@ -332,7 +334,8 @@ export function ListTeamExample() {
                   <ListTeam
                     variant={variant}
                     state={state}
-                    illustrationSrc={illustrationSrc}
+                    illustrationElement={illustrationElement}
+                    illustrationSrc={illustrationElement ? undefined : illustrationSrc}
                     illustrationAlt={TEAM_ILLUSTRATIONS[illustration].label}
                     title={title || 'Team name / label'}
                     subtitle={showSubtitle ? subtitle : undefined}
@@ -476,43 +479,48 @@ export function ListTeamExample() {
           gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
           gap: '8px',
         }}>
-          {ILLUSTRATION_ENTRIES.map(([key, { src, label }]) => (
-            <div key={key} style={{
-              display: 'flex', alignItems: 'center', gap: '12px',
-              padding: '8px 12px',
-              background: 'var(--ld-semantic-color-surface, #fff)',
-              border: '1px solid var(--ld-semantic-color-border-subtlest, #dcdde0)',
-              borderRadius: '8px',
-            }}>
-              {src ? (
-                <img
-                  src={src}
-                  alt={label}
-                  style={{ width: '40px', height: '40px', borderRadius: '50%', flexShrink: 0, objectFit: 'cover' }}
-                />
-              ) : (
-                <div style={{
-                  width: '40px', height: '40px', borderRadius: '50%', flexShrink: 0,
-                  background: 'var(--ld-semantic-color-fill-accent-blue-subtle, #e8f0ff)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontFamily: 'var(--ld-semantic-font-family-sans)',
-                  fontSize: '12px', fontWeight: 700,
-                  color: 'var(--ld-semantic-color-text-onfill-accent-blue-subtle, #002e99)',
-                  textTransform: 'uppercase',
-                }}>
-                  {label.charAt(0)}
-                </div>
-              )}
-              <span style={{
-                fontFamily: 'var(--ld-semantic-font-family-sans)',
-                fontSize: '14px',
-                color: 'var(--ld-semantic-color-text)',
-                fontWeight: 500,
+          {ILLUSTRATION_ENTRIES.map(([key, { src, label }]) => {
+            const svgElement = TEAM_ILLUSTRATION_ELEMENTS[key];
+            return (
+              <div key={key} style={{
+                display: 'flex', alignItems: 'center', gap: '12px',
+                padding: '8px 12px',
+                background: 'var(--ld-semantic-color-surface, #fff)',
+                border: '1px solid var(--ld-semantic-color-border-subtlest, #dcdde0)',
+                borderRadius: '8px',
               }}>
-                {label}
-              </span>
-            </div>
-          ))}
+                {svgElement ? (
+                  svgElement
+                ) : src ? (
+                  <img
+                    src={src}
+                    alt={label}
+                    style={{ width: '40px', height: '40px', borderRadius: '50%', flexShrink: 0, objectFit: 'cover' }}
+                  />
+                ) : (
+                  <div style={{
+                    width: '40px', height: '40px', borderRadius: '50%', flexShrink: 0,
+                    background: 'var(--ld-semantic-color-fill-accent-blue-subtle, #e8f0ff)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontFamily: 'var(--ld-semantic-font-family-sans)',
+                    fontSize: '12px', fontWeight: 700,
+                    color: 'var(--ld-semantic-color-text-onfill-accent-blue-subtle, #002e99)',
+                    textTransform: 'uppercase',
+                  }}>
+                    {label.charAt(0)}
+                  </div>
+                )}
+                <span style={{
+                  fontFamily: 'var(--ld-semantic-font-family-sans)',
+                  fontSize: '14px',
+                  color: 'var(--ld-semantic-color-text)',
+                  fontWeight: 500,
+                }}>
+                  {label}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
 

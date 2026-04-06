@@ -1,0 +1,36 @@
+/* ─── Team Illustration SVG wrappers ──────────────────────────────────────── */
+
+/**
+ * Standard 40×40 circular container for illustrations that don't embed
+ * their own circle background (remodel, health-beauty, salesfloor).
+ */
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  /* blue-20 — matches the #C9DCFD used inside the self-contained SVGs */
+  background: var(--ld-semantic-color-fill-accent-blue-subtle, #c9dcfd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/**
+ * Slightly lighter circle for the Placeholder illustration (blue-10 in Figma).
+ */
+.circlePlaceholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ld-semantic-color-fill-accent-blue-subtlest, #e8f0ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 8px;
+  box-sizing: border-box;
+}
