@@ -38,36 +38,47 @@ export type ListTeamIllustration =
   | 'saved-teams';
 
 /**
- * Map of known team illustration names to their Builder.io CDN image URLs.
- * The apparel URL is confirmed from the Figma design.
- * For other team types, supply the `illustrationSrc` prop directly.
+ * Consolidated illustration data — single source of truth.
+ * `label` is the exact purple annotation text from the Figma design.
+ * `src` is the Builder.io CDN image URL (only confirmed for apparel from Figma).
  */
-export const TEAM_ILLUSTRATION_SRC: Record<ListTeamIllustration, string> = {
-  apparel:
-    'https://api.builder.io/api/v1/image/assets/TEMP/1dbefc0bf7597bc82e849aa172e61b08dbf901d4?width=80',
-  'asset-protection': '',
-  'auto-care-center': '',
-  'deli-bakery': '',
-  digital: '',
-  entertainment: '',
-  'food-consumables': '',
-  'front-end': '',
-  fuel: '',
-  hardlines: '',
-  'health-beauty': '',
-  home: '',
-  'meat-produce': '',
-  pharmacy: '',
-  remodel: '',
-  salesfloor: '',
-  seasonal: '',
-  'stocking-day': '',
-  'stocking-overnight': '',
-  store: '',
-  vision: '',
-  placeholder: '',
-  'saved-teams': '',
+export const TEAM_ILLUSTRATIONS: Record<
+  ListTeamIllustration,
+  { src: string; label: string }
+> = {
+  apparel: {
+    src: 'https://api.builder.io/api/v1/image/assets/TEMP/1dbefc0bf7597bc82e849aa172e61b08dbf901d4?width=80',
+    label: 'Apparel',
+  },
+  'asset-protection': { src: '', label: 'Asset Protection' },
+  'auto-care-center': { src: '', label: 'Auto Care Center' },
+  'deli-bakery': { src: '', label: 'Deli & Bakery' },
+  digital: { src: '', label: 'Digital' },
+  entertainment: { src: '', label: 'Entertainment' },
+  'food-consumables': { src: '', label: 'Foor & Consumables' },
+  'front-end': { src: '', label: 'Front End' },
+  fuel: { src: '', label: 'Fuel' },
+  hardlines: { src: '', label: 'Hardlines' },
+  'health-beauty': { src: '', label: 'Health & Beauty' },
+  home: { src: '', label: 'Home' },
+  'meat-produce': { src: '', label: 'Meat & Produce' },
+  pharmacy: { src: '', label: 'Pharmacy' },
+  remodel: { src: '', label: 'Remodel' },
+  salesfloor: { src: '', label: 'Salesfloor' },
+  seasonal: { src: '', label: 'Seasonal' },
+  'stocking-day': { src: '', label: 'Stocking Day' },
+  'stocking-overnight': { src: '', label: 'Stocking Overnight' },
+  store: { src: '', label: 'Store' },
+  vision: { src: '', label: 'Vision' },
+  placeholder: { src: '', label: 'Placeholder' },
+  'saved-teams': { src: '', label: 'Saved Teams' },
 };
+
+/** @deprecated Use TEAM_ILLUSTRATIONS[key].src instead */
+export const TEAM_ILLUSTRATION_SRC: Record<ListTeamIllustration, string> =
+  Object.fromEntries(
+    Object.entries(TEAM_ILLUSTRATIONS).map(([k, v]) => [k, v.src])
+  ) as Record<ListTeamIllustration, string>;
 
 // ─── Props ────────────────────────────────────────────────────────────────────
 
@@ -171,13 +182,17 @@ export const ListTeam: React.FC<ListTeamProps> = ({
       }
     >
       {/* Leading illustration */}
-      {illustrationSrc && (
+      {illustrationSrc ? (
         <img
           src={illustrationSrc}
           alt={illustrationAlt}
           className={styles.illustration}
           aria-hidden={illustrationAlt === '' ? true : undefined}
         />
+      ) : (
+        <span className={styles.illustrationPlaceholder} aria-hidden="true">
+          {(illustrationAlt || title).charAt(0).toUpperCase()}
+        </span>
       )}
 
       {/* Content area */}

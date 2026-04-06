@@ -5,7 +5,7 @@ import {
   ListTeamVariant,
   ListTeamState,
   ListTeamIllustration,
-  TEAM_ILLUSTRATION_SRC,
+  TEAM_ILLUSTRATIONS,
 } from '@/components/walmart/ListTeam';
 import styles from './ExamplePage.module.css';
 
@@ -54,36 +54,15 @@ const INPUT_STYLE: React.CSSProperties = {
   boxSizing: 'border-box',
 };
 
-// ─── Team illustration options (for the picker) ───────────────────────────────
+// ─── Illustration entries derived from single source of truth ────────────────
 
-const ILLUSTRATION_OPTIONS: { value: ListTeamIllustration; label: string }[] = [
-  { value: 'apparel', label: 'Apparel' },
-  { value: 'asset-protection', label: 'Asset Protection' },
-  { value: 'auto-care-center', label: 'Auto Care Center' },
-  { value: 'deli-bakery', label: 'Deli & Bakery' },
-  { value: 'digital', label: 'Digital' },
-  { value: 'entertainment', label: 'Entertainment' },
-  { value: 'food-consumables', label: 'Food & Consumables' },
-  { value: 'front-end', label: 'Front End' },
-  { value: 'fuel', label: 'Fuel' },
-  { value: 'hardlines', label: 'Hardlines' },
-  { value: 'health-beauty', label: 'Health & Beauty' },
-  { value: 'home', label: 'Home' },
-  { value: 'meat-produce', label: 'Meat & Produce' },
-  { value: 'pharmacy', label: 'Pharmacy' },
-  { value: 'remodel', label: 'Remodel' },
-  { value: 'salesfloor', label: 'Salesfloor' },
-  { value: 'seasonal', label: 'Seasonal' },
-  { value: 'stocking-day', label: 'Stocking Day' },
-  { value: 'stocking-overnight', label: 'Stocking Overnight' },
-  { value: 'store', label: 'Store' },
-  { value: 'vision', label: 'Vision' },
-  { value: 'placeholder', label: 'Placeholder' },
-  { value: 'saved-teams', label: 'Saved Teams' },
-];
+const ILLUSTRATION_ENTRIES = Object.entries(TEAM_ILLUSTRATIONS) as [
+  ListTeamIllustration,
+  { src: string; label: string },
+][];
 
 // Apparel is the confirmed illustration from Figma
-const APPAREL_SRC = TEAM_ILLUSTRATION_SRC['apparel'];
+const APPAREL_SRC = TEAM_ILLUSTRATIONS['apparel'].src;
 
 // ─── Main example component ───────────────────────────────────────────────────
 
@@ -110,7 +89,7 @@ export function ListTeamExample() {
     }
   };
 
-  const illustrationSrc = TEAM_ILLUSTRATION_SRC[illustration] || APPAREL_SRC;
+  const illustrationSrc = TEAM_ILLUSTRATIONS[illustration].src;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
@@ -181,8 +160,8 @@ export function ListTeamExample() {
                 onChange={e => setIllustration(e.target.value as ListTeamIllustration)}
                 style={SELECT_STYLE}
               >
-                {ILLUSTRATION_OPTIONS.map(opt => (
-                  <option key={opt.value} value={opt.value}>{opt.label}</option>
+                {ILLUSTRATION_ENTRIES.map(([key, { label }]) => (
+                  <option key={key} value={key}>{label}</option>
                 ))}
               </select>
             </div>
@@ -354,9 +333,7 @@ export function ListTeamExample() {
                     variant={variant}
                     state={state}
                     illustrationSrc={illustrationSrc}
-                    illustrationAlt={
-                      ILLUSTRATION_OPTIONS.find(o => o.value === illustration)?.label ?? ''
-                    }
+                    illustrationAlt={TEAM_ILLUSTRATIONS[illustration].label}
                     title={title || 'Team name / label'}
                     subtitle={showSubtitle ? subtitle : undefined}
                     tagLabel={showTag ? tagLabel : undefined}
@@ -499,32 +476,31 @@ export function ListTeamExample() {
           gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
           gap: '8px',
         }}>
-          {ILLUSTRATION_OPTIONS.map(opt => (
-            <div key={opt.value} style={{
+          {ILLUSTRATION_ENTRIES.map(([key, { src, label }]) => (
+            <div key={key} style={{
               display: 'flex', alignItems: 'center', gap: '12px',
               padding: '8px 12px',
               background: 'var(--ld-semantic-color-surface, #fff)',
               border: '1px solid var(--ld-semantic-color-border-subtlest, #dcdde0)',
               borderRadius: '8px',
             }}>
-              {/* Illustration placeholder circle */}
-              {TEAM_ILLUSTRATION_SRC[opt.value] ? (
+              {src ? (
                 <img
-                  src={TEAM_ILLUSTRATION_SRC[opt.value]}
-                  alt={opt.label}
+                  src={src}
+                  alt={label}
                   style={{ width: '40px', height: '40px', borderRadius: '50%', flexShrink: 0, objectFit: 'cover' }}
                 />
               ) : (
                 <div style={{
                   width: '40px', height: '40px', borderRadius: '50%', flexShrink: 0,
-                  background: 'var(--ld-semantic-color-fill-subtle, #f5f5f6)',
-                  border: '1px dashed var(--ld-semantic-color-border-subtlest, #dcdde0)',
+                  background: 'var(--ld-semantic-color-fill-accent-blue-subtle, #e8f0ff)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)',
+                  fontSize: '12px', fontWeight: 700,
+                  color: 'var(--ld-semantic-color-text-onfill-accent-blue-subtle, #002e99)',
+                  textTransform: 'uppercase',
                 }}>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <circle cx="8" cy="8" r="6" stroke="var(--ld-semantic-color-text-subtle, #74767C)" strokeWidth="1.5"/>
-                    <path d="M8 5v3l2 1" stroke="var(--ld-semantic-color-text-subtle, #74767C)" strokeWidth="1.5" strokeLinecap="round"/>
-                  </svg>
+                  {label.charAt(0)}
                 </div>
               )}
               <span style={{
@@ -533,7 +509,7 @@ export function ListTeamExample() {
                 color: 'var(--ld-semantic-color-text)',
                 fontWeight: 500,
               }}>
-                {opt.label}
+                {label}
               </span>
             </div>
           ))}
