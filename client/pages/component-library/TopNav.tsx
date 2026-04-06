@@ -266,7 +266,7 @@ export default function TopNavPage() {
                     </div>
                     <Divider />
                     <div className={styles.nativeControlRow}>
-                      <span className={styles.nativeControlLabel}>AX Search Bar</span>
+                      <span className={styles.nativeControlLabel}>AX Search Field</span>
                       <div style={{ display: 'flex', gap: '8px' }}>
                         <Chip size="small" selected={showNativeSearchBar} onClick={() => setShowNativeSearchBar(true)}>On</Chip>
                         <Chip size="small" selected={!showNativeSearchBar} onClick={() => setShowNativeSearchBar(false)}>Off</Chip>

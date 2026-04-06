@@ -6,7 +6,7 @@ import { LocationIcon, StoreIcon } from '@/components/icons-custom';
 import { CameraModal } from '@/components/walmart/CameraModal';
 import { MobileMenuPanel } from '@/components/walmart/MobileMenuPanel';
 import { SearchTypeaheadModal } from '@/pages/walmart/index/SearchTypeaheadModal';
-import { AXSearchBar } from '@/components/walmart/AXSearchBar';
+import { AXSearchField } from '@/components/walmart/AXSearchField';
 import { AXAvatarButton } from '@/components/walmart/AXAvatarButton';
 import { AvatarFallback } from '@/components/ui/avatar';
 import { LinkButton } from '@/components/ui/LinkButton';
@@ -285,11 +285,13 @@ export function MobileTopNav({
 
             {/* Row 2: AX Search Bar */}
             {showNativeSearchBar && <div className={styles.nativeSearchRow}>
-              <AXSearchBar
+              <AXSearchField
                 value={nativeSearchValue}
                 onChange={setNativeSearchValue}
                 onBarcodeClick={() => setShowCameraModal(true)}
                 showMic={false}
+                size="small"
+                cornerStyle="rounded"
               />
             </div>}
           </div>
