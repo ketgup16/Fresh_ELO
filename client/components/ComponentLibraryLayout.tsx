@@ -65,6 +65,7 @@ const navigationSections: NavSection[] = [
       { id: 'top-nav', nameKey: 'componentLibrary.navTopNav', path: '/component-library/top-nav' },
       { id: 'page-templates', nameKey: 'componentLibrary.navPageTemplates', path: '/component-library/page-templates' },
       { id: 'side-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/side-nav' },
+      { id: 'ax-metric-group', nameKey: 'componentLibrary.navAXMetricGroup', path: '/component-library/ax-metric-group' },
     ]
   },
   {
@@ -83,7 +84,6 @@ const navigationSections: NavSection[] = [
       { id: 'ax-avatar', nameKey: 'componentLibrary.navAXAvatar', path: '/component-library/ax-avatar' },
       { id: 'ax-avatar-button', nameKey: 'componentLibrary.navAXAvatarButton', path: '/component-library/ax-avatar-button' },
       { id: 'ax-attribute', nameKey: 'componentLibrary.navAXAttribute', path: '/component-library/ax-attribute' },
-      { id: 'ax-metric-group', nameKey: 'componentLibrary.navAXMetricGroup', path: '/component-library/ax-metric-group' },
     ],
     subGroups: [
       {
