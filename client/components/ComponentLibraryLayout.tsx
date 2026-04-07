@@ -83,6 +83,7 @@ const navigationSections: NavSection[] = [
       { id: 'ax-avatar', nameKey: 'componentLibrary.navAXAvatar', path: '/component-library/ax-avatar' },
       { id: 'ax-avatar-button', nameKey: 'componentLibrary.navAXAvatarButton', path: '/component-library/ax-avatar-button' },
       { id: 'ax-attribute', nameKey: 'componentLibrary.navAXAttribute', path: '/component-library/ax-attribute' },
+      { id: 'ax-metric-group', nameKey: 'componentLibrary.navAXMetricGroup', path: '/component-library/ax-metric-group' },
     ],
     subGroups: [
       {

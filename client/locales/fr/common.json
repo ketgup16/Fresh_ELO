@@ -165,6 +165,8 @@
     "navAXAvatarButton": "AX Avatar Button",
     "navAXAttribute": "AX Attribute",
     "descAXAttribute": "Composant compact icône + étiquette pour afficher des métadonnées, un statut ou une catégorisation.",
+    "navAXMetricGroup": "Groupe de métriques",
+    "descAXMetricGroup": "Modèle composant 2 à 3 composants Metric côte à côte avec des séparateurs Divider verticaux et des espaces de 8 px entre tous les éléments.",
     "navCalendar": "Calendrier",
     "navCarousel": "Carrousel",
     "navChart": "Graphique",

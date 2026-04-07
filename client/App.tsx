@@ -115,6 +115,7 @@ const AXSearchFieldPage = React.lazy(() => import("./pages/component-library/AXS
 const AXSignatureCapturePage = React.lazy(() => import("./pages/component-library/AXSignatureCapture"));
 const AXRichMediaSheetPage = React.lazy(() => import("./pages/component-library/AXRichMediaSheet"));
 const AXUploadImagePage = React.lazy(() => import("./pages/component-library/AXUploadImage"));
+const AXMetricGroupPage = React.lazy(() => import("./pages/component-library/AXMetricGroup"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
 const FoundationsPage = React.lazy(() => import("./pages/component-library/Foundations"));
 const AssetsPage = React.lazy(() => import("./pages/component-library/Assets"));
@@ -273,6 +274,7 @@ const App = () => (
                 <Route path="wcp-rich-media-sheet" element={<Navigate to="/component-library/ax-rich-media-sheet" replace />} />
                 <Route path="ax-upload-image" element={<AXUploadImagePage />} />
                 <Route path="wcp-upload-image" element={<Navigate to="/component-library/ax-upload-image" replace />} />
+                <Route path="ax-metric-group" element={<AXMetricGroupPage />} />
               </Route>
 
               {/* Walmart pages */}

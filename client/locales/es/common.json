@@ -165,6 +165,8 @@
     "navAXAvatarButton": "AX Avatar Button",
     "navAXAttribute": "AX Attribute",
     "descAXAttribute": "Componente compacto de icono + etiqueta para mostrar metadatos, estado o categorización.",
+    "navAXMetricGroup": "Grupo de métricas",
+    "descAXMetricGroup": "Patrón que compone 2 o 3 componentes Metric en fila con separadores Divider verticales y espacios de 8 px entre todos los elementos.",
     "navCalendar": "Calendario",
     "navCarousel": "Carrusel",
     "navChart": "Gráfico",

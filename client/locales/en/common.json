@@ -169,6 +169,8 @@
     "navAXAvatarButton": "AX Avatar Button",
     "navAXAttribute": "AX Attribute",
     "descAXAttribute": "Compact icon + label component for surfacing metadata, status, or categorisation. Small (5 color variants) and Large (4 color variants).",
+    "navAXMetricGroup": "Metric Group",
+    "descAXMetricGroup": "A pattern composing 2–3 Metric components side-by-side with vertical Divider separators and 8px token gaps between all elements.",
     "navCalendar": "Calendar",
     "navCarousel": "Carousel",
     "navChart": "Chart",
