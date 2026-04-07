@@ -551,7 +551,6 @@ export function ListTeamExample() {
                 <div style={{
                   padding: '16px',
                   background: 'var(--ld-semantic-color-surface, #fff)',
-                  border: '1px solid var(--ld-semantic-color-border-subtlest, #dcdde0)',
                   borderRadius: '12px',
                 }}>
                   <ListTeam
