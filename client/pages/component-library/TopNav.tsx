@@ -325,6 +325,7 @@ export default function TopNavPage() {
                     showHomeExtras={nativeVariant === 'blue'}
                     forceVisible
                     forceNative
+                    isTabletLayout
                     nativeTitle={nativeTitle}
                     nativeSubtitle={nativeSubtitle}
                     showNativeSubtitle={showNativeSubtitle}

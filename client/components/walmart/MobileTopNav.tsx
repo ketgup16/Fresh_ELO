@@ -60,6 +60,8 @@ interface MobileTopNavProps {
   showNativeAction4?: boolean;
   /** Icon node rendered inside action button 4. Defaults to Placeholder icon. */
   action4Icon?: React.ReactNode;
+  /** Whether this is being rendered in the tablet layout. Controls whether iOS centering is applied. @default false */
+  isTabletLayout?: boolean;
 }
 
 export function MobileTopNav({
@@ -83,6 +85,7 @@ export function MobileTopNav({
   nativeOSPlatform = 'ios',
   showNativeAction4 = false,
   action4Icon = <Placeholder />,
+  isTabletLayout = false,
 }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
@@ -248,7 +251,7 @@ export function MobileTopNav({
                 {menuIcon}
               </IconButton>
 
-              <div className={nativeOSPlatform === 'ios' ? styles.nativeTitleAreaCentered : styles.nativeTitleArea}>
+              <div className={isTabletLayout && nativeOSPlatform === 'ios' ? styles.nativeTitleAreaCentered : styles.nativeTitleArea}>
                 <span className={styles.nativeTitleText}>{nativeTitle}</span>
                 {showNativeSubtitle && (
                   <span className={styles.nativeSubtitleText}>{nativeSubtitle}</span>
