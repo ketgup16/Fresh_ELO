@@ -48,71 +48,92 @@ export const TEAM_ILLUSTRATIONS: Record<
   { src: string; label: string }
 > = {
   apparel: {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/1dbefc0bf7597bc82e849aa172e61b08dbf901d4?width=80',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F81093f7476624887a94b9a3813f20e8d?format=webp&width=800&height=1200',
     label: 'Apparel',
   },
   'asset-protection': {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/04eb38c7227e7ca6b85518f2289c27334a6e6e66?width=58',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F17a2ded50a1b441da85755c823861bbe?format=webp&width=800&height=1200',
     label: 'Asset Protection',
   },
-  'auto-care-center': { src: '', label: 'Auto Care Center' },
+  'auto-care-center': {
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F06985a0ce6cf4b2680bc70028d0faa3e?format=webp&width=800&height=1200',
+    label: 'Auto Care Center',
+  },
   'deli-bakery': {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/21e1fcd4444cd3c4b0c9bfbbef521dc670e11912?width=62',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F3d384edc39c444da93f4d9c521de0fd9?format=webp&width=800&height=1200',
     label: 'Deli & Bakery',
   },
   digital: {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/ef1323402666d1195d1213f159baa378e7199920?width=80',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F4d4eec4ea67d4666ba20540fe1093b9b?format=webp&width=800&height=1200',
     label: 'Digital',
   },
-  entertainment: { src: '', label: 'Entertainment' },
+  entertainment: {
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F96a72e8d985d4ffc8155439a6db9b961?format=webp&width=800&height=1200',
+    label: 'Entertainment',
+  },
   'food-consumables': {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/6a2f9fa3fde3510c399a64059e392a85c5e41b51?width=53',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fb7198f11a6fc4dc5815534156cc26ed2?format=webp&width=800&height=1200',
     label: 'Food & Consumables',
   },
   'front-end': {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/6520882d443255f7549ac28abe13f7c99e8935a3?width=69',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fa3b266f7c117417bbf21c5f1952d2b6e?format=webp&width=800&height=1200',
     label: 'Front End',
   },
-  fuel: { src: '', label: 'Fuel' },
+  fuel: {
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F887806d138d9421aa311d10f47f81e7f?format=webp&width=800&height=1200',
+    label: 'Fuel',
+  },
   hardlines: {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/c2972c0a200e1babd410b6bfc23f8be70c7040fc?width=69',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F78cf57f7327943278b05a59642babc8c?format=webp&width=800&height=1200',
     label: 'Hardlines',
   },
-  'health-beauty': { src: '', label: 'Health & Beauty' },
-  home: { src: '', label: 'Home' },
+  'health-beauty': {
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F2381d741ec9f4b949688f3cebdbd4fc5?format=webp&width=800&height=1200',
+    label: 'Health & Beauty',
+  },
+  home: {
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F1190f42815b34bb392afaa287bb5e02a?format=webp&width=800&height=1200',
+    label: 'Home',
+  },
   'meat-produce': {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/ba93e7fcaae6424664cd840a25c49bfe765b1784?width=69',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8ced19e4a8244039bf57a475b3f9d716?format=webp&width=800&height=1200',
     label: 'Meat & Produce',
   },
   pharmacy: {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/e239efd104f0840ecb76e65c4a77197fd9201236?width=80',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F8465619eb3094c34a3a92e3d03f47315?format=webp&width=800&height=1200',
     label: 'Pharmacy',
   },
-  remodel: { src: '', label: 'Remodel' },
-  salesfloor: { src: '', label: 'Salesfloor' },
+  remodel: {
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F7e2c0855e38240b2b7c1c540a479a379?format=webp&width=800&height=1200',
+    label: 'Remodel',
+  },
+  salesfloor: {
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F2ec7531c353d4fbb8e6f1495805b047e?format=webp&width=800&height=1200',
+    label: 'Salesfloor',
+  },
   seasonal: {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/44f25e3068822f06b44d3338e96a61c706f9e341?width=80',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fb75fb279b3ee4aa896bf7d8a304fcaf3?format=webp&width=800&height=1200',
     label: 'Seasonal',
   },
   'stocking-day': {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/88ff5a240615fcf3131373349addb814dac62305?width=69',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fced220badcdc4cb486407cc32c031d8a?format=webp&width=800&height=1200',
     label: 'Stocking Day',
   },
   'stocking-overnight': {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/ac4d3e6a76f3f29b518ff4762a411f78e06f46f7?width=71',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fea591b3c41f9413e8c27661d9ab4068c?format=webp&width=800&height=1200',
     label: 'Stocking Overnight',
   },
   store: {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/5b4fa3dcddcb85899ccc225fe5651f8609f50033?width=98',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F80930352cfe041e6b2778dd1c62d36b0?format=webp&width=800&height=1200',
     label: 'Store',
   },
   vision: {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/6be9a71e1998a2f81d4aed57c67126f49d5bb882?width=69',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fa12e47a61a2a432dab7a992a7174913f?format=webp&width=800&height=1200',
     label: 'Vision',
   },
   placeholder: { src: '', label: 'Placeholder' },
   'saved-teams': {
-    src: 'https://api.builder.io/api/v1/image/assets/TEMP/21b353df64c654414c2b026a845a2a9b996f469b?width=87',
+    src: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc18dec0cae224f4493212d2035da9539?format=webp&width=800&height=1200',
     label: 'Saved Teams',
   },
 };

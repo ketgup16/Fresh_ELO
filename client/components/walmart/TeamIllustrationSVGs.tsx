@@ -320,18 +320,12 @@ export function PlaceholderIllustration() {
 // ─── Element map (SVG-based types only) ───────────────────────────────────────
 
 /**
- * Maps the 8 illustration types that use inline SVGs to their React elements.
- * Types with image URLs are handled via `TEAM_ILLUSTRATIONS[key].src` + <img>.
+ * Maps illustration types that use inline SVGs to their React elements.
+ * All department types now use hosted CDN images via `TEAM_ILLUSTRATIONS[key].src` + <img>.
+ * Only `placeholder` remains as an inline SVG fallback.
  */
 export const TEAM_ILLUSTRATION_ELEMENTS: Partial<
   Record<ListTeamIllustration, React.ReactNode>
 > = {
-  'auto-care-center': <AutoCareCenterIllustration />,
-  entertainment: <EntertainmentIllustration />,
-  fuel: <FuelIllustration />,
-  home: <HomeIllustration />,
-  remodel: <RemodelIllustration />,
-  'health-beauty': <HealthBeautyIllustration />,
-  salesfloor: <SalesfloorIllustration />,
   placeholder: <PlaceholderIllustration />,
 };
