@@ -4,6 +4,7 @@ import { Tag } from '@/components/ui/Tag';
 import { AXAttribute } from '@/components/walmart/AXAttribute';
 import { Clock } from '@/components/icons/Clock';
 import { Star } from '@/components/icons/Star';
+import { StarFill } from '@/components/icons/StarFill';
 import { ChevronRight } from '@/components/icons/ChevronRight';
 import styles from './ListTeam.module.css';
 
@@ -172,6 +173,12 @@ export interface ListTeamProps {
    */
   tagLabel?: string;
 
+  /**
+   * Whether the star icon button is in the "saved" (filled) state.
+   * @default false
+   */
+  starred?: boolean;
+
   /** Accessible label for the star icon button. @default 'Save team' */
   starAriaLabel?: string;
 
@@ -198,6 +205,7 @@ export const ListTeam: React.FC<ListTeamProps> = ({
   attribute1,
   attribute2,
   tagLabel,
+  starred = false,
   starAriaLabel = 'Save team',
   onStarPress,
   onPress,
@@ -288,7 +296,9 @@ export const ListTeam: React.FC<ListTeamProps> = ({
               : undefined
           }
         >
-          <Star width={20} height={20} aria-hidden="true" />
+          {starred
+            ? <StarFill width={20} height={20} aria-hidden="true" />
+            : <Star width={20} height={20} aria-hidden="true" />}
         </IconButton>
         {variant === 'navigational' && (
           <span className={styles.chevron} aria-hidden="true">

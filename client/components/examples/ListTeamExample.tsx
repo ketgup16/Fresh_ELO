@@ -81,6 +81,7 @@ export function ListTeamExample() {
   const [attr1Label, setAttr1Label] = useState('25h (1,190 cases)');
   const [showAttr2, setShowAttr2] = useState(true);
   const [attr2Label, setAttr2Label] = useState('25h (1,190 cases)');
+  const [starred, setStarred] = useState(false);
 
   // When variant changes to navigational, clear `selected` state
   const handleVariantChange = (v: ListTeamVariant) => {
@@ -342,6 +343,8 @@ export function ListTeamExample() {
                     tagLabel={showTag ? tagLabel : undefined}
                     attribute1={showAttr1 ? attr1Label : undefined}
                     attribute2={showAttr2 ? attr2Label : undefined}
+                    starred={starred}
+                    onStarPress={() => setStarred(s => !s)}
                   />
                 </div>
               </div>
@@ -547,6 +550,7 @@ export function ListTeamExample() {
                 ['attribute1', 'string', 'undefined', 'Optional first attribute shown with a Clock icon.'],
                 ['attribute2', 'string', 'undefined', 'Optional second attribute shown with a Clock icon.'],
                 ['tagLabel', 'string', 'undefined', 'When provided, renders a tertiary blue Tag in the trailing cluster.'],
+                ['starred', 'boolean', 'false', 'When true, renders the filled StarFill icon instead of the outline Star icon.'],
                 ['starAriaLabel', 'string', "'Save team'", 'Accessible label for the star icon button.'],
                 ['onStarPress', '() => void', 'undefined', 'Callback when the star icon button is pressed.'],
                 ['onPress', '() => void', 'undefined', 'Callback when the whole item is pressed/clicked.'],
