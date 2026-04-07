@@ -656,11 +656,11 @@ export function ListTeamExample() {
                   <img
                     src={src}
                     alt={label}
-                    style={{ width: '40px', height: '40px', borderRadius: '50%', flexShrink: 0, objectFit: 'cover' }}
+                    style={{ width: '40px', height: '40px', flexShrink: 0, objectFit: 'contain' }}
                   />
                 ) : (
                   <div style={{
-                    width: '40px', height: '40px', borderRadius: '50%', flexShrink: 0,
+                    width: '40px', height: '40px', flexShrink: 0,
                     background: 'var(--ld-semantic-color-fill-accent-blue-subtle, #e8f0ff)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontFamily: 'var(--ld-semantic-font-family-sans)',
