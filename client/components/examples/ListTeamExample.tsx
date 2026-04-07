@@ -65,9 +65,30 @@ const ILLUSTRATION_ENTRIES = Object.entries(TEAM_ILLUSTRATIONS) as [
 // Apparel is the confirmed illustration from Figma
 const APPAREL_SRC = TEAM_ILLUSTRATIONS['apparel'].src;
 
+// ─── Stack demo data ──────────────────────────────────────────────────────────
+
+const STACK_TEAMS: { id: string; illustration: ListTeamIllustration; title: string; subtitle: string; attribute1: string }[] = [
+  { id: 'apparel',          illustration: 'apparel',          title: 'Apparel',            subtitle: 'Store 6294', attribute1: '25h (1,190 cases)' },
+  { id: 'food-consumables', illustration: 'food-consumables', title: 'Food & Consumables',  subtitle: 'Store 6294', attribute1: '18h (840 cases)'  },
+  { id: 'hardlines',        illustration: 'hardlines',        title: 'Hardlines',           subtitle: 'Store 6294', attribute1: '12h (600 cases)'  },
+  { id: 'pharmacy',         illustration: 'pharmacy',         title: 'Pharmacy',            subtitle: 'Store 6294', attribute1: '8h (320 cases)'   },
+  { id: 'seasonal',         illustration: 'seasonal',         title: 'Seasonal',            subtitle: 'Store 6294', attribute1: '10h (450 cases)'  },
+];
+
 // ─── Main example component ───────────────────────────────────────────────────
 
 export function ListTeamExample() {
+  // Stack demo state
+  const [starredIds, setStarredIds] = useState<Set<string>>(new Set());
+  const toggleStar = (id: string) =>
+    setStarredIds(prev => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  const savedTeams = STACK_TEAMS.filter(t => starredIds.has(t.id));
+  const unsavedTeams = STACK_TEAMS.filter(t => !starredIds.has(t.id));
+
   // Interactive demo state
   const [variant, setVariant] = useState<ListTeamVariant>('navigational');
   const [state, setState] = useState<ListTeamState>('default');
@@ -347,6 +368,144 @@ export function ListTeamExample() {
                     onStarPress={() => setStarred(s => !s)}
                   />
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Stack demo ──────────────────────────────────────────────── */}
+      <div>
+        <h3 className={styles.sectionTitle}>Stack demo — Favorites</h3>
+        <p style={{
+          fontFamily: 'var(--ld-semantic-font-family-sans)',
+          fontSize: 'var(--ld-semantic-font-body-small-size, 0.875rem)',
+          color: 'var(--ld-semantic-color-text-subtle)',
+          margin: '0 0 24px',
+        }}>
+          Press the star on any team to save it. Saved teams float to the top of the list.
+        </p>
+
+        {/* Phone shell */}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{
+            width: '375px',
+            borderRadius: '40px',
+            border: '8px solid var(--ld-semantic-color-text, #2e2f32)',
+            overflow: 'hidden',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.12)',
+            flexShrink: 0,
+          }}>
+            <div style={{
+              display: 'flex', flexDirection: 'column',
+              height: '640px',
+              background: 'var(--ld-semantic-color-surface, #fff)',
+              overflow: 'hidden', position: 'relative',
+            }}>
+              {/* Status bar */}
+              <div style={{
+                display: 'flex', alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '14px 24px 6px', flexShrink: 0, position: 'relative',
+              }}>
+                <span style={{ fontSize: '15px', fontWeight: 600, fontFamily: 'var(--ld-semantic-font-family-sans)', zIndex: 1 }}>9:41</span>
+                <div style={{
+                  position: 'absolute', left: '50%', top: '10px',
+                  transform: 'translateX(-50%)',
+                  width: '120px', height: '34px',
+                  backgroundColor: '#000', borderRadius: '20px', zIndex: 2,
+                }} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', zIndex: 1 }}>
+                  <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor" aria-hidden="true">
+                    <rect x="0" y="7" width="3" height="5" rx="0.8" /><rect x="4.5" y="5" width="3" height="7" rx="0.8" /><rect x="9" y="2.5" width="3" height="9.5" rx="0.8" /><rect x="13.5" y="0" width="3" height="12" rx="0.8" />
+                  </svg>
+                  <svg width="25" height="12" viewBox="0 0 25 12" fill="none" aria-hidden="true">
+                    <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" strokeOpacity="0.35"/>
+                    <rect x="1.5" y="1.5" width="18" height="9" rx="2.5" fill="currentColor"/>
+                  </svg>
+                </div>
+              </div>
+
+              {/* Screen content */}
+              <div style={{ flex: 1, overflowY: 'auto', padding: '8px 16px 16px' }}>
+
+                {/* Saved group */}
+                {savedTeams.length > 0 && (
+                  <div style={{ marginBottom: '8px' }}>
+                    <span style={{
+                      display: 'block',
+                      fontFamily: 'var(--ld-semantic-font-family-sans)',
+                      fontSize: '11px', fontWeight: 700,
+                      letterSpacing: '0.06em', textTransform: 'uppercase',
+                      color: 'var(--ld-semantic-color-text-subtle, #74767C)',
+                      padding: '4px 0 8px',
+                    }}>
+                      Saved ({savedTeams.length})
+                    </span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                      {savedTeams.map(team => {
+                        const el = TEAM_ILLUSTRATION_ELEMENTS[team.illustration];
+                        const src = TEAM_ILLUSTRATIONS[team.illustration].src;
+                        return (
+                          <ListTeam
+                            key={team.id}
+                            variant="navigational"
+                            illustrationElement={el}
+                            illustrationSrc={el ? undefined : src}
+                            illustrationAlt={team.title}
+                            title={team.title}
+                            subtitle={team.subtitle}
+                            attribute1={team.attribute1}
+                            starred={true}
+                            onStarPress={() => toggleStar(team.id)}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* Divider between groups */}
+                {savedTeams.length > 0 && unsavedTeams.length > 0 && (
+                  <div style={{
+                    display: 'flex', alignItems: 'center', gap: '8px',
+                    margin: '8px 0',
+                  }}>
+                    <div style={{ flex: 1, height: '1px', background: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+                    <span style={{
+                      fontFamily: 'var(--ld-semantic-font-family-sans)',
+                      fontSize: '11px', fontWeight: 600,
+                      color: 'var(--ld-semantic-color-text-subtle, #74767C)',
+                      whiteSpace: 'nowrap',
+                    }}>
+                      All teams
+                    </span>
+                    <div style={{ flex: 1, height: '1px', background: 'var(--ld-semantic-color-separator, #E3E4E5)' }} />
+                  </div>
+                )}
+
+                {/* Unsaved group */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                  {unsavedTeams.map(team => {
+                    const el = TEAM_ILLUSTRATION_ELEMENTS[team.illustration];
+                    const src = TEAM_ILLUSTRATIONS[team.illustration].src;
+                    return (
+                      <ListTeam
+                        key={team.id}
+                        variant="navigational"
+                        illustrationElement={el}
+                        illustrationSrc={el ? undefined : src}
+                        illustrationAlt={team.title}
+                        title={team.title}
+                        subtitle={team.subtitle}
+                        attribute1={team.attribute1}
+                        starred={false}
+                        onStarPress={() => toggleStar(team.id)}
+                      />
+                    );
+                  })}
+                </div>
+
               </div>
             </div>
           </div>
