@@ -229,6 +229,17 @@
   padding: 0 8px;
 }
 
+/* iOS variant: title and subtitle are centered */
+.nativeTitleAreaCentered {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  padding: 0 8px;
+  align-items: center;
+  text-align: center;
+}
+
 .nativeTitleText {
   font-family: var(--ld-semantic-font-heading-small-family, 'Everyday Sans UI', sans-serif);
   font-size: var(--ld-semantic-font-heading-small-size, 16px);

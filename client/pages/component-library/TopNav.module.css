@@ -279,6 +279,34 @@
   color: var(--ld-semantic-color-text, #2e2f32);
 }
 
+/* ── Native tablet device shell ── */
+.nativeTabletFrame {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-600, 24px);
+  padding: var(--ld-primitive-scale-space-600, 24px);
+  overflow-x: auto;
+}
+
+.nativeTablet {
+  width: 680px;
+  flex-shrink: 0;
+  border-radius: 24px;
+  border: 8px solid var(--ld-semantic-color-text, #2e2f32);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.12);
+  background: #f2f2f7;
+}
+
+.nativeTabletScreen {
+  display: flex;
+  flex-direction: column;
+  height: 900px;
+  background: #f2f2f7;
+  overflow: hidden;
+}
+
 @media (max-width: 768px) {
   .page {
     padding: 24px 16px;

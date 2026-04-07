@@ -54,6 +54,12 @@ interface MobileTopNavProps {
   menuIcon?: React.ReactNode;
   /** Show an AX Avatar Button as the rightmost trailing element in the native header. @default false */
   showNativeAvatarButton?: boolean;
+  /** OS platform — iOS centers the title/subtitle; Android keeps them left-aligned. @default 'ios' */
+  nativeOSPlatform?: 'ios' | 'android';
+  /** Show a 4th trailing action icon button (tablet only). @default false */
+  showNativeAction4?: boolean;
+  /** Icon node rendered inside action button 4. Defaults to Placeholder icon. */
+  action4Icon?: React.ReactNode;
 }
 
 export function MobileTopNav({
@@ -74,6 +80,9 @@ export function MobileTopNav({
   action3Icon = <Placeholder />,
   menuIcon = <Menu />,
   showNativeAvatarButton = false,
+  nativeOSPlatform = 'ios',
+  showNativeAction4 = false,
+  action4Icon = <Placeholder />,
 }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
@@ -239,7 +248,7 @@ export function MobileTopNav({
                 {menuIcon}
               </IconButton>
 
-              <div className={styles.nativeTitleArea}>
+              <div className={nativeOSPlatform === 'ios' ? styles.nativeTitleAreaCentered : styles.nativeTitleArea}>
                 <span className={styles.nativeTitleText}>{nativeTitle}</span>
                 {showNativeSubtitle && (
                   <span className={styles.nativeSubtitleText}>{nativeSubtitle}</span>
@@ -260,6 +269,11 @@ export function MobileTopNav({
                 {showNativeAction3 && (
                   <IconButton variant="white" size="medium" aria-label="Action 3">
                     {action3Icon}
+                  </IconButton>
+                )}
+                {showNativeAction4 && (
+                  <IconButton variant="white" size="medium" aria-label="Action 4">
+                    {action4Icon}
                   </IconButton>
                 )}
                 {showNativeAvatarButton && (
