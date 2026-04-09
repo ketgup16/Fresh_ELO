@@ -1,0 +1,244 @@
+/* ── Demo controls ────────────────────────────────────────────────────────── */
+.demoControls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.controlRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.controlLabel {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  min-width: 120px;
+}
+
+.controlButtons {
+  display: flex;
+  gap: 8px;
+}
+
+/* ── Preview frames ───────────────────────────────────────────────────────── */
+.previewFrame {
+  display: flex;
+  max-width: 375px;
+  padding: 24px;
+  border-radius: 12px;
+  background: var(--ld-semantic-color-surface-subtle, #f5f6fa);
+  border: 1px solid var(--ld-semantic-color-border-subtle, #e3e4e5);
+  margin-bottom: 12px;
+}
+
+.previewCaption {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 13px;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  margin: 0;
+}
+
+/* ── Variants grid ────────────────────────────────────────────────────────── */
+.variantsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.variantItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.variantLabel {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  margin: 0;
+}
+
+.variantPreview {
+  max-width: 375px;
+  padding: 24px;
+  border-radius: 8px;
+  background: var(--ld-semantic-color-surface-subtle, #f5f6fa);
+  border: 1px solid var(--ld-semantic-color-border-subtle, #e3e4e5);
+}
+
+/* ── States grid ──────────────────────────────────────────────────────────── */
+.statesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.stateRow {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stateLabel {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.statePreview {
+  max-width: 343px;
+}
+
+.stateDesc {
+  grid-column: 2 / -1;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .stateRow {
+    grid-template-columns: 1fr;
+  }
+  .stateDesc {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── Dos and Don'ts ───────────────────────────────────────────────────────── */
+.dosAndDonts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+@media (max-width: 768px) {
+  .dosAndDonts {
+    grid-template-columns: 1fr;
+  }
+}
+
+.doBlock,
+.dontBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.doBlock {
+  background: var(--ld-semantic-color-fill-positive-subtle, #f2fff4);
+  border: 1px solid var(--ld-semantic-color-border-positive, #24d442);
+}
+
+.dontBlock {
+  background: var(--ld-semantic-color-fill-negative-subtle, #fff2f5);
+  border: 1px solid var(--ld-semantic-color-border-negative, #ee2f5d);
+}
+
+.doHeader,
+.dontHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.doIcon {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ld-semantic-color-text-positive, #0c771e);
+}
+
+.dontIcon {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ld-semantic-color-text-negative, #ca0333);
+}
+
+.rule {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  line-height: 1.6;
+}
+
+/* ── Props table ──────────────────────────────────────────────────────────── */
+.propsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: 14px;
+}
+
+.propsTable thead tr {
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.propsTable th {
+  text-align: left;
+  padding: 8px 12px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.propsTable tbody tr {
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.propsTable td {
+  padding: 8px 12px;
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  vertical-align: top;
+}
+
+.propName {
+  font-family: monospace;
+  font-size: 13px;
+  color: var(--ld-semantic-color-text-brand, #0053e2) !important;
+  white-space: nowrap;
+}
+
+.propType {
+  font-family: monospace;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.propDefault {
+  font-family: monospace;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* ── Code block ───────────────────────────────────────────────────────────── */
+.codeBlock {
+  margin: 0;
+  padding: 20px;
+  border-radius: 6px;
+  background: var(--ld-semantic-color-fill-surface-secondary, #f8f8f8);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  overflow-x: auto;
+  white-space: pre;
+}

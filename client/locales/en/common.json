@@ -171,6 +171,8 @@
     "descAXAttribute": "Compact icon + label component for surfacing metadata, status, or categorisation. Small (5 color variants) and Large (4 color variants).",
     "navAXMetricGroup": "Metric Group",
     "descAXMetricGroup": "A pattern composing 2–3 Metric components side-by-side with vertical Divider separators and 8px token gaps between all elements.",
+    "navAXSegmentedControlGroup": "Segmented Control Group",
+    "descAXSegmentedControlGroup": "A horizontal group of 2–3 mutually exclusive segment buttons used to switch between related views or filter content. Supports optional leading icons and disabled states.",
     "navCalendar": "Calendar",
     "navCarousel": "Carousel",
     "navChart": "Chart",

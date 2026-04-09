@@ -1,0 +1,116 @@
+/* ── Group container ──────────────────────────────────────────────────────── */
+.group {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* ── Base segment button ──────────────────────────────────────────────────── */
+.segment {
+  /* Layout */
+  display: flex;
+  flex: 1 0 0;
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--ld-primitive-scale-space-150, 12px) var(--ld-primitive-scale-space-200, 16px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+  position: relative;
+
+  /* Colors */
+  background-color: var(--ld-semantic-color-input-fill, #fff);
+  color: var(--ld-semantic-color-input-text-on-fill, #2e2f32);
+
+  /* Border — default (unselected) */
+  border: 1px solid var(--ld-semantic-color-input-border, #2e2f32);
+  border-radius: 0;
+
+  /* Typography */
+  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4286);
+  text-align: center;
+  white-space: nowrap;
+
+  /* Reset browser button defaults */
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+/* Adjacent borders collapse: non-first segments step left by 1px */
+.segment:not(:first-child) {
+  margin-inline-start: -1px;
+}
+
+/* ── Border radius by position ────────────────────────────────────────────── */
+.segment--first {
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px) 0 0 var(--ld-primitive-scale-borderradius-100, 8px);
+}
+
+.segment--last {
+  border-radius: 0 var(--ld-primitive-scale-borderradius-100, 8px) var(--ld-primitive-scale-borderradius-100, 8px) 0;
+}
+
+/* ── Selected / Activated state ───────────────────────────────────────────── */
+.segment--selected {
+  border-width: 2px;
+  border-color: var(--ld-semantic-color-input-border-activated, #2e2f32);
+  font-weight: var(--ld-semantic-font-body-small-weight-alt, 700);
+  z-index: 1;
+}
+
+/* ── Hover (non-disabled, non-selected) ───────────────────────────────────── */
+.segment:hover:not(:disabled):not(.segment--selected):not(.segment--disabled) {
+  background-color: var(--ld-semantic-color-input-fill-hovered, #f1f1f2);
+}
+
+/* ── Pressed / Active state ───────────────────────────────────────────────── */
+.segment:active:not(:disabled):not(.segment--disabled) {
+  background-color: var(--ld-semantic-color-input-fill-pressed, #e3e4e5);
+  border-width: 2px;
+  border-color: var(--ld-semantic-color-input-border-pressed, #2e2f32);
+  z-index: 1;
+}
+
+/* ── Focus-visible outline ────────────────────────────────────────────────── */
+.segment:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-focus-ring, #0860f6);
+  outline-offset: 2px;
+  z-index: 2;
+}
+
+/* ── Disabled state ───────────────────────────────────────────────────────── */
+.segment:disabled,
+.segment--disabled {
+  background-color: var(--ld-semantic-color-input-fill-disabled, #fff);
+  border-color: var(--ld-semantic-color-input-border-disabled, #babbbe);
+  color: var(--ld-semantic-color-input-text-on-fill-disabled, #babbbe);
+  cursor: not-allowed;
+}
+
+/* ── Icon slot ────────────────────────────────────────────────────────────── */
+.icon {
+  display: flex;
+  align-items: center;
+  width: var(--ld-semantic-scale-icon-small, 16px);
+  height: var(--ld-semantic-scale-icon-small, 16px);
+  color: inherit;
+  flex-shrink: 0;
+}
+
+/* ── Label ────────────────────────────────────────────────────────────────── */
+.label {
+  flex: 1 0 0;
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .segment {
+    transition: none;
+  }
+}

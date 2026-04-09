@@ -167,6 +167,8 @@
     "descAXAttribute": "Composant compact icône + étiquette pour afficher des métadonnées, un statut ou une catégorisation.",
     "navAXMetricGroup": "Groupe de métriques",
     "descAXMetricGroup": "Modèle composant 2 à 3 composants Metric côte à côte avec des séparateurs Divider verticaux et des espaces de 8 px entre tous les éléments.",
+    "navAXSegmentedControlGroup": "Groupe de contrôles segmentés",
+    "descAXSegmentedControlGroup": "Groupe horizontal de 2 à 3 boutons de segments mutuellement exclusifs pour basculer entre des vues liées ou filtrer du contenu.",
     "navCalendar": "Calendrier",
     "navCarousel": "Carrousel",
     "navChart": "Graphique",
