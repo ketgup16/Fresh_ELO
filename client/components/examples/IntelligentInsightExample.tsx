@@ -68,6 +68,9 @@ export function IntelligentInsightExample() {
           />
           <IntelligentInsight
             label="Based on your purchase history, you may be running low on coffee pods."
+            showButton
+            buttonLabel="Add to cart"
+            onButtonClick={() => {}}
           />
           <IntelligentInsight
             label="Price dropped 12% on items in your saved list since your last visit."
