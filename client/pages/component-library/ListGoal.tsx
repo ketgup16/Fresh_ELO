@@ -193,7 +193,6 @@ export default function ListGoalPage() {
                   alertMessage="Alert message"
                   alertAction="Action button"
                   showNavigation
-                  showDivider={false}
                 >
                   <div className={styles.contentSlotPlaceholder}>
                     Replace with your content component.
@@ -226,7 +225,6 @@ export default function ListGoalPage() {
                   alertMessage="Alert message"
                   alertAction="Action button"
                   showNavigation
-                  showDivider={false}
                 >
                   <div className={styles.contentSlotPlaceholder}>
                     Replace with your content component.
@@ -261,7 +259,6 @@ export default function ListGoalPage() {
                 showInsight={false}
                 showAlert={false}
                 showNavigation={false}
-                showDivider={false}
               >
                 <ScopingEdited />
               </ListGoal>
@@ -281,7 +278,6 @@ export default function ListGoalPage() {
                 showInsight={false}
                 showAlert={false}
                 showNavigation={false}
-                showDivider={false}
               >
                 <Explanation />
               </ListGoal>
@@ -301,7 +297,6 @@ export default function ListGoalPage() {
                 showInsight={false}
                 showAlert={false}
                 showNavigation={false}
-                showDivider={false}
               >
                 <Unplanned />
               </ListGoal>
@@ -321,7 +316,6 @@ export default function ListGoalPage() {
                 showInsight={false}
                 showAlert={false}
                 showNavigation={false}
-                showDivider={false}
               >
                 <ScopingNotEdited />
               </ListGoal>
@@ -341,7 +335,6 @@ export default function ListGoalPage() {
                 showInsight={false}
                 showAlert={false}
                 showNavigation={false}
-                showDivider={false}
               >
                 <AdditionalWorkIncomplete />
               </ListGoal>
@@ -361,7 +354,6 @@ export default function ListGoalPage() {
                 showInsight={false}
                 showAlert={false}
                 showNavigation={false}
-                showDivider={false}
               >
                 <AdditionalWorkComplete />
               </ListGoal>
