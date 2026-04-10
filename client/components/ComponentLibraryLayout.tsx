@@ -85,6 +85,7 @@ const navigationSections: NavSection[] = [
       { id: 'ax-avatar-button', nameKey: 'componentLibrary.navAXAvatarButton', path: '/component-library/ax-avatar-button' },
       { id: 'ax-attribute', nameKey: 'componentLibrary.navAXAttribute', path: '/component-library/ax-attribute' },
       { id: 'ax-segmented-control-group', nameKey: 'componentLibrary.navAXSegmentedControlGroup', path: '/component-library/ax-segmented-control-group' },
+      { id: 'intelligent-insight', nameKey: 'componentLibrary.navIntelligentInsight', path: '/component-library/intelligent-insight' },
     ],
     subGroups: [
       {

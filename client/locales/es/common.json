@@ -169,6 +169,8 @@
     "descAXMetricGroup": "Patrón que compone 2 o 3 componentes Metric en fila con separadores Divider verticales y espacios de 8 px entre todos los elementos.",
     "navAXSegmentedControlGroup": "Grupo de control segmentado",
     "descAXSegmentedControlGroup": "Grupo horizontal de 2 a 3 botones de segmento mutuamente excluyentes para cambiar entre vistas relacionadas o filtrar contenido.",
+    "navIntelligentInsight": "Insight Inteligente",
+    "descIntelligentInsight": "Tarjeta de insight con inteligencia artificial, marca Sidekick y botón de acción opcional",
     "navCalendar": "Calendario",
     "navCarousel": "Carrusel",
     "navChart": "Gráfico",

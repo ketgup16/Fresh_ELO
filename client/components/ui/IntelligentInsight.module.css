@@ -1,0 +1,65 @@
+/* IntelligentInsight Component — Living Design 3.5 */
+
+/* Outer card surface */
+.insight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  padding: var(--ld-primitive-scale-space-150, 12px);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 16px);
+  background-color: var(--ld-semantic-color-surface-brand, #f0f5ff);
+  font-family: var(
+    --ld-semantic-font-family-sans,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Row 1: icon + label */
+.iconTextRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+  align-self: stretch;
+}
+
+/* Icon wrapper — nudges icon top-align with first line of text */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: var(--ld-primitive-scale-space-25, 2px);
+}
+
+/* Insight label text */
+.label {
+  flex: 1 0 0;
+  margin: 0;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: var(
+    --ld-semantic-font-body-small-family,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
+  font-style: normal;
+}
+
+/* Row 2: button container */
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  align-self: stretch;
+  padding-bottom: var(--ld-primitive-scale-space-50, 4px);
+}

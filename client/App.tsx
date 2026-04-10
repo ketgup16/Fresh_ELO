@@ -117,6 +117,7 @@ const AXRichMediaSheetPage = React.lazy(() => import("./pages/component-library/
 const AXUploadImagePage = React.lazy(() => import("./pages/component-library/AXUploadImage"));
 const AXMetricGroupPage = React.lazy(() => import("./pages/component-library/AXMetricGroup"));
 const AXSegmentedControlGroupPage = React.lazy(() => import("./pages/component-library/AXSegmentedControlGroup"));
+const IntelligentInsightPage = React.lazy(() => import("./pages/component-library/IntelligentInsight"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
 const FoundationsPage = React.lazy(() => import("./pages/component-library/Foundations"));
 const AssetsPage = React.lazy(() => import("./pages/component-library/Assets"));
@@ -277,6 +278,7 @@ const App = () => (
                 <Route path="wcp-upload-image" element={<Navigate to="/component-library/ax-upload-image" replace />} />
                 <Route path="ax-metric-group" element={<AXMetricGroupPage />} />
                 <Route path="ax-segmented-control-group" element={<AXSegmentedControlGroupPage />} />
+                <Route path="intelligent-insight" element={<IntelligentInsightPage />} />
               </Route>
 
               {/* Walmart pages */}

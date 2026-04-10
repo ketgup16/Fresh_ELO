@@ -1,0 +1,87 @@
+/* IntelligentInsightExample styles */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-600, 48px);
+  padding: var(--ld-primitive-scale-space-600, 48px);
+  font-family: var(
+    --ld-semantic-font-family-sans,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-300, 24px);
+}
+
+.sectionHeading {
+  margin: 0;
+  font-size: var(--ld-semantic-font-title-small-size, 20px);
+  font-weight: var(--ld-semantic-font-title-small-weight, 700);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  line-height: var(--ld-semantic-font-title-small-lineheight, 1.2);
+}
+
+.sectionDesc {
+  margin: 0;
+  font-size: var(--ld-semantic-font-body-default-size, 16px);
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  line-height: var(--ld-semantic-font-body-default-lineheight, 1.5);
+}
+
+/* Single demo constrained to a max width matching Figma spec */
+.demoRow {
+  max-width: 343px;
+}
+
+/* 2-column responsive grid for variant demos */
+.demoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--ld-primitive-scale-space-200, 16px);
+}
+
+/* Responsive width demo */
+.responsiveDemo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+}
+
+.constrainNarrow {
+  width: 280px;
+}
+
+.constrainMid {
+  width: 360px;
+}
+
+.constrainWide {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .root {
+    padding: var(--ld-primitive-scale-space-400, 32px) var(--ld-primitive-scale-space-200, 16px);
+    gap: var(--ld-primitive-scale-space-400, 32px);
+  }
+
+  .constrainNarrow,
+  .constrainMid {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .root {
+    padding: var(--ld-primitive-scale-space-300, 24px) var(--ld-primitive-scale-space-150, 12px);
+  }
+}

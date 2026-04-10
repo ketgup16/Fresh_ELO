@@ -25,6 +25,9 @@ export { CashLogoIcon } from './CashLogoIcon';
 // Order fulfillment type icon (image-based, not SVG)
 export { OrderTypeIcon, getOrderTypeIconSrc } from './OrderTypeIcon';
 
+// Sidekick AI brand mark
+export { SidekickLogoIcon } from './SidekickLogoIcon';
+
 // Navigation / utility (mono-color, use currentColor)
 export { GlassShop } from './GlassShop';
 export { GlassShopFill } from './GlassShopFill';
