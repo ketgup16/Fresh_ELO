@@ -117,6 +117,15 @@
 .controlRow {
   display: flex;
   align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.controlLabel {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--ld-semantic-color-text);
+  user-select: none;
 }
 
 .previewPanel {

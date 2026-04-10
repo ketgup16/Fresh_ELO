@@ -79,45 +79,51 @@ export default function ListGoalPage() {
 
               <div className={styles.controlRow}>
                 <Checkbox
-                  defaultChecked={showTag}
+                  checked={showTag}
                   onCheckedChange={(v) => setShowTag(v === true)}
-                  label="showTag"
+                  aria-label="showTag"
                 />
+                <span className={styles.controlLabel}>showTag</span>
               </div>
               <div className={styles.controlRow}>
                 <Checkbox
-                  defaultChecked={showProgressBar}
+                  checked={showProgressBar}
                   onCheckedChange={(v) => setShowProgressBar(v === true)}
-                  label="showProgressBar"
+                  aria-label="showProgressBar"
                 />
+                <span className={styles.controlLabel}>showProgressBar</span>
               </div>
               <div className={styles.controlRow}>
                 <Checkbox
-                  defaultChecked={showInsight}
+                  checked={showInsight}
                   onCheckedChange={(v) => setShowInsight(v === true)}
-                  label="showInsight"
+                  aria-label="showInsight"
                 />
+                <span className={styles.controlLabel}>showInsight</span>
               </div>
               <div className={styles.controlRow}>
                 <Checkbox
-                  defaultChecked={showAlert}
+                  checked={showAlert}
                   onCheckedChange={(v) => setShowAlert(v === true)}
-                  label="showAlert"
+                  aria-label="showAlert"
                 />
+                <span className={styles.controlLabel}>showAlert</span>
               </div>
               <div className={styles.controlRow}>
                 <Checkbox
-                  defaultChecked={showNavigation}
+                  checked={showNavigation}
                   onCheckedChange={(v) => setShowNavigation(v === true)}
-                  label="showNavigation"
+                  aria-label="showNavigation"
                 />
+                <span className={styles.controlLabel}>showNavigation</span>
               </div>
               <div className={styles.controlRow}>
                 <Checkbox
-                  defaultChecked={showDivider}
+                  checked={showDivider}
                   onCheckedChange={(v) => setShowDivider(v === true)}
-                  label="showDivider"
+                  aria-label="showDivider"
                 />
+                <span className={styles.controlLabel}>showDivider</span>
               </div>
             </div>
 
