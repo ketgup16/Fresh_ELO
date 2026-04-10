@@ -34,7 +34,7 @@ export default function ListGoalPage() {
   const [showInsight, setShowInsight] = useState(true);
   const [showAlert, setShowAlert] = useState(true);
   const [showNavigation, setShowNavigation] = useState(true);
-  const [showDivider, setShowDivider] = useState(false);
+  const [showDivider, setShowDivider] = useState(true);
 
   return (
     <ComponentPageLayout

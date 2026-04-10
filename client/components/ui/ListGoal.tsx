@@ -9,6 +9,7 @@ import { Divider } from '@/components/ui/Divider';
 import { Link } from '@/components/ui/Link';
 import { ChevronRight } from '@/components/icons/ChevronRight';
 import { SidekickLogoIcon } from '@/components/icons-custom/SidekickLogoIcon';
+import { IconButton } from '@/components/ui/IconButton';
 import styles from './ListGoal.module.css';
 
 export interface ListGoalProps {
@@ -240,18 +241,14 @@ export const ListGoal = React.forwardRef<HTMLElement, ListGoalProps>(
           {/* Chevron navigation */}
           {showNavigation && (
             <div className={styles.chevronContainer}>
-              <button
-                className={styles.chevronButton}
-                onClick={onNavigate}
+              <IconButton
+                variant="ghost"
+                size="medium"
                 aria-label="Navigate to goal"
+                onClick={onNavigate}
               >
-                <ChevronRight
-                  width={24}
-                  height={24}
-                  aria-hidden="true"
-                  className={styles.chevronIcon}
-                />
-              </button>
+                <ChevronRight aria-hidden="true" />
+              </IconButton>
             </div>
           )}
         </div>

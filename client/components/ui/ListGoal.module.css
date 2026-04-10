@@ -125,25 +125,6 @@
   flex-shrink: 0;
 }
 
-.chevronButton {
-  all: unset;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
-  transition: background-color 0.15s ease;
-}
-
-.chevronButton:focus-visible {
-  outline: 2px solid var(--ld-semantic-color-border-focus, #0053e2);
-  outline-offset: 2px;
-}
-
-.chevronIcon {
-  color: var(--ld-semantic-color-text, #2e2f32);
-}
-
 /* ── Responsive ── */
 @media (max-width: 480px) {
   .goal {
@@ -152,11 +133,5 @@
 
   .topRow {
     gap: var(--ld-primitive-scale-space-100, 8px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .chevronButton {
-    transition: none;
   }
 }
