@@ -244,119 +244,46 @@ export default function ListGoalPage() {
             and additional work progress states.
           </SectionDesc>
 
+          {/* Top 3-column grid: col1 stacks Scoping variants, col2 = Explanation, col3 = Unplanned */}
           <div className={styles.presetsGrid}>
-            {/* Scoping: edited */}
-            <div className={styles.presetCell}>
-              <div className={styles.presetLabel}>Content | Scoping: edited</div>
-              <ListGoal
-                type="default"
-                goalName="{Goal name}"
-                illustrationSrc={ILLUSTRATION_SRC}
-                illustrationAlt="Goal illustration"
-                showTag={false}
-                progressTitle="{% complete} {status label}"
-                showProgressBar={false}
-                showInsight={false}
-                showAlert={false}
-                showNavigation={false}
-              >
+            {/* Column 1: Scoping (stacked) */}
+            <div className={styles.presetsColumn}>
+              <div className={styles.presetCell}>
+                <div className={styles.presetLabel}>Content | Scoping: edited</div>
                 <ScopingEdited />
-              </ListGoal>
-            </div>
-
-            {/* Explanation */}
-            <div className={styles.presetCell}>
-              <div className={styles.presetLabel}>Content | Explanation</div>
-              <ListGoal
-                type="default"
-                goalName="{Goal name}"
-                illustrationSrc={ILLUSTRATION_SRC}
-                illustrationAlt="Goal illustration"
-                showTag={false}
-                progressTitle="{% complete} {status label}"
-                showProgressBar={false}
-                showInsight={false}
-                showAlert={false}
-                showNavigation={false}
-              >
-                <Explanation />
-              </ListGoal>
-            </div>
-
-            {/* Unplanned */}
-            <div className={styles.presetCell}>
-              <div className={styles.presetLabel}>Content | Unplanned</div>
-              <ListGoal
-                type="default"
-                goalName="{Goal name}"
-                illustrationSrc={ILLUSTRATION_SRC}
-                illustrationAlt="Goal illustration"
-                showTag={false}
-                progressTitle="{% complete} {status label}"
-                showProgressBar={false}
-                showInsight={false}
-                showAlert={false}
-                showNavigation={false}
-              >
-                <Unplanned />
-              </ListGoal>
-            </div>
-
-            {/* Scoping: not edited */}
-            <div className={styles.presetCell}>
-              <div className={styles.presetLabel}>Content | Scoping: not edited</div>
-              <ListGoal
-                type="default"
-                goalName="{Goal name}"
-                illustrationSrc={ILLUSTRATION_SRC}
-                illustrationAlt="Goal illustration"
-                showTag={false}
-                progressTitle="{% complete} {status label}"
-                showProgressBar={false}
-                showInsight={false}
-                showAlert={false}
-                showNavigation={false}
-              >
+              </div>
+              <div className={styles.presetCell}>
+                <div className={styles.presetLabel}>Content | Scoping: not edited</div>
                 <ScopingNotEdited />
-              </ListGoal>
+              </div>
             </div>
 
-            {/* Additional work: incomplete */}
+            {/* Column 2: Explanation */}
+            <div className={styles.presetsColumn}>
+              <div className={styles.presetCell}>
+                <div className={styles.presetLabel}>Content | Explanation</div>
+                <Explanation />
+              </div>
+            </div>
+
+            {/* Column 3: Unplanned */}
+            <div className={styles.presetsColumn}>
+              <div className={styles.presetCell}>
+                <div className={styles.presetLabel}>Content | Unplanned</div>
+                <Unplanned />
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom 2-column grid: Additional work progress states */}
+          <div className={styles.presetsGridBottom}>
             <div className={styles.presetCell}>
               <div className={styles.presetLabel}>Content | Additional work progress: incomplete</div>
-              <ListGoal
-                type="default"
-                goalName="{Goal name}"
-                illustrationSrc={ILLUSTRATION_SRC}
-                illustrationAlt="Goal illustration"
-                showTag={false}
-                progressTitle="{% complete} {status label}"
-                showProgressBar={false}
-                showInsight={false}
-                showAlert={false}
-                showNavigation={false}
-              >
-                <AdditionalWorkIncomplete />
-              </ListGoal>
+              <AdditionalWorkIncomplete />
             </div>
-
-            {/* Additional work: complete */}
             <div className={styles.presetCell}>
               <div className={styles.presetLabel}>Content | Additional work progress: complete</div>
-              <ListGoal
-                type="default"
-                goalName="{Goal name}"
-                illustrationSrc={ILLUSTRATION_SRC}
-                illustrationAlt="Goal illustration"
-                showTag={false}
-                progressTitle="{% complete} {status label}"
-                showProgressBar={false}
-                showInsight={false}
-                showAlert={false}
-                showNavigation={false}
-              >
-                <AdditionalWorkComplete />
-              </ListGoal>
+              <AdditionalWorkComplete />
             </div>
           </div>
         </div>
