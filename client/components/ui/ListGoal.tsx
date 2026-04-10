@@ -203,6 +203,34 @@ export const ListGoal = React.forwardRef<HTMLElement, ListGoalProps>(
             {children && (
               <div className={styles.contentSlot}>{children}</div>
             )}
+
+            {/* IntelligentInsight — inside contentContainer so it stops at the chevron */}
+            {showInsight && insightLabel && (
+              <IntelligentInsight label={insightLabel} />
+            )}
+
+            {/* Alert — inside contentContainer so it stops at the chevron */}
+            {showAlert && alertMessage && (
+              <Alert
+                variant="warning"
+                action={
+                  alertAction ? (
+                    <Link
+                      variant="default"
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onAlertAction?.();
+                      }}
+                    >
+                      {alertAction}
+                    </Link>
+                  ) : undefined
+                }
+              >
+                {alertMessage}
+              </Alert>
+            )}
           </div>
 
           {/* Chevron navigation */}
@@ -223,34 +251,6 @@ export const ListGoal = React.forwardRef<HTMLElement, ListGoalProps>(
             </div>
           )}
         </div>
-
-        {/* IntelligentInsight */}
-        {showInsight && insightLabel && (
-          <IntelligentInsight label={insightLabel} />
-        )}
-
-        {/* Alert */}
-        {showAlert && alertMessage && (
-          <Alert
-            variant="warning"
-            action={
-              alertAction ? (
-                <Link
-                  variant="default"
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onAlertAction?.();
-                  }}
-                >
-                  {alertAction}
-                </Link>
-              ) : undefined
-            }
-          >
-            {alertMessage}
-          </Alert>
-        )}
 
         {/* Divider */}
         {showDivider && <Divider decorative />}
