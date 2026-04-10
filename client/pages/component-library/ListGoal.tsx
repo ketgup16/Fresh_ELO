@@ -79,42 +79,42 @@ export default function ListGoalPage() {
 
               <div className={styles.controlRow}>
                 <Checkbox
-                  checked={showTag}
+                  defaultChecked={showTag}
                   onCheckedChange={(v) => setShowTag(v === true)}
                   label="showTag"
                 />
               </div>
               <div className={styles.controlRow}>
                 <Checkbox
-                  checked={showProgressBar}
+                  defaultChecked={showProgressBar}
                   onCheckedChange={(v) => setShowProgressBar(v === true)}
                   label="showProgressBar"
                 />
               </div>
               <div className={styles.controlRow}>
                 <Checkbox
-                  checked={showInsight}
+                  defaultChecked={showInsight}
                   onCheckedChange={(v) => setShowInsight(v === true)}
                   label="showInsight"
                 />
               </div>
               <div className={styles.controlRow}>
                 <Checkbox
-                  checked={showAlert}
+                  defaultChecked={showAlert}
                   onCheckedChange={(v) => setShowAlert(v === true)}
                   label="showAlert"
                 />
               </div>
               <div className={styles.controlRow}>
                 <Checkbox
-                  checked={showNavigation}
+                  defaultChecked={showNavigation}
                   onCheckedChange={(v) => setShowNavigation(v === true)}
                   label="showNavigation"
                 />
               </div>
               <div className={styles.controlRow}>
                 <Checkbox
-                  checked={showDivider}
+                  defaultChecked={showDivider}
                   onCheckedChange={(v) => setShowDivider(v === true)}
                   label="showDivider"
                 />
