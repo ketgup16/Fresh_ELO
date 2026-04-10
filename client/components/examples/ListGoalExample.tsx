@@ -22,7 +22,7 @@ function VariantLabel({ children }: { children: React.ReactNode }) {
 // ─── Content slot presets ──────────────────────────────────────────────────
 
 /** Content | Scoping: edited */
-function ScopingEdited() {
+export function ScopingEdited() {
   return (
     <div className={styles.scopingContent}>
       <div className={styles.attributeRow}>
@@ -38,7 +38,7 @@ function ScopingEdited() {
 }
 
 /** Content | Scoping: not edited */
-function ScopingNotEdited() {
+export function ScopingNotEdited() {
   return (
     <div className={styles.scopingContent}>
       <div className={styles.attributeRow}>
@@ -54,7 +54,7 @@ function ScopingNotEdited() {
 }
 
 /** Content | Explanation */
-function Explanation() {
+export function Explanation() {
   return (
     <p className={styles.explanationText}>
       Sidekick will help your team progress daily to complete this goal within cycle window.
@@ -63,7 +63,7 @@ function Explanation() {
 }
 
 /** Content | Unplanned */
-function Unplanned() {
+export function Unplanned() {
   return (
     <div className={styles.unplannedCard}>
       <div className={styles.unplannedHeader}>
@@ -106,7 +106,7 @@ function Unplanned() {
 }
 
 /** Content | Additional work progress: incomplete */
-function AdditionalWorkIncomplete() {
+export function AdditionalWorkIncomplete() {
   return (
     <div className={styles.additionalWork}>
       <div className={styles.additionalWorkRows}>
@@ -125,7 +125,7 @@ function AdditionalWorkIncomplete() {
 }
 
 /** Content | Additional work progress: complete */
-function AdditionalWorkComplete() {
+export function AdditionalWorkComplete() {
   return (
     <div className={styles.additionalWork}>
       <span className={styles.workComplete}>You're all caught up</span>

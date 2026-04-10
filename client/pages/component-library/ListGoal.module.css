@@ -1,3 +1,340 @@
-.exampleWrapper {
-  /* No overrides needed — ListGoal uses its own token scope */
+/* ── ListGoal docs page ─────────────────────────────────────── */
+
+.page {
+  padding: 32px 48px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionTitle {
+  font-family: var(--ld-semantic-font-heading-medium-family);
+  font-size: var(--ld-semantic-font-heading-medium-size, 20px);
+  font-weight: var(--ld-semantic-font-heading-medium-weight, 700);
+  line-height: var(--ld-semantic-font-heading-medium-lineheight);
+  color: var(--ld-semantic-color-text);
+  margin: 0 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.sectionDesc {
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default);
+  line-height: var(--ld-semantic-font-body-small-lineheight);
+  color: var(--ld-semantic-color-text-subtle);
+  margin: 0;
+}
+
+.sectionDesc code {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--ld-semantic-color-text);
+}
+
+/* ── Interactive Demo ───────────────────────────────────────── */
+
+.demoGrid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.controlsPanel {
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--ld-semantic-color-surface, #fff);
+}
+
+.controlsTitle {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ld-semantic-color-text-subtle);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.controlGroupLabel {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--ld-semantic-color-text);
+  font-weight: 700;
+}
+
+.typeToggle {
+  display: flex;
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
+  overflow: hidden;
+}
+
+.typeButton {
+  flex: 1;
+  padding: 6px 12px;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 500;
+  color: var(--ld-semantic-color-text-subtle);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.typeButton:hover {
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+}
+
+.typeButtonActive {
+  background: var(--ld-semantic-color-background-brand-subtle, #e8f0fe);
+  color: var(--ld-semantic-color-text-brand, #0071ce);
+  font-weight: 700;
+}
+
+.controlRow {
+  display: flex;
+  align-items: center;
+}
+
+.previewPanel {
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  padding: 24px;
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+  min-height: 120px;
+}
+
+/* ── Content slot placeholder ───────────────────────────────── */
+
+.contentSlotPlaceholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border: 1px dashed var(--ld-primitive-color-red-50, #f97474);
+  background: var(--ld-primitive-color-red-5, #fff8f8);
+  padding: 24px;
+  text-align: center;
+  font-size: var(--ld-semantic-font-caption-size, 12px);
+  font-weight: 700;
+  color: var(--ld-primitive-color-red-100, #ea1100);
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', -apple-system, sans-serif);
+  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
+}
+
+/* ── Type Variants ──────────────────────────────────────────── */
+
+.variantsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.variantColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.variantLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ld-semantic-color-text-subtle);
+}
+
+.variantCard {
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  background: var(--ld-semantic-color-surface, #fff);
+  overflow: hidden;
+}
+
+/* ── Content Slot Presets ───────────────────────────────────── */
+
+.presetsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.presetCell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.presetLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ld-semantic-color-text-brand, #0071ce);
+}
+
+/* ── Props Table ────────────────────────────────────────────── */
+
+.propsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+}
+
+.propsTable th {
+  text-align: left;
+  padding: 8px 12px;
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+  border-bottom: 2px solid var(--ld-semantic-color-separator, #e3e4e5);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text);
+}
+
+.propsTable td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  color: var(--ld-semantic-color-text-subtle);
+  vertical-align: top;
+}
+
+.propsTable td:first-child {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-weight: 700;
+}
+
+.propsTable tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Code Block ─────────────────────────────────────────────── */
+
+.codeBlock {
+  background: var(--ld-semantic-color-text, #2e2f32);
+  color: #e8e9ea;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 20px 24px;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0;
+}
+
+/* ── Guidelines ─────────────────────────────────────────────── */
+
+.guidelineGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.guidelineCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 24px;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.doLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ld-semantic-color-text-positive, #1a7a34);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ld-semantic-color-text-positive, #1a7a34);
+}
+
+.dontLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ld-semantic-color-text-negative, #c00);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ld-semantic-color-text-negative, #c00);
+}
+
+.guidelineText {
+  font-family: var(--ld-semantic-font-body-small-family);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  color: var(--ld-semantic-color-text-subtle);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.guidelineText code {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--ld-semantic-color-text);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .demoGrid {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 24px 16px 48px;
+    gap: 32px;
+  }
+
+  .demoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .variantsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .presetsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .guidelineGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 20px 12px 40px;
+  }
 }
