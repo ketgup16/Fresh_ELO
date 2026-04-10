@@ -1,0 +1,156 @@
+.goal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  width: 100%;
+}
+
+/* ── Top row ── */
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-150, 12px);
+  align-self: stretch;
+}
+
+/* ── Illustration ── */
+.illustration,
+.illustrationPlaceholder {
+  width: var(--ld-primitive-scale-space-500, 40px);
+  height: var(--ld-primitive-scale-space-500, 40px);
+  flex-shrink: 0;
+  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
+  object-fit: cover;
+}
+
+.illustrationPlaceholder {
+  background: var(--ld-semantic-color-fill-surface-secondary, #f2f3f4);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+/* ── Content container ── */
+.contentContainer {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-150, 12px);
+  min-width: 0;
+}
+
+/* ── Name row ── */
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+/* AI name wrapper */
+.aiNameWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-25, 2px);
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.logoContainer {
+  display: flex;
+  padding-top: var(--ld-primitive-scale-space-50, 4px);
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Goal name ── */
+.goalName {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  flex: 1 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
+}
+
+.goalName--brand {
+  color: var(--ld-semantic-color-text-brand, #0053e2);
+}
+
+/* ── Progress section ── */
+.progressSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  align-self: stretch;
+}
+
+.progressTitle {
+  margin: 0;
+  align-self: stretch;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, sans-serif);
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
+}
+
+/* ── Content slot ── */
+.contentSlot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+/* ── Chevron ── */
+.chevronContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.chevronButton {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
+  transition: background-color 0.15s ease;
+}
+
+.chevronButton:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-border-focus, #0053e2);
+  outline-offset: 2px;
+}
+
+.chevronIcon {
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .goal {
+    gap: var(--ld-primitive-scale-space-150, 12px);
+  }
+
+  .topRow {
+    gap: var(--ld-primitive-scale-space-100, 8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chevronButton {
+    transition: none;
+  }
+}

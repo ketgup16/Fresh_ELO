@@ -136,6 +136,8 @@
     "descListAssociate": "Listes d'associé avec contenu en tête, en fin, attributs, étiquettes et actions de pied",
     "navListTeam": "Liste Équipe",
     "descListTeam": "Éléments de liste d'équipe avec variantes navigationnelle et sélectionnable, illustrations principales, attributs et étiquettes",
+    "navListGoal": "Liste d'Objectifs",
+    "descListGoal": "Éléments de liste d'objectifs avec variantes IA/Par défaut, indicateur de progression, emplacements de contenu, aperçu et alerte",
     "navMagicBox": "Boîte magique",
     "navMenu": "Menu",
     "navMetrics": "Métriques",

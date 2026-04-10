@@ -100,6 +100,7 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navLinkButtons', descKey: 'componentLibrary.descLinkButtons', path: '/component-library/link-buttons', icon: 'Link', section: 'ld' },
   { titleKey: 'componentLibrary.navLinks', descKey: 'componentLibrary.descLinks', path: '/component-library/links', icon: 'Link', section: 'ld' },
   { titleKey: 'componentLibrary.navLists', descKey: 'componentLibrary.descLists', path: '/component-library/lists', icon: 'List', section: 'ld' },
+  { titleKey: 'componentLibrary.navListGoal', descKey: 'componentLibrary.descListGoal', path: '/component-library/list-goal', icon: 'List', section: 'ld' },
   { titleKey: 'componentLibrary.navMagicBox', descKey: 'componentLibrary.descMagicBox', path: '/component-library/magic-box', icon: 'Magic', section: 'ld' },
   { titleKey: 'componentLibrary.navMenu', descKey: 'componentLibrary.descMenu', path: '/component-library/menu', icon: 'Menu', section: 'ld' },
   { titleKey: 'componentLibrary.navMetrics', descKey: 'componentLibrary.descMetrics', path: '/component-library/metrics', icon: 'BarGraph', section: 'ld' },

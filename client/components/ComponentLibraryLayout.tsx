@@ -96,6 +96,7 @@ const navigationSections: NavSection[] = [
           { id: 'list-action',    nameKey: 'componentLibrary.navListAction',    path: '/component-library/list-action' },
           { id: 'list-associate', nameKey: 'componentLibrary.navListAssociate', path: '/component-library/list-associate' },
           { id: 'list-team', nameKey: 'componentLibrary.navListTeam', path: '/component-library/list-team' },
+          { id: 'list-goal', nameKey: 'componentLibrary.navListGoal', path: '/component-library/list-goal' },
         ],
       },
     ],

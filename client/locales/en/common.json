@@ -140,6 +140,8 @@
     "descListAssociate": "Associate lists with leading content, trailing, attributes, tags and footer actions",
     "navListTeam": "List Team",
     "descListTeam": "Team department list items with navigational and selectable variants, leading illustrations, attributes, and tags",
+    "navListGoal": "List Goal",
+    "descListGoal": "Goal list items with AI/Default variants, progress indicator, content slot presets, insight and alert",
     "navMagicBox": "Magic Box",
     "navMenu": "Menu",
     "navMetrics": "Metrics",

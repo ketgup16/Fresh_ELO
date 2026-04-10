@@ -48,6 +48,7 @@ const ListsPage = React.lazy(() => import("./pages/component-library/Lists"));
 const ListActionPage = React.lazy(() => import("./pages/component-library/ListAction"));
 const ListAssociatePage = React.lazy(() => import("./pages/component-library/ListAssociate"));
 const ListTeamPage = React.lazy(() => import("./pages/component-library/ListTeam"));
+const ListGoalPage = React.lazy(() => import("./pages/component-library/ListGoal"));
 const MagicBoxPage = React.lazy(() => import("./pages/component-library/MagicBox"));
 const MenuPage = React.lazy(() => import("./pages/component-library/Menu"));
 const MetricsPage = React.lazy(() => import("./pages/component-library/Metrics"));
@@ -203,6 +204,7 @@ const App = () => (
                 <Route path="list-action" element={<ListActionPage />} />
                 <Route path="list-associate" element={<ListAssociatePage />} />
                 <Route path="list-team" element={<ListTeamPage />} />
+                <Route path="list-goal" element={<ListGoalPage />} />
                 <Route path="magic-box" element={<MagicBoxPage />} />
                 <Route path="menu" element={<MenuPage />} />
                 <Route path="metrics" element={<MetricsPage />} />
