@@ -110,6 +110,12 @@
   align-self: stretch;
 }
 
+/* ── Insight / Alert full-width wrappers ── */
+.insightWrapper,
+.alertWrapper {
+  align-self: stretch;
+}
+
 /* ── Chevron ── */
 .chevronContainer {
   display: flex;

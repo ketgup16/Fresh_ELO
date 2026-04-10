@@ -206,11 +206,14 @@ export const ListGoal = React.forwardRef<HTMLElement, ListGoalProps>(
 
             {/* IntelligentInsight — inside contentContainer so it stops at the chevron */}
             {showInsight && insightLabel && (
-              <IntelligentInsight label={insightLabel} />
+              <div className={styles.insightWrapper}>
+                <IntelligentInsight label={insightLabel} />
+              </div>
             )}
 
             {/* Alert — inside contentContainer so it stops at the chevron */}
             {showAlert && alertMessage && (
+              <div className={styles.alertWrapper}>
               <Alert
                 variant="warning"
                 action={
@@ -230,6 +233,7 @@ export const ListGoal = React.forwardRef<HTMLElement, ListGoalProps>(
               >
                 {alertMessage}
               </Alert>
+              </div>
             )}
           </div>
 
