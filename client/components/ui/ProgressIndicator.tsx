@@ -69,8 +69,6 @@ export const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
 
   return (
     <div className={`${styles.container} ${className}`}>
-      {label && <div className={styles.label}>{label}</div>}
-
       <div className={styles.progressWrapper}>
         <div
           className={styles.track}
@@ -89,8 +87,11 @@ export const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
         </div>
       </div>
 
-      {valueLabel && (
-        <div className={styles.valueLabel}>{valueLabel}</div>
+      {(label || valueLabel) && (
+        <div className={styles.labelsRow}>
+          {label && <div className={styles.label}>{label}</div>}
+          {valueLabel && <div className={styles.valueLabel}>{valueLabel}</div>}
+        </div>
       )}
     </div>
   );
