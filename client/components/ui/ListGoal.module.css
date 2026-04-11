@@ -125,6 +125,11 @@
   flex-shrink: 0;
 }
 
+.chevronHidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 /* ── Responsive ── */
 @media (max-width: 480px) {
   .goal {

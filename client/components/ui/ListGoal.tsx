@@ -239,18 +239,17 @@ export const ListGoal = React.forwardRef<HTMLElement, ListGoalProps>(
           </div>
 
           {/* Chevron navigation */}
-          {showNavigation && (
-            <div className={styles.chevronContainer}>
-              <IconButton
-                variant="ghost"
-                size="medium"
-                aria-label="Navigate to goal"
-                onClick={onNavigate}
-              >
-                <ChevronRight aria-hidden="true" />
-              </IconButton>
-            </div>
-          )}
+          <div className={cn(styles.chevronContainer, !showNavigation && styles.chevronHidden)}>
+            <IconButton
+              variant="ghost"
+              size="medium"
+              aria-label="Navigate to goal"
+              onClick={onNavigate}
+              tabIndex={showNavigation ? undefined : -1}
+            >
+              <ChevronRight aria-hidden="true" />
+            </IconButton>
+          </div>
         </div>
 
         {/* Divider */}
