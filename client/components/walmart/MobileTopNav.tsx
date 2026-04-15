@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import { Barcode, ChevronLeft, Grid, Menu, Placeholder, Search } from '@/components/icons';
+import { Barcode, Chat, ChevronLeft, Grid, Menu, Placeholder, Search } from '@/components/icons';
 import { IconButton } from '@/components/ui/IconButton';
 import { CameraModal } from '@/components/walmart/CameraModal';
 import { MobileMenuPanel } from '@/components/walmart/MobileMenuPanel';
@@ -71,16 +71,16 @@ export function MobileTopNav({
   forceNative = false,
   nativeTitle = 'Page Title',
   nativeSubtitle = 'Subtitle',
-  showNativeSubtitle = false,
+  showNativeSubtitle = true,
   showNativeAction1 = true,
   showNativeAction2 = false,
   showNativeAction3 = false,
   showNativeSearchBar = false,
-  action1Icon = <Placeholder />,
+  action1Icon = <Chat />,
   action2Icon = <Placeholder />,
   action3Icon = <Placeholder />,
   menuIcon = <Menu />,
-  showNativeAvatarButton = false,
+  showNativeAvatarButton = true,
   nativeOSPlatform = 'ios',
   showNativeAction4 = false,
   action4Icon = <Placeholder />,
