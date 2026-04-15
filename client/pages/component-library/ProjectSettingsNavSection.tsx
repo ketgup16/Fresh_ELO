@@ -14,7 +14,7 @@ export function NavSettingsSection() {
         <div className={styles.navSectionLeft}>
           <h2 className={styles.navSectionTitle}>Navigation Settings</h2>
           <p className={styles.navSectionDesc}>
-            Controls which navigation components render at mobile breakpoints (&lt;1024px) across all Walmart app pages.
+            Controls which navigation components render across all Walmart app pages.
             Persisted to <code>localStorage</code> — changes update the live app immediately.
           </p>
         </div>
@@ -34,14 +34,6 @@ export function NavSettingsSection() {
           Choose the target platform experience. Native modes add OS-specific status bars and navigation chrome.
         </p>
         <div className={styles.platformCards}>
-          <PlatformOption
-            label="Web"
-            tag="Responsive"
-            tagVariant="success"
-            description="Standard responsive web layout. No native OS chrome. Uses browser viewport breakpoints for tablet and mobile views."
-            isActive={platform === 'web'}
-            onClick={() => setPlatform('web')}
-          />
           <PlatformOption
             label="iOS Native"
             tag="iPhone / iPad"
@@ -68,7 +60,7 @@ export function NavSettingsSection() {
 interface PlatformOptionProps {
   label: string;
   tag: string;
-  tagVariant: 'neutral' | 'success' | 'info';
+  tagVariant: 'neutral' | 'info';
   description: string;
   isActive: boolean;
   onClick: () => void;

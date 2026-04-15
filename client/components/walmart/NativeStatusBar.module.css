@@ -133,11 +133,3 @@
   background: currentColor;
   border-radius: 0 1px 1px 0;
 }
-
-/* Hide on desktop */
-@media (min-width: 1024px) {
-  .iosStatusBar,
-  .androidStatusBar {
-    display: none;
-  }
-}

@@ -107,11 +107,6 @@
   opacity: 0.2;
 }
 
-@media (min-width: 1024px) {
-  .nav {
-    display: none;
-  }
-}
 
 /* ── Hide when search modal is open ── */
 :global(body.search-modal-open) .nav {

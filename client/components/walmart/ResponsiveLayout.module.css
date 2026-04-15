@@ -21,40 +21,6 @@
   }
 }
 
-@media (min-width: 1024px) {
-  .contentContainer {
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 64px;
-    padding-right: 64px;
-    padding-bottom: 0;
-  }
-
-  .contentContainer.maxWidthSm {
-    max-width: 640px;
-  }
-
-  .contentContainer.maxWidthMd {
-    max-width: 768px;
-  }
-
-  .contentContainer.maxWidthLg {
-    max-width: 1024px;
-  }
-
-  .contentContainer.maxWidthXl {
-    max-width: 1280px;
-  }
-
-  .contentContainer.maxWidth2xl {
-    max-width: 1660px;
-  }
-
-  .contentContainer.maxWidthFull {
-    max-width: 1660px;
-  }
-}
-
 .nativeNavWrapper {
   background-color: var(--ld-semantic-color-top-nav-fill);
   position: sticky;
@@ -68,18 +34,6 @@
   background-color: var(--ld-semantic-color-surface, #fff);
 }
 
-@media (min-width: 1024px) {
-  .nativeNavWrapper {
-    display: none;
-  }
-}
-
 .mobileNavWrapper {
   display: block;
-}
-
-@media (min-width: 1024px) {
-  .mobileNavWrapper {
-    display: none;
-  }
 }

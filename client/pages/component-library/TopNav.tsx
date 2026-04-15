@@ -6,8 +6,6 @@ import { Chip } from '@/components/ui/Chip';
 import { Divider } from '@/components/ui/Divider';
 import { Tag } from '@/components/ui/Tag';
 import { TextField } from '@/components/ui/TextField';
-import { DesktopHeader } from '@/components/walmart/DesktopHeader';
-import { MobileHeader } from '@/components/walmart/MobileHeader';
 import { MobileTopNav, type MobileTopNavVariant } from '@/components/walmart/MobileTopNav';
 import * as Icons from '@/components/icons';
 import styles from './TopNav.module.css';
@@ -19,7 +17,7 @@ function renderIcon(name: string): React.ReactNode {
   return Comp ? <Comp /> : <Icons.Placeholder />;
 }
 
-type Platform = 'dweb' | 'mweb' | 'native' | 'native-tablet';
+type Platform = 'native' | 'native-tablet';
 
 const PLATFORM_META: Record<Platform, {
   component: string;
@@ -27,21 +25,9 @@ const PLATFORM_META: Record<Platform, {
   tagVariant: 'info' | 'success' | 'neutral';
   description: string;
 }> = {
-  dweb: {
-    component: 'Desktop Top Nav',
-    tag: '≥ 1024px',
-    tagVariant: 'info',
-    description: 'Full desktop header with Walmart logo, search bar, account dropdown, and primary navigation links. Renders on screens 1024px and wider.',
-  },
-  mweb: {
-    component: 'Mobile Top Nav',
-    tag: '< 1024px',
-    tagVariant: 'success',
-    description: 'Compact mobile header with hamburger menu, Walmart logo, search icon, and cart/account actions. Designed for screens narrower than 1024px.',
-  },
   native: {
     component: 'Native Mobile',
-    tag: 'Phone (≤ 900px)',
+    tag: 'Phone',
     tagVariant: 'neutral',
     description: 'Native app-style top nav for phones. Supports blue (home) and white (search/inner) color variants with menu icon, title, action buttons, and search bar.',
   },
@@ -76,19 +62,12 @@ export default function TopNavPage() {
   useEffect(() => {
     const pickPlatform = () => {
       setPlatform(prev => {
-        if (prev === 'native' || prev === 'native-tablet') {
-          return window.innerWidth > 900 ? 'native-tablet' : 'native';
-        }
-        return prev;
+        return window.innerWidth > 900 ? 'native-tablet' : 'native';
       });
     };
-    // Set on mount if in a native variant
-    if (platform === 'native' || platform === 'native-tablet') {
-      setPlatform(window.innerWidth > 900 ? 'native-tablet' : 'native');
-    }
+    pickPlatform();
     window.addEventListener('resize', pickPlatform);
     return () => window.removeEventListener('resize', pickPlatform);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const meta = PLATFORM_META[platform];
@@ -203,7 +182,7 @@ export default function TopNavPage() {
     <ComponentPageLayout
       section="AX Patterns"
       title="Top Nav"
-      description="Three AX top navigation patterns — one for desktop web, one for mobile web, and one for native apps. All share the same Walmart brand identity and navigation hierarchy."
+      description="Native app top navigation patterns for iOS and Android — phone and tablet variants. Supports blue (home) and white (search/inner) color variants."
     >
 
       {/* ── Platform Component Preview ── */}
@@ -211,20 +190,6 @@ export default function TopNavPage() {
         <div className={styles.previewHeader}>
           <h2 className={styles.previewTitle}>Component preview</h2>
           <ButtonGroup>
-            <Button
-              variant={platform === 'dweb' ? 'primary' : 'secondary'}
-              size="small"
-              onClick={() => setPlatform('dweb')}
-            >
-              Desktop Top Nav
-            </Button>
-            <Button
-              variant={platform === 'mweb' ? 'primary' : 'secondary'}
-              size="small"
-              onClick={() => setPlatform('mweb')}
-            >
-              Mobile Top Nav
-            </Button>
             <Button
               variant={platform === 'native' ? 'primary' : 'secondary'}
               size="small"
@@ -251,16 +216,6 @@ export default function TopNavPage() {
 
         {/* Component frame */}
         <div className={styles.frame}>
-          {platform === 'dweb' && (
-            <div className={styles.dwebFrame}>
-              <DesktopHeader />
-            </div>
-          )}
-          {platform === 'mweb' && (
-            <div className={styles.mwebFrame}>
-              <MobileHeader />
-            </div>
-          )}
           {platform === 'native' && (
             <div className={styles.nativeFrame}>
               <div className={styles.nativePhone}>
@@ -424,32 +379,8 @@ export default function TopNavPage() {
           </div>
           <div className={styles.usageRow}>
             <div className={styles.usageCell}>
-              <span className={styles.usagePlatform}>Desktop Top Nav</span>
-              <Tag variant="info">≥ 1024px</Tag>
-            </div>
-            <div className={styles.usageCell}>
-              <code className={styles.usageCode}>{'<DesktopHeader />'}</code>
-            </div>
-            <div className={styles.usageCell}>
-              <span className={styles.usageImport}>@/components/walmart/DesktopHeader</span>
-            </div>
-          </div>
-          <div className={styles.usageRow}>
-            <div className={styles.usageCell}>
-              <span className={styles.usagePlatform}>Mobile Top Nav</span>
-              <Tag variant="success">{'< 1024px'}</Tag>
-            </div>
-            <div className={styles.usageCell}>
-              <code className={styles.usageCode}>{'<MobileHeader />'}</code>
-            </div>
-            <div className={styles.usageCell}>
-              <span className={styles.usageImport}>@/components/walmart/MobileHeader</span>
-            </div>
-          </div>
-          <div className={styles.usageRow}>
-            <div className={styles.usageCell}>
               <span className={styles.usagePlatform}>Native Mobile</span>
-              <Tag variant="neutral">Phone (≤ 900px)</Tag>
+              <Tag variant="neutral">Phone</Tag>
             </div>
             <div className={styles.usageCell}>
               <code className={styles.usageCode}>{'<MobileTopNav variant="blue" />'}</code>
@@ -473,7 +404,7 @@ export default function TopNavPage() {
         </div>
 
         <div className={styles.noteBox}>
-          <strong>Responsive pairing:</strong> <code>DesktopHeader</code> and <code>MobileHeader</code> each manage their own breakpoint visibility via CSS — render both and the correct one will display automatically based on viewport width. <code>MobileTopNav</code> is used in native app contexts and supports <code>variant=&quot;blue&quot;</code> (home) and <code>variant=&quot;white&quot;</code> (search/inner pages). For tablet, pass <code>nativeOSPlatform=&quot;ios&quot;</code> to center the title (iOS) or <code>nativeOSPlatform=&quot;android&quot;</code> to keep it left-aligned. Enable the optional 4th action button with <code>showNativeAction4</code>.
+          <strong>Usage:</strong> <code>MobileTopNav</code> is used in native app contexts and supports <code>variant=&quot;blue&quot;</code> (home) and <code>variant=&quot;white&quot;</code> (search/inner pages). For tablet, pass <code>nativeOSPlatform=&quot;ios&quot;</code> to center the title (iOS) or <code>nativeOSPlatform=&quot;android&quot;</code> to keep it left-aligned. Enable the optional 4th action button with <code>showNativeAction4</code>.
         </div>
       </div>
     </ComponentPageLayout>

@@ -3,8 +3,6 @@ import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Button } from '@/components/ui/Button';
 import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { Tag } from '@/components/ui/Tag';
-import { DesktopFooter } from '@/components/walmart/DesktopFooter';
-import { MwebFooter } from '@/components/walmart/MwebFooter';
 import { BottomNav } from '@/components/walmart/BottomNav';
 import { AndroidBottomNav } from '@/components/walmart/AndroidBottomNav';
 import { FloatingFooter } from '@/components/walmart/FloatingFooter';
@@ -12,7 +10,7 @@ import { Pause } from '@/components/icons/Pause';
 import { Flash } from '@/components/icons/Flash';
 import styles from './FooterPatterns.module.css';
 
-type Platform = 'dweb' | 'mweb' | 'native' | 'android';
+type Platform = 'native' | 'android';
 type NativeTab = 'shop' | 'heart' | 'user';
 type AndroidTab = 'shop' | 'heart' | 'services' | 'account';
 
@@ -22,18 +20,6 @@ const PLATFORM_META: Record<Platform, {
   tagVariant: 'info' | 'success' | 'neutral';
   description: string;
 }> = {
-  dweb: {
-    component: 'WCP Footer (Dweb)',
-    tag: '≥ 1024px',
-    tagVariant: 'info',
-    description: 'The standard desktop footer. Renders below all page content with a feedback section, full link grid, and copyright. Hidden on screens narrower than 1024px.',
-  },
-  mweb: {
-    component: 'WCP Footer (Mweb)',
-    tag: '< 1024px',
-    tagVariant: 'success',
-    description: 'Single-column stacked layout for mobile browsers. Same content as the desktop footer — feedback, full link list, copyright — collapsed into a scannable vertical list.',
-  },
   native: {
     component: 'WCP Bottom Nav (iOS)',
     tag: 'iOS',
@@ -49,7 +35,7 @@ const PLATFORM_META: Record<Platform, {
 };
 
 export default function FooterPatternsPage() {
-  const [platform, setPlatform] = useState<Platform>('dweb');
+  const [platform, setPlatform] = useState<Platform>('native');
   const [nativeTab, setNativeTab] = useState<NativeTab>('shop');
   const [androidTab, setAndroidTab] = useState<AndroidTab>('shop');
 
@@ -58,8 +44,8 @@ export default function FooterPatternsPage() {
   return (
     <ComponentPageLayout
       section="AX Patterns"
-      title="Footer & Bottom Nav"
-      description="Three navigation patterns — one for each platform. The project-wide mobile default is now configured in Project Settings."
+      title="Bottom Nav"
+      description="Native bottom navigation patterns — one for each platform. The project-wide platform is configured in Project Settings."
     >
 
       {/* ── Platform Component Preview ──────────────────────────── */}
@@ -67,20 +53,6 @@ export default function FooterPatternsPage() {
         <div className={styles.previewHeader}>
           <h2 className={styles.previewTitle}>Component preview</h2>
           <ButtonGroup>
-            <Button
-              variant={platform === 'dweb' ? 'primary' : 'secondary'}
-              size="small"
-              onClick={() => setPlatform('dweb')}
-            >
-              WCP Footer (Dweb)
-            </Button>
-            <Button
-              variant={platform === 'mweb' ? 'primary' : 'secondary'}
-              size="small"
-              onClick={() => setPlatform('mweb')}
-            >
-              WCP Footer (Mweb)
-            </Button>
             <Button
               variant={platform === 'native' ? 'primary' : 'secondary'}
               size="small"
@@ -107,19 +79,6 @@ export default function FooterPatternsPage() {
 
         {/* Component frame */}
         <div className={styles.frame}>
-          {platform === 'dweb' && (
-            <div className={styles.dwebFrame}>
-              <DesktopFooter />
-            </div>
-          )}
-
-          {platform === 'mweb' && (
-            <div className={styles.mwebFrame}>
-              {/* contained overrides the desktop display:none */}
-              <MwebFooter contained />
-            </div>
-          )}
-
           {platform === 'android' && (
             <div className={styles.nativeFrame}>
               <div className={styles.androidPhone}>
@@ -199,30 +158,6 @@ export default function FooterPatternsPage() {
           </div>
           <div className={styles.usageRow}>
             <div className={styles.usageCell}>
-              <span className={styles.usagePlatform}>WCP Footer (Dweb)</span>
-              <Tag variant="info">≥ 1024px</Tag>
-            </div>
-            <div className={styles.usageCell}>
-              <code className={styles.usageCode}>{'<DesktopFooter />'}</code>
-            </div>
-            <div className={styles.usageCell}>
-              <span className={styles.usageImport}>@/components/walmart/DesktopFooter</span>
-            </div>
-          </div>
-          <div className={styles.usageRow}>
-            <div className={styles.usageCell}>
-              <span className={styles.usagePlatform}>WCP Footer (Mweb)</span>
-              <Tag variant="success">{'< 1024px'}</Tag>
-            </div>
-            <div className={styles.usageCell}>
-              <code className={styles.usageCode}>{'<MwebFooter />'}</code>
-            </div>
-            <div className={styles.usageCell}>
-              <span className={styles.usageImport}>@/components/walmart/MwebFooter</span>
-            </div>
-          </div>
-          <div className={styles.usageRow}>
-            <div className={styles.usageCell}>
               <span className={styles.usagePlatform}>WCP Bottom Nav (iOS)</span>
               <Tag variant="neutral">iOS</Tag>
             </div>
@@ -248,7 +183,7 @@ export default function FooterPatternsPage() {
         </div>
 
         <div className={styles.noteBox}>
-          <strong>Responsive pairing:</strong> <code>DesktopFooter</code> and <code>MwebFooter</code> each manage their own breakpoint visibility — render both and CSS handles which one shows. The project-level default for mobile footer is configured in <strong>Project Settings</strong>.
+          <strong>Usage:</strong> The project-level platform is configured in <strong>Project Settings</strong>. iOS uses a glassmorphic pill bar with spring animation, Android uses a Material-style tab bar with four destinations.
         </div>
       </div>
 

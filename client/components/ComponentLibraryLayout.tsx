@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
-import { DesktopHeader } from '@/components/walmart/DesktopHeader';
 import { Menu } from '@/components/icons/Menu';
 import { X } from '@/components/icons/X';
 import { ChevronDown } from '@/components/icons/ChevronDown';
@@ -217,8 +216,6 @@ export function ComponentLibraryLayout() {
 
   return (
     <div className={styles.shell}>
-      <DesktopHeader />
-
       <div className={styles.body}>
         {/* Backdrop for mobile drawer */}
         <div

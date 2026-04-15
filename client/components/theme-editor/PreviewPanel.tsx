@@ -4,9 +4,8 @@ import { ButtonGroup } from '@/components/ui/ButtonGroup';
 import { AXFlag, AX_FLAG_VARIANTS } from '@/components/walmart/AXFlag';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { useTheme } from '@/contexts/ThemeContext';
-import { DesktopFooter } from '@/components/walmart/DesktopFooter';
-import { MwebFooter } from '@/components/walmart/MwebFooter';
 import { BottomNav } from '@/components/walmart/BottomNav';
+import { AndroidBottomNav } from '@/components/walmart/AndroidBottomNav';
 import {
   Gift,
   Star,
@@ -40,7 +39,7 @@ const FLAG_ICONS: Record<AXFlagVariant, React.ReactNode> = {
   'urgent':             <Flash       {...ICON_SIZE} />,
 };
 
-type Platform = 'dweb' | 'mweb' | 'native';
+type Platform = 'ios' | 'android';
 
 interface PreviewPanelProps {
   /** Number of overrides applied — used to force re-render when tokens change */
@@ -54,7 +53,7 @@ interface PreviewPanelProps {
  */
 export function PreviewPanel({ overrideCount: _ }: PreviewPanelProps) {
   const { currentThemeData } = useTheme();
-  const [platform, setPlatform] = useState<Platform>('dweb');
+  const [platform, setPlatform] = useState<Platform>('ios');
 
   return (
     <div className={styles.panel}>
@@ -77,36 +76,28 @@ export function PreviewPanel({ overrideCount: _ }: PreviewPanelProps) {
 
       {/* Platform / device chooser */}
       <section className={styles.section}>
-        <h3 className={styles.sectionTitle}>Device &amp; breakpoint</h3>
+        <h3 className={styles.sectionTitle}>Platform</h3>
         <div className={styles.platformRow}>
           <ButtonGroup>
             <Button
-              variant={platform === 'dweb' ? 'primary' : 'secondary'}
+              variant={platform === 'ios' ? 'primary' : 'secondary'}
               size="small"
-              onClick={() => setPlatform('dweb')}
+              onClick={() => setPlatform('ios')}
             >
-              Desktop
+              iOS
             </Button>
             <Button
-              variant={platform === 'mweb' ? 'primary' : 'secondary'}
+              variant={platform === 'android' ? 'primary' : 'secondary'}
               size="small"
-              onClick={() => setPlatform('mweb')}
+              onClick={() => setPlatform('android')}
             >
-              Mobile Web
-            </Button>
-            <Button
-              variant={platform === 'native' ? 'primary' : 'secondary'}
-              size="small"
-              onClick={() => setPlatform('native')}
-            >
-              Native
+              Android
             </Button>
           </ButtonGroup>
         </div>
         <p className={styles.themeNote}>
-          {platform === 'dweb' && 'Previewing desktop web footer (≥1024px).'}
-          {platform === 'mweb' && 'Previewing mobile web footer (<1024px).'}
-          {platform === 'native' && 'Previewing native bottom navigation bar.'}
+          {platform === 'ios' && 'Previewing iOS glassmorphic bottom navigation bar.'}
+          {platform === 'android' && 'Previewing Android Material-style bottom navigation bar.'}
         </p>
       </section>
 
@@ -156,27 +147,18 @@ export function PreviewPanel({ overrideCount: _ }: PreviewPanelProps) {
         </div>
       </section>
 
-      {/* Footer / nav pattern preview */}
+      {/* Bottom nav pattern preview */}
       <section className={styles.section}>
-        <h3 className={styles.sectionTitle}>
-          {platform === 'native' ? 'Bottom nav' : 'Footer'}
-        </h3>
-        <div className={platform === 'native' ? styles.nativePreviewWrap : styles.footerPreviewWrap}>
-          {platform === 'dweb' && (
-            <div className={styles.footerScaleWrap}>
-              <div className={styles.footerScaleInner}>
-                <DesktopFooter />
-              </div>
-            </div>
-          )}
-          {platform === 'mweb' && (
-            <div className={styles.mwebPreviewFrame}>
-              <MwebFooter />
-            </div>
-          )}
-          {platform === 'native' && (
+        <h3 className={styles.sectionTitle}>Bottom nav</h3>
+        <div className={styles.nativePreviewWrap}>
+          {platform === 'ios' && (
             <div className={styles.nativeFrame}>
               <BottomNav activeTab="shop" />
+            </div>
+          )}
+          {platform === 'android' && (
+            <div className={styles.nativeFrame}>
+              <AndroidBottomNav activeTab="shop" />
             </div>
           )}
         </div>

@@ -11,12 +11,6 @@
   background-color: var(--ld-semantic-color-top-nav-fill);
 }
 
-@media (min-width: 1024px) {
-  .root {
-    display: none;
-  }
-}
-
 /* ── Top bar ── */
 .topBar {
   padding: var(--ld-primitive-scale-space-400, 16px);
@@ -393,11 +387,6 @@
   background-color: var(--ld-semantic-color-surface, #fff);
 }
 
-@media (min-width: 1024px) {
-  .deliveryBanner {
-    display: none;
-  }
-}
 
 /* ── Sub nav ── */
 .subNav {

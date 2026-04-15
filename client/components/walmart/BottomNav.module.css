@@ -153,15 +153,8 @@
   opacity: 0.25;
 }
 
-@media (min-width: 1024px) {
-  .fadeOverlay,
-  .nav {
-    display: none;
-  }
-}
-
 /* Tablet: constrain nav to 60vw centered */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 769px) {
   .nav {
     left: 50%;
     right: auto;
