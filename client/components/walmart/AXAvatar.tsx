@@ -138,7 +138,7 @@ function ClockIndicatorDot({ state, size = 'medium' }: ClockIndicatorDotProps) {
     : 'inset 0 0 0 var(--ld-primitive-scale-border-width-100, 1px) var(--ld-semantic-color-border-subtle, #515357)';
 
   /* white separator ring so the dot is visually lifted off the avatar */
-  const separator = '0 0 0 2px var(--ld-semantic-color-fill-surface-primary, #ffffff)';
+  const separator = '0 0 0 var(--ld-primitive-scale-border-width-100, 1px) var(--ld-semantic-color-fill-surface-primary, #ffffff)';
 
   // Clock indicator offsets by size — primitive scale tokens where exact match exists
   // space-50 = 4px · space-25 = 2px · no token for 3px (use literal)
