@@ -16,6 +16,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 const NotFound = React.lazy(() => import("./pages/NotFound"));
+const HomePage = React.lazy(() => import("./pages/Home"));
 
 // Component library pages (lazy loaded)
 const ComponentLibraryOverview = React.lazy(() => import("./pages/component-library/Overview"));
@@ -303,8 +304,11 @@ const App = () => (
                 <Route path="home-page-widgets" element={<HomePageWidgetsPage />} />
               </Route>
 
-              {/* Default route */}
-              <Route path="/" element={<Navigate to="/component-library" replace />} />
+              {/* Home page */}
+              <Route path="/" element={<HomePage />} />
+
+              {/* Component library fallback */}
+              <Route path="/component-library-redirect" element={<Navigate to="/component-library" replace />} />
 
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />
