@@ -170,11 +170,11 @@ function ClockIndicatorDot({ state, size = 'medium' }: ClockIndicatorDotProps) {
         flexShrink: 0,
       }}
     >
-      {/* 8×8 inner circle — carries the fill and inset stroke */}
+      {/* 10×10 inner circle — carries the fill and inset stroke */}
       <span
         style={{
-          width: '8px',
-          height: '8px',
+          width: '10px',
+          height: '10px',
           borderRadius: '50%',
           background,
           boxShadow: insetStroke,
