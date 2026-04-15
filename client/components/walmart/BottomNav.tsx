@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Services, ServicesFill, UserCircle, UserCircleFill } from '@/components/icons';
-import { GlassShop, GlassShopFill } from '@/components/icons-custom';
-import { useLayoutSettings, type PlatformMode } from '@/contexts/LayoutSettingsContext';
+import { Store, StoreFill, Heart, HeartFill, Services, ServicesFill, UserCircle, UserCircleFill } from '@/components/icons';
 import styles from './BottomNav.module.css';
+
+type BottomTab = 'shop' | 'heart' | 'services' | 'user';
 
 interface BottomNavProps {
   activeTab?: 'shop' | 'heart' | 'user';
@@ -12,36 +12,46 @@ interface BottomNavProps {
   contained?: boolean;
 }
 
-const TAB_X: Record<string, string> = {
-  shop: '-72px',
-  heart: '0px',
-  user: '72px',
-};
-
-const NAV_PATHS: Record<string, string | undefined> = {
+const NAV_PATHS: Record<BottomTab, string | undefined> = {
   shop: '/walmart',
   heart: undefined,
-  user: '/walmart/purchase-history',
+  services: undefined,
+  user: undefined,
 };
+
+const TABS: { id: BottomTab; label: string }[] = [
+  { id: 'shop', label: 'Shop' },
+  { id: 'heart', label: 'My Items' },
+  { id: 'services', label: 'Services' },
+  { id: 'user', label: 'Account' },
+];
+
+function TabIcon({ id, active }: { id: BottomTab; active: boolean }) {
+  const cls = active ? styles.iconActive : styles.iconInactive;
+  switch (id) {
+    case 'shop':
+      return active ? <StoreFill className={cls} /> : <Store className={cls} />;
+    case 'heart':
+      return active ? <HeartFill className={cls} /> : <Heart className={cls} />;
+    case 'services':
+      return active ? <ServicesFill className={cls} /> : <Services className={cls} />;
+    case 'user':
+      return active ? <UserCircleFill className={cls} /> : <UserCircle className={cls} />;
+  }
+}
 
 export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }: BottomNavProps) {
   const navigate = useNavigate();
-  const { platform } = useLayoutSettings();
-  // Visual tab drives the indicator position — decoupled from prop so we can
-  // animate first, then trigger the page navigation after the slide completes.
-  const [visualTab, setVisualTab] = useState<'shop' | 'heart' | 'user'>(activeTab);
-  const [isMoving, setIsMoving] = useState(false);
+  const [visualTab, setVisualTab] = useState<BottomTab>(activeTab);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const navTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const moveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Keep visualTab in sync if parent changes activeTab (e.g. on initial mount of a new page).
   useEffect(() => {
     setVisualTab(activeTab);
   }, [activeTab]);
 
   useEffect(() => {
+    if (contained) return;
     const handleScroll = () => {
       const y = window.scrollY;
       if (y < 10) {
@@ -55,82 +65,49 @@ export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, contained]);
 
-  const handleTabClick = (tab: 'shop' | 'heart' | 'user') => {
-    if (tab === visualTab) return;
-
-    // Clear any in-flight navigation/movement timers
-    if (navTimerRef.current) clearTimeout(navTimerRef.current);
-    if (moveTimerRef.current) clearTimeout(moveTimerRef.current);
-
-    // Move indicator immediately — CSS transition handles the slide
+  const handleTabClick = (tab: BottomTab) => {
     setVisualTab(tab);
-    setIsMoving(true);
-    onTabChange?.(tab);
-
-    // Clear the "moving" state once the spring has settled (~400ms)
-    moveTimerRef.current = setTimeout(() => setIsMoving(false), 400);
-
-    // Navigate only after the slide animation plays (~320ms)
-    const path = NAV_PATHS[tab];
-    if (path) {
-      navTimerRef.current = setTimeout(() => navigate(path), 320);
+    // Map internal tab ids to the external 3-tab type for onTabChange
+    if (tab === 'shop' || tab === 'heart' || tab === 'user') {
+      onTabChange?.(tab);
     }
+    const path = NAV_PATHS[tab];
+    if (path) navigate(path);
   };
-
-  const indicatorX = TAB_X[visualTab];
 
   const navEl = (
     <div className={[
-        styles.nav,
-        !contained && !isVisible ? styles.navHidden : '',
-        contained ? styles.navContained : '',
+      styles.nav,
+      !contained && !isVisible ? styles.navHidden : '',
+      contained ? styles.navContained : '',
     ].filter(Boolean).join(' ')}>
-      <div className={styles.navInner}>
-        <div className={styles.tabBar}>
-            <div
-              className={`${styles.indicator} ${isMoving ? styles.indicatorMoving : ''}`}
-              style={{ transform: `translateX(${indicatorX})` }}
-            />
-
+      <div className={styles.tabBar}>
+        {TABS.map(({ id, label }) => {
+          const isActive = visualTab === id;
+          return (
             <button
+              key={id}
               className={styles.tab}
-              onClick={() => handleTabClick('shop')}
-              aria-label="Shop"
+              onClick={() => handleTabClick(id)}
+              aria-label={label}
             >
-              {visualTab === 'shop'
-                ? <GlassShopFill className={`${styles.tabIcon} ${styles.tabIconActive}`} />
-                : <GlassShop className={`${styles.tabIcon} ${styles.tabIconInactive}`} />}
+              <div className={styles.iconWrap}>
+                <TabIcon id={id} active={isActive} />
+              </div>
+              <span className={[styles.label, isActive ? styles.labelActive : styles.labelInactive].join(' ')}>
+                {label}
+              </span>
             </button>
-
-            <button
-              className={styles.tab}
-              onClick={() => handleTabClick('heart')}
-              aria-label="Services"
-            >
-              {visualTab === 'heart'
-                ? <ServicesFill className={`${styles.tabIcon} ${styles.tabIconActive}`} />
-                : <Services className={`${styles.tabIcon} ${styles.tabIconInactive}`} />}
-            </button>
-
-            <button
-              className={styles.tab}
-              onClick={() => handleTabClick('user')}
-              aria-label="Account"
-            >
-              {visualTab === 'user'
-                ? <UserCircleFill className={`${styles.tabIcon} ${styles.tabIconActive}`} />
-                : <UserCircle className={`${styles.tabIcon} ${styles.tabIconInactive}`} />}
-            </button>
-          </div>
-
+          );
+        })}
       </div>
 
-      {platform === 'ios' && <div className={styles.homeIndicator} />}
-      {platform === 'android' && <div className={styles.androidNavBar}>
-        <div className={styles.androidGestureBar} />
-      </div>}
+      {/* iOS home indicator */}
+      <div className={styles.homeIndicator}>
+        <div className={styles.homeIndicatorPill} />
+      </div>
     </div>
   );
 
@@ -143,10 +120,5 @@ export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }
     );
   }
 
-  return (
-    <>
-      <div className={`${styles.fadeOverlay} ${!isVisible ? styles.fadeOverlayHidden : ''}`} />
-      {navEl}
-    </>
-  );
+  return navEl;
 }
