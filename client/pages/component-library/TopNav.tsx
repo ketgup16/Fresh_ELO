@@ -42,17 +42,17 @@ const PLATFORM_META: Record<Platform, {
 export default function TopNavPage() {
   const [platform, setPlatform] = useState<Platform>('native');
   const [nativeVariant, setNativeVariant] = useState<MobileTopNavVariant>('blue');
-  const [nativeTitle, setNativeTitle] = useState('Page Title');
+  const [nativeTitle, setNativeTitle] = useState('Title');
   const [nativeSubtitle, setNativeSubtitle] = useState('Subtitle');
-  const [showNativeSubtitle, setShowNativeSubtitle] = useState(false);
+  const [showNativeSubtitle, setShowNativeSubtitle] = useState(true);
   const [showNativeAction1, setShowNativeAction1] = useState(true);
-  const [showNativeAction2, setShowNativeAction2] = useState(true);
-  const [showNativeAction3, setShowNativeAction3] = useState(true);
+  const [showNativeAction2, setShowNativeAction2] = useState(false);
+  const [showNativeAction3, setShowNativeAction3] = useState(false);
   const [showNativeAction4, setShowNativeAction4] = useState(false);
   const [showNativeSearchBar, setShowNativeSearchBar] = useState(true);
   const [showNativeAvatarButton, setShowNativeAvatarButton] = useState(true);
   const [menuIconName, setMenuIconName] = useState('Menu');
-  const [action1IconName, setAction1IconName] = useState('Placeholder');
+  const [action1IconName, setAction1IconName] = useState('Chat');
   const [action2IconName, setAction2IconName] = useState('Placeholder');
   const [action3IconName, setAction3IconName] = useState('Placeholder');
   const [action4IconName, setAction4IconName] = useState('Placeholder');

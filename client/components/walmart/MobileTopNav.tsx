@@ -6,7 +6,7 @@ import { CameraModal } from '@/components/walmart/CameraModal';
 import { MobileMenuPanel } from '@/components/walmart/MobileMenuPanel';
 import { SearchTypeaheadModal } from '@/pages/walmart/index/SearchTypeaheadModal';
 import { AXSearchField } from '@/components/walmart/AXSearchField';
-import { AXAvatarButton } from '@/components/walmart/AXAvatarButton';
+import { AXAvatarButton, type AXAvatarIndicatorType, type AXAvatarClockState } from '@/components/walmart/AXAvatarButton';
 import { AvatarFallback } from '@/components/ui/avatar';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { useNavigate } from 'react-router-dom';
@@ -61,6 +61,12 @@ interface MobileTopNavProps {
   action4Icon?: React.ReactNode;
   /** Whether this is being rendered in the tablet layout. Controls whether iOS centering is applied. @default false */
   isTabletLayout?: boolean;
+  /** Initials rendered inside the AX Avatar fallback. @default 'SC' */
+  avatarInitials?: string;
+  /** Indicator overlay on the avatar. @default 'clock' */
+  avatarIndicator?: AXAvatarIndicatorType;
+  /** Clock indicator state (only used when avatarIndicator='clock'). @default 'active' */
+  avatarClockState?: AXAvatarClockState;
 }
 
 export function MobileTopNav({
@@ -85,6 +91,9 @@ export function MobileTopNav({
   showNativeAction4 = false,
   action4Icon = <Placeholder />,
   isTabletLayout = false,
+  avatarInitials = 'SC',
+  avatarIndicator = 'clock',
+  avatarClockState = 'active',
 }: MobileTopNavProps) {
   const navigate = useNavigate();
   const { platform } = useLayoutSettings();
@@ -280,6 +289,8 @@ export function MobileTopNav({
                   <div ref={buttonWrapperRef} style={{ display: 'inline-flex', alignItems: 'center' }}>
                     <AXAvatarButton
                       size="small"
+                      indicator={avatarIndicator}
+                      clockState={avatarClockState}
                       aria-label="Account"
                       onClick={handleAvatarClick}
                     >
@@ -289,7 +300,7 @@ export function MobileTopNav({
                         fontWeight: 'var(--ld-semantic-font-body-small-weight-default, 400)',
                         lineHeight: 'var(--ld-semantic-font-body-small-line-height, 1.25rem)',
                       }}>
-                        WM
+                        {avatarInitials}
                       </AvatarFallback>
                     </AXAvatarButton>
                   </div>
