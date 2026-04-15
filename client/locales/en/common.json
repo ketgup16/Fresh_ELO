@@ -243,6 +243,8 @@
     "navOrderStatusCards": "Order & Status Cards",
     "descOrderStatusCards": "Active curbside, order status, and delivery status cards with countdown timers and actions",
     "tools": "Tools",
+    "navThemes": "Themes",
+    "navDrawer": "Drawer",
     "navThemeEditor": "Theme Editor",
     "navProjectSettings": "Project Settings",
     "descAlerts": "Banner messages for info, success, warning, and error states",

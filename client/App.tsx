@@ -111,10 +111,22 @@ const AXSearchBarPage = React.lazy(() => import("./pages/component-library/AXSea
 const AXSearchFieldPage = React.lazy(() => import("./pages/component-library/AXSearchField"));
 const AXSignatureCapturePage = React.lazy(() => import("./pages/component-library/AXSignatureCapture"));
 const AXRichMediaSheetPage = React.lazy(() => import("./pages/component-library/AXRichMediaSheet"));
+const AXRichSnackbarPage = React.lazy(() => import("./pages/component-library/AXRichSnackbar"));
 const AXUploadImagePage = React.lazy(() => import("./pages/component-library/AXUploadImage"));
+const AXTimerViewPage = React.lazy(() => import("./pages/component-library/AXTimerView"));
+const AXQueuePage = React.lazy(() => import("./pages/component-library/AXQueue"));
+const AXQueueBannerPage = React.lazy(() => import("./pages/component-library/AXQueueBanner"));
+const AXQueueCardPage = React.lazy(() => import("./pages/component-library/AXQueueCard"));
+const AXCountryComponentsPage = React.lazy(() => import("./pages/component-library/AXCountryComponents"));
 const AXMetricGroupPage = React.lazy(() => import("./pages/component-library/AXMetricGroup"));
 const AXSegmentedControlGroupPage = React.lazy(() => import("./pages/component-library/AXSegmentedControlGroup"));
 const IntelligentInsightPage = React.lazy(() => import("./pages/component-library/IntelligentInsight"));
+const CarouselsAndGridsPage = React.lazy(() => import("./pages/component-library/CarouselsAndGrids"));
+const DropdownsPage = React.lazy(() => import("./pages/component-library/Dropdowns"));
+const OrderCardPatternsPage = React.lazy(() => import("./pages/component-library/OrderCardPatterns"));
+const OrderStatusCardsPage = React.lazy(() => import("./pages/component-library/OrderStatusCards"));
+const PromoBannersPage = React.lazy(() => import("./pages/component-library/PromoBanners"));
+const HomePageWidgetsPage = React.lazy(() => import("./pages/component-library/HomePageWidgets"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
 const FoundationsPage = React.lazy(() => import("./pages/component-library/Foundations"));
 const AssetsPage = React.lazy(() => import("./pages/component-library/Assets"));
@@ -277,6 +289,18 @@ const App = () => (
                 <Route path="ax-metric-group" element={<AXMetricGroupPage />} />
                 <Route path="ax-segmented-control-group" element={<AXSegmentedControlGroupPage />} />
                 <Route path="intelligent-insight" element={<IntelligentInsightPage />} />
+                <Route path="ax-timer-view" element={<AXTimerViewPage />} />
+                <Route path="ax-queue" element={<AXQueuePage />} />
+                <Route path="ax-queue-banner" element={<AXQueueBannerPage />} />
+                <Route path="ax-queue-card" element={<AXQueueCardPage />} />
+                <Route path="ax-country" element={<AXCountryComponentsPage />} />
+                <Route path="ax-rich-snackbar" element={<AXRichSnackbarPage />} />
+                <Route path="carousels-grids" element={<CarouselsAndGridsPage />} />
+                <Route path="dropdowns" element={<DropdownsPage />} />
+                <Route path="order-card-patterns" element={<OrderCardPatternsPage />} />
+                <Route path="order-status-cards" element={<OrderStatusCardsPage />} />
+                <Route path="promo-banners" element={<PromoBannersPage />} />
+                <Route path="home-page-widgets" element={<HomePageWidgetsPage />} />
               </Route>
 
               {/* Default route */}

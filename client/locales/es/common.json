@@ -237,6 +237,8 @@
     "navAXSignatureCapture": "Captura de Firma",
     "descAXSignatureCapture": "Flujo de firma de suscripción AX con variantes Disparador, Términos, Formulario base y Reautenticación",
     "descAXFloatingButton": "Botón de ícono circular elevado para controles de carrusel y acciones flotantes",
+    "navThemes": "Temas",
+    "navDrawer": "Cajón",
     "descAlerts": "Mensajes de banner para estados de información, éxito, advertencia y error",
     "descBadges": "Insignias de conteo, indicadores de estado y variantes de color semántico",
     "descBreadcrumbs": "Migas de pan de navegación con soporte para 2-5 niveles y separadores personalizados",
