@@ -20,7 +20,6 @@ const NotFound = React.lazy(() => import("./pages/NotFound"));
 // Walmart pages (lazy loaded)
 const WalmartIndex = React.lazy(() => import("./pages/walmart/Index"));
 const WalmartProductDetail = React.lazy(() => import("./pages/walmart/ProductDetail"));
-const WalmartPharmacyDelivery = React.lazy(() => import("./pages/walmart/PharmacyDelivery"));
 // Component library pages (lazy loaded)
 const ComponentLibraryOverview = React.lazy(() => import("./pages/component-library/Overview"));
 const ComponentTester = React.lazy(() => import("./pages/component-library/ComponentTester"));
@@ -286,7 +285,6 @@ const App = () => (
               {/* Walmart pages */}
               <Route path="/walmart" element={<WalmartIndex />} />
               <Route path="/walmart/product/:productId" element={<WalmartProductDetail />} />
-              <Route path="/walmart/pharmacy-delivery" element={<WalmartPharmacyDelivery />} />
               {/* Redirect home to Walmart, but only in production to avoid HMR reload issues jumping back to home */}
               {import.meta.env.PROD && <Route path="/" element={<Navigate to="/walmart" replace />} />}
               {import.meta.env.DEV && <Route path="/" element={<WalmartIndex />} />}

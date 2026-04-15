@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import { Barcode, ChevronDown, ChevronLeft, ChevronUp, Grid, Menu, Placeholder, Search } from '@/components/icons';
+import { Barcode, ChevronLeft, Grid, Menu, Placeholder, Search } from '@/components/icons';
 import { IconButton } from '@/components/ui/IconButton';
-import { LocationIcon, StoreIcon } from '@/components/icons-custom';
 import { CameraModal } from '@/components/walmart/CameraModal';
 import { MobileMenuPanel } from '@/components/walmart/MobileMenuPanel';
 import { SearchTypeaheadModal } from '@/pages/walmart/index/SearchTypeaheadModal';
@@ -76,7 +75,7 @@ export function MobileTopNav({
   showNativeAction1 = true,
   showNativeAction2 = false,
   showNativeAction3 = false,
-  showNativeSearchBar = true,
+  showNativeSearchBar = false,
   action1Icon = <Placeholder />,
   action2Icon = <Placeholder />,
   action3Icon = <Placeholder />,
@@ -142,8 +141,6 @@ export function MobileTopNav({
       setShowAvatarMenu(true);
     }
   }, [showAvatarMenu]);
-  const [showDeliveryOptions, setShowDeliveryOptions] = useState(false);
-  const [selectedDeliveryOption, setSelectedDeliveryOption] = useState<'none' | 'shipping' | 'pickup' | 'delivery'>('none');
   const [showMenuPanel, setShowMenuPanel] = useState(false);
 
   // Drag-to-scroll for subNav
@@ -396,82 +393,6 @@ export function MobileTopNav({
               </div>
 
             </div>
-          </div>
-        )}
-
-        {/* Pickup or Delivery Banner — homepage only */}
-        {showHomeExtras && (
-          <div className={`${styles.deliveryBanner} ${isBlue ? styles.deliveryBannerBlue : styles.deliveryBannerWhite}`}>
-            {!showDeliveryOptions && (
-              <button
-                onClick={() => setShowDeliveryOptions(true)}
-                className={styles.deliveryButton}
-              >
-                <div className="flex items-center gap-2">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fe96ba70bf20a4d59aede84cfd5b0636c"
-                    alt="Global Intent"
-                    className="w-[24px] h-[24px] flex-shrink-0 rounded-full"
-                  />
-                  <span className="text-[14px] font-semibold" style={{ color: textColor }}>
-                    {selectedDeliveryOption === 'none' && 'How do you want your items?'}
-                    {selectedDeliveryOption === 'delivery' && 'Delivery | 1213 E Trinity Mills Rd'}
-                    {selectedDeliveryOption === 'pickup' && 'Pickup | Carrollton Supercenter'}
-                    {selectedDeliveryOption === 'shipping' && 'Shipping | 1213 E Trinity Mills Rd'}
-                  </span>
-                </div>
-                <ChevronDown className="w-4 h-4" style={{ color: textColor }} />
-              </button>
-            )}
-
-            {showDeliveryOptions && (
-              <div className="py-2 space-y-4 animate-fade-in">
-                <div className="flex items-center justify-between">
-                  <span className="text-[14px] font-semibold" style={{ color: textColor }}>How do you want your items?</span>
-                  <button
-                    onClick={() => setShowDeliveryOptions(false)}
-                    className="w-6 h-6 flex items-center justify-center"
-                  >
-                    <ChevronUp className="w-4 h-4" style={{ color: textColor }} />
-                  </button>
-                </div>
-
-                <div className="flex justify-center gap-6">
-                  {([
-                    { key: 'shipping', label: 'Shipping', icon: '/illustrations/mono-small/fulfillment-shipping.svg' },
-                    { key: 'pickup',   label: 'Pickup',   icon: '/illustrations/mono-small/fulfillment-pickup.svg' },
-                    { key: 'delivery', label: 'Delivery', icon: '/illustrations/mono-small/fulfillment-delivery.svg' },
-                  ] as const).map((method) => (
-                    <button
-                      key={method.key}
-                      className="flex flex-col items-center gap-2"
-                      onClick={() => { setSelectedDeliveryOption(method.key); setShowDeliveryOptions(false); }}
-                    >
-                      <div className={`w-[60px] h-[60px] rounded-full bg-white flex items-center justify-center ${selectedDeliveryOption === method.key ? 'ring-2 ring-white/80' : ''}`}>
-                        <img src={method.icon} alt={method.label} className="w-10 h-10 object-contain" />
-                      </div>
-                      <span className="text-[14px] font-extrabold leading-[17px] text-center" style={{ color: textColor }}>{method.label}</span>
-                    </button>
-                  ))}
-                </div>
-
-                <div className="flex flex-col gap-2 w-full">
-                  <button className="w-full flex items-center gap-2 p-4 bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.1),0_1px_2px_1px_rgba(0,0,0,0.15)]">
-                    <LocationIcon className="w-4 h-4 flex-shrink-0" />
-                    <span className="flex-1 text-left text-foreground text-[12px] leading-[16px]">
-                      1213 E Trinity Mills Rd, Dallas, TX 75220
-                    </span>
-                  </button>
-                  <button className="w-full flex items-center gap-2 p-4 bg-white rounded-lg shadow-[0_-1px_2px_0_rgba(0,0,0,0.1),0_1px_2px_1px_rgba(0,0,0,0.15)]">
-                    <StoreIcon className="w-4 h-4 flex-shrink-0 self-start mt-0.5" />
-                    <div className="flex-1 text-left flex flex-col gap-1">
-                      <span className="text-foreground text-[12px] font-semibold leading-[16px]">Carrollton Supercenter</span>
-                      <span className="text-foreground text-[12px] leading-[16px]">1213 E Trinity Mills Rd, Dallas, TX 75220</span>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            )}
           </div>
         )}
 
