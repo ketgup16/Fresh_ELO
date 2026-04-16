@@ -91,7 +91,7 @@ export function BottomNav({
         <div className={styles.squigglyWrap}>
           <SquigglyAgent
             animation="emotes"
-            size={64}
+            size={56}
             loop
             autoplay
             onClick={onSquigglyClick}
