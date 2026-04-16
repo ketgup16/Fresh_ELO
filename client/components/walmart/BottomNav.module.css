@@ -110,10 +110,15 @@
 /* Squiggly AI agent floats above the right side of the nav bar */
 .squigglyWrap {
   position: absolute;
-  bottom: calc(100% + 16px);
+  left: auto;
   right: 16px;
+  bottom: calc(100% + 16px);
   z-index: 10;
   pointer-events: auto;
+  width: 56px;
+  height: 56px;
+  display: block;
+  transform: translateY(-8px);
 }
 
 /* ── Hide when search modal is open ── */
