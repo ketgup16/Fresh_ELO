@@ -11,8 +11,14 @@ import { Flash } from '@/components/icons/Flash';
 import styles from './FooterPatterns.module.css';
 
 type Platform = 'native' | 'android';
-type NativeTab = 'shop' | 'heart' | 'user';
-type AndroidTab = 'shop' | 'heart' | 'services' | 'account';
+type BottomTabId = 'for-you' | 'todays-plan' | 'your-team';
+
+const TAB_LABELS: Record<BottomTabId, string> = {
+  'for-you': 'For you',
+  'todays-plan': "Today's Plan",
+  'your-team': 'Your team',
+};
+const TAB_ORDER: BottomTabId[] = ['for-you', 'todays-plan', 'your-team'];
 
 const PLATFORM_META: Record<Platform, {
   component: string;
@@ -24,20 +30,20 @@ const PLATFORM_META: Record<Platform, {
     component: 'WCP Bottom Nav (iOS)',
     tag: 'iOS',
     tagVariant: 'neutral',
-    description: 'Glassmorphic bottom navigation bar with animated spring indicator. Three primary destinations: Shop, My Items, and Account. iOS home indicator included.',
+    description: 'Glassmorphic bottom navigation bar with three primary destinations: For you, Today’s Plan, and Your team. Includes a floating Squiggly AI agent and iOS home indicator.',
   },
   android: {
     component: 'WCP Bottom Nav (Android)',
     tag: 'Android',
     tagVariant: 'neutral',
-    description: 'Material-style bottom navigation bar with four tabs: Shop, My Items, Services, and Account. Includes Android gesture bar. Active tab highlighted in brand blue.',
+    description: 'Material-style bottom navigation bar with three tabs: For you, Today’s Plan, and Your team. Includes a floating Squiggly AI agent and Android gesture bar. Active tab highlighted in brand blue.',
   },
 };
 
 export default function FooterPatternsPage() {
   const [platform, setPlatform] = useState<Platform>('native');
-  const [nativeTab, setNativeTab] = useState<NativeTab>('shop');
-  const [androidTab, setAndroidTab] = useState<AndroidTab>('shop');
+  const [nativeTab, setNativeTab] = useState<BottomTabId>('for-you');
+  const [androidTab, setAndroidTab] = useState<BottomTabId>('for-you');
 
   const meta = PLATFORM_META[platform];
 
@@ -97,14 +103,14 @@ export default function FooterPatternsPage() {
               <div className={styles.nativeTabSwitcher}>
                 <p className={styles.nativeTabLabel}>Active tab:</p>
                 <ButtonGroup>
-                  {(['shop', 'heart', 'services', 'account'] as AndroidTab[]).map((tab) => (
+                  {TAB_ORDER.map((tab) => (
                     <Button
                       key={tab}
                       variant={androidTab === tab ? 'primary' : 'secondary'}
                       size="small"
                       onClick={() => setAndroidTab(tab)}
                     >
-                      {tab === 'shop' ? 'Shop' : tab === 'heart' ? 'My Items' : tab === 'services' ? 'Services' : 'Account'}
+                      {TAB_LABELS[tab]}
                     </Button>
                   ))}
                 </ButtonGroup>
@@ -130,14 +136,14 @@ export default function FooterPatternsPage() {
               <div className={styles.nativeTabSwitcher}>
                 <p className={styles.nativeTabLabel}>Active tab:</p>
                 <ButtonGroup>
-                  {(['shop', 'heart', 'user'] as NativeTab[]).map((tab) => (
+                  {TAB_ORDER.map((tab) => (
                     <Button
                       key={tab}
                       variant={nativeTab === tab ? 'primary' : 'secondary'}
                       size="small"
                       onClick={() => setNativeTab(tab)}
                     >
-                      {tab === 'shop' ? 'Shop' : tab === 'heart' ? 'My Items' : 'Account'}
+                      {TAB_LABELS[tab]}
                     </Button>
                   ))}
                 </ButtonGroup>
@@ -162,7 +168,7 @@ export default function FooterPatternsPage() {
               <Tag variant="neutral">iOS</Tag>
             </div>
             <div className={styles.usageCell}>
-              <code className={styles.usageCode}>{'<BottomNav activeTab="shop" />'}</code>
+              <code className={styles.usageCode}>{'<BottomNav activeTab="for-you" />'}</code>
             </div>
             <div className={styles.usageCell}>
               <span className={styles.usageImport}>@/components/walmart/BottomNav</span>
@@ -174,7 +180,7 @@ export default function FooterPatternsPage() {
               <Tag variant="neutral">Android</Tag>
             </div>
             <div className={styles.usageCell}>
-              <code className={styles.usageCode}>{'<AndroidBottomNav activeTab="shop" />'}</code>
+              <code className={styles.usageCode}>{'<AndroidBottomNav activeTab="for-you" />'}</code>
             </div>
             <div className={styles.usageCell}>
               <span className={styles.usageImport}>@/components/walmart/AndroidBottomNav</span>
