@@ -1,0 +1,23 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-border-focus, #0053e2);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button * {
+    animation-play-state: paused !important;
+  }
+}

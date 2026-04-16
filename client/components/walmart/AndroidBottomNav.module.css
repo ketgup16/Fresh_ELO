@@ -91,6 +91,15 @@
   color: var(--ld-semantic-color-text-subtle);
 }
 
+/* Squiggly AI agent floats above the right side of the nav bar */
+.squigglyWrap {
+  position: absolute;
+  bottom: calc(100% - 8px);
+  right: 16px;
+  z-index: 10;
+  pointer-events: auto;
+}
+
 /* Android gesture bar */
 .gestureBar {
   display: flex;

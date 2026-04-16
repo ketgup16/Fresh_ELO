@@ -1,45 +1,51 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Store, StoreFill, Heart, HeartFill, Services, ServicesFill, User, UserCircleFill } from '@/components/icons';
+import { BulletList, Calendar, UsersFill } from '@/components/icons';
+import { SquigglyAgent } from '@/components/agents/SquigglyAgent';
 import styles from './AndroidBottomNav.module.css';
 
-type AndroidTab = 'shop' | 'heart' | 'services' | 'account';
+type AndroidTab = 'for-you' | 'todays-plan' | 'your-team';
 
 interface AndroidBottomNavProps {
   activeTab?: AndroidTab;
   onTabChange?: (tab: AndroidTab) => void;
   contained?: boolean;
+  /** Show the Squiggly AI agent button above the nav bar */
+  showSquiggly?: boolean;
+  onSquigglyClick?: () => void;
 }
 
 const NAV_PATHS: Record<AndroidTab, string | undefined> = {
-  shop: '/walmart',
-  heart: undefined,
-  services: undefined,
-  account: '/walmart/purchase-history',
+  'for-you': '/',
+  'todays-plan': undefined,
+  'your-team': undefined,
 };
 
 const TABS: { id: AndroidTab; label: string }[] = [
-  { id: 'shop', label: 'Shop' },
-  { id: 'heart', label: 'My Items' },
-  { id: 'services', label: 'Services' },
-  { id: 'account', label: 'Account' },
+  { id: 'for-you', label: 'For you' },
+  { id: 'todays-plan', label: "Today's Plan" },
+  { id: 'your-team', label: 'Your team' },
 ];
 
 function TabIcon({ id, active }: { id: AndroidTab; active: boolean }) {
   const cls = active ? styles.iconActive : styles.iconInactive;
   switch (id) {
-    case 'shop':
-      return active ? <StoreFill className={cls} /> : <Store className={cls} />;
-    case 'heart':
-      return active ? <HeartFill className={cls} /> : <Heart className={cls} />;
-    case 'services':
-      return active ? <ServicesFill className={cls} /> : <Services className={cls} />;
-    case 'account':
-      return active ? <UserCircleFill className={cls} /> : <User className={cls} />;
+    case 'for-you':
+      return <BulletList className={cls} />;
+    case 'todays-plan':
+      return <Calendar className={cls} />;
+    case 'your-team':
+      return <UsersFill className={cls} />;
   }
 }
 
-export function AndroidBottomNav({ activeTab = 'shop', onTabChange, contained = false }: AndroidBottomNavProps) {
+export function AndroidBottomNav({
+  activeTab = 'for-you',
+  onTabChange,
+  contained = false,
+  showSquiggly = true,
+  onSquigglyClick,
+}: AndroidBottomNavProps) {
   const navigate = useNavigate();
   const [visualTab, setVisualTab] = useState<AndroidTab>(activeTab);
   const [isVisible, setIsVisible] = useState(true);
@@ -79,6 +85,19 @@ export function AndroidBottomNav({ activeTab = 'shop', onTabChange, contained = 
       !contained && !isVisible ? styles.navHidden : '',
       contained ? styles.navContained : '',
     ].filter(Boolean).join(' ')}>
+      {/* Squiggly AI agent floats above the right side of the nav bar */}
+      {showSquiggly && (
+        <div className={styles.squigglyWrap}>
+          <SquigglyAgent
+            animation="emotes"
+            size={64}
+            loop
+            autoplay
+            onClick={onSquigglyClick}
+          />
+        </div>
+      )}
+
       <div className={styles.tabBar}>
         {TABS.map(({ id, label }) => {
           const isActive = visualTab === id;

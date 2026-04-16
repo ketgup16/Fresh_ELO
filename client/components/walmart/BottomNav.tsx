@@ -1,46 +1,52 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Store, StoreFill, Heart, HeartFill, Services, ServicesFill, UserCircle, UserCircleFill } from '@/components/icons';
+import { BulletList, Calendar, UsersFill } from '@/components/icons';
+import { SquigglyAgent } from '@/components/agents/SquigglyAgent';
 import styles from './BottomNav.module.css';
 
-type BottomTab = 'shop' | 'heart' | 'services' | 'user';
+type BottomTab = 'for-you' | 'todays-plan' | 'your-team';
 
 interface BottomNavProps {
-  activeTab?: 'shop' | 'heart' | 'user';
-  onTabChange?: (tab: 'shop' | 'heart' | 'user') => void;
+  activeTab?: BottomTab;
+  onTabChange?: (tab: BottomTab) => void;
   /** Renders in-flow (not fixed) for use inside a patterns/documentation page */
   contained?: boolean;
+  /** Show the Squiggly AI agent button above the nav bar */
+  showSquiggly?: boolean;
+  onSquigglyClick?: () => void;
 }
 
 const NAV_PATHS: Record<BottomTab, string | undefined> = {
-  shop: '/walmart',
-  heart: undefined,
-  services: undefined,
-  user: '/component-library',
+  'for-you': '/',
+  'todays-plan': undefined,
+  'your-team': undefined,
 };
 
 const TABS: { id: BottomTab; label: string }[] = [
-  { id: 'shop', label: 'Shop' },
-  { id: 'heart', label: 'My Items' },
-  { id: 'services', label: 'Services' },
-  { id: 'user', label: 'Account' },
+  { id: 'for-you', label: 'For you' },
+  { id: 'todays-plan', label: "Today's Plan" },
+  { id: 'your-team', label: 'Your team' },
 ];
 
 function TabIcon({ id, active }: { id: BottomTab; active: boolean }) {
   const cls = active ? styles.iconActive : styles.iconInactive;
   switch (id) {
-    case 'shop':
-      return active ? <StoreFill className={cls} /> : <Store className={cls} />;
-    case 'heart':
-      return active ? <HeartFill className={cls} /> : <Heart className={cls} />;
-    case 'services':
-      return active ? <ServicesFill className={cls} /> : <Services className={cls} />;
-    case 'user':
-      return active ? <UserCircleFill className={cls} /> : <UserCircle className={cls} />;
+    case 'for-you':
+      return <BulletList className={cls} />;
+    case 'todays-plan':
+      return <Calendar className={cls} />;
+    case 'your-team':
+      return <UsersFill className={cls} />;
   }
 }
 
-export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }: BottomNavProps) {
+export function BottomNav({
+  activeTab = 'for-you',
+  onTabChange,
+  contained = false,
+  showSquiggly = true,
+  onSquigglyClick,
+}: BottomNavProps) {
   const navigate = useNavigate();
   const [visualTab, setVisualTab] = useState<BottomTab>(activeTab);
   const [isVisible, setIsVisible] = useState(true);
@@ -69,10 +75,7 @@ export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }
 
   const handleTabClick = (tab: BottomTab) => {
     setVisualTab(tab);
-    // Map internal tab ids to the external 3-tab type for onTabChange
-    if (tab === 'shop' || tab === 'heart' || tab === 'user') {
-      onTabChange?.(tab);
-    }
+    onTabChange?.(tab);
     const path = NAV_PATHS[tab];
     if (path) navigate(path);
   };
@@ -83,6 +86,19 @@ export function BottomNav({ activeTab = 'shop', onTabChange, contained = false }
       !contained && !isVisible ? styles.navHidden : '',
       contained ? styles.navContained : '',
     ].filter(Boolean).join(' ')}>
+      {/* Squiggly AI agent floats above the nav bar */}
+      {showSquiggly && (
+        <div className={styles.squigglyWrap}>
+          <SquigglyAgent
+            animation="emotes"
+            size={64}
+            loop
+            autoplay
+            onClick={onSquigglyClick}
+          />
+        </div>
+      )}
+
       <div className={styles.tabBar}>
         {TABS.map(({ id, label }) => {
           const isActive = visualTab === id;
