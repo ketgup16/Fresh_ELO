@@ -101,6 +101,7 @@ const BasicBannerPage = React.lazy(() => import("./pages/component-library/Basic
 const DesignTokensPage = React.lazy(() => import("./pages/component-library/DesignTokens"));
 const ThemeEditorPage = React.lazy(() => import("./pages/component-library/ThemeEditorPage"));
 const FooterPatternsPage = React.lazy(() => import("./pages/component-library/FooterPatterns"));
+const SquigglyAgentPage = React.lazy(() => import("./pages/component-library/SquigglyAgentPage"));
 const TopNavPage = React.lazy(() => import("./pages/component-library/TopNav"));
 const SideNavPage = React.lazy(() => import("./pages/component-library/SideNav"));
 const PageTemplatesPage = React.lazy(() => import("./pages/component-library/PageTemplates"));
@@ -266,6 +267,7 @@ const App = () => (
                 <Route path="theme-editor" element={<ThemeEditorPage />} />
                 <Route path="project-settings" element={<ProjectSettingsPage />} />
                 <Route path="footer-patterns" element={<FooterPatternsPage />} />
+                <Route path="squiggly-agent" element={<SquigglyAgentPage />} />
                 <Route path="top-nav" element={<TopNavPage />} />
                 <Route path="side-nav" element={<SideNavPage />} />
                 <Route path="page-templates" element={<PageTemplatesPage />} />

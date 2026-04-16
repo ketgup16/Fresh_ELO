@@ -64,6 +64,7 @@ const navigationSections: NavSection[] = [
     titleKey: 'componentLibrary.wcpPatterns',
     items: [
       { id: 'footer-patterns', nameKey: 'componentLibrary.navFooterPatterns', path: '/component-library/footer-patterns' },
+      { id: 'squiggly-agent', nameKey: 'componentLibrary.navSquigglyAgent', path: '/component-library/squiggly-agent' },
       { id: 'top-nav', nameKey: 'componentLibrary.navTopNav', path: '/component-library/top-nav' },
       { id: 'page-templates', nameKey: 'componentLibrary.navPageTemplates', path: '/component-library/page-templates' },
       { id: 'side-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/side-nav' },
