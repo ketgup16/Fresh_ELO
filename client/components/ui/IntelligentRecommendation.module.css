@@ -1,0 +1,432 @@
+/* IntelligentRecommendation Component — Living Design 3.5 / [AX] */
+
+/* ── Outer card surface ──────────────────────────────────────────── */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  padding: var(--ld-primitive-scale-space-200, 16px);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 16px);
+  background-color: var(--ld-semantic-color-surface-brand, #e9f1fe);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Eyebrow section ──────────────────────────────────────────────── */
+.eyebrowSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  align-self: stretch;
+}
+
+.iconLabelRow {
+  display: flex;
+  height: 20px;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+  align-self: stretch;
+}
+
+.iconWrapper {
+  display: flex;
+  padding-top: var(--ld-primitive-scale-space-25, 2px);
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* MagicFill icon — uses inline SVG with gradient */
+.magicIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.eyebrowText {
+  margin: 0;
+  color: var(--ld-semantic-color-text-brand, #0053e2);
+  font-family: var(
+    --ld-semantic-font-body-small-family,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-alt, 700);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
+}
+
+.lightEyebrow {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  color: var(--ld-semantic-color-text-brand, #0053e2);
+  font-family: var(
+    --ld-semantic-font-body-small-family,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
+}
+
+/* ── Title + Description ─────────────────────────────────────────── */
+.titleDescSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+  align-self: stretch;
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  align-self: stretch;
+  margin: 0;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: var(
+    --ld-semantic-font-body-medium-family,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
+}
+
+.description {
+  align-self: stretch;
+  margin: 0;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: var(
+    --ld-semantic-font-body-medium-family,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+  font-size: var(--ld-semantic-font-body-medium-size, 16px);
+  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
+}
+
+/* ── Attributes ──────────────────────────────────────────────────── */
+.attributes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+  align-self: stretch;
+}
+
+.attributeRow {
+  display: flex;
+  height: 20px;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.attributeInner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-50, 4px);
+}
+
+.attributeIconWrapper {
+  display: flex;
+  padding-top: var(--ld-primitive-scale-space-25, 2px);
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.attributeIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.attributeLabel {
+  margin: 0;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: var(
+    --ld-semantic-font-body-small-family,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
+}
+
+/* ── Content slot (Details panel) ────────────────────────────────── */
+.contentSlot {
+  display: flex;
+  padding: var(--ld-primitive-scale-space-200, 16px);
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 16px);
+  background-color: var(--ld-semantic-color-surface, #ffffff);
+  box-sizing: border-box;
+}
+
+/* ── Alert (Error variant) ───────────────────────────────────────── */
+.alert {
+  display: flex;
+  padding: var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-150, 12px);
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  align-self: stretch;
+  border-radius: var(--ld-primitive-scale-borderradius-50, 8px);
+  border: 1px solid var(--ld-semantic-color-border-negative, #ca0333);
+  background-color: var(--ld-semantic-color-fill-negative-subtle, #fef0f3);
+  box-sizing: border-box;
+}
+
+.alertTab {
+  width: var(--ld-primitive-scale-space-50, 4px);
+  align-self: stretch;
+  border-radius: var(--ld-primitive-scale-borderradius-50, 8px) 0 0 var(--ld-primitive-scale-borderradius-50, 8px);
+  background-color: var(--ld-semantic-color-border-negative, #ca0333);
+  flex-shrink: 0;
+}
+
+.alertContent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  flex: 1 0 0;
+}
+
+.alertIconWrapper {
+  display: flex;
+  padding-top: var(--ld-primitive-scale-space-25, 2px);
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.alertIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--ld-semantic-color-text-onfill-negative-subtle, #a20c00);
+}
+
+.alertTextGroup {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: var(--ld-primitive-scale-space-50, 4px) var(--ld-primitive-scale-space-200, 16px);
+  flex: 1 0 0;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+.alertMessage {
+  margin: 0;
+  color: var(--ld-semantic-color-text-onfill-negative-subtle, #a20c00);
+  font-family: var(
+    --ld-semantic-font-body-small-family,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
+}
+
+.alertAction {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--ld-semantic-color-text-onfill-negative-subtle, #a20c00);
+  font-family: var(
+    --ld-semantic-font-body-small-family,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
+  text-decoration: underline;
+}
+
+.alertAction:hover {
+  opacity: 0.8;
+}
+
+/* ── Button group variants ───────────────────────────────────────── */
+.buttonSingle {
+  align-self: stretch;
+}
+
+.buttonDualRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  align-self: stretch;
+}
+
+.buttonDualRow > * {
+  flex: 1 0 0;
+}
+
+.buttonTripleGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  align-self: stretch;
+}
+
+.buttonTripleRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-200, 16px);
+  align-self: stretch;
+}
+
+.buttonTripleRow > * {
+  flex: 1 0 0;
+}
+
+.buttonTripleTertiary {
+  align-self: stretch;
+}
+
+/* ── Sources (collapsible) ───────────────────────────────────────── */
+.sources {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  align-self: stretch;
+}
+
+.separator {
+  height: 1px;
+  align-self: stretch;
+  background-color: var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.sourcesToggle {
+  display: flex;
+  height: var(--ld-primitive-scale-space-400, 32px);
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--ld-semantic-color-link-text, #2e2f32);
+  font-family: var(
+    --ld-semantic-font-body-small-family,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sourcesToggle:hover {
+  opacity: 0.8;
+}
+
+.sourcesToggleIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.sourcesContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  align-self: stretch;
+}
+
+.sourceDescription {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  align-self: stretch;
+  margin: 0;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: var(
+    --ld-semantic-font-body-small-family,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
+}
+
+.sourceLinkButton {
+  display: flex;
+  height: var(--ld-primitive-scale-space-400, 32px);
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-100, 8px);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--ld-semantic-color-link-text, #2e2f32);
+  font-family: var(
+    --ld-semantic-font-body-small-family,
+    'Everyday Sans UI',
+    -apple-system,
+    Roboto,
+    sans-serif
+  );
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sourceLinkButton:hover {
+  opacity: 0.8;
+}
+
+.sourceLinkIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}

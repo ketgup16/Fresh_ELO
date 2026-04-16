@@ -177,6 +177,8 @@
     "descAXSegmentedControlGroup": "A horizontal group of 2–3 mutually exclusive segment buttons used to switch between related views or filter content. Supports optional leading icons and disabled states.",
     "navIntelligentInsight": "Intelligent Insight",
     "descIntelligentInsight": "AI-powered insight card with Sidekick branding and an optional full-width action button",
+    "navIntelligentRecommendation": "Intelligent Recommendation",
+    "descIntelligentRecommendation": "AI recommendation card with eyebrow, title, optional attributes, content slot, alert, configurable buttons, and collapsible sources.",
     "navCalendar": "Calendar",
     "navCarousel": "Carousel",
     "navChart": "Chart",

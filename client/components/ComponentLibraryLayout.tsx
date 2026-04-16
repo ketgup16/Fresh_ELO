@@ -95,6 +95,7 @@ const navigationSections: NavSection[] = [
       { id: 'ax-attribute', nameKey: 'componentLibrary.navAXAttribute', path: '/component-library/ax-attribute' },
       { id: 'ax-segmented-control-group', nameKey: 'componentLibrary.navAXSegmentedControlGroup', path: '/component-library/ax-segmented-control-group' },
       { id: 'intelligent-insight', nameKey: 'componentLibrary.navIntelligentInsight', path: '/component-library/intelligent-insight' },
+      { id: 'intelligent-recommendation', nameKey: 'componentLibrary.navIntelligentRecommendation', path: '/component-library/intelligent-recommendation' },
       { id: 'ax-timer-view', nameKey: 'componentLibrary.navAXTimerView', path: '/component-library/ax-timer-view' },
       { id: 'ax-country', nameKey: 'componentLibrary.navAXCountry', path: '/component-library/ax-country' },
       { id: 'ax-queue', nameKey: 'componentLibrary.navAXQueue', path: '/component-library/ax-queue' },

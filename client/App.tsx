@@ -123,6 +123,7 @@ const AXCountryComponentsPage = React.lazy(() => import("./pages/component-libra
 const AXMetricGroupPage = React.lazy(() => import("./pages/component-library/AXMetricGroup"));
 const AXSegmentedControlGroupPage = React.lazy(() => import("./pages/component-library/AXSegmentedControlGroup"));
 const IntelligentInsightPage = React.lazy(() => import("./pages/component-library/IntelligentInsight"));
+const IntelligentRecommendationPage = React.lazy(() => import("./pages/component-library/IntelligentRecommendation"));
 const CarouselsAndGridsPage = React.lazy(() => import("./pages/component-library/CarouselsAndGrids"));
 const DropdownsPage = React.lazy(() => import("./pages/component-library/Dropdowns"));
 const OrderCardPatternsPage = React.lazy(() => import("./pages/component-library/OrderCardPatterns"));
@@ -292,6 +293,7 @@ const App = () => (
                 <Route path="ax-metric-group" element={<AXMetricGroupPage />} />
                 <Route path="ax-segmented-control-group" element={<AXSegmentedControlGroupPage />} />
                 <Route path="intelligent-insight" element={<IntelligentInsightPage />} />
+                <Route path="intelligent-recommendation" element={<IntelligentRecommendationPage />} />
                 <Route path="ax-timer-view" element={<AXTimerViewPage />} />
                 <Route path="ax-queue" element={<AXQueuePage />} />
                 <Route path="ax-queue-banner" element={<AXQueueBannerPage />} />

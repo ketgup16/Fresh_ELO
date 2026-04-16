@@ -13,6 +13,7 @@ export default function Home() {
         <MobileTopNav
           forceVisible
           forceNative
+          showHomeExtras
           nativeTitle="Title"
           nativeSubtitle="Subtitle"
           showNativeSubtitle

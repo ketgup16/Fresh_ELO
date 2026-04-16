@@ -173,6 +173,8 @@
     "descAXSegmentedControlGroup": "Grupo horizontal de 2 a 3 botones de segmento mutuamente excluyentes para cambiar entre vistas relacionadas o filtrar contenido.",
     "navIntelligentInsight": "Insight Inteligente",
     "descIntelligentInsight": "Tarjeta de insight con inteligencia artificial, marca Sidekick y botón de acción opcional",
+    "navIntelligentRecommendation": "Recomendación Inteligente",
+    "descIntelligentRecommendation": "Tarjeta de recomendación IA con encabezado, título, atributos opcionales, ranura de contenido, alerta, botones configurables y fuentes colapsables.",
     "navCalendar": "Calendario",
     "navCarousel": "Carrusel",
     "navChart": "Gráfico",
