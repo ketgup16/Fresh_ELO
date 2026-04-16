@@ -118,7 +118,6 @@
   width: 56px;
   height: 56px;
   display: block;
-  transform: translateY(-8px);
 }
 
 /* ── Hide when search modal is open ── */
