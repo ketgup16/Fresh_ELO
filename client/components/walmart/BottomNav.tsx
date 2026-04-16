@@ -16,7 +16,7 @@ const NAV_PATHS: Record<BottomTab, string | undefined> = {
   shop: '/walmart',
   heart: undefined,
   services: undefined,
-  user: undefined,
+  user: '/component-library',
 };
 
 const TABS: { id: BottomTab; label: string }[] = [
