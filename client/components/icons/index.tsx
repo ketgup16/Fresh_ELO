@@ -291,6 +291,7 @@ export { UserCircle } from './UserCircle';
 export { UserCircleFill } from './UserCircleFill';
 export { UserGraph } from './UserGraph';
 export { UserPlus } from './UserPlus';
+export { Users } from './Users';
 export { UsersArrows } from './UsersArrows';
 export { UsersFill } from './UsersFill';
 export { VideoArrowUp } from './VideoArrowUp';

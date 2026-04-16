@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BulletList, Calendar, UsersFill } from '@/components/icons';
+import { BulletList, Calendar, Users } from '@/components/icons';
 import { SquigglyAgent } from '@/components/agents/SquigglyAgent';
 import styles from './BottomNav.module.css';
 
@@ -36,7 +36,7 @@ function TabIcon({ id, active }: { id: BottomTab; active: boolean }) {
     case 'todays-plan':
       return <Calendar className={cls} />;
     case 'your-team':
-      return <UsersFill className={cls} />;
+      return <Users className={cls} />;
   }
 }
 
