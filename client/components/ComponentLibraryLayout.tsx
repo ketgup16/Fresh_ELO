@@ -64,7 +64,6 @@ const navigationSections: NavSection[] = [
     titleKey: 'componentLibrary.wcpPatterns',
     items: [
       { id: 'footer-patterns', nameKey: 'componentLibrary.navFooterPatterns', path: '/component-library/footer-patterns' },
-      { id: 'squiggly-agent', nameKey: 'componentLibrary.navSquigglyAgent', path: '/component-library/squiggly-agent' },
       { id: 'top-nav', nameKey: 'componentLibrary.navTopNav', path: '/component-library/top-nav' },
       { id: 'page-templates', nameKey: 'componentLibrary.navPageTemplates', path: '/component-library/page-templates' },
       { id: 'side-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/side-nav' },
@@ -75,6 +74,7 @@ const navigationSections: NavSection[] = [
       { id: 'order-status-cards', nameKey: 'componentLibrary.navOrderStatusCards', path: '/component-library/order-status-cards' },
       { id: 'promo-banners', nameKey: 'componentLibrary.navPromoBanners', path: '/component-library/promo-banners' },
       { id: 'home-page-widgets', nameKey: 'componentLibrary.navHomePageWidgets', path: '/component-library/home-page-widgets' },
+      { id: 'squiggly-agent', nameKey: 'componentLibrary.navSquigglyAgent', path: '/component-library/squiggly-agent' },
     ]
   },
   {
