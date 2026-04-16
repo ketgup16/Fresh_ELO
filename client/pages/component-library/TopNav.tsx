@@ -49,7 +49,7 @@ export default function TopNavPage() {
   const [showNativeAction2, setShowNativeAction2] = useState(false);
   const [showNativeAction3, setShowNativeAction3] = useState(false);
   const [showNativeAction4, setShowNativeAction4] = useState(false);
-  const [showNativeSearchBar, setShowNativeSearchBar] = useState(true);
+  const [showNativeSearchBar, setShowNativeSearchBar] = useState(false);
   const [showNativeAvatarButton, setShowNativeAvatarButton] = useState(true);
   const [menuIconName, setMenuIconName] = useState('Menu');
   const [action1IconName, setAction1IconName] = useState('Chat');
