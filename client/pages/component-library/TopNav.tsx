@@ -44,7 +44,7 @@ export default function TopNavPage() {
   const [nativeVariant, setNativeVariant] = useState<MobileTopNavVariant>('blue');
   const [nativeTitle, setNativeTitle] = useState('Title');
   const [nativeSubtitle, setNativeSubtitle] = useState('Subtitle');
-  const [showNativeSubtitle, setShowNativeSubtitle] = useState(true);
+  const [showNativeSubtitle, setShowNativeSubtitle] = useState(false);
   const [showNativeAction1, setShowNativeAction1] = useState(true);
   const [showNativeAction2, setShowNativeAction2] = useState(false);
   const [showNativeAction3, setShowNativeAction3] = useState(false);

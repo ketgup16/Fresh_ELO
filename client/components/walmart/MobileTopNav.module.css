@@ -238,10 +238,10 @@
 }
 
 .nativeTitleText {
-  font-family: var(--ld-semantic-font-heading-small-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-heading-small-size, 16px);
-  font-weight: var(--ld-semantic-font-heading-small-weight, 700);
-  line-height: var(--ld-semantic-font-heading-small-lineheight, 1.25);
+  font-family: var(--ld-semantic-font-heading-large-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-heading-large-size, 24px);
+  font-weight: var(--ld-semantic-font-heading-large-weight, 700);
+  line-height: var(--ld-semantic-font-heading-large-lineheight, 1.33);
   color: var(--ld-semantic-color-text-inverse, #fff);
   overflow: hidden;
   text-overflow: ellipsis;

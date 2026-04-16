@@ -77,7 +77,7 @@ export function MobileTopNav({
   forceNative = false,
   nativeTitle = 'Page Title',
   nativeSubtitle = 'Subtitle',
-  showNativeSubtitle = true,
+  showNativeSubtitle = false,
   showNativeAction1 = true,
   showNativeAction2 = false,
   showNativeAction3 = false,
