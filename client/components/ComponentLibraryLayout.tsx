@@ -68,12 +68,6 @@ const navigationSections: NavSection[] = [
       { id: 'page-templates', nameKey: 'componentLibrary.navPageTemplates', path: '/component-library/page-templates' },
       { id: 'side-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/side-nav' },
       { id: 'ax-metric-group', nameKey: 'componentLibrary.navAXMetricGroup', path: '/component-library/ax-metric-group' },
-      { id: 'carousels-grids', nameKey: 'componentLibrary.navCarouselsGrids', path: '/component-library/carousels-grids' },
-      { id: 'dropdowns', nameKey: 'componentLibrary.navDropdowns', path: '/component-library/dropdowns' },
-      { id: 'order-card-patterns', nameKey: 'componentLibrary.navOrderCardPatterns', path: '/component-library/order-card-patterns' },
-      { id: 'order-status-cards', nameKey: 'componentLibrary.navOrderStatusCards', path: '/component-library/order-status-cards' },
-      { id: 'promo-banners', nameKey: 'componentLibrary.navPromoBanners', path: '/component-library/promo-banners' },
-      { id: 'home-page-widgets', nameKey: 'componentLibrary.navHomePageWidgets', path: '/component-library/home-page-widgets' },
       { id: 'squiggly-agent', nameKey: 'componentLibrary.navSquigglyAgent', path: '/component-library/squiggly-agent' },
     ]
   },
@@ -96,12 +90,6 @@ const navigationSections: NavSection[] = [
       { id: 'ax-segmented-control-group', nameKey: 'componentLibrary.navAXSegmentedControlGroup', path: '/component-library/ax-segmented-control-group' },
       { id: 'intelligent-insight', nameKey: 'componentLibrary.navIntelligentInsight', path: '/component-library/intelligent-insight' },
       { id: 'intelligent-recommendation', nameKey: 'componentLibrary.navIntelligentRecommendation', path: '/component-library/intelligent-recommendation' },
-      { id: 'ax-timer-view', nameKey: 'componentLibrary.navAXTimerView', path: '/component-library/ax-timer-view' },
-      { id: 'ax-country', nameKey: 'componentLibrary.navAXCountry', path: '/component-library/ax-country' },
-      { id: 'ax-queue', nameKey: 'componentLibrary.navAXQueue', path: '/component-library/ax-queue' },
-      { id: 'ax-queue-banner', nameKey: 'componentLibrary.navAXQueueBanner', path: '/component-library/ax-queue-banner' },
-      { id: 'ax-queue-card', nameKey: 'componentLibrary.navAXQueueCard', path: '/component-library/ax-queue-card' },
-      { id: 'ax-rich-snackbar', nameKey: 'componentLibrary.navAXRichSnackbar', path: '/component-library/ax-rich-snackbar' },
     ],
     subGroups: [
       {
