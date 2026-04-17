@@ -187,96 +187,6 @@
   box-sizing: border-box;
 }
 
-/* ── Alert (Error variant) ───────────────────────────────────────── */
-.alert {
-  display: flex;
-  padding: var(--ld-primitive-scale-space-100, 8px) var(--ld-primitive-scale-space-150, 12px);
-  align-items: center;
-  gap: var(--ld-primitive-scale-space-100, 8px);
-  align-self: stretch;
-  border-radius: var(--ld-primitive-scale-borderradius-50, 8px);
-  border: 1px solid var(--ld-semantic-color-border-negative, #ca0333);
-  background-color: var(--ld-semantic-color-fill-negative-subtle, #fef0f3);
-  box-sizing: border-box;
-}
-
-.alertTab {
-  width: var(--ld-primitive-scale-space-50, 4px);
-  align-self: stretch;
-  border-radius: var(--ld-primitive-scale-borderradius-50, 8px) 0 0 var(--ld-primitive-scale-borderradius-50, 8px);
-  background-color: var(--ld-semantic-color-border-negative, #ca0333);
-  flex-shrink: 0;
-}
-
-.alertContent {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--ld-primitive-scale-space-100, 8px);
-  flex: 1 0 0;
-}
-
-.alertIconWrapper {
-  display: flex;
-  padding-top: var(--ld-primitive-scale-space-25, 2px);
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.alertIcon {
-  width: 16px;
-  height: 16px;
-  color: var(--ld-semantic-color-text-onfill-negative-subtle, #a20c00);
-}
-
-.alertTextGroup {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  gap: var(--ld-primitive-scale-space-50, 4px) var(--ld-primitive-scale-space-200, 16px);
-  flex: 1 0 0;
-  align-self: stretch;
-  flex-wrap: wrap;
-}
-
-.alertMessage {
-  margin: 0;
-  color: var(--ld-semantic-color-text-onfill-negative-subtle, #a20c00);
-  font-family: var(
-    --ld-semantic-font-body-small-family,
-    'Everyday Sans UI',
-    -apple-system,
-    Roboto,
-    sans-serif
-  );
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
-}
-
-.alertAction {
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: var(--ld-semantic-color-text-onfill-negative-subtle, #a20c00);
-  font-family: var(
-    --ld-semantic-font-body-small-family,
-    'Everyday Sans UI',
-    -apple-system,
-    Roboto,
-    sans-serif
-  );
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
-  text-decoration: underline;
-}
-
-.alertAction:hover {
-  opacity: 0.8;
-}
-
 /* ── Button group variants ───────────────────────────────────────── */
 .buttonSingle {
   align-self: stretch;
@@ -328,40 +238,6 @@
   align-self: stretch;
 }
 
-.separator {
-  height: 1px;
-  align-self: stretch;
-  background-color: var(--ld-semantic-color-separator, #e3e4e5);
-}
-
-.sourcesToggle {
-  display: flex;
-  height: var(--ld-primitive-scale-space-400, 32px);
-  align-items: center;
-  gap: var(--ld-primitive-scale-space-100, 8px);
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: var(--ld-semantic-color-link-text, #2e2f32);
-  font-family: var(
-    --ld-semantic-font-body-small-family,
-    'Everyday Sans UI',
-    -apple-system,
-    Roboto,
-    sans-serif
-  );
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.sourcesToggle:hover {
-  opacity: 0.8;
-}
-
 .sourcesToggleIcon {
   width: 16px;
   height: 16px;
@@ -395,34 +271,6 @@
   font-size: var(--ld-semantic-font-body-small-size, 14px);
   font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
   line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
-}
-
-.sourceLinkButton {
-  display: flex;
-  height: var(--ld-primitive-scale-space-400, 32px);
-  align-items: center;
-  gap: var(--ld-primitive-scale-space-100, 8px);
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: var(--ld-semantic-color-link-text, #2e2f32);
-  font-family: var(
-    --ld-semantic-font-body-small-family,
-    'Everyday Sans UI',
-    -apple-system,
-    Roboto,
-    sans-serif
-  );
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 1.4285);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.sourceLinkButton:hover {
-  opacity: 0.8;
 }
 
 .sourceLinkIcon {

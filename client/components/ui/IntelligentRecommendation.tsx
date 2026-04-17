@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Button } from '@/components/ui/Button';
-import { MagicFill } from '@/components/icons/MagicFill';
+import { Alert } from '@/components/ui/Alert';
+import { Divider } from '@/components/ui/Divider';
+import { LinkButton } from '@/components/ui/LinkButton';
 import { ChevronDown } from '@/components/icons/ChevronDown';
 import { ChevronUp } from '@/components/icons/ChevronUp';
-import { ExclamationCircle } from '@/components/icons/ExclamationCircle';
 import { ExternalLink } from '@/components/icons/ExternalLink';
 import { cn } from '@/lib/utils';
 import styles from './IntelligentRecommendation.module.css';
@@ -303,28 +304,18 @@ export const IntelligentRecommendation = React.forwardRef<
 
         {/* ── Alert ─────────────────────────────────────────────────── */}
         {showAlert && (
-          <div className={styles.alert} role="alert">
-            <div className={styles.alertContent}>
-              <div className={styles.alertIconWrapper}>
-                <ExclamationCircle className={styles.alertIcon} />
-              </div>
-              <div className={styles.alertTextGroup}>
-                {alertMessage && (
-                  <p className={styles.alertMessage}>{alertMessage}</p>
-                )}
-                {alertActionLabel && (
-                  <button
-                    type="button"
-                    className={styles.alertAction}
-                    onClick={onAlertAction}
-                  >
-                    {alertActionLabel}
-                  </button>
-                )}
-              </div>
-            </div>
-            <div className={styles.alertTab} aria-hidden />
-          </div>
+          <Alert
+            variant="error"
+            action={
+              alertActionLabel ? (
+                <button type="button" onClick={onAlertAction}>
+                  {alertActionLabel}
+                </button>
+              ) : undefined
+            }
+          >
+            {alertMessage}
+          </Alert>
         )}
 
         {/* ── Buttons ────────────────────────────────────────────────── */}
@@ -368,20 +359,18 @@ export const IntelligentRecommendation = React.forwardRef<
         {/* ── Sources ────────────────────────────────────────────────── */}
         {showSources && (
           <div className={styles.sources}>
-            <div className={styles.separator} role="separator" />
-            <button
-              type="button"
-              className={styles.sourcesToggle}
+            <Divider />
+            <LinkButton
               onClick={() => setSourcesExpanded((prev) => !prev)}
               aria-expanded={sourcesExpanded}
+              trailing={
+                sourcesExpanded
+                  ? <ChevronUp className={styles.sourcesToggleIcon} aria-hidden />
+                  : <ChevronDown className={styles.sourcesToggleIcon} aria-hidden />
+              }
             >
               {sourcesExpanded ? 'Hide sources' : 'Show sources'}
-              {sourcesExpanded ? (
-                <ChevronUp className={styles.sourcesToggleIcon} aria-hidden />
-              ) : (
-                <ChevronDown className={styles.sourcesToggleIcon} aria-hidden />
-              )}
-            </button>
+            </LinkButton>
 
             {sourcesExpanded && (
               <div className={styles.sourcesContent}>
@@ -390,27 +379,24 @@ export const IntelligentRecommendation = React.forwardRef<
                 )}
                 {sourceLinks?.map((link, idx) =>
                   link.href ? (
-                    <a
+                    <LinkButton
                       key={idx}
                       href={link.href}
-                      className={styles.sourceLinkButton}
-                      onClick={link.onClick}
                       target="_blank"
                       rel="noopener noreferrer"
-                    >
-                      {link.label}
-                      <ExternalLink className={styles.sourceLinkIcon} aria-hidden />
-                    </a>
-                  ) : (
-                    <button
-                      key={idx}
-                      type="button"
-                      className={styles.sourceLinkButton}
                       onClick={link.onClick}
+                      trailing={<ExternalLink className={styles.sourceLinkIcon} aria-hidden />}
                     >
                       {link.label}
-                      <ExternalLink className={styles.sourceLinkIcon} aria-hidden />
-                    </button>
+                    </LinkButton>
+                  ) : (
+                    <LinkButton
+                      key={idx}
+                      onClick={link.onClick}
+                      trailing={<ExternalLink className={styles.sourceLinkIcon} aria-hidden />}
+                    >
+                      {link.label}
+                    </LinkButton>
                   )
                 )}
               </div>
