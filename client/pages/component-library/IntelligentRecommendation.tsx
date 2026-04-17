@@ -32,8 +32,8 @@ const labelStyle: React.CSSProperties = {
 
 // ── Demo content used in multiple places ─────────────────────────────────────
 const DEMO_ATTRIBUTES = [
-  { icon: <Clock />, label: '116h total work across all goals' },
-  { icon: <User />, label: '112h associate labor available' },
+  { icon: <Clock width={16} height={16} />, label: '116h total work across all goals' },
+  { icon: <User width={16} height={16} />, label: '112h associate labor available' },
 ];
 
 const DEMO_SOURCE_LINKS = [
@@ -66,40 +66,60 @@ export default function IntelligentRecommendationPage() {
           </p>
 
           {/* Controls */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
-            <ToggleChip label="Description" active={showDescription} onToggle={() => setShowDescription(v => !v)} />
-            <ToggleChip label="Light eyebrow" active={showLightEyebrow} onToggle={() => setShowLightEyebrow(v => !v)} />
-            <ToggleChip label="Sources" active={showSources} onToggle={() => setShowSources(v => !v)} />
-            <ToggleChip label="Alert" active={showAlert} onToggle={() => setShowAlert(v => !v)} />
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
+            {(
+              [
+                { label: 'Description', value: showDescription, set: setShowDescription },
+                { label: 'Light eyebrow', value: showLightEyebrow, set: setShowLightEyebrow },
+                { label: 'Sources', value: showSources, set: setShowSources },
+                { label: 'Alert', value: showAlert, set: setShowAlert },
+              ] as const
+            ).map(({ label, value, set }) => (
+              <label
+                key={label}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer',
+                  fontFamily: 'var(--ld-semantic-font-family-sans)',
+                  fontSize: '13px',
+                  color: 'var(--ld-semantic-color-text)',
+                  userSelect: 'none',
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={value}
+                  onChange={() => set((v: boolean) => !v)}
+                  style={{ accentColor: 'var(--ld-semantic-color-action-fill-primary)', width: '14px', height: '14px', cursor: 'pointer' }}
+                />
+                {label}
+              </label>
+            ))}
           </div>
 
           {/* Button-type selector */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
             <span style={labelStyle}>Button type:</span>
             {(['none', 'single', 'dual', 'triple'] as const).map((bt) => (
-              <button
+              <label
                 key={bt}
-                type="button"
-                onClick={() => setButtonType(bt)}
                 style={{
-                  padding: '4px 14px',
-                  borderRadius: '100px',
-                  border: '1px solid var(--ld-semantic-color-action-border-secondary)',
-                  background: buttonType === bt
-                    ? 'var(--ld-semantic-color-action-fill-primary)'
-                    : 'var(--ld-semantic-color-action-fill-secondary)',
-                  color: buttonType === bt
-                    ? 'var(--ld-semantic-color-action-text-onfill-primary)'
-                    : 'var(--ld-semantic-color-action-text-onfill-secondary)',
+                  display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer',
                   fontFamily: 'var(--ld-semantic-font-family-sans)',
                   fontSize: '13px',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'background 0.15s, color 0.15s',
+                  color: 'var(--ld-semantic-color-text)',
+                  userSelect: 'none',
                 }}
               >
+                <input
+                  type="radio"
+                  name="buttonType"
+                  value={bt}
+                  checked={buttonType === bt}
+                  onChange={() => setButtonType(bt)}
+                  style={{ accentColor: 'var(--ld-semantic-color-action-fill-primary)', width: '14px', height: '14px', cursor: 'pointer' }}
+                />
                 {bt}
-              </button>
+              </label>
             ))}
           </div>
 
@@ -367,34 +387,6 @@ import { User } from '@/components/icons/User';
 }
 
 // ── Helper components ─────────────────────────────────────────────────────────
-
-/** Pill toggle chip used in the interactive demo controls. */
-function ToggleChip({ label, active, onToggle }: { label: string; active: boolean; onToggle: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onToggle}
-      style={{
-        padding: '4px 14px',
-        borderRadius: '100px',
-        border: '1px solid var(--ld-semantic-color-action-border-secondary)',
-        background: active
-          ? 'var(--ld-semantic-color-action-fill-primary)'
-          : 'var(--ld-semantic-color-action-fill-secondary)',
-        color: active
-          ? 'var(--ld-semantic-color-action-text-onfill-primary)'
-          : 'var(--ld-semantic-color-action-text-onfill-secondary)',
-        fontFamily: 'var(--ld-semantic-font-family-sans)',
-        fontSize: '13px',
-        fontWeight: 600,
-        cursor: 'pointer',
-        transition: 'background 0.15s, color 0.15s',
-      }}
-    >
-      {active ? `${label} ✓` : label}
-    </button>
-  );
-}
 
 /** Wrapper card for the Button Variants section. */
 function VariantCard({ label, children }: { label: string; children: React.ReactNode }) {
