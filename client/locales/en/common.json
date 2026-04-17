@@ -133,6 +133,7 @@
     "navLinkButtons": "Link Buttons",
     "navLinks": "Links",
     "navLists": "Lists",
+    "headerCategory": "Header",
     "listCategory": "List",
     "navListAction": "List Action",
     "descListAction": "Action lists with trailing content, attributes, tags and footer actions",
