@@ -38,6 +38,10 @@ const feedbackLinks: MenuLinkItem[] = [
   { label: 'Give Feedback', path: '/feedback' },
 ];
 
+const devLinks: MenuLinkItem[] = [
+  { label: 'Component Library', path: '/component-library', hasChevron: true },
+];
+
 interface MobileMenuPanelProps {
   isOpen: boolean;
   onClose: () => void;
@@ -160,6 +164,15 @@ export function MobileMenuPanel({ isOpen, onClose }: MobileMenuPanelProps) {
           {/* Give Feedback */}
           <nav className={styles.menuSection}>
             {feedbackLinks.map((item) => (
+              <MenuItem key={item.label} item={item} onNavigate={handleNav} />
+            ))}
+          </nav>
+
+          <Divider />
+
+          {/* Component Library */}
+          <nav className={styles.menuSection}>
+            {devLinks.map((item) => (
               <MenuItem key={item.label} item={item} onNavigate={handleNav} />
             ))}
           </nav>
