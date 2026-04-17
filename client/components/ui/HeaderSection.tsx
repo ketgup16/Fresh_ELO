@@ -164,9 +164,11 @@ export const HeaderSection = React.forwardRef<HTMLDivElement, HeaderSectionProps
                   )}
                 </button>
               ) : (
-                <LinkButton size="small" onClick={onTrailingAction}>
-                  {trailingLabel}
-                </LinkButton>
+                <div className={styles.trailingActionMedium}>
+                  <LinkButton size="small" onClick={onTrailingAction}>
+                    {trailingLabel}
+                  </LinkButton>
+                </div>
               )}
             </div>
 

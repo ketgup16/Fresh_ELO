@@ -40,9 +40,9 @@
   align-self: stretch;
 }
 
-/* Medium: align top (title may wrap) */
+/* Medium: align center (title single-line aligns with button) */
 .titleRowMedium {
-  align-items: flex-start;
+  align-items: center;
 }
 
 /* Small: align center (single-line with chevron) */
@@ -176,6 +176,15 @@
   line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
   font-kerning: none;
   font-feature-settings: 'liga' off;
+}
+
+/* ── Trailing action wrapper (Medium) — matches Figma 32px container ── */
+.trailingActionMedium {
+  display: flex;
+  height: var(--ld-primitive-scale-space-400, 32px);
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 /* ── Bottom padding ──────────────────────────────────────────────── */
