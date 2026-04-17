@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { IntelligentRecommendation } from '@/components/ui/IntelligentRecommendation';
+import { Divider } from '@/components/ui/Divider';
 import { Clock } from '@/components/icons/Clock';
 import { User } from '@/components/icons/User';
 import { Location } from '@/components/icons/Location';
@@ -156,27 +157,63 @@ export function IntelligentRecommendationExample() {
       <section className={styles.section}>
         <SectionHeading>With content slot (children)</SectionHeading>
         <SectionDesc>
-          Pass any React children to render them inside a white surface panel.
-          This is the "Action details" slot used for associate lists, goal info, etc.
+          The content slot accepts any React children and renders them in a
+          white surface panel. These two presets show the two common patterns
+          from the Figma designs: an action-list item (used when a duplicate or
+          related action is detected) and an associate-list (used when the
+          recommendation surfaces top associate matches).
         </SectionDesc>
-        <div className={styles.demoRow}>
+        <div className={styles.demoGrid}>
+
+          {/* Preset A — Content | Action-list-item */}
           <IntelligentRecommendation
-            title="Consider these top matches"
+            title="There might be a duplicate action"
             buttonType="dual"
-            primaryLabel="Assign"
-            secondaryLabel="Skip"
+            primaryLabel="Resolve"
+            secondaryLabel="Dismiss"
             onPrimary={() => {}}
             onSecondary={() => {}}
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <p style={{ margin: 0, fontWeight: 700, fontSize: 14, color: 'var(--ld-semantic-color-text, #2e2f32)' }}>
-                Beth Karlov — Stocking Night TA
+            <div className={styles.slotAction}>
+              <p className={styles.slotActionTitle}>
+                Scan and pick in aisle 001
               </p>
-              <p style={{ margin: 0, fontSize: 14, color: 'var(--ld-semantic-color-text-brand, #0053e2)', fontWeight: 700 }}>
-                Assigned 5 times
+              <p className={styles.slotActionDesc}>
+                Contains items at this location that match your current task.
               </p>
+              <div className={styles.slotAttr}>
+                <Location className={styles.slotAttrIcon} aria-hidden="true" />
+                <span className={styles.slotAttrLabel}>Backroom aisle 001</span>
+              </div>
             </div>
           </IntelligentRecommendation>
+
+          {/* Preset B — Content | Associate-list-item */}
+          <IntelligentRecommendation
+            title="Consider these top matches"
+            buttonType="none"
+          >
+            <div className={styles.slotAssociateList}>
+              <div className={styles.slotAssociateRow}>
+                <div className={styles.slotAvatar} aria-hidden="true">BK</div>
+                <div className={styles.slotAssociateInfo}>
+                  <p className={styles.slotAssociateName}>Beth Karlov</p>
+                  <p className={styles.slotAssociateRole}>Stocking Night TA</p>
+                  <p className={styles.slotAssociateInsight}>Assigned 5 times</p>
+                </div>
+              </div>
+              <Divider />
+              <div className={styles.slotAssociateRow}>
+                <div className={styles.slotAvatar} aria-hidden="true">AC</div>
+                <div className={styles.slotAssociateInfo}>
+                  <p className={styles.slotAssociateName}>Alex Carter</p>
+                  <p className={styles.slotAssociateRole}>Stocking Day 1 TA</p>
+                  <p className={styles.slotAssociateInsight}>Has 4h capacity left</p>
+                </div>
+              </div>
+            </div>
+          </IntelligentRecommendation>
+
         </div>
       </section>
 
@@ -245,7 +282,7 @@ export function IntelligentRecommendationExample() {
               { label: 'Button label', onClick: () => {} },
             ]}
           >
-            <p style={{ margin: 0, fontSize: 14, color: 'var(--ld-semantic-color-text-subtle, #74767c)' }}>
+            <p className={styles.slotActionDesc}>
               Content slot — render any custom content here.
             </p>
           </IntelligentRecommendation>
