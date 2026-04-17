@@ -135,6 +135,7 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navSearchUtility', descKey: 'componentLibrary.descSearchUtility', path: '/component-library/search-utility', icon: 'Search', section: 'ld' },
   { titleKey: 'componentLibrary.navAXRichMediaSheet', descKey: 'componentLibrary.descAXRichMediaSheet', path: '/component-library/ax-rich-media-sheet', icon: 'Box', section: 'ld' },
   { titleKey: 'componentLibrary.navAXAvatar', descKey: 'componentLibrary.descAXAvatar', path: '/component-library/ax-avatar', icon: 'Circle', section: 'ld' },
+  { titleKey: 'componentLibrary.navHeaderSection', descKey: 'componentLibrary.descHeaderSection', path: '/component-library/header-section', icon: 'List', section: 'ld' },
   // ── Shared Components ──
   { titleKey: 'componentLibrary.navAlertDialog', descKey: 'componentLibrary.descAlertDialog', path: '/component-library/alert-dialog', icon: 'ExclamationCircle', section: 'shadcn' },
   { titleKey: 'componentLibrary.navAvatar', descKey: 'componentLibrary.descAvatar', path: '/component-library/avatar', icon: 'Circle', section: 'shadcn' },

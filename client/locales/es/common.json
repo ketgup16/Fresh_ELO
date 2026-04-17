@@ -175,6 +175,8 @@
     "descIntelligentInsight": "Tarjeta de insight con inteligencia artificial, marca Sidekick y botón de acción opcional",
     "navIntelligentRecommendation": "Recomendación Inteligente",
     "descIntelligentRecommendation": "Tarjeta de recomendación IA con encabezado, título, atributos opcionales, ranura de contenido, alerta, botones configurables y fuentes colapsables.",
+    "navHeaderSection": "Encabezado de sección",
+    "descHeaderSection": "Componente de encabezado de sección que define secciones de pantalla y crea jerarquía tipográfica. Admite tamaños Mediano y Pequeño con recuento, descripción y acción final opcionales.",
     "navCalendar": "Calendario",
     "navCarousel": "Carrusel",
     "navChart": "Gráfico",

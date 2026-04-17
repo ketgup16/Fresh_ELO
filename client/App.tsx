@@ -118,6 +118,7 @@ const AXMetricGroupPage = React.lazy(() => import("./pages/component-library/AXM
 const AXSegmentedControlGroupPage = React.lazy(() => import("./pages/component-library/AXSegmentedControlGroup"));
 const IntelligentInsightPage = React.lazy(() => import("./pages/component-library/IntelligentInsight"));
 const IntelligentRecommendationPage = React.lazy(() => import("./pages/component-library/IntelligentRecommendation"));
+const HeaderSectionPage = React.lazy(() => import("./pages/component-library/HeaderSection"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
 const FoundationsPage = React.lazy(() => import("./pages/component-library/Foundations"));
 const AssetsPage = React.lazy(() => import("./pages/component-library/Assets"));
@@ -282,6 +283,7 @@ const App = () => (
                 <Route path="ax-segmented-control-group" element={<AXSegmentedControlGroupPage />} />
                 <Route path="intelligent-insight" element={<IntelligentInsightPage />} />
                 <Route path="intelligent-recommendation" element={<IntelligentRecommendationPage />} />
+                <Route path="header-section" element={<HeaderSectionPage />} />
               </Route>
 
               {/* Home page */}

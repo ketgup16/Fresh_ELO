@@ -90,6 +90,7 @@ const navigationSections: NavSection[] = [
       { id: 'ax-segmented-control-group', nameKey: 'componentLibrary.navAXSegmentedControlGroup', path: '/component-library/ax-segmented-control-group' },
       { id: 'intelligent-insight', nameKey: 'componentLibrary.navIntelligentInsight', path: '/component-library/intelligent-insight' },
       { id: 'intelligent-recommendation', nameKey: 'componentLibrary.navIntelligentRecommendation', path: '/component-library/intelligent-recommendation' },
+      { id: 'header-section', nameKey: 'componentLibrary.navHeaderSection', path: '/component-library/header-section' },
     ],
     subGroups: [
       {

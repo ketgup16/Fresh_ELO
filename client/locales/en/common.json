@@ -179,6 +179,8 @@
     "descIntelligentInsight": "AI-powered insight card with Sidekick branding and an optional full-width action button",
     "navIntelligentRecommendation": "Intelligent Recommendation",
     "descIntelligentRecommendation": "AI recommendation card with eyebrow, title, optional attributes, content slot, alert, configurable buttons, and collapsible sources.",
+    "navHeaderSection": "Section Header",
+    "descHeaderSection": "Section header component that defines screen sections and creates typographic hierarchy. Supports Medium and Small sizes with optional count, description, and trailing action.",
     "navCalendar": "Calendar",
     "navCarousel": "Carousel",
     "navChart": "Chart",
