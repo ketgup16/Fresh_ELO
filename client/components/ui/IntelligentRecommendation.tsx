@@ -5,7 +5,7 @@ import { Divider } from '@/components/ui/Divider';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { ChevronDown } from '@/components/icons/ChevronDown';
 import { ChevronUp } from '@/components/icons/ChevronUp';
-import { ExternalLink } from '@/components/icons/ExternalLink';
+import { LinkExternal } from '@/components/icons/LinkExternal';
 import { cn } from '@/lib/utils';
 import styles from './IntelligentRecommendation.module.css';
 
@@ -387,7 +387,7 @@ export const IntelligentRecommendation = React.forwardRef<
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={link.onClick}
-                      trailing={<ExternalLink className={styles.sourceLinkIcon} aria-hidden />}
+                      trailing={<LinkExternal className={styles.sourceLinkIcon} aria-hidden />}
                     >
                       {link.label}
                     </LinkButton>
@@ -395,7 +395,7 @@ export const IntelligentRecommendation = React.forwardRef<
                     <LinkButton
                       key={idx}
                       onClick={link.onClick}
-                      trailing={<ExternalLink className={styles.sourceLinkIcon} aria-hidden />}
+                      trailing={<LinkExternal className={styles.sourceLinkIcon} aria-hidden />}
                     >
                       {link.label}
                     </LinkButton>
