@@ -228,7 +228,7 @@ export default function IntelligentRecommendationPage() {
             }}>
               <thead>
                 <tr style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtle)' }}>
-                  {['#', 'Element', 'Notes'].map((h) => (
+                  {['Element', 'Description'].map((h) => (
                     <th key={h} style={{
                       textAlign: 'left', padding: '8px 12px', fontWeight: 600,
                       color: 'var(--ld-semantic-color-text)',
@@ -238,21 +238,20 @@ export default function IntelligentRecommendationPage() {
               </thead>
               <tbody>
                 {[
-                  ['1', 'Container', 'Brand surface fill (ld-semantic-color-surface-brand), 8px border radius'],
-                  ['2', 'Eyebrow', 'MagicFill icon + "Recommendation" bold text — always visible'],
-                  ['2a', 'Light eyebrow', 'Optional secondary label, 1-line truncated (showLightEyebrow)'],
-                  ['3', 'Title', 'Bold, 2-line truncated (required)'],
-                  ['4', 'Description', 'Optional body text below the title (showDescription)'],
-                  ['5', 'Attributes', 'Up to 4 rows — icon + label each (attributes prop)'],
-                  ['6', 'Action details', 'Customisable content slot in white surface panel (children)'],
-                  ['7', 'Alert', 'Conditional error alert below the content slot (showAlert)'],
-                  ['8', 'Button(s)', '0–3 buttons determined by buttonType'],
-                  ['9', 'Sources', 'Collapsible: Divider + Show/Hide link + description + source links (showSources)'],
-                ].map(([num, el, notes]) => (
-                  <tr key={num} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
-                    <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)', fontWeight: 600, whiteSpace: 'nowrap' as const }}>{num}</td>
+                  ['Container', 'Brand surface fill (ld-semantic-color-surface-brand), 8px border radius'],
+                  ['Eyebrow', 'MagicFill icon + bold label — always visible'],
+                  ['Light eyebrow', 'Optional secondary label, 1-line truncated (showLightEyebrow)'],
+                  ['Title', 'Bold, 2-line truncated (required)'],
+                  ['Description', 'Optional body text below the title (showDescription)'],
+                  ['Attributes', 'Up to 4 rows — icon + label each (attributes prop)'],
+                  ['Content slot', 'Customisable content slot in white surface panel (children)'],
+                  ['Alert', 'Conditional error alert below the content slot (showAlert)'],
+                  ['Button(s)', '0–3 buttons determined by buttonType'],
+                  ['Sources', 'Collapsible: Divider + Show/Hide link + description + source links (showSources)'],
+                ].map(([el, desc]) => (
+                  <tr key={el} style={{ borderBottom: '1px solid var(--ld-semantic-color-border-subtlest)' }}>
                     <td style={{ padding: '8px 12px', fontWeight: 500, color: 'var(--ld-semantic-color-text)', whiteSpace: 'nowrap' as const }}>{el}</td>
-                    <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{notes}</td>
+                    <td style={{ padding: '8px 12px', color: 'var(--ld-semantic-color-text-subtle)' }}>{desc}</td>
                   </tr>
                 ))}
               </tbody>
