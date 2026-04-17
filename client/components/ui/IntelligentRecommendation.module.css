@@ -180,7 +180,7 @@
   display: flex;
   padding: var(--ld-primitive-scale-space-200, 16px);
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   align-self: stretch;
   border-radius: var(--ld-primitive-scale-borderradius-100, 16px);
   background-color: var(--ld-semantic-color-surface, #ffffff);
