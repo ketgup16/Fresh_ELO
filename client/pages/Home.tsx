@@ -1,6 +1,5 @@
 import { MobileTopNav } from '@/components/walmart/MobileTopNav';
 import { BottomNav } from '@/components/walmart/BottomNav';
-import { NativeStatusBar } from '@/components/walmart/NativeStatusBar';
 import { Chat } from '@/components/icons';
 import styles from './Home.module.css';
 
@@ -9,7 +8,6 @@ export default function Home() {
     <div className={styles.page}>
       {/* Status bar + Top nav */}
       <div className={styles.topNavWrapper}>
-        <NativeStatusBar platform="ios" />
         <MobileTopNav
           forceVisible
           forceNative
