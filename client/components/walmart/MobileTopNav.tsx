@@ -17,7 +17,6 @@ const mobileSecondaryLinks = [
   { label: 'Get it Fast', path: '/get-it-fast' },
   { label: 'Rollbacks & More', path: '/rollbacks' },
   { label: 'Easter', path: '/easter' },
-  { label: 'Pharmacy', path: '/pharmacy' },
   { label: 'New Arrivals', path: '/new-arrivals' },
   { label: 'Dinner Made Easy', path: '/dinner-made-easy' },
   { label: 'Walmart+', path: '/walmart-plus' },

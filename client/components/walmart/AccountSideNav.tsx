@@ -41,7 +41,6 @@ const myProfileItems: NavItem[] = [
 ];
 
 const otherAccountsItems: NavItem[] = [
-  { label: 'Pharmacy', path: '/pharmacy' },
   { label: 'Photos', path: '/photos' },
   { label: 'eBooks', path: '/ebooks' },
 ];
