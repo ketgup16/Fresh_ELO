@@ -110,7 +110,7 @@ export default function HeaderSectionPage() {
           </div>
 
           {/* Live preview */}
-          <div style={{ maxWidth: '375px', border: '1px solid var(--ld-semantic-color-border-subtle)', borderRadius: '8px', overflow: 'hidden' }}>
+          <div style={{ maxWidth: '375px' }}>
             <HeaderSection
               size={size}
               title="Title/instruction"
@@ -353,11 +353,7 @@ function VariantCard({ label, children }: { label: string; children: React.React
       }}>
         {label}
       </div>
-      <div style={{
-        border: '1px solid var(--ld-semantic-color-border-subtle)',
-        borderRadius: '8px',
-        overflow: 'hidden',
-      }}>
+      <div>
         {children}
       </div>
     </div>
