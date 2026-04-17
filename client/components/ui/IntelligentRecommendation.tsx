@@ -349,9 +349,9 @@ export const IntelligentRecommendation = React.forwardRef<
               </Button>
             </div>
             <div className={styles.buttonTripleTertiary}>
-              <Button variant="tertiary" size="medium" isFullWidth onClick={onTertiary}>
+              <LinkButton size="medium" onClick={onTertiary}>
                 {tertiaryLabel}
-              </Button>
+              </LinkButton>
             </div>
           </div>
         )}

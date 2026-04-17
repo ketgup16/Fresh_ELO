@@ -227,6 +227,8 @@
 
 .buttonTripleTertiary {
   align-self: stretch;
+  display: flex;
+  justify-content: center;
 }
 
 /* ── Sources (collapsible) ───────────────────────────────────────── */
