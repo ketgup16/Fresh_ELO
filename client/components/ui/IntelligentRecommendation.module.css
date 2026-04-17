@@ -187,6 +187,11 @@
   box-sizing: border-box;
 }
 
+/* ── Alert wrapper ───────────────────────────────────────────────── */
+.alertWrapper {
+  align-self: stretch;
+}
+
 /* ── Button group variants ───────────────────────────────────────── */
 .buttonSingle {
   align-self: stretch;

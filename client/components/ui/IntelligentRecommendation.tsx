@@ -304,18 +304,20 @@ export const IntelligentRecommendation = React.forwardRef<
 
         {/* ── Alert ─────────────────────────────────────────────────── */}
         {showAlert && (
-          <Alert
-            variant="error"
-            action={
-              alertActionLabel ? (
-                <button type="button" onClick={onAlertAction}>
-                  {alertActionLabel}
-                </button>
-              ) : undefined
-            }
-          >
-            {alertMessage}
-          </Alert>
+          <div className={styles.alertWrapper}>
+            <Alert
+              variant="error"
+              action={
+                alertActionLabel ? (
+                  <button type="button" onClick={onAlertAction}>
+                    {alertActionLabel}
+                  </button>
+                ) : undefined
+              }
+            >
+              {alertMessage}
+            </Alert>
+          </div>
         )}
 
         {/* ── Buttons ────────────────────────────────────────────────── */}
