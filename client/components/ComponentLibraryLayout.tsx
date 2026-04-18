@@ -97,6 +97,7 @@ const navigationSections: NavSection[] = [
         titleKey: 'componentLibrary.headerCategory',
         items: [
           { id: 'header-section', nameKey: 'componentLibrary.navHeaderSection', path: '/component-library/header-section' },
+          { id: 'header-instructional', nameKey: 'componentLibrary.navHeaderInstructional', path: '/component-library/header-instructional' },
         ],
       },
       {

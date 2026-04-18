@@ -177,6 +177,7 @@
     "navIntelligentRecommendation": "Recommandation Intelligente",
     "descIntelligentRecommendation": "Carte de recommandation IA avec en-tête, titre, attributs optionnels, emplacement de contenu, alerte, boutons configurables et sources réductibles.",
     "navHeaderSection": "En-tête de section",
+    "navHeaderInstructional": "En-tête instructionnel",
     "descHeaderSection": "Composant d'en-tête de section qui définit les sections d'écran et crée une hiérarchie typographique. Prend en charge les tailles Moyenne et Petite avec un nombre, une description et une action de fin optionnels.",
     "navCalendar": "Calendrier",
     "navCarousel": "Carrousel",
