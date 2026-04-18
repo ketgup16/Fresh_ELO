@@ -98,6 +98,7 @@ const navigationSections: NavSection[] = [
         items: [
           { id: 'header-section', nameKey: 'componentLibrary.navHeaderSection', path: '/component-library/header-section' },
           { id: 'header-instructional', nameKey: 'componentLibrary.navHeaderInstructional', path: '/component-library/header-instructional' },
+          { id: 'header-widget', nameKey: 'componentLibrary.navHeaderWidget', path: '/component-library/header-widget' },
         ],
       },
       {
