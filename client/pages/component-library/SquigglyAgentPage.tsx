@@ -124,7 +124,7 @@ export default function SquigglyAgentPage() {
                 <code className={styles.cardId}>{squiggly}</code>
               </div>
               <div className={styles.emotionAgentCell}>
-                <div className={styles.emotionCanvas}>
+                <div className={[styles.emotionCanvas, styles.emotionCanvasMarty].join(' ')}>
                   <MartyAgent animation={marty} size={64} loop autoplay />
                 </div>
                 <code className={styles.cardId}>{marty}</code>

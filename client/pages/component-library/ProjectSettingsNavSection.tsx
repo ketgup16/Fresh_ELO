@@ -131,7 +131,10 @@ function AgentOption({ agent, label, tag, tagVariant, description, isActive, onC
       onClick={onClick}
     >
       <div className={styles.agentCardTop}>
-        <div className={styles.agentCardPreview}>
+        <div className={[
+          styles.agentCardPreview,
+          agent === 'marty' ? styles.agentCardPreviewMarty : styles.agentCardPreviewSquiggly,
+        ].join(' ')}>
           {agent === 'marty'
             ? <MartyAgent animation="emotes" size={48} loop autoplay />
             : <SquigglyAgent animation="emotes" size={48} loop autoplay />}

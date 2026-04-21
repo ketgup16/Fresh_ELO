@@ -273,12 +273,21 @@
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
 }
 
-/* Marty canvas uses reversed magic gradient */
+/* Marty emotion canvas uses Partner teal tokens */
+.emotionCanvasMarty {
+  background: linear-gradient(
+    135deg,
+    var(--ld-semantic-color-fill-accent-teal-subtle, #e1f3f8) 0%,
+    var(--ld-primitive-color-teal-30, #a3dbe9) 100%
+  );
+}
+
+/* Marty card canvas uses Partner teal tokens */
 .canvasMarty {
   background: linear-gradient(
     135deg,
-    var(--ld-primitive-color-magic-3, #79CDF6) 0%,
-    var(--ld-primitive-color-magic-4, #E9F1FE) 100%
+    var(--ld-semantic-color-fill-accent-teal-subtle, #e1f3f8) 0%,
+    var(--ld-primitive-color-teal-30, #a3dbe9) 100%
   );
 }
 
