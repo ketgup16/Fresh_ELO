@@ -1,6 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ChevronDown, Gear, SignOut, User } from '@/components/icons';
-import { SpotIcon } from '@/components/ui/SpotIcon';
+import { ChevronDown } from '@/components/icons';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
 import { Divider } from '@/components/ui/Divider';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
@@ -82,17 +81,15 @@ function NavGroup({ title, items, currentPath, onNavigate }: NavGroupProps) {
 
 /** Shared inner layout for all three section rows: icon + label + optional chevron */
 interface SectionRowProps {
-  icon: React.ReactNode;
   label: string;
   labelClassName?: string;
   showChevron?: boolean;
 }
 
-function SectionRow({ icon, label, labelClassName, showChevron }: SectionRowProps) {
+function SectionRow({ label, labelClassName, showChevron }: SectionRowProps) {
   return (
     <>
       <div className={styles.collapsibleHeaderLeft}>
-        <SpotIcon icon={icon} size="small" color="brand" />
         <span className={labelClassName ?? styles.sectionTitleText}>{label}</span>
       </div>
       {showChevron && (
@@ -131,7 +128,7 @@ export function AccountSideNav({ openSection, onSectionChange }: AccountSideNavP
       {/* Account Section (collapsible) */}
       <Collapsible defaultOpen>
         <CollapsibleTrigger className={styles.collapsibleHeader}>
-          <SectionRow icon={<User />} label="Account" showChevron />
+          <SectionRow label="Account" showChevron />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <SideNavigation aria-label="Account">
@@ -160,7 +157,7 @@ export function AccountSideNav({ openSection, onSectionChange }: AccountSideNavP
         onOpenChange={(open) => { if (!open) onSectionChange?.(null); }}
       >
         <CollapsibleTrigger className={styles.collapsibleHeader}>
-          <SectionRow icon={<Gear />} label="Settings" showChevron />
+          <SectionRow label="Settings" showChevron />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <SideNavigation aria-label="Settings">
@@ -203,7 +200,7 @@ export function AccountSideNav({ openSection, onSectionChange }: AccountSideNavP
 
       {/* Sign Out — same collapsibleHeader layout, no chevron */}
       <button className={styles.collapsibleHeader} onClick={() => navigate('/sign-out')}>
-        <SectionRow icon={<SignOut />} label="Sign Out" />
+        <SectionRow label="Sign Out" />
       </button>
     </aside>
   );
