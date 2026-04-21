@@ -262,23 +262,14 @@ const App = () => (
                 <Route path="top-nav" element={<TopNavPage />} />
                 <Route path="side-nav" element={<SideNavPage />} />
                 <Route path="ax-button-groups" element={<AXButtonGroupsPage />} />
-                <Route path="wcp-button-groups" element={<Navigate to="/component-library/ax-button-groups" replace />} />
                 <Route path="ax-floating-button" element={<AXFloatingButtonPage />} />
-                <Route path="wcp-floating-button" element={<Navigate to="/component-library/ax-floating-button" replace />} />
                 <Route path="ax-heart-view" element={<AXHeartViewPage />} />
-                <Route path="wcp-heart-view" element={<Navigate to="/component-library/ax-heart-view" replace />} />
                 <Route path="ax-rating" element={<AXRatingPage />} />
-                <Route path="wcp-rating" element={<Navigate to="/component-library/ax-rating" replace />} />
                 <Route path="ax-search-bar" element={<AXSearchBarPage />} />
-                <Route path="wcp-search-bar" element={<Navigate to="/component-library/ax-search-bar" replace />} />
                 <Route path="ax-search-field" element={<AXSearchFieldPage />} />
-                <Route path="wcp-search-field" element={<Navigate to="/component-library/ax-search-field" replace />} />
                 <Route path="ax-signature-capture" element={<AXSignatureCapturePage />} />
-                <Route path="wcp-signature-capture" element={<Navigate to="/component-library/ax-signature-capture" replace />} />
                 <Route path="ax-rich-media-sheet" element={<AXRichMediaSheetPage />} />
-                <Route path="wcp-rich-media-sheet" element={<Navigate to="/component-library/ax-rich-media-sheet" replace />} />
                 <Route path="ax-upload-image" element={<AXUploadImagePage />} />
-                <Route path="wcp-upload-image" element={<Navigate to="/component-library/ax-upload-image" replace />} />
                 <Route path="ax-metric-group" element={<AXMetricGroupPage />} />
                 <Route path="ax-segmented-control-group" element={<AXSegmentedControlGroupPage />} />
                 <Route path="intelligent-insight" element={<IntelligentInsightPage />} />
