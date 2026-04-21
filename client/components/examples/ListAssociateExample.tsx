@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { AXAvatar } from '@/components/walmart/AXAvatar';
-import { AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { AvatarImage, AvatarFallback } from '@/components/walmart/AXAvatar';
 import { List, ListItem, ListItemTrailing, ListItemTagPreset, ListItemTagCustom } from '@/components/ui/ListAssociate';
 import { TagVariant, TagColor } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';

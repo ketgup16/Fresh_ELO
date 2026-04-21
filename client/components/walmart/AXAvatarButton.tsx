@@ -1,6 +1,6 @@
 import React from 'react';
 import { AXAvatar, AXAvatarIndicatorType, AXAvatarClockState } from './AXAvatar';
-import { AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { AvatarFallback, AvatarImage } from './AXAvatar';
 
 export type { AXAvatarIndicatorType, AXAvatarClockState };
 

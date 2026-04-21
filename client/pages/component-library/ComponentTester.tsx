@@ -22,7 +22,7 @@ import { AXFlag, AX_FLAG_VARIANTS } from '@/components/walmart/AXFlag';
 import type { AXFlagVariant } from '@/components/walmart/AXFlag';
 import { AXAvatar } from '@/components/walmart/AXAvatar';
 import type { AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatar';
-import { AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { AvatarImage, AvatarFallback } from '@/components/walmart/AXAvatar';
 import { AXSearchField } from '@/components/walmart/AXSearchField';
 import type { AXSearchFieldCornerStyle, AXSearchFieldSize } from '@/components/walmart/AXSearchField';
 import type { AXSearchBarState } from '@/components/walmart/AXSearchBar';

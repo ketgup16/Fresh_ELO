@@ -7,7 +7,7 @@ import { MobileMenuPanel } from '@/components/walmart/MobileMenuPanel';
 import { SearchTypeaheadModal } from '@/pages/walmart/index/SearchTypeaheadModal';
 import { AXSearchField } from '@/components/walmart/AXSearchField';
 import { AXAvatarButton, type AXAvatarIndicatorType, type AXAvatarClockState } from '@/components/walmart/AXAvatarButton';
-import { AvatarFallback } from '@/components/ui/avatar';
+import { AvatarFallback } from '@/components/walmart/AXAvatar';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { useNavigate } from 'react-router-dom';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
