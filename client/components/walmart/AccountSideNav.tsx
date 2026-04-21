@@ -1,7 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown, Gear, SignOut, User } from '@/components/icons';
 import { SpotIcon } from '@/components/ui/SpotIcon';
-import { WalmartPlusLogoIcon } from '@/components/icons-custom';
 import { SideNavigation, SideNavigationItem } from '@/components/ui/SideNavigation';
 import { Divider } from '@/components/ui/Divider';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
@@ -124,7 +123,6 @@ export function AccountSideNav({ openSection, onSectionChange }: AccountSideNavP
       {/* User Header */}
       <div className={styles.userHeader}>
         <div className={styles.userHeaderTop}>
-          <WalmartPlusLogoIcon width={32} height={24} aria-hidden="true" />
           <span className={styles.greeting}>Hi, Emilia</span>
         </div>
         <p className={styles.memberSince}>Member since 2023</p>
