@@ -29,13 +29,13 @@ const PLATFORM_META: Record<Platform, {
     component: 'Native Mobile',
     tag: 'Phone',
     tagVariant: 'neutral',
-    description: 'Native app-style top nav for phones. Supports blue (home) and white (search/inner) color variants with menu icon, title, action buttons, and search bar.',
+    description: 'Native app-style app header for phones. Supports blue (home) and white (search/inner) color variants with menu icon, title, action buttons, and search bar.',
   },
   'native-tablet': {
     component: 'Native Tablet',
     tag: 'iPad / Android Tablet',
     tagVariant: 'neutral',
-    description: 'Native app-style top nav for tablets (> 900px). Supports iOS (centered title) and Android (left-aligned title). Adds an optional 4th trailing action button.',
+    description: 'Native app-style app header for tablets (> 900px). Supports iOS (centered title) and Android (left-aligned title). Adds an optional 4th trailing action button.',
   },
 };
 
@@ -181,8 +181,8 @@ export default function TopNavPage() {
   return (
     <ComponentPageLayout
       section="AX Patterns"
-      title="Top Nav"
-      description="Native app top navigation patterns for iOS and Android — phone and tablet variants. Supports blue (home) and white (search/inner) color variants."
+      title="App Header"
+      description="Native app header patterns for iOS and Android — phone and tablet variants. Supports blue (home) and white (search/inner) color variants."
     >
 
       {/* ── Platform Component Preview ── */}
