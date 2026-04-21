@@ -88,16 +88,6 @@ const navigationSections: NavSection[] = [
     ],
     subGroups: [
       {
-        id: 'shared',
-        titleKey: 'componentLibrary.sharedCategory',
-        items: [
-          { id: 'ax-floating-button', nameKey: 'componentLibrary.navAXFloatingButton', path: '/component-library/ax-floating-button' },
-          { id: 'ax-rating', nameKey: 'componentLibrary.navAXRating', path: '/component-library/ax-rating' },
-          { id: 'ax-rich-media-sheet', nameKey: 'componentLibrary.navAXRichMediaSheet', path: '/component-library/ax-rich-media-sheet' },
-          { id: 'ax-upload-image', nameKey: 'componentLibrary.navAXUploadImage', path: '/component-library/ax-upload-image' },
-        ],
-      },
-      {
         id: 'header',
         titleKey: 'componentLibrary.headerCategory',
         items: [
@@ -170,6 +160,10 @@ const navigationSections: NavSection[] = [
   {
     titleKey: 'componentLibrary.sharedSection',
     items: [
+      { id: 'ax-floating-button', nameKey: 'componentLibrary.navAXFloatingButton', path: '/component-library/ax-floating-button' },
+      { id: 'ax-rating', nameKey: 'componentLibrary.navAXRating', path: '/component-library/ax-rating' },
+      { id: 'ax-rich-media-sheet', nameKey: 'componentLibrary.navAXRichMediaSheet', path: '/component-library/ax-rich-media-sheet' },
+      { id: 'ax-upload-image', nameKey: 'componentLibrary.navAXUploadImage', path: '/component-library/ax-upload-image' },
       { id: 'accordion', nameKey: 'componentLibrary.navAccordion', path: '/component-library/accordion' },
       { id: 'segmented-control', nameKey: 'componentLibrary.navSegmentedControl', path: '/component-library/segmented-control' },
       { id: 'quantity-stepper', nameKey: 'componentLibrary.navQuantityStepper', path: '/component-library/quantity-stepper' },
