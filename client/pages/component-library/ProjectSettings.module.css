@@ -146,7 +146,11 @@
   justify-content: center;
   width: 64px;
   height: 64px;
-  background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
+  background: linear-gradient(
+    135deg,
+    var(--ld-primitive-color-magic-4, #E9F1FE) 0%,
+    var(--ld-primitive-color-magic-3, #79CDF6) 100%
+  );
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   pointer-events: none;
 }

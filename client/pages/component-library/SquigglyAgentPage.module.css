@@ -66,7 +66,11 @@
   align-items: center;
   justify-content: center;
   height: 144px;
-  background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
+  background: linear-gradient(
+    135deg,
+    var(--ld-primitive-color-magic-4, #E9F1FE) 0%,
+    var(--ld-primitive-color-magic-3, #79CDF6) 100%
+  );
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
 }
 
@@ -132,7 +136,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
+  background: linear-gradient(
+    135deg,
+    var(--ld-primitive-color-magic-4, #E9F1FE) 0%,
+    var(--ld-primitive-color-magic-3, #79CDF6) 100%
+  );
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
 }
 
@@ -257,13 +265,21 @@
   justify-content: center;
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
+  background: linear-gradient(
+    135deg,
+    var(--ld-primitive-color-magic-4, #E9F1FE) 0%,
+    var(--ld-primitive-color-magic-3, #79CDF6) 100%
+  );
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
 }
 
-/* Marty canvas uses a different gradient */
+/* Marty canvas uses reversed magic gradient */
 .canvasMarty {
-  background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
+  background: linear-gradient(
+    135deg,
+    var(--ld-primitive-color-magic-3, #79CDF6) 0%,
+    var(--ld-primitive-color-magic-4, #E9F1FE) 100%
+  );
 }
 
 @media (max-width: 640px) {
