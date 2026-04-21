@@ -106,7 +106,6 @@ const TopNavPage = React.lazy(() => import("./pages/component-library/TopNav"));
 const SideNavPage = React.lazy(() => import("./pages/component-library/SideNav"));
 const AXButtonGroupsPage = React.lazy(() => import("./pages/component-library/AXButtonGroups"));
 const AXFloatingButtonPage = React.lazy(() => import("./pages/component-library/AXFloatingButton"));
-const AXHeartViewPage = React.lazy(() => import("./pages/component-library/AXHeartView"));
 const AXRatingPage = React.lazy(() => import("./pages/component-library/AXRating"));
 const AXSearchBarPage = React.lazy(() => import("./pages/component-library/AXSearchBar"));
 const AXSearchFieldPage = React.lazy(() => import("./pages/component-library/AXSearchField"));
@@ -263,7 +262,6 @@ const App = () => (
                 <Route path="side-nav" element={<SideNavPage />} />
                 <Route path="ax-button-groups" element={<AXButtonGroupsPage />} />
                 <Route path="ax-floating-button" element={<AXFloatingButtonPage />} />
-                <Route path="ax-heart-view" element={<AXHeartViewPage />} />
                 <Route path="ax-rating" element={<AXRatingPage />} />
                 <Route path="ax-search-bar" element={<AXSearchBarPage />} />
                 <Route path="ax-search-field" element={<AXSearchFieldPage />} />

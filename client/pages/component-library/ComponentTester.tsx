@@ -20,7 +20,6 @@ import { Spinner } from '@/components/ui/Spinner';
 import { ProgressIndicator } from '@/components/ui/ProgressIndicator';
 import { AXFlag, AX_FLAG_VARIANTS } from '@/components/walmart/AXFlag';
 import type { AXFlagVariant } from '@/components/walmart/AXFlag';
-import { AXHeartView } from '@/components/walmart/AXHeartView';
 import { AXAvatar } from '@/components/walmart/AXAvatar';
 import type { AXAvatarIndicatorType, AXAvatarClockState } from '@/components/walmart/AXAvatar';
 import { AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -57,7 +56,6 @@ const components = [
   { id: 'spinner', name: 'Spinner', category: 'Feedback' },
   { id: 'progressindicator', name: 'Progress Indicator', category: 'Feedback' },
   { id: 'wcpflag', name: 'AX Flag', category: 'AX' },
-  { id: 'wcpheartview', name: 'AX Heart View', category: 'AX' },
   { id: 'axsearchfield', name: 'AX Search Bar', category: 'AX' },
   { id: 'axsearchbar', name: 'AX Search Field', category: 'AX' },
   { id: 'axavatar', name: 'AX Avatar', category: 'AX' },
@@ -167,10 +165,6 @@ export default function ComponentTester() {
   const [searchState, setSearchState] = React.useState<AXSearchBarState>('enabled');
   const [searchShowMic, setSearchShowMic] = React.useState(true);
   const [searchShowBarcode, setSearchShowBarcode] = React.useState(true);
-
-  // AXHeartView props
-  const [heartActivated, setHeartActivated] = React.useState(false);
-  const [heartSize, setHeartSize] = React.useState<'small' | 'medium'>('medium');
 
   // AXAvatar props
   const [avatarIndicator, setAvatarIndicator] = React.useState<AXAvatarIndicatorType>('none');
@@ -392,15 +386,6 @@ export default function ComponentTester() {
               onClear={() => setSearchValue('')}
             />
           </div>
-        );
-
-      case 'wcpheartview':
-        return (
-          <AXHeartView
-            activated={heartActivated}
-            onChange={setHeartActivated}
-            size={heartSize}
-          />
         );
 
       case 'axavatar': {
@@ -1550,15 +1535,6 @@ export default function ComponentTester() {
               {`<AXFlag
   variant="${flagVariant}"
   label="${flagLabel}"
-/>`}
-            </pre>
-          )}
-          {selectedComponent === 'wcpheartview' && (
-            <pre style={{ margin: 0 }}>
-              {`<AXHeartView
-  activated={${heartActivated}}
-  onChange={setActivated}
-  size="${heartSize}"
 />`}
             </pre>
           )}

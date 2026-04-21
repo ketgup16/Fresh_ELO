@@ -217,8 +217,6 @@
     "navAXCountry": "Sélection de pays",
     "navAXFlag": "Drapeau",
     "navAXFloatingButton": "Bouton Flottant",
-    "navAXHeartView": "Vue Cœur",
-    "descAXHeartView": "Bouton favori avec info-bulle sur bureau et snackbar sur mobile",
     "navAXRating": "Évaluations",
     "descAXRating": "Composant d'évaluation interactive par étoiles avec étiquettes pour l'expérience consommateur AX",
     "navAXSearchBar": "Barre de recherche",

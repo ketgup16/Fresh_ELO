@@ -77,7 +77,6 @@ const navigationSections: NavSection[] = [
       { id: 'ax-avatar', nameKey: 'componentLibrary.navAXAvatar', path: '/component-library/ax-avatar' },
       { id: 'ax-avatar-button', nameKey: 'componentLibrary.navAXAvatarButton', path: '/component-library/ax-avatar-button' },
       { id: 'ax-button-groups', nameKey: 'componentLibrary.navAXButtonGroups', path: '/component-library/ax-button-groups' },
-      { id: 'ax-heart-view', nameKey: 'componentLibrary.navAXHeartView', path: '/component-library/ax-heart-view' },
       { id: 'intelligent-insight', nameKey: 'componentLibrary.navIntelligentInsight', path: '/component-library/intelligent-insight' },
       { id: 'intelligent-recommendation', nameKey: 'componentLibrary.navIntelligentRecommendation', path: '/component-library/intelligent-recommendation' },
       { id: 'ax-search-bar', nameKey: 'componentLibrary.navAXSearchBar', path: '/component-library/ax-search-bar' },

@@ -76,7 +76,6 @@ export function ComponentUsageTab() {
             { name: 'Text Fields', usage: 'Single-line text input for names, emails, search, etc.' },
             { name: 'Text Area', usage: 'Multi-line text input for descriptions, comments, notes' },
             { name: 'QuantityStepper', usage: 'Increment/decrement control for cart quantities. Use with CartContext for real-time count updates.' },
-            { name: 'HeartView', usage: 'Favorite/wishlist toggle. Always position on the right side of product tiles.' },
             { name: 'AXFlag', usage: 'Product badges (Clearance, Bestseller, Rollback). Clearance always uses "urgent" variant.' },
             { name: 'ItemTile', usage: 'Product tile for carousels and grids. No hover states on container — only interactive elements respond.' },
           ].map((item) => (

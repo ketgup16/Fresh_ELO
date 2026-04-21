@@ -641,22 +641,6 @@ export function FloatingButtonPreview() {
   );
 }
 
-export function HeartViewPreview() {
-  return (
-    <PreviewFrame>
-      <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-          <path d="M16 28S3 20.5 3 11.5C3 7.36 6.36 4 10.5 4c2.54 0 4.78 1.26 6.15 3.19L16 7.5l-.65-.31C16.72 5.26 18.96 4 21.5 4 25.64 4 29 7.36 29 11.5 29 20.5 16 28 16 28Z"
-            stroke="var(--ld-semantic-color-text-subtle, #74767C)" strokeWidth="2" />
-        </svg>
-        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-          <path d="M16 28S3 20.5 3 11.5C3 7.36 6.36 4 10.5 4c2.54 0 4.78 1.26 6.15 3.19L16 7.5l-.65-.31C16.72 5.26 18.96 4 21.5 4 25.64 4 29 7.36 29 11.5 29 20.5 16 28 16 28Z"
-            fill="var(--ld-semantic-color-text-negative, #C5221F)" stroke="var(--ld-semantic-color-text-negative, #C5221F)" strokeWidth="2" />
-        </svg>
-      </div>
-    </PreviewFrame>
-  );
-}
 
 export function SearchBarPreview() {
   return (
