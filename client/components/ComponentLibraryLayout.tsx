@@ -74,7 +74,6 @@ const navigationSections: NavSection[] = [
   {
     titleKey: 'componentLibrary.wcpComponents',
     items: [
-      { id: 'basic-banner', nameKey: 'componentLibrary.navBasicBanner', path: '/component-library/basic-banner' },
       { id: 'ax-button-groups', nameKey: 'componentLibrary.navAXButtonGroups', path: '/component-library/ax-button-groups' },
       { id: 'ax-floating-button', nameKey: 'componentLibrary.navAXFloatingButton', path: '/component-library/ax-floating-button' },
       { id: 'ax-heart-view', nameKey: 'componentLibrary.navAXHeartView', path: '/component-library/ax-heart-view' },

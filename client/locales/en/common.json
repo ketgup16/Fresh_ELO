@@ -112,8 +112,6 @@
     "section": "Components",
     "navAlerts": "Alerts",
     "navBadges": "Badges",
-    "navBasicBanner": "Basic Banner",
-    "descBasicBanner": "A value prop or branded banner with icon and text. Supports Default, Brand, and Inverse variants.",
     "navBreadcrumbs": "Breadcrumbs",
     "navButtons": "Buttons",
     "navCallouts": "Callouts",
