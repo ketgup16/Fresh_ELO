@@ -67,7 +67,6 @@ const navigationSections: NavSection[] = [
       { id: 'top-nav', nameKey: 'componentLibrary.navTopNav', path: '/component-library/top-nav' },
       { id: 'footer-patterns', nameKey: 'componentLibrary.navFooterPatterns', path: '/component-library/footer-patterns' },
       { id: 'ax-metric-group', nameKey: 'componentLibrary.navAXMetricGroup', path: '/component-library/ax-metric-group' },
-      { id: 'page-templates', nameKey: 'componentLibrary.navPageTemplates', path: '/component-library/page-templates' },
       { id: 'side-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/side-nav' },
     ]
   },

@@ -104,7 +104,6 @@ const FooterPatternsPage = React.lazy(() => import("./pages/component-library/Fo
 const SquigglyAgentPage = React.lazy(() => import("./pages/component-library/SquigglyAgentPage"));
 const TopNavPage = React.lazy(() => import("./pages/component-library/TopNav"));
 const SideNavPage = React.lazy(() => import("./pages/component-library/SideNav"));
-const PageTemplatesPage = React.lazy(() => import("./pages/component-library/PageTemplates"));
 const AXButtonGroupsPage = React.lazy(() => import("./pages/component-library/AXButtonGroups"));
 const AXFloatingButtonPage = React.lazy(() => import("./pages/component-library/AXFloatingButton"));
 const AXHeartViewPage = React.lazy(() => import("./pages/component-library/AXHeartView"));
@@ -262,7 +261,6 @@ const App = () => (
                 <Route path="squiggly-agent" element={<SquigglyAgentPage />} />
                 <Route path="top-nav" element={<TopNavPage />} />
                 <Route path="side-nav" element={<SideNavPage />} />
-                <Route path="page-templates" element={<PageTemplatesPage />} />
                 <Route path="ax-button-groups" element={<AXButtonGroupsPage />} />
                 <Route path="wcp-button-groups" element={<Navigate to="/component-library/ax-button-groups" replace />} />
                 <Route path="ax-floating-button" element={<AXFloatingButtonPage />} />

@@ -186,7 +186,6 @@ function ComponentCard({ entry, hidePreview }: { entry: ComponentEntry; hidePrev
 const patternComponents: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navFooterPatterns', descKey: 'componentLibrary.descFooterPatterns', path: '/component-library/footer-patterns', icon: 'List', section: 'ld' },
   { titleKey: 'componentLibrary.navTopNav', descKey: 'componentLibrary.descTopNav', path: '/component-library/top-nav', icon: 'Menu', section: 'ld' },
-  { titleKey: 'componentLibrary.navPageTemplates', descKey: 'componentLibrary.descPageTemplates', path: '/component-library/page-templates', icon: 'Box', section: 'ld' },
   { titleKey: 'componentLibrary.navSideNav', descKey: 'componentLibrary.descSideNav', path: '/component-library/side-nav', icon: 'PanelLeft', section: 'ld' },
 ];
 
