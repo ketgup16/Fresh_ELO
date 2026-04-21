@@ -209,6 +209,7 @@ function CustomSlotPlaceholder() {
         fontFamily: 'var(--ld-semantic-font-family-sans)',
         textAlign: 'center',
         padding: '4px',
+        whiteSpace: 'nowrap',
       }}
     >
       Custom
