@@ -27,13 +27,13 @@ const PLATFORM_META: Record<Platform, {
   description: string;
 }> = {
   native: {
-    component: 'WCP Bottom Nav (iOS)',
+    component: 'Bottom Nav (iOS)',
     tag: 'iOS',
     tagVariant: 'neutral',
     description: 'Glassmorphic bottom navigation bar with three primary destinations: For you, Today’s Plan, and Your team. Includes a floating Squiggly AI agent and iOS home indicator.',
   },
   android: {
-    component: 'WCP Bottom Nav (Android)',
+    component: 'Bottom Nav (Android)',
     tag: 'Android',
     tagVariant: 'neutral',
     description: 'Material-style bottom navigation bar with three tabs: For you, Today’s Plan, and Your team. Includes a floating Squiggly AI agent and Android gesture bar. Active tab highlighted in brand blue.',
@@ -64,14 +64,14 @@ export default function FooterPatternsPage() {
               size="small"
               onClick={() => setPlatform('native')}
             >
-              WCP Bottom Nav (iOS)
+              Bottom Nav (iOS)
             </Button>
             <Button
               variant={platform === 'android' ? 'primary' : 'secondary'}
               size="small"
               onClick={() => setPlatform('android')}
             >
-              Android Bottom Nav
+              Bottom Nav (Android)
             </Button>
           </ButtonGroup>
         </div>
@@ -164,7 +164,7 @@ export default function FooterPatternsPage() {
           </div>
           <div className={styles.usageRow}>
             <div className={styles.usageCell}>
-              <span className={styles.usagePlatform}>WCP Bottom Nav (iOS)</span>
+              <span className={styles.usagePlatform}>Bottom Nav (iOS)</span>
               <Tag variant="neutral">iOS</Tag>
             </div>
             <div className={styles.usageCell}>
@@ -176,7 +176,7 @@ export default function FooterPatternsPage() {
           </div>
           <div className={styles.usageRow}>
             <div className={styles.usageCell}>
-              <span className={styles.usagePlatform}>WCP Bottom Nav (Android)</span>
+              <span className={styles.usagePlatform}>Bottom Nav (Android)</span>
               <Tag variant="neutral">Android</Tag>
             </div>
             <div className={styles.usageCell}>

@@ -203,7 +203,7 @@
     "patterns": "Patrones",
     "wcpPatterns": "AX Patrones",
     "wcpComponents": "AX Componentes",
-    "navFooterPatterns": "Pie de página y Nav inferior",
+    "navFooterPatterns": "Bottom Nav",
     "navSquigglyAgent": "Agente IA Squiggly",
     "navAIAgents": "Agentes de IA",
     "navTopNav": "App Header",
