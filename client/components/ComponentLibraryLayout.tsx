@@ -68,7 +68,7 @@ const navigationSections: NavSection[] = [
       { id: 'page-templates', nameKey: 'componentLibrary.navPageTemplates', path: '/component-library/page-templates' },
       { id: 'side-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/side-nav' },
       { id: 'ax-metric-group', nameKey: 'componentLibrary.navAXMetricGroup', path: '/component-library/ax-metric-group' },
-      { id: 'squiggly-agent', nameKey: 'componentLibrary.navSquigglyAgent', path: '/component-library/squiggly-agent' },
+      { id: 'squiggly-agent', nameKey: 'componentLibrary.navAIAgents', path: '/component-library/squiggly-agent' },
     ]
   },
   {

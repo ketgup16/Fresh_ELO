@@ -128,6 +128,37 @@
   color: var(--ld-semantic-color-text, #2e2f32);
 }
 
+/* ── Agent cards ── */
+.agentCard {
+  /* extends platformCard */
+}
+
+.agentCardTop {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-300, 12px);
+}
+
+.agentCardPreview {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  pointer-events: none;
+}
+
+.agentCardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
 /* ── Option cards ── */
 .optionCards {
   display: flex;

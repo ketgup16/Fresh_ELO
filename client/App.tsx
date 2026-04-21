@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { MartyProvider } from "@/contexts/MartyContext";
+import { AgentProvider } from "@/contexts/AgentContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LayoutSettingsProvider } from "@/contexts/LayoutSettingsContext";
 import { CartProvider } from "@/contexts/CartContext";
@@ -168,6 +169,7 @@ const App = () => (
         <CartProvider>
         <QueryClientProvider client={queryClient}>
       <SnackbarContainer />
+      <AgentProvider>
       <MartyProvider>
           <BrowserRouter>
             <React.Suspense fallback={LazyFallback}>
@@ -302,6 +304,7 @@ const App = () => (
             </React.Suspense>
           </BrowserRouter>
         </MartyProvider>
+      </AgentProvider>
     </QueryClientProvider>
         </CartProvider>
       </LayoutSettingsProvider>

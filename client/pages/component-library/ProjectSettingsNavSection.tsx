@@ -2,11 +2,15 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
+import { useAgent } from '@/contexts/AgentContext';
+import { SquigglyAgent } from '@/components/agents/SquigglyAgent';
+import { MartyAgent } from '@/components/agents/MartyAgent';
 import styles from './ProjectSettings.module.css';
 
 export function NavSettingsSection() {
   const navigate = useNavigate();
   const { platform, setPlatform } = useLayoutSettings();
+  const { activeAgent, setActiveAgent } = useAgent();
 
   return (
     <div className={styles.navSection}>
@@ -53,6 +57,34 @@ export function NavSettingsSection() {
         </div>
       </div>
 
+      {/* AI Agent */}
+      <div className={styles.navSubsection}>
+        <h3 className={styles.navSubsectionTitle}>AI Agent</h3>
+        <p className={styles.navSubsectionDesc}>
+          Choose which AI agent personality appears throughout the app. Both agents mirror the same emotions — only the visual character changes.
+        </p>
+        <div className={styles.platformCards}>
+          <AgentOption
+            agent="squiggly"
+            label="Squiggly"
+            tag="Expressive"
+            tagVariant="neutral"
+            description="Energetic and friendly. Squiggly uses emotes, laughs, nods, and shimmies to express a full range of reactions."
+            isActive={activeAgent === 'squiggly'}
+            onClick={() => setActiveAgent('squiggly')}
+          />
+          <AgentOption
+            agent="marty"
+            label="Marty"
+            tag="Analytical"
+            tagVariant="info"
+            description="Thoughtful and precise. Marty uses thinking and glasses animations to convey focus, analysis, and deep processing."
+            isActive={activeAgent === 'marty'}
+            onClick={() => setActiveAgent('marty')}
+          />
+        </div>
+      </div>
+
     </div>
   );
 }
@@ -78,6 +110,41 @@ function PlatformOption({ label, tag, tagVariant, description, isActive, onClick
         {isActive && <Tag variant="success">Active</Tag>}
       </div>
       <p className={styles.optionCardDesc}>{description}</p>
+    </button>
+  );
+}
+
+interface AgentOptionProps {
+  agent: 'squiggly' | 'marty';
+  label: string;
+  tag: string;
+  tagVariant: 'neutral' | 'info';
+  description: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
+function AgentOption({ agent, label, tag, tagVariant, description, isActive, onClick }: AgentOptionProps) {
+  return (
+    <button
+      className={[styles.platformCard, styles.agentCard, isActive ? styles.platformCardActive : ''].join(' ')}
+      onClick={onClick}
+    >
+      <div className={styles.agentCardTop}>
+        <div className={styles.agentCardPreview}>
+          {agent === 'marty'
+            ? <MartyAgent animation="emotes" size={48} loop autoplay />
+            : <SquigglyAgent animation="emotes" size={48} loop autoplay />}
+        </div>
+        <div className={styles.agentCardInfo}>
+          <div className={styles.platformCardTop}>
+            <span className={styles.platformCardLabel}>{label}</span>
+            <Tag variant={tagVariant}>{tag}</Tag>
+            {isActive && <Tag variant="success">Active</Tag>}
+          </div>
+          <p className={styles.optionCardDesc}>{description}</p>
+        </div>
+      </div>
     </button>
   );
 }

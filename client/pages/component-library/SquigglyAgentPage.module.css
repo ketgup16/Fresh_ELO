@@ -142,6 +142,141 @@
   color: var(--ld-semantic-color-text-subtle, #6d6e72);
 }
 
+/* ── Active Agent Preview ── */
+.activeAgentFrame {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-400, 16px);
+  padding: var(--ld-primitive-scale-space-600, 24px);
+  background: var(--ld-semantic-color-surface, #fff);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  box-shadow:
+    0 -1px 2px 0 rgba(0, 0, 0, 0.06),
+    0 1px 2px 1px rgba(0, 0, 0, 0.08);
+}
+
+.activeAgentMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.activeAgentName {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.activeAgentDesc {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  color: var(--ld-semantic-color-text-subtle, #6d6e72);
+  line-height: 1.5;
+}
+
+.inlineLink {
+  color: var(--ld-semantic-color-text-brand, #0071dc);
+  text-decoration: underline;
+}
+
+/* ── Emotion Mapping Table ── */
+.emotionTable {
+  display: flex;
+  flex-direction: column;
+  background: var(--ld-semantic-color-surface, #fff);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  box-shadow:
+    0 -1px 2px 0 rgba(0, 0, 0, 0.06),
+    0 1px 2px 1px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.emotionTableHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--ld-primitive-scale-space-200, 8px);
+  padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px);
+  background: var(--ld-semantic-color-background-subtle, #f8f8f8);
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.emotionLabel,
+.emotionAgent {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ld-semantic-color-text-subtle, #6d6e72);
+}
+
+.emotionRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--ld-primitive-scale-space-200, 8px);
+  align-items: center;
+  padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px);
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.emotionRow:last-child {
+  border-bottom: none;
+}
+
+.emotionLabelCell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.emotionName {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.emotionNote {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: 11px;
+  color: var(--ld-semantic-color-text-subtlest, #9b9ea3);
+  font-style: italic;
+}
+
+.emotionAgentCell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.emotionCanvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+}
+
+/* Marty canvas uses a different gradient */
+.canvasMarty {
+  background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
+}
+
+@media (max-width: 640px) {
+  .emotionTableHeader,
+  .emotionRow {
+    grid-template-columns: 1fr;
+  }
+
+  .emotionTableHeader .emotionAgent {
+    display: none;
+  }
+}
+
 /* ── Code block ── */
 .codeBlock {
   font-family: monospace;
