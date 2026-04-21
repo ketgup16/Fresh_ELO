@@ -12,35 +12,37 @@
 
 .sectionTitle {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--ld-semantic-font-heading-medium-size, 20px);
+  font-weight: var(--ld-semantic-font-heading-medium-weight, 700);
   color: var(--ld-semantic-color-text);
   margin: 0;
-  line-height: 28px;
+  line-height: var(--ld-semantic-font-heading-medium-lineheight, 1.4);
+  padding-bottom: var(--ld-primitive-scale-space-200, 0.5rem);
+  border-bottom: 1px solid var(--ld-semantic-color-separator);
 }
 
 .sectionDesc {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 14px;
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
   color: var(--ld-semantic-color-text-subtle);
   margin: 0;
-  line-height: 20px;
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.43);
 }
 
 /* ── Demo card ── */
 .demoCard {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--ld-primitive-scale-space-300, 0.75rem);
   background: var(--ld-semantic-color-surface);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  padding: 24px;
+  border: 1px solid var(--ld-semantic-color-separator);
+  padding: var(--ld-primitive-scale-space-600, 1.5rem);
 }
 
 .cardLabel {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 11px;
+  font-size: var(--ld-semantic-font-caption-size, 11px);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -49,23 +51,23 @@
 
 .cardNote {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 13px;
+  font-size: var(--ld-semantic-font-caption-size, 11px);
   color: var(--ld-semantic-color-text-subtle);
   margin: 0;
-  line-height: 18px;
+  line-height: var(--ld-semantic-font-caption-lineheight, 1.33);
 }
 
 .cardContent {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--ld-primitive-scale-space-300, 0.75rem);
 }
 
 /* ── Grid of demo cards ── */
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--ld-primitive-scale-space-400, 1rem);
 }
 
 @media (max-width: 899px) {
@@ -78,70 +80,38 @@
 .interactiveDemo {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--ld-primitive-scale-space-400, 1rem);
 }
 
 .controls {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--ld-primitive-scale-space-400, 1rem);
   flex-wrap: wrap;
-}
-
-.controlLabel {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 14px;
-  color: var(--ld-semantic-color-text);
-  cursor: pointer;
-}
-
-.controlCheckbox {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--ld-semantic-color-action-fill-primary, #0071dc);
-  cursor: pointer;
-}
-
-.clearBtn {
-  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 14px;
-  color: var(--ld-semantic-color-link-text, #0071dc);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  text-decoration: underline;
-}
-
-.clearBtn:hover {
-  opacity: 0.8;
 }
 
 /* ── Usage list ── */
 .usageList {
   list-style: disc;
-  padding-left: 20px;
+  padding-left: var(--ld-primitive-scale-space-500, 1.25rem);
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--ld-primitive-scale-space-150, 6px);
 }
 
 .usageList li {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: 14px;
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
   color: var(--ld-semantic-color-text);
-  line-height: 20px;
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.43);
 }
 
 .usageList code {
-  background: var(--ld-semantic-color-fill-subtle, #f8f8f8);
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  border-radius: 3px;
+  background: var(--ld-semantic-color-background-subtle);
+  border: 1px solid var(--ld-semantic-color-separator);
+  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
   padding: 1px 5px;
-  font-family: 'SF Mono', 'Roboto Mono', monospace;
-  font-size: 12px;
+  font-family: monospace;
+  font-size: var(--ld-semantic-font-caption-size, 11px);
 }

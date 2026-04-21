@@ -1,10 +1,9 @@
 .page {
-  padding: 48px 32px;
   width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: var(--ld-primitive-scale-space-800, 32px);
+  gap: var(--ld-primitive-scale-space-1600, 4rem);
 }
 
 /* ── Sections ── */
@@ -16,10 +15,12 @@
 
 .sectionTitle {
   font-family: var(--ld-semantic-font-family-sans, sans-serif);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2e2f32);
+  font-size: var(--ld-semantic-font-heading-medium-size, 20px);
+  font-weight: var(--ld-semantic-font-heading-medium-weight, 700);
+  color: var(--ld-semantic-color-text);
   margin: 0;
+  padding-bottom: var(--ld-primitive-scale-space-200, 0.5rem);
+  border-bottom: 1px solid var(--ld-semantic-color-separator);
 }
 
 .sectionDesc {
@@ -64,8 +65,8 @@
 
 .patternDesc {
   font-family: var(--ld-semantic-font-family-sans, sans-serif);
-  font-size: 13px;
-  color: var(--ld-semantic-color-text-subtle, #6d6e72);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  color: var(--ld-semantic-color-text-subtle);
   margin: 0;
   line-height: 1.5;
 }
@@ -90,11 +91,11 @@
 
 .variantLabel {
   font-family: var(--ld-semantic-font-family-sans, sans-serif);
-  font-size: 11px;
+  font-size: var(--ld-semantic-font-caption-size, 11px);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--ld-semantic-color-text-subtlest, #9fa0a4);
+  color: var(--ld-semantic-color-text-subtle);
 }
 
 /* ── Button group layouts ── */
@@ -159,9 +160,9 @@
 
 .rulesText {
   font-family: var(--ld-semantic-font-family-sans, sans-serif);
-  font-size: 13px;
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
   line-height: 1.5;
-  color: var(--ld-semantic-color-text, #2e2f32);
+  color: var(--ld-semantic-color-text);
 }
 
 /* ── Code block ── */
@@ -172,8 +173,8 @@
 }
 
 .codeBlock {
-  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
-  font-size: 13px;
+  font-family: monospace;
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
   line-height: 1.6;
   background: var(--ld-semantic-color-fill-surface-secondary, #f5f5f6);
   border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);

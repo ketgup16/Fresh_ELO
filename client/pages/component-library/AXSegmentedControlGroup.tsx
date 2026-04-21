@@ -7,26 +7,7 @@ import { User } from '@/components/icons/User';
 import { List } from '@/components/icons/List';
 import { useTranslation } from 'react-i18next';
 import styles from './AXSegmentedControlGroup.module.css';
-
-// ── Shared style constants ────────────────────────────────────────────────────
-
-const SECTION_TITLE: React.CSSProperties = {
-  fontSize: '22px',
-  fontWeight: 700,
-  fontFamily: 'var(--ld-semantic-font-family-sans)',
-  color: 'var(--ld-semantic-color-text-primary, #2e2f32)',
-  margin: '0 0 24px',
-  paddingBottom: '12px',
-  borderBottom: '1px solid var(--ld-semantic-color-separator, #e3e4e5)',
-};
-
-const DESC: React.CSSProperties = {
-  margin: '0 0 24px',
-  fontSize: '14px',
-  fontFamily: 'var(--ld-semantic-font-family-sans)',
-  color: 'var(--ld-semantic-color-text-subtle)',
-  lineHeight: 1.6,
-};
+import exStyles from '@/components/examples/ExamplePage.module.css';
 
 // ── Page ─────────────────────────────────────────────────────────────────────
 
@@ -86,8 +67,8 @@ export default function AXSegmentedControlGroupPage() {
 
         {/* ── Interactive Demo ── */}
         <div>
-          <h2 style={SECTION_TITLE}>Interactive demo</h2>
-          <p style={DESC}>
+          <h2 className={exStyles.sectionTitle}>Interactive demo</h2>
+          <p className={exStyles.desc}>
             Select 2 or 3 segments and toggle icon visibility. Click any segment in the preview to activate it.
           </p>
 
@@ -147,8 +128,8 @@ export default function AXSegmentedControlGroupPage() {
 
         {/* ── Variants ── */}
         <div>
-          <h2 style={SECTION_TITLE}>Variants</h2>
-          <p style={DESC}>
+          <h2 className={exStyles.sectionTitle}>Variants</h2>
+          <p className={exStyles.desc}>
             The Segmented Control Group supports 2 or 3 segments. Each segment expands equally to fill the container width.
           </p>
 
@@ -180,8 +161,8 @@ export default function AXSegmentedControlGroupPage() {
 
         {/* ── States ── */}
         <div>
-          <h2 style={SECTION_TITLE}>States</h2>
-          <p style={DESC}>
+          <h2 className={exStyles.sectionTitle}>States</h2>
+          <p className={exStyles.desc}>
             Each segment supports four interactive states: Unselected, Selected (activated), Pressed, and Disabled.
           </p>
 
@@ -229,7 +210,7 @@ export default function AXSegmentedControlGroupPage() {
 
         {/* ── Do / Don't ── */}
         <div>
-          <h2 style={SECTION_TITLE}>Dos and Don'ts</h2>
+          <h2 className={exStyles.sectionTitle}>Dos and Don'ts</h2>
 
           <div className={styles.dosAndDonts}>
             <div className={styles.doBlock}>
@@ -260,8 +241,8 @@ export default function AXSegmentedControlGroupPage() {
 
         {/* ── Props table ── */}
         <div>
-          <h2 style={SECTION_TITLE}>Properties</h2>
-          <p style={DESC}>Props accepted by the SegmentedControlGroup component.</p>
+          <h2 className={exStyles.sectionTitle}>Properties</h2>
+          <p className={exStyles.desc}>Props accepted by the SegmentedControlGroup component.</p>
           <div style={{ overflowX: 'auto' }}>
             <table className={styles.propsTable}>
               <thead>
@@ -290,7 +271,7 @@ export default function AXSegmentedControlGroupPage() {
             </table>
           </div>
 
-          <p style={{ ...DESC, marginTop: '24px' }}>
+          <p className={exStyles.desc} style={{ marginTop: 'var(--ld-primitive-scale-space-600, 1.5rem)' }}>
             The <code>SegmentedControlGroupSegment</code> interface:
           </p>
           <div style={{ overflowX: 'auto' }}>
@@ -323,7 +304,7 @@ export default function AXSegmentedControlGroupPage() {
 
         {/* ── Import reference ── */}
         <div>
-          <h2 style={SECTION_TITLE}>Import reference</h2>
+          <h2 className={exStyles.sectionTitle}>Import reference</h2>
           <pre className={styles.codeBlock}>{codeSnippet}</pre>
         </div>
 

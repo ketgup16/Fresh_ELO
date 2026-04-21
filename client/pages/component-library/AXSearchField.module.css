@@ -1,10 +1,9 @@
 /* ── AXSearchField docs page ────────────────────────────────── */
 
 .page {
-  padding: 32px 48px 64px;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: var(--ld-primitive-scale-space-1200, 3rem);
 }
 
 .section {
@@ -48,11 +47,11 @@
 }
 
 .searchValueDisplay code {
-  font-family: 'Courier New', monospace;
-  font-size: 13px;
-  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
+  font-family: monospace;
+  font-size: var(--ld-semantic-font-caption-size, 11px);
+  background: var(--ld-semantic-color-background-subtle);
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
   color: var(--ld-semantic-color-text);
 }
 
@@ -65,17 +64,17 @@
 .stateCard {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 20px;
+  gap: var(--ld-primitive-scale-space-300, 0.75rem);
+  padding: var(--ld-primitive-scale-space-500, 1.25rem);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
-  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-separator);
+  background: var(--ld-semantic-color-surface);
 }
 
 .stateLabel {
-  font-size: 11px;
+  font-size: var(--ld-semantic-font-caption-size, 11px);
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ld-semantic-color-text-subtle);
 }
@@ -148,19 +147,19 @@
 }
 
 .propsTable td:first-child {
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: monospace;
+  font-size: var(--ld-semantic-font-caption-size, 11px);
+  color: var(--ld-semantic-color-text-brand);
   font-weight: 700;
 }
 
 .codeBlock {
-  background: var(--ld-semantic-color-text, #2e2f32);
-  color: #e8e9ea;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 13px;
+  background: var(--ld-semantic-color-background-subtle);
+  color: var(--ld-semantic-color-text);
+  font-family: monospace;
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
   line-height: 1.6;
-  padding: 20px 24px;
+  padding: var(--ld-primitive-scale-space-500, 1.25rem) var(--ld-primitive-scale-space-600, 1.5rem);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   overflow-x: auto;
   white-space: pre;
@@ -236,8 +235,8 @@
 }
 
 .sizeHeight {
-  font-family: 'Courier New', monospace;
-  font-size: 11px;
+  font-family: monospace;
+  font-size: var(--ld-semantic-font-caption-size, 11px);
   color: var(--ld-semantic-color-text-subtle);
 }
 

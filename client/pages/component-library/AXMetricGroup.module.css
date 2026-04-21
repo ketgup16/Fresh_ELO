@@ -1,26 +1,26 @@
 .countSelector {
   display: flex;
   align-items: center;
-  gap: var(--ld-primitive-scale-space-3, 12px);
-  margin-bottom: var(--ld-primitive-scale-space-4, 16px);
+  gap: var(--ld-primitive-scale-space-300, 0.75rem);
+  margin-bottom: var(--ld-primitive-scale-space-400, 1rem);
 }
 
 .countLabel {
   font-family: var(--ld-semantic-font-family-sans);
-  font-size: 13px;
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
   font-weight: 600;
   color: var(--ld-semantic-color-text-subtle);
 }
 
 .countButtons {
   display: flex;
-  gap: var(--ld-primitive-scale-space-2, 8px);
+  gap: var(--ld-primitive-scale-space-200, 0.5rem);
 }
 
 .previewFrame {
-  padding: 32px;
-  border-radius: 8px;
-  background-color: var(--ld-semantic-color-fill-surface-primary, #ffffff);
+  padding: var(--ld-primitive-scale-space-800, 2rem);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  background: var(--ld-semantic-color-background);
   box-shadow: var(--ld-semantic-elevation-100);
   display: flex;
   align-items: center;
@@ -29,7 +29,42 @@
 
 @media (max-width: 768px) {
   .previewFrame {
-    padding: 16px;
+    padding: var(--ld-primitive-scale-space-400, 1rem);
     overflow-x: auto;
   }
+}
+
+.list {
+  margin: 0;
+  padding-left: var(--ld-primitive-scale-space-500, 1.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-200, 0.5rem);
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  color: var(--ld-semantic-color-text-subtle);
+  line-height: 1.6;
+}
+
+.list strong {
+  color: var(--ld-semantic-color-text);
+}
+
+.guidelinesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ld-primitive-scale-space-800, 2rem);
+}
+
+@media (max-width: 768px) {
+  .guidelinesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.guidelineLabel {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: 700;
+  margin: 0 0 var(--ld-primitive-scale-space-200, 0.5rem);
 }

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { AXUploadImage, UploadedImage } from '@/components/walmart/AXUploadImage';
+import { Checkbox } from '@/components/ui/Checkbox';
+import { LinkButton } from '@/components/ui/LinkButton';
 import styles from './AXUploadImage.module.css';
 
 function DemoCard({ title, note, children }: { title: string; note?: string; children: React.ReactNode }) {
@@ -25,23 +27,15 @@ function InteractiveDemo() {
         invalid={invalid}
       />
       <div className={styles.controls}>
-        <label className={styles.controlLabel}>
-          <input
-            type="checkbox"
-            checked={invalid}
-            onChange={(e) => setInvalid(e.target.checked)}
-            className={styles.controlCheckbox}
-          />
-          Show error state
-        </label>
+        <Checkbox
+          checked={invalid}
+          onCheckedChange={(v) => setInvalid(Boolean(v))}
+          label="Show error state"
+        />
         {images.length > 0 && (
-          <button
-            type="button"
-            className={styles.clearBtn}
-            onClick={() => setImages([])}
-          >
+          <LinkButton size="small" onClick={() => setImages([])}>
             Clear all ({images.length})
-          </button>
+          </LinkButton>
         )}
       </div>
     </div>

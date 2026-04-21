@@ -2,68 +2,59 @@ import React from 'react';
 import SelectExample from '@/components/examples/SelectExample';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
+import styles from './Select.module.css';
 
 export default function SelectPage() {
   const { t } = useTranslation();
   return (
-    <ComponentPageLayout section={t('componentLibrary.components')} title={t('componentLibrary.navSelect')} description={t('componentLibrary.descSelect')}>
-
-      <div style={{
-        backgroundColor: 'var(--ld-semantic-color-background, #ffffff)',
-        padding: '32px',
-        borderRadius: '8px',
-        boxShadow: 'var(--ld-semantic-elevation-100)'
-      }}>
+    <ComponentPageLayout
+      section={t('componentLibrary.components')}
+      title={t('componentLibrary.navSelect')}
+      description={t('componentLibrary.descSelect')}
+    >
+      <div className={styles.demoCard}>
         <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <SelectExample />
         </React.Suspense>
       </div>
 
-      <div style={{ marginTop: '48px' }}>
-        <h2 style={{
-          fontSize: '24px',
-          fontWeight: '600',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text, #2E2F32)',
-          marginBottom: '16px'
-        }}>
+      <div className={styles.guidelines}>
+        <h2 className={styles.guidelinesTitle}>
           {t('componentLibrary.usageGuidelines')}
         </h2>
-        
-        <div style={{ maxWidth: '800px' }}>
-          <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', marginTop: '24px' }}>
-            {t('componentLibrary.whenToUse')}
-          </h3>
-          <ul style={{ paddingLeft: '24px', lineHeight: '1.8', color: 'var(--ld-semantic-color-text-subtle, #515357)' }}>
+
+        <div className={styles.subsection}>
+          <h3 className={styles.subsectionTitle}>{t('componentLibrary.whenToUse')}</h3>
+          <ul className={styles.list}>
             <li>{t('componentLibrary.selectWhenToUse1')}</li>
             <li>{t('componentLibrary.selectWhenToUse2')}</li>
             <li>{t('componentLibrary.selectWhenToUse3')}</li>
             <li>{t('componentLibrary.selectWhenToUse4')}</li>
           </ul>
+        </div>
 
-          <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', marginTop: '24px' }}>
-            {t('componentLibrary.whenNotToUse')}
-          </h3>
-          <ul style={{ paddingLeft: '24px', lineHeight: '1.8', color: 'var(--ld-semantic-color-text-subtle, #515357)' }}>
+        <div className={styles.subsection}>
+          <h3 className={styles.subsectionTitle}>{t('componentLibrary.whenNotToUse')}</h3>
+          <ul className={styles.list}>
             <li>{t('componentLibrary.selectWhenNotToUse1')}</li>
             <li>{t('componentLibrary.selectWhenNotToUse2')}</li>
             <li>{t('componentLibrary.selectWhenNotToUse3')}</li>
           </ul>
+        </div>
 
-          <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', marginTop: '24px' }}>
-            {t('componentLibrary.accessibility')}
-          </h3>
-          <ul style={{ paddingLeft: '24px', lineHeight: '1.8', color: 'var(--ld-semantic-color-text-subtle, #515357)' }}>
+        <div className={styles.subsection}>
+          <h3 className={styles.subsectionTitle}>{t('componentLibrary.accessibility')}</h3>
+          <ul className={styles.list}>
             <li>{t('componentLibrary.selectA11y1')}</li>
             <li>{t('componentLibrary.selectA11y2')}</li>
             <li>{t('componentLibrary.selectA11y3')}</li>
             <li>{t('componentLibrary.selectA11y4')}</li>
           </ul>
+        </div>
 
-          <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '12px', marginTop: '24px' }}>
-            {t('componentLibrary.bestPractices')}
-          </h3>
-          <ul style={{ paddingLeft: '24px', lineHeight: '1.8', color: 'var(--ld-semantic-color-text-subtle, #515357)' }}>
+        <div className={styles.subsection}>
+          <h3 className={styles.subsectionTitle}>{t('componentLibrary.bestPractices')}</h3>
+          <ul className={styles.list}>
             <li>{t('componentLibrary.selectBest1')}</li>
             <li>{t('componentLibrary.selectBest2')}</li>
             <li>{t('componentLibrary.selectBest3')}</li>

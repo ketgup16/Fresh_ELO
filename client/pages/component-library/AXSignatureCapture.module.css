@@ -1,16 +1,15 @@
 /* ── AXSignatureCapture docs page ──────────────────────────── */
 
 .page {
-  padding: 32px 48px 64px;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: var(--ld-primitive-scale-space-1200, 3rem);
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--ld-primitive-scale-space-400, 1rem);
 }
 
 .sectionTitle {
@@ -63,19 +62,19 @@
 }
 
 .demoFrameLabel {
-  font-size: 11px;
+  font-size: var(--ld-semantic-font-caption-size, 11px);
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ld-semantic-color-text-subtle);
-  padding: 8px 16px;
-  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
-  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  padding: var(--ld-primitive-scale-space-200, 0.5rem) var(--ld-primitive-scale-space-400, 1rem);
+  background: var(--ld-semantic-color-background-subtle);
+  border-bottom: 1px solid var(--ld-semantic-color-separator);
 }
 
 .demoFrameContent {
-  padding: 24px;
-  background: var(--ld-semantic-color-surface, #fff);
+  padding: var(--ld-primitive-scale-space-600, 1.5rem);
+  background: var(--ld-semantic-color-surface);
 }
 
 /* ── States row ─────────────────────────────────────────────── */
@@ -83,7 +82,7 @@
 .statesRow {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: var(--ld-primitive-scale-space-600, 1.5rem);
 }
 
 /* ── Controls ───────────────────────────────────────────────── */
@@ -91,7 +90,7 @@
 .controlRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: var(--ld-primitive-scale-space-300, 0.75rem);
   align-items: center;
 }
 
@@ -127,9 +126,9 @@
 }
 
 .propsTable td:first-child {
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: monospace;
+  font-size: var(--ld-semantic-font-caption-size, 11px);
+  color: var(--ld-semantic-color-text-brand);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -137,12 +136,12 @@
 /* ── Code block ─────────────────────────────────────────────── */
 
 .codeBlock {
-  background: var(--ld-semantic-color-text, #2e2f32);
-  color: #e8e9ea;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 13px;
+  background: var(--ld-semantic-color-background-subtle);
+  color: var(--ld-semantic-color-text);
+  font-family: monospace;
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
   line-height: 1.6;
-  padding: 20px 24px;
+  padding: var(--ld-primitive-scale-space-500, 1.25rem) var(--ld-primitive-scale-space-600, 1.5rem);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
   overflow-x: auto;
   white-space: pre;
@@ -154,37 +153,37 @@
 .guidelineGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: var(--ld-primitive-scale-space-600, 1.5rem);
 }
 
 .guidelineCard {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 20px 24px;
+  gap: var(--ld-primitive-scale-space-300, 0.75rem);
+  padding: var(--ld-primitive-scale-space-500, 1.25rem) var(--ld-primitive-scale-space-600, 1.5rem);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  background: var(--ld-semantic-color-background-subtle, #f5f6f7);
-  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-background-subtle);
+  border: 1px solid var(--ld-semantic-color-separator);
 }
 
 .doLabel {
-  font-size: 12px;
+  font-size: var(--ld-semantic-font-caption-size, 11px);
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--ld-semantic-color-text-positive, #1a7a34);
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--ld-semantic-color-text-positive, #1a7a34);
+  color: var(--ld-semantic-color-text-positive);
+  padding-bottom: var(--ld-primitive-scale-space-200, 0.5rem);
+  border-bottom: 2px solid var(--ld-semantic-color-text-positive);
 }
 
 .dontLabel {
-  font-size: 12px;
+  font-size: var(--ld-semantic-font-caption-size, 11px);
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--ld-semantic-color-text-negative, #c00);
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--ld-semantic-color-text-negative, #c00);
+  color: var(--ld-semantic-color-text-negative);
+  padding-bottom: var(--ld-primitive-scale-space-200, 0.5rem);
+  border-bottom: 2px solid var(--ld-semantic-color-text-negative);
 }
 
 .guidelineText {
@@ -199,8 +198,7 @@
 
 @media (max-width: 768px) {
   .page {
-    padding: 24px 16px 48px;
-    gap: 32px;
+    gap: var(--ld-primitive-scale-space-800, 2rem);
   }
 
   .guidelineGrid {
