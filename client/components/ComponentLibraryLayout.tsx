@@ -160,7 +160,6 @@ const navigationSections: NavSection[] = [
     items: [
       { id: 'accordion', nameKey: 'componentLibrary.navAccordion', path: '/component-library/accordion' },
       { id: 'alert-dialog', nameKey: 'componentLibrary.navAlertDialog', path: '/component-library/alert-dialog' },
-      { id: 'avatar', nameKey: 'componentLibrary.navAvatar', path: '/component-library/avatar' },
       { id: 'carousel', nameKey: 'componentLibrary.navCarousel', path: '/component-library/carousel' },
       { id: 'chart', nameKey: 'componentLibrary.navChart', path: '/component-library/chart' },
       { id: 'collapsible', nameKey: 'componentLibrary.navCollapsible', path: '/component-library/collapsible' },

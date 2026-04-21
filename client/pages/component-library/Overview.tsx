@@ -136,7 +136,6 @@ const componentSections: ComponentEntry[] = [
   { titleKey: 'componentLibrary.navHeaderSection', descKey: 'componentLibrary.descHeaderSection', path: '/component-library/header-section', icon: 'List', section: 'ld' },
   // ── Shared Components ──
   { titleKey: 'componentLibrary.navAlertDialog', descKey: 'componentLibrary.descAlertDialog', path: '/component-library/alert-dialog', icon: 'ExclamationCircle', section: 'shadcn' },
-  { titleKey: 'componentLibrary.navAvatar', descKey: 'componentLibrary.descAvatar', path: '/component-library/avatar', icon: 'Circle', section: 'shadcn' },
   { titleKey: 'componentLibrary.navCalendar', descKey: 'componentLibrary.descCalendar', path: '/component-library/calendar', icon: 'Calendar', section: 'shadcn' },
   { titleKey: 'componentLibrary.navCarousel', descKey: 'componentLibrary.descCarousel', path: '/component-library/carousel', icon: 'ArrowRight', section: 'shadcn' },
   { titleKey: 'componentLibrary.navCollapsible', descKey: 'componentLibrary.descCollapsible', path: '/component-library/collapsible', icon: 'ChevronDown', section: 'shadcn' },

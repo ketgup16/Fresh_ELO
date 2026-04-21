@@ -60,7 +60,6 @@ const GettingStartedPage = React.lazy(() => import("./pages/component-library/Ge
 // Shadcn/Radix component pages (lazy loaded to avoid blocking initial render)
 const AccordionPage = React.lazy(() => import("./pages/component-library/Accordion"));
 const AlertDialogPage = React.lazy(() => import("./pages/component-library/AlertDialog"));
-const AvatarPage = React.lazy(() => import("./pages/component-library/Avatar"));
 const AXAvatarPage = React.lazy(() => import("./pages/component-library/AXAvatar"));
 const AXAvatarButtonPage = React.lazy(() => import("./pages/component-library/AXAvatarButton"));
 const AXAttributePage = React.lazy(() => import("./pages/component-library/AXAttribute"));
@@ -220,7 +219,6 @@ const App = () => (
                 {/* Shadcn/Radix Components */}
                 <Route path="accordion" element={<AccordionPage />} />
                 <Route path="alert-dialog" element={<AlertDialogPage />} />
-                <Route path="avatar" element={<AvatarPage />} />
                 <Route path="ax-avatar" element={<AXAvatarPage />} />
                 <Route path="ax-avatar-button" element={<AXAvatarButtonPage />} />
                 <Route path="ax-attribute" element={<AXAttributePage />} />
