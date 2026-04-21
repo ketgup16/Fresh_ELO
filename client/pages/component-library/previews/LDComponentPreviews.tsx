@@ -6,7 +6,6 @@ import { Alert } from '@/components/ui/Alert';
 import { Chip } from '@/components/ui/Chip';
 import { FilterChip } from '@/components/ui/FilterChip';
 import { Spinner } from '@/components/ui/Spinner';
-import { BasicBanner } from '@/components/ui/BasicBanner';
 import { PreviewFrame } from './PreviewFrame';
 
 export function AlertsPreview() {
@@ -585,15 +584,6 @@ export function SkeletonPreview() {
   );
 }
 
-export function BasicBannerPreview() {
-  return (
-    <PreviewFrame>
-      <div style={{ width: '200px', transform: 'scale(0.9)', transformOrigin: 'center' }}>
-        <BasicBanner variant="default" text="Free delivery on orders $35+" />
-      </div>
-    </PreviewFrame>
-  );
-}
 
 export function SegmentedControlPreview() {
   return (

@@ -71,7 +71,6 @@ const PREVIEW_MAP: Record<string, React.FC> = {
   'Callouts': LD.CalloutsPreview,
   'Bottom Sheet': LD.BottomSheetPreview,
   'Skeleton': LD.SkeletonPreview,
-  'Basic Banner': LD.BasicBannerPreview,
   'Segmented Control': LD.SegmentedControlPreview,
   'Quantity Stepper': LD.QuantityStepperPreview,
   'Floating Button': LD.FloatingButtonPreview,

@@ -98,7 +98,6 @@ const TextAreaPage = React.lazy(() => import("./pages/component-library/TextArea
 const TextFieldsPage = React.lazy(() => import("./pages/component-library/TextFields"));
 const ThemesPage = React.lazy(() => import("./pages/component-library/Themes"));
 const TogglePage = React.lazy(() => import("./pages/component-library/Toggle"));
-const BasicBannerPage = React.lazy(() => import("./pages/component-library/BasicBanner"));
 const DesignTokensPage = React.lazy(() => import("./pages/component-library/DesignTokens"));
 const ThemeEditorPage = React.lazy(() => import("./pages/component-library/ThemeEditorPage"));
 const FooterPatternsPage = React.lazy(() => import("./pages/component-library/FooterPatterns"));
@@ -257,7 +256,6 @@ const App = () => (
                 <Route path="tabs" element={<TabsPage />} />
                 <Route path="tags" element={<TagsPage />} />
                 <Route path="toggle" element={<TogglePage />} />
-                <Route path="basic-banner" element={<BasicBannerPage />} />
                 <Route path="theme-editor" element={<ThemeEditorPage />} />
                 <Route path="project-settings" element={<ProjectSettingsPage />} />
                 <Route path="footer-patterns" element={<FooterPatternsPage />} />
