@@ -48,7 +48,8 @@ const SIZE_DIM: Record<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge', strin
 // Sizes below 48px need an expanded transparent hit slot for iOS/Android a11y minimum touch target.
 // Large (48px) and XLarge (64px) already meet the requirement.
 const NEEDS_HIT_SLOT = new Set(['xsmall', 'small', 'medium']);
-const HIT_SLOT_PX = '48px';
+// 48px minimum touch target — matches --ld-primitive-scale-space-600
+const HIT_SLOT_SIZE = 'var(--ld-primitive-scale-space-600, 3rem)';
 
 export function AXAvatarButton({
   indicator = 'none',
@@ -86,14 +87,14 @@ export function AXAvatarButton({
         alignItems: 'center',
         justifyContent: 'center',
         // Expand to 48×48 transparent hit slot for sizes below the a11y minimum
-        ...(needsHitSlot ? { minWidth: HIT_SLOT_PX, minHeight: HIT_SLOT_PX } : { borderRadius: '50%' }),
+        ...(needsHitSlot ? { minWidth: HIT_SLOT_SIZE, minHeight: HIT_SLOT_SIZE } : { borderRadius: '50%' }),
         outline: 'none',
         ...style,
       }}
       onFocus={() => {
         // Apply focus ring to the avatar circle (not the full hit-slot button)
         if (avatarRef.current) {
-          avatarRef.current.style.boxShadow = '0 0 0 3px var(--ld-semantic-color-border-focus, #0071CE)';
+          avatarRef.current.style.boxShadow = '0 0 0 var(--ld-semantic-focus-ring-width, 0.125rem) var(--ld-semantic-focus-ring-color, #0053e2)';
         }
       }}
       onBlur={() => {
