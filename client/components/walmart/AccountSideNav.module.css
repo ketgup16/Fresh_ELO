@@ -38,7 +38,7 @@
   font-weight: 400;
   color: var(--ld-semantic-color-text-brand-bold);
   line-height: 16px;
-  margin: 0;
+  margin: 0 auto 0 0;
   padding-left: 40px;
 }
 
