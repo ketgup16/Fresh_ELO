@@ -75,14 +75,10 @@ const navigationSections: NavSection[] = [
     titleKey: 'componentLibrary.wcpComponents',
     items: [
       { id: 'ax-button-groups', nameKey: 'componentLibrary.navAXButtonGroups', path: '/component-library/ax-button-groups' },
-      { id: 'ax-floating-button', nameKey: 'componentLibrary.navAXFloatingButton', path: '/component-library/ax-floating-button' },
       { id: 'ax-heart-view', nameKey: 'componentLibrary.navAXHeartView', path: '/component-library/ax-heart-view' },
-      { id: 'ax-rating', nameKey: 'componentLibrary.navAXRating', path: '/component-library/ax-rating' },
       { id: 'ax-search-bar', nameKey: 'componentLibrary.navAXSearchBar', path: '/component-library/ax-search-bar' },
       { id: 'ax-search-field', nameKey: 'componentLibrary.navAXSearchField', path: '/component-library/ax-search-field' },
       { id: 'ax-signature-capture', nameKey: 'componentLibrary.navAXSignatureCapture', path: '/component-library/ax-signature-capture' },
-      { id: 'ax-rich-media-sheet', nameKey: 'componentLibrary.navAXRichMediaSheet', path: '/component-library/ax-rich-media-sheet' },
-      { id: 'ax-upload-image', nameKey: 'componentLibrary.navAXUploadImage', path: '/component-library/ax-upload-image' },
       { id: 'ax-avatar', nameKey: 'componentLibrary.navAXAvatar', path: '/component-library/ax-avatar' },
       { id: 'ax-avatar-button', nameKey: 'componentLibrary.navAXAvatarButton', path: '/component-library/ax-avatar-button' },
       { id: 'ax-attribute', nameKey: 'componentLibrary.navAXAttribute', path: '/component-library/ax-attribute' },
@@ -91,6 +87,16 @@ const navigationSections: NavSection[] = [
       { id: 'intelligent-recommendation', nameKey: 'componentLibrary.navIntelligentRecommendation', path: '/component-library/intelligent-recommendation' },
     ],
     subGroups: [
+      {
+        id: 'shared',
+        titleKey: 'componentLibrary.sharedCategory',
+        items: [
+          { id: 'ax-floating-button', nameKey: 'componentLibrary.navAXFloatingButton', path: '/component-library/ax-floating-button' },
+          { id: 'ax-rating', nameKey: 'componentLibrary.navAXRating', path: '/component-library/ax-rating' },
+          { id: 'ax-rich-media-sheet', nameKey: 'componentLibrary.navAXRichMediaSheet', path: '/component-library/ax-rich-media-sheet' },
+          { id: 'ax-upload-image', nameKey: 'componentLibrary.navAXUploadImage', path: '/component-library/ax-upload-image' },
+        ],
+      },
       {
         id: 'header',
         titleKey: 'componentLibrary.headerCategory',
