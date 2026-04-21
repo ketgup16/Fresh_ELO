@@ -77,7 +77,7 @@
     "sharedSection": "Shared Components",
     "sharedBadge": "Shared",
     "gettingStarted": "Getting Started",
-    "components": "Components",
+    "components": "LD Components",
     "overviewTitle": "Living Design 3.5",
     "overviewDescription": "A comprehensive component library for Walmart. Each component follows the Living Design 3.5 specification with proper accessibility, semantic tokens, and responsive behavior.",
     "sandboxTitle": "Component Sandbox",
