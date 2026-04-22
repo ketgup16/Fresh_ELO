@@ -1,15 +1,17 @@
-/* ── Shell ──────────────────────────────────────────────────────── */
+/* ── Shell — matches LD QuantityStepper secondary/medium/expanded ── */
 .stepper {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  width: 244px;
+  justify-content: center;
+  gap: 2px;
+  padding: 2px;
   height: 40px;
-  padding: 0 var(--ld-primitive-scale-space-200, 16px);
-  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
-  border: var(--ld-semantic-scale-borderwidth-interactive, 1px) solid
-    var(--ld-semantic-color-action-border-secondary, #0071dc);
+  min-width: 244px;
+  border-radius: 9999px;
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif);
   background: var(--ld-semantic-color-action-fill-secondary, #ffffff);
+  color: var(--ld-semantic-color-action-text-onfill-secondary, #2e2f32);
+  border: 1.5px solid var(--ld-semantic-color-action-border-secondary, #2e2f32);
   box-sizing: border-box;
 }
 
@@ -18,29 +20,39 @@
   pointer-events: none;
 }
 
-/* ── Icon buttons ───────────────────────────────────────────────── */
+/* ── Icon buttons — matches LD iconBtn / iconBtn--medium ─────────── */
 .iconBtn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--ld-semantic-scale-icon-small, 16px);
-  height: var(--ld-semantic-scale-icon-small, 16px);
+  width: 36px;
+  height: 36px;
   flex-shrink: 0;
-  background: none;
   border: none;
+  border-radius: 9999px;
   padding: 0;
   cursor: pointer;
-  color: var(--ld-semantic-color-action-text-onfill-secondary, #2e2f32);
-  border-radius: var(--ld-primitive-scale-borderradius-50, 4px);
+  background: transparent;
+  color: inherit;
+  transition: background-color 0.15s ease;
+}
+
+.iconBtn:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-action-focus-outline, #0053e2);
+  outline-offset: 2px;
+}
+
+.iconBtn:hover:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-secondary-hovered, #f0f0f1);
+}
+
+.iconBtn:active:not(:disabled) {
+  background: var(--ld-semantic-color-action-fill-secondary-pressed, #e0e0e2);
 }
 
 .iconBtn:disabled {
-  opacity: 0.3;
   cursor: not-allowed;
-}
-
-.iconBtn:not(:disabled):hover {
-  color: var(--ld-semantic-color-action-text-primary, #0071dc);
+  opacity: 0.4;
 }
 
 /* ── Center label area ──────────────────────────────────────────── */
@@ -49,7 +61,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 24px;
   overflow: hidden;
 }
 
@@ -57,55 +68,36 @@
 .quantityLabels {
   display: flex;
   align-items: center;
-  gap: var(--ld-primitive-scale-space-50, 4px);
+  gap: 4px;
+  white-space: nowrap;
 }
 
 /* ── Label group (value + unit together) ────────────────────────── */
 .labelGroup {
   display: flex;
   align-items: center;
-  gap: var(--ld-primitive-scale-space-25, 2px);
+  gap: 1px;
 }
 
-/* ── Bold value (current) ───────────────────────────────────────── */
-.valueBold {
-  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-action-weight, 700);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
-  color: var(--ld-semantic-color-action-text-onfill-secondary, #2e2f32);
-  font-kerning: none;
-  text-align: center;
-}
-
-/* ── Bold unit (h, m, ea, %) ────────────────────────────────────── */
+/* ── Bold value + unit (current) ────────────────────────────────── */
+.valueBold,
 .unitBold {
-  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-action-weight, 700);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
   color: var(--ld-semantic-color-action-text-onfill-secondary, #2e2f32);
   font-kerning: none;
   text-align: center;
 }
 
-/* ── Regular value (target) ─────────────────────────────────────── */
-.valueRegular {
-  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
-  color: var(--ld-semantic-color-action-text-onfill-secondary, #2e2f32);
-  font-kerning: none;
-  text-align: center;
-}
-
-/* ── Regular unit ───────────────────────────────────────────────── */
+/* ── Regular value + unit (target "of X") ───────────────────────── */
+.valueRegular,
 .unitRegular {
-  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--ld-semantic-color-action-text-onfill-secondary, #2e2f32);
   font-kerning: none;
   text-align: center;
@@ -113,10 +105,17 @@
 
 /* ── "of" separator ─────────────────────────────────────────────── */
 .ofSeparator {
-  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
+  font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--ld-semantic-color-action-text-onfill-secondary, #2e2f32);
   text-align: center;
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .iconBtn {
+    transition: none;
+  }
 }

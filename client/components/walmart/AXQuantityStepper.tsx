@@ -175,7 +175,7 @@ export function AXQuantityStepper({
       role="group"
       aria-label={`Quantity stepper — ${labelStyle}`}
     >
-      {/* Decrement */}
+      {/* Decrement — same icon as LD QuantityStepper medium */}
       <button
         type="button"
         className={styles.iconBtn}
@@ -183,9 +183,8 @@ export function AXQuantityStepper({
         disabled={disabled || !canDecrement}
         onClick={handleDecrement}
       >
-        {/* Minus icon */}
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M13 8.5H3V7.5H13V8.5Z" fill="currentColor" />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M19.5 12.7495H4.5V11.2495H19.5V12.7495Z" fill="currentColor" />
         </svg>
       </button>
 
@@ -194,7 +193,7 @@ export function AXQuantityStepper({
         {renderLabel()}
       </div>
 
-      {/* Increment */}
+      {/* Increment — same icon as LD QuantityStepper medium */}
       <button
         type="button"
         className={styles.iconBtn}
@@ -202,9 +201,8 @@ export function AXQuantityStepper({
         disabled={disabled || !canIncrement}
         onClick={handleIncrement}
       >
-        {/* Plus icon */}
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M7.5 8.5V13H8.5V8.5H13V7.5H8.5V3H7.5V7.5H3V8.5H7.5Z" fill="currentColor" />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M11.25 12.75V19.5H12.75V12.75H19.5V11.25H12.75V4.5H11.25V11.25H4.5V12.75H11.25Z" fill="currentColor" />
         </svg>
       </button>
     </div>
