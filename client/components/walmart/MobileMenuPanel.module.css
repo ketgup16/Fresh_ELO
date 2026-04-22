@@ -76,9 +76,20 @@
   align-items: stretch;
 }
 
-/* Dividers only BETWEEN tiles, not on outer edges */
+/* Centered brand dividers only BETWEEN tiles */
 .actionTiles > * + * {
-  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  position: relative;
+}
+
+.actionTiles > * + *::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 1px;
+  background: var(--ld-semantic-color-border-brand, #0071dc);
+  opacity: 0.4;
 }
 
 /* ── Body ── */
