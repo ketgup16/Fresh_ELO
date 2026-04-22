@@ -113,6 +113,21 @@
 
 .clockButton {
   flex: 1;
+  background-color: var(--ld-semantic-color-top-nav-fill-pressed) !important;
+  border-color: var(--ld-semantic-color-top-nav-fill-pressed) !important;
+  color: var(--ld-semantic-color-top-nav-text-on-fill) !important;
+}
+
+.clockButton:hover:not(:disabled) {
+  background-color: var(--ld-semantic-color-top-nav-fill-hovered) !important;
+  border-color: var(--ld-semantic-color-top-nav-fill-hovered) !important;
+  color: var(--ld-semantic-color-top-nav-text-on-fill-hovered) !important;
+}
+
+.clockButton:active:not(:disabled) {
+  background-color: var(--ld-semantic-color-top-nav-fill-focused) !important;
+  border-color: var(--ld-semantic-color-top-nav-fill-focused) !important;
+  color: var(--ld-semantic-color-top-nav-text-on-fill-focused) !important;
 }
 
 /* ── Desktop ────────────────────────────────── */
@@ -135,5 +150,8 @@
 
   .clockButton {
     flex: none;
+    background-color: var(--ld-semantic-color-top-nav-fill-pressed) !important;
+    border-color: var(--ld-semantic-color-top-nav-fill-pressed) !important;
+    color: var(--ld-semantic-color-top-nav-text-on-fill) !important;
   }
 }
