@@ -60,7 +60,7 @@
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
   background: var(--ld-semantic-color-border-positive, #2a8703);
   flex-shrink: 0;
-  box-shadow: 0 0 0 2px var(--ld-semantic-color-topnav-fill, #0a1f5c), 0 0 0 3.5px rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 1.5px var(--ld-semantic-color-border-positive, #2a8703), 0 0 0 3px rgba(255, 255, 255, 1);
 }
 
 .timeClockLabel {
