@@ -54,6 +54,7 @@ interface HighlightState {
 
 interface TooltipData {
   tag: string;
+  componentName: string | null;
   width: number;
   height: number;
   padding: [string, string, string, string];
@@ -66,6 +67,42 @@ interface TooltipData {
   fontWeight: string;
   lineHeight: string;
   textColor: string;
+}
+
+// ── Extract component name from React fiber tree ──────────────────────────────
+function getReactComponentName(el: HTMLElement): string | null {
+  const fiberKey = Object.keys(el).find(k => k.startsWith('__reactFiber$'));
+  if (!fiberKey) return null;
+  let fiber = (el as any)[fiberKey];
+  while (fiber) {
+    const type = fiber.type;
+    if (type && typeof type === 'function') {
+      const name = type.displayName || type.name;
+      if (name && name !== 'Anonymous' && !/^[a-z]/.test(name)) {
+        return name;
+      }
+    }
+    fiber = fiber.return;
+  }
+  return null;
+}
+
+// ── Extract component name from data-loc attribute ────────────────────────────
+function getDataLocComponentName(el: HTMLElement): string | null {
+  let current: HTMLElement | null = el;
+  while (current) {
+    const loc = current.getAttribute('data-loc');
+    if (loc) {
+      const match = loc.match(/\/([A-Z][A-Za-z0-9]+)\.tsx:/);
+      if (match) return match[1];
+    }
+    current = current.parentElement;
+  }
+  return null;
+}
+
+function resolveComponentName(el: HTMLElement): string | null {
+  return getReactComponentName(el) ?? getDataLocComponentName(el);
 }
 
 // Color tokens for box-model layers
@@ -145,6 +182,7 @@ export function GlobalMeasureTool() {
 
     setTooltip({
       tag,
+      componentName: resolveComponentName(el),
       width: Math.round(rect.width),
       height: Math.round(rect.height),
       padding: [computed.paddingTop, computed.paddingRight, computed.paddingBottom, computed.paddingLeft],
@@ -214,6 +252,24 @@ export function GlobalMeasureTool() {
     setGapRects([]);
   }, []);
 
+  // Double-Esc to toggle
+  useEffect(() => {
+    let lastEsc = 0;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        const now = Date.now();
+        if (now - lastEsc < 500) {
+          setActive(a => !a);
+          lastEsc = 0;
+        } else {
+          lastEsc = now;
+        }
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   useEffect(() => {
     if (!active) {
       setHighlight(null);
@@ -234,7 +290,7 @@ export function GlobalMeasureTool() {
 
   // Clamp tooltip so it stays in viewport
   const TIP_W = 260;
-  const TIP_H = tooltip?.showType ? 240 : 160;
+  const TIP_H = tooltip?.showType ? 260 : 180;
   const tipX = mouse.x + 16 + TIP_W > window.innerWidth  ? mouse.x - TIP_W - 8 : mouse.x + 16;
   const tipY = mouse.y + 16 + TIP_H > window.innerHeight ? mouse.y - TIP_H - 8 : mouse.y + 16;
 
@@ -248,8 +304,8 @@ export function GlobalMeasureTool() {
         data-measure-ignore="true"
         className={`${styles.fab} ${active ? styles.fabActive : ''}`}
         onClick={() => setActive(a => !a)}
-        aria-label={active ? 'Deactivate measure tool' : 'Activate measure tool'}
-        title="Measure tool"
+        aria-label={active ? 'Deactivate measure tool (Esc Esc)' : 'Activate measure tool (Esc Esc)'}
+        title="Measure tool — press Esc Esc to toggle"
       >
         <RulerIcon />
         <span className={styles.fabLabel}>{active ? 'Measuring' : 'Measure'}</span>
@@ -321,7 +377,13 @@ export function GlobalMeasureTool() {
               className={styles.tooltip}
               style={{ top: tipY, left: tipX }}
             >
-              <div className={styles.tooltipTag}>{tooltip.tag}</div>
+              {tooltip.componentName && (
+                <div className={styles.componentName}>
+                  <span className={styles.componentIcon}>⬡</span>
+                  {tooltip.componentName}
+                </div>
+              )}
+              <div className={styles.tooltipTag}>&lt;{tooltip.tag}&gt;</div>
               <div className={styles.divider} />
 
               {/* Size row */}
