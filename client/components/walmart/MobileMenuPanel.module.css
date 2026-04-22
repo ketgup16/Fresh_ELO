@@ -38,9 +38,8 @@
   flex-shrink: 0;
   background: var(--ld-semantic-color-topnav-fill, #0a1f5c);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-400, 16px);
+  flex-direction: column;
+  align-items: stretch;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -51,15 +50,17 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: var(--ld-primitive-scale-space-100, 4px) 0;
+  padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-400, 16px);
+  align-self: flex-start;
 }
 
 .timeClockDot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
   background: var(--ld-semantic-color-border-positive, #2a8703);
   flex-shrink: 0;
+  box-shadow: 0 0 0 2px var(--ld-semantic-color-topnav-fill, #0a1f5c), 0 0 0 3.5px var(--ld-semantic-color-border-positive, #2a8703);
 }
 
 .timeClockLabel {
@@ -72,8 +73,12 @@
 
 .actionTiles {
   display: flex;
-  align-items: center;
-  gap: var(--ld-primitive-scale-space-100, 4px);
+  align-items: stretch;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.actionTiles > * + * {
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 /* ── Body ── */
