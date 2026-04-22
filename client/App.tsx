@@ -12,6 +12,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LayoutSettingsProvider } from "@/contexts/LayoutSettingsContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
+import { DevToolbar } from "./components/DevToolbar";
 
 import React from 'react';
 import { Navigate } from 'react-router-dom';
@@ -167,6 +168,7 @@ const App = () => (
       <SnackbarContainer />
       <AgentProvider>
       <MartyProvider>
+          <DevToolbar />
           <BrowserRouter>
             <React.Suspense fallback={LazyFallback}>
             {import.meta.env.DEV && <RouteWatcher />}

@@ -1,7 +1,7 @@
 .widget {
   background-color: var(--ld-semantic-color-top-nav-fill, #0053e2);
   color: var(--ld-semantic-color-text-on-fill-brand, #fff);
-  padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px);
+  padding: var(--ld-primitive-scale-space-300, 12px) 16px;
 }
 
 .inner {
@@ -134,7 +134,7 @@
 /* ── Desktop ────────────────────────────────── */
 @media (min-width: 768px) {
   .widget {
-    padding: var(--ld-primitive-scale-space-400, 16px);
+    padding: 16px;
   }
 
   .illustration {
