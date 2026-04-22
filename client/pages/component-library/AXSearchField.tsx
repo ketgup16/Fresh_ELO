@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { AXSearchField, AXSearchFieldSize, AXSearchFieldCornerStyle } from '@/components/walmart/AXSearchField';
 import styles from './AXSearchField.module.css';
+import exStyles from '@/components/examples/ExamplePage.module.css';
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h2 className={styles.sectionTitle}>{children}</h2>;
+  return <h2 className={exStyles.sectionTitle}>{children}</h2>;
 }
 
 function SectionDesc({ children }: { children: React.ReactNode }) {
-  return <p className={styles.sectionDesc}>{children}</p>;
+  return <p className={exStyles.desc}>{children}</p>;
 }
 
 export default function AXSearchFieldPage() {
@@ -21,10 +22,10 @@ export default function AXSearchFieldPage() {
       title="Search Field"
       description="Inline page search component positioned within a page — not used for global navigation. Supports two breakpoints (0–899px and 900+px) and states: Enabled, Hovered, Activated (empty & with value), and Disabled."
     >
-      <div className={styles.page}>
+      <div className={exStyles.pageGap}>
 
         {/* ── Overview ─────────────────────────────────────────── */}
-        <div className={styles.section}>
+        <div className={exStyles.section}>
           <SectionTitle>Overview</SectionTitle>
           <SectionDesc>
             The AX Search Field is an inline search field for filtering content within a page. It
@@ -36,7 +37,7 @@ export default function AXSearchFieldPage() {
         </div>
 
         {/* ── Interactive Demo ─────────────────────────────────── */}
-        <div className={styles.section}>
+        <div className={exStyles.section}>
           <SectionTitle>Interactive Demo</SectionTitle>
           <SectionDesc>
             Try typing to activate the search field. The clear button appears once text is entered,
@@ -59,7 +60,7 @@ export default function AXSearchFieldPage() {
         </div>
 
         {/* ── States ───────────────────────────────────────────── */}
-        <div className={styles.section}>
+        <div className={exStyles.section}>
           <SectionTitle>States</SectionTitle>
           <SectionDesc>
             The search field has four interaction states. Hover is desktop-only (900+px). The
@@ -156,7 +157,7 @@ export default function AXSearchFieldPage() {
         </div>
 
         {/* ── Corner Style ─────────────────────────────────────────── */}
-        <div className={styles.section}>
+        <div className={exStyles.section}>
           <SectionTitle>Corner Style</SectionTitle>
           <SectionDesc>
             Two corner style variants are available via the <code>cornerStyle</code> prop.
@@ -187,7 +188,7 @@ export default function AXSearchFieldPage() {
         </div>
 
         {/* ── Sizes ────────────────────────────────────────────────── */}
-        <div className={styles.section}>
+        <div className={exStyles.section}>
           <SectionTitle>Sizes</SectionTitle>
           <SectionDesc>
             Four height variants are available via the <code>size</code> prop. X Small and Small
@@ -246,7 +247,7 @@ export default function AXSearchFieldPage() {
         </div>
 
         {/* ── Breakpoints ───────────────────────────────────────── */}
-        <div className={styles.section}>
+        <div className={exStyles.section}>
           <SectionTitle>Breakpoints</SectionTitle>
           <SectionDesc>
             The component automatically adapts between two breakpoints. At 900+px (desktop) the
@@ -296,7 +297,7 @@ export default function AXSearchFieldPage() {
         </div>
 
         {/* ── Component Props ───────────────────────────────────── */}
-        <div className={styles.section}>
+        <div className={exStyles.section}>
           <SectionTitle>Component Props</SectionTitle>
           <table className={styles.propsTable}>
             <thead>
@@ -326,7 +327,7 @@ export default function AXSearchFieldPage() {
         </div>
 
         {/* ── Usage ─────────────────────────────────────────────── */}
-        <div className={styles.section}>
+        <div className={exStyles.section}>
           <SectionTitle>Usage</SectionTitle>
           <pre className={styles.codeBlock}>{`import { AXSearchField } from '@/components/walmart/AXSearchField';
 
@@ -346,7 +347,7 @@ function MyPage() {
         </div>
 
         {/* ── Guidelines ───────────────────────────────────────── */}
-        <div className={styles.section}>
+        <div className={exStyles.section}>
           <SectionTitle>Guidelines</SectionTitle>
           <div className={styles.guidelineGrid}>
             <div className={styles.guidelineCard}>

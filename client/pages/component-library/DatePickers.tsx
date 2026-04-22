@@ -8,6 +8,7 @@ import {
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 import styles from './DatePickers.module.css';
+import pageStyles from '@/components/examples/ExamplePage.module.css';
 
 export default function DatePickersPage() {
   const { t } = useTranslation();
@@ -18,21 +19,25 @@ export default function DatePickersPage() {
       description={t('componentLibrary.descDatePickers')}
     >
 
+      <div className={pageStyles.pageGap}>
       {/* ── DatePicker (existing) ── */}
-      <div className={styles.card}>
+      <div className={pageStyles.section}>
+        <h2 className={pageStyles.sectionTitle}>Component Demo</h2>
+      <div className={pageStyles.demoFrame}>
         <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
           <DatePickerExample />
         </React.Suspense>
       </div>
+      </div>
 
       {/* ── DaySelector ── */}
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>DaySelector</h2>
-        <p className={styles.sectionDesc}>
+      <div className={pageStyles.section}>
+        <h2 className={pageStyles.sectionTitle}>DaySelector</h2>
+        <p className={pageStyles.desc}>
           Horizontal row of circular day buttons. Supports single-select (radio behaviour) and multi-select (checkbox behaviour). Use it alongside <code>TimeSelector</code> for scheduling flows like delivery window or appointment booking.
         </p>
 
-        <div className={styles.card}>
+        <div className={pageStyles.demoFrame}>
           <DaySelectorStates />
         </div>
 
@@ -61,13 +66,13 @@ export default function DatePickersPage() {
       </div>
 
       {/* ── TimeSelector ── */}
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>TimeSelector</h2>
-        <p className={styles.sectionDesc}>
+      <div className={pageStyles.section}>
+        <h2 className={pageStyles.sectionTitle}>TimeSelector</h2>
+        <p className={pageStyles.desc}>
           A vertically-stacked list of radio-style time slot options. The unselected state uses a subtle brand-tinted background; the selected state highlights the row with a branded border and bold label. Pair with <code>DaySelector</code> to build a delivery or appointment scheduling UI.
         </p>
 
-        <div className={styles.card} style={{ maxWidth: 480 }}>
+        <div className={pageStyles.demoFrame} style={{ maxWidth: 480 }}>
           <TimeSelectorStates />
         </div>
 
@@ -95,13 +100,13 @@ export default function DatePickersPage() {
       </div>
 
       {/* ── Combined scheduler ── */}
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>Delivery Scheduler — Combined example</h2>
-        <p className={styles.sectionDesc}>
+      <div className={pageStyles.section}>
+        <h2 className={pageStyles.sectionTitle}>Delivery Scheduler — Combined example</h2>
+        <p className={pageStyles.desc}>
           Full scheduling flow combining <code>DaySelector</code> and <code>TimeSelector</code>. The available time slots update based on the selected day, and a confirmation strip appears once both day and time are chosen.
         </p>
 
-        <div className={styles.card}>
+        <div className={pageStyles.demoFrame}>
           <DeliverySchedulerExample />
         </div>
 
@@ -113,6 +118,7 @@ export default function DatePickersPage() {
         </div>
       </div>
 
+      </div>
     </ComponentPageLayout>
   );
 }

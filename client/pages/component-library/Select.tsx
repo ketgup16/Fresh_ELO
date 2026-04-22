@@ -3,6 +3,7 @@ import SelectExample from '@/components/examples/SelectExample';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { useTranslation } from 'react-i18next';
 import styles from './Select.module.css';
+import exStyles from '@/components/examples/ExamplePage.module.css';
 
 export default function SelectPage() {
   const { t } = useTranslation();
@@ -12,16 +13,20 @@ export default function SelectPage() {
       title={t('componentLibrary.navSelect')}
       description={t('componentLibrary.descSelect')}
     >
-      <div className={styles.demoCard}>
-        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
-          <SelectExample />
-        </React.Suspense>
-      </div>
+      <div className={exStyles.pageGap}>
+        <div className={exStyles.section}>
+          <h2 className={exStyles.sectionTitle}>Component Demo</h2>
+          <div className={exStyles.demoFrame}>
+            <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
+              <SelectExample />
+            </React.Suspense>
+          </div>
+        </div>
 
-      <div className={styles.guidelines}>
-        <h2 className={styles.guidelinesTitle}>
-          {t('componentLibrary.usageGuidelines')}
-        </h2>
+        <div className={exStyles.section}>
+          <h2 className={exStyles.sectionTitle}>
+            {t('componentLibrary.usageGuidelines')}
+          </h2>
 
         <div className={styles.subsection}>
           <h3 className={styles.subsectionTitle}>{t('componentLibrary.whenToUse')}</h3>
@@ -63,6 +68,7 @@ export default function SelectPage() {
             <li>{t('componentLibrary.selectBest6')}</li>
             <li>{t('componentLibrary.selectBest7')}</li>
           </ul>
+        </div>
         </div>
       </div>
     </ComponentPageLayout>

@@ -7,6 +7,7 @@ import {
 } from '@/components/walmart/AXRichMediaSheet';
 import { Button } from '@/components/ui/Button';
 import styles from './AXRichMediaSheet.module.css';
+import exStyles from '@/components/examples/ExamplePage.module.css';
 
 // ── Demo Data ─────────────────────────────────────────────────────────────
 
@@ -29,11 +30,11 @@ const SURFACE_VARIANTS: { label: string; value: AXRichMediaSheetSurfaceVariant; 
 // ── Sub-components ────────────────────────────────────────────────────────
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h2 className={styles.sectionTitle}>{children}</h2>;
+  return <h2 className={exStyles.sectionTitle}>{children}</h2>;
 }
 
 function SectionDesc({ children }: { children: React.ReactNode }) {
-  return <p className={styles.sectionDesc}>{children}</p>;
+  return <p className={exStyles.desc}>{children}</p>;
 }
 
 function DemoCard({ title, children, note }: { title: string; children: React.ReactNode; note?: string }) {
@@ -180,10 +181,10 @@ export default function AXRichMediaSheetPage() {
       title="[AX] Rich Media Sheet"
       description="A slot-driven, themeable bottom sheet for media-rich experiences that require multiple actions and interactions. Different from the LD Bottom Sheet — this AX component supports multiple header layouts, surface theming, and desktop-centered behavior."
     >
-      <div className={styles.page}>
+      <div className={exStyles.pageGap}>
 
         {/* ── Overview ──────────────────────────────────────────────────── */}
-        <section className={styles.section}>
+        <section className={exStyles.section}>
           <SectionTitle>When to use</SectionTitle>
           <div className={styles.dosDonts}>
             <div className={styles.dos}>
@@ -208,7 +209,7 @@ export default function AXRichMediaSheetPage() {
         </section>
 
         {/* ── Header Variants ───────────────────────────────────────────── */}
-        <section className={styles.section}>
+        <section className={exStyles.section}>
           <SectionTitle>Header Variants</SectionTitle>
           <SectionDesc>
             Six header layouts. Choose based on the content context. The drag handle is always present to signal the sheet is swipeable.
@@ -269,7 +270,7 @@ export default function AXRichMediaSheetPage() {
         </section>
 
         {/* ── Surface Variants ──────────────────────────────────────────── */}
-        <section className={styles.section}>
+        <section className={exStyles.section}>
           <SectionTitle>Surface Themes</SectionTitle>
           <SectionDesc>
             Three surface background variants. The "Media" variant lets the content provide a full-bleed background (yellow, image, etc.). Always paired with a matching footer background.
@@ -315,7 +316,7 @@ export default function AXRichMediaSheetPage() {
         </section>
 
         {/* ── Use Case Examples ─────────────────────────────────────────── */}
-        <section className={styles.section}>
+        <section className={exStyles.section}>
           <SectionTitle>Use Case Examples</SectionTitle>
           <SectionDesc>
             Real-world usage patterns. Content is fully slottable — the sheet provides the chrome, header, and footer; the product team provides the content.
@@ -418,7 +419,7 @@ export default function AXRichMediaSheetPage() {
         </section>
 
         {/* ── Desktop Behavior ──────────────────────────────────────────── */}
-        <section className={styles.section}>
+        <section className={exStyles.section}>
           <SectionTitle>Desktop Behavior</SectionTitle>
           <SectionDesc>
             At 900px+ the sheet becomes a centered modal with a fixed width of 560px and all-corner border radius. Resize the browser to see it switch between full-width mobile and centered desktop layouts.
@@ -430,7 +431,7 @@ export default function AXRichMediaSheetPage() {
         </section>
 
         {/* ── Slots reference ───────────────────────────────────────────── */}
-        <section className={styles.section}>
+        <section className={exStyles.section}>
           <SectionTitle>Component Architecture</SectionTitle>
           <SectionDesc>
             The sheet is slot-driven. No internal content padding is applied — the consumer controls the layout, background, and spacing of content.
@@ -452,7 +453,7 @@ export default function AXRichMediaSheetPage() {
         </section>
 
         {/* ── Code Example ──────────────────────────────────────────────── */}
-        <section className={styles.section}>
+        <section className={exStyles.section}>
           <SectionTitle>Code Example</SectionTitle>
           <pre className={styles.codeBlock}>{`import { AXRichMediaSheet } from '@/components/walmart/AXRichMediaSheet';
 import { Button } from '@/components/ui/Button';

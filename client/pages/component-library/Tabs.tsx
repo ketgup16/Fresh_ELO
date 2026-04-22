@@ -1,6 +1,7 @@
 import React from 'react';
 import { TabExample } from '@/components/examples/TabExample';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
+import styles from '@/components/examples/ExamplePage.module.css';
 import { useTranslation } from 'react-i18next';
 
 /**
@@ -14,70 +15,30 @@ export default function TabsPage() {
   return (
     <ComponentPageLayout section={t('componentLibrary.components')} title={t('componentLibrary.navTabNavigation')} description={t('componentLibrary.descTabNavigation')}>
       
-      {/* Documentation Link */}
-      <div style={{
-        marginBottom: '32px',
-        padding: '16px',
-        backgroundColor: 'var(--ld-semantic-color-fill-info-subtle)',
-        borderRadius: 'var(--ld-semantic-border-radius-medium)',
-        borderLeft: '4px solid var(--ld-semantic-color-border-info)',
-      }}>
-        <p style={{
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          fontSize: 'var(--ld-semantic-font-body-small-size)',
-          lineHeight: 'var(--ld-semantic-font-body-small-lineheight)',
-          color: 'var(--ld-semantic-color-text)',
-          margin: 0,
-        }}>
-          <strong>{t('componentLibrary.ldDocumentation')}</strong>{' '}
-          <a 
-            href="https://digitaltoolkit.livingdesign.walmart.com/components/tab-navigation/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: 'var(--ld-semantic-color-text-brand)',
-              textDecoration: 'underline',
-            }}
-          >
-            {t('componentLibrary.navTabNavigation')}
-          </a>
-        </p>
-      </div>
-
-      {/* Examples Card */}
-      <div style={{
-        background: 'var(--ld-semantic-color-surface)',
-        borderRadius: 'var(--ld-semantic-border-radius-large)',
-        boxShadow: 'var(--ld-semantic-elevation-100)',
-        padding: '32px',
-      }}>
-        <React.Suspense fallback={
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: '400px',
-            color: 'var(--ld-semantic-color-text-subtle)',
-          }}>
-            {t('componentLibrary.loadingExamples')}
+      <div className={styles.pageGap}>
+        {/* Examples section */}
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Component Demo</h2>
+          <p className={styles.desc}>
+            <strong>{t('componentLibrary.ldDocumentation')}</strong>{' '}
+            <a
+              href="https://digitaltoolkit.livingdesign.walmart.com/components/tab-navigation/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t('componentLibrary.navTabNavigation')}
+            </a>
+          </p>
+          <div className={styles.demoFrame}>
+            <React.Suspense fallback={<div>{t('componentLibrary.loadingExamples')}</div>}>
+              <TabExample />
+            </React.Suspense>
           </div>
-        }>
-          <TabExample />
-        </React.Suspense>
-      </div>
+        </div>
 
-      {/* Usage Guidelines */}
-      <div style={{ marginTop: '48px' }}>
-        <h2 style={{
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          fontSize: 'var(--ld-semantic-font-heading-medium-size-b-l, 24px)',
-          fontWeight: 'var(--ld-semantic-font-heading-medium-weight-default, 700)',
-          lineHeight: 'var(--ld-semantic-font-heading-medium-line-height-b-l, 36px)',
-          marginBottom: '16px',
-          color: 'var(--ld-semantic-color-text)',
-        }}>
-          {t('componentLibrary.usageGuidelines')}
-        </h2>
+        {/* Usage Guidelines */}
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>{t('componentLibrary.usageGuidelines')}</h2>
         
         <div style={{
           display: 'grid',
@@ -157,6 +118,7 @@ export default function TabsPage() {
               <li>{t('componentLibrary.tabsA11y5')}</li>
             </ul>
           </div>
+        </div>
         </div>
       </div>
     </ComponentPageLayout>

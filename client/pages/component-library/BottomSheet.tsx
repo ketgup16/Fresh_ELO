@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
+import styles from '@/components/examples/ExamplePage.module.css';
 
 const BottomSheetExample = React.lazy(() => import('../../components/examples/BottomSheetExample'));
 
@@ -9,15 +10,13 @@ export default function BottomSheetPage() {
   return (
     <ComponentPageLayout section={t('componentLibrary.sharedSection')} title={t('componentLibrary.navBottomSheet')} description={t('componentLibrary.descBottomSheet')}>
 
-      <div style={{
-        backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-        padding: '32px',
-        borderRadius: '8px',
-        boxShadow: 'var(--ld-semantic-elevation-100)'
-      }}>
-        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
-          <BottomSheetExample />
-        </React.Suspense>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Component Demo</h2>
+        <div className={styles.demoFrame}>
+          <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
+            <BottomSheetExample />
+          </React.Suspense>
+        </div>
       </div>
     </ComponentPageLayout>
   );

@@ -4,14 +4,15 @@ import { AXRating } from '@/components/walmart/AXRating';
 import { Tag } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import styles from './AXRating.module.css';
+import exStyles from '@/components/examples/ExamplePage.module.css';
 
 // ─── Shared helpers ───────────────────────────────────────────────────────────
 function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h2 className={styles.sectionTitle}>{children}</h2>;
+  return <h2 className={exStyles.sectionTitle}>{children}</h2>;
 }
 
 function SectionDesc({ children }: { children: React.ReactNode }) {
-  return <p className={styles.sectionDesc}>{children}</p>;
+  return <p className={exStyles.desc}>{children}</p>;
 }
 
 function DemoCard({ title, children }: { title: string; children: React.ReactNode }) {

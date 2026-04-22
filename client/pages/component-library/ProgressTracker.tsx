@@ -1,6 +1,7 @@
 import React from 'react';
 import { ProgressTrackerExample } from '@/components/examples/ProgressTrackerExample';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
+import styles from '@/components/examples/ExamplePage.module.css';
 import { useTranslation } from 'react-i18next';
 
 export default function ProgressTrackerPage() {
@@ -8,16 +9,18 @@ export default function ProgressTrackerPage() {
   return (
     <ComponentPageLayout section={t('componentLibrary.components')} title={t('componentLibrary.navProgressTracker')} description={t('componentLibrary.descProgressTracker')}>
 
-      <div style={{ backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)', padding: '32px', borderRadius: '8px', boxShadow: 'var(--ld-semantic-elevation-100)' }}>
-        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
-          <ProgressTrackerExample />
-        </React.Suspense>
-      </div>
+      <div className={styles.pageGap}>
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Component Demo</h2>
+          <div className={styles.demoFrame}>
+            <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
+              <ProgressTrackerExample />
+            </React.Suspense>
+          </div>
+        </div>
 
-      <div style={{ marginTop: '48px' }}>
-        <h2 style={{ fontSize: '24px', fontWeight: '700', fontFamily: 'var(--ld-semantic-font-family-sans)', color: 'var(--ld-semantic-color-text-primary, #2E2F32)', marginBottom: '16px' }}>
-          {t('componentLibrary.guidelinesHeading')}
-        </h2>
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>{t('componentLibrary.guidelinesHeading')}</h2>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <div>
@@ -147,6 +150,7 @@ export default function ProgressTrackerPage() {
               <li><strong>Tag:</strong> {t('componentLibrary.trackerRelatedTag')}</li>
             </ul>
           </div>
+        </div>
         </div>
       </div>
     </ComponentPageLayout>

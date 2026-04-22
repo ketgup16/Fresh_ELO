@@ -1,6 +1,7 @@
 import React from 'react';
 import { CalloutExample } from '@/components/examples/CalloutExample';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
+import styles from '@/components/examples/ExamplePage.module.css';
 import { useTranslation } from 'react-i18next';
 import { Highlight, type HighlightPosition } from '@/components/ui/Callout';
 import { Button } from '@/components/ui/Button';
@@ -12,80 +13,40 @@ export default function CalloutsPage() {
   return (
     <ComponentPageLayout section={t('componentLibrary.components')} title={t('componentLibrary.navCallouts')} description={t('componentLibrary.descCallouts')}>
 
-      {/* Nubbin Positions & Static Examples */}
-      <div style={{
-        backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-        padding: '32px',
-        borderRadius: '8px',
-        boxShadow: 'var(--ld-semantic-elevation-100)',
-        marginBottom: '32px'
-      }}>
-        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
-          <CalloutExample />
-        </React.Suspense>
-      </div>
+      <div className={styles.pageGap}>
+        {/* Nubbin Positions & Static Examples */}
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Component Demo</h2>
+          <div className={styles.demoFrame}>
+            <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
+              <CalloutExample />
+            </React.Suspense>
+          </div>
+        </div>
 
-      {/* Interactive Examples */}
-      <div style={{ marginBottom: '16px' }}>
-        <h2 style={{
-          fontSize: '24px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-          marginBottom: '8px'
-        }}>
-          {t('componentLibrary.interactiveExamples')}
-        </h2>
-        <p style={{
-          fontSize: '14px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          maxWidth: '800px'
-        }}>
-          {t('componentLibrary.interactiveExamplesDesc')}
-        </p>
-      </div>
-      <div style={{
-        backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-        padding: '32px',
-        borderRadius: '8px',
-        boxShadow: 'var(--ld-semantic-elevation-100)'
-      }}>
-        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
-          <TooltipExample />
-        </React.Suspense>
-      </div>
+        {/* Interactive Examples */}
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>{t('componentLibrary.interactiveExamples')}</h2>
+          <p className={styles.desc}>{t('componentLibrary.interactiveExamplesDesc')}</p>
+          <div className={styles.demoFrame}>
+            <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
+              <TooltipExample />
+            </React.Suspense>
+          </div>
+        </div>
 
-      {/* Highlight Variant */}
-      <div style={{ marginTop: '48px', marginBottom: '16px' }}>
-        <h2 style={{
-          fontSize: '24px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-          marginBottom: '8px'
-        }}>
-          Highlight
-        </h2>
-        <p style={{
-          fontSize: '14px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          maxWidth: '800px'
-        }}>
-          A high-emphasis callout that floats above all other content. Uses the brand-bold fill
-          color and a looping bounce animation to attract user attention. Ideal for onboarding
-          flows, contextual nudges, or location confirmation prompts.
-        </p>
-      </div>
-
-      <div style={{
-        backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-        padding: '48px 32px',
-        borderRadius: '8px',
-        boxShadow: 'var(--ld-semantic-elevation-100)'
-      }}>
-        <HighlightVariantExamples />
+        {/* Highlight Variant */}
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Highlight</h2>
+          <p className={styles.desc}>
+            A high-emphasis callout that floats above all other content. Uses the brand-bold fill
+            color and a looping bounce animation to attract user attention. Ideal for onboarding
+            flows, contextual nudges, or location confirmation prompts.
+          </p>
+          <div className={styles.demoFrame}>
+            <HighlightVariantExamples />
+          </div>
+        </div>
       </div>
     </ComponentPageLayout>
   );

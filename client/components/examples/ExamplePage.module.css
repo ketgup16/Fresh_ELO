@@ -210,3 +210,11 @@
   margin-bottom: var(--ld-primitive-scale-space-150, 6px);
   color: var(--ld-semantic-color-feedback-error-text, #c40b0b);
 }
+
+/* ── Demo frame wrapper ────────────────────────────────────────── */
+.demoFrame {
+  background: var(--ld-semantic-color-fill-surface-primary);
+  padding: var(--ld-primitive-scale-space-800, 2rem);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  box-shadow: var(--ld-semantic-elevation-100);
+}

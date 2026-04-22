@@ -4,6 +4,7 @@ import { Tag } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
 import styles from './AXButtonGroups.module.css';
+import exStyles from '@/components/examples/ExamplePage.module.css';
 
 // ── Shared preview wrappers ───────────────────────────────────────────────────
 
@@ -130,9 +131,9 @@ export default function AXButtonGroupsPage() {
     >
 
       {/* ── Inline Patterns ───────────────────────────────────── */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>In-line Patterns</h2>
-        <p className={styles.sectionDesc}>
+      <section className={exStyles.section}>
+        <h2 className={exStyles.sectionTitle}>In-line Patterns</h2>
+        <p className={exStyles.desc}>
           Side-by-side buttons on the same row. Use when two actions are equally visible and screen width allows. The <strong>Preferred</strong> (primary) action is always on the right. Supports full-width (fills container) and auto-width variants.
         </p>
 
@@ -197,9 +198,9 @@ export default function AXButtonGroupsPage() {
       </section>
 
       {/* ── Stacked Patterns ──────────────────────────────────── */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Stacked Patterns</h2>
-        <p className={styles.sectionDesc}>
+      <section className={exStyles.section}>
+        <h2 className={exStyles.sectionTitle}>Stacked Patterns</h2>
+        <p className={exStyles.desc}>
           Vertically stacked full-width buttons. Use in narrow contexts like bottom sheets or action footers where horizontal space is constrained. The <strong>Preferred</strong> action is always on top.
         </p>
 
@@ -237,8 +238,8 @@ export default function AXButtonGroupsPage() {
       </section>
 
       {/* ── Usage Rules ───────────────────────────────────────── */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Usage Rules</h2>
+      <section className={exStyles.section}>
+        <h2 className={exStyles.sectionTitle}>Usage Rules</h2>
         <div className={styles.rulesGrid}>
           {[
             { rule: 'Primary always right (inline) or top (stacked)', type: 'do' },
@@ -258,7 +259,7 @@ export default function AXButtonGroupsPage() {
 
       {/* ── Import Reference ──────────────────────────────────── */}
       <section className={styles.usageSection}>
-        <h2 className={styles.sectionTitle}>Code Reference</h2>
+        <h2 className={exStyles.sectionTitle}>Code Reference</h2>
         <pre className={styles.codeBlock}>{`// Inline Primary / Secondary (full width)
 <div style={{ display: 'flex', gap: '8px' }}>
   <Button variant="secondary" size="medium" isFullWidth>Alternate</Button>

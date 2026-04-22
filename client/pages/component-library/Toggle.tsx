@@ -1,6 +1,7 @@
 import React from 'react';
 import ToggleExample from '@/components/examples/ToggleExample';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
+import styles from '@/components/examples/ExamplePage.module.css';
 import { useTranslation } from 'react-i18next';
 import { AXIconToggle, type AXIconToggleSize, type AXIconToggleShape, type AXIconToggleColor } from '@/components/walmart/AXIconToggle';
 import { Heart } from '@/components/icons/Heart';
@@ -19,49 +20,29 @@ export default function TogglePage() {
       description={t('componentLibrary.descToggle')}
     >
 
-      {/* ── Existing Toggle ── */}
-      <div style={{
-        backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-        padding: '32px',
-        borderRadius: '8px',
-        boxShadow: 'var(--ld-semantic-elevation-100)',
-        marginBottom: '48px',
-      }}>
-        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
-          <ToggleExample />
-        </React.Suspense>
-      </div>
+      <div className={styles.pageGap}>
+        {/* ── Existing Toggle ── */}
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Component Demo</h2>
+          <div className={styles.demoFrame}>
+            <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
+              <ToggleExample />
+            </React.Suspense>
+          </div>
+        </div>
 
-      {/* ── AX Icon Toggle ── */}
-      <div style={{ marginBottom: '16px' }}>
-        <h2 style={{
-          fontSize: '24px',
-          fontWeight: '700',
-          fontFamily: 'var(--ld-semantic-font-family-sans)',
-          color: 'var(--ld-semantic-color-text-primary, #2E2F32)',
-          marginBottom: '8px',
-        }}>
-          AX Icon Toggle
-        </h2>
-        <p style={{
-          fontSize: '14px',
-          lineHeight: '1.6',
-          color: 'var(--ld-semantic-color-text-secondary, #74767C)',
-          maxWidth: '720px',
-        }}>
-          A toggleable icon button used across the Walmart.com consumer experience.
-          Shows an outline icon in the default (off) state and a filled icon in the selected (on) state.
-          Supports 3 sizes, 2 shapes, and 2 color themes.
-        </p>
-      </div>
-
-      <div style={{
-        backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-        padding: '40px 32px',
-        borderRadius: '8px',
-        boxShadow: 'var(--ld-semantic-elevation-100)',
-      }}>
-        <AXIconToggleShowcase />
+        {/* ── AX Icon Toggle ── */}
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>AX Icon Toggle</h2>
+          <p className={styles.desc}>
+            A toggleable icon button used across the Walmart.com consumer experience.
+            Shows an outline icon in the default (off) state and a filled icon in the selected (on) state.
+            Supports 3 sizes, 2 shapes, and 2 color themes.
+          </p>
+          <div className={styles.demoFrame}>
+            <AXIconToggleShowcase />
+          </div>
+        </div>
       </div>
     </ComponentPageLayout>
   );

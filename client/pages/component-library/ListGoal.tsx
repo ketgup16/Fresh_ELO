@@ -12,16 +12,17 @@ import {
 } from '@/components/examples/ListGoalExample';
 import { useTranslation } from 'react-i18next';
 import styles from './ListGoal.module.css';
+import exStyles from '@/components/examples/ExamplePage.module.css';
 
 const ILLUSTRATION_SRC =
   'https://api.builder.io/api/v1/image/assets/TEMP/fdad55ccb9a659cab73b1691154f72d1cb9ac3ae?width=80';
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h2 className={styles.sectionTitle}>{children}</h2>;
+  return <h2 className={exStyles.sectionTitle}>{children}</h2>;
 }
 
 function SectionDesc({ children }: { children: React.ReactNode }) {
-  return <p className={styles.sectionDesc}>{children}</p>;
+  return <p className={exStyles.desc}>{children}</p>;
 }
 
 export default function ListGoalPage() {

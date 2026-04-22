@@ -4,6 +4,7 @@ import { AXUploadImage, UploadedImage } from '@/components/walmart/AXUploadImage
 import { Checkbox } from '@/components/ui/Checkbox';
 import { LinkButton } from '@/components/ui/LinkButton';
 import styles from './AXUploadImage.module.css';
+import exStyles from '@/components/examples/ExamplePage.module.css';
 
 function DemoCard({ title, note, children }: { title: string; note?: string; children: React.ReactNode }) {
   return (
@@ -72,12 +73,12 @@ export default function AXUploadImagePage() {
       title="Upload Image"
       description="Used in customer reviews to collect product photos. Supports up to 5 images with mobile (96px) and desktop (112px) tile sizes."
     >
-      <div className={styles.page}>
+      <div className={exStyles.pageGap}>
 
         {/* ── Interactive demo ── */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Interactive Demo</h2>
-          <p className={styles.sectionDesc}>
+        <section className={exStyles.section}>
+          <h2 className={exStyles.sectionTitle}>Interactive Demo</h2>
+          <p className={exStyles.desc}>
             Click the <strong>+</strong> tile to upload real images. Uploaded thumbnails appear with an × button to remove them. Additional empty slots appear as the queue grows.
           </p>
           <DemoCard title="Live upload — try it">
@@ -86,8 +87,8 @@ export default function AXUploadImagePage() {
         </section>
 
         {/* ── States ── */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>States</h2>
+        <section className={exStyles.section}>
+          <h2 className={exStyles.sectionTitle}>States</h2>
 
           <div className={styles.grid}>
             <DemoCard
@@ -121,8 +122,8 @@ export default function AXUploadImagePage() {
         </section>
 
         {/* ── Usage notes ── */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Usage Notes</h2>
+        <section className={exStyles.section}>
+          <h2 className={exStyles.sectionTitle}>Usage Notes</h2>
           <ul className={styles.usageList}>
             <li>Max 5 images (configurable via <code>maxImages</code> prop)</li>
             <li>Accepted: PNG, GIF, JPG, JPEG, HEIC, TIFF</li>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { DividerExample } from '@/components/examples/DividerExample';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
+import styles from '@/components/examples/ExamplePage.module.css';
 import { useTranslation } from 'react-i18next';
 
 export default function DividersPage() {
@@ -8,15 +9,13 @@ export default function DividersPage() {
   return (
     <ComponentPageLayout section={t('componentLibrary.components')} title={t('componentLibrary.navDividers')} description={t('componentLibrary.descDividers')}>
 
-      <div style={{
-        backgroundColor: 'var(--ld-semantic-color-fill-surface-primary, #ffffff)',
-        padding: '32px',
-        borderRadius: '8px',
-        boxShadow: 'var(--ld-semantic-elevation-100)'
-      }}>
-        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
-          <DividerExample />
-        </React.Suspense>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Component Demo</h2>
+        <div className={styles.demoFrame}>
+          <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
+            <DividerExample />
+          </React.Suspense>
+        </div>
       </div>
     </ComponentPageLayout>
   );

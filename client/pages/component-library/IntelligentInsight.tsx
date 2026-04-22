@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { IntelligentInsightExample } from '@/components/examples/IntelligentInsightExample';
 import { useTranslation } from 'react-i18next';
-import styles from './IntelligentInsight.module.css';
+import exStyles from '@/components/examples/ExamplePage.module.css';
 
 export default function IntelligentInsightPage() {
   const { t } = useTranslation();
@@ -12,10 +12,13 @@ export default function IntelligentInsightPage() {
       title={t('componentLibrary.navIntelligentInsight')}
       description={t('componentLibrary.descIntelligentInsight')}
     >
-      <div className={styles.demoWrapper}>
-        <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
-          <IntelligentInsightExample />
-        </React.Suspense>
+      <div className={exStyles.section}>
+        <h2 className={exStyles.sectionTitle}>Component Demo</h2>
+        <div className={exStyles.demoFrame}>
+          <React.Suspense fallback={<div>{t('componentLibrary.loading')}</div>}>
+            <IntelligentInsightExample />
+          </React.Suspense>
+        </div>
       </div>
     </ComponentPageLayout>
   );
