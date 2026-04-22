@@ -97,8 +97,8 @@
 /* ── Illustration (mobile only) ─────────────── */
 .illustration {
   flex-shrink: 0;
-  width: 96px;
-  height: 96px;
+  width: 145px;
+  height: 132px;
   display: flex;
   align-items: flex-end;
   justify-content: center;

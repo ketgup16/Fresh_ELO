@@ -105,7 +105,7 @@ export function ClockingWidget({
           {/* Illustration — hidden on desktop via CSS */}
           <div className={styles.illustration} aria-hidden="true">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0166eb2e8ae249b480f893689d9764fb?format=webp&width=800&height=1200"
+              src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F031d65b9663f48959e6a5988fb84a308?format=webp&width=290&height=264"
               alt=""
               className={styles.illustrationImg}
             />
