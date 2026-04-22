@@ -103,7 +103,7 @@ const ThemeEditorPage = React.lazy(() => import("./pages/component-library/Theme
 const FooterPatternsPage = React.lazy(() => import("./pages/component-library/FooterPatterns"));
 const SquigglyAgentPage = React.lazy(() => import("./pages/component-library/SquigglyAgentPage"));
 const TopNavPage = React.lazy(() => import("./pages/component-library/TopNav"));
-const SideNavPage = React.lazy(() => import("./pages/component-library/SideNav"));
+const MegaNavPage = React.lazy(() => import("./pages/component-library/MegaNav"));
 const AXButtonGroupsPage = React.lazy(() => import("./pages/component-library/AXButtonGroups"));
 const AXFloatingButtonPage = React.lazy(() => import("./pages/component-library/AXFloatingButton"));
 const AXRatingPage = React.lazy(() => import("./pages/component-library/AXRating"));
@@ -259,7 +259,7 @@ const App = () => (
                 <Route path="footer-patterns" element={<FooterPatternsPage />} />
                 <Route path="squiggly-agent" element={<SquigglyAgentPage />} />
                 <Route path="top-nav" element={<TopNavPage />} />
-                <Route path="side-nav" element={<SideNavPage />} />
+                <Route path="mega-nav" element={<MegaNavPage />} />
                 <Route path="ax-button-groups" element={<AXButtonGroupsPage />} />
                 <Route path="ax-floating-button" element={<AXFloatingButtonPage />} />
                 <Route path="ax-rating" element={<AXRatingPage />} />

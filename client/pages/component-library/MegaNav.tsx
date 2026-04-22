@@ -3,9 +3,9 @@ import { ComponentPageLayout } from '@/components/ui/ComponentPageLayout';
 import { Tag } from '@/components/ui/Tag';
 import { Button } from '@/components/ui/Button';
 import { MobileMenuPanel } from '@/components/walmart/MobileMenuPanel';
-import styles from './SideNav.module.css';
+import styles from './MegaNav.module.css';
 
-export default function SideNavPage() {
+export default function MegaNavPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
