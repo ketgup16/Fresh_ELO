@@ -137,10 +137,6 @@
     padding: 16px;
   }
 
-  .illustration {
-    display: none;
-  }
-
   .attributes {
     flex-direction: row;
     flex-wrap: wrap;
