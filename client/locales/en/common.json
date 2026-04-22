@@ -226,6 +226,7 @@
     "descAXSearchField": "AX inline page search field with two breakpoints and states: Enabled, Hovered, Activated, and Disabled",
     "navAXSignatureCapture": "Signature Capture",
     "navClockStatus": "Clock Status",
+    "navAXLocationBreadcrumb": "Location Breadcrumbs",
     "navAXQuantityStepper": "Quantity Stepper: Duration",
     "navRadioPatterns": "Radio Patterns",
     "descRadioPatterns": "AX Radio with eyebrow, label, and caption text pattern for list-style selections.",

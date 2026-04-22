@@ -65,6 +65,7 @@ const navigationSections: NavSection[] = [
       { id: 'footer-patterns', nameKey: 'componentLibrary.navFooterPatterns', path: '/component-library/footer-patterns' },
       { id: 'ax-metric-group', nameKey: 'componentLibrary.navAXMetricGroup', path: '/component-library/ax-metric-group' },
       { id: 'mega-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/mega-nav' },
+      { id: 'ax-location-breadcrumb', nameKey: 'componentLibrary.navAXLocationBreadcrumb', path: '/component-library/ax-location-breadcrumb' },
       { id: 'ax-quantity-stepper', nameKey: 'componentLibrary.navAXQuantityStepper', path: '/component-library/ax-quantity-stepper' },
       { id: 'radio-patterns', nameKey: 'componentLibrary.navRadioPatterns', path: '/component-library/radio-patterns' },
     ]

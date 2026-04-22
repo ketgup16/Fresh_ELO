@@ -116,6 +116,7 @@ const IntelligentRecommendationPage = React.lazy(() => import("./pages/component
 const HeaderSectionPage = React.lazy(() => import("./pages/component-library/HeaderSection"));
 const RadioPatternsPage = React.lazy(() => import("./pages/component-library/RadioPatterns"));
 const AXQuantityStepperPage = React.lazy(() => import("./pages/component-library/AXQuantityStepperPage"));
+const AXLocationBreadcrumbPage = React.lazy(() => import("./pages/component-library/AXLocationBreadcrumbPage"));
 const ClockStatusPage = React.lazy(() => import("./pages/component-library/ClockStatus"));
 const HeaderInstructionalPage = React.lazy(() => import("./pages/component-library/HeaderInstructional"));
 const HeaderWidgetPage = React.lazy(() => import("./pages/component-library/HeaderWidget"));
@@ -270,6 +271,7 @@ const App = () => (
                 <Route path="header-section" element={<HeaderSectionPage />} />
                 <Route path="radio-patterns" element={<RadioPatternsPage />} />
                 <Route path="ax-quantity-stepper" element={<AXQuantityStepperPage />} />
+                <Route path="ax-location-breadcrumb" element={<AXLocationBreadcrumbPage />} />
                 <Route path="clock-status" element={<ClockStatusPage />} />
                 <Route path="header-instructional" element={<HeaderInstructionalPage />} />
                 <Route path="header-widget" element={<HeaderWidgetPage />} />

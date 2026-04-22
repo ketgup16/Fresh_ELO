@@ -243,6 +243,7 @@
     "navAXSignatureCapture": "Captura de Firma",
     "descAXSignatureCapture": "Flujo de firma de suscripción AX con variantes Disparador, Términos, Formulario base y Reautenticación",
     "navClockStatus": "Estado del Reloj",
+    "navAXLocationBreadcrumb": "Migas de Ubicación",
     "navAXQuantityStepper": "Quantity Stepper: Duration",
     "navRadioPatterns": "Patrones de Radio",
     "descRadioPatterns": "AX Radio con patrón de texto de encabezado, etiqueta y pie de texto para selecciones de lista.",

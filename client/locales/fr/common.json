@@ -243,6 +243,7 @@
     "navAXSignatureCapture": "Capture de Signature",
     "descAXSignatureCapture": "Flux de signature d'abonnement AX avec variantes Déclencheur, Conditions, Formulaire de base et Réauthentification",
     "navClockStatus": "Statut de Pointage",
+    "navAXLocationBreadcrumb": "Fil d'Ariane de Localisation",
     "navAXQuantityStepper": "Quantity Stepper: Duration",
     "navRadioPatterns": "Modèles Radio",
     "descRadioPatterns": "AX Radio avec modèle de texte accroche, étiquette et légende pour les sélections de type liste.",
