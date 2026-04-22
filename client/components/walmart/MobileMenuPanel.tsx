@@ -204,19 +204,16 @@ export function MobileMenuPanel({ isOpen, onClose }: MobileMenuPanelProps) {
               })}
             </div>
 
-            {/* Bottom: GIF + Sign out */}
+            {/* Bottom: GIF + Sign out — horizontal attribute rows */}
             <div className={styles.leftColFooter}>
-              <button type="button" className={styles.navTile}>
-                <span className={styles.navTileIconBox} aria-hidden="true">
-                  <ArrowUpRight width={20} height={20} />
-                </span>
-                <span className={styles.navTileLabel}>GIF</span>
+              <button type="button" className={styles.leftColAttrRow}>
+                <ArrowUpRight width={16} height={16} aria-hidden="true" className={styles.leftColAttrIcon} />
+                <span className={styles.leftColAttrLabel}>GIF</span>
+                <ArrowUpRight width={12} height={12} aria-hidden="true" className={styles.leftColAttrExternal} />
               </button>
-              <button type="button" className={styles.navTile} onClick={onClose}>
-                <span className={styles.navTileIconBox} aria-hidden="true">
-                  <SignOut width={20} height={20} />
-                </span>
-                <span className={styles.navTileLabel}>Sign out</span>
+              <button type="button" className={styles.leftColAttrRow} onClick={onClose}>
+                <SignOut width={16} height={16} aria-hidden="true" className={styles.leftColAttrIcon} />
+                <span className={styles.leftColAttrLabel}>Sign out</span>
               </button>
             </div>
           </nav>
