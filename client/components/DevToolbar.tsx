@@ -2,7 +2,7 @@
  * DevToolbar — opens on double-Esc keypress.
  * Lets you switch Theme, AI Agent, and Platform without leaving the page.
  */
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAgent } from '@/contexts/AgentContext';
 import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
@@ -32,28 +32,34 @@ const THEME_COLORS: Record<string, string> = {
 export function DevToolbar() {
   const [open, setOpen] = useState(false);
   const lastEscRef = useRef<number>(0);
+  const openRef = useRef(false);
   const { availableThemes, currentTheme, switchTheme } = useTheme();
   const { activeAgent, setActiveAgent } = useAgent();
   const { platform, setPlatform } = useLayoutSettings();
 
-  // Double-Esc to toggle
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key !== 'Escape') return;
-    const now = Date.now();
-    if (now - lastEscRef.current < 500) {
-      setOpen(prev => !prev);
-      lastEscRef.current = 0;
-    } else {
-      lastEscRef.current = now;
-      // Single Esc closes if open
-      if (open) setOpen(false);
-    }
-  }, [open]);
+  // Keep openRef in sync so the stable handler always sees current state
+  useEffect(() => { openRef.current = open; }, [open]);
 
+  // Stable listener — registered once, reads state via ref
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleKeyDown]);
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key !== 'Escape') return;
+      const now = Date.now();
+      const diff = now - lastEscRef.current;
+      if (diff < 500 && diff > 0) {
+        // Double-Esc detected — toggle
+        lastEscRef.current = 0;
+        setOpen(prev => !prev);
+      } else {
+        // First Esc — record time; also close if already open
+        lastEscRef.current = now;
+        if (openRef.current) setOpen(false);
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown, { capture: true });
+    return () => window.removeEventListener('keydown', handleKeyDown, { capture: true });
+  }, []); // stable — never re-registers
 
   // Click outside backdrop to close
   const handleBackdropClick = (e: React.MouseEvent) => {
