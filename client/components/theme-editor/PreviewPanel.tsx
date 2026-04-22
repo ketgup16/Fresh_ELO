@@ -114,23 +114,7 @@ export function PreviewPanel({ overrideCount: _ }: PreviewPanelProps) {
           <div className={styles.buttonRow}>
             <Button variant="primary" size="small">Primary sm</Button>
             <Button variant="secondary" size="small">Secondary sm</Button>
-            <Button variant="primary-alt" size="medium">Walmart+</Button>
           </div>
-        </div>
-      </section>
-
-      {/* AX Flags */}
-      <section className={styles.section}>
-        <h3 className={styles.sectionTitle}>AX Flags</h3>
-        <div className={styles.flagGrid}>
-          {AX_FLAG_VARIANTS.map(({ variant, label }) => (
-            <AXFlag
-              key={variant}
-              variant={variant}
-              label={label}
-              leadingIcon={FLAG_ICONS[variant]}
-            />
-          ))}
         </div>
       </section>
 

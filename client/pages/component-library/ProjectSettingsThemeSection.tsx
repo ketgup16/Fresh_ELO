@@ -41,18 +41,6 @@ const DESTRUCTIVE_TOKENS: TokenDef[] = [
   { token: '--ld-semantic-color-action-text-on-fill-negative',      label: 'Text on destructive' },
 ];
 
-const WCP_COMMERCE_TOKENS: TokenDef[] = [
-  { token: '--wcp-semantic-color-action-fill-primary-alt',          label: 'Alt primary fill (spark)' },
-  { token: '--wcp-semantic-color-action-fill-primary-alt-hovered',  label: 'Alt primary (hover)' },
-  { token: '--wcp-semantic-color-action-text-on-fill-primary-alt',  label: 'Text on alt primary' },
-  { token: '--wcp-semantic-color-fill-confidence',                  label: 'Confidence fill' },
-  { token: '--wcp-semantic-color-fill-confidence-bold',             label: 'Confidence bold fill' },
-  { token: '--wcp-semantic-color-fill-savings-bold',                label: 'Savings bold fill' },
-  { token: '--wcp-semantic-color-fill-urgent',                      label: 'Urgent fill' },
-  { token: '--wcp-semantic-color-fill-holiday-member',              label: 'Holiday member fill' },
-  { token: '--wcp-semantic-color-border-social',                    label: 'Social border' },
-];
-
 const TOP_NAV_TOKENS: TokenDef[] = [
   { token: '--ld-semantic-color-top-nav-fill',              label: 'Background' },
   { token: '--ld-semantic-color-top-nav-fill-hovered',      label: 'Background (hover)' },
@@ -85,7 +73,6 @@ const TOKEN_GROUPS = [
   { id: 'secondary-action',  title: 'Secondary Action',  tokens: SECONDARY_ACTION_TOKENS },
   { id: 'brand',             title: 'Brand',             tokens: BRAND_TOKENS },
   { id: 'destructive',       title: 'Destructive',       tokens: DESTRUCTIVE_TOKENS },
-  { id: 'wcp-commerce',      title: 'WCP Commerce',      tokens: WCP_COMMERCE_TOKENS },
   { id: 'top-nav',           title: 'Top Navigation',    tokens: TOP_NAV_TOKENS },
   { id: 'bottom-nav',        title: 'Bottom Navigation', tokens: BOTTOM_NAV_TOKENS },
   { id: 'page-nav',          title: 'Page Navigation',   tokens: PAGE_NAV_TOKENS },
