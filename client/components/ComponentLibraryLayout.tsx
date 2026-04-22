@@ -59,6 +59,7 @@ const navigationSections: NavSection[] = [
   {
     titleKey: 'componentLibrary.wcpPatterns',
     items: [
+      { id: 'clock-status', nameKey: 'componentLibrary.navClockStatus', path: '/component-library/clock-status' },
       { id: 'squiggly-agent', nameKey: 'componentLibrary.navAIAgents', path: '/component-library/squiggly-agent' },
       { id: 'top-nav', nameKey: 'componentLibrary.navTopNav', path: '/component-library/top-nav' },
       { id: 'footer-patterns', nameKey: 'componentLibrary.navFooterPatterns', path: '/component-library/footer-patterns' },

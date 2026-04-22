@@ -115,6 +115,7 @@ const IntelligentInsightPage = React.lazy(() => import("./pages/component-librar
 const IntelligentRecommendationPage = React.lazy(() => import("./pages/component-library/IntelligentRecommendation"));
 const HeaderSectionPage = React.lazy(() => import("./pages/component-library/HeaderSection"));
 const RadioPatternsPage = React.lazy(() => import("./pages/component-library/RadioPatterns"));
+const ClockStatusPage = React.lazy(() => import("./pages/component-library/ClockStatus"));
 const HeaderInstructionalPage = React.lazy(() => import("./pages/component-library/HeaderInstructional"));
 const HeaderWidgetPage = React.lazy(() => import("./pages/component-library/HeaderWidget"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
@@ -267,6 +268,7 @@ const App = () => (
                 <Route path="intelligent-recommendation" element={<IntelligentRecommendationPage />} />
                 <Route path="header-section" element={<HeaderSectionPage />} />
                 <Route path="radio-patterns" element={<RadioPatternsPage />} />
+                <Route path="clock-status" element={<ClockStatusPage />} />
                 <Route path="header-instructional" element={<HeaderInstructionalPage />} />
                 <Route path="header-widget" element={<HeaderWidgetPage />} />
               </Route>

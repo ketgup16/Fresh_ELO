@@ -1,0 +1,59 @@
+/* ClockStatus page — supplemental layout styles */
+
+/* ── Full-width widget frame ───────────────────────────────── */
+.widgetFrame {
+  overflow: hidden;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  max-width: 480px;
+}
+
+/* ── Two-column grid for widget states ─────────────────────── */
+.widgetStatesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--ld-primitive-scale-space-600, 1.5rem);
+}
+
+.widgetStatesGrid > * {
+  overflow: hidden;
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+}
+
+/* ── Isolated badge frame ──────────────────────────────────── */
+.badgeFrame {
+  background: var(--ld-semantic-color-top-nav-fill, #0053e2);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  padding: var(--ld-primitive-scale-space-400, 1rem) var(--ld-primitive-scale-space-500, 1.25rem);
+  display: inline-flex;
+}
+
+/* ── Status badge ──────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-100, 4px);
+}
+
+.badgeLabel {
+  font-family: var(--ld-semantic-font-heading-medium-family, var(--ld-semantic-font-family-sans));
+  font-size: var(--ld-semantic-font-heading-medium-size, 20px);
+  font-weight: var(--ld-semantic-font-heading-medium-weight-default, 700);
+  line-height: var(--ld-semantic-font-heading-medium-lineheight, 1.4);
+  color: #fff;
+}
+
+/* ── Icon anatomy frame ────────────────────────────────────── */
+.iconFrame {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-300, 12px);
+  padding: var(--ld-primitive-scale-space-400, 1rem);
+  background: var(--ld-semantic-color-background-subtle);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+}
+
+.iconCode {
+  font-family: monospace;
+  font-size: var(--ld-semantic-font-caption-size, 12px);
+  color: var(--ld-semantic-color-text-subtle);
+}

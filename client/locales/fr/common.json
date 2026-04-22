@@ -242,6 +242,7 @@
     "descAXSearchField": "Champ de recherche de page AX avec deux points d'arrêt et états : Activé, Survolé, Activé, Désactivé",
     "navAXSignatureCapture": "Capture de Signature",
     "descAXSignatureCapture": "Flux de signature d'abonnement AX avec variantes Déclencheur, Conditions, Formulaire de base et Réauthentification",
+    "navClockStatus": "Statut de Pointage",
     "navRadioPatterns": "Modèles Radio",
     "descRadioPatterns": "AX Radio avec modèle de texte accroche, étiquette et légende pour les sélections de type liste.",
     "descAXFloatingButton": "Bouton icône circulaire élevé pour les contrôles de carrousel et les actions flottantes",

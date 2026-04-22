@@ -242,6 +242,7 @@
     "descAXSearchField": "Campo de búsqueda de página AX con dos puntos de quiebre y estados: Habilitado, Hover, Activado y Deshabilitado",
     "navAXSignatureCapture": "Captura de Firma",
     "descAXSignatureCapture": "Flujo de firma de suscripción AX con variantes Disparador, Términos, Formulario base y Reautenticación",
+    "navClockStatus": "Estado del Reloj",
     "navRadioPatterns": "Patrones de Radio",
     "descRadioPatterns": "AX Radio con patrón de texto de encabezado, etiqueta y pie de texto para selecciones de lista.",
     "descAXFloatingButton": "Botón de ícono circular elevado para controles de carrusel y acciones flotantes",
