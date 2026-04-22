@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
 import styles from './ClockingWidget.module.css';
@@ -71,6 +72,7 @@ export function ClockingWidget({
   onViewTimecard,
 }: ClockingWidgetProps) {
   const isClockedIn = clockState === 'clocked-in';
+  const [imgFailed, setImgFailed] = useState(false);
 
   return (
     <div className={styles.widget}>
@@ -104,15 +106,17 @@ export function ClockingWidget({
               </span>
             </div>
           </div>
-          {/* Illustration — hidden on desktop via CSS */}
-          <div className={styles.illustration} aria-hidden="true">
-            <img
-              key="associate-illustration"
-              src="https://cdn.builder.io/api/v1/image/assets/02297b1ff48d4a2f8e4d9ed415c47ecf/031d65b9663f48959e6a5988fb84a308"
-              alt=""
-              className={styles.illustrationImg}
-            />
-          </div>
+          {/* Illustration — hidden on desktop via CSS, hidden entirely if image fails */}
+          {!imgFailed && (
+            <div className={styles.illustration} aria-hidden="true">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/02297b1ff48d4a2f8e4d9ed415c47ecf/031d65b9663f48959e6a5988fb84a308"
+                alt=""
+                className={styles.illustrationImg}
+                onError={() => setImgFailed(true)}
+              />
+            </div>
+          )}
         </div>
 
         {/* Actions row */}
