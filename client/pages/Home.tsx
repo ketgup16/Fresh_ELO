@@ -3,6 +3,7 @@ import { BottomNav } from '@/components/walmart/BottomNav';
 import { Chat } from '@/components/icons';
 import { ClockingWidget } from '@/components/walmart/ClockingWidget';
 import { ScheduleWidget, type Shift } from '@/components/walmart/ScheduleWidget';
+import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import styles from './Home.module.css';
 
 const SHIFTS: Shift[] = [
@@ -32,6 +33,7 @@ const SHIFTS: Shift[] = [
 ];
 
 export default function Home() {
+  const { platform } = useLayoutSettings();
   return (
     <div className={styles.page}>
       {/* Status bar + Top nav */}
@@ -50,7 +52,7 @@ export default function Home() {
           avatarInitials="AC"
           avatarIndicator="clock"
           avatarClockState="active"
-          nativeOSPlatform="ios"
+          nativeOSPlatform={platform}
         />
       </div>
 

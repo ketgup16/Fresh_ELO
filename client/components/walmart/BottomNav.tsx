@@ -5,6 +5,7 @@ import { SquigglyAgent } from '@/components/agents/SquigglyAgent';
 import { MartyAgent } from '@/components/agents/MartyAgent';
 import { SidekickAgent } from '@/components/agents/SidekickAgent';
 import { useAgent } from '@/contexts/AgentContext';
+import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import styles from './BottomNav.module.css';
 
 type BottomTab = 'for-you' | 'todays-plan' | 'your-team';
@@ -54,6 +55,7 @@ export function BottomNav({
   const [visualTab, setVisualTab] = useState<BottomTab>(activeTab);
   const isVisible = true;
   const { activeAgent } = useAgent();
+  const { platform } = useLayoutSettings();
 
   useEffect(() => {
     setVisualTab(activeTab);
@@ -107,10 +109,12 @@ export function BottomNav({
         })}
       </div>
 
-      {/* iOS home indicator */}
-      <div className={styles.homeIndicator}>
-        <div className={styles.homeIndicatorPill} />
-      </div>
+      {/* iOS home indicator — hidden on Android */}
+      {platform === 'ios' && (
+        <div className={styles.homeIndicator}>
+          <div className={styles.homeIndicatorPill} />
+        </div>
+      )}
     </div>
   );
 
