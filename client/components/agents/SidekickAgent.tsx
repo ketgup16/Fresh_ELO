@@ -20,22 +20,12 @@ export function SidekickAgent({
       aria-label="Sidekick AI Agent"
       style={{ width: size, height: size }}
     >
-      {/* Spark / bolt icon representing Sidekick */}
-      <svg
-        viewBox="0 0 32 32"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className={styles.icon}
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0dc192fa177e40ea807e84afd991d00a?format=webp&width=800&height=1200"
+        alt=""
         aria-hidden="true"
-      >
-        <path
-          d="M18.5 4L8 18h9l-3.5 10L26 14h-9.5L18.5 4Z"
-          fill="currentColor"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-      </svg>
+        className={styles.logo}
+      />
     </button>
   );
 }

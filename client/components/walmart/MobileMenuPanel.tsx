@@ -7,7 +7,6 @@ import {
   Note,
   Receipt,
   SignOut,
-  Spark,
   User,
 } from '@/components/icons';
 import { MegaNavActionButton } from './MegaNavActionButton';
@@ -153,7 +152,16 @@ export function MobileMenuPanel({ isOpen, onClose }: MobileMenuPanelProps) {
           </button>
           <div className={styles.actionTiles}>
             <MegaNavActionButton
-              icon={<Spark width={24} height={24} />}
+              icon={
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0dc192fa177e40ea807e84afd991d00a?format=webp&width=800&height=1200"
+                  alt=""
+                  aria-hidden="true"
+                  width={24}
+                  height={24}
+                  style={{ objectFit: 'contain' }}
+                />
+              }
               label="Sidekick"
               onClick={onClose}
             />
