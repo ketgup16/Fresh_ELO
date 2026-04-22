@@ -36,7 +36,7 @@ export default function AXQuantityStepperPage() {
   return (
     <ComponentPageLayout
       section="AX Patterns"
-      title="Quantity Stepper"
+      title="Quantity Stepper: Duration"
       description="An AX-level pill stepper with a rich labeled center that replaces the plain count. Supports three label styles — Duration (hh mm), Amount (ea), and Percent (%) — and always renders in expanded mode with − and + controls."
     >
       <div className={exStyles.pageGap}>
