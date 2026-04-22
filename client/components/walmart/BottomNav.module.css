@@ -19,6 +19,20 @@
   height: 56px;
 }
 
+@media (min-width: 480px) {
+  .tabBar {
+    justify-content: flex-start;
+    padding: 0 16px;
+  }
+
+  .tab {
+    flex: 0 0 auto;
+    min-width: 80px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 .tab {
   flex: 1;
   display: flex;
