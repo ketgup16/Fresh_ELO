@@ -85,8 +85,8 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  /* Align with icon: offset up from center by (gap + label-line-height) / 2 */
+  top: calc(50% - 17px);
   width: 1px;
   height: 24px;
   background: var(--ld-semantic-color-border-brand, #0071dc);
