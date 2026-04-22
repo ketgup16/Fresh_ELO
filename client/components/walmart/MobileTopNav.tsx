@@ -220,28 +220,45 @@ export function MobileTopNav({
           <div className={styles.nativeHomeContainer}>
             {/* Status bar — iOS: time | dynamic island | icons; Android: time left | icons right */}
             <div className={`${styles.nativeStatusBar} ${nativeOSPlatform === 'android' ? styles.nativeStatusBarAndroid : ''}`}>
-              <span className={styles.nativeStatusTime}>9:41</span>
+              <span className={`${styles.nativeStatusTime} ${nativeOSPlatform === 'android' ? styles.nativeStatusTimeAndroid : ''}`}>9:41</span>
               {nativeOSPlatform !== 'android' && <div className={styles.nativeDynamicIsland} />}
               <div className={styles.nativeStatusIcons}>
-                {/* Cellular signal */}
-                <svg width="17" height="12" viewBox="0 0 17 12" fill="white" aria-hidden="true">
-                  <rect x="0" y="7" width="3" height="5" rx="0.8" />
-                  <rect x="4.5" y="5" width="3" height="7" rx="0.8" />
-                  <rect x="9" y="2.5" width="3" height="9.5" rx="0.8" />
-                  <rect x="13.5" y="0" width="3" height="12" rx="0.8" />
-                </svg>
-                {/* Wi-Fi */}
-                <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
-                  <path d="M8 8.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" fill="white"/>
-                  <path d="M3.3 5.8A6.7 6.7 0 0 1 8 3.8c1.8 0 3.5.74 4.7 1.98l1.15-1.15A8.35 8.35 0 0 0 8 2.2c-2.3 0-4.38.94-5.88 2.44L3.3 5.8z" fill="white"/>
-                  <path d="M.7 3.1A10.5 10.5 0 0 1 8 .5c2.9 0 5.53 1.17 7.45 3.07L16.6 2.4A12.1 12.1 0 0 0 8-.1C4.58-.1 1.5 1.28-.55 3.52L.7 3.1z" fill="white" fillOpacity="0.5"/>
-                </svg>
-                {/* Battery */}
-                <svg width="25" height="12" viewBox="0 0 25 12" fill="none" aria-hidden="true">
-                  <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="white" strokeOpacity="0.35" strokeWidth="1"/>
-                  <rect x="1.5" y="1.5" width="18" height="9" rx="2.5" fill="white"/>
-                  <path d="M23 4v4c.83-.5 1.5-1.1 1.5-2s-.67-1.5-1.5-2z" fill="white" fillOpacity="0.4"/>
-                </svg>
+                {nativeOSPlatform === 'android' ? (
+                  <>
+                    {/* Android: 5G label */}
+                    <span className={styles.androidNetworkLabel}>5G</span>
+                    {/* Android WiFi — Material style */}
+                    <svg width="16" height="12" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                      <path d="M1 9l2 2c5.1-5.1 13.9-5.1 19 0l2-2C16.9 2.9 7.1 2.9 1 9zm8 8l3 3 3-3a4.237 4.237 0 0 0-6 0zm-4-4 2 2a7.074 7.074 0 0 1 10 0l2-2C15.1 9.1 8.9 9.1 5 13z"/>
+                    </svg>
+                    {/* Android Battery — Material style with nub */}
+                    <svg width="14" height="12" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                      <path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/>
+                    </svg>
+                  </>
+                ) : (
+                  <>
+                    {/* iOS Cellular signal */}
+                    <svg width="17" height="12" viewBox="0 0 17 12" fill="white" aria-hidden="true">
+                      <rect x="0" y="7" width="3" height="5" rx="0.8" />
+                      <rect x="4.5" y="5" width="3" height="7" rx="0.8" />
+                      <rect x="9" y="2.5" width="3" height="9.5" rx="0.8" />
+                      <rect x="13.5" y="0" width="3" height="12" rx="0.8" />
+                    </svg>
+                    {/* iOS Wi-Fi */}
+                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                      <path d="M8 8.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" fill="white"/>
+                      <path d="M3.3 5.8A6.7 6.7 0 0 1 8 3.8c1.8 0 3.5.74 4.7 1.98l1.15-1.15A8.35 8.35 0 0 0 8 2.2c-2.3 0-4.38.94-5.88 2.44L3.3 5.8z" fill="white"/>
+                      <path d="M.7 3.1A10.5 10.5 0 0 1 8 .5c2.9 0 5.53 1.17 7.45 3.07L16.6 2.4A12.1 12.1 0 0 0 8-.1C4.58-.1 1.5 1.28-.55 3.52L.7 3.1z" fill="white" fillOpacity="0.5"/>
+                    </svg>
+                    {/* iOS Battery */}
+                    <svg width="25" height="12" viewBox="0 0 25 12" fill="none" aria-hidden="true">
+                      <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="white" strokeOpacity="0.35" strokeWidth="1"/>
+                      <rect x="1.5" y="1.5" width="18" height="9" rx="2.5" fill="white"/>
+                      <path d="M23 4v4c.83-.5 1.5-1.1 1.5-2s-.67-1.5-1.5-2z" fill="white" fillOpacity="0.4"/>
+                    </svg>
+                  </>
+                )}
               </div>
             </div>
 

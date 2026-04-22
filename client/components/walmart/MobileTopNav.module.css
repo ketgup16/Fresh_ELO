@@ -184,6 +184,23 @@
   z-index: 1;
 }
 
+/* Android: Roboto font, smaller, normal weight */
+.nativeStatusTimeAndroid {
+  font-family: 'Roboto', 'Google Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* Android 5G / network type label */
+.androidNetworkLabel {
+  font-family: 'Roboto', 'Google Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
 .nativeDynamicIsland {
   position: absolute;
   left: 50%;
