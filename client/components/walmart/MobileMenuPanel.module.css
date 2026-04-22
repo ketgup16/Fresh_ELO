@@ -131,6 +131,10 @@
   background: var(--ld-semantic-color-fill-hovered, #ebebeb);
 }
 
+.navTileActive:hover .navTileIconBoxActive {
+  background: var(--ld-semantic-color-action-fill-primary-hovered, #0057aa);
+}
+
 .navTileActive {
   color: var(--ld-semantic-color-text-brand, #0071dc);
 }
@@ -208,8 +212,8 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 44px;
-  padding: var(--ld-primitive-scale-space-300, 12px) var(--ld-primitive-scale-space-400, 16px);
+  min-height: unset;
+  padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-200, 8px);
   background: none;
   border: none;
   cursor: pointer;
@@ -223,10 +227,10 @@
 
 .linkRowLabel {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: var(--ld-semantic-font-body-medium-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
-  color: var(--ld-semantic-color-text-brand, #0071dc);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
+  color: var(--ld-semantic-color-text, #2e2f32);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -242,17 +246,6 @@
   border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
-.persistentFooter .linkRow {
-  padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-200, 8px);
-  min-height: unset;
-}
-
-.persistentFooter .linkRowLabel {
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
-  color: var(--ld-semantic-color-text, #2e2f32);
-  text-decoration: none;
-}
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
