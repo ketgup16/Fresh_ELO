@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  ArrowUpRight,
   Barcode,
   Box,
   Building,
+  LinkExternal,
   Note,
   Receipt,
   SignOut,
@@ -207,13 +207,11 @@ export function MobileMenuPanel({ isOpen, onClose }: MobileMenuPanelProps) {
             {/* Bottom: GIF + Sign out — horizontal attribute rows */}
             <div className={styles.leftColFooter}>
               <button type="button" className={styles.leftColAttrRow}>
-                <ArrowUpRight width={16} height={16} aria-hidden="true" className={styles.leftColAttrIcon} />
                 <span className={styles.leftColAttrLabel}>GIF</span>
-                <ArrowUpRight width={12} height={12} aria-hidden="true" className={styles.leftColAttrExternal} />
+                <LinkExternal width={12} height={12} aria-hidden="true" className={styles.leftColAttrExternal} />
               </button>
-              <button type="button" className={styles.leftColAttrRow} onClick={onClose}>
-                <SignOut width={16} height={16} aria-hidden="true" className={styles.leftColAttrIcon} />
-                <span className={styles.leftColAttrLabel}>Sign out</span>
+              <button type="button" className={`${styles.leftColAttrRow} ${styles.leftColAttrRowSignOut}`} onClick={onClose}>
+                <span className={styles.leftColAttrLabelUnderline}>Sign out</span>
               </button>
             </div>
           </nav>
