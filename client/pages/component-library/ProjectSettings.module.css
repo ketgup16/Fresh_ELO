@@ -182,7 +182,11 @@
 
 /* Sidekick — Partner dark-navy tokens (mirrors SidekickAgent button bg) */
 .agentCardPreviewSidekick {
-  background: var(--ld-semantic-color-top-nav-fill, #0053e2);
+  background: linear-gradient(
+    135deg,
+    var(--ld-primitive-color-magic-2, #3D90EC) 0%,
+    var(--ld-primitive-color-magic-1, #0053E2) 100%
+  );
 }
 
 .agentCardInfo {

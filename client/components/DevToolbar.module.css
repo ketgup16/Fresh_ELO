@@ -2,11 +2,13 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   animation: fadeIn 120ms ease;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 @keyframes fadeIn {
@@ -17,20 +19,20 @@
 /* ── Panel ── */
 .panel {
   width: 100%;
-  max-width: 640px;
+  max-width: 520px;
   background: var(--ld-semantic-color-surface, #fff);
-  border-radius: 16px 16px 0 0;
-  padding: 20px 20px 32px;
-  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.16);
-  animation: slideUp 180ms cubic-bezier(0.32, 0.72, 0, 1);
-  max-height: 90vh;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.24);
+  animation: scaleIn 160ms cubic-bezier(0.32, 0.72, 0, 1);
+  max-height: 88vh;
   overflow-y: auto;
   box-sizing: border-box;
 }
 
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0); }
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 /* ── Header ── */
@@ -217,7 +219,11 @@
 }
 
 .agentPreviewSidekick {
-  background: var(--ld-semantic-color-top-nav-fill, #0053e2);
+  background: linear-gradient(
+    135deg,
+    var(--ld-primitive-color-magic-2, #3D90EC) 0%,
+    var(--ld-primitive-color-magic-1, #0053E2) 100%
+  );
 }
 
 .agentLabel {

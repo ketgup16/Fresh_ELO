@@ -8,18 +8,30 @@
   border-radius: 50%;
   -webkit-tap-highlight-color: transparent;
   flex-shrink: 0;
-  /* Partner dark-navy background using semantic tokens */
-  background: var(--ld-semantic-color-top-nav-fill, #0053e2);
-  color: var(--ld-semantic-color-topnav-text-onfill, #ffffff);
+  /* Magic gradient — magic-2 → magic-1 (medium → deep blue) */
+  background: linear-gradient(
+    135deg,
+    var(--ld-primitive-color-magic-2, #3D90EC) 0%,
+    var(--ld-primitive-color-magic-1, #0053E2) 100%
+  );
+  color: #ffffff;
   transition: background 120ms ease;
 }
 
 .button:hover {
-  background: var(--ld-semantic-color-top-nav-fill-hover, #0046c0);
+  background: linear-gradient(
+    135deg,
+    var(--ld-primitive-color-magic-3, #79CDF6) 0%,
+    var(--ld-primitive-color-magic-2, #3D90EC) 100%
+  );
 }
 
 .button:active {
-  background: var(--ld-semantic-color-top-nav-fill-pressed, #003a9e);
+  background: linear-gradient(
+    135deg,
+    var(--ld-primitive-color-magic-2, #3D90EC) 0%,
+    var(--ld-primitive-color-magic-1, #0053E2) 100%
+  );
   transform: scale(0.96);
   transition: background 80ms ease, transform 80ms ease;
 }
