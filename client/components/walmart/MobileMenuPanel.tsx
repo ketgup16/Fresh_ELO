@@ -175,39 +175,45 @@ export function MobileMenuPanel({ isOpen, onClose }: MobileMenuPanelProps) {
           {/* Left column: section icon tabs */}
           <nav className={styles.leftCol} aria-label="Menu sections">
             <div className={styles.navTiles}>
-              {NAV_SECTIONS.map((section) => (
-                <button
-                  key={section.id}
-                  type="button"
-                  className={`${styles.navTile} ${activeSection === section.id ? styles.navTileActive : ''}`}
-                  onClick={() => setActiveSection(section.id)}
-                  aria-pressed={activeSection === section.id}
-                  aria-label={section.title}
-                >
-                  <span className={styles.navTileIcon} aria-hidden="true">
-                    {section.icon}
-                  </span>
-                  <span className={styles.navTileLabel}>
-                    {section.label.split('\n').map((line, i) => (
-                      <span key={i} style={{ display: 'block' }}>
-                        {line}
-                      </span>
-                    ))}
-                  </span>
-                </button>
-              ))}
+              {NAV_SECTIONS.map((section) => {
+                const isActive = activeSection === section.id;
+                return (
+                  <button
+                    key={section.id}
+                    type="button"
+                    className={`${styles.navTile} ${isActive ? styles.navTileActive : ''}`}
+                    onClick={() => setActiveSection(section.id)}
+                    aria-pressed={isActive}
+                    aria-label={section.title}
+                  >
+                    <span
+                      className={`${styles.navTileIconBox} ${isActive ? styles.navTileIconBoxActive : ''}`}
+                      aria-hidden="true"
+                    >
+                      {section.icon}
+                    </span>
+                    <span className={styles.navTileLabel}>
+                      {section.label.split('\n').map((line, i) => (
+                        <span key={i} style={{ display: 'block' }}>
+                          {line}
+                        </span>
+                      ))}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Bottom: GIF + Sign out */}
             <div className={styles.leftColFooter}>
               <button type="button" className={styles.navTile}>
-                <span className={styles.navTileIcon} aria-hidden="true">
+                <span className={styles.navTileIconBox} aria-hidden="true">
                   <ArrowUpRight width={20} height={20} />
                 </span>
                 <span className={styles.navTileLabel}>GIF</span>
               </button>
               <button type="button" className={styles.navTile} onClick={onClose}>
-                <span className={styles.navTileIcon} aria-hidden="true">
+                <span className={styles.navTileIconBox} aria-hidden="true">
                   <SignOut width={20} height={20} />
                 </span>
                 <span className={styles.navTileLabel}>Sign out</span>
