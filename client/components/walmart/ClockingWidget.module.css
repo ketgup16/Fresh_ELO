@@ -38,19 +38,9 @@
 .statusIcon {
   display: flex;
   align-items: center;
-  color: rgba(255, 255, 255, 0.5);
-  /* match Figma: 8×8px dot signal */
-  width: 8px;
   flex-shrink: 0;
-}
-
-.statusIcon svg {
-  width: 8px;
-  height: 8px;
-}
-
-.statusIcon[data-clocked-in='true'] {
-  color: #4caf50;
+  width: 16px;
+  height: 16px;
 }
 
 .statusLabel {

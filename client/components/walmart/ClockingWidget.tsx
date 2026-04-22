@@ -17,14 +17,16 @@ interface ClockingWidgetProps {
 }
 
 const ClockOutIcon = () => (
-  <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
-    <circle cx="4" cy="4" r="3" stroke="currentColor" strokeWidth="1.5" />
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <rect width="16" height="16" rx="8" fill="#F8F8F8" />
+    <circle cx="8" cy="8" r="5.5" fill="#F8F8F8" stroke="#74767C" />
   </svg>
 );
 
 const ClockInIcon = () => (
-  <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
-    <circle cx="4" cy="4" r="4" fill="currentColor" />
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <rect width="16" height="16" rx="8" fill="#F8F8F8" />
+    <circle cx="8" cy="8" r="5.5" fill="#6DD400" stroke="#1D5F02" />
   </svg>
 );
 
