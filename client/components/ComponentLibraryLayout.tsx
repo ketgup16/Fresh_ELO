@@ -64,6 +64,7 @@ const navigationSections: NavSection[] = [
       { id: 'footer-patterns', nameKey: 'componentLibrary.navFooterPatterns', path: '/component-library/footer-patterns' },
       { id: 'ax-metric-group', nameKey: 'componentLibrary.navAXMetricGroup', path: '/component-library/ax-metric-group' },
       { id: 'mega-nav', nameKey: 'componentLibrary.navSideNav', path: '/component-library/mega-nav' },
+      { id: 'radio-patterns', nameKey: 'componentLibrary.navRadioPatterns', path: '/component-library/radio-patterns' },
     ]
   },
   {
@@ -79,7 +80,6 @@ const navigationSections: NavSection[] = [
       { id: 'ax-search-field', nameKey: 'componentLibrary.navAXSearchField', path: '/component-library/ax-search-field' },
       { id: 'ax-segmented-control-group', nameKey: 'componentLibrary.navAXSegmentedControlGroup', path: '/component-library/ax-segmented-control-group' },
       { id: 'ax-signature-capture', nameKey: 'componentLibrary.navAXSignatureCapture', path: '/component-library/ax-signature-capture' },
-      { id: 'radio-patterns', nameKey: 'componentLibrary.navRadioPatterns', path: '/component-library/radio-patterns' },
     ],
     subGroups: [
       {
