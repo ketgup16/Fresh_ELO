@@ -185,6 +185,62 @@
   color: var(--ld-semantic-color-text-subtle, #6d6e72);
 }
 
+/* ── Demo trigger ── */
+.demoTrigger {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-primitive-scale-space-300, 12px);
+}
+
+/* ── Anatomy list ── */
+.anatomyList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-400, 16px);
+}
+
+.anatomyItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-300, 12px);
+  padding: var(--ld-primitive-scale-space-400, 16px);
+  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+}
+
+.anatomyNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ld-semantic-color-fill-brand-subtle, #EBF1FE);
+  color: var(--ld-semantic-color-text-brand, #0071DC);
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.anatomyLabel {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: var(--ld-semantic-font-body-default-size, 16px);
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.anatomyDesc {
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  color: var(--ld-semantic-color-text-subtle, #6d6e72);
+  margin: 0;
+  line-height: 1.6;
+}
+
 @media (max-width: 768px) {
   .page {
     padding: 24px 16px;
