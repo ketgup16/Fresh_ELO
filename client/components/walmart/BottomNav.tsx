@@ -49,29 +49,12 @@ export function BottomNav({
 }: BottomNavProps) {
   const navigate = useNavigate();
   const [visualTab, setVisualTab] = useState<BottomTab>(activeTab);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const isVisible = true;
 
   useEffect(() => {
     setVisualTab(activeTab);
   }, [activeTab]);
 
-  useEffect(() => {
-    if (contained) return;
-    const handleScroll = () => {
-      const y = window.scrollY;
-      if (y < 10) {
-        setIsVisible(true);
-      } else if (y > lastScrollY && y > 100) {
-        setIsVisible(false);
-      } else if (y < lastScrollY) {
-        setIsVisible(true);
-      }
-      setLastScrollY(y);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, contained]);
 
   const handleTabClick = (tab: BottomTab) => {
     setVisualTab(tab);
