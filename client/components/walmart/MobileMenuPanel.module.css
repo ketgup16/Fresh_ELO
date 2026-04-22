@@ -242,6 +242,18 @@
   border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
+.persistentFooter .linkRow {
+  padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-200, 8px);
+  min-height: unset;
+}
+
+.persistentFooter .linkRowLabel {
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 20px);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  text-decoration: none;
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .backdrop,
