@@ -218,10 +218,10 @@ export function MobileTopNav({
         {/* === NATIVE HOME LAYOUT === */}
         {isNative && isBlue && showHomeExtras ? (
           <div className={styles.nativeHomeContainer}>
-            {/* iOS Status bar: time | dynamic island | status icons */}
-            <div className={styles.nativeStatusBar}>
+            {/* Status bar — iOS: time | dynamic island | icons; Android: time left | icons right */}
+            <div className={`${styles.nativeStatusBar} ${nativeOSPlatform === 'android' ? styles.nativeStatusBarAndroid : ''}`}>
               <span className={styles.nativeStatusTime}>9:41</span>
-              <div className={styles.nativeDynamicIsland} />
+              {nativeOSPlatform !== 'android' && <div className={styles.nativeDynamicIsland} />}
               <div className={styles.nativeStatusIcons}>
                 {/* Cellular signal */}
                 <svg width="17" height="12" viewBox="0 0 17 12" fill="white" aria-hidden="true">

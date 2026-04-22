@@ -113,12 +113,24 @@
   height: 20px;
 }
 
+/* Android gesture bar — slightly taller, wider pill */
+.homeIndicatorAndroid {
+  height: 24px;
+  background: var(--ld-semantic-color-surface, #fff);
+}
+
 .homeIndicatorPill {
   width: 123px;
   height: 5px;
   background: black;
   border-radius: 9999px;
   opacity: 0.3;
+}
+
+.homeIndicatorAndroid .homeIndicatorPill {
+  width: 100px;
+  height: 4px;
+  opacity: 0.2;
 }
 
 /* Squiggly AI agent floats above the right side of the nav bar */

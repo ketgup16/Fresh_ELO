@@ -157,7 +157,7 @@
   flex-direction: column;
 }
 
-/* ── iOS Status bar with dynamic island ── */
+/* ── Status bar (iOS default) ── */
 .nativeStatusBar {
   display: flex;
   align-items: center;
@@ -166,6 +166,12 @@
   height: 54px;
   position: relative;
   flex-shrink: 0;
+}
+
+/* Android: shorter bar, no space for dynamic island, time stays left */
+.nativeStatusBarAndroid {
+  height: 28px;
+  padding: 0 12px;
 }
 
 .nativeStatusTime {

@@ -109,9 +109,9 @@ export function BottomNav({
         })}
       </div>
 
-      {/* iOS home indicator — hidden on Android */}
-      {platform === 'ios' && (
-        <div className={styles.homeIndicator}>
+      {/* Gesture indicator — iOS pill and Android gesture bar */}
+      {(platform === 'ios' || platform === 'android') && (
+        <div className={`${styles.homeIndicator} ${platform === 'android' ? styles.homeIndicatorAndroid : ''}`}>
           <div className={styles.homeIndicatorPill} />
         </div>
       )}
