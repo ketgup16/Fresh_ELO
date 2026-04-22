@@ -45,17 +45,13 @@ const navigationSections: NavSection[] = [
     items: [
       { id: 'overview', nameKey: 'componentLibrary.overview', path: '/component-library' },
       { id: 'assets', nameKey: 'componentLibrary.navAssets', path: '/component-library/assets' },
-      { id: 'design-tokens', nameKey: 'componentLibrary.navDesignTokens', path: '/component-library/design-tokens' },
-      { id: 'foundations', nameKey: 'componentLibrary.navFoundations', path: '/component-library/foundations' },
       { id: 'getting-started', nameKey: 'componentLibrary.gettingStartedNav', path: '/component-library/getting-started' },
       { id: 'guidelines', nameKey: 'componentLibrary.guidelines', path: '/component-library/guidelines' },
-      { id: 'themes', nameKey: 'componentLibrary.navThemes', path: '/component-library/themes' },
     ]
   },
   {
     titleKey: 'componentLibrary.tools',
     items: [
-      { id: 'component-tester', nameKey: 'componentLibrary.componentSandbox', path: '/component-library/component-tester' },
       { id: 'project-settings', nameKey: 'componentLibrary.navProjectSettings', path: '/component-library/project-settings' },
       { id: 'theme-editor', nameKey: 'componentLibrary.navThemeEditor', path: '/component-library/theme-editor' },
     ]

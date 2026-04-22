@@ -22,7 +22,6 @@ const HomePage = React.lazy(() => import("./pages/Home"));
 
 // Component library pages (lazy loaded)
 const ComponentLibraryOverview = React.lazy(() => import("./pages/component-library/Overview"));
-const ComponentTester = React.lazy(() => import("./pages/component-library/ComponentTester"));
 const IconsPage = React.lazy(() => import("./pages/component-library/Icons"));
 const ButtonsPage = React.lazy(() => import("./pages/component-library/Buttons"));
 const BadgesPage = React.lazy(() => import("./pages/component-library/Badges"));
@@ -96,9 +95,7 @@ const TabsPage = React.lazy(() => import("./pages/component-library/Tabs"));
 const TagsPage = React.lazy(() => import("./pages/component-library/Tags"));
 const TextAreaPage = React.lazy(() => import("./pages/component-library/TextArea"));
 const TextFieldsPage = React.lazy(() => import("./pages/component-library/TextFields"));
-const ThemesPage = React.lazy(() => import("./pages/component-library/Themes"));
 const TogglePage = React.lazy(() => import("./pages/component-library/Toggle"));
-const DesignTokensPage = React.lazy(() => import("./pages/component-library/DesignTokens"));
 const ThemeEditorPage = React.lazy(() => import("./pages/component-library/ThemeEditorPage"));
 const FooterPatternsPage = React.lazy(() => import("./pages/component-library/FooterPatterns"));
 const SquigglyAgentPage = React.lazy(() => import("./pages/component-library/SquigglyAgentPage"));
@@ -120,7 +117,6 @@ const HeaderSectionPage = React.lazy(() => import("./pages/component-library/Hea
 const HeaderInstructionalPage = React.lazy(() => import("./pages/component-library/HeaderInstructional"));
 const HeaderWidgetPage = React.lazy(() => import("./pages/component-library/HeaderWidget"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
-const FoundationsPage = React.lazy(() => import("./pages/component-library/Foundations"));
 const AssetsPage = React.lazy(() => import("./pages/component-library/Assets"));
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
@@ -176,11 +172,7 @@ const App = () => (
               {/* Component Library with nested routes */}
               <Route path="/component-library" element={<ComponentLibraryLayout />}>
                 <Route index element={<ComponentLibraryOverview />} />
-                <Route path="themes" element={<ThemesPage />} />
-                <Route path="design-tokens" element={<DesignTokensPage />} />
-                <Route path="foundations" element={<FoundationsPage />} />
                 <Route path="assets" element={<AssetsPage />} />
-                <Route path="component-tester" element={<ComponentTester />} />
                 <Route path="icons" element={<IconsPage />} />
                 <Route path="buttons" element={<ButtonsPage />} />
                 <Route path="badges" element={<BadgesPage />} />
