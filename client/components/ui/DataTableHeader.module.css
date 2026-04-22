@@ -1,7 +1,7 @@
 /* DataTableHeader — column header cell */
 .header {
   position: relative;
-  padding: var(--ld-primitive-scale-space-200, 16px);
+  padding: var(--dt-cell-padding-v, var(--ld-primitive-scale-space-200, 16px)) var(--dt-cell-padding-h, var(--ld-primitive-scale-space-200, 16px));
   vertical-align: middle;
   overflow: hidden;
   font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);

@@ -1,0 +1,36 @@
+/* Mobile DataTable example layout */
+
+/* Responsive grid of mobile previews */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ld-primitive-scale-space-800, 2rem);
+  align-items: flex-start;
+}
+
+/* Each variant block */
+.variantBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-200, 8px);
+}
+
+/* Label above each preview */
+.variantLabel {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-caption-size, 11px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ld-semantic-color-text-subtle);
+}
+
+/* Fixed-width mobile frame to simulate 375px phone viewport */
+.mobileFrame {
+  width: 375px;
+  max-width: 100%;
+  border: 1px dashed var(--ld-semantic-color-border-subtle, #ccc);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  overflow: hidden;
+  background: var(--ld-semantic-color-background, #fff);
+}

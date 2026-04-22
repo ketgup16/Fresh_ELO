@@ -22,10 +22,15 @@ export interface DataTableProps
   elevated?: boolean;
   /** Text style for cells. @default "body-small" */
   textStyle?: DataTableTextStyle;
+  /**
+   * Compact (mobile) variant — reduces cell padding to 8px on all sides.
+   * Use on narrow/touch screens where the default 16px padding is too spacious.
+   */
+  compact?: boolean;
 }
 
 export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>(
-  ({ children, rounded, elevated, textStyle = 'body-small', UNSAFE_className, UNSAFE_style, ...props }, ref) => {
+  ({ children, rounded, elevated, textStyle = 'body-small', compact, UNSAFE_className, UNSAFE_style, ...props }, ref) => {
     const tableClassName = [
       styles.table,
       textStyle === 'body-medium' && styles.textMedium,
@@ -36,6 +41,7 @@ export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>(
       styles.wrapper,
       rounded && styles.rounded,
       elevated && styles.elevated,
+      compact && styles.compact,
     ].filter(Boolean).join(' ');
 
     return (

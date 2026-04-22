@@ -24,6 +24,12 @@
   box-shadow: var(--ld-semantic-elevation-200, 0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 1px 4px 0 rgba(0, 0, 0, 0.06));
 }
 
+/* Compact (mobile) variant — reduces cell padding via inherited custom property */
+.compact {
+  --dt-cell-padding-v: var(--ld-primitive-scale-space-100, 8px);
+  --dt-cell-padding-h: var(--ld-primitive-scale-space-100, 8px);
+}
+
 /* Body-medium override — cells opt in via inherited custom property */
 .textMedium {
   --dt-font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', -apple-system, Roboto, sans-serif);
