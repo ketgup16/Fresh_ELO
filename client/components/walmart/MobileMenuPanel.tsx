@@ -40,7 +40,7 @@ const NAV_SECTIONS: NavSection[] = [
       { label: 'Your team' },
       { label: 'Time off requests' },
       { label: 'Translator' },
-      { label: 'My performance tracker', external: true },
+      { label: 'My performance tracker' },
     ],
   },
   {
@@ -95,7 +95,7 @@ const NAV_SECTIONS: NavSection[] = [
 
 const FOOTER_LINKS = [
   { label: 'Give app feedback', external: false },
-  { label: 'Share an idea or concern', external: true },
+  { label: 'Share an idea or concern' },
   { label: 'Settings', external: false },
   { label: "What's new", external: false },
 ];
