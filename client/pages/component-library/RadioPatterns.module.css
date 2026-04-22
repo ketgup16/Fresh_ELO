@@ -1,0 +1,68 @@
+/* RadioPatterns page – supplemental layout styles */
+
+.previewFrame {
+  max-width: 375px;
+  background: var(--ld-semantic-color-fill-surface-primary);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  box-shadow: var(--ld-semantic-elevation-100);
+  overflow: hidden;
+}
+
+.sizeFrame {
+  background: var(--ld-semantic-color-fill-surface-primary);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  box-shadow: var(--ld-semantic-elevation-100);
+  overflow: hidden;
+}
+
+/* ── States grid ────────────────────────────────────────────── */
+.statesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--ld-primitive-scale-space-600, 1.5rem);
+}
+
+.stateFrame {
+  background: var(--ld-semantic-color-fill-surface-primary);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+  box-shadow: var(--ld-semantic-elevation-100);
+  overflow: hidden;
+}
+
+/* ── Anatomy frame ──────────────────────────────────────────── */
+.anatomyFrame {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-400, 1rem);
+  max-width: 375px;
+}
+
+.anatomyLegend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-primitive-scale-space-150, 12px);
+  padding: var(--ld-primitive-scale-space-400, 1rem);
+  background: var(--ld-semantic-color-background-subtle);
+  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
+}
+
+.legendEyebrow,
+.legendLabel,
+.legendCaption {
+  font-family: var(--ld-semantic-font-family-sans);
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.5);
+}
+
+.legendEyebrow {
+  color: var(--ld-semantic-color-text-subtle);
+}
+
+.legendLabel {
+  color: var(--ld-semantic-color-text);
+  font-weight: 600;
+}
+
+.legendCaption {
+  color: var(--ld-semantic-color-text-subtle);
+}

@@ -1,0 +1,179 @@
+/* AXRadio — WCP Radio pattern with eyebrow / label / caption */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ── Row ────────────────────────────────────────────────────── */
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ld-primitive-scale-space-150, 12px);
+  padding: var(--ld-primitive-scale-space-150, 12px) var(--ld-primitive-scale-space-200, 16px);
+  background: var(--ld-semantic-color-action-fill-transparent, transparent);
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+}
+
+.row:hover:not(.row--disabled) {
+  background: var(--ld-semantic-color-action-fill-transparent-hovered, rgba(0, 0, 0, 0.04));
+}
+
+.row:active:not(.row--disabled) {
+  background: var(--ld-semantic-color-action-fill-transparent-pressed, rgba(0, 0, 0, 0.08));
+}
+
+.row--disabled {
+  cursor: not-allowed;
+  background: var(--ld-semantic-color-action-fill-transparent-disabled, transparent);
+}
+
+/* ── Selection control ──────────────────────────────────────── */
+.control {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.control--large {
+  justify-content: flex-end;
+  min-height: 24px;
+  padding-bottom: var(--ld-primitive-scale-space-25, 2px);
+}
+
+.control--small {
+  justify-content: center;
+  padding-bottom: var(--ld-primitive-scale-space-25, 2px);
+}
+
+/* ── Radio button circle ────────────────────────────────────── */
+.radioButton {
+  display: flex;
+  width: var(--ld-primitive-scale-space-300, 24px);
+  height: var(--ld-primitive-scale-space-300, 24px);
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  border: var(--ld-primitive-scale-borderwidth-100, 1px) solid var(--ld-semantic-color-input-border, #757575);
+  background: var(--ld-semantic-color-input-fill, #fff);
+  cursor: inherit;
+  padding: 0;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.radioButton[aria-checked='true'] {
+  border-color: var(--ld-semantic-color-input-border-activated, #0071ce);
+  background: var(--ld-semantic-color-input-fill-activated, #0071ce);
+}
+
+.radioButton:disabled,
+.radioButton[aria-disabled='true'] {
+  border-color: var(--ld-semantic-color-input-border-activated-disabled, #bababc);
+  background: var(--ld-semantic-color-input-fill-activated-disabled, #f5f5f5);
+  cursor: not-allowed;
+}
+
+.radioButton:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-focus-ring, #0071ce);
+  outline-offset: 2px;
+}
+
+/* ── Radio indicator dot ────────────────────────────────────── */
+.radioIndicator {
+  display: block;
+  width: var(--ld-primitive-scale-space-100, 8px);
+  height: var(--ld-primitive-scale-space-100, 8px);
+  border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
+  background: var(--ld-semantic-color-input-indicator-activated, #fff);
+}
+
+/* ── Label column ───────────────────────────────────────────── */
+.labelCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+  flex: 1 0 0;
+  padding-top: var(--ld-primitive-scale-space-25, 2px);
+}
+
+/* ── Eyebrow ────────────────────────────────────────────────── */
+.eyebrow {
+  display: block;
+  align-self: stretch;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: var(--ld-semantic-font-caption-family, var(--ld-semantic-font-family-sans));
+  font-size: var(--ld-semantic-font-caption-size, 12px);
+  font-weight: var(--ld-semantic-font-caption-weight-default, 400);
+  line-height: var(--ld-semantic-font-caption-lineheight, 1.333);
+}
+
+.eyebrow--disabled {
+  color: var(--ld-semantic-color-text-disabled, #bababc);
+}
+
+/* ── Label ──────────────────────────────────────────────────── */
+.label {
+  display: block;
+  align-self: stretch;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: var(--ld-semantic-font-body-large-family, var(--ld-semantic-font-family-sans));
+  line-height: 1.333;
+}
+
+.label--large {
+  font-size: var(--ld-semantic-font-body-large-size, 18px);
+  font-weight: var(--ld-semantic-font-body-large-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-large-lineheight, 1.333);
+}
+
+.label--small {
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.429);
+}
+
+.label--selected.label--large {
+  font-weight: var(--ld-semantic-font-body-large-weight-alt, 700);
+}
+
+.label--selected.label--small {
+  font-weight: var(--ld-semantic-font-body-small-weight-alt, 700);
+}
+
+.label--disabled {
+  color: var(--ld-semantic-color-text-disabled, #bababc);
+}
+
+/* ── Caption ────────────────────────────────────────────────── */
+.caption {
+  display: block;
+  align-self: stretch;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.caption--large {
+  font-family: var(--ld-semantic-font-body-small-family, var(--ld-semantic-font-family-sans));
+  font-size: var(--ld-semantic-font-body-small-size, 14px);
+  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
+  line-height: var(--ld-semantic-font-body-small-lineheight, 1.429);
+}
+
+.caption--small {
+  font-family: var(--ld-semantic-font-caption-family, var(--ld-semantic-font-family-sans));
+  font-size: var(--ld-semantic-font-caption-size, 12px);
+  font-weight: var(--ld-semantic-font-caption-weight-default, 400);
+  line-height: var(--ld-semantic-font-caption-lineheight, 1.333);
+}
+
+.caption--disabled {
+  color: var(--ld-semantic-color-text-disabled, #bababc);
+}

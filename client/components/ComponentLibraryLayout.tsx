@@ -79,6 +79,7 @@ const navigationSections: NavSection[] = [
       { id: 'ax-search-field', nameKey: 'componentLibrary.navAXSearchField', path: '/component-library/ax-search-field' },
       { id: 'ax-segmented-control-group', nameKey: 'componentLibrary.navAXSegmentedControlGroup', path: '/component-library/ax-segmented-control-group' },
       { id: 'ax-signature-capture', nameKey: 'componentLibrary.navAXSignatureCapture', path: '/component-library/ax-signature-capture' },
+      { id: 'radio-patterns', nameKey: 'componentLibrary.navRadioPatterns', path: '/component-library/radio-patterns' },
     ],
     subGroups: [
       {

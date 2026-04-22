@@ -225,6 +225,8 @@
     "navAXSearchField": "Search Field",
     "descAXSearchField": "AX inline page search field with two breakpoints and states: Enabled, Hovered, Activated, and Disabled",
     "navAXSignatureCapture": "Signature Capture",
+    "navRadioPatterns": "Radio Patterns",
+    "descRadioPatterns": "AX Radio with eyebrow, label, and caption text pattern for list-style selections.",
     "descAXSignatureCapture": "AX subscription signature flow with Trigger, Terms, Base form, and Reauth variants",
     "navAXUploadImage": "Upload Image",
     "descAXUploadImage": "Photo upload field for customer reviews. Supports up to 5 images with mobile and desktop tile sizes.",
