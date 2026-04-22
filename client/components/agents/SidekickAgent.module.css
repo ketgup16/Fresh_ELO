@@ -52,10 +52,3 @@
   height: 50%;
   pointer-events: none;
 }
-
-.logo {
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
-  pointer-events: none;
-}

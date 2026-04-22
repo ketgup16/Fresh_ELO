@@ -74,11 +74,11 @@
 .actionTiles {
   display: flex;
   align-items: stretch;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+/* Dividers only BETWEEN tiles, not on outer edges */
 .actionTiles > * + * {
-  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 /* ── Body ── */
@@ -92,11 +92,12 @@
 .leftCol {
   width: 88px;
   flex-shrink: 0;
-  background: var(--ld-semantic-color-topnav-fill, #0a1f5c);
+  background: var(--ld-semantic-color-surface, #ffffff);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   scrollbar-width: none;
+  border-right: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
 .leftCol::-webkit-scrollbar {
@@ -117,21 +118,21 @@
   justify-content: flex-start;
   gap: var(--ld-primitive-scale-space-100, 4px);
   width: 100%;
-  min-height: 72px;
+  min-height: 80px;
   padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-100, 4px);
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--ld-semantic-color-topnav-text-onfill, #ffffff);
+  color: var(--ld-semantic-color-text-subtle, #74767c);
   transition: opacity 150ms ease;
 }
 
-.navTile:hover {
-  opacity: 0.9;
+.navTile:hover .navTileIconBox {
+  background: var(--ld-semantic-color-fill-hovered, #ebebeb);
 }
 
 .navTileActive {
-  opacity: 1;
+  color: var(--ld-semantic-color-text-brand, #0071dc);
 }
 
 /* Icon rounded square container */
@@ -139,45 +140,38 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  color: var(--ld-semantic-color-topnav-text-onfill, #ffffff);
-  opacity: 0.55;
-  transition: opacity 150ms ease, background 150ms ease;
-}
-
-.navTile:hover .navTileIconBox {
-  opacity: 0.8;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--ld-semantic-color-background-subtle, #f8f8f8);
+  color: var(--ld-semantic-color-text-subtle, #74767c);
+  transition: background 150ms ease;
 }
 
 .navTileIconBoxActive {
-  opacity: 1;
   background: var(--ld-semantic-color-action-fill-primary, #0071dc);
+  color: var(--ld-semantic-color-action-text-onfill-primary, #ffffff);
 }
 
 .navTileLabel {
   font-family: var(--ld-semantic-font-family-sans, 'Everyday Sans UI', sans-serif);
   font-size: 10px;
   line-height: 13px;
-  color: var(--ld-semantic-color-topnav-text-onfill, #ffffff);
+  color: inherit;
   text-align: center;
   font-weight: 400;
-  opacity: 0.55;
-  transition: opacity 150ms ease;
+  transition: font-weight 150ms ease;
 }
 
 .navTileActive .navTileLabel {
   font-weight: var(--ld-semantic-font-body-small-weight-alt, 700);
-  opacity: 1;
 }
 
 .leftColFooter {
   display: flex;
   flex-direction: column;
   padding-bottom: var(--ld-primitive-scale-space-400, 16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
   margin-top: var(--ld-primitive-scale-space-200, 8px);
   padding-top: var(--ld-primitive-scale-space-200, 8px);
 }
