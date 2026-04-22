@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: var(--ld-semantic-color-background, #f5f5f5);
+  background: var(--ld-semantic-color-background-subtle, #f5f5f5);
 }
 
 .topNavWrapper {
@@ -16,174 +16,10 @@
 
 .content {
   flex: 1;
-  padding: 0 var(--ld-primitive-scale-space-200, 8px);
-}
-
-.greeting {
-  padding: var(--ld-primitive-scale-space-300, 12px) 0;
-}
-
-.greetingText {
-  font-family: var(--ld-semantic-font-heading-medium-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-heading-medium-size, 20px);
-  font-weight: var(--ld-semantic-font-heading-medium-weight, 700);
-  line-height: var(--ld-semantic-font-heading-medium-lineheight, 1.4);
-  color: var(--ld-semantic-color-text);
-  margin: 0;
-}
-
-.greetingSubtext {
-  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 1.43);
-  color: var(--ld-semantic-color-text-subtle);
-  margin: var(--ld-primitive-scale-space-50, 2px) 0 0;
-}
-
-/* Quick action cards row */
-.quickActions {
-  display: flex;
-  gap: var(--ld-primitive-scale-space-200, 8px);
-  overflow-x: auto;
-  padding-bottom: var(--ld-primitive-scale-space-200, 8px);
-  scrollbar-width: none;
-}
-
-.quickActions::-webkit-scrollbar {
-  display: none;
-}
-
-.actionCard {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--ld-primitive-scale-space-100, 4px);
-  min-width: 80px;
-  padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-150, 6px);
-  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  background: var(--ld-semantic-color-surface);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  cursor: pointer;
-  border: none;
-  flex-shrink: 0;
 }
 
-.actionCard:active {
-  background: var(--ld-semantic-color-fill-activated-subtle-pressed, #f0f0f0);
-}
-
-.actionIcon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--ld-semantic-color-fill-brand-subtle, #e9f1fe);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ld-semantic-color-text-brand, #0053e2);
-}
-
-.actionLabel {
-  font-family: var(--ld-semantic-font-caption-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-caption-size, 12px);
-  font-weight: var(--ld-semantic-font-caption-weight-default, 400);
-  line-height: var(--ld-semantic-font-caption-lineheight, 1.33);
-  color: var(--ld-semantic-color-text);
-  text-align: center;
-}
-
-/* Section */
-.section {
-  padding: var(--ld-primitive-scale-space-300, 12px) 0;
-}
-
-.sectionHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--ld-primitive-scale-space-200, 8px);
-}
-
-.sectionTitle {
-  font-family: var(--ld-semantic-font-heading-small-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-heading-small-size, 16px);
-  font-weight: var(--ld-semantic-font-heading-small-weight, 700);
-  line-height: var(--ld-semantic-font-heading-small-lineheight, 1.25);
-  color: var(--ld-semantic-color-text);
-  margin: 0;
-}
-
-/* Task / info cards */
-.taskCard {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--ld-primitive-scale-space-200, 8px);
-  padding: var(--ld-primitive-scale-space-200, 8px);
-  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  background: var(--ld-semantic-color-surface);
-  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
-  margin-bottom: var(--ld-primitive-scale-space-200, 8px);
-}
-
-.taskCardContent {
-  flex: 1;
-  min-width: 0;
-}
-
-.taskCardTitle {
-  font-family: var(--ld-semantic-font-body-medium-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-medium-size, 16px);
-  font-weight: 700;
-  line-height: var(--ld-semantic-font-body-medium-lineheight, 1.5);
-  color: var(--ld-semantic-color-text);
-  margin: 0;
-}
-
-.taskCardDesc {
-  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: var(--ld-semantic-font-body-small-weight-default, 400);
-  line-height: var(--ld-semantic-font-body-small-lineheight, 1.43);
-  color: var(--ld-semantic-color-text-subtle);
-  margin: var(--ld-primitive-scale-space-50, 2px) 0 0;
-}
-
-/* Metric row */
-.metricsRow {
-  display: flex;
-  gap: var(--ld-primitive-scale-space-200, 8px);
-}
-
-.metricCard {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--ld-primitive-scale-space-50, 2px);
-  padding: var(--ld-primitive-scale-space-200, 8px);
-  border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  background: var(--ld-semantic-color-surface);
-  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 1px rgba(0, 0, 0, 0.15);
-}
-
-.metricValue {
-  font-family: var(--ld-semantic-font-heading-medium-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-heading-medium-size, 20px);
-  font-weight: var(--ld-semantic-font-heading-medium-weight, 700);
-  line-height: 1.2;
-  color: var(--ld-semantic-color-text);
-}
-
-.metricLabel {
-  font-family: var(--ld-semantic-font-caption-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-caption-size, 12px);
-  font-weight: var(--ld-semantic-font-caption-weight-default, 400);
-  line-height: var(--ld-semantic-font-caption-lineheight, 1.33);
-  color: var(--ld-semantic-color-text-subtle);
-}
-
-/* Bottom spacer for fixed bottom nav */
 .bottomSpacer {
   height: 80px;
 }
