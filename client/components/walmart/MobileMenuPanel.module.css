@@ -254,8 +254,8 @@
   font-weight: var(--ld-semantic-font-body-medium-weight-alt, 700);
   line-height: var(--ld-semantic-font-body-medium-lineheight, 24px);
   color: var(--ld-semantic-color-text, #2e2f32);
-  padding: var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-400, 16px)
-    var(--ld-primitive-scale-space-200, 8px);
+  padding: var(--ld-primitive-scale-space-200, 8px) var(--ld-primitive-scale-space-200, 8px)
+    var(--ld-primitive-scale-space-100, 4px);
   margin: 0;
 }
 
