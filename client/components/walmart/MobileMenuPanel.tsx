@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
+  ArrowUpRight,
   Barcode,
   Box,
   Building,
