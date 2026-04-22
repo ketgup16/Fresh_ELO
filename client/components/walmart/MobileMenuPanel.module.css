@@ -55,11 +55,12 @@
 }
 
 .timeClockDot {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
   border-radius: var(--ld-primitive-scale-borderradius-round, 9999px);
   background: var(--ld-semantic-color-border-positive, #2a8703);
   flex-shrink: 0;
+  /* green border 1px → white outer ring 2px */
   box-shadow: 0 0 0 1px var(--ld-semantic-color-border-positive, #2a8703), 0 0 0 3px rgba(255, 255, 255, 1);
 }
 
