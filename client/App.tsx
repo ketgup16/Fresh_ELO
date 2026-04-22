@@ -133,7 +133,7 @@ if (typeof window !== 'undefined' && import.meta.env.DEV) {
     const last = sessionStorage.getItem(LAST_PATH_KEY);
     const current = window.location.pathname + window.location.search + window.location.hash;
     // If the page looks like the dev-server root, restore previous path.
-    if (last && (current === '/' || current === '/index.html' || current === '/walmart')) {
+    if (last && (current === '/index.html')) {
       window.history.replaceState(null, '', last);
       sessionStorage.removeItem(LAST_PATH_KEY);
     }
