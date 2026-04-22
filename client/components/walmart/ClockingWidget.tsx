@@ -17,14 +17,14 @@ interface ClockingWidgetProps {
 }
 
 const ClockOutIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <circle cx="8" cy="8" r="6.25" stroke="currentColor" strokeWidth="1.5" />
+  <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
+    <circle cx="4" cy="4" r="3" stroke="currentColor" strokeWidth="1.5" />
   </svg>
 );
 
 const ClockInIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <circle cx="8" cy="8" r="6.25" fill="currentColor" />
+  <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
+    <circle cx="4" cy="4" r="4" fill="currentColor" />
   </svg>
 );
 
@@ -77,11 +77,11 @@ export function ClockingWidget({
         <div className={styles.topRow}>
           <div className={styles.infoColumn}>
             <div className={styles.statusRow}>
-              <span className={styles.statusIcon} data-clocked-in={isClockedIn}>
-                {isClockedIn ? <ClockInIcon /> : <ClockOutIcon />}
-              </span>
               <span className={styles.statusLabel}>
                 {isClockedIn ? 'Clocked in' : 'Clocked out'}
+              </span>
+              <span className={styles.statusIcon} data-clocked-in={isClockedIn}>
+                {isClockedIn ? <ClockInIcon /> : <ClockOutIcon />}
               </span>
             </div>
             <p className={styles.role}>{role}</p>

@@ -38,7 +38,15 @@
 .statusIcon {
   display: flex;
   align-items: center;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
+  /* match Figma: 8×8px dot signal */
+  width: 8px;
+  flex-shrink: 0;
+}
+
+.statusIcon svg {
+  width: 8px;
+  height: 8px;
 }
 
 .statusIcon[data-clocked-in='true'] {
@@ -46,10 +54,10 @@
 }
 
 .statusLabel {
-  font-family: var(--ld-semantic-font-body-small-family, 'Everyday Sans UI', sans-serif);
-  font-size: var(--ld-semantic-font-body-small-size, 14px);
-  font-weight: 700;
-  line-height: var(--ld-semantic-font-body-small-lineheight, 1.43);
+  font-family: var(--ld-semantic-font-heading-medium-family, 'Everyday Sans UI', sans-serif);
+  font-size: var(--ld-semantic-font-heading-medium-size, 20px);
+  font-weight: var(--ld-semantic-font-heading-medium-weight-default, 700);
+  line-height: var(--ld-semantic-font-heading-medium-lineheight, 1.4);
   color: #fff;
 }
 
