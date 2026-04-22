@@ -109,6 +109,18 @@
   background: var(--ld-semantic-color-surface, #fff);
 }
 
+.platformCard:active {
+  background: var(--ld-semantic-color-fill-hover, rgba(0, 0, 0, 0.06));
+  transform: scale(0.98);
+  transition: transform 80ms ease, background 80ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .platformCard:active {
+    transform: none;
+  }
+}
+
 .platformCardActive {
   border-color: var(--ld-semantic-color-action-fill-primary, #0071dc) !important;
   background: var(--ld-semantic-color-fill-brand-subtle, #E9F1FE) !important;
@@ -166,6 +178,11 @@
     var(--ld-semantic-color-fill-accent-teal-subtle, #e1f3f8) 0%,
     var(--ld-primitive-color-teal-30, #a3dbe9) 100%
   );
+}
+
+/* Sidekick — Partner dark-navy tokens (mirrors SidekickAgent button bg) */
+.agentCardPreviewSidekick {
+  background: var(--ld-semantic-color-top-nav-fill, #0053e2);
 }
 
 .agentCardInfo {

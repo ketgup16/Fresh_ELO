@@ -1,0 +1,42 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+  /* Partner dark-navy background using semantic tokens */
+  background: var(--ld-semantic-color-top-nav-fill, #0053e2);
+  color: var(--ld-semantic-color-topnav-text-onfill, #ffffff);
+  transition: background 120ms ease;
+}
+
+.button:hover {
+  background: var(--ld-semantic-color-top-nav-fill-hover, #0046c0);
+}
+
+.button:active {
+  background: var(--ld-semantic-color-top-nav-fill-pressed, #003a9e);
+  transform: scale(0.96);
+  transition: background 80ms ease, transform 80ms ease;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-border-focus, #0053e2);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:active {
+    transform: none;
+  }
+}
+
+.icon {
+  width: 50%;
+  height: 50%;
+  pointer-events: none;
+}

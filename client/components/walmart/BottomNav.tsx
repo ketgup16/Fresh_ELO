@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BulletList, Calendar, Users } from '@/components/icons';
 import { SquigglyAgent } from '@/components/agents/SquigglyAgent';
+import { MartyAgent } from '@/components/agents/MartyAgent';
+import { SidekickAgent } from '@/components/agents/SidekickAgent';
+import { useAgent } from '@/contexts/AgentContext';
 import styles from './BottomNav.module.css';
 
 type BottomTab = 'for-you' | 'todays-plan' | 'your-team';
@@ -50,6 +53,7 @@ export function BottomNav({
   const navigate = useNavigate();
   const [visualTab, setVisualTab] = useState<BottomTab>(activeTab);
   const isVisible = true;
+  const { activeAgent } = useAgent();
 
   useEffect(() => {
     setVisualTab(activeTab);
@@ -69,16 +73,16 @@ export function BottomNav({
       !contained && !isVisible ? styles.navHidden : '',
       contained ? styles.navContained : '',
     ].filter(Boolean).join(' ')}>
-      {/* Squiggly AI agent floats above the nav bar */}
+      {/* AI agent floats above the nav bar */}
       {showSquiggly && (
         <div className={styles.squigglyWrap}>
-          <SquigglyAgent
-            animation="emotes"
-            size={56}
-            loop
-            autoplay
-            onClick={onSquigglyClick}
-          />
+          {activeAgent === 'marty' ? (
+            <MartyAgent animation="emotes" size={56} loop autoplay onClick={onSquigglyClick} />
+          ) : activeAgent === 'sidekick' ? (
+            <SidekickAgent size={56} onClick={onSquigglyClick} />
+          ) : (
+            <SquigglyAgent animation="emotes" size={56} loop autoplay onClick={onSquigglyClick} />
+          )}
         </div>
       )}
 

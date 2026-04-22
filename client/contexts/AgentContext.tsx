@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, useMemo, type ReactNode } from 'react';
 
-export type ActiveAgent = 'squiggly' | 'marty';
+export type ActiveAgent = 'squiggly' | 'marty' | 'sidekick';
 
 interface AgentContextValue {
   activeAgent: ActiveAgent;
@@ -17,7 +17,7 @@ export function AgentProvider({ children }: AgentProviderProps) {
   const [activeAgent, setActiveAgentState] = useState<ActiveAgent>(() => {
     try {
       const saved = localStorage.getItem('ai-agent-preference');
-      if (saved === 'marty' || saved === 'squiggly') return saved;
+      if (saved === 'marty' || saved === 'squiggly' || saved === 'sidekick') return saved;
     } catch {
       // ignore
     }

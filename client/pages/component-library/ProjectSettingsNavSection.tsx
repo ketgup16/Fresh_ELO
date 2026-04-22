@@ -5,6 +5,7 @@ import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
 import { useAgent } from '@/contexts/AgentContext';
 import { SquigglyAgent } from '@/components/agents/SquigglyAgent';
 import { MartyAgent } from '@/components/agents/MartyAgent';
+import { SidekickAgent } from '@/components/agents/SidekickAgent';
 import styles from './ProjectSettings.module.css';
 
 export function NavSettingsSection() {
@@ -82,6 +83,15 @@ export function NavSettingsSection() {
             isActive={activeAgent === 'marty'}
             onClick={() => setActiveAgent('marty')}
           />
+          <AgentOption
+            agent="sidekick"
+            label="Sidekick"
+            tag="Focused"
+            tagVariant="neutral"
+            description="Precise and purposeful. Sidekick uses a clean, iconic presence to indicate AI assistance without animation distraction."
+            isActive={activeAgent === 'sidekick'}
+            onClick={() => setActiveAgent('sidekick')}
+          />
         </div>
       </div>
 
@@ -115,7 +125,7 @@ function PlatformOption({ label, tag, tagVariant, description, isActive, onClick
 }
 
 interface AgentOptionProps {
-  agent: 'squiggly' | 'marty';
+  agent: 'squiggly' | 'marty' | 'sidekick';
   label: string;
   tag: string;
   tagVariant: 'neutral' | 'info';
@@ -133,11 +143,13 @@ function AgentOption({ agent, label, tag, tagVariant, description, isActive, onC
       <div className={styles.agentCardTop}>
         <div className={[
           styles.agentCardPreview,
-          agent === 'marty' ? styles.agentCardPreviewMarty : styles.agentCardPreviewSquiggly,
+          agent === 'marty' ? styles.agentCardPreviewMarty : agent === 'sidekick' ? styles.agentCardPreviewSidekick : styles.agentCardPreviewSquiggly,
         ].join(' ')}>
           {agent === 'marty'
             ? <MartyAgent animation="emotes" size={48} loop autoplay />
-            : <SquigglyAgent animation="emotes" size={48} loop autoplay />}
+            : agent === 'sidekick'
+              ? <SidekickAgent size={48} />
+              : <SquigglyAgent animation="emotes" size={48} loop autoplay />}
         </div>
         <div className={styles.agentCardInfo}>
           <div className={styles.platformCardTop}>
