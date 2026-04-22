@@ -134,7 +134,7 @@
 /* ── Desktop ────────────────────────────────── */
 @media (min-width: 768px) {
   .widget {
-    padding: var(--ld-primitive-scale-space-400, 16px) var(--ld-primitive-scale-space-500, 20px);
+    padding: var(--ld-primitive-scale-space-400, 16px);
   }
 
   .illustration {

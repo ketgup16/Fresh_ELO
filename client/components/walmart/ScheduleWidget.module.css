@@ -161,28 +161,4 @@
 }
 
 /* ── Desktop ────────────────────────────────── */
-@media (min-width: 768px) {
-  .header {
-    padding-left: var(--ld-primitive-scale-space-500, 20px);
-    padding-right: var(--ld-primitive-scale-space-500, 20px);
-  }
-
-  .shiftRow {
-    padding-left: var(--ld-primitive-scale-space-500, 20px);
-    padding-right: var(--ld-primitive-scale-space-500, 20px);
-  }
-
-  .reportAbsenceRow {
-    padding-left: var(--ld-primitive-scale-space-500, 20px);
-    padding-right: var(--ld-primitive-scale-space-500, 20px);
-  }
-
-  .shiftDivider {
-    margin: 0 var(--ld-primitive-scale-space-500, 20px);
-  }
-
-  .promoCard {
-    margin-left: var(--ld-primitive-scale-space-500, 20px);
-    margin-right: var(--ld-primitive-scale-space-500, 20px);
-  }
-}
+/* horizontal margins stay 16px on all breakpoints to align with top nav */
