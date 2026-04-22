@@ -1,10 +1,11 @@
 /* ClockStatus page — supplemental layout styles */
 
-/* ── Full-width widget frame ───────────────────────────────── */
+/* ── Full-width widget frame — constrained to mobile width ─── */
 .widgetFrame {
   overflow: hidden;
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  max-width: 480px;
+  width: 375px;
+  max-width: 100%;
 }
 
 /* ── Two-column grid for widget states ─────────────────────── */
