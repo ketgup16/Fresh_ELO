@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/DataTable';
 import { DataTableHeader } from '@/components/ui/DataTableHeader';
 import { DataTableRow } from '@/components/ui/DataTableRow';
-import { DataTableCellText } from '@/components/ui/DataTableCellText';
+import { DataTableCell } from '@/components/ui/DataTableCellText';
 import { DataTableCellSelect, DataTableHeaderSelect } from '@/components/ui/DataTableCellSelect';
 import { DataTableCellActions } from '@/components/ui/DataTableCellActions';
 import { DataTableBulkActions } from '@/components/ui/DataTableBulkActions';
@@ -41,9 +41,9 @@ function BasicCompact() {
         <DataTableBody>
           {ROWS.map(r => (
             <DataTableRow key={r.id}>
-              <DataTableCellText>{r.col1}</DataTableCellText>
-              <DataTableCellText>{r.col2}</DataTableCellText>
-              <DataTableCellText>{r.col3}</DataTableCellText>
+              <DataTableCell>{r.col1}</DataTableCell>
+              <DataTableCell>{r.col2}</DataTableCell>
+              <DataTableCell>{r.col3}</DataTableCell>
             </DataTableRow>
           ))}
         </DataTableBody>
@@ -91,9 +91,9 @@ function WithCheckboxes() {
                   })
                 }
               />
-              <DataTableCellText>{r.col1}</DataTableCellText>
-              <DataTableCellText>{r.col2}</DataTableCellText>
-              <DataTableCellText>{r.col3}</DataTableCellText>
+              <DataTableCell>{r.col1}</DataTableCell>
+              <DataTableCell>{r.col2}</DataTableCell>
+              <DataTableCell>{r.col3}</DataTableCell>
             </DataTableRow>
           ))}
         </DataTableBody>
@@ -118,9 +118,9 @@ function WithActions() {
         <DataTableBody>
           {ROWS.map(r => (
             <DataTableRow key={r.id}>
-              <DataTableCellText>{r.col1}</DataTableCellText>
-              <DataTableCellText>{r.col2}</DataTableCellText>
-              <DataTableCellText>{r.col3}</DataTableCellText>
+              <DataTableCell>{r.col1}</DataTableCell>
+              <DataTableCell>{r.col2}</DataTableCell>
+              <DataTableCell>{r.col3}</DataTableCell>
               <DataTableCellActions>
                 <IconButton aria-label="Edit" size="small" variant="ghost"><Edit /></IconButton>
                 <IconButton aria-label="Duplicate" size="small" variant="ghost"><Pencil /></IconButton>
@@ -174,9 +174,9 @@ function WithCheckboxesAndActions() {
                   })
                 }
               />
-              <DataTableCellText>{r.col1}</DataTableCellText>
-              <DataTableCellText>{r.col2}</DataTableCellText>
-              <DataTableCellText>{r.col3}</DataTableCellText>
+              <DataTableCell>{r.col1}</DataTableCell>
+              <DataTableCell>{r.col2}</DataTableCell>
+              <DataTableCell>{r.col3}</DataTableCell>
               <DataTableCellActions>
                 <IconButton aria-label="Edit" size="small" variant="ghost"><Edit /></IconButton>
                 <IconButton aria-label="Duplicate" size="small" variant="ghost"><Pencil /></IconButton>
@@ -244,9 +244,9 @@ function WithBulkActions() {
                   })
                 }
               />
-              <DataTableCellText>{r.col1}</DataTableCellText>
-              <DataTableCellText>{r.col2}</DataTableCellText>
-              <DataTableCellText>{r.col3}</DataTableCellText>
+              <DataTableCell>{r.col1}</DataTableCell>
+              <DataTableCell>{r.col2}</DataTableCell>
+              <DataTableCell>{r.col3}</DataTableCell>
             </DataTableRow>
           ))}
         </DataTableBody>
@@ -310,9 +310,9 @@ function WithBulkAndRowActions() {
                   })
                 }
               />
-              <DataTableCellText>{r.col1}</DataTableCellText>
-              <DataTableCellText>{r.col2}</DataTableCellText>
-              <DataTableCellText>{r.col3}</DataTableCellText>
+              <DataTableCell>{r.col1}</DataTableCell>
+              <DataTableCell>{r.col2}</DataTableCell>
+              <DataTableCell>{r.col3}</DataTableCell>
               <DataTableCellActions>
                 <IconButton aria-label="Edit" size="small" variant="ghost"><Edit /></IconButton>
                 <IconButton aria-label="Duplicate" size="small" variant="ghost"><Pencil /></IconButton>
