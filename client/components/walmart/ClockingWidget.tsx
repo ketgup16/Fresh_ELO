@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
+import { StoreIcon } from '@/components/icons-custom/StoreIcon';
 import styles from './ClockingWidget.module.css';
 
 export type ClockState = 'clocked-out' | 'clocked-in';
@@ -47,12 +48,6 @@ const LunchIcon = () => (
   </svg>
 );
 
-const FacilityIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M2 14V6L8 2L14 6V14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    <rect x="6" y="9" width="4" height="5" rx="0.5" stroke="currentColor" strokeWidth="1.5" />
-  </svg>
-);
 
 const ClockButtonIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -100,7 +95,7 @@ export function ClockingWidget({
                 {lunchTime}
               </span>
               <span className={styles.attribute}>
-                <FacilityIcon />
+                <StoreIcon width={16} height={16} aria-hidden="true" />
                 {storeNumber}
                 <span className={styles.separator}>|</span>
                 {walmartWeek}

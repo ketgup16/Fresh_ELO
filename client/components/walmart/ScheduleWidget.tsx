@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/Button';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Tag } from '@/components/ui/Tag';
+import { StoreIcon } from '@/components/icons-custom/StoreIcon';
 import styles from './ScheduleWidget.module.css';
 
 export interface Shift {
@@ -35,12 +36,6 @@ const LunchIcon = () => (
   </svg>
 );
 
-const FacilityIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M2 14V6L8 2L14 6V14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    <rect x="6" y="9" width="4" height="5" rx="0.5" stroke="currentColor" strokeWidth="1.5" />
-  </svg>
-);
 
 const ChevronRightIcon = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -69,7 +64,7 @@ function ShiftItem({ shift, onReportAbsence }: { shift: Shift; onReportAbsence?:
               {shift.lunchTime}
             </span>
             <span className={styles.shiftDetail}>
-              <FacilityIcon />
+              <StoreIcon width={16} height={16} aria-hidden="true" />
               {shift.store}
             </span>
           </div>
