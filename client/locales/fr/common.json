@@ -248,6 +248,8 @@
     "navRadioPatterns": "Modèles Radio",
     "descRadioPatterns": "AX Radio avec modèle de texte accroche, étiquette et légende pour les sélections de type liste.",
     "descAXFloatingButton": "Bouton icône circulaire élevé pour les contrôles de carrousel et les actions flottantes",
+    "myWalmartSection": "MyWalmart Components",
+    "navAXItemRecommendation": "Item Recommendation",
     "navThemes": "Thèmes",
     "navDrawer": "Tiroir",
     "descAlerts": "Messages de bannière pour les états d'information, succès, avertissement et erreur",

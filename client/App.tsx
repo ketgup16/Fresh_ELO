@@ -121,6 +121,7 @@ const ClockStatusPage = React.lazy(() => import("./pages/component-library/Clock
 const HeaderInstructionalPage = React.lazy(() => import("./pages/component-library/HeaderInstructional"));
 const HeaderWidgetPage = React.lazy(() => import("./pages/component-library/HeaderWidget"));
 const ProjectSettingsPage = React.lazy(() => import("./pages/component-library/ProjectSettings"));
+const AXItemRecommendationPage = React.lazy(() => import("./pages/component-library/AXItemRecommendation"));
 const AssetsPage = React.lazy(() => import("./pages/component-library/Assets"));
 const LazyFallback = <div style={{ padding: '48px', textAlign: 'center', fontFamily: 'var(--ld-semantic-font-family-sans)' }}>Loading...</div>;
 
@@ -275,6 +276,7 @@ const App = () => (
                 <Route path="clock-status" element={<ClockStatusPage />} />
                 <Route path="header-instructional" element={<HeaderInstructionalPage />} />
                 <Route path="header-widget" element={<HeaderWidgetPage />} />
+                <Route path="ax-item-recommendation" element={<AXItemRecommendationPage />} />
               </Route>
 
               {/* Home page */}

@@ -108,6 +108,12 @@ const navigationSections: NavSection[] = [
     ],
   },
   {
+    titleKey: 'componentLibrary.myWalmartSection',
+    items: [
+      { id: 'ax-item-recommendation', nameKey: 'componentLibrary.navAXItemRecommendation', path: '/component-library/ax-item-recommendation' },
+    ],
+  },
+  {
     titleKey: 'componentLibrary.components',
     items: [
       { id: 'alerts', nameKey: 'componentLibrary.navAlerts', path: '/component-library/alerts' },

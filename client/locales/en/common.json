@@ -251,6 +251,8 @@
     "descCarouselsGrids": "Horizontally scrollable product carousels and category grids for the Walmart home page",
     "navOrderStatusCards": "Order & Status Cards",
     "descOrderStatusCards": "Active curbside, order status, and delivery status cards with countdown timers and actions",
+    "myWalmartSection": "MyWalmart Components",
+    "navAXItemRecommendation": "Item Recommendation",
     "tools": "Tools",
     "navThemes": "Themes",
     "navDrawer": "Drawer",
