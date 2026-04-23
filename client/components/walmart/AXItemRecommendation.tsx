@@ -6,37 +6,43 @@ import { Checkbox } from '@/components/ui/Checkbox';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Tag } from '@/components/ui/Tag';
 import { ChevronRight } from '@/components/icons/ChevronRight';
-import { Map } from '@/components/icons/Map';
+import { LocationIcon } from '@/components/icons-custom/LocationIcon';
 import styles from './AXItemRecommendation.module.css';
 
-// ── Magic fill gradient icon ─────────────────────────────────────────────────
-const MAGIC_GRADIENT_ID = 'ax-item-rec-magic-fill';
+// ── Sidekick icon with magic fill gradient ───────────────────────────────────
+const SIDEKICK_GRADIENT_ID = 'ax-item-rec-sidekick-magic';
 
-function MagicFillGradient() {
+function SidekickMagicIcon() {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
-      viewBox="0 0 16 16"
+      viewBox="0 0 24 24"
       fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       aria-hidden
+      style={{ flexShrink: 0 }}
     >
       <defs>
-        <linearGradient id={MAGIC_GRADIENT_ID} x1="0%" y1="0%" x2="100%" y2="0%">
+        <linearGradient id={SIDEKICK_GRADIENT_ID} x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="var(--ld-semantic-color-text-magic-start, #0053E2)" />
           <stop offset="50%" stopColor="var(--ld-semantic-color-text-magic-middle, #3D90EC)" />
           <stop offset="100%" stopColor="var(--ld-semantic-color-text-magic-stop, #79CDF6)" />
         </linearGradient>
+        <clipPath id="sidekick-item-rec-clip">
+          <rect width="23.9992" height="23.9984" fill="white" />
+        </clipPath>
       </defs>
-      <path
-        d="M11.1458 2.79167L12.3333 2.33333L12.7708 1.16667C12.7917 1.0625 12.8958 1 13 1C13.0833 1 13.1875 1.0625 13.2083 1.16667L13.6667 2.33333L14.8333 2.79167C14.9375 2.8125 15 2.91667 15 3C15 3.10417 14.9375 3.20833 14.8333 3.22917L13.6667 3.66667L13.2083 4.85417C13.1875 4.9375 13.0833 5 13 5C12.8958 5 12.7917 4.9375 12.7708 4.85417L12.3333 3.66667L11.1458 3.22917C11.0625 3.20833 11 3.10417 11 3C11 2.91667 11.0625 2.8125 11.1458 2.79167Z"
-        fill={`url(#${MAGIC_GRADIENT_ID})`}
-      />
-      <path
-        d="M1.28346 8.5288L1.8189 8.3089L2.07087 8.18325H2.10236L4.87402 6.89529L6.16535 4.09948L6.29134 3.84817L6.54331 3.31414C6.6063 3.12565 6.79528 3 6.98425 3C7.17323 3 7.3622 3.12565 7.45669 3.31414L7.70866 3.84817L7.80315 4.09948L7.83465 4.13089L9.09449 6.89529L11.8976 8.18325L12.1496 8.3089L12.685 8.56021C12.874 8.62304 13 8.81152 13 9C13 9.18848 12.874 9.37696 12.685 9.4712L12.1496 9.6911L11.8976 9.81675L9.09449 11.1047L7.80315 13.8691V13.9005L7.67717 14.1518L7.45669 14.6859C7.3622 14.8743 7.17323 15 6.98425 15C6.79528 15 6.6063 14.8743 6.54331 14.6859L6.29134 14.1518L6.16535 13.9005V13.8691L4.87402 11.1047L2.10236 9.81675H2.07087L1.8189 9.6911L1.28346 9.4712C1.09449 9.37696 1 9.18848 1 9C1 8.81152 1.09449 8.62304 1.28346 8.5288Z"
-        fill={`url(#${MAGIC_GRADIENT_ID})`}
-      />
+      <g clipPath="url(#sidekick-item-rec-clip)">
+        <path
+          d="M7.41376 22.9792C6.05479 21.6202 6.05479 19.4169 7.41376 18.0579L17.2564 8.21533L18.7327 9.69172C20.6353 11.5943 20.6353 14.679 18.7327 16.5815L12.3351 22.9792C10.9761 24.3382 8.77274 24.3382 7.41376 22.9792Z"
+          fill={`url(#${SIDEKICK_GRADIENT_ID})`}
+        />
+        <path
+          d="M5.26677 14.3067C3.3642 12.4042 3.3642 9.31949 5.26677 7.41692L11.6645 1.01923C13.0234 -0.339745 15.2268 -0.339744 16.5857 1.01923C17.9447 2.37821 17.9447 4.58155 16.5857 5.94053L6.74316 15.7831L5.26677 14.3067Z"
+          fill={`url(#${SIDEKICK_GRADIENT_ID})`}
+        />
+      </g>
     </svg>
   );
 }
@@ -144,7 +150,7 @@ export function AXItemRecommendation({
         <div className={styles.headerLeft}>
           <span className={styles.eyebrowText}>{eyebrowText}</span>
           {tagLabel && (
-            <Tag variant="secondary" color="brand">
+            <Tag variant="secondary" color="gray">
               {tagLabel}
             </Tag>
           )}
@@ -223,7 +229,7 @@ export function AXItemRecommendation({
         <>
           <Divider />
           <div className={styles.locationRow}>
-            <Map width={16} height={16} className={styles.locationIcon} aria-hidden="true" />
+            <LocationIcon width={16} height={16} className={styles.locationIcon} aria-hidden="true" />
             <span className={styles.locationCode}>{locationCode}</span>
             {additionalLocations != null && additionalLocations > 0 && (
               <button className={styles.moreLocationsBtn} onClick={onMoreLocations}>
@@ -237,7 +243,7 @@ export function AXItemRecommendation({
       {/* ── AI Insight banner ── */}
       {showInsight && (
         <div className={styles.insightBanner}>
-          <MagicFillGradient />
+          <SidekickMagicIcon />
           <span className={styles.insightText}>{insightText}</span>
         </div>
       )}

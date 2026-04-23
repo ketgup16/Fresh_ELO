@@ -5,7 +5,7 @@
   gap: var(--ld-primitive-scale-space-200, 8px);
   padding: var(--ld-primitive-scale-space-200, 8px);
   border-radius: var(--ld-primitive-scale-borderradius-100, 8px);
-  background: var(--ld-semantic-color-surface-brand, #EBF1FF);
+  background: var(--ld-semantic-color-fill-subtle, #F5F6FA);
   width: 100%;
   box-sizing: border-box;
 }
