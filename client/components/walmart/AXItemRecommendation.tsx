@@ -150,7 +150,7 @@ export function AXItemRecommendation({
         <div className={styles.headerLeft}>
           <span className={styles.eyebrowText}>{eyebrowText}</span>
           {tagLabel && (
-            <Tag variant="secondary" color="gray">
+            <Tag variant="tertiary" color="gray">
               {tagLabel}
             </Tag>
           )}
