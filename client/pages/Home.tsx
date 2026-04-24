@@ -67,9 +67,20 @@ interface ProductionItem {
   makeNow: number;
 }
 
+interface TimerThresholds {
+  /** Seconds at which to show warning state */
+  warning: number;
+  /** Seconds at which to show critical state */
+  critical: number;
+}
+
+const EXPRESS_THRESHOLDS: TimerThresholds = { warning: 180, critical: 60 };
+const ONLINE_THRESHOLDS: TimerThresholds  = { warning: 1800, critical: 900 };
+
 interface OnlineOrder {
   osn: string;
   initialSeconds: number;
+  pickupTime: string;
   item: OrderItem;
 }
 
@@ -128,7 +139,8 @@ const productionItems: ProductionItem[] = [
 const onlineOrders: OnlineOrder[] = [
   {
     osn: 'OSN 7284',
-    initialSeconds: 480,
+    initialSeconds: 1680,   // 28 min — surfaces because < 30 min threshold
+    pickupTime: '2:30 PM',
     item: {
       name: 'Rotisserie Chicken, 29 oz',
       plu: '6870',
@@ -139,7 +151,8 @@ const onlineOrders: OnlineOrder[] = [
   },
   {
     osn: 'OSN 7285',
-    initialSeconds: 735,
+    initialSeconds: 6300,   // 1h 45m — waiting, not yet surfaced
+    pickupTime: '4:15 PM',
     item: {
       name: 'Popcorn Chicken Cup',
       plu: '6870',
@@ -154,7 +167,7 @@ const onlineOrders: OnlineOrder[] = [
 
 type TimerState = 'running' | 'paused' | 'expired';
 
-function useCountdownTimer(initialSeconds: number) {
+function useCountdownTimer(initialSeconds: number, thresholds: TimerThresholds) {
   const [secondsLeft, setSecondsLeft] = useState(initialSeconds);
   const [timerState, setTimerState] = useState<TimerState>('running');
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -190,7 +203,13 @@ function useCountdownTimer(initialSeconds: number) {
     setTimerState('running');
   }, [initialSeconds]);
 
+  // Smart formatting: show hours when >= 60 min
   const formatted = (() => {
+    if (secondsLeft >= 3600) {
+      const h = Math.floor(secondsLeft / 3600);
+      const m = Math.floor((secondsLeft % 3600) / 60);
+      return `${h}h ${m}m`;
+    }
     const m = Math.floor(secondsLeft / 60);
     const s = secondsLeft % 60;
     return `${m}:${String(s).padStart(2, '0')} mins`;
@@ -198,8 +217,8 @@ function useCountdownTimer(initialSeconds: number) {
 
   const urgency: 'normal' | 'warning' | 'critical' | 'expired' =
     timerState === 'expired' ? 'expired'
-    : secondsLeft <= 60 ? 'critical'
-    : secondsLeft <= 180 ? 'warning'
+    : secondsLeft <= thresholds.critical ? 'critical'
+    : secondsLeft <= thresholds.warning  ? 'warning'
     : 'normal';
 
   return { secondsLeft, formatted, timerState, urgency, toggle, reset };
@@ -207,8 +226,14 @@ function useCountdownTimer(initialSeconds: number) {
 
 // ─── CountdownTimer Component ─────────────────────────────────────────────────
 
-function CountdownTimer({ initialSeconds }: { initialSeconds: number }) {
-  const { formatted, timerState, urgency, toggle, reset } = useCountdownTimer(initialSeconds);
+function CountdownTimer({
+  initialSeconds,
+  thresholds = EXPRESS_THRESHOLDS,
+}: {
+  initialSeconds: number;
+  thresholds?: TimerThresholds;
+}) {
+  const { formatted, timerState, urgency, toggle, reset } = useCountdownTimer(initialSeconds, thresholds);
 
   const tagClass = [
     styles.timerTag,
@@ -473,13 +498,33 @@ function ProductionCard({ item }: { item: ProductionItem }) {
   );
 }
 
-function OnlineOrderCard({ order }: { order: OnlineOrder }) {
+function PickupSoonBanner({ pickupTime }: { pickupTime: string }) {
   return (
-    <div className={styles.card}>
+    <div className={styles.pickupBanner} role="alert">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.4" />
+        <path d="M7 4v3.5l2 2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      </svg>
+      <span>Pickup at <strong>{pickupTime}</strong> — prepare now</span>
+    </div>
+  );
+}
+
+function OnlineOrderCard({ order }: { order: OnlineOrder }) {
+  const { secondsLeft } = useCountdownTimer(order.initialSeconds, ONLINE_THRESHOLDS);
+  const isSurfaced = secondsLeft <= ONLINE_THRESHOLDS.warning; // within 30 min
+
+  return (
+    <div className={[styles.card, isSurfaced && styles['card--surfaced']].filter(Boolean).join(' ')}>
+      {isSurfaced && <PickupSoonBanner pickupTime={order.pickupTime} />}
       <div className={styles.card__header}>
         <div className={styles.orderHeader}>
           <span className={styles.orderHeader__osn}>{order.osn}</span>
-          <CountdownTimer initialSeconds={order.initialSeconds} />
+          <CountdownTimer initialSeconds={order.initialSeconds} thresholds={ONLINE_THRESHOLDS} />
+        </div>
+        <div className={styles.orderHeader__pickup}>
+          <span className={styles.attrLabel}>Pickup</span>
+          <span className={styles.attrValue}>{order.pickupTime}</span>
         </div>
       </div>
       <ItemRow item={order.item} showDivider={true} />
