@@ -1,79 +1,515 @@
-import { MobileTopNav } from '@/components/walmart/MobileTopNav';
-import { BottomNav } from '@/components/walmart/BottomNav';
-import { Chat } from '@/components/icons';
-import { ClockingWidget } from '@/components/walmart/ClockingWidget';
-import { ScheduleWidget, type Shift } from '@/components/walmart/ScheduleWidget';
-import { useLayoutSettings } from '@/contexts/LayoutSettingsContext';
+import { useState } from 'react';
+import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/Tab';
+import { Badge } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
+import { Metric } from '@/components/ui/Metric';
+import { Menu, Chat, Truck, Receipt, ArrowUp, ArrowDown } from '@/components/icons';
 import styles from './Home.module.css';
 
-const SHIFTS: Shift[] = [
+// ─── SVG Icons ────────────────────────────────────────────────────────────────
+
+const LightningIcon = () => (
+  <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path fillRule="evenodd" clipRule="evenodd" d="M8.04507 1.3125H5.31821C5.1959 1.3125 5.08295 1.37686 5.02227 1.48116L2.29541 6.16736L2.27058 6.21967C2.19139 6.43158 2.34977 6.66816 2.59136 6.66816H5.82882L4.32186 10.2214C4.17105 10.5769 4.65035 10.8602 4.89962 10.563L9.67161 4.87257L9.70375 4.82755C9.83307 4.61178 9.67736 4.32506 9.4085 4.32506H6.91956L8.34303 1.80978C8.46925 1.58668 8.30497 1.3125 8.04507 1.3125Z" fill="#FFC220" />
+  </svg>
+);
+
+const ScaleIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0 1.41176C0 0.470588 2.66667 0 8 0C13.3333 0 16 0.470588 16 1.41176C16 2.35294 13.3333 2.82353 8 2.82353C2.66667 2.82353 0 2.35294 0 1.41176Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M4.5 2.82324L3.5 5.17618" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M11.5 2.82324L12.5 5.17618" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M13 5.17676H3C1.61929 5.17676 0.5 6.23021 0.5 7.5297V13.6473C0.5 14.9468 1.61929 16.0003 3 16.0003H13C14.3807 16.0003 15.5 14.9468 15.5 13.6473V7.5297C15.5 6.23021 14.3807 5.17676 13 5.17676Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M8 14.8231C10.4853 14.8231 12.5 12.9269 12.5 10.5878C12.5 8.24874 10.4853 6.35254 8 6.35254C5.51472 6.35254 3.5 8.24874 3.5 10.5878C3.5 12.9269 5.51472 14.8231 8 14.8231Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M8 10.5882L5.5 7.76465" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="8" cy="7.059" r="0.375" fill="currentColor" />
+    <circle cx="11.75" cy="9.17618" r="0.375" fill="currentColor" />
+    <circle cx="8" cy="14.1176" r="0.375" fill="currentColor" />
+    <circle cx="4.25" cy="9.17618" r="0.375" fill="currentColor" />
+  </svg>
+);
+
+const ClockStatusDot = () => (
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0 6C0 2.68629 2.68629 0 6 0C9.31371 0 12 2.68629 12 6C12 9.31371 9.31371 12 6 12C2.68629 12 0 9.31371 0 6Z" fill="#F8F8F8" />
+    <circle cx="6" cy="6" r="3.5" fill="#6DD400" stroke="#1D5F02" />
+  </svg>
+);
+
+// ─── Types ─────────────────────────────────────────────────────────────────────
+
+interface OrderItem {
+  name: string;
+  plu: string;
+  image: string;
+  qty: string;
+  type?: string;
+  thickness?: string;
+}
+
+interface StoreOrder {
+  osn: string;
+  isExpress: boolean;
+  timeLabel: string;
+  items: OrderItem[];
+  isWeightItem?: boolean;
+}
+
+interface ProductionItem {
+  name: string;
+  price?: string;
+  upc: string;
+  pluOrItemNumber: string;
+  pluOrItemNumberLabel: string;
+  image: string;
+  plan: number;
+  onHand: number;
+  makeNow: number;
+}
+
+interface OnlineOrder {
+  osn: string;
+  timeLabel: string;
+  item: OrderItem;
+}
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+
+const expressOrders: StoreOrder[] = [
   {
-    id: '1',
-    dateLabel: 'Today, 7:30 - 4:00pm',
-    role: 'Food & Consumables TL',
-    lunchTime: '12:00pm - 12:30pm',
-    store: 'Store #972',
-    isOffsite: true,
-    showReportAbsence: true,
-  },
-  {
-    id: '2',
-    dateLabel: 'Thu, Mar 20, 7:30 - 4:00pm',
-    role: 'Food & Consumables TL',
-    lunchTime: '12:00pm - 12:30pm',
-    store: 'Store #972',
-  },
-  {
-    id: '3',
-    dateLabel: 'Sat, Mar 22, 7:30 - 4:00pm',
-    role: 'Food & Consumables TL',
-    lunchTime: '12:00pm - 12:30pm',
-    store: 'Store #972',
+    osn: 'OSN 7284',
+    isExpress: true,
+    timeLabel: '8:00 mins',
+    items: [
+      {
+        name: 'Buffalo Chicken Wings, 6 Count',
+        plu: '6870',
+        image: 'https://api.builder.io/api/v1/image/assets/TEMP/0fb38ded214e7747a9e4040154af5afa019ad2fa?width=128',
+        qty: '1',
+        type: 'Buffalo sauce',
+      },
+      {
+        name: 'Prima Della Hickory Smoked Turkey Breast',
+        plu: '6379',
+        image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=128',
+        qty: '0.25 lb',
+        type: 'Sliced',
+        thickness: '4mm',
+      },
+    ],
+    isWeightItem: true,
   },
 ];
 
+const productionItems: ProductionItem[] = [
+  {
+    name: 'Ready to eat potato',
+    upc: '1234567890',
+    pluOrItemNumber: '62886',
+    pluOrItemNumberLabel: 'PLU',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/0fb38ded214e7747a9e4040154af5afa019ad2fa?width=128',
+    plan: 20,
+    onHand: 8,
+    makeNow: 12,
+  },
+  {
+    name: 'FG Chicken egg roll',
+    price: '$1.00',
+    upc: '7874222373',
+    pluOrItemNumber: '575655104',
+    pluOrItemNumberLabel: 'Item number',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=128',
+    plan: 8,
+    onHand: 0,
+    makeNow: 8,
+  },
+];
+
+const onlineOrders: OnlineOrder[] = [
+  {
+    osn: 'OSN 7284',
+    timeLabel: '8:00 mins',
+    item: {
+      name: 'Rotisserie Chicken, 29 oz',
+      plu: '6870',
+      image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=128',
+      qty: '1',
+      type: 'Traditional',
+    },
+  },
+  {
+    osn: 'OSN 7285',
+    timeLabel: '8:00 mins',
+    item: {
+      name: 'Popcorn Chicken Cup',
+      plu: '6870',
+      image: 'https://api.builder.io/api/v1/image/assets/TEMP/4e964bed0619d2365b794f27970d38864cef87e9?width=128',
+      qty: '1',
+      type: 'Regular',
+    },
+  },
+];
+
+// ─── Sub-components ────────────────────────────────────────────────────────────
+
+function AppHeader() {
+  return (
+    <header className={styles.appHeader}>
+      <div className={styles.appHeader__left}>
+        <button className={styles.iconBtn} aria-label="Open menu">
+          <Menu />
+        </button>
+        <h1 className={styles.appHeader__title}>Today's Plan</h1>
+      </div>
+      <div className={styles.appHeader__right}>
+        <button className={styles.iconBtn} aria-label="Open chat">
+          <Chat />
+        </button>
+        <div className={styles.avatar}>
+          <div className={styles.avatar__initials}>AC</div>
+          <div className={styles.avatar__clock}>
+            <ClockStatusDot />
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function MetricsSummary() {
+  return (
+    <div className={styles.metrics}>
+      <div className={styles.metric}>
+        <div className={styles.metric__value}>52.3<span className={styles.metric__unit}>k</span></div>
+        <div className={styles.metric__label}>Store sales</div>
+        <div className={styles.metric__trend + ' ' + styles['metric__trend--positive']}>
+          <ArrowUp />
+          <span>4.5%</span>
+        </div>
+      </div>
+      <div className={styles.metric__divider} aria-hidden="true" />
+      <div className={styles.metric}>
+        <div className={styles.metric__value}>97.3<span className={styles.metric__unit}>%</span></div>
+        <div className={styles.metric__label}>FTPR</div>
+        <div className={styles.metric__trend + ' ' + styles['metric__trend--positive']}>
+          <ArrowUp />
+          <span>2.2%</span>
+        </div>
+      </div>
+      <div className={styles.metric__divider} aria-hidden="true" />
+      <div className={styles.metric}>
+        <div className={styles.metric__value}>17</div>
+        <div className={styles.metric__label}>Nil picks</div>
+        <div className={styles.metric__trend + ' ' + styles['metric__trend--positive']}>
+          <ArrowDown />
+          <span>28</span>
+        </div>
+      </div>
+      <div className={styles.metric__divider} aria-hidden="true" />
+      <div className={styles.metric}>
+        <div className={styles.metric__value}>51</div>
+        <div className={styles.metric__label}>Orders today</div>
+        <div className={styles.metric__trend + ' ' + styles['metric__trend--neutral']}>
+          <span>Spark + Walk-up</span>
+        </div>
+      </div>
+      <div className={styles.metric__divider} aria-hidden="true" />
+      <div className={styles.metric}>
+        <div className={styles.metric__value}><span className={styles.metric__unit}>$</span>97.70</div>
+        <div className={styles.metric__label}>Waste</div>
+        <div className={styles.metric__trend + ' ' + styles['metric__trend--positive']}>
+          <ArrowDown />
+          <span>28</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ExpressTag({ timeLabel }: { timeLabel: string }) {
+  return (
+    <div className={styles.orderHeader__tags}>
+      <span className={styles.expressTag}>
+        <LightningIcon />
+        <span>Express Delivery</span>
+      </span>
+      <span className={styles.timeTag}>{timeLabel}</span>
+    </div>
+  );
+}
+
+function TimeTag({ label }: { label: string }) {
+  return <span className={styles.timeTag}>{label}</span>;
+}
+
+function ItemRow({ item, showDivider = true }: { item: OrderItem; showDivider?: boolean }) {
+  return (
+    <>
+      {showDivider && <div className={styles.divider} />}
+      <div className={styles.itemRow}>
+        <img
+          src={item.image}
+          alt={item.name}
+          className={styles.itemRow__image}
+        />
+        <div className={styles.itemRow__content}>
+          <div className={styles.itemRow__name}>{item.name}</div>
+          <div className={styles.itemRow__attrs}>
+            <span className={styles.attrLabel}>PLU</span>
+            <span className={styles.attrValue}>{item.plu}</span>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function OrderDetails({ item }: { item: OrderItem }) {
+  return (
+    <div className={styles.orderDetails}>
+      <div className={styles.divider} />
+      <div className={styles.orderDetails__row}>
+        <div className={styles.orderDetails__col}>
+          <div className={styles.attrLabel}>Qty</div>
+          <div className={styles.attrValue}>{item.qty}</div>
+        </div>
+        <div className={styles.orderDetails__colDivider} />
+        <div className={styles.orderDetails__col}>
+          <div className={styles.attrLabel}>Type</div>
+          <div className={styles.attrValue}>{item.type ?? '-'}</div>
+        </div>
+        <div className={styles.orderDetails__colDivider} />
+        <div className={styles.orderDetails__col}>
+          <div className={styles.attrLabel}>&nbsp;</div>
+          <div className={styles.attrValue}>{item.thickness ?? '-'}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ExpressOrderCard({ order }: { order: StoreOrder }) {
+  return (
+    <div className={styles.card}>
+      {/* Card header */}
+      <div className={styles.card__header}>
+        <div className={styles.orderHeader}>
+          <span className={styles.orderHeader__osn}>{order.osn}</span>
+          {order.isExpress && <ExpressTag timeLabel={order.timeLabel} />}
+        </div>
+      </div>
+
+      {/* Items */}
+      {order.items.map((item, idx) => (
+        <div key={idx}>
+          <ItemRow item={item} showDivider={true} />
+          <OrderDetails item={item} />
+        </div>
+      ))}
+
+      {/* Weight item */}
+      {order.isWeightItem && (
+        <div className={styles.weightItem}>
+          <div className={styles.divider} />
+          <div className={styles.weightItem__row}>
+            <span className={styles.weightItem__label}>Weight item</span>
+            <div className={styles.weightItem__scaleLink}>
+              <span className={styles.scaleOnlineDot} aria-hidden="true" />
+              <span className={styles.scaleOnlineText}>Scale online</span>
+            </div>
+          </div>
+          <Button
+            variant="secondary"
+            size="small"
+            isFullWidth
+            leading={<ScaleIcon />}
+          >
+            Place items on scale
+          </Button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ProductionCard({ item }: { item: ProductionItem }) {
+  return (
+    <div className={styles.card}>
+      <div className={styles.productionCard__top}>
+        <img
+          src={item.image}
+          alt={item.name}
+          className={styles.productionCard__image}
+        />
+        <div className={styles.productionCard__info}>
+          <div className={styles.productionCard__name}>{item.name}</div>
+          {item.price && <div className={styles.productionCard__price}>{item.price}</div>}
+          <div className={styles.productionCard__attrs}>
+            <div className={styles.productionCard__attrRow}>
+              <span className={styles.attrLabel}>UPC</span>
+              <span className={styles.attrValue}>{item.upc}</span>
+            </div>
+            <div className={styles.productionCard__attrRow}>
+              <span className={styles.attrLabel}>{item.pluOrItemNumberLabel}</span>
+              <span className={styles.attrValue}>{item.pluOrItemNumber}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={styles.divider} />
+      <div className={styles.productionMetrics}>
+        <div className={styles.productionMetric}>
+          <div className={styles.productionMetric__value}>{item.plan}</div>
+          <div className={styles.productionMetric__label}>Plan</div>
+        </div>
+        <div className={styles.productionMetric__divider} />
+        <div className={styles.productionMetric}>
+          <div className={styles.productionMetric__value}>{item.onHand}</div>
+          <div className={styles.productionMetric__label}>On-hand</div>
+        </div>
+        <div className={styles.productionMetric__divider} />
+        <div className={styles.productionMetric}>
+          <div className={styles.productionMetric__value}>{item.makeNow}</div>
+          <div className={styles.productionMetric__label}>Make now</div>
+        </div>
+      </div>
+      <div className={styles.divider} />
+      <div className={styles.productionActions}>
+        <button className={styles.buildSheetLink}>Build sheet</button>
+        <Button variant="secondary" size="small" isFullWidth>Complete</Button>
+      </div>
+    </div>
+  );
+}
+
+function OnlineOrderCard({ order }: { order: OnlineOrder }) {
+  return (
+    <div className={styles.card}>
+      <div className={styles.card__header}>
+        <div className={styles.orderHeader}>
+          <span className={styles.orderHeader__osn}>{order.osn}</span>
+          <TimeTag label={order.timeLabel} />
+        </div>
+      </div>
+      <ItemRow item={order.item} showDivider={true} />
+      <OrderDetails item={order.item} />
+      <div className={styles.card__action}>
+        <div className={styles.divider} />
+        <div className={styles.card__actionPad}>
+          <Button variant="secondary" size="small" isFullWidth>Print order label</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Main Page ─────────────────────────────────────────────────────────────────
+
 export default function Home() {
-  const { platform } = useLayoutSettings();
+  const [activeTab, setActiveTab] = useState('deli-and-meat');
+
   return (
     <div className={styles.page}>
-      {/* Status bar + Top nav */}
-      <div className={styles.topNavWrapper}>
-        <MobileTopNav
-          forceVisible
-          forceNative
-          showHomeExtras
-          nativeTitle="For You"
-          showNativeSubtitle={false}
-          showNativeAction1
-          showNativeAction2={false}
-          showNativeAction3={false}
-          action1Icon={<Chat />}
-          showNativeAvatarButton
-          avatarInitials="AC"
-          avatarIndicator="clock"
-          avatarClockState="active"
-          nativeOSPlatform={platform}
-        />
+      <AppHeader />
+
+      <div className={styles.stickyNav}>
+        {/* Tab Navigation */}
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          <TabList>
+            <Tab
+              value="deli-and-meat"
+              leading={<Truck />}
+              trailing={<Badge value={4} size="small" />}
+            >
+              Deli and meat
+            </Tab>
+            <Tab
+              value="bakery"
+              leading={<Receipt />}
+              trailing={<Badge value={2} size="small" />}
+            >
+              Bakery
+            </Tab>
+            <Tab value="cakes" trailing={<Badge value={0} size="small" />}>
+              Cakes
+            </Tab>
+            <Tab value="produce" trailing={<Badge value={0} size="small" />}>
+              Produce
+            </Tab>
+            <Tab value="store-orders">Store orders</Tab>
+          </TabList>
+
+          {/* Metrics Summary */}
+          <MetricsSummary />
+
+          {/* Main content panel */}
+          <TabPanel value="deli-and-meat">
+            <div className={styles.contentGrid}>
+              {/* Column 1: Express and in store orders */}
+              <section className={styles.column}>
+                <div className={styles.column__header}>
+                  <h2 className={styles.column__title}>
+                    Express and in store orders
+                    <span className={styles.column__count}>(6)</span>
+                  </h2>
+                </div>
+                <div className={styles.column__body}>
+                  {expressOrders.map((order, idx) => (
+                    <ExpressOrderCard key={idx} order={order} />
+                  ))}
+                </div>
+              </section>
+
+              <div className={styles.column__divider} />
+
+              {/* Column 2: Today's production plan */}
+              <section className={styles.column}>
+                <div className={styles.column__header}>
+                  <h2 className={styles.column__title}>
+                    Today's production plan
+                    <span className={styles.column__count}>(4)</span>
+                  </h2>
+                </div>
+                <div className={styles.column__body}>
+                  {productionItems.map((item, idx) => (
+                    <ProductionCard key={idx} item={item} />
+                  ))}
+                </div>
+              </section>
+
+              <div className={styles.column__divider} />
+
+              {/* Column 3: Online orders */}
+              <section className={styles.column}>
+                <div className={styles.column__header}>
+                  <h2 className={styles.column__title}>
+                    Online orders
+                    <span className={styles.column__count}>(2)</span>
+                  </h2>
+                </div>
+                <div className={styles.column__body}>
+                  {onlineOrders.map((order, idx) => (
+                    <OnlineOrderCard key={idx} order={order} />
+                  ))}
+                </div>
+              </section>
+            </div>
+          </TabPanel>
+
+          <TabPanel value="bakery">
+            <div className={styles.emptyState}>No items for Bakery</div>
+          </TabPanel>
+          <TabPanel value="cakes">
+            <div className={styles.emptyState}>No items for Cakes</div>
+          </TabPanel>
+          <TabPanel value="produce">
+            <div className={styles.emptyState}>No items for Produce</div>
+          </TabPanel>
+          <TabPanel value="store-orders">
+            <div className={styles.emptyState}>No store orders</div>
+          </TabPanel>
+        </Tabs>
       </div>
-
-      {/* Clocking widget */}
-      <ClockingWidget
-        clockState="clocked-out"
-        role="Food & Consumables TL"
-        shiftTime="Today, 7:30am – 4:00pm"
-        lunchTime="12:00pm – 12:30pm"
-        storeNumber="Store #972"
-        walmartWeek="WM WK 9"
-      />
-
-      {/* Schedule widget */}
-      <div className={styles.content}>
-        <ScheduleWidget shifts={SHIFTS} />
-        <div className={styles.bottomSpacer} />
-      </div>
-
-      {/* Bottom nav */}
-      <BottomNav activeTab="for-you" contained={false} showSquiggly />
     </div>
   );
 }
