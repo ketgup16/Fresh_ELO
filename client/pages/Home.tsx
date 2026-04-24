@@ -550,7 +550,7 @@ export default function Home() {
 
       <div className={styles.stickyNav}>
         {/* Tab Navigation */}
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <Tabs value={activeTab} onValueChange={setActiveTab} UNSAFE_className={styles.tabsWrapper}>
           <TabList>
             <Tab
               value="deli-and-meat"
@@ -579,7 +579,7 @@ export default function Home() {
           <MetricsSummary />
 
           {/* Main content panel */}
-          <TabPanel value="deli-and-meat">
+          <TabPanel value="deli-and-meat" UNSAFE_className={styles.tabPanel}>
             <div className={styles.contentGrid}>
               {/* Column 1: Express and in store orders */}
               <section className={styles.column}>
