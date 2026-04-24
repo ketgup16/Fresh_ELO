@@ -303,16 +303,98 @@
   line-height: 1.33;
 }
 
-.timeTag {
+/* ─── Countdown Timer ────────────────────────────────────────────────────────── */
+@keyframes timerPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(0.97); }
+}
+
+@keyframes timerShake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-2px); }
+  40%       { transform: translateX(2px); }
+  60%       { transform: translateX(-2px); }
+  80%       { transform: translateX(2px); }
+}
+
+.timerTag {
   display: inline-flex;
   align-items: center;
+  gap: 4px;
   padding: 4px 8px;
   border-radius: 4px;
-  background: var(--ld-semantic-color-fill-brand, #0053e2);
-  color: var(--ld-semantic-color-text-onfill-brand, #fff);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.33;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+  /* Normal: brand blue */
+  background: var(--ld-semantic-color-fill-brand, #0053e2);
+  color: var(--ld-semantic-color-text-onfill-brand, #fff);
+}
+
+.timerTag:hover {
+  box-shadow: 0 0 0 2px rgba(0, 83, 226, 0.3);
+  filter: brightness(1.1);
+}
+
+.timerTag:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-fill-brand, #0053e2);
+  outline-offset: 2px;
+}
+
+/* Warning: time <= 3 mins — amber */
+.timerTag--warning {
+  background: #f59e0b;
+  color: #fff;
+}
+
+.timerTag--warning:hover {
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.35);
+}
+
+/* Critical: time <= 1 min — red with pulse */
+.timerTag--critical {
+  background: var(--ld-semantic-color-action-fill-destructive, #ea1100);
+  color: #fff;
+  font-weight: 700;
+}
+
+.timerTag--critical:hover {
+  box-shadow: 0 0 0 2px rgba(234, 17, 0, 0.35);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .timerTag--critical {
+    animation: timerPulse 1s ease-in-out infinite;
+  }
+}
+
+/* Expired: overdue — dark red */
+.timerTag--expired {
+  background: #7f1d1d;
+  color: #fecaca;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .timerTag--expired {
+    animation: timerShake 0.5s ease-in-out 0s 1;
+  }
+}
+
+/* Paused state — desaturated */
+.timerTag--paused {
+  opacity: 0.65;
+  filter: grayscale(0.4);
+  font-style: italic;
+}
+
+.timerIcon {
+  flex-shrink: 0;
 }
 
 /* ─── Divider ────────────────────────────────────────────────────────────────── */

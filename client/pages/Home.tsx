@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/Tab';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
@@ -50,7 +50,7 @@ interface OrderItem {
 interface StoreOrder {
   osn: string;
   isExpress: boolean;
-  timeLabel: string;
+  initialSeconds: number;
   items: OrderItem[];
   isWeightItem?: boolean;
 }
@@ -69,7 +69,7 @@ interface ProductionItem {
 
 interface OnlineOrder {
   osn: string;
-  timeLabel: string;
+  initialSeconds: number;
   item: OrderItem;
 }
 
@@ -79,7 +79,7 @@ const expressOrders: StoreOrder[] = [
   {
     osn: 'OSN 7284',
     isExpress: true,
-    timeLabel: '8:00 mins',
+    initialSeconds: 480,
     items: [
       {
         name: 'Buffalo Chicken Wings, 6 Count',
@@ -128,7 +128,7 @@ const productionItems: ProductionItem[] = [
 const onlineOrders: OnlineOrder[] = [
   {
     osn: 'OSN 7284',
-    timeLabel: '8:00 mins',
+    initialSeconds: 480,
     item: {
       name: 'Rotisserie Chicken, 29 oz',
       plu: '6870',
@@ -139,7 +139,7 @@ const onlineOrders: OnlineOrder[] = [
   },
   {
     osn: 'OSN 7285',
-    timeLabel: '8:00 mins',
+    initialSeconds: 735,
     item: {
       name: 'Popcorn Chicken Cup',
       plu: '6870',
@@ -149,6 +149,100 @@ const onlineOrders: OnlineOrder[] = [
     },
   },
 ];
+
+// ─── Countdown Timer Hook ────────────────────────────────────────────────────
+
+type TimerState = 'running' | 'paused' | 'expired';
+
+function useCountdownTimer(initialSeconds: number) {
+  const [secondsLeft, setSecondsLeft] = useState(initialSeconds);
+  const [timerState, setTimerState] = useState<TimerState>('running');
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const tick = useCallback(() => {
+    setSecondsLeft(s => {
+      if (s <= 1) {
+        setTimerState('expired');
+        return 0;
+      }
+      return s - 1;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (timerState === 'running') {
+      intervalRef.current = setInterval(tick, 1000);
+    } else {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    }
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [timerState, tick]);
+
+  const toggle = useCallback(() => {
+    setTimerState(s => {
+      if (s === 'expired') return s;
+      return s === 'running' ? 'paused' : 'running';
+    });
+  }, []);
+
+  const reset = useCallback(() => {
+    setSecondsLeft(initialSeconds);
+    setTimerState('running');
+  }, [initialSeconds]);
+
+  const formatted = (() => {
+    const m = Math.floor(secondsLeft / 60);
+    const s = secondsLeft % 60;
+    return `${m}:${String(s).padStart(2, '0')} mins`;
+  })();
+
+  const urgency: 'normal' | 'warning' | 'critical' | 'expired' =
+    timerState === 'expired' ? 'expired'
+    : secondsLeft <= 60 ? 'critical'
+    : secondsLeft <= 180 ? 'warning'
+    : 'normal';
+
+  return { secondsLeft, formatted, timerState, urgency, toggle, reset };
+}
+
+// ─── CountdownTimer Component ─────────────────────────────────────────────────
+
+function CountdownTimer({ initialSeconds }: { initialSeconds: number }) {
+  const { formatted, timerState, urgency, toggle, reset } = useCountdownTimer(initialSeconds);
+
+  const tagClass = [
+    styles.timerTag,
+    styles[`timerTag--${urgency}`],
+    timerState === 'paused' && styles['timerTag--paused'],
+  ].filter(Boolean).join(' ');
+
+  const label =
+    timerState === 'paused' ? `${formatted} (paused)` :
+    urgency === 'expired' ? 'Overdue' :
+    formatted;
+
+  return (
+    <button
+      type="button"
+      className={tagClass}
+      onClick={toggle}
+      onDoubleClick={reset}
+      aria-label={`Timer: ${label}. Click to ${timerState === 'running' ? 'pause' : 'resume'}, double-click to reset`}
+      title={timerState === 'paused' ? 'Click to resume · Double-click to reset' : 'Click to pause · Double-click to reset'}
+    >
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" className={styles.timerIcon}>
+        <circle cx="5" cy="5" r="4" stroke="currentColor" strokeWidth="1.2" />
+        <path d="M5 2.5V5L6.5 6.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+      </svg>
+      <span>{label}</span>
+      {timerState === 'paused' && (
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
+          <path d="M2 1.5L6.5 4L2 6.5V1.5Z" fill="currentColor" />
+        </svg>
+      )}
+    </button>
+  );
+}
 
 // ─── Sub-components ────────────────────────────────────────────────────────────
 
@@ -226,21 +320,18 @@ function MetricsSummary() {
   );
 }
 
-function ExpressTag({ timeLabel }: { timeLabel: string }) {
+function ExpressTag({ initialSeconds }: { initialSeconds: number }) {
   return (
     <div className={styles.orderHeader__tags}>
       <span className={styles.expressTag}>
         <LightningIcon />
         <span>Express Delivery</span>
       </span>
-      <span className={styles.timeTag}>{timeLabel}</span>
+      <CountdownTimer initialSeconds={initialSeconds} />
     </div>
   );
 }
 
-function TimeTag({ label }: { label: string }) {
-  return <span className={styles.timeTag}>{label}</span>;
-}
 
 function ItemRow({ item, showDivider = true }: { item: OrderItem; showDivider?: boolean }) {
   return (
@@ -295,7 +386,7 @@ function ExpressOrderCard({ order }: { order: StoreOrder }) {
       <div className={styles.card__header}>
         <div className={styles.orderHeader}>
           <span className={styles.orderHeader__osn}>{order.osn}</span>
-          {order.isExpress && <ExpressTag timeLabel={order.timeLabel} />}
+          {order.isExpress && <ExpressTag initialSeconds={order.initialSeconds} />}
         </div>
       </div>
 
@@ -388,7 +479,7 @@ function OnlineOrderCard({ order }: { order: OnlineOrder }) {
       <div className={styles.card__header}>
         <div className={styles.orderHeader}>
           <span className={styles.orderHeader__osn}>{order.osn}</span>
-          <TimeTag label={order.timeLabel} />
+          <CountdownTimer initialSeconds={order.initialSeconds} />
         </div>
       </div>
       <ItemRow item={order.item} showDivider={true} />
