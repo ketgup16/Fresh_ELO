@@ -263,8 +263,8 @@
 .column__body {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  padding: 16px;
+  gap: 20px;
+  padding: 20px;
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -288,20 +288,16 @@
 /* ─── Card ───────────────────────────────────────────────────────────────────── */
 .card {
   background: var(--ld-semantic-color-surface, #fff);
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow:
-    0 -1px 2px 0 rgba(0, 0, 0, 0.10),
-    0 1px 2px 1px rgba(0, 0, 0, 0.15);
+    0 -1px 2px 0 rgba(0, 0, 0, 0.08),
+    0 2px 6px 1px rgba(0, 0, 0, 0.12);
   overflow: hidden;
-  margin-bottom: 16px;
-}
-
-.card:last-child {
-  margin-bottom: 0;
+  flex-shrink: 0;
 }
 
 .card__header {
-  padding: 16px 16px 8px;
+  padding: 20px 20px 12px;
 }
 
 .card__action {
@@ -309,7 +305,7 @@
 }
 
 .card__actionPad {
-  padding: 8px 16px 16px;
+  padding: 12px 20px 20px;
 }
 
 /* ─── Order Header ───────────────────────────────────────────────────────────── */
@@ -453,14 +449,14 @@
 .itemRow {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 12px 16px;
+  gap: 16px;
+  padding: 16px 20px;
 }
 
 .itemRow__image {
-  width: 64px;
-  height: 64px;
-  border-radius: 8px;
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
   object-fit: cover;
   flex-shrink: 0;
   background: var(--ld-semantic-color-fill-subtle, #f5f5f6);
@@ -482,7 +478,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 /* ─── Attribute key/value ────────────────────────────────────────────────────── */
@@ -508,7 +504,7 @@
 .orderDetails__row {
   display: flex;
   align-items: stretch;
-  padding: 8px 20px;
+  padding: 12px 20px;
   justify-content: space-between;
 }
 
@@ -529,14 +525,14 @@
 
 /* ─── Weight Item ────────────────────────────────────────────────────────────── */
 .weightItem {
-  padding: 0 16px 16px;
+  padding: 0 20px 20px;
 }
 
 .weightItem__row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 0;
+  padding: 12px 0;
 }
 
 .weightItem__label {
@@ -571,14 +567,14 @@
 .productionCard__top {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 16px;
+  gap: 16px;
+  padding: 20px;
 }
 
 .productionCard__image {
-  width: 64px;
-  height: 64px;
-  border-radius: 8px;
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
   object-fit: cover;
   flex-shrink: 0;
   background: var(--ld-semantic-color-fill-subtle, #f5f5f6);
@@ -626,7 +622,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 12px 16px;
+  padding: 16px 20px;
   flex: 1;
 }
 
@@ -654,8 +650,8 @@
 .productionActions {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px 16px;
+  gap: 16px;
+  padding: 16px 20px 20px;
 }
 
 .buildSheetLink {
