@@ -202,17 +202,18 @@
 
 /* ─── Content Grid ───────────────────────────────────────────────────────────── */
 .contentGrid {
-  display: grid;
-  grid-template-columns: 1fr 2px 1fr 2px 1fr;
+  display: flex;
+  flex-direction: row;
   flex: 1;
   min-height: 0;
-  align-items: stretch;
   overflow: hidden;
 }
 
 @media (max-width: 768px) {
   .contentGrid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .column__divider {
@@ -221,6 +222,7 @@
 }
 
 .column {
+  flex: 1;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -229,8 +231,9 @@
 }
 
 .column__divider {
+  width: 2px;
+  flex-shrink: 0;
   background: var(--ld-semantic-color-separator, #e3e4e5);
-  align-self: stretch;
 }
 
 .column__header {
