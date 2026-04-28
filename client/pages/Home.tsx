@@ -418,8 +418,35 @@ const ReweighIcon = () => (
   </svg>
 );
 
+type ScaleState = 'idle' | 'reading' | 'read';
+
 function ExpressOrderCard({ order }: { order: StoreOrder }) {
-  const [scaleActivated, setScaleActivated] = useState(false);
+  const [scaleState, setScaleState] = useState<ScaleState>('idle');
+  const [orderLabelUnlocked, setOrderLabelUnlocked] = useState(false);
+  const readingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handlePlaceOnScale = () => {
+    setScaleState('reading');
+    // Simulate scale reading — resolves after ~2 s
+    readingTimerRef.current = setTimeout(() => {
+      setScaleState('read');
+    }, 2000);
+  };
+
+  const handleReweigh = () => {
+    if (readingTimerRef.current) clearTimeout(readingTimerRef.current);
+    setScaleState('idle');
+    setOrderLabelUnlocked(false);
+  };
+
+  const handlePrintItemLabel = () => {
+    setOrderLabelUnlocked(true);
+  };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => { if (readingTimerRef.current) clearTimeout(readingTimerRef.current); };
+  }, []);
 
   return (
     <div className={styles.card}>
@@ -451,8 +478,40 @@ function ExpressOrderCard({ order }: { order: StoreOrder }) {
             </div>
           </div>
 
-          {scaleActivated && order.scaleReading ? (
-            /* ── Scale reading result ── */
+          {/* ── idle: place on scale ── */}
+          {scaleState === 'idle' && (
+            <Button
+              variant="secondary"
+              size="small"
+              isFullWidth
+              leading={<ScaleIcon />}
+              onClick={handlePlaceOnScale}
+            >
+              Place items on scale
+            </Button>
+          )}
+
+          {/* ── reading: animated scanning state ── */}
+          {scaleState === 'reading' && (
+            <div className={styles.scaleReading} role="status" aria-live="polite">
+              <div className={styles.scaleReading__iconWrap} aria-hidden="true">
+                <ScaleIcon />
+                <span className={styles.scaleReading__pulse} />
+              </div>
+              <div className={styles.scaleReading__text}>
+                <span className={styles.scaleReading__title}>Reading scale</span>
+                <span className={styles.scaleReading__dots} aria-hidden="true">
+                  <span /><span /><span />
+                </span>
+              </div>
+              <div className={styles.scaleReading__bar} aria-hidden="true">
+                <span className={styles.scaleReading__fill} />
+              </div>
+            </div>
+          )}
+
+          {/* ── read: scale result ── */}
+          {scaleState === 'read' && order.scaleReading && (
             <div className={styles.scaleResult}>
               <div className={styles.scaleResult__info}>
                 <span className={styles.scaleResult__label}>Scale reading</span>
@@ -464,43 +523,44 @@ function ExpressOrderCard({ order }: { order: StoreOrder }) {
               <button
                 type="button"
                 className={styles.reweighBtn}
-                onClick={() => setScaleActivated(false)}
+                onClick={handleReweigh}
                 aria-label="Re-weigh item"
               >
                 <ReweighIcon />
                 Re-weigh
               </button>
             </div>
-          ) : (
-            /* ── Place on scale CTA ── */
-            <Button
-              variant="secondary"
-              size="small"
-              isFullWidth
-              leading={<ScaleIcon />}
-              onClick={() => setScaleActivated(true)}
-            >
-              Place items on scale
-            </Button>
           )}
         </div>
       )}
 
-      {/* Print item label — active once scale is read */}
-      {scaleActivated && (
+      {/* Print item label — active once scale reading is done */}
+      {scaleState === 'read' && (
         <div className={styles.scanActions__btn}>
-          <Button variant="primary" size="small" isFullWidth>
+          <Button
+            variant="primary"
+            size="small"
+            isFullWidth
+            onClick={handlePrintItemLabel}
+          >
             Print item label
           </Button>
         </div>
       )}
 
-      {/* Scan actions — unlock hint + disabled print order label */}
+      {/* Scan actions — unlock hint + print order label */}
       <div className={styles.scanActions}>
         <div className={styles.divider} />
-        <p className={styles.unlockText}>Weigh 1 item to unlock</p>
+        {!orderLabelUnlocked && (
+          <p className={styles.unlockText}>Weigh 1 item to unlock</p>
+        )}
         <div className={styles.scanActions__btn}>
-          <Button variant="secondary" size="small" isFullWidth disabled>
+          <Button
+            variant="secondary"
+            size="small"
+            isFullWidth
+            disabled={!orderLabelUnlocked}
+          >
             Print order label
           </Button>
         </div>
