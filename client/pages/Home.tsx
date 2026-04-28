@@ -492,7 +492,7 @@ function ProductionCard({ item }: { item: ProductionItem }) {
       <div className={styles.divider} />
       <div className={styles.productionActions}>
         <button className={styles.buildSheetLink}>Build sheet</button>
-        <Button variant="secondary" size="small" isFullWidth>Complete</Button>
+        <Button variant="secondary" size="small" isFullWidth>Get started</Button>
       </div>
     </div>
   );
