@@ -660,6 +660,260 @@ function OnlineOrderCard({ order }: { order: OnlineOrder }) {
   );
 }
 
+// ─── Store Orders ──────────────────────────────────────────────────────────────
+
+interface StoreProduct {
+  id: string;
+  name: string;
+  description: string;
+  startingPrice: string;
+  image: string;
+  category: string;
+  notice?: string;
+}
+
+interface CartItem {
+  product: StoreProduct;
+  qty: number;
+}
+
+const storeProducts: StoreProduct[] = [
+  {
+    id: 'fried-chicken',
+    name: 'Fried chicken tray',
+    description: 'Freshly fried chicken pieces. Breasts wings legs and thighs',
+    startingPrice: '$58.00',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/0fb38ded214e7747a9e4040154af5afa019ad2fa?width=400',
+    category: 'hot-foods',
+    notice: '24 hour notice',
+  },
+  {
+    id: 'sub-sandwich',
+    name: 'Sub sandwich party tray',
+    description: 'Includes Honey Ham, Oven Roasted Turkey, and Roast Beef.',
+    startingPrice: '$126.00',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=400',
+    category: 'meat-cheese',
+    notice: '24 hour notice',
+  },
+  {
+    id: 'chicken-combo',
+    name: 'Chicken combo tray',
+    description: 'Chicken Tenders, Bone-In Wings, and Boneless Wings.',
+    startingPrice: '$45.00',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/4e964bed0619d2365b794f27970d38864cef87e9?width=400',
+    category: 'party-tray',
+    notice: '24 hour notice',
+  },
+];
+
+const storeCategories = [
+  { id: 'hot-foods', label: 'Hot foods' },
+  { id: 'meat-cheese', label: 'Meat and cheese' },
+  { id: 'party-tray', label: 'Party tray' },
+  { id: 'cakes-store', label: 'Cakes' },
+];
+
+function CloseIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function TrashIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M2 4h12M5 4V2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5V4M6 7v5M10 7v5M3 4l1 9.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5L13 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function StoreOrdersPanel() {
+  const [activeCategory, setActiveCategory] = useState('party-tray');
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [configuringId, setConfiguringId] = useState<string | null>(null);
+  const [pendingQty, setPendingQty] = useState(1);
+
+  const filtered = storeProducts.filter(p => p.category === activeCategory);
+
+  const handleConfigureClick = (product: StoreProduct) => {
+    setConfiguringId(product.id);
+    setPendingQty(1);
+  };
+
+  const handleAddToCart = (product: StoreProduct) => {
+    setCart(prev => {
+      const existing = prev.find(c => c.product.id === product.id);
+      if (existing) {
+        return prev.map(c => c.product.id === product.id ? { ...c, qty: c.qty + pendingQty } : c);
+      }
+      return [...prev, { product, qty: pendingQty }];
+    });
+    setConfiguringId(null);
+  };
+
+  const handleRemoveFromCart = (id: string) => {
+    setCart(prev => prev.filter(c => c.product.id !== id));
+  };
+
+  const cartTotal = cart.reduce((sum, c) => {
+    const price = parseFloat(c.product.startingPrice.replace('$', ''));
+    return sum + price * c.qty;
+  }, 0);
+
+  return (
+    <div className={styles.storeLayout}>
+      {/* ── Left: Product Catalog ── */}
+      <div className={styles.storeCatalog}>
+        {/* Filter chips */}
+        <div className={styles.filterBar}>
+          {storeCategories.map(cat => (
+            <button
+              key={cat.id}
+              type="button"
+              className={[
+                styles.filterChip,
+                activeCategory === cat.id && styles['filterChip--active'],
+              ].filter(Boolean).join(' ')}
+              onClick={() => setActiveCategory(cat.id)}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Product cards */}
+        <div className={styles.productGrid}>
+          {filtered.length > 0 ? filtered.map(product => (
+            <div key={product.id} className={styles.productCard}>
+              {product.notice && (
+                <div className={styles.productCard__notice}>{product.notice}</div>
+              )}
+              <img
+                src={product.image}
+                alt={product.name}
+                className={styles.productCard__image}
+              />
+              <div className={styles.productCard__body}>
+                <h3 className={styles.productCard__name}>{product.name}</h3>
+                <p className={styles.productCard__desc}>{product.description}</p>
+                <p className={styles.productCard__price}>
+                  Starting at <strong>{product.startingPrice} ea</strong>
+                </p>
+
+                {configuringId === product.id ? (
+                  <div className={styles.productCard__configure}>
+                    <div className={styles.qtyRow}>
+                      <span className={styles.qtyLabel}>Qty</span>
+                      <div className={styles.qtyStepper}>
+                        <button
+                          type="button"
+                          className={styles.qtyBtn}
+                          onClick={() => setPendingQty(q => Math.max(1, q - 1))}
+                          aria-label="Decrease quantity"
+                        >−</button>
+                        <span className={styles.qtyValue}>{pendingQty}</span>
+                        <button
+                          type="button"
+                          className={styles.qtyBtn}
+                          onClick={() => setPendingQty(q => q + 1)}
+                          aria-label="Increase quantity"
+                        >+</button>
+                      </div>
+                    </div>
+                    <div className={styles.configureActions}>
+                      <Button variant="secondary" size="small" onClick={() => setConfiguringId(null)}>
+                        Cancel
+                      </Button>
+                      <Button variant="primary" size="small" isFullWidth onClick={() => handleAddToCart(product)}>
+                        Add to order
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <Button
+                    variant="secondary"
+                    size="small"
+                    isFullWidth
+                    onClick={() => handleConfigureClick(product)}
+                  >
+                    Configure and add
+                  </Button>
+                )}
+              </div>
+            </div>
+          )) : (
+            <div className={styles.emptyState}>No items in this category</div>
+          )}
+        </div>
+      </div>
+
+      {/* ── Right: Cart / Order Summary ── */}
+      <div className={styles.cartPanel}>
+        <div className={styles.cartPanel__header}>
+          <h2 className={styles.cartPanel__title}>Order summary</h2>
+          {cart.length > 0 && (
+            <span className={styles.cartPanel__count}>{cart.length} item{cart.length !== 1 ? 's' : ''}</span>
+          )}
+        </div>
+
+        {cart.length === 0 ? (
+          <div className={styles.cartPanel__empty}>
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="23" stroke="var(--ld-semantic-color-separator,#e3e4e5)" strokeWidth="2" />
+              <path d="M14 18h20l-2.5 12H16.5L14 18Z" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinejoin="round" />
+              <path d="M19 18l1-4h8l1 4" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+            <p className={styles.cartPanel__emptyText}>No items added yet</p>
+            <p className={styles.cartPanel__emptyHint}>Use "Configure and add" to build your order</p>
+          </div>
+        ) : (
+          <>
+            <div className={styles.cartItems}>
+              {cart.map(item => (
+                <div key={item.product.id} className={styles.cartItem}>
+                  <img
+                    src={item.product.image}
+                    alt={item.product.name}
+                    className={styles.cartItem__image}
+                  />
+                  <div className={styles.cartItem__info}>
+                    <div className={styles.cartItem__name}>{item.product.name}</div>
+                    <div className={styles.cartItem__meta}>
+                      Qty: {item.qty} · {item.product.startingPrice} ea
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    className={styles.cartItem__remove}
+                    onClick={() => handleRemoveFromCart(item.product.id)}
+                    aria-label={`Remove ${item.product.name}`}
+                  >
+                    <TrashIcon />
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <div className={styles.cartPanel__footer}>
+              <div className={styles.divider} />
+              <div className={styles.cartTotal}>
+                <span className={styles.cartTotal__label}>Estimated total</span>
+                <span className={styles.cartTotal__value}>${cartTotal.toFixed(2)}</span>
+              </div>
+              <Button variant="primary" size="small" isFullWidth>
+                Place order
+              </Button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Page ─────────────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -762,8 +1016,8 @@ export default function Home() {
           <TabPanel value="produce">
             <div className={styles.emptyState}>No items for Produce</div>
           </TabPanel>
-          <TabPanel value="store-orders">
-            <div className={styles.emptyState}>No store orders</div>
+          <TabPanel value="store-orders" UNSAFE_className={styles.storeOrdersPanel}>
+            <StoreOrdersPanel />
           </TabPanel>
         </Tabs>
       </div>
