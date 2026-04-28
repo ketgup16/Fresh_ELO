@@ -563,6 +563,81 @@
   text-decoration: underline;
 }
 
+/* ─── Scale Reading Result ───────────────────────────────────────────────────── */
+.scaleResult {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1.5px solid var(--ld-semantic-color-text-positive, #2a8703);
+  background: #f0fdf4;
+}
+
+.scaleResult__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.scaleResult__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text-positive, #2a8703);
+  line-height: 1.33;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.scaleResult__value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  line-height: 1.4;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.scaleResult__price {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.reweighBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1.5px solid var(--ld-semantic-color-action-border-secondary, #2e2f32);
+  background: var(--ld-semantic-color-surface, #fff);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.43;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.reweighBtn:hover {
+  background: var(--ld-semantic-color-action-fill-secondary-hover, #f5f5f6);
+}
+
+.reweighBtn:focus-visible {
+  outline: 2px solid var(--ld-semantic-color-fill-brand, #0053e2);
+  outline-offset: 2px;
+}
+
+.reweighBtn svg {
+  flex-shrink: 0;
+}
+
 /* ─── Scan Actions (unlock hint + disabled print label) ──────────────────────── */
 .scanActions {
   /* no extra padding — divider goes edge-to-edge */

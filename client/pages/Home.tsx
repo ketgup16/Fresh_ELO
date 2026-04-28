@@ -47,12 +47,18 @@ interface OrderItem {
   thickness?: string;
 }
 
+interface ScaleReading {
+  weight: string;
+  price: string;
+}
+
 interface StoreOrder {
   osn: string;
   isExpress: boolean;
   initialSeconds: number;
   items: OrderItem[];
   isWeightItem?: boolean;
+  scaleReading?: ScaleReading;
 }
 
 interface ProductionItem {
@@ -109,6 +115,7 @@ const expressOrders: StoreOrder[] = [
       },
     ],
     isWeightItem: true,
+    scaleReading: { weight: '0.25 LB', price: '$2.75' },
   },
 ];
 
@@ -404,7 +411,16 @@ function OrderDetails({ item }: { item: OrderItem }) {
   );
 }
 
+const ReweighIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    <path d="M8 1v3.5L10.5 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 function ExpressOrderCard({ order }: { order: StoreOrder }) {
+  const [scaleActivated, setScaleActivated] = useState(false);
+
   return (
     <div className={styles.card}>
       {/* Card header */}
@@ -434,18 +450,52 @@ function ExpressOrderCard({ order }: { order: StoreOrder }) {
               <span className={styles.scaleOnlineText}>Scale online</span>
             </div>
           </div>
-          <Button
-            variant="secondary"
-            size="small"
-            isFullWidth
-            leading={<ScaleIcon />}
-          >
-            Place items on scale
+
+          {scaleActivated && order.scaleReading ? (
+            /* ── Scale reading result ── */
+            <div className={styles.scaleResult}>
+              <div className={styles.scaleResult__info}>
+                <span className={styles.scaleResult__label}>Scale reading</span>
+                <span className={styles.scaleResult__value}>
+                  {order.scaleReading.weight}
+                  <span className={styles.scaleResult__price}>{order.scaleReading.price}</span>
+                </span>
+              </div>
+              <button
+                type="button"
+                className={styles.reweighBtn}
+                onClick={() => setScaleActivated(false)}
+                aria-label="Re-weigh item"
+              >
+                <ReweighIcon />
+                Re-weigh
+              </button>
+            </div>
+          ) : (
+            /* ── Place on scale CTA ── */
+            <Button
+              variant="secondary"
+              size="small"
+              isFullWidth
+              leading={<ScaleIcon />}
+              onClick={() => setScaleActivated(true)}
+            >
+              Place items on scale
+            </Button>
+          )}
+        </div>
+      )}
+
+      {/* Print item label — active once scale is read */}
+      {scaleActivated && (
+        <div className={styles.scanActions__btn}>
+          <Button variant="primary" size="small" isFullWidth>
+            Print item label
           </Button>
         </div>
       )}
 
-      {/* Scan actions — unlock hint + disabled print label */}
+      {/* Scan actions — unlock hint + disabled print order label */}
       <div className={styles.scanActions}>
         <div className={styles.divider} />
         <p className={styles.unlockText}>Weigh 1 item to unlock</p>
