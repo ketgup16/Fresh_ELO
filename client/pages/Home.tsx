@@ -950,8 +950,8 @@ export default function Home() {
             <Tab value="store-orders">Store orders</Tab>
           </TabList>
 
-          {/* Metrics Summary */}
-          <MetricsSummary />
+          {/* Metrics Summary — hidden on Store orders tab */}
+          {activeTab !== 'store-orders' && <MetricsSummary />}
 
           {/* Main content panel */}
           <TabPanel value="deli-and-meat" UNSAFE_className={styles.tabPanel}>
