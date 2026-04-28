@@ -444,6 +444,17 @@ function ExpressOrderCard({ order }: { order: StoreOrder }) {
           </Button>
         </div>
       )}
+
+      {/* Scan actions — unlock hint + disabled print label */}
+      <div className={styles.scanActions}>
+        <div className={styles.divider} />
+        <p className={styles.unlockText}>Weigh 1 item to unlock</p>
+        <div className={styles.scanActions__btn}>
+          <Button variant="secondary" size="small" isFullWidth disabled>
+            Print order label
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

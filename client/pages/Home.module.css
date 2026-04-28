@@ -563,6 +563,25 @@
   text-decoration: underline;
 }
 
+/* ─── Scan Actions (unlock hint + disabled print label) ──────────────────────── */
+.scanActions {
+  /* no extra padding — divider goes edge-to-edge */
+}
+
+.unlockText {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  line-height: 1.43;
+  margin: 0;
+  padding: 12px 20px 0;
+}
+
+.scanActions__btn {
+  padding: 12px 20px 20px;
+}
+
 /* ─── Production Card ────────────────────────────────────────────────────────── */
 .productionCard__top {
   display: flex;
