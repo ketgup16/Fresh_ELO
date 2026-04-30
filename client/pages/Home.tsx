@@ -740,7 +740,7 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     basePrice: 15.98,
     plu: '2601234762',
     tag: 'Meal Deal',
-    image: 'https://images.pexels.com/photos/13458086/pexels-photo-13458086.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=800',
     category: 'hot-meals',
     customizations: [
       { id: 'main', title: 'Select Main Entree', type: 'single', options: ['Traditional Rotisserie Chicken', 'Lemon Pepper Rotisserie'] },
@@ -755,7 +755,7 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     basePrice: 6.48,
     plu: '62807',
     tag: 'Grab & Go',
-    image: 'https://images.pexels.com/photos/8862763/pexels-photo-8862763.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/0fb38ded214e7747a9e4040154af5afa019ad2fa?width=800',
     category: 'hot-meals',
   },
   {
@@ -778,7 +778,7 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     itemType: 'portioned',
     basePrice: 4.98,
     tag: 'Portioned',
-    image: 'https://images.pexels.com/photos/28573376/pexels-photo-28573376.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/4e964bed0619d2365b794f27970d38864cef87e9?width=800',
     category: 'hot-meals',
     variants: [
       { id: 'sm', label: 'Small Cup', price: 4.98, plu: '62821' },
@@ -801,7 +801,7 @@ const PARTY_TRAY_DATA: StoreProduct[] = [
     basePrice: 15.00,
     tag: '24 Hour Notice',
     notice: '24 hour notice',
-    image: 'https://images.pexels.com/photos/9872916/pexels-photo-9872916.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=800',
     category: 'party-tray',
     description: 'Freshly fried chicken pieces. Breasts, Wings, Legs & Thighs.',
     variants: [
@@ -817,7 +817,7 @@ const PARTY_TRAY_DATA: StoreProduct[] = [
     basePrice: 45.00,
     tag: '24 Hour Notice',
     notice: '24 hour notice',
-    image: 'https://images.pexels.com/photos/24182617/pexels-photo-24182617.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=800',
     category: 'party-tray',
     description: 'Chicken Tenders, 1 flavor Boneless wing and 1 flavor Bone in wings. Served with ranch. No substitutions.',
     variants: [
@@ -833,7 +833,7 @@ const PARTY_TRAY_DATA: StoreProduct[] = [
     basePrice: 35.00,
     tag: '24 Hour Notice',
     notice: '24 hour notice',
-    image: 'https://images.pexels.com/photos/8862763/pexels-photo-8862763.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/0fb38ded214e7747a9e4040154af5afa019ad2fa?width=800',
     category: 'party-tray',
     description: 'Combo of boneless and bone in wings. Served with carrots, celery sticks and ranch for dipping.',
     variants: [
@@ -956,7 +956,7 @@ const MEAT_CHEESE_DATA: StoreProduct[] = [
     basePrice: 10.98,
     plu: '6379',
     tag: 'Deli',
-    image: 'https://images.pexels.com/photos/5491290/pexels-photo-5491290.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=800',
     category: 'meat-cheese',
     thicknessOptions: ['Shaved', 'Thin (1mm)', 'Sandwich (2mm)', 'Thick (4mm)'],
   },
