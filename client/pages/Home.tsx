@@ -1327,12 +1327,16 @@ function StoreOrdersPanel() {
             <div className={styles.cartItems}>
               {cart.map(item => (
                 <div key={item.cartId} className={styles.cartItem}>
-                  <div className={styles.cartItem__top}>
+                  {/* Top row: thumbnail + product details + actions */}
+                  <div className={styles.cartItem__main}>
                     <img src={item.product.image} alt={item.product.name} className={styles.cartItem__image} />
-                    <div className={styles.cartItem__info}>
+                    <div className={styles.cartItem__content}>
                       <div className={styles.cartItem__name}>{item.product.name}</div>
+                      <div className={styles.cartItem__attrRow}>
+                        <span className={styles.cartItem__attrKey}>PLU</span>
+                        <span className={styles.cartItem__attrVal}>{getCartItemPlu(item)}</span>
+                      </div>
                       <div className={styles.cartItem__variant}>{getCartItemLabel(item)}</div>
-                      <div className={styles.cartItem__meta}>PLU #{getCartItemPlu(item)}</div>
                       {Object.keys(item.selections).length > 0 && (
                         <div className={styles.cartItem__flavors}>
                           {Object.entries(item.selections).map(([groupId, opts]) => {
@@ -1365,16 +1369,28 @@ function StoreOrdersPanel() {
                       </button>
                     </div>
                   </div>
-                  <div className={styles.cartItem__qtyRow}>
-                    <span className={styles.cartItem__price}>${(item.price * item.qty).toFixed(2)}</span>
-                    <QuantityStepper
-                      key={item.cartId}
-                      variant="tertiary"
-                      size="small"
-                      defaultCount={item.qty}
-                      showTrashOnRemove
-                      onChange={count => updateQty(item.cartId, count)}
-                    />
+
+                  {/* Divider */}
+                  <div className={styles.cartItem__divider} />
+
+                  {/* Footer row: Qty | | Price */}
+                  <div className={styles.cartItem__footer}>
+                    <div className={styles.cartItem__footerCol}>
+                      <span className={styles.cartItem__footerKey}>Qty</span>
+                      <QuantityStepper
+                        key={item.cartId}
+                        variant="tertiary"
+                        size="small"
+                        defaultCount={item.qty}
+                        showTrashOnRemove
+                        onChange={count => updateQty(item.cartId, count)}
+                      />
+                    </div>
+                    <div className={styles.cartItem__footerVDivider} />
+                    <div className={styles.cartItem__footerCol}>
+                      <span className={styles.cartItem__footerKey}>Price</span>
+                      <span className={styles.cartItem__price}>${(item.price * item.qty).toFixed(2)}</span>
+                    </div>
                   </div>
                 </div>
               ))}
