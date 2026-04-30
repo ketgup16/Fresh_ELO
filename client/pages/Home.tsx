@@ -717,7 +717,6 @@ interface StoreCustomerInfo {
   phone: string;
   pickupDate: string;
   pickupTime: string;
-  pickupAmPm: 'AM' | 'PM';
   pickupDay: string;
   orderDate: string;
   orderTakenBy: string;
@@ -898,7 +897,7 @@ function StoreOrdersPanel() {
   const [orderSuccess, setOrderSuccess] = useState<string | null>(null);
   const [customerInfo, setCustomerInfo] = useState<StoreCustomerInfo>({
     name: '', phone: '', pickupDate: '', pickupTime: '',
-    pickupAmPm: 'AM', pickupDay: '', orderDate: '', orderTakenBy: '', instructions: '',
+    pickupDay: '', orderDate: '', orderTakenBy: '', instructions: '',
   });
 
   const todayDate = new Date().toISOString().split('T')[0];
@@ -1043,7 +1042,7 @@ function StoreOrdersPanel() {
   const submitOrder = () => setOrderSuccess(`OSN-${Math.floor(1000 + Math.random() * 9000)}`);
   const resetFlow = () => {
     setCart([]);
-    setCustomerInfo({ name: '', phone: '', pickupDate: '', pickupTime: '', pickupAmPm: 'AM', pickupDay: '', orderDate: '', orderTakenBy: '', instructions: '' });
+    setCustomerInfo({ name: '', phone: '', pickupDate: '', pickupTime: '', pickupDay: '', orderDate: '', orderTakenBy: '', instructions: '' });
     setOrderSuccess(null);
   };
 
@@ -1162,18 +1161,8 @@ function StoreOrdersPanel() {
               </div>
               <div className={styles.formField}>
                 <label className={styles.formField__label}>Pick up time <span className={styles.formField__required}>*</span></label>
-                <div className={styles.timeRow}>
-                  <input className={styles.formField__input} type="time"
-                    value={customerInfo.pickupTime} onChange={e => setCustomerInfo(i => ({ ...i, pickupTime: e.target.value }))} />
-                  <div className={styles.amPmToggle}>
-                    {(['AM', 'PM'] as const).map(v => (
-                      <button key={v} type="button"
-                        className={[styles.amPmBtn, customerInfo.pickupAmPm === v && styles['amPmBtn--active']].filter(Boolean).join(' ')}
-                        onClick={() => setCustomerInfo(i => ({ ...i, pickupAmPm: v }))}
-                      >{v}</button>
-                    ))}
-                  </div>
-                </div>
+                <input className={styles.formField__input} type="time"
+                  value={customerInfo.pickupTime} onChange={e => setCustomerInfo(i => ({ ...i, pickupTime: e.target.value }))} />
               </div>
             </div>
 
@@ -1196,9 +1185,8 @@ function StoreOrdersPanel() {
                 <input className={styles.formField__input} type="date" value={todayDate} readOnly />
               </div>
               <div className={styles.formField}>
-                <label className={styles.formField__label}>Order taken by <span className={styles.formField__required}>*</span></label>
                 <Select
-                  label="Order taken by"
+                  label="Order taken by *"
                   value={customerInfo.orderTakenBy}
                   onValueChange={v => setCustomerInfo(i => ({ ...i, orderTakenBy: v }))}
                   placeholder="Select associate"
