@@ -740,7 +740,7 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     basePrice: 15.98,
     plu: '2601234762',
     tag: 'Meal Deal',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=800',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc7e8fa813fc243e2a045b5304911acfc',
     category: 'hot-meals',
     customizations: [
       { id: 'main', title: 'Select Main Entree', type: 'single', options: ['Traditional Rotisserie Chicken', 'Lemon Pepper Rotisserie'] },
