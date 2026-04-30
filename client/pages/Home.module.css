@@ -1073,10 +1073,12 @@
   background: var(--ld-semantic-color-fill-brand-subtle, #dce8ff);
 }
 
-/* ── Product list (vertical, replaces grid) ── */
+/* ── Product list (horizontal row) ── */
 .productList {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: stretch;
+  flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
 }
@@ -1090,12 +1092,16 @@
     0 2px 6px 1px rgba(0, 0, 0, 0.10);
   overflow: hidden;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 0;
+  width: calc(33.333% - 14px);
+  min-width: 220px;
+  flex-shrink: 0;
 }
 
 .productCard__imageWrap {
-  width: 160px;
+  width: 100%;
+  height: 160px;
   flex-shrink: 0;
   position: relative;
 }
@@ -1689,6 +1695,437 @@
   color: var(--ld-semantic-color-text, #2e2f32);
 }
 
+/* ── Product card tag ── */
+.productCard__tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--ld-semantic-color-fill-brand-subtle, #dce8ff);
+  color: var(--ld-semantic-color-fill-brand, #0053e2);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  z-index: 1;
+}
+
+/* ── Product card actions ── */
+.productCard__actions {
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+/* ── Catalog empty state ── */
+.catalogEmpty {
+  padding: 48px 20px;
+  text-align: center;
+}
+
+.catalogEmpty__text {
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  margin: 0;
+}
+
+/* ── Form field required star ── */
+.formField__required {
+  color: var(--ld-semantic-color-text-negative, #d32f2f);
+}
+
+/* ── Form field char count ── */
+.formField__charCount {
+  font-size: 11px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  text-align: right;
+  margin-top: 2px;
+}
+
+/* ── Cart panel sub-header ── */
+.cartPanel__subHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px 8px;
+}
+
+.cartPanel__subTitle {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+/* ── Cart item enhancements ── */
+.cartItem__top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.cartItem__variant {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-fill-brand, #0053e2);
+  margin-top: 1px;
+}
+
+.cartItem__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.cartItem__editBtn,
+.cartItem__removeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.cartItem__editBtn {
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.cartItem__editBtn:hover {
+  color: var(--ld-semantic-color-fill-brand, #0053e2);
+  background: var(--ld-semantic-color-fill-brand-subtle, #dce8ff);
+}
+
+.cartItem__removeBtn {
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.cartItem__removeBtn:hover {
+  color: var(--ld-semantic-color-text-negative, #d32f2f);
+  background: var(--ld-semantic-color-fill-negative-subtle, #fde8e6);
+}
+
+.cartItem__qtyRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  margin-top: 8px;
+  border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+}
+
+.cartItem__price {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+/* ── Modal header row ── */
+.modalHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* ── Modal footer override (space-between) ── */
+.modalFooterRow {
+  justify-content: space-between !important;
+}
+
+/* ── Modal close button ── */
+.modalCloseBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.modalCloseBtn:hover {
+  background: var(--ld-semantic-color-fill-subtle, #f5f5f6);
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+/* ── Modal body ── */
+.modalBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ld-semantic-color-separator, #e3e4e5) transparent;
+}
+
+/* ── Modal step ── */
+.modalStep {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modalStep__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modalStepNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--ld-semantic-color-fill-brand, #0053e2);
+  color: var(--ld-semantic-color-action-text-onfill-primary, #fff);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.modalStep__label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  flex: 1;
+}
+
+.modalStep__req {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  white-space: nowrap;
+}
+
+.modalStep__req--done {
+  color: var(--ld-semantic-color-text-positive, #1a7a34);
+}
+
+/* ── Size / option grid ── */
+.sizeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.sizeCard {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1.5px solid var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-surface, #fff);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+  position: relative;
+}
+
+.sizeCard:hover {
+  border-color: var(--ld-semantic-color-fill-brand, #0053e2);
+}
+
+.sizeCard--active {
+  border-color: var(--ld-semantic-color-fill-brand, #0053e2);
+  background: var(--ld-semantic-color-fill-brand-subtle, #dce8ff);
+}
+
+.sizeCard__label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  line-height: 1.3;
+}
+
+.sizeCard__sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.sizeCard__includes {
+  font-size: 11px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.sizeCard__check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: var(--ld-semantic-color-fill-brand, #0053e2);
+}
+
+/* ── Option chips (flavors / customizations) ── */
+.optionsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.optionChip {
+  padding: 7px 14px;
+  border-radius: 100px;
+  border: 1.5px solid var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-surface, #fff);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.optionChip:hover {
+  border-color: var(--ld-semantic-color-fill-brand, #0053e2);
+}
+
+.optionChip--active {
+  border-color: var(--ld-semantic-color-fill-brand, #0053e2);
+  background: var(--ld-semantic-color-fill-brand, #0053e2);
+  color: var(--ld-semantic-color-action-text-onfill-primary, #fff);
+}
+
+.optionChip--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Weight stepper (deli meat) ── */
+.weightRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.weightStepper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1.5px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: var(--ld-semantic-color-fill-subtle, #f5f5f6);
+}
+
+.weightBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1.5px solid var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-surface, #fff);
+  cursor: pointer;
+  color: var(--ld-semantic-color-fill-brand, #0053e2);
+  transition: background 0.15s;
+}
+
+.weightBtn:hover {
+  background: var(--ld-semantic-color-fill-brand-subtle, #dce8ff);
+}
+
+.weightValue {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  min-width: 80px;
+  text-align: center;
+}
+
+.weightUnit {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+/* ── Modal footer price ── */
+.modalFooter__price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+/* ── Success card (inside Modal) ── */
+.successCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.successIcon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--ld-semantic-color-fill-positive-subtle, #e6f5ec);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ld-semantic-color-text-positive, #1a7a34);
+}
+
+.successCard__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  margin: 0;
+}
+
+.successCard__subtitle {
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.successOSN {
+  background: var(--ld-semantic-color-fill-subtle, #f5f5f6);
+  border-radius: 8px;
+  padding: 12px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  width: 100%;
+}
+
+.successOSN__label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.successOSN__value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--ld-semantic-color-fill-brand, #0053e2);
+  letter-spacing: 0.02em;
+}
+
 @media (max-width: 768px) {
   .storeLayout {
     flex-direction: column;
@@ -1700,11 +2137,12 @@
     max-height: 400px;
   }
   .productCard {
-    flex-direction: column;
+    width: calc(50% - 10px);
+    min-width: 180px;
   }
-  .productCard__imageWrap {
-    width: 100%;
-    height: 180px;
+  .productList {
+    gap: 12px;
+    padding: 12px;
   }
   .customerInfo__grid {
     grid-template-columns: 1fr;

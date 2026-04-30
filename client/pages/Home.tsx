@@ -3,7 +3,11 @@ import { Tabs, TabList, Tab, TabPanel } from '@/components/ui/Tab';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Metric } from '@/components/ui/Metric';
-import { Menu, Chat, Truck, Receipt, ArrowUp, ArrowDown } from '@/components/icons';
+import { Modal, ModalContent, ModalTitle, ModalClose, ModalFooter } from '@/components/ui/Modal';
+import { Select, SelectItem } from '@/components/ui/Select';
+import { TextArea } from '@/components/ui/TextArea';
+import { QuantityStepper } from '@/components/ui/QuantityStepper';
+import { Menu, Chat, Truck, Receipt, ArrowUp, ArrowDown, Check, CheckCircleFill, Pencil, Trash, Plus, Minus, X } from '@/components/icons';
 import styles from './Home.module.css';
 
 // ─── SVG Icons ────────────────────────────────────────────────────────────────
@@ -662,39 +666,53 @@ function OnlineOrderCard({ order }: { order: OnlineOrder }) {
 
 // ─── Store Orders ──────────────────────────────────────────────────────────────
 
+type ItemType = 'grab_go' | 'portioned' | 'bundle' | 'party_tray' | 'deli_meat';
+
+interface CustomizationGroup {
+  id: string;
+  title: string;
+  type: 'single' | 'multi';
+  max?: number;
+  options: string[];
+}
+
 interface ProductVariant {
   id: string;
   label: string;
+  price: number;
   plu: string;
   feeds?: string;
-  includes: string;
-}
-
-interface FlavorGroup {
-  label: string;
-  options: string[];
+  includes?: string;
 }
 
 interface StoreProduct {
   id: string;
   name: string;
-  description?: string;
+  itemType: ItemType;
+  basePrice: number;
   image: string;
   category: string;
+  tag?: string;
+  description?: string;
+  plu?: string;
   notice?: string;
-  variants: ProductVariant[];
-  flavorGroups?: FlavorGroup[];
+  variants?: ProductVariant[];
+  customizations?: CustomizationGroup[];
+  thicknessOptions?: string[];
 }
 
-interface CartItem {
-  id: string;
+interface StoreCartItem {
+  cartId: string;
   product: StoreProduct;
-  variant: ProductVariant;
+  selectedVariant: ProductVariant | null;
   qty: number;
-  flavors: Record<string, string>;
+  selections: Record<string, string[]>;
+  targetWeight?: number;
+  selectedThickness?: string;
+  price: number;
 }
 
-interface CustomerInfo {
+interface StoreCustomerInfo {
   name: string;
   phone: string;
   pickupDate: string;
@@ -703,107 +721,349 @@ interface CustomerInfo {
   pickupDay: string;
   orderDate: string;
   orderTakenBy: string;
+  instructions: string;
 }
 
-const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const DAYS_OF_WEEK = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-const WING_FLAVORS: FlavorGroup[] = [
-  { label: 'Boneless Wings', options: ['General Tso', 'Orange', 'BBQ'] },
-  { label: 'Bone In Wings', options: ['Ranch', 'Buffalo', 'Breaded'] },
+const DELI_ASSOCIATES = ['Sarah Jenkins', 'Marcus Johnson', 'Elena Rodriguez', 'David Chen'];
+
+const WING_CUSTOMIZATIONS: CustomizationGroup[] = [
+  { id: 'boneless_flavor', title: 'Boneless Wing Flavor', type: 'single', options: ['General Tso', 'Orange', 'BBQ'] },
+  { id: 'bone_in_flavor', title: 'Bone-In Wing Flavor', type: 'single', options: ['Ranch', 'Buffalo', 'Breaded'] },
 ];
 
-const storeProducts: StoreProduct[] = [
+const HOT_MEALS_DATA: StoreProduct[] = [
   {
-    id: 'fried-chicken',
-    name: 'Fried Chicken',
+    id: 'hot_bundle_roti',
+    name: 'Rotisserie Meal Bundle',
+    itemType: 'bundle',
+    basePrice: 15.98,
+    plu: '2601234762',
+    tag: 'Meal Deal',
+    image: 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?auto=format&fit=crop&w=400&q=80',
+    category: 'hot-meals',
+    customizations: [
+      { id: 'main', title: 'Select Main Entree', type: 'single', options: ['Traditional Rotisserie Chicken', 'Lemon Pepper Rotisserie'] },
+      { id: 'side1', title: 'Select First Side (16oz)', type: 'single', options: ['Mac & Cheese', 'Mashed Potatoes', 'Potato Wedges', 'Baked Beans (+$1.50)'] },
+      { id: 'side2', title: 'Select Second Side (16oz)', type: 'single', options: ['Mac & Cheese', 'Mashed Potatoes', 'Potato Wedges', 'Baked Beans (+$1.50)'] },
+    ],
+  },
+  {
+    id: 'hot_wings',
+    name: 'Buffalo Chicken Wings, 6 Count',
+    itemType: 'grab_go',
+    basePrice: 6.48,
+    plu: '62807',
+    tag: 'Grab & Go',
+    image: 'https://images.unsplash.com/photo-1608039829572-78524f79c4c7?auto=format&fit=crop&w=400&q=80',
+    category: 'hot-meals',
+  },
+  {
+    id: 'hot_mac',
+    name: 'Macaroni and Cheese',
+    itemType: 'portioned',
+    basePrice: 3.48,
+    tag: 'Portioned',
+    image: 'https://images.unsplash.com/photo-1584776296944-ab6fb57b0bff?auto=format&fit=crop&w=400&q=80',
+    category: 'hot-meals',
+    variants: [
+      { id: 'sm', label: 'Small Cup (8oz)', price: 3.48, plu: '62811' },
+      { id: 'md', label: 'Medium Cup (16oz)', price: 5.48, plu: '62810' },
+      { id: 'lg', label: 'Large Cup (32oz)', price: 8.98, plu: '62812' },
+    ],
+  },
+  {
+    id: 'hot_popcorn',
+    name: 'Popcorn Chicken',
+    itemType: 'portioned',
+    basePrice: 4.98,
+    tag: 'Portioned',
+    image: 'https://images.unsplash.com/photo-1569691899455-88464f6d3ab1?auto=format&fit=crop&w=400&q=80',
+    category: 'hot-meals',
+    variants: [
+      { id: 'sm', label: 'Small Cup', price: 4.98, plu: '62821' },
+      { id: 'md', label: 'Medium Cup', price: 7.98, plu: '62820' },
+      { id: 'lg', label: 'Large Box', price: 12.98, plu: '62822' },
+    ],
+  },
+];
+
+const PARTY_TRAY_DATA: StoreProduct[] = [
+  {
+    id: 'tray_fried_chicken',
+    name: 'Fried Chicken Tray',
+    itemType: 'party_tray',
+    basePrice: 15.00,
+    tag: '24 Hour Notice',
+    notice: '24 hour notice',
     image: 'https://api.builder.io/api/v1/image/assets/TEMP/0fb38ded214e7747a9e4040154af5afa019ad2fa?width=400',
-    category: 'fried-chicken',
-    notice: '24 hour notice',
+    category: 'party-tray',
+    description: 'Freshly fried chicken pieces. Breasts, Wings, Legs & Thighs.',
     variants: [
-      { id: '16pc', label: '16 Pc Chicken', plu: '9548', includes: '4 Breasts, 4 Wings, 4 Legs & 4 Thighs' },
-      { id: '48pc', label: '48 Pc Chicken', plu: '62888', includes: '12 Breasts, 12 Wings, 12 Legs & 12 Thighs' },
+      { id: '16pc', label: '16 Pc Chicken', price: 15.00, plu: '9548', includes: '4 Breasts, 4 Wings, 4 Legs & 4 Thighs' },
+      { id: '48pc', label: '48 Pc Chicken', price: 42.00, plu: '62888', includes: '12 Breasts, 12 Wings, 12 Legs & 12 Thighs' },
     ],
+    customizations: [],
   },
   {
-    id: 'chicken-combo',
+    id: 'tray_chicken_combo',
     name: 'Chicken Combo Trays',
-    description: 'Served with Chicken Tenders, 1 flavor Boneless wing and 1 flavor Bone in wings. Served with ranch for dipping. No substitutions.',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/4e964bed0619d2365b794f27970d38864cef87e9?width=400',
-    category: 'combo-trays',
+    itemType: 'party_tray',
+    basePrice: 45.00,
+    tag: '24 Hour Notice',
     notice: '24 hour notice',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/4e964bed0619d2365b794f27970d38864cef87e9?width=400',
+    category: 'party-tray',
+    description: 'Served with Chicken Tenders, 1 flavor Boneless wing and 1 flavor Bone in wings. Served with ranch for dipping. No substitutions.',
     variants: [
-      { id: 'med', label: 'Med', plu: '27203', feeds: 'Generally Feeds 7–9', includes: '12 Tenders, 18 Bone In Wings, 24 Boneless Wings' },
-      { id: 'lg', label: 'Lg', plu: '27204', feeds: 'Generally Feeds 10–14', includes: '15 Tenders, 24 Bone In Wings, 30 Boneless Wings' },
+      { id: 'med', label: 'Med (Feeds 7–9)', price: 45.00, plu: '27203', includes: '12 Tenders, 18 Bone In Wings, 24 Boneless Wings' },
+      { id: 'lg', label: 'Lg (Feeds 10–14)', price: 65.00, plu: '27204', includes: '15 Tenders, 24 Bone In Wings, 30 Boneless Wings' },
     ],
-    flavorGroups: WING_FLAVORS,
+    customizations: WING_CUSTOMIZATIONS,
   },
   {
-    id: 'wing-trays',
+    id: 'tray_wing_trays',
     name: 'Wing Trays',
-    description: 'A combo of boneless and bone in wings. Served with sides of carrots, celery sticks and ranch for dipping.',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=400',
-    category: 'wing-trays',
+    itemType: 'party_tray',
+    basePrice: 35.00,
+    tag: '24 Hour Notice',
     notice: '24 hour notice',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=400',
+    category: 'party-tray',
+    description: 'A combo of boneless and bone in wings. Served with sides of carrots, celery sticks and ranch for dipping.',
     variants: [
-      { id: 'sm', label: 'Small', plu: '8113', feeds: 'Generally feeds 5–7', includes: '10 Bone in Wings, 20 Boneless' },
-      { id: 'md', label: 'Medium', plu: '8114', feeds: 'Generally feeds 7–9', includes: '18 Bone In Wings, 24 Boneless Wings' },
-      { id: 'lg', label: 'Large', plu: '8115', feeds: 'Generally feeds 10–12', includes: '24 Bone In Wings, 30 Boneless Wings' },
+      { id: 'sm', label: 'Small (Feeds 5–7)', price: 35.00, plu: '8113', includes: '10 Bone in Wings, 20 Boneless' },
+      { id: 'md', label: 'Medium (Feeds 7–9)', price: 55.00, plu: '8114', includes: '18 Bone In Wings, 24 Boneless Wings' },
+      { id: 'lg', label: 'Large (Feeds 10–12)', price: 75.00, plu: '8115', includes: '24 Bone In Wings, 30 Boneless Wings' },
     ],
-    flavorGroups: WING_FLAVORS,
+    customizations: WING_CUSTOMIZATIONS,
   },
 ];
+
+const MEAT_CHEESE_DATA: StoreProduct[] = [
+  {
+    id: 'meat_turkey',
+    name: 'Prima Della Hickory Smoked Turkey',
+    itemType: 'deli_meat',
+    basePrice: 10.98,
+    plu: '6379',
+    tag: 'Deli',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=400',
+    category: 'meat-cheese',
+    thicknessOptions: ['Shaved', 'Thin (1mm)', 'Sandwich (2mm)', 'Thick (4mm)'],
+  },
+  {
+    id: 'meat_ham',
+    name: 'Black Forest Ham',
+    itemType: 'deli_meat',
+    basePrice: 8.98,
+    plu: '5832',
+    tag: 'Deli',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/0fb38ded214e7747a9e4040154af5afa019ad2fa?width=400',
+    category: 'meat-cheese',
+    thicknessOptions: ['Shaved', 'Thin (1mm)', 'Sandwich (2mm)', 'Thick (4mm)'],
+  },
+  {
+    id: 'cheese_provolone',
+    name: 'Provolone Cheese',
+    itemType: 'deli_meat',
+    basePrice: 7.98,
+    plu: '8119',
+    tag: 'Cheese',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/4e964bed0619d2365b794f27970d38864cef87e9?width=400',
+    category: 'meat-cheese',
+    thicknessOptions: ['Thin', 'Sandwich', 'Thick'],
+  },
+];
+
+const STORE_PRODUCTS: StoreProduct[] = [...HOT_MEALS_DATA, ...PARTY_TRAY_DATA, ...MEAT_CHEESE_DATA];
 
 const storeCategories = [
-  { id: 'fried-chicken', label: 'Fried Chicken' },
-  { id: 'combo-trays', label: 'Chicken Combo Trays' },
-  { id: 'wing-trays', label: 'Wing Trays' },
+  { id: 'hot-meals', label: 'Hot meals' },
+  { id: 'party-tray', label: 'Party tray' },
+  { id: 'meat-cheese', label: 'Meat and cheese' },
+  { id: 'cakes', label: 'Cakes' },
 ];
 
-function TrashIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="M2 4h12M5 4V2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5V4M6 7v5M10 7v5M3 4l1 9.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5L13 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 function StoreOrdersPanel() {
-  const [activeCategory, setActiveCategory] = useState('fried-chicken');
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const [configuringId, setConfiguringId] = useState<string | null>(null);
-  const [selectedVariantId, setSelectedVariantId] = useState<string | null>(null);
-  const [pendingQty, setPendingQty] = useState(1);
-  const [pendingFlavors, setPendingFlavors] = useState<Record<string, string>>({});
-  const [customerInfo, setCustomerInfo] = useState<CustomerInfo>({
+  const [activeCategory, setActiveCategory] = useState('hot-meals');
+  const [cart, setCart] = useState<StoreCartItem[]>([]);
+  const [modalProduct, setModalProduct] = useState<StoreProduct | null>(null);
+  const [editingCartId, setEditingCartId] = useState<string | null>(null);
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(null);
+  const [selections, setSelections] = useState<Record<string, string[]>>({});
+  const [targetWeight, setTargetWeight] = useState(0.5);
+  const [selectedThickness, setSelectedThickness] = useState<string | null>(null);
+  const [orderSuccess, setOrderSuccess] = useState<string | null>(null);
+  const [customerInfo, setCustomerInfo] = useState<StoreCustomerInfo>({
     name: '', phone: '', pickupDate: '', pickupTime: '',
-    pickupAmPm: 'AM', pickupDay: '', orderDate: '', orderTakenBy: '',
+    pickupAmPm: 'AM', pickupDay: '', orderDate: '', orderTakenBy: '', instructions: '',
   });
 
-  const filtered = storeProducts.filter(p => p.category === activeCategory);
+  const todayDate = new Date().toISOString().split('T')[0];
+  const filtered = STORE_PRODUCTS.filter(p => p.category === activeCategory);
 
-  const handleConfigureClick = (product: StoreProduct) => {
-    setConfiguringId(product.id);
-    setSelectedVariantId(product.variants[0]?.id ?? null);
-    setPendingQty(1);
-    setPendingFlavors({});
+  // ── Modal open / pre-fill ──
+  const openModal = (product: StoreProduct, cartItem?: StoreCartItem) => {
+    setModalProduct(product);
+    setEditingCartId(cartItem?.cartId ?? null);
+    if (cartItem) {
+      setSelectedVariant(cartItem.selectedVariant);
+      setSelections(cartItem.selections);
+      setTargetWeight(cartItem.targetWeight ?? 0.5);
+      setSelectedThickness(cartItem.selectedThickness ?? null);
+    } else {
+      setSelectedVariant(product.variants?.[0] ?? null);
+      setSelections({});
+      setTargetWeight(0.5);
+      setSelectedThickness(product.thicknessOptions?.[2] ?? null);
+    }
   };
 
-  const handleAddToCart = (product: StoreProduct) => {
-    const variant = product.variants.find(v => v.id === selectedVariantId);
-    if (!variant) return;
-    setCart(prev => [...prev, {
-      id: `${product.id}-${variant.id}-${Date.now()}`,
-      product, variant, qty: pendingQty, flavors: pendingFlavors,
-    }]);
-    setConfiguringId(null);
+  const closeModal = () => {
+    setModalProduct(null);
+    setEditingCartId(null);
   };
 
-  const handleRemoveFromCart = (id: string) => {
-    setCart(prev => prev.filter(c => c.id !== id));
+  // ── Selection toggle (single / multi) ──
+  const handleSelection = (groupId: string, option: string, type: 'single' | 'multi', max?: number) => {
+    setSelections(prev => {
+      const current = prev[groupId] ?? [];
+      if (type === 'single') return { ...prev, [groupId]: [option] };
+      if (current.includes(option)) return { ...prev, [groupId]: current.filter(o => o !== option) };
+      if (current.length < (max ?? Infinity)) return { ...prev, [groupId]: [...current, option] };
+      return prev;
+    });
+  };
+
+  // ── Price computation ──
+  const computePrice = (): number => {
+    if (!modalProduct) return 0;
+    if (modalProduct.itemType === 'grab_go') return modalProduct.basePrice;
+    if (modalProduct.itemType === 'deli_meat') return modalProduct.basePrice * targetWeight;
+    if (modalProduct.itemType === 'bundle') {
+      let total = modalProduct.basePrice;
+      Object.values(selections).flat().forEach(opt => {
+        const m = opt.match(/\(\+\$([\d.]+)\)/);
+        if (m) total += parseFloat(m[1]);
+      });
+      return total;
+    }
+    return selectedVariant?.price ?? modalProduct.basePrice;
+  };
+
+  // ── Config validation ──
+  const isConfigValid = (): boolean => {
+    if (!modalProduct) return false;
+    if (modalProduct.itemType === 'grab_go') return true;
+    if (modalProduct.itemType === 'deli_meat') return selectedThickness !== null;
+    if (modalProduct.itemType === 'bundle') {
+      return (modalProduct.customizations ?? []).every(c => {
+        const sel = selections[c.id] ?? [];
+        return c.type === 'single' ? sel.length === 1 : sel.length === (c.max ?? 0);
+      });
+    }
+    if (modalProduct.itemType === 'portioned' || modalProduct.itemType === 'party_tray') {
+      if (!selectedVariant) return false;
+      return (modalProduct.customizations ?? []).every(c => {
+        const sel = selections[c.id] ?? [];
+        return c.type === 'single' ? sel.length === 1 : sel.length === (c.max ?? 0);
+      });
+    }
+    return false;
+  };
+
+  // ── Add / update cart ──
+  const confirmAddToCart = () => {
+    if (!modalProduct) return;
+    const price = computePrice();
+    const cartItem: StoreCartItem = {
+      cartId: editingCartId ?? `${modalProduct.id}-${Date.now()}`,
+      product: modalProduct,
+      selectedVariant: selectedVariant,
+      qty: editingCartId ? (cart.find(i => i.cartId === editingCartId)?.qty ?? 1) : 1,
+      selections,
+      targetWeight: modalProduct.itemType === 'deli_meat' ? targetWeight : undefined,
+      selectedThickness: modalProduct.itemType === 'deli_meat' ? (selectedThickness ?? undefined) : undefined,
+      price,
+    };
+    if (editingCartId) {
+      setCart(prev => prev.map(i => i.cartId === editingCartId ? cartItem : i));
+    } else {
+      setCart(prev => [...prev, cartItem]);
+    }
+    closeModal();
+  };
+
+  // ── Instant add for Grab & Go ──
+  const addGrabGoToCart = (product: StoreProduct) => {
+    setCart(prev => {
+      const existing = prev.find(i => i.product.id === product.id);
+      if (existing) {
+        return prev.map(i => i.product.id === product.id ? { ...i, qty: i.qty + 1 } : i);
+      }
+      return [...prev, {
+        cartId: `${product.id}-${Date.now()}`,
+        product,
+        selectedVariant: null,
+        qty: 1,
+        selections: {},
+        price: product.basePrice,
+      }];
+    });
+  };
+
+  // ── Cart management ──
+  const updateQty = (cartId: string, count: number) => {
+    if (count === 0) {
+      setCart(prev => prev.filter(i => i.cartId !== cartId));
+    } else {
+      setCart(prev => prev.map(i => i.cartId === cartId ? { ...i, qty: count } : i));
+    }
+  };
+
+  const removeFromCart = (cartId: string) => setCart(prev => prev.filter(i => i.cartId !== cartId));
+
+  const editCartItem = (cartItem: StoreCartItem) => openModal(cartItem.product, cartItem);
+
+  // ── Form validation ──
+  const isFormValid = (): boolean => {
+    if (cart.length === 0) return false;
+    return (
+      customerInfo.name.trim() !== '' &&
+      customerInfo.phone.trim() !== '' &&
+      customerInfo.pickupDate !== '' &&
+      customerInfo.pickupTime !== '' &&
+      customerInfo.orderTakenBy !== ''
+    );
+  };
+
+  // ── Submit + reset ──
+  const submitOrder = () => setOrderSuccess(`OSN-${Math.floor(1000 + Math.random() * 9000)}`);
+  const resetFlow = () => {
+    setCart([]);
+    setCustomerInfo({ name: '', phone: '', pickupDate: '', pickupTime: '', pickupAmPm: 'AM', pickupDay: '', orderDate: '', orderTakenBy: '', instructions: '' });
+    setOrderSuccess(null);
+  };
+
+  // ── Cart label helpers ──
+  const getCartItemLabel = (item: StoreCartItem): string => {
+    if (item.product.itemType === 'deli_meat') {
+      return `${item.targetWeight?.toFixed(2)} lb — ${item.selectedThickness}`;
+    }
+    if (item.selectedVariant) return item.selectedVariant.label;
+    return 'Each';
+  };
+
+  const getCartItemPlu = (item: StoreCartItem): string => {
+    if (item.product.itemType === 'deli_meat') return item.product.plu ?? '';
+    return item.selectedVariant?.plu ?? item.product.plu ?? '';
   };
 
   return (
     <div className={styles.storeLayout}>
+
       {/* ── Left: Product Catalog ── */}
       <div className={styles.storeCatalog}>
         <div className={styles.filterBar}>
@@ -812,7 +1072,7 @@ function StoreOrdersPanel() {
               key={cat.id}
               type="button"
               className={[styles.filterChip, activeCategory === cat.id && styles['filterChip--active']].filter(Boolean).join(' ')}
-              onClick={() => { setActiveCategory(cat.id); setConfiguringId(null); }}
+              onClick={() => setActiveCategory(cat.id)}
             >
               {cat.label}
             </button>
@@ -820,97 +1080,71 @@ function StoreOrdersPanel() {
         </div>
 
         <div className={styles.productList}>
+          {filtered.length === 0 && (
+            <div className={styles.catalogEmpty}>
+              <p className={styles.catalogEmpty__text}>No items available in this category</p>
+            </div>
+          )}
+
           {filtered.map(product => (
             <div key={product.id} className={styles.productCard}>
               <div className={styles.productCard__imageWrap}>
                 {product.notice && <div className={styles.productCard__notice}>{product.notice}</div>}
+                {product.tag && <div className={styles.productCard__tag}>{product.tag}</div>}
                 <img src={product.image} alt={product.name} className={styles.productCard__image} />
               </div>
               <div className={styles.productCard__body}>
                 <h3 className={styles.productCard__name}>{product.name}</h3>
                 {product.description && <p className={styles.productCard__desc}>{product.description}</p>}
 
-                {/* Variants table */}
-                <div className={styles.variantList}>
-                  {product.variants.map(v => (
-                    <div key={v.id} className={styles.variantRow}>
-                      <div className={styles.variantRow__label}>
-                        <span className={styles.variantRow__name}>{v.label}</span>
-                        <span className={styles.variantRow__plu}>PLU #{v.plu}</span>
-                        {v.feeds && <span className={styles.variantRow__feeds}>{v.feeds}</span>}
+                {/* Variants table (party_tray / portioned only in catalog) */}
+                {(product.itemType === 'party_tray' || product.itemType === 'portioned') && product.variants && (
+                  <div className={styles.variantList}>
+                    {product.variants.map(v => (
+                      <div key={v.id} className={styles.variantRow}>
+                        <div className={styles.variantRow__label}>
+                          <span className={styles.variantRow__name}>{v.label}</span>
+                          <span className={styles.variantRow__plu}>PLU #{v.plu}</span>
+                          {v.feeds && <span className={styles.variantRow__feeds}>{v.feeds}</span>}
+                        </div>
+                        {v.includes && <span className={styles.variantRow__includes}>{v.includes}</span>}
                       </div>
-                      <span className={styles.variantRow__includes}>{v.includes}</span>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
 
-                {product.flavorGroups && (
+                {/* Deli meat info */}
+                {product.itemType === 'deli_meat' && (
+                  <div className={styles.variantList}>
+                    <div className={styles.variantRow}>
+                      <div className={styles.variantRow__label}>
+                        <span className={styles.variantRow__plu}>PLU #{product.plu}</span>
+                      </div>
+                      <span className={styles.variantRow__includes}>
+                        ${product.basePrice.toFixed(2)} / lb
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Flavor note for party trays with customizations */}
+                {product.itemType === 'party_tray' && (product.customizations ?? []).length > 0 && (
                   <p className={styles.flavorNote}>
-                    <strong>Circle Flavor Choice</strong> — Flavors can vary, confirm availability with associate.
+                    <strong>Flavor choice required</strong> — Flavors can vary, confirm availability with associate.
                   </p>
                 )}
 
-                {configuringId === product.id ? (
-                  <div className={styles.configureForm}>
-                    {/* Size picker */}
-                    <div className={styles.configSection}>
-                      <span className={styles.configSection__label}>Size</span>
-                      <div className={styles.variantPicker}>
-                        {product.variants.map(v => (
-                          <button
-                            key={v.id}
-                            type="button"
-                            className={[styles.variantChip, selectedVariantId === v.id && styles['variantChip--active']].filter(Boolean).join(' ')}
-                            onClick={() => setSelectedVariantId(v.id)}
-                          >
-                            <span className={styles.variantChip__label}>{v.label}</span>
-                            {v.feeds && <span className={styles.variantChip__feeds}>{v.feeds}</span>}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Qty */}
-                    <div className={styles.configSection}>
-                      <span className={styles.configSection__label}>Quantity</span>
-                      <div className={styles.qtyStepper}>
-                        <button type="button" className={styles.qtyBtn} onClick={() => setPendingQty(q => Math.max(1, q - 1))} aria-label="Decrease">−</button>
-                        <span className={styles.qtyValue}>{pendingQty}</span>
-                        <button type="button" className={styles.qtyBtn} onClick={() => setPendingQty(q => q + 1)} aria-label="Increase">+</button>
-                      </div>
-                    </div>
-
-                    {/* Flavor selectors */}
-                    {product.flavorGroups?.map(group => (
-                      <div key={group.label} className={styles.configSection}>
-                        <span className={styles.configSection__label}>{group.label}</span>
-                        <div className={styles.flavorPicker}>
-                          {group.options.map(opt => (
-                            <button
-                              key={opt}
-                              type="button"
-                              className={[styles.flavorChip, pendingFlavors[group.label] === opt && styles['flavorChip--active']].filter(Boolean).join(' ')}
-                              onClick={() => setPendingFlavors(f => ({ ...f, [group.label]: opt }))}
-                            >
-                              {opt}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-
-                    <div className={styles.configureActions}>
-                      <Button variant="secondary" size="small" onClick={() => setConfiguringId(null)}>Cancel</Button>
-                      <Button variant="primary" size="small" isFullWidth onClick={() => handleAddToCart(product)} disabled={!selectedVariantId}>
-                        Add to order
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  <Button variant="secondary" size="small" isFullWidth onClick={() => handleConfigureClick(product)}>
-                    Configure and add
-                  </Button>
-                )}
+                <div className={styles.productCard__actions}>
+                  {product.itemType === 'grab_go' ? (
+                    <Button variant="primary" size="small" isFullWidth onClick={() => addGrabGoToCart(product)}>
+                      Add to order
+                    </Button>
+                  ) : (
+                    <Button variant="secondary" size="small" isFullWidth onClick={() => openModal(product)}>
+                      Configure and add
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           ))}
@@ -921,6 +1155,9 @@ function StoreOrdersPanel() {
       <div className={styles.cartPanel}>
         <div className={styles.cartPanel__header}>
           <h2 className={styles.cartPanel__title}>Order form</h2>
+          {cart.length > 0 && (
+            <span className={styles.cartPanel__count}>{cart.length} item{cart.length !== 1 ? 's' : ''}</span>
+          )}
         </div>
 
         <div className={styles.orderFormScroll}>
@@ -929,12 +1166,12 @@ function StoreOrdersPanel() {
             <p className={styles.customerInfo__sectionLabel}>Customer details</p>
             <div className={styles.customerInfo__grid}>
               <div className={styles.formField}>
-                <label className={styles.formField__label}>Customer name</label>
+                <label className={styles.formField__label}>Customer name <span className={styles.formField__required}>*</span></label>
                 <input className={styles.formField__input} type="text" placeholder="Full name"
                   value={customerInfo.name} onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))} />
               </div>
               <div className={styles.formField}>
-                <label className={styles.formField__label}>Phone #</label>
+                <label className={styles.formField__label}>Phone # <span className={styles.formField__required}>*</span></label>
                 <input className={styles.formField__input} type="tel" placeholder="(555) 000-0000"
                   value={customerInfo.phone} onChange={e => setCustomerInfo(i => ({ ...i, phone: e.target.value }))} />
               </div>
@@ -943,12 +1180,12 @@ function StoreOrdersPanel() {
             <p className={styles.customerInfo__sectionLabel}>Pickup</p>
             <div className={styles.customerInfo__grid}>
               <div className={styles.formField}>
-                <label className={styles.formField__label}>Pick up date</label>
-                <input className={styles.formField__input} type="date"
+                <label className={styles.formField__label}>Pick up date <span className={styles.formField__required}>*</span></label>
+                <input className={styles.formField__input} type="date" min={todayDate}
                   value={customerInfo.pickupDate} onChange={e => setCustomerInfo(i => ({ ...i, pickupDate: e.target.value }))} />
               </div>
               <div className={styles.formField}>
-                <label className={styles.formField__label}>Pick up time</label>
+                <label className={styles.formField__label}>Pick up time <span className={styles.formField__required}>*</span></label>
                 <div className={styles.timeRow}>
                   <input className={styles.formField__input} type="time"
                     value={customerInfo.pickupTime} onChange={e => setCustomerInfo(i => ({ ...i, pickupTime: e.target.value }))} />
@@ -967,7 +1204,7 @@ function StoreOrdersPanel() {
             <div className={styles.formField}>
               <label className={styles.formField__label}>Day of week</label>
               <div className={styles.daySelector}>
-                {DAYS.map(d => (
+                {DAYS_OF_WEEK.map(d => (
                   <button key={d} type="button"
                     className={[styles.dayChip, customerInfo.pickupDay === d && styles['dayChip--active']].filter(Boolean).join(' ')}
                     onClick={() => setCustomerInfo(i => ({ ...i, pickupDay: i.pickupDay === d ? '' : d }))}
@@ -980,25 +1217,38 @@ function StoreOrdersPanel() {
             <div className={styles.customerInfo__grid}>
               <div className={styles.formField}>
                 <label className={styles.formField__label}>Order date</label>
-                <input className={styles.formField__input} type="date"
-                  value={customerInfo.orderDate} onChange={e => setCustomerInfo(i => ({ ...i, orderDate: e.target.value }))} />
+                <input className={styles.formField__input} type="date" value={todayDate} readOnly />
               </div>
               <div className={styles.formField}>
-                <label className={styles.formField__label}>Order taken by</label>
-                <input className={styles.formField__input} type="text" placeholder="Associate name"
-                  value={customerInfo.orderTakenBy} onChange={e => setCustomerInfo(i => ({ ...i, orderTakenBy: e.target.value }))} />
+                <label className={styles.formField__label}>Order taken by <span className={styles.formField__required}>*</span></label>
+                <Select
+                  label="Order taken by"
+                  value={customerInfo.orderTakenBy}
+                  onValueChange={v => setCustomerInfo(i => ({ ...i, orderTakenBy: v }))}
+                  placeholder="Select associate"
+                  size="small"
+                >
+                  {DELI_ASSOCIATES.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
+                </Select>
               </div>
+            </div>
+
+            <div className={styles.formField}>
+              <TextArea
+                label="Special instructions (optional)"
+                value={customerInfo.instructions}
+                onChange={e => setCustomerInfo(i => ({ ...i, instructions: e.target.value }))}
+                size="small"
+              />
+              <div className={styles.formField__charCount}>{customerInfo.instructions.length} / 250</div>
             </div>
           </div>
 
           <div className={styles.divider} />
 
           {/* Items ordered */}
-          <div className={styles.cartPanel__header}>
-            <h2 className={styles.cartPanel__title}>Items ordered</h2>
-            {cart.length > 0 && (
-              <span className={styles.cartPanel__count}>{cart.length} item{cart.length !== 1 ? 's' : ''}</span>
-            )}
+          <div className={styles.cartPanel__subHeader}>
+            <span className={styles.cartPanel__subTitle}>Items ordered</span>
           </div>
 
           {cart.length === 0 ? (
@@ -1014,23 +1264,56 @@ function StoreOrdersPanel() {
           ) : (
             <div className={styles.cartItems}>
               {cart.map(item => (
-                <div key={item.id} className={styles.cartItem}>
-                  <img src={item.product.image} alt={item.product.name} className={styles.cartItem__image} />
-                  <div className={styles.cartItem__info}>
-                    <div className={styles.cartItem__name}>{item.product.name} — {item.variant.label}</div>
-                    <div className={styles.cartItem__meta}>PLU #{item.variant.plu} · Qty: {item.qty}</div>
-                    {Object.entries(item.flavors).length > 0 && (
-                      <div className={styles.cartItem__flavors}>
-                        {Object.entries(item.flavors).map(([k, v]) => (
-                          <span key={k} className={styles.cartItem__flavorTag}>{k}: {v}</span>
-                        ))}
-                      </div>
-                    )}
+                <div key={item.cartId} className={styles.cartItem}>
+                  <div className={styles.cartItem__top}>
+                    <img src={item.product.image} alt={item.product.name} className={styles.cartItem__image} />
+                    <div className={styles.cartItem__info}>
+                      <div className={styles.cartItem__name}>{item.product.name}</div>
+                      <div className={styles.cartItem__variant}>{getCartItemLabel(item)}</div>
+                      <div className={styles.cartItem__meta}>PLU #{getCartItemPlu(item)}</div>
+                      {Object.keys(item.selections).length > 0 && (
+                        <div className={styles.cartItem__flavors}>
+                          {Object.entries(item.selections).map(([groupId, opts]) => {
+                            const group = item.product.customizations?.find(c => c.id === groupId);
+                            return opts.map(opt => (
+                              <span key={`${groupId}-${opt}`} className={styles.cartItem__flavorTag}>
+                                {group?.title ? `${group.title.split(' ')[0]}: ` : ''}{opt}
+                              </span>
+                            ));
+                          })}
+                        </div>
+                      )}
+                    </div>
+                    <div className={styles.cartItem__actions}>
+                      <button
+                        type="button"
+                        className={styles.cartItem__editBtn}
+                        onClick={() => editCartItem(item)}
+                        aria-label={`Edit ${item.product.name}`}
+                      >
+                        <Pencil width={14} height={14} />
+                      </button>
+                      <button
+                        type="button"
+                        className={styles.cartItem__removeBtn}
+                        onClick={() => removeFromCart(item.cartId)}
+                        aria-label={`Remove ${item.product.name}`}
+                      >
+                        <Trash width={14} height={14} />
+                      </button>
+                    </div>
                   </div>
-                  <button type="button" className={styles.cartItem__remove}
-                    onClick={() => handleRemoveFromCart(item.id)} aria-label={`Remove ${item.product.name}`}>
-                    <TrashIcon />
-                  </button>
+                  <div className={styles.cartItem__qtyRow}>
+                    <span className={styles.cartItem__price}>${(item.price * item.qty).toFixed(2)}</span>
+                    <QuantityStepper
+                      key={item.cartId}
+                      variant="tertiary"
+                      size="small"
+                      defaultCount={item.qty}
+                      showTrashOnRemove
+                      onChange={count => updateQty(item.cartId, count)}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -1039,11 +1322,256 @@ function StoreOrdersPanel() {
 
         <div className={styles.cartPanel__footer}>
           <div className={styles.divider} />
-          <Button variant="primary" size="small" isFullWidth disabled={cart.length === 0}>
+          <Button variant="primary" size="small" isFullWidth disabled={!isFormValid()} onClick={submitOrder}>
             Place order
           </Button>
         </div>
       </div>
+
+      {/* ── Configurator Modal ── */}
+      <Modal open={modalProduct !== null} onOpenChange={open => !open && closeModal()}>
+        <ModalContent size="large" hideClose>
+          <div className={styles.modalHeaderRow}>
+            <ModalTitle>
+              {modalProduct?.itemType === 'deli_meat' ? 'Slice: ' : 'Configure: '}
+              {modalProduct?.name}
+            </ModalTitle>
+            <ModalClose asChild>
+              <button type="button" className={styles.modalCloseBtn} aria-label="Close">
+                <X width={20} height={20} />
+              </button>
+            </ModalClose>
+          </div>
+
+          <div className={styles.modalBody}>
+            {/* ── Deli Meat: Thickness + Weight ── */}
+            {modalProduct?.itemType === 'deli_meat' && (
+              <>
+                <div className={styles.modalStep}>
+                  <div className={styles.modalStep__header}>
+                    <span className={styles.modalStepNum}>1</span>
+                    <span className={styles.modalStep__label}>Select Thickness</span>
+                  </div>
+                  <div className={styles.sizeGrid}>
+                    {modalProduct.thicknessOptions?.map(opt => (
+                      <button
+                        key={opt}
+                        type="button"
+                        className={[styles.sizeCard, selectedThickness === opt && styles['sizeCard--active']].filter(Boolean).join(' ')}
+                        onClick={() => setSelectedThickness(opt)}
+                      >
+                        <span className={styles.sizeCard__label}>{opt}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className={styles.modalStep}>
+                  <div className={styles.modalStep__header}>
+                    <span className={styles.modalStepNum}>2</span>
+                    <span className={styles.modalStep__label}>Target Weight</span>
+                  </div>
+                  <div className={styles.weightRow}>
+                    <div className={styles.weightStepper}>
+                      <button
+                        type="button"
+                        className={styles.weightBtn}
+                        onClick={() => setTargetWeight(w => Math.max(0.25, parseFloat((w - 0.25).toFixed(2))))}
+                        aria-label="Decrease weight"
+                      >
+                        <Minus width={16} height={16} />
+                      </button>
+                      <span className={styles.weightValue}>{targetWeight.toFixed(2)} <span className={styles.weightUnit}>lb</span></span>
+                      <button
+                        type="button"
+                        className={styles.weightBtn}
+                        onClick={() => setTargetWeight(w => parseFloat((w + 0.25).toFixed(2)))}
+                        aria-label="Increase weight"
+                      >
+                        <Plus width={16} height={16} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* ── Portioned: Size selection ── */}
+            {modalProduct?.itemType === 'portioned' && (
+              <div className={styles.modalStep}>
+                <div className={styles.modalStep__header}>
+                  <span className={styles.modalStepNum}>1</span>
+                  <span className={styles.modalStep__label}>Select Portion Size</span>
+                </div>
+                <div className={styles.sizeGrid}>
+                  {modalProduct.variants?.map(v => (
+                    <button
+                      key={v.id}
+                      type="button"
+                      className={[styles.sizeCard, selectedVariant?.id === v.id && styles['sizeCard--active']].filter(Boolean).join(' ')}
+                      onClick={() => setSelectedVariant(v)}
+                    >
+                      <span className={styles.sizeCard__label}>{v.label}</span>
+                      <span className={styles.sizeCard__sub}>${v.price.toFixed(2)}</span>
+                      {selectedVariant?.id === v.id && <Check width={14} height={14} className={styles.sizeCard__check} />}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* ── Party Tray: Size + Customizations ── */}
+            {modalProduct?.itemType === 'party_tray' && (
+              <>
+                {modalProduct.variants && modalProduct.variants.length > 0 && (
+                  <div className={styles.modalStep}>
+                    <div className={styles.modalStep__header}>
+                      <span className={styles.modalStepNum}>1</span>
+                      <span className={styles.modalStep__label}>Select Size</span>
+                    </div>
+                    <div className={styles.sizeGrid}>
+                      {modalProduct.variants.map(v => (
+                        <button
+                          key={v.id}
+                          type="button"
+                          className={[styles.sizeCard, selectedVariant?.id === v.id && styles['sizeCard--active']].filter(Boolean).join(' ')}
+                          onClick={() => setSelectedVariant(v)}
+                        >
+                          <span className={styles.sizeCard__label}>{v.label}</span>
+                          <span className={styles.sizeCard__sub}>${v.price.toFixed(2)}</span>
+                          {v.includes && <span className={styles.sizeCard__includes}>{v.includes}</span>}
+                          {selectedVariant?.id === v.id && <Check width={14} height={14} className={styles.sizeCard__check} />}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {(modalProduct.customizations ?? []).map((customization, idx) => {
+                  const selectedOpts = selections[customization.id] ?? [];
+                  const stepNum = (modalProduct.variants?.length ? 1 : 0) + idx + 1;
+                  const isSatisfied = customization.type === 'single'
+                    ? selectedOpts.length === 1
+                    : selectedOpts.length === (customization.max ?? 0);
+                  return (
+                    <div key={customization.id} className={styles.modalStep}>
+                      <div className={styles.modalStep__header}>
+                        <span className={styles.modalStepNum}>{stepNum}</span>
+                        <span className={styles.modalStep__label}>{customization.title}</span>
+                        <span className={[styles.modalStep__req, isSatisfied && styles['modalStep__req--done']].filter(Boolean).join(' ')}>
+                          {customization.type === 'single' ? 'Select 1' : `Select ${customization.max}`}
+                          {isSatisfied && ' ✓'}
+                        </span>
+                      </div>
+                      <div className={styles.optionsWrap}>
+                        {customization.options.map(option => {
+                          const isSelected = selectedOpts.includes(option);
+                          const isDisabled = !isSelected && customization.type === 'multi' && selectedOpts.length >= (customization.max ?? 0);
+                          return (
+                            <button
+                              key={option}
+                              type="button"
+                              disabled={isDisabled}
+                              className={[
+                                styles.optionChip,
+                                isSelected && styles['optionChip--active'],
+                                isDisabled && styles['optionChip--disabled'],
+                              ].filter(Boolean).join(' ')}
+                              onClick={() => handleSelection(customization.id, option, customization.type, customization.max)}
+                            >
+                              {option}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
+            )}
+
+            {/* ── Bundle: Customizations only ── */}
+            {modalProduct?.itemType === 'bundle' && (
+              <>
+                {(modalProduct.customizations ?? []).map((customization, idx) => {
+                  const selectedOpts = selections[customization.id] ?? [];
+                  const isSatisfied = customization.type === 'single'
+                    ? selectedOpts.length === 1
+                    : selectedOpts.length === (customization.max ?? 0);
+                  return (
+                    <div key={customization.id} className={styles.modalStep}>
+                      <div className={styles.modalStep__header}>
+                        <span className={styles.modalStepNum}>{idx + 1}</span>
+                        <span className={styles.modalStep__label}>{customization.title}</span>
+                        <span className={[styles.modalStep__req, isSatisfied && styles['modalStep__req--done']].filter(Boolean).join(' ')}>
+                          {customization.type === 'single' ? 'Select 1' : `Select ${customization.max}`}
+                          {isSatisfied && ' ✓'}
+                        </span>
+                      </div>
+                      <div className={styles.optionsWrap}>
+                        {customization.options.map(option => {
+                          const isSelected = selectedOpts.includes(option);
+                          const isDisabled = !isSelected && customization.type === 'multi' && selectedOpts.length >= (customization.max ?? 0);
+                          return (
+                            <button
+                              key={option}
+                              type="button"
+                              disabled={isDisabled}
+                              className={[
+                                styles.optionChip,
+                                isSelected && styles['optionChip--active'],
+                                isDisabled && styles['optionChip--disabled'],
+                              ].filter(Boolean).join(' ')}
+                              onClick={() => handleSelection(customization.id, option, customization.type, customization.max)}
+                            >
+                              {option}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
+            )}
+          </div>
+
+          <ModalFooter className={styles.modalFooterRow}>
+            <div className={styles.modalFooter__price}>
+              ${computePrice().toFixed(2)}
+            </div>
+            <Button
+              variant="primary"
+              size="medium"
+              disabled={!isConfigValid()}
+              onClick={confirmAddToCart}
+            >
+              {editingCartId ? 'Update item' : 'Add to order'}
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      {/* ── Success Overlay ── */}
+      <Modal open={orderSuccess !== null} onOpenChange={open => !open && resetFlow()}>
+        <ModalContent size="small" hideClose>
+          <div className={styles.successCard}>
+            <div className={styles.successIcon}>
+              <CheckCircleFill width={40} height={40} />
+            </div>
+            <h2 className={styles.successCard__title}>Order Saved!</h2>
+            <p className={styles.successCard__subtitle}>The order has been added to the Production Plan.</p>
+            <div className={styles.successOSN}>
+              <span className={styles.successOSN__label}>Order Number</span>
+              <span className={styles.successOSN__value}>{orderSuccess}</span>
+            </div>
+            <Button variant="primary" size="medium" isFullWidth onClick={resetFlow}>
+              Start new order
+            </Button>
+          </div>
+        </ModalContent>
+      </Modal>
+
     </div>
   );
 }
