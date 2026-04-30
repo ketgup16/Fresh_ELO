@@ -1244,6 +1244,19 @@ function StoreOrdersPanel() {
         </div>
 
         <div className={styles.orderFormScroll}>
+          {/* Show prompt when cart is empty, form when items added */}
+          {cart.length === 0 ? (
+            <div className={styles.cartPanel__empty}>
+              <svg width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <circle cx="24" cy="24" r="23" stroke="var(--ld-semantic-color-separator,#e3e4e5)" strokeWidth="2" />
+                <path d="M14 18h20l-2.5 12H16.5L14 18Z" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinejoin="round" />
+                <path d="M19 18l1-4h8l1 4" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              <p className={styles.cartPanel__emptyText}>No items added yet</p>
+              <p className={styles.cartPanel__emptyHint}>Add items from the catalog to start an order</p>
+            </div>
+          ) : (
+          <>
           {/* Customer info */}
           <div className={styles.customerInfo}>
             <p className={styles.customerInfo__sectionLabel}>Customer details</p>
@@ -1271,18 +1284,6 @@ function StoreOrdersPanel() {
                 <label className={styles.formField__label}>Pick up time <span className={styles.formField__required}>*</span></label>
                 <input className={styles.formField__input} type="time"
                   value={customerInfo.pickupTime} onChange={e => setCustomerInfo(i => ({ ...i, pickupTime: e.target.value }))} />
-              </div>
-            </div>
-
-            <div className={styles.formField}>
-              <label className={styles.formField__label}>Day of week</label>
-              <div className={styles.daySelector}>
-                {DAYS_OF_WEEK.map(d => (
-                  <button key={d} type="button"
-                    className={[styles.dayChip, customerInfo.pickupDay === d && styles['dayChip--active']].filter(Boolean).join(' ')}
-                    onClick={() => setCustomerInfo(i => ({ ...i, pickupDay: i.pickupDay === d ? '' : d }))}
-                  >{d}</button>
-                ))}
               </div>
             </div>
 
@@ -1323,17 +1324,6 @@ function StoreOrdersPanel() {
             <span className={styles.cartPanel__subTitle}>Items ordered</span>
           </div>
 
-          {cart.length === 0 ? (
-            <div className={styles.cartPanel__empty}>
-              <svg width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-                <circle cx="24" cy="24" r="23" stroke="var(--ld-semantic-color-separator,#e3e4e5)" strokeWidth="2" />
-                <path d="M14 18h20l-2.5 12H16.5L14 18Z" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinejoin="round" />
-                <path d="M19 18l1-4h8l1 4" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-              <p className={styles.cartPanel__emptyText}>No items added yet</p>
-              <p className={styles.cartPanel__emptyHint}>Configure and add items from the catalog</p>
-            </div>
-          ) : (
             <div className={styles.cartItems}>
               {cart.map(item => (
                 <div key={item.cartId} className={styles.cartItem}>
@@ -1389,15 +1379,18 @@ function StoreOrdersPanel() {
                 </div>
               ))}
             </div>
+          </>
           )}
         </div>
 
-        <div className={styles.cartPanel__footer}>
-          <div className={styles.divider} />
-          <Button variant="primary" size="small" isFullWidth disabled={!isFormValid()} onClick={submitOrder}>
-            Place order
-          </Button>
-        </div>
+        {cart.length > 0 && (
+          <div className={styles.cartPanel__footer}>
+            <div className={styles.divider} />
+            <Button variant="primary" size="small" isFullWidth disabled={!isFormValid()} onClick={submitOrder}>
+              Place order
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* ── Configurator Modal ── */}
