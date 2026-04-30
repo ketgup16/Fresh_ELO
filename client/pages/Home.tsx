@@ -1088,63 +1088,39 @@ function StoreOrdersPanel() {
 
           {filtered.map(product => (
             <div key={product.id} className={styles.productCard}>
+              {/* Notice badge centered above image */}
+              {product.notice && (
+                <div className={styles.productCard__noticeBanner}>{product.notice}</div>
+              )}
               <div className={styles.productCard__imageWrap}>
-                {product.notice && <div className={styles.productCard__notice}>{product.notice}</div>}
-                {product.tag && <div className={styles.productCard__tag}>{product.tag}</div>}
                 <img src={product.image} alt={product.name} className={styles.productCard__image} />
               </div>
               <div className={styles.productCard__body}>
                 <h3 className={styles.productCard__name}>{product.name}</h3>
-                {product.description && <p className={styles.productCard__desc}>{product.description}</p>}
-
-                {/* Variants table (party_tray / portioned only in catalog) */}
-                {(product.itemType === 'party_tray' || product.itemType === 'portioned') && product.variants && (
-                  <div className={styles.variantList}>
-                    {product.variants.map(v => (
-                      <div key={v.id} className={styles.variantRow}>
-                        <div className={styles.variantRow__label}>
-                          <span className={styles.variantRow__name}>{v.label}</span>
-                          <span className={styles.variantRow__plu}>PLU #{v.plu}</span>
-                          {v.feeds && <span className={styles.variantRow__feeds}>{v.feeds}</span>}
-                        </div>
-                        {v.includes && <span className={styles.variantRow__includes}>{v.includes}</span>}
-                      </div>
-                    ))}
-                  </div>
+                {product.description && (
+                  <p className={styles.productCard__desc}>{product.description}</p>
                 )}
-
-                {/* Deli meat info */}
-                {product.itemType === 'deli_meat' && (
-                  <div className={styles.variantList}>
-                    <div className={styles.variantRow}>
-                      <div className={styles.variantRow__label}>
-                        <span className={styles.variantRow__plu}>PLU #{product.plu}</span>
-                      </div>
-                      <span className={styles.variantRow__includes}>
-                        ${product.basePrice.toFixed(2)} / lb
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                {/* Flavor note for party trays with customizations */}
-                {product.itemType === 'party_tray' && (product.customizations ?? []).length > 0 && (
-                  <p className={styles.flavorNote}>
-                    <strong>Flavor choice required</strong> — Flavors can vary, confirm availability with associate.
-                  </p>
-                )}
-
-                <div className={styles.productCard__actions}>
-                  {product.itemType === 'grab_go' ? (
-                    <Button variant="primary" size="small" isFullWidth onClick={() => addGrabGoToCart(product)}>
-                      Add to order
-                    </Button>
+                <p className={styles.productCard__price}>
+                  {product.itemType === 'deli_meat' ? (
+                    <>Starting at <strong>${product.basePrice.toFixed(2)} / lb</strong></>
+                  ) : product.itemType === 'grab_go' ? (
+                    <strong>${product.basePrice.toFixed(2)} ea</strong>
                   ) : (
-                    <Button variant="secondary" size="small" isFullWidth onClick={() => openModal(product)}>
-                      Configure and add
-                    </Button>
+                    <>Starting at <strong>${product.basePrice.toFixed(2)} ea</strong></>
                   )}
-                </div>
+                </p>
+              </div>
+              <div className={styles.productCard__footer}>
+                <div className={styles.productCard__divider} />
+                {product.itemType === 'grab_go' ? (
+                  <Button variant="secondary" size="small" isFullWidth onClick={() => addGrabGoToCart(product)}>
+                    Add to order
+                  </Button>
+                ) : (
+                  <Button variant="secondary" size="small" isFullWidth onClick={() => openModal(product)}>
+                    Configure and add
+                  </Button>
+                )}
               </div>
             </div>
           ))}
