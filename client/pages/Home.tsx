@@ -851,7 +851,7 @@ const PARTY_TRAY_DATA: StoreProduct[] = [
     basePrice: 48.00,
     tag: '24 Hour Notice',
     notice: '24 hour notice',
-    image: 'https://images.pexels.com/photos/6389711/pexels-photo-6389711.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Ff7fe9b169160471da33a07f1c0d5e4c6',
     category: 'party-tray',
     description: 'Honey Ham, Oven Roasted Turkey & Roast Beef (Med or Rare). Pick 2 cheeses: Cheddar, Colby Jack, Swiss.',
     variants: [
