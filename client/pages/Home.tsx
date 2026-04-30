@@ -817,7 +817,7 @@ const PARTY_TRAY_DATA: StoreProduct[] = [
     basePrice: 45.00,
     tag: '24 Hour Notice',
     notice: '24 hour notice',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=800',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F292cf888ca2b46c5b3bd75a9a969fc6e',
     category: 'party-tray',
     description: 'Chicken Tenders, 1 flavor Boneless wing and 1 flavor Bone in wings. Served with ranch. No substitutions.',
     variants: [
