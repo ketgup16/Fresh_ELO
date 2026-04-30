@@ -1257,69 +1257,7 @@ function StoreOrdersPanel() {
             </div>
           ) : (
           <>
-          {/* Customer info */}
-          <div className={styles.customerInfo}>
-            <p className={styles.customerInfo__sectionLabel}>Customer details</p>
-            <div className={styles.customerInfo__grid}>
-              <div className={styles.formField}>
-                <label className={styles.formField__label}>Customer name <span className={styles.formField__required}>*</span></label>
-                <input className={styles.formField__input} type="text" placeholder="Full name"
-                  value={customerInfo.name} onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))} />
-              </div>
-              <div className={styles.formField}>
-                <label className={styles.formField__label}>Phone # <span className={styles.formField__required}>*</span></label>
-                <input className={styles.formField__input} type="tel" placeholder="(555) 000-0000"
-                  value={customerInfo.phone} onChange={e => setCustomerInfo(i => ({ ...i, phone: e.target.value }))} />
-              </div>
-            </div>
-
-            <p className={styles.customerInfo__sectionLabel}>Pickup</p>
-            <div className={styles.customerInfo__grid}>
-              <div className={styles.formField}>
-                <label className={styles.formField__label}>Pick up date <span className={styles.formField__required}>*</span></label>
-                <input className={styles.formField__input} type="date" min={todayDate}
-                  value={customerInfo.pickupDate} onChange={e => setCustomerInfo(i => ({ ...i, pickupDate: e.target.value }))} />
-              </div>
-              <div className={styles.formField}>
-                <label className={styles.formField__label}>Pick up time <span className={styles.formField__required}>*</span></label>
-                <input className={styles.formField__input} type="time"
-                  value={customerInfo.pickupTime} onChange={e => setCustomerInfo(i => ({ ...i, pickupTime: e.target.value }))} />
-              </div>
-            </div>
-
-            <p className={styles.customerInfo__sectionLabel}>Order details</p>
-            <div className={styles.customerInfo__grid}>
-              <div className={styles.formField}>
-                <label className={styles.formField__label}>Order date</label>
-                <input className={styles.formField__input} type="date" value={todayDate} readOnly />
-              </div>
-              <div className={styles.formField}>
-                <Select
-                  label="Order taken by *"
-                  value={customerInfo.orderTakenBy}
-                  onValueChange={v => setCustomerInfo(i => ({ ...i, orderTakenBy: v }))}
-                  placeholder="Select associate"
-                  size="small"
-                >
-                  {DELI_ASSOCIATES.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
-                </Select>
-              </div>
-            </div>
-
-            <div className={styles.formField}>
-              <TextArea
-                label="Special instructions (optional)"
-                value={customerInfo.instructions}
-                onChange={e => setCustomerInfo(i => ({ ...i, instructions: e.target.value }))}
-                size="small"
-              />
-              <div className={styles.formField__charCount}>{customerInfo.instructions.length} / 250</div>
-            </div>
-          </div>
-
-          <div className={styles.divider} />
-
-          {/* Items ordered */}
+          {/* Items ordered — top of form */}
           <div className={styles.cartPanel__subHeader}>
             <span className={styles.cartPanel__subTitle}>Items ordered</span>
           </div>
@@ -1395,6 +1333,68 @@ function StoreOrdersPanel() {
                 </div>
               ))}
             </div>
+
+          <div className={styles.divider} />
+
+          {/* Customer info */}
+          <div className={styles.customerInfo}>
+            <p className={styles.customerInfo__sectionLabel}>Customer details</p>
+            <div className={styles.customerInfo__grid}>
+              <div className={styles.formField}>
+                <label className={styles.formField__label}>Customer name <span className={styles.formField__required}>*</span></label>
+                <input className={styles.formField__input} type="text" placeholder="Full name"
+                  value={customerInfo.name} onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))} />
+              </div>
+              <div className={styles.formField}>
+                <label className={styles.formField__label}>Phone # <span className={styles.formField__required}>*</span></label>
+                <input className={styles.formField__input} type="tel" placeholder="(555) 000-0000"
+                  value={customerInfo.phone} onChange={e => setCustomerInfo(i => ({ ...i, phone: e.target.value }))} />
+              </div>
+            </div>
+
+            <p className={styles.customerInfo__sectionLabel}>Pickup</p>
+            <div className={styles.customerInfo__grid}>
+              <div className={styles.formField}>
+                <label className={styles.formField__label}>Pick up date <span className={styles.formField__required}>*</span></label>
+                <input className={styles.formField__input} type="date" min={todayDate}
+                  value={customerInfo.pickupDate} onChange={e => setCustomerInfo(i => ({ ...i, pickupDate: e.target.value }))} />
+              </div>
+              <div className={styles.formField}>
+                <label className={styles.formField__label}>Pick up time <span className={styles.formField__required}>*</span></label>
+                <input className={styles.formField__input} type="time"
+                  value={customerInfo.pickupTime} onChange={e => setCustomerInfo(i => ({ ...i, pickupTime: e.target.value }))} />
+              </div>
+            </div>
+
+            <p className={styles.customerInfo__sectionLabel}>Order details</p>
+            <div className={styles.customerInfo__grid}>
+              <div className={styles.formField}>
+                <label className={styles.formField__label}>Order date</label>
+                <input className={styles.formField__input} type="date" value={todayDate} readOnly />
+              </div>
+              <div className={styles.formField}>
+                <Select
+                  label="Order taken by *"
+                  value={customerInfo.orderTakenBy}
+                  onValueChange={v => setCustomerInfo(i => ({ ...i, orderTakenBy: v }))}
+                  placeholder="Select associate"
+                  size="small"
+                >
+                  {DELI_ASSOCIATES.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
+                </Select>
+              </div>
+            </div>
+
+            <div className={styles.formField}>
+              <TextArea
+                label="Special instructions (optional)"
+                value={customerInfo.instructions}
+                onChange={e => setCustomerInfo(i => ({ ...i, instructions: e.target.value }))}
+                size="small"
+              />
+              <div className={styles.formField__charCount}>{customerInfo.instructions.length} / 250</div>
+            </div>
+          </div>
           </>
           )}
         </div>
