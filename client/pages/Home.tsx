@@ -801,7 +801,7 @@ const PARTY_TRAY_DATA: StoreProduct[] = [
     basePrice: 15.00,
     tag: '24 Hour Notice',
     notice: '24 hour notice',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=800',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fd1a75c492ffa449ea97dab8fbcc944bc',
     category: 'party-tray',
     description: 'Freshly fried chicken pieces. Breasts, Wings, Legs & Thighs.',
     variants: [
