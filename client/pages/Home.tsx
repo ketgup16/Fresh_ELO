@@ -788,7 +788,12 @@ const HOT_MEALS_DATA: StoreProduct[] = [
   },
 ];
 
+const ROAST_BEEF_CUSTOMIZATION: CustomizationGroup[] = [
+  { id: 'roast_beef_temp', title: 'Roast Beef Temperature', type: 'single', options: ['Medium', 'Rare'] },
+];
+
 const PARTY_TRAY_DATA: StoreProduct[] = [
+  // ── Chicken trays ──
   {
     id: 'tray_fried_chicken',
     name: 'Fried Chicken Tray',
@@ -814,7 +819,7 @@ const PARTY_TRAY_DATA: StoreProduct[] = [
     notice: '24 hour notice',
     image: 'https://images.pexels.com/photos/24182617/pexels-photo-24182617.jpeg?auto=compress&cs=tinysrgb&w=800',
     category: 'party-tray',
-    description: 'Served with Chicken Tenders, 1 flavor Boneless wing and 1 flavor Bone in wings. Served with ranch for dipping. No substitutions.',
+    description: 'Chicken Tenders, 1 flavor Boneless wing and 1 flavor Bone in wings. Served with ranch. No substitutions.',
     variants: [
       { id: 'med', label: 'Med (Feeds 7–9)', price: 45.00, plu: '27203', includes: '12 Tenders, 18 Bone In Wings, 24 Boneless Wings' },
       { id: 'lg', label: 'Lg (Feeds 10–14)', price: 65.00, plu: '27204', includes: '15 Tenders, 24 Bone In Wings, 30 Boneless Wings' },
@@ -830,13 +835,116 @@ const PARTY_TRAY_DATA: StoreProduct[] = [
     notice: '24 hour notice',
     image: 'https://images.pexels.com/photos/8862763/pexels-photo-8862763.jpeg?auto=compress&cs=tinysrgb&w=800',
     category: 'party-tray',
-    description: 'A combo of boneless and bone in wings. Served with sides of carrots, celery sticks and ranch for dipping.',
+    description: 'Combo of boneless and bone in wings. Served with carrots, celery sticks and ranch for dipping.',
     variants: [
       { id: 'sm', label: 'Small (Feeds 5–7)', price: 35.00, plu: '8113', includes: '10 Bone in Wings, 20 Boneless' },
       { id: 'md', label: 'Medium (Feeds 7–9)', price: 55.00, plu: '8114', includes: '18 Bone In Wings, 24 Boneless Wings' },
       { id: 'lg', label: 'Large (Feeds 10–12)', price: 75.00, plu: '8115', includes: '24 Bone In Wings, 30 Boneless Wings' },
     ],
     customizations: WING_CUSTOMIZATIONS,
+  },
+  // ── Subs & Party Trays ──
+  {
+    id: 'tray_sub_sandwich',
+    name: 'Sub Sandwich Party Tray',
+    itemType: 'party_tray',
+    basePrice: 48.00,
+    tag: '24 Hour Notice',
+    notice: '24 hour notice',
+    image: 'https://images.pexels.com/photos/6389711/pexels-photo-6389711.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'party-tray',
+    description: 'Honey Ham, Oven Roasted Turkey & Roast Beef (Med or Rare). Pick 2 cheeses: Cheddar, Colby Jack, Swiss.',
+    variants: [
+      { id: '2ft', label: '2 ft. (Feeds 10–20)', price: 48.00, plu: '5847' },
+      { id: '4ft', label: '4 ft. (Feeds 10–20)', price: 88.00, plu: '5848' },
+      { id: '6ft', label: '6 ft. (Feeds 20–25)', price: 126.00, plu: '63739' },
+    ],
+    customizations: [
+      ...ROAST_BEEF_CUSTOMIZATION,
+      { id: 'cheese', title: 'Pick 2 Cheeses', type: 'multi', max: 2, options: ['Cheddar', 'Colby Jack', 'Swiss'] },
+    ],
+  },
+  {
+    id: 'tray_wedge',
+    name: 'Wedge Tray (Sandwich Tray)',
+    itemType: 'party_tray',
+    basePrice: 42.00,
+    tag: '24 Hour Notice',
+    notice: '24 hour notice',
+    image: 'https://images.pexels.com/photos/28548853/pexels-photo-28548853.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'party-tray',
+    description: 'Honey Ham, Oven Roasted Turkey & Roast Beef (Med or Rare). Includes Colby Jack & Swiss cheese.',
+    variants: [
+      { id: 'med', label: 'Med Tray (Feeds 10–20)', price: 42.00, plu: '5798' },
+      { id: 'lg', label: 'Lrg Tray (Feeds 20–25)', price: 52.00, plu: '5801' },
+    ],
+    customizations: ROAST_BEEF_CUSTOMIZATION,
+  },
+  {
+    id: 'tray_meat_cheese',
+    name: 'Meat & Cheese Tray',
+    itemType: 'party_tray',
+    basePrice: 55.00,
+    tag: '24 Hour Notice',
+    notice: '24 hour notice',
+    image: 'https://images.pexels.com/photos/35275156/pexels-photo-35275156.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'party-tray',
+    description: 'Honey Ham, Oven Roasted Turkey & Roast Beef (Med or Rare). Includes Colby Jack, Swiss & Cheddar.',
+    variants: [
+      { id: 'sm', label: 'Sm Tray (8–10)', price: 55.00, plu: '7126' },
+      { id: 'med', label: 'Med Tray (10–20)', price: 100.00, plu: '63737' },
+      { id: 'lg', label: 'Lrg Tray (20–25)', price: 140.00, plu: '63738' },
+    ],
+    customizations: ROAST_BEEF_CUSTOMIZATION,
+  },
+  {
+    id: 'tray_all_meat',
+    name: 'All Meat Tray',
+    itemType: 'party_tray',
+    basePrice: 96.00,
+    tag: '24 Hour Notice',
+    notice: '24 hour notice',
+    image: 'https://images.pexels.com/photos/19585058/pexels-photo-19585058.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'party-tray',
+    description: 'Black Forest Ham, Honey Ham, Oven Roasted Turkey, Hard Salami & Roast Beef (Med or Rare).',
+    variants: [
+      { id: 'med', label: 'Med Tray (10–20)', price: 96.00, plu: '5832' },
+      { id: 'lg', label: 'Lrg Tray (20–25)', price: 136.00, plu: '63742' },
+    ],
+    customizations: ROAST_BEEF_CUSTOMIZATION,
+  },
+  {
+    id: 'tray_all_cheese',
+    name: 'All Cheese Tray',
+    itemType: 'party_tray',
+    basePrice: 78.00,
+    tag: '24 Hour Notice',
+    notice: '24 hour notice',
+    image: 'https://images.pexels.com/photos/10560868/pexels-photo-10560868.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'party-tray',
+    description: 'Cheddar, Colby Jack, Pepper Jack, Muenster, Swiss & Provolone. No customizable options.',
+    variants: [
+      { id: 'med', label: 'Med Tray (1–20)', price: 78.00, plu: '5811' },
+      { id: 'lg', label: 'Lrg Tray (20–25)', price: 102.00, plu: '63744' },
+    ],
+    customizations: [],
+  },
+  {
+    id: 'tray_slider',
+    name: 'Slider Tray on Hawaiian Rolls',
+    itemType: 'party_tray',
+    basePrice: 26.00,
+    tag: '24 Hour Notice',
+    notice: '24 hour notice',
+    image: 'https://images.pexels.com/photos/35247169/pexels-photo-35247169.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'party-tray',
+    description: 'Honey Ham, Oven Roasted Turkey & Roast Beef (Med or Rare). Includes Cheddar, Colby Jack & Swiss.',
+    variants: [
+      { id: 'sm', label: 'Sm Tray (6–10)', price: 26.00, plu: '27206' },
+      { id: 'med', label: 'Med Tray (10–15)', price: 34.00, plu: '27207' },
+      { id: 'lg', label: 'Lrg Tray (15–20)', price: 38.00, plu: '27208' },
+    ],
+    customizations: ROAST_BEEF_CUSTOMIZATION,
   },
 ];
 
