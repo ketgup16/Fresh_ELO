@@ -1076,7 +1076,7 @@
 /* ── Product list (horizontal row) ── */
 .productList {
   display: flex;
-  flex-direction: row;
+  flex-direction: row !important;
   align-items: stretch;
   flex-wrap: wrap;
   gap: 20px;
