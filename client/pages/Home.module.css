@@ -1338,7 +1338,10 @@
 /* ── Order form (right panel) ── */
 .orderFormScroll {
   flex: 1;
+  min-height: 0;
+  height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--ld-semantic-color-separator, #e3e4e5) transparent;
   display: flex;
@@ -1544,6 +1547,7 @@
 .cartPanel {
   width: 360px;
   flex-shrink: 0;
+  align-self: stretch;
   border-left: 2px solid var(--ld-semantic-color-separator, #e3e4e5);
   background: var(--ld-semantic-color-background, #f5f5f6);
   display: flex;
