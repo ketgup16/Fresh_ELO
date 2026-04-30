@@ -1073,12 +1073,11 @@
   background: var(--ld-semantic-color-fill-brand-subtle, #dce8ff);
 }
 
-/* ── Product list (horizontal row) ── */
+/* ── Product list (CSS Grid — immune to flex-direction inline overrides) ── */
 .productList {
-  display: flex;
-  flex-direction: row !important;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   align-items: stretch;
-  flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
 }
@@ -1094,9 +1093,6 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  width: calc(33.333% - 14px);
-  min-width: 220px;
-  flex-shrink: 0;
 }
 
 .productCard__imageWrap {
@@ -2136,11 +2132,8 @@
     border-top: 2px solid var(--ld-semantic-color-separator, #e3e4e5);
     max-height: 400px;
   }
-  .productCard {
-    width: calc(50% - 10px);
-    min-width: 180px;
-  }
   .productList {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 12px;
     padding: 12px;
   }
