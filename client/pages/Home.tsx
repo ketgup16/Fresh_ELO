@@ -662,65 +662,102 @@ function OnlineOrderCard({ order }: { order: OnlineOrder }) {
 
 // ─── Store Orders ──────────────────────────────────────────────────────────────
 
+interface ProductVariant {
+  id: string;
+  label: string;
+  plu: string;
+  feeds?: string;
+  includes: string;
+}
+
+interface FlavorGroup {
+  label: string;
+  options: string[];
+}
+
 interface StoreProduct {
   id: string;
   name: string;
-  description: string;
-  startingPrice: string;
+  description?: string;
   image: string;
   category: string;
   notice?: string;
+  variants: ProductVariant[];
+  flavorGroups?: FlavorGroup[];
 }
 
 interface CartItem {
+  id: string;
   product: StoreProduct;
+  variant: ProductVariant;
   qty: number;
+  flavors: Record<string, string>;
 }
+
+interface CustomerInfo {
+  name: string;
+  phone: string;
+  pickupDate: string;
+  pickupTime: string;
+  pickupAmPm: 'AM' | 'PM';
+  pickupDay: string;
+  orderDate: string;
+  orderTakenBy: string;
+}
+
+const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+const WING_FLAVORS: FlavorGroup[] = [
+  { label: 'Boneless Wings', options: ['General Tso', 'Orange', 'BBQ'] },
+  { label: 'Bone In Wings', options: ['Ranch', 'Buffalo', 'Breaded'] },
+];
 
 const storeProducts: StoreProduct[] = [
   {
     id: 'fried-chicken',
-    name: 'Fried chicken tray',
-    description: 'Freshly fried chicken pieces. Breasts wings legs and thighs',
-    startingPrice: '$58.00',
+    name: 'Fried Chicken',
     image: 'https://api.builder.io/api/v1/image/assets/TEMP/0fb38ded214e7747a9e4040154af5afa019ad2fa?width=400',
-    category: 'hot-foods',
+    category: 'fried-chicken',
     notice: '24 hour notice',
-  },
-  {
-    id: 'sub-sandwich',
-    name: 'Sub sandwich party tray',
-    description: 'Includes Honey Ham, Oven Roasted Turkey, and Roast Beef.',
-    startingPrice: '$126.00',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=400',
-    category: 'meat-cheese',
-    notice: '24 hour notice',
+    variants: [
+      { id: '16pc', label: '16 Pc Chicken', plu: '9548', includes: '4 Breasts, 4 Wings, 4 Legs & 4 Thighs' },
+      { id: '48pc', label: '48 Pc Chicken', plu: '62888', includes: '12 Breasts, 12 Wings, 12 Legs & 12 Thighs' },
+    ],
   },
   {
     id: 'chicken-combo',
-    name: 'Chicken combo tray',
-    description: 'Chicken Tenders, Bone-In Wings, and Boneless Wings.',
-    startingPrice: '$45.00',
+    name: 'Chicken Combo Trays',
+    description: 'Served with Chicken Tenders, 1 flavor Boneless wing and 1 flavor Bone in wings. Served with ranch for dipping. No substitutions.',
     image: 'https://api.builder.io/api/v1/image/assets/TEMP/4e964bed0619d2365b794f27970d38864cef87e9?width=400',
-    category: 'party-tray',
+    category: 'combo-trays',
     notice: '24 hour notice',
+    variants: [
+      { id: 'med', label: 'Med', plu: '27203', feeds: 'Generally Feeds 7–9', includes: '12 Tenders, 18 Bone In Wings, 24 Boneless Wings' },
+      { id: 'lg', label: 'Lg', plu: '27204', feeds: 'Generally Feeds 10–14', includes: '15 Tenders, 24 Bone In Wings, 30 Boneless Wings' },
+    ],
+    flavorGroups: WING_FLAVORS,
+  },
+  {
+    id: 'wing-trays',
+    name: 'Wing Trays',
+    description: 'A combo of boneless and bone in wings. Served with sides of carrots, celery sticks and ranch for dipping.',
+    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=400',
+    category: 'wing-trays',
+    notice: '24 hour notice',
+    variants: [
+      { id: 'sm', label: 'Small', plu: '8113', feeds: 'Generally feeds 5–7', includes: '10 Bone in Wings, 20 Boneless' },
+      { id: 'md', label: 'Medium', plu: '8114', feeds: 'Generally feeds 7–9', includes: '18 Bone In Wings, 24 Boneless Wings' },
+      { id: 'lg', label: 'Large', plu: '8115', feeds: 'Generally feeds 10–12', includes: '24 Bone In Wings, 30 Boneless Wings' },
+    ],
+    flavorGroups: WING_FLAVORS,
   },
 ];
 
 const storeCategories = [
-  { id: 'hot-foods', label: 'Hot foods' },
-  { id: 'meat-cheese', label: 'Meat and cheese' },
-  { id: 'party-tray', label: 'Party tray' },
-  { id: 'cakes-store', label: 'Cakes' },
+  { id: 'fried-chicken', label: 'Fried Chicken' },
+  { id: 'combo-trays', label: 'Chicken Combo Trays' },
+  { id: 'wing-trays', label: 'Wing Trays' },
 ];
-
-function CloseIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
 
 function TrashIcon() {
   return (
@@ -731,184 +768,281 @@ function TrashIcon() {
 }
 
 function StoreOrdersPanel() {
-  const [activeCategory, setActiveCategory] = useState('party-tray');
+  const [activeCategory, setActiveCategory] = useState('fried-chicken');
   const [cart, setCart] = useState<CartItem[]>([]);
   const [configuringId, setConfiguringId] = useState<string | null>(null);
+  const [selectedVariantId, setSelectedVariantId] = useState<string | null>(null);
   const [pendingQty, setPendingQty] = useState(1);
+  const [pendingFlavors, setPendingFlavors] = useState<Record<string, string>>({});
+  const [customerInfo, setCustomerInfo] = useState<CustomerInfo>({
+    name: '', phone: '', pickupDate: '', pickupTime: '',
+    pickupAmPm: 'AM', pickupDay: '', orderDate: '', orderTakenBy: '',
+  });
 
   const filtered = storeProducts.filter(p => p.category === activeCategory);
 
   const handleConfigureClick = (product: StoreProduct) => {
     setConfiguringId(product.id);
+    setSelectedVariantId(product.variants[0]?.id ?? null);
     setPendingQty(1);
+    setPendingFlavors({});
   };
 
   const handleAddToCart = (product: StoreProduct) => {
-    setCart(prev => {
-      const existing = prev.find(c => c.product.id === product.id);
-      if (existing) {
-        return prev.map(c => c.product.id === product.id ? { ...c, qty: c.qty + pendingQty } : c);
-      }
-      return [...prev, { product, qty: pendingQty }];
-    });
+    const variant = product.variants.find(v => v.id === selectedVariantId);
+    if (!variant) return;
+    setCart(prev => [...prev, {
+      id: `${product.id}-${variant.id}-${Date.now()}`,
+      product, variant, qty: pendingQty, flavors: pendingFlavors,
+    }]);
     setConfiguringId(null);
   };
 
   const handleRemoveFromCart = (id: string) => {
-    setCart(prev => prev.filter(c => c.product.id !== id));
+    setCart(prev => prev.filter(c => c.id !== id));
   };
-
-  const cartTotal = cart.reduce((sum, c) => {
-    const price = parseFloat(c.product.startingPrice.replace('$', ''));
-    return sum + price * c.qty;
-  }, 0);
 
   return (
     <div className={styles.storeLayout}>
       {/* ── Left: Product Catalog ── */}
       <div className={styles.storeCatalog}>
-        {/* Filter chips */}
         <div className={styles.filterBar}>
           {storeCategories.map(cat => (
             <button
               key={cat.id}
               type="button"
-              className={[
-                styles.filterChip,
-                activeCategory === cat.id && styles['filterChip--active'],
-              ].filter(Boolean).join(' ')}
-              onClick={() => setActiveCategory(cat.id)}
+              className={[styles.filterChip, activeCategory === cat.id && styles['filterChip--active']].filter(Boolean).join(' ')}
+              onClick={() => { setActiveCategory(cat.id); setConfiguringId(null); }}
             >
               {cat.label}
             </button>
           ))}
         </div>
 
-        {/* Product cards */}
-        <div className={styles.productGrid}>
-          {filtered.length > 0 ? filtered.map(product => (
+        <div className={styles.productList}>
+          {filtered.map(product => (
             <div key={product.id} className={styles.productCard}>
-              {product.notice && (
-                <div className={styles.productCard__notice}>{product.notice}</div>
-              )}
-              <img
-                src={product.image}
-                alt={product.name}
-                className={styles.productCard__image}
-              />
+              <div className={styles.productCard__imageWrap}>
+                {product.notice && <div className={styles.productCard__notice}>{product.notice}</div>}
+                <img src={product.image} alt={product.name} className={styles.productCard__image} />
+              </div>
               <div className={styles.productCard__body}>
                 <h3 className={styles.productCard__name}>{product.name}</h3>
-                <p className={styles.productCard__desc}>{product.description}</p>
-                <p className={styles.productCard__price}>
-                  Starting at <strong>{product.startingPrice} ea</strong>
-                </p>
+                {product.description && <p className={styles.productCard__desc}>{product.description}</p>}
+
+                {/* Variants table */}
+                <div className={styles.variantList}>
+                  {product.variants.map(v => (
+                    <div key={v.id} className={styles.variantRow}>
+                      <div className={styles.variantRow__label}>
+                        <span className={styles.variantRow__name}>{v.label}</span>
+                        <span className={styles.variantRow__plu}>PLU #{v.plu}</span>
+                        {v.feeds && <span className={styles.variantRow__feeds}>{v.feeds}</span>}
+                      </div>
+                      <span className={styles.variantRow__includes}>{v.includes}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {product.flavorGroups && (
+                  <p className={styles.flavorNote}>
+                    <strong>Circle Flavor Choice</strong> — Flavors can vary, confirm availability with associate.
+                  </p>
+                )}
 
                 {configuringId === product.id ? (
-                  <div className={styles.productCard__configure}>
-                    <div className={styles.qtyRow}>
-                      <span className={styles.qtyLabel}>Qty</span>
-                      <div className={styles.qtyStepper}>
-                        <button
-                          type="button"
-                          className={styles.qtyBtn}
-                          onClick={() => setPendingQty(q => Math.max(1, q - 1))}
-                          aria-label="Decrease quantity"
-                        >−</button>
-                        <span className={styles.qtyValue}>{pendingQty}</span>
-                        <button
-                          type="button"
-                          className={styles.qtyBtn}
-                          onClick={() => setPendingQty(q => q + 1)}
-                          aria-label="Increase quantity"
-                        >+</button>
+                  <div className={styles.configureForm}>
+                    {/* Size picker */}
+                    <div className={styles.configSection}>
+                      <span className={styles.configSection__label}>Size</span>
+                      <div className={styles.variantPicker}>
+                        {product.variants.map(v => (
+                          <button
+                            key={v.id}
+                            type="button"
+                            className={[styles.variantChip, selectedVariantId === v.id && styles['variantChip--active']].filter(Boolean).join(' ')}
+                            onClick={() => setSelectedVariantId(v.id)}
+                          >
+                            <span className={styles.variantChip__label}>{v.label}</span>
+                            {v.feeds && <span className={styles.variantChip__feeds}>{v.feeds}</span>}
+                          </button>
+                        ))}
                       </div>
                     </div>
+
+                    {/* Qty */}
+                    <div className={styles.configSection}>
+                      <span className={styles.configSection__label}>Quantity</span>
+                      <div className={styles.qtyStepper}>
+                        <button type="button" className={styles.qtyBtn} onClick={() => setPendingQty(q => Math.max(1, q - 1))} aria-label="Decrease">−</button>
+                        <span className={styles.qtyValue}>{pendingQty}</span>
+                        <button type="button" className={styles.qtyBtn} onClick={() => setPendingQty(q => q + 1)} aria-label="Increase">+</button>
+                      </div>
+                    </div>
+
+                    {/* Flavor selectors */}
+                    {product.flavorGroups?.map(group => (
+                      <div key={group.label} className={styles.configSection}>
+                        <span className={styles.configSection__label}>{group.label}</span>
+                        <div className={styles.flavorPicker}>
+                          {group.options.map(opt => (
+                            <button
+                              key={opt}
+                              type="button"
+                              className={[styles.flavorChip, pendingFlavors[group.label] === opt && styles['flavorChip--active']].filter(Boolean).join(' ')}
+                              onClick={() => setPendingFlavors(f => ({ ...f, [group.label]: opt }))}
+                            >
+                              {opt}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+
                     <div className={styles.configureActions}>
-                      <Button variant="secondary" size="small" onClick={() => setConfiguringId(null)}>
-                        Cancel
-                      </Button>
-                      <Button variant="primary" size="small" isFullWidth onClick={() => handleAddToCart(product)}>
+                      <Button variant="secondary" size="small" onClick={() => setConfiguringId(null)}>Cancel</Button>
+                      <Button variant="primary" size="small" isFullWidth onClick={() => handleAddToCart(product)} disabled={!selectedVariantId}>
                         Add to order
                       </Button>
                     </div>
                   </div>
                 ) : (
-                  <Button
-                    variant="secondary"
-                    size="small"
-                    isFullWidth
-                    onClick={() => handleConfigureClick(product)}
-                  >
+                  <Button variant="secondary" size="small" isFullWidth onClick={() => handleConfigureClick(product)}>
                     Configure and add
                   </Button>
                 )}
               </div>
             </div>
-          )) : (
-            <div className={styles.emptyState}>No items in this category</div>
-          )}
+          ))}
         </div>
       </div>
 
-      {/* ── Right: Cart / Order Summary ── */}
+      {/* ── Right: Order Form ── */}
       <div className={styles.cartPanel}>
         <div className={styles.cartPanel__header}>
-          <h2 className={styles.cartPanel__title}>Order summary</h2>
-          {cart.length > 0 && (
-            <span className={styles.cartPanel__count}>{cart.length} item{cart.length !== 1 ? 's' : ''}</span>
-          )}
+          <h2 className={styles.cartPanel__title}>Order form</h2>
         </div>
 
-        {cart.length === 0 ? (
-          <div className={styles.cartPanel__empty}>
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-              <circle cx="24" cy="24" r="23" stroke="var(--ld-semantic-color-separator,#e3e4e5)" strokeWidth="2" />
-              <path d="M14 18h20l-2.5 12H16.5L14 18Z" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinejoin="round" />
-              <path d="M19 18l1-4h8l1 4" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-            <p className={styles.cartPanel__emptyText}>No items added yet</p>
-            <p className={styles.cartPanel__emptyHint}>Use "Configure and add" to build your order</p>
+        <div className={styles.orderFormScroll}>
+          {/* Customer info */}
+          <div className={styles.customerInfo}>
+            <p className={styles.customerInfo__sectionLabel}>Customer details</p>
+            <div className={styles.customerInfo__grid}>
+              <div className={styles.formField}>
+                <label className={styles.formField__label}>Customer name</label>
+                <input className={styles.formField__input} type="text" placeholder="Full name"
+                  value={customerInfo.name} onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))} />
+              </div>
+              <div className={styles.formField}>
+                <label className={styles.formField__label}>Phone #</label>
+                <input className={styles.formField__input} type="tel" placeholder="(555) 000-0000"
+                  value={customerInfo.phone} onChange={e => setCustomerInfo(i => ({ ...i, phone: e.target.value }))} />
+              </div>
+            </div>
+
+            <p className={styles.customerInfo__sectionLabel}>Pickup</p>
+            <div className={styles.customerInfo__grid}>
+              <div className={styles.formField}>
+                <label className={styles.formField__label}>Pick up date</label>
+                <input className={styles.formField__input} type="date"
+                  value={customerInfo.pickupDate} onChange={e => setCustomerInfo(i => ({ ...i, pickupDate: e.target.value }))} />
+              </div>
+              <div className={styles.formField}>
+                <label className={styles.formField__label}>Pick up time</label>
+                <div className={styles.timeRow}>
+                  <input className={styles.formField__input} type="time"
+                    value={customerInfo.pickupTime} onChange={e => setCustomerInfo(i => ({ ...i, pickupTime: e.target.value }))} />
+                  <div className={styles.amPmToggle}>
+                    {(['AM', 'PM'] as const).map(v => (
+                      <button key={v} type="button"
+                        className={[styles.amPmBtn, customerInfo.pickupAmPm === v && styles['amPmBtn--active']].filter(Boolean).join(' ')}
+                        onClick={() => setCustomerInfo(i => ({ ...i, pickupAmPm: v }))}
+                      >{v}</button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.formField}>
+              <label className={styles.formField__label}>Day of week</label>
+              <div className={styles.daySelector}>
+                {DAYS.map(d => (
+                  <button key={d} type="button"
+                    className={[styles.dayChip, customerInfo.pickupDay === d && styles['dayChip--active']].filter(Boolean).join(' ')}
+                    onClick={() => setCustomerInfo(i => ({ ...i, pickupDay: i.pickupDay === d ? '' : d }))}
+                  >{d}</button>
+                ))}
+              </div>
+            </div>
+
+            <p className={styles.customerInfo__sectionLabel}>Order details</p>
+            <div className={styles.customerInfo__grid}>
+              <div className={styles.formField}>
+                <label className={styles.formField__label}>Order date</label>
+                <input className={styles.formField__input} type="date"
+                  value={customerInfo.orderDate} onChange={e => setCustomerInfo(i => ({ ...i, orderDate: e.target.value }))} />
+              </div>
+              <div className={styles.formField}>
+                <label className={styles.formField__label}>Order taken by</label>
+                <input className={styles.formField__input} type="text" placeholder="Associate name"
+                  value={customerInfo.orderTakenBy} onChange={e => setCustomerInfo(i => ({ ...i, orderTakenBy: e.target.value }))} />
+              </div>
+            </div>
           </div>
-        ) : (
-          <>
+
+          <div className={styles.divider} />
+
+          {/* Items ordered */}
+          <div className={styles.cartPanel__header}>
+            <h2 className={styles.cartPanel__title}>Items ordered</h2>
+            {cart.length > 0 && (
+              <span className={styles.cartPanel__count}>{cart.length} item{cart.length !== 1 ? 's' : ''}</span>
+            )}
+          </div>
+
+          {cart.length === 0 ? (
+            <div className={styles.cartPanel__empty}>
+              <svg width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <circle cx="24" cy="24" r="23" stroke="var(--ld-semantic-color-separator,#e3e4e5)" strokeWidth="2" />
+                <path d="M14 18h20l-2.5 12H16.5L14 18Z" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinejoin="round" />
+                <path d="M19 18l1-4h8l1 4" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              <p className={styles.cartPanel__emptyText}>No items added yet</p>
+              <p className={styles.cartPanel__emptyHint}>Configure and add items from the catalog</p>
+            </div>
+          ) : (
             <div className={styles.cartItems}>
               {cart.map(item => (
-                <div key={item.product.id} className={styles.cartItem}>
-                  <img
-                    src={item.product.image}
-                    alt={item.product.name}
-                    className={styles.cartItem__image}
-                  />
+                <div key={item.id} className={styles.cartItem}>
+                  <img src={item.product.image} alt={item.product.name} className={styles.cartItem__image} />
                   <div className={styles.cartItem__info}>
-                    <div className={styles.cartItem__name}>{item.product.name}</div>
-                    <div className={styles.cartItem__meta}>
-                      Qty: {item.qty} · {item.product.startingPrice} ea
-                    </div>
+                    <div className={styles.cartItem__name}>{item.product.name} — {item.variant.label}</div>
+                    <div className={styles.cartItem__meta}>PLU #{item.variant.plu} · Qty: {item.qty}</div>
+                    {Object.entries(item.flavors).length > 0 && (
+                      <div className={styles.cartItem__flavors}>
+                        {Object.entries(item.flavors).map(([k, v]) => (
+                          <span key={k} className={styles.cartItem__flavorTag}>{k}: {v}</span>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  <button
-                    type="button"
-                    className={styles.cartItem__remove}
-                    onClick={() => handleRemoveFromCart(item.product.id)}
-                    aria-label={`Remove ${item.product.name}`}
-                  >
+                  <button type="button" className={styles.cartItem__remove}
+                    onClick={() => handleRemoveFromCart(item.id)} aria-label={`Remove ${item.product.name}`}>
                     <TrashIcon />
                   </button>
                 </div>
               ))}
             </div>
+          )}
+        </div>
 
-            <div className={styles.cartPanel__footer}>
-              <div className={styles.divider} />
-              <div className={styles.cartTotal}>
-                <span className={styles.cartTotal__label}>Estimated total</span>
-                <span className={styles.cartTotal__value}>${cartTotal.toFixed(2)}</span>
-              </div>
-              <Button variant="primary" size="small" isFullWidth>
-                Place order
-              </Button>
-            </div>
-          </>
-        )}
+        <div className={styles.cartPanel__footer}>
+          <div className={styles.divider} />
+          <Button variant="primary" size="small" isFullWidth disabled={cart.length === 0}>
+            Place order
+          </Button>
+        </div>
       </div>
     </div>
   );

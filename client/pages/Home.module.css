@@ -1073,10 +1073,10 @@
   background: var(--ld-semantic-color-fill-brand-subtle, #dce8ff);
 }
 
-/* ── Product grid ── */
-.productGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+/* ── Product list (vertical, replaces grid) ── */
+.productList {
+  display: flex;
+  flex-direction: column;
   gap: 20px;
   padding: 20px;
 }
@@ -1090,7 +1090,13 @@
     0 2px 6px 1px rgba(0, 0, 0, 0.10);
   overflow: hidden;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 0;
+}
+
+.productCard__imageWrap {
+  width: 160px;
+  flex-shrink: 0;
   position: relative;
 }
 
@@ -1111,18 +1117,20 @@
 
 .productCard__image {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
+  min-height: 140px;
   object-fit: cover;
   display: block;
   background: var(--ld-semantic-color-fill-subtle, #f5f5f6);
 }
 
 .productCard__body {
-  padding: 16px;
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
   flex: 1;
+  min-width: 0;
 }
 
 .productCard__name {
@@ -1153,6 +1161,312 @@
   font-weight: 700;
 }
 
+/* ── Variant list (inside card, before configure) ── */
+.variantList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.variantRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-fill-subtle, #f5f5f6);
+}
+
+.variantRow:last-child { border-bottom: none; }
+
+.variantRow__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.variantRow__name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.variantRow__plu {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  background: var(--ld-semantic-color-surface, #fff);
+  border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+.variantRow__feeds {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  font-style: italic;
+}
+
+.variantRow__includes {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  line-height: 1.4;
+}
+
+/* ── Flavor note ── */
+.flavorNote {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  margin: 0;
+  line-height: 1.5;
+  border-left: 3px solid var(--ld-semantic-color-fill-brand, #0053e2);
+  padding-left: 8px;
+}
+
+/* ── Configure form ── */
+.configureForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 4px;
+  border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  margin-top: 4px;
+}
+
+.configSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.configSection__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Variant picker chips ── */
+.variantPicker {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.variantChip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1.5px solid var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-surface, #fff);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  min-width: 64px;
+}
+
+.variantChip:hover {
+  border-color: var(--ld-semantic-color-fill-brand, #0053e2);
+}
+
+.variantChip--active {
+  border-color: var(--ld-semantic-color-fill-brand, #0053e2);
+  background: var(--ld-semantic-color-fill-brand-subtle, #dce8ff);
+}
+
+.variantChip__label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.variantChip__feeds {
+  font-size: 10px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  text-align: center;
+}
+
+/* ── Flavor picker chips ── */
+.flavorPicker {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.flavorChip {
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 1.5px solid var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-surface, #fff);
+  font-size: 13px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.flavorChip:hover {
+  border-color: var(--ld-semantic-color-fill-brand, #0053e2);
+}
+
+.flavorChip--active {
+  border-color: var(--ld-semantic-color-fill-brand, #0053e2);
+  background: var(--ld-semantic-color-fill-brand, #0053e2);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ── Order form (right panel) ── */
+.orderFormScroll {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ld-semantic-color-separator, #e3e4e5) transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Customer info ── */
+.customerInfo {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.customerInfo__sectionLabel {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  margin: 4px 0 0;
+}
+
+.customerInfo__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.formField__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.formField__input {
+  height: 36px;
+  padding: 0 10px;
+  border: 1.5px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 6px;
+  background: var(--ld-semantic-color-surface, #fff);
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.formField__input:focus {
+  border-color: var(--ld-semantic-color-fill-brand, #0053e2);
+}
+
+/* ── Time row ── */
+.timeRow {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.timeRow .formField__input {
+  flex: 1;
+  min-width: 0;
+}
+
+.amPmToggle {
+  display: flex;
+  border: 1.5px solid var(--ld-semantic-color-separator, #e3e4e5);
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.amPmBtn {
+  padding: 0 8px;
+  height: 33px;
+  border: none;
+  background: var(--ld-semantic-color-surface, #fff);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.amPmBtn--active {
+  background: var(--ld-semantic-color-fill-brand, #0053e2);
+  color: #fff;
+}
+
+/* ── Day selector ── */
+.daySelector {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.dayChip {
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1.5px solid var(--ld-semantic-color-separator, #e3e4e5);
+  background: var(--ld-semantic-color-surface, #fff);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.dayChip--active {
+  border-color: var(--ld-semantic-color-fill-brand, #0053e2);
+  background: var(--ld-semantic-color-fill-brand, #0053e2);
+  color: #fff;
+}
+
+/* ── Cart item flavors ── */
+.cartItem__flavors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.cartItem__flavorTag {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--ld-semantic-color-fill-brand-subtle, #dce8ff);
+  color: var(--ld-semantic-color-fill-brand, #0053e2);
+  font-weight: 600;
+}
+
+/* ── Legacy compat ── */
 .productCard__configure {
   display: flex;
   flex-direction: column;
@@ -1214,7 +1528,7 @@
 
 /* ── Cart panel (right) ── */
 .cartPanel {
-  width: 320px;
+  width: 360px;
   flex-shrink: 0;
   border-left: 2px solid var(--ld-semantic-color-separator, #e3e4e5);
   background: var(--ld-semantic-color-background, #f5f5f6);
@@ -1278,7 +1592,6 @@
 }
 
 .cartItems {
-  flex: 1;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--ld-semantic-color-separator, #e3e4e5) transparent;
@@ -1384,11 +1697,16 @@
     width: 100%;
     border-left: none;
     border-top: 2px solid var(--ld-semantic-color-separator, #e3e4e5);
-    max-height: 340px;
+    max-height: 400px;
   }
-  .productGrid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 12px;
-    padding: 12px;
+  .productCard {
+    flex-direction: column;
+  }
+  .productCard__imageWrap {
+    width: 100%;
+    height: 180px;
+  }
+  .customerInfo__grid {
+    grid-template-columns: 1fr;
   }
 }
