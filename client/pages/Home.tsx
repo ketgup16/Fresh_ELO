@@ -833,7 +833,7 @@ const PARTY_TRAY_DATA: StoreProduct[] = [
     basePrice: 35.00,
     tag: '24 Hour Notice',
     notice: '24 hour notice',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/0fb38ded214e7747a9e4040154af5afa019ad2fa?width=800',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fd88f496f795a4220925ce35add8ed1b5',
     category: 'party-tray',
     description: 'Combo of boneless and bone in wings. Served with carrots, celery sticks and ranch for dipping.',
     variants: [
