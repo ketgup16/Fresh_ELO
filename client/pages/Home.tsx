@@ -755,7 +755,7 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     basePrice: 6.48,
     plu: '62807',
     tag: 'Grab & Go',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/0fb38ded214e7747a9e4040154af5afa019ad2fa?width=800',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F3589d6e20734497d821d672918f19e70',
     category: 'hot-meals',
   },
   {
