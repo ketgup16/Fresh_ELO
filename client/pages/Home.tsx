@@ -956,7 +956,7 @@ const MEAT_CHEESE_DATA: StoreProduct[] = [
     basePrice: 10.98,
     plu: '6379',
     tag: 'Deli',
-    image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=800',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F85b686ebbd0347389df291e214c5cd88',
     category: 'meat-cheese',
     thicknessOptions: ['Shaved', 'Thin (1mm)', 'Sandwich (2mm)', 'Thick (4mm)'],
   },
