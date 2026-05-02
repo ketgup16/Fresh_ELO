@@ -640,8 +640,7 @@ function OnlineOrderCard({ order }: { order: OnlineOrder }) {
   const isSurfaced = secondsLeft <= ONLINE_THRESHOLDS.warning; // within 30 min
 
   return (
-    <div className={[styles.card, isSurfaced && styles['card--surfaced']].filter(Boolean).join(' ')}>
-      {isSurfaced && <PickupSoonBanner pickupTime={order.pickupTime} />}
+    <div className={styles.card}>
       <div className={styles.card__header}>
         <div className={styles.orderHeader}>
           <span className={styles.orderHeader__osn}>{order.osn}</span>
@@ -649,7 +648,7 @@ function OnlineOrderCard({ order }: { order: OnlineOrder }) {
         </div>
         <div className={styles.orderHeader__pickup}>
           <span className={styles.attrLabel}>Pickup</span>
-          <span className={styles.attrValue}>{order.pickupTime}</span>
+          <span className={[styles.attrValue, isSurfaced ? styles['attrValue--urgent'] : ''].filter(Boolean).join(' ')}>{order.pickupTime}</span>
         </div>
       </div>
       <ItemRow item={order.item} showDivider={true} />
