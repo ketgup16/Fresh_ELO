@@ -771,14 +771,13 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     name: 'Macaroni and Cheese',
     itemType: 'portioned',
     basePrice: 0.97,
-    priceDisplay: '97.0 ¢/lb',
+    priceDisplay: 'From $0.97',
     tag: 'Portioned',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc0d3fddf261c4a17a4424da05e0ecacc',
     category: 'hot-meals',
     variants: [
-      { id: 'sm', label: 'Small Cup (8oz)', price: 3.48, plu: '62811' },
-      { id: 'md', label: 'Medium Cup (16oz)', price: 5.48, plu: '62810' },
-      { id: 'lg', label: 'Large Cup (32oz)', price: 8.98, plu: '62812' },
+      { id: 'sm', label: '4 oz', price: 0.97, plu: '62811' },
+      { id: 'md', label: '16 oz', price: 3.84, plu: '62810' },
     ],
   },
   {
