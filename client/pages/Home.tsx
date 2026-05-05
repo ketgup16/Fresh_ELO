@@ -346,7 +346,7 @@ function MetricsSummary() {
         <div className={styles.metric__value}>51</div>
         <div className={styles.metric__label}>Orders today</div>
         <div className={styles.metric__trend + ' ' + styles['metric__trend--neutral']}>
-          <span>Spark + Walk-up</span>
+          <span></span>
         </div>
       </div>
       <div className={styles.metric__divider} aria-hidden="true" />
