@@ -1420,7 +1420,6 @@ function StoreOrdersPanel() {
         <ModalContent size="large" hideClose>
           <div className={styles.modalHeaderRow}>
             <ModalTitle>
-              {modalProduct?.itemType === 'deli_meat' ? 'Slice: ' : 'Configure: '}
               {modalProduct?.name}
             </ModalTitle>
             <ModalClose asChild>
@@ -1436,7 +1435,6 @@ function StoreOrdersPanel() {
               <>
                 <div className={styles.modalStep}>
                   <div className={styles.modalStep__header}>
-                    <span className={styles.modalStepNum}>1</span>
                     <span className={styles.modalStep__label}>Select Thickness</span>
                   </div>
                   <div className={styles.sizeGrid}>
@@ -1455,7 +1453,6 @@ function StoreOrdersPanel() {
 
                 <div className={styles.modalStep}>
                   <div className={styles.modalStep__header}>
-                    <span className={styles.modalStepNum}>2</span>
                     <span className={styles.modalStep__label}>Target Weight</span>
                   </div>
                   <div className={styles.weightRow}>
@@ -1487,8 +1484,7 @@ function StoreOrdersPanel() {
             {modalProduct?.itemType === 'portioned' && (
               <div className={styles.modalStep}>
                 <div className={styles.modalStep__header}>
-                  <span className={styles.modalStepNum}>1</span>
-                  <span className={styles.modalStep__label}>Select Portion Size</span>
+                  <span className={styles.modalStep__label}>Select size</span>
                 </div>
                 <div className={styles.sizeGrid}>
                   {modalProduct.variants?.map(v => (
@@ -1500,7 +1496,6 @@ function StoreOrdersPanel() {
                     >
                       <span className={styles.sizeCard__label}>{v.label}</span>
                       <span className={styles.sizeCard__sub}>${v.price.toFixed(2)}</span>
-                      {selectedVariant?.id === v.id && <Check width={14} height={14} className={styles.sizeCard__check} />}
                     </button>
                   ))}
                 </div>
@@ -1513,8 +1508,7 @@ function StoreOrdersPanel() {
                 {modalProduct.variants && modalProduct.variants.length > 0 && (
                   <div className={styles.modalStep}>
                     <div className={styles.modalStep__header}>
-                      <span className={styles.modalStepNum}>1</span>
-                      <span className={styles.modalStep__label}>Select Size</span>
+                      <span className={styles.modalStep__label}>Select size</span>
                     </div>
                     <div className={styles.sizeGrid}>
                       {modalProduct.variants.map(v => (
@@ -1525,25 +1519,22 @@ function StoreOrdersPanel() {
                           onClick={() => setSelectedVariant(v)}
                         >
                           <span className={styles.sizeCard__label}>{v.label}</span>
-                          <span className={styles.sizeCard__sub}>${v.price.toFixed(2)}</span>
                           {v.includes && <span className={styles.sizeCard__includes}>{v.includes}</span>}
-                          {selectedVariant?.id === v.id && <Check width={14} height={14} className={styles.sizeCard__check} />}
+                          <span className={styles.sizeCard__sub}>${v.price.toFixed(2)} each</span>
                         </button>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {(modalProduct.customizations ?? []).map((customization, idx) => {
+                {(modalProduct.customizations ?? []).map((customization) => {
                   const selectedOpts = selections[customization.id] ?? [];
-                  const stepNum = (modalProduct.variants?.length ? 1 : 0) + idx + 1;
                   const isSatisfied = customization.type === 'single'
                     ? selectedOpts.length === 1
                     : selectedOpts.length === (customization.max ?? 0);
                   return (
                     <div key={customization.id} className={styles.modalStep}>
                       <div className={styles.modalStep__header}>
-                        <span className={styles.modalStepNum}>{stepNum}</span>
                         <span className={styles.modalStep__label}>{customization.title}</span>
                         <span className={[styles.modalStep__req, isSatisfied && styles['modalStep__req--done']].filter(Boolean).join(' ')}>
                           {customization.type === 'single' ? 'Select 1' : `Select ${customization.max}`}
@@ -1580,7 +1571,7 @@ function StoreOrdersPanel() {
             {/* ── Bundle: Customizations only ── */}
             {modalProduct?.itemType === 'bundle' && (
               <>
-                {(modalProduct.customizations ?? []).map((customization, idx) => {
+                {(modalProduct.customizations ?? []).map((customization) => {
                   const selectedOpts = selections[customization.id] ?? [];
                   const isSatisfied = customization.type === 'single'
                     ? selectedOpts.length === 1
@@ -1588,7 +1579,6 @@ function StoreOrdersPanel() {
                   return (
                     <div key={customization.id} className={styles.modalStep}>
                       <div className={styles.modalStep__header}>
-                        <span className={styles.modalStepNum}>{idx + 1}</span>
                         <span className={styles.modalStep__label}>{customization.title}</span>
                         <span className={[styles.modalStep__req, isSatisfied && styles['modalStep__req--done']].filter(Boolean).join(' ')}>
                           {customization.type === 'single' ? 'Select 1' : `Select ${customization.max}`}
@@ -1633,7 +1623,7 @@ function StoreOrdersPanel() {
               disabled={!isConfigValid()}
               onClick={confirmAddToCart}
             >
-              {editingCartId ? 'Update item' : 'Add to order'}
+              {editingCartId ? 'Update item' : 'Add to cart'}
             </Button>
           </ModalFooter>
         </ModalContent>
