@@ -1698,17 +1698,20 @@ export default function Home() {
           {/* Main content panel */}
           <TabPanel value="deli-and-meat" UNSAFE_className={styles.tabPanel}>
             <div className={styles.contentGrid}>
-              {/* Column 1: Express and in store orders */}
+              {/* Column 1: All orders (Express + Online) */}
               <section className={styles.column}>
                 <div className={styles.column__header}>
                   <h2 className={styles.column__title}>
-                    Express and in store orders
-                    <span className={styles.column__count}>(6)</span>
+                    Express and online orders
+                    <span className={styles.column__count}>({expressOrders.length + onlineOrders.length})</span>
                   </h2>
                 </div>
                 <div className={styles.column__body}>
                   {expressOrders.map((order, idx) => (
-                    <ExpressOrderCard key={idx} order={order} />
+                    <ExpressOrderCard key={`express-${idx}`} order={order} />
+                  ))}
+                  {onlineOrders.map((order, idx) => (
+                    <OnlineOrderCard key={`online-${idx}`} order={order} />
                   ))}
                 </div>
               </section>
@@ -1726,23 +1729,6 @@ export default function Home() {
                 <div className={styles.column__body}>
                   {productionItems.map((item, idx) => (
                     <ProductionCard key={idx} item={item} />
-                  ))}
-                </div>
-              </section>
-
-              <div className={styles.column__divider} />
-
-              {/* Column 3: Online orders */}
-              <section className={styles.column}>
-                <div className={styles.column__header}>
-                  <h2 className={styles.column__title}>
-                    Online orders
-                    <span className={styles.column__count}>(2)</span>
-                  </h2>
-                </div>
-                <div className={styles.column__body}>
-                  {onlineOrders.map((order, idx) => (
-                    <OnlineOrderCard key={idx} order={order} />
                   ))}
                 </div>
               </section>
