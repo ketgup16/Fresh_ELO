@@ -25,7 +25,7 @@
   background: var(--ld-semantic-color-surface, #ffffff);
   border-radius: var(--ld-primitive-scale-borderradius-100, 16px);
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
-  padding: var(--ld-primitive-scale-space-600, 24px);
+  padding: 34px;
   animation: contentShow 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
