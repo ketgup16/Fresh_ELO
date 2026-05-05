@@ -706,6 +706,7 @@ interface StoreProduct {
   variants?: ProductVariant[];
   customizations?: CustomizationGroup[];
   thicknessOptions?: string[];
+  priceDisplay?: string;
 }
 
 interface StoreCartItem {
@@ -769,7 +770,8 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     id: 'hot_mac',
     name: 'Macaroni and Cheese',
     itemType: 'portioned',
-    basePrice: 3.48,
+    basePrice: 0.97,
+    priceDisplay: '97.0 ¢/lb',
     tag: 'Portioned',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc0d3fddf261c4a17a4424da05e0ecacc',
     category: 'hot-meals',
@@ -1223,7 +1225,9 @@ function StoreOrdersPanel() {
                   <p className={styles.productCard__desc}>{product.description}</p>
                 )}
                 <p className={styles.productCard__price}>
-                  {product.itemType === 'deli_meat' ? (
+                  {product.priceDisplay ? (
+                    <strong>{product.priceDisplay}</strong>
+                  ) : product.itemType === 'deli_meat' ? (
                     <>Starting at <strong>${product.basePrice.toFixed(2)} / lb</strong></>
                   ) : product.itemType === 'grab_go' ? (
                     <strong>${product.basePrice.toFixed(2)}/ea</strong>
