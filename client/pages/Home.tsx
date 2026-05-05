@@ -1247,13 +1247,7 @@ function StoreOrdersPanel() {
           {cart.length === 0 ? (
             <div className={styles.cartPanel__empty}>
               <div className={styles.cartPanel__emptyIcon}>
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="24" cy="24" r="23" stroke="var(--ld-semantic-color-separator,#e3e4e5)" strokeWidth="1.5" />
-                  <path d="M14 19h20l-2.667 11H16.667L14 19Z" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinejoin="round" fill="none"/>
-                  <path d="M20 19l1-4h6l1 4" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-                  <circle cx="19" cy="32" r="1.5" fill="var(--ld-semantic-color-text-subtle,#515357)"/>
-                  <circle cx="29" cy="32" r="1.5" fill="var(--ld-semantic-color-text-subtle,#515357)"/>
-                </svg>
+                <img src="https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F1638723c5c8a4080b5bcac1c73c2c038" alt="" aria-hidden="true" width="48" height="48" />
               </div>
               <p className={styles.cartPanel__emptyText}>No items added yet</p>
               <p className={styles.cartPanel__emptyHint}>Add items from the catalog to start an order</p>
