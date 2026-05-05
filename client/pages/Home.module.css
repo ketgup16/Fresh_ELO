@@ -1743,6 +1743,20 @@
   gap: 12px;
 }
 
+.quickOrderActions {
+  display: flex;
+  gap: 8px;
+}
+
+.quickOrderNote {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  margin-top: 8px;
+}
+
 .cartTotal {
   display: flex;
   align-items: center;

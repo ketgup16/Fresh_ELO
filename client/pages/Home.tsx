@@ -1141,19 +1141,28 @@ function StoreOrdersPanel() {
 
   const editCartItem = (cartItem: StoreCartItem) => openModal(cartItem.product, cartItem);
 
+  // ── Category mode ──
+  const isPartyTray = activeCategory === 'party-tray';
+
   // ── Form validation ──
   const isFormValid = (): boolean => {
     if (cart.length === 0) return false;
-    return (
-      customerInfo.name.trim() !== '' &&
-      customerInfo.phone.trim() !== '' &&
-      customerInfo.pickupDate !== '' &&
-      customerInfo.orderTakenBy !== ''
-    );
+    if (isPartyTray) {
+      return (
+        customerInfo.name.trim() !== '' &&
+        customerInfo.phone.trim() !== '' &&
+        customerInfo.pickupDate !== '' &&
+        customerInfo.orderTakenBy !== ''
+      );
+    }
+    // Hot meals / Meat & Cheese / Cakes — only name required
+    return customerInfo.name.trim() !== '';
   };
 
   // ── Submit + reset ──
   const submitOrder = () => setOrderSuccess(`OSN-${Math.floor(1000 + Math.random() * 9000)}`);
+  const sendToKitchen = () => setOrderSuccess(`KIT-${Math.floor(1000 + Math.random() * 9000)}`);
+  const printLabel = () => setOrderSuccess(`LBL-${Math.floor(1000 + Math.random() * 9000)}`);
   const resetFlow = () => {
     setCart([]);
     setCustomerInfo({ name: '', phone: '', pickupDate: '', pickupTime: '', pickupDay: '', orderDate: '', orderTakenBy: '', instructions: '' });
@@ -1309,47 +1318,77 @@ function StoreOrdersPanel() {
           {/* Customer info */}
           <div className={styles.customerInfo}>
             <p className={styles.customerInfo__sectionLabel}>Customer details</p>
-            <div className={styles.customerInfo__grid}>
-              <div className={styles.formField}>
-                <label className={styles.formField__label}>Customer name</label>
-                <input className={styles.formField__input} type="text" placeholder="Full name"
-                  value={customerInfo.name} onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))} />
-              </div>
-              <div className={styles.formField}>
-                <label className={styles.formField__label}>Phone</label>
-                <input className={styles.formField__input} type="tel" placeholder="000-000-0000"
-                  value={customerInfo.phone} onChange={e => setCustomerInfo(i => ({ ...i, phone: e.target.value }))} />
-              </div>
-            </div>
 
-            <div className={styles.customerInfo__grid}>
-              <div className={styles.formField}>
-                <label className={styles.formField__label}>Choose date (mm/dd/yyyy)</label>
-                <input className={styles.formField__input} type="date" min={todayDate}
-                  value={customerInfo.pickupDate} onChange={e => setCustomerInfo(i => ({ ...i, pickupDate: e.target.value }))} />
-              </div>
-              <div className={styles.formField}>
-                <Select
-                  label="Order taken by *"
-                  value={customerInfo.orderTakenBy}
-                  onValueChange={v => setCustomerInfo(i => ({ ...i, orderTakenBy: v }))}
-                  placeholder="Select associate..."
-                  size="small"
-                >
-                  {DELI_ASSOCIATES.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
-                </Select>
-              </div>
-            </div>
+            {isPartyTray ? (
+              // ── Party Tray: full form ──
+              <>
+                <div className={styles.customerInfo__grid}>
+                  <div className={styles.formField}>
+                    <label className={styles.formField__label}>Customer name *</label>
+                    <input className={styles.formField__input} type="text" placeholder="Full name"
+                      value={customerInfo.name} onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))} />
+                  </div>
+                  <div className={styles.formField}>
+                    <label className={styles.formField__label}>Phone *</label>
+                    <input className={styles.formField__input} type="tel" placeholder="000-000-0000"
+                      value={customerInfo.phone} onChange={e => setCustomerInfo(i => ({ ...i, phone: e.target.value }))} />
+                  </div>
+                </div>
 
-            <div className={styles.formField}>
-              <TextArea
-                label="Special instructions"
-                placeholder="Enter special instructions here"
-                value={customerInfo.instructions}
-                onChange={e => setCustomerInfo(i => ({ ...i, instructions: e.target.value }))}
-                size="small"
-              />
-            </div>
+                <div className={styles.customerInfo__grid}>
+                  <div className={styles.formField}>
+                    <label className={styles.formField__label}>Pickup date *</label>
+                    <input className={styles.formField__input} type="date" min={todayDate}
+                      value={customerInfo.pickupDate} onChange={e => setCustomerInfo(i => ({ ...i, pickupDate: e.target.value }))} />
+                  </div>
+                  <div className={styles.formField}>
+                    <Select
+                      label="Order taken by *"
+                      value={customerInfo.orderTakenBy}
+                      onValueChange={v => setCustomerInfo(i => ({ ...i, orderTakenBy: v }))}
+                      placeholder="Select associate..."
+                      size="small"
+                    >
+                      {DELI_ASSOCIATES.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
+                    </Select>
+                  </div>
+                </div>
+
+                <div className={styles.formField}>
+                  <TextArea
+                    label="Special instructions"
+                    placeholder="Enter special instructions here"
+                    value={customerInfo.instructions}
+                    onChange={e => setCustomerInfo(i => ({ ...i, instructions: e.target.value }))}
+                    size="small"
+                  />
+                </div>
+              </>
+            ) : (
+              // ── Hot Meals / Meat & Cheese / Cakes: simplified form ──
+              <>
+                <div className={styles.formField}>
+                  <label className={styles.formField__label}>Customer name *</label>
+                  <input className={styles.formField__input} type="text" placeholder="Full name"
+                    value={customerInfo.name} onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))} />
+                </div>
+
+                <div className={styles.formField}>
+                  <TextArea
+                    label="Special instructions"
+                    placeholder="Any special instructions for the kitchen?"
+                    value={customerInfo.instructions}
+                    onChange={e => setCustomerInfo(i => ({ ...i, instructions: e.target.value }))}
+                    size="small"
+                  />
+                </div>
+
+                <div className={styles.quickOrderNote}>
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7.5" stroke="currentColor"/><path d="M8 7v4M8 5.5V5" stroke="currentColor" strokeLinecap="round"/></svg>
+                  Customer pays at the checkout near the exit
+                </div>
+              </>
+            )}
           </div>
           </>
           )}
@@ -1358,9 +1397,20 @@ function StoreOrdersPanel() {
         {cart.length > 0 && (
           <div className={styles.cartPanel__footer}>
             <div className={styles.divider} />
-            <Button variant="primary" size="small" isFullWidth disabled={!isFormValid()} onClick={submitOrder}>
-              Place order
-            </Button>
+            {isPartyTray ? (
+              <Button variant="primary" size="small" isFullWidth disabled={!isFormValid()} onClick={submitOrder}>
+                Place order
+              </Button>
+            ) : (
+              <div className={styles.quickOrderActions}>
+                <Button variant="secondary" size="small" isFullWidth disabled={!isFormValid()} onClick={sendToKitchen}>
+                  Send to kitchen
+                </Button>
+                <Button variant="primary" size="small" isFullWidth disabled={!isFormValid()} onClick={printLabel}>
+                  Print label
+                </Button>
+              </div>
+            )}
           </div>
         )}
       </div>
