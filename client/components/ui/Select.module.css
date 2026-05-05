@@ -269,6 +269,9 @@
 /* Placeholder text */
 .placeholder {
   color: var(--ld-semantic-color-field-text-subtle-on-fill, #74767c);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Highlighted item (keyboard navigation) */
