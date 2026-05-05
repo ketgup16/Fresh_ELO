@@ -1226,9 +1226,9 @@ function StoreOrdersPanel() {
                   {product.itemType === 'deli_meat' ? (
                     <>Starting at <strong>${product.basePrice.toFixed(2)} / lb</strong></>
                   ) : product.itemType === 'grab_go' ? (
-                    <strong>${product.basePrice.toFixed(2)} ea</strong>
+                    <strong>${product.basePrice.toFixed(2)}/ea</strong>
                   ) : (
-                    <>Starting at <strong>${product.basePrice.toFixed(2)} ea</strong></>
+                    <>Starting at <strong>${product.basePrice.toFixed(2)}/ea</strong></>
                   )}
                 </p>
               </div>
