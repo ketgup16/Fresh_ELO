@@ -310,30 +310,36 @@ function MetricsSummary() {
   return (
     <div className={styles.metrics}>
       <div className={styles.metric}>
-        <div className={styles.metric__value}>52.3<span className={styles.metric__unit}>k</span></div>
+        <div className={styles.metric__valueRow}>
+          <div className={styles.metric__value}>52.3<span className={styles.metric__unit}>k</span></div>
+          <div className={styles.metric__trend + ' ' + styles['metric__trend--positive']}>
+            <ArrowUp width={14} height={14} />
+            <span>4.5%</span>
+          </div>
+        </div>
         <div className={styles.metric__label}>Store sales</div>
-        <div className={styles.metric__trend + ' ' + styles['metric__trend--positive']}>
-          <ArrowUp width={14} height={14} />
-          <span>4.5%</span>
-        </div>
       </div>
       <div className={styles.metric__divider} aria-hidden="true" />
       <div className={styles.metric}>
-        <div className={styles.metric__value}>97.3<span className={styles.metric__unit}>%</span></div>
+        <div className={styles.metric__valueRow}>
+          <div className={styles.metric__value}>97.3<span className={styles.metric__unit}>%</span></div>
+          <div className={styles.metric__trend + ' ' + styles['metric__trend--positive']}>
+            <ArrowUp width={14} height={14} />
+            <span>2.2%</span>
+          </div>
+        </div>
         <div className={styles.metric__label}>FTPR</div>
-        <div className={styles.metric__trend + ' ' + styles['metric__trend--positive']}>
-          <ArrowUp width={14} height={14} />
-          <span>2.2%</span>
-        </div>
       </div>
       <div className={styles.metric__divider} aria-hidden="true" />
       <div className={styles.metric}>
-        <div className={styles.metric__value}>17</div>
-        <div className={styles.metric__label}>Nil picks</div>
-        <div className={styles.metric__trend + ' ' + styles['metric__trend--positive']}>
-          <ArrowDown width={14} height={14} />
-          <span>28</span>
+        <div className={styles.metric__valueRow}>
+          <div className={styles.metric__value}>17</div>
+          <div className={styles.metric__trend + ' ' + styles['metric__trend--positive']}>
+            <ArrowDown width={14} height={14} />
+            <span>28</span>
+          </div>
         </div>
+        <div className={styles.metric__label}>Nil picks</div>
       </div>
       <div className={styles.metric__divider} aria-hidden="true" />
       <div className={styles.metric}>
@@ -345,12 +351,14 @@ function MetricsSummary() {
       </div>
       <div className={styles.metric__divider} aria-hidden="true" />
       <div className={styles.metric}>
-        <div className={styles.metric__value}><span className={styles.metric__unit}>$</span>97.70</div>
-        <div className={styles.metric__label}>Waste</div>
-        <div className={styles.metric__trend + ' ' + styles['metric__trend--positive']}>
-          <ArrowDown width={14} height={14} />
-          <span>28</span>
+        <div className={styles.metric__valueRow}>
+          <div className={styles.metric__value}><span className={styles.metric__unit}>$</span>97.70</div>
+          <div className={styles.metric__trend + ' ' + styles['metric__trend--positive']}>
+            <ArrowDown width={14} height={14} />
+            <span>28</span>
+          </div>
         </div>
+        <div className={styles.metric__label}>Waste</div>
       </div>
     </div>
   );
