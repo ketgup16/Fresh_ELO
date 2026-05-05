@@ -1358,6 +1358,9 @@
   font-size: 12px;
   font-weight: 600;
   color: var(--ld-semantic-color-text-subtle, #515357);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .formField__input {
