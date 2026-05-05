@@ -1827,11 +1827,25 @@
 }
 
 /* ── Cart item enhancements ── */
-.cartItem__variant {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ld-semantic-color-fill-brand, #0053e2);
+.cartItem__priceEach {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
   margin-top: 2px;
+}
+
+.cartItem__variant {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  margin-top: 2px;
+}
+
+.cartItem__pluRow {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  margin-top: 1px;
 }
 
 .cartItem__actions {

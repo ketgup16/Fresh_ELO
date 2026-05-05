@@ -1140,7 +1140,6 @@ function StoreOrdersPanel() {
       customerInfo.name.trim() !== '' &&
       customerInfo.phone.trim() !== '' &&
       customerInfo.pickupDate !== '' &&
-      customerInfo.pickupTime !== '' &&
       customerInfo.orderTakenBy !== ''
     );
   };
@@ -1262,27 +1261,16 @@ function StoreOrdersPanel() {
             <div className={styles.cartItems}>
               {cart.map(item => (
                 <div key={item.cartId} className={styles.cartItem}>
-                  {/* Top row: thumbnail + product details + actions */}
                   <div className={styles.cartItem__main}>
                     <img src={item.product.image} alt={item.product.name} className={styles.cartItem__image} />
                     <div className={styles.cartItem__content}>
                       <div className={styles.cartItem__name}>{item.product.name}</div>
-                      <div className={styles.cartItem__attrRow}>
-                        <span className={styles.cartItem__attrKey}>PLU</span>
-                        <span className={styles.cartItem__attrVal}>{getCartItemPlu(item)}</span>
-                      </div>
-                      <div className={styles.cartItem__variant}>{getCartItemLabel(item)}</div>
-                      {Object.keys(item.selections).length > 0 && (
-                        <div className={styles.cartItem__flavors}>
-                          {Object.entries(item.selections).map(([groupId, opts]) => {
-                            const group = item.product.customizations?.find(c => c.id === groupId);
-                            return opts.map(opt => (
-                              <span key={`${groupId}-${opt}`} className={styles.cartItem__flavorTag}>
-                                {group?.title ? `${group.title.split(' ')[0]}: ` : ''}{opt}
-                              </span>
-                            ));
-                          })}
-                        </div>
+                      <div className={styles.cartItem__priceEach}>${item.price.toFixed(2)}/each</div>
+                      {getCartItemLabel(item) && (
+                        <div className={styles.cartItem__variant}>{getCartItemLabel(item)}</div>
+                      )}
+                      {getCartItemPlu(item) && (
+                        <div className={styles.cartItem__pluRow}>PLU {getCartItemPlu(item)}</div>
                       )}
                     </div>
                     <div className={styles.cartItem__actions}>
@@ -1304,29 +1292,6 @@ function StoreOrdersPanel() {
                       </button>
                     </div>
                   </div>
-
-                  {/* Divider */}
-                  <div className={styles.cartItem__divider} />
-
-                  {/* Footer row: Qty | | Price */}
-                  <div className={styles.cartItem__footer}>
-                    <div className={styles.cartItem__footerCol}>
-                      <span className={styles.cartItem__footerKey}>Qty</span>
-                      <QuantityStepper
-                        key={item.cartId}
-                        variant="tertiary"
-                        size="small"
-                        defaultCount={item.qty}
-                        showTrashOnRemove
-                        onChange={count => updateQty(item.cartId, count)}
-                      />
-                    </div>
-                    <div className={styles.cartItem__footerVDivider} />
-                    <div className={styles.cartItem__footerCol}>
-                      <span className={styles.cartItem__footerKey}>Price</span>
-                      <span className={styles.cartItem__price}>${(item.price * item.qty).toFixed(2)}</span>
-                    </div>
-                  </div>
                 </div>
               ))}
             </div>
@@ -1338,43 +1303,29 @@ function StoreOrdersPanel() {
             <p className={styles.customerInfo__sectionLabel}>Customer details</p>
             <div className={styles.customerInfo__grid}>
               <div className={styles.formField}>
-                <label className={styles.formField__label}>Customer name <span className={styles.formField__required}>*</span></label>
+                <label className={styles.formField__label}>Customer name</label>
                 <input className={styles.formField__input} type="text" placeholder="Full name"
                   value={customerInfo.name} onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))} />
               </div>
               <div className={styles.formField}>
-                <label className={styles.formField__label}>Phone # <span className={styles.formField__required}>*</span></label>
-                <input className={styles.formField__input} type="tel" placeholder="(555) 000-0000"
+                <label className={styles.formField__label}>Phone</label>
+                <input className={styles.formField__input} type="tel" placeholder="000-000-0000"
                   value={customerInfo.phone} onChange={e => setCustomerInfo(i => ({ ...i, phone: e.target.value }))} />
               </div>
             </div>
 
-            <p className={styles.customerInfo__sectionLabel}>Pickup</p>
             <div className={styles.customerInfo__grid}>
               <div className={styles.formField}>
-                <label className={styles.formField__label}>Pick up date <span className={styles.formField__required}>*</span></label>
+                <label className={styles.formField__label}>Choose date (mm/dd/yyyy)</label>
                 <input className={styles.formField__input} type="date" min={todayDate}
                   value={customerInfo.pickupDate} onChange={e => setCustomerInfo(i => ({ ...i, pickupDate: e.target.value }))} />
-              </div>
-              <div className={styles.formField}>
-                <label className={styles.formField__label}>Pick up time <span className={styles.formField__required}>*</span></label>
-                <input className={styles.formField__input} type="time"
-                  value={customerInfo.pickupTime} onChange={e => setCustomerInfo(i => ({ ...i, pickupTime: e.target.value }))} />
-              </div>
-            </div>
-
-            <p className={styles.customerInfo__sectionLabel}>Order details</p>
-            <div className={styles.customerInfo__grid}>
-              <div className={styles.formField}>
-                <label className={styles.formField__label}>Order date</label>
-                <input className={styles.formField__input} type="date" value={todayDate} readOnly />
               </div>
               <div className={styles.formField}>
                 <Select
                   label="Order taken by *"
                   value={customerInfo.orderTakenBy}
                   onValueChange={v => setCustomerInfo(i => ({ ...i, orderTakenBy: v }))}
-                  placeholder="Select associate"
+                  placeholder="Select associate..."
                   size="small"
                 >
                   {DELI_ASSOCIATES.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
@@ -1384,12 +1335,12 @@ function StoreOrdersPanel() {
 
             <div className={styles.formField}>
               <TextArea
-                label="Special instructions (optional)"
+                label="Special instructions"
+                placeholder="Enter special instructions here"
                 value={customerInfo.instructions}
                 onChange={e => setCustomerInfo(i => ({ ...i, instructions: e.target.value }))}
                 size="small"
               />
-              <div className={styles.formField__charCount}>{customerInfo.instructions.length} / 250</div>
             </div>
           </div>
           </>
