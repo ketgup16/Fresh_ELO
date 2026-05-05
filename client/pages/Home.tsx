@@ -785,7 +785,7 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     itemType: 'portioned',
     basePrice: 4.98,
     tag: 'Portioned',
-    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F69f88387b55746fe86042110a27d2b03',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F292c8c14239245c9a9cdef7c9f7a41b6',
     category: 'hot-meals',
     variants: [
       { id: 'sm', label: 'Small Cup', price: 4.98, plu: '62821' },
