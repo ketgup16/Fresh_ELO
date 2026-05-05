@@ -1236,7 +1236,7 @@ function StoreOrdersPanel() {
       {/* ── Right: Order Form ── */}
       <div className={styles.cartPanel}>
         <div className={styles.cartPanel__header}>
-          <h2 className={styles.cartPanel__title}>Order form</h2>
+          <h2 className={styles.cartPanel__title}>Order summary</h2>
           {cart.length > 0 && (
             <span className={styles.cartPanel__count}>{cart.length} item{cart.length !== 1 ? 's' : ''}</span>
           )}
@@ -1246,11 +1246,15 @@ function StoreOrdersPanel() {
           {/* Show prompt when cart is empty, form when items added */}
           {cart.length === 0 ? (
             <div className={styles.cartPanel__empty}>
-              <svg width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-                <circle cx="24" cy="24" r="23" stroke="var(--ld-semantic-color-separator,#e3e4e5)" strokeWidth="2" />
-                <path d="M14 18h20l-2.5 12H16.5L14 18Z" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinejoin="round" />
-                <path d="M19 18l1-4h8l1 4" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
+              <div className={styles.cartPanel__emptyIcon}>
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="24" cy="24" r="23" stroke="var(--ld-semantic-color-separator,#e3e4e5)" strokeWidth="1.5" />
+                  <path d="M14 19h20l-2.667 11H16.667L14 19Z" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinejoin="round" fill="none"/>
+                  <path d="M20 19l1-4h6l1 4" stroke="var(--ld-semantic-color-text-subtle,#515357)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+                  <circle cx="19" cy="32" r="1.5" fill="var(--ld-semantic-color-text-subtle,#515357)"/>
+                  <circle cx="29" cy="32" r="1.5" fill="var(--ld-semantic-color-text-subtle,#515357)"/>
+                </svg>
+              </div>
               <p className={styles.cartPanel__emptyText}>No items added yet</p>
               <p className={styles.cartPanel__emptyHint}>Add items from the catalog to start an order</p>
             </div>
