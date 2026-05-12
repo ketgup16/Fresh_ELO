@@ -154,7 +154,7 @@ const productionItems: ProductionItem[] = [
   },
 ];
 
-const inStoreKitchenOrders: InStoreKitchenOrder[] = [
+const DEMO_INSTORE_ORDERS: InStoreKitchenOrder[] = [
   {
     osn: 'OSN 7286',
     customerName: 'Maria Garcia',
@@ -1086,7 +1086,7 @@ const storeCategories = [
   { id: 'cakes', label: 'Cakes' },
 ];
 
-function StoreOrdersPanel() {
+function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InStoreKitchenOrder) => void }) {
   const [activeCategory, setActiveCategory] = useState('hot-meals');
   const [cart, setCart] = useState<StoreCartItem[]>([]);
   const [modalProduct, setModalProduct] = useState<StoreProduct | null>(null);
@@ -1247,7 +1247,19 @@ function StoreOrdersPanel() {
 
   // ── Submit + reset ──
   const submitOrder = () => setOrderSuccess(`OSN-${Math.floor(1000 + Math.random() * 9000)}`);
-  const sendToKitchen = () => setOrderSuccess(`KIT-${Math.floor(1000 + Math.random() * 9000)}`);
+  const sendToKitchen = () => {
+    const osn = `KIT-${Math.floor(1000 + Math.random() * 9000)}`;
+    onSendToKitchen?.({
+      osn,
+      customerName: customerInfo.name.trim() || 'Walk-up Customer',
+      instructions: customerInfo.instructions.trim() || undefined,
+      items: cart.map(item => ({
+        name: `${item.product.name}${item.selectedVariant ? ` — ${item.selectedVariant.label}` : ''}`,
+        qty: item.qty.toString(),
+      })),
+    });
+    setOrderSuccess(osn);
+  };
   const printLabel = () => setOrderSuccess(`LBL-${Math.floor(1000 + Math.random() * 9000)}`);
   const resetFlow = () => {
     setCart([]);
@@ -1761,6 +1773,12 @@ function StoreOrdersPanel() {
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('deli-and-meat');
+  const [inStoreKitchenOrders, setInStoreKitchenOrders] = useState<InStoreKitchenOrder[]>(DEMO_INSTORE_ORDERS);
+
+  const handleSendToKitchen = (order: InStoreKitchenOrder) => {
+    setInStoreKitchenOrders(prev => [order, ...prev]);
+    setActiveTab('deli-and-meat');
+  };
 
   return (
     <div className={styles.page}>
@@ -1849,7 +1867,7 @@ export default function Home() {
             <div className={styles.emptyState}>No items for Produce</div>
           </TabPanel>
           <TabPanel value="store-orders" UNSAFE_className={styles.storeOrdersPanel}>
-            <StoreOrdersPanel />
+            <StoreOrdersPanel onSendToKitchen={handleSendToKitchen} />
           </TabPanel>
         </Tabs>
       </div>
