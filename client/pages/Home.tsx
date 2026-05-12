@@ -466,7 +466,12 @@ function ExpressOrderCard({ order }: { order: StoreOrder }) {
       <div className={styles.card__header}>
         <div className={styles.orderHeader}>
           <span className={styles.orderHeader__osn}>{order.osn}</span>
-          {order.isExpress && <ExpressTag initialSeconds={order.initialSeconds} />}
+          <div className={styles.orderHeader__tags}>
+            {order.isExpress
+              ? <ExpressTag initialSeconds={order.initialSeconds} />
+              : <span className={styles.inStoreTag}>In-Store</span>
+            }
+          </div>
         </div>
       </div>
 
@@ -652,7 +657,10 @@ function OnlineOrderCard({ order }: { order: OnlineOrder }) {
       <div className={styles.card__header}>
         <div className={styles.orderHeader}>
           <span className={styles.orderHeader__osn}>{order.osn}</span>
-          <CountdownTimer initialSeconds={order.initialSeconds} thresholds={ONLINE_THRESHOLDS} />
+          <div className={styles.orderHeader__tags}>
+            <span className={styles.onlineTag}>Online Order</span>
+            <CountdownTimer initialSeconds={order.initialSeconds} thresholds={ONLINE_THRESHOLDS} />
+          </div>
         </div>
         <div className={styles.orderHeader__pickup}>
           <span className={styles.attrLabel}>Pickup</span>
