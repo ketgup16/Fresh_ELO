@@ -1550,10 +1550,6 @@ function StoreOrdersPanel() {
                     <div key={customization.id} className={styles.modalStep}>
                       <div className={styles.modalStep__header}>
                         <span className={styles.modalStep__label}>{customization.title}</span>
-                        <span className={[styles.modalStep__req, isSatisfied && styles['modalStep__req--done']].filter(Boolean).join(' ')}>
-                          {customization.type === 'single' ? 'Select 1' : `Select ${customization.max}`}
-                          {isSatisfied && ' ✓'}
-                        </span>
                       </div>
                       <div className={styles.optionsWrap}>
                         {customization.options.map(option => {
@@ -1596,10 +1592,6 @@ function StoreOrdersPanel() {
                     <div key={customization.id} className={styles.modalStep}>
                       <div className={styles.modalStep__header}>
                         <span className={styles.modalStep__label}>{customization.title}</span>
-                        <span className={[styles.modalStep__req, isSatisfied && styles['modalStep__req--done']].filter(Boolean).join(' ')}>
-                          {customization.type === 'single' ? 'Select 1' : `Select ${customization.max}`}
-                          {isSatisfied && ' ✓'}
-                        </span>
                       </div>
                       {isEntreeStep ? (
                         <div className={styles.sizeGrid}>
