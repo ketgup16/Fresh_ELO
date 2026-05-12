@@ -1932,6 +1932,8 @@
 .modalFooterRow {
   justify-content: space-between !important;
   border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
+  margin-top: 0 !important;
+  padding-top: 16px;
 }
 
 /* ── Modal close button ── */
@@ -1959,7 +1961,7 @@
 .modalBody {
   flex: 1;
   overflow-y: auto;
-  padding: 16px 0 20px;
+  padding: 16px 0 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -2073,7 +2075,8 @@
 
 .optionChip {
   padding: 7px 14px;
-  border-radius: 100px;
+  border-radius: 8px;
+  overflow: hidden;
   border: 1.5px solid var(--ld-semantic-color-separator, #e3e4e5);
   background: var(--ld-semantic-color-surface, #fff);
   font-family: inherit;
