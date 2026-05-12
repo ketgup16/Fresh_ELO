@@ -486,12 +486,12 @@ function ExpressOrderCard({ order }: { order: StoreOrder }) {
       <div className={styles.card__header}>
         <div className={styles.orderHeader}>
           <span className={styles.orderHeader__osn}>{order.osn}</span>
-          <div className={styles.orderHeader__tags}>
-            {order.isExpress
-              ? <ExpressTag initialSeconds={order.initialSeconds} />
-              : <span className={styles.inStoreTag}>In-Store</span>
-            }
-          </div>
+          {order.isExpress
+            ? <ExpressTag initialSeconds={order.initialSeconds} />
+            : <div className={styles.orderHeader__tags}>
+                <span className={styles.inStoreTag}>In-Store</span>
+              </div>
+          }
         </div>
       </div>
 
