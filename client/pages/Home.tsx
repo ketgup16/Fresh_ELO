@@ -1571,14 +1571,15 @@ function StoreOrdersPanel() {
               </>
             )}
 
-            {/* ── Bundle: Customizations only ── */}
+            {/* ── Bundle: Entree as cards, sides as chips ── */}
             {modalProduct?.itemType === 'bundle' && (
               <>
-                {(modalProduct.customizations ?? []).map((customization) => {
+                {(modalProduct.customizations ?? []).map((customization, custIdx) => {
                   const selectedOpts = selections[customization.id] ?? [];
                   const isSatisfied = customization.type === 'single'
                     ? selectedOpts.length === 1
                     : selectedOpts.length === (customization.max ?? 0);
+                  const isEntreeStep = custIdx === 0;
                   return (
                     <div key={customization.id} className={styles.modalStep}>
                       <div className={styles.modalStep__header}>
@@ -1588,27 +1589,45 @@ function StoreOrdersPanel() {
                           {isSatisfied && ' ✓'}
                         </span>
                       </div>
-                      <div className={styles.optionsWrap}>
-                        {customization.options.map(option => {
-                          const isSelected = selectedOpts.includes(option);
-                          const isDisabled = !isSelected && customization.type === 'multi' && selectedOpts.length >= (customization.max ?? 0);
-                          return (
-                            <button
-                              key={option}
-                              type="button"
-                              disabled={isDisabled}
-                              className={[
-                                styles.optionChip,
-                                isSelected && styles['optionChip--active'],
-                                isDisabled && styles['optionChip--disabled'],
-                              ].filter(Boolean).join(' ')}
-                              onClick={() => handleSelection(customization.id, option, customization.type, customization.max)}
-                            >
-                              {option}
-                            </button>
-                          );
-                        })}
-                      </div>
+                      {isEntreeStep ? (
+                        <div className={styles.sizeGrid}>
+                          {customization.options.map(option => {
+                            const isSelected = selectedOpts.includes(option);
+                            return (
+                              <button
+                                key={option}
+                                type="button"
+                                className={[styles.sizeCard, isSelected && styles['sizeCard--active']].filter(Boolean).join(' ')}
+                                onClick={() => handleSelection(customization.id, option, customization.type, customization.max)}
+                              >
+                                <span className={styles.sizeCard__label}>{option}</span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <div className={styles.optionsWrap}>
+                          {customization.options.map(option => {
+                            const isSelected = selectedOpts.includes(option);
+                            const isDisabled = !isSelected && customization.type === 'multi' && selectedOpts.length >= (customization.max ?? 0);
+                            return (
+                              <button
+                                key={option}
+                                type="button"
+                                disabled={isDisabled}
+                                className={[
+                                  styles.optionChip,
+                                  isSelected && styles['optionChip--active'],
+                                  isDisabled && styles['optionChip--disabled'],
+                                ].filter(Boolean).join(' ')}
+                                onClick={() => handleSelection(customization.id, option, customization.type, customization.max)}
+                              >
+                                {option}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                   );
                 })}

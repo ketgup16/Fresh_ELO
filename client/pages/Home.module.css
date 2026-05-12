@@ -1931,6 +1931,7 @@
 /* ── Modal footer override (space-between) ── */
 .modalFooterRow {
   justify-content: space-between !important;
+  border-top: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
 /* ── Modal close button ── */
@@ -2034,13 +2035,13 @@
 }
 
 .sizeCard:hover {
-  border-color: var(--ld-semantic-color-text, #2e2f32);
+  border-color: var(--ld-semantic-color-fill-brand, #0053e2);
 }
 
 .sizeCard--active {
-  border-color: var(--ld-semantic-color-text, #2e2f32);
+  border-color: var(--ld-semantic-color-fill-brand, #0053e2);
   border-width: 2px;
-  background: var(--ld-semantic-color-surface, #fff);
+  background: var(--ld-semantic-color-fill-brand-subtle, #eef3ff);
 }
 
 .sizeCard__label {
