@@ -94,6 +94,13 @@ interface OnlineOrder {
   item: OrderItem;
 }
 
+interface InStoreKitchenOrder {
+  osn: string;
+  customerName: string;
+  instructions?: string;
+  items: { name: string; qty: string }[];
+}
+
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const expressOrders: StoreOrder[] = [
@@ -144,6 +151,19 @@ const productionItems: ProductionItem[] = [
     plan: 8,
     onHand: 0,
     makeNow: 8,
+  },
+];
+
+const inStoreKitchenOrders: InStoreKitchenOrder[] = [
+  {
+    osn: 'OSN 7286',
+    customerName: 'Maria Garcia',
+    instructions: 'Extra crispy please, no skin on the wings',
+    items: [
+      { name: 'Rotisserie Meal Bundle — Traditional', qty: '1' },
+      { name: 'Mac & Cheese (16oz)', qty: '1' },
+      { name: 'Mashed Potatoes (16oz)', qty: '1' },
+    ],
   },
 ];
 
@@ -644,6 +664,52 @@ function PickupSoonBanner({ pickupTime }: { pickupTime: string }) {
         <path d="M7 4v3.5l2 2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
       </svg>
       <span>Pickup at <strong>{pickupTime}</strong> — prepare now</span>
+    </div>
+  );
+}
+
+function InStoreOrderCard({ order }: { order: InStoreKitchenOrder }) {
+  return (
+    <div className={styles.card}>
+      <div className={styles.card__header}>
+        <div className={styles.orderHeader}>
+          <span className={styles.orderHeader__osn}>{order.osn}</span>
+          <div className={styles.orderHeader__tags}>
+            <span className={styles.inStoreTag}>In-Store</span>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.divider} />
+      <div className={styles.inStoreCustomer}>
+        <div className={styles.inStoreCustomer__row}>
+          <span className={styles.attrLabel}>Customer</span>
+          <span className={styles.inStoreCustomer__name}>{order.customerName}</span>
+        </div>
+        {order.instructions && (
+          <div className={styles.inStoreCustomer__instructions}>
+            <span className={styles.attrLabel}>Instructions</span>
+            <span className={styles.attrValue}>{order.instructions}</span>
+          </div>
+        )}
+      </div>
+
+      <div className={styles.divider} />
+      <div className={styles.inStoreItems}>
+        {order.items.map((item, idx) => (
+          <div key={idx} className={styles.inStoreItem}>
+            <span className={styles.inStoreItem__name}>{item.name}</span>
+            <span className={styles.inStoreItem__qty}>×{item.qty}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className={styles.card__action}>
+        <div className={styles.divider} />
+        <div className={styles.card__actionPad}>
+          <Button variant="secondary" size="small" isFullWidth>Print order label</Button>
+        </div>
+      </div>
     </div>
   );
 }
@@ -1738,12 +1804,15 @@ export default function Home() {
                 <div className={styles.column__header}>
                   <h2 className={styles.column__title}>
                     Express and online orders
-                    <span className={styles.column__count}>({expressOrders.length + onlineOrders.length})</span>
+                    <span className={styles.column__count}>({expressOrders.length + onlineOrders.length + inStoreKitchenOrders.length})</span>
                   </h2>
                 </div>
                 <div className={styles.column__body}>
                   {expressOrders.map((order, idx) => (
                     <ExpressOrderCard key={`express-${idx}`} order={order} />
+                  ))}
+                  {inStoreKitchenOrders.map((order, idx) => (
+                    <InStoreOrderCard key={`instore-${idx}`} order={order} />
                   ))}
                   {onlineOrders.map((order, idx) => (
                     <OnlineOrderCard key={`online-${idx}`} order={order} />

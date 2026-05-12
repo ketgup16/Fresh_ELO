@@ -478,6 +478,64 @@
   background: var(--ld-semantic-color-separator, #e3e4e5);
 }
 
+/* ─── In-Store Order Card ────────────────────────────────────────────────────── */
+.inStoreCustomer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 20px;
+}
+
+.inStoreCustomer__row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.inStoreCustomer__name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+}
+
+.inStoreCustomer__instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: var(--ld-semantic-color-fill-caution-subtle, #fff8e6);
+  border-left: 3px solid var(--ld-semantic-color-text-caution, #a05c00);
+  margin-top: 4px;
+}
+
+.inStoreItems {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 20px;
+}
+
+.inStoreItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.inStoreItem__name {
+  font-size: 13px;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  flex: 1;
+}
+
+.inStoreItem__qty {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  flex-shrink: 0;
+}
+
 /* ─── Item Row ───────────────────────────────────────────────────────────────── */
 .itemRow {
   display: flex;
