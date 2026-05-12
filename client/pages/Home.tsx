@@ -675,13 +675,21 @@ function OnlineOrderCard({ order }: { order: OnlineOrder }) {
 
 type ItemType = 'grab_go' | 'portioned' | 'bundle' | 'party_tray' | 'deli_meat';
 
+interface CustomizationOption {
+  label: string;
+  description?: string;
+}
+
 interface CustomizationGroup {
   id: string;
   title: string;
   type: 'single' | 'multi';
   max?: number;
-  options: string[];
+  options: (string | CustomizationOption)[];
 }
+
+const getOptionLabel = (opt: string | CustomizationOption): string =>
+  typeof opt === 'string' ? opt : opt.label;
 
 interface ProductVariant {
   id: string;
@@ -751,7 +759,10 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F101c242f144e4139b92d8454ffb0aab7',
     category: 'hot-meals',
     customizations: [
-      { id: 'main', title: 'Select Main Entree', type: 'single', options: ['Traditional Rotisserie Chicken', 'Lemon Pepper Rotisserie'] },
+      { id: 'main', title: 'Select Main Entree', type: 'single', options: [
+        { label: 'Traditional Rotisserie Chicken', description: '1 Whole Chicken + 2 family sides (16oz). Serves 3–4.' },
+        { label: 'Lemon Pepper Chicken', description: '1 Whole Chicken + 2 family sides (16oz). Serves 3–4.' },
+      ]},
       { id: 'side1', title: 'Select First Side (16oz)', type: 'single', options: ['Mac & Cheese', 'Mashed Potatoes', 'Potato Wedges', 'Baked Beans (+$1.50)'] },
       { id: 'side2', title: 'Select Second Side (16oz)', type: 'single', options: ['Mac & Cheese', 'Mashed Potatoes', 'Potato Wedges', 'Baked Beans (+$1.50)'] },
     ],
@@ -1546,11 +1557,12 @@ function StoreOrdersPanel() {
                       </div>
                       <div className={styles.optionsWrap}>
                         {customization.options.map(option => {
-                          const isSelected = selectedOpts.includes(option);
+                          const label = getOptionLabel(option);
+                          const isSelected = selectedOpts.includes(label);
                           const isDisabled = !isSelected && customization.type === 'multi' && selectedOpts.length >= (customization.max ?? 0);
                           return (
                             <button
-                              key={option}
+                              key={label}
                               type="button"
                               disabled={isDisabled}
                               className={[
@@ -1558,9 +1570,9 @@ function StoreOrdersPanel() {
                                 isSelected && styles['optionChip--active'],
                                 isDisabled && styles['optionChip--disabled'],
                               ].filter(Boolean).join(' ')}
-                              onClick={() => handleSelection(customization.id, option, customization.type, customization.max)}
+                              onClick={() => handleSelection(customization.id, label, customization.type, customization.max)}
                             >
-                              {option}
+                              {label}
                             </button>
                           );
                         })}
@@ -1592,15 +1604,18 @@ function StoreOrdersPanel() {
                       {isEntreeStep ? (
                         <div className={styles.sizeGrid}>
                           {customization.options.map(option => {
-                            const isSelected = selectedOpts.includes(option);
+                            const label = getOptionLabel(option);
+                            const description = typeof option === 'object' ? option.description : undefined;
+                            const isSelected = selectedOpts.includes(label);
                             return (
                               <button
-                                key={option}
+                                key={label}
                                 type="button"
                                 className={[styles.sizeCard, isSelected && styles['sizeCard--active']].filter(Boolean).join(' ')}
-                                onClick={() => handleSelection(customization.id, option, customization.type, customization.max)}
+                                onClick={() => handleSelection(customization.id, label, customization.type, customization.max)}
                               >
-                                <span className={styles.sizeCard__label}>{option}</span>
+                                <span className={styles.sizeCard__label}>{label}</span>
+                                {description && <span className={styles.sizeCard__description}>{description}</span>}
                               </button>
                             );
                           })}
@@ -1608,11 +1623,12 @@ function StoreOrdersPanel() {
                       ) : (
                         <div className={styles.optionsWrap}>
                           {customization.options.map(option => {
-                            const isSelected = selectedOpts.includes(option);
+                            const label = getOptionLabel(option);
+                            const isSelected = selectedOpts.includes(label);
                             const isDisabled = !isSelected && customization.type === 'multi' && selectedOpts.length >= (customization.max ?? 0);
                             return (
                               <button
-                                key={option}
+                                key={label}
                                 type="button"
                                 disabled={isDisabled}
                                 className={[
@@ -1620,9 +1636,9 @@ function StoreOrdersPanel() {
                                   isSelected && styles['optionChip--active'],
                                   isDisabled && styles['optionChip--disabled'],
                                 ].filter(Boolean).join(' ')}
-                                onClick={() => handleSelection(customization.id, option, customization.type, customization.max)}
+                                onClick={() => handleSelection(customization.id, label, customization.type, customization.max)}
                               >
-                                {option}
+                                {label}
                               </button>
                             );
                           })}

@@ -2066,6 +2066,14 @@
   line-height: 1.4;
 }
 
+.sizeCard__description {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
 /* ── Option chips (flavors / customizations) ── */
 .optionsWrap {
   display: flex;
