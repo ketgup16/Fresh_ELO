@@ -2093,8 +2093,9 @@
 
 .optionChip--active {
   border-color: var(--ld-semantic-color-fill-brand, #0053e2);
-  background: var(--ld-semantic-color-fill-brand, #0053e2);
-  color: var(--ld-semantic-color-action-text-onfill-primary, #fff);
+  border-width: 2px;
+  background: var(--ld-semantic-color-fill-brand-subtle, #eef3ff);
+  color: var(--ld-semantic-color-text, #2e2f32);
 }
 
 .optionChip--disabled {
