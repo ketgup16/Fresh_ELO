@@ -1826,11 +1826,11 @@ export default function Home() {
                   </h2>
                 </div>
                 <div className={styles.column__body}>
-                  {expressOrders.map((order, idx) => (
-                    <ExpressOrderCard key={`express-${idx}`} order={order} />
-                  ))}
                   {inStoreKitchenOrders.map((order, idx) => (
                     <InStoreOrderCard key={`instore-${idx}`} order={order} />
+                  ))}
+                  {expressOrders.map((order, idx) => (
+                    <ExpressOrderCard key={`express-${idx}`} order={order} />
                   ))}
                   {onlineOrders.map((order, idx) => (
                     <OnlineOrderCard key={`online-${idx}`} order={order} />
