@@ -2167,6 +2167,12 @@
   color: var(--ld-semantic-color-text, #2e2f32);
 }
 
+.modalFooter__priceUnit {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
 /* ── Success card (inside Modal) ── */
 .successCard {
   display: flex;

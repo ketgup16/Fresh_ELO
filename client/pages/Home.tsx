@@ -1645,7 +1645,7 @@ function StoreOrdersPanel() {
 
           <ModalFooter className={styles.modalFooterRow}>
             <div className={styles.modalFooter__price}>
-              ${computePrice().toFixed(2)}
+              ${computePrice().toFixed(2)} <span className={styles.modalFooter__priceUnit}>each</span>
             </div>
             <Button
               variant="primary"
