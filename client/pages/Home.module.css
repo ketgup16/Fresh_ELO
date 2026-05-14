@@ -1950,7 +1950,7 @@
 
 /* ── Cart item enhancements ── */
 .cartItem__priceEach {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2e2f32);
   margin-top: 2px;
