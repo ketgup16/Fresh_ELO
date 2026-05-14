@@ -895,6 +895,7 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     tag: 'Grab & Go',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F3589d6e20734497d821d672918f19e70',
     category: 'hot-meals',
+    description: 'Crispy buffalo-style chicken wings. Ready to grab and go — no wait needed.',
   },
   {
     id: 'hot_mac',
@@ -905,6 +906,7 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     tag: 'Portioned',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc0d3fddf261c4a17a4424da05e0ecacc',
     category: 'hot-meals',
+    description: 'Creamy, rich mac & cheese made fresh daily. Available in 4 oz or 16 oz portions.',
     variants: [
       { id: 'sm', label: '4 oz', price: 0.97, plu: '62811' },
       { id: 'md', label: '16 oz', price: 3.84, plu: '62810' },
@@ -918,6 +920,7 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     tag: 'Portioned',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F292c8c14239245c9a9cdef7c9f7a41b6',
     category: 'hot-meals',
+    description: 'Bite-sized crispy chicken pieces seasoned to perfection. Available in Small Cup, Medium Cup, or Large Box.',
     variants: [
       { id: 'sm', label: 'Small Cup', price: 4.98, plu: '62821' },
       { id: 'md', label: 'Medium Cup', price: 7.98, plu: '62820' },
