@@ -1834,18 +1834,22 @@
 
 .quickOrderNote {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--ld-semantic-color-text-caution, #a05c00);
-  background: var(--ld-semantic-color-fill-caution-subtle, #fff8e6);
-  border: 1px solid var(--ld-semantic-color-border-caution, #f5b942);
-  border-left: 3px solid var(--ld-semantic-color-text-caution, #a05c00);
-  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  background: var(--ld-semantic-color-fill-brand-subtle, #eef3ff);
+  border: 1px solid var(--ld-semantic-color-fill-brand, #0053e2);
+  border-radius: 8px;
   padding: 10px 12px;
   margin-top: 12px;
-  line-height: 1.4;
+  line-height: 1.43;
+}
+
+.quickOrderNote svg {
+  flex-shrink: 0;
+  color: var(--ld-semantic-color-fill-brand, #0053e2);
 }
 
 .cartTotal {
