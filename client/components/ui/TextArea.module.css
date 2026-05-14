@@ -20,7 +20,7 @@
   flex: 1 0 0;
   color: var(--ld-semantic-color-text);
   font-family: var(--ld-semantic-font-caption-family);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: var(--ld-semantic-font-caption-weight-alt, 700);
   line-height: var(--ld-semantic-font-caption-lineheight);
 }
