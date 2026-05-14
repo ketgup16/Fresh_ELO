@@ -1957,14 +1957,14 @@
 }
 
 .cartItem__variant {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   color: var(--ld-semantic-color-text-subtle, #515357);
   margin-top: 2px;
 }
 
 .cartItem__pluRow {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   color: var(--ld-semantic-color-text-subtle, #515357);
   margin-top: 1px;
