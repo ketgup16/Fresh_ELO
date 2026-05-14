@@ -1425,7 +1425,7 @@
 }
 
 .customerInfo__sectionLabel {
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
@@ -1446,7 +1446,7 @@
 }
 
 .formField__label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--ld-semantic-color-text-subtle, #515357);
   white-space: nowrap;
