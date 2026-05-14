@@ -1216,7 +1216,7 @@
 }
 
 .productCard__name {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--ld-semantic-color-text, #2e2f32);
   line-height: 1.4;
