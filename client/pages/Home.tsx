@@ -876,6 +876,7 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     tag: 'Meal Deal',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F101c242f144e4139b92d8454ffb0aab7',
     category: 'hot-meals',
+    description: 'Includes 1 Whole Traditional Rotisserie Chicken and choice of 2 family-size sides (16oz). Serves 3–4.',
     customizations: [
       { id: 'main', title: 'Select Main Entree', type: 'single', options: [
         { label: 'Traditional Rotisserie Chicken', description: '1 Whole Chicken + 2 family sides (16oz). Serves 3–4.' },
