@@ -1839,9 +1839,9 @@
   font-size: 14px;
   font-weight: 400;
   color: var(--ld-semantic-color-text, #2e2f32);
-  background: var(--ld-semantic-color-fill-brand-subtle, #eef3ff);
-  border: 1px solid var(--ld-semantic-color-fill-brand, #0053e2);
-  border-radius: 8px;
+  background: var(--ld-semantic-color-fill-brand-subtle, #ebf5ff);
+  border: 1px solid var(--ld-semantic-color-border-brand, #0071dc);
+  border-radius: 4px;
   padding: 10px 12px;
   margin-top: 12px;
   line-height: 1.43;
@@ -1849,7 +1849,7 @@
 
 .quickOrderNote svg {
   flex-shrink: 0;
-  color: var(--ld-semantic-color-fill-brand, #0053e2);
+  color: var(--ld-semantic-color-border-brand, #0071dc);
 }
 
 .cartTotal {
