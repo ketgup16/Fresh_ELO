@@ -7,6 +7,11 @@ import { Modal, ModalContent, ModalTitle, ModalClose, ModalFooter } from '@/comp
 import { Select, SelectItem } from '@/components/ui/Select';
 import { TextArea } from '@/components/ui/TextArea';
 import { QuantityStepper } from '@/components/ui/QuantityStepper';
+import { FilterChip } from '@/components/ui/FilterChip';
+import { TextField } from '@/components/ui/TextField';
+import { Alert } from '@/components/ui/Alert';
+import { IconButton } from '@/components/ui/IconButton';
+import { Heading } from '@/components/ui/Heading';
 import { Menu, Chat, Truck, Receipt, ArrowUp, ArrowDown, Check, CheckCircleFill, Pencil, Trash, Plus, Minus, X } from '@/components/icons';
 import styles from './Home.module.css';
 
@@ -1336,14 +1341,13 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
       <div className={styles.storeCatalog}>
         <div className={styles.filterBar}>
           {storeCategories.map(cat => (
-            <button
+            <FilterChip
               key={cat.id}
-              type="button"
-              className={[styles.filterChip, activeCategory === cat.id && styles['filterChip--active']].filter(Boolean).join(' ')}
+              selected={activeCategory === cat.id}
               onClick={() => setActiveCategory(cat.id)}
             >
               {cat.label}
-            </button>
+            </FilterChip>
           ))}
         </div>
 
@@ -1420,7 +1424,7 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
           <>
           {/* Items ordered — top of form */}
           <div className={styles.cartPanel__subHeader}>
-            <span className={styles.cartPanel__subTitle}>Items ordered</span>
+            <Heading as="span" size="small" color="subtle">Items ordered</Heading>
           </div>
 
             <div className={styles.cartItems}>
@@ -1439,22 +1443,22 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
                       )}
                     </div>
                     <div className={styles.cartItem__actions}>
-                      <button
-                        type="button"
-                        className={styles.cartItem__editBtn}
-                        onClick={() => editCartItem(item)}
+                      <IconButton
+                        size="small"
+                        variant="ghost"
                         aria-label={`Edit ${item.product.name}`}
+                        onClick={() => editCartItem(item)}
                       >
-                        <Pencil width={14} height={14} />
-                      </button>
-                      <button
-                        type="button"
-                        className={styles.cartItem__removeBtn}
-                        onClick={() => removeFromCart(item.cartId)}
+                        <Pencil width={16} height={16} />
+                      </IconButton>
+                      <IconButton
+                        size="small"
+                        variant="ghost"
                         aria-label={`Remove ${item.product.name}`}
+                        onClick={() => removeFromCart(item.cartId)}
                       >
-                        <Trash width={14} height={14} />
-                      </button>
+                        <Trash width={16} height={16} />
+                      </IconButton>
                     </div>
                   </div>
                 </div>
@@ -1465,30 +1469,38 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
 
           {/* Customer info */}
           <div className={styles.customerInfo}>
-            <p className={styles.customerInfo__sectionLabel}>Customer details</p>
+            <Heading as="p" size="small" color="default">Customer details</Heading>
 
             {isPartyTray ? (
               // ── Party Tray: full form ──
               <>
                 <div className={styles.customerInfo__grid}>
-                  <div className={styles.formField}>
-                    <label className={styles.formField__label}>Customer name *</label>
-                    <input className={styles.formField__input} type="text" placeholder="Full name"
-                      value={customerInfo.name} onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))} />
-                  </div>
-                  <div className={styles.formField}>
-                    <label className={styles.formField__label}>Phone *</label>
-                    <input className={styles.formField__input} type="tel" placeholder="000-000-0000"
-                      value={customerInfo.phone} onChange={e => setCustomerInfo(i => ({ ...i, phone: e.target.value }))} />
-                  </div>
+                  <TextField
+                    label="Customer name *"
+                    placeholder="Full name"
+                    value={customerInfo.name}
+                    onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))}
+                    size="small"
+                  />
+                  <TextField
+                    label="Phone *"
+                    placeholder="000-000-0000"
+                    type="tel"
+                    value={customerInfo.phone}
+                    onChange={e => setCustomerInfo(i => ({ ...i, phone: e.target.value }))}
+                    size="small"
+                  />
                 </div>
 
                 <div className={styles.customerInfo__grid}>
-                  <div className={styles.formField}>
-                    <label className={styles.formField__label}>Pickup date *</label>
-                    <input className={styles.formField__input} type="date" min={todayDate}
-                      value={customerInfo.pickupDate} onChange={e => setCustomerInfo(i => ({ ...i, pickupDate: e.target.value }))} />
-                  </div>
+                  <TextField
+                    label="Pickup date *"
+                    type="text"
+                    placeholder={todayDate}
+                    value={customerInfo.pickupDate}
+                    onChange={e => setCustomerInfo(i => ({ ...i, pickupDate: e.target.value }))}
+                    size="small"
+                  />
                   <div className={styles.formField}>
                     <Select
                       label="Order taken by *"
@@ -1515,11 +1527,13 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
             ) : (
               // ── Hot Meals / Meat & Cheese / Cakes: simplified form ──
               <>
-                <div className={styles.formField}>
-                  <label className={styles.formField__label}>Customer name *</label>
-                  <input className={styles.formField__input} type="text" placeholder="Full name"
-                    value={customerInfo.name} onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))} />
-                </div>
+                <TextField
+                  label="Customer name *"
+                  placeholder="Full name"
+                  value={customerInfo.name}
+                  onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))}
+                  size="small"
+                />
 
                 <div className={styles.formField}>
                   <TextArea
@@ -1531,10 +1545,9 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
                   />
                 </div>
 
-                <div className={styles.quickOrderNote}>
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7.5" stroke="currentColor"/><path d="M8 7v4M8 5.5V5" stroke="currentColor" strokeLinecap="round"/></svg>
+                <Alert variant="info">
                   Customer pays at the checkout near the exit
-                </div>
+                </Alert>
               </>
             )}
           </div>
