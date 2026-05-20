@@ -1,0 +1,149 @@
+/* ── Keyboard panel ── */
+.keyboard {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background: var(--ld-semantic-color-background-subtle, #f1f3f4);
+  border-top: 1px solid var(--ld-semantic-color-separator, #dadce0);
+  padding: 10px 6px calc(env(safe-area-inset-bottom, 0px) + 10px);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.18);
+  animation: kbSlideUp 0.18s ease-out;
+}
+
+@keyframes kbSlideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .keyboard { animation: none; }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* ── Rows ── */
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.rowNumeric {
+  gap: 10px;
+}
+
+/* ── Base key ── */
+.key {
+  flex: 1;
+  max-width: 96px;
+  height: 56px;
+  border-radius: var(--ld-primitive-scale-borderradius-50, 8px);
+  border: none;
+  background: var(--ld-semantic-color-surface, #fff);
+  color: var(--ld-semantic-color-text, #2e2f32);
+  font-family: var(--ld-semantic-font-family-sans, sans-serif);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 0 1.5px rgba(0, 0, 0, 0.28);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.06s, transform 0.06s;
+}
+
+.key:active {
+  background: var(--ld-semantic-color-surface-hovered, #d4d8dc);
+  box-shadow: none;
+  transform: translateY(1px);
+}
+
+/* ── Action keys (Shift, Backspace, 123, ABC) ── */
+.keyAction {
+  flex: 1.5;
+  max-width: 110px;
+  background: var(--ld-semantic-color-background-subtle, #bec3c9);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.keyAction:active {
+  background: var(--ld-semantic-color-separator, #a8adb3);
+}
+
+/* ── Backspace slightly wider ── */
+.keyBackspace {
+  max-width: 120px;
+}
+
+/* ── Space bar ── */
+.keySpace {
+  flex: 5;
+  max-width: 380px;
+  font-size: 16px;
+  font-weight: 400;
+  background: var(--ld-semantic-color-surface, #fff);
+}
+
+/* ── Done key ── */
+.keyDone {
+  flex: 2;
+  max-width: 130px;
+  background: var(--ld-semantic-color-action-fill-primary, #0053e2);
+  color: var(--ld-semantic-color-action-text-onfill-primary, #fff);
+  font-size: 17px;
+  font-weight: 700;
+  box-shadow: 0 1px 0 1.5px rgba(0, 40, 150, 0.45);
+}
+
+.keyDone:active {
+  background: var(--ld-semantic-color-action-fill-primary-hovered, #003dbf);
+}
+
+/* ── Shift active (one-shot uppercase) ── */
+.keyShiftActive {
+  background: var(--ld-semantic-color-fill-brand-subtle, #dce8ff);
+  color: var(--ld-semantic-color-fill-brand, #0053e2);
+}
+
+/* ── Caps lock (locked uppercase) ── */
+.keyCapsLock {
+  background: var(--ld-semantic-color-fill-brand, #0053e2);
+  color: var(--ld-semantic-color-action-text-onfill-primary, #fff);
+}
+
+/* ── Numeric key sizing ── */
+.rowNumeric .key {
+  flex: 1;
+  max-width: 120px;
+  height: 64px;
+  font-size: 26px;
+}
+
+.rowNumeric .keyDone {
+  flex: 2;
+  font-size: 18px;
+}
+
+.rowNumeric .keyAction {
+  flex: 1.2;
+  max-width: 120px;
+  font-size: 18px;
+}
+
+.rowNumeric .keyBackspace {
+  max-width: 120px;
+}

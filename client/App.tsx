@@ -13,6 +13,7 @@ import { LayoutSettingsProvider } from "@/contexts/LayoutSettingsContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { ComponentLibraryLayout } from "./components/ComponentLibraryLayout";
 import { DevToolbar } from "./components/DevToolbar";
+import { VirtualKeyboard } from "@/components/walmart/VirtualKeyboard/VirtualKeyboard";
 
 import React from 'react';
 import { Navigate } from 'react-router-dom';
@@ -167,6 +168,7 @@ const App = () => (
         <CartProvider>
         <QueryClientProvider client={queryClient}>
       <SnackbarContainer />
+      <VirtualKeyboard />
       <AgentProvider>
       <MartyProvider>
           <DevToolbar />
