@@ -50,7 +50,7 @@
   width: 40px;
   height: 40px;
   border: none;
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
   border-radius: 50%;
   cursor: pointer;
   color: var(--ld-semantic-color-topnav-text-onfill, #fff);
@@ -58,7 +58,7 @@
 }
 
 .iconBtn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .iconBtn svg {
