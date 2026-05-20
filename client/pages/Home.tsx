@@ -1299,9 +1299,9 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
   };
 
   // ── Submit + reset ──
-  const submitOrder = () => setOrderSuccess(`OSN-${Math.floor(1000 + Math.random() * 9000)}`);
+  const submitOrder = () => setOrderSuccess(`OSN ${Math.floor(1000 + Math.random() * 9000)}`);
   const sendToKitchen = () => {
-    const osn = `KIT-${Math.floor(1000 + Math.random() * 9000)}`;
+    const osn = `OSN ${Math.floor(1000 + Math.random() * 9000)}`;
     onSendToKitchen?.({
       osn,
       customerName: customerInfo.name.trim() || 'Walk-up Customer',
@@ -1313,7 +1313,7 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
     });
     setOrderSuccess(osn);
   };
-  const printLabel = () => setOrderSuccess(`LBL-${Math.floor(1000 + Math.random() * 9000)}`);
+  const printLabel = () => setOrderSuccess(`OSN ${Math.floor(1000 + Math.random() * 9000)}`);
   const resetFlow = () => {
     setCart([]);
     setCustomerInfo({ name: '', phone: '', pickupDate: '', pickupTime: '', pickupDay: '', orderDate: '', orderTakenBy: '', instructions: '' });
