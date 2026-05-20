@@ -1480,7 +1480,13 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
                     placeholder="Full name"
                     value={customerInfo.name}
                     onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))}
-                    size="small"
+                    size="large"
+                    inputProps={{
+                      inputMode: 'text',
+                      autoCapitalize: 'words',
+                      autoComplete: 'name',
+                      onFocus: e => e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest' }),
+                    }}
                   />
                   <TextField
                     label="Phone *"
@@ -1488,7 +1494,12 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
                     type="tel"
                     value={customerInfo.phone}
                     onChange={e => setCustomerInfo(i => ({ ...i, phone: e.target.value }))}
-                    size="small"
+                    size="large"
+                    inputProps={{
+                      inputMode: 'tel',
+                      autoComplete: 'tel',
+                      onFocus: e => e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest' }),
+                    }}
                   />
                 </div>
 
@@ -1499,7 +1510,11 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
                     placeholder={todayDate}
                     value={customerInfo.pickupDate}
                     onChange={e => setCustomerInfo(i => ({ ...i, pickupDate: e.target.value }))}
-                    size="small"
+                    size="large"
+                    inputProps={{
+                      inputMode: 'numeric',
+                      onFocus: e => e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest' }),
+                    }}
                   />
                   <div className={styles.formField}>
                     <Select
@@ -1507,7 +1522,7 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
                       value={customerInfo.orderTakenBy}
                       onValueChange={v => setCustomerInfo(i => ({ ...i, orderTakenBy: v }))}
                       placeholder="Select associate..."
-                      size="small"
+                      size="large"
                     >
                       {DELI_ASSOCIATES.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
                     </Select>
@@ -1520,7 +1535,7 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
                     placeholder="Enter special instructions here"
                     value={customerInfo.instructions}
                     onChange={e => setCustomerInfo(i => ({ ...i, instructions: e.target.value }))}
-                    size="small"
+                    size="large"
                   />
                 </div>
               </>
@@ -1532,7 +1547,13 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
                   placeholder="Full name"
                   value={customerInfo.name}
                   onChange={e => setCustomerInfo(i => ({ ...i, name: e.target.value }))}
-                  size="small"
+                  size="large"
+                  inputProps={{
+                    inputMode: 'text',
+                    autoCapitalize: 'words',
+                    autoComplete: 'name',
+                    onFocus: e => e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest' }),
+                  }}
                 />
 
                 <div className={styles.formField}>
@@ -1541,7 +1562,7 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
                     placeholder="Any special instructions for the kitchen?"
                     value={customerInfo.instructions}
                     onChange={e => setCustomerInfo(i => ({ ...i, instructions: e.target.value }))}
-                    size="small"
+                    size="large"
                   />
                 </div>
 
