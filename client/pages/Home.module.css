@@ -1436,7 +1436,7 @@
 
 .customerInfo__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 10px;
 }
 
@@ -2347,7 +2347,5 @@
     gap: 12px;
     padding: 12px;
   }
-  .customerInfo__grid {
-    grid-template-columns: 1fr;
-  }
+  /* customerInfo__grid already 1-column by default */
 }
