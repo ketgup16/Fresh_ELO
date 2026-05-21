@@ -2339,7 +2339,8 @@
     width: 100%;
     border-left: none;
     border-top: 2px solid var(--ld-semantic-color-separator, #e3e4e5);
-    max-height: 400px;
+    height: 420px;        /* explicit height so flex: 1 children compute correctly in Chrome */
+    flex-shrink: 0;       /* prevent the stacked cart panel from shrinking below its height */
   }
   .productList {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
