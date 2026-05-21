@@ -2,7 +2,8 @@
 .page {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh;       /* fallback for older browsers */
+  height: 100dvh;      /* dynamic viewport height — accounts for browser chrome on iOS/Android */
   overflow: hidden;
   background: var(--ld-semantic-color-background-subtle, #f5f5f6);
   font-family: 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif;
