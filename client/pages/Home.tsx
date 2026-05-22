@@ -762,53 +762,151 @@ function ExpressOrderCard({ order }: { order: StoreOrder }) {
   );
 }
 
+const UNDER_REASONS = ['Burnt', 'Dropped', 'Quality issues'] as const;
+
 function ProductionCard({ item }: { item: ProductionItem }) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [quantity, setQuantity] = useState(item.makeNow);
+  const [selectedReason, setSelectedReason] = useState<string | null>(null);
+  const [overReason, setOverReason] = useState('');
+
+  const isMadeLess = quantity < item.makeNow;
+  const isMadeMore = quantity > item.makeNow;
+  const canConfirm = isMadeLess ? selectedReason !== null : isMadeMore ? overReason.trim().length > 0 : true;
+
+  const handleOpen = () => {
+    setQuantity(item.makeNow);
+    setSelectedReason(null);
+    setOverReason('');
+    setModalOpen(true);
+  };
+
+  const handleConfirm = () => {
+    // In production this would POST to an API
+    setModalOpen(false);
+  };
+
   return (
-    <div className={styles.card}>
-      <div className={styles.productionCard__top}>
-        <img
-          src={item.image}
-          alt={item.name}
-          className={styles.productionCard__image}
-        />
-        <div className={styles.productionCard__info}>
-          <div className={styles.productionCard__name}>{item.name}</div>
-          {item.price && <div className={styles.productionCard__price}>{item.price}</div>}
-          <div className={styles.productionCard__attrs}>
-            <div className={styles.productionCard__attrRow}>
-              <span className={styles.attrLabel}>UPC</span>
-              <span className={styles.attrValue}>{item.upc}</span>
-            </div>
-            <div className={styles.productionCard__attrRow}>
-              <span className={styles.attrLabel}>{item.pluOrItemNumberLabel}</span>
-              <span className={styles.attrValue}>{item.pluOrItemNumber}</span>
+    <>
+      <div className={styles.card}>
+        <div className={styles.productionCard__top}>
+          <img src={item.image} alt={item.name} className={styles.productionCard__image} />
+          <div className={styles.productionCard__info}>
+            <div className={styles.productionCard__name}>{item.name}</div>
+            {item.price && <div className={styles.productionCard__price}>{item.price}</div>}
+            <div className={styles.productionCard__attrs}>
+              <div className={styles.productionCard__attrRow}>
+                <span className={styles.attrLabel}>UPC</span>
+                <span className={styles.attrValue}>{item.upc}</span>
+              </div>
+              <div className={styles.productionCard__attrRow}>
+                <span className={styles.attrLabel}>{item.pluOrItemNumberLabel}</span>
+                <span className={styles.attrValue}>{item.pluOrItemNumber}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className={styles.divider} />
-      <div className={styles.productionMetrics}>
-        <div className={styles.productionMetric}>
-          <div className={styles.productionMetric__value}>{item.plan}</div>
-          <div className={styles.productionMetric__label}>Plan</div>
+        <div className={styles.divider} />
+        <div className={styles.productionMetrics}>
+          <div className={styles.productionMetric}>
+            <div className={styles.productionMetric__value}>{item.plan}</div>
+            <div className={styles.productionMetric__label}>Plan</div>
+          </div>
+          <div className={styles.productionMetric__divider} />
+          <div className={styles.productionMetric}>
+            <div className={styles.productionMetric__value}>{item.onHand}</div>
+            <div className={styles.productionMetric__label}>On-hand</div>
+          </div>
+          <div className={styles.productionMetric__divider} />
+          <div className={styles.productionMetric}>
+            <div className={styles.productionMetric__value}>{item.makeNow}</div>
+            <div className={styles.productionMetric__label}>Make now</div>
+          </div>
         </div>
-        <div className={styles.productionMetric__divider} />
-        <div className={styles.productionMetric}>
-          <div className={styles.productionMetric__value}>{item.onHand}</div>
-          <div className={styles.productionMetric__label}>On-hand</div>
-        </div>
-        <div className={styles.productionMetric__divider} />
-        <div className={styles.productionMetric}>
-          <div className={styles.productionMetric__value}>{item.makeNow}</div>
-          <div className={styles.productionMetric__label}>Make now</div>
+        <div className={styles.divider} />
+        <div className={styles.productionActions}>
+          <button className={styles.buildSheetLink}>Build sheet</button>
+          <Button variant="secondary" size="small" isFullWidth onClick={handleOpen}>
+            Get started
+          </Button>
         </div>
       </div>
-      <div className={styles.divider} />
-      <div className={styles.productionActions}>
-        <button className={styles.buildSheetLink}>Build sheet</button>
-        <Button variant="secondary" size="small" isFullWidth>Get started</Button>
-      </div>
-    </div>
+
+      {/* ── Production Completion Modal ── */}
+      <Modal open={modalOpen} onOpenChange={open => !open && setModalOpen(false)}>
+        <ModalContent size="small" hideClose>
+          <div className={styles.prodModal__header}>
+            <div className={styles.prodModal__product}>
+              <img src={item.image} alt={item.name} className={styles.prodModal__productImg} />
+              <div>
+                <div className={styles.prodModal__productName}>{item.name}</div>
+                <div className={styles.prodModal__productPlu}>
+                  {item.pluOrItemNumberLabel}: {item.pluOrItemNumber}
+                </div>
+              </div>
+            </div>
+            <ModalClose asChild>
+              <button type="button" className={styles.modalCloseBtn} aria-label="Close">
+                <X width={20} height={20} />
+              </button>
+            </ModalClose>
+          </div>
+
+          <div className={styles.prodModal__body}>
+            <h3 className={styles.prodModal__question}>How many did you make?</h3>
+
+            <QuantityStepper
+              value={quantity}
+              onChange={setQuantity}
+              min={0}
+              unit="ea"
+            />
+
+            {isMadeLess && (
+              <div className={styles.prodModal__reasons}>
+                {UNDER_REASONS.map(reason => (
+                  <button
+                    key={reason}
+                    type="button"
+                    className={[
+                      styles.prodModal__reasonChip,
+                      selectedReason === reason ? styles['prodModal__reasonChip--active'] : '',
+                    ].filter(Boolean).join(' ')}
+                    onClick={() => setSelectedReason(prev => prev === reason ? null : reason)}
+                  >
+                    {reason}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {isMadeMore && (
+              <div className={styles.prodModal__overReason}>
+                <TextArea
+                  label="Why did you make more?"
+                  placeholder="Enter reason..."
+                  value={overReason}
+                  onChange={e => setOverReason(e.target.value)}
+                  size="medium"
+                />
+              </div>
+            )}
+          </div>
+
+          <div className={styles.prodModal__footer}>
+            <Button
+              variant="primary"
+              size="large"
+              isFullWidth
+              disabled={!canConfirm}
+              onClick={handleConfirm}
+            >
+              Confirm and print label
+            </Button>
+          </div>
+        </ModalContent>
+      </Modal>
+    </>
   );
 }
 
