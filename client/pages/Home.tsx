@@ -12,7 +12,6 @@ import { Metric } from '@/components/ui/Metric';
 import { Modal, ModalContent, ModalTitle, ModalClose, ModalFooter } from '@/components/ui/Modal';
 import { Select, SelectItem } from '@/components/ui/Select';
 import { TextArea } from '@/components/ui/TextArea';
-import { QuantityStepper } from '@/components/ui/QuantityStepper';
 import { FilterChip } from '@/components/ui/FilterChip';
 import { TextField } from '@/components/ui/TextField';
 import { Alert } from '@/components/ui/Alert';
@@ -855,29 +854,52 @@ function ProductionCard({ item }: { item: ProductionItem }) {
           <div className={styles.prodModal__body}>
             <h3 className={styles.prodModal__question}>How many did you make?</h3>
 
-            <QuantityStepper
-              value={quantity}
-              onChange={setQuantity}
-              min={0}
-              unit="ea"
-            />
+            {/* Custom stepper — always visible, full-width pill */}
+            <div className={styles.prodModal__stepper}>
+              <button
+                type="button"
+                className={styles.prodModal__stepperBtn}
+                onClick={() => { setQuantity(q => Math.max(0, q - 1)); setSelectedReason(null); }}
+                aria-label="Decrease quantity"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M19.5 12.7495H4.5V11.2495H19.5V12.7495Z" fill="currentColor"/>
+                </svg>
+              </button>
+              <span className={styles.prodModal__stepperValue}>
+                {quantity} <span className={styles.prodModal__stepperUnit}>ea</span>
+              </span>
+              <button
+                type="button"
+                className={styles.prodModal__stepperBtn}
+                onClick={() => { setQuantity(q => q + 1); setSelectedReason(null); }}
+                aria-label="Increase quantity"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M11.25 12.75V19.5H12.75V12.75H19.5V11.25H12.75V4.5H11.25V11.25H4.5V12.75H11.25Z" fill="currentColor"/>
+                </svg>
+              </button>
+            </div>
 
             {isMadeLess && (
-              <div className={styles.prodModal__reasons}>
-                {UNDER_REASONS.map(reason => (
-                  <button
-                    key={reason}
-                    type="button"
-                    className={[
-                      styles.prodModal__reasonChip,
-                      selectedReason === reason ? styles['prodModal__reasonChip--active'] : '',
-                    ].filter(Boolean).join(' ')}
-                    onClick={() => setSelectedReason(prev => prev === reason ? null : reason)}
-                  >
-                    {reason}
-                  </button>
-                ))}
-              </div>
+              <>
+                <p className={styles.prodModal__reasonLabel}>What happened?</p>
+                <div className={styles.prodModal__reasons}>
+                  {UNDER_REASONS.map(reason => (
+                    <button
+                      key={reason}
+                      type="button"
+                      className={[
+                        styles.prodModal__reasonChip,
+                        selectedReason === reason ? styles['prodModal__reasonChip--active'] : '',
+                      ].filter(Boolean).join(' ')}
+                      onClick={() => setSelectedReason(prev => prev === reason ? null : reason)}
+                    >
+                      {reason}
+                    </button>
+                  ))}
+                </div>
+              </>
             )}
 
             {isMadeMore && (
