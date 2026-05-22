@@ -1436,7 +1436,9 @@
 .orderFormScroll {
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--ld-semantic-color-separator, #e3e4e5) transparent;
@@ -1726,15 +1728,17 @@
 }
 
 .cartItems {
-  overflow-y: auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: var(--ld-semantic-color-separator, #e3e4e5) transparent;
   padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  /* Cap height so 4+ items scroll within this area; customer form stays visible below */
-  max-height: clamp(160px, 32vh, 320px);
+  /* Cap height — 4+ items scroll within this fixed zone */
+  max-height: 280px;
   flex-shrink: 0;
 }
 
