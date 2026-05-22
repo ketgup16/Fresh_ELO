@@ -1730,6 +1730,9 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  /* Cap height so 4+ items scroll within this area; customer form stays visible below */
+  max-height: clamp(160px, 32vh, 320px);
+  flex-shrink: 0;
 }
 
 .cartItem {
