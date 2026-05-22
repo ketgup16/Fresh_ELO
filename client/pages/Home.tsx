@@ -114,7 +114,7 @@ interface InStoreKitchenOrder {
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const expressOrders: StoreOrder[] = [
+const INITIAL_EXPRESS_ORDERS: StoreOrder[] = [
   {
     osn: 'OSN 7284',
     isExpress: true,
@@ -138,6 +138,76 @@ const expressOrders: StoreOrder[] = [
     ],
     isWeightItem: true,
     scaleReading: { weight: '0.25 LB', price: '$2.75' },
+  },
+];
+
+// Pool of realistic incoming express orders used for the auto-arrival simulation
+const INCOMING_ORDER_POOL: StoreOrder[] = [
+  {
+    osn: 'OSN 7291',
+    isExpress: true,
+    initialSeconds: 300,
+    items: [
+      {
+        name: 'Rotisserie Chicken',
+        plu: '6286',
+        image: 'https://api.builder.io/api/v1/image/assets/TEMP/4e964bed0619d2365b794f27970d38864cef87e9?width=128',
+        qty: '1',
+        type: 'Whole',
+      },
+    ],
+  },
+  {
+    osn: 'OSN 7305',
+    isExpress: true,
+    initialSeconds: 300,
+    items: [
+      {
+        name: 'Macaroni and Cheese',
+        plu: '62810',
+        image: 'https://api.builder.io/api/v1/image/assets/TEMP/0fb38ded214e7747a9e4040154af5afa019ad2fa?width=128',
+        qty: '2',
+        type: '16 oz',
+      },
+      {
+        name: 'Popcorn Chicken',
+        plu: '62807',
+        image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=128',
+        qty: '1',
+        type: 'Regular',
+      },
+    ],
+  },
+  {
+    osn: 'OSN 7318',
+    isExpress: true,
+    initialSeconds: 300,
+    items: [
+      {
+        name: 'Prima Della Honey Turkey',
+        plu: '6382',
+        image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=128',
+        qty: '0.5 lb',
+        type: 'Sliced',
+        thickness: '2mm',
+      },
+    ],
+    isWeightItem: true,
+    scaleReading: { weight: '0.50 LB', price: '$4.99' },
+  },
+  {
+    osn: 'OSN 7334',
+    isExpress: true,
+    initialSeconds: 300,
+    items: [
+      {
+        name: 'Buffalo Chicken Wings, 6 Count',
+        plu: '6870',
+        image: 'https://api.builder.io/api/v1/image/assets/TEMP/0fb38ded214e7747a9e4040154af5afa019ad2fa?width=128',
+        qty: '2',
+        type: 'Hot sauce',
+      },
+    ],
   },
 ];
 
@@ -1901,6 +1971,32 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
 export default function Home() {
   const [activeTab, setActiveTab] = useState('deli-and-meat');
   const [inStoreKitchenOrders, setInStoreKitchenOrders] = useState<InStoreKitchenOrder[]>(DEMO_INSTORE_ORDERS);
+  const [expressOrders, setExpressOrders] = useState<StoreOrder[]>(INITIAL_EXPRESS_ORDERS);
+  const [newOrderOsn, setNewOrderOsn] = useState<string | null>(null);
+  const incomingPoolIndexRef = useRef(0);
+
+  // Simulate incoming express orders — ~2 per 5 min = 1 every 150 seconds.
+  // For demo visibility the first one arrives after 30 s, then every 150 s.
+  useEffect(() => {
+    const scheduleNext = (delay: number) => {
+      return setTimeout(() => {
+        const pool = INCOMING_ORDER_POOL;
+        const next = pool[incomingPoolIndexRef.current % pool.length];
+        incomingPoolIndexRef.current += 1;
+        // Stamp a fresh timer so it counts down from "now"
+        const incoming: StoreOrder = { ...next, initialSeconds: 300 };
+        setExpressOrders(prev => [incoming, ...prev]);
+        setNewOrderOsn(incoming.osn);
+        // Clear the "new" highlight after 8 seconds
+        setTimeout(() => setNewOrderOsn(null), 8000);
+        // Schedule the next one
+        timerRef.current = scheduleNext(150_000);
+      }, delay);
+    };
+
+    const timerRef = { current: scheduleNext(30_000) };
+    return () => clearTimeout(timerRef.current);
+  }, []);
 
   // Scroll focused input/textarea into view when the soft keyboard opens.
   // Uses visualViewport resize (most reliable on Android Chrome kiosk devices).
@@ -1992,7 +2088,12 @@ export default function Home() {
                     <InStoreOrderCard key={`instore-${idx}`} order={order} />
                   ))}
                   {expressOrders.map((order, idx) => (
-                    <ExpressOrderCard key={`express-${idx}`} order={order} />
+                    <div
+                      key={`express-${order.osn}-${idx}`}
+                      className={newOrderOsn === order.osn ? styles.orderCard__new : undefined}
+                    >
+                      <ExpressOrderCard order={order} />
+                    </div>
                   ))}
                   {onlineOrders.map((order, idx) => (
                     <OnlineOrderCard key={`online-${idx}`} order={order} />
