@@ -1,0 +1,18 @@
+{
+  "name": "Today's Plan",
+  "short_name": "Today's Plan",
+  "description": "Walmart deli POS — daily production and order management",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0053e2",
+  "theme_color": "#0053e2",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

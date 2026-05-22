@@ -7,6 +7,8 @@
   overflow: hidden;
   background: var(--ld-semantic-color-background-subtle, #f5f5f6);
   font-family: 'Everyday Sans UI', -apple-system, Roboto, Helvetica, sans-serif;
+  /* Respect iOS home indicator when installed as PWA */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* ─── App Header ─────────────────────────────────────────────────────────────── */
@@ -15,6 +17,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
+  /* Push content below iOS status bar when running as installed PWA (standalone) */
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
   background: var(--ld-semantic-color-topnav-fill, #0053e2);
   color: var(--ld-semantic-color-topnav-text-onfill, #fff);
   position: sticky;
