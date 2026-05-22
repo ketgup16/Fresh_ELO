@@ -72,6 +72,26 @@
   fill: currentColor;
 }
 
+/* ─── PWA Install Button ─────────────────────────────────────────────────────── */
+.installBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--ld-semantic-color-topnav-text-onfill, #fff);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.installBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
 /* ─── Avatar ─────────────────────────────────────────────────────────────────── */
 .avatar {
   position: relative;
