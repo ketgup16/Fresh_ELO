@@ -1439,6 +1439,9 @@
   scrollbar-color: var(--ld-semantic-color-separator, #e3e4e5) transparent;
   display: flex;
   flex-direction: column;
+  /* Ensure focused fields are never hidden behind the soft keyboard */
+  scroll-padding-bottom: 24px;
+  padding-bottom: env(keyboard-inset-height, 0px);
 }
 
 /* ── Customer info ── */

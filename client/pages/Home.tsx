@@ -1902,6 +1902,41 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState('deli-and-meat');
   const [inStoreKitchenOrders, setInStoreKitchenOrders] = useState<InStoreKitchenOrder[]>(DEMO_INSTORE_ORDERS);
 
+  // Scroll focused input/textarea into view when the soft keyboard opens.
+  // Uses visualViewport resize (most reliable on Android Chrome kiosk devices).
+  useEffect(() => {
+    const scrollFocusedIntoView = () => {
+      const el = document.activeElement as HTMLElement | null;
+      if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT')) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
+    };
+
+    // visualViewport fires when the keyboard resizes the visual area
+    const vv = window.visualViewport;
+    if (vv) {
+      vv.addEventListener('resize', scrollFocusedIntoView);
+    }
+
+    // Also handle focus directly for devices where visualViewport doesn't fire
+    const handleFocus = (e: FocusEvent) => {
+      const el = e.target as HTMLElement;
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 400);
+      }
+    };
+    document.addEventListener('focusin', handleFocus);
+
+    return () => {
+      if (vv) vv.removeEventListener('resize', scrollFocusedIntoView);
+      document.removeEventListener('focusin', handleFocus);
+    };
+  }, []);
+
   const handleSendToKitchen = (order: InStoreKitchenOrder) => {
     setInStoreKitchenOrders(prev => [order, ...prev]);
     setActiveTab('deli-and-meat');
