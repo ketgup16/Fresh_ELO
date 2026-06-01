@@ -6,7 +6,7 @@
     <title>Today's Plan</title>
 
     <!-- PWA -->
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#0053e2" />
 
     <!-- iOS standalone support -->
@@ -39,7 +39,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
-          navigator.serviceWorker.register('/sw.js');
+          navigator.serviceWorker.register(new URL('sw.js', location.href).pathname);
         });
       }
     </script>
