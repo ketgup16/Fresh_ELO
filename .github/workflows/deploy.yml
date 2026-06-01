@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - ai_main_08995de747ea
+  workflow_dispatch:
 
 permissions:
   contents: read
