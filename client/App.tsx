@@ -172,7 +172,7 @@ const App = () => (
       <AgentProvider>
       <MartyProvider>
           <DevToolbar />
-          <BrowserRouter>
+          <BrowserRouter basename={import.meta.env.BASE_URL}>
             <React.Suspense fallback={LazyFallback}>
             {import.meta.env.DEV && <RouteWatcher />}
             <Routes>

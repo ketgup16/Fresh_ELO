@@ -22,6 +22,16 @@
   </head>
 
   <body>
+    <script>
+      // GitHub Pages SPA routing: restore redirected path
+      (function() {
+        var p = window.location.search.slice(1).split('&')[0];
+        if (p && p.indexOf('p=') === 0) {
+          var path = decodeURIComponent(p.slice(2));
+          window.history.replaceState(null, null, path || '/');
+        }
+      })();
+    </script>
     <div id="root"></div>
 
     <script type="module" src="/client/App.tsx"></script>
