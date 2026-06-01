@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - ai_main_08995de747ea
+      - main
   workflow_dispatch:
 
 permissions:
