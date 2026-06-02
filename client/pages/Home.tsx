@@ -806,7 +806,6 @@ function ProductionCard({ item }: { item: ProductionItem }) {
           <img src={item.image} alt={item.name} className={styles.productionCard__image} />
           <div className={styles.productionCard__info}>
             <div className={styles.productionCard__name}>{item.name}</div>
-            {item.price && <div className={styles.productionCard__price}>{item.price}</div>}
             <div className={styles.productionCard__attrs}>
               <div className={styles.productionCard__attrRow}>
                 <span className={styles.attrLabel}>UPC</span>
