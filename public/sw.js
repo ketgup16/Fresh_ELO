@@ -1,9 +1,10 @@
-const CACHE = 'todays-plan-v1';
-const SHELL = ['/'];
+const CACHE = 'todays-plan-v2';
+const BASE = self.location.pathname.replace(/\/sw\.js$/, '') || '';
+const SHELL = [BASE + '/'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(SHELL))
+    caches.open(CACHE).then((cache) => cache.addAll(SHELL).catch(() => {}))
   );
   self.skipWaiting();
 });
@@ -23,10 +24,10 @@ self.addEventListener('fetch', (event) => {
   // Only handle same-origin navigation requests with cache fallback
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request).catch(() => caches.match('/'))
+      fetch(request).catch(() => caches.match(BASE + '/'))
     );
     return;
   }
 
-  // Passthrough for everything else (API, CDN, etc.)
+  // Passthrough for everything else
 });
