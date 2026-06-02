@@ -2183,7 +2183,7 @@ export default function Home() {
             <Tab
               value="deli-and-meat"
               leading={<Truck />}
-              trailing={<Badge value={4} size="small" />}
+              trailing={<Badge value={expressOrders.length + onlineOrders.length + inStoreKitchenOrders.length + productionItems.length} size="small" />}
             >
               Deli and meat
             </Tab>
@@ -2242,7 +2242,7 @@ export default function Home() {
                 <div className={styles.column__header}>
                   <h2 className={styles.column__title}>
                     Today's production plan
-                    <span className={styles.column__count}>(4)</span>
+                    <span className={styles.column__count}>({productionItems.length})</span>
                   </h2>
                 </div>
                 <div className={styles.column__body}>
