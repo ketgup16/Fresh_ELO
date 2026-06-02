@@ -237,6 +237,27 @@
   height: 12px;
 }
 
+/* ─── Tab size overrides (50% bigger for kiosk) ──────────────────────────────── */
+.tabsWrapper [role="tab"] {
+  height: 72px;
+  padding-top: 24px;
+}
+
+.tabsWrapper [role="tab"] [class*="tab__labelContainer"] {
+  height: 48px;
+}
+
+.tabsWrapper [role="tab"] [class*="tab__label"] {
+  font-size: 21px;
+  line-height: 30px;
+}
+
+.tabsWrapper [role="tab"] [class*="tab__leading"] svg,
+.tabsWrapper [role="tab"] [class*="tab__leading"] img {
+  width: 24px;
+  height: 24px;
+}
+
 /* ─── Sticky Nav Wrapper ─────────────────────────────────────────────────────── */
 .stickyNav {
   flex: 1;
