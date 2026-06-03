@@ -1023,8 +1023,11 @@ function InStoreOrderCard({ order }: { order: InStoreKitchenOrder }) {
         )}
         <div className={styles.inStoreCard__mainInfo}>
           <div className={styles.inStoreCard__mainName}>
-            {mainItem.name}
-            <span className={styles.inStoreCard__qty}>×{mainItem.qty}</span>
+            <span className={styles.inStoreCard__mainNameText}>{mainItem.name}</span>
+            <span className={styles.itemRow__qtyBadge}>
+              <span className={styles.itemRow__qtyX}>×</span>
+              <span className={styles.itemRow__qtyNum}>{mainItem.qty}</span>
+            </span>
           </div>
           {/* Sub-items */}
           {subItems.map((item, idx) => (

@@ -700,21 +700,21 @@
 }
 
 .inStoreCard__mainName {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--ld-semantic-color-text, #2e2f32);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 8px;
 }
 
-.inStoreCard__qty {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ld-semantic-color-text-subtle, #515357);
-  flex-shrink: 0;
+.inStoreCard__mainNameText {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  line-height: 1.4;
+  flex: 1;
 }
+
+/* .inStoreCard__qty is now replaced by shared itemRow__qtyBadge */
 
 .inStoreCard__subItem {
   font-size: 13px;
