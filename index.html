@@ -5,9 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=overlays-content" />
     <title>Today's Plan</title>
 
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json" />
+    <!-- PWA: inline manifest so it works regardless of how the app is hosted -->
+    <link rel="manifest" id="pwa-manifest" href="manifest.json" />
     <meta name="theme-color" content="#0053e2" />
+    <script>
+      (function() {
+        var base = location.href.replace(/[?#].*$/, '').replace(/\/?$/, '/');
+        var manifest = {
+          name: "Today's Plan",
+          short_name: "Today's Plan",
+          description: "Walmart deli POS — daily production and order management",
+          start_url: base,
+          scope: base,
+          display: "standalone",
+          display_override: ["standalone", "minimal-ui"],
+          orientation: "landscape",
+          background_color: "#0053e2",
+          theme_color: "#0053e2",
+          icons: [
+            { src: base + "icons/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+            { src: base + "icons/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" }
+          ]
+        };
+        var blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
+        document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
+      })();
+    </script>
 
     <!-- iOS standalone support -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
