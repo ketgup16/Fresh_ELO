@@ -107,8 +107,9 @@ interface OnlineOrder {
 interface InStoreKitchenOrder {
   osn: string;
   customerName: string;
+  placedTime?: string;
   instructions?: string;
-  items: { name: string; qty: string }[];
+  items: { name: string; qty: string; image?: string; plu?: string; isMain?: boolean }[];
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -282,9 +283,16 @@ const DEMO_INSTORE_ORDERS: InStoreKitchenOrder[] = [
   {
     osn: 'OSN 7286',
     customerName: 'Maria Garcia',
+    placedTime: '9:41 AM',
     instructions: 'Extra crispy please, no skin on the wings',
     items: [
-      { name: 'Rotisserie Meal Bundle — Traditional', qty: '1' },
+      {
+        name: 'Rotisserie Meal Bundle — Traditional',
+        qty: '1',
+        isMain: true,
+        image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F9a15a767c1824b3287e550eb428e9d02',
+        plu: '9548',
+      },
       { name: 'Mac & Cheese (16oz)', qty: '1' },
       { name: 'Mashed Potatoes (16oz)', qty: '1' },
     ],
@@ -975,39 +983,50 @@ function PickupSoonBanner({ pickupTime }: { pickupTime: string }) {
 }
 
 function InStoreOrderCard({ order }: { order: InStoreKitchenOrder }) {
+  const mainItem = order.items.find(i => i.isMain) ?? order.items[0];
+  const subItems = order.items.filter(i => !i.isMain);
+
   return (
     <div className={styles.card}>
-      <div className={styles.card__header}>
-        <div className={styles.orderHeader}>
-          <span className={styles.orderHeader__osn}>{order.osn}</span>
-          <div className={styles.orderHeader__tags}>
-            <span className={styles.inStoreTag}>In-Store</span>
-          </div>
-        </div>
+      {/* Header row: OSN + badge + placed time */}
+      <div className={styles.inStoreCard__header}>
+        <span className={styles.orderHeader__osn}>{order.osn}</span>
+        <span className={styles.inStoreTag}>In store order</span>
       </div>
-
-      <div className={styles.divider} />
-      <div className={styles.inStoreCustomer}>
-        <div className={styles.inStoreCustomer__row}>
-          <span className={styles.attrLabel}>Customer</span>
-          <span className={styles.inStoreCustomer__name}>{order.customerName}</span>
-        </div>
-        {order.instructions && (
-          <div className={styles.inStoreCustomer__instructions}>
-            <span className={styles.attrLabel}>Instructions</span>
-            <span className={styles.attrValue}>{order.instructions}</span>
-          </div>
+      <div className={styles.inStoreCard__subheader}>
+        <span className={styles.inStoreCard__customer}>{order.customerName}</span>
+        {order.placedTime && (
+          <span className={styles.inStoreCard__placed}>Placed {order.placedTime}</span>
         )}
       </div>
 
       <div className={styles.divider} />
-      <div className={styles.inStoreItems}>
-        {order.items.map((item, idx) => (
-          <div key={idx} className={styles.inStoreItem}>
-            <span className={styles.inStoreItem__name}>{item.name}</span>
-            <span className={styles.inStoreItem__qty}>×{item.qty}</span>
+
+      {/* Main item row with image */}
+      <div className={styles.inStoreCard__mainItem}>
+        {mainItem.image && (
+          <img
+            src={mainItem.image}
+            alt={mainItem.name}
+            className={styles.inStoreCard__mainImg}
+          />
+        )}
+        <div className={styles.inStoreCard__mainInfo}>
+          <div className={styles.inStoreCard__mainName}>
+            {mainItem.name}
+            <span className={styles.inStoreCard__qty}>×{mainItem.qty}</span>
           </div>
-        ))}
+          {/* Sub-items */}
+          {subItems.map((item, idx) => (
+            <div key={idx} className={styles.inStoreCard__subItem}>{item.name}</div>
+          ))}
+          {mainItem.plu && (
+            <div className={styles.inStoreCard__plu}>
+              <span className={styles.attrLabel}>PLU</span>
+              <span className={styles.attrValue}>{mainItem.plu}</span>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className={styles.card__action}>
