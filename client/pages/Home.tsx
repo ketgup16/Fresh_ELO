@@ -70,6 +70,7 @@ interface StoreOrder {
   osn: string;
   isExpress: boolean;
   initialSeconds: number;
+  customerName?: string;
   items: OrderItem[];
   isWeightItem?: boolean;
   scaleReading?: ScaleReading;
@@ -605,6 +606,10 @@ function ItemRow({ item, showDivider = true }: { item: OrderItem; showDivider?: 
             <span className={styles.attrValue}>{item.plu}</span>
           </div>
         </div>
+        <span className={styles.itemRow__qtyBadge}>
+          <span className={styles.itemRow__qtyX}>×</span>
+          <span className={styles.itemRow__qtyNum}>{item.qty}</span>
+        </span>
       </div>
     </>
   );
@@ -624,11 +629,15 @@ function OrderDetails({ item }: { item: OrderItem }) {
           <div className={styles.attrLabel}>Type</div>
           <div className={styles.attrValue}>{item.type ?? '-'}</div>
         </div>
-        <div className={styles.orderDetails__colDivider} />
-        <div className={styles.orderDetails__col}>
-          <div className={styles.attrLabel}>&nbsp;</div>
-          <div className={styles.attrValue}>{item.thickness ?? '-'}</div>
-        </div>
+        {item.thickness && (
+          <>
+            <div className={styles.orderDetails__colDivider} />
+            <div className={styles.orderDetails__col}>
+              <div className={styles.attrLabel}>Thickness</div>
+              <div className={styles.attrValue}>{item.thickness}</div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
@@ -684,6 +693,9 @@ function ExpressOrderCard({ order }: { order: StoreOrder }) {
               </div>
           }
         </div>
+        {order.customerName && (
+          <div className={styles.orderHeader__customer}>{order.customerName}</div>
+        )}
       </div>
 
       {/* Items */}

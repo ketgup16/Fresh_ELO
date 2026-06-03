@@ -493,6 +493,13 @@
   line-height: 1.33;
 }
 
+.orderHeader__customer {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text, #2e2f32);
+  padding: 2px 0 0;
+}
+
 .orderHeader__tags {
   display: flex;
   align-items: center;
@@ -812,6 +819,34 @@
   align-items: center;
   gap: 8px;
   margin-top: 10px;
+}
+
+.itemRow__qtyBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.itemRow__qtyX {
+  font-size: 14px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.itemRow__qtyNum {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--ld-semantic-color-fill-brand, #0053e2);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
 }
 
 /* ─── Attribute key/value ────────────────────────────────────────────────────── */
