@@ -429,6 +429,8 @@ function CountdownTimer({
 function AppHeader() {
   const [installPrompt, setInstallPrompt] = useState<Event | null>(null);
   const [bannerDismissed, setBannerDismissed] = useState(false);
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+    || (window.navigator as any).standalone === true;
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -440,13 +442,15 @@ function AppHeader() {
   }, []);
 
   const handleInstall = async () => {
-    if (!installPrompt) return;
-    const prompt = installPrompt as BeforeInstallPromptEvent;
-    await prompt.prompt();
-    setInstallPrompt(null);
+    if (installPrompt) {
+      const prompt = installPrompt as BeforeInstallPromptEvent;
+      await prompt.prompt();
+      setInstallPrompt(null);
+    }
   };
 
-  const showBanner = !!installPrompt && !bannerDismissed;
+  const showBanner = !!installPrompt && !bannerDismissed && !isStandalone;
+  const showHeaderInstallBtn = !isStandalone;
 
   return (
     <>
@@ -458,6 +462,19 @@ function AppHeader() {
           <h1 className={styles.appHeader__title}>Today's Plan</h1>
         </div>
         <div className={styles.appHeader__right}>
+          {showHeaderInstallBtn && (
+            <button
+              className={styles.installBtn}
+              onClick={handleInstall}
+              aria-label="Install app"
+              title="Install as app"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 16L7 11l1.4-1.45 2.6 2.6V4h2v8.15l2.6-2.6L17 11l-5 5zm-6 4q-.825 0-1.412-.587A1.927 1.927 0 0 1 4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413A1.927 1.927 0 0 1 18 20H6z" fill="currentColor"/>
+              </svg>
+              <span>Install</span>
+            </button>
+          )}
           <button className={styles.iconBtn} aria-label="Open chat">
             <Chat />
           </button>
