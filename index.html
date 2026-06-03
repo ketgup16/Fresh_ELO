@@ -5,38 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=overlays-content" />
     <title>Today's Plan</title>
 
-    <!-- PWA: inline manifest so it works regardless of how the app is hosted -->
-    <link rel="manifest" id="pwa-manifest" href="manifest.json" />
+    <!-- PWA manifest -->
+    <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#0053e2" />
-    <script>
-      (function() {
-        var base = location.href.replace(/[?#].*$/, '').replace(/\/?$/, '/');
-        var manifest = {
-          name: "Today's Plan",
-          short_name: "Today's Plan",
-          description: "Walmart deli POS — daily production and order management",
-          start_url: base,
-          scope: base,
-          display: "standalone",
-          display_override: ["standalone", "minimal-ui"],
-          orientation: "landscape",
-          background_color: "#0053e2",
-          theme_color: "#0053e2",
-          icons: [
-            { src: base + "icons/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
-            { src: base + "icons/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" }
-          ]
-        };
-        var blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
-        document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
-      })();
-    </script>
 
     <!-- iOS standalone support -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Today's Plan" />
-    <link rel="apple-touch-icon" href="/icons/icon.svg" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,16 +24,6 @@
   </head>
 
   <body>
-    <script>
-      // GitHub Pages SPA routing: restore redirected path
-      (function() {
-        var p = window.location.search.slice(1).split('&')[0];
-        if (p && p.indexOf('p=') === 0) {
-          var path = decodeURIComponent(p.slice(2));
-          window.history.replaceState(null, null, path || '/');
-        }
-      })();
-    </script>
     <div id="root"></div>
 
     <script type="module" src="/client/App.tsx"></script>
@@ -62,7 +31,9 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
-          navigator.serviceWorker.register('sw.js');
+          navigator.serviceWorker.register('sw.js')
+            .then(function(reg) { console.log('[PWA] SW registered, scope:', reg.scope); })
+            .catch(function(err) { console.warn('[PWA] SW registration failed:', err); });
         });
       }
     </script>
