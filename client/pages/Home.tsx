@@ -483,9 +483,6 @@ function AppHeader() {
               <span>Install</span>
             </button>
           )}
-          <button className={styles.iconBtn} aria-label="Open chat">
-            <Chat />
-          </button>
           <div className={styles.avatar}>
             <div className={styles.avatar__initials}>AC</div>
             <div className={styles.avatar__clock}>
