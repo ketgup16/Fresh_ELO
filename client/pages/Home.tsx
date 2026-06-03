@@ -120,6 +120,7 @@ const INITIAL_EXPRESS_ORDERS: StoreOrder[] = [
     osn: 'OSN 7284',
     isExpress: true,
     initialSeconds: 480,
+    customerName: 'Maria Garcia',
     items: [
       {
         name: 'Buffalo Chicken Wings, 6 Count',
@@ -408,7 +409,7 @@ function CountdownTimer({
   const label =
     timerState === 'paused' ? `${formatted} (paused)` :
     urgency === 'expired' ? 'Overdue' :
-    formatted;
+    `Due in ${formatted}`;
 
   return (
     <button
