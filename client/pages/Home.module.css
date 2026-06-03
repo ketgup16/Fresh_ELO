@@ -531,13 +531,14 @@
   display: inline-flex;
   align-items: center;
   padding: 4px 10px;
-  border-radius: 100px;
+  border-radius: 50px;
   background: var(--ld-semantic-color-fill-positive, #2a8703);
   color: #fff;
   font-size: 12px;
   font-weight: 700;
   line-height: 1.33;
   white-space: nowrap;
+  overflow: hidden;
   border: 1px solid var(--ld-semantic-color-separator, #e3e4e5);
 }
 
