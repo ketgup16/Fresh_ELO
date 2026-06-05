@@ -1339,7 +1339,7 @@ const PARTY_TRAY_DATA: StoreProduct[] = [
     basePrice: 96.00,
     tag: '24 Hour Notice',
     notice: '24 hour notice',
-    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fb3aacd015f7f4fc0a53e17ea392259ed',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F92cef5a618f9492d8031deac535bbb44',
     category: 'party-tray',
     description: 'Black Forest Ham, Honey Ham, Oven Roasted Turkey, Hard Salami & Roast Beef (Med or Rare).',
     variants: [
