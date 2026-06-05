@@ -1,6 +1,6 @@
 {
-  "name": "Today's Plan",
-  "short_name": "Today's Plan",
+  "name": "MyWalmart",
+  "short_name": "MyWalmart",
   "description": "Walmart deli POS — daily production and order management",
   "start_url": "./",
   "scope": "./",
@@ -20,6 +20,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F0cda11f60b154475901cbad45a1cea87?format=png&width=512",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

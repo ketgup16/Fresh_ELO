@@ -469,7 +469,7 @@ function AppHeader() {
           <button className={styles.iconBtn} aria-label="Open menu">
             <Menu />
           </button>
-          <h1 className={styles.appHeader__title}>Today's Plan</h1>
+          <h1 className={styles.appHeader__title}>MyWalmart</h1>
         </div>
         <div className={styles.appHeader__right}>
           {showHeaderInstallBtn && (
@@ -502,7 +502,7 @@ function AppHeader() {
             </svg>
           </div>
           <div className={styles.installBanner__text}>
-            <p className={styles.installBanner__title}>Install Today's Plan</p>
+            <p className={styles.installBanner__title}>Install MyWalmart</p>
             <p className={styles.installBanner__subtitle}>Add to home screen for the best experience</p>
           </div>
           <div className={styles.installBanner__actions}>
