@@ -1430,15 +1430,7 @@ const storeCategories = [
 
 function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InStoreKitchenOrder) => void }) {
   const [activeCategory, setActiveCategory] = useState('hot-meals');
-  const [cart, setCart] = useState<StoreCartItem[]>(() => {
-    // Seed with demo items so the cart is never empty on a fresh session
-    const wings = HOT_MEALS_DATA.find(p => p.id === 'hot_wings');
-    const popcorn = HOT_MEALS_DATA.find(p => p.id === 'hot_popcorn');
-    const items: StoreCartItem[] = [];
-    if (wings) items.push({ cartId: 'demo-wings', product: wings, selectedVariant: null, qty: 2, selections: {}, price: wings.basePrice });
-    if (popcorn) items.push({ cartId: 'demo-popcorn', product: popcorn, selectedVariant: null, qty: 1, selections: {}, price: popcorn.basePrice });
-    return items;
-  });
+  const [cart, setCart] = useState<StoreCartItem[]>([]);
   const [modalProduct, setModalProduct] = useState<StoreProduct | null>(null);
   const [editingCartId, setEditingCartId] = useState<string | null>(null);
   const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(null);
