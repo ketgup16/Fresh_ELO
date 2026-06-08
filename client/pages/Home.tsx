@@ -1010,6 +1010,9 @@ function InStoreOrderCard({ order }: { order: InStoreKitchenOrder }) {
           <span className={styles.inStoreCard__placed}>Placed {order.placedTime}</span>
         )}
       </div>
+      {order.instructions && (
+        <div className={styles.inStoreCard__instructions}>{order.instructions}</div>
+      )}
 
       <div className={styles.divider} />
 

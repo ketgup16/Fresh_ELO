@@ -675,6 +675,17 @@
   color: var(--ld-semantic-color-text-subtle, #515357);
 }
 
+.inStoreCard__instructions {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  background: var(--ld-semantic-color-fill-subtle, #f5f5f6);
+  border-left: 3px solid var(--ld-semantic-color-text-subtle, #515357);
+  padding: 6px 12px 6px 10px;
+  margin: 0 16px 4px;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+}
+
 .inStoreCard__mainItem {
   display: flex;
   align-items: flex-start;
