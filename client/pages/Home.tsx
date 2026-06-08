@@ -1428,6 +1428,135 @@ const storeCategories = [
   { id: 'cakes', label: 'Cakes' },
 ];
 
+// ─── Date Picker ──────────────────────────────────────────────────────────────
+
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function DatePickerCalendar({
+  value,
+  onChange,
+  label = 'Pickup date *',
+}: {
+  value: string;
+  onChange: (date: string) => void;
+  label?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const today = new Date();
+
+  const parseDate = (v: string) => {
+    const d = new Date(v + 'T00:00:00');
+    return isNaN(d.getTime()) ? null : d;
+  };
+
+  const selected = parseDate(value);
+  const [viewYear, setViewYear] = useState(selected?.getFullYear() ?? today.getFullYear());
+  const [viewMonth, setViewMonth] = useState(selected?.getMonth() ?? today.getMonth());
+
+  // Build calendar grid
+  const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+  const cells: (number | null)[] = [
+    ...Array(firstDay).fill(null),
+    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
+  ];
+  // Pad to complete last row
+  while (cells.length % 7 !== 0) cells.push(null);
+
+  const prevMonth = () => {
+    if (viewMonth === 0) { setViewMonth(11); setViewYear(y => y - 1); }
+    else setViewMonth(m => m - 1);
+  };
+  const nextMonth = () => {
+    if (viewMonth === 11) { setViewMonth(0); setViewYear(y => y + 1); }
+    else setViewMonth(m => m + 1);
+  };
+
+  const selectDay = (day: number) => {
+    const d = new Date(viewYear, viewMonth, day);
+    const iso = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    onChange(iso);
+    setOpen(false);
+  };
+
+  const isSelected = (day: number) =>
+    selected?.getFullYear() === viewYear &&
+    selected?.getMonth() === viewMonth &&
+    selected?.getDate() === day;
+
+  const isToday = (day: number) =>
+    today.getFullYear() === viewYear &&
+    today.getMonth() === viewMonth &&
+    today.getDate() === day;
+
+  const displayValue = selected
+    ? selected.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    : '';
+
+  return (
+    <div className={styles.datePicker}>
+      <label className={styles.datePicker__label}>{label}</label>
+      <button
+        type="button"
+        className={styles.datePicker__trigger}
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+        aria-haspopup="dialog"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <rect x="1" y="2.5" width="14" height="12.5" rx="2" stroke="currentColor" strokeWidth="1.2"/>
+          <path d="M1 6.5h14" stroke="currentColor" strokeWidth="1.2"/>
+          <path d="M5 1v3M11 1v3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+        </svg>
+        <span>{displayValue || 'Select date'}</span>
+      </button>
+
+      {open && (
+        <div className={styles.datePicker__popover} role="dialog" aria-label="Date picker">
+          {/* Header */}
+          <div className={styles.datePicker__header}>
+            <button type="button" className={styles.datePicker__navBtn} onClick={prevMonth} aria-label="Previous month">
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+            <span className={styles.datePicker__monthYear}>{MONTHS[viewMonth]} {viewYear}</span>
+            <button type="button" className={styles.datePicker__navBtn} onClick={nextMonth} aria-label="Next month">
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+          </div>
+
+          {/* Day headers */}
+          <div className={styles.datePicker__dayHeaders}>
+            {DAYS.map(d => <span key={d} className={styles.datePicker__dayName}>{d}</span>)}
+          </div>
+
+          {/* Date grid */}
+          <div className={styles.datePicker__grid}>
+            {cells.map((day, i) => (
+              <button
+                key={i}
+                type="button"
+                className={[
+                  styles.datePicker__cell,
+                  day === null ? styles['datePicker__cell--empty'] : '',
+                  day && isSelected(day) ? styles['datePicker__cell--selected'] : '',
+                  day && isToday(day) && !isSelected(day) ? styles['datePicker__cell--today'] : '',
+                ].join(' ')}
+                onClick={() => day && selectDay(day)}
+                disabled={!day}
+                aria-label={day ? `${MONTHS[viewMonth]} ${day} ${viewYear}` : undefined}
+                aria-pressed={day ? isSelected(day) : undefined}
+              >
+                {day ?? ''}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InStoreKitchenOrder) => void }) {
   const [activeCategory, setActiveCategory] = useState('hot-meals');
   const [cart, setCart] = useState<StoreCartItem[]>([]);
@@ -1793,17 +1922,10 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
                 </div>
 
                 <div className={styles.customerInfo__grid}>
-                  <TextField
+                  <DatePickerCalendar
                     label="Pickup date *"
-                    type="text"
-                    placeholder={todayDate}
                     value={customerInfo.pickupDate}
-                    onChange={e => setCustomerInfo(i => ({ ...i, pickupDate: e.target.value }))}
-                    size="large"
-                    inputProps={{
-                      inputMode: 'numeric',
-                      onFocus: e => e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest' }),
-                    }}
+                    onChange={date => setCustomerInfo(i => ({ ...i, pickupDate: date }))}
                   />
                   <div className={styles.formField}>
                     <Select
