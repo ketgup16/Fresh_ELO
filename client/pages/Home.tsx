@@ -135,7 +135,7 @@ const INITIAL_EXPRESS_ORDERS: StoreOrder[] = [
       {
         name: 'Prima Della Hickory Smoked Turkey Breast',
         plu: '6379',
-        image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=128',
+        image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F9d6fd145bdf9465c8410bf912fc18368',
         qty: '0.25 lb',
         type: 'Sliced',
         thickness: '4mm',
@@ -191,7 +191,7 @@ const INCOMING_ORDER_POOL: StoreOrder[] = [
       {
         name: 'Prima Della Honey Turkey',
         plu: '6382',
-        image: 'https://api.builder.io/api/v1/image/assets/TEMP/37f55abb4162c27ee5fec83f02105569a3b30715?width=128',
+        image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F9d6fd145bdf9465c8410bf912fc18368',
         qty: '0.5 lb',
         type: 'Sliced',
         thickness: '2mm',
@@ -1487,7 +1487,7 @@ const MEAT_CHEESE_DATA: StoreProduct[] = [
     basePrice: 10.98,
     plu: '6379',
     tag: 'Deli',
-    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F85b686ebbd0347389df291e214c5cd88',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F9d6fd145bdf9465c8410bf912fc18368',
     category: 'meat-cheese',
     thicknessOptions: ['Shaved', 'Thin (1mm)', 'Sandwich (2mm)', 'Thick (4mm)'],
   },
