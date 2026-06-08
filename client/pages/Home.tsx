@@ -1575,6 +1575,26 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
   const todayDate = new Date().toISOString().split('T')[0];
   const filtered = STORE_PRODUCTS.filter(p => p.category === activeCategory);
 
+  // ── Soft keyboard scroll fix (Android Chrome / Elo kiosk) ──
+  // When the virtual keyboard appears the visual viewport shrinks.
+  // Scroll the currently focused element so it stays above the keyboard.
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const onResize = () => {
+      const focused = document.activeElement as HTMLElement | null;
+      if (!focused) return;
+      const tag = focused.tagName;
+      if (tag !== 'TEXTAREA' && tag !== 'INPUT') return;
+      // Give the browser a frame to repaint, then scroll into view
+      requestAnimationFrame(() => {
+        focused.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    };
+    vv.addEventListener('resize', onResize);
+    return () => vv.removeEventListener('resize', onResize);
+  }, []);
+
   // ── Modal open / pre-fill ──
   const openModal = (product: StoreProduct, cartItem?: StoreCartItem) => {
     setModalProduct(product);
@@ -1947,6 +1967,12 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
                     value={customerInfo.instructions}
                     onChange={e => setCustomerInfo(i => ({ ...i, instructions: e.target.value }))}
                     size="large"
+                    textAreaProps={{
+                      onFocus: e => {
+                        const el = e.currentTarget;
+                        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 350);
+                      },
+                    }}
                   />
                 </div>
               </>
@@ -1974,6 +2000,12 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
                     value={customerInfo.instructions}
                     onChange={e => setCustomerInfo(i => ({ ...i, instructions: e.target.value }))}
                     size="large"
+                    textAreaProps={{
+                      onFocus: e => {
+                        const el = e.currentTarget;
+                        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 350);
+                      },
+                    }}
                   />
                 </div>
 

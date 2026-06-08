@@ -1703,9 +1703,10 @@
   scrollbar-color: var(--ld-semantic-color-separator, #e3e4e5) transparent;
   display: flex;
   flex-direction: column;
-  /* Ensure focused fields are never hidden behind the soft keyboard */
-  scroll-padding-bottom: 24px;
-  padding-bottom: env(keyboard-inset-height, 0px);
+  /* Ensure focused fields are never hidden behind the soft keyboard.
+     The 280px fallback covers a typical Android on-screen keyboard height. */
+  scroll-padding-bottom: 300px;
+  padding-bottom: max(env(keyboard-inset-height, 0px), 280px);
 }
 
 /* ── Customer info ── */
