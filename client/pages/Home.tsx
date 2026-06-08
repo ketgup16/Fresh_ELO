@@ -156,7 +156,7 @@ const INCOMING_ORDER_POOL: StoreOrder[] = [
       {
         name: 'Rotisserie Chicken',
         plu: '6286',
-        image: 'https://api.builder.io/api/v1/image/assets/TEMP/4e964bed0619d2365b794f27970d38864cef87e9?width=128',
+        image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F9a15a767c1824b3287e550eb428e9d02',
         qty: '1',
         type: 'Whole',
       },
@@ -354,7 +354,7 @@ const onlineOrders: OnlineOrder[] = [
     item: {
       name: 'Rotisserie Chicken, 29 oz',
       plu: '6870',
-      image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F101c242f144e4139b92d8454ffb0aab7',
+      image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F9a15a767c1824b3287e550eb428e9d02',
       qty: '1',
       type: 'Traditional',
     },
