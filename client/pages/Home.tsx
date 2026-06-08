@@ -1574,7 +1574,7 @@ function DatePickerCalendar({
   );
 }
 
-function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InStoreKitchenOrder) => void }) {
+function StoreOrdersPanel({ onSendToKitchen, onGoToStoreOrders }: { onSendToKitchen?: (order: InStoreKitchenOrder) => void; onGoToStoreOrders?: () => void }) {
   const [activeCategory, setActiveCategory] = useState('hot-meals');
   const [cart, setCart] = useState<StoreCartItem[]>([]);
   const [modalProduct, setModalProduct] = useState<StoreProduct | null>(null);
@@ -1773,6 +1773,7 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
     setCart([]);
     setCustomerInfo({ name: '', phone: '', pickupDate: '', pickupTime: '', pickupDay: '', orderDate: '', orderTakenBy: '', instructions: '' });
     setOrderSuccess(null);
+    onGoToStoreOrders?.();
   };
 
   // ── Cart label helpers ──
@@ -2308,7 +2309,7 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
               <span className={styles.successOSN__value}>{orderSuccess}</span>
             </div>
             <Button variant="primary" size="medium" isFullWidth onClick={resetFlow}>
-              Start new order
+              Got it
             </Button>
           </div>
         </ModalContent>
@@ -2387,7 +2388,6 @@ export default function Home() {
 
   const handleSendToKitchen = (order: InStoreKitchenOrder) => {
     setInStoreKitchenOrders(prev => [order, ...prev]);
-    setActiveTab('deli-and-meat');
   };
 
   return (
@@ -2482,7 +2482,7 @@ export default function Home() {
             <div className={styles.emptyState}>No items for Produce</div>
           </TabPanel>
           <TabPanel value="store-orders" UNSAFE_className={styles.storeOrdersPanel}>
-            <StoreOrdersPanel onSendToKitchen={handleSendToKitchen} />
+            <StoreOrdersPanel onSendToKitchen={handleSendToKitchen} onGoToStoreOrders={() => setActiveTab('store-orders')} />
           </TabPanel>
         </Tabs>
       </div>
