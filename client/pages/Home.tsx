@@ -655,7 +655,8 @@ type ScaleState = 'idle' | 'reading' | 'read';
 
 function ExpressOrderCard({ order }: { order: StoreOrder }) {
   const [scaleState, setScaleState] = useState<ScaleState>('idle');
-  const [orderLabelUnlocked, setOrderLabelUnlocked] = useState(false);
+  // Non-weight orders are always unlocked — no scale needed
+  const [orderLabelUnlocked, setOrderLabelUnlocked] = useState(!order.isWeightItem);
   const readingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handlePlaceOnScale = () => {
@@ -792,7 +793,7 @@ function ExpressOrderCard({ order }: { order: StoreOrder }) {
       {/* Scan actions — unlock hint + print order label */}
       <div className={styles.scanActions}>
         <div className={styles.divider} />
-        {!orderLabelUnlocked && (
+        {order.isWeightItem && !orderLabelUnlocked && (
           <p className={styles.unlockText}>Weigh 1 item to unlock</p>
         )}
         <div className={styles.scanActions__btn}>
@@ -800,7 +801,7 @@ function ExpressOrderCard({ order }: { order: StoreOrder }) {
             variant="secondary"
             size="small"
             isFullWidth
-            disabled={!orderLabelUnlocked}
+            disabled={order.isWeightItem && !orderLabelUnlocked}
           >
             Print order label
           </Button>
