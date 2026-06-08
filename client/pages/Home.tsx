@@ -1443,7 +1443,20 @@ function DatePickerCalendar({
   label?: string;
 }) {
   const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const today = new Date();
+
+  // Close when clicking outside the calendar
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [open]);
 
   const parseDate = (v: string) => {
     const d = new Date(v + 'T00:00:00');
@@ -1495,7 +1508,7 @@ function DatePickerCalendar({
     : '';
 
   return (
-    <div className={styles.datePicker}>
+    <div className={styles.datePicker} ref={containerRef}>
       <label className={styles.datePicker__label}>{label}</label>
       <button
         type="button"
