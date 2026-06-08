@@ -277,7 +277,7 @@ const productionItems: ProductionItem[] = [
     upc: '3310088740',
     pluOrItemNumber: '33100',
     pluOrItemNumberLabel: 'PLU',
-    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2Fc0d3fddf261c4a17a4424da05e0ecacc',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F5cd73f7bb0414ea09abe6dc511ded76a',
     plan: 18,
     onHand: 3,
     makeNow: 15,
