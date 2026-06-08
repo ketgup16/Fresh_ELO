@@ -1165,7 +1165,7 @@ const HOT_MEALS_DATA: StoreProduct[] = [
     id: 'hot_bundle_roti',
     name: 'Rotisserie Meal Bundle',
     itemType: 'bundle',
-    basePrice: 15.98,
+    basePrice: 9.97,
     plu: '2601234762',
     tag: 'Meal Deal',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F101c242f144e4139b92d8454ffb0aab7',
