@@ -1460,6 +1460,13 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+.productCard:active {
+  transform: scale(0.98);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
 }
 
 .productCard__imageWrap {

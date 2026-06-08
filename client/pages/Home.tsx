@@ -1814,7 +1814,14 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
           )}
 
           {filtered.map(product => (
-            <div key={product.id} className={styles.productCard}>
+            <div
+              key={product.id}
+              className={styles.productCard}
+              onClick={() => product.itemType === 'grab_go' ? addGrabGoToCart(product) : openModal(product)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); product.itemType === 'grab_go' ? addGrabGoToCart(product) : openModal(product); } }}
+            >
               {/* Notice badge centered above image */}
               {product.notice && (
                 <div className={styles.productCard__noticeBanner}>{product.notice}</div>
@@ -1842,11 +1849,11 @@ function StoreOrdersPanel({ onSendToKitchen }: { onSendToKitchen?: (order: InSto
               <div className={styles.productCard__footer}>
                 <div className={styles.productCard__divider} />
                 {product.itemType === 'grab_go' ? (
-                  <Button variant="secondary" size="small" isFullWidth onClick={() => addGrabGoToCart(product)}>
+                  <Button variant="secondary" size="small" isFullWidth onClick={e => { e.stopPropagation(); addGrabGoToCart(product); }}>
                     Add to order
                   </Button>
                 ) : (
-                  <Button variant="secondary" size="small" isFullWidth onClick={() => openModal(product)}>
+                  <Button variant="secondary" size="small" isFullWidth onClick={e => { e.stopPropagation(); openModal(product); }}>
                     Configure and add
                   </Button>
                 )}
