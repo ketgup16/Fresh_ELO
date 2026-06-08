@@ -649,6 +649,80 @@
   background: var(--ld-semantic-color-separator, #e3e4e5);
 }
 
+/* ─── Scheduled orders section ──────────────────────────────────────────────── */
+.scheduledSection__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0 8px;
+  border-top: 2px dashed var(--ld-semantic-color-border-subtle, #e0e0e2);
+  margin-top: 8px;
+}
+
+.scheduledSection__icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.scheduledSection__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text-primary, #1a1a1a);
+  margin: 0;
+}
+
+/* ─── Scheduled order card ───────────────────────────────────────────────────── */
+.scheduledCard {
+  background: var(--ld-semantic-color-surface, #fff);
+  border-radius: 12px;
+  box-shadow:
+    0 -1px 2px 0 rgba(0, 0, 0, 0.06),
+    0 2px 6px 1px rgba(0, 0, 0, 0.10);
+  overflow: hidden;
+  border-left: 4px solid #0053e2;
+}
+
+.scheduledCard__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 16px 4px;
+}
+
+.scheduledCard__osn {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ld-semantic-color-text-primary, #1a1a1a);
+}
+
+.scheduledCard__pickup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.scheduledCard__pickupDate {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0053e2;
+  background: #e8f0ff;
+  border-radius: 4px;
+  padding: 2px 8px;
+  line-height: 1.4;
+}
+
+.scheduledCard__pickupTime {
+  font-size: 12px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+}
+
+.scheduledCard__customer {
+  font-size: 13px;
+  color: var(--ld-semantic-color-text-subtle, #515357);
+  padding: 0 16px 10px;
+}
+
 /* ─── In-Store Order Card ────────────────────────────────────────────────────── */
 /* ─── In-Store Card (new Figma layout) ──────────────────────────────────────── */
 .inStoreCard__header {

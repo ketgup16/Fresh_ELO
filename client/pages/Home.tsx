@@ -110,6 +110,9 @@ interface InStoreKitchenOrder {
   customerName: string;
   placedTime?: string;
   instructions?: string;
+  pickupDate?: string;   // e.g. 'Tomorrow' or '06/12'
+  pickupTime?: string;   // e.g. '2:00 PM'
+  isScheduled?: boolean; // true = future order → shows in production plan
   items: { name: string; qty: string; image?: string; plu?: string; isMain?: boolean }[];
 }
 
@@ -278,6 +281,48 @@ const productionItems: ProductionItem[] = [
     plan: 18,
     onHand: 3,
     makeNow: 15,
+  },
+];
+
+const DEMO_SCHEDULED_ORDERS: InStoreKitchenOrder[] = [
+  {
+    osn: 'OSN 7201',
+    customerName: 'James Rivera',
+    placedTime: '8:15 AM',
+    pickupDate: 'Tomorrow',
+    pickupTime: '11:00 AM',
+    isScheduled: true,
+    instructions: 'No onions please',
+    items: [
+      {
+        name: 'Rotisserie Meal Bundle — BBQ',
+        qty: '2',
+        isMain: true,
+        image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F9a15a767c1824b3287e550eb428e9d02',
+        plu: '9548',
+      },
+      { name: 'Mac & Cheese (16oz)', qty: '2' },
+      { name: 'Coleslaw (16oz)', qty: '2' },
+    ],
+  },
+  {
+    osn: 'OSN 7198',
+    customerName: 'Linda Park',
+    placedTime: '7:55 AM',
+    pickupDate: 'Jun 12',
+    pickupTime: '3:30 PM',
+    isScheduled: true,
+    items: [
+      {
+        name: 'All Meat Tray — Assorted',
+        qty: '1',
+        isMain: true,
+        image: 'https://cdn.builder.io/api/v1/image/assets%2F02297b1ff48d4a2f8e4d9ed415c47ecf%2F92cef5a618f9492d8031deac535bbb44',
+        plu: '6379',
+      },
+      { name: 'Prima Della Honey Turkey', qty: '0.5 lb' },
+      { name: 'Hickory Smoked Turkey Breast', qty: '0.5 lb' },
+    ],
   },
 ];
 
@@ -1056,6 +1101,53 @@ function InStoreOrderCard({ order }: { order: InStoreKitchenOrder }) {
   );
 }
 
+function ScheduledOrderCard({ order }: { order: InStoreKitchenOrder }) {
+  const mainItem = order.items.find(i => i.isMain) ?? order.items[0];
+  const subItems = order.items.filter(i => !i.isMain);
+
+  return (
+    <div className={styles.scheduledCard}>
+      <div className={styles.scheduledCard__header}>
+        <div className={styles.scheduledCard__osn}>{order.osn}</div>
+        <div className={styles.scheduledCard__pickup}>
+          <span className={styles.scheduledCard__pickupDate}>{order.pickupDate}</span>
+          {order.pickupTime && (
+            <span className={styles.scheduledCard__pickupTime}>{order.pickupTime}</span>
+          )}
+        </div>
+      </div>
+      <div className={styles.scheduledCard__customer}>{order.customerName}</div>
+      {order.instructions && (
+        <div className={styles.inStoreCard__instructions}>{order.instructions}</div>
+      )}
+      <div className={styles.divider} />
+      <div className={styles.inStoreCard__mainItem}>
+        {mainItem.image && (
+          <img src={mainItem.image} alt={mainItem.name} className={styles.inStoreCard__mainImg} />
+        )}
+        <div className={styles.inStoreCard__mainInfo}>
+          <div className={styles.inStoreCard__mainName}>
+            <span className={styles.inStoreCard__mainNameText}>{mainItem.name}</span>
+            <span className={styles.itemRow__qtyBadge}>
+              <span className={styles.itemRow__qtyX}>×</span>
+              <span className={styles.itemRow__qtyNum}>{mainItem.qty}</span>
+            </span>
+          </div>
+          {subItems.map((item, idx) => (
+            <div key={idx} className={styles.inStoreCard__subItem}>{item.name} × {item.qty}</div>
+          ))}
+        </div>
+      </div>
+      <div className={styles.card__action}>
+        <div className={styles.divider} />
+        <div className={styles.card__actionPad}>
+          <Button variant="secondary" size="small" isFullWidth>Print order label</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function OnlineOrderCard({ order }: { order: OnlineOrder }) {
   const { secondsLeft } = useCountdownTimer(order.initialSeconds, ONLINE_THRESHOLDS);
   const isSurfaced = secondsLeft <= ONLINE_THRESHOLDS.warning; // within 30 min
@@ -1757,13 +1849,20 @@ function StoreOrdersPanel({ onSendToKitchen, onGoToStoreOrders }: { onSendToKitc
   const submitOrder = () => setOrderSuccess(`OSN ${Math.floor(1000 + Math.random() * 9000)}`);
   const sendToKitchen = () => {
     const osn = `OSN ${Math.floor(1000 + Math.random() * 9000)}`;
+    const isScheduled = !!customerInfo.pickupDate;
     onSendToKitchen?.({
       osn,
       customerName: customerInfo.name.trim() || 'Walk-up Customer',
       instructions: customerInfo.instructions.trim() || undefined,
+      pickupDate: customerInfo.pickupDate || undefined,
+      pickupTime: customerInfo.pickupTime || undefined,
+      isScheduled,
+      placedTime: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
       items: cart.map(item => ({
         name: `${item.product.name}${item.selectedVariant ? ` — ${item.selectedVariant.label}` : ''}`,
         qty: item.qty.toString(),
+        image: item.product.image,
+        isMain: item === cart[0],
       })),
     });
     setOrderSuccess(osn);
@@ -2324,6 +2423,7 @@ function StoreOrdersPanel({ onSendToKitchen, onGoToStoreOrders }: { onSendToKitc
 export default function Home() {
   const [activeTab, setActiveTab] = useState('deli-and-meat');
   const [inStoreKitchenOrders, setInStoreKitchenOrders] = useState<InStoreKitchenOrder[]>(DEMO_INSTORE_ORDERS);
+  const [scheduledOrders, setScheduledOrders] = useState<InStoreKitchenOrder[]>(DEMO_SCHEDULED_ORDERS);
   const [expressOrders, setExpressOrders] = useState<StoreOrder[]>(INITIAL_EXPRESS_ORDERS);
   const [newOrderOsn, setNewOrderOsn] = useState<string | null>(null);
   const incomingPoolIndexRef = useRef(0);
@@ -2387,7 +2487,11 @@ export default function Home() {
   }, []);
 
   const handleSendToKitchen = (order: InStoreKitchenOrder) => {
-    setInStoreKitchenOrders(prev => [order, ...prev]);
+    if (order.isScheduled) {
+      setScheduledOrders(prev => [order, ...prev]);
+    } else {
+      setInStoreKitchenOrders(prev => [order, ...prev]);
+    }
   };
 
   return (
@@ -2455,7 +2559,7 @@ export default function Home() {
 
               <div className={styles.column__divider} />
 
-              {/* Column 2: Today's production plan */}
+              {/* Column 2: Today's production plan + scheduled orders */}
               <section className={styles.column}>
                 <div className={styles.column__header}>
                   <h2 className={styles.column__title}>
@@ -2467,6 +2571,19 @@ export default function Home() {
                   {productionItems.map((item, idx) => (
                     <ProductionCard key={idx} item={item} />
                   ))}
+
+                  {scheduledOrders.length > 0 && (
+                    <>
+                      <div className={styles.scheduledSection__header}>
+                        <span className={styles.scheduledSection__icon}>📅</span>
+                        <h3 className={styles.scheduledSection__title}>Scheduled orders</h3>
+                        <span className={styles.column__count}>({scheduledOrders.length})</span>
+                      </div>
+                      {scheduledOrders.map((order, idx) => (
+                        <ScheduledOrderCard key={`sched-${idx}`} order={order} />
+                      ))}
+                    </>
+                  )}
                 </div>
               </section>
             </div>
